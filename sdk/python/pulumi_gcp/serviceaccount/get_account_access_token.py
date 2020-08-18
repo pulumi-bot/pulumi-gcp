@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetAccountAccessTokenResult',
+    'AwaitableGetAccountAccessTokenResult',
+    'get_account_access_token',
+]
 
 
 class GetAccountAccessTokenResult:
@@ -54,7 +60,11 @@ class AwaitableGetAccountAccessTokenResult(GetAccountAccessTokenResult):
             target_service_account=self.target_service_account)
 
 
-def get_account_access_token(delegates=None, lifetime=None, scopes=None, target_service_account=None, opts=None):
+def get_account_access_token(delegates: Optional[List[str]] = None,
+                             lifetime: Optional[str] = None,
+                             scopes: Optional[List[str]] = None,
+                             target_service_account: Optional[str] = None,
+                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAccountAccessTokenResult:
     """
     This data source provides a google `oauth2` `access_token` for a different service account than the one initially running the script.
 
@@ -62,9 +72,9 @@ def get_account_access_token(delegates=None, lifetime=None, scopes=None, target_
     [the official documentation](https://cloud.google.com/iam/docs/creating-short-lived-service-account-credentials) as well as [iamcredentials.generateAccessToken()](https://cloud.google.com/iam/credentials/reference/rest/v1/projects.serviceAccounts/generateAccessToken)
 
 
-    :param list delegates: Delegate chain of approvals needed to perform full impersonation. Specify the fully qualified service account name.  (e.g. `["projects/-/serviceAccounts/delegate-svc-account@project-id.iam.gserviceaccount.com"]`)
+    :param List[str] delegates: Delegate chain of approvals needed to perform full impersonation. Specify the fully qualified service account name.  (e.g. `["projects/-/serviceAccounts/delegate-svc-account@project-id.iam.gserviceaccount.com"]`)
     :param str lifetime: Lifetime of the impersonated token (defaults to its max: `3600s`).
-    :param list scopes: The scopes the new credential should have (e.g. `["storage-ro", "cloud-platform"]`)
+    :param List[str] scopes: The scopes the new credential should have (e.g. `["storage-ro", "cloud-platform"]`)
     :param str target_service_account: The service account _to_ impersonate (e.g. `service_B@your-project-id.iam.gserviceaccount.com`)
     """
     __args__ = dict()

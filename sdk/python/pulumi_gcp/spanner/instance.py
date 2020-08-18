@@ -5,12 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['Instance']
 
 
 class Instance(pulumi.CustomResource):
-    config: pulumi.Output[str]
+    config: pulumi.Output[str] = pulumi.property("config")
     """
     The name of the instance's configuration (similar but not
     quite the same as a region) which defines defines the geographic placement and
@@ -19,36 +21,54 @@ class Instance(pulumi.CustomResource):
     In order to obtain a valid list please consult the
     [Configuration section of the docs](https://cloud.google.com/spanner/docs/instances).
     """
-    display_name: pulumi.Output[str]
+
+    display_name: pulumi.Output[str] = pulumi.property("displayName")
     """
     The descriptive name for this instance as it appears in UIs. Must be
     unique per project and between 4 and 30 characters in length.
     """
-    labels: pulumi.Output[dict]
+
+    labels: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("labels")
     """
     An object containing a list of "key": value pairs.
     Example: { "name": "wrench", "mass": "1.3kg", "count": "3" }.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     A unique identifier for the instance, which cannot be changed after
     the instance is created. The name must be between 6 and 30 characters
     in length.
     """
-    num_nodes: pulumi.Output[float]
+
+    num_nodes: pulumi.Output[Optional[float]] = pulumi.property("numNodes")
     """
     The number of nodes allocated to this instance.
     """
-    project: pulumi.Output[str]
+
+    project: pulumi.Output[str] = pulumi.property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    state: pulumi.Output[str]
+
+    state: pulumi.Output[str] = pulumi.property("state")
     """
     Instance status: 'CREATING' or 'READY'.
     """
-    def __init__(__self__, resource_name, opts=None, config=None, display_name=None, labels=None, name=None, num_nodes=None, project=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 config: Optional[pulumi.Input[str]] = None,
+                 display_name: Optional[pulumi.Input[str]] = None,
+                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 num_nodes: Optional[pulumi.Input[float]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         An isolated set of Cloud Spanner resources on which databases can be
         hosted.
@@ -71,7 +91,7 @@ class Instance(pulumi.CustomResource):
                [Configuration section of the docs](https://cloud.google.com/spanner/docs/instances).
         :param pulumi.Input[str] display_name: The descriptive name for this instance as it appears in UIs. Must be
                unique per project and between 4 and 30 characters in length.
-        :param pulumi.Input[dict] labels: An object containing a list of "key": value pairs.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: An object containing a list of "key": value pairs.
                Example: { "name": "wrench", "mass": "1.3kg", "count": "3" }.
         :param pulumi.Input[str] name: A unique identifier for the instance, which cannot be changed after
                the instance is created. The name must be between 6 and 30 characters
@@ -115,7 +135,16 @@ class Instance(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, config=None, display_name=None, labels=None, name=None, num_nodes=None, project=None, state=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            config: Optional[pulumi.Input[str]] = None,
+            display_name: Optional[pulumi.Input[str]] = None,
+            labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            num_nodes: Optional[pulumi.Input[float]] = None,
+            project: Optional[pulumi.Input[str]] = None,
+            state: Optional[pulumi.Input[str]] = None) -> 'Instance':
         """
         Get an existing Instance resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -131,7 +160,7 @@ class Instance(pulumi.CustomResource):
                [Configuration section of the docs](https://cloud.google.com/spanner/docs/instances).
         :param pulumi.Input[str] display_name: The descriptive name for this instance as it appears in UIs. Must be
                unique per project and between 4 and 30 characters in length.
-        :param pulumi.Input[dict] labels: An object containing a list of "key": value pairs.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: An object containing a list of "key": value pairs.
                Example: { "name": "wrench", "mass": "1.3kg", "count": "3" }.
         :param pulumi.Input[str] name: A unique identifier for the instance, which cannot be changed after
                the instance is created. The name must be between 6 and 30 characters
@@ -159,3 +188,4 @@ class Instance(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

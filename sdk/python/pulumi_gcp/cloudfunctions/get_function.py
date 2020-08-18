@@ -5,8 +5,15 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetFunctionResult',
+    'AwaitableGetFunctionResult',
+    'get_function',
+]
 
 
 class GetFunctionResult:
@@ -169,7 +176,10 @@ class AwaitableGetFunctionResult(GetFunctionResult):
             vpc_connector_egress_settings=self.vpc_connector_egress_settings)
 
 
-def get_function(name=None, project=None, region=None, opts=None):
+def get_function(name: Optional[str] = None,
+                 project: Optional[str] = None,
+                 region: Optional[str] = None,
+                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFunctionResult:
     """
     Get information about a Google Cloud Function. For more information see
     the [official documentation](https://cloud.google.com/functions/docs/)

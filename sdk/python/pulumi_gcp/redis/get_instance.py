@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetInstanceResult',
+    'AwaitableGetInstanceResult',
+    'get_instance',
+]
 
 
 class GetInstanceResult:
@@ -114,7 +120,10 @@ class AwaitableGetInstanceResult(GetInstanceResult):
             tier=self.tier)
 
 
-def get_instance(name=None, project=None, region=None, opts=None):
+def get_instance(name: Optional[str] = None,
+                 project: Optional[str] = None,
+                 region: Optional[str] = None,
+                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInstanceResult:
     """
     Get information about a Google Cloud Redis instance. For more information see
     the [official documentation](https://cloud.google.com/memorystore/docs/redis)

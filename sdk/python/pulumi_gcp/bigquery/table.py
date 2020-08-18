@@ -5,189 +5,114 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['Table']
 
 
 class Table(pulumi.CustomResource):
-    clusterings: pulumi.Output[list]
+    clusterings: pulumi.Output[Optional[List[str]]] = pulumi.property("clusterings")
     """
     Specifies column names to use for data clustering.
     Up to four top-level columns are allowed, and should be specified in
     descending priority order.
     """
-    creation_time: pulumi.Output[float]
+
+    creation_time: pulumi.Output[float] = pulumi.property("creationTime")
     """
     The time when this table was created, in milliseconds since the epoch.
     """
-    dataset_id: pulumi.Output[str]
+
+    dataset_id: pulumi.Output[str] = pulumi.property("datasetId")
     """
     The dataset ID to create the table in.
     Changing this forces a new resource to be created.
     """
-    description: pulumi.Output[str]
+
+    description: pulumi.Output[Optional[str]] = pulumi.property("description")
     """
     The field description.
     """
-    encryption_configuration: pulumi.Output[dict]
+
+    encryption_configuration: pulumi.Output[Optional['outputs.TableEncryptionConfiguration']] = pulumi.property("encryptionConfiguration")
     """
     Specifies how the table should be encrypted.
     If left blank, the table will be encrypted with a Google-managed key; that process
     is transparent to the user.  Structure is documented below.
-
-      * `kms_key_name` (`str`) - The self link or full name of a key which should be used to
-        encrypt this table.  Note that the default bigquery service account will need to have
-        encrypt/decrypt permissions on this key - you may want to see the
-        `bigquery.getDefaultServiceAccount` datasource and the
-        `kms.CryptoKeyIAMBinding` resource.
     """
-    etag: pulumi.Output[str]
+
+    etag: pulumi.Output[str] = pulumi.property("etag")
     """
     A hash of the resource.
     """
-    expiration_time: pulumi.Output[float]
+
+    expiration_time: pulumi.Output[float] = pulumi.property("expirationTime")
     """
     The time when this table expires, in
     milliseconds since the epoch. If not present, the table will persist
     indefinitely. Expired tables will be deleted and their storage
     reclaimed.
     """
-    external_data_configuration: pulumi.Output[dict]
+
+    external_data_configuration: pulumi.Output[Optional['outputs.TableExternalDataConfiguration']] = pulumi.property("externalDataConfiguration")
     """
     Describes the data format,
     location, and other properties of a table stored outside of BigQuery.
     By defining these properties, the data source can then be queried as
     if it were a standard BigQuery table. Structure is documented below.
-
-      * `autodetect` (`bool`) - - Let BigQuery try to autodetect the schema
-        and format of the table.
-      * `compression` (`str`) - The compression type of the data source.
-        Valid values are "NONE" or "GZIP".
-      * `csvOptions` (`dict`) - Additional properties to set if
-        `source_format` is set to "CSV". Structure is documented below.
-        * `allowJaggedRows` (`bool`) - Indicates if BigQuery should accept rows
-          that are missing trailing optional columns.
-        * `allowQuotedNewlines` (`bool`) - Indicates if BigQuery should allow
-          quoted data sections that contain newline characters in a CSV file.
-          The default value is false.
-        * `encoding` (`str`) - The character encoding of the data. The supported
-          values are UTF-8 or ISO-8859-1.
-        * `fieldDelimiter` (`str`) - The separator for fields in a CSV file.
-        * `quote` (`str`) - The value that is used to quote data sections in a
-          CSV file. If your data does not contain quoted sections, set the
-          property value to an empty string. If your data contains quoted newline
-          characters, you must also set the `allow_quoted_newlines` property to true.
-          The API-side default is `"`, specified in the provider escaped as `\"`. Due to
-          limitations with default values, this value is required to be
-          explicitly set.
-        * `skipLeadingRows` (`float`) - The number of rows at the top of the sheet
-          that BigQuery will skip when reading the data. At least one of `range` or
-          `skip_leading_rows` must be set.
-
-      * `googleSheetsOptions` (`dict`) - Additional options if
-        `source_format` is set to "GOOGLE_SHEETS". Structure is
-        documented below.
-        * `range` (`str`) - Information required to partition based on ranges.
-          Structure is documented below.
-        * `skipLeadingRows` (`float`) - The number of rows at the top of the sheet
-          that BigQuery will skip when reading the data. At least one of `range` or
-          `skip_leading_rows` must be set.
-
-      * `hivePartitioningOptions` (`dict`) - When set, configures hive partitioning
-        support. Not all storage formats support hive partitioning -- requesting hive
-        partitioning on an unsupported format will lead to an error, as will providing
-        an invalid specification.
-        * `mode` (`str`) - When set, what mode of hive partitioning to use when
-          reading data. The following modes are supported.
-          * AUTO: automatically infer partition key name(s) and type(s).
-          * STRINGS: automatically infer partition key name(s). All types are
-          Not all storage formats support hive partitioning. Requesting hive
-          partitioning on an unsupported format will lead to an error.
-          Currently supported formats are: JSON, CSV, ORC, Avro and Parquet.
-          * CUSTOM: when set to `CUSTOM`, you must encode the partition key schema within the `source_uri_prefix` by setting `source_uri_prefix` to `gs://bucket/path_to_table/{key1:TYPE1}/{key2:TYPE2}/{key3:TYPE3}`.
-        * `sourceUriPrefix` (`str`) - When hive partition detection is requested,
-          a common for all source uris must be required. The prefix must end immediately
-          before the partition key encoding begins. For example, consider files following
-          this data layout. `gs://bucket/path_to_table/dt=2019-06-01/country=USA/id=7/file.avro`
-          `gs://bucket/path_to_table/dt=2019-05-31/country=CA/id=3/file.avro` When hive
-          partitioning is requested with either AUTO or STRINGS detection, the common prefix
-          can be either of `gs://bucket/path_to_table` or `gs://bucket/path_to_table/`.
-          Note that when `mode` is set to `CUSTOM`, you must encode the partition key schema within the `source_uri_prefix` by setting `source_uri_prefix` to `gs://bucket/path_to_table/{key1:TYPE1}/{key2:TYPE2}/{key3:TYPE3}`.
-
-      * `ignoreUnknownValues` (`bool`) - Indicates if BigQuery should
-        allow extra values that are not represented in the table schema.
-        If true, the extra values are ignored. If false, records with
-        extra columns are treated as bad records, and if there are too
-        many bad records, an invalid error is returned in the job result.
-        The default value is false.
-      * `maxBadRecords` (`float`) - The maximum number of bad records that
-        BigQuery can ignore when reading data.
-      * `schema` (`str`) - A JSON schema for the external table. Schema is required
-        for CSV and JSON formats if autodetect is not on. Schema is disallowed
-        for Google Cloud Bigtable, Cloud Datastore backups, Avro, ORC and Parquet formats.
-        ~>**NOTE:** Because this field expects a JSON string, any changes to the
-        string will create a diff, even if the JSON itself hasn't changed.
-        Furthermore drift for this field cannot not be detected because BigQuery
-        only uses this schema to compute the effective schema for the table, therefore
-        any changes on the configured value will force the table to be recreated.
-        This schema is effectively only applied when creating a table from an external
-        datasource, after creation the computed schema will be stored in
-        `google_bigquery_table.schema`
-      * `sourceFormat` (`str`) - The data format. Supported values are:
-        "CSV", "GOOGLE_SHEETS", "NEWLINE_DELIMITED_JSON", "AVRO", "PARQUET",
-        and "DATSTORE_BACKUP". To use "GOOGLE_SHEETS"
-        the `scopes` must include
-        "https://www.googleapis.com/auth/drive.readonly".
-      * `sourceUris` (`list`) - A list of the fully-qualified URIs that point to
-        your data in Google Cloud.
     """
-    friendly_name: pulumi.Output[str]
+
+    friendly_name: pulumi.Output[Optional[str]] = pulumi.property("friendlyName")
     """
     A descriptive name for the table.
     """
-    labels: pulumi.Output[dict]
+
+    labels: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("labels")
     """
     A mapping of labels to assign to the resource.
     """
-    last_modified_time: pulumi.Output[float]
+
+    last_modified_time: pulumi.Output[float] = pulumi.property("lastModifiedTime")
     """
     The time when this table was last modified, in milliseconds since the epoch.
     """
-    location: pulumi.Output[str]
+
+    location: pulumi.Output[str] = pulumi.property("location")
     """
     The geographic location where the table resides. This value is inherited from the dataset.
     """
-    num_bytes: pulumi.Output[float]
+
+    num_bytes: pulumi.Output[float] = pulumi.property("numBytes")
     """
     The size of this table in bytes, excluding any data in the streaming buffer.
     """
-    num_long_term_bytes: pulumi.Output[float]
+
+    num_long_term_bytes: pulumi.Output[float] = pulumi.property("numLongTermBytes")
     """
     The number of bytes in the table that are considered "long-term storage".
     """
-    num_rows: pulumi.Output[float]
+
+    num_rows: pulumi.Output[float] = pulumi.property("numRows")
     """
     The number of rows of data in this table, excluding any data in the streaming buffer.
     """
-    project: pulumi.Output[str]
+
+    project: pulumi.Output[str] = pulumi.property("project")
     """
     The ID of the project in which the resource belongs. If it
     is not provided, the provider project is used.
     """
-    range_partitioning: pulumi.Output[dict]
+
+    range_partitioning: pulumi.Output[Optional['outputs.TableRangePartitioning']] = pulumi.property("rangePartitioning")
     """
     If specified, configures range-based
     partitioning for this table. Structure is documented below.
-
-      * `field` (`str`) - The field used to determine how to create a range-based
-        partition.
-      * `range` (`dict`) - Information required to partition based on ranges.
-        Structure is documented below.
-        * `end` (`float`) - End of the range partitioning, exclusive.
-        * `interval` (`float`) - The width of each range within the partition.
-        * `start` (`float`) - Start of the range partitioning, inclusive.
     """
-    schema: pulumi.Output[str]
+
+    schema: pulumi.Output[str] = pulumi.property("schema")
     """
     A JSON schema for the external table. Schema is required
     for CSV and JSON formats if autodetect is not on. Schema is disallowed
@@ -201,45 +126,56 @@ class Table(pulumi.CustomResource):
     datasource, after creation the computed schema will be stored in
     `google_bigquery_table.schema`
     """
-    self_link: pulumi.Output[str]
+
+    self_link: pulumi.Output[str] = pulumi.property("selfLink")
     """
     The URI of the created resource.
     """
-    table_id: pulumi.Output[str]
+
+    table_id: pulumi.Output[str] = pulumi.property("tableId")
     """
     A unique ID for the resource.
     Changing this forces a new resource to be created.
     """
-    time_partitioning: pulumi.Output[dict]
+
+    time_partitioning: pulumi.Output[Optional['outputs.TableTimePartitioning']] = pulumi.property("timePartitioning")
     """
     If specified, configures time-based
     partitioning for this table. Structure is documented below.
-
-      * `expirationMs` (`float`) - Number of milliseconds for which to keep the
-        storage for a partition.
-      * `field` (`str`) - The field used to determine how to create a range-based
-        partition.
-      * `requirePartitionFilter` (`bool`) - If set to true, queries over this table
-        require a partition filter that can be used for partition elimination to be
-        specified.
-      * `type` (`str`) - The only type supported is DAY, which will generate
-        one partition per day based on data loading time.
     """
-    type: pulumi.Output[str]
+
+    type: pulumi.Output[str] = pulumi.property("type")
     """
     The only type supported is DAY, which will generate
     one partition per day based on data loading time.
     """
-    view: pulumi.Output[dict]
+
+    view: pulumi.Output[Optional['outputs.TableView']] = pulumi.property("view")
     """
     If specified, configures this table as a view.
     Structure is documented below.
-
-      * `query` (`str`) - A query that BigQuery executes when the view is referenced.
-      * `useLegacySql` (`bool`) - Specifies whether to use BigQuery's legacy SQL for this view.
-        The default value is true. If set to false, the view will use BigQuery's standard SQL.
     """
-    def __init__(__self__, resource_name, opts=None, clusterings=None, dataset_id=None, description=None, encryption_configuration=None, expiration_time=None, external_data_configuration=None, friendly_name=None, labels=None, project=None, range_partitioning=None, schema=None, table_id=None, time_partitioning=None, view=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 clusterings: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 dataset_id: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 encryption_configuration: Optional[pulumi.Input[pulumi.InputType['TableEncryptionConfigurationArgs']]] = None,
+                 expiration_time: Optional[pulumi.Input[float]] = None,
+                 external_data_configuration: Optional[pulumi.Input[pulumi.InputType['TableExternalDataConfigurationArgs']]] = None,
+                 friendly_name: Optional[pulumi.Input[str]] = None,
+                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 range_partitioning: Optional[pulumi.Input[pulumi.InputType['TableRangePartitioningArgs']]] = None,
+                 schema: Optional[pulumi.Input[str]] = None,
+                 table_id: Optional[pulumi.Input[str]] = None,
+                 time_partitioning: Optional[pulumi.Input[pulumi.InputType['TableTimePartitioningArgs']]] = None,
+                 view: Optional[pulumi.Input[pulumi.InputType['TableViewArgs']]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Creates a table resource in a dataset for Google BigQuery. For more information see
         [the official documentation](https://cloud.google.com/bigquery/docs/) and
@@ -247,28 +183,28 @@ class Table(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] clusterings: Specifies column names to use for data clustering.
+        :param pulumi.Input[List[pulumi.Input[str]]] clusterings: Specifies column names to use for data clustering.
                Up to four top-level columns are allowed, and should be specified in
                descending priority order.
         :param pulumi.Input[str] dataset_id: The dataset ID to create the table in.
                Changing this forces a new resource to be created.
         :param pulumi.Input[str] description: The field description.
-        :param pulumi.Input[dict] encryption_configuration: Specifies how the table should be encrypted.
+        :param pulumi.Input[pulumi.InputType['TableEncryptionConfigurationArgs']] encryption_configuration: Specifies how the table should be encrypted.
                If left blank, the table will be encrypted with a Google-managed key; that process
                is transparent to the user.  Structure is documented below.
         :param pulumi.Input[float] expiration_time: The time when this table expires, in
                milliseconds since the epoch. If not present, the table will persist
                indefinitely. Expired tables will be deleted and their storage
                reclaimed.
-        :param pulumi.Input[dict] external_data_configuration: Describes the data format,
+        :param pulumi.Input[pulumi.InputType['TableExternalDataConfigurationArgs']] external_data_configuration: Describes the data format,
                location, and other properties of a table stored outside of BigQuery.
                By defining these properties, the data source can then be queried as
                if it were a standard BigQuery table. Structure is documented below.
         :param pulumi.Input[str] friendly_name: A descriptive name for the table.
-        :param pulumi.Input[dict] labels: A mapping of labels to assign to the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A mapping of labels to assign to the resource.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs. If it
                is not provided, the provider project is used.
-        :param pulumi.Input[dict] range_partitioning: If specified, configures range-based
+        :param pulumi.Input[pulumi.InputType['TableRangePartitioningArgs']] range_partitioning: If specified, configures range-based
                partitioning for this table. Structure is documented below.
         :param pulumi.Input[str] schema: A JSON schema for the external table. Schema is required
                for CSV and JSON formats if autodetect is not on. Schema is disallowed
@@ -283,130 +219,10 @@ class Table(pulumi.CustomResource):
                `google_bigquery_table.schema`
         :param pulumi.Input[str] table_id: A unique ID for the resource.
                Changing this forces a new resource to be created.
-        :param pulumi.Input[dict] time_partitioning: If specified, configures time-based
+        :param pulumi.Input[pulumi.InputType['TableTimePartitioningArgs']] time_partitioning: If specified, configures time-based
                partitioning for this table. Structure is documented below.
-        :param pulumi.Input[dict] view: If specified, configures this table as a view.
+        :param pulumi.Input[pulumi.InputType['TableViewArgs']] view: If specified, configures this table as a view.
                Structure is documented below.
-
-        The **encryption_configuration** object supports the following:
-
-          * `kms_key_name` (`pulumi.Input[str]`) - The self link or full name of a key which should be used to
-            encrypt this table.  Note that the default bigquery service account will need to have
-            encrypt/decrypt permissions on this key - you may want to see the
-            `bigquery.getDefaultServiceAccount` datasource and the
-            `kms.CryptoKeyIAMBinding` resource.
-
-        The **external_data_configuration** object supports the following:
-
-          * `autodetect` (`pulumi.Input[bool]`) - - Let BigQuery try to autodetect the schema
-            and format of the table.
-          * `compression` (`pulumi.Input[str]`) - The compression type of the data source.
-            Valid values are "NONE" or "GZIP".
-          * `csvOptions` (`pulumi.Input[dict]`) - Additional properties to set if
-            `source_format` is set to "CSV". Structure is documented below.
-            * `allowJaggedRows` (`pulumi.Input[bool]`) - Indicates if BigQuery should accept rows
-              that are missing trailing optional columns.
-            * `allowQuotedNewlines` (`pulumi.Input[bool]`) - Indicates if BigQuery should allow
-              quoted data sections that contain newline characters in a CSV file.
-              The default value is false.
-            * `encoding` (`pulumi.Input[str]`) - The character encoding of the data. The supported
-              values are UTF-8 or ISO-8859-1.
-            * `fieldDelimiter` (`pulumi.Input[str]`) - The separator for fields in a CSV file.
-            * `quote` (`pulumi.Input[str]`) - The value that is used to quote data sections in a
-              CSV file. If your data does not contain quoted sections, set the
-              property value to an empty string. If your data contains quoted newline
-              characters, you must also set the `allow_quoted_newlines` property to true.
-              The API-side default is `"`, specified in the provider escaped as `\"`. Due to
-              limitations with default values, this value is required to be
-              explicitly set.
-            * `skipLeadingRows` (`pulumi.Input[float]`) - The number of rows at the top of the sheet
-              that BigQuery will skip when reading the data. At least one of `range` or
-              `skip_leading_rows` must be set.
-
-          * `googleSheetsOptions` (`pulumi.Input[dict]`) - Additional options if
-            `source_format` is set to "GOOGLE_SHEETS". Structure is
-            documented below.
-            * `range` (`pulumi.Input[str]`) - Information required to partition based on ranges.
-              Structure is documented below.
-            * `skipLeadingRows` (`pulumi.Input[float]`) - The number of rows at the top of the sheet
-              that BigQuery will skip when reading the data. At least one of `range` or
-              `skip_leading_rows` must be set.
-
-          * `hivePartitioningOptions` (`pulumi.Input[dict]`) - When set, configures hive partitioning
-            support. Not all storage formats support hive partitioning -- requesting hive
-            partitioning on an unsupported format will lead to an error, as will providing
-            an invalid specification.
-            * `mode` (`pulumi.Input[str]`) - When set, what mode of hive partitioning to use when
-              reading data. The following modes are supported.
-              * AUTO: automatically infer partition key name(s) and type(s).
-              * STRINGS: automatically infer partition key name(s). All types are
-              Not all storage formats support hive partitioning. Requesting hive
-              partitioning on an unsupported format will lead to an error.
-              Currently supported formats are: JSON, CSV, ORC, Avro and Parquet.
-              * CUSTOM: when set to `CUSTOM`, you must encode the partition key schema within the `source_uri_prefix` by setting `source_uri_prefix` to `gs://bucket/path_to_table/{key1:TYPE1}/{key2:TYPE2}/{key3:TYPE3}`.
-            * `sourceUriPrefix` (`pulumi.Input[str]`) - When hive partition detection is requested,
-              a common for all source uris must be required. The prefix must end immediately
-              before the partition key encoding begins. For example, consider files following
-              this data layout. `gs://bucket/path_to_table/dt=2019-06-01/country=USA/id=7/file.avro`
-              `gs://bucket/path_to_table/dt=2019-05-31/country=CA/id=3/file.avro` When hive
-              partitioning is requested with either AUTO or STRINGS detection, the common prefix
-              can be either of `gs://bucket/path_to_table` or `gs://bucket/path_to_table/`.
-              Note that when `mode` is set to `CUSTOM`, you must encode the partition key schema within the `source_uri_prefix` by setting `source_uri_prefix` to `gs://bucket/path_to_table/{key1:TYPE1}/{key2:TYPE2}/{key3:TYPE3}`.
-
-          * `ignoreUnknownValues` (`pulumi.Input[bool]`) - Indicates if BigQuery should
-            allow extra values that are not represented in the table schema.
-            If true, the extra values are ignored. If false, records with
-            extra columns are treated as bad records, and if there are too
-            many bad records, an invalid error is returned in the job result.
-            The default value is false.
-          * `maxBadRecords` (`pulumi.Input[float]`) - The maximum number of bad records that
-            BigQuery can ignore when reading data.
-          * `schema` (`pulumi.Input[str]`) - A JSON schema for the external table. Schema is required
-            for CSV and JSON formats if autodetect is not on. Schema is disallowed
-            for Google Cloud Bigtable, Cloud Datastore backups, Avro, ORC and Parquet formats.
-            ~>**NOTE:** Because this field expects a JSON string, any changes to the
-            string will create a diff, even if the JSON itself hasn't changed.
-            Furthermore drift for this field cannot not be detected because BigQuery
-            only uses this schema to compute the effective schema for the table, therefore
-            any changes on the configured value will force the table to be recreated.
-            This schema is effectively only applied when creating a table from an external
-            datasource, after creation the computed schema will be stored in
-            `google_bigquery_table.schema`
-          * `sourceFormat` (`pulumi.Input[str]`) - The data format. Supported values are:
-            "CSV", "GOOGLE_SHEETS", "NEWLINE_DELIMITED_JSON", "AVRO", "PARQUET",
-            and "DATSTORE_BACKUP". To use "GOOGLE_SHEETS"
-            the `scopes` must include
-            "https://www.googleapis.com/auth/drive.readonly".
-          * `sourceUris` (`pulumi.Input[list]`) - A list of the fully-qualified URIs that point to
-            your data in Google Cloud.
-
-        The **range_partitioning** object supports the following:
-
-          * `field` (`pulumi.Input[str]`) - The field used to determine how to create a range-based
-            partition.
-          * `range` (`pulumi.Input[dict]`) - Information required to partition based on ranges.
-            Structure is documented below.
-            * `end` (`pulumi.Input[float]`) - End of the range partitioning, exclusive.
-            * `interval` (`pulumi.Input[float]`) - The width of each range within the partition.
-            * `start` (`pulumi.Input[float]`) - Start of the range partitioning, inclusive.
-
-        The **time_partitioning** object supports the following:
-
-          * `expirationMs` (`pulumi.Input[float]`) - Number of milliseconds for which to keep the
-            storage for a partition.
-          * `field` (`pulumi.Input[str]`) - The field used to determine how to create a range-based
-            partition.
-          * `requirePartitionFilter` (`pulumi.Input[bool]`) - If set to true, queries over this table
-            require a partition filter that can be used for partition elimination to be
-            specified.
-          * `type` (`pulumi.Input[str]`) - The only type supported is DAY, which will generate
-            one partition per day based on data loading time.
-
-        The **view** object supports the following:
-
-          * `query` (`pulumi.Input[str]`) - A query that BigQuery executes when the view is referenced.
-          * `useLegacySql` (`pulumi.Input[bool]`) - Specifies whether to use BigQuery's legacy SQL for this view.
-            The default value is true. If set to false, the view will use BigQuery's standard SQL.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -459,7 +275,32 @@ class Table(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, clusterings=None, creation_time=None, dataset_id=None, description=None, encryption_configuration=None, etag=None, expiration_time=None, external_data_configuration=None, friendly_name=None, labels=None, last_modified_time=None, location=None, num_bytes=None, num_long_term_bytes=None, num_rows=None, project=None, range_partitioning=None, schema=None, self_link=None, table_id=None, time_partitioning=None, type=None, view=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            clusterings: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            creation_time: Optional[pulumi.Input[float]] = None,
+            dataset_id: Optional[pulumi.Input[str]] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            encryption_configuration: Optional[pulumi.Input[pulumi.InputType['TableEncryptionConfigurationArgs']]] = None,
+            etag: Optional[pulumi.Input[str]] = None,
+            expiration_time: Optional[pulumi.Input[float]] = None,
+            external_data_configuration: Optional[pulumi.Input[pulumi.InputType['TableExternalDataConfigurationArgs']]] = None,
+            friendly_name: Optional[pulumi.Input[str]] = None,
+            labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            last_modified_time: Optional[pulumi.Input[float]] = None,
+            location: Optional[pulumi.Input[str]] = None,
+            num_bytes: Optional[pulumi.Input[float]] = None,
+            num_long_term_bytes: Optional[pulumi.Input[float]] = None,
+            num_rows: Optional[pulumi.Input[float]] = None,
+            project: Optional[pulumi.Input[str]] = None,
+            range_partitioning: Optional[pulumi.Input[pulumi.InputType['TableRangePartitioningArgs']]] = None,
+            schema: Optional[pulumi.Input[str]] = None,
+            self_link: Optional[pulumi.Input[str]] = None,
+            table_id: Optional[pulumi.Input[str]] = None,
+            time_partitioning: Optional[pulumi.Input[pulumi.InputType['TableTimePartitioningArgs']]] = None,
+            type: Optional[pulumi.Input[str]] = None,
+            view: Optional[pulumi.Input[pulumi.InputType['TableViewArgs']]] = None) -> 'Table':
         """
         Get an existing Table resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -467,14 +308,14 @@ class Table(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] clusterings: Specifies column names to use for data clustering.
+        :param pulumi.Input[List[pulumi.Input[str]]] clusterings: Specifies column names to use for data clustering.
                Up to four top-level columns are allowed, and should be specified in
                descending priority order.
         :param pulumi.Input[float] creation_time: The time when this table was created, in milliseconds since the epoch.
         :param pulumi.Input[str] dataset_id: The dataset ID to create the table in.
                Changing this forces a new resource to be created.
         :param pulumi.Input[str] description: The field description.
-        :param pulumi.Input[dict] encryption_configuration: Specifies how the table should be encrypted.
+        :param pulumi.Input[pulumi.InputType['TableEncryptionConfigurationArgs']] encryption_configuration: Specifies how the table should be encrypted.
                If left blank, the table will be encrypted with a Google-managed key; that process
                is transparent to the user.  Structure is documented below.
         :param pulumi.Input[str] etag: A hash of the resource.
@@ -482,12 +323,12 @@ class Table(pulumi.CustomResource):
                milliseconds since the epoch. If not present, the table will persist
                indefinitely. Expired tables will be deleted and their storage
                reclaimed.
-        :param pulumi.Input[dict] external_data_configuration: Describes the data format,
+        :param pulumi.Input[pulumi.InputType['TableExternalDataConfigurationArgs']] external_data_configuration: Describes the data format,
                location, and other properties of a table stored outside of BigQuery.
                By defining these properties, the data source can then be queried as
                if it were a standard BigQuery table. Structure is documented below.
         :param pulumi.Input[str] friendly_name: A descriptive name for the table.
-        :param pulumi.Input[dict] labels: A mapping of labels to assign to the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A mapping of labels to assign to the resource.
         :param pulumi.Input[float] last_modified_time: The time when this table was last modified, in milliseconds since the epoch.
         :param pulumi.Input[str] location: The geographic location where the table resides. This value is inherited from the dataset.
         :param pulumi.Input[float] num_bytes: The size of this table in bytes, excluding any data in the streaming buffer.
@@ -495,7 +336,7 @@ class Table(pulumi.CustomResource):
         :param pulumi.Input[float] num_rows: The number of rows of data in this table, excluding any data in the streaming buffer.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs. If it
                is not provided, the provider project is used.
-        :param pulumi.Input[dict] range_partitioning: If specified, configures range-based
+        :param pulumi.Input[pulumi.InputType['TableRangePartitioningArgs']] range_partitioning: If specified, configures range-based
                partitioning for this table. Structure is documented below.
         :param pulumi.Input[str] schema: A JSON schema for the external table. Schema is required
                for CSV and JSON formats if autodetect is not on. Schema is disallowed
@@ -511,132 +352,12 @@ class Table(pulumi.CustomResource):
         :param pulumi.Input[str] self_link: The URI of the created resource.
         :param pulumi.Input[str] table_id: A unique ID for the resource.
                Changing this forces a new resource to be created.
-        :param pulumi.Input[dict] time_partitioning: If specified, configures time-based
+        :param pulumi.Input[pulumi.InputType['TableTimePartitioningArgs']] time_partitioning: If specified, configures time-based
                partitioning for this table. Structure is documented below.
         :param pulumi.Input[str] type: The only type supported is DAY, which will generate
                one partition per day based on data loading time.
-        :param pulumi.Input[dict] view: If specified, configures this table as a view.
+        :param pulumi.Input[pulumi.InputType['TableViewArgs']] view: If specified, configures this table as a view.
                Structure is documented below.
-
-        The **encryption_configuration** object supports the following:
-
-          * `kms_key_name` (`pulumi.Input[str]`) - The self link or full name of a key which should be used to
-            encrypt this table.  Note that the default bigquery service account will need to have
-            encrypt/decrypt permissions on this key - you may want to see the
-            `bigquery.getDefaultServiceAccount` datasource and the
-            `kms.CryptoKeyIAMBinding` resource.
-
-        The **external_data_configuration** object supports the following:
-
-          * `autodetect` (`pulumi.Input[bool]`) - - Let BigQuery try to autodetect the schema
-            and format of the table.
-          * `compression` (`pulumi.Input[str]`) - The compression type of the data source.
-            Valid values are "NONE" or "GZIP".
-          * `csvOptions` (`pulumi.Input[dict]`) - Additional properties to set if
-            `source_format` is set to "CSV". Structure is documented below.
-            * `allowJaggedRows` (`pulumi.Input[bool]`) - Indicates if BigQuery should accept rows
-              that are missing trailing optional columns.
-            * `allowQuotedNewlines` (`pulumi.Input[bool]`) - Indicates if BigQuery should allow
-              quoted data sections that contain newline characters in a CSV file.
-              The default value is false.
-            * `encoding` (`pulumi.Input[str]`) - The character encoding of the data. The supported
-              values are UTF-8 or ISO-8859-1.
-            * `fieldDelimiter` (`pulumi.Input[str]`) - The separator for fields in a CSV file.
-            * `quote` (`pulumi.Input[str]`) - The value that is used to quote data sections in a
-              CSV file. If your data does not contain quoted sections, set the
-              property value to an empty string. If your data contains quoted newline
-              characters, you must also set the `allow_quoted_newlines` property to true.
-              The API-side default is `"`, specified in the provider escaped as `\"`. Due to
-              limitations with default values, this value is required to be
-              explicitly set.
-            * `skipLeadingRows` (`pulumi.Input[float]`) - The number of rows at the top of the sheet
-              that BigQuery will skip when reading the data. At least one of `range` or
-              `skip_leading_rows` must be set.
-
-          * `googleSheetsOptions` (`pulumi.Input[dict]`) - Additional options if
-            `source_format` is set to "GOOGLE_SHEETS". Structure is
-            documented below.
-            * `range` (`pulumi.Input[str]`) - Information required to partition based on ranges.
-              Structure is documented below.
-            * `skipLeadingRows` (`pulumi.Input[float]`) - The number of rows at the top of the sheet
-              that BigQuery will skip when reading the data. At least one of `range` or
-              `skip_leading_rows` must be set.
-
-          * `hivePartitioningOptions` (`pulumi.Input[dict]`) - When set, configures hive partitioning
-            support. Not all storage formats support hive partitioning -- requesting hive
-            partitioning on an unsupported format will lead to an error, as will providing
-            an invalid specification.
-            * `mode` (`pulumi.Input[str]`) - When set, what mode of hive partitioning to use when
-              reading data. The following modes are supported.
-              * AUTO: automatically infer partition key name(s) and type(s).
-              * STRINGS: automatically infer partition key name(s). All types are
-              Not all storage formats support hive partitioning. Requesting hive
-              partitioning on an unsupported format will lead to an error.
-              Currently supported formats are: JSON, CSV, ORC, Avro and Parquet.
-              * CUSTOM: when set to `CUSTOM`, you must encode the partition key schema within the `source_uri_prefix` by setting `source_uri_prefix` to `gs://bucket/path_to_table/{key1:TYPE1}/{key2:TYPE2}/{key3:TYPE3}`.
-            * `sourceUriPrefix` (`pulumi.Input[str]`) - When hive partition detection is requested,
-              a common for all source uris must be required. The prefix must end immediately
-              before the partition key encoding begins. For example, consider files following
-              this data layout. `gs://bucket/path_to_table/dt=2019-06-01/country=USA/id=7/file.avro`
-              `gs://bucket/path_to_table/dt=2019-05-31/country=CA/id=3/file.avro` When hive
-              partitioning is requested with either AUTO or STRINGS detection, the common prefix
-              can be either of `gs://bucket/path_to_table` or `gs://bucket/path_to_table/`.
-              Note that when `mode` is set to `CUSTOM`, you must encode the partition key schema within the `source_uri_prefix` by setting `source_uri_prefix` to `gs://bucket/path_to_table/{key1:TYPE1}/{key2:TYPE2}/{key3:TYPE3}`.
-
-          * `ignoreUnknownValues` (`pulumi.Input[bool]`) - Indicates if BigQuery should
-            allow extra values that are not represented in the table schema.
-            If true, the extra values are ignored. If false, records with
-            extra columns are treated as bad records, and if there are too
-            many bad records, an invalid error is returned in the job result.
-            The default value is false.
-          * `maxBadRecords` (`pulumi.Input[float]`) - The maximum number of bad records that
-            BigQuery can ignore when reading data.
-          * `schema` (`pulumi.Input[str]`) - A JSON schema for the external table. Schema is required
-            for CSV and JSON formats if autodetect is not on. Schema is disallowed
-            for Google Cloud Bigtable, Cloud Datastore backups, Avro, ORC and Parquet formats.
-            ~>**NOTE:** Because this field expects a JSON string, any changes to the
-            string will create a diff, even if the JSON itself hasn't changed.
-            Furthermore drift for this field cannot not be detected because BigQuery
-            only uses this schema to compute the effective schema for the table, therefore
-            any changes on the configured value will force the table to be recreated.
-            This schema is effectively only applied when creating a table from an external
-            datasource, after creation the computed schema will be stored in
-            `google_bigquery_table.schema`
-          * `sourceFormat` (`pulumi.Input[str]`) - The data format. Supported values are:
-            "CSV", "GOOGLE_SHEETS", "NEWLINE_DELIMITED_JSON", "AVRO", "PARQUET",
-            and "DATSTORE_BACKUP". To use "GOOGLE_SHEETS"
-            the `scopes` must include
-            "https://www.googleapis.com/auth/drive.readonly".
-          * `sourceUris` (`pulumi.Input[list]`) - A list of the fully-qualified URIs that point to
-            your data in Google Cloud.
-
-        The **range_partitioning** object supports the following:
-
-          * `field` (`pulumi.Input[str]`) - The field used to determine how to create a range-based
-            partition.
-          * `range` (`pulumi.Input[dict]`) - Information required to partition based on ranges.
-            Structure is documented below.
-            * `end` (`pulumi.Input[float]`) - End of the range partitioning, exclusive.
-            * `interval` (`pulumi.Input[float]`) - The width of each range within the partition.
-            * `start` (`pulumi.Input[float]`) - Start of the range partitioning, inclusive.
-
-        The **time_partitioning** object supports the following:
-
-          * `expirationMs` (`pulumi.Input[float]`) - Number of milliseconds for which to keep the
-            storage for a partition.
-          * `field` (`pulumi.Input[str]`) - The field used to determine how to create a range-based
-            partition.
-          * `requirePartitionFilter` (`pulumi.Input[bool]`) - If set to true, queries over this table
-            require a partition filter that can be used for partition elimination to be
-            specified.
-          * `type` (`pulumi.Input[str]`) - The only type supported is DAY, which will generate
-            one partition per day based on data loading time.
-
-        The **view** object supports the following:
-
-          * `query` (`pulumi.Input[str]`) - A query that BigQuery executes when the view is referenced.
-          * `useLegacySql` (`pulumi.Input[bool]`) - Specifies whether to use BigQuery's legacy SQL for this view.
-            The default value is true. If set to false, the view will use BigQuery's standard SQL.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -672,3 +393,4 @@ class Table(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

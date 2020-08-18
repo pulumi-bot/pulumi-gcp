@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetAccountKeyResult',
+    'AwaitableGetAccountKeyResult',
+    'get_account_key',
+]
 
 
 class GetAccountKeyResult:
@@ -54,7 +60,10 @@ class AwaitableGetAccountKeyResult(GetAccountKeyResult):
             public_key_type=self.public_key_type)
 
 
-def get_account_key(name=None, project=None, public_key_type=None, opts=None):
+def get_account_key(name: Optional[str] = None,
+                    project: Optional[str] = None,
+                    public_key_type: Optional[str] = None,
+                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAccountKeyResult:
     """
     Get service account public key. For more information, see [the official documentation](https://cloud.google.com/iam/docs/creating-managing-service-account-keys) and [API](https://cloud.google.com/iam/reference/rest/v1/projects.serviceAccounts.keys/get).
 

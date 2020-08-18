@@ -5,31 +5,49 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['DicomStoreIamMember']
 
 
 class DicomStoreIamMember(pulumi.CustomResource):
-    condition: pulumi.Output[dict]
-    dicom_store_id: pulumi.Output[str]
+    condition: pulumi.Output[Optional['outputs.DicomStoreIamMemberCondition']] = pulumi.property("condition")
+
+    dicom_store_id: pulumi.Output[str] = pulumi.property("dicomStoreId")
     """
     The DICOM store ID, in the form
     `{project_id}/{location_name}/{dataset_name}/{dicom_store_name}` or
     `{location_name}/{dataset_name}/{dicom_store_name}`. In the second form, the provider's
     project setting will be used as a fallback.
     """
-    etag: pulumi.Output[str]
+
+    etag: pulumi.Output[str] = pulumi.property("etag")
     """
     (Computed) The etag of the DICOM store's IAM policy.
     """
-    member: pulumi.Output[str]
-    role: pulumi.Output[str]
+
+    member: pulumi.Output[str] = pulumi.property("member")
+
+    role: pulumi.Output[str] = pulumi.property("role")
     """
     The role that should be applied. Only one
     `healthcare.DicomStoreIamBinding` can be used per role. Note that custom roles must be of the format
     `[projects|organizations]/{parent-name}/roles/{role-name}`.
     """
-    def __init__(__self__, resource_name, opts=None, condition=None, dicom_store_id=None, member=None, role=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 condition: Optional[pulumi.Input[pulumi.InputType['DicomStoreIamMemberConditionArgs']]] = None,
+                 dicom_store_id: Optional[pulumi.Input[str]] = None,
+                 member: Optional[pulumi.Input[str]] = None,
+                 role: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Three different resources help you manage your IAM policy for Healthcare DICOM store. Each of these resources serves a different use case:
 
@@ -50,12 +68,6 @@ class DicomStoreIamMember(pulumi.CustomResource):
         :param pulumi.Input[str] role: The role that should be applied. Only one
                `healthcare.DicomStoreIamBinding` can be used per role. Note that custom roles must be of the format
                `[projects|organizations]/{parent-name}/roles/{role-name}`.
-
-        The **condition** object supports the following:
-
-          * `description` (`pulumi.Input[str]`)
-          * `expression` (`pulumi.Input[str]`)
-          * `title` (`pulumi.Input[str]`)
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -92,7 +104,14 @@ class DicomStoreIamMember(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, condition=None, dicom_store_id=None, etag=None, member=None, role=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            condition: Optional[pulumi.Input[pulumi.InputType['DicomStoreIamMemberConditionArgs']]] = None,
+            dicom_store_id: Optional[pulumi.Input[str]] = None,
+            etag: Optional[pulumi.Input[str]] = None,
+            member: Optional[pulumi.Input[str]] = None,
+            role: Optional[pulumi.Input[str]] = None) -> 'DicomStoreIamMember':
         """
         Get an existing DicomStoreIamMember resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -108,12 +127,6 @@ class DicomStoreIamMember(pulumi.CustomResource):
         :param pulumi.Input[str] role: The role that should be applied. Only one
                `healthcare.DicomStoreIamBinding` can be used per role. Note that custom roles must be of the format
                `[projects|organizations]/{parent-name}/roles/{role-name}`.
-
-        The **condition** object supports the following:
-
-          * `description` (`pulumi.Input[str]`)
-          * `expression` (`pulumi.Input[str]`)
-          * `title` (`pulumi.Input[str]`)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -131,3 +144,4 @@ class DicomStoreIamMember(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

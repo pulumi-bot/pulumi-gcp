@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetBillingAccountResult',
+    'AwaitableGetBillingAccountResult',
+    'get_billing_account',
+]
 
 
 class GetBillingAccountResult:
@@ -57,7 +63,10 @@ class AwaitableGetBillingAccountResult(GetBillingAccountResult):
             project_ids=self.project_ids)
 
 
-def get_billing_account(billing_account=None, display_name=None, open=None, opts=None):
+def get_billing_account(billing_account: Optional[str] = None,
+                        display_name: Optional[str] = None,
+                        open: Optional[bool] = None,
+                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBillingAccountResult:
     """
     Use this data source to get information about a Google Billing Account.
 

@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetRegistryRepositoryResult',
+    'AwaitableGetRegistryRepositoryResult',
+    'get_registry_repository',
+]
 
 
 class GetRegistryRepositoryResult:
@@ -43,7 +49,9 @@ class AwaitableGetRegistryRepositoryResult(GetRegistryRepositoryResult):
             repository_url=self.repository_url)
 
 
-def get_registry_repository(project=None, region=None, opts=None):
+def get_registry_repository(project: Optional[str] = None,
+                            region: Optional[str] = None,
+                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRegistryRepositoryResult:
     """
     This data source fetches the project name, and provides the appropriate URLs to use for container registry for this project.
 

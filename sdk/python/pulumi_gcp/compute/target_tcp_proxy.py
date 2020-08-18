@@ -5,24 +5,29 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['TargetTCPProxy']
 
 
 class TargetTCPProxy(pulumi.CustomResource):
-    backend_service: pulumi.Output[str]
+    backend_service: pulumi.Output[str] = pulumi.property("backendService")
     """
     A reference to the BackendService resource.
     """
-    creation_timestamp: pulumi.Output[str]
+
+    creation_timestamp: pulumi.Output[str] = pulumi.property("creationTimestamp")
     """
     Creation timestamp in RFC3339 text format.
     """
-    description: pulumi.Output[str]
+
+    description: pulumi.Output[Optional[str]] = pulumi.property("description")
     """
     An optional description of this resource.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     Name of the resource. Provided by the client when the resource is
     created. The name must be 1-63 characters long, and comply with
@@ -32,27 +37,42 @@ class TargetTCPProxy(pulumi.CustomResource):
     characters must be a dash, lowercase letter, or digit, except the last
     character, which cannot be a dash.
     """
-    project: pulumi.Output[str]
+
+    project: pulumi.Output[str] = pulumi.property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    proxy_header: pulumi.Output[str]
+
+    proxy_header: pulumi.Output[Optional[str]] = pulumi.property("proxyHeader")
     """
     Specifies the type of proxy header to append before sending data to
     the backend.
     Default value is `NONE`.
     Possible values are `NONE` and `PROXY_V1`.
     """
-    proxy_id: pulumi.Output[float]
+
+    proxy_id: pulumi.Output[float] = pulumi.property("proxyId")
     """
     The unique identifier for the resource.
     """
-    self_link: pulumi.Output[str]
+
+    self_link: pulumi.Output[str] = pulumi.property("selfLink")
     """
     The URI of the created resource.
     """
-    def __init__(__self__, resource_name, opts=None, backend_service=None, description=None, name=None, project=None, proxy_header=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 backend_service: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 proxy_header: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Represents a TargetTcpProxy resource, which is used by one or more
         global forwarding rule to route incoming TCP requests to a Backend
@@ -118,7 +138,17 @@ class TargetTCPProxy(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, backend_service=None, creation_timestamp=None, description=None, name=None, project=None, proxy_header=None, proxy_id=None, self_link=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            backend_service: Optional[pulumi.Input[str]] = None,
+            creation_timestamp: Optional[pulumi.Input[str]] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            project: Optional[pulumi.Input[str]] = None,
+            proxy_header: Optional[pulumi.Input[str]] = None,
+            proxy_id: Optional[pulumi.Input[float]] = None,
+            self_link: Optional[pulumi.Input[str]] = None) -> 'TargetTCPProxy':
         """
         Get an existing TargetTCPProxy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -164,3 +194,4 @@ class TargetTCPProxy(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

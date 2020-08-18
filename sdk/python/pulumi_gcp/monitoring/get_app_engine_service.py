@@ -5,8 +5,15 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetAppEngineServiceResult',
+    'AwaitableGetAppEngineServiceResult',
+    'get_app_engine_service',
+]
 
 
 class GetAppEngineServiceResult:
@@ -55,7 +62,9 @@ class AwaitableGetAppEngineServiceResult(GetAppEngineServiceResult):
             telemetries=self.telemetries)
 
 
-def get_app_engine_service(module_id=None, project=None, opts=None):
+def get_app_engine_service(module_id: Optional[str] = None,
+                           project: Optional[str] = None,
+                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAppEngineServiceResult:
     """
     A Monitoring Service is the root resource under which operational aspects of a
     generic service are accessible. A service is some discrete, autonomous, and

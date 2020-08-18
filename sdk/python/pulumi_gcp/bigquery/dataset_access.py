@@ -5,35 +5,44 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['DatasetAccess']
 
 
 class DatasetAccess(pulumi.CustomResource):
-    dataset_id: pulumi.Output[str]
+    dataset_id: pulumi.Output[str] = pulumi.property("datasetId")
     """
     The ID of the dataset containing this table.
     """
-    domain: pulumi.Output[str]
+
+    domain: pulumi.Output[Optional[str]] = pulumi.property("domain")
     """
     A domain to grant access to. Any users signed in with the
     domain specified will be granted the specified access
     """
-    group_by_email: pulumi.Output[str]
+
+    group_by_email: pulumi.Output[Optional[str]] = pulumi.property("groupByEmail")
     """
     An email address of a Google Group to grant access to.
     """
-    iam_member: pulumi.Output[str]
+
+    iam_member: pulumi.Output[Optional[str]] = pulumi.property("iamMember")
     """
     Some other type of member that appears in the IAM Policy but isn't a user,
     group, domain, or special group. For example: `allUsers`
     """
-    project: pulumi.Output[str]
+
+    project: pulumi.Output[str] = pulumi.property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    role: pulumi.Output[str]
+
+    role: pulumi.Output[Optional[str]] = pulumi.property("role")
     """
     Describes the rights granted to the user specified by the other
     member of the access object. Primitive, Predefined and custom
@@ -42,16 +51,19 @@ class DatasetAccess(pulumi.CustomResource):
     counterparts, and will show a diff post-create. See
     [official docs](https://cloud.google.com/bigquery/docs/access-control).
     """
-    special_group: pulumi.Output[str]
+
+    special_group: pulumi.Output[Optional[str]] = pulumi.property("specialGroup")
     """
     A special group to grant access to. Possible values include:
     """
-    user_by_email: pulumi.Output[str]
+
+    user_by_email: pulumi.Output[Optional[str]] = pulumi.property("userByEmail")
     """
     An email address of a user to grant access to. For example:
     fred@example.com
     """
-    view: pulumi.Output[dict]
+
+    view: pulumi.Output[Optional['outputs.DatasetAccessView']] = pulumi.property("view")
     """
     A view from a different dataset to grant access to. Queries
     executed against that view will have read access to tables in
@@ -59,14 +71,23 @@ class DatasetAccess(pulumi.CustomResource):
     set. If that view is updated by any user, access to the view
     needs to be granted again via an update operation.
     Structure is documented below.
-
-      * `dataset_id` (`str`) - The ID of the dataset containing this table.
-      * `project_id` (`str`) - The ID of the project containing this table.
-      * `table_id` (`str`) - The ID of the table. The ID must contain only letters (a-z,
-        A-Z), numbers (0-9), or underscores (_). The maximum length
-        is 1,024 characters.
     """
-    def __init__(__self__, resource_name, opts=None, dataset_id=None, domain=None, group_by_email=None, iam_member=None, project=None, role=None, special_group=None, user_by_email=None, view=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 dataset_id: Optional[pulumi.Input[str]] = None,
+                 domain: Optional[pulumi.Input[str]] = None,
+                 group_by_email: Optional[pulumi.Input[str]] = None,
+                 iam_member: Optional[pulumi.Input[str]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 role: Optional[pulumi.Input[str]] = None,
+                 special_group: Optional[pulumi.Input[str]] = None,
+                 user_by_email: Optional[pulumi.Input[str]] = None,
+                 view: Optional[pulumi.Input[pulumi.InputType['DatasetAccessViewArgs']]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Gives dataset access for a single entity. This resource is intended to be used in cases where
         it is not possible to compile a full list of access blocks to include in a
@@ -103,20 +124,12 @@ class DatasetAccess(pulumi.CustomResource):
         :param pulumi.Input[str] special_group: A special group to grant access to. Possible values include:
         :param pulumi.Input[str] user_by_email: An email address of a user to grant access to. For example:
                fred@example.com
-        :param pulumi.Input[dict] view: A view from a different dataset to grant access to. Queries
+        :param pulumi.Input[pulumi.InputType['DatasetAccessViewArgs']] view: A view from a different dataset to grant access to. Queries
                executed against that view will have read access to tables in
                this dataset. The role field is not required when this field is
                set. If that view is updated by any user, access to the view
                needs to be granted again via an update operation.
                Structure is documented below.
-
-        The **view** object supports the following:
-
-          * `dataset_id` (`pulumi.Input[str]`) - The ID of the dataset containing this table.
-          * `project_id` (`pulumi.Input[str]`) - The ID of the project containing this table.
-          * `table_id` (`pulumi.Input[str]`) - The ID of the table. The ID must contain only letters (a-z,
-            A-Z), numbers (0-9), or underscores (_). The maximum length
-            is 1,024 characters.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -153,7 +166,18 @@ class DatasetAccess(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, dataset_id=None, domain=None, group_by_email=None, iam_member=None, project=None, role=None, special_group=None, user_by_email=None, view=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            dataset_id: Optional[pulumi.Input[str]] = None,
+            domain: Optional[pulumi.Input[str]] = None,
+            group_by_email: Optional[pulumi.Input[str]] = None,
+            iam_member: Optional[pulumi.Input[str]] = None,
+            project: Optional[pulumi.Input[str]] = None,
+            role: Optional[pulumi.Input[str]] = None,
+            special_group: Optional[pulumi.Input[str]] = None,
+            user_by_email: Optional[pulumi.Input[str]] = None,
+            view: Optional[pulumi.Input[pulumi.InputType['DatasetAccessViewArgs']]] = None) -> 'DatasetAccess':
         """
         Get an existing DatasetAccess resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -178,20 +202,12 @@ class DatasetAccess(pulumi.CustomResource):
         :param pulumi.Input[str] special_group: A special group to grant access to. Possible values include:
         :param pulumi.Input[str] user_by_email: An email address of a user to grant access to. For example:
                fred@example.com
-        :param pulumi.Input[dict] view: A view from a different dataset to grant access to. Queries
+        :param pulumi.Input[pulumi.InputType['DatasetAccessViewArgs']] view: A view from a different dataset to grant access to. Queries
                executed against that view will have read access to tables in
                this dataset. The role field is not required when this field is
                set. If that view is updated by any user, access to the view
                needs to be granted again via an update operation.
                Structure is documented below.
-
-        The **view** object supports the following:
-
-          * `dataset_id` (`pulumi.Input[str]`) - The ID of the dataset containing this table.
-          * `project_id` (`pulumi.Input[str]`) - The ID of the project containing this table.
-          * `table_id` (`pulumi.Input[str]`) - The ID of the table. The ID must contain only letters (a-z,
-            A-Z), numbers (0-9), or underscores (_). The maximum length
-            is 1,024 characters.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -213,3 +229,4 @@ class DatasetAccess(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

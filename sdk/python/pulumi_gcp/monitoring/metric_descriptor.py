@@ -5,69 +5,74 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['MetricDescriptor']
 
 
 class MetricDescriptor(pulumi.CustomResource):
-    description: pulumi.Output[str]
+    description: pulumi.Output[str] = pulumi.property("description")
     """
     A human-readable description for the label.
     """
-    display_name: pulumi.Output[str]
+
+    display_name: pulumi.Output[str] = pulumi.property("displayName")
     """
     A concise name for the metric, which can be displayed in user interfaces. Use sentence case without an ending period, for example "Request count".
     """
-    labels: pulumi.Output[list]
+
+    labels: pulumi.Output[Optional[List['outputs.MetricDescriptorLabel']]] = pulumi.property("labels")
     """
     The set of labels that can be used to describe a specific instance of this metric type. In order to delete a label, the entire resource must be deleted, then created with the desired labels.
     Structure is documented below.
-
-      * `description` (`str`) - A human-readable description for the label.
-      * `key` (`str`) - The key for this label. The key must not exceed 100 characters. The first character of the key must be an upper- or lower-case letter, the remaining characters must be letters, digits or underscores, and the key must match the regular expression [a-zA-Z][a-zA-Z0-9_]*
-      * `value_type` (`str`) - The type of data that can be assigned to the label.
-        Default value is `STRING`.
-        Possible values are `STRING`, `BOOL`, and `INT64`.
     """
-    launch_stage: pulumi.Output[str]
+
+    launch_stage: pulumi.Output[Optional[str]] = pulumi.property("launchStage")
     """
     The launch stage of the metric definition.
     Possible values are `LAUNCH_STAGE_UNSPECIFIED`, `UNIMPLEMENTED`, `PRELAUNCH`, `EARLY_ACCESS`, `ALPHA`, `BETA`, `GA`, and `DEPRECATED`.
     """
-    metadata: pulumi.Output[dict]
+
+    metadata: pulumi.Output[Optional['outputs.MetricDescriptorMetadata']] = pulumi.property("metadata")
     """
     Metadata which can be used to guide usage of the metric.
     Structure is documented below.
-
-      * `ingestDelay` (`str`) - The delay of data points caused by ingestion. Data points older than this age are guaranteed to be ingested and available to be read, excluding data loss due to errors. In `[duration format](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf?&_ga=2.264881487.1507873253.1593446723-935052455.1591817775#google.protobuf.Duration)`.
-      * `samplePeriod` (`str`) - The sampling period of metric data points. For metrics which are written periodically, consecutive data points are stored at this time interval, excluding data loss due to errors. Metrics with a higher granularity have a smaller sampling period. In `[duration format](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf?&_ga=2.264881487.1507873253.1593446723-935052455.1591817775#google.protobuf.Duration)`.
     """
-    metric_kind: pulumi.Output[str]
+
+    metric_kind: pulumi.Output[str] = pulumi.property("metricKind")
     """
     Whether the metric records instantaneous values, changes to a value, etc. Some combinations of metricKind and valueType might not be supported.
     Possible values are `METRIC_KIND_UNSPECIFIED`, `GAUGE`, `DELTA`, and `CUMULATIVE`.
     """
-    monitored_resource_types: pulumi.Output[list]
+
+    monitored_resource_types: pulumi.Output[List[str]] = pulumi.property("monitoredResourceTypes")
     """
     If present, then a time series, which is identified partially by a metric type and a MonitoredResourceDescriptor, that
     is associated with this metric type can only be associated with one of the monitored resource types listed here. This
     field allows time series to be associated with the intersection of this metric type and the monitored resource types in
     this list.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     The resource name of the metric descriptor.
     """
-    project: pulumi.Output[str]
+
+    project: pulumi.Output[str] = pulumi.property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    type: pulumi.Output[str]
+
+    type: pulumi.Output[str] = pulumi.property("type")
     """
     The metric type, including its DNS name prefix. The type is not URL-encoded. All service defined metrics must be prefixed with the service name, in the format of {service name}/{relative metric name}, such as cloudsql.googleapis.com/database/cpu/utilization. The relative metric name must have only upper and lower-case letters, digits, '/' and underscores '_' are allowed. Additionally, the maximum number of characters allowed for the relative_metric_name is 100. All user-defined metric types have the DNS name custom.googleapis.com, external.googleapis.com, or logging.googleapis.com/user/.
     """
-    unit: pulumi.Output[str]
+
+    unit: pulumi.Output[Optional[str]] = pulumi.property("unit")
     """
     The units in which the metric value is reported. It is only applicable if the
     valueType is INT64, DOUBLE, or DISTRIBUTION. The unit defines the representation of
@@ -87,13 +92,30 @@ class MetricDescriptor(pulumi.CustomResource):
     More info can be found in the API documentation
     (https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.metricDescriptors).
     """
-    value_type: pulumi.Output[str]
+
+    value_type: pulumi.Output[str] = pulumi.property("valueType")
     """
     The type of data that can be assigned to the label.
     Default value is `STRING`.
     Possible values are `STRING`, `BOOL`, and `INT64`.
     """
-    def __init__(__self__, resource_name, opts=None, description=None, display_name=None, labels=None, launch_stage=None, metadata=None, metric_kind=None, project=None, type=None, unit=None, value_type=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 display_name: Optional[pulumi.Input[str]] = None,
+                 labels: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['MetricDescriptorLabelArgs']]]]] = None,
+                 launch_stage: Optional[pulumi.Input[str]] = None,
+                 metadata: Optional[pulumi.Input[pulumi.InputType['MetricDescriptorMetadataArgs']]] = None,
+                 metric_kind: Optional[pulumi.Input[str]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
+                 unit: Optional[pulumi.Input[str]] = None,
+                 value_type: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Defines a metric type and its schema. Once a metric descriptor is created, deleting or altering it stops data collection and makes the metric type's existing data unusable.
 
@@ -109,11 +131,11 @@ class MetricDescriptor(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: A human-readable description for the label.
         :param pulumi.Input[str] display_name: A concise name for the metric, which can be displayed in user interfaces. Use sentence case without an ending period, for example "Request count".
-        :param pulumi.Input[list] labels: The set of labels that can be used to describe a specific instance of this metric type. In order to delete a label, the entire resource must be deleted, then created with the desired labels.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['MetricDescriptorLabelArgs']]]] labels: The set of labels that can be used to describe a specific instance of this metric type. In order to delete a label, the entire resource must be deleted, then created with the desired labels.
                Structure is documented below.
         :param pulumi.Input[str] launch_stage: The launch stage of the metric definition.
                Possible values are `LAUNCH_STAGE_UNSPECIFIED`, `UNIMPLEMENTED`, `PRELAUNCH`, `EARLY_ACCESS`, `ALPHA`, `BETA`, `GA`, and `DEPRECATED`.
-        :param pulumi.Input[dict] metadata: Metadata which can be used to guide usage of the metric.
+        :param pulumi.Input[pulumi.InputType['MetricDescriptorMetadataArgs']] metadata: Metadata which can be used to guide usage of the metric.
                Structure is documented below.
         :param pulumi.Input[str] metric_kind: Whether the metric records instantaneous values, changes to a value, etc. Some combinations of metricKind and valueType might not be supported.
                Possible values are `METRIC_KIND_UNSPECIFIED`, `GAUGE`, `DELTA`, and `CUMULATIVE`.
@@ -140,19 +162,6 @@ class MetricDescriptor(pulumi.CustomResource):
         :param pulumi.Input[str] value_type: The type of data that can be assigned to the label.
                Default value is `STRING`.
                Possible values are `STRING`, `BOOL`, and `INT64`.
-
-        The **labels** object supports the following:
-
-          * `description` (`pulumi.Input[str]`) - A human-readable description for the label.
-          * `key` (`pulumi.Input[str]`) - The key for this label. The key must not exceed 100 characters. The first character of the key must be an upper- or lower-case letter, the remaining characters must be letters, digits or underscores, and the key must match the regular expression [a-zA-Z][a-zA-Z0-9_]*
-          * `value_type` (`pulumi.Input[str]`) - The type of data that can be assigned to the label.
-            Default value is `STRING`.
-            Possible values are `STRING`, `BOOL`, and `INT64`.
-
-        The **metadata** object supports the following:
-
-          * `ingestDelay` (`pulumi.Input[str]`) - The delay of data points caused by ingestion. Data points older than this age are guaranteed to be ingested and available to be read, excluding data loss due to errors. In `[duration format](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf?&_ga=2.264881487.1507873253.1593446723-935052455.1591817775#google.protobuf.Duration)`.
-          * `samplePeriod` (`pulumi.Input[str]`) - The sampling period of metric data points. For metrics which are written periodically, consecutive data points are stored at this time interval, excluding data loss due to errors. Metrics with a higher granularity have a smaller sampling period. In `[duration format](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf?&_ga=2.264881487.1507873253.1593446723-935052455.1591817775#google.protobuf.Duration)`.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -200,7 +209,21 @@ class MetricDescriptor(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, description=None, display_name=None, labels=None, launch_stage=None, metadata=None, metric_kind=None, monitored_resource_types=None, name=None, project=None, type=None, unit=None, value_type=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            display_name: Optional[pulumi.Input[str]] = None,
+            labels: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['MetricDescriptorLabelArgs']]]]] = None,
+            launch_stage: Optional[pulumi.Input[str]] = None,
+            metadata: Optional[pulumi.Input[pulumi.InputType['MetricDescriptorMetadataArgs']]] = None,
+            metric_kind: Optional[pulumi.Input[str]] = None,
+            monitored_resource_types: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            project: Optional[pulumi.Input[str]] = None,
+            type: Optional[pulumi.Input[str]] = None,
+            unit: Optional[pulumi.Input[str]] = None,
+            value_type: Optional[pulumi.Input[str]] = None) -> 'MetricDescriptor':
         """
         Get an existing MetricDescriptor resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -210,15 +233,15 @@ class MetricDescriptor(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: A human-readable description for the label.
         :param pulumi.Input[str] display_name: A concise name for the metric, which can be displayed in user interfaces. Use sentence case without an ending period, for example "Request count".
-        :param pulumi.Input[list] labels: The set of labels that can be used to describe a specific instance of this metric type. In order to delete a label, the entire resource must be deleted, then created with the desired labels.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['MetricDescriptorLabelArgs']]]] labels: The set of labels that can be used to describe a specific instance of this metric type. In order to delete a label, the entire resource must be deleted, then created with the desired labels.
                Structure is documented below.
         :param pulumi.Input[str] launch_stage: The launch stage of the metric definition.
                Possible values are `LAUNCH_STAGE_UNSPECIFIED`, `UNIMPLEMENTED`, `PRELAUNCH`, `EARLY_ACCESS`, `ALPHA`, `BETA`, `GA`, and `DEPRECATED`.
-        :param pulumi.Input[dict] metadata: Metadata which can be used to guide usage of the metric.
+        :param pulumi.Input[pulumi.InputType['MetricDescriptorMetadataArgs']] metadata: Metadata which can be used to guide usage of the metric.
                Structure is documented below.
         :param pulumi.Input[str] metric_kind: Whether the metric records instantaneous values, changes to a value, etc. Some combinations of metricKind and valueType might not be supported.
                Possible values are `METRIC_KIND_UNSPECIFIED`, `GAUGE`, `DELTA`, and `CUMULATIVE`.
-        :param pulumi.Input[list] monitored_resource_types: If present, then a time series, which is identified partially by a metric type and a MonitoredResourceDescriptor, that
+        :param pulumi.Input[List[pulumi.Input[str]]] monitored_resource_types: If present, then a time series, which is identified partially by a metric type and a MonitoredResourceDescriptor, that
                is associated with this metric type can only be associated with one of the monitored resource types listed here. This
                field allows time series to be associated with the intersection of this metric type and the monitored resource types in
                this list.
@@ -246,19 +269,6 @@ class MetricDescriptor(pulumi.CustomResource):
         :param pulumi.Input[str] value_type: The type of data that can be assigned to the label.
                Default value is `STRING`.
                Possible values are `STRING`, `BOOL`, and `INT64`.
-
-        The **labels** object supports the following:
-
-          * `description` (`pulumi.Input[str]`) - A human-readable description for the label.
-          * `key` (`pulumi.Input[str]`) - The key for this label. The key must not exceed 100 characters. The first character of the key must be an upper- or lower-case letter, the remaining characters must be letters, digits or underscores, and the key must match the regular expression [a-zA-Z][a-zA-Z0-9_]*
-          * `value_type` (`pulumi.Input[str]`) - The type of data that can be assigned to the label.
-            Default value is `STRING`.
-            Possible values are `STRING`, `BOOL`, and `INT64`.
-
-        The **metadata** object supports the following:
-
-          * `ingestDelay` (`pulumi.Input[str]`) - The delay of data points caused by ingestion. Data points older than this age are guaranteed to be ingested and available to be read, excluding data loss due to errors. In `[duration format](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf?&_ga=2.264881487.1507873253.1593446723-935052455.1591817775#google.protobuf.Duration)`.
-          * `samplePeriod` (`pulumi.Input[str]`) - The sampling period of metric data points. For metrics which are written periodically, consecutive data points are stored at this time interval, excluding data loss due to errors. Metrics with a higher granularity have a smaller sampling period. In `[duration format](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf?&_ga=2.264881487.1507873253.1593446723-935052455.1591817775#google.protobuf.Duration)`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -283,3 +293,4 @@ class MetricDescriptor(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

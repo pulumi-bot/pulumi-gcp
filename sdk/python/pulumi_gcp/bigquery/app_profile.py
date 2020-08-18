@@ -5,53 +5,73 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['AppProfile']
 
 
 class AppProfile(pulumi.CustomResource):
-    app_profile_id: pulumi.Output[str]
+    app_profile_id: pulumi.Output[str] = pulumi.property("appProfileId")
     """
     The unique name of the app profile in the form `[_a-zA-Z0-9][-_.a-zA-Z0-9]*`.
     """
-    description: pulumi.Output[str]
+
+    description: pulumi.Output[Optional[str]] = pulumi.property("description")
     """
     Long form description of the use case for this app profile.
     """
-    ignore_warnings: pulumi.Output[bool]
+
+    ignore_warnings: pulumi.Output[Optional[bool]] = pulumi.property("ignoreWarnings")
     """
     If true, ignore safety checks when deleting/updating the app profile.
     """
-    instance: pulumi.Output[str]
+
+    instance: pulumi.Output[Optional[str]] = pulumi.property("instance")
     """
     The name of the instance to create the app profile within.
     """
-    multi_cluster_routing_use_any: pulumi.Output[bool]
+
+    multi_cluster_routing_use_any: pulumi.Output[Optional[bool]] = pulumi.property("multiClusterRoutingUseAny")
     """
     If true, read/write requests are routed to the nearest cluster in the instance, and will fail over to the nearest cluster that is available
     in the event of transient errors or delays. Clusters in a region are considered equidistant. Choosing this option sacrifices read-your-writes
     consistency to improve availability.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     The unique name of the requested app profile. Values are of the form
     'projects/<project>/instances/<instance>/appProfiles/<appProfileId>'.
     """
-    project: pulumi.Output[str]
+
+    project: pulumi.Output[str] = pulumi.property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    single_cluster_routing: pulumi.Output[dict]
+
+    single_cluster_routing: pulumi.Output[Optional['outputs.AppProfileSingleClusterRouting']] = pulumi.property("singleClusterRouting")
     """
     Use a single-cluster routing policy.
     Structure is documented below.
-
-      * `allowTransactionalWrites` (`bool`) - If true, CheckAndMutateRow and ReadModifyWriteRow requests are allowed by this app profile.
-        It is unsafe to send these requests to the same table/row/column in multiple clusters.
-      * `cluster_id` (`str`) - The cluster to which read/write requests should be routed.
     """
-    def __init__(__self__, resource_name, opts=None, app_profile_id=None, description=None, ignore_warnings=None, instance=None, multi_cluster_routing_use_any=None, project=None, single_cluster_routing=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 app_profile_id: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 ignore_warnings: Optional[pulumi.Input[bool]] = None,
+                 instance: Optional[pulumi.Input[str]] = None,
+                 multi_cluster_routing_use_any: Optional[pulumi.Input[bool]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 single_cluster_routing: Optional[pulumi.Input[pulumi.InputType['AppProfileSingleClusterRoutingArgs']]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         App profile is a configuration object describing how Cloud Bigtable should treat traffic from a particular end user application.
 
@@ -68,14 +88,8 @@ class AppProfile(pulumi.CustomResource):
                consistency to improve availability.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[dict] single_cluster_routing: Use a single-cluster routing policy.
+        :param pulumi.Input[pulumi.InputType['AppProfileSingleClusterRoutingArgs']] single_cluster_routing: Use a single-cluster routing policy.
                Structure is documented below.
-
-        The **single_cluster_routing** object supports the following:
-
-          * `allowTransactionalWrites` (`pulumi.Input[bool]`) - If true, CheckAndMutateRow and ReadModifyWriteRow requests are allowed by this app profile.
-            It is unsafe to send these requests to the same table/row/column in multiple clusters.
-          * `cluster_id` (`pulumi.Input[str]`) - The cluster to which read/write requests should be routed.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -111,7 +125,17 @@ class AppProfile(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, app_profile_id=None, description=None, ignore_warnings=None, instance=None, multi_cluster_routing_use_any=None, name=None, project=None, single_cluster_routing=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            app_profile_id: Optional[pulumi.Input[str]] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            ignore_warnings: Optional[pulumi.Input[bool]] = None,
+            instance: Optional[pulumi.Input[str]] = None,
+            multi_cluster_routing_use_any: Optional[pulumi.Input[bool]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            project: Optional[pulumi.Input[str]] = None,
+            single_cluster_routing: Optional[pulumi.Input[pulumi.InputType['AppProfileSingleClusterRoutingArgs']]] = None) -> 'AppProfile':
         """
         Get an existing AppProfile resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -130,14 +154,8 @@ class AppProfile(pulumi.CustomResource):
                'projects/<project>/instances/<instance>/appProfiles/<appProfileId>'.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[dict] single_cluster_routing: Use a single-cluster routing policy.
+        :param pulumi.Input[pulumi.InputType['AppProfileSingleClusterRoutingArgs']] single_cluster_routing: Use a single-cluster routing policy.
                Structure is documented below.
-
-        The **single_cluster_routing** object supports the following:
-
-          * `allowTransactionalWrites` (`pulumi.Input[bool]`) - If true, CheckAndMutateRow and ReadModifyWriteRow requests are allowed by this app profile.
-            It is unsafe to send these requests to the same table/row/column in multiple clusters.
-          * `cluster_id` (`pulumi.Input[str]`) - The cluster to which read/write requests should be routed.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -158,3 +176,4 @@ class AppProfile(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,8 +5,15 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetDatabaseInstanceResult',
+    'AwaitableGetDatabaseInstanceResult',
+    'get_database_instance',
+]
 
 
 class GetDatabaseInstanceResult:
@@ -138,7 +145,8 @@ class AwaitableGetDatabaseInstanceResult(GetDatabaseInstanceResult):
             settings=self.settings)
 
 
-def get_database_instance(name=None, opts=None):
+def get_database_instance(name: Optional[str] = None,
+                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDatabaseInstanceResult:
     """
     Use this data source to get information about a Cloud SQL instance
 

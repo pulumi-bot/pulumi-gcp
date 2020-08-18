@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetWebAppResult',
+    'AwaitableGetWebAppResult',
+    'get_web_app',
+]
 
 
 class GetWebAppResult:
@@ -47,7 +53,8 @@ class AwaitableGetWebAppResult(GetWebAppResult):
             project=self.project)
 
 
-def get_web_app(app_id=None, opts=None):
+def get_web_app(app_id: Optional[str] = None,
+                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetWebAppResult:
     """
     A Google Cloud Firebase web application instance
 

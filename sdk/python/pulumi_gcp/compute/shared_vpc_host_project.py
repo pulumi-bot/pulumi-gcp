@@ -5,16 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['SharedVPCHostProject']
 
 
 class SharedVPCHostProject(pulumi.CustomResource):
-    project: pulumi.Output[str]
+    project: pulumi.Output[str] = pulumi.property("project")
     """
     The ID of the project that will serve as a Shared VPC host project
     """
-    def __init__(__self__, resource_name, opts=None, project=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Enables the Google Compute Engine
         [Shared VPC](https://cloud.google.com/compute/docs/shared-vpc)
@@ -55,7 +64,10 @@ class SharedVPCHostProject(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, project=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            project: Optional[pulumi.Input[str]] = None) -> 'SharedVPCHostProject':
         """
         Get an existing SharedVPCHostProject resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -77,3 +89,4 @@ class SharedVPCHostProject(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

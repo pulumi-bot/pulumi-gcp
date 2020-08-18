@@ -5,48 +5,69 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['Realm']
 
 
 class Realm(pulumi.CustomResource):
-    description: pulumi.Output[str]
+    description: pulumi.Output[Optional[str]] = pulumi.property("description")
     """
     Human readable description of the realm.
     """
-    etag: pulumi.Output[str]
+
+    etag: pulumi.Output[str] = pulumi.property("etag")
     """
     ETag of the resource.
     """
-    labels: pulumi.Output[dict]
+
+    labels: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("labels")
     """
     The labels associated with this realm. Each label is a key-value pair.
     """
-    location: pulumi.Output[str]
+
+    location: pulumi.Output[Optional[str]] = pulumi.property("location")
     """
     Location of the Realm.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     The resource id of the realm, of the form: 'projects/{project_id}/locations/{location}/realms/{realm_id}'. For example,
     'projects/my-project/locations/{location}/realms/my-realm'.
     """
-    project: pulumi.Output[str]
+
+    project: pulumi.Output[str] = pulumi.property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    realm_id: pulumi.Output[str]
+
+    realm_id: pulumi.Output[str] = pulumi.property("realmId")
     """
     GCP region of the Realm.
     """
-    time_zone: pulumi.Output[str]
+
+    time_zone: pulumi.Output[str] = pulumi.property("timeZone")
     """
     Required. Time zone where all realm-specific policies are evaluated. The value of
     this field must be from the IANA time zone database:
     https://www.iana.org/time-zones.
     """
-    def __init__(__self__, resource_name, opts=None, description=None, labels=None, location=None, project=None, realm_id=None, time_zone=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 location: Optional[pulumi.Input[str]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 realm_id: Optional[pulumi.Input[str]] = None,
+                 time_zone: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         A Realm resource.
 
@@ -61,7 +82,7 @@ class Realm(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: Human readable description of the realm.
-        :param pulumi.Input[dict] labels: The labels associated with this realm. Each label is a key-value pair.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: The labels associated with this realm. Each label is a key-value pair.
         :param pulumi.Input[str] location: Location of the Realm.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
@@ -106,7 +127,17 @@ class Realm(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, description=None, etag=None, labels=None, location=None, name=None, project=None, realm_id=None, time_zone=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            etag: Optional[pulumi.Input[str]] = None,
+            labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            location: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            project: Optional[pulumi.Input[str]] = None,
+            realm_id: Optional[pulumi.Input[str]] = None,
+            time_zone: Optional[pulumi.Input[str]] = None) -> 'Realm':
         """
         Get an existing Realm resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -116,7 +147,7 @@ class Realm(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: Human readable description of the realm.
         :param pulumi.Input[str] etag: ETag of the resource.
-        :param pulumi.Input[dict] labels: The labels associated with this realm. Each label is a key-value pair.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: The labels associated with this realm. Each label is a key-value pair.
         :param pulumi.Input[str] location: Location of the Realm.
         :param pulumi.Input[str] name: The resource id of the realm, of the form: 'projects/{project_id}/locations/{location}/realms/{realm_id}'. For example,
                'projects/my-project/locations/{location}/realms/my-realm'.
@@ -146,3 +177,4 @@ class Realm(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

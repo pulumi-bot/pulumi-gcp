@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetWebAppConfigResult',
+    'AwaitableGetWebAppConfigResult',
+    'get_web_app_config',
+]
 
 
 class GetWebAppConfigResult:
@@ -67,7 +73,9 @@ class AwaitableGetWebAppConfigResult(GetWebAppConfigResult):
             web_app_id=self.web_app_id)
 
 
-def get_web_app_config(project=None, web_app_id=None, opts=None):
+def get_web_app_config(project: Optional[str] = None,
+                       web_app_id: Optional[str] = None,
+                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetWebAppConfigResult:
     """
     A Google Cloud Firebase web application configuration
 

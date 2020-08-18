@@ -5,12 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['Deployment']
 
 
 class Deployment(pulumi.CustomResource):
-    create_policy: pulumi.Output[str]
+    create_policy: pulumi.Output[Optional[str]] = pulumi.property("createPolicy")
     """
     Set the policy to use for creating new resources. Only used on
     create and update. Valid values are `CREATE_OR_ACQUIRE` (default) or
@@ -20,7 +24,8 @@ class Deployment(pulumi.CustomResource):
     Default value is `CREATE_OR_ACQUIRE`.
     Possible values are `ACQUIRE` and `CREATE_OR_ACQUIRE`.
     """
-    delete_policy: pulumi.Output[str]
+
+    delete_policy: pulumi.Output[Optional[str]] = pulumi.property("deletePolicy")
     """
     Set the policy to use for deleting new resources on update/delete.
     Valid values are `DELETE` (default) or `ABANDON`. If `DELETE`,
@@ -31,32 +36,35 @@ class Deployment(pulumi.CustomResource):
     Default value is `DELETE`.
     Possible values are `ABANDON` and `DELETE`.
     """
-    deployment_id: pulumi.Output[str]
+
+    deployment_id: pulumi.Output[str] = pulumi.property("deploymentId")
     """
     Unique identifier for deployment. Output only.
     """
-    description: pulumi.Output[str]
+
+    description: pulumi.Output[Optional[str]] = pulumi.property("description")
     """
     Optional user-provided description of deployment.
     """
-    labels: pulumi.Output[list]
+
+    labels: pulumi.Output[Optional[List['outputs.DeploymentLabel']]] = pulumi.property("labels")
     """
     Key-value pairs to apply to this labels.
     Structure is documented below.
-
-      * `key` (`str`) - Key for label.
-      * `value` (`str`) - Value of label.
     """
-    manifest: pulumi.Output[str]
+
+    manifest: pulumi.Output[str] = pulumi.property("manifest")
     """
     Output only. URL of the manifest representing the last manifest that was successfully deployed.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     The name of the template to import, as declared in the YAML
     configuration.
     """
-    preview: pulumi.Output[bool]
+
+    preview: pulumi.Output[Optional[bool]] = pulumi.property("preview")
     """
     If set to true, a deployment is created with "shell" resources
     that are not actually instantiated. This allows you to preview a
@@ -67,34 +75,39 @@ class Deployment(pulumi.CustomResource):
     the provider will force-recreate deployments if either preview is updated
     to true or if other fields are updated while preview is true.
     """
-    project: pulumi.Output[str]
+
+    project: pulumi.Output[str] = pulumi.property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    self_link: pulumi.Output[str]
+
+    self_link: pulumi.Output[str] = pulumi.property("selfLink")
     """
     Output only. Server defined URL for the resource.
     """
-    target: pulumi.Output[dict]
+
+    target: pulumi.Output['outputs.DeploymentTarget'] = pulumi.property("target")
     """
     Parameters that define your deployment, including the deployment
     configuration and relevant templates.
     Structure is documented below.
-
-      * `config` (`dict`) - The root configuration file to use for this deployment.
-        Structure is documented below.
-        * `content` (`str`) - The full contents of the template that you want to import.
-
-      * `imports` (`list`) - Specifies import files for this configuration. This can be
-        used to import templates or other files. For example, you might
-        import a text file in order to use the file in a template.
-        Structure is documented below.
-        * `content` (`str`) - The full contents of the template that you want to import.
-        * `name` (`str`) - The name of the template to import, as declared in the YAML
-          configuration.
     """
-    def __init__(__self__, resource_name, opts=None, create_policy=None, delete_policy=None, description=None, labels=None, name=None, preview=None, project=None, target=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 create_policy: Optional[pulumi.Input[str]] = None,
+                 delete_policy: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 labels: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['DeploymentLabelArgs']]]]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 preview: Optional[pulumi.Input[bool]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 target: Optional[pulumi.Input[pulumi.InputType['DeploymentTargetArgs']]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         A collection of resources that are deployed and managed together using
         a configuration file
@@ -130,7 +143,7 @@ class Deployment(pulumi.CustomResource):
                Default value is `DELETE`.
                Possible values are `ABANDON` and `DELETE`.
         :param pulumi.Input[str] description: Optional user-provided description of deployment.
-        :param pulumi.Input[list] labels: Key-value pairs to apply to this labels.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['DeploymentLabelArgs']]]] labels: Key-value pairs to apply to this labels.
                Structure is documented below.
         :param pulumi.Input[str] name: The name of the template to import, as declared in the YAML
                configuration.
@@ -144,28 +157,9 @@ class Deployment(pulumi.CustomResource):
                to true or if other fields are updated while preview is true.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[dict] target: Parameters that define your deployment, including the deployment
+        :param pulumi.Input[pulumi.InputType['DeploymentTargetArgs']] target: Parameters that define your deployment, including the deployment
                configuration and relevant templates.
                Structure is documented below.
-
-        The **labels** object supports the following:
-
-          * `key` (`pulumi.Input[str]`) - Key for label.
-          * `value` (`pulumi.Input[str]`) - Value of label.
-
-        The **target** object supports the following:
-
-          * `config` (`pulumi.Input[dict]`) - The root configuration file to use for this deployment.
-            Structure is documented below.
-            * `content` (`pulumi.Input[str]`) - The full contents of the template that you want to import.
-
-          * `imports` (`pulumi.Input[list]`) - Specifies import files for this configuration. This can be
-            used to import templates or other files. For example, you might
-            import a text file in order to use the file in a template.
-            Structure is documented below.
-            * `content` (`pulumi.Input[str]`) - The full contents of the template that you want to import.
-            * `name` (`pulumi.Input[str]`) - The name of the template to import, as declared in the YAML
-              configuration.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -204,7 +198,20 @@ class Deployment(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, create_policy=None, delete_policy=None, deployment_id=None, description=None, labels=None, manifest=None, name=None, preview=None, project=None, self_link=None, target=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            create_policy: Optional[pulumi.Input[str]] = None,
+            delete_policy: Optional[pulumi.Input[str]] = None,
+            deployment_id: Optional[pulumi.Input[str]] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            labels: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['DeploymentLabelArgs']]]]] = None,
+            manifest: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            preview: Optional[pulumi.Input[bool]] = None,
+            project: Optional[pulumi.Input[str]] = None,
+            self_link: Optional[pulumi.Input[str]] = None,
+            target: Optional[pulumi.Input[pulumi.InputType['DeploymentTargetArgs']]] = None) -> 'Deployment':
         """
         Get an existing Deployment resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -229,7 +236,7 @@ class Deployment(pulumi.CustomResource):
                Possible values are `ABANDON` and `DELETE`.
         :param pulumi.Input[str] deployment_id: Unique identifier for deployment. Output only.
         :param pulumi.Input[str] description: Optional user-provided description of deployment.
-        :param pulumi.Input[list] labels: Key-value pairs to apply to this labels.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['DeploymentLabelArgs']]]] labels: Key-value pairs to apply to this labels.
                Structure is documented below.
         :param pulumi.Input[str] manifest: Output only. URL of the manifest representing the last manifest that was successfully deployed.
         :param pulumi.Input[str] name: The name of the template to import, as declared in the YAML
@@ -245,28 +252,9 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         :param pulumi.Input[str] self_link: Output only. Server defined URL for the resource.
-        :param pulumi.Input[dict] target: Parameters that define your deployment, including the deployment
+        :param pulumi.Input[pulumi.InputType['DeploymentTargetArgs']] target: Parameters that define your deployment, including the deployment
                configuration and relevant templates.
                Structure is documented below.
-
-        The **labels** object supports the following:
-
-          * `key` (`pulumi.Input[str]`) - Key for label.
-          * `value` (`pulumi.Input[str]`) - Value of label.
-
-        The **target** object supports the following:
-
-          * `config` (`pulumi.Input[dict]`) - The root configuration file to use for this deployment.
-            Structure is documented below.
-            * `content` (`pulumi.Input[str]`) - The full contents of the template that you want to import.
-
-          * `imports` (`pulumi.Input[list]`) - Specifies import files for this configuration. This can be
-            used to import templates or other files. For example, you might
-            import a text file in order to use the file in a template.
-            Structure is documented below.
-            * `content` (`pulumi.Input[str]`) - The full contents of the template that you want to import.
-            * `name` (`pulumi.Input[str]`) - The name of the template to import, as declared in the YAML
-              configuration.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -290,3 +278,4 @@ class Deployment(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

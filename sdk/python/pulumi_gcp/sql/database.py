@@ -5,12 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['Database']
 
 
 class Database(pulumi.CustomResource):
-    charset: pulumi.Output[str]
+    charset: pulumi.Output[str] = pulumi.property("charset")
     """
     The charset value. See MySQL's
     [Supported Character Sets and Collations](https://dev.mysql.com/doc/refman/5.7/en/charset-charsets.html)
@@ -18,7 +20,8 @@ class Database(pulumi.CustomResource):
     for more details and supported values. Postgres databases only support
     a value of `UTF8` at creation time.
     """
-    collation: pulumi.Output[str]
+
+    collation: pulumi.Output[str] = pulumi.property("collation")
     """
     The collation value. See MySQL's
     [Supported Character Sets and Collations](https://dev.mysql.com/doc/refman/5.7/en/charset-charsets.html)
@@ -26,26 +29,41 @@ class Database(pulumi.CustomResource):
     for more details and supported values. Postgres databases only support
     a value of `en_US.UTF8` at creation time.
     """
-    instance: pulumi.Output[str]
+
+    instance: pulumi.Output[str] = pulumi.property("instance")
     """
     The name of the Cloud SQL instance. This does not include the project
     ID.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     The name of the database in the Cloud SQL instance.
     This does not include the project ID or instance name.
     """
-    project: pulumi.Output[str]
+
+    project: pulumi.Output[str] = pulumi.property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    self_link: pulumi.Output[str]
+
+    self_link: pulumi.Output[str] = pulumi.property("selfLink")
     """
     The URI of the created resource.
     """
-    def __init__(__self__, resource_name, opts=None, charset=None, collation=None, instance=None, name=None, project=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 charset: Optional[pulumi.Input[str]] = None,
+                 collation: Optional[pulumi.Input[str]] = None,
+                 instance: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Represents a SQL database inside the Cloud SQL instance, hosted in
         Google's cloud.
@@ -103,7 +121,15 @@ class Database(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, charset=None, collation=None, instance=None, name=None, project=None, self_link=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            charset: Optional[pulumi.Input[str]] = None,
+            collation: Optional[pulumi.Input[str]] = None,
+            instance: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            project: Optional[pulumi.Input[str]] = None,
+            self_link: Optional[pulumi.Input[str]] = None) -> 'Database':
         """
         Get an existing Database resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -146,3 +172,4 @@ class Database(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

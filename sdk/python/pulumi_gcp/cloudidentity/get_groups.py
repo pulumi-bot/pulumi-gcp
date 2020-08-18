@@ -5,8 +5,15 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetGroupsResult',
+    'AwaitableGetGroupsResult',
+    'get_groups',
+]
 
 
 class GetGroupsResult:
@@ -42,7 +49,8 @@ class AwaitableGetGroupsResult(GetGroupsResult):
             parent=self.parent)
 
 
-def get_groups(parent=None, opts=None):
+def get_groups(parent: Optional[str] = None,
+               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetGroupsResult:
     """
     Use this data source to get list of the Cloud Identity Groups under a customer or namespace.
 

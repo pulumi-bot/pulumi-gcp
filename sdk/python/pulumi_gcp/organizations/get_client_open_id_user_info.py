@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetClientOpenIdUserInfoResult',
+    'AwaitableGetClientOpenIdUserInfoResult',
+    'get_client_open_id_user_info',
+]
 
 
 class GetClientOpenIdUserInfoResult:
@@ -38,7 +44,7 @@ class AwaitableGetClientOpenIdUserInfoResult(GetClientOpenIdUserInfoResult):
             id=self.id)
 
 
-def get_client_open_id_user_info(opts=None):
+def get_client_open_id_user_info(                                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClientOpenIdUserInfoResult:
     """
     Get OpenID userinfo about the credentials used with the Google provider,
     specifically the email.

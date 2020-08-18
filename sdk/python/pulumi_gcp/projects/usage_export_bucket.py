@@ -5,24 +5,37 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['UsageExportBucket']
 
 
 class UsageExportBucket(pulumi.CustomResource):
-    bucket_name: pulumi.Output[str]
+    bucket_name: pulumi.Output[str] = pulumi.property("bucketName")
     """
     The bucket to store reports in.
     """
-    prefix: pulumi.Output[str]
+
+    prefix: pulumi.Output[Optional[str]] = pulumi.property("prefix")
     """
     A prefix for the reports, for instance, the project name.
     """
-    project: pulumi.Output[str]
+
+    project: pulumi.Output[str] = pulumi.property("project")
     """
     The project to set the export bucket on. If it is not provided, the provider project is used.
     """
-    def __init__(__self__, resource_name, opts=None, bucket_name=None, prefix=None, project=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 bucket_name: Optional[pulumi.Input[str]] = None,
+                 prefix: Optional[pulumi.Input[str]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Allows creation and management of a Google Cloud Platform project.
 
@@ -69,7 +82,12 @@ class UsageExportBucket(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, bucket_name=None, prefix=None, project=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            bucket_name: Optional[pulumi.Input[str]] = None,
+            prefix: Optional[pulumi.Input[str]] = None,
+            project: Optional[pulumi.Input[str]] = None) -> 'UsageExportBucket':
         """
         Get an existing UsageExportBucket resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -95,3 +113,4 @@ class UsageExportBucket(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

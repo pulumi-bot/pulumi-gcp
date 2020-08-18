@@ -5,8 +5,15 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetOrganizationPolicyResult',
+    'AwaitableGetOrganizationPolicyResult',
+    'get_organization_policy',
+]
 
 
 class GetOrganizationPolicyResult:
@@ -63,7 +70,9 @@ class AwaitableGetOrganizationPolicyResult(GetOrganizationPolicyResult):
             version=self.version)
 
 
-def get_organization_policy(constraint=None, project=None, opts=None):
+def get_organization_policy(constraint: Optional[str] = None,
+                            project: Optional[str] = None,
+                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOrganizationPolicyResult:
     """
     Allows management of Organization policies for a Google Project. For more information see
     [the official

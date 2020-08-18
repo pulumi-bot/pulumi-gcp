@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetActiveFolderResult',
+    'AwaitableGetActiveFolderResult',
+    'get_active_folder',
+]
 
 
 class GetActiveFolderResult:
@@ -46,7 +52,9 @@ class AwaitableGetActiveFolderResult(GetActiveFolderResult):
             parent=self.parent)
 
 
-def get_active_folder(display_name=None, parent=None, opts=None):
+def get_active_folder(display_name: Optional[str] = None,
+                      parent: Optional[str] = None,
+                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetActiveFolderResult:
     """
     Get an active folder within GCP by `display_name` and `parent`.
 

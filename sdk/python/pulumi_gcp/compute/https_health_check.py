@@ -5,37 +5,44 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['HttpsHealthCheck']
 
 
 class HttpsHealthCheck(pulumi.CustomResource):
-    check_interval_sec: pulumi.Output[float]
+    check_interval_sec: pulumi.Output[Optional[float]] = pulumi.property("checkIntervalSec")
     """
     How often (in seconds) to send a health check. The default value is 5
     seconds.
     """
-    creation_timestamp: pulumi.Output[str]
+
+    creation_timestamp: pulumi.Output[str] = pulumi.property("creationTimestamp")
     """
     Creation timestamp in RFC3339 text format.
     """
-    description: pulumi.Output[str]
+
+    description: pulumi.Output[Optional[str]] = pulumi.property("description")
     """
     An optional description of this resource. Provide this property when
     you create the resource.
     """
-    healthy_threshold: pulumi.Output[float]
+
+    healthy_threshold: pulumi.Output[Optional[float]] = pulumi.property("healthyThreshold")
     """
     A so-far unhealthy instance will be marked healthy after this many
     consecutive successes. The default value is 2.
     """
-    host: pulumi.Output[str]
+
+    host: pulumi.Output[Optional[str]] = pulumi.property("host")
     """
     The value of the host header in the HTTPS health check request. If
     left empty (default value), the public IP on behalf of which this
     health check is performed will be used.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     Name of the resource. Provided by the client when the resource is
     created. The name must be 1-63 characters long, and comply with
@@ -45,37 +52,59 @@ class HttpsHealthCheck(pulumi.CustomResource):
     characters must be a dash, lowercase letter, or digit, except the
     last character, which cannot be a dash.
     """
-    port: pulumi.Output[float]
+
+    port: pulumi.Output[Optional[float]] = pulumi.property("port")
     """
     The TCP port number for the HTTPS health check request.
     The default value is 80.
     """
-    project: pulumi.Output[str]
+
+    project: pulumi.Output[str] = pulumi.property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    request_path: pulumi.Output[str]
+
+    request_path: pulumi.Output[Optional[str]] = pulumi.property("requestPath")
     """
     The request path of the HTTPS health check request.
     The default value is /.
     """
-    self_link: pulumi.Output[str]
+
+    self_link: pulumi.Output[str] = pulumi.property("selfLink")
     """
     The URI of the created resource.
     """
-    timeout_sec: pulumi.Output[float]
+
+    timeout_sec: pulumi.Output[Optional[float]] = pulumi.property("timeoutSec")
     """
     How long (in seconds) to wait before claiming failure.
     The default value is 5 seconds.  It is invalid for timeoutSec to have
     greater value than checkIntervalSec.
     """
-    unhealthy_threshold: pulumi.Output[float]
+
+    unhealthy_threshold: pulumi.Output[Optional[float]] = pulumi.property("unhealthyThreshold")
     """
     A so-far healthy instance will be marked unhealthy after this many
     consecutive failures. The default value is 2.
     """
-    def __init__(__self__, resource_name, opts=None, check_interval_sec=None, description=None, healthy_threshold=None, host=None, name=None, port=None, project=None, request_path=None, timeout_sec=None, unhealthy_threshold=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 check_interval_sec: Optional[pulumi.Input[float]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 healthy_threshold: Optional[pulumi.Input[float]] = None,
+                 host: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 port: Optional[pulumi.Input[float]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 request_path: Optional[pulumi.Input[str]] = None,
+                 timeout_sec: Optional[pulumi.Input[float]] = None,
+                 unhealthy_threshold: Optional[pulumi.Input[float]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         An HttpsHealthCheck resource. This resource defines a template for how
         individual VMs should be checked for health, via HTTPS.
@@ -160,7 +189,21 @@ class HttpsHealthCheck(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, check_interval_sec=None, creation_timestamp=None, description=None, healthy_threshold=None, host=None, name=None, port=None, project=None, request_path=None, self_link=None, timeout_sec=None, unhealthy_threshold=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            check_interval_sec: Optional[pulumi.Input[float]] = None,
+            creation_timestamp: Optional[pulumi.Input[str]] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            healthy_threshold: Optional[pulumi.Input[float]] = None,
+            host: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            port: Optional[pulumi.Input[float]] = None,
+            project: Optional[pulumi.Input[str]] = None,
+            request_path: Optional[pulumi.Input[str]] = None,
+            self_link: Optional[pulumi.Input[str]] = None,
+            timeout_sec: Optional[pulumi.Input[float]] = None,
+            unhealthy_threshold: Optional[pulumi.Input[float]] = None) -> 'HttpsHealthCheck':
         """
         Get an existing HttpsHealthCheck resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -221,3 +264,4 @@ class HttpsHealthCheck(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

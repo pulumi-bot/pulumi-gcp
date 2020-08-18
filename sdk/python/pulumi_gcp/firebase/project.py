@@ -5,25 +5,36 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['Project']
 
 
 class Project(pulumi.CustomResource):
-    display_name: pulumi.Output[str]
+    display_name: pulumi.Output[str] = pulumi.property("displayName")
     """
     The GCP project display name
     """
-    project: pulumi.Output[str]
+
+    project: pulumi.Output[str] = pulumi.property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    project_number: pulumi.Output[str]
+
+    project_number: pulumi.Output[str] = pulumi.property("projectNumber")
     """
     The number of the google project that firebase is enabled on.
     """
-    def __init__(__self__, resource_name, opts=None, project=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         A Google Cloud Firebase instance. This enables Firebase resources on a given google project.
         Since a FirebaseProject is actually also a GCP Project, a FirebaseProject uses underlying GCP
@@ -71,7 +82,12 @@ class Project(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, display_name=None, project=None, project_number=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            display_name: Optional[pulumi.Input[str]] = None,
+            project: Optional[pulumi.Input[str]] = None,
+            project_number: Optional[pulumi.Input[str]] = None) -> 'Project':
         """
         Get an existing Project resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -98,3 +114,4 @@ class Project(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

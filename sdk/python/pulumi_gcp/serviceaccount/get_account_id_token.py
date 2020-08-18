@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetAccountIdTokenResult',
+    'AwaitableGetAccountIdTokenResult',
+    'get_account_id_token',
+]
 
 
 class GetAccountIdTokenResult:
@@ -54,11 +60,15 @@ class AwaitableGetAccountIdTokenResult(GetAccountIdTokenResult):
             target_service_account=self.target_service_account)
 
 
-def get_account_id_token(delegates=None, include_email=None, target_audience=None, target_service_account=None, opts=None):
+def get_account_id_token(delegates: Optional[List[str]] = None,
+                         include_email: Optional[bool] = None,
+                         target_audience: Optional[str] = None,
+                         target_service_account: Optional[str] = None,
+                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAccountIdTokenResult:
     """
     Use this data source to access information about an existing resource.
 
-    :param list delegates: Delegate chain of approvals needed to perform full impersonation. Specify the fully qualified service account name.   Used only when using impersonation mode.
+    :param List[str] delegates: Delegate chain of approvals needed to perform full impersonation. Specify the fully qualified service account name.   Used only when using impersonation mode.
     :param bool include_email: Include the verified email in the claim. Used only when using impersonation mode.
     :param str target_audience: The audience claim for the `id_token`.
     :param str target_service_account: The email of the service account being impersonated.  Used only when using impersonation mode.

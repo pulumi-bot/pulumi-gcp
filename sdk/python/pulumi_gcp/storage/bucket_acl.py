@@ -5,28 +5,43 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['BucketACL']
 
 
 class BucketACL(pulumi.CustomResource):
-    bucket: pulumi.Output[str]
+    bucket: pulumi.Output[str] = pulumi.property("bucket")
     """
     The name of the bucket it applies to.
     """
-    default_acl: pulumi.Output[str]
+
+    default_acl: pulumi.Output[Optional[str]] = pulumi.property("defaultAcl")
     """
     Configure this ACL to be the default ACL.
     """
-    predefined_acl: pulumi.Output[str]
+
+    predefined_acl: pulumi.Output[Optional[str]] = pulumi.property("predefinedAcl")
     """
     The [canned GCS ACL](https://cloud.google.com/storage/docs/access-control/lists#predefined-acl) to apply. Must be set if `role_entity` is not.
     """
-    role_entities: pulumi.Output[list]
+
+    role_entities: pulumi.Output[List[str]] = pulumi.property("roleEntities")
     """
     List of role/entity pairs in the form `ROLE:entity`. See [GCS Bucket ACL documentation](https://cloud.google.com/storage/docs/json_api/v1/bucketAccessControls)  for more details. Must be set if `predefined_acl` is not.
     """
-    def __init__(__self__, resource_name, opts=None, bucket=None, default_acl=None, predefined_acl=None, role_entities=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 bucket: Optional[pulumi.Input[str]] = None,
+                 default_acl: Optional[pulumi.Input[str]] = None,
+                 predefined_acl: Optional[pulumi.Input[str]] = None,
+                 role_entities: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Authoritatively manages a bucket's ACLs in Google cloud storage service (GCS). For more information see
         [the official documentation](https://cloud.google.com/storage/docs/access-control/lists)
@@ -44,7 +59,7 @@ class BucketACL(pulumi.CustomResource):
         :param pulumi.Input[str] bucket: The name of the bucket it applies to.
         :param pulumi.Input[str] default_acl: Configure this ACL to be the default ACL.
         :param pulumi.Input[str] predefined_acl: The [canned GCS ACL](https://cloud.google.com/storage/docs/access-control/lists#predefined-acl) to apply. Must be set if `role_entity` is not.
-        :param pulumi.Input[list] role_entities: List of role/entity pairs in the form `ROLE:entity`. See [GCS Bucket ACL documentation](https://cloud.google.com/storage/docs/json_api/v1/bucketAccessControls)  for more details. Must be set if `predefined_acl` is not.
+        :param pulumi.Input[List[pulumi.Input[str]]] role_entities: List of role/entity pairs in the form `ROLE:entity`. See [GCS Bucket ACL documentation](https://cloud.google.com/storage/docs/json_api/v1/bucketAccessControls)  for more details. Must be set if `predefined_acl` is not.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -76,7 +91,13 @@ class BucketACL(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, bucket=None, default_acl=None, predefined_acl=None, role_entities=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            bucket: Optional[pulumi.Input[str]] = None,
+            default_acl: Optional[pulumi.Input[str]] = None,
+            predefined_acl: Optional[pulumi.Input[str]] = None,
+            role_entities: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None) -> 'BucketACL':
         """
         Get an existing BucketACL resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -87,7 +108,7 @@ class BucketACL(pulumi.CustomResource):
         :param pulumi.Input[str] bucket: The name of the bucket it applies to.
         :param pulumi.Input[str] default_acl: Configure this ACL to be the default ACL.
         :param pulumi.Input[str] predefined_acl: The [canned GCS ACL](https://cloud.google.com/storage/docs/access-control/lists#predefined-acl) to apply. Must be set if `role_entity` is not.
-        :param pulumi.Input[list] role_entities: List of role/entity pairs in the form `ROLE:entity`. See [GCS Bucket ACL documentation](https://cloud.google.com/storage/docs/json_api/v1/bucketAccessControls)  for more details. Must be set if `predefined_acl` is not.
+        :param pulumi.Input[List[pulumi.Input[str]]] role_entities: List of role/entity pairs in the form `ROLE:entity`. See [GCS Bucket ACL documentation](https://cloud.google.com/storage/docs/json_api/v1/bucketAccessControls)  for more details. Must be set if `predefined_acl` is not.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -104,3 +125,4 @@ class BucketACL(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

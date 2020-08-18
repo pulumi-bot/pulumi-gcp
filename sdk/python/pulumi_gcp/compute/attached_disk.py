@@ -5,12 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['AttachedDisk']
 
 
 class AttachedDisk(pulumi.CustomResource):
-    device_name: pulumi.Output[str]
+    device_name: pulumi.Output[str] = pulumi.property("deviceName")
     """
     Specifies a unique device name of your choice that is
     reflected into the /dev/disk/by-id/google-* tree of a Linux operating
@@ -18,34 +20,51 @@ class AttachedDisk(pulumi.CustomResource):
     reference the device for mounting, resizing, and so on, from within
     the instance.
     """
-    disk: pulumi.Output[str]
+
+    disk: pulumi.Output[str] = pulumi.property("disk")
     """
     `name` or `self_link` of the disk that will be attached.
     """
-    instance: pulumi.Output[str]
+
+    instance: pulumi.Output[str] = pulumi.property("instance")
     """
     `name` or `self_link` of the compute instance that the disk will be attached to.
     If the `self_link` is provided then `zone` and `project` are extracted from the
     self link. If only the name is used then `zone` and `project` must be defined
     as properties on the resource or provider.
     """
-    mode: pulumi.Output[str]
+
+    mode: pulumi.Output[Optional[str]] = pulumi.property("mode")
     """
     The mode in which to attach this disk, either READ_WRITE or
     READ_ONLY. If not specified, the default is to attach the disk in
     READ_WRITE mode.
     """
-    project: pulumi.Output[str]
+
+    project: pulumi.Output[str] = pulumi.property("project")
     """
     The project that the referenced compute instance is a part of. If `instance` is referenced by its
     `self_link` the project defined in the link will take precedence.
     """
-    zone: pulumi.Output[str]
+
+    zone: pulumi.Output[str] = pulumi.property("zone")
     """
     The zone that the referenced compute instance is located within. If `instance` is referenced by its
     `self_link` the zone defined in the link will take precedence.
     """
-    def __init__(__self__, resource_name, opts=None, device_name=None, disk=None, instance=None, mode=None, project=None, zone=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 device_name: Optional[pulumi.Input[str]] = None,
+                 disk: Optional[pulumi.Input[str]] = None,
+                 instance: Optional[pulumi.Input[str]] = None,
+                 mode: Optional[pulumi.Input[str]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 zone: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Persistent disks can be attached to a compute instance using the `attached_disk`
         section within the compute instance configuration.
@@ -115,7 +134,15 @@ class AttachedDisk(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, device_name=None, disk=None, instance=None, mode=None, project=None, zone=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            device_name: Optional[pulumi.Input[str]] = None,
+            disk: Optional[pulumi.Input[str]] = None,
+            instance: Optional[pulumi.Input[str]] = None,
+            mode: Optional[pulumi.Input[str]] = None,
+            project: Optional[pulumi.Input[str]] = None,
+            zone: Optional[pulumi.Input[str]] = None) -> 'AttachedDisk':
         """
         Get an existing AttachedDisk resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -158,3 +185,4 @@ class AttachedDisk(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

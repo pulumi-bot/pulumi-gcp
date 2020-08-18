@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetInstanceSerialPortResult',
+    'AwaitableGetInstanceSerialPortResult',
+    'get_instance_serial_port',
+]
 
 
 class GetInstanceSerialPortResult:
@@ -54,7 +60,11 @@ class AwaitableGetInstanceSerialPortResult(GetInstanceSerialPortResult):
             zone=self.zone)
 
 
-def get_instance_serial_port(instance=None, port=None, project=None, zone=None, opts=None):
+def get_instance_serial_port(instance: Optional[str] = None,
+                             port: Optional[float] = None,
+                             project: Optional[str] = None,
+                             zone: Optional[str] = None,
+                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInstanceSerialPortResult:
     """
     Get the serial port output from a Compute Instance. For more information see
     the official [API](https://cloud.google.com/compute/docs/instances/viewing-serial-port-output) documentation.

@@ -5,38 +5,55 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['User']
 
 
 class User(pulumi.CustomResource):
-    host: pulumi.Output[str]
+    host: pulumi.Output[Optional[str]] = pulumi.property("host")
     """
     The host the user can connect from. This is only supported
     for MySQL instances. Don't set this field for PostgreSQL instances.
     Can be an IP address. Changing this forces a new resource to be created.
     """
-    instance: pulumi.Output[str]
+
+    instance: pulumi.Output[str] = pulumi.property("instance")
     """
     The name of the Cloud SQL instance. Changing this
     forces a new resource to be created.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     The name of the user. Changing this forces a new resource
     to be created.
     """
-    password: pulumi.Output[str]
+
+    password: pulumi.Output[Optional[str]] = pulumi.property("password")
     """
     The password for the user. Can be updated. For Postgres
     instances this is a Required field.
     """
-    project: pulumi.Output[str]
+
+    project: pulumi.Output[str] = pulumi.property("project")
     """
     The ID of the project in which the resource belongs. If it
     is not provided, the provider project is used.
     """
-    def __init__(__self__, resource_name, opts=None, host=None, instance=None, name=None, password=None, project=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 host: Optional[pulumi.Input[str]] = None,
+                 instance: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 password: Optional[pulumi.Input[str]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Creates a new Google SQL User on a Google SQL User Instance. For more information, see the [official documentation](https://cloud.google.com/sql/), or the [JSON API](https://cloud.google.com/sql/docs/admin-api/v1beta4/users).
 
@@ -85,7 +102,14 @@ class User(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, host=None, instance=None, name=None, password=None, project=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            host: Optional[pulumi.Input[str]] = None,
+            instance: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            password: Optional[pulumi.Input[str]] = None,
+            project: Optional[pulumi.Input[str]] = None) -> 'User':
         """
         Get an existing User resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -121,3 +145,4 @@ class User(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

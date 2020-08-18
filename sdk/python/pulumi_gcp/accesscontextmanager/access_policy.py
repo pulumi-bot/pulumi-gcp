@@ -5,33 +5,47 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['AccessPolicy']
 
 
 class AccessPolicy(pulumi.CustomResource):
-    create_time: pulumi.Output[str]
+    create_time: pulumi.Output[str] = pulumi.property("createTime")
     """
     Time the AccessPolicy was created in UTC.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     Resource name of the AccessPolicy. Format: {policy_id}
     """
-    parent: pulumi.Output[str]
+
+    parent: pulumi.Output[str] = pulumi.property("parent")
     """
     The parent of this AccessPolicy in the Cloud Resource Hierarchy.
     Format: organizations/{organization_id}
     """
-    title: pulumi.Output[str]
+
+    title: pulumi.Output[str] = pulumi.property("title")
     """
     Human readable title. Does not affect behavior.
     """
-    update_time: pulumi.Output[str]
+
+    update_time: pulumi.Output[str] = pulumi.property("updateTime")
     """
     Time the AccessPolicy was updated in UTC.
     """
-    def __init__(__self__, resource_name, opts=None, parent=None, title=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 parent: Optional[pulumi.Input[str]] = None,
+                 title: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         AccessPolicy is a container for AccessLevels (which define the necessary
         attributes to use GCP services) and ServicePerimeters (which define
@@ -86,7 +100,14 @@ class AccessPolicy(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, create_time=None, name=None, parent=None, title=None, update_time=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            create_time: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            parent: Optional[pulumi.Input[str]] = None,
+            title: Optional[pulumi.Input[str]] = None,
+            update_time: Optional[pulumi.Input[str]] = None) -> 'AccessPolicy':
         """
         Get an existing AccessPolicy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -117,3 +138,4 @@ class AccessPolicy(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

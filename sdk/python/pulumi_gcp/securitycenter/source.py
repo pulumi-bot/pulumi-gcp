@@ -5,16 +5,19 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['Source']
 
 
 class Source(pulumi.CustomResource):
-    description: pulumi.Output[str]
+    description: pulumi.Output[Optional[str]] = pulumi.property("description")
     """
     The description of the source (max of 1024 characters).
     """
-    display_name: pulumi.Output[str]
+
+    display_name: pulumi.Output[str] = pulumi.property("displayName")
     """
     The source’s display name. A source’s display name must be unique
     amongst its siblings, for example, two sources with the same parent
@@ -22,16 +25,27 @@ class Source(pulumi.CustomResource):
     with a letter or digit, may contain letters, digits, spaces, hyphens,
     and underscores, and can be no longer than 32 characters.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     The resource name of this source, in the format 'organizations/{{organization}}/sources/{{source}}'.
     """
-    organization: pulumi.Output[str]
+
+    organization: pulumi.Output[str] = pulumi.property("organization")
     """
     The organization whose Cloud Security Command Center the Source
     lives in.
     """
-    def __init__(__self__, resource_name, opts=None, description=None, display_name=None, organization=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 display_name: Optional[pulumi.Input[str]] = None,
+                 organization: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         A Cloud Security Command Center's (Cloud SCC) finding source. A finding
         source is an entity or a mechanism that can produce a finding. A source is
@@ -89,7 +103,13 @@ class Source(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, description=None, display_name=None, name=None, organization=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            display_name: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            organization: Optional[pulumi.Input[str]] = None) -> 'Source':
         """
         Get an existing Source resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -122,3 +142,4 @@ class Source(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

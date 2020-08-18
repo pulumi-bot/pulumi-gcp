@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetNetworkEndpointGroupResult',
+    'AwaitableGetNetworkEndpointGroupResult',
+    'get_network_endpoint_group',
+]
 
 
 class GetNetworkEndpointGroupResult:
@@ -89,7 +95,11 @@ class AwaitableGetNetworkEndpointGroupResult(GetNetworkEndpointGroupResult):
             zone=self.zone)
 
 
-def get_network_endpoint_group(name=None, project=None, self_link=None, zone=None, opts=None):
+def get_network_endpoint_group(name: Optional[str] = None,
+                               project: Optional[str] = None,
+                               self_link: Optional[str] = None,
+                               zone: Optional[str] = None,
+                               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNetworkEndpointGroupResult:
     """
     Use this data source to access a Network Endpoint Group's attributes.
 

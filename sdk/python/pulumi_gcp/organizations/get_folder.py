@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetFolderResult',
+    'AwaitableGetFolderResult',
+    'get_folder',
+]
 
 
 class GetFolderResult:
@@ -85,7 +91,9 @@ class AwaitableGetFolderResult(GetFolderResult):
             parent=self.parent)
 
 
-def get_folder(folder=None, lookup_organization=None, opts=None):
+def get_folder(folder: Optional[str] = None,
+               lookup_organization: Optional[bool] = None,
+               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFolderResult:
     """
     Use this data source to get information about a Google Cloud Folder.
 

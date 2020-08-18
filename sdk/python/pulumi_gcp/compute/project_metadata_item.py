@@ -5,25 +5,38 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['ProjectMetadataItem']
 
 
 class ProjectMetadataItem(pulumi.CustomResource):
-    key: pulumi.Output[str]
+    key: pulumi.Output[str] = pulumi.property("key")
     """
     The metadata key to set.
     """
-    project: pulumi.Output[str]
+
+    project: pulumi.Output[str] = pulumi.property("project")
     """
     The ID of the project in which the resource belongs. If it
     is not provided, the provider project is used.
     """
-    value: pulumi.Output[str]
+
+    value: pulumi.Output[str] = pulumi.property("value")
     """
     The value to set for the given metadata key.
     """
-    def __init__(__self__, resource_name, opts=None, key=None, project=None, value=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 key: Optional[pulumi.Input[str]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Manages a single key/value pair on metadata common to all instances for
         a project in GCE. Using `compute.ProjectMetadataItem` lets you
@@ -68,7 +81,12 @@ class ProjectMetadataItem(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, key=None, project=None, value=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            key: Optional[pulumi.Input[str]] = None,
+            project: Optional[pulumi.Input[str]] = None,
+            value: Optional[pulumi.Input[str]] = None) -> 'ProjectMetadataItem':
         """
         Get an existing ProjectMetadataItem resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -95,3 +113,4 @@ class ProjectMetadataItem(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

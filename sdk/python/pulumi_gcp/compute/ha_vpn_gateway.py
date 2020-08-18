@@ -5,16 +5,21 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['HaVpnGateway']
 
 
 class HaVpnGateway(pulumi.CustomResource):
-    description: pulumi.Output[str]
+    description: pulumi.Output[Optional[str]] = pulumi.property("description")
     """
     An optional description of this resource.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     Name of the resource. Provided by the client when the resource is
     created. The name must be 1-63 characters long, and comply with
@@ -24,31 +29,44 @@ class HaVpnGateway(pulumi.CustomResource):
     characters must be a dash, lowercase letter, or digit, except the last
     character, which cannot be a dash.
     """
-    network: pulumi.Output[str]
+
+    network: pulumi.Output[str] = pulumi.property("network")
     """
     The network this VPN gateway is accepting traffic for.
     """
-    project: pulumi.Output[str]
+
+    project: pulumi.Output[str] = pulumi.property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    region: pulumi.Output[str]
+
+    region: pulumi.Output[str] = pulumi.property("region")
     """
     The region this gateway should sit in.
     """
-    self_link: pulumi.Output[str]
+
+    self_link: pulumi.Output[str] = pulumi.property("selfLink")
     """
     The URI of the created resource.
     """
-    vpn_interfaces: pulumi.Output[list]
+
+    vpn_interfaces: pulumi.Output[List['outputs.HaVpnGatewayVpnInterface']] = pulumi.property("vpnInterfaces")
     """
     A list of interfaces on this VPN gateway.
-
-      * `id` (`float`) - an identifier for the resource with format `projects/{{project}}/regions/{{region}}/vpnGateways/{{name}}`
-      * `ip_address` (`str`)
     """
-    def __init__(__self__, resource_name, opts=None, description=None, name=None, network=None, project=None, region=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 network: Optional[pulumi.Input[str]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Represents a VPN gateway running in GCP. This virtual device is managed
         by Google, but used only by you. This type of VPN Gateway allows for the creation
@@ -111,7 +129,16 @@ class HaVpnGateway(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, description=None, name=None, network=None, project=None, region=None, self_link=None, vpn_interfaces=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            network: Optional[pulumi.Input[str]] = None,
+            project: Optional[pulumi.Input[str]] = None,
+            region: Optional[pulumi.Input[str]] = None,
+            self_link: Optional[pulumi.Input[str]] = None,
+            vpn_interfaces: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['HaVpnGatewayVpnInterfaceArgs']]]]] = None) -> 'HaVpnGateway':
         """
         Get an existing HaVpnGateway resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -132,12 +159,7 @@ class HaVpnGateway(pulumi.CustomResource):
                If it is not provided, the provider project is used.
         :param pulumi.Input[str] region: The region this gateway should sit in.
         :param pulumi.Input[str] self_link: The URI of the created resource.
-        :param pulumi.Input[list] vpn_interfaces: A list of interfaces on this VPN gateway.
-
-        The **vpn_interfaces** object supports the following:
-
-          * `id` (`pulumi.Input[float]`) - an identifier for the resource with format `projects/{{project}}/regions/{{region}}/vpnGateways/{{name}}`
-          * `ip_address` (`pulumi.Input[str]`)
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['HaVpnGatewayVpnInterfaceArgs']]]] vpn_interfaces: A list of interfaces on this VPN gateway.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -157,3 +179,4 @@ class HaVpnGateway(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

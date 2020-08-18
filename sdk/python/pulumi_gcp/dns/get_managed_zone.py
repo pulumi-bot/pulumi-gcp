@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetManagedZoneResult',
+    'AwaitableGetManagedZoneResult',
+    'get_managed_zone',
+]
 
 
 class GetManagedZoneResult:
@@ -70,7 +76,9 @@ class AwaitableGetManagedZoneResult(GetManagedZoneResult):
             visibility=self.visibility)
 
 
-def get_managed_zone(name=None, project=None, opts=None):
+def get_managed_zone(name: Optional[str] = None,
+                     project: Optional[str] = None,
+                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetManagedZoneResult:
     """
     Provides access to a zone's attributes within Google Cloud DNS.
     For more information see

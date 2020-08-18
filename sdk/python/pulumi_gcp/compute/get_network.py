@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetNetworkResult',
+    'AwaitableGetNetworkResult',
+    'get_network',
+]
 
 
 class GetNetworkResult:
@@ -67,7 +73,9 @@ class AwaitableGetNetworkResult(GetNetworkResult):
             subnetworks_self_links=self.subnetworks_self_links)
 
 
-def get_network(name=None, project=None, opts=None):
+def get_network(name: Optional[str] = None,
+                project: Optional[str] = None,
+                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNetworkResult:
     """
     Get a network within GCE from its name.
 

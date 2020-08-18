@@ -5,8 +5,15 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetRegionInstanceGroupResult',
+    'AwaitableGetRegionInstanceGroupResult',
+    'get_region_instance_group',
+]
 
 
 class GetRegionInstanceGroupResult:
@@ -64,7 +71,11 @@ class AwaitableGetRegionInstanceGroupResult(GetRegionInstanceGroupResult):
             size=self.size)
 
 
-def get_region_instance_group(name=None, project=None, region=None, self_link=None, opts=None):
+def get_region_instance_group(name: Optional[str] = None,
+                              project: Optional[str] = None,
+                              region: Optional[str] = None,
+                              self_link: Optional[str] = None,
+                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRegionInstanceGroupResult:
     """
     Get a Compute Region Instance Group within GCE.
     For more information, see [the official documentation](https://cloud.google.com/compute/docs/instance-groups/distributing-instances-with-regional-instance-groups) and [API](https://cloud.google.com/compute/docs/reference/latest/regionInstanceGroups).

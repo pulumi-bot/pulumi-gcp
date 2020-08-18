@@ -5,40 +5,59 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['ProjectBucketConfig']
 
 
 class ProjectBucketConfig(pulumi.CustomResource):
-    bucket_id: pulumi.Output[str]
+    bucket_id: pulumi.Output[str] = pulumi.property("bucketId")
     """
     The name of the logging bucket. Logging automatically creates two log buckets: `_Required` and `_Default`.
     """
-    description: pulumi.Output[str]
+
+    description: pulumi.Output[str] = pulumi.property("description")
     """
     Describes this bucket.
     """
-    lifecycle_state: pulumi.Output[str]
+
+    lifecycle_state: pulumi.Output[str] = pulumi.property("lifecycleState")
     """
     The bucket's lifecycle such as active or deleted. See [LifecycleState](https://cloud.google.com/logging/docs/reference/v2/rest/v2/billingAccounts.buckets#LogBucket.LifecycleState).
     """
-    location: pulumi.Output[str]
+
+    location: pulumi.Output[str] = pulumi.property("location")
     """
     The location of the bucket. The supported locations are: "global" "us-central1"
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     The resource name of the bucket. For example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id"
     """
-    project: pulumi.Output[str]
+
+    project: pulumi.Output[str] = pulumi.property("project")
     """
     The parent resource that contains the logging bucket.
     """
-    retention_days: pulumi.Output[float]
+
+    retention_days: pulumi.Output[Optional[float]] = pulumi.property("retentionDays")
     """
     Logs will be retained by default for this amount of time, after which they will automatically be deleted. The minimum retention period is 1 day. If this value is set to zero at bucket creation time, the default time of 30 days will be used.
     """
-    def __init__(__self__, resource_name, opts=None, bucket_id=None, description=None, location=None, project=None, retention_days=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 bucket_id: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 location: Optional[pulumi.Input[str]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 retention_days: Optional[pulumi.Input[float]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Manages a project-level logging bucket config. For more information see
         [the official logging documentation](https://cloud.google.com/logging/docs/) and
@@ -91,7 +110,16 @@ class ProjectBucketConfig(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, bucket_id=None, description=None, lifecycle_state=None, location=None, name=None, project=None, retention_days=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            bucket_id: Optional[pulumi.Input[str]] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            lifecycle_state: Optional[pulumi.Input[str]] = None,
+            location: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            project: Optional[pulumi.Input[str]] = None,
+            retention_days: Optional[pulumi.Input[float]] = None) -> 'ProjectBucketConfig':
         """
         Get an existing ProjectBucketConfig resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -125,3 +153,4 @@ class ProjectBucketConfig(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

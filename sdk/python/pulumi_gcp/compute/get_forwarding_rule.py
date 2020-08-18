@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetForwardingRuleResult',
+    'AwaitableGetForwardingRuleResult',
+    'get_forwarding_rule',
+]
 
 
 class GetForwardingRuleResult:
@@ -123,7 +129,10 @@ class AwaitableGetForwardingRuleResult(GetForwardingRuleResult):
             target=self.target)
 
 
-def get_forwarding_rule(name=None, project=None, region=None, opts=None):
+def get_forwarding_rule(name: Optional[str] = None,
+                        project: Optional[str] = None,
+                        region: Optional[str] = None,
+                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetForwardingRuleResult:
     """
     Get a forwarding rule within GCE from its name.
 

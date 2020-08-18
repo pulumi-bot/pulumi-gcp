@@ -5,110 +5,149 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['Function']
 
 
 class Function(pulumi.CustomResource):
-    available_memory_mb: pulumi.Output[float]
+    available_memory_mb: pulumi.Output[Optional[float]] = pulumi.property("availableMemoryMb")
     """
     Memory (in MB), available to the function. Default value is 256MB. Allowed values are: 128MB, 256MB, 512MB, 1024MB, and 2048MB.
     """
-    description: pulumi.Output[str]
+
+    description: pulumi.Output[Optional[str]] = pulumi.property("description")
     """
     Description of the function.
     """
-    entry_point: pulumi.Output[str]
+
+    entry_point: pulumi.Output[Optional[str]] = pulumi.property("entryPoint")
     """
     Name of the function that will be executed when the Google Cloud Function is triggered.
     """
-    environment_variables: pulumi.Output[dict]
+
+    environment_variables: pulumi.Output[Optional[Mapping[str, Any]]] = pulumi.property("environmentVariables")
     """
     A set of key/value environment variable pairs to assign to the function.
     """
-    event_trigger: pulumi.Output[dict]
+
+    event_trigger: pulumi.Output['outputs.FunctionEventTrigger'] = pulumi.property("eventTrigger")
     """
     A source that fires events in response to a condition in another service. Structure is documented below. Cannot be used with `trigger_http`.
-
-      * `eventType` (`str`) - The type of event to observe. For example: `"google.storage.object.finalize"`.
-        See the documentation on [calling Cloud Functions](https://cloud.google.com/functions/docs/calling/) for a
-        full reference of accepted triggers.
-      * `failurePolicy` (`dict`) - Specifies policy for failed executions. Structure is documented below.
-        * `retry` (`bool`) - Whether the function should be retried on failure. Defaults to `false`.
-
-      * `resource` (`str`) - Required. The name or partial URI of the resource from
-        which to observe events. For example, `"myBucket"` or `"projects/my-project/topics/my-topic"`
     """
-    https_trigger_url: pulumi.Output[str]
+
+    https_trigger_url: pulumi.Output[str] = pulumi.property("httpsTriggerUrl")
     """
     URL which triggers function execution. Returned only if `trigger_http` is used.
     """
-    ingress_settings: pulumi.Output[str]
+
+    ingress_settings: pulumi.Output[Optional[str]] = pulumi.property("ingressSettings")
     """
     String value that controls what traffic can reach the function. Allowed values are ALLOW_ALL and ALLOW_INTERNAL_ONLY. Changes to this field will recreate the cloud function.
     """
-    labels: pulumi.Output[dict]
+
+    labels: pulumi.Output[Optional[Mapping[str, Any]]] = pulumi.property("labels")
     """
     A set of key/value label pairs to assign to the function. Label keys must follow the requirements at https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements.
     """
-    max_instances: pulumi.Output[float]
+
+    max_instances: pulumi.Output[Optional[float]] = pulumi.property("maxInstances")
     """
     The limit on the maximum number of function instances that may coexist at a given time.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     A user-defined name of the function. Function names must be unique globally.
     """
-    project: pulumi.Output[str]
+
+    project: pulumi.Output[str] = pulumi.property("project")
     """
     Project of the function. If it is not provided, the provider project is used.
     """
-    region: pulumi.Output[str]
+
+    region: pulumi.Output[str] = pulumi.property("region")
     """
     Region of function. Currently can be only "us-central1". If it is not provided, the provider region is used.
     """
-    runtime: pulumi.Output[str]
+
+    runtime: pulumi.Output[str] = pulumi.property("runtime")
     """
     The runtime in which the function is going to run.
     Eg. `"nodejs8"`, `"nodejs10"`, `"python37"`, `"go111"`, `"go113"`.
     """
-    service_account_email: pulumi.Output[str]
+
+    service_account_email: pulumi.Output[str] = pulumi.property("serviceAccountEmail")
     """
     If provided, the self-provided service account to run the function with.
     """
-    source_archive_bucket: pulumi.Output[str]
+
+    source_archive_bucket: pulumi.Output[Optional[str]] = pulumi.property("sourceArchiveBucket")
     """
     The GCS bucket containing the zip archive which contains the function.
     """
-    source_archive_object: pulumi.Output[str]
+
+    source_archive_object: pulumi.Output[Optional[str]] = pulumi.property("sourceArchiveObject")
     """
     The source archive object (file) in archive bucket.
     """
-    source_repository: pulumi.Output[dict]
+
+    source_repository: pulumi.Output[Optional['outputs.FunctionSourceRepository']] = pulumi.property("sourceRepository")
     """
     Represents parameters related to source repository where a function is hosted.
     Cannot be set alongside `source_archive_bucket` or `source_archive_object`. Structure is documented below.
-
-      * `deployedUrl` (`str`)
-      * `url` (`str`) - The URL pointing to the hosted repository where the function is defined. There are supported Cloud Source Repository URLs in the following formats:
     """
-    timeout: pulumi.Output[float]
+
+    timeout: pulumi.Output[Optional[float]] = pulumi.property("timeout")
     """
     Timeout (in seconds) for the function. Default value is 60 seconds. Cannot be more than 540 seconds.
     """
-    trigger_http: pulumi.Output[bool]
+
+    trigger_http: pulumi.Output[Optional[bool]] = pulumi.property("triggerHttp")
     """
     Boolean variable. Any HTTP request (of a supported type) to the endpoint will trigger function execution. Supported HTTP request types are: POST, PUT, GET, DELETE, and OPTIONS. Endpoint is returned as `https_trigger_url`. Cannot be used with `trigger_bucket` and `trigger_topic`.
     """
-    vpc_connector: pulumi.Output[str]
+
+    vpc_connector: pulumi.Output[Optional[str]] = pulumi.property("vpcConnector")
     """
     The VPC Network Connector that this cloud function can connect to. It can be either the fully-qualified URI, or the short name of the network connector resource. The format of this field is `projects/*/locations/*/connectors/*`.
     """
-    vpc_connector_egress_settings: pulumi.Output[str]
+
+    vpc_connector_egress_settings: pulumi.Output[str] = pulumi.property("vpcConnectorEgressSettings")
     """
     The egress settings for the connector, controlling what traffic is diverted through it. Allowed values are `ALL_TRAFFIC` and `PRIVATE_RANGES_ONLY`. Defaults to `PRIVATE_RANGES_ONLY`. If unset, this field preserves the previously set value.
     """
-    def __init__(__self__, resource_name, opts=None, available_memory_mb=None, description=None, entry_point=None, environment_variables=None, event_trigger=None, https_trigger_url=None, ingress_settings=None, labels=None, max_instances=None, name=None, project=None, region=None, runtime=None, service_account_email=None, source_archive_bucket=None, source_archive_object=None, source_repository=None, timeout=None, trigger_http=None, vpc_connector=None, vpc_connector_egress_settings=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 available_memory_mb: Optional[pulumi.Input[float]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 entry_point: Optional[pulumi.Input[str]] = None,
+                 environment_variables: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 event_trigger: Optional[pulumi.Input[pulumi.InputType['FunctionEventTriggerArgs']]] = None,
+                 https_trigger_url: Optional[pulumi.Input[str]] = None,
+                 ingress_settings: Optional[pulumi.Input[str]] = None,
+                 labels: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 max_instances: Optional[pulumi.Input[float]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
+                 runtime: Optional[pulumi.Input[str]] = None,
+                 service_account_email: Optional[pulumi.Input[str]] = None,
+                 source_archive_bucket: Optional[pulumi.Input[str]] = None,
+                 source_archive_object: Optional[pulumi.Input[str]] = None,
+                 source_repository: Optional[pulumi.Input[pulumi.InputType['FunctionSourceRepositoryArgs']]] = None,
+                 timeout: Optional[pulumi.Input[float]] = None,
+                 trigger_http: Optional[pulumi.Input[bool]] = None,
+                 vpc_connector: Optional[pulumi.Input[str]] = None,
+                 vpc_connector_egress_settings: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Creates a new Cloud Function. For more information see
         [the official documentation](https://cloud.google.com/functions/docs/)
@@ -128,11 +167,11 @@ class Function(pulumi.CustomResource):
         :param pulumi.Input[float] available_memory_mb: Memory (in MB), available to the function. Default value is 256MB. Allowed values are: 128MB, 256MB, 512MB, 1024MB, and 2048MB.
         :param pulumi.Input[str] description: Description of the function.
         :param pulumi.Input[str] entry_point: Name of the function that will be executed when the Google Cloud Function is triggered.
-        :param pulumi.Input[dict] environment_variables: A set of key/value environment variable pairs to assign to the function.
-        :param pulumi.Input[dict] event_trigger: A source that fires events in response to a condition in another service. Structure is documented below. Cannot be used with `trigger_http`.
+        :param pulumi.Input[Mapping[str, Any]] environment_variables: A set of key/value environment variable pairs to assign to the function.
+        :param pulumi.Input[pulumi.InputType['FunctionEventTriggerArgs']] event_trigger: A source that fires events in response to a condition in another service. Structure is documented below. Cannot be used with `trigger_http`.
         :param pulumi.Input[str] https_trigger_url: URL which triggers function execution. Returned only if `trigger_http` is used.
         :param pulumi.Input[str] ingress_settings: String value that controls what traffic can reach the function. Allowed values are ALLOW_ALL and ALLOW_INTERNAL_ONLY. Changes to this field will recreate the cloud function.
-        :param pulumi.Input[dict] labels: A set of key/value label pairs to assign to the function. Label keys must follow the requirements at https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements.
+        :param pulumi.Input[Mapping[str, Any]] labels: A set of key/value label pairs to assign to the function. Label keys must follow the requirements at https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements.
         :param pulumi.Input[float] max_instances: The limit on the maximum number of function instances that may coexist at a given time.
         :param pulumi.Input[str] name: A user-defined name of the function. Function names must be unique globally.
         :param pulumi.Input[str] project: Project of the function. If it is not provided, the provider project is used.
@@ -142,28 +181,12 @@ class Function(pulumi.CustomResource):
         :param pulumi.Input[str] service_account_email: If provided, the self-provided service account to run the function with.
         :param pulumi.Input[str] source_archive_bucket: The GCS bucket containing the zip archive which contains the function.
         :param pulumi.Input[str] source_archive_object: The source archive object (file) in archive bucket.
-        :param pulumi.Input[dict] source_repository: Represents parameters related to source repository where a function is hosted.
+        :param pulumi.Input[pulumi.InputType['FunctionSourceRepositoryArgs']] source_repository: Represents parameters related to source repository where a function is hosted.
                Cannot be set alongside `source_archive_bucket` or `source_archive_object`. Structure is documented below.
         :param pulumi.Input[float] timeout: Timeout (in seconds) for the function. Default value is 60 seconds. Cannot be more than 540 seconds.
         :param pulumi.Input[bool] trigger_http: Boolean variable. Any HTTP request (of a supported type) to the endpoint will trigger function execution. Supported HTTP request types are: POST, PUT, GET, DELETE, and OPTIONS. Endpoint is returned as `https_trigger_url`. Cannot be used with `trigger_bucket` and `trigger_topic`.
         :param pulumi.Input[str] vpc_connector: The VPC Network Connector that this cloud function can connect to. It can be either the fully-qualified URI, or the short name of the network connector resource. The format of this field is `projects/*/locations/*/connectors/*`.
         :param pulumi.Input[str] vpc_connector_egress_settings: The egress settings for the connector, controlling what traffic is diverted through it. Allowed values are `ALL_TRAFFIC` and `PRIVATE_RANGES_ONLY`. Defaults to `PRIVATE_RANGES_ONLY`. If unset, this field preserves the previously set value.
-
-        The **event_trigger** object supports the following:
-
-          * `eventType` (`pulumi.Input[str]`) - The type of event to observe. For example: `"google.storage.object.finalize"`.
-            See the documentation on [calling Cloud Functions](https://cloud.google.com/functions/docs/calling/) for a
-            full reference of accepted triggers.
-          * `failurePolicy` (`pulumi.Input[dict]`) - Specifies policy for failed executions. Structure is documented below.
-            * `retry` (`pulumi.Input[bool]`) - Whether the function should be retried on failure. Defaults to `false`.
-
-          * `resource` (`pulumi.Input[str]`) - Required. The name or partial URI of the resource from
-            which to observe events. For example, `"myBucket"` or `"projects/my-project/topics/my-topic"`
-
-        The **source_repository** object supports the following:
-
-          * `deployedUrl` (`pulumi.Input[str]`)
-          * `url` (`pulumi.Input[str]`) - The URL pointing to the hosted repository where the function is defined. There are supported Cloud Source Repository URLs in the following formats:
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -212,7 +235,30 @@ class Function(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, available_memory_mb=None, description=None, entry_point=None, environment_variables=None, event_trigger=None, https_trigger_url=None, ingress_settings=None, labels=None, max_instances=None, name=None, project=None, region=None, runtime=None, service_account_email=None, source_archive_bucket=None, source_archive_object=None, source_repository=None, timeout=None, trigger_http=None, vpc_connector=None, vpc_connector_egress_settings=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            available_memory_mb: Optional[pulumi.Input[float]] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            entry_point: Optional[pulumi.Input[str]] = None,
+            environment_variables: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            event_trigger: Optional[pulumi.Input[pulumi.InputType['FunctionEventTriggerArgs']]] = None,
+            https_trigger_url: Optional[pulumi.Input[str]] = None,
+            ingress_settings: Optional[pulumi.Input[str]] = None,
+            labels: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            max_instances: Optional[pulumi.Input[float]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            project: Optional[pulumi.Input[str]] = None,
+            region: Optional[pulumi.Input[str]] = None,
+            runtime: Optional[pulumi.Input[str]] = None,
+            service_account_email: Optional[pulumi.Input[str]] = None,
+            source_archive_bucket: Optional[pulumi.Input[str]] = None,
+            source_archive_object: Optional[pulumi.Input[str]] = None,
+            source_repository: Optional[pulumi.Input[pulumi.InputType['FunctionSourceRepositoryArgs']]] = None,
+            timeout: Optional[pulumi.Input[float]] = None,
+            trigger_http: Optional[pulumi.Input[bool]] = None,
+            vpc_connector: Optional[pulumi.Input[str]] = None,
+            vpc_connector_egress_settings: Optional[pulumi.Input[str]] = None) -> 'Function':
         """
         Get an existing Function resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -223,11 +269,11 @@ class Function(pulumi.CustomResource):
         :param pulumi.Input[float] available_memory_mb: Memory (in MB), available to the function. Default value is 256MB. Allowed values are: 128MB, 256MB, 512MB, 1024MB, and 2048MB.
         :param pulumi.Input[str] description: Description of the function.
         :param pulumi.Input[str] entry_point: Name of the function that will be executed when the Google Cloud Function is triggered.
-        :param pulumi.Input[dict] environment_variables: A set of key/value environment variable pairs to assign to the function.
-        :param pulumi.Input[dict] event_trigger: A source that fires events in response to a condition in another service. Structure is documented below. Cannot be used with `trigger_http`.
+        :param pulumi.Input[Mapping[str, Any]] environment_variables: A set of key/value environment variable pairs to assign to the function.
+        :param pulumi.Input[pulumi.InputType['FunctionEventTriggerArgs']] event_trigger: A source that fires events in response to a condition in another service. Structure is documented below. Cannot be used with `trigger_http`.
         :param pulumi.Input[str] https_trigger_url: URL which triggers function execution. Returned only if `trigger_http` is used.
         :param pulumi.Input[str] ingress_settings: String value that controls what traffic can reach the function. Allowed values are ALLOW_ALL and ALLOW_INTERNAL_ONLY. Changes to this field will recreate the cloud function.
-        :param pulumi.Input[dict] labels: A set of key/value label pairs to assign to the function. Label keys must follow the requirements at https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements.
+        :param pulumi.Input[Mapping[str, Any]] labels: A set of key/value label pairs to assign to the function. Label keys must follow the requirements at https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements.
         :param pulumi.Input[float] max_instances: The limit on the maximum number of function instances that may coexist at a given time.
         :param pulumi.Input[str] name: A user-defined name of the function. Function names must be unique globally.
         :param pulumi.Input[str] project: Project of the function. If it is not provided, the provider project is used.
@@ -237,28 +283,12 @@ class Function(pulumi.CustomResource):
         :param pulumi.Input[str] service_account_email: If provided, the self-provided service account to run the function with.
         :param pulumi.Input[str] source_archive_bucket: The GCS bucket containing the zip archive which contains the function.
         :param pulumi.Input[str] source_archive_object: The source archive object (file) in archive bucket.
-        :param pulumi.Input[dict] source_repository: Represents parameters related to source repository where a function is hosted.
+        :param pulumi.Input[pulumi.InputType['FunctionSourceRepositoryArgs']] source_repository: Represents parameters related to source repository where a function is hosted.
                Cannot be set alongside `source_archive_bucket` or `source_archive_object`. Structure is documented below.
         :param pulumi.Input[float] timeout: Timeout (in seconds) for the function. Default value is 60 seconds. Cannot be more than 540 seconds.
         :param pulumi.Input[bool] trigger_http: Boolean variable. Any HTTP request (of a supported type) to the endpoint will trigger function execution. Supported HTTP request types are: POST, PUT, GET, DELETE, and OPTIONS. Endpoint is returned as `https_trigger_url`. Cannot be used with `trigger_bucket` and `trigger_topic`.
         :param pulumi.Input[str] vpc_connector: The VPC Network Connector that this cloud function can connect to. It can be either the fully-qualified URI, or the short name of the network connector resource. The format of this field is `projects/*/locations/*/connectors/*`.
         :param pulumi.Input[str] vpc_connector_egress_settings: The egress settings for the connector, controlling what traffic is diverted through it. Allowed values are `ALL_TRAFFIC` and `PRIVATE_RANGES_ONLY`. Defaults to `PRIVATE_RANGES_ONLY`. If unset, this field preserves the previously set value.
-
-        The **event_trigger** object supports the following:
-
-          * `eventType` (`pulumi.Input[str]`) - The type of event to observe. For example: `"google.storage.object.finalize"`.
-            See the documentation on [calling Cloud Functions](https://cloud.google.com/functions/docs/calling/) for a
-            full reference of accepted triggers.
-          * `failurePolicy` (`pulumi.Input[dict]`) - Specifies policy for failed executions. Structure is documented below.
-            * `retry` (`pulumi.Input[bool]`) - Whether the function should be retried on failure. Defaults to `false`.
-
-          * `resource` (`pulumi.Input[str]`) - Required. The name or partial URI of the resource from
-            which to observe events. For example, `"myBucket"` or `"projects/my-project/topics/my-topic"`
-
-        The **source_repository** object supports the following:
-
-          * `deployedUrl` (`pulumi.Input[str]`)
-          * `url` (`pulumi.Input[str]`) - The URL pointing to the hosted repository where the function is defined. There are supported Cloud Source Repository URLs in the following formats:
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -292,3 +322,4 @@ class Function(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

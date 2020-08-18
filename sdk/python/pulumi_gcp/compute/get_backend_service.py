@@ -5,8 +5,15 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetBackendServiceResult',
+    'AwaitableGetBackendServiceResult',
+    'get_backend_service',
+]
 
 
 class GetBackendServiceResult:
@@ -164,7 +171,9 @@ class AwaitableGetBackendServiceResult(GetBackendServiceResult):
             timeout_sec=self.timeout_sec)
 
 
-def get_backend_service(name=None, project=None, opts=None):
+def get_backend_service(name: Optional[str] = None,
+                        project: Optional[str] = None,
+                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBackendServiceResult:
     """
     Provide access to a Backend Service's attribute. For more information
     see [the official documentation](https://cloud.google.com/compute/docs/load-balancing/http/backend-service)

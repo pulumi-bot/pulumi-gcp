@@ -5,19 +5,24 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['ProjectFeed']
 
 
 class ProjectFeed(pulumi.CustomResource):
-    asset_names: pulumi.Output[list]
+    asset_names: pulumi.Output[Optional[List[str]]] = pulumi.property("assetNames")
     """
     A list of the full names of the assets to receive updates. You must specify either or both of
     assetNames and assetTypes. Only asset updates matching specified assetNames and assetTypes are
     exported to the feed. For example: //compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1.
     See https://cloud.google.com/apis/design/resourceNames#fullResourceName for more info.
     """
-    asset_types: pulumi.Output[list]
+
+    asset_types: pulumi.Output[Optional[List[str]]] = pulumi.property("assetTypes")
     """
     A list of types of the assets to receive updates. You must specify either or both of assetNames
     and assetTypes. Only asset updates matching specified assetNames and assetTypes are exported to
@@ -25,41 +30,56 @@ class ProjectFeed(pulumi.CustomResource):
     See https://cloud.google.com/asset-inventory/docs/supported-asset-types for a list of all
     supported asset types.
     """
-    billing_project: pulumi.Output[str]
+
+    billing_project: pulumi.Output[Optional[str]] = pulumi.property("billingProject")
     """
     The project whose identity will be used when sending messages to the
     destination pubsub topic. It also specifies the project for API
     enablement check, quota, and billing. If not specified, the resource's
     project will be used.
     """
-    content_type: pulumi.Output[str]
+
+    content_type: pulumi.Output[Optional[str]] = pulumi.property("contentType")
     """
     Asset content type. If not specified, no content but the asset name and type will be returned.
     Possible values are `CONTENT_TYPE_UNSPECIFIED`, `RESOURCE`, `IAM_POLICY`, `ORG_POLICY`, and `ACCESS_POLICY`.
     """
-    feed_id: pulumi.Output[str]
+
+    feed_id: pulumi.Output[str] = pulumi.property("feedId")
     """
     This is the client-assigned asset feed identifier and it needs to be unique under a specific parent.
     """
-    feed_output_config: pulumi.Output[dict]
+
+    feed_output_config: pulumi.Output['outputs.ProjectFeedFeedOutputConfig'] = pulumi.property("feedOutputConfig")
     """
     Output configuration for asset feed destination.
     Structure is documented below.
-
-      * `pubsubDestination` (`dict`) - Destination on Cloud Pubsub.
-        Structure is documented below.
-        * `topic` (`str`) - Destination on Cloud Pubsub topic.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     The format will be projects/{projectNumber}/feeds/{client-assigned_feed_identifier}.
     """
-    project: pulumi.Output[str]
+
+    project: pulumi.Output[str] = pulumi.property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    def __init__(__self__, resource_name, opts=None, asset_names=None, asset_types=None, billing_project=None, content_type=None, feed_id=None, feed_output_config=None, project=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 asset_names: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 asset_types: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 billing_project: Optional[pulumi.Input[str]] = None,
+                 content_type: Optional[pulumi.Input[str]] = None,
+                 feed_id: Optional[pulumi.Input[str]] = None,
+                 feed_output_config: Optional[pulumi.Input[pulumi.InputType['ProjectFeedFeedOutputConfigArgs']]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Describes a Cloud Asset Inventory feed used to to listen to asset updates.
 
@@ -73,11 +93,11 @@ class ProjectFeed(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] asset_names: A list of the full names of the assets to receive updates. You must specify either or both of
+        :param pulumi.Input[List[pulumi.Input[str]]] asset_names: A list of the full names of the assets to receive updates. You must specify either or both of
                assetNames and assetTypes. Only asset updates matching specified assetNames and assetTypes are
                exported to the feed. For example: //compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1.
                See https://cloud.google.com/apis/design/resourceNames#fullResourceName for more info.
-        :param pulumi.Input[list] asset_types: A list of types of the assets to receive updates. You must specify either or both of assetNames
+        :param pulumi.Input[List[pulumi.Input[str]]] asset_types: A list of types of the assets to receive updates. You must specify either or both of assetNames
                and assetTypes. Only asset updates matching specified assetNames and assetTypes are exported to
                the feed. For example: "compute.googleapis.com/Disk"
                See https://cloud.google.com/asset-inventory/docs/supported-asset-types for a list of all
@@ -89,16 +109,10 @@ class ProjectFeed(pulumi.CustomResource):
         :param pulumi.Input[str] content_type: Asset content type. If not specified, no content but the asset name and type will be returned.
                Possible values are `CONTENT_TYPE_UNSPECIFIED`, `RESOURCE`, `IAM_POLICY`, `ORG_POLICY`, and `ACCESS_POLICY`.
         :param pulumi.Input[str] feed_id: This is the client-assigned asset feed identifier and it needs to be unique under a specific parent.
-        :param pulumi.Input[dict] feed_output_config: Output configuration for asset feed destination.
+        :param pulumi.Input[pulumi.InputType['ProjectFeedFeedOutputConfigArgs']] feed_output_config: Output configuration for asset feed destination.
                Structure is documented below.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-
-        The **feed_output_config** object supports the following:
-
-          * `pubsubDestination` (`pulumi.Input[dict]`) - Destination on Cloud Pubsub.
-            Structure is documented below.
-            * `topic` (`pulumi.Input[str]`) - Destination on Cloud Pubsub topic.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -136,7 +150,17 @@ class ProjectFeed(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, asset_names=None, asset_types=None, billing_project=None, content_type=None, feed_id=None, feed_output_config=None, name=None, project=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            asset_names: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            asset_types: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            billing_project: Optional[pulumi.Input[str]] = None,
+            content_type: Optional[pulumi.Input[str]] = None,
+            feed_id: Optional[pulumi.Input[str]] = None,
+            feed_output_config: Optional[pulumi.Input[pulumi.InputType['ProjectFeedFeedOutputConfigArgs']]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            project: Optional[pulumi.Input[str]] = None) -> 'ProjectFeed':
         """
         Get an existing ProjectFeed resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -144,11 +168,11 @@ class ProjectFeed(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] asset_names: A list of the full names of the assets to receive updates. You must specify either or both of
+        :param pulumi.Input[List[pulumi.Input[str]]] asset_names: A list of the full names of the assets to receive updates. You must specify either or both of
                assetNames and assetTypes. Only asset updates matching specified assetNames and assetTypes are
                exported to the feed. For example: //compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1.
                See https://cloud.google.com/apis/design/resourceNames#fullResourceName for more info.
-        :param pulumi.Input[list] asset_types: A list of types of the assets to receive updates. You must specify either or both of assetNames
+        :param pulumi.Input[List[pulumi.Input[str]]] asset_types: A list of types of the assets to receive updates. You must specify either or both of assetNames
                and assetTypes. Only asset updates matching specified assetNames and assetTypes are exported to
                the feed. For example: "compute.googleapis.com/Disk"
                See https://cloud.google.com/asset-inventory/docs/supported-asset-types for a list of all
@@ -160,17 +184,11 @@ class ProjectFeed(pulumi.CustomResource):
         :param pulumi.Input[str] content_type: Asset content type. If not specified, no content but the asset name and type will be returned.
                Possible values are `CONTENT_TYPE_UNSPECIFIED`, `RESOURCE`, `IAM_POLICY`, `ORG_POLICY`, and `ACCESS_POLICY`.
         :param pulumi.Input[str] feed_id: This is the client-assigned asset feed identifier and it needs to be unique under a specific parent.
-        :param pulumi.Input[dict] feed_output_config: Output configuration for asset feed destination.
+        :param pulumi.Input[pulumi.InputType['ProjectFeedFeedOutputConfigArgs']] feed_output_config: Output configuration for asset feed destination.
                Structure is documented below.
         :param pulumi.Input[str] name: The format will be projects/{projectNumber}/feeds/{client-assigned_feed_identifier}.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-
-        The **feed_output_config** object supports the following:
-
-          * `pubsubDestination` (`pulumi.Input[dict]`) - Destination on Cloud Pubsub.
-            Structure is documented below.
-            * `topic` (`pulumi.Input[str]`) - Destination on Cloud Pubsub topic.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -191,3 +209,4 @@ class ProjectFeed(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

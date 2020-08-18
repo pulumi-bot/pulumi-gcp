@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetLBIPRangesResult',
+    'AwaitableGetLBIPRangesResult',
+    'get_lbip_ranges',
+]
 
 
 class GetLBIPRangesResult:
@@ -45,7 +51,7 @@ class AwaitableGetLBIPRangesResult(GetLBIPRangesResult):
             networks=self.networks)
 
 
-def get_lbip_ranges(opts=None):
+def get_lbip_ranges(                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLBIPRangesResult:
     """
     Use this data source to access IP ranges in your firewall rules.
 

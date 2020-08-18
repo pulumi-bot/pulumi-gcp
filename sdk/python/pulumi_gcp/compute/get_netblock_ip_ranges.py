@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetNetblockIPRangesResult',
+    'AwaitableGetNetblockIPRangesResult',
+    'get_netblock_ip_ranges',
+]
 
 
 class GetNetblockIPRangesResult:
@@ -56,7 +62,8 @@ class AwaitableGetNetblockIPRangesResult(GetNetblockIPRangesResult):
             range_type=self.range_type)
 
 
-def get_netblock_ip_ranges(range_type=None, opts=None):
+def get_netblock_ip_ranges(range_type: Optional[str] = None,
+                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNetblockIPRangesResult:
     """
     Use this data source to get the IP addresses from different special IP ranges on Google Cloud Platform.
 

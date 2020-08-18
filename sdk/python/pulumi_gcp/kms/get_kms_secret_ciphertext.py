@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetKMSSecretCiphertextResult',
+    'AwaitableGetKMSSecretCiphertextResult',
+    'get_kms_secret_ciphertext',
+]
 
 
 class GetKMSSecretCiphertextResult:
@@ -46,7 +52,9 @@ class AwaitableGetKMSSecretCiphertextResult(GetKMSSecretCiphertextResult):
             plaintext=self.plaintext)
 
 
-def get_kms_secret_ciphertext(crypto_key=None, plaintext=None, opts=None):
+def get_kms_secret_ciphertext(crypto_key: Optional[str] = None,
+                              plaintext: Optional[str] = None,
+                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetKMSSecretCiphertextResult:
     """
     !> **Warning:** This data source is deprecated. Use the `kms.SecretCiphertext` **resource** instead.
 

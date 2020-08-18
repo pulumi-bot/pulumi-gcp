@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetSecretVersionResult',
+    'AwaitableGetSecretVersionResult',
+    'get_secret_version',
+]
 
 
 class GetSecretVersionResult:
@@ -79,7 +85,10 @@ class AwaitableGetSecretVersionResult(GetSecretVersionResult):
             version=self.version)
 
 
-def get_secret_version(project=None, secret=None, version=None, opts=None):
+def get_secret_version(project: Optional[str] = None,
+                       secret: Optional[str] = None,
+                       version: Optional[str] = None,
+                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSecretVersionResult:
     """
     Get a Secret Manager secret's version. For more information see the [official documentation](https://cloud.google.com/secret-manager/docs/) and [API](https://cloud.google.com/secret-manager/docs/reference/rest/v1/projects.secrets.versions).
 

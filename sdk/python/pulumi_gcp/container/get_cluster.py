@@ -5,8 +5,15 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetClusterResult',
+    'AwaitableGetClusterResult',
+    'get_cluster',
+]
 
 
 class GetClusterResult:
@@ -239,7 +246,12 @@ class AwaitableGetClusterResult(GetClusterResult):
             zone=self.zone)
 
 
-def get_cluster(location=None, name=None, project=None, region=None, zone=None, opts=None):
+def get_cluster(location: Optional[str] = None,
+                name: Optional[str] = None,
+                project: Optional[str] = None,
+                region: Optional[str] = None,
+                zone: Optional[str] = None,
+                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClusterResult:
     """
     Get info about a GKE cluster from its name and location.
 

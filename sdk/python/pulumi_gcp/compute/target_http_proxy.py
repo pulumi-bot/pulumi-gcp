@@ -5,20 +5,24 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['TargetHttpProxy']
 
 
 class TargetHttpProxy(pulumi.CustomResource):
-    creation_timestamp: pulumi.Output[str]
+    creation_timestamp: pulumi.Output[str] = pulumi.property("creationTimestamp")
     """
     Creation timestamp in RFC3339 text format.
     """
-    description: pulumi.Output[str]
+
+    description: pulumi.Output[Optional[str]] = pulumi.property("description")
     """
     An optional description of this resource.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     Name of the resource. Provided by the client when the resource is
     created. The name must be 1-63 characters long, and comply with
@@ -28,25 +32,39 @@ class TargetHttpProxy(pulumi.CustomResource):
     characters must be a dash, lowercase letter, or digit, except the last
     character, which cannot be a dash.
     """
-    project: pulumi.Output[str]
+
+    project: pulumi.Output[str] = pulumi.property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    proxy_id: pulumi.Output[float]
+
+    proxy_id: pulumi.Output[float] = pulumi.property("proxyId")
     """
     The unique identifier for the resource.
     """
-    self_link: pulumi.Output[str]
+
+    self_link: pulumi.Output[str] = pulumi.property("selfLink")
     """
     The URI of the created resource.
     """
-    url_map: pulumi.Output[str]
+
+    url_map: pulumi.Output[str] = pulumi.property("urlMap")
     """
     A reference to the UrlMap resource that defines the mapping from URL
     to the BackendService.
     """
-    def __init__(__self__, resource_name, opts=None, description=None, name=None, project=None, url_map=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 url_map: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Represents a TargetHttpProxy resource, which is used by one or more global
         forwarding rule to route incoming HTTP requests to a URL map.
@@ -107,7 +125,16 @@ class TargetHttpProxy(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, creation_timestamp=None, description=None, name=None, project=None, proxy_id=None, self_link=None, url_map=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            creation_timestamp: Optional[pulumi.Input[str]] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            project: Optional[pulumi.Input[str]] = None,
+            proxy_id: Optional[pulumi.Input[float]] = None,
+            self_link: Optional[pulumi.Input[str]] = None,
+            url_map: Optional[pulumi.Input[str]] = None) -> 'TargetHttpProxy':
         """
         Get an existing TargetHttpProxy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -149,3 +176,4 @@ class TargetHttpProxy(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

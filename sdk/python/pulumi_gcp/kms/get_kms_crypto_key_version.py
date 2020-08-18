@@ -5,8 +5,15 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetKMSCryptoKeyVersionResult',
+    'AwaitableGetKMSCryptoKeyVersionResult',
+    'get_kms_crypto_key_version',
+]
 
 
 class GetKMSCryptoKeyVersionResult:
@@ -67,7 +74,9 @@ class AwaitableGetKMSCryptoKeyVersionResult(GetKMSCryptoKeyVersionResult):
             version=self.version)
 
 
-def get_kms_crypto_key_version(crypto_key=None, version=None, opts=None):
+def get_kms_crypto_key_version(crypto_key: Optional[str] = None,
+                               version: Optional[float] = None,
+                               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetKMSCryptoKeyVersionResult:
     """
     Provides access to a Google Cloud Platform KMS CryptoKeyVersion. For more information see
     [the official documentation](https://cloud.google.com/kms/docs/object-hierarchy#key_version)

@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetRegistryImageResult',
+    'AwaitableGetRegistryImageResult',
+    'get_registry_image',
+]
 
 
 class GetRegistryImageResult:
@@ -55,7 +61,12 @@ class AwaitableGetRegistryImageResult(GetRegistryImageResult):
             tag=self.tag)
 
 
-def get_registry_image(digest=None, name=None, project=None, region=None, tag=None, opts=None):
+def get_registry_image(digest: Optional[str] = None,
+                       name: Optional[str] = None,
+                       project: Optional[str] = None,
+                       region: Optional[str] = None,
+                       tag: Optional[str] = None,
+                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRegistryImageResult:
     """
     This data source fetches the project name, and provides the appropriate URLs to use for container registry for this project.
 

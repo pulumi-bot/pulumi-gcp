@@ -5,84 +5,101 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['Application']
 
 
 class Application(pulumi.CustomResource):
-    app_id: pulumi.Output[str]
+    app_id: pulumi.Output[str] = pulumi.property("appId")
     """
     Identifier of the app, usually `{PROJECT_ID}`
     """
-    auth_domain: pulumi.Output[str]
+
+    auth_domain: pulumi.Output[str] = pulumi.property("authDomain")
     """
     The domain to authenticate users with when using App Engine's User API.
     """
-    code_bucket: pulumi.Output[str]
+
+    code_bucket: pulumi.Output[str] = pulumi.property("codeBucket")
     """
     The GCS bucket code is being stored in for this app.
     """
-    database_type: pulumi.Output[str]
+
+    database_type: pulumi.Output[str] = pulumi.property("databaseType")
     """
     The type of the Cloud Firestore or Cloud Datastore database associated with this application.
     """
-    default_bucket: pulumi.Output[str]
+
+    default_bucket: pulumi.Output[str] = pulumi.property("defaultBucket")
     """
     The GCS bucket content is being stored in for this app.
     """
-    default_hostname: pulumi.Output[str]
+
+    default_hostname: pulumi.Output[str] = pulumi.property("defaultHostname")
     """
     The default hostname for this app.
     """
-    feature_settings: pulumi.Output[dict]
+
+    feature_settings: pulumi.Output['outputs.ApplicationFeatureSettings'] = pulumi.property("featureSettings")
     """
     A block of optional settings to configure specific App Engine features:
-
-      * `splitHealthChecks` (`bool`) - Set to false to use the legacy health check instead of the readiness
-        and liveness checks.
     """
-    gcr_domain: pulumi.Output[str]
+
+    gcr_domain: pulumi.Output[str] = pulumi.property("gcrDomain")
     """
     The GCR domain used for storing managed Docker images for this app.
     """
-    iap: pulumi.Output[dict]
+
+    iap: pulumi.Output['outputs.ApplicationIap'] = pulumi.property("iap")
     """
     Settings for enabling Cloud Identity Aware Proxy
-
-      * `enabled` (`bool`)
-      * `oauth2ClientId` (`str`) - OAuth2 client ID to use for the authentication flow.
-      * `oauth2ClientSecret` (`str`) - OAuth2 client secret to use for the authentication flow.
-        The SHA-256 hash of the value is returned in the oauth2ClientSecretSha256 field.
-      * `oauth2ClientSecretSha256` (`str`) - Hex-encoded SHA-256 hash of the client secret.
     """
-    location_id: pulumi.Output[str]
+
+    location_id: pulumi.Output[str] = pulumi.property("locationId")
     """
     The [location](https://cloud.google.com/appengine/docs/locations)
     to serve the app from.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     Unique name of the app, usually `apps/{PROJECT_ID}`
     """
-    project: pulumi.Output[str]
+
+    project: pulumi.Output[str] = pulumi.property("project")
     """
     The project ID to create the application under.
     ~>**NOTE:** GCP only accepts project ID, not project number. If you are using number,
     you may get a "Permission denied" error.
     """
-    serving_status: pulumi.Output[str]
+
+    serving_status: pulumi.Output[str] = pulumi.property("servingStatus")
     """
     The serving status of the app.
     """
-    url_dispatch_rules: pulumi.Output[list]
+
+    url_dispatch_rules: pulumi.Output[List['outputs.ApplicationUrlDispatchRule']] = pulumi.property("urlDispatchRules")
     """
     A list of dispatch rule blocks. Each block has a `domain`, `path`, and `service` field.
-
-      * `domain` (`str`)
-      * `path` (`str`)
-      * `service` (`str`)
     """
-    def __init__(__self__, resource_name, opts=None, auth_domain=None, database_type=None, feature_settings=None, iap=None, location_id=None, project=None, serving_status=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 auth_domain: Optional[pulumi.Input[str]] = None,
+                 database_type: Optional[pulumi.Input[str]] = None,
+                 feature_settings: Optional[pulumi.Input[pulumi.InputType['ApplicationFeatureSettingsArgs']]] = None,
+                 iap: Optional[pulumi.Input[pulumi.InputType['ApplicationIapArgs']]] = None,
+                 location_id: Optional[pulumi.Input[str]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 serving_status: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Allows creation and management of an App Engine application.
 
@@ -98,27 +115,14 @@ class Application(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] auth_domain: The domain to authenticate users with when using App Engine's User API.
         :param pulumi.Input[str] database_type: The type of the Cloud Firestore or Cloud Datastore database associated with this application.
-        :param pulumi.Input[dict] feature_settings: A block of optional settings to configure specific App Engine features:
-        :param pulumi.Input[dict] iap: Settings for enabling Cloud Identity Aware Proxy
+        :param pulumi.Input[pulumi.InputType['ApplicationFeatureSettingsArgs']] feature_settings: A block of optional settings to configure specific App Engine features:
+        :param pulumi.Input[pulumi.InputType['ApplicationIapArgs']] iap: Settings for enabling Cloud Identity Aware Proxy
         :param pulumi.Input[str] location_id: The [location](https://cloud.google.com/appengine/docs/locations)
                to serve the app from.
         :param pulumi.Input[str] project: The project ID to create the application under.
                ~>**NOTE:** GCP only accepts project ID, not project number. If you are using number,
                you may get a "Permission denied" error.
         :param pulumi.Input[str] serving_status: The serving status of the app.
-
-        The **feature_settings** object supports the following:
-
-          * `splitHealthChecks` (`pulumi.Input[bool]`) - Set to false to use the legacy health check instead of the readiness
-            and liveness checks.
-
-        The **iap** object supports the following:
-
-          * `enabled` (`pulumi.Input[bool]`)
-          * `oauth2ClientId` (`pulumi.Input[str]`) - OAuth2 client ID to use for the authentication flow.
-          * `oauth2ClientSecret` (`pulumi.Input[str]`) - OAuth2 client secret to use for the authentication flow.
-            The SHA-256 hash of the value is returned in the oauth2ClientSecretSha256 field.
-          * `oauth2ClientSecretSha256` (`pulumi.Input[str]`) - Hex-encoded SHA-256 hash of the client secret.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -160,7 +164,23 @@ class Application(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, app_id=None, auth_domain=None, code_bucket=None, database_type=None, default_bucket=None, default_hostname=None, feature_settings=None, gcr_domain=None, iap=None, location_id=None, name=None, project=None, serving_status=None, url_dispatch_rules=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            app_id: Optional[pulumi.Input[str]] = None,
+            auth_domain: Optional[pulumi.Input[str]] = None,
+            code_bucket: Optional[pulumi.Input[str]] = None,
+            database_type: Optional[pulumi.Input[str]] = None,
+            default_bucket: Optional[pulumi.Input[str]] = None,
+            default_hostname: Optional[pulumi.Input[str]] = None,
+            feature_settings: Optional[pulumi.Input[pulumi.InputType['ApplicationFeatureSettingsArgs']]] = None,
+            gcr_domain: Optional[pulumi.Input[str]] = None,
+            iap: Optional[pulumi.Input[pulumi.InputType['ApplicationIapArgs']]] = None,
+            location_id: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            project: Optional[pulumi.Input[str]] = None,
+            serving_status: Optional[pulumi.Input[str]] = None,
+            url_dispatch_rules: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ApplicationUrlDispatchRuleArgs']]]]] = None) -> 'Application':
         """
         Get an existing Application resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -174,9 +194,9 @@ class Application(pulumi.CustomResource):
         :param pulumi.Input[str] database_type: The type of the Cloud Firestore or Cloud Datastore database associated with this application.
         :param pulumi.Input[str] default_bucket: The GCS bucket content is being stored in for this app.
         :param pulumi.Input[str] default_hostname: The default hostname for this app.
-        :param pulumi.Input[dict] feature_settings: A block of optional settings to configure specific App Engine features:
+        :param pulumi.Input[pulumi.InputType['ApplicationFeatureSettingsArgs']] feature_settings: A block of optional settings to configure specific App Engine features:
         :param pulumi.Input[str] gcr_domain: The GCR domain used for storing managed Docker images for this app.
-        :param pulumi.Input[dict] iap: Settings for enabling Cloud Identity Aware Proxy
+        :param pulumi.Input[pulumi.InputType['ApplicationIapArgs']] iap: Settings for enabling Cloud Identity Aware Proxy
         :param pulumi.Input[str] location_id: The [location](https://cloud.google.com/appengine/docs/locations)
                to serve the app from.
         :param pulumi.Input[str] name: Unique name of the app, usually `apps/{PROJECT_ID}`
@@ -184,26 +204,7 @@ class Application(pulumi.CustomResource):
                ~>**NOTE:** GCP only accepts project ID, not project number. If you are using number,
                you may get a "Permission denied" error.
         :param pulumi.Input[str] serving_status: The serving status of the app.
-        :param pulumi.Input[list] url_dispatch_rules: A list of dispatch rule blocks. Each block has a `domain`, `path`, and `service` field.
-
-        The **feature_settings** object supports the following:
-
-          * `splitHealthChecks` (`pulumi.Input[bool]`) - Set to false to use the legacy health check instead of the readiness
-            and liveness checks.
-
-        The **iap** object supports the following:
-
-          * `enabled` (`pulumi.Input[bool]`)
-          * `oauth2ClientId` (`pulumi.Input[str]`) - OAuth2 client ID to use for the authentication flow.
-          * `oauth2ClientSecret` (`pulumi.Input[str]`) - OAuth2 client secret to use for the authentication flow.
-            The SHA-256 hash of the value is returned in the oauth2ClientSecretSha256 field.
-          * `oauth2ClientSecretSha256` (`pulumi.Input[str]`) - Hex-encoded SHA-256 hash of the client secret.
-
-        The **url_dispatch_rules** object supports the following:
-
-          * `domain` (`pulumi.Input[str]`)
-          * `path` (`pulumi.Input[str]`)
-          * `service` (`pulumi.Input[str]`)
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ApplicationUrlDispatchRuleArgs']]]] url_dispatch_rules: A list of dispatch rule blocks. Each block has a `domain`, `path`, and `service` field.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -230,3 +231,4 @@ class Application(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

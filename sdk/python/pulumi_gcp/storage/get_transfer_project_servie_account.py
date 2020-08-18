@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetTransferProjectServieAccountResult',
+    'AwaitableGetTransferProjectServieAccountResult',
+    'get_transfer_project_servie_account',
+]
 
 
 class GetTransferProjectServieAccountResult:
@@ -42,7 +48,8 @@ class AwaitableGetTransferProjectServieAccountResult(GetTransferProjectServieAcc
             project=self.project)
 
 
-def get_transfer_project_servie_account(project=None, opts=None):
+def get_transfer_project_servie_account(project: Optional[str] = None,
+                                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetTransferProjectServieAccountResult:
     """
     Use this data source to retrieve Storage Transfer service account for this project
 

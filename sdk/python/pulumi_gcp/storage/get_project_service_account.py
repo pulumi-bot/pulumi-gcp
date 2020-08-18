@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetProjectServiceAccountResult',
+    'AwaitableGetProjectServiceAccountResult',
+    'get_project_service_account',
+]
 
 
 class GetProjectServiceAccountResult:
@@ -47,7 +53,9 @@ class AwaitableGetProjectServiceAccountResult(GetProjectServiceAccountResult):
             user_project=self.user_project)
 
 
-def get_project_service_account(project=None, user_project=None, opts=None):
+def get_project_service_account(project: Optional[str] = None,
+                                user_project: Optional[str] = None,
+                                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetProjectServiceAccountResult:
     """
     Get the email address of a project's unique Google Cloud Storage service account.
 

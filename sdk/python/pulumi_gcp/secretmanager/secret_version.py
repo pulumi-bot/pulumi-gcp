@@ -5,37 +5,53 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['SecretVersion']
 
 
 class SecretVersion(pulumi.CustomResource):
-    create_time: pulumi.Output[str]
+    create_time: pulumi.Output[str] = pulumi.property("createTime")
     """
     The time at which the Secret was created.
     """
-    destroy_time: pulumi.Output[str]
+
+    destroy_time: pulumi.Output[str] = pulumi.property("destroyTime")
     """
     The time at which the Secret was destroyed. Only present if state is DESTROYED.
     """
-    enabled: pulumi.Output[bool]
+
+    enabled: pulumi.Output[Optional[bool]] = pulumi.property("enabled")
     """
     The current state of the SecretVersion.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     The resource name of the SecretVersion. Format: 'projects/{{project}}/secrets/{{secret_id}}/versions/{{version}}'
     """
-    secret: pulumi.Output[str]
+
+    secret: pulumi.Output[str] = pulumi.property("secret")
     """
     Secret Manager secret resource
     """
-    secret_data: pulumi.Output[str]
+
+    secret_data: pulumi.Output[Optional[str]] = pulumi.property("secretData")
     """
     The secret data. Must be no larger than 64KiB.
     **Note**: This property is sensitive and will not be displayed in the plan.
     """
-    def __init__(__self__, resource_name, opts=None, enabled=None, secret=None, secret_data=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 enabled: Optional[pulumi.Input[bool]] = None,
+                 secret: Optional[pulumi.Input[str]] = None,
+                 secret_data: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         A secret version resource.
 
@@ -83,7 +99,15 @@ class SecretVersion(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, create_time=None, destroy_time=None, enabled=None, name=None, secret=None, secret_data=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            create_time: Optional[pulumi.Input[str]] = None,
+            destroy_time: Optional[pulumi.Input[str]] = None,
+            enabled: Optional[pulumi.Input[bool]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            secret: Optional[pulumi.Input[str]] = None,
+            secret_data: Optional[pulumi.Input[str]] = None) -> 'SecretVersion':
         """
         Get an existing SecretVersion resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -116,3 +140,4 @@ class SecretVersion(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetKMSKeyRingResult',
+    'AwaitableGetKMSKeyRingResult',
+    'get_kms_key_ring',
+]
 
 
 class GetKMSKeyRingResult:
@@ -50,7 +56,10 @@ class AwaitableGetKMSKeyRingResult(GetKMSKeyRingResult):
             self_link=self.self_link)
 
 
-def get_kms_key_ring(location=None, name=None, project=None, opts=None):
+def get_kms_key_ring(location: Optional[str] = None,
+                     name: Optional[str] = None,
+                     project: Optional[str] = None,
+                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetKMSKeyRingResult:
     """
     Provides access to Google Cloud Platform KMS KeyRing. For more information see
     [the official documentation](https://cloud.google.com/kms/docs/object-hierarchy#key_ring)

@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetSSLPolicyResult',
+    'AwaitableGetSSLPolicyResult',
+    'get_ssl_policy',
+]
 
 
 class GetSSLPolicyResult:
@@ -94,7 +100,9 @@ class AwaitableGetSSLPolicyResult(GetSSLPolicyResult):
             self_link=self.self_link)
 
 
-def get_ssl_policy(name=None, project=None, opts=None):
+def get_ssl_policy(name: Optional[str] = None,
+                   project: Optional[str] = None,
+                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSSLPolicyResult:
     """
     Gets an SSL Policy within GCE from its name, for use with Target HTTPS and Target SSL Proxies.
         For more information see [the official documentation](https://cloud.google.com/compute/docs/load-balancing/ssl-policies).

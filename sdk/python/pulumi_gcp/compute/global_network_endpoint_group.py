@@ -5,22 +5,26 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['GlobalNetworkEndpointGroup']
 
 
 class GlobalNetworkEndpointGroup(pulumi.CustomResource):
-    default_port: pulumi.Output[float]
+    default_port: pulumi.Output[Optional[float]] = pulumi.property("defaultPort")
     """
     The default port used if the port number is not specified in the
     network endpoint.
     """
-    description: pulumi.Output[str]
+
+    description: pulumi.Output[Optional[str]] = pulumi.property("description")
     """
     An optional description of this resource. Provide this property when
     you create the resource.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     Name of the resource; provided by the client when the resource is
     created. The name must be 1-63 characters long, and comply with
@@ -30,21 +34,35 @@ class GlobalNetworkEndpointGroup(pulumi.CustomResource):
     characters must be a dash, lowercase letter, or digit, except the last
     character, which cannot be a dash.
     """
-    network_endpoint_type: pulumi.Output[str]
+
+    network_endpoint_type: pulumi.Output[str] = pulumi.property("networkEndpointType")
     """
     Type of network endpoints in this network endpoint group.
     Possible values are `INTERNET_IP_PORT` and `INTERNET_FQDN_PORT`.
     """
-    project: pulumi.Output[str]
+
+    project: pulumi.Output[str] = pulumi.property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    self_link: pulumi.Output[str]
+
+    self_link: pulumi.Output[str] = pulumi.property("selfLink")
     """
     The URI of the created resource.
     """
-    def __init__(__self__, resource_name, opts=None, default_port=None, description=None, name=None, network_endpoint_type=None, project=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 default_port: Optional[pulumi.Input[float]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 network_endpoint_type: Optional[pulumi.Input[str]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         A global network endpoint group contains endpoints that reside outside of Google Cloud.
         Currently a global network endpoint group can only support a single endpoint.
@@ -107,7 +125,15 @@ class GlobalNetworkEndpointGroup(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, default_port=None, description=None, name=None, network_endpoint_type=None, project=None, self_link=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            default_port: Optional[pulumi.Input[float]] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            network_endpoint_type: Optional[pulumi.Input[str]] = None,
+            project: Optional[pulumi.Input[str]] = None,
+            self_link: Optional[pulumi.Input[str]] = None) -> 'GlobalNetworkEndpointGroup':
         """
         Get an existing GlobalNetworkEndpointGroup resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -149,3 +175,4 @@ class GlobalNetworkEndpointGroup(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

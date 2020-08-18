@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetOrganizationResult',
+    'AwaitableGetOrganizationResult',
+    'get_organization',
+]
 
 
 class GetOrganizationResult:
@@ -74,7 +80,9 @@ class AwaitableGetOrganizationResult(GetOrganizationResult):
             organization=self.organization)
 
 
-def get_organization(domain=None, organization=None, opts=None):
+def get_organization(domain: Optional[str] = None,
+                     organization: Optional[str] = None,
+                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOrganizationResult:
     """
     Use this data source to get information about a Google Cloud Organization.
 

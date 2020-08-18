@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetEngineVersionsResult',
+    'AwaitableGetEngineVersionsResult',
+    'get_engine_versions',
+]
 
 
 class GetEngineVersionsResult:
@@ -85,7 +91,10 @@ class AwaitableGetEngineVersionsResult(GetEngineVersionsResult):
             version_prefix=self.version_prefix)
 
 
-def get_engine_versions(location=None, project=None, version_prefix=None, opts=None):
+def get_engine_versions(location: Optional[str] = None,
+                        project: Optional[str] = None,
+                        version_prefix: Optional[str] = None,
+                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetEngineVersionsResult:
     """
     Provides access to available Google Kubernetes Engine versions in a zone or region for a given project.
 

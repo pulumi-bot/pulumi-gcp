@@ -5,8 +5,15 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetGameServerDeploymentRolloutResult',
+    'AwaitableGetGameServerDeploymentRolloutResult',
+    'get_game_server_deployment_rollout',
+]
 
 
 class GetGameServerDeploymentRolloutResult:
@@ -55,7 +62,8 @@ class AwaitableGetGameServerDeploymentRolloutResult(GetGameServerDeploymentRollo
             project=self.project)
 
 
-def get_game_server_deployment_rollout(deployment_id=None, opts=None):
+def get_game_server_deployment_rollout(deployment_id: Optional[str] = None,
+                                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetGameServerDeploymentRolloutResult:
     """
     Use this data source to get the rollout state.
 

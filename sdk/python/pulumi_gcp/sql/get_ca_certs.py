@@ -5,8 +5,15 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetCaCertsResult',
+    'AwaitableGetCaCertsResult',
+    'get_ca_certs',
+]
 
 
 class GetCaCertsResult:
@@ -53,7 +60,9 @@ class AwaitableGetCaCertsResult(GetCaCertsResult):
             project=self.project)
 
 
-def get_ca_certs(instance=None, project=None, opts=None):
+def get_ca_certs(instance: Optional[str] = None,
+                 project: Optional[str] = None,
+                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCaCertsResult:
     """
     Get all of the trusted Certificate Authorities (CAs) for the specified SQL database instance. For more information see the
     [official documentation](https://cloud.google.com/sql/)

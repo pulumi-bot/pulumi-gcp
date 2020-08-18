@@ -5,8 +5,15 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetNotificationChannelResult',
+    'AwaitableGetNotificationChannelResult',
+    'get_notification_channel',
+]
 
 
 class GetNotificationChannelResult:
@@ -71,7 +78,12 @@ class AwaitableGetNotificationChannelResult(GetNotificationChannelResult):
             verification_status=self.verification_status)
 
 
-def get_notification_channel(display_name=None, labels=None, project=None, type=None, user_labels=None, opts=None):
+def get_notification_channel(display_name: Optional[str] = None,
+                             labels: Optional[Mapping[str, str]] = None,
+                             project: Optional[str] = None,
+                             type: Optional[str] = None,
+                             user_labels: Optional[Mapping[str, str]] = None,
+                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNotificationChannelResult:
     """
     A NotificationChannel is a medium through which an alert is delivered
     when a policy violation is detected. Examples of channels include email, SMS,
@@ -89,12 +101,12 @@ def get_notification_channel(display_name=None, labels=None, project=None, type=
 
 
     :param str display_name: The display name for this notification channel.
-    :param dict labels: Labels (corresponding to the
+    :param Mapping[str, str] labels: Labels (corresponding to the
            NotificationChannelDescriptor schema) to filter the notification channels by.
     :param str project: The ID of the project in which the resource belongs.
            If it is not provided, the provider project is used.
     :param str type: The type of the notification channel.
-    :param dict user_labels: User-provided key-value labels to filter by.
+    :param Mapping[str, str] user_labels: User-provided key-value labels to filter by.
     """
     __args__ = dict()
     __args__['displayName'] = display_name

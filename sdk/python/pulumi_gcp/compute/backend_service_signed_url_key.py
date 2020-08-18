@@ -5,31 +5,46 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['BackendServiceSignedUrlKey']
 
 
 class BackendServiceSignedUrlKey(pulumi.CustomResource):
-    backend_service: pulumi.Output[str]
+    backend_service: pulumi.Output[str] = pulumi.property("backendService")
     """
     The backend service this signed URL key belongs.
     """
-    key_value: pulumi.Output[str]
+
+    key_value: pulumi.Output[str] = pulumi.property("keyValue")
     """
     128-bit key value used for signing the URL. The key value must be a
     valid RFC 4648 Section 5 base64url encoded string.
     **Note**: This property is sensitive and will not be displayed in the plan.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     Name of the signed URL key.
     """
-    project: pulumi.Output[str]
+
+    project: pulumi.Output[str] = pulumi.property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    def __init__(__self__, resource_name, opts=None, backend_service=None, key_value=None, name=None, project=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 backend_service: Optional[pulumi.Input[str]] = None,
+                 key_value: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         A key for signing Cloud CDN signed URLs for Backend Services.
 
@@ -86,7 +101,13 @@ class BackendServiceSignedUrlKey(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, backend_service=None, key_value=None, name=None, project=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            backend_service: Optional[pulumi.Input[str]] = None,
+            key_value: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            project: Optional[pulumi.Input[str]] = None) -> 'BackendServiceSignedUrlKey':
         """
         Get an existing BackendServiceSignedUrlKey resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -117,3 +138,4 @@ class BackendServiceSignedUrlKey(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetGlobalAddressResult',
+    'AwaitableGetGlobalAddressResult',
+    'get_global_address',
+]
 
 
 class GetGlobalAddressResult:
@@ -60,7 +66,9 @@ class AwaitableGetGlobalAddressResult(GetGlobalAddressResult):
             status=self.status)
 
 
-def get_global_address(name=None, project=None, opts=None):
+def get_global_address(name: Optional[str] = None,
+                       project: Optional[str] = None,
+                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetGlobalAddressResult:
     """
     Get the IP address from a static address reserved for a Global Forwarding Rule which are only used for HTTP load balancing. For more information see
     the official [API](https://cloud.google.com/compute/docs/reference/latest/globalAddresses) documentation.

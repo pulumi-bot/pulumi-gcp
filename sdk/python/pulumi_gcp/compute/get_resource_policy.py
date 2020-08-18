@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetResourcePolicyResult',
+    'AwaitableGetResourcePolicyResult',
+    'get_resource_policy',
+]
 
 
 class GetResourcePolicyResult:
@@ -57,7 +63,10 @@ class AwaitableGetResourcePolicyResult(GetResourcePolicyResult):
             self_link=self.self_link)
 
 
-def get_resource_policy(name=None, project=None, region=None, opts=None):
+def get_resource_policy(name: Optional[str] = None,
+                        project: Optional[str] = None,
+                        region: Optional[str] = None,
+                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetResourcePolicyResult:
     """
     Provide access to a Resource Policy's attributes. For more information see [the official documentation](https://cloud.google.com/compute/docs/disks/scheduled-snapshots) or the [API](https://cloud.google.com/compute/docs/reference/rest/beta/resourcePolicies).
 

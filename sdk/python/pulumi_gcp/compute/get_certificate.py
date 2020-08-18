@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetCertificateResult',
+    'AwaitableGetCertificateResult',
+    'get_certificate',
+]
 
 
 class GetCertificateResult:
@@ -67,7 +73,9 @@ class AwaitableGetCertificateResult(GetCertificateResult):
             self_link=self.self_link)
 
 
-def get_certificate(name=None, project=None, opts=None):
+def get_certificate(name: Optional[str] = None,
+                    project: Optional[str] = None,
+                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCertificateResult:
     """
     Get info about a Google Compute SSL Certificate from its name.
 

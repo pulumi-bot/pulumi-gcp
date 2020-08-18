@@ -5,62 +5,61 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['DomainMapping']
 
 
 class DomainMapping(pulumi.CustomResource):
-    domain_name: pulumi.Output[str]
+    domain_name: pulumi.Output[str] = pulumi.property("domainName")
     """
     Relative name of the domain serving the application. Example: example.com.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     Full path to the DomainMapping resource in the API. Example: apps/myapp/domainMapping/example.com.
     """
-    override_strategy: pulumi.Output[str]
+
+    override_strategy: pulumi.Output[Optional[str]] = pulumi.property("overrideStrategy")
     """
     Whether the domain creation should override any existing mappings for this domain.
     By default, overrides are rejected.
     Default value is `STRICT`.
     Possible values are `STRICT` and `OVERRIDE`.
     """
-    project: pulumi.Output[str]
+
+    project: pulumi.Output[str] = pulumi.property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    resource_records: pulumi.Output[list]
+
+    resource_records: pulumi.Output[List['outputs.DomainMappingResourceRecord']] = pulumi.property("resourceRecords")
     """
     The resource records required to configure this domain mapping. These records must be added to the domain's DNS
     configuration in order to serve the application via this domain mapping.
-
-      * `name` (`str`)
-      * `rrdata` (`str`)
-      * `type` (`str`)
     """
-    ssl_settings: pulumi.Output[dict]
+
+    ssl_settings: pulumi.Output[Optional['outputs.DomainMappingSslSettings']] = pulumi.property("sslSettings")
     """
     SSL configuration for this domain. If unconfigured, this domain will not serve with SSL.
     Structure is documented below.
-
-      * `certificate_id` (`str`) - ID of the AuthorizedCertificate resource configuring SSL for the application. Clearing this field will
-        remove SSL support.
-        By default, a managed certificate is automatically created for every domain mapping. To omit SSL support
-        or to configure SSL manually, specify `SslManagementType.MANUAL` on a `CREATE` or `UPDATE` request. You must be
-        authorized to administer the `AuthorizedCertificate` resource to manually map it to a DomainMapping resource.
-        Example: 12345.
-      * `pendingManagedCertificateId` (`str`) - -
-        ID of the managed `AuthorizedCertificate` resource currently being provisioned, if applicable. Until the new
-        managed certificate has been successfully provisioned, the previous SSL state will be preserved. Once the
-        provisioning process completes, the `certificateId` field will reflect the new managed certificate and this
-        field will be left empty. To remove SSL support while there is still a pending managed certificate, clear the
-        `certificateId` field with an update request.
-      * `sslManagementType` (`str`) - SSL management type for this domain. If `AUTOMATIC`, a managed certificate is automatically provisioned.
-        If `MANUAL`, `certificateId` must be manually specified in order to configure SSL for this domain.
-        Possible values are `AUTOMATIC` and `MANUAL`.
     """
-    def __init__(__self__, resource_name, opts=None, domain_name=None, override_strategy=None, project=None, ssl_settings=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 domain_name: Optional[pulumi.Input[str]] = None,
+                 override_strategy: Optional[pulumi.Input[str]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 ssl_settings: Optional[pulumi.Input[pulumi.InputType['DomainMappingSslSettingsArgs']]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         A domain serving an App Engine application.
 
@@ -81,26 +80,8 @@ class DomainMapping(pulumi.CustomResource):
                Possible values are `STRICT` and `OVERRIDE`.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[dict] ssl_settings: SSL configuration for this domain. If unconfigured, this domain will not serve with SSL.
+        :param pulumi.Input[pulumi.InputType['DomainMappingSslSettingsArgs']] ssl_settings: SSL configuration for this domain. If unconfigured, this domain will not serve with SSL.
                Structure is documented below.
-
-        The **ssl_settings** object supports the following:
-
-          * `certificate_id` (`pulumi.Input[str]`) - ID of the AuthorizedCertificate resource configuring SSL for the application. Clearing this field will
-            remove SSL support.
-            By default, a managed certificate is automatically created for every domain mapping. To omit SSL support
-            or to configure SSL manually, specify `SslManagementType.MANUAL` on a `CREATE` or `UPDATE` request. You must be
-            authorized to administer the `AuthorizedCertificate` resource to manually map it to a DomainMapping resource.
-            Example: 12345.
-          * `pendingManagedCertificateId` (`pulumi.Input[str]`) - -
-            ID of the managed `AuthorizedCertificate` resource currently being provisioned, if applicable. Until the new
-            managed certificate has been successfully provisioned, the previous SSL state will be preserved. Once the
-            provisioning process completes, the `certificateId` field will reflect the new managed certificate and this
-            field will be left empty. To remove SSL support while there is still a pending managed certificate, clear the
-            `certificateId` field with an update request.
-          * `sslManagementType` (`pulumi.Input[str]`) - SSL management type for this domain. If `AUTOMATIC`, a managed certificate is automatically provisioned.
-            If `MANUAL`, `certificateId` must be manually specified in order to configure SSL for this domain.
-            Possible values are `AUTOMATIC` and `MANUAL`.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -134,7 +115,15 @@ class DomainMapping(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, domain_name=None, name=None, override_strategy=None, project=None, resource_records=None, ssl_settings=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            domain_name: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            override_strategy: Optional[pulumi.Input[str]] = None,
+            project: Optional[pulumi.Input[str]] = None,
+            resource_records: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['DomainMappingResourceRecordArgs']]]]] = None,
+            ssl_settings: Optional[pulumi.Input[pulumi.InputType['DomainMappingSslSettingsArgs']]] = None) -> 'DomainMapping':
         """
         Get an existing DomainMapping resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -150,34 +139,10 @@ class DomainMapping(pulumi.CustomResource):
                Possible values are `STRICT` and `OVERRIDE`.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[list] resource_records: The resource records required to configure this domain mapping. These records must be added to the domain's DNS
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['DomainMappingResourceRecordArgs']]]] resource_records: The resource records required to configure this domain mapping. These records must be added to the domain's DNS
                configuration in order to serve the application via this domain mapping.
-        :param pulumi.Input[dict] ssl_settings: SSL configuration for this domain. If unconfigured, this domain will not serve with SSL.
+        :param pulumi.Input[pulumi.InputType['DomainMappingSslSettingsArgs']] ssl_settings: SSL configuration for this domain. If unconfigured, this domain will not serve with SSL.
                Structure is documented below.
-
-        The **resource_records** object supports the following:
-
-          * `name` (`pulumi.Input[str]`)
-          * `rrdata` (`pulumi.Input[str]`)
-          * `type` (`pulumi.Input[str]`)
-
-        The **ssl_settings** object supports the following:
-
-          * `certificate_id` (`pulumi.Input[str]`) - ID of the AuthorizedCertificate resource configuring SSL for the application. Clearing this field will
-            remove SSL support.
-            By default, a managed certificate is automatically created for every domain mapping. To omit SSL support
-            or to configure SSL manually, specify `SslManagementType.MANUAL` on a `CREATE` or `UPDATE` request. You must be
-            authorized to administer the `AuthorizedCertificate` resource to manually map it to a DomainMapping resource.
-            Example: 12345.
-          * `pendingManagedCertificateId` (`pulumi.Input[str]`) - -
-            ID of the managed `AuthorizedCertificate` resource currently being provisioned, if applicable. Until the new
-            managed certificate has been successfully provisioned, the previous SSL state will be preserved. Once the
-            provisioning process completes, the `certificateId` field will reflect the new managed certificate and this
-            field will be left empty. To remove SSL support while there is still a pending managed certificate, clear the
-            `certificateId` field with an update request.
-          * `sslManagementType` (`pulumi.Input[str]`) - SSL management type for this domain. If `AUTOMATIC`, a managed certificate is automatically provisioned.
-            If `MANUAL`, `certificateId` must be manually specified in order to configure SSL for this domain.
-            Possible values are `AUTOMATIC` and `MANUAL`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -196,3 +161,4 @@ class DomainMapping(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

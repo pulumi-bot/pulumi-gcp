@@ -5,8 +5,15 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetGroupMembershipsResult',
+    'AwaitableGetGroupMembershipsResult',
+    'get_group_memberships',
+]
 
 
 class GetGroupMembershipsResult:
@@ -42,7 +49,8 @@ class AwaitableGetGroupMembershipsResult(GetGroupMembershipsResult):
             memberships=self.memberships)
 
 
-def get_group_memberships(group=None, opts=None):
+def get_group_memberships(group: Optional[str] = None,
+                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetGroupMembershipsResult:
     """
     Use this data source to get list of the Cloud Identity Group Memberships within a given Group.
 

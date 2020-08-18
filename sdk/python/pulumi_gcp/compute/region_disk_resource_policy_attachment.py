@@ -5,30 +5,45 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['RegionDiskResourcePolicyAttachment']
 
 
 class RegionDiskResourcePolicyAttachment(pulumi.CustomResource):
-    disk: pulumi.Output[str]
+    disk: pulumi.Output[str] = pulumi.property("disk")
     """
     The name of the regional disk in which the resource policies are attached to.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     The resource policy to be attached to the disk for scheduling snapshot
     creation. Do not specify the self link.
     """
-    project: pulumi.Output[str]
+
+    project: pulumi.Output[str] = pulumi.property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    region: pulumi.Output[str]
+
+    region: pulumi.Output[str] = pulumi.property("region")
     """
     A reference to the region where the disk resides.
     """
-    def __init__(__self__, resource_name, opts=None, disk=None, name=None, project=None, region=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 disk: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Adds existing resource policies to a disk. You can only add one policy
         which will be applied to this disk for scheduling snapshot creation.
@@ -76,7 +91,13 @@ class RegionDiskResourcePolicyAttachment(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, disk=None, name=None, project=None, region=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            disk: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            project: Optional[pulumi.Input[str]] = None,
+            region: Optional[pulumi.Input[str]] = None) -> 'RegionDiskResourcePolicyAttachment':
         """
         Get an existing RegionDiskResourcePolicyAttachment resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -106,3 +127,4 @@ class RegionDiskResourcePolicyAttachment(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,46 +5,67 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['IAMCustomRole']
 
 
 class IAMCustomRole(pulumi.CustomResource):
-    deleted: pulumi.Output[bool]
+    deleted: pulumi.Output[bool] = pulumi.property("deleted")
     """
     (Optional) The current deleted state of the role.
     """
-    description: pulumi.Output[str]
+
+    description: pulumi.Output[Optional[str]] = pulumi.property("description")
     """
     A human-readable description for the role.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     The name of the role in the format `organizations/{{org_id}}/roles/{{role_id}}`. Like `id`, this field can be used as a reference in other resources such as IAM role bindings.
     """
-    org_id: pulumi.Output[str]
+
+    org_id: pulumi.Output[str] = pulumi.property("orgId")
     """
     The numeric ID of the organization in which you want to create a custom role.
     """
-    permissions: pulumi.Output[list]
+
+    permissions: pulumi.Output[List[str]] = pulumi.property("permissions")
     """
     The names of the permissions this role grants when bound in an IAM policy. At least one permission must be specified.
     """
-    role_id: pulumi.Output[str]
+
+    role_id: pulumi.Output[str] = pulumi.property("roleId")
     """
     The role id to use for this role.
     """
-    stage: pulumi.Output[str]
+
+    stage: pulumi.Output[Optional[str]] = pulumi.property("stage")
     """
     The current launch stage of the role.
     Defaults to `GA`.
     List of possible stages is [here](https://cloud.google.com/iam/reference/rest/v1/organizations.roles#Role.RoleLaunchStage).
     """
-    title: pulumi.Output[str]
+
+    title: pulumi.Output[str] = pulumi.property("title")
     """
     A human-readable title for the role.
     """
-    def __init__(__self__, resource_name, opts=None, description=None, org_id=None, permissions=None, role_id=None, stage=None, title=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
+                 permissions: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 role_id: Optional[pulumi.Input[str]] = None,
+                 stage: Optional[pulumi.Input[str]] = None,
+                 title: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Allows management of a customized Cloud IAM organization role. For more information see
         [the official documentation](https://cloud.google.com/iam/docs/understanding-custom-roles)
@@ -62,7 +83,7 @@ class IAMCustomRole(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: A human-readable description for the role.
         :param pulumi.Input[str] org_id: The numeric ID of the organization in which you want to create a custom role.
-        :param pulumi.Input[list] permissions: The names of the permissions this role grants when bound in an IAM policy. At least one permission must be specified.
+        :param pulumi.Input[List[pulumi.Input[str]]] permissions: The names of the permissions this role grants when bound in an IAM policy. At least one permission must be specified.
         :param pulumi.Input[str] role_id: The role id to use for this role.
         :param pulumi.Input[str] stage: The current launch stage of the role.
                Defaults to `GA`.
@@ -109,7 +130,17 @@ class IAMCustomRole(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, deleted=None, description=None, name=None, org_id=None, permissions=None, role_id=None, stage=None, title=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            deleted: Optional[pulumi.Input[bool]] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            org_id: Optional[pulumi.Input[str]] = None,
+            permissions: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            role_id: Optional[pulumi.Input[str]] = None,
+            stage: Optional[pulumi.Input[str]] = None,
+            title: Optional[pulumi.Input[str]] = None) -> 'IAMCustomRole':
         """
         Get an existing IAMCustomRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -121,7 +152,7 @@ class IAMCustomRole(pulumi.CustomResource):
         :param pulumi.Input[str] description: A human-readable description for the role.
         :param pulumi.Input[str] name: The name of the role in the format `organizations/{{org_id}}/roles/{{role_id}}`. Like `id`, this field can be used as a reference in other resources such as IAM role bindings.
         :param pulumi.Input[str] org_id: The numeric ID of the organization in which you want to create a custom role.
-        :param pulumi.Input[list] permissions: The names of the permissions this role grants when bound in an IAM policy. At least one permission must be specified.
+        :param pulumi.Input[List[pulumi.Input[str]]] permissions: The names of the permissions this role grants when bound in an IAM policy. At least one permission must be specified.
         :param pulumi.Input[str] role_id: The role id to use for this role.
         :param pulumi.Input[str] stage: The current launch stage of the role.
                Defaults to `GA`.
@@ -147,3 +178,4 @@ class IAMCustomRole(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,37 +5,43 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['ManagedSslCertificate']
 
 
 class ManagedSslCertificate(pulumi.CustomResource):
-    certificate_id: pulumi.Output[float]
+    certificate_id: pulumi.Output[float] = pulumi.property("certificateId")
     """
     The unique identifier for the resource.
     """
-    creation_timestamp: pulumi.Output[str]
+
+    creation_timestamp: pulumi.Output[str] = pulumi.property("creationTimestamp")
     """
     Creation timestamp in RFC3339 text format.
     """
-    description: pulumi.Output[str]
+
+    description: pulumi.Output[Optional[str]] = pulumi.property("description")
     """
     An optional description of this resource.
     """
-    expire_time: pulumi.Output[str]
+
+    expire_time: pulumi.Output[str] = pulumi.property("expireTime")
     """
     Expire time of the certificate.
     """
-    managed: pulumi.Output[dict]
+
+    managed: pulumi.Output[Optional['outputs.ManagedSslCertificateManaged']] = pulumi.property("managed")
     """
     Properties relevant to a managed certificate.  These will be used if the
     certificate is managed (as indicated by a value of `MANAGED` in `type`).
     Structure is documented below.
-
-      * `domains` (`list`) - Domains for which a managed SSL certificate will be valid.  Currently,
-        there can be up to 100 domains in this list.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     Name of the resource. Provided by the client when the resource is
     created. The name must be 1-63 characters long, and comply with
@@ -45,27 +51,43 @@ class ManagedSslCertificate(pulumi.CustomResource):
     characters must be a dash, lowercase letter, or digit, except the last
     character, which cannot be a dash.
     """
-    project: pulumi.Output[str]
+
+    project: pulumi.Output[str] = pulumi.property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    self_link: pulumi.Output[str]
+
+    self_link: pulumi.Output[str] = pulumi.property("selfLink")
     """
     The URI of the created resource.
     """
-    subject_alternative_names: pulumi.Output[list]
+
+    subject_alternative_names: pulumi.Output[List[str]] = pulumi.property("subjectAlternativeNames")
     """
     Domains associated with the certificate via Subject Alternative Name.
     """
-    type: pulumi.Output[str]
+
+    type: pulumi.Output[Optional[str]] = pulumi.property("type")
     """
     Enum field whose value is always `MANAGED` - used to signal to the API
     which type this is.
     Default value is `MANAGED`.
     Possible values are `MANAGED`.
     """
-    def __init__(__self__, resource_name, opts=None, certificate_id=None, description=None, managed=None, name=None, project=None, type=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 certificate_id: Optional[pulumi.Input[float]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 managed: Optional[pulumi.Input[pulumi.InputType['ManagedSslCertificateManagedArgs']]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         An SslCertificate resource, used for HTTPS load balancing.  This resource
         represents a certificate for which the certificate secrets are created and
@@ -99,7 +121,7 @@ class ManagedSslCertificate(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[float] certificate_id: The unique identifier for the resource.
         :param pulumi.Input[str] description: An optional description of this resource.
-        :param pulumi.Input[dict] managed: Properties relevant to a managed certificate.  These will be used if the
+        :param pulumi.Input[pulumi.InputType['ManagedSslCertificateManagedArgs']] managed: Properties relevant to a managed certificate.  These will be used if the
                certificate is managed (as indicated by a value of `MANAGED` in `type`).
                Structure is documented below.
         :param pulumi.Input[str] name: Name of the resource. Provided by the client when the resource is
@@ -115,11 +137,6 @@ class ManagedSslCertificate(pulumi.CustomResource):
                which type this is.
                Default value is `MANAGED`.
                Possible values are `MANAGED`.
-
-        The **managed** object supports the following:
-
-          * `domains` (`pulumi.Input[list]`) - Domains for which a managed SSL certificate will be valid.  Currently,
-            there can be up to 100 domains in this list.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -157,7 +174,19 @@ class ManagedSslCertificate(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, certificate_id=None, creation_timestamp=None, description=None, expire_time=None, managed=None, name=None, project=None, self_link=None, subject_alternative_names=None, type=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            certificate_id: Optional[pulumi.Input[float]] = None,
+            creation_timestamp: Optional[pulumi.Input[str]] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            expire_time: Optional[pulumi.Input[str]] = None,
+            managed: Optional[pulumi.Input[pulumi.InputType['ManagedSslCertificateManagedArgs']]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            project: Optional[pulumi.Input[str]] = None,
+            self_link: Optional[pulumi.Input[str]] = None,
+            subject_alternative_names: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            type: Optional[pulumi.Input[str]] = None) -> 'ManagedSslCertificate':
         """
         Get an existing ManagedSslCertificate resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -169,7 +198,7 @@ class ManagedSslCertificate(pulumi.CustomResource):
         :param pulumi.Input[str] creation_timestamp: Creation timestamp in RFC3339 text format.
         :param pulumi.Input[str] description: An optional description of this resource.
         :param pulumi.Input[str] expire_time: Expire time of the certificate.
-        :param pulumi.Input[dict] managed: Properties relevant to a managed certificate.  These will be used if the
+        :param pulumi.Input[pulumi.InputType['ManagedSslCertificateManagedArgs']] managed: Properties relevant to a managed certificate.  These will be used if the
                certificate is managed (as indicated by a value of `MANAGED` in `type`).
                Structure is documented below.
         :param pulumi.Input[str] name: Name of the resource. Provided by the client when the resource is
@@ -182,16 +211,11 @@ class ManagedSslCertificate(pulumi.CustomResource):
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         :param pulumi.Input[str] self_link: The URI of the created resource.
-        :param pulumi.Input[list] subject_alternative_names: Domains associated with the certificate via Subject Alternative Name.
+        :param pulumi.Input[List[pulumi.Input[str]]] subject_alternative_names: Domains associated with the certificate via Subject Alternative Name.
         :param pulumi.Input[str] type: Enum field whose value is always `MANAGED` - used to signal to the API
                which type this is.
                Default value is `MANAGED`.
                Possible values are `MANAGED`.
-
-        The **managed** object supports the following:
-
-          * `domains` (`pulumi.Input[list]`) - Domains for which a managed SSL certificate will be valid.  Currently,
-            there can be up to 100 domains in this list.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -214,3 +238,4 @@ class ManagedSslCertificate(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

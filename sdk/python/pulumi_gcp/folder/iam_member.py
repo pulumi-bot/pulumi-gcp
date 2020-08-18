@@ -5,27 +5,39 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['IAMMember']
 
 
 class IAMMember(pulumi.CustomResource):
-    condition: pulumi.Output[dict]
-    etag: pulumi.Output[str]
-    folder: pulumi.Output[str]
-    member: pulumi.Output[str]
-    role: pulumi.Output[str]
-    def __init__(__self__, resource_name, opts=None, condition=None, folder=None, member=None, role=None, __props__=None, __name__=None, __opts__=None):
+    condition: pulumi.Output[Optional['outputs.IAMMemberCondition']] = pulumi.property("condition")
+
+    etag: pulumi.Output[str] = pulumi.property("etag")
+
+    folder: pulumi.Output[str] = pulumi.property("folder")
+
+    member: pulumi.Output[str] = pulumi.property("member")
+
+    role: pulumi.Output[str] = pulumi.property("role")
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 condition: Optional[pulumi.Input[pulumi.InputType['IAMMemberConditionArgs']]] = None,
+                 folder: Optional[pulumi.Input[str]] = None,
+                 member: Optional[pulumi.Input[str]] = None,
+                 role: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Create a IAMMember resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-
-        The **condition** object supports the following:
-
-          * `description` (`pulumi.Input[str]`)
-          * `expression` (`pulumi.Input[str]`)
-          * `title` (`pulumi.Input[str]`)
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -62,7 +74,14 @@ class IAMMember(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, condition=None, etag=None, folder=None, member=None, role=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            condition: Optional[pulumi.Input[pulumi.InputType['IAMMemberConditionArgs']]] = None,
+            etag: Optional[pulumi.Input[str]] = None,
+            folder: Optional[pulumi.Input[str]] = None,
+            member: Optional[pulumi.Input[str]] = None,
+            role: Optional[pulumi.Input[str]] = None) -> 'IAMMember':
         """
         Get an existing IAMMember resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -70,12 +89,6 @@ class IAMMember(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-
-        The **condition** object supports the following:
-
-          * `description` (`pulumi.Input[str]`)
-          * `expression` (`pulumi.Input[str]`)
-          * `title` (`pulumi.Input[str]`)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -93,3 +106,4 @@ class IAMMember(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

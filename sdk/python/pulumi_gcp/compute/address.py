@@ -5,41 +5,49 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['Address']
 
 
 class Address(pulumi.CustomResource):
-    address: pulumi.Output[str]
+    address: pulumi.Output[str] = pulumi.property("address")
     """
     The static external IP address represented by this resource. Only
     IPv4 is supported. An address may only be specified for INTERNAL
     address types. The IP address must be inside the specified subnetwork,
     if any.
     """
-    address_type: pulumi.Output[str]
+
+    address_type: pulumi.Output[Optional[str]] = pulumi.property("addressType")
     """
     The type of address to reserve.
     Default value is `EXTERNAL`.
     Possible values are `INTERNAL` and `EXTERNAL`.
     """
-    creation_timestamp: pulumi.Output[str]
+
+    creation_timestamp: pulumi.Output[str] = pulumi.property("creationTimestamp")
     """
     Creation timestamp in RFC3339 text format.
     """
-    description: pulumi.Output[str]
+
+    description: pulumi.Output[Optional[str]] = pulumi.property("description")
     """
     An optional description of this resource.
     """
-    label_fingerprint: pulumi.Output[str]
+
+    label_fingerprint: pulumi.Output[str] = pulumi.property("labelFingerprint")
     """
     The fingerprint used for optimistic locking of this resource. Used internally during updates.
     """
-    labels: pulumi.Output[dict]
+
+    labels: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("labels")
     """
     Labels to apply to this address.  A list of key->value pairs.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     Name of the resource. The name must be 1-63 characters long, and
     comply with RFC1035. Specifically, the name must be 1-63 characters
@@ -48,18 +56,21 @@ class Address(pulumi.CustomResource):
     following characters must be a dash, lowercase letter, or digit,
     except the last character, which cannot be a dash.
     """
-    network_tier: pulumi.Output[str]
+
+    network_tier: pulumi.Output[str] = pulumi.property("networkTier")
     """
     The networking tier used for configuring this address. If this field is not
     specified, it is assumed to be PREMIUM.
     Possible values are `PREMIUM` and `STANDARD`.
     """
-    project: pulumi.Output[str]
+
+    project: pulumi.Output[str] = pulumi.property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    purpose: pulumi.Output[str]
+
+    purpose: pulumi.Output[str] = pulumi.property("purpose")
     """
     The purpose of this resource, which can be one of the following values:
     - GCE_ENDPOINT for addresses that are used by VM instances, alias IP ranges, internal load balancers, and similar resources.
@@ -67,27 +78,47 @@ class Address(pulumi.CustomResource):
     This should only be set when using an Internal address.
     Possible values are `GCE_ENDPOINT` and `SHARED_LOADBALANCER_VIP`.
     """
-    region: pulumi.Output[str]
+
+    region: pulumi.Output[str] = pulumi.property("region")
     """
     The Region in which the created address should reside.
     If it is not provided, the provider region is used.
     """
-    self_link: pulumi.Output[str]
+
+    self_link: pulumi.Output[str] = pulumi.property("selfLink")
     """
     The URI of the created resource.
     """
-    subnetwork: pulumi.Output[str]
+
+    subnetwork: pulumi.Output[str] = pulumi.property("subnetwork")
     """
     The URL of the subnetwork in which to reserve the address. If an IP
     address is specified, it must be within the subnetwork's IP range.
     This field can only be used with INTERNAL type with
     GCE_ENDPOINT/DNS_RESOLVER purposes.
     """
-    users: pulumi.Output[list]
+
+    users: pulumi.Output[List[str]] = pulumi.property("users")
     """
     The URLs of the resources that are using this address.
     """
-    def __init__(__self__, resource_name, opts=None, address=None, address_type=None, description=None, labels=None, name=None, network_tier=None, project=None, purpose=None, region=None, subnetwork=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 address: Optional[pulumi.Input[str]] = None,
+                 address_type: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 network_tier: Optional[pulumi.Input[str]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 purpose: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
+                 subnetwork: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Represents an Address resource.
 
@@ -122,7 +153,7 @@ class Address(pulumi.CustomResource):
                Default value is `EXTERNAL`.
                Possible values are `INTERNAL` and `EXTERNAL`.
         :param pulumi.Input[str] description: An optional description of this resource.
-        :param pulumi.Input[dict] labels: Labels to apply to this address.  A list of key->value pairs.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to apply to this address.  A list of key->value pairs.
         :param pulumi.Input[str] name: Name of the resource. The name must be 1-63 characters long, and
                comply with RFC1035. Specifically, the name must be 1-63 characters
                long and match the regular expression `a-z?`
@@ -184,7 +215,23 @@ class Address(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, address=None, address_type=None, creation_timestamp=None, description=None, label_fingerprint=None, labels=None, name=None, network_tier=None, project=None, purpose=None, region=None, self_link=None, subnetwork=None, users=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            address: Optional[pulumi.Input[str]] = None,
+            address_type: Optional[pulumi.Input[str]] = None,
+            creation_timestamp: Optional[pulumi.Input[str]] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            label_fingerprint: Optional[pulumi.Input[str]] = None,
+            labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            network_tier: Optional[pulumi.Input[str]] = None,
+            project: Optional[pulumi.Input[str]] = None,
+            purpose: Optional[pulumi.Input[str]] = None,
+            region: Optional[pulumi.Input[str]] = None,
+            self_link: Optional[pulumi.Input[str]] = None,
+            subnetwork: Optional[pulumi.Input[str]] = None,
+            users: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None) -> 'Address':
         """
         Get an existing Address resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -202,7 +249,7 @@ class Address(pulumi.CustomResource):
         :param pulumi.Input[str] creation_timestamp: Creation timestamp in RFC3339 text format.
         :param pulumi.Input[str] description: An optional description of this resource.
         :param pulumi.Input[str] label_fingerprint: The fingerprint used for optimistic locking of this resource. Used internally during updates.
-        :param pulumi.Input[dict] labels: Labels to apply to this address.  A list of key->value pairs.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to apply to this address.  A list of key->value pairs.
         :param pulumi.Input[str] name: Name of the resource. The name must be 1-63 characters long, and
                comply with RFC1035. Specifically, the name must be 1-63 characters
                long and match the regular expression `a-z?`
@@ -226,7 +273,7 @@ class Address(pulumi.CustomResource):
                address is specified, it must be within the subnetwork's IP range.
                This field can only be used with INTERNAL type with
                GCE_ENDPOINT/DNS_RESOLVER purposes.
-        :param pulumi.Input[list] users: The URLs of the resources that are using this address.
+        :param pulumi.Input[List[pulumi.Input[str]]] users: The URLs of the resources that are using this address.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -253,3 +300,4 @@ class Address(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetAccountResult',
+    'AwaitableGetAccountResult',
+    'get_account',
+]
 
 
 class GetAccountResult:
@@ -69,7 +75,9 @@ class AwaitableGetAccountResult(GetAccountResult):
             unique_id=self.unique_id)
 
 
-def get_account(account_id=None, project=None, opts=None):
+def get_account(account_id: Optional[str] = None,
+                project: Optional[str] = None,
+                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAccountResult:
     """
     Get the service account from a project. For more information see
     the official [API](https://cloud.google.com/compute/docs/access/service-accounts) documentation.

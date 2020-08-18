@@ -5,30 +5,43 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['Client']
 
 
 class Client(pulumi.CustomResource):
-    brand: pulumi.Output[str]
+    brand: pulumi.Output[str] = pulumi.property("brand")
     """
     Identifier of the brand to which this client
     is attached to. The format is
     `projects/{project_number}/brands/{brand_id}/identityAwareProxyClients/{client_id}`.
     """
-    client_id: pulumi.Output[str]
+
+    client_id: pulumi.Output[str] = pulumi.property("clientId")
     """
     Output only. Unique identifier of the OAuth client.
     """
-    display_name: pulumi.Output[str]
+
+    display_name: pulumi.Output[str] = pulumi.property("displayName")
     """
     Human-friendly name given to the OAuth client.
     """
-    secret: pulumi.Output[str]
+
+    secret: pulumi.Output[str] = pulumi.property("secret")
     """
     Output only. Client secret of the OAuth client.
     """
-    def __init__(__self__, resource_name, opts=None, brand=None, display_name=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 brand: Optional[pulumi.Input[str]] = None,
+                 display_name: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Contains the data that describes an Identity Aware Proxy owned client.
 
@@ -80,7 +93,13 @@ class Client(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, brand=None, client_id=None, display_name=None, secret=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            brand: Optional[pulumi.Input[str]] = None,
+            client_id: Optional[pulumi.Input[str]] = None,
+            display_name: Optional[pulumi.Input[str]] = None,
+            secret: Optional[pulumi.Input[str]] = None) -> 'Client':
         """
         Get an existing Client resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -110,3 +129,4 @@ class Client(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,8 +5,15 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetBackendBucketResult',
+    'AwaitableGetBackendBucketResult',
+    'get_backend_bucket',
+]
 
 
 class GetBackendBucketResult:
@@ -81,7 +88,9 @@ class AwaitableGetBackendBucketResult(GetBackendBucketResult):
             self_link=self.self_link)
 
 
-def get_backend_bucket(name=None, project=None, opts=None):
+def get_backend_bucket(name: Optional[str] = None,
+                       project: Optional[str] = None,
+                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBackendBucketResult:
     """
     Get information about a BackendBucket.
 

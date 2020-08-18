@@ -5,31 +5,43 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['IAMMember']
 
 
 class IAMMember(pulumi.CustomResource):
-    condition: pulumi.Output[dict]
-    etag: pulumi.Output[str]
-    member: pulumi.Output[str]
-    org_id: pulumi.Output[str]
+    condition: pulumi.Output[Optional['outputs.IAMMemberCondition']] = pulumi.property("condition")
+
+    etag: pulumi.Output[str] = pulumi.property("etag")
+
+    member: pulumi.Output[str] = pulumi.property("member")
+
+    org_id: pulumi.Output[str] = pulumi.property("orgId")
     """
     The numeric ID of the organization in which you want to manage the audit logging config.
     """
-    role: pulumi.Output[str]
-    def __init__(__self__, resource_name, opts=None, condition=None, member=None, org_id=None, role=None, __props__=None, __name__=None, __opts__=None):
+
+    role: pulumi.Output[str] = pulumi.property("role")
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 condition: Optional[pulumi.Input[pulumi.InputType['IAMMemberConditionArgs']]] = None,
+                 member: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
+                 role: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Create a IAMMember resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] org_id: The numeric ID of the organization in which you want to manage the audit logging config.
-
-        The **condition** object supports the following:
-
-          * `description` (`pulumi.Input[str]`)
-          * `expression` (`pulumi.Input[str]`)
-          * `title` (`pulumi.Input[str]`)
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -66,7 +78,14 @@ class IAMMember(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, condition=None, etag=None, member=None, org_id=None, role=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            condition: Optional[pulumi.Input[pulumi.InputType['IAMMemberConditionArgs']]] = None,
+            etag: Optional[pulumi.Input[str]] = None,
+            member: Optional[pulumi.Input[str]] = None,
+            org_id: Optional[pulumi.Input[str]] = None,
+            role: Optional[pulumi.Input[str]] = None) -> 'IAMMember':
         """
         Get an existing IAMMember resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -75,12 +94,6 @@ class IAMMember(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] org_id: The numeric ID of the organization in which you want to manage the audit logging config.
-
-        The **condition** object supports the following:
-
-          * `description` (`pulumi.Input[str]`)
-          * `expression` (`pulumi.Input[str]`)
-          * `title` (`pulumi.Input[str]`)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -98,3 +111,4 @@ class IAMMember(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

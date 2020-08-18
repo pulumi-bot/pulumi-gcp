@@ -5,28 +5,40 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['IAMPolicy']
 
 
 class IAMPolicy(pulumi.CustomResource):
-    etag: pulumi.Output[str]
+    etag: pulumi.Output[str] = pulumi.property("etag")
     """
     (Computed) The etag of the project's IAM policy.
     """
-    policy_data: pulumi.Output[str]
+
+    policy_data: pulumi.Output[str] = pulumi.property("policyData")
     """
     The `organizations.getIAMPolicy` data source that represents
     the IAM policy that will be applied to the project. The policy will be
     merged with any existing policy applied to the project.
     """
-    project: pulumi.Output[str]
+
+    project: pulumi.Output[str] = pulumi.property("project")
     """
     The project ID. If not specified for `projects.IAMBinding`, `projects.IAMMember`, or `projects.IAMAuditConfig`, uses the ID of the project configured with the provider.
     Required for `projects.IAMPolicy` - you must explicitly set the project, and it
     will not be inferred from the provider.
     """
-    def __init__(__self__, resource_name, opts=None, policy_data=None, project=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 policy_data: Optional[pulumi.Input[str]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Four different resources help you manage your IAM policy for a project. Each of these resources serves a different use case:
 
@@ -79,7 +91,12 @@ class IAMPolicy(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, etag=None, policy_data=None, project=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            etag: Optional[pulumi.Input[str]] = None,
+            policy_data: Optional[pulumi.Input[str]] = None,
+            project: Optional[pulumi.Input[str]] = None) -> 'IAMPolicy':
         """
         Get an existing IAMPolicy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -109,3 +126,4 @@ class IAMPolicy(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

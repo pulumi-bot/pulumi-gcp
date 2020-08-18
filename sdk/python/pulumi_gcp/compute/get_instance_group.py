@@ -5,8 +5,15 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetInstanceGroupResult',
+    'AwaitableGetInstanceGroupResult',
+    'get_instance_group',
+]
 
 
 class GetInstanceGroupResult:
@@ -85,7 +92,11 @@ class AwaitableGetInstanceGroupResult(GetInstanceGroupResult):
             zone=self.zone)
 
 
-def get_instance_group(name=None, project=None, self_link=None, zone=None, opts=None):
+def get_instance_group(name: Optional[str] = None,
+                       project: Optional[str] = None,
+                       self_link: Optional[str] = None,
+                       zone: Optional[str] = None,
+                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInstanceGroupResult:
     """
     Get a Compute Instance Group within GCE.
     For more information, see [the official documentation](https://cloud.google.com/compute/docs/instance-groups/#unmanaged_instance_groups)

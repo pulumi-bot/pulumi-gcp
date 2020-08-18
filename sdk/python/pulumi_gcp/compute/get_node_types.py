@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetNodeTypesResult',
+    'AwaitableGetNodeTypesResult',
+    'get_node_types',
+]
 
 
 class GetNodeTypesResult:
@@ -46,7 +52,9 @@ class AwaitableGetNodeTypesResult(GetNodeTypesResult):
             zone=self.zone)
 
 
-def get_node_types(project=None, zone=None, opts=None):
+def get_node_types(project: Optional[str] = None,
+                   zone: Optional[str] = None,
+                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNodeTypesResult:
     """
     Provides available node types for Compute Engine sole-tenant nodes in a zone
     for a given project. For more information, see [the official documentation](https://cloud.google.com/compute/docs/nodes/#types) and [API](https://cloud.google.com/compute/docs/reference/rest/v1/nodeTypes).

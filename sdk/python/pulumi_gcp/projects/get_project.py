@@ -5,8 +5,15 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetProjectResult',
+    'AwaitableGetProjectResult',
+    'get_project',
+]
 
 
 class GetProjectResult:
@@ -42,7 +49,8 @@ class AwaitableGetProjectResult(GetProjectResult):
             projects=self.projects)
 
 
-def get_project(filter=None, opts=None):
+def get_project(filter: Optional[str] = None,
+                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetProjectResult:
     """
     Retrieve information about a set of projects based on a filter. See the
     [REST API](https://cloud.google.com/resource-manager/reference/rest/v1/projects/list)

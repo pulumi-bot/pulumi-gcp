@@ -5,8 +5,15 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetRouterResult',
+    'AwaitableGetRouterResult',
+    'get_router',
+]
 
 
 class GetRouterResult:
@@ -63,7 +70,11 @@ class AwaitableGetRouterResult(GetRouterResult):
             self_link=self.self_link)
 
 
-def get_router(name=None, network=None, project=None, region=None, opts=None):
+def get_router(name: Optional[str] = None,
+               network: Optional[str] = None,
+               project: Optional[str] = None,
+               region: Optional[str] = None,
+               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRouterResult:
     """
     Get a router within GCE from its name and VPC.
 

@@ -5,22 +5,33 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['ServicePerimeterResource']
 
 
 class ServicePerimeterResource(pulumi.CustomResource):
-    perimeter_name: pulumi.Output[str]
+    perimeter_name: pulumi.Output[str] = pulumi.property("perimeterName")
     """
     The name of the Service Perimeter to add this resource to.
     """
-    resource: pulumi.Output[str]
+
+    resource: pulumi.Output[str] = pulumi.property("resource")
     """
     A GCP resource that is inside of the service perimeter.
     Currently only projects are allowed.
     Format: projects/{project_number}
     """
-    def __init__(__self__, resource_name, opts=None, perimeter_name=None, resource=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 perimeter_name: Optional[pulumi.Input[str]] = None,
+                 resource: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Allows configuring a single GCP resource that should be inside of a service perimeter.
         This resource is intended to be used in cases where it is not possible to compile a full list
@@ -76,7 +87,11 @@ class ServicePerimeterResource(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, perimeter_name=None, resource=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            perimeter_name: Optional[pulumi.Input[str]] = None,
+            resource: Optional[pulumi.Input[str]] = None) -> 'ServicePerimeterResource':
         """
         Get an existing ServicePerimeterResource resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -102,3 +117,4 @@ class ServicePerimeterResource(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

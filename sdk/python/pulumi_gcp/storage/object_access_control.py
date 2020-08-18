@@ -5,24 +5,31 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['ObjectAccessControl']
 
 
 class ObjectAccessControl(pulumi.CustomResource):
-    bucket: pulumi.Output[str]
+    bucket: pulumi.Output[str] = pulumi.property("bucket")
     """
     The name of the bucket.
     """
-    domain: pulumi.Output[str]
+
+    domain: pulumi.Output[str] = pulumi.property("domain")
     """
     The domain associated with the entity.
     """
-    email: pulumi.Output[str]
+
+    email: pulumi.Output[str] = pulumi.property("email")
     """
     The email address associated with the entity.
     """
-    entity: pulumi.Output[str]
+
+    entity: pulumi.Output[str] = pulumi.property("entity")
     """
     The entity holding the permission, in one of the following forms:
     * user-{{userId}}
@@ -34,31 +41,43 @@ class ObjectAccessControl(pulumi.CustomResource):
     * allUsers
     * allAuthenticatedUsers
     """
-    entity_id: pulumi.Output[str]
+
+    entity_id: pulumi.Output[str] = pulumi.property("entityId")
     """
     The ID for the entity
     """
-    generation: pulumi.Output[float]
+
+    generation: pulumi.Output[float] = pulumi.property("generation")
     """
     The content generation of the object, if applied to an object.
     """
-    object: pulumi.Output[str]
+
+    object: pulumi.Output[str] = pulumi.property("object")
     """
     The name of the object to apply the access control to.
     """
-    project_team: pulumi.Output[dict]
+
+    project_team: pulumi.Output['outputs.ObjectAccessControlProjectTeam'] = pulumi.property("projectTeam")
     """
     The project team associated with the entity
-
-      * `project_number` (`str`)
-      * `team` (`str`)
     """
-    role: pulumi.Output[str]
+
+    role: pulumi.Output[str] = pulumi.property("role")
     """
     The access permission for the entity.
     Possible values are `OWNER` and `READER`.
     """
-    def __init__(__self__, resource_name, opts=None, bucket=None, entity=None, object=None, role=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 bucket: Optional[pulumi.Input[str]] = None,
+                 entity: Optional[pulumi.Input[str]] = None,
+                 object: Optional[pulumi.Input[str]] = None,
+                 role: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         The ObjectAccessControls resources represent the Access Control Lists
         (ACLs) for objects within Google Cloud Storage. ACLs let you specify
@@ -138,7 +157,18 @@ class ObjectAccessControl(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, bucket=None, domain=None, email=None, entity=None, entity_id=None, generation=None, object=None, project_team=None, role=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            bucket: Optional[pulumi.Input[str]] = None,
+            domain: Optional[pulumi.Input[str]] = None,
+            email: Optional[pulumi.Input[str]] = None,
+            entity: Optional[pulumi.Input[str]] = None,
+            entity_id: Optional[pulumi.Input[str]] = None,
+            generation: Optional[pulumi.Input[float]] = None,
+            object: Optional[pulumi.Input[str]] = None,
+            project_team: Optional[pulumi.Input[pulumi.InputType['ObjectAccessControlProjectTeamArgs']]] = None,
+            role: Optional[pulumi.Input[str]] = None) -> 'ObjectAccessControl':
         """
         Get an existing ObjectAccessControl resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -161,14 +191,9 @@ class ObjectAccessControl(pulumi.CustomResource):
         :param pulumi.Input[str] entity_id: The ID for the entity
         :param pulumi.Input[float] generation: The content generation of the object, if applied to an object.
         :param pulumi.Input[str] object: The name of the object to apply the access control to.
-        :param pulumi.Input[dict] project_team: The project team associated with the entity
+        :param pulumi.Input[pulumi.InputType['ObjectAccessControlProjectTeamArgs']] project_team: The project team associated with the entity
         :param pulumi.Input[str] role: The access permission for the entity.
                Possible values are `OWNER` and `READER`.
-
-        The **project_team** object supports the following:
-
-          * `project_number` (`pulumi.Input[str]`)
-          * `team` (`pulumi.Input[str]`)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -190,3 +215,4 @@ class ObjectAccessControl(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

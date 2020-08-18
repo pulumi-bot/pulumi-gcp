@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetAddressResult',
+    'AwaitableGetAddressResult',
+    'get_address',
+]
 
 
 class GetAddressResult:
@@ -64,7 +70,10 @@ class AwaitableGetAddressResult(GetAddressResult):
             status=self.status)
 
 
-def get_address(name=None, project=None, region=None, opts=None):
+def get_address(name: Optional[str] = None,
+                project: Optional[str] = None,
+                region: Optional[str] = None,
+                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAddressResult:
     """
     Get the IP address from a static address. For more information see
     the official [API](https://cloud.google.com/compute/docs/reference/latest/addresses/get) documentation.

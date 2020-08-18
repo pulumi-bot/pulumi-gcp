@@ -5,8 +5,15 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetInstanceResult',
+    'AwaitableGetInstanceResult',
+    'get_instance',
+]
 
 
 class GetInstanceResult:
@@ -229,7 +236,11 @@ class AwaitableGetInstanceResult(GetInstanceResult):
             zone=self.zone)
 
 
-def get_instance(name=None, project=None, self_link=None, zone=None, opts=None):
+def get_instance(name: Optional[str] = None,
+                 project: Optional[str] = None,
+                 self_link: Optional[str] = None,
+                 zone: Optional[str] = None,
+                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInstanceResult:
     """
     Get information about a VM instance resource within GCE. For more information see
     [the official documentation](https://cloud.google.com/compute/docs/instances)

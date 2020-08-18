@@ -5,36 +5,50 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['BucketIAMMember']
 
 
 class BucketIAMMember(pulumi.CustomResource):
-    bucket: pulumi.Output[str]
+    bucket: pulumi.Output[str] = pulumi.property("bucket")
     """
     Used to find the parent resource to bind the IAM policy to
     """
-    condition: pulumi.Output[dict]
+
+    condition: pulumi.Output[Optional['outputs.BucketIAMMemberCondition']] = pulumi.property("condition")
     """
     ) An [IAM Condition](https://cloud.google.com/iam/docs/conditions-overview) for a given binding.
     Structure is documented below.
-
-      * `description` (`str`) - An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
-      * `expression` (`str`) - Textual representation of an expression in Common Expression Language syntax.
-      * `title` (`str`) - A title for the expression, i.e. a short string describing its purpose.
     """
-    etag: pulumi.Output[str]
+
+    etag: pulumi.Output[str] = pulumi.property("etag")
     """
     (Computed) The etag of the IAM policy.
     """
-    member: pulumi.Output[str]
-    role: pulumi.Output[str]
+
+    member: pulumi.Output[str] = pulumi.property("member")
+
+    role: pulumi.Output[str] = pulumi.property("role")
     """
     The role that should be applied. Only one
     `storage.BucketIAMBinding` can be used per role. Note that custom roles must be of the format
     `[projects|organizations]/{parent-name}/roles/{role-name}`.
     """
-    def __init__(__self__, resource_name, opts=None, bucket=None, condition=None, member=None, role=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 bucket: Optional[pulumi.Input[str]] = None,
+                 condition: Optional[pulumi.Input[pulumi.InputType['BucketIAMMemberConditionArgs']]] = None,
+                 member: Optional[pulumi.Input[str]] = None,
+                 role: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Three different resources help you manage your IAM policy for Cloud Storage Bucket. Each of these resources serves a different use case:
 
@@ -49,17 +63,11 @@ class BucketIAMMember(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] bucket: Used to find the parent resource to bind the IAM policy to
-        :param pulumi.Input[dict] condition: ) An [IAM Condition](https://cloud.google.com/iam/docs/conditions-overview) for a given binding.
+        :param pulumi.Input[pulumi.InputType['BucketIAMMemberConditionArgs']] condition: ) An [IAM Condition](https://cloud.google.com/iam/docs/conditions-overview) for a given binding.
                Structure is documented below.
         :param pulumi.Input[str] role: The role that should be applied. Only one
                `storage.BucketIAMBinding` can be used per role. Note that custom roles must be of the format
                `[projects|organizations]/{parent-name}/roles/{role-name}`.
-
-        The **condition** object supports the following:
-
-          * `description` (`pulumi.Input[str]`) - An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
-          * `expression` (`pulumi.Input[str]`) - Textual representation of an expression in Common Expression Language syntax.
-          * `title` (`pulumi.Input[str]`) - A title for the expression, i.e. a short string describing its purpose.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -96,7 +104,14 @@ class BucketIAMMember(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, bucket=None, condition=None, etag=None, member=None, role=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            bucket: Optional[pulumi.Input[str]] = None,
+            condition: Optional[pulumi.Input[pulumi.InputType['BucketIAMMemberConditionArgs']]] = None,
+            etag: Optional[pulumi.Input[str]] = None,
+            member: Optional[pulumi.Input[str]] = None,
+            role: Optional[pulumi.Input[str]] = None) -> 'BucketIAMMember':
         """
         Get an existing BucketIAMMember resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -105,18 +120,12 @@ class BucketIAMMember(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] bucket: Used to find the parent resource to bind the IAM policy to
-        :param pulumi.Input[dict] condition: ) An [IAM Condition](https://cloud.google.com/iam/docs/conditions-overview) for a given binding.
+        :param pulumi.Input[pulumi.InputType['BucketIAMMemberConditionArgs']] condition: ) An [IAM Condition](https://cloud.google.com/iam/docs/conditions-overview) for a given binding.
                Structure is documented below.
         :param pulumi.Input[str] etag: (Computed) The etag of the IAM policy.
         :param pulumi.Input[str] role: The role that should be applied. Only one
                `storage.BucketIAMBinding` can be used per role. Note that custom roles must be of the format
                `[projects|organizations]/{parent-name}/roles/{role-name}`.
-
-        The **condition** object supports the following:
-
-          * `description` (`pulumi.Input[str]`) - An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
-          * `expression` (`pulumi.Input[str]`) - Textual representation of an expression in Common Expression Language syntax.
-          * `title` (`pulumi.Input[str]`) - A title for the expression, i.e. a short string describing its purpose.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -134,3 +143,4 @@ class BucketIAMMember(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetBucketObjectResult',
+    'AwaitableGetBucketObjectResult',
+    'get_bucket_object',
+]
 
 
 class GetBucketObjectResult:
@@ -132,7 +138,9 @@ class AwaitableGetBucketObjectResult(GetBucketObjectResult):
             storage_class=self.storage_class)
 
 
-def get_bucket_object(bucket=None, name=None, opts=None):
+def get_bucket_object(bucket: Optional[str] = None,
+                      name: Optional[str] = None,
+                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBucketObjectResult:
     """
     Gets an existing object inside an existing bucket in Google Cloud Storage service (GCS).
     See [the official documentation](https://cloud.google.com/storage/docs/key-terms#objects)

@@ -5,24 +5,29 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['DefaultSupportedIdpConfig']
 
 
 class DefaultSupportedIdpConfig(pulumi.CustomResource):
-    client_id: pulumi.Output[str]
+    client_id: pulumi.Output[str] = pulumi.property("clientId")
     """
     OAuth client ID
     """
-    client_secret: pulumi.Output[str]
+
+    client_secret: pulumi.Output[str] = pulumi.property("clientSecret")
     """
     OAuth client secret
     """
-    enabled: pulumi.Output[bool]
+
+    enabled: pulumi.Output[Optional[bool]] = pulumi.property("enabled")
     """
     If this IDP allows the user to sign in
     """
-    idp_id: pulumi.Output[str]
+
+    idp_id: pulumi.Output[str] = pulumi.property("idpId")
     """
     ID of the IDP. Possible values include:
     * `apple.com`
@@ -36,16 +41,29 @@ class DefaultSupportedIdpConfig(pulumi.CustomResource):
     * `twitter.com`
     * `yahoo.com`
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     The name of the DefaultSupportedIdpConfig resource
     """
-    project: pulumi.Output[str]
+
+    project: pulumi.Output[str] = pulumi.property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    def __init__(__self__, resource_name, opts=None, client_id=None, client_secret=None, enabled=None, idp_id=None, project=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 client_id: Optional[pulumi.Input[str]] = None,
+                 client_secret: Optional[pulumi.Input[str]] = None,
+                 enabled: Optional[pulumi.Input[bool]] = None,
+                 idp_id: Optional[pulumi.Input[str]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Configurations options for authenticating with a the standard set of Identity Toolkit-trusted IDPs.
 
@@ -110,7 +128,15 @@ class DefaultSupportedIdpConfig(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, client_id=None, client_secret=None, enabled=None, idp_id=None, name=None, project=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            client_id: Optional[pulumi.Input[str]] = None,
+            client_secret: Optional[pulumi.Input[str]] = None,
+            enabled: Optional[pulumi.Input[bool]] = None,
+            idp_id: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            project: Optional[pulumi.Input[str]] = None) -> 'DefaultSupportedIdpConfig':
         """
         Get an existing DefaultSupportedIdpConfig resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -153,3 +179,4 @@ class DefaultSupportedIdpConfig(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

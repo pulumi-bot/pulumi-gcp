@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetSecretVersionResult',
+    'AwaitableGetSecretVersionResult',
+    'get_secret_version',
+]
 
 warnings.warn("gcp.monitoring.getSecretVersion has been deprecated in favor of gcp.secretmanager.getSecretVersion", DeprecationWarning)
 
@@ -64,7 +70,10 @@ class AwaitableGetSecretVersionResult(GetSecretVersionResult):
             version=self.version)
 
 
-def get_secret_version(project=None, secret=None, version=None, opts=None):
+def get_secret_version(project: Optional[str] = None,
+                       secret: Optional[str] = None,
+                       version: Optional[str] = None,
+                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSecretVersionResult:
     """
     Use this data source to access information about an existing resource.
     """

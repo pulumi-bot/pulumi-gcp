@@ -5,8 +5,15 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetKeysResult',
+    'AwaitableGetKeysResult',
+    'get_keys',
+]
 
 
 class GetKeysResult:
@@ -53,7 +60,9 @@ class AwaitableGetKeysResult(GetKeysResult):
             zone_signing_keys=self.zone_signing_keys)
 
 
-def get_keys(managed_zone=None, project=None, opts=None):
+def get_keys(managed_zone: Optional[str] = None,
+             project: Optional[str] = None,
+             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetKeysResult:
     """
     Get the DNSKEY and DS records of DNSSEC-signed managed zones. For more information see the
     [official documentation](https://cloud.google.com/dns/docs/dnskeys/)

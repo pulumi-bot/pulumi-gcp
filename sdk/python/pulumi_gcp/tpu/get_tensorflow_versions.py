@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetTensorflowVersionsResult',
+    'AwaitableGetTensorflowVersionsResult',
+    'get_tensorflow_versions',
+]
 
 
 class GetTensorflowVersionsResult:
@@ -46,7 +52,9 @@ class AwaitableGetTensorflowVersionsResult(GetTensorflowVersionsResult):
             zone=self.zone)
 
 
-def get_tensorflow_versions(project=None, zone=None, opts=None):
+def get_tensorflow_versions(project: Optional[str] = None,
+                            zone: Optional[str] = None,
+                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetTensorflowVersionsResult:
     """
     Get TensorFlow versions available for a project. For more information see the [official documentation](https://cloud.google.com/tpu/docs/) and [API](https://cloud.google.com/tpu/docs/reference/rest/v1/projects.locations.tensorflowVersions).
 

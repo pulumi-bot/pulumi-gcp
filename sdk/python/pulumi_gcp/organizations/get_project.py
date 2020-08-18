@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetProjectResult',
+    'AwaitableGetProjectResult',
+    'get_project',
+]
 
 
 class GetProjectResult:
@@ -67,7 +73,8 @@ class AwaitableGetProjectResult(GetProjectResult):
             skip_delete=self.skip_delete)
 
 
-def get_project(project_id=None, opts=None):
+def get_project(project_id: Optional[str] = None,
+                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetProjectResult:
     """
     Use this data source to get project details.
     For more information see

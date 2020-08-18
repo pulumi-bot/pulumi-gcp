@@ -5,47 +5,68 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['Notification']
 
 
 class Notification(pulumi.CustomResource):
-    bucket: pulumi.Output[str]
+    bucket: pulumi.Output[str] = pulumi.property("bucket")
     """
     The name of the bucket.
     """
-    custom_attributes: pulumi.Output[dict]
+
+    custom_attributes: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("customAttributes")
     """
     A set of key/value attribute pairs to attach to each Cloud PubSub message published for this notification subscription
     """
-    event_types: pulumi.Output[list]
+
+    event_types: pulumi.Output[Optional[List[str]]] = pulumi.property("eventTypes")
     """
     List of event type filters for this notification config. If not specified, Cloud Storage will send notifications for all event types. The valid types are: `"OBJECT_FINALIZE"`, `"OBJECT_METADATA_UPDATE"`, `"OBJECT_DELETE"`, `"OBJECT_ARCHIVE"`
     """
-    notification_id: pulumi.Output[str]
+
+    notification_id: pulumi.Output[str] = pulumi.property("notificationId")
     """
     The ID of the created notification.
     """
-    object_name_prefix: pulumi.Output[str]
+
+    object_name_prefix: pulumi.Output[Optional[str]] = pulumi.property("objectNamePrefix")
     """
     Specifies a prefix path filter for this notification config. Cloud Storage will only send notifications for objects in this bucket whose names begin with the specified prefix.
     """
-    payload_format: pulumi.Output[str]
+
+    payload_format: pulumi.Output[str] = pulumi.property("payloadFormat")
     """
     The desired content of the Payload. One of `"JSON_API_V1"` or `"NONE"`.
     """
-    self_link: pulumi.Output[str]
+
+    self_link: pulumi.Output[str] = pulumi.property("selfLink")
     """
     The URI of the created resource.
     """
-    topic: pulumi.Output[str]
+
+    topic: pulumi.Output[str] = pulumi.property("topic")
     """
     The Cloud PubSub topic to which this subscription publishes. Expects either the 
     topic name, assumed to belong to the default GCP provider project, or the project-level name,
     i.e. `projects/my-gcp-project/topics/my-topic` or `my-topic`. If the project is not set in the provider,
     you will need to use the project-level name.
     """
-    def __init__(__self__, resource_name, opts=None, bucket=None, custom_attributes=None, event_types=None, object_name_prefix=None, payload_format=None, topic=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 bucket: Optional[pulumi.Input[str]] = None,
+                 custom_attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 event_types: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 object_name_prefix: Optional[pulumi.Input[str]] = None,
+                 payload_format: Optional[pulumi.Input[str]] = None,
+                 topic: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Creates a new notification configuration on a specified bucket, establishing a flow of event notifications from GCS to a Cloud Pub/Sub topic.
          For more information see
@@ -65,8 +86,8 @@ class Notification(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] bucket: The name of the bucket.
-        :param pulumi.Input[dict] custom_attributes: A set of key/value attribute pairs to attach to each Cloud PubSub message published for this notification subscription
-        :param pulumi.Input[list] event_types: List of event type filters for this notification config. If not specified, Cloud Storage will send notifications for all event types. The valid types are: `"OBJECT_FINALIZE"`, `"OBJECT_METADATA_UPDATE"`, `"OBJECT_DELETE"`, `"OBJECT_ARCHIVE"`
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] custom_attributes: A set of key/value attribute pairs to attach to each Cloud PubSub message published for this notification subscription
+        :param pulumi.Input[List[pulumi.Input[str]]] event_types: List of event type filters for this notification config. If not specified, Cloud Storage will send notifications for all event types. The valid types are: `"OBJECT_FINALIZE"`, `"OBJECT_METADATA_UPDATE"`, `"OBJECT_DELETE"`, `"OBJECT_ARCHIVE"`
         :param pulumi.Input[str] object_name_prefix: Specifies a prefix path filter for this notification config. Cloud Storage will only send notifications for objects in this bucket whose names begin with the specified prefix.
         :param pulumi.Input[str] payload_format: The desired content of the Payload. One of `"JSON_API_V1"` or `"NONE"`.
         :param pulumi.Input[str] topic: The Cloud PubSub topic to which this subscription publishes. Expects either the 
@@ -112,7 +133,17 @@ class Notification(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, bucket=None, custom_attributes=None, event_types=None, notification_id=None, object_name_prefix=None, payload_format=None, self_link=None, topic=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            bucket: Optional[pulumi.Input[str]] = None,
+            custom_attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            event_types: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            notification_id: Optional[pulumi.Input[str]] = None,
+            object_name_prefix: Optional[pulumi.Input[str]] = None,
+            payload_format: Optional[pulumi.Input[str]] = None,
+            self_link: Optional[pulumi.Input[str]] = None,
+            topic: Optional[pulumi.Input[str]] = None) -> 'Notification':
         """
         Get an existing Notification resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -121,8 +152,8 @@ class Notification(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] bucket: The name of the bucket.
-        :param pulumi.Input[dict] custom_attributes: A set of key/value attribute pairs to attach to each Cloud PubSub message published for this notification subscription
-        :param pulumi.Input[list] event_types: List of event type filters for this notification config. If not specified, Cloud Storage will send notifications for all event types. The valid types are: `"OBJECT_FINALIZE"`, `"OBJECT_METADATA_UPDATE"`, `"OBJECT_DELETE"`, `"OBJECT_ARCHIVE"`
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] custom_attributes: A set of key/value attribute pairs to attach to each Cloud PubSub message published for this notification subscription
+        :param pulumi.Input[List[pulumi.Input[str]]] event_types: List of event type filters for this notification config. If not specified, Cloud Storage will send notifications for all event types. The valid types are: `"OBJECT_FINALIZE"`, `"OBJECT_METADATA_UPDATE"`, `"OBJECT_DELETE"`, `"OBJECT_ARCHIVE"`
         :param pulumi.Input[str] notification_id: The ID of the created notification.
         :param pulumi.Input[str] object_name_prefix: Specifies a prefix path filter for this notification config. Cloud Storage will only send notifications for objects in this bucket whose names begin with the specified prefix.
         :param pulumi.Input[str] payload_format: The desired content of the Payload. One of `"JSON_API_V1"` or `"NONE"`.
@@ -151,3 +182,4 @@ class Notification(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

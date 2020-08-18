@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetDefaultServiceAccountResult',
+    'AwaitableGetDefaultServiceAccountResult',
+    'get_default_service_account',
+]
 
 
 class GetDefaultServiceAccountResult:
@@ -43,7 +49,8 @@ class AwaitableGetDefaultServiceAccountResult(GetDefaultServiceAccountResult):
             project=self.project)
 
 
-def get_default_service_account(project=None, opts=None):
+def get_default_service_account(project: Optional[str] = None,
+                                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDefaultServiceAccountResult:
     """
     Get the email address of a project's unique BigQuery service account.
 

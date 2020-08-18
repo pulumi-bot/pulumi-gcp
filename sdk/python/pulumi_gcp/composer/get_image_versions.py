@@ -5,8 +5,15 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetImageVersionsResult',
+    'AwaitableGetImageVersionsResult',
+    'get_image_versions',
+]
 
 
 class GetImageVersionsResult:
@@ -46,7 +53,9 @@ class AwaitableGetImageVersionsResult(GetImageVersionsResult):
             region=self.region)
 
 
-def get_image_versions(project=None, region=None, opts=None):
+def get_image_versions(project: Optional[str] = None,
+                       region: Optional[str] = None,
+                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetImageVersionsResult:
     """
     Provides access to available Cloud Composer versions in a region for a given project.
 

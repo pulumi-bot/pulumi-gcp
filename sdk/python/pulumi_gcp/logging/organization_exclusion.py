@@ -5,35 +5,52 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['OrganizationExclusion']
 
 
 class OrganizationExclusion(pulumi.CustomResource):
-    description: pulumi.Output[str]
+    description: pulumi.Output[Optional[str]] = pulumi.property("description")
     """
     A human-readable description.
     """
-    disabled: pulumi.Output[bool]
+
+    disabled: pulumi.Output[Optional[bool]] = pulumi.property("disabled")
     """
     Whether this exclusion rule should be disabled or not. This defaults to
     false.
     """
-    filter: pulumi.Output[str]
+
+    filter: pulumi.Output[str] = pulumi.property("filter")
     """
     The filter to apply when excluding logs. Only log entries that match the filter are excluded.
     See [Advanced Log Filters](https://cloud.google.com/logging/docs/view/advanced-filters) for information on how to
     write a filter.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     The name of the logging exclusion.
     """
-    org_id: pulumi.Output[str]
+
+    org_id: pulumi.Output[str] = pulumi.property("orgId")
     """
     The organization to create the exclusion in.
     """
-    def __init__(__self__, resource_name, opts=None, description=None, disabled=None, filter=None, name=None, org_id=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 disabled: Optional[pulumi.Input[bool]] = None,
+                 filter: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Manages an organization-level logging exclusion. For more information see
         [the official documentation](https://cloud.google.com/logging/docs/) and
@@ -86,7 +103,14 @@ class OrganizationExclusion(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, description=None, disabled=None, filter=None, name=None, org_id=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            disabled: Optional[pulumi.Input[bool]] = None,
+            filter: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            org_id: Optional[pulumi.Input[str]] = None) -> 'OrganizationExclusion':
         """
         Get an existing OrganizationExclusion resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -119,3 +143,4 @@ class OrganizationExclusion(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

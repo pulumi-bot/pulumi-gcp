@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetRegionsResult',
+    'AwaitableGetRegionsResult',
+    'get_regions',
+]
 
 
 class GetRegionsResult:
@@ -46,7 +52,9 @@ class AwaitableGetRegionsResult(GetRegionsResult):
             status=self.status)
 
 
-def get_regions(project=None, status=None, opts=None):
+def get_regions(project: Optional[str] = None,
+                status: Optional[str] = None,
+                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRegionsResult:
     """
     Provides access to available Google Compute regions for a given project.
     See more about [regions and zones](https://cloud.google.com/compute/docs/regions-zones/) in the upstream docs.
