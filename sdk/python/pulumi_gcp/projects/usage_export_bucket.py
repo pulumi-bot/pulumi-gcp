@@ -95,7 +95,7 @@ class UsageExportBucket(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="bucketName")
-    def bucket_name(self) -> str:
+    def bucket_name(self) -> pulumi.Output[str]:
         """
         The bucket to store reports in.
         """
@@ -103,7 +103,7 @@ class UsageExportBucket(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def prefix(self) -> Optional[str]:
+    def prefix(self) -> pulumi.Output[Optional[str]]:
         """
         A prefix for the reports, for instance, the project name.
         """
@@ -111,7 +111,7 @@ class UsageExportBucket(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def project(self) -> str:
+    def project(self) -> pulumi.Output[str]:
         """
         The project to set the export bucket on. If it is not provided, the provider project is used.
         """

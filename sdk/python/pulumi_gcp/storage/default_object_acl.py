@@ -97,7 +97,7 @@ class DefaultObjectACL(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def bucket(self) -> str:
+    def bucket(self) -> pulumi.Output[str]:
         """
         The name of the bucket it applies to.
         """
@@ -105,7 +105,7 @@ class DefaultObjectACL(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="roleEntities")
-    def role_entities(self) -> List[str]:
+    def role_entities(self) -> pulumi.Output[List[str]]:
         """
         List of role/entity pairs in the form `ROLE:entity`.
         See [GCS Object ACL documentation](https://cloud.google.com/storage/docs/json_api/v1/objectAccessControls) for more details.

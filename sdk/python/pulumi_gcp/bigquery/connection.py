@@ -137,7 +137,7 @@ class Connection(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="cloudSql")
-    def cloud_sql(self) -> 'outputs.ConnectionCloudSql':
+    def cloud_sql(self) -> pulumi.Output['outputs.ConnectionCloudSql']:
         """
         Cloud SQL properties.
         Structure is documented below.
@@ -146,7 +146,7 @@ class Connection(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="connectionId")
-    def connection_id(self) -> Optional[str]:
+    def connection_id(self) -> pulumi.Output[Optional[str]]:
         """
         Optional connection id that should be assigned to the created connection.
         """
@@ -154,7 +154,7 @@ class Connection(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def description(self) -> Optional[str]:
+    def description(self) -> pulumi.Output[Optional[str]]:
         """
         A descriptive description for the connection
         """
@@ -162,7 +162,7 @@ class Connection(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="friendlyName")
-    def friendly_name(self) -> Optional[str]:
+    def friendly_name(self) -> pulumi.Output[Optional[str]]:
         """
         A descriptive name for the connection
         """
@@ -170,7 +170,7 @@ class Connection(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="hasCredential")
-    def has_credential(self) -> bool:
+    def has_credential(self) -> pulumi.Output[bool]:
         """
         True if the connection has credential assigned.
         """
@@ -178,7 +178,7 @@ class Connection(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def location(self) -> Optional[str]:
+    def location(self) -> pulumi.Output[Optional[str]]:
         """
         The geographic location where the connection should reside.
         Cloud SQL instance must be in the same location as the connection
@@ -189,7 +189,7 @@ class Connection(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> pulumi.Output[str]:
         """
         The resource name of the connection in the form of:
         "projects/{project_id}/locations/{location_id}/connections/{connectionId}"
@@ -198,7 +198,7 @@ class Connection(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def project(self) -> str:
+    def project(self) -> pulumi.Output[str]:
         """
         The ID of the project in which the resource belongs.
         If it is not provided, the provider project is used.

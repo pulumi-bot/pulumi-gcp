@@ -109,7 +109,7 @@ class AccessPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="createTime")
-    def create_time(self) -> str:
+    def create_time(self) -> pulumi.Output[str]:
         """
         Time the AccessPolicy was created in UTC.
         """
@@ -117,7 +117,7 @@ class AccessPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> pulumi.Output[str]:
         """
         Resource name of the AccessPolicy. Format: {policy_id}
         """
@@ -125,7 +125,7 @@ class AccessPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def parent(self) -> str:
+    def parent(self) -> pulumi.Output[str]:
         """
         The parent of this AccessPolicy in the Cloud Resource Hierarchy.
         Format: organizations/{organization_id}
@@ -134,7 +134,7 @@ class AccessPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def title(self) -> str:
+    def title(self) -> pulumi.Output[str]:
         """
         Human readable title. Does not affect behavior.
         """
@@ -142,7 +142,7 @@ class AccessPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="updateTime")
-    def update_time(self) -> str:
+    def update_time(self) -> pulumi.Output[str]:
         """
         Time the AccessPolicy was updated in UTC.
         """

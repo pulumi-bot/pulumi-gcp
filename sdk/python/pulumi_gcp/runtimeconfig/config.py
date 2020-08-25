@@ -92,7 +92,7 @@ class Config(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def description(self) -> Optional[str]:
+    def description(self) -> pulumi.Output[Optional[str]]:
         """
         The description to associate with the runtime
         config.
@@ -101,7 +101,7 @@ class Config(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> pulumi.Output[str]:
         """
         The name of the runtime config.
         """
@@ -109,7 +109,7 @@ class Config(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def project(self) -> str:
+    def project(self) -> pulumi.Output[str]:
         """
         The ID of the project in which the resource belongs. If it
         is not provided, the provider project is used.

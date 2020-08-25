@@ -112,7 +112,7 @@ class BackendBucketSignedUrlKey(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="backendBucket")
-    def backend_bucket(self) -> str:
+    def backend_bucket(self) -> pulumi.Output[str]:
         """
         The backend bucket this signed URL key belongs.
         """
@@ -120,7 +120,7 @@ class BackendBucketSignedUrlKey(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="keyValue")
-    def key_value(self) -> str:
+    def key_value(self) -> pulumi.Output[str]:
         """
         128-bit key value used for signing the URL. The key value must be a
         valid RFC 4648 Section 5 base64url encoded string.
@@ -130,7 +130,7 @@ class BackendBucketSignedUrlKey(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> pulumi.Output[str]:
         """
         Name of the signed URL key.
         """
@@ -138,7 +138,7 @@ class BackendBucketSignedUrlKey(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def project(self) -> str:
+    def project(self) -> pulumi.Output[str]:
         """
         The ID of the project in which the resource belongs.
         If it is not provided, the provider project is used.

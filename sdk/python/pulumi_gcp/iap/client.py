@@ -104,7 +104,7 @@ class Client(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def brand(self) -> str:
+    def brand(self) -> pulumi.Output[str]:
         """
         Identifier of the brand to which this client
         is attached to. The format is
@@ -114,7 +114,7 @@ class Client(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> str:
+    def client_id(self) -> pulumi.Output[str]:
         """
         Output only. Unique identifier of the OAuth client.
         """
@@ -122,7 +122,7 @@ class Client(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="displayName")
-    def display_name(self) -> str:
+    def display_name(self) -> pulumi.Output[str]:
         """
         Human-friendly name given to the OAuth client.
         """
@@ -130,7 +130,7 @@ class Client(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def secret(self) -> str:
+    def secret(self) -> pulumi.Output[str]:
         """
         Output only. Client secret of the OAuth client.
         """

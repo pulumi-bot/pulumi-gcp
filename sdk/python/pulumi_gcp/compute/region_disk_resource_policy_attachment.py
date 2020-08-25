@@ -102,7 +102,7 @@ class RegionDiskResourcePolicyAttachment(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def disk(self) -> str:
+    def disk(self) -> pulumi.Output[str]:
         """
         The name of the regional disk in which the resource policies are attached to.
         """
@@ -110,7 +110,7 @@ class RegionDiskResourcePolicyAttachment(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> pulumi.Output[str]:
         """
         The resource policy to be attached to the disk for scheduling snapshot
         creation. Do not specify the self link.
@@ -119,7 +119,7 @@ class RegionDiskResourcePolicyAttachment(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def project(self) -> str:
+    def project(self) -> pulumi.Output[str]:
         """
         The ID of the project in which the resource belongs.
         If it is not provided, the provider project is used.
@@ -128,7 +128,7 @@ class RegionDiskResourcePolicyAttachment(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def region(self) -> str:
+    def region(self) -> pulumi.Output[str]:
         """
         A reference to the region where the disk resides.
         """

@@ -91,7 +91,7 @@ class ProjectMetadata(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def metadata(self) -> Mapping[str, str]:
+    def metadata(self) -> pulumi.Output[Mapping[str, str]]:
         """
         A series of key value pairs.
         """
@@ -99,7 +99,7 @@ class ProjectMetadata(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def project(self) -> str:
+    def project(self) -> pulumi.Output[str]:
         """
         The ID of the project in which the resource belongs. If it
         is not provided, the provider project is used.

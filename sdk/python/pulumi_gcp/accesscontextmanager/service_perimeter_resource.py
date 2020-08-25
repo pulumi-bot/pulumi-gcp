@@ -102,7 +102,7 @@ class ServicePerimeterResource(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="perimeterName")
-    def perimeter_name(self) -> str:
+    def perimeter_name(self) -> pulumi.Output[str]:
         """
         The name of the Service Perimeter to add this resource to.
         """
@@ -110,7 +110,7 @@ class ServicePerimeterResource(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def resource(self) -> str:
+    def resource(self) -> pulumi.Output[str]:
         """
         A GCP resource that is inside of the service perimeter.
         Currently only projects are allowed.

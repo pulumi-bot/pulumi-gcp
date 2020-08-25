@@ -115,7 +115,7 @@ class DataStoreIndex(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def ancestor(self) -> Optional[str]:
+    def ancestor(self) -> pulumi.Output[Optional[str]]:
         """
         Policy for including ancestors in the index.
         Default value is `NONE`.
@@ -125,7 +125,7 @@ class DataStoreIndex(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="indexId")
-    def index_id(self) -> str:
+    def index_id(self) -> pulumi.Output[str]:
         """
         The index id.
         """
@@ -133,7 +133,7 @@ class DataStoreIndex(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def kind(self) -> str:
+    def kind(self) -> pulumi.Output[str]:
         """
         The entity kind which the index applies to.
         """
@@ -141,7 +141,7 @@ class DataStoreIndex(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def project(self) -> str:
+    def project(self) -> pulumi.Output[str]:
         """
         The ID of the project in which the resource belongs.
         If it is not provided, the provider project is used.
@@ -150,7 +150,7 @@ class DataStoreIndex(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def properties(self) -> Optional[List['outputs.DataStoreIndexProperty']]:
+    def properties(self) -> pulumi.Output[Optional[List['outputs.DataStoreIndexProperty']]]:
         """
         An ordered list of properties to index on.
         Structure is documented below.

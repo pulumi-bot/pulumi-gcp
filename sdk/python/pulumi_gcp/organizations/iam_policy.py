@@ -83,12 +83,12 @@ class IAMPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def etag(self) -> str:
+    def etag(self) -> pulumi.Output[str]:
         return pulumi.get(self, "etag")
 
     @property
     @pulumi.getter(name="orgId")
-    def org_id(self) -> str:
+    def org_id(self) -> pulumi.Output[str]:
         """
         The numeric ID of the organization in which you want to manage the audit logging config.
         """
@@ -96,7 +96,7 @@ class IAMPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="policyData")
-    def policy_data(self) -> str:
+    def policy_data(self) -> pulumi.Output[str]:
         return pulumi.get(self, "policy_data")
 
     def translate_output_property(self, prop):

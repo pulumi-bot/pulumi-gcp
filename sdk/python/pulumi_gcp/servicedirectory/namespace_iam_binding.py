@@ -109,12 +109,12 @@ class NamespaceIamBinding(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def condition(self) -> Optional['outputs.NamespaceIamBindingCondition']:
+    def condition(self) -> pulumi.Output[Optional['outputs.NamespaceIamBindingCondition']]:
         return pulumi.get(self, "condition")
 
     @property
     @pulumi.getter
-    def etag(self) -> str:
+    def etag(self) -> pulumi.Output[str]:
         """
         (Computed) The etag of the IAM policy.
         """
@@ -122,12 +122,12 @@ class NamespaceIamBinding(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def members(self) -> List[str]:
+    def members(self) -> pulumi.Output[List[str]]:
         return pulumi.get(self, "members")
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> pulumi.Output[str]:
         """
         Used to find the parent resource to bind the IAM policy to
         """
@@ -135,7 +135,7 @@ class NamespaceIamBinding(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def role(self) -> str:
+    def role(self) -> pulumi.Output[str]:
         """
         The role that should be applied. Only one
         `servicedirectory.NamespaceIamBinding` can be used per role. Note that custom roles must be of the format

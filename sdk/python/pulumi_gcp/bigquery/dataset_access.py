@@ -167,7 +167,7 @@ class DatasetAccess(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="datasetId")
-    def dataset_id(self) -> str:
+    def dataset_id(self) -> pulumi.Output[str]:
         """
         The ID of the dataset containing this table.
         """
@@ -175,7 +175,7 @@ class DatasetAccess(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def domain(self) -> Optional[str]:
+    def domain(self) -> pulumi.Output[Optional[str]]:
         """
         A domain to grant access to. Any users signed in with the
         domain specified will be granted the specified access
@@ -184,7 +184,7 @@ class DatasetAccess(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="groupByEmail")
-    def group_by_email(self) -> Optional[str]:
+    def group_by_email(self) -> pulumi.Output[Optional[str]]:
         """
         An email address of a Google Group to grant access to.
         """
@@ -192,7 +192,7 @@ class DatasetAccess(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="iamMember")
-    def iam_member(self) -> Optional[str]:
+    def iam_member(self) -> pulumi.Output[Optional[str]]:
         """
         Some other type of member that appears in the IAM Policy but isn't a user,
         group, domain, or special group. For example: `allUsers`
@@ -201,7 +201,7 @@ class DatasetAccess(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def project(self) -> str:
+    def project(self) -> pulumi.Output[str]:
         """
         The ID of the project in which the resource belongs.
         If it is not provided, the provider project is used.
@@ -210,7 +210,7 @@ class DatasetAccess(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def role(self) -> Optional[str]:
+    def role(self) -> pulumi.Output[Optional[str]]:
         """
         Describes the rights granted to the user specified by the other
         member of the access object. Primitive, Predefined and custom
@@ -223,7 +223,7 @@ class DatasetAccess(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="specialGroup")
-    def special_group(self) -> Optional[str]:
+    def special_group(self) -> pulumi.Output[Optional[str]]:
         """
         A special group to grant access to. Possible values include:
         """
@@ -231,7 +231,7 @@ class DatasetAccess(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="userByEmail")
-    def user_by_email(self) -> Optional[str]:
+    def user_by_email(self) -> pulumi.Output[Optional[str]]:
         """
         An email address of a user to grant access to. For example:
         fred@example.com
@@ -240,7 +240,7 @@ class DatasetAccess(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def view(self) -> Optional['outputs.DatasetAccessView']:
+    def view(self) -> pulumi.Output[Optional['outputs.DatasetAccessView']]:
         """
         A view from a different dataset to grant access to. Queries
         executed against that view will have read access to tables in

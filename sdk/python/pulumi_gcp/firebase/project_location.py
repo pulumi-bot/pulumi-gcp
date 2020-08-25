@@ -102,7 +102,7 @@ class ProjectLocation(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="locationId")
-    def location_id(self) -> str:
+    def location_id(self) -> pulumi.Output[str]:
         """
         The ID of the default GCP resource location for the Project. The location must be one of the available GCP
         resource locations.
@@ -111,7 +111,7 @@ class ProjectLocation(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def project(self) -> str:
+    def project(self) -> pulumi.Output[str]:
         """
         The ID of the project in which the resource belongs.
         If it is not provided, the provider project is used.

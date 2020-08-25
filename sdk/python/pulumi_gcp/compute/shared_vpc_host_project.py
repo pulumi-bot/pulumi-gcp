@@ -81,7 +81,7 @@ class SharedVPCHostProject(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def project(self) -> str:
+    def project(self) -> pulumi.Output[str]:
         """
         The ID of the project that will serve as a Shared VPC host project
         """

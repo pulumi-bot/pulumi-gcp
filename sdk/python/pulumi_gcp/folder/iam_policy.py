@@ -81,17 +81,17 @@ class IAMPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def etag(self) -> str:
+    def etag(self) -> pulumi.Output[str]:
         return pulumi.get(self, "etag")
 
     @property
     @pulumi.getter
-    def folder(self) -> str:
+    def folder(self) -> pulumi.Output[str]:
         return pulumi.get(self, "folder")
 
     @property
     @pulumi.getter(name="policyData")
-    def policy_data(self) -> str:
+    def policy_data(self) -> pulumi.Output[str]:
         return pulumi.get(self, "policy_data")
 
     def translate_output_property(self, prop):

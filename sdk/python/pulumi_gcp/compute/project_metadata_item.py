@@ -94,7 +94,7 @@ class ProjectMetadataItem(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def key(self) -> str:
+    def key(self) -> pulumi.Output[str]:
         """
         The metadata key to set.
         """
@@ -102,7 +102,7 @@ class ProjectMetadataItem(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def project(self) -> str:
+    def project(self) -> pulumi.Output[str]:
         """
         The ID of the project in which the resource belongs. If it
         is not provided, the provider project is used.
@@ -111,7 +111,7 @@ class ProjectMetadataItem(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def value(self) -> str:
+    def value(self) -> pulumi.Output[str]:
         """
         The value to set for the given metadata key.
         """

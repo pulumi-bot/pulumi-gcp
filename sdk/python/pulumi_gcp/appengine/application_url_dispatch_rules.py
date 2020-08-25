@@ -93,7 +93,7 @@ class ApplicationUrlDispatchRules(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="dispatchRules")
-    def dispatch_rules(self) -> List['outputs.ApplicationUrlDispatchRulesDispatchRule']:
+    def dispatch_rules(self) -> pulumi.Output[List['outputs.ApplicationUrlDispatchRulesDispatchRule']]:
         """
         Rules to match an HTTP request and dispatch that request to a service.
         Structure is documented below.
@@ -102,7 +102,7 @@ class ApplicationUrlDispatchRules(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def project(self) -> str:
+    def project(self) -> pulumi.Output[str]:
         """
         The ID of the project in which the resource belongs.
         If it is not provided, the provider project is used.

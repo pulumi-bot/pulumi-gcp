@@ -95,7 +95,7 @@ class Project(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="displayName")
-    def display_name(self) -> str:
+    def display_name(self) -> pulumi.Output[str]:
         """
         The GCP project display name
         """
@@ -103,7 +103,7 @@ class Project(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def project(self) -> str:
+    def project(self) -> pulumi.Output[str]:
         """
         The ID of the project in which the resource belongs.
         If it is not provided, the provider project is used.
@@ -112,7 +112,7 @@ class Project(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="projectNumber")
-    def project_number(self) -> str:
+    def project_number(self) -> pulumi.Output[str]:
         """
         The number of the google project that firebase is enabled on.
         """

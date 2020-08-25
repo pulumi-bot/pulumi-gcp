@@ -92,7 +92,7 @@ class OrganizationSecurityPolicyAssociation(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="attachmentId")
-    def attachment_id(self) -> str:
+    def attachment_id(self) -> pulumi.Output[str]:
         """
         The resource that the security policy is attached to.
         """
@@ -100,7 +100,7 @@ class OrganizationSecurityPolicyAssociation(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="displayName")
-    def display_name(self) -> str:
+    def display_name(self) -> pulumi.Output[str]:
         """
         The display name of the security policy of the association.
         """
@@ -108,7 +108,7 @@ class OrganizationSecurityPolicyAssociation(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> pulumi.Output[str]:
         """
         The name for an association.
         """
@@ -116,7 +116,7 @@ class OrganizationSecurityPolicyAssociation(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="policyId")
-    def policy_id(self) -> str:
+    def policy_id(self) -> pulumi.Output[str]:
         """
         The security policy ID of the association.
         """
