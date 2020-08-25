@@ -15,7 +15,7 @@ __all__ = ['Service']
 
 class Service(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  grpc_config: Optional[pulumi.Input[str]] = None,
                  openapi_config: Optional[pulumi.Input[str]] = None,

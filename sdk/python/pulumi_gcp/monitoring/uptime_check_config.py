@@ -15,7 +15,7 @@ __all__ = ['UptimeCheckConfig']
 
 class UptimeCheckConfig(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  content_matchers: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['UptimeCheckConfigContentMatcherArgs']]]]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,

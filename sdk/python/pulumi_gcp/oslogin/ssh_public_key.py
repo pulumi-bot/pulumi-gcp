@@ -13,7 +13,7 @@ __all__ = ['SshPublicKey']
 
 class SshPublicKey(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  expiration_time_usec: Optional[pulumi.Input[str]] = None,
                  key: Optional[pulumi.Input[str]] = None,

@@ -13,7 +13,7 @@ __all__ = ['DataTransferConfig']
 
 class DataTransferConfig(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  data_refresh_window_days: Optional[pulumi.Input[float]] = None,
                  data_source_id: Optional[pulumi.Input[str]] = None,

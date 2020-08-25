@@ -15,7 +15,7 @@ __all__ = ['AccessLevel']
 
 class AccessLevel(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  basic: Optional[pulumi.Input[pulumi.InputType['AccessLevelBasicArgs']]] = None,
                  custom: Optional[pulumi.Input[pulumi.InputType['AccessLevelCustomArgs']]] = None,

@@ -15,7 +15,7 @@ __all__ = ['Disk']
 
 class Disk(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  disk_encryption_key: Optional[pulumi.Input[pulumi.InputType['DiskDiskEncryptionKeyArgs']]] = None,

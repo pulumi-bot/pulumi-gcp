@@ -15,7 +15,7 @@ __all__ = ['AccountIamBinding']
 
 class AccountIamBinding(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  billing_account_id: Optional[pulumi.Input[str]] = None,
                  condition: Optional[pulumi.Input[pulumi.InputType['AccountIamBindingConditionArgs']]] = None,

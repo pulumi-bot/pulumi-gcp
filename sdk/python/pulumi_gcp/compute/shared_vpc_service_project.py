@@ -13,7 +13,7 @@ __all__ = ['SharedVPCServiceProject']
 
 class SharedVPCServiceProject(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  host_project: Optional[pulumi.Input[str]] = None,
                  service_project: Optional[pulumi.Input[str]] = None,

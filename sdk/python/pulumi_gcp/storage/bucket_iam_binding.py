@@ -15,7 +15,7 @@ __all__ = ['BucketIAMBinding']
 
 class BucketIAMBinding(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  bucket: Optional[pulumi.Input[str]] = None,
                  condition: Optional[pulumi.Input[pulumi.InputType['BucketIAMBindingConditionArgs']]] = None,

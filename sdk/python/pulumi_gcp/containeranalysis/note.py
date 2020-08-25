@@ -15,7 +15,7 @@ __all__ = ['Note']
 
 class Note(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  attestation_authority: Optional[pulumi.Input[pulumi.InputType['NoteAttestationAuthorityArgs']]] = None,
                  expiration_time: Optional[pulumi.Input[str]] = None,

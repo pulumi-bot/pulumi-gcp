@@ -15,7 +15,7 @@ __all__ = ['ClusterIAMBinding']
 
 class ClusterIAMBinding(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cluster: Optional[pulumi.Input[str]] = None,
                  condition: Optional[pulumi.Input[pulumi.InputType['ClusterIAMBindingConditionArgs']]] = None,

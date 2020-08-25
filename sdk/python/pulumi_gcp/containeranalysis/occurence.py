@@ -15,7 +15,7 @@ __all__ = ['Occurence']
 
 class Occurence(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  attestation: Optional[pulumi.Input[pulumi.InputType['OccurenceAttestationArgs']]] = None,
                  note_name: Optional[pulumi.Input[str]] = None,

@@ -13,7 +13,7 @@ __all__ = ['NetworkEndpointGroup']
 
 class NetworkEndpointGroup(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  default_port: Optional[pulumi.Input[float]] = None,
                  description: Optional[pulumi.Input[str]] = None,

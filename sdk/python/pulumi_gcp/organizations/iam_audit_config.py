@@ -15,7 +15,7 @@ __all__ = ['IamAuditConfig']
 
 class IamAuditConfig(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  audit_log_configs: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['IamAuditConfigAuditLogConfigArgs']]]]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,

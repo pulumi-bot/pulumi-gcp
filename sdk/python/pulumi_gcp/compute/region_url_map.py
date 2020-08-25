@@ -15,7 +15,7 @@ __all__ = ['RegionUrlMap']
 
 class RegionUrlMap(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  default_service: Optional[pulumi.Input[str]] = None,
                  default_url_redirect: Optional[pulumi.Input[pulumi.InputType['RegionUrlMapDefaultUrlRedirectArgs']]] = None,

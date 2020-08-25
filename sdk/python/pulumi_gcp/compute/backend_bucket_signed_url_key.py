@@ -13,7 +13,7 @@ __all__ = ['BackendBucketSignedUrlKey']
 
 class BackendBucketSignedUrlKey(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend_bucket: Optional[pulumi.Input[str]] = None,
                  key_value: Optional[pulumi.Input[str]] = None,

@@ -15,7 +15,7 @@ __all__ = ['Bucket']
 
 class Bucket(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  bucket_policy_only: Optional[pulumi.Input[bool]] = None,
                  cors: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['BucketCorArgs']]]]] = None,

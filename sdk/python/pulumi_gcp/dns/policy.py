@@ -15,7 +15,7 @@ __all__ = ['Policy']
 
 class Policy(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  alternative_name_server_config: Optional[pulumi.Input[pulumi.InputType['PolicyAlternativeNameServerConfigArgs']]] = None,
                  description: Optional[pulumi.Input[str]] = None,

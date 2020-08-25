@@ -13,7 +13,7 @@ __all__ = ['GlobalNetworkEndpoint']
 
 class GlobalNetworkEndpoint(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  fqdn: Optional[pulumi.Input[str]] = None,
                  global_network_endpoint_group: Optional[pulumi.Input[str]] = None,

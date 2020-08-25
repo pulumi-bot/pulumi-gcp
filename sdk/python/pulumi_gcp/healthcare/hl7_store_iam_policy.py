@@ -13,7 +13,7 @@ __all__ = ['Hl7StoreIamPolicy']
 
 class Hl7StoreIamPolicy(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  hl7_v2_store_id: Optional[pulumi.Input[str]] = None,
                  policy_data: Optional[pulumi.Input[str]] = None,

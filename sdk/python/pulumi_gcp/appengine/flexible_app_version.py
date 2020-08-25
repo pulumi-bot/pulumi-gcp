@@ -15,7 +15,7 @@ __all__ = ['FlexibleAppVersion']
 
 class FlexibleAppVersion(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  api_config: Optional[pulumi.Input[pulumi.InputType['FlexibleAppVersionApiConfigArgs']]] = None,
                  automatic_scaling: Optional[pulumi.Input[pulumi.InputType['FlexibleAppVersionAutomaticScalingArgs']]] = None,

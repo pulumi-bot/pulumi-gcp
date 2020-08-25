@@ -15,7 +15,7 @@ __all__ = ['WebIamBinding']
 
 class WebIamBinding(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  condition: Optional[pulumi.Input[pulumi.InputType['WebIamBindingConditionArgs']]] = None,
                  members: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,

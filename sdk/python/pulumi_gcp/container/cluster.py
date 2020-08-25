@@ -15,7 +15,7 @@ __all__ = ['Cluster']
 
 class Cluster(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  addons_config: Optional[pulumi.Input[pulumi.InputType['ClusterAddonsConfigArgs']]] = None,
                  authenticator_groups_config: Optional[pulumi.Input[pulumi.InputType['ClusterAuthenticatorGroupsConfigArgs']]] = None,

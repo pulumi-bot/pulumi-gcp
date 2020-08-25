@@ -13,7 +13,7 @@ __all__ = ['Service']
 
 class Service(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  disable_dependent_services: Optional[pulumi.Input[bool]] = None,
                  disable_on_destroy: Optional[pulumi.Input[bool]] = None,

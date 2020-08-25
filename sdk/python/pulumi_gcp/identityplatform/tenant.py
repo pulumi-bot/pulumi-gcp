@@ -13,7 +13,7 @@ __all__ = ['Tenant']
 
 class Tenant(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allow_password_signup: Optional[pulumi.Input[bool]] = None,
                  disable_auth: Optional[pulumi.Input[bool]] = None,

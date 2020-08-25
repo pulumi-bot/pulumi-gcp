@@ -15,7 +15,7 @@ __all__ = ['SecretIamMember']
 
 class SecretIamMember(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  condition: Optional[pulumi.Input[pulumi.InputType['SecretIamMemberConditionArgs']]] = None,
                  member: Optional[pulumi.Input[str]] = None,

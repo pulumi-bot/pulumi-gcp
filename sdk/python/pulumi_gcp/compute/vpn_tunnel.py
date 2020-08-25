@@ -13,7 +13,7 @@ __all__ = ['VPNTunnel']
 
 class VPNTunnel(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  ike_version: Optional[pulumi.Input[float]] = None,

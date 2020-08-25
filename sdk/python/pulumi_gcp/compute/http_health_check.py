@@ -13,7 +13,7 @@ __all__ = ['HttpHealthCheck']
 
 class HttpHealthCheck(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  check_interval_sec: Optional[pulumi.Input[float]] = None,
                  description: Optional[pulumi.Input[str]] = None,

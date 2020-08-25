@@ -13,7 +13,7 @@ __all__ = ['FlexTemplateJob']
 
 class FlexTemplateJob(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  container_spec_gcs_path: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, Any]]] = None,

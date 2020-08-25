@@ -13,7 +13,7 @@ __all__ = ['Database']
 
 class Database(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  ddls: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
                  instance: Optional[pulumi.Input[str]] = None,

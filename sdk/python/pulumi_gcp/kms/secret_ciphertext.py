@@ -13,7 +13,7 @@ __all__ = ['SecretCiphertext']
 
 class SecretCiphertext(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  additional_authenticated_data: Optional[pulumi.Input[str]] = None,
                  crypto_key: Optional[pulumi.Input[str]] = None,

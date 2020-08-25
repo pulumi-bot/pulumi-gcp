@@ -15,7 +15,7 @@ __all__ = ['Attestor']
 
 class Attestor(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  attestation_authority_note: Optional[pulumi.Input[pulumi.InputType['AttestorAttestationAuthorityNoteArgs']]] = None,
                  description: Optional[pulumi.Input[str]] = None,

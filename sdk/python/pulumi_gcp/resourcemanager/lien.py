@@ -13,7 +13,7 @@ __all__ = ['Lien']
 
 class Lien(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  origin: Optional[pulumi.Input[str]] = None,
                  parent: Optional[pulumi.Input[str]] = None,

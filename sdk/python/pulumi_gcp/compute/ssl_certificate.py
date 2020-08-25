@@ -13,7 +13,7 @@ __all__ = ['SSLCertificate']
 
 class SSLCertificate(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  certificate: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,

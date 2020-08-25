@@ -15,7 +15,7 @@ __all__ = ['Instance']
 
 class Instance(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  accelerator_config: Optional[pulumi.Input[pulumi.InputType['InstanceAcceleratorConfigArgs']]] = None,
                  boot_disk_size_gb: Optional[pulumi.Input[float]] = None,

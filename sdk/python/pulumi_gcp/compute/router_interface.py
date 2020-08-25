@@ -13,7 +13,7 @@ __all__ = ['RouterInterface']
 
 class RouterInterface(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  interconnect_attachment: Optional[pulumi.Input[str]] = None,
                  ip_range: Optional[pulumi.Input[str]] = None,

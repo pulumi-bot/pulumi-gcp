@@ -13,7 +13,7 @@ __all__ = ['Key']
 
 class Key(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  key_algorithm: Optional[pulumi.Input[str]] = None,
                  private_key_type: Optional[pulumi.Input[str]] = None,

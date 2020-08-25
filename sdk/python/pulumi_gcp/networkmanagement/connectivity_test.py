@@ -15,7 +15,7 @@ __all__ = ['ConnectivityTest']
 
 class ConnectivityTest(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  destination: Optional[pulumi.Input[pulumi.InputType['ConnectivityTestDestinationArgs']]] = None,

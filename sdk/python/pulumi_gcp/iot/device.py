@@ -15,7 +15,7 @@ __all__ = ['Device']
 
 class Device(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  blocked: Optional[pulumi.Input[bool]] = None,
                  credentials: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['DeviceCredentialArgs']]]]] = None,

@@ -15,7 +15,7 @@ __all__ = ['RegionInstanceGroupManager']
 
 class RegionInstanceGroupManager(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  auto_healing_policies: Optional[pulumi.Input[pulumi.InputType['RegionInstanceGroupManagerAutoHealingPoliciesArgs']]] = None,
                  base_instance_name: Optional[pulumi.Input[str]] = None,

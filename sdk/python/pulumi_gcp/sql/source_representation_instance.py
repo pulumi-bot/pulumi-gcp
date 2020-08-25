@@ -13,7 +13,7 @@ __all__ = ['SourceRepresentationInstance']
 
 class SourceRepresentationInstance(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  database_version: Optional[pulumi.Input[str]] = None,
                  host: Optional[pulumi.Input[str]] = None,

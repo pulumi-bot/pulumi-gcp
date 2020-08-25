@@ -15,7 +15,7 @@ __all__ = ['FhirStore']
 
 class FhirStore(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dataset: Optional[pulumi.Input[str]] = None,
                  disable_referential_integrity: Optional[pulumi.Input[bool]] = None,

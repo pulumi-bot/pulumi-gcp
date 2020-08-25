@@ -15,7 +15,7 @@ __all__ = ['BackendService']
 
 class BackendService(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  affinity_cookie_ttl_sec: Optional[pulumi.Input[float]] = None,
                  backends: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['BackendServiceBackendArgs']]]]] = None,

@@ -13,7 +13,7 @@ __all__ = ['TenantDefaultSupportedIdpConfig']
 
 class TenantDefaultSupportedIdpConfig(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  client_id: Optional[pulumi.Input[str]] = None,
                  client_secret: Optional[pulumi.Input[str]] = None,

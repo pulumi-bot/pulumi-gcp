@@ -13,7 +13,7 @@ __all__ = ['ObjectACL']
 
 class ObjectACL(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  bucket: Optional[pulumi.Input[str]] = None,
                  object: Optional[pulumi.Input[str]] = None,

@@ -15,7 +15,7 @@ __all__ = ['RegionAutoscaler']
 
 class RegionAutoscaler(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  autoscaling_policy: Optional[pulumi.Input[pulumi.InputType['RegionAutoscalerAutoscalingPolicyArgs']]] = None,
                  description: Optional[pulumi.Input[str]] = None,

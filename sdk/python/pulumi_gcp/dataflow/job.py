@@ -13,7 +13,7 @@ __all__ = ['Job']
 
 class Job(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  additional_experiments: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
                  ip_configuration: Optional[pulumi.Input[str]] = None,

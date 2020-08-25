@@ -15,7 +15,7 @@ __all__ = ['DataStoreIndex']
 
 class DataStoreIndex(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  ancestor: Optional[pulumi.Input[str]] = None,
                  kind: Optional[pulumi.Input[str]] = None,

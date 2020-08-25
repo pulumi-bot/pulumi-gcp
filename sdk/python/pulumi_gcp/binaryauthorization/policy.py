@@ -15,7 +15,7 @@ __all__ = ['Policy']
 
 class Policy(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  admission_whitelist_patterns: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['PolicyAdmissionWhitelistPatternArgs']]]]] = None,
                  cluster_admission_rules: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['PolicyClusterAdmissionRuleArgs']]]]] = None,

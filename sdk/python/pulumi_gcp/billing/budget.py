@@ -15,7 +15,7 @@ __all__ = ['Budget']
 
 class Budget(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  all_updates_rule: Optional[pulumi.Input[pulumi.InputType['BudgetAllUpdatesRuleArgs']]] = None,
                  amount: Optional[pulumi.Input[pulumi.InputType['BudgetAmountArgs']]] = None,

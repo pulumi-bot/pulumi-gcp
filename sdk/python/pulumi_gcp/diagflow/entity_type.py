@@ -15,7 +15,7 @@ __all__ = ['EntityType']
 
 class EntityType(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
                  enable_fuzzy_extraction: Optional[pulumi.Input[bool]] = None,

@@ -15,7 +15,7 @@ __all__ = ['AlertPolicy']
 
 class AlertPolicy(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  combiner: Optional[pulumi.Input[str]] = None,
                  conditions: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['AlertPolicyConditionArgs']]]]] = None,

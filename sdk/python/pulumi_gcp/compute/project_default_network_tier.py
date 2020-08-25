@@ -13,7 +13,7 @@ __all__ = ['ProjectDefaultNetworkTier']
 
 class ProjectDefaultNetworkTier(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  network_tier: Optional[pulumi.Input[str]] = None,
                  project: Optional[pulumi.Input[str]] = None,

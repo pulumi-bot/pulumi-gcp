@@ -15,7 +15,7 @@ __all__ = ['RouterNat']
 
 class RouterNat(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  drain_nat_ips: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
                  icmp_idle_timeout_sec: Optional[pulumi.Input[float]] = None,

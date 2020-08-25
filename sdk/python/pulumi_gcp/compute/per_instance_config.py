@@ -15,7 +15,7 @@ __all__ = ['PerInstanceConfig']
 
 class PerInstanceConfig(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  instance_group_manager: Optional[pulumi.Input[str]] = None,
                  minimal_action: Optional[pulumi.Input[str]] = None,

@@ -13,7 +13,7 @@ __all__ = ['BillingAccountBucketConfig']
 
 class BillingAccountBucketConfig(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  billing_account: Optional[pulumi.Input[str]] = None,
                  bucket_id: Optional[pulumi.Input[str]] = None,

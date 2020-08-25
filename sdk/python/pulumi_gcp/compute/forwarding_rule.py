@@ -13,7 +13,7 @@ __all__ = ['ForwardingRule']
 
 class ForwardingRule(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  all_ports: Optional[pulumi.Input[bool]] = None,
                  allow_global_access: Optional[pulumi.Input[bool]] = None,

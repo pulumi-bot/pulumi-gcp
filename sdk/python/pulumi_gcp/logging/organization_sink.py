@@ -15,7 +15,7 @@ __all__ = ['OrganizationSink']
 
 class OrganizationSink(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  bigquery_options: Optional[pulumi.Input[pulumi.InputType['OrganizationSinkBigqueryOptionsArgs']]] = None,
                  destination: Optional[pulumi.Input[str]] = None,

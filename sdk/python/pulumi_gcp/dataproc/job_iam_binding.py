@@ -15,7 +15,7 @@ __all__ = ['JobIAMBinding']
 
 class JobIAMBinding(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  condition: Optional[pulumi.Input[pulumi.InputType['JobIAMBindingConditionArgs']]] = None,
                  job_id: Optional[pulumi.Input[str]] = None,

@@ -15,7 +15,7 @@ __all__ = ['Hl7StoreIamBinding']
 
 class Hl7StoreIamBinding(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  condition: Optional[pulumi.Input[pulumi.InputType['Hl7StoreIamBindingConditionArgs']]] = None,
                  hl7_v2_store_id: Optional[pulumi.Input[str]] = None,

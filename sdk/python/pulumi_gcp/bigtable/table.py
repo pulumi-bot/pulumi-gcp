@@ -15,7 +15,7 @@ __all__ = ['Table']
 
 class Table(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  column_families: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['TableColumnFamilyArgs']]]]] = None,
                  instance_name: Optional[pulumi.Input[str]] = None,

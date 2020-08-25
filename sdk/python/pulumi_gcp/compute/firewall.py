@@ -15,7 +15,7 @@ __all__ = ['Firewall']
 
 class Firewall(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allows: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['FirewallAllowArgs']]]]] = None,
                  denies: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['FirewallDenyArgs']]]]] = None,

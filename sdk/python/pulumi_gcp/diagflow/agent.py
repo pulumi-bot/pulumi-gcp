@@ -13,7 +13,7 @@ __all__ = ['Agent']
 
 class Agent(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  api_version: Optional[pulumi.Input[str]] = None,
                  avatar_uri: Optional[pulumi.Input[str]] = None,

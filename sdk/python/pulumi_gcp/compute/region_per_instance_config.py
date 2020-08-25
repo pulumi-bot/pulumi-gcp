@@ -15,7 +15,7 @@ __all__ = ['RegionPerInstanceConfig']
 
 class RegionPerInstanceConfig(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  minimal_action: Optional[pulumi.Input[str]] = None,
                  most_disruptive_allowed_action: Optional[pulumi.Input[str]] = None,

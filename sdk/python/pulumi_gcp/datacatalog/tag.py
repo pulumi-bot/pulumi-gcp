@@ -15,7 +15,7 @@ __all__ = ['Tag']
 
 class Tag(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  column: Optional[pulumi.Input[str]] = None,
                  fields: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['TagFieldArgs']]]]] = None,

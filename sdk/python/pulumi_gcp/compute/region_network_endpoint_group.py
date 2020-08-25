@@ -15,7 +15,7 @@ __all__ = ['RegionNetworkEndpointGroup']
 
 class RegionNetworkEndpointGroup(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  app_engine: Optional[pulumi.Input[pulumi.InputType['RegionNetworkEndpointGroupAppEngineArgs']]] = None,
                  cloud_function: Optional[pulumi.Input[pulumi.InputType['RegionNetworkEndpointGroupCloudFunctionArgs']]] = None,

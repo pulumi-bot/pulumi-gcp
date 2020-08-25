@@ -13,7 +13,7 @@ __all__ = ['Connector']
 
 class Connector(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  ip_cidr_range: Optional[pulumi.Input[str]] = None,
                  max_throughput: Optional[pulumi.Input[float]] = None,

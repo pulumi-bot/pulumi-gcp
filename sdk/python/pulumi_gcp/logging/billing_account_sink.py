@@ -15,7 +15,7 @@ __all__ = ['BillingAccountSink']
 
 class BillingAccountSink(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  bigquery_options: Optional[pulumi.Input[pulumi.InputType['BillingAccountSinkBigqueryOptionsArgs']]] = None,
                  billing_account: Optional[pulumi.Input[str]] = None,

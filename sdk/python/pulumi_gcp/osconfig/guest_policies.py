@@ -15,7 +15,7 @@ __all__ = ['GuestPolicies']
 
 class GuestPolicies(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  assignment: Optional[pulumi.Input[pulumi.InputType['GuestPoliciesAssignmentArgs']]] = None,
                  description: Optional[pulumi.Input[str]] = None,

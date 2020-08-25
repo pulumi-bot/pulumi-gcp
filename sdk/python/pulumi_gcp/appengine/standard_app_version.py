@@ -15,7 +15,7 @@ __all__ = ['StandardAppVersion']
 
 class StandardAppVersion(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  automatic_scaling: Optional[pulumi.Input[pulumi.InputType['StandardAppVersionAutomaticScalingArgs']]] = None,
                  basic_scaling: Optional[pulumi.Input[pulumi.InputType['StandardAppVersionBasicScalingArgs']]] = None,

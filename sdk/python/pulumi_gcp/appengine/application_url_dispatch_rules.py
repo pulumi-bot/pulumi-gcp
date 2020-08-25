@@ -15,7 +15,7 @@ __all__ = ['ApplicationUrlDispatchRules']
 
 class ApplicationUrlDispatchRules(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dispatch_rules: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ApplicationUrlDispatchRulesDispatchRuleArgs']]]]] = None,
                  project: Optional[pulumi.Input[str]] = None,

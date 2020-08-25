@@ -15,7 +15,7 @@ __all__ = ['Subscription']
 
 class Subscription(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  ack_deadline_seconds: Optional[pulumi.Input[float]] = None,
                  dead_letter_policy: Optional[pulumi.Input[pulumi.InputType['SubscriptionDeadLetterPolicyArgs']]] = None,

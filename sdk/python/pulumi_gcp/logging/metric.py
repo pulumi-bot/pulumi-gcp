@@ -15,7 +15,7 @@ __all__ = ['Metric']
 
 class Metric(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  bucket_options: Optional[pulumi.Input[pulumi.InputType['MetricBucketOptionsArgs']]] = None,
                  description: Optional[pulumi.Input[str]] = None,

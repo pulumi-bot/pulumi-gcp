@@ -15,7 +15,7 @@ __all__ = ['OrganizationPolicy']
 
 class OrganizationPolicy(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  boolean_policy: Optional[pulumi.Input[pulumi.InputType['OrganizationPolicyBooleanPolicyArgs']]] = None,
                  constraint: Optional[pulumi.Input[str]] = None,

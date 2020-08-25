@@ -15,7 +15,7 @@ __all__ = ['Instance']
 
 class Instance(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  clusters: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['InstanceClusterArgs']]]]] = None,
                  deletion_protection: Optional[pulumi.Input[bool]] = None,

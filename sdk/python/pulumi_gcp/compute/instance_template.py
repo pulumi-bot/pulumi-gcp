@@ -15,7 +15,7 @@ __all__ = ['InstanceTemplate']
 
 class InstanceTemplate(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  can_ip_forward: Optional[pulumi.Input[bool]] = None,
                  confidential_instance_config: Optional[pulumi.Input[pulumi.InputType['InstanceTemplateConfidentialInstanceConfigArgs']]] = None,

@@ -15,7 +15,7 @@ __all__ = ['DatabaseInstance']
 
 class DatabaseInstance(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  database_version: Optional[pulumi.Input[str]] = None,
                  encryption_key_name: Optional[pulumi.Input[str]] = None,

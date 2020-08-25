@@ -13,7 +13,7 @@ __all__ = ['NetworkPeeringRoutesConfig']
 
 class NetworkPeeringRoutesConfig(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  export_custom_routes: Optional[pulumi.Input[bool]] = None,
                  import_custom_routes: Optional[pulumi.Input[bool]] = None,

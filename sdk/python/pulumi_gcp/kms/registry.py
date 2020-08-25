@@ -19,7 +19,7 @@ class Registry(pulumi.CustomResource):
     warnings.warn("gcp.kms.Registry has been deprecated in favor of gcp.iot.Registry", DeprecationWarning)
 
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  credentials: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['RegistryCredentialArgs']]]]] = None,
                  event_notification_configs: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['RegistryEventNotificationConfigItemArgs']]]]] = None,

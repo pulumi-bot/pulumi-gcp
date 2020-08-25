@@ -15,7 +15,7 @@ __all__ = ['AttestorIamMember']
 
 class AttestorIamMember(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  attestor: Optional[pulumi.Input[str]] = None,
                  condition: Optional[pulumi.Input[pulumi.InputType['AttestorIamMemberConditionArgs']]] = None,

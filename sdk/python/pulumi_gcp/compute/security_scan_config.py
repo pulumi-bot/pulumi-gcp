@@ -15,7 +15,7 @@ __all__ = ['SecurityScanConfig']
 
 class SecurityScanConfig(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  authentication: Optional[pulumi.Input[pulumi.InputType['SecurityScanConfigAuthenticationArgs']]] = None,
                  blacklist_patterns: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,

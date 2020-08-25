@@ -15,7 +15,7 @@ __all__ = ['EngineSplitTraffic']
 
 class EngineSplitTraffic(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  migrate_traffic: Optional[pulumi.Input[bool]] = None,
                  project: Optional[pulumi.Input[str]] = None,

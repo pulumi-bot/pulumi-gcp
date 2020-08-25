@@ -15,7 +15,7 @@ __all__ = ['URLMap']
 
 class URLMap(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  default_route_action: Optional[pulumi.Input[pulumi.InputType['URLMapDefaultRouteActionArgs']]] = None,
                  default_service: Optional[pulumi.Input[str]] = None,

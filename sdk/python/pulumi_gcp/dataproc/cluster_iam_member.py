@@ -15,7 +15,7 @@ __all__ = ['ClusterIAMMember']
 
 class ClusterIAMMember(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cluster: Optional[pulumi.Input[str]] = None,
                  condition: Optional[pulumi.Input[pulumi.InputType['ClusterIAMMemberConditionArgs']]] = None,

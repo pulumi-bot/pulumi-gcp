@@ -15,7 +15,7 @@ __all__ = ['NodePool']
 
 class NodePool(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  autoscaling: Optional[pulumi.Input[pulumi.InputType['NodePoolAutoscalingArgs']]] = None,
                  cluster: Optional[pulumi.Input[str]] = None,

@@ -13,7 +13,7 @@ __all__ = ['GlobalAddress']
 
 class GlobalAddress(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  address: Optional[pulumi.Input[str]] = None,
                  address_type: Optional[pulumi.Input[str]] = None,

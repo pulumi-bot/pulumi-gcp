@@ -13,7 +13,7 @@ __all__ = ['Network']
 
 class Network(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  auto_create_subnetworks: Optional[pulumi.Input[bool]] = None,
                  delete_default_routes_on_create: Optional[pulumi.Input[bool]] = None,

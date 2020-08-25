@@ -15,7 +15,7 @@ __all__ = ['RouterPeer']
 
 class RouterPeer(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  advertise_mode: Optional[pulumi.Input[str]] = None,
                  advertised_groups: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,

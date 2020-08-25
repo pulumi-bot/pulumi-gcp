@@ -13,7 +13,7 @@ __all__ = ['NetworkPeering']
 
 class NetworkPeering(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  export_custom_routes: Optional[pulumi.Input[bool]] = None,
                  export_subnet_routes_with_public_ip: Optional[pulumi.Input[bool]] = None,

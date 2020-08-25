@@ -15,7 +15,7 @@ __all__ = ['DatasetAccess']
 
 class DatasetAccess(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dataset_id: Optional[pulumi.Input[str]] = None,
                  domain: Optional[pulumi.Input[str]] = None,

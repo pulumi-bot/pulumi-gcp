@@ -15,7 +15,7 @@ __all__ = ['IAMMember']
 
 class IAMMember(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  condition: Optional[pulumi.Input[pulumi.InputType['IAMMemberConditionArgs']]] = None,
                  folder: Optional[pulumi.Input[str]] = None,

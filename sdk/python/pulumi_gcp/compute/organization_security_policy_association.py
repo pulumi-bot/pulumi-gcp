@@ -13,7 +13,7 @@ __all__ = ['OrganizationSecurityPolicyAssociation']
 
 class OrganizationSecurityPolicyAssociation(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  attachment_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,

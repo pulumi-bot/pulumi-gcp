@@ -15,7 +15,7 @@ __all__ = ['Environment']
 
 class Environment(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  container_image: Optional[pulumi.Input[pulumi.InputType['EnvironmentContainerImageArgs']]] = None,
                  description: Optional[pulumi.Input[str]] = None,

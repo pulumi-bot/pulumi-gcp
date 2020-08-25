@@ -15,7 +15,7 @@ __all__ = ['Job']
 
 class Job(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  app_engine_http_target: Optional[pulumi.Input[pulumi.InputType['JobAppEngineHttpTargetArgs']]] = None,
                  attempt_deadline: Optional[pulumi.Input[str]] = None,

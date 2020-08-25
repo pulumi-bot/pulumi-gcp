@@ -15,7 +15,7 @@ __all__ = ['Queue']
 
 class Queue(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  app_engine_routing_override: Optional[pulumi.Input[pulumi.InputType['QueueAppEngineRoutingOverrideArgs']]] = None,
                  location: Optional[pulumi.Input[str]] = None,

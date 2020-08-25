@@ -15,7 +15,7 @@ __all__ = ['Intent']
 
 class Intent(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  action: Optional[pulumi.Input[str]] = None,
                  default_response_platforms: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,

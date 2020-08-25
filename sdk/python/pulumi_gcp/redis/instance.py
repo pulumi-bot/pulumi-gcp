@@ -13,7 +13,7 @@ __all__ = ['Instance']
 
 class Instance(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  alternative_location_id: Optional[pulumi.Input[str]] = None,
                  authorized_network: Optional[pulumi.Input[str]] = None,
