@@ -18049,4 +18049,3 @@ export namespace tpu {
         preemptible: pulumi.Input<boolean>;
     }
 }
-
