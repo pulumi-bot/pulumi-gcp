@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
@@ -126,7 +126,7 @@ class Snapshot(pulumi.CustomResource):
             disk_size_gb: Optional[pulumi.Input[float]] = None,
             label_fingerprint: Optional[pulumi.Input[str]] = None,
             labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-            licenses: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            licenses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             project: Optional[pulumi.Input[str]] = None,
             self_link: Optional[pulumi.Input[str]] = None,
@@ -149,7 +149,7 @@ class Snapshot(pulumi.CustomResource):
         :param pulumi.Input[float] disk_size_gb: Size of the snapshot, specified in GB.
         :param pulumi.Input[str] label_fingerprint: The fingerprint used for optimistic locking of this resource. Used internally during updates.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to apply to this Snapshot.
-        :param pulumi.Input[List[pulumi.Input[str]]] licenses: A list of public visible licenses that apply to this snapshot. This can be because the original image had licenses
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] licenses: A list of public visible licenses that apply to this snapshot. This can be because the original image had licenses
                attached (such as a Windows image). snapshotEncryptionKey nested object Encrypts the snapshot using a customer-supplied
                encryption key.
         :param pulumi.Input[str] name: Name of the resource; provided by the client when the resource is
@@ -239,7 +239,7 @@ class Snapshot(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def licenses(self) -> pulumi.Output[List[str]]:
+    def licenses(self) -> pulumi.Output[Sequence[str]]:
         """
         A list of public visible licenses that apply to this snapshot. This can be because the original image had licenses
         attached (such as a Windows image). snapshotEncryptionKey nested object Encrypts the snapshot using a customer-supplied

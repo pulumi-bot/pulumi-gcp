@@ -6,7 +6,7 @@ import json
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 from . import outputs
 
@@ -84,7 +84,7 @@ class Provider(pulumi.ProviderResource):
                  resource_manager_v2beta1_custom_endpoint: Optional[pulumi.Input[str]] = None,
                  runtime_config_custom_endpoint: Optional[pulumi.Input[str]] = None,
                  runtimeconfig_custom_endpoint: Optional[pulumi.Input[str]] = None,
-                 scopes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  secret_manager_custom_endpoint: Optional[pulumi.Input[str]] = None,
                  security_center_custom_endpoint: Optional[pulumi.Input[str]] = None,
                  security_scanner_custom_endpoint: Optional[pulumi.Input[str]] = None,

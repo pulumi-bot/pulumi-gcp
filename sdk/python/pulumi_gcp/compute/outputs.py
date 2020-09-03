@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 from . import outputs
 
@@ -368,7 +368,7 @@ class AutoscalarAutoscalingPolicy(dict):
                  cooldown_period: Optional[float] = None,
                  cpu_utilization: Optional['outputs.AutoscalarAutoscalingPolicyCpuUtilization'] = None,
                  load_balancing_utilization: Optional['outputs.AutoscalarAutoscalingPolicyLoadBalancingUtilization'] = None,
-                 metrics: Optional[List['outputs.AutoscalarAutoscalingPolicyMetric']] = None,
+                 metrics: Optional[Sequence['outputs.AutoscalarAutoscalingPolicyMetric']] = None,
                  mode: Optional[str] = None,
                  scale_down_control: Optional['outputs.AutoscalarAutoscalingPolicyScaleDownControl'] = None):
         """
@@ -395,7 +395,7 @@ class AutoscalarAutoscalingPolicy(dict):
                Structure is documented below.
         :param 'AutoscalarAutoscalingPolicyLoadBalancingUtilizationArgs' load_balancing_utilization: Configuration parameters of autoscaling based on a load balancer.
                Structure is documented below.
-        :param List['AutoscalarAutoscalingPolicyMetricArgs'] metrics: Configuration parameters of autoscaling based on a custom metric.
+        :param Sequence['AutoscalarAutoscalingPolicyMetricArgs'] metrics: Configuration parameters of autoscaling based on a custom metric.
                Structure is documented below.
         :param str mode: Defines operating mode for this policy.
                Default value is `ON`.
@@ -476,7 +476,7 @@ class AutoscalarAutoscalingPolicy(dict):
 
     @property
     @pulumi.getter
-    def metrics(self) -> Optional[List['outputs.AutoscalarAutoscalingPolicyMetric']]:
+    def metrics(self) -> Optional[Sequence['outputs.AutoscalarAutoscalingPolicyMetric']]:
         """
         Configuration parameters of autoscaling based on a custom metric.
         Structure is documented below.
@@ -795,7 +795,7 @@ class AutoscalerAutoscalingPolicy(dict):
                  cooldown_period: Optional[float] = None,
                  cpu_utilization: Optional['outputs.AutoscalerAutoscalingPolicyCpuUtilization'] = None,
                  load_balancing_utilization: Optional['outputs.AutoscalerAutoscalingPolicyLoadBalancingUtilization'] = None,
-                 metrics: Optional[List['outputs.AutoscalerAutoscalingPolicyMetric']] = None,
+                 metrics: Optional[Sequence['outputs.AutoscalerAutoscalingPolicyMetric']] = None,
                  mode: Optional[str] = None,
                  scale_down_control: Optional['outputs.AutoscalerAutoscalingPolicyScaleDownControl'] = None):
         """
@@ -822,7 +822,7 @@ class AutoscalerAutoscalingPolicy(dict):
                Structure is documented below.
         :param 'AutoscalerAutoscalingPolicyLoadBalancingUtilizationArgs' load_balancing_utilization: Configuration parameters of autoscaling based on a load balancer.
                Structure is documented below.
-        :param List['AutoscalerAutoscalingPolicyMetricArgs'] metrics: Configuration parameters of autoscaling based on a custom metric.
+        :param Sequence['AutoscalerAutoscalingPolicyMetricArgs'] metrics: Configuration parameters of autoscaling based on a custom metric.
                Structure is documented below.
         :param str mode: Defines operating mode for this policy.
                Default value is `ON`.
@@ -903,7 +903,7 @@ class AutoscalerAutoscalingPolicy(dict):
 
     @property
     @pulumi.getter
-    def metrics(self) -> Optional[List['outputs.AutoscalerAutoscalingPolicyMetric']]:
+    def metrics(self) -> Optional[Sequence['outputs.AutoscalerAutoscalingPolicyMetric']]:
         """
         Configuration parameters of autoscaling based on a custom metric.
         Structure is documented below.
@@ -1542,8 +1542,8 @@ class BackendServiceCdnPolicyCacheKeyPolicy(dict):
                  include_host: Optional[bool] = None,
                  include_protocol: Optional[bool] = None,
                  include_query_string: Optional[bool] = None,
-                 query_string_blacklists: Optional[List[str]] = None,
-                 query_string_whitelists: Optional[List[str]] = None):
+                 query_string_blacklists: Optional[Sequence[str]] = None,
+                 query_string_whitelists: Optional[Sequence[str]] = None):
         """
         :param bool include_host: If true requests to different hosts will be cached separately.
         :param bool include_protocol: If true, http and https requests will be cached separately.
@@ -1553,12 +1553,12 @@ class BackendServiceCdnPolicyCacheKeyPolicy(dict):
                string will be included.
                If false, the query string will be excluded from the cache
                key entirely.
-        :param List[str] query_string_blacklists: Names of query string parameters to exclude in cache keys.
+        :param Sequence[str] query_string_blacklists: Names of query string parameters to exclude in cache keys.
                All other parameters will be included. Either specify
                query_string_whitelist or query_string_blacklist, not both.
                '&' and '=' will be percent encoded and not treated as
                delimiters.
-        :param List[str] query_string_whitelists: Names of query string parameters to include in cache keys.
+        :param Sequence[str] query_string_whitelists: Names of query string parameters to include in cache keys.
                All other parameters will be excluded. Either specify
                query_string_whitelist or query_string_blacklist, not both.
                '&' and '=' will be percent encoded and not treated as
@@ -1606,7 +1606,7 @@ class BackendServiceCdnPolicyCacheKeyPolicy(dict):
 
     @property
     @pulumi.getter(name="queryStringBlacklists")
-    def query_string_blacklists(self) -> Optional[List[str]]:
+    def query_string_blacklists(self) -> Optional[Sequence[str]]:
         """
         Names of query string parameters to exclude in cache keys.
         All other parameters will be included. Either specify
@@ -1618,7 +1618,7 @@ class BackendServiceCdnPolicyCacheKeyPolicy(dict):
 
     @property
     @pulumi.getter(name="queryStringWhitelists")
-    def query_string_whitelists(self) -> Optional[List[str]]:
+    def query_string_whitelists(self) -> Optional[Sequence[str]]:
         """
         Names of query string parameters to include in cache keys.
         All other parameters will be excluded. Either specify
@@ -2578,13 +2578,13 @@ class ExternalVpnGatewayInterface(dict):
 class FirewallAllow(dict):
     def __init__(__self__, *,
                  protocol: str,
-                 ports: Optional[List[str]] = None):
+                 ports: Optional[Sequence[str]] = None):
         """
         :param str protocol: The IP protocol to which this rule applies. The protocol type is
                required when creating a firewall rule. This value can either be
                one of the following well known protocol strings (tcp, udp,
                icmp, esp, ah, sctp, ipip), or the IP protocol number.
-        :param List[str] ports: An optional list of ports to which this rule applies. This field
+        :param Sequence[str] ports: An optional list of ports to which this rule applies. This field
                is only applicable for UDP or TCP protocol. Each entry must be
                either an integer or a range. If not specified, this rule
                applies to connections through any port.
@@ -2608,7 +2608,7 @@ class FirewallAllow(dict):
 
     @property
     @pulumi.getter
-    def ports(self) -> Optional[List[str]]:
+    def ports(self) -> Optional[Sequence[str]]:
         """
         An optional list of ports to which this rule applies. This field
         is only applicable for UDP or TCP protocol. Each entry must be
@@ -2627,13 +2627,13 @@ class FirewallAllow(dict):
 class FirewallDeny(dict):
     def __init__(__self__, *,
                  protocol: str,
-                 ports: Optional[List[str]] = None):
+                 ports: Optional[Sequence[str]] = None):
         """
         :param str protocol: The IP protocol to which this rule applies. The protocol type is
                required when creating a firewall rule. This value can either be
                one of the following well known protocol strings (tcp, udp,
                icmp, esp, ah, sctp, ipip), or the IP protocol number.
-        :param List[str] ports: An optional list of ports to which this rule applies. This field
+        :param Sequence[str] ports: An optional list of ports to which this rule applies. This field
                is only applicable for UDP or TCP protocol. Each entry must be
                either an integer or a range. If not specified, this rule
                applies to connections through any port.
@@ -2657,7 +2657,7 @@ class FirewallDeny(dict):
 
     @property
     @pulumi.getter
-    def ports(self) -> Optional[List[str]]:
+    def ports(self) -> Optional[Sequence[str]]:
         """
         An optional list of ports to which this rule applies. This field
         is only applicable for UDP or TCP protocol. Each entry must be
@@ -2698,10 +2698,10 @@ class FirewallLogConfig(dict):
 @pulumi.output_type
 class GlobalForwardingRuleMetadataFilter(dict):
     def __init__(__self__, *,
-                 filter_labels: List['outputs.GlobalForwardingRuleMetadataFilterFilterLabel'],
+                 filter_labels: Sequence['outputs.GlobalForwardingRuleMetadataFilterFilterLabel'],
                  filter_match_criteria: str):
         """
-        :param List['GlobalForwardingRuleMetadataFilterFilterLabelArgs'] filter_labels: The list of label value pairs that must match labels in the
+        :param Sequence['GlobalForwardingRuleMetadataFilterFilterLabelArgs'] filter_labels: The list of label value pairs that must match labels in the
                provided metadata based on filterMatchCriteria
                This list must not be empty and can have at the most 64 entries.
                Structure is documented below.
@@ -2718,7 +2718,7 @@ class GlobalForwardingRuleMetadataFilter(dict):
 
     @property
     @pulumi.getter(name="filterLabels")
-    def filter_labels(self) -> List['outputs.GlobalForwardingRuleMetadataFilterFilterLabel']:
+    def filter_labels(self) -> Sequence['outputs.GlobalForwardingRuleMetadataFilterFilterLabel']:
         """
         The list of label value pairs that must match labels in the
         provided metadata based on filterMatchCriteria
@@ -4274,8 +4274,8 @@ class InstanceFromTemplateGuestAccelerator(dict):
 @pulumi.output_type
 class InstanceFromTemplateNetworkInterface(dict):
     def __init__(__self__, *,
-                 access_configs: Optional[List['outputs.InstanceFromTemplateNetworkInterfaceAccessConfig']] = None,
-                 alias_ip_ranges: Optional[List['outputs.InstanceFromTemplateNetworkInterfaceAliasIpRange']] = None,
+                 access_configs: Optional[Sequence['outputs.InstanceFromTemplateNetworkInterfaceAccessConfig']] = None,
+                 alias_ip_ranges: Optional[Sequence['outputs.InstanceFromTemplateNetworkInterfaceAliasIpRange']] = None,
                  name: Optional[str] = None,
                  network: Optional[str] = None,
                  network_ip: Optional[str] = None,
@@ -4302,12 +4302,12 @@ class InstanceFromTemplateNetworkInterface(dict):
 
     @property
     @pulumi.getter(name="accessConfigs")
-    def access_configs(self) -> Optional[List['outputs.InstanceFromTemplateNetworkInterfaceAccessConfig']]:
+    def access_configs(self) -> Optional[Sequence['outputs.InstanceFromTemplateNetworkInterfaceAccessConfig']]:
         return pulumi.get(self, "access_configs")
 
     @property
     @pulumi.getter(name="aliasIpRanges")
-    def alias_ip_ranges(self) -> Optional[List['outputs.InstanceFromTemplateNetworkInterfaceAliasIpRange']]:
+    def alias_ip_ranges(self) -> Optional[Sequence['outputs.InstanceFromTemplateNetworkInterfaceAliasIpRange']]:
         return pulumi.get(self, "alias_ip_ranges")
 
     @property
@@ -4403,7 +4403,7 @@ class InstanceFromTemplateScheduling(dict):
     def __init__(__self__, *,
                  automatic_restart: Optional[bool] = None,
                  min_node_cpus: Optional[float] = None,
-                 node_affinities: Optional[List['outputs.InstanceFromTemplateSchedulingNodeAffinity']] = None,
+                 node_affinities: Optional[Sequence['outputs.InstanceFromTemplateSchedulingNodeAffinity']] = None,
                  on_host_maintenance: Optional[str] = None,
                  preemptible: Optional[bool] = None):
         if automatic_restart is not None:
@@ -4429,7 +4429,7 @@ class InstanceFromTemplateScheduling(dict):
 
     @property
     @pulumi.getter(name="nodeAffinities")
-    def node_affinities(self) -> Optional[List['outputs.InstanceFromTemplateSchedulingNodeAffinity']]:
+    def node_affinities(self) -> Optional[Sequence['outputs.InstanceFromTemplateSchedulingNodeAffinity']]:
         return pulumi.get(self, "node_affinities")
 
     @property
@@ -4451,7 +4451,7 @@ class InstanceFromTemplateSchedulingNodeAffinity(dict):
     def __init__(__self__, *,
                  key: str,
                  operator: str,
-                 values: List[str]):
+                 values: Sequence[str]):
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "operator", operator)
         pulumi.set(__self__, "values", values)
@@ -4468,7 +4468,7 @@ class InstanceFromTemplateSchedulingNodeAffinity(dict):
 
     @property
     @pulumi.getter
-    def values(self) -> List[str]:
+    def values(self) -> Sequence[str]:
         return pulumi.get(self, "values")
 
     def _translate_property(self, prop):
@@ -4493,7 +4493,7 @@ class InstanceFromTemplateScratchDisk(dict):
 @pulumi.output_type
 class InstanceFromTemplateServiceAccount(dict):
     def __init__(__self__, *,
-                 scopes: List[str],
+                 scopes: Sequence[str],
                  email: Optional[str] = None):
         pulumi.set(__self__, "scopes", scopes)
         if email is not None:
@@ -4501,7 +4501,7 @@ class InstanceFromTemplateServiceAccount(dict):
 
     @property
     @pulumi.getter
-    def scopes(self) -> List[str]:
+    def scopes(self) -> Sequence[str]:
         return pulumi.get(self, "scopes")
 
     @property
@@ -4978,21 +4978,21 @@ class InstanceIAMMemberCondition(dict):
 @pulumi.output_type
 class InstanceNetworkInterface(dict):
     def __init__(__self__, *,
-                 access_configs: Optional[List['outputs.InstanceNetworkInterfaceAccessConfig']] = None,
-                 alias_ip_ranges: Optional[List['outputs.InstanceNetworkInterfaceAliasIpRange']] = None,
+                 access_configs: Optional[Sequence['outputs.InstanceNetworkInterfaceAccessConfig']] = None,
+                 alias_ip_ranges: Optional[Sequence['outputs.InstanceNetworkInterfaceAliasIpRange']] = None,
                  name: Optional[str] = None,
                  network: Optional[str] = None,
                  network_ip: Optional[str] = None,
                  subnetwork: Optional[str] = None,
                  subnetwork_project: Optional[str] = None):
         """
-        :param List['InstanceNetworkInterfaceAccessConfigArgs'] access_configs: Access configurations, i.e. IPs via which this
+        :param Sequence['InstanceNetworkInterfaceAccessConfigArgs'] access_configs: Access configurations, i.e. IPs via which this
                instance can be accessed via the Internet. Omit to ensure that the instance
                is not accessible from the Internet. If omitted, ssh will not
                work unless this provider can send traffic to the instance's network (e.g. via
                tunnel or because it is running on another cloud instance on that network).
                This block can be repeated multiple times. Structure documented below.
-        :param List['InstanceNetworkInterfaceAliasIpRangeArgs'] alias_ip_ranges: An
+        :param Sequence['InstanceNetworkInterfaceAliasIpRangeArgs'] alias_ip_ranges: An
                array of alias IP ranges for this network interface. Can only be specified for network
                interfaces on subnet-mode networks. Structure documented below.
         :param str name: A unique name for the resource, required by GCE.
@@ -5026,7 +5026,7 @@ class InstanceNetworkInterface(dict):
 
     @property
     @pulumi.getter(name="accessConfigs")
-    def access_configs(self) -> Optional[List['outputs.InstanceNetworkInterfaceAccessConfig']]:
+    def access_configs(self) -> Optional[Sequence['outputs.InstanceNetworkInterfaceAccessConfig']]:
         """
         Access configurations, i.e. IPs via which this
         instance can be accessed via the Internet. Omit to ensure that the instance
@@ -5039,7 +5039,7 @@ class InstanceNetworkInterface(dict):
 
     @property
     @pulumi.getter(name="aliasIpRanges")
-    def alias_ip_ranges(self) -> Optional[List['outputs.InstanceNetworkInterfaceAliasIpRange']]:
+    def alias_ip_ranges(self) -> Optional[Sequence['outputs.InstanceNetworkInterfaceAliasIpRange']]:
         """
         An
         array of alias IP ranges for this network interface. Can only be specified for network
@@ -5205,14 +5205,14 @@ class InstanceScheduling(dict):
     def __init__(__self__, *,
                  automatic_restart: Optional[bool] = None,
                  min_node_cpus: Optional[float] = None,
-                 node_affinities: Optional[List['outputs.InstanceSchedulingNodeAffinity']] = None,
+                 node_affinities: Optional[Sequence['outputs.InstanceSchedulingNodeAffinity']] = None,
                  on_host_maintenance: Optional[str] = None,
                  preemptible: Optional[bool] = None):
         """
         :param bool automatic_restart: Specifies if the instance should be
                restarted if it was terminated by Compute Engine (not a user).
                Defaults to true.
-        :param List['InstanceSchedulingNodeAffinityArgs'] node_affinities: Specifies node affinities or anti-affinities
+        :param Sequence['InstanceSchedulingNodeAffinityArgs'] node_affinities: Specifies node affinities or anti-affinities
                to determine which sole-tenant nodes your instances and managed instance
                groups will use as host systems. Read more on sole-tenant node creation
                [here](https://cloud.google.com/compute/docs/nodes/create-nodes).
@@ -5252,7 +5252,7 @@ class InstanceScheduling(dict):
 
     @property
     @pulumi.getter(name="nodeAffinities")
-    def node_affinities(self) -> Optional[List['outputs.InstanceSchedulingNodeAffinity']]:
+    def node_affinities(self) -> Optional[Sequence['outputs.InstanceSchedulingNodeAffinity']]:
         """
         Specifies node affinities or anti-affinities
         to determine which sole-tenant nodes your instances and managed instance
@@ -5291,12 +5291,12 @@ class InstanceSchedulingNodeAffinity(dict):
     def __init__(__self__, *,
                  key: str,
                  operator: str,
-                 values: List[str]):
+                 values: Sequence[str]):
         """
         :param str key: The key for the node affinity label.
         :param str operator: The operator. Can be `IN` for node-affinities
                or `NOT_IN` for anti-affinities.
-        :param List[str] values: The values for the node affinity label.
+        :param Sequence[str] values: The values for the node affinity label.
         """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "operator", operator)
@@ -5321,7 +5321,7 @@ class InstanceSchedulingNodeAffinity(dict):
 
     @property
     @pulumi.getter
-    def values(self) -> List[str]:
+    def values(self) -> Sequence[str]:
         """
         The values for the node affinity label.
         """
@@ -5355,10 +5355,10 @@ class InstanceScratchDisk(dict):
 @pulumi.output_type
 class InstanceServiceAccount(dict):
     def __init__(__self__, *,
-                 scopes: List[str],
+                 scopes: Sequence[str],
                  email: Optional[str] = None):
         """
-        :param List[str] scopes: A list of service scopes. Both OAuth2 URLs and gcloud
+        :param Sequence[str] scopes: A list of service scopes. Both OAuth2 URLs and gcloud
                short names are supported. To allow full access to all Cloud APIs, use the
                `cloud-platform` scope. See a complete list of scopes [here](https://cloud.google.com/sdk/gcloud/reference/alpha/compute/instances/set-scopes#--scopes).
                **Note**: `allow_stopping_for_update` must be set to true or your instance must have a `desired_status` of `TERMINATED` in order to update this field.
@@ -5372,7 +5372,7 @@ class InstanceServiceAccount(dict):
 
     @property
     @pulumi.getter
-    def scopes(self) -> List[str]:
+    def scopes(self) -> Sequence[str]:
         """
         A list of service scopes. Both OAuth2 URLs and gcloud
         short names are supported. To allow full access to all Cloud APIs, use the
@@ -5716,21 +5716,21 @@ class InstanceTemplateGuestAccelerator(dict):
 @pulumi.output_type
 class InstanceTemplateNetworkInterface(dict):
     def __init__(__self__, *,
-                 access_configs: Optional[List['outputs.InstanceTemplateNetworkInterfaceAccessConfig']] = None,
-                 alias_ip_ranges: Optional[List['outputs.InstanceTemplateNetworkInterfaceAliasIpRange']] = None,
+                 access_configs: Optional[Sequence['outputs.InstanceTemplateNetworkInterfaceAccessConfig']] = None,
+                 alias_ip_ranges: Optional[Sequence['outputs.InstanceTemplateNetworkInterfaceAliasIpRange']] = None,
                  name: Optional[str] = None,
                  network: Optional[str] = None,
                  network_ip: Optional[str] = None,
                  subnetwork: Optional[str] = None,
                  subnetwork_project: Optional[str] = None):
         """
-        :param List['InstanceTemplateNetworkInterfaceAccessConfigArgs'] access_configs: Access configurations, i.e. IPs via which this
+        :param Sequence['InstanceTemplateNetworkInterfaceAccessConfigArgs'] access_configs: Access configurations, i.e. IPs via which this
                instance can be accessed via the Internet. Omit to ensure that the instance
                is not accessible from the Internet (this means that ssh provisioners will
                not work unless you can send traffic to the instance's
                network (e.g. via tunnel or because it is running on another cloud instance
                on that network). This block can be repeated multiple times. Structure documented below.
-        :param List['InstanceTemplateNetworkInterfaceAliasIpRangeArgs'] alias_ip_ranges: An
+        :param Sequence['InstanceTemplateNetworkInterfaceAliasIpRangeArgs'] alias_ip_ranges: An
                array of alias IP ranges for this network interface. Can only be specified for network
                interfaces on subnet-mode networks. Structure documented below.
         :param str name: The name of the instance template. If you leave
@@ -5763,7 +5763,7 @@ class InstanceTemplateNetworkInterface(dict):
 
     @property
     @pulumi.getter(name="accessConfigs")
-    def access_configs(self) -> Optional[List['outputs.InstanceTemplateNetworkInterfaceAccessConfig']]:
+    def access_configs(self) -> Optional[Sequence['outputs.InstanceTemplateNetworkInterfaceAccessConfig']]:
         """
         Access configurations, i.e. IPs via which this
         instance can be accessed via the Internet. Omit to ensure that the instance
@@ -5776,7 +5776,7 @@ class InstanceTemplateNetworkInterface(dict):
 
     @property
     @pulumi.getter(name="aliasIpRanges")
-    def alias_ip_ranges(self) -> Optional[List['outputs.InstanceTemplateNetworkInterfaceAliasIpRange']]:
+    def alias_ip_ranges(self) -> Optional[Sequence['outputs.InstanceTemplateNetworkInterfaceAliasIpRange']]:
         """
         An
         array of alias IP ranges for this network interface. Can only be specified for network
@@ -5933,14 +5933,14 @@ class InstanceTemplateScheduling(dict):
     def __init__(__self__, *,
                  automatic_restart: Optional[bool] = None,
                  min_node_cpus: Optional[float] = None,
-                 node_affinities: Optional[List['outputs.InstanceTemplateSchedulingNodeAffinity']] = None,
+                 node_affinities: Optional[Sequence['outputs.InstanceTemplateSchedulingNodeAffinity']] = None,
                  on_host_maintenance: Optional[str] = None,
                  preemptible: Optional[bool] = None):
         """
         :param bool automatic_restart: Specifies whether the instance should be
                automatically restarted if it is terminated by Compute Engine (not
                terminated by a user). This defaults to true.
-        :param List['InstanceTemplateSchedulingNodeAffinityArgs'] node_affinities: Specifies node affinities or anti-affinities
+        :param Sequence['InstanceTemplateSchedulingNodeAffinityArgs'] node_affinities: Specifies node affinities or anti-affinities
                to determine which sole-tenant nodes your instances and managed instance
                groups will use as host systems. Read more on sole-tenant node creation
                [here](https://cloud.google.com/compute/docs/nodes/create-nodes).
@@ -5979,7 +5979,7 @@ class InstanceTemplateScheduling(dict):
 
     @property
     @pulumi.getter(name="nodeAffinities")
-    def node_affinities(self) -> Optional[List['outputs.InstanceTemplateSchedulingNodeAffinity']]:
+    def node_affinities(self) -> Optional[Sequence['outputs.InstanceTemplateSchedulingNodeAffinity']]:
         """
         Specifies node affinities or anti-affinities
         to determine which sole-tenant nodes your instances and managed instance
@@ -6017,7 +6017,7 @@ class InstanceTemplateSchedulingNodeAffinity(dict):
     def __init__(__self__, *,
                  key: str,
                  operator: str,
-                 values: List[str]):
+                 values: Sequence[str]):
         """
         :param str key: The key for the node affinity label.
         :param str operator: The operator. Can be `IN` for node-affinities
@@ -6046,7 +6046,7 @@ class InstanceTemplateSchedulingNodeAffinity(dict):
 
     @property
     @pulumi.getter
-    def values(self) -> List[str]:
+    def values(self) -> Sequence[str]:
         return pulumi.get(self, "values")
 
     def _translate_property(self, prop):
@@ -6056,10 +6056,10 @@ class InstanceTemplateSchedulingNodeAffinity(dict):
 @pulumi.output_type
 class InstanceTemplateServiceAccount(dict):
     def __init__(__self__, *,
-                 scopes: List[str],
+                 scopes: Sequence[str],
                  email: Optional[str] = None):
         """
-        :param List[str] scopes: A list of service scopes. Both OAuth2 URLs and gcloud
+        :param Sequence[str] scopes: A list of service scopes. Both OAuth2 URLs and gcloud
                short names are supported. To allow full access to all Cloud APIs, use the
                `cloud-platform` scope. See a complete list of scopes [here](https://cloud.google.com/sdk/gcloud/reference/alpha/compute/instances/set-scopes#--scopes).
         :param str email: The service account e-mail address. If not given, the
@@ -6071,7 +6071,7 @@ class InstanceTemplateServiceAccount(dict):
 
     @property
     @pulumi.getter
-    def scopes(self) -> List[str]:
+    def scopes(self) -> Sequence[str]:
         """
         A list of service scopes. Both OAuth2 URLs and gcloud
         short names are supported. To allow full access to all Cloud APIs, use the
@@ -6157,16 +6157,16 @@ class InterconnectAttachmentPrivateInterconnectInfo(dict):
 @pulumi.output_type
 class ManagedSslCertificateManaged(dict):
     def __init__(__self__, *,
-                 domains: List[str]):
+                 domains: Sequence[str]):
         """
-        :param List[str] domains: Domains for which a managed SSL certificate will be valid.  Currently,
+        :param Sequence[str] domains: Domains for which a managed SSL certificate will be valid.  Currently,
                there can be up to 100 domains in this list.
         """
         pulumi.set(__self__, "domains", domains)
 
     @property
     @pulumi.getter
-    def domains(self) -> List[str]:
+    def domains(self) -> Sequence[str]:
         """
         Domains for which a managed SSL certificate will be valid.  Currently,
         there can be up to 100 domains in this list.
@@ -6180,12 +6180,12 @@ class ManagedSslCertificateManaged(dict):
 @pulumi.output_type
 class MangedSslCertificateManaged(dict):
     def __init__(__self__, *,
-                 domains: List[str]):
+                 domains: Sequence[str]):
         pulumi.set(__self__, "domains", domains)
 
     @property
     @pulumi.getter
-    def domains(self) -> List[str]:
+    def domains(self) -> Sequence[str]:
         return pulumi.get(self, "domains")
 
     def _translate_property(self, prop):
@@ -6401,15 +6401,15 @@ class OrganizationSecurityPolicyRuleMatch(dict):
 @pulumi.output_type
 class OrganizationSecurityPolicyRuleMatchConfig(dict):
     def __init__(__self__, *,
-                 layer4_configs: List['outputs.OrganizationSecurityPolicyRuleMatchConfigLayer4Config'],
-                 dest_ip_ranges: Optional[List[str]] = None,
-                 src_ip_ranges: Optional[List[str]] = None):
+                 layer4_configs: Sequence['outputs.OrganizationSecurityPolicyRuleMatchConfigLayer4Config'],
+                 dest_ip_ranges: Optional[Sequence[str]] = None,
+                 src_ip_ranges: Optional[Sequence[str]] = None):
         """
-        :param List['OrganizationSecurityPolicyRuleMatchConfigLayer4ConfigArgs'] layer4_configs: Pairs of IP protocols and ports that the rule should match.
+        :param Sequence['OrganizationSecurityPolicyRuleMatchConfigLayer4ConfigArgs'] layer4_configs: Pairs of IP protocols and ports that the rule should match.
                Structure is documented below.
-        :param List[str] dest_ip_ranges: Destination IP address range in CIDR format. Required for
+        :param Sequence[str] dest_ip_ranges: Destination IP address range in CIDR format. Required for
                EGRESS rules.
-        :param List[str] src_ip_ranges: Source IP address range in CIDR format. Required for
+        :param Sequence[str] src_ip_ranges: Source IP address range in CIDR format. Required for
                INGRESS rules.
         """
         pulumi.set(__self__, "layer4_configs", layer4_configs)
@@ -6420,7 +6420,7 @@ class OrganizationSecurityPolicyRuleMatchConfig(dict):
 
     @property
     @pulumi.getter(name="layer4Configs")
-    def layer4_configs(self) -> List['outputs.OrganizationSecurityPolicyRuleMatchConfigLayer4Config']:
+    def layer4_configs(self) -> Sequence['outputs.OrganizationSecurityPolicyRuleMatchConfigLayer4Config']:
         """
         Pairs of IP protocols and ports that the rule should match.
         Structure is documented below.
@@ -6429,7 +6429,7 @@ class OrganizationSecurityPolicyRuleMatchConfig(dict):
 
     @property
     @pulumi.getter(name="destIpRanges")
-    def dest_ip_ranges(self) -> Optional[List[str]]:
+    def dest_ip_ranges(self) -> Optional[Sequence[str]]:
         """
         Destination IP address range in CIDR format. Required for
         EGRESS rules.
@@ -6438,7 +6438,7 @@ class OrganizationSecurityPolicyRuleMatchConfig(dict):
 
     @property
     @pulumi.getter(name="srcIpRanges")
-    def src_ip_ranges(self) -> Optional[List[str]]:
+    def src_ip_ranges(self) -> Optional[Sequence[str]]:
         """
         Source IP address range in CIDR format. Required for
         INGRESS rules.
@@ -6453,14 +6453,14 @@ class OrganizationSecurityPolicyRuleMatchConfig(dict):
 class OrganizationSecurityPolicyRuleMatchConfigLayer4Config(dict):
     def __init__(__self__, *,
                  ip_protocol: str,
-                 ports: Optional[List[str]] = None):
+                 ports: Optional[Sequence[str]] = None):
         """
         :param str ip_protocol: The IP protocol to which this rule applies. The protocol
                type is required when creating a firewall rule.
                This value can either be one of the following well
                known protocol strings (tcp, udp, icmp, esp, ah, ipip, sctp),
                or the IP protocol number.
-        :param List[str] ports: An optional list of ports to which this rule applies. This field
+        :param Sequence[str] ports: An optional list of ports to which this rule applies. This field
                is only applicable for UDP or TCP protocol. Each entry must be
                either an integer or a range. If not specified, this rule
                applies to connections through any port.
@@ -6485,7 +6485,7 @@ class OrganizationSecurityPolicyRuleMatchConfigLayer4Config(dict):
 
     @property
     @pulumi.getter
-    def ports(self) -> Optional[List[str]]:
+    def ports(self) -> Optional[Sequence[str]]:
         """
         An optional list of ports to which this rule applies. This field
         is only applicable for UDP or TCP protocol. Each entry must be
@@ -6524,12 +6524,12 @@ class PacketMirroringCollectorIlb(dict):
 @pulumi.output_type
 class PacketMirroringFilter(dict):
     def __init__(__self__, *,
-                 cidr_ranges: Optional[List[str]] = None,
-                 ip_protocols: Optional[List[str]] = None):
+                 cidr_ranges: Optional[Sequence[str]] = None,
+                 ip_protocols: Optional[Sequence[str]] = None):
         """
-        :param List[str] cidr_ranges: IP CIDR ranges that apply as a filter on the source (ingress) or
+        :param Sequence[str] cidr_ranges: IP CIDR ranges that apply as a filter on the source (ingress) or
                destination (egress) IP in the IP header. Only IPv4 is supported.
-        :param List[str] ip_protocols: Protocols that apply as a filter on mirrored traffic.
+        :param Sequence[str] ip_protocols: Protocols that apply as a filter on mirrored traffic.
                Each value may be one of `tcp`, `udp`, and `icmp`.
         """
         if cidr_ranges is not None:
@@ -6539,7 +6539,7 @@ class PacketMirroringFilter(dict):
 
     @property
     @pulumi.getter(name="cidrRanges")
-    def cidr_ranges(self) -> Optional[List[str]]:
+    def cidr_ranges(self) -> Optional[Sequence[str]]:
         """
         IP CIDR ranges that apply as a filter on the source (ingress) or
         destination (egress) IP in the IP header. Only IPv4 is supported.
@@ -6548,7 +6548,7 @@ class PacketMirroringFilter(dict):
 
     @property
     @pulumi.getter(name="ipProtocols")
-    def ip_protocols(self) -> Optional[List[str]]:
+    def ip_protocols(self) -> Optional[Sequence[str]]:
         """
         Protocols that apply as a filter on mirrored traffic.
         Each value may be one of `tcp`, `udp`, and `icmp`.
@@ -6562,15 +6562,15 @@ class PacketMirroringFilter(dict):
 @pulumi.output_type
 class PacketMirroringMirroredResources(dict):
     def __init__(__self__, *,
-                 instances: Optional[List['outputs.PacketMirroringMirroredResourcesInstance']] = None,
-                 subnetworks: Optional[List['outputs.PacketMirroringMirroredResourcesSubnetwork']] = None,
-                 tags: Optional[List[str]] = None):
+                 instances: Optional[Sequence['outputs.PacketMirroringMirroredResourcesInstance']] = None,
+                 subnetworks: Optional[Sequence['outputs.PacketMirroringMirroredResourcesSubnetwork']] = None,
+                 tags: Optional[Sequence[str]] = None):
         """
-        :param List['PacketMirroringMirroredResourcesInstanceArgs'] instances: All the listed instances will be mirrored.  Specify at most 50.
+        :param Sequence['PacketMirroringMirroredResourcesInstanceArgs'] instances: All the listed instances will be mirrored.  Specify at most 50.
                Structure is documented below.
-        :param List['PacketMirroringMirroredResourcesSubnetworkArgs'] subnetworks: All instances in one of these subnetworks will be mirrored.
+        :param Sequence['PacketMirroringMirroredResourcesSubnetworkArgs'] subnetworks: All instances in one of these subnetworks will be mirrored.
                Structure is documented below.
-        :param List[str] tags: All instances with these tags will be mirrored.
+        :param Sequence[str] tags: All instances with these tags will be mirrored.
         """
         if instances is not None:
             pulumi.set(__self__, "instances", instances)
@@ -6581,7 +6581,7 @@ class PacketMirroringMirroredResources(dict):
 
     @property
     @pulumi.getter
-    def instances(self) -> Optional[List['outputs.PacketMirroringMirroredResourcesInstance']]:
+    def instances(self) -> Optional[Sequence['outputs.PacketMirroringMirroredResourcesInstance']]:
         """
         All the listed instances will be mirrored.  Specify at most 50.
         Structure is documented below.
@@ -6590,7 +6590,7 @@ class PacketMirroringMirroredResources(dict):
 
     @property
     @pulumi.getter
-    def subnetworks(self) -> Optional[List['outputs.PacketMirroringMirroredResourcesSubnetwork']]:
+    def subnetworks(self) -> Optional[Sequence['outputs.PacketMirroringMirroredResourcesSubnetwork']]:
         """
         All instances in one of these subnetworks will be mirrored.
         Structure is documented below.
@@ -6599,7 +6599,7 @@ class PacketMirroringMirroredResources(dict):
 
     @property
     @pulumi.getter
-    def tags(self) -> Optional[List[str]]:
+    def tags(self) -> Optional[Sequence[str]]:
         """
         All instances with these tags will be mirrored.
         """
@@ -6675,10 +6675,10 @@ class PacketMirroringNetwork(dict):
 @pulumi.output_type
 class PerInstanceConfigPreservedState(dict):
     def __init__(__self__, *,
-                 disks: Optional[List['outputs.PerInstanceConfigPreservedStateDisk']] = None,
+                 disks: Optional[Sequence['outputs.PerInstanceConfigPreservedStateDisk']] = None,
                  metadata: Optional[Mapping[str, str]] = None):
         """
-        :param List['PerInstanceConfigPreservedStateDiskArgs'] disks: Stateful disks for the instance.
+        :param Sequence['PerInstanceConfigPreservedStateDiskArgs'] disks: Stateful disks for the instance.
                Structure is documented below.
         :param Mapping[str, str] metadata: Preserved metadata defined for this instance. This is a list of key->value pairs.
         """
@@ -6689,7 +6689,7 @@ class PerInstanceConfigPreservedState(dict):
 
     @property
     @pulumi.getter
-    def disks(self) -> Optional[List['outputs.PerInstanceConfigPreservedStateDisk']]:
+    def disks(self) -> Optional[Sequence['outputs.PerInstanceConfigPreservedStateDisk']]:
         """
         Stateful disks for the instance.
         Structure is documented below.
@@ -6790,7 +6790,7 @@ class RegionAutoscalerAutoscalingPolicy(dict):
                  cooldown_period: Optional[float] = None,
                  cpu_utilization: Optional['outputs.RegionAutoscalerAutoscalingPolicyCpuUtilization'] = None,
                  load_balancing_utilization: Optional['outputs.RegionAutoscalerAutoscalingPolicyLoadBalancingUtilization'] = None,
-                 metrics: Optional[List['outputs.RegionAutoscalerAutoscalingPolicyMetric']] = None,
+                 metrics: Optional[Sequence['outputs.RegionAutoscalerAutoscalingPolicyMetric']] = None,
                  mode: Optional[str] = None,
                  scale_down_control: Optional['outputs.RegionAutoscalerAutoscalingPolicyScaleDownControl'] = None):
         """
@@ -6817,7 +6817,7 @@ class RegionAutoscalerAutoscalingPolicy(dict):
                Structure is documented below.
         :param 'RegionAutoscalerAutoscalingPolicyLoadBalancingUtilizationArgs' load_balancing_utilization: Configuration parameters of autoscaling based on a load balancer.
                Structure is documented below.
-        :param List['RegionAutoscalerAutoscalingPolicyMetricArgs'] metrics: Configuration parameters of autoscaling based on a custom metric.
+        :param Sequence['RegionAutoscalerAutoscalingPolicyMetricArgs'] metrics: Configuration parameters of autoscaling based on a custom metric.
                Structure is documented below.
         :param str mode: Defines operating mode for this policy.
                Default value is `ON`.
@@ -6898,7 +6898,7 @@ class RegionAutoscalerAutoscalingPolicy(dict):
 
     @property
     @pulumi.getter
-    def metrics(self) -> Optional[List['outputs.RegionAutoscalerAutoscalingPolicyMetric']]:
+    def metrics(self) -> Optional[Sequence['outputs.RegionAutoscalerAutoscalingPolicyMetric']]:
         """
         Configuration parameters of autoscaling based on a custom metric.
         Structure is documented below.
@@ -9561,10 +9561,10 @@ class RegionNetworkEndpointGroupCloudRun(dict):
 @pulumi.output_type
 class RegionPerInstanceConfigPreservedState(dict):
     def __init__(__self__, *,
-                 disks: Optional[List['outputs.RegionPerInstanceConfigPreservedStateDisk']] = None,
+                 disks: Optional[Sequence['outputs.RegionPerInstanceConfigPreservedStateDisk']] = None,
                  metadata: Optional[Mapping[str, str]] = None):
         """
-        :param List['RegionPerInstanceConfigPreservedStateDiskArgs'] disks: Stateful disks for the instance.
+        :param Sequence['RegionPerInstanceConfigPreservedStateDiskArgs'] disks: Stateful disks for the instance.
                Structure is documented below.
         :param Mapping[str, str] metadata: Preserved metadata defined for this instance. This is a list of key->value pairs.
         """
@@ -9575,7 +9575,7 @@ class RegionPerInstanceConfigPreservedState(dict):
 
     @property
     @pulumi.getter
-    def disks(self) -> Optional[List['outputs.RegionPerInstanceConfigPreservedStateDisk']]:
+    def disks(self) -> Optional[Sequence['outputs.RegionPerInstanceConfigPreservedStateDisk']]:
         """
         Stateful disks for the instance.
         Structure is documented below.
@@ -9796,11 +9796,11 @@ class RegionUrlMapDefaultUrlRedirect(dict):
 @pulumi.output_type
 class RegionUrlMapHostRule(dict):
     def __init__(__self__, *,
-                 hosts: List[str],
+                 hosts: Sequence[str],
                  path_matcher: str,
                  description: Optional[str] = None):
         """
-        :param List[str] hosts: The list of host patterns to match. They must be valid
+        :param Sequence[str] hosts: The list of host patterns to match. They must be valid
                hostnames, except * will match any string of ([a-z0-9-.]*). In
                that case, * must be the first character and must be followed in
                the pattern by either - or ..
@@ -9815,7 +9815,7 @@ class RegionUrlMapHostRule(dict):
 
     @property
     @pulumi.getter
-    def hosts(self) -> List[str]:
+    def hosts(self) -> Sequence[str]:
         """
         The list of host patterns to match. They must be valid
         hostnames, except * will match any string of ([a-z0-9-.]*). In
@@ -9852,8 +9852,8 @@ class RegionUrlMapPathMatcher(dict):
                  name: str,
                  default_url_redirect: Optional['outputs.RegionUrlMapPathMatcherDefaultUrlRedirect'] = None,
                  description: Optional[str] = None,
-                 path_rules: Optional[List['outputs.RegionUrlMapPathMatcherPathRule']] = None,
-                 route_rules: Optional[List['outputs.RegionUrlMapPathMatcherRouteRule']] = None):
+                 path_rules: Optional[Sequence['outputs.RegionUrlMapPathMatcherPathRule']] = None,
+                 route_rules: Optional[Sequence['outputs.RegionUrlMapPathMatcherRouteRule']] = None):
         """
         :param str default_service: A reference to a RegionBackendService resource. This will be used if
                none of the pathRules defined by this PathMatcher is matched by
@@ -9865,14 +9865,14 @@ class RegionUrlMapPathMatcher(dict):
                defaultRouteAction must not be set.
                Structure is documented below.
         :param str description: Description of this test case.
-        :param List['RegionUrlMapPathMatcherPathRuleArgs'] path_rules: The list of path rules. Use this list instead of routeRules when routing based
+        :param Sequence['RegionUrlMapPathMatcherPathRuleArgs'] path_rules: The list of path rules. Use this list instead of routeRules when routing based
                on simple path matching is all that's required. The order by which path rules
                are specified does not matter. Matches are always done on the longest-path-first
                basis. For example: a pathRule with a path /a/b/c/* will match before /a/b/*
                irrespective of the order in which those paths appear in this list. Within a
                given pathMatcher, only one of pathRules or routeRules must be set.
                Structure is documented below.
-        :param List['RegionUrlMapPathMatcherRouteRuleArgs'] route_rules: The list of ordered HTTP route rules. Use this list instead of pathRules when
+        :param Sequence['RegionUrlMapPathMatcherRouteRuleArgs'] route_rules: The list of ordered HTTP route rules. Use this list instead of pathRules when
                advanced route matching and routing actions are desired. The order of specifying
                routeRules matters: the first rule that matches will cause its specified routing
                action to take effect. Within a given pathMatcher, only one of pathRules or
@@ -9931,7 +9931,7 @@ class RegionUrlMapPathMatcher(dict):
 
     @property
     @pulumi.getter(name="pathRules")
-    def path_rules(self) -> Optional[List['outputs.RegionUrlMapPathMatcherPathRule']]:
+    def path_rules(self) -> Optional[Sequence['outputs.RegionUrlMapPathMatcherPathRule']]:
         """
         The list of path rules. Use this list instead of routeRules when routing based
         on simple path matching is all that's required. The order by which path rules
@@ -9945,7 +9945,7 @@ class RegionUrlMapPathMatcher(dict):
 
     @property
     @pulumi.getter(name="routeRules")
-    def route_rules(self) -> Optional[List['outputs.RegionUrlMapPathMatcherRouteRule']]:
+    def route_rules(self) -> Optional[Sequence['outputs.RegionUrlMapPathMatcherRouteRule']]:
         """
         The list of ordered HTTP route rules. Use this list instead of pathRules when
         advanced route matching and routing actions are desired. The order of specifying
@@ -10089,12 +10089,12 @@ class RegionUrlMapPathMatcherDefaultUrlRedirect(dict):
 @pulumi.output_type
 class RegionUrlMapPathMatcherPathRule(dict):
     def __init__(__self__, *,
-                 paths: List[str],
+                 paths: Sequence[str],
                  route_action: Optional['outputs.RegionUrlMapPathMatcherPathRuleRouteAction'] = None,
                  service: Optional[str] = None,
                  url_redirect: Optional['outputs.RegionUrlMapPathMatcherPathRuleUrlRedirect'] = None):
         """
-        :param List[str] paths: The list of path patterns to match. Each must start with / and the only place a
+        :param Sequence[str] paths: The list of path patterns to match. Each must start with / and the only place a
                * is allowed is at the end following a /. The string fed to the path matcher
                does not include any text after the first ? or #, and those chars are not
                allowed here.
@@ -10121,7 +10121,7 @@ class RegionUrlMapPathMatcherPathRule(dict):
 
     @property
     @pulumi.getter
-    def paths(self) -> List[str]:
+    def paths(self) -> Sequence[str]:
         """
         The list of path patterns to match. Each must start with / and the only place a
         * is allowed is at the end following a /. The string fed to the path matcher
@@ -10176,7 +10176,7 @@ class RegionUrlMapPathMatcherPathRuleRouteAction(dict):
                  retry_policy: Optional['outputs.RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicy'] = None,
                  timeout: Optional['outputs.RegionUrlMapPathMatcherPathRuleRouteActionTimeout'] = None,
                  url_rewrite: Optional['outputs.RegionUrlMapPathMatcherPathRuleRouteActionUrlRewrite'] = None,
-                 weighted_backend_services: Optional[List['outputs.RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendService']] = None):
+                 weighted_backend_services: Optional[Sequence['outputs.RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendService']] = None):
         """
         :param 'RegionUrlMapPathMatcherPathRuleRouteActionCorsPolicyArgs' cors_policy: The specification for allowing client side cross-origin requests. Please see W3C
                Recommendation for Cross Origin Resource Sharing
@@ -10204,7 +10204,7 @@ class RegionUrlMapPathMatcherPathRuleRouteAction(dict):
         :param 'RegionUrlMapPathMatcherPathRuleRouteActionUrlRewriteArgs' url_rewrite: The spec to modify the URL of the request, prior to forwarding the request to
                the matched service
                Structure is documented below.
-        :param List['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs'] weighted_backend_services: A list of weighted backend services to send traffic to when a route match
+        :param Sequence['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs'] weighted_backend_services: A list of weighted backend services to send traffic to when a route match
                occurs. The weights determine the fraction of traffic that flows to their
                corresponding backend service. If all traffic needs to go to a single backend
                service, there must be one  weightedBackendService with weight set to a non 0
@@ -10299,7 +10299,7 @@ class RegionUrlMapPathMatcherPathRuleRouteAction(dict):
 
     @property
     @pulumi.getter(name="weightedBackendServices")
-    def weighted_backend_services(self) -> Optional[List['outputs.RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendService']]:
+    def weighted_backend_services(self) -> Optional[Sequence['outputs.RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendService']]:
         """
         A list of weighted backend services to send traffic to when a route match
         occurs. The weights determine the fraction of traffic that flows to their
@@ -10322,25 +10322,25 @@ class RegionUrlMapPathMatcherPathRuleRouteActionCorsPolicy(dict):
     def __init__(__self__, *,
                  disabled: bool,
                  allow_credentials: Optional[bool] = None,
-                 allow_headers: Optional[List[str]] = None,
-                 allow_methods: Optional[List[str]] = None,
-                 allow_origin_regexes: Optional[List[str]] = None,
-                 allow_origins: Optional[List[str]] = None,
-                 expose_headers: Optional[List[str]] = None,
+                 allow_headers: Optional[Sequence[str]] = None,
+                 allow_methods: Optional[Sequence[str]] = None,
+                 allow_origin_regexes: Optional[Sequence[str]] = None,
+                 allow_origins: Optional[Sequence[str]] = None,
+                 expose_headers: Optional[Sequence[str]] = None,
                  max_age: Optional[float] = None):
         """
         :param bool disabled: If true, specifies the CORS policy is disabled.
         :param bool allow_credentials: In response to a preflight request, setting this to true indicates that the
                actual request can include user credentials. This translates to the Access-
                Control-Allow-Credentials header. Defaults to false.
-        :param List[str] allow_headers: Specifies the content for the Access-Control-Allow-Headers header.
-        :param List[str] allow_methods: Specifies the content for the Access-Control-Allow-Methods header.
-        :param List[str] allow_origin_regexes: Specifies the regualar expression patterns that match allowed origins. For
+        :param Sequence[str] allow_headers: Specifies the content for the Access-Control-Allow-Headers header.
+        :param Sequence[str] allow_methods: Specifies the content for the Access-Control-Allow-Methods header.
+        :param Sequence[str] allow_origin_regexes: Specifies the regualar expression patterns that match allowed origins. For
                regular expression grammar please see en.cppreference.com/w/cpp/regex/ecmascript
                An origin is allowed if it matches either allow_origins or allow_origin_regex.
-        :param List[str] allow_origins: Specifies the list of origins that will be allowed to do CORS requests. An
+        :param Sequence[str] allow_origins: Specifies the list of origins that will be allowed to do CORS requests. An
                origin is allowed if it matches either allow_origins or allow_origin_regex.
-        :param List[str] expose_headers: Specifies the content for the Access-Control-Expose-Headers header.
+        :param Sequence[str] expose_headers: Specifies the content for the Access-Control-Expose-Headers header.
         :param float max_age: Specifies how long the results of a preflight request can be cached. This
                translates to the content for the Access-Control-Max-Age header.
         """
@@ -10380,7 +10380,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionCorsPolicy(dict):
 
     @property
     @pulumi.getter(name="allowHeaders")
-    def allow_headers(self) -> Optional[List[str]]:
+    def allow_headers(self) -> Optional[Sequence[str]]:
         """
         Specifies the content for the Access-Control-Allow-Headers header.
         """
@@ -10388,7 +10388,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionCorsPolicy(dict):
 
     @property
     @pulumi.getter(name="allowMethods")
-    def allow_methods(self) -> Optional[List[str]]:
+    def allow_methods(self) -> Optional[Sequence[str]]:
         """
         Specifies the content for the Access-Control-Allow-Methods header.
         """
@@ -10396,7 +10396,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionCorsPolicy(dict):
 
     @property
     @pulumi.getter(name="allowOriginRegexes")
-    def allow_origin_regexes(self) -> Optional[List[str]]:
+    def allow_origin_regexes(self) -> Optional[Sequence[str]]:
         """
         Specifies the regualar expression patterns that match allowed origins. For
         regular expression grammar please see en.cppreference.com/w/cpp/regex/ecmascript
@@ -10406,7 +10406,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionCorsPolicy(dict):
 
     @property
     @pulumi.getter(name="allowOrigins")
-    def allow_origins(self) -> Optional[List[str]]:
+    def allow_origins(self) -> Optional[Sequence[str]]:
         """
         Specifies the list of origins that will be allowed to do CORS requests. An
         origin is allowed if it matches either allow_origins or allow_origin_regex.
@@ -10415,7 +10415,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionCorsPolicy(dict):
 
     @property
     @pulumi.getter(name="exposeHeaders")
-    def expose_headers(self) -> Optional[List[str]]:
+    def expose_headers(self) -> Optional[Sequence[str]]:
         """
         Specifies the content for the Access-Control-Expose-Headers header.
         """
@@ -10621,12 +10621,12 @@ class RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicy(dict):
     def __init__(__self__, *,
                  num_retries: Optional[float] = None,
                  per_try_timeout: Optional['outputs.RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeout'] = None,
-                 retry_conditions: Optional[List[str]] = None):
+                 retry_conditions: Optional[Sequence[str]] = None):
         """
         :param float num_retries: Specifies the allowed number retries. This number must be > 0.
         :param 'RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutArgs' per_try_timeout: Specifies a non-zero timeout per retry attempt.
                Structure is documented below.
-        :param List[str] retry_conditions: Specifies one or more conditions when this retry rule applies. Valid values are:
+        :param Sequence[str] retry_conditions: Specifies one or more conditions when this retry rule applies. Valid values are:
                - 5xx: Loadbalancer will attempt a retry if the backend service responds with
                any 5xx response code, or if the backend service does not respond at all,
                example: disconnects, reset, read timeout, connection failure, and refused
@@ -10674,7 +10674,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicy(dict):
 
     @property
     @pulumi.getter(name="retryConditions")
-    def retry_conditions(self) -> Optional[List[str]]:
+    def retry_conditions(self) -> Optional[Sequence[str]]:
         """
         Specifies one or more conditions when this retry rule applies. Valid values are:
         - 5xx: Loadbalancer will attempt a retry if the backend service responds with
@@ -10891,19 +10891,19 @@ class RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendService(dict):
 @pulumi.output_type
 class RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderAction(dict):
     def __init__(__self__, *,
-                 request_headers_to_adds: Optional[List['outputs.RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd']] = None,
-                 request_headers_to_removes: Optional[List[str]] = None,
-                 response_headers_to_adds: Optional[List['outputs.RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAdd']] = None,
-                 response_headers_to_removes: Optional[List[str]] = None):
+                 request_headers_to_adds: Optional[Sequence['outputs.RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd']] = None,
+                 request_headers_to_removes: Optional[Sequence[str]] = None,
+                 response_headers_to_adds: Optional[Sequence['outputs.RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAdd']] = None,
+                 response_headers_to_removes: Optional[Sequence[str]] = None):
         """
-        :param List['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs'] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the
+        :param Sequence['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs'] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the
                backendService.
                Structure is documented below.
-        :param List[str] request_headers_to_removes: A list of header names for headers that need to be removed from the request
+        :param Sequence[str] request_headers_to_removes: A list of header names for headers that need to be removed from the request
                prior to forwarding the request to the backendService.
-        :param List['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs'] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
+        :param Sequence['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs'] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
                Structure is documented below.
-        :param List[str] response_headers_to_removes: A list of header names for headers that need to be removed from the response
+        :param Sequence[str] response_headers_to_removes: A list of header names for headers that need to be removed from the response
                prior to sending the response back to the client.
         """
         if request_headers_to_adds is not None:
@@ -10917,7 +10917,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActi
 
     @property
     @pulumi.getter(name="requestHeadersToAdds")
-    def request_headers_to_adds(self) -> Optional[List['outputs.RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd']]:
+    def request_headers_to_adds(self) -> Optional[Sequence['outputs.RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd']]:
         """
         Headers to add to a matching request prior to forwarding the request to the
         backendService.
@@ -10927,7 +10927,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActi
 
     @property
     @pulumi.getter(name="requestHeadersToRemoves")
-    def request_headers_to_removes(self) -> Optional[List[str]]:
+    def request_headers_to_removes(self) -> Optional[Sequence[str]]:
         """
         A list of header names for headers that need to be removed from the request
         prior to forwarding the request to the backendService.
@@ -10936,7 +10936,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActi
 
     @property
     @pulumi.getter(name="responseHeadersToAdds")
-    def response_headers_to_adds(self) -> Optional[List['outputs.RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAdd']]:
+    def response_headers_to_adds(self) -> Optional[Sequence['outputs.RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAdd']]:
         """
         Headers to add the response prior to sending the response back to the client.
         Structure is documented below.
@@ -10945,7 +10945,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActi
 
     @property
     @pulumi.getter(name="responseHeadersToRemoves")
-    def response_headers_to_removes(self) -> Optional[List[str]]:
+    def response_headers_to_removes(self) -> Optional[Sequence[str]]:
         """
         A list of header names for headers that need to be removed from the response
         prior to sending the response back to the client.
@@ -11180,7 +11180,7 @@ class RegionUrlMapPathMatcherRouteRule(dict):
     def __init__(__self__, *,
                  priority: float,
                  header_action: Optional['outputs.RegionUrlMapPathMatcherRouteRuleHeaderAction'] = None,
-                 match_rules: Optional[List['outputs.RegionUrlMapPathMatcherRouteRuleMatchRule']] = None,
+                 match_rules: Optional[Sequence['outputs.RegionUrlMapPathMatcherRouteRuleMatchRule']] = None,
                  route_action: Optional['outputs.RegionUrlMapPathMatcherRouteRuleRouteAction'] = None,
                  service: Optional[str] = None,
                  url_redirect: Optional['outputs.RegionUrlMapPathMatcherRouteRuleUrlRedirect'] = None):
@@ -11202,7 +11202,7 @@ class RegionUrlMapPathMatcherRouteRule(dict):
                the selected backendService. headerAction specified here take effect before
                headerAction in the enclosing HttpRouteRule, PathMatcher and UrlMap.
                Structure is documented below.
-        :param List['RegionUrlMapPathMatcherRouteRuleMatchRuleArgs'] match_rules: The rules for determining a match.
+        :param Sequence['RegionUrlMapPathMatcherRouteRuleMatchRuleArgs'] match_rules: The rules for determining a match.
                Structure is documented below.
         :param 'RegionUrlMapPathMatcherRouteRuleRouteActionArgs' route_action: In response to a matching path, the load balancer performs advanced routing
                actions like URL rewrites, header transformations, etc. prior to forwarding the
@@ -11262,7 +11262,7 @@ class RegionUrlMapPathMatcherRouteRule(dict):
 
     @property
     @pulumi.getter(name="matchRules")
-    def match_rules(self) -> Optional[List['outputs.RegionUrlMapPathMatcherRouteRuleMatchRule']]:
+    def match_rules(self) -> Optional[Sequence['outputs.RegionUrlMapPathMatcherRouteRuleMatchRule']]:
         """
         The rules for determining a match.
         Structure is documented below.
@@ -11309,19 +11309,19 @@ class RegionUrlMapPathMatcherRouteRule(dict):
 @pulumi.output_type
 class RegionUrlMapPathMatcherRouteRuleHeaderAction(dict):
     def __init__(__self__, *,
-                 request_headers_to_adds: Optional[List['outputs.RegionUrlMapPathMatcherRouteRuleHeaderActionRequestHeadersToAdd']] = None,
-                 request_headers_to_removes: Optional[List[str]] = None,
-                 response_headers_to_adds: Optional[List['outputs.RegionUrlMapPathMatcherRouteRuleHeaderActionResponseHeadersToAdd']] = None,
-                 response_headers_to_removes: Optional[List[str]] = None):
+                 request_headers_to_adds: Optional[Sequence['outputs.RegionUrlMapPathMatcherRouteRuleHeaderActionRequestHeadersToAdd']] = None,
+                 request_headers_to_removes: Optional[Sequence[str]] = None,
+                 response_headers_to_adds: Optional[Sequence['outputs.RegionUrlMapPathMatcherRouteRuleHeaderActionResponseHeadersToAdd']] = None,
+                 response_headers_to_removes: Optional[Sequence[str]] = None):
         """
-        :param List['RegionUrlMapPathMatcherRouteRuleHeaderActionRequestHeadersToAddArgs'] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the
+        :param Sequence['RegionUrlMapPathMatcherRouteRuleHeaderActionRequestHeadersToAddArgs'] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the
                backendService.
                Structure is documented below.
-        :param List[str] request_headers_to_removes: A list of header names for headers that need to be removed from the request
+        :param Sequence[str] request_headers_to_removes: A list of header names for headers that need to be removed from the request
                prior to forwarding the request to the backendService.
-        :param List['RegionUrlMapPathMatcherRouteRuleHeaderActionResponseHeadersToAddArgs'] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
+        :param Sequence['RegionUrlMapPathMatcherRouteRuleHeaderActionResponseHeadersToAddArgs'] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
                Structure is documented below.
-        :param List[str] response_headers_to_removes: A list of header names for headers that need to be removed from the response
+        :param Sequence[str] response_headers_to_removes: A list of header names for headers that need to be removed from the response
                prior to sending the response back to the client.
         """
         if request_headers_to_adds is not None:
@@ -11335,7 +11335,7 @@ class RegionUrlMapPathMatcherRouteRuleHeaderAction(dict):
 
     @property
     @pulumi.getter(name="requestHeadersToAdds")
-    def request_headers_to_adds(self) -> Optional[List['outputs.RegionUrlMapPathMatcherRouteRuleHeaderActionRequestHeadersToAdd']]:
+    def request_headers_to_adds(self) -> Optional[Sequence['outputs.RegionUrlMapPathMatcherRouteRuleHeaderActionRequestHeadersToAdd']]:
         """
         Headers to add to a matching request prior to forwarding the request to the
         backendService.
@@ -11345,7 +11345,7 @@ class RegionUrlMapPathMatcherRouteRuleHeaderAction(dict):
 
     @property
     @pulumi.getter(name="requestHeadersToRemoves")
-    def request_headers_to_removes(self) -> Optional[List[str]]:
+    def request_headers_to_removes(self) -> Optional[Sequence[str]]:
         """
         A list of header names for headers that need to be removed from the request
         prior to forwarding the request to the backendService.
@@ -11354,7 +11354,7 @@ class RegionUrlMapPathMatcherRouteRuleHeaderAction(dict):
 
     @property
     @pulumi.getter(name="responseHeadersToAdds")
-    def response_headers_to_adds(self) -> Optional[List['outputs.RegionUrlMapPathMatcherRouteRuleHeaderActionResponseHeadersToAdd']]:
+    def response_headers_to_adds(self) -> Optional[Sequence['outputs.RegionUrlMapPathMatcherRouteRuleHeaderActionResponseHeadersToAdd']]:
         """
         Headers to add the response prior to sending the response back to the client.
         Structure is documented below.
@@ -11363,7 +11363,7 @@ class RegionUrlMapPathMatcherRouteRuleHeaderAction(dict):
 
     @property
     @pulumi.getter(name="responseHeadersToRemoves")
-    def response_headers_to_removes(self) -> Optional[List[str]]:
+    def response_headers_to_removes(self) -> Optional[Sequence[str]]:
         """
         A list of header names for headers that need to be removed from the response
         prior to sending the response back to the client.
@@ -11472,11 +11472,11 @@ class RegionUrlMapPathMatcherRouteRuleHeaderActionResponseHeadersToAdd(dict):
 class RegionUrlMapPathMatcherRouteRuleMatchRule(dict):
     def __init__(__self__, *,
                  full_path_match: Optional[str] = None,
-                 header_matches: Optional[List['outputs.RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatch']] = None,
+                 header_matches: Optional[Sequence['outputs.RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatch']] = None,
                  ignore_case: Optional[bool] = None,
-                 metadata_filters: Optional[List['outputs.RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilter']] = None,
+                 metadata_filters: Optional[Sequence['outputs.RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilter']] = None,
                  prefix_match: Optional[str] = None,
-                 query_parameter_matches: Optional[List['outputs.RegionUrlMapPathMatcherRouteRuleMatchRuleQueryParameterMatch']] = None,
+                 query_parameter_matches: Optional[Sequence['outputs.RegionUrlMapPathMatcherRouteRuleMatchRuleQueryParameterMatch']] = None,
                  regex_match: Optional[str] = None):
         """
         :param str full_path_match: For satifying the matchRule condition, the path of the request must exactly
@@ -11484,12 +11484,12 @@ class RegionUrlMapPathMatcherRouteRuleMatchRule(dict):
                and anchor that may be part of the original URL. FullPathMatch must be between 1
                and 1024 characters. Only one of prefixMatch, fullPathMatch or regexMatch must
                be specified.
-        :param List['RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchArgs'] header_matches: Specifies a list of header match criteria, all of which must match corresponding
+        :param Sequence['RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchArgs'] header_matches: Specifies a list of header match criteria, all of which must match corresponding
                headers in the request.
                Structure is documented below.
         :param bool ignore_case: Specifies that prefixMatch and fullPathMatch matches are case sensitive.
                Defaults to false.
-        :param List['RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilterArgs'] metadata_filters: Opaque filter criteria used by Loadbalancer to restrict routing configuration to
+        :param Sequence['RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilterArgs'] metadata_filters: Opaque filter criteria used by Loadbalancer to restrict routing configuration to
                a limited set xDS compliant clients. In their xDS requests to Loadbalancer, xDS
                clients present node metadata. If a match takes place, the relevant routing
                configuration is made available to those proxies. For each metadataFilter in
@@ -11504,7 +11504,7 @@ class RegionUrlMapPathMatcherRouteRuleMatchRule(dict):
         :param str prefix_match: The value of the header must start with the contents of prefixMatch. Only one of
                exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch
                must be set.
-        :param List['RegionUrlMapPathMatcherRouteRuleMatchRuleQueryParameterMatchArgs'] query_parameter_matches: Specifies a list of query parameter match criteria, all of which must match
+        :param Sequence['RegionUrlMapPathMatcherRouteRuleMatchRuleQueryParameterMatchArgs'] query_parameter_matches: Specifies a list of query parameter match criteria, all of which must match
                corresponding query parameters in the request.
                Structure is documented below.
         :param str regex_match: The queryParameterMatch matches if the value of the parameter matches the
@@ -11541,7 +11541,7 @@ class RegionUrlMapPathMatcherRouteRuleMatchRule(dict):
 
     @property
     @pulumi.getter(name="headerMatches")
-    def header_matches(self) -> Optional[List['outputs.RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatch']]:
+    def header_matches(self) -> Optional[Sequence['outputs.RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatch']]:
         """
         Specifies a list of header match criteria, all of which must match corresponding
         headers in the request.
@@ -11560,7 +11560,7 @@ class RegionUrlMapPathMatcherRouteRuleMatchRule(dict):
 
     @property
     @pulumi.getter(name="metadataFilters")
-    def metadata_filters(self) -> Optional[List['outputs.RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilter']]:
+    def metadata_filters(self) -> Optional[Sequence['outputs.RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilter']]:
         """
         Opaque filter criteria used by Loadbalancer to restrict routing configuration to
         a limited set xDS compliant clients. In their xDS requests to Loadbalancer, xDS
@@ -11589,7 +11589,7 @@ class RegionUrlMapPathMatcherRouteRuleMatchRule(dict):
 
     @property
     @pulumi.getter(name="queryParameterMatches")
-    def query_parameter_matches(self) -> Optional[List['outputs.RegionUrlMapPathMatcherRouteRuleMatchRuleQueryParameterMatch']]:
+    def query_parameter_matches(self) -> Optional[Sequence['outputs.RegionUrlMapPathMatcherRouteRuleMatchRuleQueryParameterMatch']]:
         """
         Specifies a list of query parameter match criteria, all of which must match
         corresponding query parameters in the request.
@@ -11790,10 +11790,10 @@ class RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatch(dict):
 @pulumi.output_type
 class RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilter(dict):
     def __init__(__self__, *,
-                 filter_labels: List['outputs.RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilterFilterLabel'],
+                 filter_labels: Sequence['outputs.RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilterFilterLabel'],
                  filter_match_criteria: str):
         """
-        :param List['RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilterFilterLabelArgs'] filter_labels: The list of label value pairs that must match labels in the provided metadata
+        :param Sequence['RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilterFilterLabelArgs'] filter_labels: The list of label value pairs that must match labels in the provided metadata
                based on filterMatchCriteria  This list must not be empty and can have at the
                most 64 entries.
                Structure is documented below.
@@ -11810,7 +11810,7 @@ class RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilter(dict):
 
     @property
     @pulumi.getter(name="filterLabels")
-    def filter_labels(self) -> List['outputs.RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilterFilterLabel']:
+    def filter_labels(self) -> Sequence['outputs.RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilterFilterLabel']:
         """
         The list of label value pairs that must match labels in the provided metadata
         based on filterMatchCriteria  This list must not be empty and can have at the
@@ -11955,7 +11955,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteAction(dict):
                  retry_policy: Optional['outputs.RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicy'] = None,
                  timeout: Optional['outputs.RegionUrlMapPathMatcherRouteRuleRouteActionTimeout'] = None,
                  url_rewrite: Optional['outputs.RegionUrlMapPathMatcherRouteRuleRouteActionUrlRewrite'] = None,
-                 weighted_backend_services: Optional[List['outputs.RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendService']] = None):
+                 weighted_backend_services: Optional[Sequence['outputs.RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendService']] = None):
         """
         :param 'RegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicyArgs' cors_policy: The specification for allowing client side cross-origin requests. Please see W3C
                Recommendation for Cross Origin Resource Sharing
@@ -11983,7 +11983,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteAction(dict):
         :param 'RegionUrlMapPathMatcherRouteRuleRouteActionUrlRewriteArgs' url_rewrite: The spec to modify the URL of the request, prior to forwarding the request to
                the matched service
                Structure is documented below.
-        :param List['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs'] weighted_backend_services: A list of weighted backend services to send traffic to when a route match
+        :param Sequence['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs'] weighted_backend_services: A list of weighted backend services to send traffic to when a route match
                occurs. The weights determine the fraction of traffic that flows to their
                corresponding backend service. If all traffic needs to go to a single backend
                service, there must be one  weightedBackendService with weight set to a non 0
@@ -12078,7 +12078,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteAction(dict):
 
     @property
     @pulumi.getter(name="weightedBackendServices")
-    def weighted_backend_services(self) -> Optional[List['outputs.RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendService']]:
+    def weighted_backend_services(self) -> Optional[Sequence['outputs.RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendService']]:
         """
         A list of weighted backend services to send traffic to when a route match
         occurs. The weights determine the fraction of traffic that flows to their
@@ -12100,26 +12100,26 @@ class RegionUrlMapPathMatcherRouteRuleRouteAction(dict):
 class RegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicy(dict):
     def __init__(__self__, *,
                  allow_credentials: Optional[bool] = None,
-                 allow_headers: Optional[List[str]] = None,
-                 allow_methods: Optional[List[str]] = None,
-                 allow_origin_regexes: Optional[List[str]] = None,
-                 allow_origins: Optional[List[str]] = None,
+                 allow_headers: Optional[Sequence[str]] = None,
+                 allow_methods: Optional[Sequence[str]] = None,
+                 allow_origin_regexes: Optional[Sequence[str]] = None,
+                 allow_origins: Optional[Sequence[str]] = None,
                  disabled: Optional[bool] = None,
-                 expose_headers: Optional[List[str]] = None,
+                 expose_headers: Optional[Sequence[str]] = None,
                  max_age: Optional[float] = None):
         """
         :param bool allow_credentials: In response to a preflight request, setting this to true indicates that the
                actual request can include user credentials. This translates to the Access-
                Control-Allow-Credentials header. Defaults to false.
-        :param List[str] allow_headers: Specifies the content for the Access-Control-Allow-Headers header.
-        :param List[str] allow_methods: Specifies the content for the Access-Control-Allow-Methods header.
-        :param List[str] allow_origin_regexes: Specifies the regualar expression patterns that match allowed origins. For
+        :param Sequence[str] allow_headers: Specifies the content for the Access-Control-Allow-Headers header.
+        :param Sequence[str] allow_methods: Specifies the content for the Access-Control-Allow-Methods header.
+        :param Sequence[str] allow_origin_regexes: Specifies the regualar expression patterns that match allowed origins. For
                regular expression grammar please see en.cppreference.com/w/cpp/regex/ecmascript
                An origin is allowed if it matches either allow_origins or allow_origin_regex.
-        :param List[str] allow_origins: Specifies the list of origins that will be allowed to do CORS requests. An
+        :param Sequence[str] allow_origins: Specifies the list of origins that will be allowed to do CORS requests. An
                origin is allowed if it matches either allow_origins or allow_origin_regex.
         :param bool disabled: If true, specifies the CORS policy is disabled.
-        :param List[str] expose_headers: Specifies the content for the Access-Control-Expose-Headers header.
+        :param Sequence[str] expose_headers: Specifies the content for the Access-Control-Expose-Headers header.
         :param float max_age: Specifies how long the results of a preflight request can be cached. This
                translates to the content for the Access-Control-Max-Age header.
         """
@@ -12152,7 +12152,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicy(dict):
 
     @property
     @pulumi.getter(name="allowHeaders")
-    def allow_headers(self) -> Optional[List[str]]:
+    def allow_headers(self) -> Optional[Sequence[str]]:
         """
         Specifies the content for the Access-Control-Allow-Headers header.
         """
@@ -12160,7 +12160,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicy(dict):
 
     @property
     @pulumi.getter(name="allowMethods")
-    def allow_methods(self) -> Optional[List[str]]:
+    def allow_methods(self) -> Optional[Sequence[str]]:
         """
         Specifies the content for the Access-Control-Allow-Methods header.
         """
@@ -12168,7 +12168,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicy(dict):
 
     @property
     @pulumi.getter(name="allowOriginRegexes")
-    def allow_origin_regexes(self) -> Optional[List[str]]:
+    def allow_origin_regexes(self) -> Optional[Sequence[str]]:
         """
         Specifies the regualar expression patterns that match allowed origins. For
         regular expression grammar please see en.cppreference.com/w/cpp/regex/ecmascript
@@ -12178,7 +12178,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicy(dict):
 
     @property
     @pulumi.getter(name="allowOrigins")
-    def allow_origins(self) -> Optional[List[str]]:
+    def allow_origins(self) -> Optional[Sequence[str]]:
         """
         Specifies the list of origins that will be allowed to do CORS requests. An
         origin is allowed if it matches either allow_origins or allow_origin_regex.
@@ -12195,7 +12195,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicy(dict):
 
     @property
     @pulumi.getter(name="exposeHeaders")
-    def expose_headers(self) -> Optional[List[str]]:
+    def expose_headers(self) -> Optional[Sequence[str]]:
         """
         Specifies the content for the Access-Control-Expose-Headers header.
         """
@@ -12405,12 +12405,12 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicy(dict):
     def __init__(__self__, *,
                  num_retries: float,
                  per_try_timeout: Optional['outputs.RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeout'] = None,
-                 retry_conditions: Optional[List[str]] = None):
+                 retry_conditions: Optional[Sequence[str]] = None):
         """
         :param float num_retries: Specifies the allowed number retries. This number must be > 0.
         :param 'RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutArgs' per_try_timeout: Specifies a non-zero timeout per retry attempt.
                Structure is documented below.
-        :param List[str] retry_conditions: Specifies one or more conditions when this retry rule applies. Valid values are:
+        :param Sequence[str] retry_conditions: Specifies one or more conditions when this retry rule applies. Valid values are:
                - 5xx: Loadbalancer will attempt a retry if the backend service responds with
                any 5xx response code, or if the backend service does not respond at all,
                example: disconnects, reset, read timeout, connection failure, and refused
@@ -12457,7 +12457,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicy(dict):
 
     @property
     @pulumi.getter(name="retryConditions")
-    def retry_conditions(self) -> Optional[List[str]]:
+    def retry_conditions(self) -> Optional[Sequence[str]]:
         """
         Specifies one or more conditions when this retry rule applies. Valid values are:
         - 5xx: Loadbalancer will attempt a retry if the backend service responds with
@@ -12674,19 +12674,19 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendService(dict):
 @pulumi.output_type
 class RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderAction(dict):
     def __init__(__self__, *,
-                 request_headers_to_adds: Optional[List['outputs.RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd']] = None,
-                 request_headers_to_removes: Optional[List[str]] = None,
-                 response_headers_to_adds: Optional[List['outputs.RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAdd']] = None,
-                 response_headers_to_removes: Optional[List[str]] = None):
+                 request_headers_to_adds: Optional[Sequence['outputs.RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd']] = None,
+                 request_headers_to_removes: Optional[Sequence[str]] = None,
+                 response_headers_to_adds: Optional[Sequence['outputs.RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAdd']] = None,
+                 response_headers_to_removes: Optional[Sequence[str]] = None):
         """
-        :param List['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs'] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the
+        :param Sequence['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs'] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the
                backendService.
                Structure is documented below.
-        :param List[str] request_headers_to_removes: A list of header names for headers that need to be removed from the request
+        :param Sequence[str] request_headers_to_removes: A list of header names for headers that need to be removed from the request
                prior to forwarding the request to the backendService.
-        :param List['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs'] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
+        :param Sequence['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs'] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
                Structure is documented below.
-        :param List[str] response_headers_to_removes: A list of header names for headers that need to be removed from the response
+        :param Sequence[str] response_headers_to_removes: A list of header names for headers that need to be removed from the response
                prior to sending the response back to the client.
         """
         if request_headers_to_adds is not None:
@@ -12700,7 +12700,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderAct
 
     @property
     @pulumi.getter(name="requestHeadersToAdds")
-    def request_headers_to_adds(self) -> Optional[List['outputs.RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd']]:
+    def request_headers_to_adds(self) -> Optional[Sequence['outputs.RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd']]:
         """
         Headers to add to a matching request prior to forwarding the request to the
         backendService.
@@ -12710,7 +12710,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderAct
 
     @property
     @pulumi.getter(name="requestHeadersToRemoves")
-    def request_headers_to_removes(self) -> Optional[List[str]]:
+    def request_headers_to_removes(self) -> Optional[Sequence[str]]:
         """
         A list of header names for headers that need to be removed from the request
         prior to forwarding the request to the backendService.
@@ -12719,7 +12719,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderAct
 
     @property
     @pulumi.getter(name="responseHeadersToAdds")
-    def response_headers_to_adds(self) -> Optional[List['outputs.RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAdd']]:
+    def response_headers_to_adds(self) -> Optional[Sequence['outputs.RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAdd']]:
         """
         Headers to add the response prior to sending the response back to the client.
         Structure is documented below.
@@ -12728,7 +12728,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderAct
 
     @property
     @pulumi.getter(name="responseHeadersToRemoves")
-    def response_headers_to_removes(self) -> Optional[List[str]]:
+    def response_headers_to_removes(self) -> Optional[Sequence[str]]:
         """
         A list of header names for headers that need to be removed from the response
         prior to sending the response back to the client.
@@ -13066,14 +13066,14 @@ class ReservationSpecificReservation(dict):
 class ReservationSpecificReservationInstanceProperties(dict):
     def __init__(__self__, *,
                  machine_type: str,
-                 guest_accelerators: Optional[List['outputs.ReservationSpecificReservationInstancePropertiesGuestAccelerator']] = None,
-                 local_ssds: Optional[List['outputs.ReservationSpecificReservationInstancePropertiesLocalSsd']] = None,
+                 guest_accelerators: Optional[Sequence['outputs.ReservationSpecificReservationInstancePropertiesGuestAccelerator']] = None,
+                 local_ssds: Optional[Sequence['outputs.ReservationSpecificReservationInstancePropertiesLocalSsd']] = None,
                  min_cpu_platform: Optional[str] = None):
         """
         :param str machine_type: The name of the machine type to reserve.
-        :param List['ReservationSpecificReservationInstancePropertiesGuestAcceleratorArgs'] guest_accelerators: Guest accelerator type and count.
+        :param Sequence['ReservationSpecificReservationInstancePropertiesGuestAcceleratorArgs'] guest_accelerators: Guest accelerator type and count.
                Structure is documented below.
-        :param List['ReservationSpecificReservationInstancePropertiesLocalSsdArgs'] local_ssds: The amount of local ssd to reserve with each instance. This
+        :param Sequence['ReservationSpecificReservationInstancePropertiesLocalSsdArgs'] local_ssds: The amount of local ssd to reserve with each instance. This
                reserves disks of type `local-ssd`.
                Structure is documented below.
         :param str min_cpu_platform: The minimum CPU platform for the reservation. For example,
@@ -13099,7 +13099,7 @@ class ReservationSpecificReservationInstanceProperties(dict):
 
     @property
     @pulumi.getter(name="guestAccelerators")
-    def guest_accelerators(self) -> Optional[List['outputs.ReservationSpecificReservationInstancePropertiesGuestAccelerator']]:
+    def guest_accelerators(self) -> Optional[Sequence['outputs.ReservationSpecificReservationInstancePropertiesGuestAccelerator']]:
         """
         Guest accelerator type and count.
         Structure is documented below.
@@ -13108,7 +13108,7 @@ class ReservationSpecificReservationInstanceProperties(dict):
 
     @property
     @pulumi.getter(name="localSsds")
-    def local_ssds(self) -> Optional[List['outputs.ReservationSpecificReservationInstancePropertiesLocalSsd']]:
+    def local_ssds(self) -> Optional[Sequence['outputs.ReservationSpecificReservationInstancePropertiesLocalSsd']]:
         """
         The amount of local ssd to reserve with each instance. This
         reserves disks of type `local-ssd`.
@@ -13477,16 +13477,16 @@ class ResourcePolicySnapshotSchedulePolicyScheduleHourlySchedule(dict):
 @pulumi.output_type
 class ResourcePolicySnapshotSchedulePolicyScheduleWeeklySchedule(dict):
     def __init__(__self__, *,
-                 day_of_weeks: List['outputs.ResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleDayOfWeek']):
+                 day_of_weeks: Sequence['outputs.ResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleDayOfWeek']):
         """
-        :param List['ResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleDayOfWeekArgs'] day_of_weeks: May contain up to seven (one for each day of the week) snapshot times.
+        :param Sequence['ResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleDayOfWeekArgs'] day_of_weeks: May contain up to seven (one for each day of the week) snapshot times.
                Structure is documented below.
         """
         pulumi.set(__self__, "day_of_weeks", day_of_weeks)
 
     @property
     @pulumi.getter(name="dayOfWeeks")
-    def day_of_weeks(self) -> List['outputs.ResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleDayOfWeek']:
+    def day_of_weeks(self) -> Sequence['outputs.ResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleDayOfWeek']:
         """
         May contain up to seven (one for each day of the week) snapshot times.
         Structure is documented below.
@@ -13586,8 +13586,8 @@ class RouterBgp(dict):
     def __init__(__self__, *,
                  asn: float,
                  advertise_mode: Optional[str] = None,
-                 advertised_groups: Optional[List[str]] = None,
-                 advertised_ip_ranges: Optional[List['outputs.RouterBgpAdvertisedIpRange']] = None):
+                 advertised_groups: Optional[Sequence[str]] = None,
+                 advertised_ip_ranges: Optional[Sequence['outputs.RouterBgpAdvertisedIpRange']] = None):
         """
         :param float asn: Local BGP Autonomous System Number (ASN). Must be an RFC6996
                private ASN, either 16-bit or 32-bit. The value will be fixed for
@@ -13596,13 +13596,13 @@ class RouterBgp(dict):
         :param str advertise_mode: User-specified flag to indicate which mode to use for advertisement.
                Default value is `DEFAULT`.
                Possible values are `DEFAULT` and `CUSTOM`.
-        :param List[str] advertised_groups: User-specified list of prefix groups to advertise in custom mode.
+        :param Sequence[str] advertised_groups: User-specified list of prefix groups to advertise in custom mode.
                This field can only be populated if advertiseMode is CUSTOM and
                is advertised to all peers of the router. These groups will be
                advertised in addition to any specified prefixes. Leave this field
                blank to advertise no custom groups.
                This enum field has the one valid value: ALL_SUBNETS
-        :param List['RouterBgpAdvertisedIpRangeArgs'] advertised_ip_ranges: User-specified list of individual IP ranges to advertise in
+        :param Sequence['RouterBgpAdvertisedIpRangeArgs'] advertised_ip_ranges: User-specified list of individual IP ranges to advertise in
                custom mode. This field can only be populated if advertiseMode
                is CUSTOM and is advertised to all peers of the router. These IP
                ranges will be advertised in addition to any specified groups.
@@ -13640,7 +13640,7 @@ class RouterBgp(dict):
 
     @property
     @pulumi.getter(name="advertisedGroups")
-    def advertised_groups(self) -> Optional[List[str]]:
+    def advertised_groups(self) -> Optional[Sequence[str]]:
         """
         User-specified list of prefix groups to advertise in custom mode.
         This field can only be populated if advertiseMode is CUSTOM and
@@ -13653,7 +13653,7 @@ class RouterBgp(dict):
 
     @property
     @pulumi.getter(name="advertisedIpRanges")
-    def advertised_ip_ranges(self) -> Optional[List['outputs.RouterBgpAdvertisedIpRange']]:
+    def advertised_ip_ranges(self) -> Optional[Sequence['outputs.RouterBgpAdvertisedIpRange']]:
         """
         User-specified list of individual IP ranges to advertise in
         custom mode. This field can only be populated if advertiseMode
@@ -13741,15 +13741,15 @@ class RouterNatLogConfig(dict):
 class RouterNatSubnetwork(dict):
     def __init__(__self__, *,
                  name: str,
-                 source_ip_ranges_to_nats: List[str],
-                 secondary_ip_range_names: Optional[List[str]] = None):
+                 source_ip_ranges_to_nats: Sequence[str],
+                 secondary_ip_range_names: Optional[Sequence[str]] = None):
         """
         :param str name: Self-link of subnetwork to NAT
-        :param List[str] source_ip_ranges_to_nats: List of options for which source IPs in the subnetwork
+        :param Sequence[str] source_ip_ranges_to_nats: List of options for which source IPs in the subnetwork
                should have NAT enabled. Supported values include:
                `ALL_IP_RANGES`, `LIST_OF_SECONDARY_IP_RANGES`,
                `PRIMARY_IP_RANGE`.
-        :param List[str] secondary_ip_range_names: List of the secondary ranges of the subnetwork that are allowed
+        :param Sequence[str] secondary_ip_range_names: List of the secondary ranges of the subnetwork that are allowed
                to use NAT. This can be populated only if
                `LIST_OF_SECONDARY_IP_RANGES` is one of the values in
                sourceIpRangesToNat
@@ -13769,7 +13769,7 @@ class RouterNatSubnetwork(dict):
 
     @property
     @pulumi.getter(name="sourceIpRangesToNats")
-    def source_ip_ranges_to_nats(self) -> List[str]:
+    def source_ip_ranges_to_nats(self) -> Sequence[str]:
         """
         List of options for which source IPs in the subnetwork
         should have NAT enabled. Supported values include:
@@ -13780,7 +13780,7 @@ class RouterNatSubnetwork(dict):
 
     @property
     @pulumi.getter(name="secondaryIpRangeNames")
-    def secondary_ip_range_names(self) -> Optional[List[str]]:
+    def secondary_ip_range_names(self) -> Optional[Sequence[str]]:
         """
         List of the secondary ranges of the subnetwork that are allowed
         to use NAT. This can be populated only if
@@ -13966,9 +13966,9 @@ class SecurityPolicyRuleMatch(dict):
 @pulumi.output_type
 class SecurityPolicyRuleMatchConfig(dict):
     def __init__(__self__, *,
-                 src_ip_ranges: List[str]):
+                 src_ip_ranges: Sequence[str]):
         """
-        :param List[str] src_ip_ranges: Set of IP addresses or ranges (IPV4 or IPV6) in CIDR notation
+        :param Sequence[str] src_ip_ranges: Set of IP addresses or ranges (IPV4 or IPV6) in CIDR notation
                to match against inbound traffic. There is a limit of 10 IP ranges per rule. A value of '\*' matches all IPs
                (can be used to override the default behavior).
         """
@@ -13976,7 +13976,7 @@ class SecurityPolicyRuleMatchConfig(dict):
 
     @property
     @pulumi.getter(name="srcIpRanges")
-    def src_ip_ranges(self) -> List[str]:
+    def src_ip_ranges(self) -> Sequence[str]:
         """
         Set of IP addresses or ranges (IPV4 or IPV6) in CIDR notation
         to match against inbound traffic. There is a limit of 10 IP ranges per rule. A value of '\*' matches all IPs
@@ -14331,7 +14331,7 @@ class SubnetworkLogConfig(dict):
                  filter_expr: Optional[str] = None,
                  flow_sampling: Optional[float] = None,
                  metadata: Optional[str] = None,
-                 metadata_fields: Optional[List[str]] = None):
+                 metadata_fields: Optional[Sequence[str]] = None):
         """
         :param str aggregation_interval: Can only be specified if VPC flow logging for this subnetwork is enabled.
                Toggles the aggregation interval for collecting flow logs. Increasing the
@@ -14351,7 +14351,7 @@ class SubnetworkLogConfig(dict):
                flow logs.
                Default value is `INCLUDE_ALL_METADATA`.
                Possible values are `EXCLUDE_ALL_METADATA`, `INCLUDE_ALL_METADATA`, and `CUSTOM_METADATA`.
-        :param List[str] metadata_fields: List of metadata fields that should be added to reported logs.
+        :param Sequence[str] metadata_fields: List of metadata fields that should be added to reported logs.
                Can only be specified if VPC flow logs for this subnetwork is enabled and "metadata" is set to CUSTOM_METADATA.
         """
         if aggregation_interval is not None:
@@ -14413,7 +14413,7 @@ class SubnetworkLogConfig(dict):
 
     @property
     @pulumi.getter(name="metadataFields")
-    def metadata_fields(self) -> Optional[List[str]]:
+    def metadata_fields(self) -> Optional[Sequence[str]]:
         """
         List of metadata fields that should be added to reported logs.
         Can only be specified if VPC flow logs for this subnetwork is enabled and "metadata" is set to CUSTOM_METADATA.
@@ -14477,7 +14477,7 @@ class URLMapDefaultRouteAction(dict):
                  retry_policy: Optional['outputs.URLMapDefaultRouteActionRetryPolicy'] = None,
                  timeout: Optional['outputs.URLMapDefaultRouteActionTimeout'] = None,
                  url_rewrite: Optional['outputs.URLMapDefaultRouteActionUrlRewrite'] = None,
-                 weighted_backend_services: Optional[List['outputs.URLMapDefaultRouteActionWeightedBackendService']] = None):
+                 weighted_backend_services: Optional[Sequence['outputs.URLMapDefaultRouteActionWeightedBackendService']] = None):
         """
         :param 'URLMapDefaultRouteActionCorsPolicyArgs' cors_policy: The specification for allowing client side cross-origin requests. Please see
                [W3C Recommendation for Cross Origin Resource Sharing](https://www.w3.org/TR/cors/)
@@ -14500,7 +14500,7 @@ class URLMapDefaultRouteAction(dict):
                Structure is documented below.
         :param 'URLMapDefaultRouteActionUrlRewriteArgs' url_rewrite: The spec to modify the URL of the request, prior to forwarding the request to the matched service.
                Structure is documented below.
-        :param List['URLMapDefaultRouteActionWeightedBackendServiceArgs'] weighted_backend_services: A list of weighted backend services to send traffic to when a route match occurs.
+        :param Sequence['URLMapDefaultRouteActionWeightedBackendServiceArgs'] weighted_backend_services: A list of weighted backend services to send traffic to when a route match occurs.
                The weights determine the fraction of traffic that flows to their corresponding backend service.
                If all traffic needs to go to a single backend service, there must be one weightedBackendService
                with weight set to a non 0 number.
@@ -14589,7 +14589,7 @@ class URLMapDefaultRouteAction(dict):
 
     @property
     @pulumi.getter(name="weightedBackendServices")
-    def weighted_backend_services(self) -> Optional[List['outputs.URLMapDefaultRouteActionWeightedBackendService']]:
+    def weighted_backend_services(self) -> Optional[Sequence['outputs.URLMapDefaultRouteActionWeightedBackendService']]:
         """
         A list of weighted backend services to send traffic to when a route match occurs.
         The weights determine the fraction of traffic that flows to their corresponding backend service.
@@ -14610,25 +14610,25 @@ class URLMapDefaultRouteAction(dict):
 class URLMapDefaultRouteActionCorsPolicy(dict):
     def __init__(__self__, *,
                  allow_credentials: Optional[bool] = None,
-                 allow_headers: Optional[List[str]] = None,
-                 allow_methods: Optional[List[str]] = None,
-                 allow_origin_regexes: Optional[List[str]] = None,
-                 allow_origins: Optional[List[str]] = None,
+                 allow_headers: Optional[Sequence[str]] = None,
+                 allow_methods: Optional[Sequence[str]] = None,
+                 allow_origin_regexes: Optional[Sequence[str]] = None,
+                 allow_origins: Optional[Sequence[str]] = None,
                  disabled: Optional[bool] = None,
-                 expose_headers: Optional[List[str]] = None,
+                 expose_headers: Optional[Sequence[str]] = None,
                  max_age: Optional[float] = None):
         """
         :param bool allow_credentials: In response to a preflight request, setting this to true indicates that the actual request can include user credentials.
                This translates to the Access-Control-Allow-Credentials header.
-        :param List[str] allow_headers: Specifies the content for the Access-Control-Allow-Headers header.
-        :param List[str] allow_methods: Specifies the content for the Access-Control-Allow-Methods header.
-        :param List[str] allow_origin_regexes: Specifies the regualar expression patterns that match allowed origins. For regular expression grammar
+        :param Sequence[str] allow_headers: Specifies the content for the Access-Control-Allow-Headers header.
+        :param Sequence[str] allow_methods: Specifies the content for the Access-Control-Allow-Methods header.
+        :param Sequence[str] allow_origin_regexes: Specifies the regualar expression patterns that match allowed origins. For regular expression grammar
                please see en.cppreference.com/w/cpp/regex/ecmascript
                An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
-        :param List[str] allow_origins: Specifies the list of origins that will be allowed to do CORS requests.
+        :param Sequence[str] allow_origins: Specifies the list of origins that will be allowed to do CORS requests.
                An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
         :param bool disabled: If true, specifies the CORS policy is disabled. The default value is false, which indicates that the CORS policy is in effect.
-        :param List[str] expose_headers: Specifies the content for the Access-Control-Expose-Headers header.
+        :param Sequence[str] expose_headers: Specifies the content for the Access-Control-Expose-Headers header.
         :param float max_age: Specifies how long results of a preflight request can be cached in seconds.
                This translates to the Access-Control-Max-Age header.
         """
@@ -14660,7 +14660,7 @@ class URLMapDefaultRouteActionCorsPolicy(dict):
 
     @property
     @pulumi.getter(name="allowHeaders")
-    def allow_headers(self) -> Optional[List[str]]:
+    def allow_headers(self) -> Optional[Sequence[str]]:
         """
         Specifies the content for the Access-Control-Allow-Headers header.
         """
@@ -14668,7 +14668,7 @@ class URLMapDefaultRouteActionCorsPolicy(dict):
 
     @property
     @pulumi.getter(name="allowMethods")
-    def allow_methods(self) -> Optional[List[str]]:
+    def allow_methods(self) -> Optional[Sequence[str]]:
         """
         Specifies the content for the Access-Control-Allow-Methods header.
         """
@@ -14676,7 +14676,7 @@ class URLMapDefaultRouteActionCorsPolicy(dict):
 
     @property
     @pulumi.getter(name="allowOriginRegexes")
-    def allow_origin_regexes(self) -> Optional[List[str]]:
+    def allow_origin_regexes(self) -> Optional[Sequence[str]]:
         """
         Specifies the regualar expression patterns that match allowed origins. For regular expression grammar
         please see en.cppreference.com/w/cpp/regex/ecmascript
@@ -14686,7 +14686,7 @@ class URLMapDefaultRouteActionCorsPolicy(dict):
 
     @property
     @pulumi.getter(name="allowOrigins")
-    def allow_origins(self) -> Optional[List[str]]:
+    def allow_origins(self) -> Optional[Sequence[str]]:
         """
         Specifies the list of origins that will be allowed to do CORS requests.
         An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
@@ -14703,7 +14703,7 @@ class URLMapDefaultRouteActionCorsPolicy(dict):
 
     @property
     @pulumi.getter(name="exposeHeaders")
-    def expose_headers(self) -> Optional[List[str]]:
+    def expose_headers(self) -> Optional[Sequence[str]]:
         """
         Specifies the content for the Access-Control-Expose-Headers header.
         """
@@ -14900,14 +14900,14 @@ class URLMapDefaultRouteActionRetryPolicy(dict):
     def __init__(__self__, *,
                  num_retries: Optional[float] = None,
                  per_try_timeout: Optional['outputs.URLMapDefaultRouteActionRetryPolicyPerTryTimeout'] = None,
-                 retry_conditions: Optional[List[str]] = None):
+                 retry_conditions: Optional[Sequence[str]] = None):
         """
         :param float num_retries: Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
         :param 'URLMapDefaultRouteActionRetryPolicyPerTryTimeoutArgs' per_try_timeout: Specifies a non-zero timeout per retry attempt.
                If not specified, will use the timeout set in HttpRouteAction. If timeout in HttpRouteAction is not set,
                will use the largest timeout among all backend services associated with the route.
                Structure is documented below.
-        :param List[str] retry_conditions: Specfies one or more conditions when this retry rule applies. Valid values are:
+        :param Sequence[str] retry_conditions: Specfies one or more conditions when this retry rule applies. Valid values are:
                5xx: Loadbalancer will attempt a retry if the backend service responds with any 5xx response code,
                or if the backend service does not respond at all, example: disconnects, reset, read timeout,
                connection failure, and refused streams.
@@ -14951,7 +14951,7 @@ class URLMapDefaultRouteActionRetryPolicy(dict):
 
     @property
     @pulumi.getter(name="retryConditions")
-    def retry_conditions(self) -> Optional[List[str]]:
+    def retry_conditions(self) -> Optional[Sequence[str]]:
         """
         Specfies one or more conditions when this retry rule applies. Valid values are:
         5xx: Loadbalancer will attempt a retry if the backend service responds with any 5xx response code,
@@ -15160,18 +15160,18 @@ class URLMapDefaultRouteActionWeightedBackendService(dict):
 @pulumi.output_type
 class URLMapDefaultRouteActionWeightedBackendServiceHeaderAction(dict):
     def __init__(__self__, *,
-                 request_headers_to_adds: Optional[List['outputs.URLMapDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd']] = None,
-                 request_headers_to_removes: Optional[List[str]] = None,
-                 response_headers_to_adds: Optional[List['outputs.URLMapDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAdd']] = None,
-                 response_headers_to_removes: Optional[List[str]] = None):
+                 request_headers_to_adds: Optional[Sequence['outputs.URLMapDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd']] = None,
+                 request_headers_to_removes: Optional[Sequence[str]] = None,
+                 response_headers_to_adds: Optional[Sequence['outputs.URLMapDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAdd']] = None,
+                 response_headers_to_removes: Optional[Sequence[str]] = None):
         """
-        :param List['URLMapDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs'] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the backendService.
+        :param Sequence['URLMapDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs'] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the backendService.
                Structure is documented below.
-        :param List[str] request_headers_to_removes: A list of header names for headers that need to be removed from the request prior to
+        :param Sequence[str] request_headers_to_removes: A list of header names for headers that need to be removed from the request prior to
                forwarding the request to the backendService.
-        :param List['URLMapDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs'] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
+        :param Sequence['URLMapDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs'] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
                Structure is documented below.
-        :param List[str] response_headers_to_removes: A list of header names for headers that need to be removed from the response prior to sending the
+        :param Sequence[str] response_headers_to_removes: A list of header names for headers that need to be removed from the response prior to sending the
                response back to the client.
         """
         if request_headers_to_adds is not None:
@@ -15185,7 +15185,7 @@ class URLMapDefaultRouteActionWeightedBackendServiceHeaderAction(dict):
 
     @property
     @pulumi.getter(name="requestHeadersToAdds")
-    def request_headers_to_adds(self) -> Optional[List['outputs.URLMapDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd']]:
+    def request_headers_to_adds(self) -> Optional[Sequence['outputs.URLMapDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd']]:
         """
         Headers to add to a matching request prior to forwarding the request to the backendService.
         Structure is documented below.
@@ -15194,7 +15194,7 @@ class URLMapDefaultRouteActionWeightedBackendServiceHeaderAction(dict):
 
     @property
     @pulumi.getter(name="requestHeadersToRemoves")
-    def request_headers_to_removes(self) -> Optional[List[str]]:
+    def request_headers_to_removes(self) -> Optional[Sequence[str]]:
         """
         A list of header names for headers that need to be removed from the request prior to
         forwarding the request to the backendService.
@@ -15203,7 +15203,7 @@ class URLMapDefaultRouteActionWeightedBackendServiceHeaderAction(dict):
 
     @property
     @pulumi.getter(name="responseHeadersToAdds")
-    def response_headers_to_adds(self) -> Optional[List['outputs.URLMapDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAdd']]:
+    def response_headers_to_adds(self) -> Optional[Sequence['outputs.URLMapDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAdd']]:
         """
         Headers to add the response prior to sending the response back to the client.
         Structure is documented below.
@@ -15212,7 +15212,7 @@ class URLMapDefaultRouteActionWeightedBackendServiceHeaderAction(dict):
 
     @property
     @pulumi.getter(name="responseHeadersToRemoves")
-    def response_headers_to_removes(self) -> Optional[List[str]]:
+    def response_headers_to_removes(self) -> Optional[Sequence[str]]:
         """
         A list of header names for headers that need to be removed from the response prior to sending the
         response back to the client.
@@ -15447,18 +15447,18 @@ class URLMapDefaultUrlRedirect(dict):
 @pulumi.output_type
 class URLMapHeaderAction(dict):
     def __init__(__self__, *,
-                 request_headers_to_adds: Optional[List['outputs.URLMapHeaderActionRequestHeadersToAdd']] = None,
-                 request_headers_to_removes: Optional[List[str]] = None,
-                 response_headers_to_adds: Optional[List['outputs.URLMapHeaderActionResponseHeadersToAdd']] = None,
-                 response_headers_to_removes: Optional[List[str]] = None):
+                 request_headers_to_adds: Optional[Sequence['outputs.URLMapHeaderActionRequestHeadersToAdd']] = None,
+                 request_headers_to_removes: Optional[Sequence[str]] = None,
+                 response_headers_to_adds: Optional[Sequence['outputs.URLMapHeaderActionResponseHeadersToAdd']] = None,
+                 response_headers_to_removes: Optional[Sequence[str]] = None):
         """
-        :param List['URLMapHeaderActionRequestHeadersToAddArgs'] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the backendService.
+        :param Sequence['URLMapHeaderActionRequestHeadersToAddArgs'] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the backendService.
                Structure is documented below.
-        :param List[str] request_headers_to_removes: A list of header names for headers that need to be removed from the request prior to
+        :param Sequence[str] request_headers_to_removes: A list of header names for headers that need to be removed from the request prior to
                forwarding the request to the backendService.
-        :param List['URLMapHeaderActionResponseHeadersToAddArgs'] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
+        :param Sequence['URLMapHeaderActionResponseHeadersToAddArgs'] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
                Structure is documented below.
-        :param List[str] response_headers_to_removes: A list of header names for headers that need to be removed from the response prior to sending the
+        :param Sequence[str] response_headers_to_removes: A list of header names for headers that need to be removed from the response prior to sending the
                response back to the client.
         """
         if request_headers_to_adds is not None:
@@ -15472,7 +15472,7 @@ class URLMapHeaderAction(dict):
 
     @property
     @pulumi.getter(name="requestHeadersToAdds")
-    def request_headers_to_adds(self) -> Optional[List['outputs.URLMapHeaderActionRequestHeadersToAdd']]:
+    def request_headers_to_adds(self) -> Optional[Sequence['outputs.URLMapHeaderActionRequestHeadersToAdd']]:
         """
         Headers to add to a matching request prior to forwarding the request to the backendService.
         Structure is documented below.
@@ -15481,7 +15481,7 @@ class URLMapHeaderAction(dict):
 
     @property
     @pulumi.getter(name="requestHeadersToRemoves")
-    def request_headers_to_removes(self) -> Optional[List[str]]:
+    def request_headers_to_removes(self) -> Optional[Sequence[str]]:
         """
         A list of header names for headers that need to be removed from the request prior to
         forwarding the request to the backendService.
@@ -15490,7 +15490,7 @@ class URLMapHeaderAction(dict):
 
     @property
     @pulumi.getter(name="responseHeadersToAdds")
-    def response_headers_to_adds(self) -> Optional[List['outputs.URLMapHeaderActionResponseHeadersToAdd']]:
+    def response_headers_to_adds(self) -> Optional[Sequence['outputs.URLMapHeaderActionResponseHeadersToAdd']]:
         """
         Headers to add the response prior to sending the response back to the client.
         Structure is documented below.
@@ -15499,7 +15499,7 @@ class URLMapHeaderAction(dict):
 
     @property
     @pulumi.getter(name="responseHeadersToRemoves")
-    def response_headers_to_removes(self) -> Optional[List[str]]:
+    def response_headers_to_removes(self) -> Optional[Sequence[str]]:
         """
         A list of header names for headers that need to be removed from the response prior to sending the
         response back to the client.
@@ -15603,11 +15603,11 @@ class URLMapHeaderActionResponseHeadersToAdd(dict):
 @pulumi.output_type
 class URLMapHostRule(dict):
     def __init__(__self__, *,
-                 hosts: List[str],
+                 hosts: Sequence[str],
                  path_matcher: str,
                  description: Optional[str] = None):
         """
-        :param List[str] hosts: The list of host patterns to match. They must be valid hostnames, except * will
+        :param Sequence[str] hosts: The list of host patterns to match. They must be valid hostnames, except * will
                match any string of ([a-z0-9-.]*). In that case, * must be the first character
                and must be followed in the pattern by either - or ..
         :param str path_matcher: The name of the PathMatcher to use to match the path portion of the URL if the
@@ -15621,7 +15621,7 @@ class URLMapHostRule(dict):
 
     @property
     @pulumi.getter
-    def hosts(self) -> List[str]:
+    def hosts(self) -> Sequence[str]:
         """
         The list of host patterns to match. They must be valid hostnames, except * will
         match any string of ([a-z0-9-.]*). In that case, * must be the first character
@@ -15659,8 +15659,8 @@ class URLMapPathMatcher(dict):
                  default_url_redirect: Optional['outputs.URLMapPathMatcherDefaultUrlRedirect'] = None,
                  description: Optional[str] = None,
                  header_action: Optional['outputs.URLMapPathMatcherHeaderAction'] = None,
-                 path_rules: Optional[List['outputs.URLMapPathMatcherPathRule']] = None,
-                 route_rules: Optional[List['outputs.URLMapPathMatcherRouteRule']] = None):
+                 path_rules: Optional[Sequence['outputs.URLMapPathMatcherPathRule']] = None,
+                 route_rules: Optional[Sequence['outputs.URLMapPathMatcherRouteRule']] = None):
         """
         :param str name: The name of the query parameter to match. The query parameter must exist in the
                request, in the absence of which the request match fails.
@@ -15681,14 +15681,14 @@ class URLMapPathMatcher(dict):
                headerAction specified here take effect before headerAction in the enclosing
                HttpRouteRule, PathMatcher and UrlMap.
                Structure is documented below.
-        :param List['URLMapPathMatcherPathRuleArgs'] path_rules: The list of path rules. Use this list instead of routeRules when routing based
+        :param Sequence['URLMapPathMatcherPathRuleArgs'] path_rules: The list of path rules. Use this list instead of routeRules when routing based
                on simple path matching is all that's required. The order by which path rules
                are specified does not matter. Matches are always done on the longest-path-first
                basis. For example: a pathRule with a path /a/b/c/* will match before /a/b/*
                irrespective of the order in which those paths appear in this list. Within a
                given pathMatcher, only one of pathRules or routeRules must be set.
                Structure is documented below.
-        :param List['URLMapPathMatcherRouteRuleArgs'] route_rules: The list of ordered HTTP route rules. Use this list instead of pathRules when
+        :param Sequence['URLMapPathMatcherRouteRuleArgs'] route_rules: The list of ordered HTTP route rules. Use this list instead of pathRules when
                advanced route matching and routing actions are desired. The order of specifying
                routeRules matters: the first rule that matches will cause its specified routing
                action to take effect. Within a given pathMatcher, only one of pathRules or
@@ -15775,7 +15775,7 @@ class URLMapPathMatcher(dict):
 
     @property
     @pulumi.getter(name="pathRules")
-    def path_rules(self) -> Optional[List['outputs.URLMapPathMatcherPathRule']]:
+    def path_rules(self) -> Optional[Sequence['outputs.URLMapPathMatcherPathRule']]:
         """
         The list of path rules. Use this list instead of routeRules when routing based
         on simple path matching is all that's required. The order by which path rules
@@ -15789,7 +15789,7 @@ class URLMapPathMatcher(dict):
 
     @property
     @pulumi.getter(name="routeRules")
-    def route_rules(self) -> Optional[List['outputs.URLMapPathMatcherRouteRule']]:
+    def route_rules(self) -> Optional[Sequence['outputs.URLMapPathMatcherRouteRule']]:
         """
         The list of ordered HTTP route rules. Use this list instead of pathRules when
         advanced route matching and routing actions are desired. The order of specifying
@@ -15814,7 +15814,7 @@ class URLMapPathMatcherDefaultRouteAction(dict):
                  retry_policy: Optional['outputs.URLMapPathMatcherDefaultRouteActionRetryPolicy'] = None,
                  timeout: Optional['outputs.URLMapPathMatcherDefaultRouteActionTimeout'] = None,
                  url_rewrite: Optional['outputs.URLMapPathMatcherDefaultRouteActionUrlRewrite'] = None,
-                 weighted_backend_services: Optional[List['outputs.URLMapPathMatcherDefaultRouteActionWeightedBackendService']] = None):
+                 weighted_backend_services: Optional[Sequence['outputs.URLMapPathMatcherDefaultRouteActionWeightedBackendService']] = None):
         """
         :param 'URLMapPathMatcherDefaultRouteActionCorsPolicyArgs' cors_policy: The specification for allowing client side cross-origin requests. Please see
                [W3C Recommendation for Cross Origin Resource Sharing](https://www.w3.org/TR/cors/)
@@ -15837,7 +15837,7 @@ class URLMapPathMatcherDefaultRouteAction(dict):
                Structure is documented below.
         :param 'URLMapPathMatcherDefaultRouteActionUrlRewriteArgs' url_rewrite: The spec to modify the URL of the request, prior to forwarding the request to the matched service.
                Structure is documented below.
-        :param List['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceArgs'] weighted_backend_services: A list of weighted backend services to send traffic to when a route match occurs.
+        :param Sequence['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceArgs'] weighted_backend_services: A list of weighted backend services to send traffic to when a route match occurs.
                The weights determine the fraction of traffic that flows to their corresponding backend service.
                If all traffic needs to go to a single backend service, there must be one weightedBackendService
                with weight set to a non 0 number.
@@ -15926,7 +15926,7 @@ class URLMapPathMatcherDefaultRouteAction(dict):
 
     @property
     @pulumi.getter(name="weightedBackendServices")
-    def weighted_backend_services(self) -> Optional[List['outputs.URLMapPathMatcherDefaultRouteActionWeightedBackendService']]:
+    def weighted_backend_services(self) -> Optional[Sequence['outputs.URLMapPathMatcherDefaultRouteActionWeightedBackendService']]:
         """
         A list of weighted backend services to send traffic to when a route match occurs.
         The weights determine the fraction of traffic that flows to their corresponding backend service.
@@ -15947,25 +15947,25 @@ class URLMapPathMatcherDefaultRouteAction(dict):
 class URLMapPathMatcherDefaultRouteActionCorsPolicy(dict):
     def __init__(__self__, *,
                  allow_credentials: Optional[bool] = None,
-                 allow_headers: Optional[List[str]] = None,
-                 allow_methods: Optional[List[str]] = None,
-                 allow_origin_regexes: Optional[List[str]] = None,
-                 allow_origins: Optional[List[str]] = None,
+                 allow_headers: Optional[Sequence[str]] = None,
+                 allow_methods: Optional[Sequence[str]] = None,
+                 allow_origin_regexes: Optional[Sequence[str]] = None,
+                 allow_origins: Optional[Sequence[str]] = None,
                  disabled: Optional[bool] = None,
-                 expose_headers: Optional[List[str]] = None,
+                 expose_headers: Optional[Sequence[str]] = None,
                  max_age: Optional[float] = None):
         """
         :param bool allow_credentials: In response to a preflight request, setting this to true indicates that the actual request can include user credentials.
                This translates to the Access-Control-Allow-Credentials header.
-        :param List[str] allow_headers: Specifies the content for the Access-Control-Allow-Headers header.
-        :param List[str] allow_methods: Specifies the content for the Access-Control-Allow-Methods header.
-        :param List[str] allow_origin_regexes: Specifies the regualar expression patterns that match allowed origins. For regular expression grammar
+        :param Sequence[str] allow_headers: Specifies the content for the Access-Control-Allow-Headers header.
+        :param Sequence[str] allow_methods: Specifies the content for the Access-Control-Allow-Methods header.
+        :param Sequence[str] allow_origin_regexes: Specifies the regualar expression patterns that match allowed origins. For regular expression grammar
                please see en.cppreference.com/w/cpp/regex/ecmascript
                An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
-        :param List[str] allow_origins: Specifies the list of origins that will be allowed to do CORS requests.
+        :param Sequence[str] allow_origins: Specifies the list of origins that will be allowed to do CORS requests.
                An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
         :param bool disabled: If true, specifies the CORS policy is disabled. The default value is false, which indicates that the CORS policy is in effect.
-        :param List[str] expose_headers: Specifies the content for the Access-Control-Expose-Headers header.
+        :param Sequence[str] expose_headers: Specifies the content for the Access-Control-Expose-Headers header.
         :param float max_age: Specifies how long results of a preflight request can be cached in seconds.
                This translates to the Access-Control-Max-Age header.
         """
@@ -15997,7 +15997,7 @@ class URLMapPathMatcherDefaultRouteActionCorsPolicy(dict):
 
     @property
     @pulumi.getter(name="allowHeaders")
-    def allow_headers(self) -> Optional[List[str]]:
+    def allow_headers(self) -> Optional[Sequence[str]]:
         """
         Specifies the content for the Access-Control-Allow-Headers header.
         """
@@ -16005,7 +16005,7 @@ class URLMapPathMatcherDefaultRouteActionCorsPolicy(dict):
 
     @property
     @pulumi.getter(name="allowMethods")
-    def allow_methods(self) -> Optional[List[str]]:
+    def allow_methods(self) -> Optional[Sequence[str]]:
         """
         Specifies the content for the Access-Control-Allow-Methods header.
         """
@@ -16013,7 +16013,7 @@ class URLMapPathMatcherDefaultRouteActionCorsPolicy(dict):
 
     @property
     @pulumi.getter(name="allowOriginRegexes")
-    def allow_origin_regexes(self) -> Optional[List[str]]:
+    def allow_origin_regexes(self) -> Optional[Sequence[str]]:
         """
         Specifies the regualar expression patterns that match allowed origins. For regular expression grammar
         please see en.cppreference.com/w/cpp/regex/ecmascript
@@ -16023,7 +16023,7 @@ class URLMapPathMatcherDefaultRouteActionCorsPolicy(dict):
 
     @property
     @pulumi.getter(name="allowOrigins")
-    def allow_origins(self) -> Optional[List[str]]:
+    def allow_origins(self) -> Optional[Sequence[str]]:
         """
         Specifies the list of origins that will be allowed to do CORS requests.
         An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
@@ -16040,7 +16040,7 @@ class URLMapPathMatcherDefaultRouteActionCorsPolicy(dict):
 
     @property
     @pulumi.getter(name="exposeHeaders")
-    def expose_headers(self) -> Optional[List[str]]:
+    def expose_headers(self) -> Optional[Sequence[str]]:
         """
         Specifies the content for the Access-Control-Expose-Headers header.
         """
@@ -16237,14 +16237,14 @@ class URLMapPathMatcherDefaultRouteActionRetryPolicy(dict):
     def __init__(__self__, *,
                  num_retries: Optional[float] = None,
                  per_try_timeout: Optional['outputs.URLMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeout'] = None,
-                 retry_conditions: Optional[List[str]] = None):
+                 retry_conditions: Optional[Sequence[str]] = None):
         """
         :param float num_retries: Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
         :param 'URLMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeoutArgs' per_try_timeout: Specifies a non-zero timeout per retry attempt.
                If not specified, will use the timeout set in HttpRouteAction. If timeout in HttpRouteAction is not set,
                will use the largest timeout among all backend services associated with the route.
                Structure is documented below.
-        :param List[str] retry_conditions: Specfies one or more conditions when this retry rule applies. Valid values are:
+        :param Sequence[str] retry_conditions: Specfies one or more conditions when this retry rule applies. Valid values are:
                5xx: Loadbalancer will attempt a retry if the backend service responds with any 5xx response code,
                or if the backend service does not respond at all, example: disconnects, reset, read timeout,
                connection failure, and refused streams.
@@ -16288,7 +16288,7 @@ class URLMapPathMatcherDefaultRouteActionRetryPolicy(dict):
 
     @property
     @pulumi.getter(name="retryConditions")
-    def retry_conditions(self) -> Optional[List[str]]:
+    def retry_conditions(self) -> Optional[Sequence[str]]:
         """
         Specfies one or more conditions when this retry rule applies. Valid values are:
         5xx: Loadbalancer will attempt a retry if the backend service responds with any 5xx response code,
@@ -16497,18 +16497,18 @@ class URLMapPathMatcherDefaultRouteActionWeightedBackendService(dict):
 @pulumi.output_type
 class URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderAction(dict):
     def __init__(__self__, *,
-                 request_headers_to_adds: Optional[List['outputs.URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd']] = None,
-                 request_headers_to_removes: Optional[List[str]] = None,
-                 response_headers_to_adds: Optional[List['outputs.URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAdd']] = None,
-                 response_headers_to_removes: Optional[List[str]] = None):
+                 request_headers_to_adds: Optional[Sequence['outputs.URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd']] = None,
+                 request_headers_to_removes: Optional[Sequence[str]] = None,
+                 response_headers_to_adds: Optional[Sequence['outputs.URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAdd']] = None,
+                 response_headers_to_removes: Optional[Sequence[str]] = None):
         """
-        :param List['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs'] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the backendService.
+        :param Sequence['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs'] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the backendService.
                Structure is documented below.
-        :param List[str] request_headers_to_removes: A list of header names for headers that need to be removed from the request prior to
+        :param Sequence[str] request_headers_to_removes: A list of header names for headers that need to be removed from the request prior to
                forwarding the request to the backendService.
-        :param List['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs'] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
+        :param Sequence['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs'] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
                Structure is documented below.
-        :param List[str] response_headers_to_removes: A list of header names for headers that need to be removed from the response prior to sending the
+        :param Sequence[str] response_headers_to_removes: A list of header names for headers that need to be removed from the response prior to sending the
                response back to the client.
         """
         if request_headers_to_adds is not None:
@@ -16522,7 +16522,7 @@ class URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderAction(dict
 
     @property
     @pulumi.getter(name="requestHeadersToAdds")
-    def request_headers_to_adds(self) -> Optional[List['outputs.URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd']]:
+    def request_headers_to_adds(self) -> Optional[Sequence['outputs.URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd']]:
         """
         Headers to add to a matching request prior to forwarding the request to the backendService.
         Structure is documented below.
@@ -16531,7 +16531,7 @@ class URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderAction(dict
 
     @property
     @pulumi.getter(name="requestHeadersToRemoves")
-    def request_headers_to_removes(self) -> Optional[List[str]]:
+    def request_headers_to_removes(self) -> Optional[Sequence[str]]:
         """
         A list of header names for headers that need to be removed from the request prior to
         forwarding the request to the backendService.
@@ -16540,7 +16540,7 @@ class URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderAction(dict
 
     @property
     @pulumi.getter(name="responseHeadersToAdds")
-    def response_headers_to_adds(self) -> Optional[List['outputs.URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAdd']]:
+    def response_headers_to_adds(self) -> Optional[Sequence['outputs.URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAdd']]:
         """
         Headers to add the response prior to sending the response back to the client.
         Structure is documented below.
@@ -16549,7 +16549,7 @@ class URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderAction(dict
 
     @property
     @pulumi.getter(name="responseHeadersToRemoves")
-    def response_headers_to_removes(self) -> Optional[List[str]]:
+    def response_headers_to_removes(self) -> Optional[Sequence[str]]:
         """
         A list of header names for headers that need to be removed from the response prior to sending the
         response back to the client.
@@ -16784,18 +16784,18 @@ class URLMapPathMatcherDefaultUrlRedirect(dict):
 @pulumi.output_type
 class URLMapPathMatcherHeaderAction(dict):
     def __init__(__self__, *,
-                 request_headers_to_adds: Optional[List['outputs.URLMapPathMatcherHeaderActionRequestHeadersToAdd']] = None,
-                 request_headers_to_removes: Optional[List[str]] = None,
-                 response_headers_to_adds: Optional[List['outputs.URLMapPathMatcherHeaderActionResponseHeadersToAdd']] = None,
-                 response_headers_to_removes: Optional[List[str]] = None):
+                 request_headers_to_adds: Optional[Sequence['outputs.URLMapPathMatcherHeaderActionRequestHeadersToAdd']] = None,
+                 request_headers_to_removes: Optional[Sequence[str]] = None,
+                 response_headers_to_adds: Optional[Sequence['outputs.URLMapPathMatcherHeaderActionResponseHeadersToAdd']] = None,
+                 response_headers_to_removes: Optional[Sequence[str]] = None):
         """
-        :param List['URLMapPathMatcherHeaderActionRequestHeadersToAddArgs'] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the backendService.
+        :param Sequence['URLMapPathMatcherHeaderActionRequestHeadersToAddArgs'] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the backendService.
                Structure is documented below.
-        :param List[str] request_headers_to_removes: A list of header names for headers that need to be removed from the request prior to
+        :param Sequence[str] request_headers_to_removes: A list of header names for headers that need to be removed from the request prior to
                forwarding the request to the backendService.
-        :param List['URLMapPathMatcherHeaderActionResponseHeadersToAddArgs'] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
+        :param Sequence['URLMapPathMatcherHeaderActionResponseHeadersToAddArgs'] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
                Structure is documented below.
-        :param List[str] response_headers_to_removes: A list of header names for headers that need to be removed from the response prior to sending the
+        :param Sequence[str] response_headers_to_removes: A list of header names for headers that need to be removed from the response prior to sending the
                response back to the client.
         """
         if request_headers_to_adds is not None:
@@ -16809,7 +16809,7 @@ class URLMapPathMatcherHeaderAction(dict):
 
     @property
     @pulumi.getter(name="requestHeadersToAdds")
-    def request_headers_to_adds(self) -> Optional[List['outputs.URLMapPathMatcherHeaderActionRequestHeadersToAdd']]:
+    def request_headers_to_adds(self) -> Optional[Sequence['outputs.URLMapPathMatcherHeaderActionRequestHeadersToAdd']]:
         """
         Headers to add to a matching request prior to forwarding the request to the backendService.
         Structure is documented below.
@@ -16818,7 +16818,7 @@ class URLMapPathMatcherHeaderAction(dict):
 
     @property
     @pulumi.getter(name="requestHeadersToRemoves")
-    def request_headers_to_removes(self) -> Optional[List[str]]:
+    def request_headers_to_removes(self) -> Optional[Sequence[str]]:
         """
         A list of header names for headers that need to be removed from the request prior to
         forwarding the request to the backendService.
@@ -16827,7 +16827,7 @@ class URLMapPathMatcherHeaderAction(dict):
 
     @property
     @pulumi.getter(name="responseHeadersToAdds")
-    def response_headers_to_adds(self) -> Optional[List['outputs.URLMapPathMatcherHeaderActionResponseHeadersToAdd']]:
+    def response_headers_to_adds(self) -> Optional[Sequence['outputs.URLMapPathMatcherHeaderActionResponseHeadersToAdd']]:
         """
         Headers to add the response prior to sending the response back to the client.
         Structure is documented below.
@@ -16836,7 +16836,7 @@ class URLMapPathMatcherHeaderAction(dict):
 
     @property
     @pulumi.getter(name="responseHeadersToRemoves")
-    def response_headers_to_removes(self) -> Optional[List[str]]:
+    def response_headers_to_removes(self) -> Optional[Sequence[str]]:
         """
         A list of header names for headers that need to be removed from the response prior to sending the
         response back to the client.
@@ -16940,12 +16940,12 @@ class URLMapPathMatcherHeaderActionResponseHeadersToAdd(dict):
 @pulumi.output_type
 class URLMapPathMatcherPathRule(dict):
     def __init__(__self__, *,
-                 paths: List[str],
+                 paths: Sequence[str],
                  route_action: Optional['outputs.URLMapPathMatcherPathRuleRouteAction'] = None,
                  service: Optional[str] = None,
                  url_redirect: Optional['outputs.URLMapPathMatcherPathRuleUrlRedirect'] = None):
         """
-        :param List[str] paths: The list of path patterns to match. Each must start with / and the only place a
+        :param Sequence[str] paths: The list of path patterns to match. Each must start with / and the only place a
                * is allowed is at the end following a /. The string fed to the path matcher
                does not include any text after the first ? or #, and those chars are not
                allowed here.
@@ -16972,7 +16972,7 @@ class URLMapPathMatcherPathRule(dict):
 
     @property
     @pulumi.getter
-    def paths(self) -> List[str]:
+    def paths(self) -> Sequence[str]:
         """
         The list of path patterns to match. Each must start with / and the only place a
         * is allowed is at the end following a /. The string fed to the path matcher
@@ -17027,7 +17027,7 @@ class URLMapPathMatcherPathRuleRouteAction(dict):
                  retry_policy: Optional['outputs.URLMapPathMatcherPathRuleRouteActionRetryPolicy'] = None,
                  timeout: Optional['outputs.URLMapPathMatcherPathRuleRouteActionTimeout'] = None,
                  url_rewrite: Optional['outputs.URLMapPathMatcherPathRuleRouteActionUrlRewrite'] = None,
-                 weighted_backend_services: Optional[List['outputs.URLMapPathMatcherPathRuleRouteActionWeightedBackendService']] = None):
+                 weighted_backend_services: Optional[Sequence['outputs.URLMapPathMatcherPathRuleRouteActionWeightedBackendService']] = None):
         """
         :param 'URLMapPathMatcherPathRuleRouteActionCorsPolicyArgs' cors_policy: The specification for allowing client side cross-origin requests. Please see
                [W3C Recommendation for Cross Origin Resource Sharing](https://www.w3.org/TR/cors/)
@@ -17050,7 +17050,7 @@ class URLMapPathMatcherPathRuleRouteAction(dict):
                Structure is documented below.
         :param 'URLMapPathMatcherPathRuleRouteActionUrlRewriteArgs' url_rewrite: The spec to modify the URL of the request, prior to forwarding the request to the matched service.
                Structure is documented below.
-        :param List['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs'] weighted_backend_services: A list of weighted backend services to send traffic to when a route match occurs.
+        :param Sequence['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs'] weighted_backend_services: A list of weighted backend services to send traffic to when a route match occurs.
                The weights determine the fraction of traffic that flows to their corresponding backend service.
                If all traffic needs to go to a single backend service, there must be one weightedBackendService
                with weight set to a non 0 number.
@@ -17139,7 +17139,7 @@ class URLMapPathMatcherPathRuleRouteAction(dict):
 
     @property
     @pulumi.getter(name="weightedBackendServices")
-    def weighted_backend_services(self) -> Optional[List['outputs.URLMapPathMatcherPathRuleRouteActionWeightedBackendService']]:
+    def weighted_backend_services(self) -> Optional[Sequence['outputs.URLMapPathMatcherPathRuleRouteActionWeightedBackendService']]:
         """
         A list of weighted backend services to send traffic to when a route match occurs.
         The weights determine the fraction of traffic that flows to their corresponding backend service.
@@ -17161,24 +17161,24 @@ class URLMapPathMatcherPathRuleRouteActionCorsPolicy(dict):
     def __init__(__self__, *,
                  disabled: bool,
                  allow_credentials: Optional[bool] = None,
-                 allow_headers: Optional[List[str]] = None,
-                 allow_methods: Optional[List[str]] = None,
-                 allow_origin_regexes: Optional[List[str]] = None,
-                 allow_origins: Optional[List[str]] = None,
-                 expose_headers: Optional[List[str]] = None,
+                 allow_headers: Optional[Sequence[str]] = None,
+                 allow_methods: Optional[Sequence[str]] = None,
+                 allow_origin_regexes: Optional[Sequence[str]] = None,
+                 allow_origins: Optional[Sequence[str]] = None,
+                 expose_headers: Optional[Sequence[str]] = None,
                  max_age: Optional[float] = None):
         """
         :param bool disabled: If true, specifies the CORS policy is disabled. The default value is false, which indicates that the CORS policy is in effect.
         :param bool allow_credentials: In response to a preflight request, setting this to true indicates that the actual request can include user credentials.
                This translates to the Access-Control-Allow-Credentials header.
-        :param List[str] allow_headers: Specifies the content for the Access-Control-Allow-Headers header.
-        :param List[str] allow_methods: Specifies the content for the Access-Control-Allow-Methods header.
-        :param List[str] allow_origin_regexes: Specifies the regualar expression patterns that match allowed origins. For regular expression grammar
+        :param Sequence[str] allow_headers: Specifies the content for the Access-Control-Allow-Headers header.
+        :param Sequence[str] allow_methods: Specifies the content for the Access-Control-Allow-Methods header.
+        :param Sequence[str] allow_origin_regexes: Specifies the regualar expression patterns that match allowed origins. For regular expression grammar
                please see en.cppreference.com/w/cpp/regex/ecmascript
                An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
-        :param List[str] allow_origins: Specifies the list of origins that will be allowed to do CORS requests.
+        :param Sequence[str] allow_origins: Specifies the list of origins that will be allowed to do CORS requests.
                An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
-        :param List[str] expose_headers: Specifies the content for the Access-Control-Expose-Headers header.
+        :param Sequence[str] expose_headers: Specifies the content for the Access-Control-Expose-Headers header.
         :param float max_age: Specifies how long results of a preflight request can be cached in seconds.
                This translates to the Access-Control-Max-Age header.
         """
@@ -17217,7 +17217,7 @@ class URLMapPathMatcherPathRuleRouteActionCorsPolicy(dict):
 
     @property
     @pulumi.getter(name="allowHeaders")
-    def allow_headers(self) -> Optional[List[str]]:
+    def allow_headers(self) -> Optional[Sequence[str]]:
         """
         Specifies the content for the Access-Control-Allow-Headers header.
         """
@@ -17225,7 +17225,7 @@ class URLMapPathMatcherPathRuleRouteActionCorsPolicy(dict):
 
     @property
     @pulumi.getter(name="allowMethods")
-    def allow_methods(self) -> Optional[List[str]]:
+    def allow_methods(self) -> Optional[Sequence[str]]:
         """
         Specifies the content for the Access-Control-Allow-Methods header.
         """
@@ -17233,7 +17233,7 @@ class URLMapPathMatcherPathRuleRouteActionCorsPolicy(dict):
 
     @property
     @pulumi.getter(name="allowOriginRegexes")
-    def allow_origin_regexes(self) -> Optional[List[str]]:
+    def allow_origin_regexes(self) -> Optional[Sequence[str]]:
         """
         Specifies the regualar expression patterns that match allowed origins. For regular expression grammar
         please see en.cppreference.com/w/cpp/regex/ecmascript
@@ -17243,7 +17243,7 @@ class URLMapPathMatcherPathRuleRouteActionCorsPolicy(dict):
 
     @property
     @pulumi.getter(name="allowOrigins")
-    def allow_origins(self) -> Optional[List[str]]:
+    def allow_origins(self) -> Optional[Sequence[str]]:
         """
         Specifies the list of origins that will be allowed to do CORS requests.
         An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
@@ -17252,7 +17252,7 @@ class URLMapPathMatcherPathRuleRouteActionCorsPolicy(dict):
 
     @property
     @pulumi.getter(name="exposeHeaders")
-    def expose_headers(self) -> Optional[List[str]]:
+    def expose_headers(self) -> Optional[Sequence[str]]:
         """
         Specifies the content for the Access-Control-Expose-Headers header.
         """
@@ -17444,14 +17444,14 @@ class URLMapPathMatcherPathRuleRouteActionRetryPolicy(dict):
     def __init__(__self__, *,
                  num_retries: Optional[float] = None,
                  per_try_timeout: Optional['outputs.URLMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeout'] = None,
-                 retry_conditions: Optional[List[str]] = None):
+                 retry_conditions: Optional[Sequence[str]] = None):
         """
         :param float num_retries: Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
         :param 'URLMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutArgs' per_try_timeout: Specifies a non-zero timeout per retry attempt.
                If not specified, will use the timeout set in HttpRouteAction. If timeout in HttpRouteAction is not set,
                will use the largest timeout among all backend services associated with the route.
                Structure is documented below.
-        :param List[str] retry_conditions: Specfies one or more conditions when this retry rule applies. Valid values are:
+        :param Sequence[str] retry_conditions: Specfies one or more conditions when this retry rule applies. Valid values are:
                5xx: Loadbalancer will attempt a retry if the backend service responds with any 5xx response code,
                or if the backend service does not respond at all, example: disconnects, reset, read timeout,
                connection failure, and refused streams.
@@ -17495,7 +17495,7 @@ class URLMapPathMatcherPathRuleRouteActionRetryPolicy(dict):
 
     @property
     @pulumi.getter(name="retryConditions")
-    def retry_conditions(self) -> Optional[List[str]]:
+    def retry_conditions(self) -> Optional[Sequence[str]]:
         """
         Specfies one or more conditions when this retry rule applies. Valid values are:
         5xx: Loadbalancer will attempt a retry if the backend service responds with any 5xx response code,
@@ -17700,18 +17700,18 @@ class URLMapPathMatcherPathRuleRouteActionWeightedBackendService(dict):
 @pulumi.output_type
 class URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderAction(dict):
     def __init__(__self__, *,
-                 request_headers_to_adds: Optional[List['outputs.URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd']] = None,
-                 request_headers_to_removes: Optional[List[str]] = None,
-                 response_headers_to_adds: Optional[List['outputs.URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAdd']] = None,
-                 response_headers_to_removes: Optional[List[str]] = None):
+                 request_headers_to_adds: Optional[Sequence['outputs.URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd']] = None,
+                 request_headers_to_removes: Optional[Sequence[str]] = None,
+                 response_headers_to_adds: Optional[Sequence['outputs.URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAdd']] = None,
+                 response_headers_to_removes: Optional[Sequence[str]] = None):
         """
-        :param List['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs'] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the backendService.
+        :param Sequence['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs'] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the backendService.
                Structure is documented below.
-        :param List[str] request_headers_to_removes: A list of header names for headers that need to be removed from the request prior to
+        :param Sequence[str] request_headers_to_removes: A list of header names for headers that need to be removed from the request prior to
                forwarding the request to the backendService.
-        :param List['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs'] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
+        :param Sequence['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs'] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
                Structure is documented below.
-        :param List[str] response_headers_to_removes: A list of header names for headers that need to be removed from the response prior to sending the
+        :param Sequence[str] response_headers_to_removes: A list of header names for headers that need to be removed from the response prior to sending the
                response back to the client.
         """
         if request_headers_to_adds is not None:
@@ -17725,7 +17725,7 @@ class URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderAction(dic
 
     @property
     @pulumi.getter(name="requestHeadersToAdds")
-    def request_headers_to_adds(self) -> Optional[List['outputs.URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd']]:
+    def request_headers_to_adds(self) -> Optional[Sequence['outputs.URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd']]:
         """
         Headers to add to a matching request prior to forwarding the request to the backendService.
         Structure is documented below.
@@ -17734,7 +17734,7 @@ class URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderAction(dic
 
     @property
     @pulumi.getter(name="requestHeadersToRemoves")
-    def request_headers_to_removes(self) -> Optional[List[str]]:
+    def request_headers_to_removes(self) -> Optional[Sequence[str]]:
         """
         A list of header names for headers that need to be removed from the request prior to
         forwarding the request to the backendService.
@@ -17743,7 +17743,7 @@ class URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderAction(dic
 
     @property
     @pulumi.getter(name="responseHeadersToAdds")
-    def response_headers_to_adds(self) -> Optional[List['outputs.URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAdd']]:
+    def response_headers_to_adds(self) -> Optional[Sequence['outputs.URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAdd']]:
         """
         Headers to add the response prior to sending the response back to the client.
         Structure is documented below.
@@ -17752,7 +17752,7 @@ class URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderAction(dic
 
     @property
     @pulumi.getter(name="responseHeadersToRemoves")
-    def response_headers_to_removes(self) -> Optional[List[str]]:
+    def response_headers_to_removes(self) -> Optional[Sequence[str]]:
         """
         A list of header names for headers that need to be removed from the response prior to sending the
         response back to the client.
@@ -17983,7 +17983,7 @@ class URLMapPathMatcherRouteRule(dict):
     def __init__(__self__, *,
                  priority: float,
                  header_action: Optional['outputs.URLMapPathMatcherRouteRuleHeaderAction'] = None,
-                 match_rules: Optional[List['outputs.URLMapPathMatcherRouteRuleMatchRule']] = None,
+                 match_rules: Optional[Sequence['outputs.URLMapPathMatcherRouteRuleMatchRule']] = None,
                  route_action: Optional['outputs.URLMapPathMatcherRouteRuleRouteAction'] = None,
                  service: Optional[str] = None,
                  url_redirect: Optional['outputs.URLMapPathMatcherRouteRuleUrlRedirect'] = None):
@@ -18006,7 +18006,7 @@ class URLMapPathMatcherRouteRule(dict):
                headerAction specified here take effect before headerAction in the enclosing
                HttpRouteRule, PathMatcher and UrlMap.
                Structure is documented below.
-        :param List['URLMapPathMatcherRouteRuleMatchRuleArgs'] match_rules: The rules for determining a match.
+        :param Sequence['URLMapPathMatcherRouteRuleMatchRuleArgs'] match_rules: The rules for determining a match.
                Structure is documented below.
         :param 'URLMapPathMatcherRouteRuleRouteActionArgs' route_action: In response to a matching matchRule, the load balancer performs advanced routing
                actions like URL rewrites, header transformations, etc. prior to forwarding the
@@ -18067,7 +18067,7 @@ class URLMapPathMatcherRouteRule(dict):
 
     @property
     @pulumi.getter(name="matchRules")
-    def match_rules(self) -> Optional[List['outputs.URLMapPathMatcherRouteRuleMatchRule']]:
+    def match_rules(self) -> Optional[Sequence['outputs.URLMapPathMatcherRouteRuleMatchRule']]:
         """
         The rules for determining a match.
         Structure is documented below.
@@ -18114,18 +18114,18 @@ class URLMapPathMatcherRouteRule(dict):
 @pulumi.output_type
 class URLMapPathMatcherRouteRuleHeaderAction(dict):
     def __init__(__self__, *,
-                 request_headers_to_adds: Optional[List['outputs.URLMapPathMatcherRouteRuleHeaderActionRequestHeadersToAdd']] = None,
-                 request_headers_to_removes: Optional[List[str]] = None,
-                 response_headers_to_adds: Optional[List['outputs.URLMapPathMatcherRouteRuleHeaderActionResponseHeadersToAdd']] = None,
-                 response_headers_to_removes: Optional[List[str]] = None):
+                 request_headers_to_adds: Optional[Sequence['outputs.URLMapPathMatcherRouteRuleHeaderActionRequestHeadersToAdd']] = None,
+                 request_headers_to_removes: Optional[Sequence[str]] = None,
+                 response_headers_to_adds: Optional[Sequence['outputs.URLMapPathMatcherRouteRuleHeaderActionResponseHeadersToAdd']] = None,
+                 response_headers_to_removes: Optional[Sequence[str]] = None):
         """
-        :param List['URLMapPathMatcherRouteRuleHeaderActionRequestHeadersToAddArgs'] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the backendService.
+        :param Sequence['URLMapPathMatcherRouteRuleHeaderActionRequestHeadersToAddArgs'] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the backendService.
                Structure is documented below.
-        :param List[str] request_headers_to_removes: A list of header names for headers that need to be removed from the request prior to
+        :param Sequence[str] request_headers_to_removes: A list of header names for headers that need to be removed from the request prior to
                forwarding the request to the backendService.
-        :param List['URLMapPathMatcherRouteRuleHeaderActionResponseHeadersToAddArgs'] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
+        :param Sequence['URLMapPathMatcherRouteRuleHeaderActionResponseHeadersToAddArgs'] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
                Structure is documented below.
-        :param List[str] response_headers_to_removes: A list of header names for headers that need to be removed from the response prior to sending the
+        :param Sequence[str] response_headers_to_removes: A list of header names for headers that need to be removed from the response prior to sending the
                response back to the client.
         """
         if request_headers_to_adds is not None:
@@ -18139,7 +18139,7 @@ class URLMapPathMatcherRouteRuleHeaderAction(dict):
 
     @property
     @pulumi.getter(name="requestHeadersToAdds")
-    def request_headers_to_adds(self) -> Optional[List['outputs.URLMapPathMatcherRouteRuleHeaderActionRequestHeadersToAdd']]:
+    def request_headers_to_adds(self) -> Optional[Sequence['outputs.URLMapPathMatcherRouteRuleHeaderActionRequestHeadersToAdd']]:
         """
         Headers to add to a matching request prior to forwarding the request to the backendService.
         Structure is documented below.
@@ -18148,7 +18148,7 @@ class URLMapPathMatcherRouteRuleHeaderAction(dict):
 
     @property
     @pulumi.getter(name="requestHeadersToRemoves")
-    def request_headers_to_removes(self) -> Optional[List[str]]:
+    def request_headers_to_removes(self) -> Optional[Sequence[str]]:
         """
         A list of header names for headers that need to be removed from the request prior to
         forwarding the request to the backendService.
@@ -18157,7 +18157,7 @@ class URLMapPathMatcherRouteRuleHeaderAction(dict):
 
     @property
     @pulumi.getter(name="responseHeadersToAdds")
-    def response_headers_to_adds(self) -> Optional[List['outputs.URLMapPathMatcherRouteRuleHeaderActionResponseHeadersToAdd']]:
+    def response_headers_to_adds(self) -> Optional[Sequence['outputs.URLMapPathMatcherRouteRuleHeaderActionResponseHeadersToAdd']]:
         """
         Headers to add the response prior to sending the response back to the client.
         Structure is documented below.
@@ -18166,7 +18166,7 @@ class URLMapPathMatcherRouteRuleHeaderAction(dict):
 
     @property
     @pulumi.getter(name="responseHeadersToRemoves")
-    def response_headers_to_removes(self) -> Optional[List[str]]:
+    def response_headers_to_removes(self) -> Optional[Sequence[str]]:
         """
         A list of header names for headers that need to be removed from the response prior to sending the
         response back to the client.
@@ -18271,11 +18271,11 @@ class URLMapPathMatcherRouteRuleHeaderActionResponseHeadersToAdd(dict):
 class URLMapPathMatcherRouteRuleMatchRule(dict):
     def __init__(__self__, *,
                  full_path_match: Optional[str] = None,
-                 header_matches: Optional[List['outputs.URLMapPathMatcherRouteRuleMatchRuleHeaderMatch']] = None,
+                 header_matches: Optional[Sequence['outputs.URLMapPathMatcherRouteRuleMatchRuleHeaderMatch']] = None,
                  ignore_case: Optional[bool] = None,
-                 metadata_filters: Optional[List['outputs.URLMapPathMatcherRouteRuleMatchRuleMetadataFilter']] = None,
+                 metadata_filters: Optional[Sequence['outputs.URLMapPathMatcherRouteRuleMatchRuleMetadataFilter']] = None,
                  prefix_match: Optional[str] = None,
-                 query_parameter_matches: Optional[List['outputs.URLMapPathMatcherRouteRuleMatchRuleQueryParameterMatch']] = None,
+                 query_parameter_matches: Optional[Sequence['outputs.URLMapPathMatcherRouteRuleMatchRuleQueryParameterMatch']] = None,
                  regex_match: Optional[str] = None):
         """
         :param str full_path_match: For satifying the matchRule condition, the path of the request must exactly
@@ -18283,12 +18283,12 @@ class URLMapPathMatcherRouteRuleMatchRule(dict):
                and anchor that may be part of the original URL. FullPathMatch must be between 1
                and 1024 characters. Only one of prefixMatch, fullPathMatch or regexMatch must
                be specified.
-        :param List['URLMapPathMatcherRouteRuleMatchRuleHeaderMatchArgs'] header_matches: Specifies a list of header match criteria, all of which must match corresponding
+        :param Sequence['URLMapPathMatcherRouteRuleMatchRuleHeaderMatchArgs'] header_matches: Specifies a list of header match criteria, all of which must match corresponding
                headers in the request.
                Structure is documented below.
         :param bool ignore_case: Specifies that prefixMatch and fullPathMatch matches are case sensitive.
                Defaults to false.
-        :param List['URLMapPathMatcherRouteRuleMatchRuleMetadataFilterArgs'] metadata_filters: Opaque filter criteria used by Loadbalancer to restrict routing configuration to
+        :param Sequence['URLMapPathMatcherRouteRuleMatchRuleMetadataFilterArgs'] metadata_filters: Opaque filter criteria used by Loadbalancer to restrict routing configuration to
                a limited set xDS compliant clients. In their xDS requests to Loadbalancer, xDS
                clients present node metadata. If a match takes place, the relevant routing
                configuration is made available to those proxies. For each metadataFilter in
@@ -18303,7 +18303,7 @@ class URLMapPathMatcherRouteRuleMatchRule(dict):
         :param str prefix_match: The value of the header must start with the contents of prefixMatch. Only one of
                exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch
                must be set.
-        :param List['URLMapPathMatcherRouteRuleMatchRuleQueryParameterMatchArgs'] query_parameter_matches: Specifies a list of query parameter match criteria, all of which must match
+        :param Sequence['URLMapPathMatcherRouteRuleMatchRuleQueryParameterMatchArgs'] query_parameter_matches: Specifies a list of query parameter match criteria, all of which must match
                corresponding query parameters in the request.
                Structure is documented below.
         :param str regex_match: The queryParameterMatch matches if the value of the parameter matches the
@@ -18340,7 +18340,7 @@ class URLMapPathMatcherRouteRuleMatchRule(dict):
 
     @property
     @pulumi.getter(name="headerMatches")
-    def header_matches(self) -> Optional[List['outputs.URLMapPathMatcherRouteRuleMatchRuleHeaderMatch']]:
+    def header_matches(self) -> Optional[Sequence['outputs.URLMapPathMatcherRouteRuleMatchRuleHeaderMatch']]:
         """
         Specifies a list of header match criteria, all of which must match corresponding
         headers in the request.
@@ -18359,7 +18359,7 @@ class URLMapPathMatcherRouteRuleMatchRule(dict):
 
     @property
     @pulumi.getter(name="metadataFilters")
-    def metadata_filters(self) -> Optional[List['outputs.URLMapPathMatcherRouteRuleMatchRuleMetadataFilter']]:
+    def metadata_filters(self) -> Optional[Sequence['outputs.URLMapPathMatcherRouteRuleMatchRuleMetadataFilter']]:
         """
         Opaque filter criteria used by Loadbalancer to restrict routing configuration to
         a limited set xDS compliant clients. In their xDS requests to Loadbalancer, xDS
@@ -18388,7 +18388,7 @@ class URLMapPathMatcherRouteRuleMatchRule(dict):
 
     @property
     @pulumi.getter(name="queryParameterMatches")
-    def query_parameter_matches(self) -> Optional[List['outputs.URLMapPathMatcherRouteRuleMatchRuleQueryParameterMatch']]:
+    def query_parameter_matches(self) -> Optional[Sequence['outputs.URLMapPathMatcherRouteRuleMatchRuleQueryParameterMatch']]:
         """
         Specifies a list of query parameter match criteria, all of which must match
         corresponding query parameters in the request.
@@ -18589,10 +18589,10 @@ class URLMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatch(dict):
 @pulumi.output_type
 class URLMapPathMatcherRouteRuleMatchRuleMetadataFilter(dict):
     def __init__(__self__, *,
-                 filter_labels: List['outputs.URLMapPathMatcherRouteRuleMatchRuleMetadataFilterFilterLabel'],
+                 filter_labels: Sequence['outputs.URLMapPathMatcherRouteRuleMatchRuleMetadataFilterFilterLabel'],
                  filter_match_criteria: str):
         """
-        :param List['URLMapPathMatcherRouteRuleMatchRuleMetadataFilterFilterLabelArgs'] filter_labels: The list of label value pairs that must match labels in the provided metadata
+        :param Sequence['URLMapPathMatcherRouteRuleMatchRuleMetadataFilterFilterLabelArgs'] filter_labels: The list of label value pairs that must match labels in the provided metadata
                based on filterMatchCriteria  This list must not be empty and can have at the
                most 64 entries.
                Structure is documented below.
@@ -18609,7 +18609,7 @@ class URLMapPathMatcherRouteRuleMatchRuleMetadataFilter(dict):
 
     @property
     @pulumi.getter(name="filterLabels")
-    def filter_labels(self) -> List['outputs.URLMapPathMatcherRouteRuleMatchRuleMetadataFilterFilterLabel']:
+    def filter_labels(self) -> Sequence['outputs.URLMapPathMatcherRouteRuleMatchRuleMetadataFilterFilterLabel']:
         """
         The list of label value pairs that must match labels in the provided metadata
         based on filterMatchCriteria  This list must not be empty and can have at the
@@ -18754,7 +18754,7 @@ class URLMapPathMatcherRouteRuleRouteAction(dict):
                  retry_policy: Optional['outputs.URLMapPathMatcherRouteRuleRouteActionRetryPolicy'] = None,
                  timeout: Optional['outputs.URLMapPathMatcherRouteRuleRouteActionTimeout'] = None,
                  url_rewrite: Optional['outputs.URLMapPathMatcherRouteRuleRouteActionUrlRewrite'] = None,
-                 weighted_backend_services: Optional[List['outputs.URLMapPathMatcherRouteRuleRouteActionWeightedBackendService']] = None):
+                 weighted_backend_services: Optional[Sequence['outputs.URLMapPathMatcherRouteRuleRouteActionWeightedBackendService']] = None):
         """
         :param 'URLMapPathMatcherRouteRuleRouteActionCorsPolicyArgs' cors_policy: The specification for allowing client side cross-origin requests. Please see
                [W3C Recommendation for Cross Origin Resource Sharing](https://www.w3.org/TR/cors/)
@@ -18777,7 +18777,7 @@ class URLMapPathMatcherRouteRuleRouteAction(dict):
                Structure is documented below.
         :param 'URLMapPathMatcherRouteRuleRouteActionUrlRewriteArgs' url_rewrite: The spec to modify the URL of the request, prior to forwarding the request to the matched service.
                Structure is documented below.
-        :param List['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs'] weighted_backend_services: A list of weighted backend services to send traffic to when a route match occurs.
+        :param Sequence['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs'] weighted_backend_services: A list of weighted backend services to send traffic to when a route match occurs.
                The weights determine the fraction of traffic that flows to their corresponding backend service.
                If all traffic needs to go to a single backend service, there must be one weightedBackendService
                with weight set to a non 0 number.
@@ -18866,7 +18866,7 @@ class URLMapPathMatcherRouteRuleRouteAction(dict):
 
     @property
     @pulumi.getter(name="weightedBackendServices")
-    def weighted_backend_services(self) -> Optional[List['outputs.URLMapPathMatcherRouteRuleRouteActionWeightedBackendService']]:
+    def weighted_backend_services(self) -> Optional[Sequence['outputs.URLMapPathMatcherRouteRuleRouteActionWeightedBackendService']]:
         """
         A list of weighted backend services to send traffic to when a route match occurs.
         The weights determine the fraction of traffic that flows to their corresponding backend service.
@@ -18887,25 +18887,25 @@ class URLMapPathMatcherRouteRuleRouteAction(dict):
 class URLMapPathMatcherRouteRuleRouteActionCorsPolicy(dict):
     def __init__(__self__, *,
                  allow_credentials: Optional[bool] = None,
-                 allow_headers: Optional[List[str]] = None,
-                 allow_methods: Optional[List[str]] = None,
-                 allow_origin_regexes: Optional[List[str]] = None,
-                 allow_origins: Optional[List[str]] = None,
+                 allow_headers: Optional[Sequence[str]] = None,
+                 allow_methods: Optional[Sequence[str]] = None,
+                 allow_origin_regexes: Optional[Sequence[str]] = None,
+                 allow_origins: Optional[Sequence[str]] = None,
                  disabled: Optional[bool] = None,
-                 expose_headers: Optional[List[str]] = None,
+                 expose_headers: Optional[Sequence[str]] = None,
                  max_age: Optional[float] = None):
         """
         :param bool allow_credentials: In response to a preflight request, setting this to true indicates that the actual request can include user credentials.
                This translates to the Access-Control-Allow-Credentials header.
-        :param List[str] allow_headers: Specifies the content for the Access-Control-Allow-Headers header.
-        :param List[str] allow_methods: Specifies the content for the Access-Control-Allow-Methods header.
-        :param List[str] allow_origin_regexes: Specifies the regualar expression patterns that match allowed origins. For regular expression grammar
+        :param Sequence[str] allow_headers: Specifies the content for the Access-Control-Allow-Headers header.
+        :param Sequence[str] allow_methods: Specifies the content for the Access-Control-Allow-Methods header.
+        :param Sequence[str] allow_origin_regexes: Specifies the regualar expression patterns that match allowed origins. For regular expression grammar
                please see en.cppreference.com/w/cpp/regex/ecmascript
                An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
-        :param List[str] allow_origins: Specifies the list of origins that will be allowed to do CORS requests.
+        :param Sequence[str] allow_origins: Specifies the list of origins that will be allowed to do CORS requests.
                An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
         :param bool disabled: If true, specifies the CORS policy is disabled. The default value is false, which indicates that the CORS policy is in effect.
-        :param List[str] expose_headers: Specifies the content for the Access-Control-Expose-Headers header.
+        :param Sequence[str] expose_headers: Specifies the content for the Access-Control-Expose-Headers header.
         :param float max_age: Specifies how long results of a preflight request can be cached in seconds.
                This translates to the Access-Control-Max-Age header.
         """
@@ -18937,7 +18937,7 @@ class URLMapPathMatcherRouteRuleRouteActionCorsPolicy(dict):
 
     @property
     @pulumi.getter(name="allowHeaders")
-    def allow_headers(self) -> Optional[List[str]]:
+    def allow_headers(self) -> Optional[Sequence[str]]:
         """
         Specifies the content for the Access-Control-Allow-Headers header.
         """
@@ -18945,7 +18945,7 @@ class URLMapPathMatcherRouteRuleRouteActionCorsPolicy(dict):
 
     @property
     @pulumi.getter(name="allowMethods")
-    def allow_methods(self) -> Optional[List[str]]:
+    def allow_methods(self) -> Optional[Sequence[str]]:
         """
         Specifies the content for the Access-Control-Allow-Methods header.
         """
@@ -18953,7 +18953,7 @@ class URLMapPathMatcherRouteRuleRouteActionCorsPolicy(dict):
 
     @property
     @pulumi.getter(name="allowOriginRegexes")
-    def allow_origin_regexes(self) -> Optional[List[str]]:
+    def allow_origin_regexes(self) -> Optional[Sequence[str]]:
         """
         Specifies the regualar expression patterns that match allowed origins. For regular expression grammar
         please see en.cppreference.com/w/cpp/regex/ecmascript
@@ -18963,7 +18963,7 @@ class URLMapPathMatcherRouteRuleRouteActionCorsPolicy(dict):
 
     @property
     @pulumi.getter(name="allowOrigins")
-    def allow_origins(self) -> Optional[List[str]]:
+    def allow_origins(self) -> Optional[Sequence[str]]:
         """
         Specifies the list of origins that will be allowed to do CORS requests.
         An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
@@ -18980,7 +18980,7 @@ class URLMapPathMatcherRouteRuleRouteActionCorsPolicy(dict):
 
     @property
     @pulumi.getter(name="exposeHeaders")
-    def expose_headers(self) -> Optional[List[str]]:
+    def expose_headers(self) -> Optional[Sequence[str]]:
         """
         Specifies the content for the Access-Control-Expose-Headers header.
         """
@@ -19176,14 +19176,14 @@ class URLMapPathMatcherRouteRuleRouteActionRetryPolicy(dict):
     def __init__(__self__, *,
                  num_retries: float,
                  per_try_timeout: Optional['outputs.URLMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeout'] = None,
-                 retry_conditions: Optional[List[str]] = None):
+                 retry_conditions: Optional[Sequence[str]] = None):
         """
         :param float num_retries: Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
         :param 'URLMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutArgs' per_try_timeout: Specifies a non-zero timeout per retry attempt.
                If not specified, will use the timeout set in HttpRouteAction. If timeout in HttpRouteAction is not set,
                will use the largest timeout among all backend services associated with the route.
                Structure is documented below.
-        :param List[str] retry_conditions: Specfies one or more conditions when this retry rule applies. Valid values are:
+        :param Sequence[str] retry_conditions: Specfies one or more conditions when this retry rule applies. Valid values are:
                5xx: Loadbalancer will attempt a retry if the backend service responds with any 5xx response code,
                or if the backend service does not respond at all, example: disconnects, reset, read timeout,
                connection failure, and refused streams.
@@ -19226,7 +19226,7 @@ class URLMapPathMatcherRouteRuleRouteActionRetryPolicy(dict):
 
     @property
     @pulumi.getter(name="retryConditions")
-    def retry_conditions(self) -> Optional[List[str]]:
+    def retry_conditions(self) -> Optional[Sequence[str]]:
         """
         Specfies one or more conditions when this retry rule applies. Valid values are:
         5xx: Loadbalancer will attempt a retry if the backend service responds with any 5xx response code,
@@ -19431,18 +19431,18 @@ class URLMapPathMatcherRouteRuleRouteActionWeightedBackendService(dict):
 @pulumi.output_type
 class URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderAction(dict):
     def __init__(__self__, *,
-                 request_headers_to_adds: Optional[List['outputs.URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd']] = None,
-                 request_headers_to_removes: Optional[List[str]] = None,
-                 response_headers_to_adds: Optional[List['outputs.URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAdd']] = None,
-                 response_headers_to_removes: Optional[List[str]] = None):
+                 request_headers_to_adds: Optional[Sequence['outputs.URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd']] = None,
+                 request_headers_to_removes: Optional[Sequence[str]] = None,
+                 response_headers_to_adds: Optional[Sequence['outputs.URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAdd']] = None,
+                 response_headers_to_removes: Optional[Sequence[str]] = None):
         """
-        :param List['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs'] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the backendService.
+        :param Sequence['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs'] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the backendService.
                Structure is documented below.
-        :param List[str] request_headers_to_removes: A list of header names for headers that need to be removed from the request prior to
+        :param Sequence[str] request_headers_to_removes: A list of header names for headers that need to be removed from the request prior to
                forwarding the request to the backendService.
-        :param List['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs'] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
+        :param Sequence['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs'] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
                Structure is documented below.
-        :param List[str] response_headers_to_removes: A list of header names for headers that need to be removed from the response prior to sending the
+        :param Sequence[str] response_headers_to_removes: A list of header names for headers that need to be removed from the response prior to sending the
                response back to the client.
         """
         if request_headers_to_adds is not None:
@@ -19456,7 +19456,7 @@ class URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderAction(di
 
     @property
     @pulumi.getter(name="requestHeadersToAdds")
-    def request_headers_to_adds(self) -> Optional[List['outputs.URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd']]:
+    def request_headers_to_adds(self) -> Optional[Sequence['outputs.URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd']]:
         """
         Headers to add to a matching request prior to forwarding the request to the backendService.
         Structure is documented below.
@@ -19465,7 +19465,7 @@ class URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderAction(di
 
     @property
     @pulumi.getter(name="requestHeadersToRemoves")
-    def request_headers_to_removes(self) -> Optional[List[str]]:
+    def request_headers_to_removes(self) -> Optional[Sequence[str]]:
         """
         A list of header names for headers that need to be removed from the request prior to
         forwarding the request to the backendService.
@@ -19474,7 +19474,7 @@ class URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderAction(di
 
     @property
     @pulumi.getter(name="responseHeadersToAdds")
-    def response_headers_to_adds(self) -> Optional[List['outputs.URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAdd']]:
+    def response_headers_to_adds(self) -> Optional[Sequence['outputs.URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAdd']]:
         """
         Headers to add the response prior to sending the response back to the client.
         Structure is documented below.
@@ -19483,7 +19483,7 @@ class URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderAction(di
 
     @property
     @pulumi.getter(name="responseHeadersToRemoves")
-    def response_headers_to_removes(self) -> Optional[List[str]]:
+    def response_headers_to_removes(self) -> Optional[Sequence[str]]:
         """
         A list of header names for headers that need to be removed from the response prior to sending the
         response back to the client.
@@ -19874,14 +19874,14 @@ class GetBackendServiceBackendResult(dict):
 @pulumi.output_type
 class GetBackendServiceCdnPolicyResult(dict):
     def __init__(__self__, *,
-                 cache_key_policies: List['outputs.GetBackendServiceCdnPolicyCacheKeyPolicyResult'],
+                 cache_key_policies: Sequence['outputs.GetBackendServiceCdnPolicyCacheKeyPolicyResult'],
                  signed_url_cache_max_age_sec: float):
         pulumi.set(__self__, "cache_key_policies", cache_key_policies)
         pulumi.set(__self__, "signed_url_cache_max_age_sec", signed_url_cache_max_age_sec)
 
     @property
     @pulumi.getter(name="cacheKeyPolicies")
-    def cache_key_policies(self) -> List['outputs.GetBackendServiceCdnPolicyCacheKeyPolicyResult']:
+    def cache_key_policies(self) -> Sequence['outputs.GetBackendServiceCdnPolicyCacheKeyPolicyResult']:
         return pulumi.get(self, "cache_key_policies")
 
     @property
@@ -19896,8 +19896,8 @@ class GetBackendServiceCdnPolicyCacheKeyPolicyResult(dict):
                  include_host: bool,
                  include_protocol: bool,
                  include_query_string: bool,
-                 query_string_blacklists: List[str],
-                 query_string_whitelists: List[str]):
+                 query_string_blacklists: Sequence[str],
+                 query_string_whitelists: Sequence[str]):
         pulumi.set(__self__, "include_host", include_host)
         pulumi.set(__self__, "include_protocol", include_protocol)
         pulumi.set(__self__, "include_query_string", include_query_string)
@@ -19921,19 +19921,19 @@ class GetBackendServiceCdnPolicyCacheKeyPolicyResult(dict):
 
     @property
     @pulumi.getter(name="queryStringBlacklists")
-    def query_string_blacklists(self) -> List[str]:
+    def query_string_blacklists(self) -> Sequence[str]:
         return pulumi.get(self, "query_string_blacklists")
 
     @property
     @pulumi.getter(name="queryStringWhitelists")
-    def query_string_whitelists(self) -> List[str]:
+    def query_string_whitelists(self) -> Sequence[str]:
         return pulumi.get(self, "query_string_whitelists")
 
 
 @pulumi.output_type
 class GetBackendServiceCircuitBreakerResult(dict):
     def __init__(__self__, *,
-                 connect_timeouts: List['outputs.GetBackendServiceCircuitBreakerConnectTimeoutResult'],
+                 connect_timeouts: Sequence['outputs.GetBackendServiceCircuitBreakerConnectTimeoutResult'],
                  max_connections: float,
                  max_pending_requests: float,
                  max_requests: float,
@@ -19948,7 +19948,7 @@ class GetBackendServiceCircuitBreakerResult(dict):
 
     @property
     @pulumi.getter(name="connectTimeouts")
-    def connect_timeouts(self) -> List['outputs.GetBackendServiceCircuitBreakerConnectTimeoutResult']:
+    def connect_timeouts(self) -> Sequence['outputs.GetBackendServiceCircuitBreakerConnectTimeoutResult']:
         return pulumi.get(self, "connect_timeouts")
 
     @property
@@ -19999,7 +19999,7 @@ class GetBackendServiceCircuitBreakerConnectTimeoutResult(dict):
 @pulumi.output_type
 class GetBackendServiceConsistentHashResult(dict):
     def __init__(__self__, *,
-                 http_cookies: List['outputs.GetBackendServiceConsistentHashHttpCookyResult'],
+                 http_cookies: Sequence['outputs.GetBackendServiceConsistentHashHttpCookyResult'],
                  http_header_name: str,
                  minimum_ring_size: float):
         pulumi.set(__self__, "http_cookies", http_cookies)
@@ -20008,7 +20008,7 @@ class GetBackendServiceConsistentHashResult(dict):
 
     @property
     @pulumi.getter(name="httpCookies")
-    def http_cookies(self) -> List['outputs.GetBackendServiceConsistentHashHttpCookyResult']:
+    def http_cookies(self) -> Sequence['outputs.GetBackendServiceConsistentHashHttpCookyResult']:
         return pulumi.get(self, "http_cookies")
 
     @property
@@ -20027,7 +20027,7 @@ class GetBackendServiceConsistentHashHttpCookyResult(dict):
     def __init__(__self__, *,
                  name: str,
                  path: str,
-                 ttls: List['outputs.GetBackendServiceConsistentHashHttpCookyTtlResult']):
+                 ttls: Sequence['outputs.GetBackendServiceConsistentHashHttpCookyTtlResult']):
         """
         :param str name: The name of the Backend Service.
         """
@@ -20050,7 +20050,7 @@ class GetBackendServiceConsistentHashHttpCookyResult(dict):
 
     @property
     @pulumi.getter
-    def ttls(self) -> List['outputs.GetBackendServiceConsistentHashHttpCookyTtlResult']:
+    def ttls(self) -> Sequence['outputs.GetBackendServiceConsistentHashHttpCookyTtlResult']:
         return pulumi.get(self, "ttls")
 
 
@@ -20121,13 +20121,13 @@ class GetBackendServiceLogConfigResult(dict):
 @pulumi.output_type
 class GetBackendServiceOutlierDetectionResult(dict):
     def __init__(__self__, *,
-                 base_ejection_times: List['outputs.GetBackendServiceOutlierDetectionBaseEjectionTimeResult'],
+                 base_ejection_times: Sequence['outputs.GetBackendServiceOutlierDetectionBaseEjectionTimeResult'],
                  consecutive_errors: float,
                  consecutive_gateway_failure: float,
                  enforcing_consecutive_errors: float,
                  enforcing_consecutive_gateway_failure: float,
                  enforcing_success_rate: float,
-                 intervals: List['outputs.GetBackendServiceOutlierDetectionIntervalResult'],
+                 intervals: Sequence['outputs.GetBackendServiceOutlierDetectionIntervalResult'],
                  max_ejection_percent: float,
                  success_rate_minimum_hosts: float,
                  success_rate_request_volume: float,
@@ -20146,7 +20146,7 @@ class GetBackendServiceOutlierDetectionResult(dict):
 
     @property
     @pulumi.getter(name="baseEjectionTimes")
-    def base_ejection_times(self) -> List['outputs.GetBackendServiceOutlierDetectionBaseEjectionTimeResult']:
+    def base_ejection_times(self) -> Sequence['outputs.GetBackendServiceOutlierDetectionBaseEjectionTimeResult']:
         return pulumi.get(self, "base_ejection_times")
 
     @property
@@ -20176,7 +20176,7 @@ class GetBackendServiceOutlierDetectionResult(dict):
 
     @property
     @pulumi.getter
-    def intervals(self) -> List['outputs.GetBackendServiceOutlierDetectionIntervalResult']:
+    def intervals(self) -> Sequence['outputs.GetBackendServiceOutlierDetectionIntervalResult']:
         return pulumi.get(self, "intervals")
 
     @property
@@ -20308,7 +20308,7 @@ class GetInstanceBootDiskResult(dict):
                  device_name: str,
                  disk_encryption_key_raw: str,
                  disk_encryption_key_sha256: str,
-                 initialize_params: List['outputs.GetInstanceBootDiskInitializeParamResult'],
+                 initialize_params: Sequence['outputs.GetInstanceBootDiskInitializeParamResult'],
                  kms_key_self_link: str,
                  mode: str,
                  source: str):
@@ -20316,7 +20316,7 @@ class GetInstanceBootDiskResult(dict):
         :param bool auto_delete: Whether the disk will be auto-deleted when the instance is deleted.
         :param str device_name: Name with which the attached disk is accessible
                under `/dev/disk/by-id/`
-        :param List['GetInstanceBootDiskInitializeParamArgs'] initialize_params: Parameters with which a disk was created alongside the instance.
+        :param Sequence['GetInstanceBootDiskInitializeParamArgs'] initialize_params: Parameters with which a disk was created alongside the instance.
                Structure is documented below.
         :param str mode: Read/write mode for the disk. One of `"READ_ONLY"` or `"READ_WRITE"`.
         :param str source: The name or self_link of the disk attached to this instance.
@@ -20359,7 +20359,7 @@ class GetInstanceBootDiskResult(dict):
 
     @property
     @pulumi.getter(name="initializeParams")
-    def initialize_params(self) -> List['outputs.GetInstanceBootDiskInitializeParamResult']:
+    def initialize_params(self) -> Sequence['outputs.GetInstanceBootDiskInitializeParamResult']:
         """
         Parameters with which a disk was created alongside the instance.
         Structure is documented below.
@@ -20508,17 +20508,17 @@ class GetInstanceGuestAcceleratorResult(dict):
 @pulumi.output_type
 class GetInstanceNetworkInterfaceResult(dict):
     def __init__(__self__, *,
-                 access_configs: List['outputs.GetInstanceNetworkInterfaceAccessConfigResult'],
-                 alias_ip_ranges: List['outputs.GetInstanceNetworkInterfaceAliasIpRangeResult'],
+                 access_configs: Sequence['outputs.GetInstanceNetworkInterfaceAccessConfigResult'],
+                 alias_ip_ranges: Sequence['outputs.GetInstanceNetworkInterfaceAliasIpRangeResult'],
                  name: str,
                  network: str,
                  network_ip: str,
                  subnetwork: str,
                  subnetwork_project: str):
         """
-        :param List['GetInstanceNetworkInterfaceAccessConfigArgs'] access_configs: Access configurations, i.e. IPs via which this
+        :param Sequence['GetInstanceNetworkInterfaceAccessConfigArgs'] access_configs: Access configurations, i.e. IPs via which this
                instance can be accessed via the Internet. Structure documented below.
-        :param List['GetInstanceNetworkInterfaceAliasIpRangeArgs'] alias_ip_ranges: An array of alias IP ranges for this network interface. Structure documented below.
+        :param Sequence['GetInstanceNetworkInterfaceAliasIpRangeArgs'] alias_ip_ranges: An array of alias IP ranges for this network interface. Structure documented below.
         :param str name: The name of the instance. One of `name` or `self_link` must be provided.
         :param str network: The name or self_link of the network attached to this interface.
         :param str network_ip: The private IP address assigned to the instance.
@@ -20535,7 +20535,7 @@ class GetInstanceNetworkInterfaceResult(dict):
 
     @property
     @pulumi.getter(name="accessConfigs")
-    def access_configs(self) -> List['outputs.GetInstanceNetworkInterfaceAccessConfigResult']:
+    def access_configs(self) -> Sequence['outputs.GetInstanceNetworkInterfaceAccessConfigResult']:
         """
         Access configurations, i.e. IPs via which this
         instance can be accessed via the Internet. Structure documented below.
@@ -20544,7 +20544,7 @@ class GetInstanceNetworkInterfaceResult(dict):
 
     @property
     @pulumi.getter(name="aliasIpRanges")
-    def alias_ip_ranges(self) -> List['outputs.GetInstanceNetworkInterfaceAliasIpRangeResult']:
+    def alias_ip_ranges(self) -> Sequence['outputs.GetInstanceNetworkInterfaceAliasIpRangeResult']:
         """
         An array of alias IP ranges for this network interface. Structure documented below.
         """
@@ -20671,7 +20671,7 @@ class GetInstanceSchedulingResult(dict):
     def __init__(__self__, *,
                  automatic_restart: bool,
                  min_node_cpus: float,
-                 node_affinities: List['outputs.GetInstanceSchedulingNodeAffinityResult'],
+                 node_affinities: Sequence['outputs.GetInstanceSchedulingNodeAffinityResult'],
                  on_host_maintenance: str,
                  preemptible: bool):
         """
@@ -20704,7 +20704,7 @@ class GetInstanceSchedulingResult(dict):
 
     @property
     @pulumi.getter(name="nodeAffinities")
-    def node_affinities(self) -> List['outputs.GetInstanceSchedulingNodeAffinityResult']:
+    def node_affinities(self) -> Sequence['outputs.GetInstanceSchedulingNodeAffinityResult']:
         return pulumi.get(self, "node_affinities")
 
     @property
@@ -20731,7 +20731,7 @@ class GetInstanceSchedulingNodeAffinityResult(dict):
     def __init__(__self__, *,
                  key: str,
                  operator: str,
-                 values: List[str]):
+                 values: Sequence[str]):
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "operator", operator)
         pulumi.set(__self__, "values", values)
@@ -20748,7 +20748,7 @@ class GetInstanceSchedulingNodeAffinityResult(dict):
 
     @property
     @pulumi.getter
-    def values(self) -> List[str]:
+    def values(self) -> Sequence[str]:
         return pulumi.get(self, "values")
 
 
@@ -20774,10 +20774,10 @@ class GetInstanceScratchDiskResult(dict):
 class GetInstanceServiceAccountResult(dict):
     def __init__(__self__, *,
                  email: str,
-                 scopes: List[str]):
+                 scopes: Sequence[str]):
         """
         :param str email: The service account e-mail address.
-        :param List[str] scopes: A list of service scopes.
+        :param Sequence[str] scopes: A list of service scopes.
         """
         pulumi.set(__self__, "email", email)
         pulumi.set(__self__, "scopes", scopes)
@@ -20792,7 +20792,7 @@ class GetInstanceServiceAccountResult(dict):
 
     @property
     @pulumi.getter
-    def scopes(self) -> List[str]:
+    def scopes(self) -> Sequence[str]:
         """
         A list of service scopes.
         """
@@ -20829,11 +20829,11 @@ class GetInstanceShieldedInstanceConfigResult(dict):
 class GetRegionInstanceGroupInstanceResult(dict):
     def __init__(__self__, *,
                  instance: str,
-                 named_ports: List['outputs.GetRegionInstanceGroupInstanceNamedPortResult'],
+                 named_ports: Sequence['outputs.GetRegionInstanceGroupInstanceNamedPortResult'],
                  status: str):
         """
         :param str instance: URL to the instance.
-        :param List['GetRegionInstanceGroupInstanceNamedPortArgs'] named_ports: List of named ports in the group, as a list of resources, each containing:
+        :param Sequence['GetRegionInstanceGroupInstanceNamedPortArgs'] named_ports: List of named ports in the group, as a list of resources, each containing:
         :param str status: String description of current state of the instance.
         """
         pulumi.set(__self__, "instance", instance)
@@ -20850,7 +20850,7 @@ class GetRegionInstanceGroupInstanceResult(dict):
 
     @property
     @pulumi.getter(name="namedPorts")
-    def named_ports(self) -> List['outputs.GetRegionInstanceGroupInstanceNamedPortResult']:
+    def named_ports(self) -> Sequence['outputs.GetRegionInstanceGroupInstanceNamedPortResult']:
         """
         List of named ports in the group, as a list of resources, each containing:
         """
@@ -20898,8 +20898,8 @@ class GetRegionInstanceGroupInstanceNamedPortResult(dict):
 class GetRouterBgpResult(dict):
     def __init__(__self__, *,
                  advertise_mode: str,
-                 advertised_groups: List[str],
-                 advertised_ip_ranges: List['outputs.GetRouterBgpAdvertisedIpRangeResult'],
+                 advertised_groups: Sequence[str],
+                 advertised_ip_ranges: Sequence['outputs.GetRouterBgpAdvertisedIpRangeResult'],
                  asn: float):
         pulumi.set(__self__, "advertise_mode", advertise_mode)
         pulumi.set(__self__, "advertised_groups", advertised_groups)
@@ -20913,12 +20913,12 @@ class GetRouterBgpResult(dict):
 
     @property
     @pulumi.getter(name="advertisedGroups")
-    def advertised_groups(self) -> List[str]:
+    def advertised_groups(self) -> Sequence[str]:
         return pulumi.get(self, "advertised_groups")
 
     @property
     @pulumi.getter(name="advertisedIpRanges")
-    def advertised_ip_ranges(self) -> List['outputs.GetRouterBgpAdvertisedIpRangeResult']:
+    def advertised_ip_ranges(self) -> Sequence['outputs.GetRouterBgpAdvertisedIpRangeResult']:
         return pulumi.get(self, "advertised_ip_ranges")
 
     @property

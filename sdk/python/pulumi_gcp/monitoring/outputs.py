@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 from . import outputs
 
@@ -142,7 +142,7 @@ class AlertPolicyCondition(dict):
 class AlertPolicyConditionConditionAbsent(dict):
     def __init__(__self__, *,
                  duration: str,
-                 aggregations: Optional[List['outputs.AlertPolicyConditionConditionAbsentAggregation']] = None,
+                 aggregations: Optional[Sequence['outputs.AlertPolicyConditionConditionAbsentAggregation']] = None,
                  filter: Optional[str] = None,
                  trigger: Optional['outputs.AlertPolicyConditionConditionAbsentTrigger'] = None):
         """
@@ -161,7 +161,7 @@ class AlertPolicyConditionConditionAbsent(dict):
                generate spurious alerts, but short enough
                that unhealthy states are detected and
                alerted on quickly.
-        :param List['AlertPolicyConditionConditionAbsentAggregationArgs'] aggregations: Specifies the alignment of data points in
+        :param Sequence['AlertPolicyConditionConditionAbsentAggregationArgs'] aggregations: Specifies the alignment of data points in
                individual time series as well as how to
                combine the retrieved time series together
                (such as when aggregating multiple streams
@@ -229,7 +229,7 @@ class AlertPolicyConditionConditionAbsent(dict):
 
     @property
     @pulumi.getter
-    def aggregations(self) -> Optional[List['outputs.AlertPolicyConditionConditionAbsentAggregation']]:
+    def aggregations(self) -> Optional[Sequence['outputs.AlertPolicyConditionConditionAbsentAggregation']]:
         """
         Specifies the alignment of data points in
         individual time series as well as how to
@@ -292,7 +292,7 @@ class AlertPolicyConditionConditionAbsentAggregation(dict):
     def __init__(__self__, *,
                  alignment_period: Optional[str] = None,
                  cross_series_reducer: Optional[str] = None,
-                 group_by_fields: Optional[List[str]] = None,
+                 group_by_fields: Optional[Sequence[str]] = None,
                  per_series_aligner: Optional[str] = None):
         """
         :param str alignment_period: The alignment period for per-time
@@ -327,7 +327,7 @@ class AlertPolicyConditionConditionAbsentAggregation(dict):
                specified; otherwise, an error is
                returned.
                Possible values are `REDUCE_NONE`, `REDUCE_MEAN`, `REDUCE_MIN`, `REDUCE_MAX`, `REDUCE_SUM`, `REDUCE_STDDEV`, `REDUCE_COUNT`, `REDUCE_COUNT_TRUE`, `REDUCE_COUNT_FALSE`, `REDUCE_FRACTION_TRUE`, `REDUCE_PERCENTILE_99`, `REDUCE_PERCENTILE_95`, `REDUCE_PERCENTILE_50`, and `REDUCE_PERCENTILE_05`.
-        :param List[str] group_by_fields: The set of fields to preserve when
+        :param Sequence[str] group_by_fields: The set of fields to preserve when
                crossSeriesReducer is specified.
                The groupByFields determine how
                the time series are partitioned
@@ -428,7 +428,7 @@ class AlertPolicyConditionConditionAbsentAggregation(dict):
 
     @property
     @pulumi.getter(name="groupByFields")
-    def group_by_fields(self) -> Optional[List[str]]:
+    def group_by_fields(self) -> Optional[Sequence[str]]:
         """
         The set of fields to preserve when
         crossSeriesReducer is specified.
@@ -534,8 +534,8 @@ class AlertPolicyConditionConditionThreshold(dict):
     def __init__(__self__, *,
                  comparison: str,
                  duration: str,
-                 aggregations: Optional[List['outputs.AlertPolicyConditionConditionThresholdAggregation']] = None,
-                 denominator_aggregations: Optional[List['outputs.AlertPolicyConditionConditionThresholdDenominatorAggregation']] = None,
+                 aggregations: Optional[Sequence['outputs.AlertPolicyConditionConditionThresholdAggregation']] = None,
+                 denominator_aggregations: Optional[Sequence['outputs.AlertPolicyConditionConditionThresholdDenominatorAggregation']] = None,
                  denominator_filter: Optional[str] = None,
                  filter: Optional[str] = None,
                  threshold_value: Optional[float] = None,
@@ -565,7 +565,7 @@ class AlertPolicyConditionConditionThreshold(dict):
                generate spurious alerts, but short enough
                that unhealthy states are detected and
                alerted on quickly.
-        :param List['AlertPolicyConditionConditionThresholdAggregationArgs'] aggregations: Specifies the alignment of data points in
+        :param Sequence['AlertPolicyConditionConditionThresholdAggregationArgs'] aggregations: Specifies the alignment of data points in
                individual time series as well as how to
                combine the retrieved time series together
                (such as when aggregating multiple streams
@@ -579,7 +579,7 @@ class AlertPolicyConditionConditionThreshold(dict):
                ListTimeSeries method when debugging this
                field.
                Structure is documented below.
-        :param List['AlertPolicyConditionConditionThresholdDenominatorAggregationArgs'] denominator_aggregations: Specifies the alignment of data points in
+        :param Sequence['AlertPolicyConditionConditionThresholdDenominatorAggregationArgs'] denominator_aggregations: Specifies the alignment of data points in
                individual time series selected by
                denominatorFilter as well as how to combine
                the retrieved time series together (such as
@@ -690,7 +690,7 @@ class AlertPolicyConditionConditionThreshold(dict):
 
     @property
     @pulumi.getter
-    def aggregations(self) -> Optional[List['outputs.AlertPolicyConditionConditionThresholdAggregation']]:
+    def aggregations(self) -> Optional[Sequence['outputs.AlertPolicyConditionConditionThresholdAggregation']]:
         """
         Specifies the alignment of data points in
         individual time series as well as how to
@@ -711,7 +711,7 @@ class AlertPolicyConditionConditionThreshold(dict):
 
     @property
     @pulumi.getter(name="denominatorAggregations")
-    def denominator_aggregations(self) -> Optional[List['outputs.AlertPolicyConditionConditionThresholdDenominatorAggregation']]:
+    def denominator_aggregations(self) -> Optional[Sequence['outputs.AlertPolicyConditionConditionThresholdDenominatorAggregation']]:
         """
         Specifies the alignment of data points in
         individual time series selected by
@@ -808,7 +808,7 @@ class AlertPolicyConditionConditionThresholdAggregation(dict):
     def __init__(__self__, *,
                  alignment_period: Optional[str] = None,
                  cross_series_reducer: Optional[str] = None,
-                 group_by_fields: Optional[List[str]] = None,
+                 group_by_fields: Optional[Sequence[str]] = None,
                  per_series_aligner: Optional[str] = None):
         """
         :param str alignment_period: The alignment period for per-time
@@ -843,7 +843,7 @@ class AlertPolicyConditionConditionThresholdAggregation(dict):
                specified; otherwise, an error is
                returned.
                Possible values are `REDUCE_NONE`, `REDUCE_MEAN`, `REDUCE_MIN`, `REDUCE_MAX`, `REDUCE_SUM`, `REDUCE_STDDEV`, `REDUCE_COUNT`, `REDUCE_COUNT_TRUE`, `REDUCE_COUNT_FALSE`, `REDUCE_FRACTION_TRUE`, `REDUCE_PERCENTILE_99`, `REDUCE_PERCENTILE_95`, `REDUCE_PERCENTILE_50`, and `REDUCE_PERCENTILE_05`.
-        :param List[str] group_by_fields: The set of fields to preserve when
+        :param Sequence[str] group_by_fields: The set of fields to preserve when
                crossSeriesReducer is specified.
                The groupByFields determine how
                the time series are partitioned
@@ -944,7 +944,7 @@ class AlertPolicyConditionConditionThresholdAggregation(dict):
 
     @property
     @pulumi.getter(name="groupByFields")
-    def group_by_fields(self) -> Optional[List[str]]:
+    def group_by_fields(self) -> Optional[Sequence[str]]:
         """
         The set of fields to preserve when
         crossSeriesReducer is specified.
@@ -1008,7 +1008,7 @@ class AlertPolicyConditionConditionThresholdDenominatorAggregation(dict):
     def __init__(__self__, *,
                  alignment_period: Optional[str] = None,
                  cross_series_reducer: Optional[str] = None,
-                 group_by_fields: Optional[List[str]] = None,
+                 group_by_fields: Optional[Sequence[str]] = None,
                  per_series_aligner: Optional[str] = None):
         """
         :param str alignment_period: The alignment period for per-time
@@ -1043,7 +1043,7 @@ class AlertPolicyConditionConditionThresholdDenominatorAggregation(dict):
                specified; otherwise, an error is
                returned.
                Possible values are `REDUCE_NONE`, `REDUCE_MEAN`, `REDUCE_MIN`, `REDUCE_MAX`, `REDUCE_SUM`, `REDUCE_STDDEV`, `REDUCE_COUNT`, `REDUCE_COUNT_TRUE`, `REDUCE_COUNT_FALSE`, `REDUCE_FRACTION_TRUE`, `REDUCE_PERCENTILE_99`, `REDUCE_PERCENTILE_95`, `REDUCE_PERCENTILE_50`, and `REDUCE_PERCENTILE_05`.
-        :param List[str] group_by_fields: The set of fields to preserve when
+        :param Sequence[str] group_by_fields: The set of fields to preserve when
                crossSeriesReducer is specified.
                The groupByFields determine how
                the time series are partitioned
@@ -1144,7 +1144,7 @@ class AlertPolicyConditionConditionThresholdDenominatorAggregation(dict):
 
     @property
     @pulumi.getter(name="groupByFields")
-    def group_by_fields(self) -> Optional[List[str]]:
+    def group_by_fields(self) -> Optional[Sequence[str]]:
         """
         The set of fields to preserve when
         crossSeriesReducer is specified.
@@ -1476,25 +1476,25 @@ class NotificationChannelSensitiveLabels(dict):
 class SloBasicSli(dict):
     def __init__(__self__, *,
                  latency: 'outputs.SloBasicSliLatency',
-                 locations: Optional[List[str]] = None,
-                 methods: Optional[List[str]] = None,
-                 versions: Optional[List[str]] = None):
+                 locations: Optional[Sequence[str]] = None,
+                 methods: Optional[Sequence[str]] = None,
+                 versions: Optional[Sequence[str]] = None):
         """
         :param 'SloBasicSliLatencyArgs' latency: Parameters for a latency threshold SLI.
                Structure is documented below.
-        :param List[str] locations: An optional set of locations to which this SLI is relevant.
+        :param Sequence[str] locations: An optional set of locations to which this SLI is relevant.
                Telemetry from other locations will not be used to calculate
                performance for this SLI. If omitted, this SLI applies to all
                locations in which the Service has activity. For service types
                that don't support breaking down by location, setting this
                field will result in an error.
-        :param List[str] methods: An optional set of RPCs to which this SLI is relevant.
+        :param Sequence[str] methods: An optional set of RPCs to which this SLI is relevant.
                Telemetry from other methods will not be used to calculate
                performance for this SLI. If omitted, this SLI applies to all
                the Service's methods. For service types that don't support
                breaking down by method, setting this field will result in an
                error.
-        :param List[str] versions: The set of API versions to which this SLI is relevant.
+        :param Sequence[str] versions: The set of API versions to which this SLI is relevant.
                Telemetry from other API versions will not be used to
                calculate performance for this SLI. If omitted,
                this SLI applies to all API versions. For service types
@@ -1520,7 +1520,7 @@ class SloBasicSli(dict):
 
     @property
     @pulumi.getter
-    def locations(self) -> Optional[List[str]]:
+    def locations(self) -> Optional[Sequence[str]]:
         """
         An optional set of locations to which this SLI is relevant.
         Telemetry from other locations will not be used to calculate
@@ -1533,7 +1533,7 @@ class SloBasicSli(dict):
 
     @property
     @pulumi.getter
-    def methods(self) -> Optional[List[str]]:
+    def methods(self) -> Optional[Sequence[str]]:
         """
         An optional set of RPCs to which this SLI is relevant.
         Telemetry from other methods will not be used to calculate
@@ -1546,7 +1546,7 @@ class SloBasicSli(dict):
 
     @property
     @pulumi.getter
-    def versions(self) -> Optional[List[str]]:
+    def versions(self) -> Optional[Sequence[str]]:
         """
         The set of API versions to which this SLI is relevant.
         Telemetry from other API versions will not be used to
@@ -1988,25 +1988,25 @@ class SloWindowsBasedSliGoodTotalRatioThreshold(dict):
 class SloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformance(dict):
     def __init__(__self__, *,
                  latency: 'outputs.SloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceLatency',
-                 locations: Optional[List[str]] = None,
-                 methods: Optional[List[str]] = None,
-                 versions: Optional[List[str]] = None):
+                 locations: Optional[Sequence[str]] = None,
+                 methods: Optional[Sequence[str]] = None,
+                 versions: Optional[Sequence[str]] = None):
         """
         :param 'SloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceLatencyArgs' latency: Parameters for a latency threshold SLI.
                Structure is documented below.
-        :param List[str] locations: An optional set of locations to which this SLI is relevant.
+        :param Sequence[str] locations: An optional set of locations to which this SLI is relevant.
                Telemetry from other locations will not be used to calculate
                performance for this SLI. If omitted, this SLI applies to all
                locations in which the Service has activity. For service types
                that don't support breaking down by location, setting this
                field will result in an error.
-        :param List[str] methods: An optional set of RPCs to which this SLI is relevant.
+        :param Sequence[str] methods: An optional set of RPCs to which this SLI is relevant.
                Telemetry from other methods will not be used to calculate
                performance for this SLI. If omitted, this SLI applies to all
                the Service's methods. For service types that don't support
                breaking down by method, setting this field will result in an
                error.
-        :param List[str] versions: The set of API versions to which this SLI is relevant.
+        :param Sequence[str] versions: The set of API versions to which this SLI is relevant.
                Telemetry from other API versions will not be used to
                calculate performance for this SLI. If omitted,
                this SLI applies to all API versions. For service types
@@ -2032,7 +2032,7 @@ class SloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformance(dict):
 
     @property
     @pulumi.getter
-    def locations(self) -> Optional[List[str]]:
+    def locations(self) -> Optional[Sequence[str]]:
         """
         An optional set of locations to which this SLI is relevant.
         Telemetry from other locations will not be used to calculate
@@ -2045,7 +2045,7 @@ class SloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformance(dict):
 
     @property
     @pulumi.getter
-    def methods(self) -> Optional[List[str]]:
+    def methods(self) -> Optional[Sequence[str]]:
         """
         An optional set of RPCs to which this SLI is relevant.
         Telemetry from other methods will not be used to calculate
@@ -2058,7 +2058,7 @@ class SloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformance(dict):
 
     @property
     @pulumi.getter
-    def versions(self) -> Optional[List[str]]:
+    def versions(self) -> Optional[Sequence[str]]:
         """
         The set of API versions to which this SLI is relevant.
         Telemetry from other API versions will not be used to

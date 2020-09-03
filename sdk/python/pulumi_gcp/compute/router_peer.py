@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
@@ -18,8 +18,8 @@ class RouterPeer(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  advertise_mode: Optional[pulumi.Input[str]] = None,
-                 advertised_groups: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 advertised_ip_ranges: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['RouterPeerAdvertisedIpRangeArgs']]]]] = None,
+                 advertised_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 advertised_ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterPeerAdvertisedIpRangeArgs']]]]] = None,
                  advertised_route_priority: Optional[pulumi.Input[float]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -51,12 +51,12 @@ class RouterPeer(pulumi.CustomResource):
                Valid values of this enum field are: `DEFAULT`, `CUSTOM`
                Default value is `DEFAULT`.
                Possible values are `DEFAULT` and `CUSTOM`.
-        :param pulumi.Input[List[pulumi.Input[str]]] advertised_groups: User-specified list of prefix groups to advertise in custom
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] advertised_groups: User-specified list of prefix groups to advertise in custom
                mode, which can take one of the following options:
                * `ALL_SUBNETS`: Advertises all available subnets, including peer VPC subnets.
                * `ALL_VPC_SUBNETS`: Advertises the router's own VPC subnets.
                * `ALL_PEER_VPC_SUBNETS`: Advertises peer subnets of the router's VPC network.
-        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['RouterPeerAdvertisedIpRangeArgs']]]] advertised_ip_ranges: User-specified list of individual IP ranges to advertise in
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterPeerAdvertisedIpRangeArgs']]]] advertised_ip_ranges: User-specified list of individual IP ranges to advertise in
                custom mode. This field can only be populated if advertiseMode
                is `CUSTOM` and is advertised to all peers of the router. These IP
                ranges will be advertised in addition to any specified groups.
@@ -131,8 +131,8 @@ class RouterPeer(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             advertise_mode: Optional[pulumi.Input[str]] = None,
-            advertised_groups: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-            advertised_ip_ranges: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['RouterPeerAdvertisedIpRangeArgs']]]]] = None,
+            advertised_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            advertised_ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterPeerAdvertisedIpRangeArgs']]]]] = None,
             advertised_route_priority: Optional[pulumi.Input[float]] = None,
             interface: Optional[pulumi.Input[str]] = None,
             ip_address: Optional[pulumi.Input[str]] = None,
@@ -154,12 +154,12 @@ class RouterPeer(pulumi.CustomResource):
                Valid values of this enum field are: `DEFAULT`, `CUSTOM`
                Default value is `DEFAULT`.
                Possible values are `DEFAULT` and `CUSTOM`.
-        :param pulumi.Input[List[pulumi.Input[str]]] advertised_groups: User-specified list of prefix groups to advertise in custom
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] advertised_groups: User-specified list of prefix groups to advertise in custom
                mode, which can take one of the following options:
                * `ALL_SUBNETS`: Advertises all available subnets, including peer VPC subnets.
                * `ALL_VPC_SUBNETS`: Advertises the router's own VPC subnets.
                * `ALL_PEER_VPC_SUBNETS`: Advertises peer subnets of the router's VPC network.
-        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['RouterPeerAdvertisedIpRangeArgs']]]] advertised_ip_ranges: User-specified list of individual IP ranges to advertise in
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterPeerAdvertisedIpRangeArgs']]]] advertised_ip_ranges: User-specified list of individual IP ranges to advertise in
                custom mode. This field can only be populated if advertiseMode
                is `CUSTOM` and is advertised to all peers of the router. These IP
                ranges will be advertised in addition to any specified groups.
@@ -222,7 +222,7 @@ class RouterPeer(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="advertisedGroups")
-    def advertised_groups(self) -> pulumi.Output[Optional[List[str]]]:
+    def advertised_groups(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         User-specified list of prefix groups to advertise in custom
         mode, which can take one of the following options:
@@ -234,7 +234,7 @@ class RouterPeer(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="advertisedIpRanges")
-    def advertised_ip_ranges(self) -> pulumi.Output[Optional[List['outputs.RouterPeerAdvertisedIpRange']]]:
+    def advertised_ip_ranges(self) -> pulumi.Output[Optional[Sequence['outputs.RouterPeerAdvertisedIpRange']]]:
         """
         User-specified list of individual IP ranges to advertise in
         custom mode. This field can only be populated if advertiseMode

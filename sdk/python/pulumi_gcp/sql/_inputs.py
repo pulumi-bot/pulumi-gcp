@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = [
@@ -339,11 +339,11 @@ class DatabaseInstanceSettingsArgs:
     def __init__(__self__, *,
                  tier: pulumi.Input[str],
                  activation_policy: Optional[pulumi.Input[str]] = None,
-                 authorized_gae_applications: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 authorized_gae_applications: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  availability_type: Optional[pulumi.Input[str]] = None,
                  backup_configuration: Optional[pulumi.Input['DatabaseInstanceSettingsBackupConfigurationArgs']] = None,
                  crash_safe_replication: Optional[pulumi.Input[bool]] = None,
-                 database_flags: Optional[pulumi.Input[List[pulumi.Input['DatabaseInstanceSettingsDatabaseFlagArgs']]]] = None,
+                 database_flags: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseInstanceSettingsDatabaseFlagArgs']]]] = None,
                  disk_autoresize: Optional[pulumi.Input[bool]] = None,
                  disk_size: Optional[pulumi.Input[float]] = None,
                  disk_type: Optional[pulumi.Input[str]] = None,
@@ -360,7 +360,7 @@ class DatabaseInstanceSettingsArgs:
                and custom machine types such as `db-custom-2-13312`. See the [Custom Machine Type Documentation](https://cloud.google.com/compute/docs/instances/creating-instance-with-custom-machine-type#create) to learn about specifying custom machine types.
         :param pulumi.Input[str] activation_policy: This specifies when the instance should be
                active. Can be either `ALWAYS`, `NEVER` or `ON_DEMAND`.
-        :param pulumi.Input[List[pulumi.Input[str]]] authorized_gae_applications: This property is only applicable to First Generation instances.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] authorized_gae_applications: This property is only applicable to First Generation instances.
                First Generation instances are now deprecated, see [here](https://cloud.google.com/sql/docs/mysql/upgrade-2nd-gen)
                for information on how to upgrade to Second Generation instances.
                A list of Google App Engine (GAE) project names that are allowed to access this instance.
@@ -455,7 +455,7 @@ class DatabaseInstanceSettingsArgs:
 
     @property
     @pulumi.getter(name="authorizedGaeApplications")
-    def authorized_gae_applications(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def authorized_gae_applications(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         This property is only applicable to First Generation instances.
         First Generation instances are now deprecated, see [here](https://cloud.google.com/sql/docs/mysql/upgrade-2nd-gen)
@@ -465,7 +465,7 @@ class DatabaseInstanceSettingsArgs:
         return pulumi.get(self, "authorized_gae_applications")
 
     @authorized_gae_applications.setter
-    def authorized_gae_applications(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def authorized_gae_applications(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "authorized_gae_applications", value)
 
     @property
@@ -510,11 +510,11 @@ class DatabaseInstanceSettingsArgs:
 
     @property
     @pulumi.getter(name="databaseFlags")
-    def database_flags(self) -> Optional[pulumi.Input[List[pulumi.Input['DatabaseInstanceSettingsDatabaseFlagArgs']]]]:
+    def database_flags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseInstanceSettingsDatabaseFlagArgs']]]]:
         return pulumi.get(self, "database_flags")
 
     @database_flags.setter
-    def database_flags(self, value: Optional[pulumi.Input[List[pulumi.Input['DatabaseInstanceSettingsDatabaseFlagArgs']]]]):
+    def database_flags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseInstanceSettingsDatabaseFlagArgs']]]]):
         pulumi.set(self, "database_flags", value)
 
     @property
@@ -762,7 +762,7 @@ class DatabaseInstanceSettingsDatabaseFlagArgs:
 @pulumi.input_type
 class DatabaseInstanceSettingsIpConfigurationArgs:
     def __init__(__self__, *,
-                 authorized_networks: Optional[pulumi.Input[List[pulumi.Input['DatabaseInstanceSettingsIpConfigurationAuthorizedNetworkArgs']]]] = None,
+                 authorized_networks: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseInstanceSettingsIpConfigurationAuthorizedNetworkArgs']]]] = None,
                  ipv4_enabled: Optional[pulumi.Input[bool]] = None,
                  private_network: Optional[pulumi.Input[str]] = None,
                  require_ssl: Optional[pulumi.Input[bool]] = None):
@@ -789,11 +789,11 @@ class DatabaseInstanceSettingsIpConfigurationArgs:
 
     @property
     @pulumi.getter(name="authorizedNetworks")
-    def authorized_networks(self) -> Optional[pulumi.Input[List[pulumi.Input['DatabaseInstanceSettingsIpConfigurationAuthorizedNetworkArgs']]]]:
+    def authorized_networks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseInstanceSettingsIpConfigurationAuthorizedNetworkArgs']]]]:
         return pulumi.get(self, "authorized_networks")
 
     @authorized_networks.setter
-    def authorized_networks(self, value: Optional[pulumi.Input[List[pulumi.Input['DatabaseInstanceSettingsIpConfigurationAuthorizedNetworkArgs']]]]):
+    def authorized_networks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseInstanceSettingsIpConfigurationAuthorizedNetworkArgs']]]]):
         pulumi.set(self, "authorized_networks", value)
 
     @property

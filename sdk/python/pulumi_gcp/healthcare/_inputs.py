@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = [
@@ -329,7 +329,7 @@ class FhirStoreNotificationConfigArgs:
 class FhirStoreStreamConfigArgs:
     def __init__(__self__, *,
                  bigquery_destination: pulumi.Input['FhirStoreStreamConfigBigqueryDestinationArgs'],
-                 resource_types: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 resource_types: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         :param pulumi.Input['FhirStoreStreamConfigBigqueryDestinationArgs'] bigquery_destination: The destination BigQuery structure that contains both the dataset location and corresponding schema config.
                The output is organized in one table per resource type. The server reuses the existing tables (if any) that
@@ -337,7 +337,7 @@ class FhirStoreStreamConfigArgs:
                resource type, the server attempts to create one.
                See the [streaming config reference](https://cloud.google.com/healthcare/docs/reference/rest/v1beta1/projects.locations.datasets.fhirStores#streamconfig) for more details.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] resource_types: Supply a FHIR resource type (such as "Patient" or "Observation"). See
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] resource_types: Supply a FHIR resource type (such as "Patient" or "Observation"). See
                https://www.hl7.org/fhir/valueset-resource-types.html for a list of all FHIR resource types. The server treats
                an empty list as an intent to stream all the supported resource types in this FHIR store.
         """
@@ -364,7 +364,7 @@ class FhirStoreStreamConfigArgs:
 
     @property
     @pulumi.getter(name="resourceTypes")
-    def resource_types(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def resource_types(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Supply a FHIR resource type (such as "Patient" or "Observation"). See
         https://www.hl7.org/fhir/valueset-resource-types.html for a list of all FHIR resource types. The server treats
@@ -373,7 +373,7 @@ class FhirStoreStreamConfigArgs:
         return pulumi.get(self, "resource_types")
 
     @resource_types.setter
-    def resource_types(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def resource_types(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "resource_types", value)
 
 

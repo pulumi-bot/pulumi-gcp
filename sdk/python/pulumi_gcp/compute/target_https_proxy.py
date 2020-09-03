@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = ['TargetHttpsProxy']
@@ -19,7 +19,7 @@ class TargetHttpsProxy(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  project: Optional[pulumi.Input[str]] = None,
                  quic_override: Optional[pulumi.Input[str]] = None,
-                 ssl_certificates: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 ssl_certificates: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ssl_policy: Optional[pulumi.Input[str]] = None,
                  url_map: Optional[pulumi.Input[str]] = None,
                  __props__=None,
@@ -56,7 +56,7 @@ class TargetHttpsProxy(pulumi.CustomResource):
                equivalent to DISABLE.
                Default value is `NONE`.
                Possible values are `NONE`, `ENABLE`, and `DISABLE`.
-        :param pulumi.Input[List[pulumi.Input[str]]] ssl_certificates: A list of SslCertificate resources that are used to authenticate
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ssl_certificates: A list of SslCertificate resources that are used to authenticate
                connections between users and the load balancer. At least one SSL
                certificate must be specified.
         :param pulumi.Input[str] ssl_policy: A reference to the SslPolicy resource that will be associated with
@@ -113,7 +113,7 @@ class TargetHttpsProxy(pulumi.CustomResource):
             proxy_id: Optional[pulumi.Input[float]] = None,
             quic_override: Optional[pulumi.Input[str]] = None,
             self_link: Optional[pulumi.Input[str]] = None,
-            ssl_certificates: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            ssl_certificates: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             ssl_policy: Optional[pulumi.Input[str]] = None,
             url_map: Optional[pulumi.Input[str]] = None) -> 'TargetHttpsProxy':
         """
@@ -143,7 +143,7 @@ class TargetHttpsProxy(pulumi.CustomResource):
                Default value is `NONE`.
                Possible values are `NONE`, `ENABLE`, and `DISABLE`.
         :param pulumi.Input[str] self_link: The URI of the created resource.
-        :param pulumi.Input[List[pulumi.Input[str]]] ssl_certificates: A list of SslCertificate resources that are used to authenticate
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ssl_certificates: A list of SslCertificate resources that are used to authenticate
                connections between users and the load balancer. At least one SSL
                certificate must be specified.
         :param pulumi.Input[str] ssl_policy: A reference to the SslPolicy resource that will be associated with
@@ -239,7 +239,7 @@ class TargetHttpsProxy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="sslCertificates")
-    def ssl_certificates(self) -> pulumi.Output[List[str]]:
+    def ssl_certificates(self) -> pulumi.Output[Sequence[str]]:
         """
         A list of SslCertificate resources that are used to authenticate
         connections between users and the load balancer. At least one SSL

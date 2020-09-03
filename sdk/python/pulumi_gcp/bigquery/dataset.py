@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
@@ -17,7 +17,7 @@ class Dataset(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 accesses: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['DatasetAccessArgs']]]]] = None,
+                 accesses: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatasetAccessArgs']]]]] = None,
                  dataset_id: Optional[pulumi.Input[str]] = None,
                  default_encryption_configuration: Optional[pulumi.Input[pulumi.InputType['DatasetDefaultEncryptionConfigurationArgs']]] = None,
                  default_partition_expiration_ms: Optional[pulumi.Input[float]] = None,
@@ -44,7 +44,7 @@ class Dataset(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['DatasetAccessArgs']]]] accesses: An array of objects that define dataset access for one or more entities.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatasetAccessArgs']]]] accesses: An array of objects that define dataset access for one or more entities.
                Structure is documented below.
         :param pulumi.Input[str] dataset_id: The ID of the dataset containing this table.
         :param pulumi.Input[pulumi.InputType['DatasetDefaultEncryptionConfigurationArgs']] default_encryption_configuration: The default encryption key for all tables in the dataset. Once this property is set,
@@ -111,7 +111,7 @@ class Dataset(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            accesses: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['DatasetAccessArgs']]]]] = None,
+            accesses: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatasetAccessArgs']]]]] = None,
             creation_time: Optional[pulumi.Input[float]] = None,
             dataset_id: Optional[pulumi.Input[str]] = None,
             default_encryption_configuration: Optional[pulumi.Input[pulumi.InputType['DatasetDefaultEncryptionConfigurationArgs']]] = None,
@@ -133,7 +133,7 @@ class Dataset(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['DatasetAccessArgs']]]] accesses: An array of objects that define dataset access for one or more entities.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatasetAccessArgs']]]] accesses: An array of objects that define dataset access for one or more entities.
                Structure is documented below.
         :param pulumi.Input[float] creation_time: The time when this dataset was created, in milliseconds since the epoch.
         :param pulumi.Input[str] dataset_id: The ID of the dataset containing this table.
@@ -183,7 +183,7 @@ class Dataset(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def accesses(self) -> pulumi.Output[List['outputs.DatasetAccess']]:
+    def accesses(self) -> pulumi.Output[Sequence['outputs.DatasetAccess']]:
         """
         An array of objects that define dataset access for one or more entities.
         Structure is documented below.

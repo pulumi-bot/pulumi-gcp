@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 from . import outputs
 
@@ -32,12 +32,12 @@ __all__ = [
 @pulumi.output_type
 class ManagedZoneDnssecConfig(dict):
     def __init__(__self__, *,
-                 default_key_specs: Optional[List['outputs.ManagedZoneDnssecConfigDefaultKeySpec']] = None,
+                 default_key_specs: Optional[Sequence['outputs.ManagedZoneDnssecConfigDefaultKeySpec']] = None,
                  kind: Optional[str] = None,
                  non_existence: Optional[str] = None,
                  state: Optional[str] = None):
         """
-        :param List['ManagedZoneDnssecConfigDefaultKeySpecArgs'] default_key_specs: Specifies parameters that will be used for generating initial DnsKeys
+        :param Sequence['ManagedZoneDnssecConfigDefaultKeySpecArgs'] default_key_specs: Specifies parameters that will be used for generating initial DnsKeys
                for this ManagedZone. If you provide a spec for keySigning or zoneSigning,
                you must also provide one for the other.
                default_key_specs can only be updated when the state is `off`.
@@ -60,7 +60,7 @@ class ManagedZoneDnssecConfig(dict):
 
     @property
     @pulumi.getter(name="defaultKeySpecs")
-    def default_key_specs(self) -> Optional[List['outputs.ManagedZoneDnssecConfigDefaultKeySpec']]:
+    def default_key_specs(self) -> Optional[Sequence['outputs.ManagedZoneDnssecConfigDefaultKeySpec']]:
         """
         Specifies parameters that will be used for generating initial DnsKeys
         for this ManagedZone. If you provide a spec for keySigning or zoneSigning,
@@ -176,9 +176,9 @@ class ManagedZoneDnssecConfigDefaultKeySpec(dict):
 @pulumi.output_type
 class ManagedZoneForwardingConfig(dict):
     def __init__(__self__, *,
-                 target_name_servers: List['outputs.ManagedZoneForwardingConfigTargetNameServer']):
+                 target_name_servers: Sequence['outputs.ManagedZoneForwardingConfigTargetNameServer']):
         """
-        :param List['ManagedZoneForwardingConfigTargetNameServerArgs'] target_name_servers: List of target name servers to forward to. Cloud DNS will
+        :param Sequence['ManagedZoneForwardingConfigTargetNameServerArgs'] target_name_servers: List of target name servers to forward to. Cloud DNS will
                select the best available name server if more than
                one target is given.
                Structure is documented below.
@@ -187,7 +187,7 @@ class ManagedZoneForwardingConfig(dict):
 
     @property
     @pulumi.getter(name="targetNameServers")
-    def target_name_servers(self) -> List['outputs.ManagedZoneForwardingConfigTargetNameServer']:
+    def target_name_servers(self) -> Sequence['outputs.ManagedZoneForwardingConfigTargetNameServer']:
         """
         List of target name servers to forward to. Cloud DNS will
         select the best available name server if more than
@@ -290,15 +290,15 @@ class ManagedZonePeeringConfigTargetNetwork(dict):
 @pulumi.output_type
 class ManagedZonePrivateVisibilityConfig(dict):
     def __init__(__self__, *,
-                 networks: List['outputs.ManagedZonePrivateVisibilityConfigNetwork']):
+                 networks: Sequence['outputs.ManagedZonePrivateVisibilityConfigNetwork']):
         """
-        :param List['ManagedZonePrivateVisibilityConfigNetworkArgs'] networks: The list of VPC networks that can see this zone. Structure is documented below.
+        :param Sequence['ManagedZonePrivateVisibilityConfigNetworkArgs'] networks: The list of VPC networks that can see this zone. Structure is documented below.
         """
         pulumi.set(__self__, "networks", networks)
 
     @property
     @pulumi.getter
-    def networks(self) -> List['outputs.ManagedZonePrivateVisibilityConfigNetwork']:
+    def networks(self) -> Sequence['outputs.ManagedZonePrivateVisibilityConfigNetwork']:
         """
         The list of VPC networks that can see this zone. Structure is documented below.
         """
@@ -388,9 +388,9 @@ class ManagedZoneServiceDirectoryConfigNamespace(dict):
 @pulumi.output_type
 class PolicyAlternativeNameServerConfig(dict):
     def __init__(__self__, *,
-                 target_name_servers: List['outputs.PolicyAlternativeNameServerConfigTargetNameServer']):
+                 target_name_servers: Sequence['outputs.PolicyAlternativeNameServerConfigTargetNameServer']):
         """
-        :param List['PolicyAlternativeNameServerConfigTargetNameServerArgs'] target_name_servers: Sets an alternative name server for the associated networks. When specified,
+        :param Sequence['PolicyAlternativeNameServerConfigTargetNameServerArgs'] target_name_servers: Sets an alternative name server for the associated networks. When specified,
                all DNS queries are forwarded to a name server that you choose. Names such as .internal
                are not available when an alternative name server is specified.
                Structure is documented below.
@@ -399,7 +399,7 @@ class PolicyAlternativeNameServerConfig(dict):
 
     @property
     @pulumi.getter(name="targetNameServers")
-    def target_name_servers(self) -> List['outputs.PolicyAlternativeNameServerConfigTargetNameServer']:
+    def target_name_servers(self) -> Sequence['outputs.PolicyAlternativeNameServerConfigTargetNameServer']:
         """
         Sets an alternative name server for the associated networks. When specified,
         all DNS queries are forwarded to a name server that you choose. Names such as .internal
@@ -464,7 +464,7 @@ class GetKeysKeySigningKeyResult(dict):
                  algorithm: str,
                  creation_time: str,
                  description: str,
-                 digests: List['outputs.GetKeysKeySigningKeyDigestResult'],
+                 digests: Sequence['outputs.GetKeysKeySigningKeyDigestResult'],
                  ds_record: str,
                  id: str,
                  is_active: bool,
@@ -475,7 +475,7 @@ class GetKeysKeySigningKeyResult(dict):
         :param str algorithm: String mnemonic specifying the DNSSEC algorithm of this key. Immutable after creation time. Possible values are `ecdsap256sha256`, `ecdsap384sha384`, `rsasha1`, `rsasha256`, and `rsasha512`.
         :param str creation_time: The time that this resource was created in the control plane. This is in RFC3339 text format.
         :param str description: A mutable string of at most 1024 characters associated with this resource for the user's convenience.
-        :param List['GetKeysKeySigningKeyDigestArgs'] digests: A list of cryptographic hashes of the DNSKEY resource record associated with this DnsKey. These digests are needed to construct a DS record that points at this DNS key. Each contains:
+        :param Sequence['GetKeysKeySigningKeyDigestArgs'] digests: A list of cryptographic hashes of the DNSKEY resource record associated with this DnsKey. These digests are needed to construct a DS record that points at this DNS key. Each contains:
         :param str ds_record: The DS record based on the KSK record. This is used when [delegating](https://cloud.google.com/dns/docs/dnssec-advanced#subdelegation) DNSSEC-signed subdomains.
         :param str id: Unique identifier for the resource; defined by the server.
         :param bool is_active: Active keys will be used to sign subsequent changes to the ManagedZone. Inactive keys will still be present as DNSKEY Resource Records for the use of resolvers validating existing signatures.
@@ -520,7 +520,7 @@ class GetKeysKeySigningKeyResult(dict):
 
     @property
     @pulumi.getter
-    def digests(self) -> List['outputs.GetKeysKeySigningKeyDigestResult']:
+    def digests(self) -> Sequence['outputs.GetKeysKeySigningKeyDigestResult']:
         """
         A list of cryptographic hashes of the DNSKEY resource record associated with this DnsKey. These digests are needed to construct a DS record that points at this DNS key. Each contains:
         """
@@ -612,7 +612,7 @@ class GetKeysZoneSigningKeyResult(dict):
                  algorithm: str,
                  creation_time: str,
                  description: str,
-                 digests: List['outputs.GetKeysZoneSigningKeyDigestResult'],
+                 digests: Sequence['outputs.GetKeysZoneSigningKeyDigestResult'],
                  id: str,
                  is_active: bool,
                  key_length: float,
@@ -622,7 +622,7 @@ class GetKeysZoneSigningKeyResult(dict):
         :param str algorithm: String mnemonic specifying the DNSSEC algorithm of this key. Immutable after creation time. Possible values are `ecdsap256sha256`, `ecdsap384sha384`, `rsasha1`, `rsasha256`, and `rsasha512`.
         :param str creation_time: The time that this resource was created in the control plane. This is in RFC3339 text format.
         :param str description: A mutable string of at most 1024 characters associated with this resource for the user's convenience.
-        :param List['GetKeysZoneSigningKeyDigestArgs'] digests: A list of cryptographic hashes of the DNSKEY resource record associated with this DnsKey. These digests are needed to construct a DS record that points at this DNS key. Each contains:
+        :param Sequence['GetKeysZoneSigningKeyDigestArgs'] digests: A list of cryptographic hashes of the DNSKEY resource record associated with this DnsKey. These digests are needed to construct a DS record that points at this DNS key. Each contains:
         :param str id: Unique identifier for the resource; defined by the server.
         :param bool is_active: Active keys will be used to sign subsequent changes to the ManagedZone. Inactive keys will still be present as DNSKEY Resource Records for the use of resolvers validating existing signatures.
         :param float key_length: Length of the key in bits. Specified at creation time then immutable.
@@ -665,7 +665,7 @@ class GetKeysZoneSigningKeyResult(dict):
 
     @property
     @pulumi.getter
-    def digests(self) -> List['outputs.GetKeysZoneSigningKeyDigestResult']:
+    def digests(self) -> Sequence['outputs.GetKeysZoneSigningKeyDigestResult']:
         """
         A list of cryptographic hashes of the DNSKEY resource record associated with this DnsKey. These digests are needed to construct a DS record that points at this DNS key. Each contains:
         """

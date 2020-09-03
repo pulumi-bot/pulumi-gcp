@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = [
@@ -936,14 +936,14 @@ class FlexibleAppVersionDeploymentArgs:
     def __init__(__self__, *,
                  cloud_build_options: Optional[pulumi.Input['FlexibleAppVersionDeploymentCloudBuildOptionsArgs']] = None,
                  container: Optional[pulumi.Input['FlexibleAppVersionDeploymentContainerArgs']] = None,
-                 files: Optional[pulumi.Input[List[pulumi.Input['FlexibleAppVersionDeploymentFileArgs']]]] = None,
+                 files: Optional[pulumi.Input[Sequence[pulumi.Input['FlexibleAppVersionDeploymentFileArgs']]]] = None,
                  zip: Optional[pulumi.Input['FlexibleAppVersionDeploymentZipArgs']] = None):
         """
         :param pulumi.Input['FlexibleAppVersionDeploymentCloudBuildOptionsArgs'] cloud_build_options: Options for the build operations performed as a part of the version deployment. Only applicable when creating a version using source code directly.
                Structure is documented below.
         :param pulumi.Input['FlexibleAppVersionDeploymentContainerArgs'] container: The Docker image for the container that runs the version.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input['FlexibleAppVersionDeploymentFileArgs']]] files: Manifest of the files stored in Google Cloud Storage that are included as part of this version.
+        :param pulumi.Input[Sequence[pulumi.Input['FlexibleAppVersionDeploymentFileArgs']]] files: Manifest of the files stored in Google Cloud Storage that are included as part of this version.
                All files must be readable using the credentials supplied with this call.
                Structure is documented below.
         :param pulumi.Input['FlexibleAppVersionDeploymentZipArgs'] zip: Zip File
@@ -986,7 +986,7 @@ class FlexibleAppVersionDeploymentArgs:
 
     @property
     @pulumi.getter
-    def files(self) -> Optional[pulumi.Input[List[pulumi.Input['FlexibleAppVersionDeploymentFileArgs']]]]:
+    def files(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FlexibleAppVersionDeploymentFileArgs']]]]:
         """
         Manifest of the files stored in Google Cloud Storage that are included as part of this version.
         All files must be readable using the credentials supplied with this call.
@@ -995,7 +995,7 @@ class FlexibleAppVersionDeploymentArgs:
         return pulumi.get(self, "files")
 
     @files.setter
-    def files(self, value: Optional[pulumi.Input[List[pulumi.Input['FlexibleAppVersionDeploymentFileArgs']]]]):
+    def files(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FlexibleAppVersionDeploymentFileArgs']]]]):
         pulumi.set(self, "files", value)
 
     @property
@@ -1715,13 +1715,13 @@ class FlexibleAppVersionManualScalingArgs:
 class FlexibleAppVersionNetworkArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str],
-                 forwarded_ports: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 forwarded_ports: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  instance_tag: Optional[pulumi.Input[str]] = None,
                  session_affinity: Optional[pulumi.Input[bool]] = None,
                  subnetwork: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] name: Full Serverless VPC Access Connector name e.g. /projects/my-project/locations/us-central1/connectors/c1.
-        :param pulumi.Input[List[pulumi.Input[str]]] forwarded_ports: List of ports, or port pairs, to forward from the virtual machine to the application container.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] forwarded_ports: List of ports, or port pairs, to forward from the virtual machine to the application container.
         :param pulumi.Input[str] instance_tag: Tag to apply to the instance during creation.
         :param pulumi.Input[bool] session_affinity: Enable session affinity.
         :param pulumi.Input[str] subnetwork: Google Cloud Platform sub-network where the virtual machines are created. Specify the short name, not the resource path.
@@ -1754,14 +1754,14 @@ class FlexibleAppVersionNetworkArgs:
 
     @property
     @pulumi.getter(name="forwardedPorts")
-    def forwarded_ports(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def forwarded_ports(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         List of ports, or port pairs, to forward from the virtual machine to the application container.
         """
         return pulumi.get(self, "forwarded_ports")
 
     @forwarded_ports.setter
-    def forwarded_ports(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def forwarded_ports(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "forwarded_ports", value)
 
     @property
@@ -1933,12 +1933,12 @@ class FlexibleAppVersionResourcesArgs:
                  cpu: Optional[pulumi.Input[float]] = None,
                  disk_gb: Optional[pulumi.Input[float]] = None,
                  memory_gb: Optional[pulumi.Input[float]] = None,
-                 volumes: Optional[pulumi.Input[List[pulumi.Input['FlexibleAppVersionResourcesVolumeArgs']]]] = None):
+                 volumes: Optional[pulumi.Input[Sequence[pulumi.Input['FlexibleAppVersionResourcesVolumeArgs']]]] = None):
         """
         :param pulumi.Input[float] cpu: Number of CPU cores needed.
         :param pulumi.Input[float] disk_gb: Disk size (GB) needed.
         :param pulumi.Input[float] memory_gb: Memory (GB) needed.
-        :param pulumi.Input[List[pulumi.Input['FlexibleAppVersionResourcesVolumeArgs']]] volumes: List of ports, or port pairs, to forward from the virtual machine to the application container.
+        :param pulumi.Input[Sequence[pulumi.Input['FlexibleAppVersionResourcesVolumeArgs']]] volumes: List of ports, or port pairs, to forward from the virtual machine to the application container.
                Structure is documented below.
         """
         if cpu is not None:
@@ -1988,7 +1988,7 @@ class FlexibleAppVersionResourcesArgs:
 
     @property
     @pulumi.getter
-    def volumes(self) -> Optional[pulumi.Input[List[pulumi.Input['FlexibleAppVersionResourcesVolumeArgs']]]]:
+    def volumes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FlexibleAppVersionResourcesVolumeArgs']]]]:
         """
         List of ports, or port pairs, to forward from the virtual machine to the application container.
         Structure is documented below.
@@ -1996,7 +1996,7 @@ class FlexibleAppVersionResourcesArgs:
         return pulumi.get(self, "volumes")
 
     @volumes.setter
-    def volumes(self, value: Optional[pulumi.Input[List[pulumi.Input['FlexibleAppVersionResourcesVolumeArgs']]]]):
+    def volumes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FlexibleAppVersionResourcesVolumeArgs']]]]):
         pulumi.set(self, "volumes", value)
 
 
@@ -2299,10 +2299,10 @@ class StandardAppVersionBasicScalingArgs:
 @pulumi.input_type
 class StandardAppVersionDeploymentArgs:
     def __init__(__self__, *,
-                 files: Optional[pulumi.Input[List[pulumi.Input['StandardAppVersionDeploymentFileArgs']]]] = None,
+                 files: Optional[pulumi.Input[Sequence[pulumi.Input['StandardAppVersionDeploymentFileArgs']]]] = None,
                  zip: Optional[pulumi.Input['StandardAppVersionDeploymentZipArgs']] = None):
         """
-        :param pulumi.Input[List[pulumi.Input['StandardAppVersionDeploymentFileArgs']]] files: Manifest of the files stored in Google Cloud Storage that are included as part of this version.
+        :param pulumi.Input[Sequence[pulumi.Input['StandardAppVersionDeploymentFileArgs']]] files: Manifest of the files stored in Google Cloud Storage that are included as part of this version.
                All files must be readable using the credentials supplied with this call.
                Structure is documented below.
         :param pulumi.Input['StandardAppVersionDeploymentZipArgs'] zip: Zip File
@@ -2315,7 +2315,7 @@ class StandardAppVersionDeploymentArgs:
 
     @property
     @pulumi.getter
-    def files(self) -> Optional[pulumi.Input[List[pulumi.Input['StandardAppVersionDeploymentFileArgs']]]]:
+    def files(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['StandardAppVersionDeploymentFileArgs']]]]:
         """
         Manifest of the files stored in Google Cloud Storage that are included as part of this version.
         All files must be readable using the credentials supplied with this call.
@@ -2324,7 +2324,7 @@ class StandardAppVersionDeploymentArgs:
         return pulumi.get(self, "files")
 
     @files.setter
-    def files(self, value: Optional[pulumi.Input[List[pulumi.Input['StandardAppVersionDeploymentFileArgs']]]]):
+    def files(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['StandardAppVersionDeploymentFileArgs']]]]):
         pulumi.set(self, "files", value)
 
     @property

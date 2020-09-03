@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
@@ -123,7 +123,7 @@ class ManagedSslCertificate(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             project: Optional[pulumi.Input[str]] = None,
             self_link: Optional[pulumi.Input[str]] = None,
-            subject_alternative_names: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            subject_alternative_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             type: Optional[pulumi.Input[str]] = None) -> 'ManagedSslCertificate':
         """
         Get an existing ManagedSslCertificate resource's state with the given name, id, and optional extra
@@ -149,7 +149,7 @@ class ManagedSslCertificate(pulumi.CustomResource):
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         :param pulumi.Input[str] self_link: The URI of the created resource.
-        :param pulumi.Input[List[pulumi.Input[str]]] subject_alternative_names: Domains associated with the certificate via Subject Alternative Name.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] subject_alternative_names: Domains associated with the certificate via Subject Alternative Name.
         :param pulumi.Input[str] type: Enum field whose value is always `MANAGED` - used to signal to the API
                which type this is.
                Default value is `MANAGED`.
@@ -246,7 +246,7 @@ class ManagedSslCertificate(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="subjectAlternativeNames")
-    def subject_alternative_names(self) -> pulumi.Output[List[str]]:
+    def subject_alternative_names(self) -> pulumi.Output[Sequence[str]]:
         """
         Domains associated with the certificate via Subject Alternative Name.
         """

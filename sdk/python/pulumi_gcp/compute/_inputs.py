@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = [
@@ -334,7 +334,7 @@ class AutoscalarAutoscalingPolicyArgs:
                  cooldown_period: Optional[pulumi.Input[float]] = None,
                  cpu_utilization: Optional[pulumi.Input['AutoscalarAutoscalingPolicyCpuUtilizationArgs']] = None,
                  load_balancing_utilization: Optional[pulumi.Input['AutoscalarAutoscalingPolicyLoadBalancingUtilizationArgs']] = None,
-                 metrics: Optional[pulumi.Input[List[pulumi.Input['AutoscalarAutoscalingPolicyMetricArgs']]]] = None,
+                 metrics: Optional[pulumi.Input[Sequence[pulumi.Input['AutoscalarAutoscalingPolicyMetricArgs']]]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  scale_down_control: Optional[pulumi.Input['AutoscalarAutoscalingPolicyScaleDownControlArgs']] = None):
         """
@@ -361,7 +361,7 @@ class AutoscalarAutoscalingPolicyArgs:
                Structure is documented below.
         :param pulumi.Input['AutoscalarAutoscalingPolicyLoadBalancingUtilizationArgs'] load_balancing_utilization: Configuration parameters of autoscaling based on a load balancer.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input['AutoscalarAutoscalingPolicyMetricArgs']]] metrics: Configuration parameters of autoscaling based on a custom metric.
+        :param pulumi.Input[Sequence[pulumi.Input['AutoscalarAutoscalingPolicyMetricArgs']]] metrics: Configuration parameters of autoscaling based on a custom metric.
                Structure is documented below.
         :param pulumi.Input[str] mode: Defines operating mode for this policy.
                Default value is `ON`.
@@ -462,7 +462,7 @@ class AutoscalarAutoscalingPolicyArgs:
 
     @property
     @pulumi.getter
-    def metrics(self) -> Optional[pulumi.Input[List[pulumi.Input['AutoscalarAutoscalingPolicyMetricArgs']]]]:
+    def metrics(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AutoscalarAutoscalingPolicyMetricArgs']]]]:
         """
         Configuration parameters of autoscaling based on a custom metric.
         Structure is documented below.
@@ -470,7 +470,7 @@ class AutoscalarAutoscalingPolicyArgs:
         return pulumi.get(self, "metrics")
 
     @metrics.setter
-    def metrics(self, value: Optional[pulumi.Input[List[pulumi.Input['AutoscalarAutoscalingPolicyMetricArgs']]]]):
+    def metrics(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AutoscalarAutoscalingPolicyMetricArgs']]]]):
         pulumi.set(self, "metrics", value)
 
     @property
@@ -819,7 +819,7 @@ class AutoscalerAutoscalingPolicyArgs:
                  cooldown_period: Optional[pulumi.Input[float]] = None,
                  cpu_utilization: Optional[pulumi.Input['AutoscalerAutoscalingPolicyCpuUtilizationArgs']] = None,
                  load_balancing_utilization: Optional[pulumi.Input['AutoscalerAutoscalingPolicyLoadBalancingUtilizationArgs']] = None,
-                 metrics: Optional[pulumi.Input[List[pulumi.Input['AutoscalerAutoscalingPolicyMetricArgs']]]] = None,
+                 metrics: Optional[pulumi.Input[Sequence[pulumi.Input['AutoscalerAutoscalingPolicyMetricArgs']]]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  scale_down_control: Optional[pulumi.Input['AutoscalerAutoscalingPolicyScaleDownControlArgs']] = None):
         """
@@ -846,7 +846,7 @@ class AutoscalerAutoscalingPolicyArgs:
                Structure is documented below.
         :param pulumi.Input['AutoscalerAutoscalingPolicyLoadBalancingUtilizationArgs'] load_balancing_utilization: Configuration parameters of autoscaling based on a load balancer.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input['AutoscalerAutoscalingPolicyMetricArgs']]] metrics: Configuration parameters of autoscaling based on a custom metric.
+        :param pulumi.Input[Sequence[pulumi.Input['AutoscalerAutoscalingPolicyMetricArgs']]] metrics: Configuration parameters of autoscaling based on a custom metric.
                Structure is documented below.
         :param pulumi.Input[str] mode: Defines operating mode for this policy.
                Default value is `ON`.
@@ -947,7 +947,7 @@ class AutoscalerAutoscalingPolicyArgs:
 
     @property
     @pulumi.getter
-    def metrics(self) -> Optional[pulumi.Input[List[pulumi.Input['AutoscalerAutoscalingPolicyMetricArgs']]]]:
+    def metrics(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AutoscalerAutoscalingPolicyMetricArgs']]]]:
         """
         Configuration parameters of autoscaling based on a custom metric.
         Structure is documented below.
@@ -955,7 +955,7 @@ class AutoscalerAutoscalingPolicyArgs:
         return pulumi.get(self, "metrics")
 
     @metrics.setter
-    def metrics(self, value: Optional[pulumi.Input[List[pulumi.Input['AutoscalerAutoscalingPolicyMetricArgs']]]]):
+    def metrics(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AutoscalerAutoscalingPolicyMetricArgs']]]]):
         pulumi.set(self, "metrics", value)
 
     @property
@@ -1671,8 +1671,8 @@ class BackendServiceCdnPolicyCacheKeyPolicyArgs:
                  include_host: Optional[pulumi.Input[bool]] = None,
                  include_protocol: Optional[pulumi.Input[bool]] = None,
                  include_query_string: Optional[pulumi.Input[bool]] = None,
-                 query_string_blacklists: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 query_string_whitelists: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 query_string_blacklists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 query_string_whitelists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         :param pulumi.Input[bool] include_host: If true requests to different hosts will be cached separately.
         :param pulumi.Input[bool] include_protocol: If true, http and https requests will be cached separately.
@@ -1682,12 +1682,12 @@ class BackendServiceCdnPolicyCacheKeyPolicyArgs:
                string will be included.
                If false, the query string will be excluded from the cache
                key entirely.
-        :param pulumi.Input[List[pulumi.Input[str]]] query_string_blacklists: Names of query string parameters to exclude in cache keys.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] query_string_blacklists: Names of query string parameters to exclude in cache keys.
                All other parameters will be included. Either specify
                query_string_whitelist or query_string_blacklist, not both.
                '&' and '=' will be percent encoded and not treated as
                delimiters.
-        :param pulumi.Input[List[pulumi.Input[str]]] query_string_whitelists: Names of query string parameters to include in cache keys.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] query_string_whitelists: Names of query string parameters to include in cache keys.
                All other parameters will be excluded. Either specify
                query_string_whitelist or query_string_blacklist, not both.
                '&' and '=' will be percent encoded and not treated as
@@ -1747,7 +1747,7 @@ class BackendServiceCdnPolicyCacheKeyPolicyArgs:
 
     @property
     @pulumi.getter(name="queryStringBlacklists")
-    def query_string_blacklists(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def query_string_blacklists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Names of query string parameters to exclude in cache keys.
         All other parameters will be included. Either specify
@@ -1758,12 +1758,12 @@ class BackendServiceCdnPolicyCacheKeyPolicyArgs:
         return pulumi.get(self, "query_string_blacklists")
 
     @query_string_blacklists.setter
-    def query_string_blacklists(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def query_string_blacklists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "query_string_blacklists", value)
 
     @property
     @pulumi.getter(name="queryStringWhitelists")
-    def query_string_whitelists(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def query_string_whitelists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Names of query string parameters to include in cache keys.
         All other parameters will be excluded. Either specify
@@ -1774,7 +1774,7 @@ class BackendServiceCdnPolicyCacheKeyPolicyArgs:
         return pulumi.get(self, "query_string_whitelists")
 
     @query_string_whitelists.setter
-    def query_string_whitelists(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def query_string_whitelists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "query_string_whitelists", value)
 
 
@@ -2888,13 +2888,13 @@ class ExternalVpnGatewayInterfaceArgs:
 class FirewallAllowArgs:
     def __init__(__self__, *,
                  protocol: pulumi.Input[str],
-                 ports: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 ports: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         :param pulumi.Input[str] protocol: The IP protocol to which this rule applies. The protocol type is
                required when creating a firewall rule. This value can either be
                one of the following well known protocol strings (tcp, udp,
                icmp, esp, ah, sctp, ipip), or the IP protocol number.
-        :param pulumi.Input[List[pulumi.Input[str]]] ports: An optional list of ports to which this rule applies. This field
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ports: An optional list of ports to which this rule applies. This field
                is only applicable for UDP or TCP protocol. Each entry must be
                either an integer or a range. If not specified, this rule
                applies to connections through any port.
@@ -2922,7 +2922,7 @@ class FirewallAllowArgs:
 
     @property
     @pulumi.getter
-    def ports(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def ports(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         An optional list of ports to which this rule applies. This field
         is only applicable for UDP or TCP protocol. Each entry must be
@@ -2934,7 +2934,7 @@ class FirewallAllowArgs:
         return pulumi.get(self, "ports")
 
     @ports.setter
-    def ports(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def ports(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "ports", value)
 
 
@@ -2942,13 +2942,13 @@ class FirewallAllowArgs:
 class FirewallDenyArgs:
     def __init__(__self__, *,
                  protocol: pulumi.Input[str],
-                 ports: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 ports: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         :param pulumi.Input[str] protocol: The IP protocol to which this rule applies. The protocol type is
                required when creating a firewall rule. This value can either be
                one of the following well known protocol strings (tcp, udp,
                icmp, esp, ah, sctp, ipip), or the IP protocol number.
-        :param pulumi.Input[List[pulumi.Input[str]]] ports: An optional list of ports to which this rule applies. This field
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ports: An optional list of ports to which this rule applies. This field
                is only applicable for UDP or TCP protocol. Each entry must be
                either an integer or a range. If not specified, this rule
                applies to connections through any port.
@@ -2976,7 +2976,7 @@ class FirewallDenyArgs:
 
     @property
     @pulumi.getter
-    def ports(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def ports(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         An optional list of ports to which this rule applies. This field
         is only applicable for UDP or TCP protocol. Each entry must be
@@ -2988,7 +2988,7 @@ class FirewallDenyArgs:
         return pulumi.get(self, "ports")
 
     @ports.setter
-    def ports(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def ports(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "ports", value)
 
 
@@ -3019,10 +3019,10 @@ class FirewallLogConfigArgs:
 @pulumi.input_type
 class GlobalForwardingRuleMetadataFilterArgs:
     def __init__(__self__, *,
-                 filter_labels: pulumi.Input[List[pulumi.Input['GlobalForwardingRuleMetadataFilterFilterLabelArgs']]],
+                 filter_labels: pulumi.Input[Sequence[pulumi.Input['GlobalForwardingRuleMetadataFilterFilterLabelArgs']]],
                  filter_match_criteria: pulumi.Input[str]):
         """
-        :param pulumi.Input[List[pulumi.Input['GlobalForwardingRuleMetadataFilterFilterLabelArgs']]] filter_labels: The list of label value pairs that must match labels in the
+        :param pulumi.Input[Sequence[pulumi.Input['GlobalForwardingRuleMetadataFilterFilterLabelArgs']]] filter_labels: The list of label value pairs that must match labels in the
                provided metadata based on filterMatchCriteria
                This list must not be empty and can have at the most 64 entries.
                Structure is documented below.
@@ -3039,7 +3039,7 @@ class GlobalForwardingRuleMetadataFilterArgs:
 
     @property
     @pulumi.getter(name="filterLabels")
-    def filter_labels(self) -> pulumi.Input[List[pulumi.Input['GlobalForwardingRuleMetadataFilterFilterLabelArgs']]]:
+    def filter_labels(self) -> pulumi.Input[Sequence[pulumi.Input['GlobalForwardingRuleMetadataFilterFilterLabelArgs']]]:
         """
         The list of label value pairs that must match labels in the
         provided metadata based on filterMatchCriteria
@@ -3049,7 +3049,7 @@ class GlobalForwardingRuleMetadataFilterArgs:
         return pulumi.get(self, "filter_labels")
 
     @filter_labels.setter
-    def filter_labels(self, value: pulumi.Input[List[pulumi.Input['GlobalForwardingRuleMetadataFilterFilterLabelArgs']]]):
+    def filter_labels(self, value: pulumi.Input[Sequence[pulumi.Input['GlobalForwardingRuleMetadataFilterFilterLabelArgs']]]):
         pulumi.set(self, "filter_labels", value)
 
     @property
@@ -4902,8 +4902,8 @@ class InstanceFromTemplateGuestAcceleratorArgs:
 @pulumi.input_type
 class InstanceFromTemplateNetworkInterfaceArgs:
     def __init__(__self__, *,
-                 access_configs: Optional[pulumi.Input[List[pulumi.Input['InstanceFromTemplateNetworkInterfaceAccessConfigArgs']]]] = None,
-                 alias_ip_ranges: Optional[pulumi.Input[List[pulumi.Input['InstanceFromTemplateNetworkInterfaceAliasIpRangeArgs']]]] = None,
+                 access_configs: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceFromTemplateNetworkInterfaceAccessConfigArgs']]]] = None,
+                 alias_ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceFromTemplateNetworkInterfaceAliasIpRangeArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  network: Optional[pulumi.Input[str]] = None,
                  network_ip: Optional[pulumi.Input[str]] = None,
@@ -4930,20 +4930,20 @@ class InstanceFromTemplateNetworkInterfaceArgs:
 
     @property
     @pulumi.getter(name="accessConfigs")
-    def access_configs(self) -> Optional[pulumi.Input[List[pulumi.Input['InstanceFromTemplateNetworkInterfaceAccessConfigArgs']]]]:
+    def access_configs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceFromTemplateNetworkInterfaceAccessConfigArgs']]]]:
         return pulumi.get(self, "access_configs")
 
     @access_configs.setter
-    def access_configs(self, value: Optional[pulumi.Input[List[pulumi.Input['InstanceFromTemplateNetworkInterfaceAccessConfigArgs']]]]):
+    def access_configs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceFromTemplateNetworkInterfaceAccessConfigArgs']]]]):
         pulumi.set(self, "access_configs", value)
 
     @property
     @pulumi.getter(name="aliasIpRanges")
-    def alias_ip_ranges(self) -> Optional[pulumi.Input[List[pulumi.Input['InstanceFromTemplateNetworkInterfaceAliasIpRangeArgs']]]]:
+    def alias_ip_ranges(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceFromTemplateNetworkInterfaceAliasIpRangeArgs']]]]:
         return pulumi.get(self, "alias_ip_ranges")
 
     @alias_ip_ranges.setter
-    def alias_ip_ranges(self, value: Optional[pulumi.Input[List[pulumi.Input['InstanceFromTemplateNetworkInterfaceAliasIpRangeArgs']]]]):
+    def alias_ip_ranges(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceFromTemplateNetworkInterfaceAliasIpRangeArgs']]]]):
         pulumi.set(self, "alias_ip_ranges", value)
 
     @property
@@ -5070,7 +5070,7 @@ class InstanceFromTemplateSchedulingArgs:
     def __init__(__self__, *,
                  automatic_restart: Optional[pulumi.Input[bool]] = None,
                  min_node_cpus: Optional[pulumi.Input[float]] = None,
-                 node_affinities: Optional[pulumi.Input[List[pulumi.Input['InstanceFromTemplateSchedulingNodeAffinityArgs']]]] = None,
+                 node_affinities: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceFromTemplateSchedulingNodeAffinityArgs']]]] = None,
                  on_host_maintenance: Optional[pulumi.Input[str]] = None,
                  preemptible: Optional[pulumi.Input[bool]] = None):
         if automatic_restart is not None:
@@ -5104,11 +5104,11 @@ class InstanceFromTemplateSchedulingArgs:
 
     @property
     @pulumi.getter(name="nodeAffinities")
-    def node_affinities(self) -> Optional[pulumi.Input[List[pulumi.Input['InstanceFromTemplateSchedulingNodeAffinityArgs']]]]:
+    def node_affinities(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceFromTemplateSchedulingNodeAffinityArgs']]]]:
         return pulumi.get(self, "node_affinities")
 
     @node_affinities.setter
-    def node_affinities(self, value: Optional[pulumi.Input[List[pulumi.Input['InstanceFromTemplateSchedulingNodeAffinityArgs']]]]):
+    def node_affinities(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceFromTemplateSchedulingNodeAffinityArgs']]]]):
         pulumi.set(self, "node_affinities", value)
 
     @property
@@ -5135,7 +5135,7 @@ class InstanceFromTemplateSchedulingNodeAffinityArgs:
     def __init__(__self__, *,
                  key: pulumi.Input[str],
                  operator: pulumi.Input[str],
-                 values: pulumi.Input[List[pulumi.Input[str]]]):
+                 values: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "operator", operator)
         pulumi.set(__self__, "values", values)
@@ -5160,11 +5160,11 @@ class InstanceFromTemplateSchedulingNodeAffinityArgs:
 
     @property
     @pulumi.getter
-    def values(self) -> pulumi.Input[List[pulumi.Input[str]]]:
+    def values(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         return pulumi.get(self, "values")
 
     @values.setter
-    def values(self, value: pulumi.Input[List[pulumi.Input[str]]]):
+    def values(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "values", value)
 
 
@@ -5187,7 +5187,7 @@ class InstanceFromTemplateScratchDiskArgs:
 @pulumi.input_type
 class InstanceFromTemplateServiceAccountArgs:
     def __init__(__self__, *,
-                 scopes: pulumi.Input[List[pulumi.Input[str]]],
+                 scopes: pulumi.Input[Sequence[pulumi.Input[str]]],
                  email: Optional[pulumi.Input[str]] = None):
         pulumi.set(__self__, "scopes", scopes)
         if email is not None:
@@ -5195,11 +5195,11 @@ class InstanceFromTemplateServiceAccountArgs:
 
     @property
     @pulumi.getter
-    def scopes(self) -> pulumi.Input[List[pulumi.Input[str]]]:
+    def scopes(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         return pulumi.get(self, "scopes")
 
     @scopes.setter
-    def scopes(self, value: pulumi.Input[List[pulumi.Input[str]]]):
+    def scopes(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "scopes", value)
 
     @property
@@ -5768,21 +5768,21 @@ class InstanceIAMMemberConditionArgs:
 @pulumi.input_type
 class InstanceNetworkInterfaceArgs:
     def __init__(__self__, *,
-                 access_configs: Optional[pulumi.Input[List[pulumi.Input['InstanceNetworkInterfaceAccessConfigArgs']]]] = None,
-                 alias_ip_ranges: Optional[pulumi.Input[List[pulumi.Input['InstanceNetworkInterfaceAliasIpRangeArgs']]]] = None,
+                 access_configs: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceNetworkInterfaceAccessConfigArgs']]]] = None,
+                 alias_ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceNetworkInterfaceAliasIpRangeArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  network: Optional[pulumi.Input[str]] = None,
                  network_ip: Optional[pulumi.Input[str]] = None,
                  subnetwork: Optional[pulumi.Input[str]] = None,
                  subnetwork_project: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input['InstanceNetworkInterfaceAccessConfigArgs']]] access_configs: Access configurations, i.e. IPs via which this
+        :param pulumi.Input[Sequence[pulumi.Input['InstanceNetworkInterfaceAccessConfigArgs']]] access_configs: Access configurations, i.e. IPs via which this
                instance can be accessed via the Internet. Omit to ensure that the instance
                is not accessible from the Internet. If omitted, ssh will not
                work unless this provider can send traffic to the instance's network (e.g. via
                tunnel or because it is running on another cloud instance on that network).
                This block can be repeated multiple times. Structure documented below.
-        :param pulumi.Input[List[pulumi.Input['InstanceNetworkInterfaceAliasIpRangeArgs']]] alias_ip_ranges: An
+        :param pulumi.Input[Sequence[pulumi.Input['InstanceNetworkInterfaceAliasIpRangeArgs']]] alias_ip_ranges: An
                array of alias IP ranges for this network interface. Can only be specified for network
                interfaces on subnet-mode networks. Structure documented below.
         :param pulumi.Input[str] name: A unique name for the resource, required by GCE.
@@ -5816,7 +5816,7 @@ class InstanceNetworkInterfaceArgs:
 
     @property
     @pulumi.getter(name="accessConfigs")
-    def access_configs(self) -> Optional[pulumi.Input[List[pulumi.Input['InstanceNetworkInterfaceAccessConfigArgs']]]]:
+    def access_configs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceNetworkInterfaceAccessConfigArgs']]]]:
         """
         Access configurations, i.e. IPs via which this
         instance can be accessed via the Internet. Omit to ensure that the instance
@@ -5828,12 +5828,12 @@ class InstanceNetworkInterfaceArgs:
         return pulumi.get(self, "access_configs")
 
     @access_configs.setter
-    def access_configs(self, value: Optional[pulumi.Input[List[pulumi.Input['InstanceNetworkInterfaceAccessConfigArgs']]]]):
+    def access_configs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceNetworkInterfaceAccessConfigArgs']]]]):
         pulumi.set(self, "access_configs", value)
 
     @property
     @pulumi.getter(name="aliasIpRanges")
-    def alias_ip_ranges(self) -> Optional[pulumi.Input[List[pulumi.Input['InstanceNetworkInterfaceAliasIpRangeArgs']]]]:
+    def alias_ip_ranges(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceNetworkInterfaceAliasIpRangeArgs']]]]:
         """
         An
         array of alias IP ranges for this network interface. Can only be specified for network
@@ -5842,7 +5842,7 @@ class InstanceNetworkInterfaceArgs:
         return pulumi.get(self, "alias_ip_ranges")
 
     @alias_ip_ranges.setter
-    def alias_ip_ranges(self, value: Optional[pulumi.Input[List[pulumi.Input['InstanceNetworkInterfaceAliasIpRangeArgs']]]]):
+    def alias_ip_ranges(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceNetworkInterfaceAliasIpRangeArgs']]]]):
         pulumi.set(self, "alias_ip_ranges", value)
 
     @property
@@ -6034,14 +6034,14 @@ class InstanceSchedulingArgs:
     def __init__(__self__, *,
                  automatic_restart: Optional[pulumi.Input[bool]] = None,
                  min_node_cpus: Optional[pulumi.Input[float]] = None,
-                 node_affinities: Optional[pulumi.Input[List[pulumi.Input['InstanceSchedulingNodeAffinityArgs']]]] = None,
+                 node_affinities: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceSchedulingNodeAffinityArgs']]]] = None,
                  on_host_maintenance: Optional[pulumi.Input[str]] = None,
                  preemptible: Optional[pulumi.Input[bool]] = None):
         """
         :param pulumi.Input[bool] automatic_restart: Specifies if the instance should be
                restarted if it was terminated by Compute Engine (not a user).
                Defaults to true.
-        :param pulumi.Input[List[pulumi.Input['InstanceSchedulingNodeAffinityArgs']]] node_affinities: Specifies node affinities or anti-affinities
+        :param pulumi.Input[Sequence[pulumi.Input['InstanceSchedulingNodeAffinityArgs']]] node_affinities: Specifies node affinities or anti-affinities
                to determine which sole-tenant nodes your instances and managed instance
                groups will use as host systems. Read more on sole-tenant node creation
                [here](https://cloud.google.com/compute/docs/nodes/create-nodes).
@@ -6089,7 +6089,7 @@ class InstanceSchedulingArgs:
 
     @property
     @pulumi.getter(name="nodeAffinities")
-    def node_affinities(self) -> Optional[pulumi.Input[List[pulumi.Input['InstanceSchedulingNodeAffinityArgs']]]]:
+    def node_affinities(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceSchedulingNodeAffinityArgs']]]]:
         """
         Specifies node affinities or anti-affinities
         to determine which sole-tenant nodes your instances and managed instance
@@ -6100,7 +6100,7 @@ class InstanceSchedulingArgs:
         return pulumi.get(self, "node_affinities")
 
     @node_affinities.setter
-    def node_affinities(self, value: Optional[pulumi.Input[List[pulumi.Input['InstanceSchedulingNodeAffinityArgs']]]]):
+    def node_affinities(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceSchedulingNodeAffinityArgs']]]]):
         pulumi.set(self, "node_affinities", value)
 
     @property
@@ -6137,12 +6137,12 @@ class InstanceSchedulingNodeAffinityArgs:
     def __init__(__self__, *,
                  key: pulumi.Input[str],
                  operator: pulumi.Input[str],
-                 values: pulumi.Input[List[pulumi.Input[str]]]):
+                 values: pulumi.Input[Sequence[pulumi.Input[str]]]):
         """
         :param pulumi.Input[str] key: The key for the node affinity label.
         :param pulumi.Input[str] operator: The operator. Can be `IN` for node-affinities
                or `NOT_IN` for anti-affinities.
-        :param pulumi.Input[List[pulumi.Input[str]]] values: The values for the node affinity label.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] values: The values for the node affinity label.
         """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "operator", operator)
@@ -6175,14 +6175,14 @@ class InstanceSchedulingNodeAffinityArgs:
 
     @property
     @pulumi.getter
-    def values(self) -> pulumi.Input[List[pulumi.Input[str]]]:
+    def values(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
         The values for the node affinity label.
         """
         return pulumi.get(self, "values")
 
     @values.setter
-    def values(self, value: pulumi.Input[List[pulumi.Input[str]]]):
+    def values(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "values", value)
 
 
@@ -6211,10 +6211,10 @@ class InstanceScratchDiskArgs:
 @pulumi.input_type
 class InstanceServiceAccountArgs:
     def __init__(__self__, *,
-                 scopes: pulumi.Input[List[pulumi.Input[str]]],
+                 scopes: pulumi.Input[Sequence[pulumi.Input[str]]],
                  email: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input[str]]] scopes: A list of service scopes. Both OAuth2 URLs and gcloud
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] scopes: A list of service scopes. Both OAuth2 URLs and gcloud
                short names are supported. To allow full access to all Cloud APIs, use the
                `cloud-platform` scope. See a complete list of scopes [here](https://cloud.google.com/sdk/gcloud/reference/alpha/compute/instances/set-scopes#--scopes).
                **Note**: `allow_stopping_for_update` must be set to true or your instance must have a `desired_status` of `TERMINATED` in order to update this field.
@@ -6228,7 +6228,7 @@ class InstanceServiceAccountArgs:
 
     @property
     @pulumi.getter
-    def scopes(self) -> pulumi.Input[List[pulumi.Input[str]]]:
+    def scopes(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
         A list of service scopes. Both OAuth2 URLs and gcloud
         short names are supported. To allow full access to all Cloud APIs, use the
@@ -6238,7 +6238,7 @@ class InstanceServiceAccountArgs:
         return pulumi.get(self, "scopes")
 
     @scopes.setter
-    def scopes(self, value: pulumi.Input[List[pulumi.Input[str]]]):
+    def scopes(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "scopes", value)
 
     @property
@@ -6642,21 +6642,21 @@ class InstanceTemplateGuestAcceleratorArgs:
 @pulumi.input_type
 class InstanceTemplateNetworkInterfaceArgs:
     def __init__(__self__, *,
-                 access_configs: Optional[pulumi.Input[List[pulumi.Input['InstanceTemplateNetworkInterfaceAccessConfigArgs']]]] = None,
-                 alias_ip_ranges: Optional[pulumi.Input[List[pulumi.Input['InstanceTemplateNetworkInterfaceAliasIpRangeArgs']]]] = None,
+                 access_configs: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceTemplateNetworkInterfaceAccessConfigArgs']]]] = None,
+                 alias_ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceTemplateNetworkInterfaceAliasIpRangeArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  network: Optional[pulumi.Input[str]] = None,
                  network_ip: Optional[pulumi.Input[str]] = None,
                  subnetwork: Optional[pulumi.Input[str]] = None,
                  subnetwork_project: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input['InstanceTemplateNetworkInterfaceAccessConfigArgs']]] access_configs: Access configurations, i.e. IPs via which this
+        :param pulumi.Input[Sequence[pulumi.Input['InstanceTemplateNetworkInterfaceAccessConfigArgs']]] access_configs: Access configurations, i.e. IPs via which this
                instance can be accessed via the Internet. Omit to ensure that the instance
                is not accessible from the Internet (this means that ssh provisioners will
                not work unless you can send traffic to the instance's
                network (e.g. via tunnel or because it is running on another cloud instance
                on that network). This block can be repeated multiple times. Structure documented below.
-        :param pulumi.Input[List[pulumi.Input['InstanceTemplateNetworkInterfaceAliasIpRangeArgs']]] alias_ip_ranges: An
+        :param pulumi.Input[Sequence[pulumi.Input['InstanceTemplateNetworkInterfaceAliasIpRangeArgs']]] alias_ip_ranges: An
                array of alias IP ranges for this network interface. Can only be specified for network
                interfaces on subnet-mode networks. Structure documented below.
         :param pulumi.Input[str] name: The name of the instance template. If you leave
@@ -6689,7 +6689,7 @@ class InstanceTemplateNetworkInterfaceArgs:
 
     @property
     @pulumi.getter(name="accessConfigs")
-    def access_configs(self) -> Optional[pulumi.Input[List[pulumi.Input['InstanceTemplateNetworkInterfaceAccessConfigArgs']]]]:
+    def access_configs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceTemplateNetworkInterfaceAccessConfigArgs']]]]:
         """
         Access configurations, i.e. IPs via which this
         instance can be accessed via the Internet. Omit to ensure that the instance
@@ -6701,12 +6701,12 @@ class InstanceTemplateNetworkInterfaceArgs:
         return pulumi.get(self, "access_configs")
 
     @access_configs.setter
-    def access_configs(self, value: Optional[pulumi.Input[List[pulumi.Input['InstanceTemplateNetworkInterfaceAccessConfigArgs']]]]):
+    def access_configs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceTemplateNetworkInterfaceAccessConfigArgs']]]]):
         pulumi.set(self, "access_configs", value)
 
     @property
     @pulumi.getter(name="aliasIpRanges")
-    def alias_ip_ranges(self) -> Optional[pulumi.Input[List[pulumi.Input['InstanceTemplateNetworkInterfaceAliasIpRangeArgs']]]]:
+    def alias_ip_ranges(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceTemplateNetworkInterfaceAliasIpRangeArgs']]]]:
         """
         An
         array of alias IP ranges for this network interface. Can only be specified for network
@@ -6715,7 +6715,7 @@ class InstanceTemplateNetworkInterfaceArgs:
         return pulumi.get(self, "alias_ip_ranges")
 
     @alias_ip_ranges.setter
-    def alias_ip_ranges(self, value: Optional[pulumi.Input[List[pulumi.Input['InstanceTemplateNetworkInterfaceAliasIpRangeArgs']]]]):
+    def alias_ip_ranges(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceTemplateNetworkInterfaceAliasIpRangeArgs']]]]):
         pulumi.set(self, "alias_ip_ranges", value)
 
     @property
@@ -6898,14 +6898,14 @@ class InstanceTemplateSchedulingArgs:
     def __init__(__self__, *,
                  automatic_restart: Optional[pulumi.Input[bool]] = None,
                  min_node_cpus: Optional[pulumi.Input[float]] = None,
-                 node_affinities: Optional[pulumi.Input[List[pulumi.Input['InstanceTemplateSchedulingNodeAffinityArgs']]]] = None,
+                 node_affinities: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceTemplateSchedulingNodeAffinityArgs']]]] = None,
                  on_host_maintenance: Optional[pulumi.Input[str]] = None,
                  preemptible: Optional[pulumi.Input[bool]] = None):
         """
         :param pulumi.Input[bool] automatic_restart: Specifies whether the instance should be
                automatically restarted if it is terminated by Compute Engine (not
                terminated by a user). This defaults to true.
-        :param pulumi.Input[List[pulumi.Input['InstanceTemplateSchedulingNodeAffinityArgs']]] node_affinities: Specifies node affinities or anti-affinities
+        :param pulumi.Input[Sequence[pulumi.Input['InstanceTemplateSchedulingNodeAffinityArgs']]] node_affinities: Specifies node affinities or anti-affinities
                to determine which sole-tenant nodes your instances and managed instance
                groups will use as host systems. Read more on sole-tenant node creation
                [here](https://cloud.google.com/compute/docs/nodes/create-nodes).
@@ -6952,7 +6952,7 @@ class InstanceTemplateSchedulingArgs:
 
     @property
     @pulumi.getter(name="nodeAffinities")
-    def node_affinities(self) -> Optional[pulumi.Input[List[pulumi.Input['InstanceTemplateSchedulingNodeAffinityArgs']]]]:
+    def node_affinities(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceTemplateSchedulingNodeAffinityArgs']]]]:
         """
         Specifies node affinities or anti-affinities
         to determine which sole-tenant nodes your instances and managed instance
@@ -6963,7 +6963,7 @@ class InstanceTemplateSchedulingArgs:
         return pulumi.get(self, "node_affinities")
 
     @node_affinities.setter
-    def node_affinities(self, value: Optional[pulumi.Input[List[pulumi.Input['InstanceTemplateSchedulingNodeAffinityArgs']]]]):
+    def node_affinities(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceTemplateSchedulingNodeAffinityArgs']]]]):
         pulumi.set(self, "node_affinities", value)
 
     @property
@@ -6999,7 +6999,7 @@ class InstanceTemplateSchedulingNodeAffinityArgs:
     def __init__(__self__, *,
                  key: pulumi.Input[str],
                  operator: pulumi.Input[str],
-                 values: pulumi.Input[List[pulumi.Input[str]]]):
+                 values: pulumi.Input[Sequence[pulumi.Input[str]]]):
         """
         :param pulumi.Input[str] key: The key for the node affinity label.
         :param pulumi.Input[str] operator: The operator. Can be `IN` for node-affinities
@@ -7036,21 +7036,21 @@ class InstanceTemplateSchedulingNodeAffinityArgs:
 
     @property
     @pulumi.getter
-    def values(self) -> pulumi.Input[List[pulumi.Input[str]]]:
+    def values(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         return pulumi.get(self, "values")
 
     @values.setter
-    def values(self, value: pulumi.Input[List[pulumi.Input[str]]]):
+    def values(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "values", value)
 
 
 @pulumi.input_type
 class InstanceTemplateServiceAccountArgs:
     def __init__(__self__, *,
-                 scopes: pulumi.Input[List[pulumi.Input[str]]],
+                 scopes: pulumi.Input[Sequence[pulumi.Input[str]]],
                  email: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input[str]]] scopes: A list of service scopes. Both OAuth2 URLs and gcloud
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] scopes: A list of service scopes. Both OAuth2 URLs and gcloud
                short names are supported. To allow full access to all Cloud APIs, use the
                `cloud-platform` scope. See a complete list of scopes [here](https://cloud.google.com/sdk/gcloud/reference/alpha/compute/instances/set-scopes#--scopes).
         :param pulumi.Input[str] email: The service account e-mail address. If not given, the
@@ -7062,7 +7062,7 @@ class InstanceTemplateServiceAccountArgs:
 
     @property
     @pulumi.getter
-    def scopes(self) -> pulumi.Input[List[pulumi.Input[str]]]:
+    def scopes(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
         A list of service scopes. Both OAuth2 URLs and gcloud
         short names are supported. To allow full access to all Cloud APIs, use the
@@ -7071,7 +7071,7 @@ class InstanceTemplateServiceAccountArgs:
         return pulumi.get(self, "scopes")
 
     @scopes.setter
-    def scopes(self, value: pulumi.Input[List[pulumi.Input[str]]]):
+    def scopes(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "scopes", value)
 
     @property
@@ -7163,16 +7163,16 @@ class InterconnectAttachmentPrivateInterconnectInfoArgs:
 @pulumi.input_type
 class ManagedSslCertificateManagedArgs:
     def __init__(__self__, *,
-                 domains: pulumi.Input[List[pulumi.Input[str]]]):
+                 domains: pulumi.Input[Sequence[pulumi.Input[str]]]):
         """
-        :param pulumi.Input[List[pulumi.Input[str]]] domains: Domains for which a managed SSL certificate will be valid.  Currently,
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] domains: Domains for which a managed SSL certificate will be valid.  Currently,
                there can be up to 100 domains in this list.
         """
         pulumi.set(__self__, "domains", domains)
 
     @property
     @pulumi.getter
-    def domains(self) -> pulumi.Input[List[pulumi.Input[str]]]:
+    def domains(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
         Domains for which a managed SSL certificate will be valid.  Currently,
         there can be up to 100 domains in this list.
@@ -7180,23 +7180,23 @@ class ManagedSslCertificateManagedArgs:
         return pulumi.get(self, "domains")
 
     @domains.setter
-    def domains(self, value: pulumi.Input[List[pulumi.Input[str]]]):
+    def domains(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "domains", value)
 
 
 @pulumi.input_type
 class MangedSslCertificateManagedArgs:
     def __init__(__self__, *,
-                 domains: pulumi.Input[List[pulumi.Input[str]]]):
+                 domains: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(__self__, "domains", domains)
 
     @property
     @pulumi.getter
-    def domains(self) -> pulumi.Input[List[pulumi.Input[str]]]:
+    def domains(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         return pulumi.get(self, "domains")
 
     @domains.setter
-    def domains(self, value: pulumi.Input[List[pulumi.Input[str]]]):
+    def domains(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "domains", value)
 
 
@@ -7437,15 +7437,15 @@ class OrganizationSecurityPolicyRuleMatchArgs:
 @pulumi.input_type
 class OrganizationSecurityPolicyRuleMatchConfigArgs:
     def __init__(__self__, *,
-                 layer4_configs: pulumi.Input[List[pulumi.Input['OrganizationSecurityPolicyRuleMatchConfigLayer4ConfigArgs']]],
-                 dest_ip_ranges: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 src_ip_ranges: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 layer4_configs: pulumi.Input[Sequence[pulumi.Input['OrganizationSecurityPolicyRuleMatchConfigLayer4ConfigArgs']]],
+                 dest_ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 src_ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input['OrganizationSecurityPolicyRuleMatchConfigLayer4ConfigArgs']]] layer4_configs: Pairs of IP protocols and ports that the rule should match.
+        :param pulumi.Input[Sequence[pulumi.Input['OrganizationSecurityPolicyRuleMatchConfigLayer4ConfigArgs']]] layer4_configs: Pairs of IP protocols and ports that the rule should match.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] dest_ip_ranges: Destination IP address range in CIDR format. Required for
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] dest_ip_ranges: Destination IP address range in CIDR format. Required for
                EGRESS rules.
-        :param pulumi.Input[List[pulumi.Input[str]]] src_ip_ranges: Source IP address range in CIDR format. Required for
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] src_ip_ranges: Source IP address range in CIDR format. Required for
                INGRESS rules.
         """
         pulumi.set(__self__, "layer4_configs", layer4_configs)
@@ -7456,7 +7456,7 @@ class OrganizationSecurityPolicyRuleMatchConfigArgs:
 
     @property
     @pulumi.getter(name="layer4Configs")
-    def layer4_configs(self) -> pulumi.Input[List[pulumi.Input['OrganizationSecurityPolicyRuleMatchConfigLayer4ConfigArgs']]]:
+    def layer4_configs(self) -> pulumi.Input[Sequence[pulumi.Input['OrganizationSecurityPolicyRuleMatchConfigLayer4ConfigArgs']]]:
         """
         Pairs of IP protocols and ports that the rule should match.
         Structure is documented below.
@@ -7464,12 +7464,12 @@ class OrganizationSecurityPolicyRuleMatchConfigArgs:
         return pulumi.get(self, "layer4_configs")
 
     @layer4_configs.setter
-    def layer4_configs(self, value: pulumi.Input[List[pulumi.Input['OrganizationSecurityPolicyRuleMatchConfigLayer4ConfigArgs']]]):
+    def layer4_configs(self, value: pulumi.Input[Sequence[pulumi.Input['OrganizationSecurityPolicyRuleMatchConfigLayer4ConfigArgs']]]):
         pulumi.set(self, "layer4_configs", value)
 
     @property
     @pulumi.getter(name="destIpRanges")
-    def dest_ip_ranges(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def dest_ip_ranges(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Destination IP address range in CIDR format. Required for
         EGRESS rules.
@@ -7477,12 +7477,12 @@ class OrganizationSecurityPolicyRuleMatchConfigArgs:
         return pulumi.get(self, "dest_ip_ranges")
 
     @dest_ip_ranges.setter
-    def dest_ip_ranges(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def dest_ip_ranges(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "dest_ip_ranges", value)
 
     @property
     @pulumi.getter(name="srcIpRanges")
-    def src_ip_ranges(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def src_ip_ranges(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Source IP address range in CIDR format. Required for
         INGRESS rules.
@@ -7490,7 +7490,7 @@ class OrganizationSecurityPolicyRuleMatchConfigArgs:
         return pulumi.get(self, "src_ip_ranges")
 
     @src_ip_ranges.setter
-    def src_ip_ranges(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def src_ip_ranges(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "src_ip_ranges", value)
 
 
@@ -7498,14 +7498,14 @@ class OrganizationSecurityPolicyRuleMatchConfigArgs:
 class OrganizationSecurityPolicyRuleMatchConfigLayer4ConfigArgs:
     def __init__(__self__, *,
                  ip_protocol: pulumi.Input[str],
-                 ports: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 ports: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         :param pulumi.Input[str] ip_protocol: The IP protocol to which this rule applies. The protocol
                type is required when creating a firewall rule.
                This value can either be one of the following well
                known protocol strings (tcp, udp, icmp, esp, ah, ipip, sctp),
                or the IP protocol number.
-        :param pulumi.Input[List[pulumi.Input[str]]] ports: An optional list of ports to which this rule applies. This field
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ports: An optional list of ports to which this rule applies. This field
                is only applicable for UDP or TCP protocol. Each entry must be
                either an integer or a range. If not specified, this rule
                applies to connections through any port.
@@ -7534,7 +7534,7 @@ class OrganizationSecurityPolicyRuleMatchConfigLayer4ConfigArgs:
 
     @property
     @pulumi.getter
-    def ports(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def ports(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         An optional list of ports to which this rule applies. This field
         is only applicable for UDP or TCP protocol. Each entry must be
@@ -7546,7 +7546,7 @@ class OrganizationSecurityPolicyRuleMatchConfigLayer4ConfigArgs:
         return pulumi.get(self, "ports")
 
     @ports.setter
-    def ports(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def ports(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "ports", value)
 
 
@@ -7575,12 +7575,12 @@ class PacketMirroringCollectorIlbArgs:
 @pulumi.input_type
 class PacketMirroringFilterArgs:
     def __init__(__self__, *,
-                 cidr_ranges: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 ip_protocols: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 cidr_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 ip_protocols: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input[str]]] cidr_ranges: IP CIDR ranges that apply as a filter on the source (ingress) or
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] cidr_ranges: IP CIDR ranges that apply as a filter on the source (ingress) or
                destination (egress) IP in the IP header. Only IPv4 is supported.
-        :param pulumi.Input[List[pulumi.Input[str]]] ip_protocols: Protocols that apply as a filter on mirrored traffic.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_protocols: Protocols that apply as a filter on mirrored traffic.
                Each value may be one of `tcp`, `udp`, and `icmp`.
         """
         if cidr_ranges is not None:
@@ -7590,7 +7590,7 @@ class PacketMirroringFilterArgs:
 
     @property
     @pulumi.getter(name="cidrRanges")
-    def cidr_ranges(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def cidr_ranges(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         IP CIDR ranges that apply as a filter on the source (ingress) or
         destination (egress) IP in the IP header. Only IPv4 is supported.
@@ -7598,12 +7598,12 @@ class PacketMirroringFilterArgs:
         return pulumi.get(self, "cidr_ranges")
 
     @cidr_ranges.setter
-    def cidr_ranges(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def cidr_ranges(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "cidr_ranges", value)
 
     @property
     @pulumi.getter(name="ipProtocols")
-    def ip_protocols(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def ip_protocols(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Protocols that apply as a filter on mirrored traffic.
         Each value may be one of `tcp`, `udp`, and `icmp`.
@@ -7611,22 +7611,22 @@ class PacketMirroringFilterArgs:
         return pulumi.get(self, "ip_protocols")
 
     @ip_protocols.setter
-    def ip_protocols(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def ip_protocols(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "ip_protocols", value)
 
 
 @pulumi.input_type
 class PacketMirroringMirroredResourcesArgs:
     def __init__(__self__, *,
-                 instances: Optional[pulumi.Input[List[pulumi.Input['PacketMirroringMirroredResourcesInstanceArgs']]]] = None,
-                 subnetworks: Optional[pulumi.Input[List[pulumi.Input['PacketMirroringMirroredResourcesSubnetworkArgs']]]] = None,
-                 tags: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 instances: Optional[pulumi.Input[Sequence[pulumi.Input['PacketMirroringMirroredResourcesInstanceArgs']]]] = None,
+                 subnetworks: Optional[pulumi.Input[Sequence[pulumi.Input['PacketMirroringMirroredResourcesSubnetworkArgs']]]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input['PacketMirroringMirroredResourcesInstanceArgs']]] instances: All the listed instances will be mirrored.  Specify at most 50.
+        :param pulumi.Input[Sequence[pulumi.Input['PacketMirroringMirroredResourcesInstanceArgs']]] instances: All the listed instances will be mirrored.  Specify at most 50.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input['PacketMirroringMirroredResourcesSubnetworkArgs']]] subnetworks: All instances in one of these subnetworks will be mirrored.
+        :param pulumi.Input[Sequence[pulumi.Input['PacketMirroringMirroredResourcesSubnetworkArgs']]] subnetworks: All instances in one of these subnetworks will be mirrored.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] tags: All instances with these tags will be mirrored.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: All instances with these tags will be mirrored.
         """
         if instances is not None:
             pulumi.set(__self__, "instances", instances)
@@ -7637,7 +7637,7 @@ class PacketMirroringMirroredResourcesArgs:
 
     @property
     @pulumi.getter
-    def instances(self) -> Optional[pulumi.Input[List[pulumi.Input['PacketMirroringMirroredResourcesInstanceArgs']]]]:
+    def instances(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['PacketMirroringMirroredResourcesInstanceArgs']]]]:
         """
         All the listed instances will be mirrored.  Specify at most 50.
         Structure is documented below.
@@ -7645,12 +7645,12 @@ class PacketMirroringMirroredResourcesArgs:
         return pulumi.get(self, "instances")
 
     @instances.setter
-    def instances(self, value: Optional[pulumi.Input[List[pulumi.Input['PacketMirroringMirroredResourcesInstanceArgs']]]]):
+    def instances(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['PacketMirroringMirroredResourcesInstanceArgs']]]]):
         pulumi.set(self, "instances", value)
 
     @property
     @pulumi.getter
-    def subnetworks(self) -> Optional[pulumi.Input[List[pulumi.Input['PacketMirroringMirroredResourcesSubnetworkArgs']]]]:
+    def subnetworks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['PacketMirroringMirroredResourcesSubnetworkArgs']]]]:
         """
         All instances in one of these subnetworks will be mirrored.
         Structure is documented below.
@@ -7658,19 +7658,19 @@ class PacketMirroringMirroredResourcesArgs:
         return pulumi.get(self, "subnetworks")
 
     @subnetworks.setter
-    def subnetworks(self, value: Optional[pulumi.Input[List[pulumi.Input['PacketMirroringMirroredResourcesSubnetworkArgs']]]]):
+    def subnetworks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['PacketMirroringMirroredResourcesSubnetworkArgs']]]]):
         pulumi.set(self, "subnetworks", value)
 
     @property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         All instances with these tags will be mirrored.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "tags", value)
 
 
@@ -7743,10 +7743,10 @@ class PacketMirroringNetworkArgs:
 @pulumi.input_type
 class PerInstanceConfigPreservedStateArgs:
     def __init__(__self__, *,
-                 disks: Optional[pulumi.Input[List[pulumi.Input['PerInstanceConfigPreservedStateDiskArgs']]]] = None,
+                 disks: Optional[pulumi.Input[Sequence[pulumi.Input['PerInstanceConfigPreservedStateDiskArgs']]]] = None,
                  metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input['PerInstanceConfigPreservedStateDiskArgs']]] disks: Stateful disks for the instance.
+        :param pulumi.Input[Sequence[pulumi.Input['PerInstanceConfigPreservedStateDiskArgs']]] disks: Stateful disks for the instance.
                Structure is documented below.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Preserved metadata defined for this instance. This is a list of key->value pairs.
         """
@@ -7757,7 +7757,7 @@ class PerInstanceConfigPreservedStateArgs:
 
     @property
     @pulumi.getter
-    def disks(self) -> Optional[pulumi.Input[List[pulumi.Input['PerInstanceConfigPreservedStateDiskArgs']]]]:
+    def disks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['PerInstanceConfigPreservedStateDiskArgs']]]]:
         """
         Stateful disks for the instance.
         Structure is documented below.
@@ -7765,7 +7765,7 @@ class PerInstanceConfigPreservedStateArgs:
         return pulumi.get(self, "disks")
 
     @disks.setter
-    def disks(self, value: Optional[pulumi.Input[List[pulumi.Input['PerInstanceConfigPreservedStateDiskArgs']]]]):
+    def disks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['PerInstanceConfigPreservedStateDiskArgs']]]]):
         pulumi.set(self, "disks", value)
 
     @property
@@ -7876,7 +7876,7 @@ class RegionAutoscalerAutoscalingPolicyArgs:
                  cooldown_period: Optional[pulumi.Input[float]] = None,
                  cpu_utilization: Optional[pulumi.Input['RegionAutoscalerAutoscalingPolicyCpuUtilizationArgs']] = None,
                  load_balancing_utilization: Optional[pulumi.Input['RegionAutoscalerAutoscalingPolicyLoadBalancingUtilizationArgs']] = None,
-                 metrics: Optional[pulumi.Input[List[pulumi.Input['RegionAutoscalerAutoscalingPolicyMetricArgs']]]] = None,
+                 metrics: Optional[pulumi.Input[Sequence[pulumi.Input['RegionAutoscalerAutoscalingPolicyMetricArgs']]]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  scale_down_control: Optional[pulumi.Input['RegionAutoscalerAutoscalingPolicyScaleDownControlArgs']] = None):
         """
@@ -7903,7 +7903,7 @@ class RegionAutoscalerAutoscalingPolicyArgs:
                Structure is documented below.
         :param pulumi.Input['RegionAutoscalerAutoscalingPolicyLoadBalancingUtilizationArgs'] load_balancing_utilization: Configuration parameters of autoscaling based on a load balancer.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input['RegionAutoscalerAutoscalingPolicyMetricArgs']]] metrics: Configuration parameters of autoscaling based on a custom metric.
+        :param pulumi.Input[Sequence[pulumi.Input['RegionAutoscalerAutoscalingPolicyMetricArgs']]] metrics: Configuration parameters of autoscaling based on a custom metric.
                Structure is documented below.
         :param pulumi.Input[str] mode: Defines operating mode for this policy.
                Default value is `ON`.
@@ -8004,7 +8004,7 @@ class RegionAutoscalerAutoscalingPolicyArgs:
 
     @property
     @pulumi.getter
-    def metrics(self) -> Optional[pulumi.Input[List[pulumi.Input['RegionAutoscalerAutoscalingPolicyMetricArgs']]]]:
+    def metrics(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RegionAutoscalerAutoscalingPolicyMetricArgs']]]]:
         """
         Configuration parameters of autoscaling based on a custom metric.
         Structure is documented below.
@@ -8012,7 +8012,7 @@ class RegionAutoscalerAutoscalingPolicyArgs:
         return pulumi.get(self, "metrics")
 
     @metrics.setter
-    def metrics(self, value: Optional[pulumi.Input[List[pulumi.Input['RegionAutoscalerAutoscalingPolicyMetricArgs']]]]):
+    def metrics(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RegionAutoscalerAutoscalingPolicyMetricArgs']]]]):
         pulumi.set(self, "metrics", value)
 
     @property
@@ -11112,10 +11112,10 @@ class RegionNetworkEndpointGroupCloudRunArgs:
 @pulumi.input_type
 class RegionPerInstanceConfigPreservedStateArgs:
     def __init__(__self__, *,
-                 disks: Optional[pulumi.Input[List[pulumi.Input['RegionPerInstanceConfigPreservedStateDiskArgs']]]] = None,
+                 disks: Optional[pulumi.Input[Sequence[pulumi.Input['RegionPerInstanceConfigPreservedStateDiskArgs']]]] = None,
                  metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input['RegionPerInstanceConfigPreservedStateDiskArgs']]] disks: Stateful disks for the instance.
+        :param pulumi.Input[Sequence[pulumi.Input['RegionPerInstanceConfigPreservedStateDiskArgs']]] disks: Stateful disks for the instance.
                Structure is documented below.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Preserved metadata defined for this instance. This is a list of key->value pairs.
         """
@@ -11126,7 +11126,7 @@ class RegionPerInstanceConfigPreservedStateArgs:
 
     @property
     @pulumi.getter
-    def disks(self) -> Optional[pulumi.Input[List[pulumi.Input['RegionPerInstanceConfigPreservedStateDiskArgs']]]]:
+    def disks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RegionPerInstanceConfigPreservedStateDiskArgs']]]]:
         """
         Stateful disks for the instance.
         Structure is documented below.
@@ -11134,7 +11134,7 @@ class RegionPerInstanceConfigPreservedStateArgs:
         return pulumi.get(self, "disks")
 
     @disks.setter
-    def disks(self, value: Optional[pulumi.Input[List[pulumi.Input['RegionPerInstanceConfigPreservedStateDiskArgs']]]]):
+    def disks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RegionPerInstanceConfigPreservedStateDiskArgs']]]]):
         pulumi.set(self, "disks", value)
 
     @property
@@ -11386,11 +11386,11 @@ class RegionUrlMapDefaultUrlRedirectArgs:
 @pulumi.input_type
 class RegionUrlMapHostRuleArgs:
     def __init__(__self__, *,
-                 hosts: pulumi.Input[List[pulumi.Input[str]]],
+                 hosts: pulumi.Input[Sequence[pulumi.Input[str]]],
                  path_matcher: pulumi.Input[str],
                  description: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input[str]]] hosts: The list of host patterns to match. They must be valid
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] hosts: The list of host patterns to match. They must be valid
                hostnames, except * will match any string of ([a-z0-9-.]*). In
                that case, * must be the first character and must be followed in
                the pattern by either - or ..
@@ -11405,7 +11405,7 @@ class RegionUrlMapHostRuleArgs:
 
     @property
     @pulumi.getter
-    def hosts(self) -> pulumi.Input[List[pulumi.Input[str]]]:
+    def hosts(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
         The list of host patterns to match. They must be valid
         hostnames, except * will match any string of ([a-z0-9-.]*). In
@@ -11415,7 +11415,7 @@ class RegionUrlMapHostRuleArgs:
         return pulumi.get(self, "hosts")
 
     @hosts.setter
-    def hosts(self, value: pulumi.Input[List[pulumi.Input[str]]]):
+    def hosts(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "hosts", value)
 
     @property
@@ -11451,8 +11451,8 @@ class RegionUrlMapPathMatcherArgs:
                  name: pulumi.Input[str],
                  default_url_redirect: Optional[pulumi.Input['RegionUrlMapPathMatcherDefaultUrlRedirectArgs']] = None,
                  description: Optional[pulumi.Input[str]] = None,
-                 path_rules: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherPathRuleArgs']]]] = None,
-                 route_rules: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleArgs']]]] = None):
+                 path_rules: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherPathRuleArgs']]]] = None,
+                 route_rules: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleArgs']]]] = None):
         """
         :param pulumi.Input[str] default_service: A reference to a RegionBackendService resource. This will be used if
                none of the pathRules defined by this PathMatcher is matched by
@@ -11464,14 +11464,14 @@ class RegionUrlMapPathMatcherArgs:
                defaultRouteAction must not be set.
                Structure is documented below.
         :param pulumi.Input[str] description: Description of this test case.
-        :param pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherPathRuleArgs']]] path_rules: The list of path rules. Use this list instead of routeRules when routing based
+        :param pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherPathRuleArgs']]] path_rules: The list of path rules. Use this list instead of routeRules when routing based
                on simple path matching is all that's required. The order by which path rules
                are specified does not matter. Matches are always done on the longest-path-first
                basis. For example: a pathRule with a path /a/b/c/* will match before /a/b/*
                irrespective of the order in which those paths appear in this list. Within a
                given pathMatcher, only one of pathRules or routeRules must be set.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleArgs']]] route_rules: The list of ordered HTTP route rules. Use this list instead of pathRules when
+        :param pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleArgs']]] route_rules: The list of ordered HTTP route rules. Use this list instead of pathRules when
                advanced route matching and routing actions are desired. The order of specifying
                routeRules matters: the first rule that matches will cause its specified routing
                action to take effect. Within a given pathMatcher, only one of pathRules or
@@ -11546,7 +11546,7 @@ class RegionUrlMapPathMatcherArgs:
 
     @property
     @pulumi.getter(name="pathRules")
-    def path_rules(self) -> Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherPathRuleArgs']]]]:
+    def path_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherPathRuleArgs']]]]:
         """
         The list of path rules. Use this list instead of routeRules when routing based
         on simple path matching is all that's required. The order by which path rules
@@ -11559,12 +11559,12 @@ class RegionUrlMapPathMatcherArgs:
         return pulumi.get(self, "path_rules")
 
     @path_rules.setter
-    def path_rules(self, value: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherPathRuleArgs']]]]):
+    def path_rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherPathRuleArgs']]]]):
         pulumi.set(self, "path_rules", value)
 
     @property
     @pulumi.getter(name="routeRules")
-    def route_rules(self) -> Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleArgs']]]]:
+    def route_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleArgs']]]]:
         """
         The list of ordered HTTP route rules. Use this list instead of pathRules when
         advanced route matching and routing actions are desired. The order of specifying
@@ -11577,7 +11577,7 @@ class RegionUrlMapPathMatcherArgs:
         return pulumi.get(self, "route_rules")
 
     @route_rules.setter
-    def route_rules(self, value: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleArgs']]]]):
+    def route_rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleArgs']]]]):
         pulumi.set(self, "route_rules", value)
 
 
@@ -11730,12 +11730,12 @@ class RegionUrlMapPathMatcherDefaultUrlRedirectArgs:
 @pulumi.input_type
 class RegionUrlMapPathMatcherPathRuleArgs:
     def __init__(__self__, *,
-                 paths: pulumi.Input[List[pulumi.Input[str]]],
+                 paths: pulumi.Input[Sequence[pulumi.Input[str]]],
                  route_action: Optional[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionArgs']] = None,
                  service: Optional[pulumi.Input[str]] = None,
                  url_redirect: Optional[pulumi.Input['RegionUrlMapPathMatcherPathRuleUrlRedirectArgs']] = None):
         """
-        :param pulumi.Input[List[pulumi.Input[str]]] paths: The list of path patterns to match. Each must start with / and the only place a
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] paths: The list of path patterns to match. Each must start with / and the only place a
                * is allowed is at the end following a /. The string fed to the path matcher
                does not include any text after the first ? or #, and those chars are not
                allowed here.
@@ -11762,7 +11762,7 @@ class RegionUrlMapPathMatcherPathRuleArgs:
 
     @property
     @pulumi.getter
-    def paths(self) -> pulumi.Input[List[pulumi.Input[str]]]:
+    def paths(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
         The list of path patterns to match. Each must start with / and the only place a
         * is allowed is at the end following a /. The string fed to the path matcher
@@ -11772,7 +11772,7 @@ class RegionUrlMapPathMatcherPathRuleArgs:
         return pulumi.get(self, "paths")
 
     @paths.setter
-    def paths(self, value: pulumi.Input[List[pulumi.Input[str]]]):
+    def paths(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "paths", value)
 
     @property
@@ -11830,7 +11830,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionArgs:
                  retry_policy: Optional[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyArgs']] = None,
                  timeout: Optional[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionTimeoutArgs']] = None,
                  url_rewrite: Optional[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionUrlRewriteArgs']] = None,
-                 weighted_backend_services: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs']]]] = None):
+                 weighted_backend_services: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs']]]] = None):
         """
         :param pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionCorsPolicyArgs'] cors_policy: The specification for allowing client side cross-origin requests. Please see W3C
                Recommendation for Cross Origin Resource Sharing
@@ -11858,7 +11858,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionArgs:
         :param pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionUrlRewriteArgs'] url_rewrite: The spec to modify the URL of the request, prior to forwarding the request to
                the matched service
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs']]] weighted_backend_services: A list of weighted backend services to send traffic to when a route match
+        :param pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs']]] weighted_backend_services: A list of weighted backend services to send traffic to when a route match
                occurs. The weights determine the fraction of traffic that flows to their
                corresponding backend service. If all traffic needs to go to a single backend
                service, there must be one  weightedBackendService with weight set to a non 0
@@ -11977,7 +11977,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionArgs:
 
     @property
     @pulumi.getter(name="weightedBackendServices")
-    def weighted_backend_services(self) -> Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs']]]]:
+    def weighted_backend_services(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs']]]]:
         """
         A list of weighted backend services to send traffic to when a route match
         occurs. The weights determine the fraction of traffic that flows to their
@@ -11992,7 +11992,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionArgs:
         return pulumi.get(self, "weighted_backend_services")
 
     @weighted_backend_services.setter
-    def weighted_backend_services(self, value: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs']]]]):
+    def weighted_backend_services(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs']]]]):
         pulumi.set(self, "weighted_backend_services", value)
 
 
@@ -12001,25 +12001,25 @@ class RegionUrlMapPathMatcherPathRuleRouteActionCorsPolicyArgs:
     def __init__(__self__, *,
                  disabled: pulumi.Input[bool],
                  allow_credentials: Optional[pulumi.Input[bool]] = None,
-                 allow_headers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 allow_methods: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 allow_origin_regexes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 allow_origins: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 expose_headers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 allow_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allow_methods: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allow_origin_regexes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allow_origins: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 expose_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  max_age: Optional[pulumi.Input[float]] = None):
         """
         :param pulumi.Input[bool] disabled: If true, specifies the CORS policy is disabled.
         :param pulumi.Input[bool] allow_credentials: In response to a preflight request, setting this to true indicates that the
                actual request can include user credentials. This translates to the Access-
                Control-Allow-Credentials header. Defaults to false.
-        :param pulumi.Input[List[pulumi.Input[str]]] allow_headers: Specifies the content for the Access-Control-Allow-Headers header.
-        :param pulumi.Input[List[pulumi.Input[str]]] allow_methods: Specifies the content for the Access-Control-Allow-Methods header.
-        :param pulumi.Input[List[pulumi.Input[str]]] allow_origin_regexes: Specifies the regualar expression patterns that match allowed origins. For
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_headers: Specifies the content for the Access-Control-Allow-Headers header.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_methods: Specifies the content for the Access-Control-Allow-Methods header.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_origin_regexes: Specifies the regualar expression patterns that match allowed origins. For
                regular expression grammar please see en.cppreference.com/w/cpp/regex/ecmascript
                An origin is allowed if it matches either allow_origins or allow_origin_regex.
-        :param pulumi.Input[List[pulumi.Input[str]]] allow_origins: Specifies the list of origins that will be allowed to do CORS requests. An
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_origins: Specifies the list of origins that will be allowed to do CORS requests. An
                origin is allowed if it matches either allow_origins or allow_origin_regex.
-        :param pulumi.Input[List[pulumi.Input[str]]] expose_headers: Specifies the content for the Access-Control-Expose-Headers header.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] expose_headers: Specifies the content for the Access-Control-Expose-Headers header.
         :param pulumi.Input[float] max_age: Specifies how long the results of a preflight request can be cached. This
                translates to the content for the Access-Control-Max-Age header.
         """
@@ -12067,31 +12067,31 @@ class RegionUrlMapPathMatcherPathRuleRouteActionCorsPolicyArgs:
 
     @property
     @pulumi.getter(name="allowHeaders")
-    def allow_headers(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def allow_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the content for the Access-Control-Allow-Headers header.
         """
         return pulumi.get(self, "allow_headers")
 
     @allow_headers.setter
-    def allow_headers(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def allow_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allow_headers", value)
 
     @property
     @pulumi.getter(name="allowMethods")
-    def allow_methods(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def allow_methods(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the content for the Access-Control-Allow-Methods header.
         """
         return pulumi.get(self, "allow_methods")
 
     @allow_methods.setter
-    def allow_methods(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def allow_methods(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allow_methods", value)
 
     @property
     @pulumi.getter(name="allowOriginRegexes")
-    def allow_origin_regexes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def allow_origin_regexes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the regualar expression patterns that match allowed origins. For
         regular expression grammar please see en.cppreference.com/w/cpp/regex/ecmascript
@@ -12100,12 +12100,12 @@ class RegionUrlMapPathMatcherPathRuleRouteActionCorsPolicyArgs:
         return pulumi.get(self, "allow_origin_regexes")
 
     @allow_origin_regexes.setter
-    def allow_origin_regexes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def allow_origin_regexes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allow_origin_regexes", value)
 
     @property
     @pulumi.getter(name="allowOrigins")
-    def allow_origins(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def allow_origins(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the list of origins that will be allowed to do CORS requests. An
         origin is allowed if it matches either allow_origins or allow_origin_regex.
@@ -12113,19 +12113,19 @@ class RegionUrlMapPathMatcherPathRuleRouteActionCorsPolicyArgs:
         return pulumi.get(self, "allow_origins")
 
     @allow_origins.setter
-    def allow_origins(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def allow_origins(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allow_origins", value)
 
     @property
     @pulumi.getter(name="exposeHeaders")
-    def expose_headers(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def expose_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the content for the Access-Control-Expose-Headers header.
         """
         return pulumi.get(self, "expose_headers")
 
     @expose_headers.setter
-    def expose_headers(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def expose_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "expose_headers", value)
 
     @property
@@ -12350,12 +12350,12 @@ class RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyArgs:
     def __init__(__self__, *,
                  num_retries: Optional[pulumi.Input[float]] = None,
                  per_try_timeout: Optional[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutArgs']] = None,
-                 retry_conditions: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 retry_conditions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         :param pulumi.Input[float] num_retries: Specifies the allowed number retries. This number must be > 0.
         :param pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutArgs'] per_try_timeout: Specifies a non-zero timeout per retry attempt.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] retry_conditions: Specifies one or more conditions when this retry rule applies. Valid values are:
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] retry_conditions: Specifies one or more conditions when this retry rule applies. Valid values are:
                - 5xx: Loadbalancer will attempt a retry if the backend service responds with
                any 5xx response code, or if the backend service does not respond at all,
                example: disconnects, reset, read timeout, connection failure, and refused
@@ -12411,7 +12411,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyArgs:
 
     @property
     @pulumi.getter(name="retryConditions")
-    def retry_conditions(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def retry_conditions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies one or more conditions when this retry rule applies. Valid values are:
         - 5xx: Loadbalancer will attempt a retry if the backend service responds with
@@ -12438,7 +12438,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyArgs:
         return pulumi.get(self, "retry_conditions")
 
     @retry_conditions.setter
-    def retry_conditions(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def retry_conditions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "retry_conditions", value)
 
 
@@ -12653,19 +12653,19 @@ class RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs:
 @pulumi.input_type
 class RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionArgs:
     def __init__(__self__, *,
-                 request_headers_to_adds: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]] = None,
-                 request_headers_to_removes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 response_headers_to_adds: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]] = None,
-                 response_headers_to_removes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 request_headers_to_adds: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]] = None,
+                 request_headers_to_removes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 response_headers_to_adds: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]] = None,
+                 response_headers_to_removes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the
+        :param pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the
                backendService.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] request_headers_to_removes: A list of header names for headers that need to be removed from the request
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] request_headers_to_removes: A list of header names for headers that need to be removed from the request
                prior to forwarding the request to the backendService.
-        :param pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
+        :param pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] response_headers_to_removes: A list of header names for headers that need to be removed from the response
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] response_headers_to_removes: A list of header names for headers that need to be removed from the response
                prior to sending the response back to the client.
         """
         if request_headers_to_adds is not None:
@@ -12679,7 +12679,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActi
 
     @property
     @pulumi.getter(name="requestHeadersToAdds")
-    def request_headers_to_adds(self) -> Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]]:
+    def request_headers_to_adds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]]:
         """
         Headers to add to a matching request prior to forwarding the request to the
         backendService.
@@ -12688,12 +12688,12 @@ class RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActi
         return pulumi.get(self, "request_headers_to_adds")
 
     @request_headers_to_adds.setter
-    def request_headers_to_adds(self, value: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]]):
+    def request_headers_to_adds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]]):
         pulumi.set(self, "request_headers_to_adds", value)
 
     @property
     @pulumi.getter(name="requestHeadersToRemoves")
-    def request_headers_to_removes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def request_headers_to_removes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A list of header names for headers that need to be removed from the request
         prior to forwarding the request to the backendService.
@@ -12701,12 +12701,12 @@ class RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActi
         return pulumi.get(self, "request_headers_to_removes")
 
     @request_headers_to_removes.setter
-    def request_headers_to_removes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def request_headers_to_removes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "request_headers_to_removes", value)
 
     @property
     @pulumi.getter(name="responseHeadersToAdds")
-    def response_headers_to_adds(self) -> Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]]:
+    def response_headers_to_adds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]]:
         """
         Headers to add the response prior to sending the response back to the client.
         Structure is documented below.
@@ -12714,12 +12714,12 @@ class RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActi
         return pulumi.get(self, "response_headers_to_adds")
 
     @response_headers_to_adds.setter
-    def response_headers_to_adds(self, value: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]]):
+    def response_headers_to_adds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]]):
         pulumi.set(self, "response_headers_to_adds", value)
 
     @property
     @pulumi.getter(name="responseHeadersToRemoves")
-    def response_headers_to_removes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def response_headers_to_removes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A list of header names for headers that need to be removed from the response
         prior to sending the response back to the client.
@@ -12727,7 +12727,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActi
         return pulumi.get(self, "response_headers_to_removes")
 
     @response_headers_to_removes.setter
-    def response_headers_to_removes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def response_headers_to_removes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "response_headers_to_removes", value)
 
 
@@ -12994,7 +12994,7 @@ class RegionUrlMapPathMatcherRouteRuleArgs:
     def __init__(__self__, *,
                  priority: pulumi.Input[float],
                  header_action: Optional[pulumi.Input['RegionUrlMapPathMatcherRouteRuleHeaderActionArgs']] = None,
-                 match_rules: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleArgs']]]] = None,
+                 match_rules: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleArgs']]]] = None,
                  route_action: Optional[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionArgs']] = None,
                  service: Optional[pulumi.Input[str]] = None,
                  url_redirect: Optional[pulumi.Input['RegionUrlMapPathMatcherRouteRuleUrlRedirectArgs']] = None):
@@ -13016,7 +13016,7 @@ class RegionUrlMapPathMatcherRouteRuleArgs:
                the selected backendService. headerAction specified here take effect before
                headerAction in the enclosing HttpRouteRule, PathMatcher and UrlMap.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleArgs']]] match_rules: The rules for determining a match.
+        :param pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleArgs']]] match_rules: The rules for determining a match.
                Structure is documented below.
         :param pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionArgs'] route_action: In response to a matching path, the load balancer performs advanced routing
                actions like URL rewrites, header transformations, etc. prior to forwarding the
@@ -13084,7 +13084,7 @@ class RegionUrlMapPathMatcherRouteRuleArgs:
 
     @property
     @pulumi.getter(name="matchRules")
-    def match_rules(self) -> Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleArgs']]]]:
+    def match_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleArgs']]]]:
         """
         The rules for determining a match.
         Structure is documented below.
@@ -13092,7 +13092,7 @@ class RegionUrlMapPathMatcherRouteRuleArgs:
         return pulumi.get(self, "match_rules")
 
     @match_rules.setter
-    def match_rules(self, value: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleArgs']]]]):
+    def match_rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleArgs']]]]):
         pulumi.set(self, "match_rules", value)
 
     @property
@@ -13144,19 +13144,19 @@ class RegionUrlMapPathMatcherRouteRuleArgs:
 @pulumi.input_type
 class RegionUrlMapPathMatcherRouteRuleHeaderActionArgs:
     def __init__(__self__, *,
-                 request_headers_to_adds: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleHeaderActionRequestHeadersToAddArgs']]]] = None,
-                 request_headers_to_removes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 response_headers_to_adds: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleHeaderActionResponseHeadersToAddArgs']]]] = None,
-                 response_headers_to_removes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 request_headers_to_adds: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleHeaderActionRequestHeadersToAddArgs']]]] = None,
+                 request_headers_to_removes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 response_headers_to_adds: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleHeaderActionResponseHeadersToAddArgs']]]] = None,
+                 response_headers_to_removes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleHeaderActionRequestHeadersToAddArgs']]] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the
+        :param pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleHeaderActionRequestHeadersToAddArgs']]] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the
                backendService.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] request_headers_to_removes: A list of header names for headers that need to be removed from the request
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] request_headers_to_removes: A list of header names for headers that need to be removed from the request
                prior to forwarding the request to the backendService.
-        :param pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleHeaderActionResponseHeadersToAddArgs']]] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
+        :param pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleHeaderActionResponseHeadersToAddArgs']]] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] response_headers_to_removes: A list of header names for headers that need to be removed from the response
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] response_headers_to_removes: A list of header names for headers that need to be removed from the response
                prior to sending the response back to the client.
         """
         if request_headers_to_adds is not None:
@@ -13170,7 +13170,7 @@ class RegionUrlMapPathMatcherRouteRuleHeaderActionArgs:
 
     @property
     @pulumi.getter(name="requestHeadersToAdds")
-    def request_headers_to_adds(self) -> Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleHeaderActionRequestHeadersToAddArgs']]]]:
+    def request_headers_to_adds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleHeaderActionRequestHeadersToAddArgs']]]]:
         """
         Headers to add to a matching request prior to forwarding the request to the
         backendService.
@@ -13179,12 +13179,12 @@ class RegionUrlMapPathMatcherRouteRuleHeaderActionArgs:
         return pulumi.get(self, "request_headers_to_adds")
 
     @request_headers_to_adds.setter
-    def request_headers_to_adds(self, value: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleHeaderActionRequestHeadersToAddArgs']]]]):
+    def request_headers_to_adds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleHeaderActionRequestHeadersToAddArgs']]]]):
         pulumi.set(self, "request_headers_to_adds", value)
 
     @property
     @pulumi.getter(name="requestHeadersToRemoves")
-    def request_headers_to_removes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def request_headers_to_removes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A list of header names for headers that need to be removed from the request
         prior to forwarding the request to the backendService.
@@ -13192,12 +13192,12 @@ class RegionUrlMapPathMatcherRouteRuleHeaderActionArgs:
         return pulumi.get(self, "request_headers_to_removes")
 
     @request_headers_to_removes.setter
-    def request_headers_to_removes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def request_headers_to_removes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "request_headers_to_removes", value)
 
     @property
     @pulumi.getter(name="responseHeadersToAdds")
-    def response_headers_to_adds(self) -> Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleHeaderActionResponseHeadersToAddArgs']]]]:
+    def response_headers_to_adds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleHeaderActionResponseHeadersToAddArgs']]]]:
         """
         Headers to add the response prior to sending the response back to the client.
         Structure is documented below.
@@ -13205,12 +13205,12 @@ class RegionUrlMapPathMatcherRouteRuleHeaderActionArgs:
         return pulumi.get(self, "response_headers_to_adds")
 
     @response_headers_to_adds.setter
-    def response_headers_to_adds(self, value: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleHeaderActionResponseHeadersToAddArgs']]]]):
+    def response_headers_to_adds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleHeaderActionResponseHeadersToAddArgs']]]]):
         pulumi.set(self, "response_headers_to_adds", value)
 
     @property
     @pulumi.getter(name="responseHeadersToRemoves")
-    def response_headers_to_removes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def response_headers_to_removes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A list of header names for headers that need to be removed from the response
         prior to sending the response back to the client.
@@ -13218,7 +13218,7 @@ class RegionUrlMapPathMatcherRouteRuleHeaderActionArgs:
         return pulumi.get(self, "response_headers_to_removes")
 
     @response_headers_to_removes.setter
-    def response_headers_to_removes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def response_headers_to_removes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "response_headers_to_removes", value)
 
 
@@ -13338,11 +13338,11 @@ class RegionUrlMapPathMatcherRouteRuleHeaderActionResponseHeadersToAddArgs:
 class RegionUrlMapPathMatcherRouteRuleMatchRuleArgs:
     def __init__(__self__, *,
                  full_path_match: Optional[pulumi.Input[str]] = None,
-                 header_matches: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchArgs']]]] = None,
+                 header_matches: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchArgs']]]] = None,
                  ignore_case: Optional[pulumi.Input[bool]] = None,
-                 metadata_filters: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilterArgs']]]] = None,
+                 metadata_filters: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilterArgs']]]] = None,
                  prefix_match: Optional[pulumi.Input[str]] = None,
-                 query_parameter_matches: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleQueryParameterMatchArgs']]]] = None,
+                 query_parameter_matches: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleQueryParameterMatchArgs']]]] = None,
                  regex_match: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] full_path_match: For satifying the matchRule condition, the path of the request must exactly
@@ -13350,12 +13350,12 @@ class RegionUrlMapPathMatcherRouteRuleMatchRuleArgs:
                and anchor that may be part of the original URL. FullPathMatch must be between 1
                and 1024 characters. Only one of prefixMatch, fullPathMatch or regexMatch must
                be specified.
-        :param pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchArgs']]] header_matches: Specifies a list of header match criteria, all of which must match corresponding
+        :param pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchArgs']]] header_matches: Specifies a list of header match criteria, all of which must match corresponding
                headers in the request.
                Structure is documented below.
         :param pulumi.Input[bool] ignore_case: Specifies that prefixMatch and fullPathMatch matches are case sensitive.
                Defaults to false.
-        :param pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilterArgs']]] metadata_filters: Opaque filter criteria used by Loadbalancer to restrict routing configuration to
+        :param pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilterArgs']]] metadata_filters: Opaque filter criteria used by Loadbalancer to restrict routing configuration to
                a limited set xDS compliant clients. In their xDS requests to Loadbalancer, xDS
                clients present node metadata. If a match takes place, the relevant routing
                configuration is made available to those proxies. For each metadataFilter in
@@ -13370,7 +13370,7 @@ class RegionUrlMapPathMatcherRouteRuleMatchRuleArgs:
         :param pulumi.Input[str] prefix_match: The value of the header must start with the contents of prefixMatch. Only one of
                exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch
                must be set.
-        :param pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleQueryParameterMatchArgs']]] query_parameter_matches: Specifies a list of query parameter match criteria, all of which must match
+        :param pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleQueryParameterMatchArgs']]] query_parameter_matches: Specifies a list of query parameter match criteria, all of which must match
                corresponding query parameters in the request.
                Structure is documented below.
         :param pulumi.Input[str] regex_match: The queryParameterMatch matches if the value of the parameter matches the
@@ -13411,7 +13411,7 @@ class RegionUrlMapPathMatcherRouteRuleMatchRuleArgs:
 
     @property
     @pulumi.getter(name="headerMatches")
-    def header_matches(self) -> Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchArgs']]]]:
+    def header_matches(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchArgs']]]]:
         """
         Specifies a list of header match criteria, all of which must match corresponding
         headers in the request.
@@ -13420,7 +13420,7 @@ class RegionUrlMapPathMatcherRouteRuleMatchRuleArgs:
         return pulumi.get(self, "header_matches")
 
     @header_matches.setter
-    def header_matches(self, value: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchArgs']]]]):
+    def header_matches(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchArgs']]]]):
         pulumi.set(self, "header_matches", value)
 
     @property
@@ -13438,7 +13438,7 @@ class RegionUrlMapPathMatcherRouteRuleMatchRuleArgs:
 
     @property
     @pulumi.getter(name="metadataFilters")
-    def metadata_filters(self) -> Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilterArgs']]]]:
+    def metadata_filters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilterArgs']]]]:
         """
         Opaque filter criteria used by Loadbalancer to restrict routing configuration to
         a limited set xDS compliant clients. In their xDS requests to Loadbalancer, xDS
@@ -13456,7 +13456,7 @@ class RegionUrlMapPathMatcherRouteRuleMatchRuleArgs:
         return pulumi.get(self, "metadata_filters")
 
     @metadata_filters.setter
-    def metadata_filters(self, value: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilterArgs']]]]):
+    def metadata_filters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilterArgs']]]]):
         pulumi.set(self, "metadata_filters", value)
 
     @property
@@ -13475,7 +13475,7 @@ class RegionUrlMapPathMatcherRouteRuleMatchRuleArgs:
 
     @property
     @pulumi.getter(name="queryParameterMatches")
-    def query_parameter_matches(self) -> Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleQueryParameterMatchArgs']]]]:
+    def query_parameter_matches(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleQueryParameterMatchArgs']]]]:
         """
         Specifies a list of query parameter match criteria, all of which must match
         corresponding query parameters in the request.
@@ -13484,7 +13484,7 @@ class RegionUrlMapPathMatcherRouteRuleMatchRuleArgs:
         return pulumi.get(self, "query_parameter_matches")
 
     @query_parameter_matches.setter
-    def query_parameter_matches(self, value: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleQueryParameterMatchArgs']]]]):
+    def query_parameter_matches(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleQueryParameterMatchArgs']]]]):
         pulumi.set(self, "query_parameter_matches", value)
 
     @property
@@ -13715,10 +13715,10 @@ class RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatchArgs:
 @pulumi.input_type
 class RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilterArgs:
     def __init__(__self__, *,
-                 filter_labels: pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilterFilterLabelArgs']]],
+                 filter_labels: pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilterFilterLabelArgs']]],
                  filter_match_criteria: pulumi.Input[str]):
         """
-        :param pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilterFilterLabelArgs']]] filter_labels: The list of label value pairs that must match labels in the provided metadata
+        :param pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilterFilterLabelArgs']]] filter_labels: The list of label value pairs that must match labels in the provided metadata
                based on filterMatchCriteria  This list must not be empty and can have at the
                most 64 entries.
                Structure is documented below.
@@ -13735,7 +13735,7 @@ class RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilterArgs:
 
     @property
     @pulumi.getter(name="filterLabels")
-    def filter_labels(self) -> pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilterFilterLabelArgs']]]:
+    def filter_labels(self) -> pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilterFilterLabelArgs']]]:
         """
         The list of label value pairs that must match labels in the provided metadata
         based on filterMatchCriteria  This list must not be empty and can have at the
@@ -13745,7 +13745,7 @@ class RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilterArgs:
         return pulumi.get(self, "filter_labels")
 
     @filter_labels.setter
-    def filter_labels(self, value: pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilterFilterLabelArgs']]]):
+    def filter_labels(self, value: pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilterFilterLabelArgs']]]):
         pulumi.set(self, "filter_labels", value)
 
     @property
@@ -13903,7 +13903,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionArgs:
                  retry_policy: Optional[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyArgs']] = None,
                  timeout: Optional[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionTimeoutArgs']] = None,
                  url_rewrite: Optional[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionUrlRewriteArgs']] = None,
-                 weighted_backend_services: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs']]]] = None):
+                 weighted_backend_services: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs']]]] = None):
         """
         :param pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicyArgs'] cors_policy: The specification for allowing client side cross-origin requests. Please see W3C
                Recommendation for Cross Origin Resource Sharing
@@ -13931,7 +13931,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionArgs:
         :param pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionUrlRewriteArgs'] url_rewrite: The spec to modify the URL of the request, prior to forwarding the request to
                the matched service
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs']]] weighted_backend_services: A list of weighted backend services to send traffic to when a route match
+        :param pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs']]] weighted_backend_services: A list of weighted backend services to send traffic to when a route match
                occurs. The weights determine the fraction of traffic that flows to their
                corresponding backend service. If all traffic needs to go to a single backend
                service, there must be one  weightedBackendService with weight set to a non 0
@@ -14050,7 +14050,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionArgs:
 
     @property
     @pulumi.getter(name="weightedBackendServices")
-    def weighted_backend_services(self) -> Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs']]]]:
+    def weighted_backend_services(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs']]]]:
         """
         A list of weighted backend services to send traffic to when a route match
         occurs. The weights determine the fraction of traffic that flows to their
@@ -14065,7 +14065,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionArgs:
         return pulumi.get(self, "weighted_backend_services")
 
     @weighted_backend_services.setter
-    def weighted_backend_services(self, value: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs']]]]):
+    def weighted_backend_services(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs']]]]):
         pulumi.set(self, "weighted_backend_services", value)
 
 
@@ -14073,26 +14073,26 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionArgs:
 class RegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicyArgs:
     def __init__(__self__, *,
                  allow_credentials: Optional[pulumi.Input[bool]] = None,
-                 allow_headers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 allow_methods: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 allow_origin_regexes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 allow_origins: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 allow_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allow_methods: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allow_origin_regexes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allow_origins: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  disabled: Optional[pulumi.Input[bool]] = None,
-                 expose_headers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 expose_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  max_age: Optional[pulumi.Input[float]] = None):
         """
         :param pulumi.Input[bool] allow_credentials: In response to a preflight request, setting this to true indicates that the
                actual request can include user credentials. This translates to the Access-
                Control-Allow-Credentials header. Defaults to false.
-        :param pulumi.Input[List[pulumi.Input[str]]] allow_headers: Specifies the content for the Access-Control-Allow-Headers header.
-        :param pulumi.Input[List[pulumi.Input[str]]] allow_methods: Specifies the content for the Access-Control-Allow-Methods header.
-        :param pulumi.Input[List[pulumi.Input[str]]] allow_origin_regexes: Specifies the regualar expression patterns that match allowed origins. For
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_headers: Specifies the content for the Access-Control-Allow-Headers header.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_methods: Specifies the content for the Access-Control-Allow-Methods header.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_origin_regexes: Specifies the regualar expression patterns that match allowed origins. For
                regular expression grammar please see en.cppreference.com/w/cpp/regex/ecmascript
                An origin is allowed if it matches either allow_origins or allow_origin_regex.
-        :param pulumi.Input[List[pulumi.Input[str]]] allow_origins: Specifies the list of origins that will be allowed to do CORS requests. An
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_origins: Specifies the list of origins that will be allowed to do CORS requests. An
                origin is allowed if it matches either allow_origins or allow_origin_regex.
         :param pulumi.Input[bool] disabled: If true, specifies the CORS policy is disabled.
-        :param pulumi.Input[List[pulumi.Input[str]]] expose_headers: Specifies the content for the Access-Control-Expose-Headers header.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] expose_headers: Specifies the content for the Access-Control-Expose-Headers header.
         :param pulumi.Input[float] max_age: Specifies how long the results of a preflight request can be cached. This
                translates to the content for the Access-Control-Max-Age header.
         """
@@ -14129,31 +14129,31 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicyArgs:
 
     @property
     @pulumi.getter(name="allowHeaders")
-    def allow_headers(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def allow_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the content for the Access-Control-Allow-Headers header.
         """
         return pulumi.get(self, "allow_headers")
 
     @allow_headers.setter
-    def allow_headers(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def allow_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allow_headers", value)
 
     @property
     @pulumi.getter(name="allowMethods")
-    def allow_methods(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def allow_methods(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the content for the Access-Control-Allow-Methods header.
         """
         return pulumi.get(self, "allow_methods")
 
     @allow_methods.setter
-    def allow_methods(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def allow_methods(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allow_methods", value)
 
     @property
     @pulumi.getter(name="allowOriginRegexes")
-    def allow_origin_regexes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def allow_origin_regexes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the regualar expression patterns that match allowed origins. For
         regular expression grammar please see en.cppreference.com/w/cpp/regex/ecmascript
@@ -14162,12 +14162,12 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicyArgs:
         return pulumi.get(self, "allow_origin_regexes")
 
     @allow_origin_regexes.setter
-    def allow_origin_regexes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def allow_origin_regexes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allow_origin_regexes", value)
 
     @property
     @pulumi.getter(name="allowOrigins")
-    def allow_origins(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def allow_origins(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the list of origins that will be allowed to do CORS requests. An
         origin is allowed if it matches either allow_origins or allow_origin_regex.
@@ -14175,7 +14175,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicyArgs:
         return pulumi.get(self, "allow_origins")
 
     @allow_origins.setter
-    def allow_origins(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def allow_origins(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allow_origins", value)
 
     @property
@@ -14192,14 +14192,14 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicyArgs:
 
     @property
     @pulumi.getter(name="exposeHeaders")
-    def expose_headers(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def expose_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the content for the Access-Control-Expose-Headers header.
         """
         return pulumi.get(self, "expose_headers")
 
     @expose_headers.setter
-    def expose_headers(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def expose_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "expose_headers", value)
 
     @property
@@ -14428,12 +14428,12 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyArgs:
     def __init__(__self__, *,
                  num_retries: pulumi.Input[float],
                  per_try_timeout: Optional[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutArgs']] = None,
-                 retry_conditions: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 retry_conditions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         :param pulumi.Input[float] num_retries: Specifies the allowed number retries. This number must be > 0.
         :param pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutArgs'] per_try_timeout: Specifies a non-zero timeout per retry attempt.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] retry_conditions: Specifies one or more conditions when this retry rule applies. Valid values are:
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] retry_conditions: Specifies one or more conditions when this retry rule applies. Valid values are:
                - 5xx: Loadbalancer will attempt a retry if the backend service responds with
                any 5xx response code, or if the backend service does not respond at all,
                example: disconnects, reset, read timeout, connection failure, and refused
@@ -14488,7 +14488,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyArgs:
 
     @property
     @pulumi.getter(name="retryConditions")
-    def retry_conditions(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def retry_conditions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies one or more conditions when this retry rule applies. Valid values are:
         - 5xx: Loadbalancer will attempt a retry if the backend service responds with
@@ -14515,7 +14515,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyArgs:
         return pulumi.get(self, "retry_conditions")
 
     @retry_conditions.setter
-    def retry_conditions(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def retry_conditions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "retry_conditions", value)
 
 
@@ -14730,19 +14730,19 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs:
 @pulumi.input_type
 class RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionArgs:
     def __init__(__self__, *,
-                 request_headers_to_adds: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]] = None,
-                 request_headers_to_removes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 response_headers_to_adds: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]] = None,
-                 response_headers_to_removes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 request_headers_to_adds: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]] = None,
+                 request_headers_to_removes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 response_headers_to_adds: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]] = None,
+                 response_headers_to_removes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the
+        :param pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the
                backendService.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] request_headers_to_removes: A list of header names for headers that need to be removed from the request
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] request_headers_to_removes: A list of header names for headers that need to be removed from the request
                prior to forwarding the request to the backendService.
-        :param pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
+        :param pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] response_headers_to_removes: A list of header names for headers that need to be removed from the response
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] response_headers_to_removes: A list of header names for headers that need to be removed from the response
                prior to sending the response back to the client.
         """
         if request_headers_to_adds is not None:
@@ -14756,7 +14756,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderAct
 
     @property
     @pulumi.getter(name="requestHeadersToAdds")
-    def request_headers_to_adds(self) -> Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]]:
+    def request_headers_to_adds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]]:
         """
         Headers to add to a matching request prior to forwarding the request to the
         backendService.
@@ -14765,12 +14765,12 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderAct
         return pulumi.get(self, "request_headers_to_adds")
 
     @request_headers_to_adds.setter
-    def request_headers_to_adds(self, value: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]]):
+    def request_headers_to_adds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]]):
         pulumi.set(self, "request_headers_to_adds", value)
 
     @property
     @pulumi.getter(name="requestHeadersToRemoves")
-    def request_headers_to_removes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def request_headers_to_removes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A list of header names for headers that need to be removed from the request
         prior to forwarding the request to the backendService.
@@ -14778,12 +14778,12 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderAct
         return pulumi.get(self, "request_headers_to_removes")
 
     @request_headers_to_removes.setter
-    def request_headers_to_removes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def request_headers_to_removes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "request_headers_to_removes", value)
 
     @property
     @pulumi.getter(name="responseHeadersToAdds")
-    def response_headers_to_adds(self) -> Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]]:
+    def response_headers_to_adds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]]:
         """
         Headers to add the response prior to sending the response back to the client.
         Structure is documented below.
@@ -14791,12 +14791,12 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderAct
         return pulumi.get(self, "response_headers_to_adds")
 
     @response_headers_to_adds.setter
-    def response_headers_to_adds(self, value: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]]):
+    def response_headers_to_adds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]]):
         pulumi.set(self, "response_headers_to_adds", value)
 
     @property
     @pulumi.getter(name="responseHeadersToRemoves")
-    def response_headers_to_removes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def response_headers_to_removes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A list of header names for headers that need to be removed from the response
         prior to sending the response back to the client.
@@ -14804,7 +14804,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderAct
         return pulumi.get(self, "response_headers_to_removes")
 
     @response_headers_to_removes.setter
-    def response_headers_to_removes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def response_headers_to_removes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "response_headers_to_removes", value)
 
 
@@ -15196,14 +15196,14 @@ class ReservationSpecificReservationArgs:
 class ReservationSpecificReservationInstancePropertiesArgs:
     def __init__(__self__, *,
                  machine_type: pulumi.Input[str],
-                 guest_accelerators: Optional[pulumi.Input[List[pulumi.Input['ReservationSpecificReservationInstancePropertiesGuestAcceleratorArgs']]]] = None,
-                 local_ssds: Optional[pulumi.Input[List[pulumi.Input['ReservationSpecificReservationInstancePropertiesLocalSsdArgs']]]] = None,
+                 guest_accelerators: Optional[pulumi.Input[Sequence[pulumi.Input['ReservationSpecificReservationInstancePropertiesGuestAcceleratorArgs']]]] = None,
+                 local_ssds: Optional[pulumi.Input[Sequence[pulumi.Input['ReservationSpecificReservationInstancePropertiesLocalSsdArgs']]]] = None,
                  min_cpu_platform: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] machine_type: The name of the machine type to reserve.
-        :param pulumi.Input[List[pulumi.Input['ReservationSpecificReservationInstancePropertiesGuestAcceleratorArgs']]] guest_accelerators: Guest accelerator type and count.
+        :param pulumi.Input[Sequence[pulumi.Input['ReservationSpecificReservationInstancePropertiesGuestAcceleratorArgs']]] guest_accelerators: Guest accelerator type and count.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input['ReservationSpecificReservationInstancePropertiesLocalSsdArgs']]] local_ssds: The amount of local ssd to reserve with each instance. This
+        :param pulumi.Input[Sequence[pulumi.Input['ReservationSpecificReservationInstancePropertiesLocalSsdArgs']]] local_ssds: The amount of local ssd to reserve with each instance. This
                reserves disks of type `local-ssd`.
                Structure is documented below.
         :param pulumi.Input[str] min_cpu_platform: The minimum CPU platform for the reservation. For example,
@@ -15233,7 +15233,7 @@ class ReservationSpecificReservationInstancePropertiesArgs:
 
     @property
     @pulumi.getter(name="guestAccelerators")
-    def guest_accelerators(self) -> Optional[pulumi.Input[List[pulumi.Input['ReservationSpecificReservationInstancePropertiesGuestAcceleratorArgs']]]]:
+    def guest_accelerators(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ReservationSpecificReservationInstancePropertiesGuestAcceleratorArgs']]]]:
         """
         Guest accelerator type and count.
         Structure is documented below.
@@ -15241,12 +15241,12 @@ class ReservationSpecificReservationInstancePropertiesArgs:
         return pulumi.get(self, "guest_accelerators")
 
     @guest_accelerators.setter
-    def guest_accelerators(self, value: Optional[pulumi.Input[List[pulumi.Input['ReservationSpecificReservationInstancePropertiesGuestAcceleratorArgs']]]]):
+    def guest_accelerators(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ReservationSpecificReservationInstancePropertiesGuestAcceleratorArgs']]]]):
         pulumi.set(self, "guest_accelerators", value)
 
     @property
     @pulumi.getter(name="localSsds")
-    def local_ssds(self) -> Optional[pulumi.Input[List[pulumi.Input['ReservationSpecificReservationInstancePropertiesLocalSsdArgs']]]]:
+    def local_ssds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ReservationSpecificReservationInstancePropertiesLocalSsdArgs']]]]:
         """
         The amount of local ssd to reserve with each instance. This
         reserves disks of type `local-ssd`.
@@ -15255,7 +15255,7 @@ class ReservationSpecificReservationInstancePropertiesArgs:
         return pulumi.get(self, "local_ssds")
 
     @local_ssds.setter
-    def local_ssds(self, value: Optional[pulumi.Input[List[pulumi.Input['ReservationSpecificReservationInstancePropertiesLocalSsdArgs']]]]):
+    def local_ssds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ReservationSpecificReservationInstancePropertiesLocalSsdArgs']]]]):
         pulumi.set(self, "local_ssds", value)
 
     @property
@@ -15672,16 +15672,16 @@ class ResourcePolicySnapshotSchedulePolicyScheduleHourlyScheduleArgs:
 @pulumi.input_type
 class ResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleArgs:
     def __init__(__self__, *,
-                 day_of_weeks: pulumi.Input[List[pulumi.Input['ResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleDayOfWeekArgs']]]):
+                 day_of_weeks: pulumi.Input[Sequence[pulumi.Input['ResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleDayOfWeekArgs']]]):
         """
-        :param pulumi.Input[List[pulumi.Input['ResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleDayOfWeekArgs']]] day_of_weeks: May contain up to seven (one for each day of the week) snapshot times.
+        :param pulumi.Input[Sequence[pulumi.Input['ResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleDayOfWeekArgs']]] day_of_weeks: May contain up to seven (one for each day of the week) snapshot times.
                Structure is documented below.
         """
         pulumi.set(__self__, "day_of_weeks", day_of_weeks)
 
     @property
     @pulumi.getter(name="dayOfWeeks")
-    def day_of_weeks(self) -> pulumi.Input[List[pulumi.Input['ResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleDayOfWeekArgs']]]:
+    def day_of_weeks(self) -> pulumi.Input[Sequence[pulumi.Input['ResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleDayOfWeekArgs']]]:
         """
         May contain up to seven (one for each day of the week) snapshot times.
         Structure is documented below.
@@ -15689,7 +15689,7 @@ class ResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleArgs:
         return pulumi.get(self, "day_of_weeks")
 
     @day_of_weeks.setter
-    def day_of_weeks(self, value: pulumi.Input[List[pulumi.Input['ResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleDayOfWeekArgs']]]):
+    def day_of_weeks(self, value: pulumi.Input[Sequence[pulumi.Input['ResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleDayOfWeekArgs']]]):
         pulumi.set(self, "day_of_weeks", value)
 
 
@@ -15796,8 +15796,8 @@ class RouterBgpArgs:
     def __init__(__self__, *,
                  asn: pulumi.Input[float],
                  advertise_mode: Optional[pulumi.Input[str]] = None,
-                 advertised_groups: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 advertised_ip_ranges: Optional[pulumi.Input[List[pulumi.Input['RouterBgpAdvertisedIpRangeArgs']]]] = None):
+                 advertised_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 advertised_ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input['RouterBgpAdvertisedIpRangeArgs']]]] = None):
         """
         :param pulumi.Input[float] asn: Local BGP Autonomous System Number (ASN). Must be an RFC6996
                private ASN, either 16-bit or 32-bit. The value will be fixed for
@@ -15806,13 +15806,13 @@ class RouterBgpArgs:
         :param pulumi.Input[str] advertise_mode: User-specified flag to indicate which mode to use for advertisement.
                Default value is `DEFAULT`.
                Possible values are `DEFAULT` and `CUSTOM`.
-        :param pulumi.Input[List[pulumi.Input[str]]] advertised_groups: User-specified list of prefix groups to advertise in custom mode.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] advertised_groups: User-specified list of prefix groups to advertise in custom mode.
                This field can only be populated if advertiseMode is CUSTOM and
                is advertised to all peers of the router. These groups will be
                advertised in addition to any specified prefixes. Leave this field
                blank to advertise no custom groups.
                This enum field has the one valid value: ALL_SUBNETS
-        :param pulumi.Input[List[pulumi.Input['RouterBgpAdvertisedIpRangeArgs']]] advertised_ip_ranges: User-specified list of individual IP ranges to advertise in
+        :param pulumi.Input[Sequence[pulumi.Input['RouterBgpAdvertisedIpRangeArgs']]] advertised_ip_ranges: User-specified list of individual IP ranges to advertise in
                custom mode. This field can only be populated if advertiseMode
                is CUSTOM and is advertised to all peers of the router. These IP
                ranges will be advertised in addition to any specified groups.
@@ -15858,7 +15858,7 @@ class RouterBgpArgs:
 
     @property
     @pulumi.getter(name="advertisedGroups")
-    def advertised_groups(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def advertised_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         User-specified list of prefix groups to advertise in custom mode.
         This field can only be populated if advertiseMode is CUSTOM and
@@ -15870,12 +15870,12 @@ class RouterBgpArgs:
         return pulumi.get(self, "advertised_groups")
 
     @advertised_groups.setter
-    def advertised_groups(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def advertised_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "advertised_groups", value)
 
     @property
     @pulumi.getter(name="advertisedIpRanges")
-    def advertised_ip_ranges(self) -> Optional[pulumi.Input[List[pulumi.Input['RouterBgpAdvertisedIpRangeArgs']]]]:
+    def advertised_ip_ranges(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RouterBgpAdvertisedIpRangeArgs']]]]:
         """
         User-specified list of individual IP ranges to advertise in
         custom mode. This field can only be populated if advertiseMode
@@ -15887,7 +15887,7 @@ class RouterBgpArgs:
         return pulumi.get(self, "advertised_ip_ranges")
 
     @advertised_ip_ranges.setter
-    def advertised_ip_ranges(self, value: Optional[pulumi.Input[List[pulumi.Input['RouterBgpAdvertisedIpRangeArgs']]]]):
+    def advertised_ip_ranges(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RouterBgpAdvertisedIpRangeArgs']]]]):
         pulumi.set(self, "advertised_ip_ranges", value)
 
 
@@ -15974,15 +15974,15 @@ class RouterNatLogConfigArgs:
 class RouterNatSubnetworkArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str],
-                 source_ip_ranges_to_nats: pulumi.Input[List[pulumi.Input[str]]],
-                 secondary_ip_range_names: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 source_ip_ranges_to_nats: pulumi.Input[Sequence[pulumi.Input[str]]],
+                 secondary_ip_range_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         :param pulumi.Input[str] name: Self-link of subnetwork to NAT
-        :param pulumi.Input[List[pulumi.Input[str]]] source_ip_ranges_to_nats: List of options for which source IPs in the subnetwork
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] source_ip_ranges_to_nats: List of options for which source IPs in the subnetwork
                should have NAT enabled. Supported values include:
                `ALL_IP_RANGES`, `LIST_OF_SECONDARY_IP_RANGES`,
                `PRIMARY_IP_RANGE`.
-        :param pulumi.Input[List[pulumi.Input[str]]] secondary_ip_range_names: List of the secondary ranges of the subnetwork that are allowed
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] secondary_ip_range_names: List of the secondary ranges of the subnetwork that are allowed
                to use NAT. This can be populated only if
                `LIST_OF_SECONDARY_IP_RANGES` is one of the values in
                sourceIpRangesToNat
@@ -16006,7 +16006,7 @@ class RouterNatSubnetworkArgs:
 
     @property
     @pulumi.getter(name="sourceIpRangesToNats")
-    def source_ip_ranges_to_nats(self) -> pulumi.Input[List[pulumi.Input[str]]]:
+    def source_ip_ranges_to_nats(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
         List of options for which source IPs in the subnetwork
         should have NAT enabled. Supported values include:
@@ -16016,12 +16016,12 @@ class RouterNatSubnetworkArgs:
         return pulumi.get(self, "source_ip_ranges_to_nats")
 
     @source_ip_ranges_to_nats.setter
-    def source_ip_ranges_to_nats(self, value: pulumi.Input[List[pulumi.Input[str]]]):
+    def source_ip_ranges_to_nats(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "source_ip_ranges_to_nats", value)
 
     @property
     @pulumi.getter(name="secondaryIpRangeNames")
-    def secondary_ip_range_names(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def secondary_ip_range_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         List of the secondary ranges of the subnetwork that are allowed
         to use NAT. This can be populated only if
@@ -16031,7 +16031,7 @@ class RouterNatSubnetworkArgs:
         return pulumi.get(self, "secondary_ip_range_names")
 
     @secondary_ip_range_names.setter
-    def secondary_ip_range_names(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def secondary_ip_range_names(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "secondary_ip_range_names", value)
 
 
@@ -16239,9 +16239,9 @@ class SecurityPolicyRuleMatchArgs:
 @pulumi.input_type
 class SecurityPolicyRuleMatchConfigArgs:
     def __init__(__self__, *,
-                 src_ip_ranges: pulumi.Input[List[pulumi.Input[str]]]):
+                 src_ip_ranges: pulumi.Input[Sequence[pulumi.Input[str]]]):
         """
-        :param pulumi.Input[List[pulumi.Input[str]]] src_ip_ranges: Set of IP addresses or ranges (IPV4 or IPV6) in CIDR notation
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] src_ip_ranges: Set of IP addresses or ranges (IPV4 or IPV6) in CIDR notation
                to match against inbound traffic. There is a limit of 10 IP ranges per rule. A value of '\*' matches all IPs
                (can be used to override the default behavior).
         """
@@ -16249,7 +16249,7 @@ class SecurityPolicyRuleMatchConfigArgs:
 
     @property
     @pulumi.getter(name="srcIpRanges")
-    def src_ip_ranges(self) -> pulumi.Input[List[pulumi.Input[str]]]:
+    def src_ip_ranges(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
         Set of IP addresses or ranges (IPV4 or IPV6) in CIDR notation
         to match against inbound traffic. There is a limit of 10 IP ranges per rule. A value of '\*' matches all IPs
@@ -16258,7 +16258,7 @@ class SecurityPolicyRuleMatchConfigArgs:
         return pulumi.get(self, "src_ip_ranges")
 
     @src_ip_ranges.setter
-    def src_ip_ranges(self, value: pulumi.Input[List[pulumi.Input[str]]]):
+    def src_ip_ranges(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "src_ip_ranges", value)
 
 
@@ -16654,7 +16654,7 @@ class SubnetworkLogConfigArgs:
                  filter_expr: Optional[pulumi.Input[str]] = None,
                  flow_sampling: Optional[pulumi.Input[float]] = None,
                  metadata: Optional[pulumi.Input[str]] = None,
-                 metadata_fields: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 metadata_fields: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         :param pulumi.Input[str] aggregation_interval: Can only be specified if VPC flow logging for this subnetwork is enabled.
                Toggles the aggregation interval for collecting flow logs. Increasing the
@@ -16674,7 +16674,7 @@ class SubnetworkLogConfigArgs:
                flow logs.
                Default value is `INCLUDE_ALL_METADATA`.
                Possible values are `EXCLUDE_ALL_METADATA`, `INCLUDE_ALL_METADATA`, and `CUSTOM_METADATA`.
-        :param pulumi.Input[List[pulumi.Input[str]]] metadata_fields: List of metadata fields that should be added to reported logs.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] metadata_fields: List of metadata fields that should be added to reported logs.
                Can only be specified if VPC flow logs for this subnetwork is enabled and "metadata" is set to CUSTOM_METADATA.
         """
         if aggregation_interval is not None:
@@ -16752,7 +16752,7 @@ class SubnetworkLogConfigArgs:
 
     @property
     @pulumi.getter(name="metadataFields")
-    def metadata_fields(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def metadata_fields(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         List of metadata fields that should be added to reported logs.
         Can only be specified if VPC flow logs for this subnetwork is enabled and "metadata" is set to CUSTOM_METADATA.
@@ -16760,7 +16760,7 @@ class SubnetworkLogConfigArgs:
         return pulumi.get(self, "metadata_fields")
 
     @metadata_fields.setter
-    def metadata_fields(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def metadata_fields(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "metadata_fields", value)
 
 
@@ -16822,7 +16822,7 @@ class URLMapDefaultRouteActionArgs:
                  retry_policy: Optional[pulumi.Input['URLMapDefaultRouteActionRetryPolicyArgs']] = None,
                  timeout: Optional[pulumi.Input['URLMapDefaultRouteActionTimeoutArgs']] = None,
                  url_rewrite: Optional[pulumi.Input['URLMapDefaultRouteActionUrlRewriteArgs']] = None,
-                 weighted_backend_services: Optional[pulumi.Input[List[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceArgs']]]] = None):
+                 weighted_backend_services: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceArgs']]]] = None):
         """
         :param pulumi.Input['URLMapDefaultRouteActionCorsPolicyArgs'] cors_policy: The specification for allowing client side cross-origin requests. Please see
                [W3C Recommendation for Cross Origin Resource Sharing](https://www.w3.org/TR/cors/)
@@ -16845,7 +16845,7 @@ class URLMapDefaultRouteActionArgs:
                Structure is documented below.
         :param pulumi.Input['URLMapDefaultRouteActionUrlRewriteArgs'] url_rewrite: The spec to modify the URL of the request, prior to forwarding the request to the matched service.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceArgs']]] weighted_backend_services: A list of weighted backend services to send traffic to when a route match occurs.
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceArgs']]] weighted_backend_services: A list of weighted backend services to send traffic to when a route match occurs.
                The weights determine the fraction of traffic that flows to their corresponding backend service.
                If all traffic needs to go to a single backend service, there must be one weightedBackendService
                with weight set to a non 0 number.
@@ -16958,7 +16958,7 @@ class URLMapDefaultRouteActionArgs:
 
     @property
     @pulumi.getter(name="weightedBackendServices")
-    def weighted_backend_services(self) -> Optional[pulumi.Input[List[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceArgs']]]]:
+    def weighted_backend_services(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceArgs']]]]:
         """
         A list of weighted backend services to send traffic to when a route match occurs.
         The weights determine the fraction of traffic that flows to their corresponding backend service.
@@ -16972,7 +16972,7 @@ class URLMapDefaultRouteActionArgs:
         return pulumi.get(self, "weighted_backend_services")
 
     @weighted_backend_services.setter
-    def weighted_backend_services(self, value: Optional[pulumi.Input[List[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceArgs']]]]):
+    def weighted_backend_services(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceArgs']]]]):
         pulumi.set(self, "weighted_backend_services", value)
 
 
@@ -16980,25 +16980,25 @@ class URLMapDefaultRouteActionArgs:
 class URLMapDefaultRouteActionCorsPolicyArgs:
     def __init__(__self__, *,
                  allow_credentials: Optional[pulumi.Input[bool]] = None,
-                 allow_headers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 allow_methods: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 allow_origin_regexes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 allow_origins: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 allow_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allow_methods: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allow_origin_regexes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allow_origins: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  disabled: Optional[pulumi.Input[bool]] = None,
-                 expose_headers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 expose_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  max_age: Optional[pulumi.Input[float]] = None):
         """
         :param pulumi.Input[bool] allow_credentials: In response to a preflight request, setting this to true indicates that the actual request can include user credentials.
                This translates to the Access-Control-Allow-Credentials header.
-        :param pulumi.Input[List[pulumi.Input[str]]] allow_headers: Specifies the content for the Access-Control-Allow-Headers header.
-        :param pulumi.Input[List[pulumi.Input[str]]] allow_methods: Specifies the content for the Access-Control-Allow-Methods header.
-        :param pulumi.Input[List[pulumi.Input[str]]] allow_origin_regexes: Specifies the regualar expression patterns that match allowed origins. For regular expression grammar
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_headers: Specifies the content for the Access-Control-Allow-Headers header.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_methods: Specifies the content for the Access-Control-Allow-Methods header.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_origin_regexes: Specifies the regualar expression patterns that match allowed origins. For regular expression grammar
                please see en.cppreference.com/w/cpp/regex/ecmascript
                An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
-        :param pulumi.Input[List[pulumi.Input[str]]] allow_origins: Specifies the list of origins that will be allowed to do CORS requests.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_origins: Specifies the list of origins that will be allowed to do CORS requests.
                An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
         :param pulumi.Input[bool] disabled: If true, specifies the CORS policy is disabled. The default value is false, which indicates that the CORS policy is in effect.
-        :param pulumi.Input[List[pulumi.Input[str]]] expose_headers: Specifies the content for the Access-Control-Expose-Headers header.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] expose_headers: Specifies the content for the Access-Control-Expose-Headers header.
         :param pulumi.Input[float] max_age: Specifies how long results of a preflight request can be cached in seconds.
                This translates to the Access-Control-Max-Age header.
         """
@@ -17034,31 +17034,31 @@ class URLMapDefaultRouteActionCorsPolicyArgs:
 
     @property
     @pulumi.getter(name="allowHeaders")
-    def allow_headers(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def allow_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the content for the Access-Control-Allow-Headers header.
         """
         return pulumi.get(self, "allow_headers")
 
     @allow_headers.setter
-    def allow_headers(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def allow_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allow_headers", value)
 
     @property
     @pulumi.getter(name="allowMethods")
-    def allow_methods(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def allow_methods(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the content for the Access-Control-Allow-Methods header.
         """
         return pulumi.get(self, "allow_methods")
 
     @allow_methods.setter
-    def allow_methods(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def allow_methods(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allow_methods", value)
 
     @property
     @pulumi.getter(name="allowOriginRegexes")
-    def allow_origin_regexes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def allow_origin_regexes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the regualar expression patterns that match allowed origins. For regular expression grammar
         please see en.cppreference.com/w/cpp/regex/ecmascript
@@ -17067,12 +17067,12 @@ class URLMapDefaultRouteActionCorsPolicyArgs:
         return pulumi.get(self, "allow_origin_regexes")
 
     @allow_origin_regexes.setter
-    def allow_origin_regexes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def allow_origin_regexes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allow_origin_regexes", value)
 
     @property
     @pulumi.getter(name="allowOrigins")
-    def allow_origins(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def allow_origins(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the list of origins that will be allowed to do CORS requests.
         An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
@@ -17080,7 +17080,7 @@ class URLMapDefaultRouteActionCorsPolicyArgs:
         return pulumi.get(self, "allow_origins")
 
     @allow_origins.setter
-    def allow_origins(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def allow_origins(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allow_origins", value)
 
     @property
@@ -17097,14 +17097,14 @@ class URLMapDefaultRouteActionCorsPolicyArgs:
 
     @property
     @pulumi.getter(name="exposeHeaders")
-    def expose_headers(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def expose_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the content for the Access-Control-Expose-Headers header.
         """
         return pulumi.get(self, "expose_headers")
 
     @expose_headers.setter
-    def expose_headers(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def expose_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "expose_headers", value)
 
     @property
@@ -17320,14 +17320,14 @@ class URLMapDefaultRouteActionRetryPolicyArgs:
     def __init__(__self__, *,
                  num_retries: Optional[pulumi.Input[float]] = None,
                  per_try_timeout: Optional[pulumi.Input['URLMapDefaultRouteActionRetryPolicyPerTryTimeoutArgs']] = None,
-                 retry_conditions: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 retry_conditions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         :param pulumi.Input[float] num_retries: Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
         :param pulumi.Input['URLMapDefaultRouteActionRetryPolicyPerTryTimeoutArgs'] per_try_timeout: Specifies a non-zero timeout per retry attempt.
                If not specified, will use the timeout set in HttpRouteAction. If timeout in HttpRouteAction is not set,
                will use the largest timeout among all backend services associated with the route.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] retry_conditions: Specfies one or more conditions when this retry rule applies. Valid values are:
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] retry_conditions: Specfies one or more conditions when this retry rule applies. Valid values are:
                5xx: Loadbalancer will attempt a retry if the backend service responds with any 5xx response code,
                or if the backend service does not respond at all, example: disconnects, reset, read timeout,
                connection failure, and refused streams.
@@ -17379,7 +17379,7 @@ class URLMapDefaultRouteActionRetryPolicyArgs:
 
     @property
     @pulumi.getter(name="retryConditions")
-    def retry_conditions(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def retry_conditions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specfies one or more conditions when this retry rule applies. Valid values are:
         5xx: Loadbalancer will attempt a retry if the backend service responds with any 5xx response code,
@@ -17400,7 +17400,7 @@ class URLMapDefaultRouteActionRetryPolicyArgs:
         return pulumi.get(self, "retry_conditions")
 
     @retry_conditions.setter
-    def retry_conditions(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def retry_conditions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "retry_conditions", value)
 
 
@@ -17613,18 +17613,18 @@ class URLMapDefaultRouteActionWeightedBackendServiceArgs:
 @pulumi.input_type
 class URLMapDefaultRouteActionWeightedBackendServiceHeaderActionArgs:
     def __init__(__self__, *,
-                 request_headers_to_adds: Optional[pulumi.Input[List[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]] = None,
-                 request_headers_to_removes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 response_headers_to_adds: Optional[pulumi.Input[List[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]] = None,
-                 response_headers_to_removes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 request_headers_to_adds: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]] = None,
+                 request_headers_to_removes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 response_headers_to_adds: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]] = None,
+                 response_headers_to_removes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the backendService.
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the backendService.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] request_headers_to_removes: A list of header names for headers that need to be removed from the request prior to
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] request_headers_to_removes: A list of header names for headers that need to be removed from the request prior to
                forwarding the request to the backendService.
-        :param pulumi.Input[List[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] response_headers_to_removes: A list of header names for headers that need to be removed from the response prior to sending the
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] response_headers_to_removes: A list of header names for headers that need to be removed from the response prior to sending the
                response back to the client.
         """
         if request_headers_to_adds is not None:
@@ -17638,7 +17638,7 @@ class URLMapDefaultRouteActionWeightedBackendServiceHeaderActionArgs:
 
     @property
     @pulumi.getter(name="requestHeadersToAdds")
-    def request_headers_to_adds(self) -> Optional[pulumi.Input[List[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]]:
+    def request_headers_to_adds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]]:
         """
         Headers to add to a matching request prior to forwarding the request to the backendService.
         Structure is documented below.
@@ -17646,12 +17646,12 @@ class URLMapDefaultRouteActionWeightedBackendServiceHeaderActionArgs:
         return pulumi.get(self, "request_headers_to_adds")
 
     @request_headers_to_adds.setter
-    def request_headers_to_adds(self, value: Optional[pulumi.Input[List[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]]):
+    def request_headers_to_adds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]]):
         pulumi.set(self, "request_headers_to_adds", value)
 
     @property
     @pulumi.getter(name="requestHeadersToRemoves")
-    def request_headers_to_removes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def request_headers_to_removes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A list of header names for headers that need to be removed from the request prior to
         forwarding the request to the backendService.
@@ -17659,12 +17659,12 @@ class URLMapDefaultRouteActionWeightedBackendServiceHeaderActionArgs:
         return pulumi.get(self, "request_headers_to_removes")
 
     @request_headers_to_removes.setter
-    def request_headers_to_removes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def request_headers_to_removes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "request_headers_to_removes", value)
 
     @property
     @pulumi.getter(name="responseHeadersToAdds")
-    def response_headers_to_adds(self) -> Optional[pulumi.Input[List[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]]:
+    def response_headers_to_adds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]]:
         """
         Headers to add the response prior to sending the response back to the client.
         Structure is documented below.
@@ -17672,12 +17672,12 @@ class URLMapDefaultRouteActionWeightedBackendServiceHeaderActionArgs:
         return pulumi.get(self, "response_headers_to_adds")
 
     @response_headers_to_adds.setter
-    def response_headers_to_adds(self, value: Optional[pulumi.Input[List[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]]):
+    def response_headers_to_adds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]]):
         pulumi.set(self, "response_headers_to_adds", value)
 
     @property
     @pulumi.getter(name="responseHeadersToRemoves")
-    def response_headers_to_removes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def response_headers_to_removes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A list of header names for headers that need to be removed from the response prior to sending the
         response back to the client.
@@ -17685,7 +17685,7 @@ class URLMapDefaultRouteActionWeightedBackendServiceHeaderActionArgs:
         return pulumi.get(self, "response_headers_to_removes")
 
     @response_headers_to_removes.setter
-    def response_headers_to_removes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def response_headers_to_removes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "response_headers_to_removes", value)
 
 
@@ -17952,18 +17952,18 @@ class URLMapDefaultUrlRedirectArgs:
 @pulumi.input_type
 class URLMapHeaderActionArgs:
     def __init__(__self__, *,
-                 request_headers_to_adds: Optional[pulumi.Input[List[pulumi.Input['URLMapHeaderActionRequestHeadersToAddArgs']]]] = None,
-                 request_headers_to_removes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 response_headers_to_adds: Optional[pulumi.Input[List[pulumi.Input['URLMapHeaderActionResponseHeadersToAddArgs']]]] = None,
-                 response_headers_to_removes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 request_headers_to_adds: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapHeaderActionRequestHeadersToAddArgs']]]] = None,
+                 request_headers_to_removes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 response_headers_to_adds: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapHeaderActionResponseHeadersToAddArgs']]]] = None,
+                 response_headers_to_removes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input['URLMapHeaderActionRequestHeadersToAddArgs']]] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the backendService.
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapHeaderActionRequestHeadersToAddArgs']]] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the backendService.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] request_headers_to_removes: A list of header names for headers that need to be removed from the request prior to
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] request_headers_to_removes: A list of header names for headers that need to be removed from the request prior to
                forwarding the request to the backendService.
-        :param pulumi.Input[List[pulumi.Input['URLMapHeaderActionResponseHeadersToAddArgs']]] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapHeaderActionResponseHeadersToAddArgs']]] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] response_headers_to_removes: A list of header names for headers that need to be removed from the response prior to sending the
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] response_headers_to_removes: A list of header names for headers that need to be removed from the response prior to sending the
                response back to the client.
         """
         if request_headers_to_adds is not None:
@@ -17977,7 +17977,7 @@ class URLMapHeaderActionArgs:
 
     @property
     @pulumi.getter(name="requestHeadersToAdds")
-    def request_headers_to_adds(self) -> Optional[pulumi.Input[List[pulumi.Input['URLMapHeaderActionRequestHeadersToAddArgs']]]]:
+    def request_headers_to_adds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['URLMapHeaderActionRequestHeadersToAddArgs']]]]:
         """
         Headers to add to a matching request prior to forwarding the request to the backendService.
         Structure is documented below.
@@ -17985,12 +17985,12 @@ class URLMapHeaderActionArgs:
         return pulumi.get(self, "request_headers_to_adds")
 
     @request_headers_to_adds.setter
-    def request_headers_to_adds(self, value: Optional[pulumi.Input[List[pulumi.Input['URLMapHeaderActionRequestHeadersToAddArgs']]]]):
+    def request_headers_to_adds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapHeaderActionRequestHeadersToAddArgs']]]]):
         pulumi.set(self, "request_headers_to_adds", value)
 
     @property
     @pulumi.getter(name="requestHeadersToRemoves")
-    def request_headers_to_removes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def request_headers_to_removes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A list of header names for headers that need to be removed from the request prior to
         forwarding the request to the backendService.
@@ -17998,12 +17998,12 @@ class URLMapHeaderActionArgs:
         return pulumi.get(self, "request_headers_to_removes")
 
     @request_headers_to_removes.setter
-    def request_headers_to_removes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def request_headers_to_removes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "request_headers_to_removes", value)
 
     @property
     @pulumi.getter(name="responseHeadersToAdds")
-    def response_headers_to_adds(self) -> Optional[pulumi.Input[List[pulumi.Input['URLMapHeaderActionResponseHeadersToAddArgs']]]]:
+    def response_headers_to_adds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['URLMapHeaderActionResponseHeadersToAddArgs']]]]:
         """
         Headers to add the response prior to sending the response back to the client.
         Structure is documented below.
@@ -18011,12 +18011,12 @@ class URLMapHeaderActionArgs:
         return pulumi.get(self, "response_headers_to_adds")
 
     @response_headers_to_adds.setter
-    def response_headers_to_adds(self, value: Optional[pulumi.Input[List[pulumi.Input['URLMapHeaderActionResponseHeadersToAddArgs']]]]):
+    def response_headers_to_adds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapHeaderActionResponseHeadersToAddArgs']]]]):
         pulumi.set(self, "response_headers_to_adds", value)
 
     @property
     @pulumi.getter(name="responseHeadersToRemoves")
-    def response_headers_to_removes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def response_headers_to_removes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A list of header names for headers that need to be removed from the response prior to sending the
         response back to the client.
@@ -18024,7 +18024,7 @@ class URLMapHeaderActionArgs:
         return pulumi.get(self, "response_headers_to_removes")
 
     @response_headers_to_removes.setter
-    def response_headers_to_removes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def response_headers_to_removes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "response_headers_to_removes", value)
 
 
@@ -18139,11 +18139,11 @@ class URLMapHeaderActionResponseHeadersToAddArgs:
 @pulumi.input_type
 class URLMapHostRuleArgs:
     def __init__(__self__, *,
-                 hosts: pulumi.Input[List[pulumi.Input[str]]],
+                 hosts: pulumi.Input[Sequence[pulumi.Input[str]]],
                  path_matcher: pulumi.Input[str],
                  description: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input[str]]] hosts: The list of host patterns to match. They must be valid hostnames, except * will
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] hosts: The list of host patterns to match. They must be valid hostnames, except * will
                match any string of ([a-z0-9-.]*). In that case, * must be the first character
                and must be followed in the pattern by either - or ..
         :param pulumi.Input[str] path_matcher: The name of the PathMatcher to use to match the path portion of the URL if the
@@ -18157,7 +18157,7 @@ class URLMapHostRuleArgs:
 
     @property
     @pulumi.getter
-    def hosts(self) -> pulumi.Input[List[pulumi.Input[str]]]:
+    def hosts(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
         The list of host patterns to match. They must be valid hostnames, except * will
         match any string of ([a-z0-9-.]*). In that case, * must be the first character
@@ -18166,7 +18166,7 @@ class URLMapHostRuleArgs:
         return pulumi.get(self, "hosts")
 
     @hosts.setter
-    def hosts(self, value: pulumi.Input[List[pulumi.Input[str]]]):
+    def hosts(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "hosts", value)
 
     @property
@@ -18204,8 +18204,8 @@ class URLMapPathMatcherArgs:
                  default_url_redirect: Optional[pulumi.Input['URLMapPathMatcherDefaultUrlRedirectArgs']] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  header_action: Optional[pulumi.Input['URLMapPathMatcherHeaderActionArgs']] = None,
-                 path_rules: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherPathRuleArgs']]]] = None,
-                 route_rules: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleArgs']]]] = None):
+                 path_rules: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherPathRuleArgs']]]] = None,
+                 route_rules: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleArgs']]]] = None):
         """
         :param pulumi.Input[str] name: The name of the query parameter to match. The query parameter must exist in the
                request, in the absence of which the request match fails.
@@ -18226,14 +18226,14 @@ class URLMapPathMatcherArgs:
                headerAction specified here take effect before headerAction in the enclosing
                HttpRouteRule, PathMatcher and UrlMap.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input['URLMapPathMatcherPathRuleArgs']]] path_rules: The list of path rules. Use this list instead of routeRules when routing based
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherPathRuleArgs']]] path_rules: The list of path rules. Use this list instead of routeRules when routing based
                on simple path matching is all that's required. The order by which path rules
                are specified does not matter. Matches are always done on the longest-path-first
                basis. For example: a pathRule with a path /a/b/c/* will match before /a/b/*
                irrespective of the order in which those paths appear in this list. Within a
                given pathMatcher, only one of pathRules or routeRules must be set.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleArgs']]] route_rules: The list of ordered HTTP route rules. Use this list instead of pathRules when
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleArgs']]] route_rules: The list of ordered HTTP route rules. Use this list instead of pathRules when
                advanced route matching and routing actions are desired. The order of specifying
                routeRules matters: the first rule that matches will cause its specified routing
                action to take effect. Within a given pathMatcher, only one of pathRules or
@@ -18344,7 +18344,7 @@ class URLMapPathMatcherArgs:
 
     @property
     @pulumi.getter(name="pathRules")
-    def path_rules(self) -> Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherPathRuleArgs']]]]:
+    def path_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherPathRuleArgs']]]]:
         """
         The list of path rules. Use this list instead of routeRules when routing based
         on simple path matching is all that's required. The order by which path rules
@@ -18357,12 +18357,12 @@ class URLMapPathMatcherArgs:
         return pulumi.get(self, "path_rules")
 
     @path_rules.setter
-    def path_rules(self, value: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherPathRuleArgs']]]]):
+    def path_rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherPathRuleArgs']]]]):
         pulumi.set(self, "path_rules", value)
 
     @property
     @pulumi.getter(name="routeRules")
-    def route_rules(self) -> Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleArgs']]]]:
+    def route_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleArgs']]]]:
         """
         The list of ordered HTTP route rules. Use this list instead of pathRules when
         advanced route matching and routing actions are desired. The order of specifying
@@ -18375,7 +18375,7 @@ class URLMapPathMatcherArgs:
         return pulumi.get(self, "route_rules")
 
     @route_rules.setter
-    def route_rules(self, value: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleArgs']]]]):
+    def route_rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleArgs']]]]):
         pulumi.set(self, "route_rules", value)
 
 
@@ -18388,7 +18388,7 @@ class URLMapPathMatcherDefaultRouteActionArgs:
                  retry_policy: Optional[pulumi.Input['URLMapPathMatcherDefaultRouteActionRetryPolicyArgs']] = None,
                  timeout: Optional[pulumi.Input['URLMapPathMatcherDefaultRouteActionTimeoutArgs']] = None,
                  url_rewrite: Optional[pulumi.Input['URLMapPathMatcherDefaultRouteActionUrlRewriteArgs']] = None,
-                 weighted_backend_services: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceArgs']]]] = None):
+                 weighted_backend_services: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceArgs']]]] = None):
         """
         :param pulumi.Input['URLMapPathMatcherDefaultRouteActionCorsPolicyArgs'] cors_policy: The specification for allowing client side cross-origin requests. Please see
                [W3C Recommendation for Cross Origin Resource Sharing](https://www.w3.org/TR/cors/)
@@ -18411,7 +18411,7 @@ class URLMapPathMatcherDefaultRouteActionArgs:
                Structure is documented below.
         :param pulumi.Input['URLMapPathMatcherDefaultRouteActionUrlRewriteArgs'] url_rewrite: The spec to modify the URL of the request, prior to forwarding the request to the matched service.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceArgs']]] weighted_backend_services: A list of weighted backend services to send traffic to when a route match occurs.
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceArgs']]] weighted_backend_services: A list of weighted backend services to send traffic to when a route match occurs.
                The weights determine the fraction of traffic that flows to their corresponding backend service.
                If all traffic needs to go to a single backend service, there must be one weightedBackendService
                with weight set to a non 0 number.
@@ -18524,7 +18524,7 @@ class URLMapPathMatcherDefaultRouteActionArgs:
 
     @property
     @pulumi.getter(name="weightedBackendServices")
-    def weighted_backend_services(self) -> Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceArgs']]]]:
+    def weighted_backend_services(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceArgs']]]]:
         """
         A list of weighted backend services to send traffic to when a route match occurs.
         The weights determine the fraction of traffic that flows to their corresponding backend service.
@@ -18538,7 +18538,7 @@ class URLMapPathMatcherDefaultRouteActionArgs:
         return pulumi.get(self, "weighted_backend_services")
 
     @weighted_backend_services.setter
-    def weighted_backend_services(self, value: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceArgs']]]]):
+    def weighted_backend_services(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceArgs']]]]):
         pulumi.set(self, "weighted_backend_services", value)
 
 
@@ -18546,25 +18546,25 @@ class URLMapPathMatcherDefaultRouteActionArgs:
 class URLMapPathMatcherDefaultRouteActionCorsPolicyArgs:
     def __init__(__self__, *,
                  allow_credentials: Optional[pulumi.Input[bool]] = None,
-                 allow_headers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 allow_methods: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 allow_origin_regexes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 allow_origins: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 allow_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allow_methods: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allow_origin_regexes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allow_origins: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  disabled: Optional[pulumi.Input[bool]] = None,
-                 expose_headers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 expose_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  max_age: Optional[pulumi.Input[float]] = None):
         """
         :param pulumi.Input[bool] allow_credentials: In response to a preflight request, setting this to true indicates that the actual request can include user credentials.
                This translates to the Access-Control-Allow-Credentials header.
-        :param pulumi.Input[List[pulumi.Input[str]]] allow_headers: Specifies the content for the Access-Control-Allow-Headers header.
-        :param pulumi.Input[List[pulumi.Input[str]]] allow_methods: Specifies the content for the Access-Control-Allow-Methods header.
-        :param pulumi.Input[List[pulumi.Input[str]]] allow_origin_regexes: Specifies the regualar expression patterns that match allowed origins. For regular expression grammar
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_headers: Specifies the content for the Access-Control-Allow-Headers header.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_methods: Specifies the content for the Access-Control-Allow-Methods header.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_origin_regexes: Specifies the regualar expression patterns that match allowed origins. For regular expression grammar
                please see en.cppreference.com/w/cpp/regex/ecmascript
                An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
-        :param pulumi.Input[List[pulumi.Input[str]]] allow_origins: Specifies the list of origins that will be allowed to do CORS requests.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_origins: Specifies the list of origins that will be allowed to do CORS requests.
                An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
         :param pulumi.Input[bool] disabled: If true, specifies the CORS policy is disabled. The default value is false, which indicates that the CORS policy is in effect.
-        :param pulumi.Input[List[pulumi.Input[str]]] expose_headers: Specifies the content for the Access-Control-Expose-Headers header.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] expose_headers: Specifies the content for the Access-Control-Expose-Headers header.
         :param pulumi.Input[float] max_age: Specifies how long results of a preflight request can be cached in seconds.
                This translates to the Access-Control-Max-Age header.
         """
@@ -18600,31 +18600,31 @@ class URLMapPathMatcherDefaultRouteActionCorsPolicyArgs:
 
     @property
     @pulumi.getter(name="allowHeaders")
-    def allow_headers(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def allow_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the content for the Access-Control-Allow-Headers header.
         """
         return pulumi.get(self, "allow_headers")
 
     @allow_headers.setter
-    def allow_headers(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def allow_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allow_headers", value)
 
     @property
     @pulumi.getter(name="allowMethods")
-    def allow_methods(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def allow_methods(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the content for the Access-Control-Allow-Methods header.
         """
         return pulumi.get(self, "allow_methods")
 
     @allow_methods.setter
-    def allow_methods(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def allow_methods(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allow_methods", value)
 
     @property
     @pulumi.getter(name="allowOriginRegexes")
-    def allow_origin_regexes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def allow_origin_regexes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the regualar expression patterns that match allowed origins. For regular expression grammar
         please see en.cppreference.com/w/cpp/regex/ecmascript
@@ -18633,12 +18633,12 @@ class URLMapPathMatcherDefaultRouteActionCorsPolicyArgs:
         return pulumi.get(self, "allow_origin_regexes")
 
     @allow_origin_regexes.setter
-    def allow_origin_regexes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def allow_origin_regexes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allow_origin_regexes", value)
 
     @property
     @pulumi.getter(name="allowOrigins")
-    def allow_origins(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def allow_origins(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the list of origins that will be allowed to do CORS requests.
         An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
@@ -18646,7 +18646,7 @@ class URLMapPathMatcherDefaultRouteActionCorsPolicyArgs:
         return pulumi.get(self, "allow_origins")
 
     @allow_origins.setter
-    def allow_origins(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def allow_origins(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allow_origins", value)
 
     @property
@@ -18663,14 +18663,14 @@ class URLMapPathMatcherDefaultRouteActionCorsPolicyArgs:
 
     @property
     @pulumi.getter(name="exposeHeaders")
-    def expose_headers(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def expose_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the content for the Access-Control-Expose-Headers header.
         """
         return pulumi.get(self, "expose_headers")
 
     @expose_headers.setter
-    def expose_headers(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def expose_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "expose_headers", value)
 
     @property
@@ -18886,14 +18886,14 @@ class URLMapPathMatcherDefaultRouteActionRetryPolicyArgs:
     def __init__(__self__, *,
                  num_retries: Optional[pulumi.Input[float]] = None,
                  per_try_timeout: Optional[pulumi.Input['URLMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeoutArgs']] = None,
-                 retry_conditions: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 retry_conditions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         :param pulumi.Input[float] num_retries: Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
         :param pulumi.Input['URLMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeoutArgs'] per_try_timeout: Specifies a non-zero timeout per retry attempt.
                If not specified, will use the timeout set in HttpRouteAction. If timeout in HttpRouteAction is not set,
                will use the largest timeout among all backend services associated with the route.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] retry_conditions: Specfies one or more conditions when this retry rule applies. Valid values are:
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] retry_conditions: Specfies one or more conditions when this retry rule applies. Valid values are:
                5xx: Loadbalancer will attempt a retry if the backend service responds with any 5xx response code,
                or if the backend service does not respond at all, example: disconnects, reset, read timeout,
                connection failure, and refused streams.
@@ -18945,7 +18945,7 @@ class URLMapPathMatcherDefaultRouteActionRetryPolicyArgs:
 
     @property
     @pulumi.getter(name="retryConditions")
-    def retry_conditions(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def retry_conditions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specfies one or more conditions when this retry rule applies. Valid values are:
         5xx: Loadbalancer will attempt a retry if the backend service responds with any 5xx response code,
@@ -18966,7 +18966,7 @@ class URLMapPathMatcherDefaultRouteActionRetryPolicyArgs:
         return pulumi.get(self, "retry_conditions")
 
     @retry_conditions.setter
-    def retry_conditions(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def retry_conditions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "retry_conditions", value)
 
 
@@ -19179,18 +19179,18 @@ class URLMapPathMatcherDefaultRouteActionWeightedBackendServiceArgs:
 @pulumi.input_type
 class URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionArgs:
     def __init__(__self__, *,
-                 request_headers_to_adds: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]] = None,
-                 request_headers_to_removes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 response_headers_to_adds: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]] = None,
-                 response_headers_to_removes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 request_headers_to_adds: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]] = None,
+                 request_headers_to_removes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 response_headers_to_adds: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]] = None,
+                 response_headers_to_removes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the backendService.
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the backendService.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] request_headers_to_removes: A list of header names for headers that need to be removed from the request prior to
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] request_headers_to_removes: A list of header names for headers that need to be removed from the request prior to
                forwarding the request to the backendService.
-        :param pulumi.Input[List[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] response_headers_to_removes: A list of header names for headers that need to be removed from the response prior to sending the
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] response_headers_to_removes: A list of header names for headers that need to be removed from the response prior to sending the
                response back to the client.
         """
         if request_headers_to_adds is not None:
@@ -19204,7 +19204,7 @@ class URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionArgs:
 
     @property
     @pulumi.getter(name="requestHeadersToAdds")
-    def request_headers_to_adds(self) -> Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]]:
+    def request_headers_to_adds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]]:
         """
         Headers to add to a matching request prior to forwarding the request to the backendService.
         Structure is documented below.
@@ -19212,12 +19212,12 @@ class URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionArgs:
         return pulumi.get(self, "request_headers_to_adds")
 
     @request_headers_to_adds.setter
-    def request_headers_to_adds(self, value: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]]):
+    def request_headers_to_adds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]]):
         pulumi.set(self, "request_headers_to_adds", value)
 
     @property
     @pulumi.getter(name="requestHeadersToRemoves")
-    def request_headers_to_removes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def request_headers_to_removes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A list of header names for headers that need to be removed from the request prior to
         forwarding the request to the backendService.
@@ -19225,12 +19225,12 @@ class URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionArgs:
         return pulumi.get(self, "request_headers_to_removes")
 
     @request_headers_to_removes.setter
-    def request_headers_to_removes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def request_headers_to_removes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "request_headers_to_removes", value)
 
     @property
     @pulumi.getter(name="responseHeadersToAdds")
-    def response_headers_to_adds(self) -> Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]]:
+    def response_headers_to_adds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]]:
         """
         Headers to add the response prior to sending the response back to the client.
         Structure is documented below.
@@ -19238,12 +19238,12 @@ class URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionArgs:
         return pulumi.get(self, "response_headers_to_adds")
 
     @response_headers_to_adds.setter
-    def response_headers_to_adds(self, value: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]]):
+    def response_headers_to_adds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]]):
         pulumi.set(self, "response_headers_to_adds", value)
 
     @property
     @pulumi.getter(name="responseHeadersToRemoves")
-    def response_headers_to_removes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def response_headers_to_removes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A list of header names for headers that need to be removed from the response prior to sending the
         response back to the client.
@@ -19251,7 +19251,7 @@ class URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionArgs:
         return pulumi.get(self, "response_headers_to_removes")
 
     @response_headers_to_removes.setter
-    def response_headers_to_removes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def response_headers_to_removes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "response_headers_to_removes", value)
 
 
@@ -19518,18 +19518,18 @@ class URLMapPathMatcherDefaultUrlRedirectArgs:
 @pulumi.input_type
 class URLMapPathMatcherHeaderActionArgs:
     def __init__(__self__, *,
-                 request_headers_to_adds: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherHeaderActionRequestHeadersToAddArgs']]]] = None,
-                 request_headers_to_removes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 response_headers_to_adds: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherHeaderActionResponseHeadersToAddArgs']]]] = None,
-                 response_headers_to_removes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 request_headers_to_adds: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherHeaderActionRequestHeadersToAddArgs']]]] = None,
+                 request_headers_to_removes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 response_headers_to_adds: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherHeaderActionResponseHeadersToAddArgs']]]] = None,
+                 response_headers_to_removes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input['URLMapPathMatcherHeaderActionRequestHeadersToAddArgs']]] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the backendService.
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherHeaderActionRequestHeadersToAddArgs']]] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the backendService.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] request_headers_to_removes: A list of header names for headers that need to be removed from the request prior to
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] request_headers_to_removes: A list of header names for headers that need to be removed from the request prior to
                forwarding the request to the backendService.
-        :param pulumi.Input[List[pulumi.Input['URLMapPathMatcherHeaderActionResponseHeadersToAddArgs']]] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherHeaderActionResponseHeadersToAddArgs']]] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] response_headers_to_removes: A list of header names for headers that need to be removed from the response prior to sending the
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] response_headers_to_removes: A list of header names for headers that need to be removed from the response prior to sending the
                response back to the client.
         """
         if request_headers_to_adds is not None:
@@ -19543,7 +19543,7 @@ class URLMapPathMatcherHeaderActionArgs:
 
     @property
     @pulumi.getter(name="requestHeadersToAdds")
-    def request_headers_to_adds(self) -> Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherHeaderActionRequestHeadersToAddArgs']]]]:
+    def request_headers_to_adds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherHeaderActionRequestHeadersToAddArgs']]]]:
         """
         Headers to add to a matching request prior to forwarding the request to the backendService.
         Structure is documented below.
@@ -19551,12 +19551,12 @@ class URLMapPathMatcherHeaderActionArgs:
         return pulumi.get(self, "request_headers_to_adds")
 
     @request_headers_to_adds.setter
-    def request_headers_to_adds(self, value: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherHeaderActionRequestHeadersToAddArgs']]]]):
+    def request_headers_to_adds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherHeaderActionRequestHeadersToAddArgs']]]]):
         pulumi.set(self, "request_headers_to_adds", value)
 
     @property
     @pulumi.getter(name="requestHeadersToRemoves")
-    def request_headers_to_removes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def request_headers_to_removes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A list of header names for headers that need to be removed from the request prior to
         forwarding the request to the backendService.
@@ -19564,12 +19564,12 @@ class URLMapPathMatcherHeaderActionArgs:
         return pulumi.get(self, "request_headers_to_removes")
 
     @request_headers_to_removes.setter
-    def request_headers_to_removes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def request_headers_to_removes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "request_headers_to_removes", value)
 
     @property
     @pulumi.getter(name="responseHeadersToAdds")
-    def response_headers_to_adds(self) -> Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherHeaderActionResponseHeadersToAddArgs']]]]:
+    def response_headers_to_adds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherHeaderActionResponseHeadersToAddArgs']]]]:
         """
         Headers to add the response prior to sending the response back to the client.
         Structure is documented below.
@@ -19577,12 +19577,12 @@ class URLMapPathMatcherHeaderActionArgs:
         return pulumi.get(self, "response_headers_to_adds")
 
     @response_headers_to_adds.setter
-    def response_headers_to_adds(self, value: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherHeaderActionResponseHeadersToAddArgs']]]]):
+    def response_headers_to_adds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherHeaderActionResponseHeadersToAddArgs']]]]):
         pulumi.set(self, "response_headers_to_adds", value)
 
     @property
     @pulumi.getter(name="responseHeadersToRemoves")
-    def response_headers_to_removes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def response_headers_to_removes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A list of header names for headers that need to be removed from the response prior to sending the
         response back to the client.
@@ -19590,7 +19590,7 @@ class URLMapPathMatcherHeaderActionArgs:
         return pulumi.get(self, "response_headers_to_removes")
 
     @response_headers_to_removes.setter
-    def response_headers_to_removes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def response_headers_to_removes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "response_headers_to_removes", value)
 
 
@@ -19705,12 +19705,12 @@ class URLMapPathMatcherHeaderActionResponseHeadersToAddArgs:
 @pulumi.input_type
 class URLMapPathMatcherPathRuleArgs:
     def __init__(__self__, *,
-                 paths: pulumi.Input[List[pulumi.Input[str]]],
+                 paths: pulumi.Input[Sequence[pulumi.Input[str]]],
                  route_action: Optional[pulumi.Input['URLMapPathMatcherPathRuleRouteActionArgs']] = None,
                  service: Optional[pulumi.Input[str]] = None,
                  url_redirect: Optional[pulumi.Input['URLMapPathMatcherPathRuleUrlRedirectArgs']] = None):
         """
-        :param pulumi.Input[List[pulumi.Input[str]]] paths: The list of path patterns to match. Each must start with / and the only place a
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] paths: The list of path patterns to match. Each must start with / and the only place a
                * is allowed is at the end following a /. The string fed to the path matcher
                does not include any text after the first ? or #, and those chars are not
                allowed here.
@@ -19737,7 +19737,7 @@ class URLMapPathMatcherPathRuleArgs:
 
     @property
     @pulumi.getter
-    def paths(self) -> pulumi.Input[List[pulumi.Input[str]]]:
+    def paths(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
         The list of path patterns to match. Each must start with / and the only place a
         * is allowed is at the end following a /. The string fed to the path matcher
@@ -19747,7 +19747,7 @@ class URLMapPathMatcherPathRuleArgs:
         return pulumi.get(self, "paths")
 
     @paths.setter
-    def paths(self, value: pulumi.Input[List[pulumi.Input[str]]]):
+    def paths(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "paths", value)
 
     @property
@@ -19805,7 +19805,7 @@ class URLMapPathMatcherPathRuleRouteActionArgs:
                  retry_policy: Optional[pulumi.Input['URLMapPathMatcherPathRuleRouteActionRetryPolicyArgs']] = None,
                  timeout: Optional[pulumi.Input['URLMapPathMatcherPathRuleRouteActionTimeoutArgs']] = None,
                  url_rewrite: Optional[pulumi.Input['URLMapPathMatcherPathRuleRouteActionUrlRewriteArgs']] = None,
-                 weighted_backend_services: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs']]]] = None):
+                 weighted_backend_services: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs']]]] = None):
         """
         :param pulumi.Input['URLMapPathMatcherPathRuleRouteActionCorsPolicyArgs'] cors_policy: The specification for allowing client side cross-origin requests. Please see
                [W3C Recommendation for Cross Origin Resource Sharing](https://www.w3.org/TR/cors/)
@@ -19828,7 +19828,7 @@ class URLMapPathMatcherPathRuleRouteActionArgs:
                Structure is documented below.
         :param pulumi.Input['URLMapPathMatcherPathRuleRouteActionUrlRewriteArgs'] url_rewrite: The spec to modify the URL of the request, prior to forwarding the request to the matched service.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs']]] weighted_backend_services: A list of weighted backend services to send traffic to when a route match occurs.
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs']]] weighted_backend_services: A list of weighted backend services to send traffic to when a route match occurs.
                The weights determine the fraction of traffic that flows to their corresponding backend service.
                If all traffic needs to go to a single backend service, there must be one weightedBackendService
                with weight set to a non 0 number.
@@ -19941,7 +19941,7 @@ class URLMapPathMatcherPathRuleRouteActionArgs:
 
     @property
     @pulumi.getter(name="weightedBackendServices")
-    def weighted_backend_services(self) -> Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs']]]]:
+    def weighted_backend_services(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs']]]]:
         """
         A list of weighted backend services to send traffic to when a route match occurs.
         The weights determine the fraction of traffic that flows to their corresponding backend service.
@@ -19955,7 +19955,7 @@ class URLMapPathMatcherPathRuleRouteActionArgs:
         return pulumi.get(self, "weighted_backend_services")
 
     @weighted_backend_services.setter
-    def weighted_backend_services(self, value: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs']]]]):
+    def weighted_backend_services(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs']]]]):
         pulumi.set(self, "weighted_backend_services", value)
 
 
@@ -19964,24 +19964,24 @@ class URLMapPathMatcherPathRuleRouteActionCorsPolicyArgs:
     def __init__(__self__, *,
                  disabled: pulumi.Input[bool],
                  allow_credentials: Optional[pulumi.Input[bool]] = None,
-                 allow_headers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 allow_methods: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 allow_origin_regexes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 allow_origins: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 expose_headers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 allow_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allow_methods: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allow_origin_regexes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allow_origins: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 expose_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  max_age: Optional[pulumi.Input[float]] = None):
         """
         :param pulumi.Input[bool] disabled: If true, specifies the CORS policy is disabled. The default value is false, which indicates that the CORS policy is in effect.
         :param pulumi.Input[bool] allow_credentials: In response to a preflight request, setting this to true indicates that the actual request can include user credentials.
                This translates to the Access-Control-Allow-Credentials header.
-        :param pulumi.Input[List[pulumi.Input[str]]] allow_headers: Specifies the content for the Access-Control-Allow-Headers header.
-        :param pulumi.Input[List[pulumi.Input[str]]] allow_methods: Specifies the content for the Access-Control-Allow-Methods header.
-        :param pulumi.Input[List[pulumi.Input[str]]] allow_origin_regexes: Specifies the regualar expression patterns that match allowed origins. For regular expression grammar
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_headers: Specifies the content for the Access-Control-Allow-Headers header.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_methods: Specifies the content for the Access-Control-Allow-Methods header.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_origin_regexes: Specifies the regualar expression patterns that match allowed origins. For regular expression grammar
                please see en.cppreference.com/w/cpp/regex/ecmascript
                An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
-        :param pulumi.Input[List[pulumi.Input[str]]] allow_origins: Specifies the list of origins that will be allowed to do CORS requests.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_origins: Specifies the list of origins that will be allowed to do CORS requests.
                An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
-        :param pulumi.Input[List[pulumi.Input[str]]] expose_headers: Specifies the content for the Access-Control-Expose-Headers header.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] expose_headers: Specifies the content for the Access-Control-Expose-Headers header.
         :param pulumi.Input[float] max_age: Specifies how long results of a preflight request can be cached in seconds.
                This translates to the Access-Control-Max-Age header.
         """
@@ -20028,31 +20028,31 @@ class URLMapPathMatcherPathRuleRouteActionCorsPolicyArgs:
 
     @property
     @pulumi.getter(name="allowHeaders")
-    def allow_headers(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def allow_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the content for the Access-Control-Allow-Headers header.
         """
         return pulumi.get(self, "allow_headers")
 
     @allow_headers.setter
-    def allow_headers(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def allow_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allow_headers", value)
 
     @property
     @pulumi.getter(name="allowMethods")
-    def allow_methods(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def allow_methods(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the content for the Access-Control-Allow-Methods header.
         """
         return pulumi.get(self, "allow_methods")
 
     @allow_methods.setter
-    def allow_methods(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def allow_methods(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allow_methods", value)
 
     @property
     @pulumi.getter(name="allowOriginRegexes")
-    def allow_origin_regexes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def allow_origin_regexes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the regualar expression patterns that match allowed origins. For regular expression grammar
         please see en.cppreference.com/w/cpp/regex/ecmascript
@@ -20061,12 +20061,12 @@ class URLMapPathMatcherPathRuleRouteActionCorsPolicyArgs:
         return pulumi.get(self, "allow_origin_regexes")
 
     @allow_origin_regexes.setter
-    def allow_origin_regexes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def allow_origin_regexes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allow_origin_regexes", value)
 
     @property
     @pulumi.getter(name="allowOrigins")
-    def allow_origins(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def allow_origins(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the list of origins that will be allowed to do CORS requests.
         An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
@@ -20074,19 +20074,19 @@ class URLMapPathMatcherPathRuleRouteActionCorsPolicyArgs:
         return pulumi.get(self, "allow_origins")
 
     @allow_origins.setter
-    def allow_origins(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def allow_origins(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allow_origins", value)
 
     @property
     @pulumi.getter(name="exposeHeaders")
-    def expose_headers(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def expose_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the content for the Access-Control-Expose-Headers header.
         """
         return pulumi.get(self, "expose_headers")
 
     @expose_headers.setter
-    def expose_headers(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def expose_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "expose_headers", value)
 
     @property
@@ -20297,14 +20297,14 @@ class URLMapPathMatcherPathRuleRouteActionRetryPolicyArgs:
     def __init__(__self__, *,
                  num_retries: Optional[pulumi.Input[float]] = None,
                  per_try_timeout: Optional[pulumi.Input['URLMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutArgs']] = None,
-                 retry_conditions: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 retry_conditions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         :param pulumi.Input[float] num_retries: Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
         :param pulumi.Input['URLMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutArgs'] per_try_timeout: Specifies a non-zero timeout per retry attempt.
                If not specified, will use the timeout set in HttpRouteAction. If timeout in HttpRouteAction is not set,
                will use the largest timeout among all backend services associated with the route.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] retry_conditions: Specfies one or more conditions when this retry rule applies. Valid values are:
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] retry_conditions: Specfies one or more conditions when this retry rule applies. Valid values are:
                5xx: Loadbalancer will attempt a retry if the backend service responds with any 5xx response code,
                or if the backend service does not respond at all, example: disconnects, reset, read timeout,
                connection failure, and refused streams.
@@ -20356,7 +20356,7 @@ class URLMapPathMatcherPathRuleRouteActionRetryPolicyArgs:
 
     @property
     @pulumi.getter(name="retryConditions")
-    def retry_conditions(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def retry_conditions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specfies one or more conditions when this retry rule applies. Valid values are:
         5xx: Loadbalancer will attempt a retry if the backend service responds with any 5xx response code,
@@ -20377,7 +20377,7 @@ class URLMapPathMatcherPathRuleRouteActionRetryPolicyArgs:
         return pulumi.get(self, "retry_conditions")
 
     @retry_conditions.setter
-    def retry_conditions(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def retry_conditions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "retry_conditions", value)
 
 
@@ -20586,18 +20586,18 @@ class URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs:
 @pulumi.input_type
 class URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionArgs:
     def __init__(__self__, *,
-                 request_headers_to_adds: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]] = None,
-                 request_headers_to_removes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 response_headers_to_adds: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]] = None,
-                 response_headers_to_removes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 request_headers_to_adds: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]] = None,
+                 request_headers_to_removes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 response_headers_to_adds: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]] = None,
+                 response_headers_to_removes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the backendService.
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the backendService.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] request_headers_to_removes: A list of header names for headers that need to be removed from the request prior to
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] request_headers_to_removes: A list of header names for headers that need to be removed from the request prior to
                forwarding the request to the backendService.
-        :param pulumi.Input[List[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] response_headers_to_removes: A list of header names for headers that need to be removed from the response prior to sending the
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] response_headers_to_removes: A list of header names for headers that need to be removed from the response prior to sending the
                response back to the client.
         """
         if request_headers_to_adds is not None:
@@ -20611,7 +20611,7 @@ class URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionArgs
 
     @property
     @pulumi.getter(name="requestHeadersToAdds")
-    def request_headers_to_adds(self) -> Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]]:
+    def request_headers_to_adds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]]:
         """
         Headers to add to a matching request prior to forwarding the request to the backendService.
         Structure is documented below.
@@ -20619,12 +20619,12 @@ class URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionArgs
         return pulumi.get(self, "request_headers_to_adds")
 
     @request_headers_to_adds.setter
-    def request_headers_to_adds(self, value: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]]):
+    def request_headers_to_adds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]]):
         pulumi.set(self, "request_headers_to_adds", value)
 
     @property
     @pulumi.getter(name="requestHeadersToRemoves")
-    def request_headers_to_removes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def request_headers_to_removes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A list of header names for headers that need to be removed from the request prior to
         forwarding the request to the backendService.
@@ -20632,12 +20632,12 @@ class URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionArgs
         return pulumi.get(self, "request_headers_to_removes")
 
     @request_headers_to_removes.setter
-    def request_headers_to_removes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def request_headers_to_removes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "request_headers_to_removes", value)
 
     @property
     @pulumi.getter(name="responseHeadersToAdds")
-    def response_headers_to_adds(self) -> Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]]:
+    def response_headers_to_adds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]]:
         """
         Headers to add the response prior to sending the response back to the client.
         Structure is documented below.
@@ -20645,12 +20645,12 @@ class URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionArgs
         return pulumi.get(self, "response_headers_to_adds")
 
     @response_headers_to_adds.setter
-    def response_headers_to_adds(self, value: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]]):
+    def response_headers_to_adds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]]):
         pulumi.set(self, "response_headers_to_adds", value)
 
     @property
     @pulumi.getter(name="responseHeadersToRemoves")
-    def response_headers_to_removes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def response_headers_to_removes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A list of header names for headers that need to be removed from the response prior to sending the
         response back to the client.
@@ -20658,7 +20658,7 @@ class URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionArgs
         return pulumi.get(self, "response_headers_to_removes")
 
     @response_headers_to_removes.setter
-    def response_headers_to_removes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def response_headers_to_removes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "response_headers_to_removes", value)
 
 
@@ -20921,7 +20921,7 @@ class URLMapPathMatcherRouteRuleArgs:
     def __init__(__self__, *,
                  priority: pulumi.Input[float],
                  header_action: Optional[pulumi.Input['URLMapPathMatcherRouteRuleHeaderActionArgs']] = None,
-                 match_rules: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleArgs']]]] = None,
+                 match_rules: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleArgs']]]] = None,
                  route_action: Optional[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionArgs']] = None,
                  service: Optional[pulumi.Input[str]] = None,
                  url_redirect: Optional[pulumi.Input['URLMapPathMatcherRouteRuleUrlRedirectArgs']] = None):
@@ -20944,7 +20944,7 @@ class URLMapPathMatcherRouteRuleArgs:
                headerAction specified here take effect before headerAction in the enclosing
                HttpRouteRule, PathMatcher and UrlMap.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleArgs']]] match_rules: The rules for determining a match.
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleArgs']]] match_rules: The rules for determining a match.
                Structure is documented below.
         :param pulumi.Input['URLMapPathMatcherRouteRuleRouteActionArgs'] route_action: In response to a matching matchRule, the load balancer performs advanced routing
                actions like URL rewrites, header transformations, etc. prior to forwarding the
@@ -21013,7 +21013,7 @@ class URLMapPathMatcherRouteRuleArgs:
 
     @property
     @pulumi.getter(name="matchRules")
-    def match_rules(self) -> Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleArgs']]]]:
+    def match_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleArgs']]]]:
         """
         The rules for determining a match.
         Structure is documented below.
@@ -21021,7 +21021,7 @@ class URLMapPathMatcherRouteRuleArgs:
         return pulumi.get(self, "match_rules")
 
     @match_rules.setter
-    def match_rules(self, value: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleArgs']]]]):
+    def match_rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleArgs']]]]):
         pulumi.set(self, "match_rules", value)
 
     @property
@@ -21073,18 +21073,18 @@ class URLMapPathMatcherRouteRuleArgs:
 @pulumi.input_type
 class URLMapPathMatcherRouteRuleHeaderActionArgs:
     def __init__(__self__, *,
-                 request_headers_to_adds: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleHeaderActionRequestHeadersToAddArgs']]]] = None,
-                 request_headers_to_removes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 response_headers_to_adds: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleHeaderActionResponseHeadersToAddArgs']]]] = None,
-                 response_headers_to_removes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 request_headers_to_adds: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleHeaderActionRequestHeadersToAddArgs']]]] = None,
+                 request_headers_to_removes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 response_headers_to_adds: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleHeaderActionResponseHeadersToAddArgs']]]] = None,
+                 response_headers_to_removes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleHeaderActionRequestHeadersToAddArgs']]] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the backendService.
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleHeaderActionRequestHeadersToAddArgs']]] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the backendService.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] request_headers_to_removes: A list of header names for headers that need to be removed from the request prior to
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] request_headers_to_removes: A list of header names for headers that need to be removed from the request prior to
                forwarding the request to the backendService.
-        :param pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleHeaderActionResponseHeadersToAddArgs']]] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleHeaderActionResponseHeadersToAddArgs']]] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] response_headers_to_removes: A list of header names for headers that need to be removed from the response prior to sending the
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] response_headers_to_removes: A list of header names for headers that need to be removed from the response prior to sending the
                response back to the client.
         """
         if request_headers_to_adds is not None:
@@ -21098,7 +21098,7 @@ class URLMapPathMatcherRouteRuleHeaderActionArgs:
 
     @property
     @pulumi.getter(name="requestHeadersToAdds")
-    def request_headers_to_adds(self) -> Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleHeaderActionRequestHeadersToAddArgs']]]]:
+    def request_headers_to_adds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleHeaderActionRequestHeadersToAddArgs']]]]:
         """
         Headers to add to a matching request prior to forwarding the request to the backendService.
         Structure is documented below.
@@ -21106,12 +21106,12 @@ class URLMapPathMatcherRouteRuleHeaderActionArgs:
         return pulumi.get(self, "request_headers_to_adds")
 
     @request_headers_to_adds.setter
-    def request_headers_to_adds(self, value: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleHeaderActionRequestHeadersToAddArgs']]]]):
+    def request_headers_to_adds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleHeaderActionRequestHeadersToAddArgs']]]]):
         pulumi.set(self, "request_headers_to_adds", value)
 
     @property
     @pulumi.getter(name="requestHeadersToRemoves")
-    def request_headers_to_removes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def request_headers_to_removes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A list of header names for headers that need to be removed from the request prior to
         forwarding the request to the backendService.
@@ -21119,12 +21119,12 @@ class URLMapPathMatcherRouteRuleHeaderActionArgs:
         return pulumi.get(self, "request_headers_to_removes")
 
     @request_headers_to_removes.setter
-    def request_headers_to_removes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def request_headers_to_removes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "request_headers_to_removes", value)
 
     @property
     @pulumi.getter(name="responseHeadersToAdds")
-    def response_headers_to_adds(self) -> Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleHeaderActionResponseHeadersToAddArgs']]]]:
+    def response_headers_to_adds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleHeaderActionResponseHeadersToAddArgs']]]]:
         """
         Headers to add the response prior to sending the response back to the client.
         Structure is documented below.
@@ -21132,12 +21132,12 @@ class URLMapPathMatcherRouteRuleHeaderActionArgs:
         return pulumi.get(self, "response_headers_to_adds")
 
     @response_headers_to_adds.setter
-    def response_headers_to_adds(self, value: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleHeaderActionResponseHeadersToAddArgs']]]]):
+    def response_headers_to_adds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleHeaderActionResponseHeadersToAddArgs']]]]):
         pulumi.set(self, "response_headers_to_adds", value)
 
     @property
     @pulumi.getter(name="responseHeadersToRemoves")
-    def response_headers_to_removes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def response_headers_to_removes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A list of header names for headers that need to be removed from the response prior to sending the
         response back to the client.
@@ -21145,7 +21145,7 @@ class URLMapPathMatcherRouteRuleHeaderActionArgs:
         return pulumi.get(self, "response_headers_to_removes")
 
     @response_headers_to_removes.setter
-    def response_headers_to_removes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def response_headers_to_removes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "response_headers_to_removes", value)
 
 
@@ -21261,11 +21261,11 @@ class URLMapPathMatcherRouteRuleHeaderActionResponseHeadersToAddArgs:
 class URLMapPathMatcherRouteRuleMatchRuleArgs:
     def __init__(__self__, *,
                  full_path_match: Optional[pulumi.Input[str]] = None,
-                 header_matches: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleHeaderMatchArgs']]]] = None,
+                 header_matches: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleHeaderMatchArgs']]]] = None,
                  ignore_case: Optional[pulumi.Input[bool]] = None,
-                 metadata_filters: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleMetadataFilterArgs']]]] = None,
+                 metadata_filters: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleMetadataFilterArgs']]]] = None,
                  prefix_match: Optional[pulumi.Input[str]] = None,
-                 query_parameter_matches: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleQueryParameterMatchArgs']]]] = None,
+                 query_parameter_matches: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleQueryParameterMatchArgs']]]] = None,
                  regex_match: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] full_path_match: For satifying the matchRule condition, the path of the request must exactly
@@ -21273,12 +21273,12 @@ class URLMapPathMatcherRouteRuleMatchRuleArgs:
                and anchor that may be part of the original URL. FullPathMatch must be between 1
                and 1024 characters. Only one of prefixMatch, fullPathMatch or regexMatch must
                be specified.
-        :param pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleHeaderMatchArgs']]] header_matches: Specifies a list of header match criteria, all of which must match corresponding
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleHeaderMatchArgs']]] header_matches: Specifies a list of header match criteria, all of which must match corresponding
                headers in the request.
                Structure is documented below.
         :param pulumi.Input[bool] ignore_case: Specifies that prefixMatch and fullPathMatch matches are case sensitive.
                Defaults to false.
-        :param pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleMetadataFilterArgs']]] metadata_filters: Opaque filter criteria used by Loadbalancer to restrict routing configuration to
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleMetadataFilterArgs']]] metadata_filters: Opaque filter criteria used by Loadbalancer to restrict routing configuration to
                a limited set xDS compliant clients. In their xDS requests to Loadbalancer, xDS
                clients present node metadata. If a match takes place, the relevant routing
                configuration is made available to those proxies. For each metadataFilter in
@@ -21293,7 +21293,7 @@ class URLMapPathMatcherRouteRuleMatchRuleArgs:
         :param pulumi.Input[str] prefix_match: The value of the header must start with the contents of prefixMatch. Only one of
                exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch
                must be set.
-        :param pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleQueryParameterMatchArgs']]] query_parameter_matches: Specifies a list of query parameter match criteria, all of which must match
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleQueryParameterMatchArgs']]] query_parameter_matches: Specifies a list of query parameter match criteria, all of which must match
                corresponding query parameters in the request.
                Structure is documented below.
         :param pulumi.Input[str] regex_match: The queryParameterMatch matches if the value of the parameter matches the
@@ -21334,7 +21334,7 @@ class URLMapPathMatcherRouteRuleMatchRuleArgs:
 
     @property
     @pulumi.getter(name="headerMatches")
-    def header_matches(self) -> Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleHeaderMatchArgs']]]]:
+    def header_matches(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleHeaderMatchArgs']]]]:
         """
         Specifies a list of header match criteria, all of which must match corresponding
         headers in the request.
@@ -21343,7 +21343,7 @@ class URLMapPathMatcherRouteRuleMatchRuleArgs:
         return pulumi.get(self, "header_matches")
 
     @header_matches.setter
-    def header_matches(self, value: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleHeaderMatchArgs']]]]):
+    def header_matches(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleHeaderMatchArgs']]]]):
         pulumi.set(self, "header_matches", value)
 
     @property
@@ -21361,7 +21361,7 @@ class URLMapPathMatcherRouteRuleMatchRuleArgs:
 
     @property
     @pulumi.getter(name="metadataFilters")
-    def metadata_filters(self) -> Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleMetadataFilterArgs']]]]:
+    def metadata_filters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleMetadataFilterArgs']]]]:
         """
         Opaque filter criteria used by Loadbalancer to restrict routing configuration to
         a limited set xDS compliant clients. In their xDS requests to Loadbalancer, xDS
@@ -21379,7 +21379,7 @@ class URLMapPathMatcherRouteRuleMatchRuleArgs:
         return pulumi.get(self, "metadata_filters")
 
     @metadata_filters.setter
-    def metadata_filters(self, value: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleMetadataFilterArgs']]]]):
+    def metadata_filters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleMetadataFilterArgs']]]]):
         pulumi.set(self, "metadata_filters", value)
 
     @property
@@ -21398,7 +21398,7 @@ class URLMapPathMatcherRouteRuleMatchRuleArgs:
 
     @property
     @pulumi.getter(name="queryParameterMatches")
-    def query_parameter_matches(self) -> Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleQueryParameterMatchArgs']]]]:
+    def query_parameter_matches(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleQueryParameterMatchArgs']]]]:
         """
         Specifies a list of query parameter match criteria, all of which must match
         corresponding query parameters in the request.
@@ -21407,7 +21407,7 @@ class URLMapPathMatcherRouteRuleMatchRuleArgs:
         return pulumi.get(self, "query_parameter_matches")
 
     @query_parameter_matches.setter
-    def query_parameter_matches(self, value: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleQueryParameterMatchArgs']]]]):
+    def query_parameter_matches(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleQueryParameterMatchArgs']]]]):
         pulumi.set(self, "query_parameter_matches", value)
 
     @property
@@ -21638,10 +21638,10 @@ class URLMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatchArgs:
 @pulumi.input_type
 class URLMapPathMatcherRouteRuleMatchRuleMetadataFilterArgs:
     def __init__(__self__, *,
-                 filter_labels: pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleMetadataFilterFilterLabelArgs']]],
+                 filter_labels: pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleMetadataFilterFilterLabelArgs']]],
                  filter_match_criteria: pulumi.Input[str]):
         """
-        :param pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleMetadataFilterFilterLabelArgs']]] filter_labels: The list of label value pairs that must match labels in the provided metadata
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleMetadataFilterFilterLabelArgs']]] filter_labels: The list of label value pairs that must match labels in the provided metadata
                based on filterMatchCriteria  This list must not be empty and can have at the
                most 64 entries.
                Structure is documented below.
@@ -21658,7 +21658,7 @@ class URLMapPathMatcherRouteRuleMatchRuleMetadataFilterArgs:
 
     @property
     @pulumi.getter(name="filterLabels")
-    def filter_labels(self) -> pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleMetadataFilterFilterLabelArgs']]]:
+    def filter_labels(self) -> pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleMetadataFilterFilterLabelArgs']]]:
         """
         The list of label value pairs that must match labels in the provided metadata
         based on filterMatchCriteria  This list must not be empty and can have at the
@@ -21668,7 +21668,7 @@ class URLMapPathMatcherRouteRuleMatchRuleMetadataFilterArgs:
         return pulumi.get(self, "filter_labels")
 
     @filter_labels.setter
-    def filter_labels(self, value: pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleMetadataFilterFilterLabelArgs']]]):
+    def filter_labels(self, value: pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleMetadataFilterFilterLabelArgs']]]):
         pulumi.set(self, "filter_labels", value)
 
     @property
@@ -21826,7 +21826,7 @@ class URLMapPathMatcherRouteRuleRouteActionArgs:
                  retry_policy: Optional[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionRetryPolicyArgs']] = None,
                  timeout: Optional[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionTimeoutArgs']] = None,
                  url_rewrite: Optional[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionUrlRewriteArgs']] = None,
-                 weighted_backend_services: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs']]]] = None):
+                 weighted_backend_services: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs']]]] = None):
         """
         :param pulumi.Input['URLMapPathMatcherRouteRuleRouteActionCorsPolicyArgs'] cors_policy: The specification for allowing client side cross-origin requests. Please see
                [W3C Recommendation for Cross Origin Resource Sharing](https://www.w3.org/TR/cors/)
@@ -21849,7 +21849,7 @@ class URLMapPathMatcherRouteRuleRouteActionArgs:
                Structure is documented below.
         :param pulumi.Input['URLMapPathMatcherRouteRuleRouteActionUrlRewriteArgs'] url_rewrite: The spec to modify the URL of the request, prior to forwarding the request to the matched service.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs']]] weighted_backend_services: A list of weighted backend services to send traffic to when a route match occurs.
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs']]] weighted_backend_services: A list of weighted backend services to send traffic to when a route match occurs.
                The weights determine the fraction of traffic that flows to their corresponding backend service.
                If all traffic needs to go to a single backend service, there must be one weightedBackendService
                with weight set to a non 0 number.
@@ -21962,7 +21962,7 @@ class URLMapPathMatcherRouteRuleRouteActionArgs:
 
     @property
     @pulumi.getter(name="weightedBackendServices")
-    def weighted_backend_services(self) -> Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs']]]]:
+    def weighted_backend_services(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs']]]]:
         """
         A list of weighted backend services to send traffic to when a route match occurs.
         The weights determine the fraction of traffic that flows to their corresponding backend service.
@@ -21976,7 +21976,7 @@ class URLMapPathMatcherRouteRuleRouteActionArgs:
         return pulumi.get(self, "weighted_backend_services")
 
     @weighted_backend_services.setter
-    def weighted_backend_services(self, value: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs']]]]):
+    def weighted_backend_services(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs']]]]):
         pulumi.set(self, "weighted_backend_services", value)
 
 
@@ -21984,25 +21984,25 @@ class URLMapPathMatcherRouteRuleRouteActionArgs:
 class URLMapPathMatcherRouteRuleRouteActionCorsPolicyArgs:
     def __init__(__self__, *,
                  allow_credentials: Optional[pulumi.Input[bool]] = None,
-                 allow_headers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 allow_methods: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 allow_origin_regexes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 allow_origins: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 allow_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allow_methods: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allow_origin_regexes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allow_origins: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  disabled: Optional[pulumi.Input[bool]] = None,
-                 expose_headers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 expose_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  max_age: Optional[pulumi.Input[float]] = None):
         """
         :param pulumi.Input[bool] allow_credentials: In response to a preflight request, setting this to true indicates that the actual request can include user credentials.
                This translates to the Access-Control-Allow-Credentials header.
-        :param pulumi.Input[List[pulumi.Input[str]]] allow_headers: Specifies the content for the Access-Control-Allow-Headers header.
-        :param pulumi.Input[List[pulumi.Input[str]]] allow_methods: Specifies the content for the Access-Control-Allow-Methods header.
-        :param pulumi.Input[List[pulumi.Input[str]]] allow_origin_regexes: Specifies the regualar expression patterns that match allowed origins. For regular expression grammar
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_headers: Specifies the content for the Access-Control-Allow-Headers header.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_methods: Specifies the content for the Access-Control-Allow-Methods header.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_origin_regexes: Specifies the regualar expression patterns that match allowed origins. For regular expression grammar
                please see en.cppreference.com/w/cpp/regex/ecmascript
                An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
-        :param pulumi.Input[List[pulumi.Input[str]]] allow_origins: Specifies the list of origins that will be allowed to do CORS requests.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_origins: Specifies the list of origins that will be allowed to do CORS requests.
                An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
         :param pulumi.Input[bool] disabled: If true, specifies the CORS policy is disabled. The default value is false, which indicates that the CORS policy is in effect.
-        :param pulumi.Input[List[pulumi.Input[str]]] expose_headers: Specifies the content for the Access-Control-Expose-Headers header.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] expose_headers: Specifies the content for the Access-Control-Expose-Headers header.
         :param pulumi.Input[float] max_age: Specifies how long results of a preflight request can be cached in seconds.
                This translates to the Access-Control-Max-Age header.
         """
@@ -22038,31 +22038,31 @@ class URLMapPathMatcherRouteRuleRouteActionCorsPolicyArgs:
 
     @property
     @pulumi.getter(name="allowHeaders")
-    def allow_headers(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def allow_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the content for the Access-Control-Allow-Headers header.
         """
         return pulumi.get(self, "allow_headers")
 
     @allow_headers.setter
-    def allow_headers(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def allow_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allow_headers", value)
 
     @property
     @pulumi.getter(name="allowMethods")
-    def allow_methods(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def allow_methods(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the content for the Access-Control-Allow-Methods header.
         """
         return pulumi.get(self, "allow_methods")
 
     @allow_methods.setter
-    def allow_methods(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def allow_methods(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allow_methods", value)
 
     @property
     @pulumi.getter(name="allowOriginRegexes")
-    def allow_origin_regexes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def allow_origin_regexes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the regualar expression patterns that match allowed origins. For regular expression grammar
         please see en.cppreference.com/w/cpp/regex/ecmascript
@@ -22071,12 +22071,12 @@ class URLMapPathMatcherRouteRuleRouteActionCorsPolicyArgs:
         return pulumi.get(self, "allow_origin_regexes")
 
     @allow_origin_regexes.setter
-    def allow_origin_regexes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def allow_origin_regexes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allow_origin_regexes", value)
 
     @property
     @pulumi.getter(name="allowOrigins")
-    def allow_origins(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def allow_origins(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the list of origins that will be allowed to do CORS requests.
         An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
@@ -22084,7 +22084,7 @@ class URLMapPathMatcherRouteRuleRouteActionCorsPolicyArgs:
         return pulumi.get(self, "allow_origins")
 
     @allow_origins.setter
-    def allow_origins(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def allow_origins(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allow_origins", value)
 
     @property
@@ -22101,14 +22101,14 @@ class URLMapPathMatcherRouteRuleRouteActionCorsPolicyArgs:
 
     @property
     @pulumi.getter(name="exposeHeaders")
-    def expose_headers(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def expose_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the content for the Access-Control-Expose-Headers header.
         """
         return pulumi.get(self, "expose_headers")
 
     @expose_headers.setter
-    def expose_headers(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def expose_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "expose_headers", value)
 
     @property
@@ -22323,14 +22323,14 @@ class URLMapPathMatcherRouteRuleRouteActionRetryPolicyArgs:
     def __init__(__self__, *,
                  num_retries: pulumi.Input[float],
                  per_try_timeout: Optional[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutArgs']] = None,
-                 retry_conditions: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 retry_conditions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         :param pulumi.Input[float] num_retries: Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
         :param pulumi.Input['URLMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutArgs'] per_try_timeout: Specifies a non-zero timeout per retry attempt.
                If not specified, will use the timeout set in HttpRouteAction. If timeout in HttpRouteAction is not set,
                will use the largest timeout among all backend services associated with the route.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] retry_conditions: Specfies one or more conditions when this retry rule applies. Valid values are:
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] retry_conditions: Specfies one or more conditions when this retry rule applies. Valid values are:
                5xx: Loadbalancer will attempt a retry if the backend service responds with any 5xx response code,
                or if the backend service does not respond at all, example: disconnects, reset, read timeout,
                connection failure, and refused streams.
@@ -22381,7 +22381,7 @@ class URLMapPathMatcherRouteRuleRouteActionRetryPolicyArgs:
 
     @property
     @pulumi.getter(name="retryConditions")
-    def retry_conditions(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def retry_conditions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specfies one or more conditions when this retry rule applies. Valid values are:
         5xx: Loadbalancer will attempt a retry if the backend service responds with any 5xx response code,
@@ -22402,7 +22402,7 @@ class URLMapPathMatcherRouteRuleRouteActionRetryPolicyArgs:
         return pulumi.get(self, "retry_conditions")
 
     @retry_conditions.setter
-    def retry_conditions(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def retry_conditions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "retry_conditions", value)
 
 
@@ -22611,18 +22611,18 @@ class URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs:
 @pulumi.input_type
 class URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionArgs:
     def __init__(__self__, *,
-                 request_headers_to_adds: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]] = None,
-                 request_headers_to_removes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 response_headers_to_adds: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]] = None,
-                 response_headers_to_removes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 request_headers_to_adds: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]] = None,
+                 request_headers_to_removes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 response_headers_to_adds: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]] = None,
+                 response_headers_to_removes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the backendService.
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the backendService.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] request_headers_to_removes: A list of header names for headers that need to be removed from the request prior to
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] request_headers_to_removes: A list of header names for headers that need to be removed from the request prior to
                forwarding the request to the backendService.
-        :param pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] response_headers_to_removes: A list of header names for headers that need to be removed from the response prior to sending the
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] response_headers_to_removes: A list of header names for headers that need to be removed from the response prior to sending the
                response back to the client.
         """
         if request_headers_to_adds is not None:
@@ -22636,7 +22636,7 @@ class URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionArg
 
     @property
     @pulumi.getter(name="requestHeadersToAdds")
-    def request_headers_to_adds(self) -> Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]]:
+    def request_headers_to_adds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]]:
         """
         Headers to add to a matching request prior to forwarding the request to the backendService.
         Structure is documented below.
@@ -22644,12 +22644,12 @@ class URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionArg
         return pulumi.get(self, "request_headers_to_adds")
 
     @request_headers_to_adds.setter
-    def request_headers_to_adds(self, value: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]]):
+    def request_headers_to_adds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]]):
         pulumi.set(self, "request_headers_to_adds", value)
 
     @property
     @pulumi.getter(name="requestHeadersToRemoves")
-    def request_headers_to_removes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def request_headers_to_removes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A list of header names for headers that need to be removed from the request prior to
         forwarding the request to the backendService.
@@ -22657,12 +22657,12 @@ class URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionArg
         return pulumi.get(self, "request_headers_to_removes")
 
     @request_headers_to_removes.setter
-    def request_headers_to_removes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def request_headers_to_removes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "request_headers_to_removes", value)
 
     @property
     @pulumi.getter(name="responseHeadersToAdds")
-    def response_headers_to_adds(self) -> Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]]:
+    def response_headers_to_adds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]]:
         """
         Headers to add the response prior to sending the response back to the client.
         Structure is documented below.
@@ -22670,12 +22670,12 @@ class URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionArg
         return pulumi.get(self, "response_headers_to_adds")
 
     @response_headers_to_adds.setter
-    def response_headers_to_adds(self, value: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]]):
+    def response_headers_to_adds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]]):
         pulumi.set(self, "response_headers_to_adds", value)
 
     @property
     @pulumi.getter(name="responseHeadersToRemoves")
-    def response_headers_to_removes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def response_headers_to_removes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A list of header names for headers that need to be removed from the response prior to sending the
         response back to the client.
@@ -22683,7 +22683,7 @@ class URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionArg
         return pulumi.get(self, "response_headers_to_removes")
 
     @response_headers_to_removes.setter
-    def response_headers_to_removes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def response_headers_to_removes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "response_headers_to_removes", value)
 
 

@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 from . import outputs
 
@@ -119,7 +119,7 @@ class GetFunctionResult:
 
     @property
     @pulumi.getter(name="eventTriggers")
-    def event_triggers(self) -> List['outputs.GetFunctionEventTriggerResult']:
+    def event_triggers(self) -> Sequence['outputs.GetFunctionEventTriggerResult']:
         """
         A source that fires events in response to a condition in another service. Structure is documented below.
         """
@@ -217,7 +217,7 @@ class GetFunctionResult:
 
     @property
     @pulumi.getter(name="sourceRepositories")
-    def source_repositories(self) -> List['outputs.GetFunctionSourceRepositoryResult']:
+    def source_repositories(self) -> Sequence['outputs.GetFunctionSourceRepositoryResult']:
         """
         The URL of the Cloud Source Repository that the function is deployed from. Structure is documented below.
         """

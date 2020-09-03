@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
@@ -18,12 +18,12 @@ class BackendService(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  affinity_cookie_ttl_sec: Optional[pulumi.Input[float]] = None,
-                 backends: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['BackendServiceBackendArgs']]]]] = None,
+                 backends: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BackendServiceBackendArgs']]]]] = None,
                  cdn_policy: Optional[pulumi.Input[pulumi.InputType['BackendServiceCdnPolicyArgs']]] = None,
                  circuit_breakers: Optional[pulumi.Input[pulumi.InputType['BackendServiceCircuitBreakersArgs']]] = None,
                  connection_draining_timeout_sec: Optional[pulumi.Input[float]] = None,
                  consistent_hash: Optional[pulumi.Input[pulumi.InputType['BackendServiceConsistentHashArgs']]] = None,
-                 custom_request_headers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 custom_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  enable_cdn: Optional[pulumi.Input[bool]] = None,
                  health_checks: Optional[pulumi.Input[str]] = None,
@@ -65,7 +65,7 @@ class BackendService(pulumi.CustomResource):
                only until the end of the browser session (or equivalent). The
                maximum allowed value for TTL is one day.
                When the load balancing scheme is INTERNAL, this field is not used.
-        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['BackendServiceBackendArgs']]]] backends: The set of backends that serve this BackendService.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BackendServiceBackendArgs']]]] backends: The set of backends that serve this BackendService.
                Structure is documented below.
         :param pulumi.Input[pulumi.InputType['BackendServiceCdnPolicyArgs']] cdn_policy: Cloud CDN configuration for this BackendService.
                Structure is documented below.
@@ -83,7 +83,7 @@ class BackendService(pulumi.CustomResource):
                INTERNAL_SELF_MANAGED. This field is only applicable when locality_lb_policy is
                set to MAGLEV or RING_HASH.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] custom_request_headers: Headers that the HTTP/S load balancer should add to proxied
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] custom_request_headers: Headers that the HTTP/S load balancer should add to proxied
                requests.
         :param pulumi.Input[str] description: An optional description of this resource.
                Provide this property when you create the resource.
@@ -200,13 +200,13 @@ class BackendService(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             affinity_cookie_ttl_sec: Optional[pulumi.Input[float]] = None,
-            backends: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['BackendServiceBackendArgs']]]]] = None,
+            backends: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BackendServiceBackendArgs']]]]] = None,
             cdn_policy: Optional[pulumi.Input[pulumi.InputType['BackendServiceCdnPolicyArgs']]] = None,
             circuit_breakers: Optional[pulumi.Input[pulumi.InputType['BackendServiceCircuitBreakersArgs']]] = None,
             connection_draining_timeout_sec: Optional[pulumi.Input[float]] = None,
             consistent_hash: Optional[pulumi.Input[pulumi.InputType['BackendServiceConsistentHashArgs']]] = None,
             creation_timestamp: Optional[pulumi.Input[str]] = None,
-            custom_request_headers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            custom_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             description: Optional[pulumi.Input[str]] = None,
             enable_cdn: Optional[pulumi.Input[bool]] = None,
             fingerprint: Optional[pulumi.Input[str]] = None,
@@ -236,7 +236,7 @@ class BackendService(pulumi.CustomResource):
                only until the end of the browser session (or equivalent). The
                maximum allowed value for TTL is one day.
                When the load balancing scheme is INTERNAL, this field is not used.
-        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['BackendServiceBackendArgs']]]] backends: The set of backends that serve this BackendService.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BackendServiceBackendArgs']]]] backends: The set of backends that serve this BackendService.
                Structure is documented below.
         :param pulumi.Input[pulumi.InputType['BackendServiceCdnPolicyArgs']] cdn_policy: Cloud CDN configuration for this BackendService.
                Structure is documented below.
@@ -255,7 +255,7 @@ class BackendService(pulumi.CustomResource):
                set to MAGLEV or RING_HASH.
                Structure is documented below.
         :param pulumi.Input[str] creation_timestamp: Creation timestamp in RFC3339 text format.
-        :param pulumi.Input[List[pulumi.Input[str]]] custom_request_headers: Headers that the HTTP/S load balancer should add to proxied
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] custom_request_headers: Headers that the HTTP/S load balancer should add to proxied
                requests.
         :param pulumi.Input[str] description: An optional description of this resource.
                Provide this property when you create the resource.
@@ -366,7 +366,7 @@ class BackendService(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def backends(self) -> pulumi.Output[Optional[List['outputs.BackendServiceBackend']]]:
+    def backends(self) -> pulumi.Output[Optional[Sequence['outputs.BackendServiceBackend']]]:
         """
         The set of backends that serve this BackendService.
         Structure is documented below.
@@ -427,7 +427,7 @@ class BackendService(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="customRequestHeaders")
-    def custom_request_headers(self) -> pulumi.Output[Optional[List[str]]]:
+    def custom_request_headers(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         Headers that the HTTP/S load balancer should add to proxied
         requests.
