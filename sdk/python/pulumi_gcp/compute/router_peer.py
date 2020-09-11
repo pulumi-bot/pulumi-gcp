@@ -20,10 +20,10 @@ class RouterPeer(pulumi.CustomResource):
                  advertise_mode: Optional[pulumi.Input[str]] = None,
                  advertised_groups: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
                  advertised_ip_ranges: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['RouterPeerAdvertisedIpRangeArgs']]]]] = None,
-                 advertised_route_priority: Optional[pulumi.Input[float]] = None,
+                 advertised_route_priority: Optional[pulumi.Input[int]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 peer_asn: Optional[pulumi.Input[float]] = None,
+                 peer_asn: Optional[pulumi.Input[int]] = None,
                  peer_ip_address: Optional[pulumi.Input[str]] = None,
                  project: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
@@ -62,7 +62,7 @@ class RouterPeer(pulumi.CustomResource):
                ranges will be advertised in addition to any specified groups.
                Leave this field blank to advertise no custom IP ranges.
                Structure is documented below.
-        :param pulumi.Input[float] advertised_route_priority: The priority of routes advertised to this BGP peer.
+        :param pulumi.Input[int] advertised_route_priority: The priority of routes advertised to this BGP peer.
                Where there is more than one matching route of maximum
                length, the routes with the lowest priority value win.
         :param pulumi.Input[str] interface: Name of the interface the BGP peer is associated with.
@@ -72,7 +72,7 @@ class RouterPeer(pulumi.CustomResource):
                means the first character must be a lowercase letter, and all
                following characters must be a dash, lowercase letter, or digit,
                except the last character, which cannot be a dash.
-        :param pulumi.Input[float] peer_asn: Peer BGP Autonomous System Number (ASN).
+        :param pulumi.Input[int] peer_asn: Peer BGP Autonomous System Number (ASN).
                Each BGP interface may use a different value.
         :param pulumi.Input[str] peer_ip_address: IP address of the BGP interface outside Google Cloud Platform.
                Only IPv4 is supported.
@@ -133,12 +133,12 @@ class RouterPeer(pulumi.CustomResource):
             advertise_mode: Optional[pulumi.Input[str]] = None,
             advertised_groups: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
             advertised_ip_ranges: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['RouterPeerAdvertisedIpRangeArgs']]]]] = None,
-            advertised_route_priority: Optional[pulumi.Input[float]] = None,
+            advertised_route_priority: Optional[pulumi.Input[int]] = None,
             interface: Optional[pulumi.Input[str]] = None,
             ip_address: Optional[pulumi.Input[str]] = None,
             management_type: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            peer_asn: Optional[pulumi.Input[float]] = None,
+            peer_asn: Optional[pulumi.Input[int]] = None,
             peer_ip_address: Optional[pulumi.Input[str]] = None,
             project: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
@@ -165,7 +165,7 @@ class RouterPeer(pulumi.CustomResource):
                ranges will be advertised in addition to any specified groups.
                Leave this field blank to advertise no custom IP ranges.
                Structure is documented below.
-        :param pulumi.Input[float] advertised_route_priority: The priority of routes advertised to this BGP peer.
+        :param pulumi.Input[int] advertised_route_priority: The priority of routes advertised to this BGP peer.
                Where there is more than one matching route of maximum
                length, the routes with the lowest priority value win.
         :param pulumi.Input[str] interface: Name of the interface the BGP peer is associated with.
@@ -180,7 +180,7 @@ class RouterPeer(pulumi.CustomResource):
                means the first character must be a lowercase letter, and all
                following characters must be a dash, lowercase letter, or digit,
                except the last character, which cannot be a dash.
-        :param pulumi.Input[float] peer_asn: Peer BGP Autonomous System Number (ASN).
+        :param pulumi.Input[int] peer_asn: Peer BGP Autonomous System Number (ASN).
                Each BGP interface may use a different value.
         :param pulumi.Input[str] peer_ip_address: IP address of the BGP interface outside Google Cloud Platform.
                Only IPv4 is supported.
@@ -247,7 +247,7 @@ class RouterPeer(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="advertisedRoutePriority")
-    def advertised_route_priority(self) -> pulumi.Output[Optional[float]]:
+    def advertised_route_priority(self) -> pulumi.Output[Optional[int]]:
         """
         The priority of routes advertised to this BGP peer.
         Where there is more than one matching route of maximum
@@ -297,7 +297,7 @@ class RouterPeer(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="peerAsn")
-    def peer_asn(self) -> pulumi.Output[float]:
+    def peer_asn(self) -> pulumi.Output[int]:
         """
         Peer BGP Autonomous System Number (ASN).
         Each BGP interface may use a different value.

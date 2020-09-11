@@ -24,7 +24,7 @@ class OrganizationSecurityPolicyRule(pulumi.CustomResource):
                  match: Optional[pulumi.Input[pulumi.InputType['OrganizationSecurityPolicyRuleMatchArgs']]] = None,
                  policy_id: Optional[pulumi.Input[str]] = None,
                  preview: Optional[pulumi.Input[bool]] = None,
-                 priority: Optional[pulumi.Input[float]] = None,
+                 priority: Optional[pulumi.Input[int]] = None,
                  target_resources: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
                  target_service_accounts: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
                  __props__=None,
@@ -46,7 +46,7 @@ class OrganizationSecurityPolicyRule(pulumi.CustomResource):
                Structure is documented below.
         :param pulumi.Input[str] policy_id: The ID of the OrganizationSecurityPolicy this rule applies to.
         :param pulumi.Input[bool] preview: If set to true, the specified action is not enforced.
-        :param pulumi.Input[float] priority: An integer indicating the priority of a rule in the list. The priority must be a value
+        :param pulumi.Input[int] priority: An integer indicating the priority of a rule in the list. The priority must be a value
                between 0 and 2147483647. Rules are evaluated from highest to lowest priority where 0 is the
                highest priority and 2147483647 is the lowest prority.
         :param pulumi.Input[List[pulumi.Input[str]]] target_resources: A list of network resource URLs to which this rule applies.
@@ -108,7 +108,7 @@ class OrganizationSecurityPolicyRule(pulumi.CustomResource):
             match: Optional[pulumi.Input[pulumi.InputType['OrganizationSecurityPolicyRuleMatchArgs']]] = None,
             policy_id: Optional[pulumi.Input[str]] = None,
             preview: Optional[pulumi.Input[bool]] = None,
-            priority: Optional[pulumi.Input[float]] = None,
+            priority: Optional[pulumi.Input[int]] = None,
             target_resources: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
             target_service_accounts: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None) -> 'OrganizationSecurityPolicyRule':
         """
@@ -130,7 +130,7 @@ class OrganizationSecurityPolicyRule(pulumi.CustomResource):
                Structure is documented below.
         :param pulumi.Input[str] policy_id: The ID of the OrganizationSecurityPolicy this rule applies to.
         :param pulumi.Input[bool] preview: If set to true, the specified action is not enforced.
-        :param pulumi.Input[float] priority: An integer indicating the priority of a rule in the list. The priority must be a value
+        :param pulumi.Input[int] priority: An integer indicating the priority of a rule in the list. The priority must be a value
                between 0 and 2147483647. Rules are evaluated from highest to lowest priority where 0 is the
                highest priority and 2147483647 is the lowest prority.
         :param pulumi.Input[List[pulumi.Input[str]]] target_resources: A list of network resource URLs to which this rule applies.
@@ -219,7 +219,7 @@ class OrganizationSecurityPolicyRule(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def priority(self) -> pulumi.Output[float]:
+    def priority(self) -> pulumi.Output[int]:
         """
         An integer indicating the priority of a rule in the list. The priority must be a value
         between 0 and 2147483647. Rules are evaluated from highest to lowest priority where 0 is the

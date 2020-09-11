@@ -191,11 +191,11 @@ class BudgetAmount(dict):
 class BudgetAmountSpecifiedAmount(dict):
     def __init__(__self__, *,
                  currency_code: Optional[str] = None,
-                 nanos: Optional[float] = None,
+                 nanos: Optional[int] = None,
                  units: Optional[str] = None):
         """
         :param str currency_code: The 3-letter currency code defined in ISO 4217.
-        :param float nanos: Number of nano (10^-9) units of the amount.
+        :param int nanos: Number of nano (10^-9) units of the amount.
                The value must be between -999,999,999 and +999,999,999
                inclusive. If units is positive, nanos must be positive or
                zero. If units is zero, nanos can be positive, zero, or
@@ -222,7 +222,7 @@ class BudgetAmountSpecifiedAmount(dict):
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[float]:
+    def nanos(self) -> Optional[int]:
         """
         Number of nano (10^-9) units of the amount.
         The value must be between -999,999,999 and +999,999,999

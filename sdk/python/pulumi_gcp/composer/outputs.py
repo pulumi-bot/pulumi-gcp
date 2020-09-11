@@ -30,14 +30,14 @@ class EnvironmentConfig(dict):
                  database_config: Optional['outputs.EnvironmentConfigDatabaseConfig'] = None,
                  gke_cluster: Optional[str] = None,
                  node_config: Optional['outputs.EnvironmentConfigNodeConfig'] = None,
-                 node_count: Optional[float] = None,
+                 node_count: Optional[int] = None,
                  private_environment_config: Optional['outputs.EnvironmentConfigPrivateEnvironmentConfig'] = None,
                  software_config: Optional['outputs.EnvironmentConfigSoftwareConfig'] = None,
                  web_server_config: Optional['outputs.EnvironmentConfigWebServerConfig'] = None,
                  web_server_network_access_control: Optional['outputs.EnvironmentConfigWebServerNetworkAccessControl'] = None):
         """
         :param 'EnvironmentConfigNodeConfigArgs' node_config: The configuration used for the Kubernetes Engine cluster.  Structure is documented below.
-        :param float node_count: The number of nodes in the Kubernetes Engine cluster that
+        :param int node_count: The number of nodes in the Kubernetes Engine cluster that
                will be used to run this environment.
         :param 'EnvironmentConfigPrivateEnvironmentConfigArgs' private_environment_config: The configuration used for the Private IP Cloud Composer environment. Structure is documented below.
         :param 'EnvironmentConfigSoftwareConfigArgs' software_config: The configuration settings for software inside the environment.  Structure is documented below.
@@ -94,7 +94,7 @@ class EnvironmentConfig(dict):
 
     @property
     @pulumi.getter(name="nodeCount")
-    def node_count(self) -> Optional[float]:
+    def node_count(self) -> Optional[int]:
         """
         The number of nodes in the Kubernetes Engine cluster that
         will be used to run this environment.
@@ -165,7 +165,7 @@ class EnvironmentConfigDatabaseConfig(dict):
 class EnvironmentConfigNodeConfig(dict):
     def __init__(__self__, *,
                  zone: str,
-                 disk_size_gb: Optional[float] = None,
+                 disk_size_gb: Optional[int] = None,
                  ip_allocation_policy: Optional['outputs.EnvironmentConfigNodeConfigIpAllocationPolicy'] = None,
                  machine_type: Optional[str] = None,
                  network: Optional[str] = None,
@@ -178,7 +178,7 @@ class EnvironmentConfigNodeConfig(dict):
                Apache Airflow software, specified as the zone name or
                relative resource name (e.g. "projects/{project}/zones/{zone}"). Must belong to the enclosing environment's project
                and region.
-        :param float disk_size_gb: The disk size in GB used for node VMs. Minimum size is 20GB.
+        :param int disk_size_gb: The disk size in GB used for node VMs. Minimum size is 20GB.
                If unspecified, defaults to 100GB. Cannot be updated.
         :param 'EnvironmentConfigNodeConfigIpAllocationPolicyArgs' ip_allocation_policy: Configuration for controlling how IPs are allocated in the GKE cluster.
                Structure is documented below.
@@ -238,7 +238,7 @@ class EnvironmentConfigNodeConfig(dict):
 
     @property
     @pulumi.getter(name="diskSizeGb")
-    def disk_size_gb(self) -> Optional[float]:
+    def disk_size_gb(self) -> Optional[int]:
         """
         The disk size in GB used for node VMs. Minimum size is 20GB.
         If unspecified, defaults to 100GB. Cannot be updated.

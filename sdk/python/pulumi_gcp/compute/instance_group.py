@@ -95,7 +95,7 @@ class InstanceGroup(pulumi.CustomResource):
             network: Optional[pulumi.Input[str]] = None,
             project: Optional[pulumi.Input[str]] = None,
             self_link: Optional[pulumi.Input[str]] = None,
-            size: Optional[pulumi.Input[float]] = None,
+            size: Optional[pulumi.Input[int]] = None,
             zone: Optional[pulumi.Input[str]] = None) -> 'InstanceGroup':
         """
         Get an existing InstanceGroup resource's state with the given name, id, and optional extra
@@ -119,7 +119,7 @@ class InstanceGroup(pulumi.CustomResource):
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs. If it
                is not provided, the provider project is used.
         :param pulumi.Input[str] self_link: The URI of the created resource.
-        :param pulumi.Input[float] size: The number of instances in the group.
+        :param pulumi.Input[int] size: The number of instances in the group.
         :param pulumi.Input[str] zone: The zone that this instance group should be created in.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -203,7 +203,7 @@ class InstanceGroup(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def size(self) -> pulumi.Output[float]:
+    def size(self) -> pulumi.Output[int]:
         """
         The number of instances in the group.
         """

@@ -40,12 +40,12 @@ __all__ = [
 @pulumi.output_type
 class BucketCor(dict):
     def __init__(__self__, *,
-                 max_age_seconds: Optional[float] = None,
+                 max_age_seconds: Optional[int] = None,
                  methods: Optional[List[str]] = None,
                  origins: Optional[List[str]] = None,
                  response_headers: Optional[List[str]] = None):
         """
-        :param float max_age_seconds: The value, in seconds, to return in the [Access-Control-Max-Age header](https://www.w3.org/TR/cors/#access-control-max-age-response-header) used in preflight responses.
+        :param int max_age_seconds: The value, in seconds, to return in the [Access-Control-Max-Age header](https://www.w3.org/TR/cors/#access-control-max-age-response-header) used in preflight responses.
         :param List[str] methods: The list of HTTP methods on which to include CORS response headers, (GET, OPTIONS, POST, etc) Note: "*" is permitted in the list of methods, and means "any method".
         :param List[str] origins: The list of [Origins](https://tools.ietf.org/html/rfc6454) eligible to receive CORS response headers. Note: "*" is permitted in the list of origins, and means "any Origin".
         :param List[str] response_headers: The list of HTTP headers other than the [simple response headers](https://www.w3.org/TR/cors/#simple-response-header) to give permission for the user-agent to share across domains.
@@ -61,7 +61,7 @@ class BucketCor(dict):
 
     @property
     @pulumi.getter(name="maxAgeSeconds")
-    def max_age_seconds(self) -> Optional[float]:
+    def max_age_seconds(self) -> Optional[int]:
         """
         The value, in seconds, to return in the [Access-Control-Max-Age header](https://www.w3.org/TR/cors/#access-control-max-age-response-header) used in preflight responses.
         """
@@ -266,16 +266,16 @@ class BucketLifecycleRuleAction(dict):
 @pulumi.output_type
 class BucketLifecycleRuleCondition(dict):
     def __init__(__self__, *,
-                 age: Optional[float] = None,
+                 age: Optional[int] = None,
                  created_before: Optional[str] = None,
                  matches_storage_classes: Optional[List[str]] = None,
-                 num_newer_versions: Optional[float] = None,
+                 num_newer_versions: Optional[int] = None,
                  with_state: Optional[str] = None):
         """
-        :param float age: Minimum age of an object in days to satisfy this condition.
+        :param int age: Minimum age of an object in days to satisfy this condition.
         :param str created_before: Creation date of an object in RFC 3339 (e.g. `2017-06-13`) to satisfy this condition.
         :param List[str] matches_storage_classes: [Storage Class](https://cloud.google.com/storage/docs/storage-classes) of objects to satisfy this condition. Supported values include: `MULTI_REGIONAL`, `REGIONAL`, `NEARLINE`, `COLDLINE`, `ARCHIVE`, `STANDARD`, `DURABLE_REDUCED_AVAILABILITY`.
-        :param float num_newer_versions: Relevant only for versioned objects. The number of newer versions of an object to satisfy this condition.
+        :param int num_newer_versions: Relevant only for versioned objects. The number of newer versions of an object to satisfy this condition.
         :param str with_state: Match to live and/or archived objects. Unversioned buckets have only live objects. Supported values include: `"LIVE"`, `"ARCHIVED"`, `"ANY"`.
         """
         if age is not None:
@@ -291,7 +291,7 @@ class BucketLifecycleRuleCondition(dict):
 
     @property
     @pulumi.getter
-    def age(self) -> Optional[float]:
+    def age(self) -> Optional[int]:
         """
         Minimum age of an object in days to satisfy this condition.
         """
@@ -315,7 +315,7 @@ class BucketLifecycleRuleCondition(dict):
 
     @property
     @pulumi.getter(name="numNewerVersions")
-    def num_newer_versions(self) -> Optional[float]:
+    def num_newer_versions(self) -> Optional[int]:
         """
         Relevant only for versioned objects. The number of newer versions of an object to satisfy this condition.
         """
@@ -371,10 +371,10 @@ class BucketLogging(dict):
 @pulumi.output_type
 class BucketRetentionPolicy(dict):
     def __init__(__self__, *,
-                 retention_period: float,
+                 retention_period: int,
                  is_locked: Optional[bool] = None):
         """
-        :param float retention_period: The period of time, in seconds, that objects in the bucket must be retained and cannot be deleted, overwritten, or archived. The value must be less than 2,147,483,647 seconds.
+        :param int retention_period: The period of time, in seconds, that objects in the bucket must be retained and cannot be deleted, overwritten, or archived. The value must be less than 2,147,483,647 seconds.
         :param bool is_locked: If set to `true`, the bucket will be [locked](https://cloud.google.com/storage/docs/using-bucket-lock#lock-bucket) and permanently restrict edits to the bucket's retention policy.  Caution: Locking a bucket is an irreversible action.
         """
         pulumi.set(__self__, "retention_period", retention_period)
@@ -383,7 +383,7 @@ class BucketRetentionPolicy(dict):
 
     @property
     @pulumi.getter(name="retentionPeriod")
-    def retention_period(self) -> float:
+    def retention_period(self) -> int:
         """
         The period of time, in seconds, that objects in the bucket must be retained and cannot be deleted, overwritten, or archived. The value must be less than 2,147,483,647 seconds.
         """
@@ -556,13 +556,13 @@ class TransferJobSchedule(dict):
 @pulumi.output_type
 class TransferJobScheduleScheduleEndDate(dict):
     def __init__(__self__, *,
-                 day: float,
-                 month: float,
-                 year: float):
+                 day: int,
+                 month: int,
+                 year: int):
         """
-        :param float day: Day of month. Must be from 1 to 31 and valid for the year and month.
-        :param float month: Month of year. Must be from 1 to 12.
-        :param float year: Year of date. Must be from 1 to 9999.
+        :param int day: Day of month. Must be from 1 to 31 and valid for the year and month.
+        :param int month: Month of year. Must be from 1 to 12.
+        :param int year: Year of date. Must be from 1 to 9999.
         """
         pulumi.set(__self__, "day", day)
         pulumi.set(__self__, "month", month)
@@ -570,7 +570,7 @@ class TransferJobScheduleScheduleEndDate(dict):
 
     @property
     @pulumi.getter
-    def day(self) -> float:
+    def day(self) -> int:
         """
         Day of month. Must be from 1 to 31 and valid for the year and month.
         """
@@ -578,7 +578,7 @@ class TransferJobScheduleScheduleEndDate(dict):
 
     @property
     @pulumi.getter
-    def month(self) -> float:
+    def month(self) -> int:
         """
         Month of year. Must be from 1 to 12.
         """
@@ -586,7 +586,7 @@ class TransferJobScheduleScheduleEndDate(dict):
 
     @property
     @pulumi.getter
-    def year(self) -> float:
+    def year(self) -> int:
         """
         Year of date. Must be from 1 to 9999.
         """
@@ -599,13 +599,13 @@ class TransferJobScheduleScheduleEndDate(dict):
 @pulumi.output_type
 class TransferJobScheduleScheduleStartDate(dict):
     def __init__(__self__, *,
-                 day: float,
-                 month: float,
-                 year: float):
+                 day: int,
+                 month: int,
+                 year: int):
         """
-        :param float day: Day of month. Must be from 1 to 31 and valid for the year and month.
-        :param float month: Month of year. Must be from 1 to 12.
-        :param float year: Year of date. Must be from 1 to 9999.
+        :param int day: Day of month. Must be from 1 to 31 and valid for the year and month.
+        :param int month: Month of year. Must be from 1 to 12.
+        :param int year: Year of date. Must be from 1 to 9999.
         """
         pulumi.set(__self__, "day", day)
         pulumi.set(__self__, "month", month)
@@ -613,7 +613,7 @@ class TransferJobScheduleScheduleStartDate(dict):
 
     @property
     @pulumi.getter
-    def day(self) -> float:
+    def day(self) -> int:
         """
         Day of month. Must be from 1 to 31 and valid for the year and month.
         """
@@ -621,7 +621,7 @@ class TransferJobScheduleScheduleStartDate(dict):
 
     @property
     @pulumi.getter
-    def month(self) -> float:
+    def month(self) -> int:
         """
         Month of year. Must be from 1 to 12.
         """
@@ -629,7 +629,7 @@ class TransferJobScheduleScheduleStartDate(dict):
 
     @property
     @pulumi.getter
-    def year(self) -> float:
+    def year(self) -> int:
         """
         Year of date. Must be from 1 to 9999.
         """
@@ -642,15 +642,15 @@ class TransferJobScheduleScheduleStartDate(dict):
 @pulumi.output_type
 class TransferJobScheduleStartTimeOfDay(dict):
     def __init__(__self__, *,
-                 hours: float,
-                 minutes: float,
-                 nanos: float,
-                 seconds: float):
+                 hours: int,
+                 minutes: int,
+                 nanos: int,
+                 seconds: int):
         """
-        :param float hours: Hours of day in 24 hour format. Should be from 0 to 23
-        :param float minutes: Minutes of hour of day. Must be from 0 to 59.
-        :param float nanos: Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
-        :param float seconds: Seconds of minutes of the time. Must normally be from 0 to 59.
+        :param int hours: Hours of day in 24 hour format. Should be from 0 to 23
+        :param int minutes: Minutes of hour of day. Must be from 0 to 59.
+        :param int nanos: Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
+        :param int seconds: Seconds of minutes of the time. Must normally be from 0 to 59.
         """
         pulumi.set(__self__, "hours", hours)
         pulumi.set(__self__, "minutes", minutes)
@@ -659,7 +659,7 @@ class TransferJobScheduleStartTimeOfDay(dict):
 
     @property
     @pulumi.getter
-    def hours(self) -> float:
+    def hours(self) -> int:
         """
         Hours of day in 24 hour format. Should be from 0 to 23
         """
@@ -667,7 +667,7 @@ class TransferJobScheduleStartTimeOfDay(dict):
 
     @property
     @pulumi.getter
-    def minutes(self) -> float:
+    def minutes(self) -> int:
         """
         Minutes of hour of day. Must be from 0 to 59.
         """
@@ -675,7 +675,7 @@ class TransferJobScheduleStartTimeOfDay(dict):
 
     @property
     @pulumi.getter
-    def nanos(self) -> float:
+    def nanos(self) -> int:
         """
         Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
         """
@@ -683,7 +683,7 @@ class TransferJobScheduleStartTimeOfDay(dict):
 
     @property
     @pulumi.getter
-    def seconds(self) -> float:
+    def seconds(self) -> int:
         """
         Seconds of minutes of the time. Must normally be from 0 to 59.
         """

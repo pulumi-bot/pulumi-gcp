@@ -113,13 +113,13 @@ class ManagedZoneDnssecConfigArgs:
 class ManagedZoneDnssecConfigDefaultKeySpecArgs:
     def __init__(__self__, *,
                  algorithm: Optional[pulumi.Input[str]] = None,
-                 key_length: Optional[pulumi.Input[float]] = None,
+                 key_length: Optional[pulumi.Input[int]] = None,
                  key_type: Optional[pulumi.Input[str]] = None,
                  kind: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] algorithm: String mnemonic specifying the DNSSEC algorithm of this key
                Possible values are `ecdsap256sha256`, `ecdsap384sha384`, `rsasha1`, `rsasha256`, and `rsasha512`.
-        :param pulumi.Input[float] key_length: Length of the keys in bits
+        :param pulumi.Input[int] key_length: Length of the keys in bits
         :param pulumi.Input[str] key_type: Specifies whether this is a key signing key (KSK) or a zone
                signing key (ZSK). Key signing keys have the Secure Entry
                Point flag set and, when active, will only be used to sign
@@ -153,14 +153,14 @@ class ManagedZoneDnssecConfigDefaultKeySpecArgs:
 
     @property
     @pulumi.getter(name="keyLength")
-    def key_length(self) -> Optional[pulumi.Input[float]]:
+    def key_length(self) -> Optional[pulumi.Input[int]]:
         """
         Length of the keys in bits
         """
         return pulumi.get(self, "key_length")
 
     @key_length.setter
-    def key_length(self, value: Optional[pulumi.Input[float]]):
+    def key_length(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "key_length", value)
 
     @property

@@ -24,7 +24,7 @@ class Instance(pulumi.CustomResource):
                  memcache_version: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  node_config: Optional[pulumi.Input[pulumi.InputType['InstanceNodeConfigArgs']]] = None,
-                 node_count: Optional[pulumi.Input[float]] = None,
+                 node_count: Optional[pulumi.Input[int]] = None,
                  project: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  zones: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
@@ -49,7 +49,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] name: The resource name of the instance.
         :param pulumi.Input[pulumi.InputType['InstanceNodeConfigArgs']] node_config: Configuration for memcache nodes.
                Structure is documented below.
-        :param pulumi.Input[float] node_count: Number of nodes in the memcache instance.
+        :param pulumi.Input[int] node_count: Number of nodes in the memcache instance.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         :param pulumi.Input[str] region: The name of the Memcache region of the instance.
@@ -115,7 +115,7 @@ class Instance(pulumi.CustomResource):
             memcache_version: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             node_config: Optional[pulumi.Input[pulumi.InputType['InstanceNodeConfigArgs']]] = None,
-            node_count: Optional[pulumi.Input[float]] = None,
+            node_count: Optional[pulumi.Input[int]] = None,
             project: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
             zones: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None) -> 'Instance':
@@ -144,7 +144,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] name: The resource name of the instance.
         :param pulumi.Input[pulumi.InputType['InstanceNodeConfigArgs']] node_config: Configuration for memcache nodes.
                Structure is documented below.
-        :param pulumi.Input[float] node_count: Number of nodes in the memcache instance.
+        :param pulumi.Input[int] node_count: Number of nodes in the memcache instance.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         :param pulumi.Input[str] region: The name of the Memcache region of the instance.
@@ -269,7 +269,7 @@ class Instance(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="nodeCount")
-    def node_count(self) -> pulumi.Output[float]:
+    def node_count(self) -> pulumi.Output[int]:
         """
         Number of nodes in the memcache instance.
         """

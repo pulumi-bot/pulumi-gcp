@@ -675,14 +675,14 @@ class ClusterClusterAutoscalingAutoProvisioningDefaults(dict):
 class ClusterClusterAutoscalingResourceLimit(dict):
     def __init__(__self__, *,
                  resource_type: str,
-                 maximum: Optional[float] = None,
-                 minimum: Optional[float] = None):
+                 maximum: Optional[int] = None,
+                 minimum: Optional[int] = None):
         """
         :param str resource_type: The type of the resource. For example, `cpu` and
                `memory`.  See the [guide to using Node Auto-Provisioning](https://cloud.google.com/kubernetes-engine/docs/how-to/node-auto-provisioning)
                for a list of types.
-        :param float maximum: Maximum amount of the resource in the cluster.
-        :param float minimum: Minimum amount of the resource in the cluster.
+        :param int maximum: Maximum amount of the resource in the cluster.
+        :param int minimum: Minimum amount of the resource in the cluster.
         """
         pulumi.set(__self__, "resource_type", resource_type)
         if maximum is not None:
@@ -702,7 +702,7 @@ class ClusterClusterAutoscalingResourceLimit(dict):
 
     @property
     @pulumi.getter
-    def maximum(self) -> Optional[float]:
+    def maximum(self) -> Optional[int]:
         """
         Maximum amount of the resource in the cluster.
         """
@@ -710,7 +710,7 @@ class ClusterClusterAutoscalingResourceLimit(dict):
 
     @property
     @pulumi.getter
-    def minimum(self) -> Optional[float]:
+    def minimum(self) -> Optional[int]:
         """
         Minimum amount of the resource in the cluster.
         """
@@ -1160,14 +1160,14 @@ class ClusterNetworkPolicy(dict):
 class ClusterNodeConfig(dict):
     def __init__(__self__, *,
                  boot_disk_kms_key: Optional[str] = None,
-                 disk_size_gb: Optional[float] = None,
+                 disk_size_gb: Optional[int] = None,
                  disk_type: Optional[str] = None,
                  guest_accelerators: Optional[List['outputs.ClusterNodeConfigGuestAccelerator']] = None,
                  image_type: Optional[str] = None,
                  kubelet_config: Optional['outputs.ClusterNodeConfigKubeletConfig'] = None,
                  labels: Optional[Mapping[str, str]] = None,
                  linux_node_config: Optional['outputs.ClusterNodeConfigLinuxNodeConfig'] = None,
-                 local_ssd_count: Optional[float] = None,
+                 local_ssd_count: Optional[int] = None,
                  machine_type: Optional[str] = None,
                  metadata: Optional[Mapping[str, str]] = None,
                  min_cpu_platform: Optional[str] = None,
@@ -1181,7 +1181,7 @@ class ClusterNodeConfig(dict):
                  workload_metadata_config: Optional['outputs.ClusterNodeConfigWorkloadMetadataConfig'] = None):
         """
         :param str boot_disk_kms_key: The Customer Managed Encryption Key used to encrypt the boot disk attached to each node in the node pool. This should be of the form projects/[KEY_PROJECT_ID]/locations/[LOCATION]/keyRings/[RING_NAME]/cryptoKeys/[KEY_NAME]. For more information about protecting resources with Cloud KMS Keys please see: https://cloud.google.com/compute/docs/disks/customer-managed-encryption
-        :param float disk_size_gb: Size of the disk attached to each node, specified
+        :param int disk_size_gb: Size of the disk attached to each node, specified
                in GB. The smallest allowed disk size is 10GB. Defaults to 100GB.
         :param str disk_type: Type of the disk attached to each node
                (e.g. 'pd-standard', 'pd-balanced' or 'pd-ssd'). If unspecified, the default disk type is 'pd-standard'
@@ -1198,7 +1198,7 @@ class ClusterNodeConfig(dict):
                Linux node configuration, currently supported attributes can be found [here](https://cloud.google.com/sdk/gcloud/reference/beta/container/node-pools/create#--system-config-from-file).
                Note that validations happen all server side. All attributes are optional.
                Structure is documented below.
-        :param float local_ssd_count: The amount of local SSD disks that will be
+        :param int local_ssd_count: The amount of local SSD disks that will be
                attached to each cluster node. Defaults to 0.
         :param str machine_type: The name of a Google Compute Engine machine type.
                Defaults to `e2-medium`. To create a custom machine type, value should be set as specified
@@ -1292,7 +1292,7 @@ class ClusterNodeConfig(dict):
 
     @property
     @pulumi.getter(name="diskSizeGb")
-    def disk_size_gb(self) -> Optional[float]:
+    def disk_size_gb(self) -> Optional[int]:
         """
         Size of the disk attached to each node, specified
         in GB. The smallest allowed disk size is 10GB. Defaults to 100GB.
@@ -1358,7 +1358,7 @@ class ClusterNodeConfig(dict):
 
     @property
     @pulumi.getter(name="localSsdCount")
-    def local_ssd_count(self) -> Optional[float]:
+    def local_ssd_count(self) -> Optional[int]:
         """
         The amount of local SSD disks that will be
         attached to each cluster node. Defaults to 0.
@@ -1489,10 +1489,10 @@ class ClusterNodeConfig(dict):
 @pulumi.output_type
 class ClusterNodeConfigGuestAccelerator(dict):
     def __init__(__self__, *,
-                 count: float,
+                 count: int,
                  type: str):
         """
-        :param float count: The number of the guest accelerator cards exposed to this instance.
+        :param int count: The number of the guest accelerator cards exposed to this instance.
         :param str type: The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
         """
         pulumi.set(__self__, "count", count)
@@ -1500,7 +1500,7 @@ class ClusterNodeConfigGuestAccelerator(dict):
 
     @property
     @pulumi.getter
-    def count(self) -> float:
+    def count(self) -> int:
         """
         The number of the guest accelerator cards exposed to this instance.
         """
@@ -1735,19 +1735,19 @@ class ClusterNodeConfigWorkloadMetadataConfig(dict):
 class ClusterNodePool(dict):
     def __init__(__self__, *,
                  autoscaling: Optional['outputs.ClusterNodePoolAutoscaling'] = None,
-                 initial_node_count: Optional[float] = None,
+                 initial_node_count: Optional[int] = None,
                  instance_group_urls: Optional[List[str]] = None,
                  management: Optional['outputs.ClusterNodePoolManagement'] = None,
-                 max_pods_per_node: Optional[float] = None,
+                 max_pods_per_node: Optional[int] = None,
                  name: Optional[str] = None,
                  name_prefix: Optional[str] = None,
                  node_config: Optional['outputs.ClusterNodePoolNodeConfig'] = None,
-                 node_count: Optional[float] = None,
+                 node_count: Optional[int] = None,
                  node_locations: Optional[List[str]] = None,
                  upgrade_settings: Optional['outputs.ClusterNodePoolUpgradeSettings'] = None,
                  version: Optional[str] = None):
         """
-        :param float initial_node_count: The number of nodes to create in this
+        :param int initial_node_count: The number of nodes to create in this
                cluster's default node pool. In regional or multi-zonal clusters, this is the
                number of nodes per zone. Must be set if `node_pool` is not set. If you're using
                `container.NodePool` objects with no default node pool, you'll need to
@@ -1799,7 +1799,7 @@ class ClusterNodePool(dict):
 
     @property
     @pulumi.getter(name="initialNodeCount")
-    def initial_node_count(self) -> Optional[float]:
+    def initial_node_count(self) -> Optional[int]:
         """
         The number of nodes to create in this
         cluster's default node pool. In regional or multi-zonal clusters, this is the
@@ -1826,7 +1826,7 @@ class ClusterNodePool(dict):
 
     @property
     @pulumi.getter(name="maxPodsPerNode")
-    def max_pods_per_node(self) -> Optional[float]:
+    def max_pods_per_node(self) -> Optional[int]:
         return pulumi.get(self, "max_pods_per_node")
 
     @property
@@ -1857,7 +1857,7 @@ class ClusterNodePool(dict):
 
     @property
     @pulumi.getter(name="nodeCount")
-    def node_count(self) -> Optional[float]:
+    def node_count(self) -> Optional[int]:
         return pulumi.get(self, "node_count")
 
     @property
@@ -1888,19 +1888,19 @@ class ClusterNodePool(dict):
 @pulumi.output_type
 class ClusterNodePoolAutoscaling(dict):
     def __init__(__self__, *,
-                 max_node_count: float,
-                 min_node_count: float):
+                 max_node_count: int,
+                 min_node_count: int):
         pulumi.set(__self__, "max_node_count", max_node_count)
         pulumi.set(__self__, "min_node_count", min_node_count)
 
     @property
     @pulumi.getter(name="maxNodeCount")
-    def max_node_count(self) -> float:
+    def max_node_count(self) -> int:
         return pulumi.get(self, "max_node_count")
 
     @property
     @pulumi.getter(name="minNodeCount")
-    def min_node_count(self) -> float:
+    def min_node_count(self) -> int:
         return pulumi.get(self, "min_node_count")
 
     def _translate_property(self, prop):
@@ -1935,14 +1935,14 @@ class ClusterNodePoolManagement(dict):
 class ClusterNodePoolNodeConfig(dict):
     def __init__(__self__, *,
                  boot_disk_kms_key: Optional[str] = None,
-                 disk_size_gb: Optional[float] = None,
+                 disk_size_gb: Optional[int] = None,
                  disk_type: Optional[str] = None,
                  guest_accelerators: Optional[List['outputs.ClusterNodePoolNodeConfigGuestAccelerator']] = None,
                  image_type: Optional[str] = None,
                  kubelet_config: Optional['outputs.ClusterNodePoolNodeConfigKubeletConfig'] = None,
                  labels: Optional[Mapping[str, str]] = None,
                  linux_node_config: Optional['outputs.ClusterNodePoolNodeConfigLinuxNodeConfig'] = None,
-                 local_ssd_count: Optional[float] = None,
+                 local_ssd_count: Optional[int] = None,
                  machine_type: Optional[str] = None,
                  metadata: Optional[Mapping[str, str]] = None,
                  min_cpu_platform: Optional[str] = None,
@@ -1956,7 +1956,7 @@ class ClusterNodePoolNodeConfig(dict):
                  workload_metadata_config: Optional['outputs.ClusterNodePoolNodeConfigWorkloadMetadataConfig'] = None):
         """
         :param str boot_disk_kms_key: The Customer Managed Encryption Key used to encrypt the boot disk attached to each node in the node pool. This should be of the form projects/[KEY_PROJECT_ID]/locations/[LOCATION]/keyRings/[RING_NAME]/cryptoKeys/[KEY_NAME]. For more information about protecting resources with Cloud KMS Keys please see: https://cloud.google.com/compute/docs/disks/customer-managed-encryption
-        :param float disk_size_gb: Size of the disk attached to each node, specified
+        :param int disk_size_gb: Size of the disk attached to each node, specified
                in GB. The smallest allowed disk size is 10GB. Defaults to 100GB.
         :param str disk_type: Type of the disk attached to each node
                (e.g. 'pd-standard', 'pd-balanced' or 'pd-ssd'). If unspecified, the default disk type is 'pd-standard'
@@ -1973,7 +1973,7 @@ class ClusterNodePoolNodeConfig(dict):
                Linux node configuration, currently supported attributes can be found [here](https://cloud.google.com/sdk/gcloud/reference/beta/container/node-pools/create#--system-config-from-file).
                Note that validations happen all server side. All attributes are optional.
                Structure is documented below.
-        :param float local_ssd_count: The amount of local SSD disks that will be
+        :param int local_ssd_count: The amount of local SSD disks that will be
                attached to each cluster node. Defaults to 0.
         :param str machine_type: The name of a Google Compute Engine machine type.
                Defaults to `e2-medium`. To create a custom machine type, value should be set as specified
@@ -2067,7 +2067,7 @@ class ClusterNodePoolNodeConfig(dict):
 
     @property
     @pulumi.getter(name="diskSizeGb")
-    def disk_size_gb(self) -> Optional[float]:
+    def disk_size_gb(self) -> Optional[int]:
         """
         Size of the disk attached to each node, specified
         in GB. The smallest allowed disk size is 10GB. Defaults to 100GB.
@@ -2133,7 +2133,7 @@ class ClusterNodePoolNodeConfig(dict):
 
     @property
     @pulumi.getter(name="localSsdCount")
-    def local_ssd_count(self) -> Optional[float]:
+    def local_ssd_count(self) -> Optional[int]:
         """
         The amount of local SSD disks that will be
         attached to each cluster node. Defaults to 0.
@@ -2264,10 +2264,10 @@ class ClusterNodePoolNodeConfig(dict):
 @pulumi.output_type
 class ClusterNodePoolNodeConfigGuestAccelerator(dict):
     def __init__(__self__, *,
-                 count: float,
+                 count: int,
                  type: str):
         """
-        :param float count: The number of the guest accelerator cards exposed to this instance.
+        :param int count: The number of the guest accelerator cards exposed to this instance.
         :param str type: The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
         """
         pulumi.set(__self__, "count", count)
@@ -2275,7 +2275,7 @@ class ClusterNodePoolNodeConfigGuestAccelerator(dict):
 
     @property
     @pulumi.getter
-    def count(self) -> float:
+    def count(self) -> int:
         """
         The number of the guest accelerator cards exposed to this instance.
         """
@@ -2509,19 +2509,19 @@ class ClusterNodePoolNodeConfigWorkloadMetadataConfig(dict):
 @pulumi.output_type
 class ClusterNodePoolUpgradeSettings(dict):
     def __init__(__self__, *,
-                 max_surge: float,
-                 max_unavailable: float):
+                 max_surge: int,
+                 max_unavailable: int):
         pulumi.set(__self__, "max_surge", max_surge)
         pulumi.set(__self__, "max_unavailable", max_unavailable)
 
     @property
     @pulumi.getter(name="maxSurge")
-    def max_surge(self) -> float:
+    def max_surge(self) -> int:
         return pulumi.get(self, "max_surge")
 
     @property
     @pulumi.getter(name="maxUnavailable")
-    def max_unavailable(self) -> float:
+    def max_unavailable(self) -> int:
         return pulumi.get(self, "max_unavailable")
 
     def _translate_property(self, prop):
@@ -2835,11 +2835,11 @@ class ClusterWorkloadIdentityConfig(dict):
 @pulumi.output_type
 class NodePoolAutoscaling(dict):
     def __init__(__self__, *,
-                 max_node_count: float,
-                 min_node_count: float):
+                 max_node_count: int,
+                 min_node_count: int):
         """
-        :param float max_node_count: Maximum number of nodes in the NodePool. Must be >= min_node_count.
-        :param float min_node_count: Minimum number of nodes in the NodePool. Must be >=0 and
+        :param int max_node_count: Maximum number of nodes in the NodePool. Must be >= min_node_count.
+        :param int min_node_count: Minimum number of nodes in the NodePool. Must be >=0 and
                <= `max_node_count`.
         """
         pulumi.set(__self__, "max_node_count", max_node_count)
@@ -2847,7 +2847,7 @@ class NodePoolAutoscaling(dict):
 
     @property
     @pulumi.getter(name="maxNodeCount")
-    def max_node_count(self) -> float:
+    def max_node_count(self) -> int:
         """
         Maximum number of nodes in the NodePool. Must be >= min_node_count.
         """
@@ -2855,7 +2855,7 @@ class NodePoolAutoscaling(dict):
 
     @property
     @pulumi.getter(name="minNodeCount")
-    def min_node_count(self) -> float:
+    def min_node_count(self) -> int:
         """
         Minimum number of nodes in the NodePool. Must be >=0 and
         <= `max_node_count`.
@@ -2904,14 +2904,14 @@ class NodePoolManagement(dict):
 class NodePoolNodeConfig(dict):
     def __init__(__self__, *,
                  boot_disk_kms_key: Optional[str] = None,
-                 disk_size_gb: Optional[float] = None,
+                 disk_size_gb: Optional[int] = None,
                  disk_type: Optional[str] = None,
                  guest_accelerators: Optional[List['outputs.NodePoolNodeConfigGuestAccelerator']] = None,
                  image_type: Optional[str] = None,
                  kubelet_config: Optional['outputs.NodePoolNodeConfigKubeletConfig'] = None,
                  labels: Optional[Mapping[str, str]] = None,
                  linux_node_config: Optional['outputs.NodePoolNodeConfigLinuxNodeConfig'] = None,
-                 local_ssd_count: Optional[float] = None,
+                 local_ssd_count: Optional[int] = None,
                  machine_type: Optional[str] = None,
                  metadata: Optional[Mapping[str, str]] = None,
                  min_cpu_platform: Optional[str] = None,
@@ -2971,7 +2971,7 @@ class NodePoolNodeConfig(dict):
 
     @property
     @pulumi.getter(name="diskSizeGb")
-    def disk_size_gb(self) -> Optional[float]:
+    def disk_size_gb(self) -> Optional[int]:
         return pulumi.get(self, "disk_size_gb")
 
     @property
@@ -3006,7 +3006,7 @@ class NodePoolNodeConfig(dict):
 
     @property
     @pulumi.getter(name="localSsdCount")
-    def local_ssd_count(self) -> Optional[float]:
+    def local_ssd_count(self) -> Optional[int]:
         return pulumi.get(self, "local_ssd_count")
 
     @property
@@ -3071,14 +3071,14 @@ class NodePoolNodeConfig(dict):
 @pulumi.output_type
 class NodePoolNodeConfigGuestAccelerator(dict):
     def __init__(__self__, *,
-                 count: float,
+                 count: int,
                  type: str):
         pulumi.set(__self__, "count", count)
         pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter
-    def count(self) -> float:
+    def count(self) -> int:
         return pulumi.get(self, "count")
 
     @property
@@ -3222,13 +3222,13 @@ class NodePoolNodeConfigWorkloadMetadataConfig(dict):
 @pulumi.output_type
 class NodePoolUpgradeSettings(dict):
     def __init__(__self__, *,
-                 max_surge: float,
-                 max_unavailable: float):
+                 max_surge: int,
+                 max_unavailable: int):
         """
-        :param float max_surge: The number of additional nodes that can be added to the node pool during
+        :param int max_surge: The number of additional nodes that can be added to the node pool during
                an upgrade. Increasing `max_surge` raises the number of nodes that can be upgraded simultaneously.
                Can be set to 0 or greater.
-        :param float max_unavailable: The number of nodes that can be simultaneously unavailable during
+        :param int max_unavailable: The number of nodes that can be simultaneously unavailable during
                an upgrade. Increasing `max_unavailable` raises the number of nodes that can be upgraded in
                parallel. Can be set to 0 or greater.
         """
@@ -3237,7 +3237,7 @@ class NodePoolUpgradeSettings(dict):
 
     @property
     @pulumi.getter(name="maxSurge")
-    def max_surge(self) -> float:
+    def max_surge(self) -> int:
         """
         The number of additional nodes that can be added to the node pool during
         an upgrade. Increasing `max_surge` raises the number of nodes that can be upgraded simultaneously.
@@ -3247,7 +3247,7 @@ class NodePoolUpgradeSettings(dict):
 
     @property
     @pulumi.getter(name="maxUnavailable")
-    def max_unavailable(self) -> float:
+    def max_unavailable(self) -> int:
         """
         The number of nodes that can be simultaneously unavailable during
         an upgrade. Increasing `max_unavailable` raises the number of nodes that can be upgraded in
@@ -3535,8 +3535,8 @@ class GetClusterClusterAutoscalingAutoProvisioningDefaultResult(dict):
 @pulumi.output_type
 class GetClusterClusterAutoscalingResourceLimitResult(dict):
     def __init__(__self__, *,
-                 maximum: float,
-                 minimum: float,
+                 maximum: int,
+                 minimum: int,
                  resource_type: str):
         pulumi.set(__self__, "maximum", maximum)
         pulumi.set(__self__, "minimum", minimum)
@@ -3544,12 +3544,12 @@ class GetClusterClusterAutoscalingResourceLimitResult(dict):
 
     @property
     @pulumi.getter
-    def maximum(self) -> float:
+    def maximum(self) -> int:
         return pulumi.get(self, "maximum")
 
     @property
     @pulumi.getter
-    def minimum(self) -> float:
+    def minimum(self) -> int:
         return pulumi.get(self, "minimum")
 
     @property
@@ -3825,14 +3825,14 @@ class GetClusterNetworkPolicyResult(dict):
 class GetClusterNodeConfigResult(dict):
     def __init__(__self__, *,
                  boot_disk_kms_key: str,
-                 disk_size_gb: float,
+                 disk_size_gb: int,
                  disk_type: str,
                  guest_accelerators: List['outputs.GetClusterNodeConfigGuestAcceleratorResult'],
                  image_type: str,
                  kubelet_configs: List['outputs.GetClusterNodeConfigKubeletConfigResult'],
                  labels: Mapping[str, str],
                  linux_node_configs: List['outputs.GetClusterNodeConfigLinuxNodeConfigResult'],
-                 local_ssd_count: float,
+                 local_ssd_count: int,
                  machine_type: str,
                  metadata: Mapping[str, str],
                  min_cpu_platform: str,
@@ -3872,7 +3872,7 @@ class GetClusterNodeConfigResult(dict):
 
     @property
     @pulumi.getter(name="diskSizeGb")
-    def disk_size_gb(self) -> float:
+    def disk_size_gb(self) -> int:
         return pulumi.get(self, "disk_size_gb")
 
     @property
@@ -3907,7 +3907,7 @@ class GetClusterNodeConfigResult(dict):
 
     @property
     @pulumi.getter(name="localSsdCount")
-    def local_ssd_count(self) -> float:
+    def local_ssd_count(self) -> int:
         return pulumi.get(self, "local_ssd_count")
 
     @property
@@ -3969,14 +3969,14 @@ class GetClusterNodeConfigResult(dict):
 @pulumi.output_type
 class GetClusterNodeConfigGuestAcceleratorResult(dict):
     def __init__(__self__, *,
-                 count: float,
+                 count: int,
                  type: str):
         pulumi.set(__self__, "count", count)
         pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter
-    def count(self) -> float:
+    def count(self) -> int:
         return pulumi.get(self, "count")
 
     @property
@@ -4096,14 +4096,14 @@ class GetClusterNodeConfigWorkloadMetadataConfigResult(dict):
 class GetClusterNodePoolResult(dict):
     def __init__(__self__, *,
                  autoscalings: List['outputs.GetClusterNodePoolAutoscalingResult'],
-                 initial_node_count: float,
+                 initial_node_count: int,
                  instance_group_urls: List[str],
                  managements: List['outputs.GetClusterNodePoolManagementResult'],
-                 max_pods_per_node: float,
+                 max_pods_per_node: int,
                  name: str,
                  name_prefix: str,
                  node_configs: List['outputs.GetClusterNodePoolNodeConfigResult'],
-                 node_count: float,
+                 node_count: int,
                  node_locations: List[str],
                  upgrade_settings: List['outputs.GetClusterNodePoolUpgradeSettingResult'],
                  version: str):
@@ -4130,7 +4130,7 @@ class GetClusterNodePoolResult(dict):
 
     @property
     @pulumi.getter(name="initialNodeCount")
-    def initial_node_count(self) -> float:
+    def initial_node_count(self) -> int:
         return pulumi.get(self, "initial_node_count")
 
     @property
@@ -4145,7 +4145,7 @@ class GetClusterNodePoolResult(dict):
 
     @property
     @pulumi.getter(name="maxPodsPerNode")
-    def max_pods_per_node(self) -> float:
+    def max_pods_per_node(self) -> int:
         return pulumi.get(self, "max_pods_per_node")
 
     @property
@@ -4168,7 +4168,7 @@ class GetClusterNodePoolResult(dict):
 
     @property
     @pulumi.getter(name="nodeCount")
-    def node_count(self) -> float:
+    def node_count(self) -> int:
         return pulumi.get(self, "node_count")
 
     @property
@@ -4190,19 +4190,19 @@ class GetClusterNodePoolResult(dict):
 @pulumi.output_type
 class GetClusterNodePoolAutoscalingResult(dict):
     def __init__(__self__, *,
-                 max_node_count: float,
-                 min_node_count: float):
+                 max_node_count: int,
+                 min_node_count: int):
         pulumi.set(__self__, "max_node_count", max_node_count)
         pulumi.set(__self__, "min_node_count", min_node_count)
 
     @property
     @pulumi.getter(name="maxNodeCount")
-    def max_node_count(self) -> float:
+    def max_node_count(self) -> int:
         return pulumi.get(self, "max_node_count")
 
     @property
     @pulumi.getter(name="minNodeCount")
-    def min_node_count(self) -> float:
+    def min_node_count(self) -> int:
         return pulumi.get(self, "min_node_count")
 
 
@@ -4229,14 +4229,14 @@ class GetClusterNodePoolManagementResult(dict):
 class GetClusterNodePoolNodeConfigResult(dict):
     def __init__(__self__, *,
                  boot_disk_kms_key: str,
-                 disk_size_gb: float,
+                 disk_size_gb: int,
                  disk_type: str,
                  guest_accelerators: List['outputs.GetClusterNodePoolNodeConfigGuestAcceleratorResult'],
                  image_type: str,
                  kubelet_configs: List['outputs.GetClusterNodePoolNodeConfigKubeletConfigResult'],
                  labels: Mapping[str, str],
                  linux_node_configs: List['outputs.GetClusterNodePoolNodeConfigLinuxNodeConfigResult'],
-                 local_ssd_count: float,
+                 local_ssd_count: int,
                  machine_type: str,
                  metadata: Mapping[str, str],
                  min_cpu_platform: str,
@@ -4276,7 +4276,7 @@ class GetClusterNodePoolNodeConfigResult(dict):
 
     @property
     @pulumi.getter(name="diskSizeGb")
-    def disk_size_gb(self) -> float:
+    def disk_size_gb(self) -> int:
         return pulumi.get(self, "disk_size_gb")
 
     @property
@@ -4311,7 +4311,7 @@ class GetClusterNodePoolNodeConfigResult(dict):
 
     @property
     @pulumi.getter(name="localSsdCount")
-    def local_ssd_count(self) -> float:
+    def local_ssd_count(self) -> int:
         return pulumi.get(self, "local_ssd_count")
 
     @property
@@ -4373,14 +4373,14 @@ class GetClusterNodePoolNodeConfigResult(dict):
 @pulumi.output_type
 class GetClusterNodePoolNodeConfigGuestAcceleratorResult(dict):
     def __init__(__self__, *,
-                 count: float,
+                 count: int,
                  type: str):
         pulumi.set(__self__, "count", count)
         pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter
-    def count(self) -> float:
+    def count(self) -> int:
         return pulumi.get(self, "count")
 
     @property
@@ -4499,19 +4499,19 @@ class GetClusterNodePoolNodeConfigWorkloadMetadataConfigResult(dict):
 @pulumi.output_type
 class GetClusterNodePoolUpgradeSettingResult(dict):
     def __init__(__self__, *,
-                 max_surge: float,
-                 max_unavailable: float):
+                 max_surge: int,
+                 max_unavailable: int):
         pulumi.set(__self__, "max_surge", max_surge)
         pulumi.set(__self__, "max_unavailable", max_unavailable)
 
     @property
     @pulumi.getter(name="maxSurge")
-    def max_surge(self) -> float:
+    def max_surge(self) -> int:
         return pulumi.get(self, "max_surge")
 
     @property
     @pulumi.getter(name="maxUnavailable")
-    def max_unavailable(self) -> float:
+    def max_unavailable(self) -> int:
         return pulumi.get(self, "max_unavailable")
 
 

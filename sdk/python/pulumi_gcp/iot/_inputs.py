@@ -241,7 +241,7 @@ class DeviceLastErrorStatusArgs:
     def __init__(__self__, *,
                  details: Optional[pulumi.Input[List[pulumi.Input[Mapping[str, Any]]]]] = None,
                  message: Optional[pulumi.Input[str]] = None,
-                 number: Optional[pulumi.Input[float]] = None):
+                 number: Optional[pulumi.Input[int]] = None):
         if details is not None:
             pulumi.set(__self__, "details", details)
         if message is not None:
@@ -269,11 +269,11 @@ class DeviceLastErrorStatusArgs:
 
     @property
     @pulumi.getter
-    def number(self) -> Optional[pulumi.Input[float]]:
+    def number(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "number")
 
     @number.setter
-    def number(self, value: Optional[pulumi.Input[float]]):
+    def number(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "number", value)
 
 

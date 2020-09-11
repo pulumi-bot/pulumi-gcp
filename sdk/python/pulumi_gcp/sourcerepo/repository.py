@@ -79,7 +79,7 @@ class Repository(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             project: Optional[pulumi.Input[str]] = None,
             pubsub_configs: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['RepositoryPubsubConfigArgs']]]]] = None,
-            size: Optional[pulumi.Input[float]] = None,
+            size: Optional[pulumi.Input[int]] = None,
             url: Optional[pulumi.Input[str]] = None) -> 'Repository':
         """
         Get an existing Repository resource's state with the given name, id, and optional extra
@@ -95,7 +95,7 @@ class Repository(pulumi.CustomResource):
         :param pulumi.Input[List[pulumi.Input[pulumi.InputType['RepositoryPubsubConfigArgs']]]] pubsub_configs: How this repository publishes a change in the repository through Cloud Pub/Sub.
                Keyed by the topic names.
                Structure is documented below.
-        :param pulumi.Input[float] size: The disk usage of the repo, in bytes.
+        :param pulumi.Input[int] size: The disk usage of the repo, in bytes.
         :param pulumi.Input[str] url: URL to clone the repository from Google Cloud Source Repositories.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -139,7 +139,7 @@ class Repository(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def size(self) -> pulumi.Output[float]:
+    def size(self) -> pulumi.Output[int]:
         """
         The disk usage of the repo, in bytes.
         """

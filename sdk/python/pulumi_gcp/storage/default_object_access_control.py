@@ -110,7 +110,7 @@ class DefaultObjectAccessControl(pulumi.CustomResource):
             email: Optional[pulumi.Input[str]] = None,
             entity: Optional[pulumi.Input[str]] = None,
             entity_id: Optional[pulumi.Input[str]] = None,
-            generation: Optional[pulumi.Input[float]] = None,
+            generation: Optional[pulumi.Input[int]] = None,
             object: Optional[pulumi.Input[str]] = None,
             project_team: Optional[pulumi.Input[pulumi.InputType['DefaultObjectAccessControlProjectTeamArgs']]] = None,
             role: Optional[pulumi.Input[str]] = None) -> 'DefaultObjectAccessControl':
@@ -134,7 +134,7 @@ class DefaultObjectAccessControl(pulumi.CustomResource):
                * allUsers
                * allAuthenticatedUsers
         :param pulumi.Input[str] entity_id: The ID for the entity
-        :param pulumi.Input[float] generation: The content generation of the object, if applied to an object.
+        :param pulumi.Input[int] generation: The content generation of the object, if applied to an object.
         :param pulumi.Input[str] object: The name of the object, if applied to an object.
         :param pulumi.Input[pulumi.InputType['DefaultObjectAccessControlProjectTeamArgs']] project_team: The project team associated with the entity
         :param pulumi.Input[str] role: The access permission for the entity.
@@ -205,7 +205,7 @@ class DefaultObjectAccessControl(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def generation(self) -> pulumi.Output[float]:
+    def generation(self) -> pulumi.Output[int]:
         """
         The content generation of the object, if applied to an object.
         """

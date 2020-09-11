@@ -25,7 +25,7 @@ class Intent(pulumi.CustomResource):
                  is_fallback: Optional[pulumi.Input[bool]] = None,
                  ml_disabled: Optional[pulumi.Input[bool]] = None,
                  parent_followup_intent_name: Optional[pulumi.Input[str]] = None,
-                 priority: Optional[pulumi.Input[float]] = None,
+                 priority: Optional[pulumi.Input[int]] = None,
                  project: Optional[pulumi.Input[str]] = None,
                  reset_contexts: Optional[pulumi.Input[bool]] = None,
                  webhook_state: Optional[pulumi.Input[str]] = None,
@@ -63,7 +63,7 @@ class Intent(pulumi.CustomResource):
                ONLY match mode. Also, auto-markup in the UI is turned off.
         :param pulumi.Input[str] parent_followup_intent_name: The unique identifier of the parent intent in the chain of followup intents.
                Format: projects/<Project ID>/agent/intents/<Intent ID>.
-        :param pulumi.Input[float] priority: The priority of this intent. Higher numbers represent higher priorities.
+        :param pulumi.Input[int] priority: The priority of this intent. Higher numbers represent higher priorities.
                - If the supplied value is unspecified or 0, the service translates the value to 500,000, which corresponds
                to the Normal priority in the console.
                - If the supplied value is negative, the intent is ignored in runtime detect intent requests.
@@ -130,7 +130,7 @@ class Intent(pulumi.CustomResource):
             ml_disabled: Optional[pulumi.Input[bool]] = None,
             name: Optional[pulumi.Input[str]] = None,
             parent_followup_intent_name: Optional[pulumi.Input[str]] = None,
-            priority: Optional[pulumi.Input[float]] = None,
+            priority: Optional[pulumi.Input[int]] = None,
             project: Optional[pulumi.Input[str]] = None,
             reset_contexts: Optional[pulumi.Input[bool]] = None,
             root_followup_intent_name: Optional[pulumi.Input[str]] = None,
@@ -162,7 +162,7 @@ class Intent(pulumi.CustomResource):
         :param pulumi.Input[str] name: The unique identifier of this intent. Format: projects/<Project ID>/agent/intents/<Intent ID>.
         :param pulumi.Input[str] parent_followup_intent_name: The unique identifier of the parent intent in the chain of followup intents.
                Format: projects/<Project ID>/agent/intents/<Intent ID>.
-        :param pulumi.Input[float] priority: The priority of this intent. Higher numbers represent higher priorities.
+        :param pulumi.Input[int] priority: The priority of this intent. Higher numbers represent higher priorities.
                - If the supplied value is unspecified or 0, the service translates the value to 500,000, which corresponds
                to the Normal priority in the console.
                - If the supplied value is negative, the intent is ignored in runtime detect intent requests.
@@ -290,7 +290,7 @@ class Intent(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def priority(self) -> pulumi.Output[float]:
+    def priority(self) -> pulumi.Output[int]:
         """
         The priority of this intent. Higher numbers represent higher priorities.
         - If the supplied value is unspecified or 0, the service translates the value to 500,000, which corresponds

@@ -435,13 +435,13 @@ class FlexibleAppVersionAutomaticScaling(dict):
                  cpu_utilization: 'outputs.FlexibleAppVersionAutomaticScalingCpuUtilization',
                  cool_down_period: Optional[str] = None,
                  disk_utilization: Optional['outputs.FlexibleAppVersionAutomaticScalingDiskUtilization'] = None,
-                 max_concurrent_requests: Optional[float] = None,
-                 max_idle_instances: Optional[float] = None,
+                 max_concurrent_requests: Optional[int] = None,
+                 max_idle_instances: Optional[int] = None,
                  max_pending_latency: Optional[str] = None,
-                 max_total_instances: Optional[float] = None,
-                 min_idle_instances: Optional[float] = None,
+                 max_total_instances: Optional[int] = None,
+                 min_idle_instances: Optional[int] = None,
                  min_pending_latency: Optional[str] = None,
-                 min_total_instances: Optional[float] = None,
+                 min_total_instances: Optional[int] = None,
                  network_utilization: Optional['outputs.FlexibleAppVersionAutomaticScalingNetworkUtilization'] = None,
                  request_utilization: Optional['outputs.FlexibleAppVersionAutomaticScalingRequestUtilization'] = None):
         """
@@ -452,14 +452,14 @@ class FlexibleAppVersionAutomaticScaling(dict):
                during which the collected usage would not be reliable. Default: 120s
         :param 'FlexibleAppVersionAutomaticScalingDiskUtilizationArgs' disk_utilization: Target scaling by disk usage.
                Structure is documented below.
-        :param float max_concurrent_requests: Number of concurrent requests an automatic scaling instance can accept before the scheduler spawns a new instance.
+        :param int max_concurrent_requests: Number of concurrent requests an automatic scaling instance can accept before the scheduler spawns a new instance.
                Defaults to a runtime-specific value.
-        :param float max_idle_instances: Maximum number of idle instances that should be maintained for this version.
+        :param int max_idle_instances: Maximum number of idle instances that should be maintained for this version.
         :param str max_pending_latency: Maximum amount of time that a request should wait in the pending queue before starting a new instance to handle it.
-        :param float max_total_instances: Maximum number of instances that should be started to handle requests for this version. Default: 20
-        :param float min_idle_instances: Minimum number of idle instances that should be maintained for this version. Only applicable for the default version of a service.
+        :param int max_total_instances: Maximum number of instances that should be started to handle requests for this version. Default: 20
+        :param int min_idle_instances: Minimum number of idle instances that should be maintained for this version. Only applicable for the default version of a service.
         :param str min_pending_latency: Minimum amount of time a request should wait in the pending queue before starting a new instance to handle it.
-        :param float min_total_instances: Minimum number of running instances that should be maintained for this version. Default: 2
+        :param int min_total_instances: Minimum number of running instances that should be maintained for this version. Default: 2
         :param 'FlexibleAppVersionAutomaticScalingNetworkUtilizationArgs' network_utilization: Target scaling by network usage.
                Structure is documented below.
         :param 'FlexibleAppVersionAutomaticScalingRequestUtilizationArgs' request_utilization: Target scaling by request utilization.
@@ -519,7 +519,7 @@ class FlexibleAppVersionAutomaticScaling(dict):
 
     @property
     @pulumi.getter(name="maxConcurrentRequests")
-    def max_concurrent_requests(self) -> Optional[float]:
+    def max_concurrent_requests(self) -> Optional[int]:
         """
         Number of concurrent requests an automatic scaling instance can accept before the scheduler spawns a new instance.
         Defaults to a runtime-specific value.
@@ -528,7 +528,7 @@ class FlexibleAppVersionAutomaticScaling(dict):
 
     @property
     @pulumi.getter(name="maxIdleInstances")
-    def max_idle_instances(self) -> Optional[float]:
+    def max_idle_instances(self) -> Optional[int]:
         """
         Maximum number of idle instances that should be maintained for this version.
         """
@@ -544,7 +544,7 @@ class FlexibleAppVersionAutomaticScaling(dict):
 
     @property
     @pulumi.getter(name="maxTotalInstances")
-    def max_total_instances(self) -> Optional[float]:
+    def max_total_instances(self) -> Optional[int]:
         """
         Maximum number of instances that should be started to handle requests for this version. Default: 20
         """
@@ -552,7 +552,7 @@ class FlexibleAppVersionAutomaticScaling(dict):
 
     @property
     @pulumi.getter(name="minIdleInstances")
-    def min_idle_instances(self) -> Optional[float]:
+    def min_idle_instances(self) -> Optional[int]:
         """
         Minimum number of idle instances that should be maintained for this version. Only applicable for the default version of a service.
         """
@@ -568,7 +568,7 @@ class FlexibleAppVersionAutomaticScaling(dict):
 
     @property
     @pulumi.getter(name="minTotalInstances")
-    def min_total_instances(self) -> Optional[float]:
+    def min_total_instances(self) -> Optional[int]:
         """
         Minimum number of running instances that should be maintained for this version. Default: 2
         """
@@ -632,15 +632,15 @@ class FlexibleAppVersionAutomaticScalingCpuUtilization(dict):
 @pulumi.output_type
 class FlexibleAppVersionAutomaticScalingDiskUtilization(dict):
     def __init__(__self__, *,
-                 target_read_bytes_per_second: Optional[float] = None,
-                 target_read_ops_per_second: Optional[float] = None,
-                 target_write_bytes_per_second: Optional[float] = None,
-                 target_write_ops_per_second: Optional[float] = None):
+                 target_read_bytes_per_second: Optional[int] = None,
+                 target_read_ops_per_second: Optional[int] = None,
+                 target_write_bytes_per_second: Optional[int] = None,
+                 target_write_ops_per_second: Optional[int] = None):
         """
-        :param float target_read_bytes_per_second: Target bytes read per second.
-        :param float target_read_ops_per_second: Target ops read per seconds.
-        :param float target_write_bytes_per_second: Target bytes written per second.
-        :param float target_write_ops_per_second: Target ops written per second.
+        :param int target_read_bytes_per_second: Target bytes read per second.
+        :param int target_read_ops_per_second: Target ops read per seconds.
+        :param int target_write_bytes_per_second: Target bytes written per second.
+        :param int target_write_ops_per_second: Target ops written per second.
         """
         if target_read_bytes_per_second is not None:
             pulumi.set(__self__, "target_read_bytes_per_second", target_read_bytes_per_second)
@@ -653,7 +653,7 @@ class FlexibleAppVersionAutomaticScalingDiskUtilization(dict):
 
     @property
     @pulumi.getter(name="targetReadBytesPerSecond")
-    def target_read_bytes_per_second(self) -> Optional[float]:
+    def target_read_bytes_per_second(self) -> Optional[int]:
         """
         Target bytes read per second.
         """
@@ -661,7 +661,7 @@ class FlexibleAppVersionAutomaticScalingDiskUtilization(dict):
 
     @property
     @pulumi.getter(name="targetReadOpsPerSecond")
-    def target_read_ops_per_second(self) -> Optional[float]:
+    def target_read_ops_per_second(self) -> Optional[int]:
         """
         Target ops read per seconds.
         """
@@ -669,7 +669,7 @@ class FlexibleAppVersionAutomaticScalingDiskUtilization(dict):
 
     @property
     @pulumi.getter(name="targetWriteBytesPerSecond")
-    def target_write_bytes_per_second(self) -> Optional[float]:
+    def target_write_bytes_per_second(self) -> Optional[int]:
         """
         Target bytes written per second.
         """
@@ -677,7 +677,7 @@ class FlexibleAppVersionAutomaticScalingDiskUtilization(dict):
 
     @property
     @pulumi.getter(name="targetWriteOpsPerSecond")
-    def target_write_ops_per_second(self) -> Optional[float]:
+    def target_write_ops_per_second(self) -> Optional[int]:
         """
         Target ops written per second.
         """
@@ -690,15 +690,15 @@ class FlexibleAppVersionAutomaticScalingDiskUtilization(dict):
 @pulumi.output_type
 class FlexibleAppVersionAutomaticScalingNetworkUtilization(dict):
     def __init__(__self__, *,
-                 target_received_bytes_per_second: Optional[float] = None,
-                 target_received_packets_per_second: Optional[float] = None,
-                 target_sent_bytes_per_second: Optional[float] = None,
-                 target_sent_packets_per_second: Optional[float] = None):
+                 target_received_bytes_per_second: Optional[int] = None,
+                 target_received_packets_per_second: Optional[int] = None,
+                 target_sent_bytes_per_second: Optional[int] = None,
+                 target_sent_packets_per_second: Optional[int] = None):
         """
-        :param float target_received_bytes_per_second: Target bytes received per second.
-        :param float target_received_packets_per_second: Target packets received per second.
-        :param float target_sent_bytes_per_second: Target bytes sent per second.
-        :param float target_sent_packets_per_second: Target packets sent per second.
+        :param int target_received_bytes_per_second: Target bytes received per second.
+        :param int target_received_packets_per_second: Target packets received per second.
+        :param int target_sent_bytes_per_second: Target bytes sent per second.
+        :param int target_sent_packets_per_second: Target packets sent per second.
         """
         if target_received_bytes_per_second is not None:
             pulumi.set(__self__, "target_received_bytes_per_second", target_received_bytes_per_second)
@@ -711,7 +711,7 @@ class FlexibleAppVersionAutomaticScalingNetworkUtilization(dict):
 
     @property
     @pulumi.getter(name="targetReceivedBytesPerSecond")
-    def target_received_bytes_per_second(self) -> Optional[float]:
+    def target_received_bytes_per_second(self) -> Optional[int]:
         """
         Target bytes received per second.
         """
@@ -719,7 +719,7 @@ class FlexibleAppVersionAutomaticScalingNetworkUtilization(dict):
 
     @property
     @pulumi.getter(name="targetReceivedPacketsPerSecond")
-    def target_received_packets_per_second(self) -> Optional[float]:
+    def target_received_packets_per_second(self) -> Optional[int]:
         """
         Target packets received per second.
         """
@@ -727,7 +727,7 @@ class FlexibleAppVersionAutomaticScalingNetworkUtilization(dict):
 
     @property
     @pulumi.getter(name="targetSentBytesPerSecond")
-    def target_sent_bytes_per_second(self) -> Optional[float]:
+    def target_sent_bytes_per_second(self) -> Optional[int]:
         """
         Target bytes sent per second.
         """
@@ -735,7 +735,7 @@ class FlexibleAppVersionAutomaticScalingNetworkUtilization(dict):
 
     @property
     @pulumi.getter(name="targetSentPacketsPerSecond")
-    def target_sent_packets_per_second(self) -> Optional[float]:
+    def target_sent_packets_per_second(self) -> Optional[int]:
         """
         Target packets sent per second.
         """
@@ -953,10 +953,10 @@ class FlexibleAppVersionDeploymentFile(dict):
 class FlexibleAppVersionDeploymentZip(dict):
     def __init__(__self__, *,
                  source_url: str,
-                 files_count: Optional[float] = None):
+                 files_count: Optional[int] = None):
         """
         :param str source_url: Source URL
-        :param float files_count: files count
+        :param int files_count: files count
         """
         pulumi.set(__self__, "source_url", source_url)
         if files_count is not None:
@@ -972,7 +972,7 @@ class FlexibleAppVersionDeploymentZip(dict):
 
     @property
     @pulumi.getter(name="filesCount")
-    def files_count(self) -> Optional[float]:
+    def files_count(self) -> Optional[int]:
         """
         files count
         """
@@ -1413,9 +1413,9 @@ class FlexibleAppVersionLivenessCheck(dict):
 @pulumi.output_type
 class FlexibleAppVersionManualScaling(dict):
     def __init__(__self__, *,
-                 instances: float):
+                 instances: int):
         """
-        :param float instances: Number of instances to assign to the service at the start.
+        :param int instances: Number of instances to assign to the service at the start.
                **Note:** When managing the number of instances at runtime through the App Engine Admin API or the (now deprecated) Python 2
                Modules API set_num_instances() you must use `lifecycle.ignore_changes = ["manual_scaling"[0].instances]` to prevent drift detection.
         """
@@ -1423,7 +1423,7 @@ class FlexibleAppVersionManualScaling(dict):
 
     @property
     @pulumi.getter
-    def instances(self) -> float:
+    def instances(self) -> int:
         """
         Number of instances to assign to the service at the start.
         **Note:** When managing the number of instances at runtime through the App Engine Admin API or the (now deprecated) Python 2
@@ -1612,13 +1612,13 @@ class FlexibleAppVersionReadinessCheck(dict):
 @pulumi.output_type
 class FlexibleAppVersionResources(dict):
     def __init__(__self__, *,
-                 cpu: Optional[float] = None,
-                 disk_gb: Optional[float] = None,
+                 cpu: Optional[int] = None,
+                 disk_gb: Optional[int] = None,
                  memory_gb: Optional[float] = None,
                  volumes: Optional[List['outputs.FlexibleAppVersionResourcesVolume']] = None):
         """
-        :param float cpu: Number of CPU cores needed.
-        :param float disk_gb: Disk size (GB) needed.
+        :param int cpu: Number of CPU cores needed.
+        :param int disk_gb: Disk size (GB) needed.
         :param float memory_gb: Memory (GB) needed.
         :param List['FlexibleAppVersionResourcesVolumeArgs'] volumes: List of ports, or port pairs, to forward from the virtual machine to the application container.
                Structure is documented below.
@@ -1634,7 +1634,7 @@ class FlexibleAppVersionResources(dict):
 
     @property
     @pulumi.getter
-    def cpu(self) -> Optional[float]:
+    def cpu(self) -> Optional[int]:
         """
         Number of CPU cores needed.
         """
@@ -1642,7 +1642,7 @@ class FlexibleAppVersionResources(dict):
 
     @property
     @pulumi.getter(name="diskGb")
-    def disk_gb(self) -> Optional[float]:
+    def disk_gb(self) -> Optional[int]:
         """
         Disk size (GB) needed.
         """
@@ -1673,11 +1673,11 @@ class FlexibleAppVersionResources(dict):
 class FlexibleAppVersionResourcesVolume(dict):
     def __init__(__self__, *,
                  name: str,
-                 size_gb: float,
+                 size_gb: int,
                  volume_type: str):
         """
         :param str name: Full Serverless VPC Access Connector name e.g. /projects/my-project/locations/us-central1/connectors/c1.
-        :param float size_gb: Volume size in gigabytes.
+        :param int size_gb: Volume size in gigabytes.
         :param str volume_type: Underlying volume type, e.g. 'tmpfs'.
         """
         pulumi.set(__self__, "name", name)
@@ -1694,7 +1694,7 @@ class FlexibleAppVersionResourcesVolume(dict):
 
     @property
     @pulumi.getter(name="sizeGb")
-    def size_gb(self) -> float:
+    def size_gb(self) -> int:
         """
         Volume size in gigabytes.
         """
@@ -1736,19 +1736,19 @@ class FlexibleAppVersionVpcAccessConnector(dict):
 @pulumi.output_type
 class StandardAppVersionAutomaticScaling(dict):
     def __init__(__self__, *,
-                 max_concurrent_requests: Optional[float] = None,
-                 max_idle_instances: Optional[float] = None,
+                 max_concurrent_requests: Optional[int] = None,
+                 max_idle_instances: Optional[int] = None,
                  max_pending_latency: Optional[str] = None,
-                 min_idle_instances: Optional[float] = None,
+                 min_idle_instances: Optional[int] = None,
                  min_pending_latency: Optional[str] = None,
                  standard_scheduler_settings: Optional['outputs.StandardAppVersionAutomaticScalingStandardSchedulerSettings'] = None):
         """
-        :param float max_concurrent_requests: Number of concurrent requests an automatic scaling instance can accept before the scheduler spawns a new instance.
+        :param int max_concurrent_requests: Number of concurrent requests an automatic scaling instance can accept before the scheduler spawns a new instance.
                Defaults to a runtime-specific value.
-        :param float max_idle_instances: Maximum number of idle instances that should be maintained for this version.
+        :param int max_idle_instances: Maximum number of idle instances that should be maintained for this version.
         :param str max_pending_latency: Maximum amount of time that a request should wait in the pending queue before starting a new instance to handle it.
                A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s".
-        :param float min_idle_instances: Minimum number of idle instances that should be maintained for this version. Only applicable for the default version of a service.
+        :param int min_idle_instances: Minimum number of idle instances that should be maintained for this version. Only applicable for the default version of a service.
         :param str min_pending_latency: Minimum amount of time a request should wait in the pending queue before starting a new instance to handle it.
                A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s".
         :param 'StandardAppVersionAutomaticScalingStandardSchedulerSettingsArgs' standard_scheduler_settings: Scheduler settings for standard environment.
@@ -1769,7 +1769,7 @@ class StandardAppVersionAutomaticScaling(dict):
 
     @property
     @pulumi.getter(name="maxConcurrentRequests")
-    def max_concurrent_requests(self) -> Optional[float]:
+    def max_concurrent_requests(self) -> Optional[int]:
         """
         Number of concurrent requests an automatic scaling instance can accept before the scheduler spawns a new instance.
         Defaults to a runtime-specific value.
@@ -1778,7 +1778,7 @@ class StandardAppVersionAutomaticScaling(dict):
 
     @property
     @pulumi.getter(name="maxIdleInstances")
-    def max_idle_instances(self) -> Optional[float]:
+    def max_idle_instances(self) -> Optional[int]:
         """
         Maximum number of idle instances that should be maintained for this version.
         """
@@ -1795,7 +1795,7 @@ class StandardAppVersionAutomaticScaling(dict):
 
     @property
     @pulumi.getter(name="minIdleInstances")
-    def min_idle_instances(self) -> Optional[float]:
+    def min_idle_instances(self) -> Optional[int]:
         """
         Minimum number of idle instances that should be maintained for this version. Only applicable for the default version of a service.
         """
@@ -1826,13 +1826,13 @@ class StandardAppVersionAutomaticScaling(dict):
 @pulumi.output_type
 class StandardAppVersionAutomaticScalingStandardSchedulerSettings(dict):
     def __init__(__self__, *,
-                 max_instances: Optional[float] = None,
-                 min_instances: Optional[float] = None,
+                 max_instances: Optional[int] = None,
+                 min_instances: Optional[int] = None,
                  target_cpu_utilization: Optional[float] = None,
                  target_throughput_utilization: Optional[float] = None):
         """
-        :param float max_instances: Maximum number of instances to create for this version. Must be in the range [1.0, 200.0].
-        :param float min_instances: Minimum number of instances to run for this version. Set to zero to disable minInstances configuration.
+        :param int max_instances: Maximum number of instances to create for this version. Must be in the range [1.0, 200.0].
+        :param int min_instances: Minimum number of instances to run for this version. Set to zero to disable minInstances configuration.
         :param float target_cpu_utilization: Target CPU utilization ratio to maintain when scaling. Should be a value in the range [0.50, 0.95], zero, or a negative value.
         :param float target_throughput_utilization: Target throughput utilization ratio to maintain when scaling. Should be a value in the range [0.50, 0.95], zero, or a negative value.
         """
@@ -1847,7 +1847,7 @@ class StandardAppVersionAutomaticScalingStandardSchedulerSettings(dict):
 
     @property
     @pulumi.getter(name="maxInstances")
-    def max_instances(self) -> Optional[float]:
+    def max_instances(self) -> Optional[int]:
         """
         Maximum number of instances to create for this version. Must be in the range [1.0, 200.0].
         """
@@ -1855,7 +1855,7 @@ class StandardAppVersionAutomaticScalingStandardSchedulerSettings(dict):
 
     @property
     @pulumi.getter(name="minInstances")
-    def min_instances(self) -> Optional[float]:
+    def min_instances(self) -> Optional[int]:
         """
         Minimum number of instances to run for this version. Set to zero to disable minInstances configuration.
         """
@@ -1884,10 +1884,10 @@ class StandardAppVersionAutomaticScalingStandardSchedulerSettings(dict):
 @pulumi.output_type
 class StandardAppVersionBasicScaling(dict):
     def __init__(__self__, *,
-                 max_instances: float,
+                 max_instances: int,
                  idle_timeout: Optional[str] = None):
         """
-        :param float max_instances: Maximum number of instances to create for this version. Must be in the range [1.0, 200.0].
+        :param int max_instances: Maximum number of instances to create for this version. Must be in the range [1.0, 200.0].
         :param str idle_timeout: Duration of time after the last request that an instance must wait before the instance is shut down.
                A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s". Defaults to 900s.
         """
@@ -1897,7 +1897,7 @@ class StandardAppVersionBasicScaling(dict):
 
     @property
     @pulumi.getter(name="maxInstances")
-    def max_instances(self) -> float:
+    def max_instances(self) -> int:
         """
         Maximum number of instances to create for this version. Must be in the range [1.0, 200.0].
         """
@@ -2004,10 +2004,10 @@ class StandardAppVersionDeploymentFile(dict):
 class StandardAppVersionDeploymentZip(dict):
     def __init__(__self__, *,
                  source_url: str,
-                 files_count: Optional[float] = None):
+                 files_count: Optional[int] = None):
         """
         :param str source_url: Source URL
-        :param float files_count: files count
+        :param int files_count: files count
         """
         pulumi.set(__self__, "source_url", source_url)
         if files_count is not None:
@@ -2023,7 +2023,7 @@ class StandardAppVersionDeploymentZip(dict):
 
     @property
     @pulumi.getter(name="filesCount")
-    def files_count(self) -> Optional[float]:
+    def files_count(self) -> Optional[int]:
         """
         files count
         """
@@ -2326,9 +2326,9 @@ class StandardAppVersionLibrary(dict):
 @pulumi.output_type
 class StandardAppVersionManualScaling(dict):
     def __init__(__self__, *,
-                 instances: float):
+                 instances: int):
         """
-        :param float instances: Number of instances to assign to the service at the start.
+        :param int instances: Number of instances to assign to the service at the start.
                **Note:** When managing the number of instances at runtime through the App Engine Admin API or the (now deprecated) Python 2
                Modules API set_num_instances() you must use `lifecycle.ignore_changes = ["manual_scaling"[0].instances]` to prevent drift detection.
         """
@@ -2336,7 +2336,7 @@ class StandardAppVersionManualScaling(dict):
 
     @property
     @pulumi.getter
-    def instances(self) -> float:
+    def instances(self) -> int:
         """
         Number of instances to assign to the service at the start.
         **Note:** When managing the number of instances at runtime through the App Engine Admin API or the (now deprecated) Python 2

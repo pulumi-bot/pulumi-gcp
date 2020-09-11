@@ -23,7 +23,7 @@ class Cluster(pulumi.CustomResource):
                  cluster_ipv4_cidr: Optional[pulumi.Input[str]] = None,
                  cluster_telemetry: Optional[pulumi.Input[pulumi.InputType['ClusterClusterTelemetryArgs']]] = None,
                  database_encryption: Optional[pulumi.Input[pulumi.InputType['ClusterDatabaseEncryptionArgs']]] = None,
-                 default_max_pods_per_node: Optional[pulumi.Input[float]] = None,
+                 default_max_pods_per_node: Optional[pulumi.Input[int]] = None,
                  default_snat_status: Optional[pulumi.Input[pulumi.InputType['ClusterDefaultSnatStatusArgs']]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  enable_binary_authorization: Optional[pulumi.Input[bool]] = None,
@@ -32,7 +32,7 @@ class Cluster(pulumi.CustomResource):
                  enable_legacy_abac: Optional[pulumi.Input[bool]] = None,
                  enable_shielded_nodes: Optional[pulumi.Input[bool]] = None,
                  enable_tpu: Optional[pulumi.Input[bool]] = None,
-                 initial_node_count: Optional[pulumi.Input[float]] = None,
+                 initial_node_count: Optional[pulumi.Input[int]] = None,
                  ip_allocation_policy: Optional[pulumi.Input[pulumi.InputType['ClusterIpAllocationPolicyArgs']]] = None,
                  location: Optional[pulumi.Input[str]] = None,
                  logging_service: Optional[pulumi.Input[str]] = None,
@@ -93,7 +93,7 @@ class Cluster(pulumi.CustomResource):
                [ClusterTelemetry](https://cloud.google.com/monitoring/kubernetes-engine/installing#controlling_the_collection_of_application_logs) feature,
                Structure is documented below.
         :param pulumi.Input[pulumi.InputType['ClusterDatabaseEncryptionArgs']] database_encryption: Structure is documented below.
-        :param pulumi.Input[float] default_max_pods_per_node: The default maximum number of pods
+        :param pulumi.Input[int] default_max_pods_per_node: The default maximum number of pods
                per node in this cluster. This doesn't work on "routes-based" clusters, clusters
                that don't have IP Aliasing enabled. See the [official documentation](https://cloud.google.com/kubernetes-engine/docs/how-to/flexible-pod-cidr)
                for more information.
@@ -113,7 +113,7 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[bool] enable_shielded_nodes: Enable Shielded Nodes features on all nodes in this cluster.  Defaults to `false`.
         :param pulumi.Input[bool] enable_tpu: Whether to enable Cloud TPU resources in this cluster.
                See the [official documentation](https://cloud.google.com/tpu/docs/kubernetes-engine-setup).
-        :param pulumi.Input[float] initial_node_count: The number of nodes to create in this
+        :param pulumi.Input[int] initial_node_count: The number of nodes to create in this
                cluster's default node pool. In regional or multi-zonal clusters, this is the
                number of nodes per zone. Must be set if `node_pool` is not set. If you're using
                `container.NodePool` objects with no default node pool, you'll need to
@@ -307,7 +307,7 @@ class Cluster(pulumi.CustomResource):
             cluster_ipv4_cidr: Optional[pulumi.Input[str]] = None,
             cluster_telemetry: Optional[pulumi.Input[pulumi.InputType['ClusterClusterTelemetryArgs']]] = None,
             database_encryption: Optional[pulumi.Input[pulumi.InputType['ClusterDatabaseEncryptionArgs']]] = None,
-            default_max_pods_per_node: Optional[pulumi.Input[float]] = None,
+            default_max_pods_per_node: Optional[pulumi.Input[int]] = None,
             default_snat_status: Optional[pulumi.Input[pulumi.InputType['ClusterDefaultSnatStatusArgs']]] = None,
             description: Optional[pulumi.Input[str]] = None,
             enable_binary_authorization: Optional[pulumi.Input[bool]] = None,
@@ -317,7 +317,7 @@ class Cluster(pulumi.CustomResource):
             enable_shielded_nodes: Optional[pulumi.Input[bool]] = None,
             enable_tpu: Optional[pulumi.Input[bool]] = None,
             endpoint: Optional[pulumi.Input[str]] = None,
-            initial_node_count: Optional[pulumi.Input[float]] = None,
+            initial_node_count: Optional[pulumi.Input[int]] = None,
             instance_group_urls: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
             ip_allocation_policy: Optional[pulumi.Input[pulumi.InputType['ClusterIpAllocationPolicyArgs']]] = None,
             label_fingerprint: Optional[pulumi.Input[str]] = None,
@@ -375,7 +375,7 @@ class Cluster(pulumi.CustomResource):
                [ClusterTelemetry](https://cloud.google.com/monitoring/kubernetes-engine/installing#controlling_the_collection_of_application_logs) feature,
                Structure is documented below.
         :param pulumi.Input[pulumi.InputType['ClusterDatabaseEncryptionArgs']] database_encryption: Structure is documented below.
-        :param pulumi.Input[float] default_max_pods_per_node: The default maximum number of pods
+        :param pulumi.Input[int] default_max_pods_per_node: The default maximum number of pods
                per node in this cluster. This doesn't work on "routes-based" clusters, clusters
                that don't have IP Aliasing enabled. See the [official documentation](https://cloud.google.com/kubernetes-engine/docs/how-to/flexible-pod-cidr)
                for more information.
@@ -396,7 +396,7 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[bool] enable_tpu: Whether to enable Cloud TPU resources in this cluster.
                See the [official documentation](https://cloud.google.com/tpu/docs/kubernetes-engine-setup).
         :param pulumi.Input[str] endpoint: The IP address of this cluster's Kubernetes master.
-        :param pulumi.Input[float] initial_node_count: The number of nodes to create in this
+        :param pulumi.Input[int] initial_node_count: The number of nodes to create in this
                cluster's default node pool. In regional or multi-zonal clusters, this is the
                number of nodes per zone. Must be set if `node_pool` is not set. If you're using
                `container.NodePool` objects with no default node pool, you'll need to
@@ -638,7 +638,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="defaultMaxPodsPerNode")
-    def default_max_pods_per_node(self) -> pulumi.Output[float]:
+    def default_max_pods_per_node(self) -> pulumi.Output[int]:
         """
         The default maximum number of pods
         per node in this cluster. This doesn't work on "routes-based" clusters, clusters
@@ -729,7 +729,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="initialNodeCount")
-    def initial_node_count(self) -> pulumi.Output[Optional[float]]:
+    def initial_node_count(self) -> pulumi.Output[Optional[int]]:
         """
         The number of nodes to create in this
         cluster's default node pool. In regional or multi-zonal clusters, this is the

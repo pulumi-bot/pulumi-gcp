@@ -22,10 +22,10 @@ class Disk(pulumi.CustomResource):
                  image: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 physical_block_size_bytes: Optional[pulumi.Input[float]] = None,
+                 physical_block_size_bytes: Optional[pulumi.Input[int]] = None,
                  project: Optional[pulumi.Input[str]] = None,
                  resource_policies: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 size: Optional[pulumi.Input[float]] = None,
+                 size: Optional[pulumi.Input[int]] = None,
                  snapshot: Optional[pulumi.Input[str]] = None,
                  source_image_encryption_key: Optional[pulumi.Input[pulumi.InputType['DiskSourceImageEncryptionKeyArgs']]] = None,
                  source_snapshot_encryption_key: Optional[pulumi.Input[pulumi.InputType['DiskSourceSnapshotEncryptionKeyArgs']]] = None,
@@ -93,7 +93,7 @@ class Disk(pulumi.CustomResource):
                first character must be a lowercase letter, and all following
                characters must be a dash, lowercase letter, or digit, except the last
                character, which cannot be a dash.
-        :param pulumi.Input[float] physical_block_size_bytes: Physical block size of the persistent disk, in bytes. If not present
+        :param pulumi.Input[int] physical_block_size_bytes: Physical block size of the persistent disk, in bytes. If not present
                in a request, a default value is used. Currently supported sizes
                are 4096 and 16384, other sizes may be added in the future.
                If an unsupported value is requested, the error message will list
@@ -104,7 +104,7 @@ class Disk(pulumi.CustomResource):
                the resource policy, as resource policies can not be updated more than one at a time. Use
                ['google_compute_disk_resource_policy_attachment'](https://www.terraform.io/docs/providers/google/r/compute_disk_resource_policy_attachment.html)
                to allow for updating the resource policy attached to the disk.
-        :param pulumi.Input[float] size: Size of the persistent disk, specified in GB. You can specify this
+        :param pulumi.Input[int] size: Size of the persistent disk, specified in GB. You can specify this
                field when creating a persistent disk using the `image` or
                `snapshot` parameter, or specify it alone to create an empty
                persistent disk.
@@ -188,11 +188,11 @@ class Disk(pulumi.CustomResource):
             last_attach_timestamp: Optional[pulumi.Input[str]] = None,
             last_detach_timestamp: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            physical_block_size_bytes: Optional[pulumi.Input[float]] = None,
+            physical_block_size_bytes: Optional[pulumi.Input[int]] = None,
             project: Optional[pulumi.Input[str]] = None,
             resource_policies: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
             self_link: Optional[pulumi.Input[str]] = None,
-            size: Optional[pulumi.Input[float]] = None,
+            size: Optional[pulumi.Input[int]] = None,
             snapshot: Optional[pulumi.Input[str]] = None,
             source_image_encryption_key: Optional[pulumi.Input[pulumi.InputType['DiskSourceImageEncryptionKeyArgs']]] = None,
             source_image_id: Optional[pulumi.Input[str]] = None,
@@ -241,7 +241,7 @@ class Disk(pulumi.CustomResource):
                first character must be a lowercase letter, and all following
                characters must be a dash, lowercase letter, or digit, except the last
                character, which cannot be a dash.
-        :param pulumi.Input[float] physical_block_size_bytes: Physical block size of the persistent disk, in bytes. If not present
+        :param pulumi.Input[int] physical_block_size_bytes: Physical block size of the persistent disk, in bytes. If not present
                in a request, a default value is used. Currently supported sizes
                are 4096 and 16384, other sizes may be added in the future.
                If an unsupported value is requested, the error message will list
@@ -253,7 +253,7 @@ class Disk(pulumi.CustomResource):
                ['google_compute_disk_resource_policy_attachment'](https://www.terraform.io/docs/providers/google/r/compute_disk_resource_policy_attachment.html)
                to allow for updating the resource policy attached to the disk.
         :param pulumi.Input[str] self_link: The URI of the created resource.
-        :param pulumi.Input[float] size: Size of the persistent disk, specified in GB. You can specify this
+        :param pulumi.Input[int] size: Size of the persistent disk, specified in GB. You can specify this
                field when creating a persistent disk using the `image` or
                `snapshot` parameter, or specify it alone to create an empty
                persistent disk.
@@ -412,7 +412,7 @@ class Disk(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="physicalBlockSizeBytes")
-    def physical_block_size_bytes(self) -> pulumi.Output[float]:
+    def physical_block_size_bytes(self) -> pulumi.Output[int]:
         """
         Physical block size of the persistent disk, in bytes. If not present
         in a request, a default value is used. Currently supported sizes
@@ -452,7 +452,7 @@ class Disk(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def size(self) -> pulumi.Output[float]:
+    def size(self) -> pulumi.Output[int]:
         """
         Size of the persistent disk, specified in GB. You can specify this
         field when creating a persistent disk using the `image` or

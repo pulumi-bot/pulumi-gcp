@@ -28,7 +28,7 @@ __all__ = [
 class EntryBigqueryDateShardedSpecArgs:
     def __init__(__self__, *,
                  dataset: Optional[pulumi.Input[str]] = None,
-                 shard_count: Optional[pulumi.Input[float]] = None,
+                 shard_count: Optional[pulumi.Input[int]] = None,
                  table_prefix: Optional[pulumi.Input[str]] = None):
         if dataset is not None:
             pulumi.set(__self__, "dataset", dataset)
@@ -48,11 +48,11 @@ class EntryBigqueryDateShardedSpecArgs:
 
     @property
     @pulumi.getter(name="shardCount")
-    def shard_count(self) -> Optional[pulumi.Input[float]]:
+    def shard_count(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "shard_count")
 
     @shard_count.setter
-    def shard_count(self, value: Optional[pulumi.Input[float]]):
+    def shard_count(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "shard_count", value)
 
     @property
@@ -206,11 +206,11 @@ class EntryGcsFilesetSpecArgs:
 class EntryGcsFilesetSpecSampleGcsFileSpecArgs:
     def __init__(__self__, *,
                  file_path: Optional[pulumi.Input[str]] = None,
-                 size_bytes: Optional[pulumi.Input[float]] = None):
+                 size_bytes: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] file_path: -
                The full file path
-        :param pulumi.Input[float] size_bytes: -
+        :param pulumi.Input[int] size_bytes: -
                The size of the file, in bytes.
         """
         if file_path is not None:
@@ -233,7 +233,7 @@ class EntryGcsFilesetSpecSampleGcsFileSpecArgs:
 
     @property
     @pulumi.getter(name="sizeBytes")
-    def size_bytes(self) -> Optional[pulumi.Input[float]]:
+    def size_bytes(self) -> Optional[pulumi.Input[int]]:
         """
         -
         The size of the file, in bytes.
@@ -241,7 +241,7 @@ class EntryGcsFilesetSpecSampleGcsFileSpecArgs:
         return pulumi.get(self, "size_bytes")
 
     @size_bytes.setter
-    def size_bytes(self, value: Optional[pulumi.Input[float]]):
+    def size_bytes(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "size_bytes", value)
 
 
@@ -331,7 +331,7 @@ class TagFieldArgs:
                  display_name: Optional[pulumi.Input[str]] = None,
                  double_value: Optional[pulumi.Input[float]] = None,
                  enum_value: Optional[pulumi.Input[str]] = None,
-                 order: Optional[pulumi.Input[float]] = None,
+                 order: Optional[pulumi.Input[int]] = None,
                  string_value: Optional[pulumi.Input[str]] = None,
                  timestamp_value: Optional[pulumi.Input[str]] = None):
         """
@@ -342,7 +342,7 @@ class TagFieldArgs:
         :param pulumi.Input[float] double_value: Holds the value for a tag field with double type.
         :param pulumi.Input[str] enum_value: Holds the value for a tag field with enum type. This value must be one of the allowed values in the definition of this enum.
                Structure is documented below.
-        :param pulumi.Input[float] order: -
+        :param pulumi.Input[int] order: -
                The order of this field with respect to other fields in this tag. For example, a higher value can indicate
                a more important field. The value can be negative. Multiple fields can have the same order, and field orders
                within a tag do not have to be sequential.
@@ -429,7 +429,7 @@ class TagFieldArgs:
 
     @property
     @pulumi.getter
-    def order(self) -> Optional[pulumi.Input[float]]:
+    def order(self) -> Optional[pulumi.Input[int]]:
         """
         -
         The order of this field with respect to other fields in this tag. For example, a higher value can indicate
@@ -439,7 +439,7 @@ class TagFieldArgs:
         return pulumi.get(self, "order")
 
     @order.setter
-    def order(self, value: Optional[pulumi.Input[float]]):
+    def order(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "order", value)
 
     @property
@@ -475,7 +475,7 @@ class TagTemplateFieldArgs:
                  display_name: Optional[pulumi.Input[str]] = None,
                  is_required: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 order: Optional[pulumi.Input[float]] = None):
+                 order: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] field_id: The identifier for this object. Format specified above.
         :param pulumi.Input['TagTemplateFieldTypeArgs'] type: The type of value this tag field can contain.
@@ -484,7 +484,7 @@ class TagTemplateFieldArgs:
         :param pulumi.Input[bool] is_required: Whether this is a required field. Defaults to false.
         :param pulumi.Input[str] name: -
                The resource name of the tag template field in URL format. Example: projects/{project_id}/locations/{location}/tagTemplates/{tagTemplateId}/fields/{field}
-        :param pulumi.Input[float] order: The order of this field with respect to other fields in this tag template.
+        :param pulumi.Input[int] order: The order of this field with respect to other fields in this tag template.
                A higher value indicates a more important field. The value can be negative.
                Multiple fields can have the same order, and field orders within a tag do not have to be sequential.
         """
@@ -563,7 +563,7 @@ class TagTemplateFieldArgs:
 
     @property
     @pulumi.getter
-    def order(self) -> Optional[pulumi.Input[float]]:
+    def order(self) -> Optional[pulumi.Input[int]]:
         """
         The order of this field with respect to other fields in this tag template.
         A higher value indicates a more important field. The value can be negative.
@@ -572,7 +572,7 @@ class TagTemplateFieldArgs:
         return pulumi.get(self, "order")
 
     @order.setter
-    def order(self, value: Optional[pulumi.Input[float]]):
+    def order(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "order", value)
 
 

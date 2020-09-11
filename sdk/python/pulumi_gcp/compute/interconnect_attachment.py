@@ -28,7 +28,7 @@ class InterconnectAttachment(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  router: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
-                 vlan_tag8021q: Optional[pulumi.Input[float]] = None,
+                 vlan_tag8021q: Optional[pulumi.Input[int]] = None,
                  __props__=None,
                  __name__=None,
                  __opts__=None):
@@ -81,7 +81,7 @@ class InterconnectAttachment(pulumi.CustomResource):
         :param pulumi.Input[str] type: The type of InterconnectAttachment you wish to create. Defaults to
                DEDICATED.
                Possible values are `DEDICATED`, `PARTNER`, and `PARTNER_PROVIDER`.
-        :param pulumi.Input[float] vlan_tag8021q: The IEEE 802.1Q VLAN tag for this attachment, in the range 2-4094. When
+        :param pulumi.Input[int] vlan_tag8021q: The IEEE 802.1Q VLAN tag for this attachment, in the range 2-4094. When
                using PARTNER type this will be managed upstream.
         """
         if __name__ is not None:
@@ -154,7 +154,7 @@ class InterconnectAttachment(pulumi.CustomResource):
             self_link: Optional[pulumi.Input[str]] = None,
             state: Optional[pulumi.Input[str]] = None,
             type: Optional[pulumi.Input[str]] = None,
-            vlan_tag8021q: Optional[pulumi.Input[float]] = None) -> 'InterconnectAttachment':
+            vlan_tag8021q: Optional[pulumi.Input[int]] = None) -> 'InterconnectAttachment':
         """
         Get an existing InterconnectAttachment resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -216,7 +216,7 @@ class InterconnectAttachment(pulumi.CustomResource):
         :param pulumi.Input[str] type: The type of InterconnectAttachment you wish to create. Defaults to
                DEDICATED.
                Possible values are `DEDICATED`, `PARTNER`, and `PARTNER_PROVIDER`.
-        :param pulumi.Input[float] vlan_tag8021q: The IEEE 802.1Q VLAN tag for this attachment, in the range 2-4094. When
+        :param pulumi.Input[int] vlan_tag8021q: The IEEE 802.1Q VLAN tag for this attachment, in the range 2-4094. When
                using PARTNER type this will be managed upstream.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -442,7 +442,7 @@ class InterconnectAttachment(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="vlanTag8021q")
-    def vlan_tag8021q(self) -> pulumi.Output[float]:
+    def vlan_tag8021q(self) -> pulumi.Output[int]:
         """
         The IEEE 802.1Q VLAN tag for this attachment, in the range 2-4094. When
         using PARTNER type this will be managed upstream.

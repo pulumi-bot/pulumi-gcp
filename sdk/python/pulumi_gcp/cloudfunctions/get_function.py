@@ -21,8 +21,8 @@ class GetFunctionResult:
     A collection of values returned by getFunction.
     """
     def __init__(__self__, available_memory_mb=None, description=None, entry_point=None, environment_variables=None, event_triggers=None, https_trigger_url=None, id=None, ingress_settings=None, labels=None, max_instances=None, name=None, project=None, region=None, runtime=None, service_account_email=None, source_archive_bucket=None, source_archive_object=None, source_repositories=None, timeout=None, trigger_http=None, vpc_connector=None, vpc_connector_egress_settings=None):
-        if available_memory_mb and not isinstance(available_memory_mb, float):
-            raise TypeError("Expected argument 'available_memory_mb' to be a float")
+        if available_memory_mb and not isinstance(available_memory_mb, int):
+            raise TypeError("Expected argument 'available_memory_mb' to be a int")
         pulumi.set(__self__, "available_memory_mb", available_memory_mb)
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
@@ -48,8 +48,8 @@ class GetFunctionResult:
         if labels and not isinstance(labels, dict):
             raise TypeError("Expected argument 'labels' to be a dict")
         pulumi.set(__self__, "labels", labels)
-        if max_instances and not isinstance(max_instances, float):
-            raise TypeError("Expected argument 'max_instances' to be a float")
+        if max_instances and not isinstance(max_instances, int):
+            raise TypeError("Expected argument 'max_instances' to be a int")
         pulumi.set(__self__, "max_instances", max_instances)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
@@ -75,8 +75,8 @@ class GetFunctionResult:
         if source_repositories and not isinstance(source_repositories, list):
             raise TypeError("Expected argument 'source_repositories' to be a list")
         pulumi.set(__self__, "source_repositories", source_repositories)
-        if timeout and not isinstance(timeout, float):
-            raise TypeError("Expected argument 'timeout' to be a float")
+        if timeout and not isinstance(timeout, int):
+            raise TypeError("Expected argument 'timeout' to be a int")
         pulumi.set(__self__, "timeout", timeout)
         if trigger_http and not isinstance(trigger_http, bool):
             raise TypeError("Expected argument 'trigger_http' to be a bool")
@@ -90,7 +90,7 @@ class GetFunctionResult:
 
     @property
     @pulumi.getter(name="availableMemoryMb")
-    def available_memory_mb(self) -> float:
+    def available_memory_mb(self) -> int:
         """
         Available memory (in MB) to the function.
         """
@@ -159,7 +159,7 @@ class GetFunctionResult:
 
     @property
     @pulumi.getter(name="maxInstances")
-    def max_instances(self) -> float:
+    def max_instances(self) -> int:
         """
         The limit on the maximum number of function instances that may coexist at a given time.
         """
@@ -225,7 +225,7 @@ class GetFunctionResult:
 
     @property
     @pulumi.getter
-    def timeout(self) -> float:
+    def timeout(self) -> int:
         """
         Function execution timeout (in seconds).
         """

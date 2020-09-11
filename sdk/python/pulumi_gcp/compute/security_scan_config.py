@@ -21,7 +21,7 @@ class SecurityScanConfig(pulumi.CustomResource):
                  blacklist_patterns: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
                  export_to_security_command_center: Optional[pulumi.Input[str]] = None,
-                 max_qps: Optional[pulumi.Input[float]] = None,
+                 max_qps: Optional[pulumi.Input[int]] = None,
                  project: Optional[pulumi.Input[str]] = None,
                  schedule: Optional[pulumi.Input[pulumi.InputType['SecurityScanConfigScheduleArgs']]] = None,
                  starting_urls: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
@@ -55,7 +55,7 @@ class SecurityScanConfig(pulumi.CustomResource):
         :param pulumi.Input[str] export_to_security_command_center: Controls export of scan configurations and results to Cloud Security Command Center.
                Default value is `ENABLED`.
                Possible values are `ENABLED` and `DISABLED`.
-        :param pulumi.Input[float] max_qps: The maximum QPS during scanning. A valid value ranges from 5 to 20 inclusively.
+        :param pulumi.Input[int] max_qps: The maximum QPS during scanning. A valid value ranges from 5 to 20 inclusively.
                Defaults to 15.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
@@ -114,7 +114,7 @@ class SecurityScanConfig(pulumi.CustomResource):
             blacklist_patterns: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
             display_name: Optional[pulumi.Input[str]] = None,
             export_to_security_command_center: Optional[pulumi.Input[str]] = None,
-            max_qps: Optional[pulumi.Input[float]] = None,
+            max_qps: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
             project: Optional[pulumi.Input[str]] = None,
             schedule: Optional[pulumi.Input[pulumi.InputType['SecurityScanConfigScheduleArgs']]] = None,
@@ -137,7 +137,7 @@ class SecurityScanConfig(pulumi.CustomResource):
         :param pulumi.Input[str] export_to_security_command_center: Controls export of scan configurations and results to Cloud Security Command Center.
                Default value is `ENABLED`.
                Possible values are `ENABLED` and `DISABLED`.
-        :param pulumi.Input[float] max_qps: The maximum QPS during scanning. A valid value ranges from 5 to 20 inclusively.
+        :param pulumi.Input[int] max_qps: The maximum QPS during scanning. A valid value ranges from 5 to 20 inclusively.
                Defaults to 15.
         :param pulumi.Input[str] name: A server defined name for this index. Format: 'projects/{{project}}/scanConfigs/{{server_generated_id}}'
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
@@ -207,7 +207,7 @@ class SecurityScanConfig(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="maxQps")
-    def max_qps(self) -> pulumi.Output[Optional[float]]:
+    def max_qps(self) -> pulumi.Output[Optional[int]]:
         """
         The maximum QPS during scanning. A valid value ranges from 5 to 20 inclusively.
         Defaults to 15.

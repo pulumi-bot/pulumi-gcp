@@ -42,8 +42,8 @@ class GetClusterResult:
         if database_encryptions and not isinstance(database_encryptions, list):
             raise TypeError("Expected argument 'database_encryptions' to be a list")
         pulumi.set(__self__, "database_encryptions", database_encryptions)
-        if default_max_pods_per_node and not isinstance(default_max_pods_per_node, float):
-            raise TypeError("Expected argument 'default_max_pods_per_node' to be a float")
+        if default_max_pods_per_node and not isinstance(default_max_pods_per_node, int):
+            raise TypeError("Expected argument 'default_max_pods_per_node' to be a int")
         pulumi.set(__self__, "default_max_pods_per_node", default_max_pods_per_node)
         if default_snat_statuses and not isinstance(default_snat_statuses, list):
             raise TypeError("Expected argument 'default_snat_statuses' to be a list")
@@ -75,8 +75,8 @@ class GetClusterResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
-        if initial_node_count and not isinstance(initial_node_count, float):
-            raise TypeError("Expected argument 'initial_node_count' to be a float")
+        if initial_node_count and not isinstance(initial_node_count, int):
+            raise TypeError("Expected argument 'initial_node_count' to be a int")
         pulumi.set(__self__, "initial_node_count", initial_node_count)
         if instance_group_urls and not isinstance(instance_group_urls, list):
             raise TypeError("Expected argument 'instance_group_urls' to be a list")
@@ -218,7 +218,7 @@ class GetClusterResult:
 
     @property
     @pulumi.getter(name="defaultMaxPodsPerNode")
-    def default_max_pods_per_node(self) -> float:
+    def default_max_pods_per_node(self) -> int:
         return pulumi.get(self, "default_max_pods_per_node")
 
     @property
@@ -276,7 +276,7 @@ class GetClusterResult:
 
     @property
     @pulumi.getter(name="initialNodeCount")
-    def initial_node_count(self) -> float:
+    def initial_node_count(self) -> int:
         return pulumi.get(self, "initial_node_count")
 
     @property

@@ -18,7 +18,7 @@ class Image(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
-                 disk_size_gb: Optional[pulumi.Input[float]] = None,
+                 disk_size_gb: Optional[pulumi.Input[int]] = None,
                  family: Optional[pulumi.Input[str]] = None,
                  guest_os_features: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ImageGuestOsFeatureArgs']]]]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -62,7 +62,7 @@ class Image(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: An optional description of this resource. Provide this property when
                you create the resource.
-        :param pulumi.Input[float] disk_size_gb: Size of the image when restored onto a persistent disk (in GB).
+        :param pulumi.Input[int] disk_size_gb: Size of the image when restored onto a persistent disk (in GB).
         :param pulumi.Input[str] family: The name of the image family to which this image belongs. You can
                create disks by specifying an image family instead of a specific
                image name. The image family always returns its latest image that is
@@ -144,10 +144,10 @@ class Image(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            archive_size_bytes: Optional[pulumi.Input[float]] = None,
+            archive_size_bytes: Optional[pulumi.Input[int]] = None,
             creation_timestamp: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
-            disk_size_gb: Optional[pulumi.Input[float]] = None,
+            disk_size_gb: Optional[pulumi.Input[int]] = None,
             family: Optional[pulumi.Input[str]] = None,
             guest_os_features: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ImageGuestOsFeatureArgs']]]]] = None,
             label_fingerprint: Optional[pulumi.Input[str]] = None,
@@ -167,11 +167,11 @@ class Image(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[float] archive_size_bytes: Size of the image tar.gz archive stored in Google Cloud Storage (in bytes).
+        :param pulumi.Input[int] archive_size_bytes: Size of the image tar.gz archive stored in Google Cloud Storage (in bytes).
         :param pulumi.Input[str] creation_timestamp: Creation timestamp in RFC3339 text format.
         :param pulumi.Input[str] description: An optional description of this resource. Provide this property when
                you create the resource.
-        :param pulumi.Input[float] disk_size_gb: Size of the image when restored onto a persistent disk (in GB).
+        :param pulumi.Input[int] disk_size_gb: Size of the image when restored onto a persistent disk (in GB).
         :param pulumi.Input[str] family: The name of the image family to which this image belongs. You can
                create disks by specifying an image family instead of a specific
                image name. The image family always returns its latest image that is
@@ -236,7 +236,7 @@ class Image(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="archiveSizeBytes")
-    def archive_size_bytes(self) -> pulumi.Output[float]:
+    def archive_size_bytes(self) -> pulumi.Output[int]:
         """
         Size of the image tar.gz archive stored in Google Cloud Storage (in bytes).
         """
@@ -261,7 +261,7 @@ class Image(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="diskSizeGb")
-    def disk_size_gb(self) -> pulumi.Output[float]:
+    def disk_size_gb(self) -> pulumi.Output[int]:
         """
         Size of the image when restored onto a persistent disk (in GB).
         """

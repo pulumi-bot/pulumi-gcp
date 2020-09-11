@@ -21,11 +21,11 @@ class RegionDisk(pulumi.CustomResource):
                  disk_encryption_key: Optional[pulumi.Input[pulumi.InputType['RegionDiskDiskEncryptionKeyArgs']]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 physical_block_size_bytes: Optional[pulumi.Input[float]] = None,
+                 physical_block_size_bytes: Optional[pulumi.Input[int]] = None,
                  project: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  replica_zones: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 size: Optional[pulumi.Input[float]] = None,
+                 size: Optional[pulumi.Input[int]] = None,
                  snapshot: Optional[pulumi.Input[str]] = None,
                  source_snapshot_encryption_key: Optional[pulumi.Input[pulumi.InputType['RegionDiskSourceSnapshotEncryptionKeyArgs']]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -82,7 +82,7 @@ class RegionDisk(pulumi.CustomResource):
                first character must be a lowercase letter, and all following
                characters must be a dash, lowercase letter, or digit, except the last
                character, which cannot be a dash.
-        :param pulumi.Input[float] physical_block_size_bytes: Physical block size of the persistent disk, in bytes. If not present
+        :param pulumi.Input[int] physical_block_size_bytes: Physical block size of the persistent disk, in bytes. If not present
                in a request, a default value is used. Currently supported sizes
                are 4096 and 16384, other sizes may be added in the future.
                If an unsupported value is requested, the error message will list
@@ -91,7 +91,7 @@ class RegionDisk(pulumi.CustomResource):
                If it is not provided, the provider project is used.
         :param pulumi.Input[str] region: A reference to the region where the disk resides.
         :param pulumi.Input[List[pulumi.Input[str]]] replica_zones: URLs of the zones where the disk should be replicated to.
-        :param pulumi.Input[float] size: Size of the persistent disk, specified in GB. You can specify this
+        :param pulumi.Input[int] size: Size of the persistent disk, specified in GB. You can specify this
                field when creating a persistent disk using the sourceImage or
                sourceSnapshot parameter, or specify it alone to create an empty
                persistent disk.
@@ -168,12 +168,12 @@ class RegionDisk(pulumi.CustomResource):
             last_attach_timestamp: Optional[pulumi.Input[str]] = None,
             last_detach_timestamp: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            physical_block_size_bytes: Optional[pulumi.Input[float]] = None,
+            physical_block_size_bytes: Optional[pulumi.Input[int]] = None,
             project: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
             replica_zones: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
             self_link: Optional[pulumi.Input[str]] = None,
-            size: Optional[pulumi.Input[float]] = None,
+            size: Optional[pulumi.Input[int]] = None,
             snapshot: Optional[pulumi.Input[str]] = None,
             source_snapshot_encryption_key: Optional[pulumi.Input[pulumi.InputType['RegionDiskSourceSnapshotEncryptionKeyArgs']]] = None,
             source_snapshot_id: Optional[pulumi.Input[str]] = None,
@@ -210,7 +210,7 @@ class RegionDisk(pulumi.CustomResource):
                first character must be a lowercase letter, and all following
                characters must be a dash, lowercase letter, or digit, except the last
                character, which cannot be a dash.
-        :param pulumi.Input[float] physical_block_size_bytes: Physical block size of the persistent disk, in bytes. If not present
+        :param pulumi.Input[int] physical_block_size_bytes: Physical block size of the persistent disk, in bytes. If not present
                in a request, a default value is used. Currently supported sizes
                are 4096 and 16384, other sizes may be added in the future.
                If an unsupported value is requested, the error message will list
@@ -220,7 +220,7 @@ class RegionDisk(pulumi.CustomResource):
         :param pulumi.Input[str] region: A reference to the region where the disk resides.
         :param pulumi.Input[List[pulumi.Input[str]]] replica_zones: URLs of the zones where the disk should be replicated to.
         :param pulumi.Input[str] self_link: The URI of the created resource.
-        :param pulumi.Input[float] size: Size of the persistent disk, specified in GB. You can specify this
+        :param pulumi.Input[int] size: Size of the persistent disk, specified in GB. You can specify this
                field when creating a persistent disk using the sourceImage or
                sourceSnapshot parameter, or specify it alone to create an empty
                persistent disk.
@@ -352,7 +352,7 @@ class RegionDisk(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="physicalBlockSizeBytes")
-    def physical_block_size_bytes(self) -> pulumi.Output[float]:
+    def physical_block_size_bytes(self) -> pulumi.Output[int]:
         """
         Physical block size of the persistent disk, in bytes. If not present
         in a request, a default value is used. Currently supported sizes
@@ -397,7 +397,7 @@ class RegionDisk(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def size(self) -> pulumi.Output[float]:
+    def size(self) -> pulumi.Output[int]:
         """
         Size of the persistent disk, specified in GB. You can specify this
         field when creating a persistent disk using the sourceImage or

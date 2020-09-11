@@ -100,7 +100,7 @@ class RegionTargetHttpsProxy(pulumi.CustomResource):
             description: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             project: Optional[pulumi.Input[str]] = None,
-            proxy_id: Optional[pulumi.Input[float]] = None,
+            proxy_id: Optional[pulumi.Input[int]] = None,
             region: Optional[pulumi.Input[str]] = None,
             self_link: Optional[pulumi.Input[str]] = None,
             ssl_certificates: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
@@ -123,7 +123,7 @@ class RegionTargetHttpsProxy(pulumi.CustomResource):
                character, which cannot be a dash.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[float] proxy_id: The unique identifier for the resource.
+        :param pulumi.Input[int] proxy_id: The unique identifier for the resource.
         :param pulumi.Input[str] region: The Region in which the created target https proxy should reside.
                If it is not provided, the provider region is used.
         :param pulumi.Input[str] self_link: The URI of the created resource.
@@ -189,7 +189,7 @@ class RegionTargetHttpsProxy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="proxyId")
-    def proxy_id(self) -> pulumi.Output[float]:
+    def proxy_id(self) -> pulumi.Output[int]:
         """
         The unique identifier for the resource.
         """

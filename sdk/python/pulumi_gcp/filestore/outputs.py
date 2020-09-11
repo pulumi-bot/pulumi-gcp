@@ -18,11 +18,11 @@ __all__ = [
 @pulumi.output_type
 class InstanceFileShares(dict):
     def __init__(__self__, *,
-                 capacity_gb: float,
+                 capacity_gb: int,
                  name: str,
                  nfs_export_options: Optional[List['outputs.InstanceFileSharesNfsExportOption']] = None):
         """
-        :param float capacity_gb: File share capacity in GiB. This must be at least 1024 GiB
+        :param int capacity_gb: File share capacity in GiB. This must be at least 1024 GiB
                for the standard tier, or 2560 GiB for the premium tier.
         :param str name: The name of the fileshare (16 characters or less)
         """
@@ -33,7 +33,7 @@ class InstanceFileShares(dict):
 
     @property
     @pulumi.getter(name="capacityGb")
-    def capacity_gb(self) -> float:
+    def capacity_gb(self) -> int:
         """
         File share capacity in GiB. This must be at least 1024 GiB
         for the standard tier, or 2560 GiB for the premium tier.
@@ -61,8 +61,8 @@ class InstanceFileShares(dict):
 class InstanceFileSharesNfsExportOption(dict):
     def __init__(__self__, *,
                  access_mode: Optional[str] = None,
-                 anon_gid: Optional[float] = None,
-                 anon_uid: Optional[float] = None,
+                 anon_gid: Optional[int] = None,
+                 anon_uid: Optional[int] = None,
                  ip_ranges: Optional[List[str]] = None,
                  squash_mode: Optional[str] = None):
         """
@@ -70,10 +70,10 @@ class InstanceFileSharesNfsExportOption(dict):
                or READ_WRITE, for allowing both read and write requests. The default is READ_WRITE.
                Default value is `READ_WRITE`.
                Possible values are `READ_ONLY` and `READ_WRITE`.
-        :param float anon_gid: An integer representing the anonymous group id with a default value of 65534.
+        :param int anon_gid: An integer representing the anonymous group id with a default value of 65534.
                Anon_gid may only be set with squashMode of ROOT_SQUASH. An error will be returned
                if this field is specified for other squashMode settings.
-        :param float anon_uid: An integer representing the anonymous user id with a default value of 65534.
+        :param int anon_uid: An integer representing the anonymous user id with a default value of 65534.
                Anon_uid may only be set with squashMode of ROOT_SQUASH. An error will be returned
                if this field is specified for other squashMode settings.
         :param List[str] ip_ranges: List of either IPv4 addresses, or ranges in CIDR notation which may mount the file share.
@@ -108,7 +108,7 @@ class InstanceFileSharesNfsExportOption(dict):
 
     @property
     @pulumi.getter(name="anonGid")
-    def anon_gid(self) -> Optional[float]:
+    def anon_gid(self) -> Optional[int]:
         """
         An integer representing the anonymous group id with a default value of 65534.
         Anon_gid may only be set with squashMode of ROOT_SQUASH. An error will be returned
@@ -118,7 +118,7 @@ class InstanceFileSharesNfsExportOption(dict):
 
     @property
     @pulumi.getter(name="anonUid")
-    def anon_uid(self) -> Optional[float]:
+    def anon_uid(self) -> Optional[int]:
         """
         An integer representing the anonymous user id with a default value of 65534.
         Anon_uid may only be set with squashMode of ROOT_SQUASH. An error will be returned

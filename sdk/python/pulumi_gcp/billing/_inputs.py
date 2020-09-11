@@ -222,11 +222,11 @@ class BudgetAmountArgs:
 class BudgetAmountSpecifiedAmountArgs:
     def __init__(__self__, *,
                  currency_code: Optional[pulumi.Input[str]] = None,
-                 nanos: Optional[pulumi.Input[float]] = None,
+                 nanos: Optional[pulumi.Input[int]] = None,
                  units: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] currency_code: The 3-letter currency code defined in ISO 4217.
-        :param pulumi.Input[float] nanos: Number of nano (10^-9) units of the amount.
+        :param pulumi.Input[int] nanos: Number of nano (10^-9) units of the amount.
                The value must be between -999,999,999 and +999,999,999
                inclusive. If units is positive, nanos must be positive or
                zero. If units is zero, nanos can be positive, zero, or
@@ -257,7 +257,7 @@ class BudgetAmountSpecifiedAmountArgs:
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Number of nano (10^-9) units of the amount.
         The value must be between -999,999,999 and +999,999,999
@@ -270,7 +270,7 @@ class BudgetAmountSpecifiedAmountArgs:
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
     @property

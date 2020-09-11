@@ -17,11 +17,11 @@ __all__ = [
 @pulumi.input_type
 class InstanceFileSharesArgs:
     def __init__(__self__, *,
-                 capacity_gb: pulumi.Input[float],
+                 capacity_gb: pulumi.Input[int],
                  name: pulumi.Input[str],
                  nfs_export_options: Optional[pulumi.Input[List[pulumi.Input['InstanceFileSharesNfsExportOptionArgs']]]] = None):
         """
-        :param pulumi.Input[float] capacity_gb: File share capacity in GiB. This must be at least 1024 GiB
+        :param pulumi.Input[int] capacity_gb: File share capacity in GiB. This must be at least 1024 GiB
                for the standard tier, or 2560 GiB for the premium tier.
         :param pulumi.Input[str] name: The name of the fileshare (16 characters or less)
         """
@@ -32,7 +32,7 @@ class InstanceFileSharesArgs:
 
     @property
     @pulumi.getter(name="capacityGb")
-    def capacity_gb(self) -> pulumi.Input[float]:
+    def capacity_gb(self) -> pulumi.Input[int]:
         """
         File share capacity in GiB. This must be at least 1024 GiB
         for the standard tier, or 2560 GiB for the premium tier.
@@ -40,7 +40,7 @@ class InstanceFileSharesArgs:
         return pulumi.get(self, "capacity_gb")
 
     @capacity_gb.setter
-    def capacity_gb(self, value: pulumi.Input[float]):
+    def capacity_gb(self, value: pulumi.Input[int]):
         pulumi.set(self, "capacity_gb", value)
 
     @property
@@ -69,8 +69,8 @@ class InstanceFileSharesArgs:
 class InstanceFileSharesNfsExportOptionArgs:
     def __init__(__self__, *,
                  access_mode: Optional[pulumi.Input[str]] = None,
-                 anon_gid: Optional[pulumi.Input[float]] = None,
-                 anon_uid: Optional[pulumi.Input[float]] = None,
+                 anon_gid: Optional[pulumi.Input[int]] = None,
+                 anon_uid: Optional[pulumi.Input[int]] = None,
                  ip_ranges: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
                  squash_mode: Optional[pulumi.Input[str]] = None):
         """
@@ -78,10 +78,10 @@ class InstanceFileSharesNfsExportOptionArgs:
                or READ_WRITE, for allowing both read and write requests. The default is READ_WRITE.
                Default value is `READ_WRITE`.
                Possible values are `READ_ONLY` and `READ_WRITE`.
-        :param pulumi.Input[float] anon_gid: An integer representing the anonymous group id with a default value of 65534.
+        :param pulumi.Input[int] anon_gid: An integer representing the anonymous group id with a default value of 65534.
                Anon_gid may only be set with squashMode of ROOT_SQUASH. An error will be returned
                if this field is specified for other squashMode settings.
-        :param pulumi.Input[float] anon_uid: An integer representing the anonymous user id with a default value of 65534.
+        :param pulumi.Input[int] anon_uid: An integer representing the anonymous user id with a default value of 65534.
                Anon_uid may only be set with squashMode of ROOT_SQUASH. An error will be returned
                if this field is specified for other squashMode settings.
         :param pulumi.Input[List[pulumi.Input[str]]] ip_ranges: List of either IPv4 addresses, or ranges in CIDR notation which may mount the file share.
@@ -120,7 +120,7 @@ class InstanceFileSharesNfsExportOptionArgs:
 
     @property
     @pulumi.getter(name="anonGid")
-    def anon_gid(self) -> Optional[pulumi.Input[float]]:
+    def anon_gid(self) -> Optional[pulumi.Input[int]]:
         """
         An integer representing the anonymous group id with a default value of 65534.
         Anon_gid may only be set with squashMode of ROOT_SQUASH. An error will be returned
@@ -129,12 +129,12 @@ class InstanceFileSharesNfsExportOptionArgs:
         return pulumi.get(self, "anon_gid")
 
     @anon_gid.setter
-    def anon_gid(self, value: Optional[pulumi.Input[float]]):
+    def anon_gid(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "anon_gid", value)
 
     @property
     @pulumi.getter(name="anonUid")
-    def anon_uid(self) -> Optional[pulumi.Input[float]]:
+    def anon_uid(self) -> Optional[pulumi.Input[int]]:
         """
         An integer representing the anonymous user id with a default value of 65534.
         Anon_uid may only be set with squashMode of ROOT_SQUASH. An error will be returned
@@ -143,7 +143,7 @@ class InstanceFileSharesNfsExportOptionArgs:
         return pulumi.get(self, "anon_uid")
 
     @anon_uid.setter
-    def anon_uid(self, value: Optional[pulumi.Input[float]]):
+    def anon_uid(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "anon_uid", value)
 
     @property

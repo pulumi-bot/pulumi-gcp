@@ -68,10 +68,10 @@ class DatabaseInstanceReplicaConfigurationArgs:
                  ca_certificate: Optional[pulumi.Input[str]] = None,
                  client_certificate: Optional[pulumi.Input[str]] = None,
                  client_key: Optional[pulumi.Input[str]] = None,
-                 connect_retry_interval: Optional[pulumi.Input[float]] = None,
+                 connect_retry_interval: Optional[pulumi.Input[int]] = None,
                  dump_file_path: Optional[pulumi.Input[str]] = None,
                  failover_target: Optional[pulumi.Input[bool]] = None,
-                 master_heartbeat_period: Optional[pulumi.Input[float]] = None,
+                 master_heartbeat_period: Optional[pulumi.Input[int]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  ssl_cipher: Optional[pulumi.Input[str]] = None,
                  username: Optional[pulumi.Input[str]] = None,
@@ -83,7 +83,7 @@ class DatabaseInstanceReplicaConfigurationArgs:
                certificate.
         :param pulumi.Input[str] client_key: PEM representation of the slave's private key. The
                corresponding public key in encoded in the `client_certificate`.
-        :param pulumi.Input[float] connect_retry_interval: The number of seconds
+        :param pulumi.Input[int] connect_retry_interval: The number of seconds
                between connect retries.
         :param pulumi.Input[str] dump_file_path: Path to a SQL file in GCS from which slave
                instances are created. Format is `gs://bucket/filename`.
@@ -91,7 +91,7 @@ class DatabaseInstanceReplicaConfigurationArgs:
                If the field is set to true the replica will be designated as a failover replica.
                If the master instance fails, the replica instance will be promoted as
                the new master instance.
-        :param pulumi.Input[float] master_heartbeat_period: Time in ms between replication
+        :param pulumi.Input[int] master_heartbeat_period: Time in ms between replication
                heartbeats.
         :param pulumi.Input[str] password: Password for the replication connection.
         :param pulumi.Input[str] username: Username for replication connection.
@@ -162,7 +162,7 @@ class DatabaseInstanceReplicaConfigurationArgs:
 
     @property
     @pulumi.getter(name="connectRetryInterval")
-    def connect_retry_interval(self) -> Optional[pulumi.Input[float]]:
+    def connect_retry_interval(self) -> Optional[pulumi.Input[int]]:
         """
         The number of seconds
         between connect retries.
@@ -170,7 +170,7 @@ class DatabaseInstanceReplicaConfigurationArgs:
         return pulumi.get(self, "connect_retry_interval")
 
     @connect_retry_interval.setter
-    def connect_retry_interval(self, value: Optional[pulumi.Input[float]]):
+    def connect_retry_interval(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "connect_retry_interval", value)
 
     @property
@@ -203,7 +203,7 @@ class DatabaseInstanceReplicaConfigurationArgs:
 
     @property
     @pulumi.getter(name="masterHeartbeatPeriod")
-    def master_heartbeat_period(self) -> Optional[pulumi.Input[float]]:
+    def master_heartbeat_period(self) -> Optional[pulumi.Input[int]]:
         """
         Time in ms between replication
         heartbeats.
@@ -211,7 +211,7 @@ class DatabaseInstanceReplicaConfigurationArgs:
         return pulumi.get(self, "master_heartbeat_period")
 
     @master_heartbeat_period.setter
-    def master_heartbeat_period(self, value: Optional[pulumi.Input[float]]):
+    def master_heartbeat_period(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "master_heartbeat_period", value)
 
     @property
@@ -345,7 +345,7 @@ class DatabaseInstanceSettingsArgs:
                  crash_safe_replication: Optional[pulumi.Input[bool]] = None,
                  database_flags: Optional[pulumi.Input[List[pulumi.Input['DatabaseInstanceSettingsDatabaseFlagArgs']]]] = None,
                  disk_autoresize: Optional[pulumi.Input[bool]] = None,
-                 disk_size: Optional[pulumi.Input[float]] = None,
+                 disk_size: Optional[pulumi.Input[int]] = None,
                  disk_type: Optional[pulumi.Input[str]] = None,
                  ip_configuration: Optional[pulumi.Input['DatabaseInstanceSettingsIpConfigurationArgs']] = None,
                  location_preference: Optional[pulumi.Input['DatabaseInstanceSettingsLocationPreferenceArgs']] = None,
@@ -353,7 +353,7 @@ class DatabaseInstanceSettingsArgs:
                  pricing_plan: Optional[pulumi.Input[str]] = None,
                  replication_type: Optional[pulumi.Input[str]] = None,
                  user_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-                 version: Optional[pulumi.Input[float]] = None):
+                 version: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] tier: The machine type to use. See [tiers](https://cloud.google.com/sql/docs/admin-api/v1beta4/tiers)
                for more details and supported versions. Postgres supports only shared-core machine types such as `db-f1-micro`,
@@ -374,7 +374,7 @@ class DatabaseInstanceSettingsArgs:
                Specific to read instances, indicates
                when crash-safe replication flags are enabled.
         :param pulumi.Input[bool] disk_autoresize: Configuration to increase storage size automatically.  Note that future `pulumi apply` calls will attempt to resize the disk to the value specified in `disk_size` - if this is set, do not set `disk_size`.
-        :param pulumi.Input[float] disk_size: The size of data disk, in GB. Size of a running instance cannot be reduced but can be increased.
+        :param pulumi.Input[int] disk_size: The size of data disk, in GB. Size of a running instance cannot be reduced but can be increased.
         :param pulumi.Input[str] disk_type: The type of data disk: PD_SSD or PD_HDD.
         :param pulumi.Input[str] pricing_plan: Pricing plan for this instance, can only be `PER_USE`.
         :param pulumi.Input[str] replication_type: This property is only applicable to First Generation instances.
@@ -531,14 +531,14 @@ class DatabaseInstanceSettingsArgs:
 
     @property
     @pulumi.getter(name="diskSize")
-    def disk_size(self) -> Optional[pulumi.Input[float]]:
+    def disk_size(self) -> Optional[pulumi.Input[int]]:
         """
         The size of data disk, in GB. Size of a running instance cannot be reduced but can be increased.
         """
         return pulumi.get(self, "disk_size")
 
     @disk_size.setter
-    def disk_size(self, value: Optional[pulumi.Input[float]]):
+    def disk_size(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "disk_size", value)
 
     @property
@@ -621,11 +621,11 @@ class DatabaseInstanceSettingsArgs:
 
     @property
     @pulumi.getter
-    def version(self) -> Optional[pulumi.Input[float]]:
+    def version(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "version")
 
     @version.setter
-    def version(self, value: Optional[pulumi.Input[float]]):
+    def version(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "version", value)
 
 
@@ -946,12 +946,12 @@ class DatabaseInstanceSettingsLocationPreferenceArgs:
 @pulumi.input_type
 class DatabaseInstanceSettingsMaintenanceWindowArgs:
     def __init__(__self__, *,
-                 day: Optional[pulumi.Input[float]] = None,
-                 hour: Optional[pulumi.Input[float]] = None,
+                 day: Optional[pulumi.Input[int]] = None,
+                 hour: Optional[pulumi.Input[int]] = None,
                  update_track: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[float] day: Day of week (`1-7`), starting on Monday
-        :param pulumi.Input[float] hour: Hour of day (`0-23`), ignored if `day` not set
+        :param pulumi.Input[int] day: Day of week (`1-7`), starting on Monday
+        :param pulumi.Input[int] hour: Hour of day (`0-23`), ignored if `day` not set
         :param pulumi.Input[str] update_track: Receive updates earlier (`canary`) or later
                (`stable`)
         """
@@ -964,26 +964,26 @@ class DatabaseInstanceSettingsMaintenanceWindowArgs:
 
     @property
     @pulumi.getter
-    def day(self) -> Optional[pulumi.Input[float]]:
+    def day(self) -> Optional[pulumi.Input[int]]:
         """
         Day of week (`1-7`), starting on Monday
         """
         return pulumi.get(self, "day")
 
     @day.setter
-    def day(self, value: Optional[pulumi.Input[float]]):
+    def day(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "day", value)
 
     @property
     @pulumi.getter
-    def hour(self) -> Optional[pulumi.Input[float]]:
+    def hour(self) -> Optional[pulumi.Input[int]]:
         """
         Hour of day (`0-23`), ignored if `day` not set
         """
         return pulumi.get(self, "hour")
 
     @hour.setter
-    def hour(self, value: Optional[pulumi.Input[float]]):
+    def hour(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "hour", value)
 
     @property

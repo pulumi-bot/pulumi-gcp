@@ -21,7 +21,7 @@ class MangedSslCertificate(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 certificate_id: Optional[pulumi.Input[float]] = None,
+                 certificate_id: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  managed: Optional[pulumi.Input[pulumi.InputType['MangedSslCertificateManagedArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -34,7 +34,7 @@ class MangedSslCertificate(pulumi.CustomResource):
         Create a MangedSslCertificate resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[float] certificate_id: The unique identifier for the resource.
+        :param pulumi.Input[int] certificate_id: The unique identifier for the resource.
         :param pulumi.Input[str] description: An optional description of this resource.
         :param pulumi.Input[pulumi.InputType['MangedSslCertificateManagedArgs']] managed: Properties relevant to a managed certificate. These will be used if the certificate is managed (as indicated by a value
                of 'MANAGED' in 'type').
@@ -84,7 +84,7 @@ class MangedSslCertificate(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            certificate_id: Optional[pulumi.Input[float]] = None,
+            certificate_id: Optional[pulumi.Input[int]] = None,
             creation_timestamp: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             expire_time: Optional[pulumi.Input[str]] = None,
@@ -101,7 +101,7 @@ class MangedSslCertificate(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[float] certificate_id: The unique identifier for the resource.
+        :param pulumi.Input[int] certificate_id: The unique identifier for the resource.
         :param pulumi.Input[str] creation_timestamp: Creation timestamp in RFC3339 text format.
         :param pulumi.Input[str] description: An optional description of this resource.
         :param pulumi.Input[str] expire_time: Expire time of the certificate.
@@ -134,7 +134,7 @@ class MangedSslCertificate(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="certificateId")
-    def certificate_id(self) -> pulumi.Output[float]:
+    def certificate_id(self) -> pulumi.Output[int]:
         """
         The unique identifier for the resource.
         """

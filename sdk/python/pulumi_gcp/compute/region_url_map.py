@@ -105,7 +105,7 @@ class RegionUrlMap(pulumi.CustomResource):
             description: Optional[pulumi.Input[str]] = None,
             fingerprint: Optional[pulumi.Input[str]] = None,
             host_rules: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['RegionUrlMapHostRuleArgs']]]]] = None,
-            map_id: Optional[pulumi.Input[float]] = None,
+            map_id: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
             path_matchers: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['RegionUrlMapPathMatcherArgs']]]]] = None,
             project: Optional[pulumi.Input[str]] = None,
@@ -131,7 +131,7 @@ class RegionUrlMap(pulumi.CustomResource):
         :param pulumi.Input[str] fingerprint: Fingerprint of this resource. This field is used internally during updates of this resource.
         :param pulumi.Input[List[pulumi.Input[pulumi.InputType['RegionUrlMapHostRuleArgs']]]] host_rules: The list of HostRules to use against the URL.
                Structure is documented below.
-        :param pulumi.Input[float] map_id: The unique identifier for the resource.
+        :param pulumi.Input[int] map_id: The unique identifier for the resource.
         :param pulumi.Input[str] name: The name of the query parameter to match. The query parameter must exist in the
                request, in the absence of which the request match fails.
         :param pulumi.Input[List[pulumi.Input[pulumi.InputType['RegionUrlMapPathMatcherArgs']]]] path_matchers: The name of the PathMatcher to use to match the path portion of
@@ -220,7 +220,7 @@ class RegionUrlMap(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="mapId")
-    def map_id(self) -> pulumi.Output[float]:
+    def map_id(self) -> pulumi.Output[int]:
         """
         The unique identifier for the resource.
         """

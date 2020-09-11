@@ -110,7 +110,7 @@ class TargetHttpsProxy(pulumi.CustomResource):
             description: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             project: Optional[pulumi.Input[str]] = None,
-            proxy_id: Optional[pulumi.Input[float]] = None,
+            proxy_id: Optional[pulumi.Input[int]] = None,
             quic_override: Optional[pulumi.Input[str]] = None,
             self_link: Optional[pulumi.Input[str]] = None,
             ssl_certificates: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
@@ -134,7 +134,7 @@ class TargetHttpsProxy(pulumi.CustomResource):
                character, which cannot be a dash.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[float] proxy_id: The unique identifier for the resource.
+        :param pulumi.Input[int] proxy_id: The unique identifier for the resource.
         :param pulumi.Input[str] quic_override: Specifies the QUIC override policy for this resource. This determines
                whether the load balancer will attempt to negotiate QUIC with clients
                or not. Can specify one of NONE, ENABLE, or DISABLE. If NONE is
@@ -209,7 +209,7 @@ class TargetHttpsProxy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="proxyId")
-    def proxy_id(self) -> pulumi.Output[float]:
+    def proxy_id(self) -> pulumi.Output[int]:
         """
         The unique identifier for the resource.
         """

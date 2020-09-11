@@ -777,12 +777,12 @@ class GuestPoliciesRecipeArtifact(dict):
 class GuestPoliciesRecipeArtifactGcs(dict):
     def __init__(__self__, *,
                  bucket: Optional[str] = None,
-                 generation: Optional[float] = None,
+                 generation: Optional[int] = None,
                  object: Optional[str] = None):
         """
         :param str bucket: Bucket of the Google Cloud Storage object. Given an example URL: https://storage.googleapis.com/my-bucket/foo/bar#1234567
                this value would be my-bucket.
-        :param float generation: Must be provided if allowInsecure is false. Generation number of the Google Cloud Storage object.
+        :param int generation: Must be provided if allowInsecure is false. Generation number of the Google Cloud Storage object.
                https://storage.googleapis.com/my-bucket/foo/bar#1234567 this value would be 1234567.
         :param str object: Name of the Google Cloud Storage object. Given an example URL: https://storage.googleapis.com/my-bucket/foo/bar#1234567
                this value would be foo/bar.
@@ -805,7 +805,7 @@ class GuestPoliciesRecipeArtifactGcs(dict):
 
     @property
     @pulumi.getter
-    def generation(self) -> Optional[float]:
+    def generation(self) -> Optional[int]:
         """
         Must be provided if allowInsecure is false. Generation number of the Google Cloud Storage object.
         https://storage.googleapis.com/my-bucket/foo/bar#1234567 this value would be 1234567.
@@ -1168,11 +1168,11 @@ class GuestPoliciesRecipeInstallStepFileExec(dict):
 class GuestPoliciesRecipeInstallStepMsiInstallation(dict):
     def __init__(__self__, *,
                  artifact_id: str,
-                 allowed_exit_codes: Optional[List[float]] = None,
+                 allowed_exit_codes: Optional[List[int]] = None,
                  flags: Optional[List[str]] = None):
         """
         :param str artifact_id: The id of the relevant artifact in the recipe.
-        :param List[float] allowed_exit_codes: Return codes that indicate that the software installed or updated successfully. Behaviour defaults to [0]
+        :param List[int] allowed_exit_codes: Return codes that indicate that the software installed or updated successfully. Behaviour defaults to [0]
         :param List[str] flags: The flags to use when installing the MSI. Defaults to the install flag.
         """
         pulumi.set(__self__, "artifact_id", artifact_id)
@@ -1191,7 +1191,7 @@ class GuestPoliciesRecipeInstallStepMsiInstallation(dict):
 
     @property
     @pulumi.getter(name="allowedExitCodes")
-    def allowed_exit_codes(self) -> Optional[List[float]]:
+    def allowed_exit_codes(self) -> Optional[List[int]]:
         """
         Return codes that indicate that the software installed or updated successfully. Behaviour defaults to [0]
         """
@@ -1234,11 +1234,11 @@ class GuestPoliciesRecipeInstallStepRpmInstallation(dict):
 class GuestPoliciesRecipeInstallStepScriptRun(dict):
     def __init__(__self__, *,
                  script: str,
-                 allowed_exit_codes: Optional[List[float]] = None,
+                 allowed_exit_codes: Optional[List[int]] = None,
                  interpreter: Optional[str] = None):
         """
         :param str script: The shell script to be executed.
-        :param List[float] allowed_exit_codes: Return codes that indicate that the software installed or updated successfully. Behaviour defaults to [0]
+        :param List[int] allowed_exit_codes: Return codes that indicate that the software installed or updated successfully. Behaviour defaults to [0]
         :param str interpreter: The script interpreter to use to run the script. If no interpreter is specified the script is executed directly,
                which likely only succeed for scripts with shebang lines.
                Possible values are `SHELL` and `POWERSHELL`.
@@ -1259,7 +1259,7 @@ class GuestPoliciesRecipeInstallStepScriptRun(dict):
 
     @property
     @pulumi.getter(name="allowedExitCodes")
-    def allowed_exit_codes(self) -> Optional[List[float]]:
+    def allowed_exit_codes(self) -> Optional[List[int]]:
         """
         Return codes that indicate that the software installed or updated successfully. Behaviour defaults to [0]
         """
@@ -1525,12 +1525,12 @@ class GuestPoliciesRecipeUpdateStepFileCopy(dict):
 @pulumi.output_type
 class GuestPoliciesRecipeUpdateStepFileExec(dict):
     def __init__(__self__, *,
-                 allowed_exit_codes: Optional[List[float]] = None,
+                 allowed_exit_codes: Optional[List[int]] = None,
                  args: Optional[List[str]] = None,
                  artifact_id: Optional[str] = None,
                  local_path: Optional[str] = None):
         """
-        :param List[float] allowed_exit_codes: Return codes that indicate that the software installed or updated successfully. Behaviour defaults to [0]
+        :param List[int] allowed_exit_codes: Return codes that indicate that the software installed or updated successfully. Behaviour defaults to [0]
         :param List[str] args: Arguments to be passed to the provided executable.
         :param str artifact_id: The id of the relevant artifact in the recipe.
         :param str local_path: The absolute path of the file on the local filesystem.
@@ -1546,7 +1546,7 @@ class GuestPoliciesRecipeUpdateStepFileExec(dict):
 
     @property
     @pulumi.getter(name="allowedExitCodes")
-    def allowed_exit_codes(self) -> Optional[List[float]]:
+    def allowed_exit_codes(self) -> Optional[List[int]]:
         """
         Return codes that indicate that the software installed or updated successfully. Behaviour defaults to [0]
         """
@@ -1584,11 +1584,11 @@ class GuestPoliciesRecipeUpdateStepFileExec(dict):
 class GuestPoliciesRecipeUpdateStepMsiInstallation(dict):
     def __init__(__self__, *,
                  artifact_id: str,
-                 allowed_exit_codes: Optional[List[float]] = None,
+                 allowed_exit_codes: Optional[List[int]] = None,
                  flags: Optional[List[str]] = None):
         """
         :param str artifact_id: The id of the relevant artifact in the recipe.
-        :param List[float] allowed_exit_codes: Return codes that indicate that the software installed or updated successfully. Behaviour defaults to [0]
+        :param List[int] allowed_exit_codes: Return codes that indicate that the software installed or updated successfully. Behaviour defaults to [0]
         :param List[str] flags: The flags to use when installing the MSI. Defaults to the install flag.
         """
         pulumi.set(__self__, "artifact_id", artifact_id)
@@ -1607,7 +1607,7 @@ class GuestPoliciesRecipeUpdateStepMsiInstallation(dict):
 
     @property
     @pulumi.getter(name="allowedExitCodes")
-    def allowed_exit_codes(self) -> Optional[List[float]]:
+    def allowed_exit_codes(self) -> Optional[List[int]]:
         """
         Return codes that indicate that the software installed or updated successfully. Behaviour defaults to [0]
         """
@@ -1650,11 +1650,11 @@ class GuestPoliciesRecipeUpdateStepRpmInstallation(dict):
 class GuestPoliciesRecipeUpdateStepScriptRun(dict):
     def __init__(__self__, *,
                  script: str,
-                 allowed_exit_codes: Optional[List[float]] = None,
+                 allowed_exit_codes: Optional[List[int]] = None,
                  interpreter: Optional[str] = None):
         """
         :param str script: The shell script to be executed.
-        :param List[float] allowed_exit_codes: Return codes that indicate that the software installed or updated successfully. Behaviour defaults to [0]
+        :param List[int] allowed_exit_codes: Return codes that indicate that the software installed or updated successfully. Behaviour defaults to [0]
         :param str interpreter: The script interpreter to use to run the script. If no interpreter is specified the script is executed directly,
                which likely only succeed for scripts with shebang lines.
                Possible values are `SHELL` and `POWERSHELL`.
@@ -1675,7 +1675,7 @@ class GuestPoliciesRecipeUpdateStepScriptRun(dict):
 
     @property
     @pulumi.getter(name="allowedExitCodes")
-    def allowed_exit_codes(self) -> Optional[List[float]]:
+    def allowed_exit_codes(self) -> Optional[List[int]]:
         """
         Return codes that indicate that the software installed or updated successfully. Behaviour defaults to [0]
         """
@@ -2053,12 +2053,12 @@ class PatchDeploymentPatchConfigPostStep(dict):
 @pulumi.output_type
 class PatchDeploymentPatchConfigPostStepLinuxExecStepConfig(dict):
     def __init__(__self__, *,
-                 allowed_success_codes: Optional[List[float]] = None,
+                 allowed_success_codes: Optional[List[int]] = None,
                  gcs_object: Optional['outputs.PatchDeploymentPatchConfigPostStepLinuxExecStepConfigGcsObject'] = None,
                  interpreter: Optional[str] = None,
                  local_path: Optional[str] = None):
         """
-        :param List[float] allowed_success_codes: Defaults to [0]. A list of possible return values that the execution can return to indicate a success.
+        :param List[int] allowed_success_codes: Defaults to [0]. A list of possible return values that the execution can return to indicate a success.
         :param 'PatchDeploymentPatchConfigPostStepLinuxExecStepConfigGcsObjectArgs' gcs_object: A Cloud Storage object containing the executable.
                Structure is documented below.
         :param str interpreter: The script interpreter to use to run the script. If no interpreter is specified the script will
@@ -2077,7 +2077,7 @@ class PatchDeploymentPatchConfigPostStepLinuxExecStepConfig(dict):
 
     @property
     @pulumi.getter(name="allowedSuccessCodes")
-    def allowed_success_codes(self) -> Optional[List[float]]:
+    def allowed_success_codes(self) -> Optional[List[int]]:
         """
         Defaults to [0]. A list of possible return values that the execution can return to indicate a success.
         """
@@ -2160,12 +2160,12 @@ class PatchDeploymentPatchConfigPostStepLinuxExecStepConfigGcsObject(dict):
 @pulumi.output_type
 class PatchDeploymentPatchConfigPostStepWindowsExecStepConfig(dict):
     def __init__(__self__, *,
-                 allowed_success_codes: Optional[List[float]] = None,
+                 allowed_success_codes: Optional[List[int]] = None,
                  gcs_object: Optional['outputs.PatchDeploymentPatchConfigPostStepWindowsExecStepConfigGcsObject'] = None,
                  interpreter: Optional[str] = None,
                  local_path: Optional[str] = None):
         """
-        :param List[float] allowed_success_codes: Defaults to [0]. A list of possible return values that the execution can return to indicate a success.
+        :param List[int] allowed_success_codes: Defaults to [0]. A list of possible return values that the execution can return to indicate a success.
         :param 'PatchDeploymentPatchConfigPostStepWindowsExecStepConfigGcsObjectArgs' gcs_object: A Cloud Storage object containing the executable.
                Structure is documented below.
         :param str interpreter: The script interpreter to use to run the script. If no interpreter is specified the script will
@@ -2184,7 +2184,7 @@ class PatchDeploymentPatchConfigPostStepWindowsExecStepConfig(dict):
 
     @property
     @pulumi.getter(name="allowedSuccessCodes")
-    def allowed_success_codes(self) -> Optional[List[float]]:
+    def allowed_success_codes(self) -> Optional[List[int]]:
         """
         Defaults to [0]. A list of possible return values that the execution can return to indicate a success.
         """
@@ -2305,12 +2305,12 @@ class PatchDeploymentPatchConfigPreStep(dict):
 @pulumi.output_type
 class PatchDeploymentPatchConfigPreStepLinuxExecStepConfig(dict):
     def __init__(__self__, *,
-                 allowed_success_codes: Optional[List[float]] = None,
+                 allowed_success_codes: Optional[List[int]] = None,
                  gcs_object: Optional['outputs.PatchDeploymentPatchConfigPreStepLinuxExecStepConfigGcsObject'] = None,
                  interpreter: Optional[str] = None,
                  local_path: Optional[str] = None):
         """
-        :param List[float] allowed_success_codes: Defaults to [0]. A list of possible return values that the execution can return to indicate a success.
+        :param List[int] allowed_success_codes: Defaults to [0]. A list of possible return values that the execution can return to indicate a success.
         :param 'PatchDeploymentPatchConfigPreStepLinuxExecStepConfigGcsObjectArgs' gcs_object: A Cloud Storage object containing the executable.
                Structure is documented below.
         :param str interpreter: The script interpreter to use to run the script. If no interpreter is specified the script will
@@ -2329,7 +2329,7 @@ class PatchDeploymentPatchConfigPreStepLinuxExecStepConfig(dict):
 
     @property
     @pulumi.getter(name="allowedSuccessCodes")
-    def allowed_success_codes(self) -> Optional[List[float]]:
+    def allowed_success_codes(self) -> Optional[List[int]]:
         """
         Defaults to [0]. A list of possible return values that the execution can return to indicate a success.
         """
@@ -2412,12 +2412,12 @@ class PatchDeploymentPatchConfigPreStepLinuxExecStepConfigGcsObject(dict):
 @pulumi.output_type
 class PatchDeploymentPatchConfigPreStepWindowsExecStepConfig(dict):
     def __init__(__self__, *,
-                 allowed_success_codes: Optional[List[float]] = None,
+                 allowed_success_codes: Optional[List[int]] = None,
                  gcs_object: Optional['outputs.PatchDeploymentPatchConfigPreStepWindowsExecStepConfigGcsObject'] = None,
                  interpreter: Optional[str] = None,
                  local_path: Optional[str] = None):
         """
-        :param List[float] allowed_success_codes: Defaults to [0]. A list of possible return values that the execution can return to indicate a success.
+        :param List[int] allowed_success_codes: Defaults to [0]. A list of possible return values that the execution can return to indicate a success.
         :param 'PatchDeploymentPatchConfigPreStepWindowsExecStepConfigGcsObjectArgs' gcs_object: A Cloud Storage object containing the executable.
                Structure is documented below.
         :param str interpreter: The script interpreter to use to run the script. If no interpreter is specified the script will
@@ -2436,7 +2436,7 @@ class PatchDeploymentPatchConfigPreStepWindowsExecStepConfig(dict):
 
     @property
     @pulumi.getter(name="allowedSuccessCodes")
-    def allowed_success_codes(self) -> Optional[List[float]]:
+    def allowed_success_codes(self) -> Optional[List[int]]:
         """
         Defaults to [0]. A list of possible return values that the execution can return to indicate a success.
         """
@@ -2841,10 +2841,10 @@ class PatchDeploymentRecurringSchedule(dict):
 @pulumi.output_type
 class PatchDeploymentRecurringScheduleMonthly(dict):
     def __init__(__self__, *,
-                 month_day: Optional[float] = None,
+                 month_day: Optional[int] = None,
                  week_day_of_month: Optional['outputs.PatchDeploymentRecurringScheduleMonthlyWeekDayOfMonth'] = None):
         """
-        :param float month_day: One day of the month. 1-31 indicates the 1st to the 31st day. -1 indicates the last day of the month.
+        :param int month_day: One day of the month. 1-31 indicates the 1st to the 31st day. -1 indicates the last day of the month.
                Months without the target day will be skipped. For example, a schedule to run "every month on the 31st"
                will not run in February, April, June, etc.
         :param 'PatchDeploymentRecurringScheduleMonthlyWeekDayOfMonthArgs' week_day_of_month: Week day in a month.
@@ -2857,7 +2857,7 @@ class PatchDeploymentRecurringScheduleMonthly(dict):
 
     @property
     @pulumi.getter(name="monthDay")
-    def month_day(self) -> Optional[float]:
+    def month_day(self) -> Optional[int]:
         """
         One day of the month. 1-31 indicates the 1st to the 31st day. -1 indicates the last day of the month.
         Months without the target day will be skipped. For example, a schedule to run "every month on the 31st"
@@ -2882,11 +2882,11 @@ class PatchDeploymentRecurringScheduleMonthly(dict):
 class PatchDeploymentRecurringScheduleMonthlyWeekDayOfMonth(dict):
     def __init__(__self__, *,
                  day_of_week: str,
-                 week_ordinal: float):
+                 week_ordinal: int):
         """
         :param str day_of_week: A day of the week.
                Possible values are `MONDAY`, `TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`, `SATURDAY`, and `SUNDAY`.
-        :param float week_ordinal: Week number in a month. 1-4 indicates the 1st to 4th week of the month. -1 indicates the last week of the month.
+        :param int week_ordinal: Week number in a month. 1-4 indicates the 1st to 4th week of the month. -1 indicates the last week of the month.
         """
         pulumi.set(__self__, "day_of_week", day_of_week)
         pulumi.set(__self__, "week_ordinal", week_ordinal)
@@ -2902,7 +2902,7 @@ class PatchDeploymentRecurringScheduleMonthlyWeekDayOfMonth(dict):
 
     @property
     @pulumi.getter(name="weekOrdinal")
-    def week_ordinal(self) -> float:
+    def week_ordinal(self) -> int:
         """
         Week number in a month. 1-4 indicates the 1st to 4th week of the month. -1 indicates the last week of the month.
         """
@@ -2915,16 +2915,16 @@ class PatchDeploymentRecurringScheduleMonthlyWeekDayOfMonth(dict):
 @pulumi.output_type
 class PatchDeploymentRecurringScheduleTimeOfDay(dict):
     def __init__(__self__, *,
-                 hours: Optional[float] = None,
-                 minutes: Optional[float] = None,
-                 nanos: Optional[float] = None,
-                 seconds: Optional[float] = None):
+                 hours: Optional[int] = None,
+                 minutes: Optional[int] = None,
+                 nanos: Optional[int] = None,
+                 seconds: Optional[int] = None):
         """
-        :param float hours: Hours of day in 24 hour format. Should be from 0 to 23.
+        :param int hours: Hours of day in 24 hour format. Should be from 0 to 23.
                An API may choose to allow the value "24:00:00" for scenarios like business closing time.
-        :param float minutes: Minutes of hour of day. Must be from 0 to 59.
-        :param float nanos: Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
-        :param float seconds: Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.
+        :param int minutes: Minutes of hour of day. Must be from 0 to 59.
+        :param int nanos: Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
+        :param int seconds: Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.
         """
         if hours is not None:
             pulumi.set(__self__, "hours", hours)
@@ -2937,7 +2937,7 @@ class PatchDeploymentRecurringScheduleTimeOfDay(dict):
 
     @property
     @pulumi.getter
-    def hours(self) -> Optional[float]:
+    def hours(self) -> Optional[int]:
         """
         Hours of day in 24 hour format. Should be from 0 to 23.
         An API may choose to allow the value "24:00:00" for scenarios like business closing time.
@@ -2946,7 +2946,7 @@ class PatchDeploymentRecurringScheduleTimeOfDay(dict):
 
     @property
     @pulumi.getter
-    def minutes(self) -> Optional[float]:
+    def minutes(self) -> Optional[int]:
         """
         Minutes of hour of day. Must be from 0 to 59.
         """
@@ -2954,7 +2954,7 @@ class PatchDeploymentRecurringScheduleTimeOfDay(dict):
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[float]:
+    def nanos(self) -> Optional[int]:
         """
         Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
         """
@@ -2962,7 +2962,7 @@ class PatchDeploymentRecurringScheduleTimeOfDay(dict):
 
     @property
     @pulumi.getter
-    def seconds(self) -> Optional[float]:
+    def seconds(self) -> Optional[int]:
         """
         Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.
         """
@@ -3075,11 +3075,11 @@ class PatchDeploymentRollout(dict):
 @pulumi.output_type
 class PatchDeploymentRolloutDisruptionBudget(dict):
     def __init__(__self__, *,
-                 fixed: Optional[float] = None,
-                 percentage: Optional[float] = None):
+                 fixed: Optional[int] = None,
+                 percentage: Optional[int] = None):
         """
-        :param float fixed: Specifies a fixed value.
-        :param float percentage: Specifies the relative value defined as a percentage, which will be multiplied by a reference value.
+        :param int fixed: Specifies a fixed value.
+        :param int percentage: Specifies the relative value defined as a percentage, which will be multiplied by a reference value.
         """
         if fixed is not None:
             pulumi.set(__self__, "fixed", fixed)
@@ -3088,7 +3088,7 @@ class PatchDeploymentRolloutDisruptionBudget(dict):
 
     @property
     @pulumi.getter
-    def fixed(self) -> Optional[float]:
+    def fixed(self) -> Optional[int]:
         """
         Specifies a fixed value.
         """
@@ -3096,7 +3096,7 @@ class PatchDeploymentRolloutDisruptionBudget(dict):
 
     @property
     @pulumi.getter
-    def percentage(self) -> Optional[float]:
+    def percentage(self) -> Optional[int]:
         """
         Specifies the relative value defined as a percentage, which will be multiplied by a reference value.
         """

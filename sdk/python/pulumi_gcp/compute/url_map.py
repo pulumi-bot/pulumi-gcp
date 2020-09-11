@@ -121,7 +121,7 @@ class URLMap(pulumi.CustomResource):
             fingerprint: Optional[pulumi.Input[str]] = None,
             header_action: Optional[pulumi.Input[pulumi.InputType['URLMapHeaderActionArgs']]] = None,
             host_rules: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['URLMapHostRuleArgs']]]]] = None,
-            map_id: Optional[pulumi.Input[float]] = None,
+            map_id: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
             path_matchers: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['URLMapPathMatcherArgs']]]]] = None,
             project: Optional[pulumi.Input[str]] = None,
@@ -155,7 +155,7 @@ class URLMap(pulumi.CustomResource):
                Structure is documented below.
         :param pulumi.Input[List[pulumi.Input[pulumi.InputType['URLMapHostRuleArgs']]]] host_rules: The list of HostRules to use against the URL.
                Structure is documented below.
-        :param pulumi.Input[float] map_id: The unique identifier for the resource.
+        :param pulumi.Input[int] map_id: The unique identifier for the resource.
         :param pulumi.Input[str] name: The name of the query parameter to match. The query parameter must exist in the
                request, in the absence of which the request match fails.
         :param pulumi.Input[List[pulumi.Input[pulumi.InputType['URLMapPathMatcherArgs']]]] path_matchers: The name of the PathMatcher to use to match the path portion of the URL if the
@@ -267,7 +267,7 @@ class URLMap(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="mapId")
-    def map_id(self) -> pulumi.Output[float]:
+    def map_id(self) -> pulumi.Output[int]:
         """
         The unique identifier for the resource.
         """

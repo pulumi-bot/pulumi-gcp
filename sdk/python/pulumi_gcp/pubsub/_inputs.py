@@ -25,7 +25,7 @@ __all__ = [
 class SubscriptionDeadLetterPolicyArgs:
     def __init__(__self__, *,
                  dead_letter_topic: Optional[pulumi.Input[str]] = None,
-                 max_delivery_attempts: Optional[pulumi.Input[float]] = None):
+                 max_delivery_attempts: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] dead_letter_topic: The name of the topic to which dead letter messages should be published.
                Format is `projects/{project}/topics/{topic}`.
@@ -36,7 +36,7 @@ class SubscriptionDeadLetterPolicyArgs:
                The operation will fail if the topic does not exist.
                Users should ensure that there is a subscription attached to this topic
                since messages published to a topic with no subscriptions are lost.
-        :param pulumi.Input[float] max_delivery_attempts: The maximum number of delivery attempts for any message. The value must be
+        :param pulumi.Input[int] max_delivery_attempts: The maximum number of delivery attempts for any message. The value must be
                between 5 and 100.
                The number of delivery attempts is defined as 1 + (the sum of number of
                NACKs and number of times the acknowledgement deadline has been exceeded for the message).
@@ -72,7 +72,7 @@ class SubscriptionDeadLetterPolicyArgs:
 
     @property
     @pulumi.getter(name="maxDeliveryAttempts")
-    def max_delivery_attempts(self) -> Optional[pulumi.Input[float]]:
+    def max_delivery_attempts(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of delivery attempts for any message. The value must be
         between 5 and 100.
@@ -86,7 +86,7 @@ class SubscriptionDeadLetterPolicyArgs:
         return pulumi.get(self, "max_delivery_attempts")
 
     @max_delivery_attempts.setter
-    def max_delivery_attempts(self, value: Optional[pulumi.Input[float]]):
+    def max_delivery_attempts(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_delivery_attempts", value)
 
 

@@ -39,7 +39,7 @@ class DomainMappingMetadataArgs:
     def __init__(__self__, *,
                  namespace: pulumi.Input[str],
                  annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-                 generation: Optional[pulumi.Input[float]] = None,
+                 generation: Optional[pulumi.Input[int]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  resource_version: Optional[pulumi.Input[str]] = None,
                  self_link: Optional[pulumi.Input[str]] = None,
@@ -50,7 +50,7 @@ class DomainMappingMetadataArgs:
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] annotations: Annotations is a key value map stored with a resource that
                may be set by external tools to store and retrieve arbitrary metadata. More
                info: http://kubernetes.io/docs/user-guide/annotations
-        :param pulumi.Input[float] generation: -
+        :param pulumi.Input[int] generation: -
                A sequence number representing a specific generation of the desired state.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Map of string keys and values that can be used to organize and categorize
                (scope and select) objects. May match selectors of replication controllers
@@ -114,7 +114,7 @@ class DomainMappingMetadataArgs:
 
     @property
     @pulumi.getter
-    def generation(self) -> Optional[pulumi.Input[float]]:
+    def generation(self) -> Optional[pulumi.Input[int]]:
         """
         -
         A sequence number representing a specific generation of the desired state.
@@ -122,7 +122,7 @@ class DomainMappingMetadataArgs:
         return pulumi.get(self, "generation")
 
     @generation.setter
-    def generation(self, value: Optional[pulumi.Input[float]]):
+    def generation(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "generation", value)
 
     @property
@@ -259,7 +259,7 @@ class DomainMappingStatusArgs:
     def __init__(__self__, *,
                  conditions: Optional[pulumi.Input[List[pulumi.Input['DomainMappingStatusConditionArgs']]]] = None,
                  mapped_route_name: Optional[pulumi.Input[str]] = None,
-                 observed_generation: Optional[pulumi.Input[float]] = None,
+                 observed_generation: Optional[pulumi.Input[int]] = None,
                  resource_records: Optional[pulumi.Input[List[pulumi.Input['DomainMappingStatusResourceRecordArgs']]]] = None):
         if conditions is not None:
             pulumi.set(__self__, "conditions", conditions)
@@ -290,11 +290,11 @@ class DomainMappingStatusArgs:
 
     @property
     @pulumi.getter(name="observedGeneration")
-    def observed_generation(self) -> Optional[pulumi.Input[float]]:
+    def observed_generation(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "observed_generation")
 
     @observed_generation.setter
-    def observed_generation(self, value: Optional[pulumi.Input[float]]):
+    def observed_generation(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "observed_generation", value)
 
     @property
@@ -489,7 +489,7 @@ class IamMemberConditionArgs:
 class ServiceMetadataArgs:
     def __init__(__self__, *,
                  annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-                 generation: Optional[pulumi.Input[float]] = None,
+                 generation: Optional[pulumi.Input[int]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  resource_version: Optional[pulumi.Input[str]] = None,
@@ -499,7 +499,7 @@ class ServiceMetadataArgs:
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] annotations: Annotations is a key value map stored with a resource that
                may be set by external tools to store and retrieve arbitrary metadata. More
                info: http://kubernetes.io/docs/user-guide/annotations
-        :param pulumi.Input[float] generation: -
+        :param pulumi.Input[int] generation: -
                A sequence number representing a specific generation of the desired state.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Map of string keys and values that can be used to organize and categorize
                (scope and select) objects. May match selectors of replication controllers
@@ -553,7 +553,7 @@ class ServiceMetadataArgs:
 
     @property
     @pulumi.getter
-    def generation(self) -> Optional[pulumi.Input[float]]:
+    def generation(self) -> Optional[pulumi.Input[int]]:
         """
         -
         A sequence number representing a specific generation of the desired state.
@@ -561,7 +561,7 @@ class ServiceMetadataArgs:
         return pulumi.get(self, "generation")
 
     @generation.setter
-    def generation(self, value: Optional[pulumi.Input[float]]):
+    def generation(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "generation", value)
 
     @property
@@ -646,7 +646,7 @@ class ServiceStatusArgs:
                  conditions: Optional[pulumi.Input[List[pulumi.Input['ServiceStatusConditionArgs']]]] = None,
                  latest_created_revision_name: Optional[pulumi.Input[str]] = None,
                  latest_ready_revision_name: Optional[pulumi.Input[str]] = None,
-                 observed_generation: Optional[pulumi.Input[float]] = None,
+                 observed_generation: Optional[pulumi.Input[int]] = None,
                  url: Optional[pulumi.Input[str]] = None):
         if conditions is not None:
             pulumi.set(__self__, "conditions", conditions)
@@ -688,11 +688,11 @@ class ServiceStatusArgs:
 
     @property
     @pulumi.getter(name="observedGeneration")
-    def observed_generation(self) -> Optional[pulumi.Input[float]]:
+    def observed_generation(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "observed_generation")
 
     @observed_generation.setter
-    def observed_generation(self, value: Optional[pulumi.Input[float]]):
+    def observed_generation(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "observed_generation", value)
 
     @property
@@ -807,7 +807,7 @@ class ServiceTemplateArgs:
 class ServiceTemplateMetadataArgs:
     def __init__(__self__, *,
                  annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-                 generation: Optional[pulumi.Input[float]] = None,
+                 generation: Optional[pulumi.Input[int]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
@@ -818,7 +818,7 @@ class ServiceTemplateMetadataArgs:
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] annotations: Annotations is a key value map stored with a resource that
                may be set by external tools to store and retrieve arbitrary metadata. More
                info: http://kubernetes.io/docs/user-guide/annotations
-        :param pulumi.Input[float] generation: -
+        :param pulumi.Input[int] generation: -
                A sequence number representing a specific generation of the desired state.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Map of string keys and values that can be used to organize and categorize
                (scope and select) objects. May match selectors of replication controllers
@@ -875,7 +875,7 @@ class ServiceTemplateMetadataArgs:
 
     @property
     @pulumi.getter
-    def generation(self) -> Optional[pulumi.Input[float]]:
+    def generation(self) -> Optional[pulumi.Input[int]]:
         """
         -
         A sequence number representing a specific generation of the desired state.
@@ -883,7 +883,7 @@ class ServiceTemplateMetadataArgs:
         return pulumi.get(self, "generation")
 
     @generation.setter
-    def generation(self, value: Optional[pulumi.Input[float]]):
+    def generation(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "generation", value)
 
     @property
@@ -977,13 +977,13 @@ class ServiceTemplateMetadataArgs:
 @pulumi.input_type
 class ServiceTemplateSpecArgs:
     def __init__(__self__, *,
-                 container_concurrency: Optional[pulumi.Input[float]] = None,
+                 container_concurrency: Optional[pulumi.Input[int]] = None,
                  containers: Optional[pulumi.Input[List[pulumi.Input['ServiceTemplateSpecContainerArgs']]]] = None,
                  service_account_name: Optional[pulumi.Input[str]] = None,
                  serving_state: Optional[pulumi.Input[str]] = None,
-                 timeout_seconds: Optional[pulumi.Input[float]] = None):
+                 timeout_seconds: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[float] container_concurrency: ContainerConcurrency specifies the maximum allowed in-flight (concurrent)
+        :param pulumi.Input[int] container_concurrency: ContainerConcurrency specifies the maximum allowed in-flight (concurrent)
                requests per container of the Revision. Values are:
         :param pulumi.Input[List[pulumi.Input['ServiceTemplateSpecContainerArgs']]] containers: Container defines the unit of execution for this Revision.
                In the context of a Revision, we disallow a number of the fields of
@@ -1000,7 +1000,7 @@ class ServiceTemplateSpecArgs:
                are in for this Revision.
                It is expected
                that the system will manipulate this based on routability and load.
-        :param pulumi.Input[float] timeout_seconds: TimeoutSeconds holds the max duration the instance is allowed for responding to a request.
+        :param pulumi.Input[int] timeout_seconds: TimeoutSeconds holds the max duration the instance is allowed for responding to a request.
         """
         if container_concurrency is not None:
             pulumi.set(__self__, "container_concurrency", container_concurrency)
@@ -1018,7 +1018,7 @@ class ServiceTemplateSpecArgs:
 
     @property
     @pulumi.getter(name="containerConcurrency")
-    def container_concurrency(self) -> Optional[pulumi.Input[float]]:
+    def container_concurrency(self) -> Optional[pulumi.Input[int]]:
         """
         ContainerConcurrency specifies the maximum allowed in-flight (concurrent)
         requests per container of the Revision. Values are:
@@ -1026,7 +1026,7 @@ class ServiceTemplateSpecArgs:
         return pulumi.get(self, "container_concurrency")
 
     @container_concurrency.setter
-    def container_concurrency(self, value: Optional[pulumi.Input[float]]):
+    def container_concurrency(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "container_concurrency", value)
 
     @property
@@ -1079,14 +1079,14 @@ class ServiceTemplateSpecArgs:
 
     @property
     @pulumi.getter(name="timeoutSeconds")
-    def timeout_seconds(self) -> Optional[pulumi.Input[float]]:
+    def timeout_seconds(self) -> Optional[pulumi.Input[int]]:
         """
         TimeoutSeconds holds the max duration the instance is allowed for responding to a request.
         """
         return pulumi.get(self, "timeout_seconds")
 
     @timeout_seconds.setter
-    def timeout_seconds(self, value: Optional[pulumi.Input[float]]):
+    def timeout_seconds(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "timeout_seconds", value)
 
 
@@ -1543,11 +1543,11 @@ class ServiceTemplateSpecContainerEnvFromSecretRefLocalObjectReferenceArgs:
 @pulumi.input_type
 class ServiceTemplateSpecContainerPortArgs:
     def __init__(__self__, *,
-                 container_port: pulumi.Input[float],
+                 container_port: pulumi.Input[int],
                  name: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[float] container_port: Port number.
+        :param pulumi.Input[int] container_port: Port number.
         :param pulumi.Input[str] name: Name of the port.
         :param pulumi.Input[str] protocol: Protocol used on port. Defaults to TCP.
         """
@@ -1559,14 +1559,14 @@ class ServiceTemplateSpecContainerPortArgs:
 
     @property
     @pulumi.getter(name="containerPort")
-    def container_port(self) -> pulumi.Input[float]:
+    def container_port(self) -> pulumi.Input[int]:
         """
         Port number.
         """
         return pulumi.get(self, "container_port")
 
     @container_port.setter
-    def container_port(self, value: pulumi.Input[float]):
+    def container_port(self, value: pulumi.Input[int]):
         pulumi.set(self, "container_port", value)
 
     @property
@@ -1648,11 +1648,11 @@ class ServiceTemplateSpecContainerResourcesArgs:
 @pulumi.input_type
 class ServiceTrafficArgs:
     def __init__(__self__, *,
-                 percent: pulumi.Input[float],
+                 percent: pulumi.Input[int],
                  latest_revision: Optional[pulumi.Input[bool]] = None,
                  revision_name: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[float] percent: Percent specifies percent of the traffic to this Revision or Configuration.
+        :param pulumi.Input[int] percent: Percent specifies percent of the traffic to this Revision or Configuration.
         :param pulumi.Input[bool] latest_revision: LatestRevision may be optionally provided to indicate that the latest ready
                Revision of the Configuration should be used for this traffic target. When
                provided LatestRevision must be true if RevisionName is empty; it must be
@@ -1667,14 +1667,14 @@ class ServiceTrafficArgs:
 
     @property
     @pulumi.getter
-    def percent(self) -> pulumi.Input[float]:
+    def percent(self) -> pulumi.Input[int]:
         """
         Percent specifies percent of the traffic to this Revision or Configuration.
         """
         return pulumi.get(self, "percent")
 
     @percent.setter
-    def percent(self, value: pulumi.Input[float]):
+    def percent(self, value: pulumi.Input[int]):
         pulumi.set(self, "percent", value)
 
     @property

@@ -195,12 +195,12 @@ class PreventionInspectTemplateInspectConfigInfoType(dict):
 @pulumi.output_type
 class PreventionInspectTemplateInspectConfigLimits(dict):
     def __init__(__self__, *,
-                 max_findings_per_item: float,
-                 max_findings_per_request: float,
+                 max_findings_per_item: int,
+                 max_findings_per_request: int,
                  max_findings_per_info_types: Optional[List['outputs.PreventionInspectTemplateInspectConfigLimitsMaxFindingsPerInfoType']] = None):
         """
-        :param float max_findings_per_item: Max number of findings that will be returned for each item scanned. The maximum returned is 2000.
-        :param float max_findings_per_request: Max number of findings that will be returned per request/job. The maximum returned is 2000.
+        :param int max_findings_per_item: Max number of findings that will be returned for each item scanned. The maximum returned is 2000.
+        :param int max_findings_per_request: Max number of findings that will be returned per request/job. The maximum returned is 2000.
         :param List['PreventionInspectTemplateInspectConfigLimitsMaxFindingsPerInfoTypeArgs'] max_findings_per_info_types: Configuration of findings limit given for specified infoTypes.
                Structure is documented below.
         """
@@ -211,7 +211,7 @@ class PreventionInspectTemplateInspectConfigLimits(dict):
 
     @property
     @pulumi.getter(name="maxFindingsPerItem")
-    def max_findings_per_item(self) -> float:
+    def max_findings_per_item(self) -> int:
         """
         Max number of findings that will be returned for each item scanned. The maximum returned is 2000.
         """
@@ -219,7 +219,7 @@ class PreventionInspectTemplateInspectConfigLimits(dict):
 
     @property
     @pulumi.getter(name="maxFindingsPerRequest")
-    def max_findings_per_request(self) -> float:
+    def max_findings_per_request(self) -> int:
         """
         Max number of findings that will be returned per request/job. The maximum returned is 2000.
         """
@@ -242,13 +242,13 @@ class PreventionInspectTemplateInspectConfigLimits(dict):
 class PreventionInspectTemplateInspectConfigLimitsMaxFindingsPerInfoType(dict):
     def __init__(__self__, *,
                  info_type: 'outputs.PreventionInspectTemplateInspectConfigLimitsMaxFindingsPerInfoTypeInfoType',
-                 max_findings: float):
+                 max_findings: int):
         """
         :param 'PreventionInspectTemplateInspectConfigLimitsMaxFindingsPerInfoTypeInfoTypeArgs' info_type: Type of information the findings limit applies to. Only one limit per infoType should be provided. If InfoTypeLimit does
                not have an infoType, the DLP API applies the limit against all infoTypes that are found but not
                specified in another InfoTypeLimit.
                Structure is documented below.
-        :param float max_findings: Max findings limit for the given infoType.
+        :param int max_findings: Max findings limit for the given infoType.
         """
         pulumi.set(__self__, "info_type", info_type)
         pulumi.set(__self__, "max_findings", max_findings)
@@ -266,7 +266,7 @@ class PreventionInspectTemplateInspectConfigLimitsMaxFindingsPerInfoType(dict):
 
     @property
     @pulumi.getter(name="maxFindings")
-    def max_findings(self) -> float:
+    def max_findings(self) -> int:
         """
         Max findings limit for the given infoType.
         """
@@ -593,11 +593,11 @@ class PreventionInspectTemplateInspectConfigRuleSetRuleExclusionRuleExcludeInfoT
 class PreventionInspectTemplateInspectConfigRuleSetRuleExclusionRuleRegex(dict):
     def __init__(__self__, *,
                  pattern: str,
-                 group_indexes: Optional[List[float]] = None):
+                 group_indexes: Optional[List[int]] = None):
         """
         :param str pattern: Pattern defining the regular expression.
                Its syntax (https://github.com/google/re2/wiki/Syntax) can be found under the google/re2 repository on GitHub.
-        :param List[float] group_indexes: The index of the submatch to extract as findings. When not specified, the entire match is returned. No more than 3 may be included.
+        :param List[int] group_indexes: The index of the submatch to extract as findings. When not specified, the entire match is returned. No more than 3 may be included.
         """
         pulumi.set(__self__, "pattern", pattern)
         if group_indexes is not None:
@@ -614,7 +614,7 @@ class PreventionInspectTemplateInspectConfigRuleSetRuleExclusionRuleRegex(dict):
 
     @property
     @pulumi.getter(name="groupIndexes")
-    def group_indexes(self) -> Optional[List[float]]:
+    def group_indexes(self) -> Optional[List[int]]:
         """
         The index of the submatch to extract as findings. When not specified, the entire match is returned. No more than 3 may be included.
         """
@@ -685,11 +685,11 @@ class PreventionInspectTemplateInspectConfigRuleSetRuleHotwordRule(dict):
 class PreventionInspectTemplateInspectConfigRuleSetRuleHotwordRuleHotwordRegex(dict):
     def __init__(__self__, *,
                  pattern: str,
-                 group_indexes: Optional[List[float]] = None):
+                 group_indexes: Optional[List[int]] = None):
         """
         :param str pattern: Pattern defining the regular expression.
                Its syntax (https://github.com/google/re2/wiki/Syntax) can be found under the google/re2 repository on GitHub.
-        :param List[float] group_indexes: The index of the submatch to extract as findings. When not specified, the entire match is returned. No more than 3 may be included.
+        :param List[int] group_indexes: The index of the submatch to extract as findings. When not specified, the entire match is returned. No more than 3 may be included.
         """
         pulumi.set(__self__, "pattern", pattern)
         if group_indexes is not None:
@@ -706,7 +706,7 @@ class PreventionInspectTemplateInspectConfigRuleSetRuleHotwordRuleHotwordRegex(d
 
     @property
     @pulumi.getter(name="groupIndexes")
-    def group_indexes(self) -> Optional[List[float]]:
+    def group_indexes(self) -> Optional[List[int]]:
         """
         The index of the submatch to extract as findings. When not specified, the entire match is returned. No more than 3 may be included.
         """
@@ -720,11 +720,11 @@ class PreventionInspectTemplateInspectConfigRuleSetRuleHotwordRuleHotwordRegex(d
 class PreventionInspectTemplateInspectConfigRuleSetRuleHotwordRuleLikelihoodAdjustment(dict):
     def __init__(__self__, *,
                  fixed_likelihood: Optional[str] = None,
-                 relative_likelihood: Optional[float] = None):
+                 relative_likelihood: Optional[int] = None):
         """
         :param str fixed_likelihood: Set the likelihood of a finding to a fixed value. Either this or relative_likelihood can be set.
                Possible values are `VERY_UNLIKELY`, `UNLIKELY`, `POSSIBLE`, `LIKELY`, and `VERY_LIKELY`.
-        :param float relative_likelihood: Increase or decrease the likelihood by the specified number of levels. For example,
+        :param int relative_likelihood: Increase or decrease the likelihood by the specified number of levels. For example,
                if a finding would be POSSIBLE without the detection rule and relativeLikelihood is 1,
                then it is upgraded to LIKELY, while a value of -1 would downgrade it to UNLIKELY.
                Likelihood may never drop below VERY_UNLIKELY or exceed VERY_LIKELY, so applying an
@@ -747,7 +747,7 @@ class PreventionInspectTemplateInspectConfigRuleSetRuleHotwordRuleLikelihoodAdju
 
     @property
     @pulumi.getter(name="relativeLikelihood")
-    def relative_likelihood(self) -> Optional[float]:
+    def relative_likelihood(self) -> Optional[int]:
         """
         Increase or decrease the likelihood by the specified number of levels. For example,
         if a finding would be POSSIBLE without the detection rule and relativeLikelihood is 1,
@@ -765,11 +765,11 @@ class PreventionInspectTemplateInspectConfigRuleSetRuleHotwordRuleLikelihoodAdju
 @pulumi.output_type
 class PreventionInspectTemplateInspectConfigRuleSetRuleHotwordRuleProximity(dict):
     def __init__(__self__, *,
-                 window_after: Optional[float] = None,
-                 window_before: Optional[float] = None):
+                 window_after: Optional[int] = None,
+                 window_before: Optional[int] = None):
         """
-        :param float window_after: Number of characters after the finding to consider. Either this or window_before must be specified
-        :param float window_before: Number of characters before the finding to consider. Either this or window_after must be specified
+        :param int window_after: Number of characters after the finding to consider. Either this or window_before must be specified
+        :param int window_before: Number of characters before the finding to consider. Either this or window_after must be specified
         """
         if window_after is not None:
             pulumi.set(__self__, "window_after", window_after)
@@ -778,7 +778,7 @@ class PreventionInspectTemplateInspectConfigRuleSetRuleHotwordRuleProximity(dict
 
     @property
     @pulumi.getter(name="windowAfter")
-    def window_after(self) -> Optional[float]:
+    def window_after(self) -> Optional[int]:
         """
         Number of characters after the finding to consider. Either this or window_before must be specified
         """
@@ -786,7 +786,7 @@ class PreventionInspectTemplateInspectConfigRuleSetRuleHotwordRuleProximity(dict
 
     @property
     @pulumi.getter(name="windowBefore")
-    def window_before(self) -> Optional[float]:
+    def window_before(self) -> Optional[int]:
         """
         Number of characters before the finding to consider. Either this or window_after must be specified
         """
@@ -1122,23 +1122,23 @@ class PreventionJobTriggerInspectJobStorageConfigBigQueryOptionsTableReference(d
 class PreventionJobTriggerInspectJobStorageConfigCloudStorageOptions(dict):
     def __init__(__self__, *,
                  file_set: 'outputs.PreventionJobTriggerInspectJobStorageConfigCloudStorageOptionsFileSet',
-                 bytes_limit_per_file: Optional[float] = None,
-                 bytes_limit_per_file_percent: Optional[float] = None,
+                 bytes_limit_per_file: Optional[int] = None,
+                 bytes_limit_per_file_percent: Optional[int] = None,
                  file_types: Optional[List[str]] = None,
-                 files_limit_percent: Optional[float] = None,
+                 files_limit_percent: Optional[int] = None,
                  sample_method: Optional[str] = None):
         """
         :param 'PreventionJobTriggerInspectJobStorageConfigCloudStorageOptionsFileSetArgs' file_set: Set of files to scan.
                Structure is documented below.
-        :param float bytes_limit_per_file: Max number of bytes to scan from a file. If a scanned file's size is bigger than this value
+        :param int bytes_limit_per_file: Max number of bytes to scan from a file. If a scanned file's size is bigger than this value
                then the rest of the bytes are omitted.
-        :param float bytes_limit_per_file_percent: Max percentage of bytes to scan from a file. The rest are omitted. The number of bytes scanned is rounded down.
+        :param int bytes_limit_per_file_percent: Max percentage of bytes to scan from a file. The rest are omitted. The number of bytes scanned is rounded down.
                Must be between 0 and 100, inclusively. Both 0 and 100 means no limit.
         :param List[str] file_types: List of file type groups to include in the scan. If empty, all files are scanned and available data
                format processors are applied. In addition, the binary content of the selected files is always scanned as well.
                Images are scanned only as binary if the specified region does not support image inspection and no fileTypes were specified.
                Each value may be one of `BINARY_FILE`, `TEXT_FILE`, `IMAGE`, `WORD`, `PDF`, `AVRO`, `CSV`, and `TSV`.
-        :param float files_limit_percent: Limits the number of files to scan to this percentage of the input FileSet. Number of files scanned is rounded down.
+        :param int files_limit_percent: Limits the number of files to scan to this percentage of the input FileSet. Number of files scanned is rounded down.
                Must be between 0 and 100, inclusively. Both 0 and 100 means no limit.
         :param str sample_method: How to sample bytes if not all bytes are scanned. Meaningful only when used in conjunction with bytesLimitPerFile.
                If not specified, scanning would start from the top.
@@ -1167,7 +1167,7 @@ class PreventionJobTriggerInspectJobStorageConfigCloudStorageOptions(dict):
 
     @property
     @pulumi.getter(name="bytesLimitPerFile")
-    def bytes_limit_per_file(self) -> Optional[float]:
+    def bytes_limit_per_file(self) -> Optional[int]:
         """
         Max number of bytes to scan from a file. If a scanned file's size is bigger than this value
         then the rest of the bytes are omitted.
@@ -1176,7 +1176,7 @@ class PreventionJobTriggerInspectJobStorageConfigCloudStorageOptions(dict):
 
     @property
     @pulumi.getter(name="bytesLimitPerFilePercent")
-    def bytes_limit_per_file_percent(self) -> Optional[float]:
+    def bytes_limit_per_file_percent(self) -> Optional[int]:
         """
         Max percentage of bytes to scan from a file. The rest are omitted. The number of bytes scanned is rounded down.
         Must be between 0 and 100, inclusively. Both 0 and 100 means no limit.
@@ -1196,7 +1196,7 @@ class PreventionJobTriggerInspectJobStorageConfigCloudStorageOptions(dict):
 
     @property
     @pulumi.getter(name="filesLimitPercent")
-    def files_limit_percent(self) -> Optional[float]:
+    def files_limit_percent(self) -> Optional[int]:
         """
         Limits the number of files to scan to this percentage of the input FileSet. Number of files scanned is rounded down.
         Must be between 0 and 100, inclusively. Both 0 and 100 means no limit.
@@ -1823,11 +1823,11 @@ class PreventionStoredInfoTypeLargeCustomDictionaryOutputPath(dict):
 class PreventionStoredInfoTypeRegex(dict):
     def __init__(__self__, *,
                  pattern: str,
-                 group_indexes: Optional[List[float]] = None):
+                 group_indexes: Optional[List[int]] = None):
         """
         :param str pattern: Pattern defining the regular expression.
                Its syntax (https://github.com/google/re2/wiki/Syntax) can be found under the google/re2 repository on GitHub.
-        :param List[float] group_indexes: The index of the submatch to extract as findings. When not specified, the entire match is returned. No more than 3 may be included.
+        :param List[int] group_indexes: The index of the submatch to extract as findings. When not specified, the entire match is returned. No more than 3 may be included.
         """
         pulumi.set(__self__, "pattern", pattern)
         if group_indexes is not None:
@@ -1844,7 +1844,7 @@ class PreventionStoredInfoTypeRegex(dict):
 
     @property
     @pulumi.getter(name="groupIndexes")
-    def group_indexes(self) -> Optional[List[float]]:
+    def group_indexes(self) -> Optional[List[int]]:
         """
         The index of the submatch to extract as findings. When not specified, the entire match is returned. No more than 3 may be included.
         """

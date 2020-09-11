@@ -329,24 +329,24 @@ __all__ = [
 @pulumi.input_type
 class AutoscalarAutoscalingPolicyArgs:
     def __init__(__self__, *,
-                 max_replicas: pulumi.Input[float],
-                 min_replicas: pulumi.Input[float],
-                 cooldown_period: Optional[pulumi.Input[float]] = None,
+                 max_replicas: pulumi.Input[int],
+                 min_replicas: pulumi.Input[int],
+                 cooldown_period: Optional[pulumi.Input[int]] = None,
                  cpu_utilization: Optional[pulumi.Input['AutoscalarAutoscalingPolicyCpuUtilizationArgs']] = None,
                  load_balancing_utilization: Optional[pulumi.Input['AutoscalarAutoscalingPolicyLoadBalancingUtilizationArgs']] = None,
                  metrics: Optional[pulumi.Input[List[pulumi.Input['AutoscalarAutoscalingPolicyMetricArgs']]]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  scale_down_control: Optional[pulumi.Input['AutoscalarAutoscalingPolicyScaleDownControlArgs']] = None):
         """
-        :param pulumi.Input[float] max_replicas: The maximum number of instances that the autoscaler can scale up
+        :param pulumi.Input[int] max_replicas: The maximum number of instances that the autoscaler can scale up
                to. This is required when creating or updating an autoscaler. The
                maximum number of replicas should not be lower than minimal number
                of replicas.
-        :param pulumi.Input[float] min_replicas: The minimum number of replicas that the autoscaler can scale down
+        :param pulumi.Input[int] min_replicas: The minimum number of replicas that the autoscaler can scale down
                to. This cannot be less than 0. If not provided, autoscaler will
                choose a default value depending on maximum number of instances
                allowed.
-        :param pulumi.Input[float] cooldown_period: The number of seconds that the autoscaler should wait before it
+        :param pulumi.Input[int] cooldown_period: The number of seconds that the autoscaler should wait before it
                starts collecting information from a new instance. This prevents
                the autoscaler from collecting information when the instance is
                initializing, during which the collected usage would not be
@@ -384,7 +384,7 @@ class AutoscalarAutoscalingPolicyArgs:
 
     @property
     @pulumi.getter(name="maxReplicas")
-    def max_replicas(self) -> pulumi.Input[float]:
+    def max_replicas(self) -> pulumi.Input[int]:
         """
         The maximum number of instances that the autoscaler can scale up
         to. This is required when creating or updating an autoscaler. The
@@ -394,12 +394,12 @@ class AutoscalarAutoscalingPolicyArgs:
         return pulumi.get(self, "max_replicas")
 
     @max_replicas.setter
-    def max_replicas(self, value: pulumi.Input[float]):
+    def max_replicas(self, value: pulumi.Input[int]):
         pulumi.set(self, "max_replicas", value)
 
     @property
     @pulumi.getter(name="minReplicas")
-    def min_replicas(self) -> pulumi.Input[float]:
+    def min_replicas(self) -> pulumi.Input[int]:
         """
         The minimum number of replicas that the autoscaler can scale down
         to. This cannot be less than 0. If not provided, autoscaler will
@@ -409,12 +409,12 @@ class AutoscalarAutoscalingPolicyArgs:
         return pulumi.get(self, "min_replicas")
 
     @min_replicas.setter
-    def min_replicas(self, value: pulumi.Input[float]):
+    def min_replicas(self, value: pulumi.Input[int]):
         pulumi.set(self, "min_replicas", value)
 
     @property
     @pulumi.getter(name="cooldownPeriod")
-    def cooldown_period(self) -> Optional[pulumi.Input[float]]:
+    def cooldown_period(self) -> Optional[pulumi.Input[int]]:
         """
         The number of seconds that the autoscaler should wait before it
         starts collecting information from a new instance. This prevents
@@ -429,7 +429,7 @@ class AutoscalarAutoscalingPolicyArgs:
         return pulumi.get(self, "cooldown_period")
 
     @cooldown_period.setter
-    def cooldown_period(self, value: Optional[pulumi.Input[float]]):
+    def cooldown_period(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "cooldown_period", value)
 
     @property
@@ -729,11 +729,11 @@ class AutoscalarAutoscalingPolicyMetricArgs:
 class AutoscalarAutoscalingPolicyScaleDownControlArgs:
     def __init__(__self__, *,
                  max_scaled_down_replicas: Optional[pulumi.Input['AutoscalarAutoscalingPolicyScaleDownControlMaxScaledDownReplicasArgs']] = None,
-                 time_window_sec: Optional[pulumi.Input[float]] = None):
+                 time_window_sec: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input['AutoscalarAutoscalingPolicyScaleDownControlMaxScaledDownReplicasArgs'] max_scaled_down_replicas: A nested object resource
                Structure is documented below.
-        :param pulumi.Input[float] time_window_sec: How long back autoscaling should look when computing recommendations
+        :param pulumi.Input[int] time_window_sec: How long back autoscaling should look when computing recommendations
                to include directives regarding slower scale down, as described above.
         """
         if max_scaled_down_replicas is not None:
@@ -756,7 +756,7 @@ class AutoscalarAutoscalingPolicyScaleDownControlArgs:
 
     @property
     @pulumi.getter(name="timeWindowSec")
-    def time_window_sec(self) -> Optional[pulumi.Input[float]]:
+    def time_window_sec(self) -> Optional[pulumi.Input[int]]:
         """
         How long back autoscaling should look when computing recommendations
         to include directives regarding slower scale down, as described above.
@@ -764,19 +764,19 @@ class AutoscalarAutoscalingPolicyScaleDownControlArgs:
         return pulumi.get(self, "time_window_sec")
 
     @time_window_sec.setter
-    def time_window_sec(self, value: Optional[pulumi.Input[float]]):
+    def time_window_sec(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "time_window_sec", value)
 
 
 @pulumi.input_type
 class AutoscalarAutoscalingPolicyScaleDownControlMaxScaledDownReplicasArgs:
     def __init__(__self__, *,
-                 fixed: Optional[pulumi.Input[float]] = None,
-                 percent: Optional[pulumi.Input[float]] = None):
+                 fixed: Optional[pulumi.Input[int]] = None,
+                 percent: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[float] fixed: Specifies a fixed number of VM instances. This must be a positive
+        :param pulumi.Input[int] fixed: Specifies a fixed number of VM instances. This must be a positive
                integer.
-        :param pulumi.Input[float] percent: Specifies a percentage of instances between 0 to 100%, inclusive.
+        :param pulumi.Input[int] percent: Specifies a percentage of instances between 0 to 100%, inclusive.
                For example, specify 80 for 80%.
         """
         if fixed is not None:
@@ -786,7 +786,7 @@ class AutoscalarAutoscalingPolicyScaleDownControlMaxScaledDownReplicasArgs:
 
     @property
     @pulumi.getter
-    def fixed(self) -> Optional[pulumi.Input[float]]:
+    def fixed(self) -> Optional[pulumi.Input[int]]:
         """
         Specifies a fixed number of VM instances. This must be a positive
         integer.
@@ -794,12 +794,12 @@ class AutoscalarAutoscalingPolicyScaleDownControlMaxScaledDownReplicasArgs:
         return pulumi.get(self, "fixed")
 
     @fixed.setter
-    def fixed(self, value: Optional[pulumi.Input[float]]):
+    def fixed(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fixed", value)
 
     @property
     @pulumi.getter
-    def percent(self) -> Optional[pulumi.Input[float]]:
+    def percent(self) -> Optional[pulumi.Input[int]]:
         """
         Specifies a percentage of instances between 0 to 100%, inclusive.
         For example, specify 80 for 80%.
@@ -807,31 +807,31 @@ class AutoscalarAutoscalingPolicyScaleDownControlMaxScaledDownReplicasArgs:
         return pulumi.get(self, "percent")
 
     @percent.setter
-    def percent(self, value: Optional[pulumi.Input[float]]):
+    def percent(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "percent", value)
 
 
 @pulumi.input_type
 class AutoscalerAutoscalingPolicyArgs:
     def __init__(__self__, *,
-                 max_replicas: pulumi.Input[float],
-                 min_replicas: pulumi.Input[float],
-                 cooldown_period: Optional[pulumi.Input[float]] = None,
+                 max_replicas: pulumi.Input[int],
+                 min_replicas: pulumi.Input[int],
+                 cooldown_period: Optional[pulumi.Input[int]] = None,
                  cpu_utilization: Optional[pulumi.Input['AutoscalerAutoscalingPolicyCpuUtilizationArgs']] = None,
                  load_balancing_utilization: Optional[pulumi.Input['AutoscalerAutoscalingPolicyLoadBalancingUtilizationArgs']] = None,
                  metrics: Optional[pulumi.Input[List[pulumi.Input['AutoscalerAutoscalingPolicyMetricArgs']]]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  scale_down_control: Optional[pulumi.Input['AutoscalerAutoscalingPolicyScaleDownControlArgs']] = None):
         """
-        :param pulumi.Input[float] max_replicas: The maximum number of instances that the autoscaler can scale up
+        :param pulumi.Input[int] max_replicas: The maximum number of instances that the autoscaler can scale up
                to. This is required when creating or updating an autoscaler. The
                maximum number of replicas should not be lower than minimal number
                of replicas.
-        :param pulumi.Input[float] min_replicas: The minimum number of replicas that the autoscaler can scale down
+        :param pulumi.Input[int] min_replicas: The minimum number of replicas that the autoscaler can scale down
                to. This cannot be less than 0. If not provided, autoscaler will
                choose a default value depending on maximum number of instances
                allowed.
-        :param pulumi.Input[float] cooldown_period: The number of seconds that the autoscaler should wait before it
+        :param pulumi.Input[int] cooldown_period: The number of seconds that the autoscaler should wait before it
                starts collecting information from a new instance. This prevents
                the autoscaler from collecting information when the instance is
                initializing, during which the collected usage would not be
@@ -869,7 +869,7 @@ class AutoscalerAutoscalingPolicyArgs:
 
     @property
     @pulumi.getter(name="maxReplicas")
-    def max_replicas(self) -> pulumi.Input[float]:
+    def max_replicas(self) -> pulumi.Input[int]:
         """
         The maximum number of instances that the autoscaler can scale up
         to. This is required when creating or updating an autoscaler. The
@@ -879,12 +879,12 @@ class AutoscalerAutoscalingPolicyArgs:
         return pulumi.get(self, "max_replicas")
 
     @max_replicas.setter
-    def max_replicas(self, value: pulumi.Input[float]):
+    def max_replicas(self, value: pulumi.Input[int]):
         pulumi.set(self, "max_replicas", value)
 
     @property
     @pulumi.getter(name="minReplicas")
-    def min_replicas(self) -> pulumi.Input[float]:
+    def min_replicas(self) -> pulumi.Input[int]:
         """
         The minimum number of replicas that the autoscaler can scale down
         to. This cannot be less than 0. If not provided, autoscaler will
@@ -894,12 +894,12 @@ class AutoscalerAutoscalingPolicyArgs:
         return pulumi.get(self, "min_replicas")
 
     @min_replicas.setter
-    def min_replicas(self, value: pulumi.Input[float]):
+    def min_replicas(self, value: pulumi.Input[int]):
         pulumi.set(self, "min_replicas", value)
 
     @property
     @pulumi.getter(name="cooldownPeriod")
-    def cooldown_period(self) -> Optional[pulumi.Input[float]]:
+    def cooldown_period(self) -> Optional[pulumi.Input[int]]:
         """
         The number of seconds that the autoscaler should wait before it
         starts collecting information from a new instance. This prevents
@@ -914,7 +914,7 @@ class AutoscalerAutoscalingPolicyArgs:
         return pulumi.get(self, "cooldown_period")
 
     @cooldown_period.setter
-    def cooldown_period(self, value: Optional[pulumi.Input[float]]):
+    def cooldown_period(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "cooldown_period", value)
 
     @property
@@ -1214,11 +1214,11 @@ class AutoscalerAutoscalingPolicyMetricArgs:
 class AutoscalerAutoscalingPolicyScaleDownControlArgs:
     def __init__(__self__, *,
                  max_scaled_down_replicas: Optional[pulumi.Input['AutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasArgs']] = None,
-                 time_window_sec: Optional[pulumi.Input[float]] = None):
+                 time_window_sec: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input['AutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasArgs'] max_scaled_down_replicas: A nested object resource
                Structure is documented below.
-        :param pulumi.Input[float] time_window_sec: How long back autoscaling should look when computing recommendations
+        :param pulumi.Input[int] time_window_sec: How long back autoscaling should look when computing recommendations
                to include directives regarding slower scale down, as described above.
         """
         if max_scaled_down_replicas is not None:
@@ -1241,7 +1241,7 @@ class AutoscalerAutoscalingPolicyScaleDownControlArgs:
 
     @property
     @pulumi.getter(name="timeWindowSec")
-    def time_window_sec(self) -> Optional[pulumi.Input[float]]:
+    def time_window_sec(self) -> Optional[pulumi.Input[int]]:
         """
         How long back autoscaling should look when computing recommendations
         to include directives regarding slower scale down, as described above.
@@ -1249,19 +1249,19 @@ class AutoscalerAutoscalingPolicyScaleDownControlArgs:
         return pulumi.get(self, "time_window_sec")
 
     @time_window_sec.setter
-    def time_window_sec(self, value: Optional[pulumi.Input[float]]):
+    def time_window_sec(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "time_window_sec", value)
 
 
 @pulumi.input_type
 class AutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasArgs:
     def __init__(__self__, *,
-                 fixed: Optional[pulumi.Input[float]] = None,
-                 percent: Optional[pulumi.Input[float]] = None):
+                 fixed: Optional[pulumi.Input[int]] = None,
+                 percent: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[float] fixed: Specifies a fixed number of VM instances. This must be a positive
+        :param pulumi.Input[int] fixed: Specifies a fixed number of VM instances. This must be a positive
                integer.
-        :param pulumi.Input[float] percent: Specifies a percentage of instances between 0 to 100%, inclusive.
+        :param pulumi.Input[int] percent: Specifies a percentage of instances between 0 to 100%, inclusive.
                For example, specify 80 for 80%.
         """
         if fixed is not None:
@@ -1271,7 +1271,7 @@ class AutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasArgs:
 
     @property
     @pulumi.getter
-    def fixed(self) -> Optional[pulumi.Input[float]]:
+    def fixed(self) -> Optional[pulumi.Input[int]]:
         """
         Specifies a fixed number of VM instances. This must be a positive
         integer.
@@ -1279,12 +1279,12 @@ class AutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasArgs:
         return pulumi.get(self, "fixed")
 
     @fixed.setter
-    def fixed(self, value: Optional[pulumi.Input[float]]):
+    def fixed(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fixed", value)
 
     @property
     @pulumi.getter
-    def percent(self) -> Optional[pulumi.Input[float]]:
+    def percent(self) -> Optional[pulumi.Input[int]]:
         """
         Specifies a percentage of instances between 0 to 100%, inclusive.
         For example, specify 80 for 80%.
@@ -1292,16 +1292,16 @@ class AutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasArgs:
         return pulumi.get(self, "percent")
 
     @percent.setter
-    def percent(self, value: Optional[pulumi.Input[float]]):
+    def percent(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "percent", value)
 
 
 @pulumi.input_type
 class BackendBucketCdnPolicyArgs:
     def __init__(__self__, *,
-                 signed_url_cache_max_age_sec: pulumi.Input[float]):
+                 signed_url_cache_max_age_sec: pulumi.Input[int]):
         """
-        :param pulumi.Input[float] signed_url_cache_max_age_sec: Maximum number of seconds the response to a signed URL request will
+        :param pulumi.Input[int] signed_url_cache_max_age_sec: Maximum number of seconds the response to a signed URL request will
                be considered fresh. After this time period,
                the response will be revalidated before being served.
                When serving responses to signed URL requests,
@@ -1314,7 +1314,7 @@ class BackendBucketCdnPolicyArgs:
 
     @property
     @pulumi.getter(name="signedUrlCacheMaxAgeSec")
-    def signed_url_cache_max_age_sec(self) -> pulumi.Input[float]:
+    def signed_url_cache_max_age_sec(self) -> pulumi.Input[int]:
         """
         Maximum number of seconds the response to a signed URL request will
         be considered fresh. After this time period,
@@ -1328,7 +1328,7 @@ class BackendBucketCdnPolicyArgs:
         return pulumi.get(self, "signed_url_cache_max_age_sec")
 
     @signed_url_cache_max_age_sec.setter
-    def signed_url_cache_max_age_sec(self, value: pulumi.Input[float]):
+    def signed_url_cache_max_age_sec(self, value: pulumi.Input[int]):
         pulumi.set(self, "signed_url_cache_max_age_sec", value)
 
 
@@ -1339,10 +1339,10 @@ class BackendServiceBackendArgs:
                  balancing_mode: Optional[pulumi.Input[str]] = None,
                  capacity_scaler: Optional[pulumi.Input[float]] = None,
                  description: Optional[pulumi.Input[str]] = None,
-                 max_connections: Optional[pulumi.Input[float]] = None,
-                 max_connections_per_endpoint: Optional[pulumi.Input[float]] = None,
-                 max_connections_per_instance: Optional[pulumi.Input[float]] = None,
-                 max_rate: Optional[pulumi.Input[float]] = None,
+                 max_connections: Optional[pulumi.Input[int]] = None,
+                 max_connections_per_endpoint: Optional[pulumi.Input[int]] = None,
+                 max_connections_per_instance: Optional[pulumi.Input[int]] = None,
+                 max_rate: Optional[pulumi.Input[int]] = None,
                  max_rate_per_endpoint: Optional[pulumi.Input[float]] = None,
                  max_rate_per_instance: Optional[pulumi.Input[float]] = None,
                  max_utilization: Optional[pulumi.Input[float]] = None):
@@ -1375,21 +1375,21 @@ class BackendServiceBackendArgs:
                0% of its available Capacity. Valid range is [0.0,1.0].
         :param pulumi.Input[str] description: An optional description of this resource.
                Provide this property when you create the resource.
-        :param pulumi.Input[float] max_connections: The maximum number of connections to the backend cluster.
+        :param pulumi.Input[int] max_connections: The maximum number of connections to the backend cluster.
                Defaults to 1024.
-        :param pulumi.Input[float] max_connections_per_endpoint: The max number of simultaneous connections that a single backend
+        :param pulumi.Input[int] max_connections_per_endpoint: The max number of simultaneous connections that a single backend
                network endpoint can handle. This is used to calculate the
                capacity of the group. Can be used in either CONNECTION or
                UTILIZATION balancing modes.
                For CONNECTION mode, either
                maxConnections or maxConnectionsPerEndpoint must be set.
-        :param pulumi.Input[float] max_connections_per_instance: The max number of simultaneous connections that a single
+        :param pulumi.Input[int] max_connections_per_instance: The max number of simultaneous connections that a single
                backend instance can handle. This is used to calculate the
                capacity of the group. Can be used in either CONNECTION or
                UTILIZATION balancing modes.
                For CONNECTION mode, either maxConnections or
                maxConnectionsPerInstance must be set.
-        :param pulumi.Input[float] max_rate: The max requests per second (RPS) of the group.
+        :param pulumi.Input[int] max_rate: The max requests per second (RPS) of the group.
                Can be used with either RATE or UTILIZATION balancing modes,
                but required if RATE mode. For RATE mode, either maxRate or one
                of maxRatePerInstance or maxRatePerEndpoint, as appropriate for
@@ -1502,7 +1502,7 @@ class BackendServiceBackendArgs:
 
     @property
     @pulumi.getter(name="maxConnections")
-    def max_connections(self) -> Optional[pulumi.Input[float]]:
+    def max_connections(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of connections to the backend cluster.
         Defaults to 1024.
@@ -1510,12 +1510,12 @@ class BackendServiceBackendArgs:
         return pulumi.get(self, "max_connections")
 
     @max_connections.setter
-    def max_connections(self, value: Optional[pulumi.Input[float]]):
+    def max_connections(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_connections", value)
 
     @property
     @pulumi.getter(name="maxConnectionsPerEndpoint")
-    def max_connections_per_endpoint(self) -> Optional[pulumi.Input[float]]:
+    def max_connections_per_endpoint(self) -> Optional[pulumi.Input[int]]:
         """
         The max number of simultaneous connections that a single backend
         network endpoint can handle. This is used to calculate the
@@ -1527,12 +1527,12 @@ class BackendServiceBackendArgs:
         return pulumi.get(self, "max_connections_per_endpoint")
 
     @max_connections_per_endpoint.setter
-    def max_connections_per_endpoint(self, value: Optional[pulumi.Input[float]]):
+    def max_connections_per_endpoint(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_connections_per_endpoint", value)
 
     @property
     @pulumi.getter(name="maxConnectionsPerInstance")
-    def max_connections_per_instance(self) -> Optional[pulumi.Input[float]]:
+    def max_connections_per_instance(self) -> Optional[pulumi.Input[int]]:
         """
         The max number of simultaneous connections that a single
         backend instance can handle. This is used to calculate the
@@ -1544,12 +1544,12 @@ class BackendServiceBackendArgs:
         return pulumi.get(self, "max_connections_per_instance")
 
     @max_connections_per_instance.setter
-    def max_connections_per_instance(self, value: Optional[pulumi.Input[float]]):
+    def max_connections_per_instance(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_connections_per_instance", value)
 
     @property
     @pulumi.getter(name="maxRate")
-    def max_rate(self) -> Optional[pulumi.Input[float]]:
+    def max_rate(self) -> Optional[pulumi.Input[int]]:
         """
         The max requests per second (RPS) of the group.
         Can be used with either RATE or UTILIZATION balancing modes,
@@ -1560,7 +1560,7 @@ class BackendServiceBackendArgs:
         return pulumi.get(self, "max_rate")
 
     @max_rate.setter
-    def max_rate(self, value: Optional[pulumi.Input[float]]):
+    def max_rate(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_rate", value)
 
     @property
@@ -1612,11 +1612,11 @@ class BackendServiceBackendArgs:
 class BackendServiceCdnPolicyArgs:
     def __init__(__self__, *,
                  cache_key_policy: Optional[pulumi.Input['BackendServiceCdnPolicyCacheKeyPolicyArgs']] = None,
-                 signed_url_cache_max_age_sec: Optional[pulumi.Input[float]] = None):
+                 signed_url_cache_max_age_sec: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input['BackendServiceCdnPolicyCacheKeyPolicyArgs'] cache_key_policy: The CacheKeyPolicy for this CdnPolicy.
                Structure is documented below.
-        :param pulumi.Input[float] signed_url_cache_max_age_sec: Maximum number of seconds the response to a signed URL request
+        :param pulumi.Input[int] signed_url_cache_max_age_sec: Maximum number of seconds the response to a signed URL request
                will be considered fresh, defaults to 1hr (3600s). After this
                time period, the response will be revalidated before
                being served.
@@ -1646,7 +1646,7 @@ class BackendServiceCdnPolicyArgs:
 
     @property
     @pulumi.getter(name="signedUrlCacheMaxAgeSec")
-    def signed_url_cache_max_age_sec(self) -> Optional[pulumi.Input[float]]:
+    def signed_url_cache_max_age_sec(self) -> Optional[pulumi.Input[int]]:
         """
         Maximum number of seconds the response to a signed URL request
         will be considered fresh, defaults to 1hr (3600s). After this
@@ -1661,7 +1661,7 @@ class BackendServiceCdnPolicyArgs:
         return pulumi.get(self, "signed_url_cache_max_age_sec")
 
     @signed_url_cache_max_age_sec.setter
-    def signed_url_cache_max_age_sec(self, value: Optional[pulumi.Input[float]]):
+    def signed_url_cache_max_age_sec(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "signed_url_cache_max_age_sec", value)
 
 
@@ -1782,24 +1782,24 @@ class BackendServiceCdnPolicyCacheKeyPolicyArgs:
 class BackendServiceCircuitBreakersArgs:
     def __init__(__self__, *,
                  connect_timeout: Optional[pulumi.Input['BackendServiceCircuitBreakersConnectTimeoutArgs']] = None,
-                 max_connections: Optional[pulumi.Input[float]] = None,
-                 max_pending_requests: Optional[pulumi.Input[float]] = None,
-                 max_requests: Optional[pulumi.Input[float]] = None,
-                 max_requests_per_connection: Optional[pulumi.Input[float]] = None,
-                 max_retries: Optional[pulumi.Input[float]] = None):
+                 max_connections: Optional[pulumi.Input[int]] = None,
+                 max_pending_requests: Optional[pulumi.Input[int]] = None,
+                 max_requests: Optional[pulumi.Input[int]] = None,
+                 max_requests_per_connection: Optional[pulumi.Input[int]] = None,
+                 max_retries: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input['BackendServiceCircuitBreakersConnectTimeoutArgs'] connect_timeout: The timeout for new network connections to hosts.  Structure is documented below.
-        :param pulumi.Input[float] max_connections: The maximum number of connections to the backend cluster.
+        :param pulumi.Input[int] max_connections: The maximum number of connections to the backend cluster.
                Defaults to 1024.
-        :param pulumi.Input[float] max_pending_requests: The maximum number of pending requests to the backend cluster.
+        :param pulumi.Input[int] max_pending_requests: The maximum number of pending requests to the backend cluster.
                Defaults to 1024.
-        :param pulumi.Input[float] max_requests: The maximum number of parallel requests to the backend cluster.
+        :param pulumi.Input[int] max_requests: The maximum number of parallel requests to the backend cluster.
                Defaults to 1024.
-        :param pulumi.Input[float] max_requests_per_connection: Maximum requests for a single backend connection. This parameter
+        :param pulumi.Input[int] max_requests_per_connection: Maximum requests for a single backend connection. This parameter
                is respected by both the HTTP/1.1 and HTTP/2 implementations. If
                not specified, there is no limit. Setting this parameter to 1
                will effectively disable keep alive.
-        :param pulumi.Input[float] max_retries: The maximum number of parallel retries to the backend cluster.
+        :param pulumi.Input[int] max_retries: The maximum number of parallel retries to the backend cluster.
                Defaults to 3.
         """
         if connect_timeout is not None:
@@ -1829,7 +1829,7 @@ class BackendServiceCircuitBreakersArgs:
 
     @property
     @pulumi.getter(name="maxConnections")
-    def max_connections(self) -> Optional[pulumi.Input[float]]:
+    def max_connections(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of connections to the backend cluster.
         Defaults to 1024.
@@ -1837,12 +1837,12 @@ class BackendServiceCircuitBreakersArgs:
         return pulumi.get(self, "max_connections")
 
     @max_connections.setter
-    def max_connections(self, value: Optional[pulumi.Input[float]]):
+    def max_connections(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_connections", value)
 
     @property
     @pulumi.getter(name="maxPendingRequests")
-    def max_pending_requests(self) -> Optional[pulumi.Input[float]]:
+    def max_pending_requests(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of pending requests to the backend cluster.
         Defaults to 1024.
@@ -1850,12 +1850,12 @@ class BackendServiceCircuitBreakersArgs:
         return pulumi.get(self, "max_pending_requests")
 
     @max_pending_requests.setter
-    def max_pending_requests(self, value: Optional[pulumi.Input[float]]):
+    def max_pending_requests(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_pending_requests", value)
 
     @property
     @pulumi.getter(name="maxRequests")
-    def max_requests(self) -> Optional[pulumi.Input[float]]:
+    def max_requests(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of parallel requests to the backend cluster.
         Defaults to 1024.
@@ -1863,12 +1863,12 @@ class BackendServiceCircuitBreakersArgs:
         return pulumi.get(self, "max_requests")
 
     @max_requests.setter
-    def max_requests(self, value: Optional[pulumi.Input[float]]):
+    def max_requests(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_requests", value)
 
     @property
     @pulumi.getter(name="maxRequestsPerConnection")
-    def max_requests_per_connection(self) -> Optional[pulumi.Input[float]]:
+    def max_requests_per_connection(self) -> Optional[pulumi.Input[int]]:
         """
         Maximum requests for a single backend connection. This parameter
         is respected by both the HTTP/1.1 and HTTP/2 implementations. If
@@ -1878,12 +1878,12 @@ class BackendServiceCircuitBreakersArgs:
         return pulumi.get(self, "max_requests_per_connection")
 
     @max_requests_per_connection.setter
-    def max_requests_per_connection(self, value: Optional[pulumi.Input[float]]):
+    def max_requests_per_connection(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_requests_per_connection", value)
 
     @property
     @pulumi.getter(name="maxRetries")
-    def max_retries(self) -> Optional[pulumi.Input[float]]:
+    def max_retries(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of parallel retries to the backend cluster.
         Defaults to 3.
@@ -1891,19 +1891,19 @@ class BackendServiceCircuitBreakersArgs:
         return pulumi.get(self, "max_retries")
 
     @max_retries.setter
-    def max_retries(self, value: Optional[pulumi.Input[float]]):
+    def max_retries(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_retries", value)
 
 
 @pulumi.input_type
 class BackendServiceCircuitBreakersConnectTimeoutArgs:
     def __init__(__self__, *,
-                 seconds: pulumi.Input[float],
-                 nanos: Optional[pulumi.Input[float]] = None):
+                 seconds: pulumi.Input[int],
+                 nanos: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[float] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        :param pulumi.Input[int] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
                inclusive.
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
                less than one second are represented with a 0 `seconds` field and a positive
                `nanos` field. Must be from 0 to 999,999,999 inclusive.
         """
@@ -1913,7 +1913,7 @@ class BackendServiceCircuitBreakersConnectTimeoutArgs:
 
     @property
     @pulumi.getter
-    def seconds(self) -> pulumi.Input[float]:
+    def seconds(self) -> pulumi.Input[int]:
         """
         Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
         inclusive.
@@ -1921,12 +1921,12 @@ class BackendServiceCircuitBreakersConnectTimeoutArgs:
         return pulumi.get(self, "seconds")
 
     @seconds.setter
-    def seconds(self, value: pulumi.Input[float]):
+    def seconds(self, value: pulumi.Input[int]):
         pulumi.set(self, "seconds", value)
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations
         less than one second are represented with a 0 `seconds` field and a positive
@@ -1935,7 +1935,7 @@ class BackendServiceCircuitBreakersConnectTimeoutArgs:
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
 
@@ -1944,7 +1944,7 @@ class BackendServiceConsistentHashArgs:
     def __init__(__self__, *,
                  http_cookie: Optional[pulumi.Input['BackendServiceConsistentHashHttpCookieArgs']] = None,
                  http_header_name: Optional[pulumi.Input[str]] = None,
-                 minimum_ring_size: Optional[pulumi.Input[float]] = None):
+                 minimum_ring_size: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input['BackendServiceConsistentHashHttpCookieArgs'] http_cookie: Hash is based on HTTP Cookie. This field describes a HTTP cookie
                that will be used as the hash key for the consistent hash load
@@ -1953,7 +1953,7 @@ class BackendServiceConsistentHashArgs:
                Structure is documented below.
         :param pulumi.Input[str] http_header_name: The hash based on the value of the specified header field.
                This field is applicable if the sessionAffinity is set to HEADER_FIELD.
-        :param pulumi.Input[float] minimum_ring_size: The minimum number of virtual nodes to use for the hash ring.
+        :param pulumi.Input[int] minimum_ring_size: The minimum number of virtual nodes to use for the hash ring.
                Larger ring sizes result in more granular load
                distributions. If the number of hosts in the load balancing pool
                is larger than the ring size, each host will be assigned a single
@@ -1998,7 +1998,7 @@ class BackendServiceConsistentHashArgs:
 
     @property
     @pulumi.getter(name="minimumRingSize")
-    def minimum_ring_size(self) -> Optional[pulumi.Input[float]]:
+    def minimum_ring_size(self) -> Optional[pulumi.Input[int]]:
         """
         The minimum number of virtual nodes to use for the hash ring.
         Larger ring sizes result in more granular load
@@ -2010,7 +2010,7 @@ class BackendServiceConsistentHashArgs:
         return pulumi.get(self, "minimum_ring_size")
 
     @minimum_ring_size.setter
-    def minimum_ring_size(self, value: Optional[pulumi.Input[float]]):
+    def minimum_ring_size(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "minimum_ring_size", value)
 
 
@@ -2074,12 +2074,12 @@ class BackendServiceConsistentHashHttpCookieArgs:
 @pulumi.input_type
 class BackendServiceConsistentHashHttpCookieTtlArgs:
     def __init__(__self__, *,
-                 seconds: pulumi.Input[float],
-                 nanos: Optional[pulumi.Input[float]] = None):
+                 seconds: pulumi.Input[int],
+                 nanos: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[float] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        :param pulumi.Input[int] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
                inclusive.
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
                less than one second are represented with a 0 `seconds` field and a positive
                `nanos` field. Must be from 0 to 999,999,999 inclusive.
         """
@@ -2089,7 +2089,7 @@ class BackendServiceConsistentHashHttpCookieTtlArgs:
 
     @property
     @pulumi.getter
-    def seconds(self) -> pulumi.Input[float]:
+    def seconds(self) -> pulumi.Input[int]:
         """
         Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
         inclusive.
@@ -2097,12 +2097,12 @@ class BackendServiceConsistentHashHttpCookieTtlArgs:
         return pulumi.get(self, "seconds")
 
     @seconds.setter
-    def seconds(self, value: pulumi.Input[float]):
+    def seconds(self, value: pulumi.Input[int]):
         pulumi.set(self, "seconds", value)
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations
         less than one second are represented with a 0 `seconds` field and a positive
@@ -2111,7 +2111,7 @@ class BackendServiceConsistentHashHttpCookieTtlArgs:
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
 
@@ -2223,51 +2223,51 @@ class BackendServiceLogConfigArgs:
 class BackendServiceOutlierDetectionArgs:
     def __init__(__self__, *,
                  base_ejection_time: Optional[pulumi.Input['BackendServiceOutlierDetectionBaseEjectionTimeArgs']] = None,
-                 consecutive_errors: Optional[pulumi.Input[float]] = None,
-                 consecutive_gateway_failure: Optional[pulumi.Input[float]] = None,
-                 enforcing_consecutive_errors: Optional[pulumi.Input[float]] = None,
-                 enforcing_consecutive_gateway_failure: Optional[pulumi.Input[float]] = None,
-                 enforcing_success_rate: Optional[pulumi.Input[float]] = None,
+                 consecutive_errors: Optional[pulumi.Input[int]] = None,
+                 consecutive_gateway_failure: Optional[pulumi.Input[int]] = None,
+                 enforcing_consecutive_errors: Optional[pulumi.Input[int]] = None,
+                 enforcing_consecutive_gateway_failure: Optional[pulumi.Input[int]] = None,
+                 enforcing_success_rate: Optional[pulumi.Input[int]] = None,
                  interval: Optional[pulumi.Input['BackendServiceOutlierDetectionIntervalArgs']] = None,
-                 max_ejection_percent: Optional[pulumi.Input[float]] = None,
-                 success_rate_minimum_hosts: Optional[pulumi.Input[float]] = None,
-                 success_rate_request_volume: Optional[pulumi.Input[float]] = None,
-                 success_rate_stdev_factor: Optional[pulumi.Input[float]] = None):
+                 max_ejection_percent: Optional[pulumi.Input[int]] = None,
+                 success_rate_minimum_hosts: Optional[pulumi.Input[int]] = None,
+                 success_rate_request_volume: Optional[pulumi.Input[int]] = None,
+                 success_rate_stdev_factor: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input['BackendServiceOutlierDetectionBaseEjectionTimeArgs'] base_ejection_time: The base time that a host is ejected for. The real time is equal to the base
                time multiplied by the number of times the host has been ejected. Defaults to
                30000ms or 30s.
                Structure is documented below.
-        :param pulumi.Input[float] consecutive_errors: Number of errors before a host is ejected from the connection pool. When the
+        :param pulumi.Input[int] consecutive_errors: Number of errors before a host is ejected from the connection pool. When the
                backend host is accessed over HTTP, a 5xx return code qualifies as an error.
                Defaults to 5.
-        :param pulumi.Input[float] consecutive_gateway_failure: The number of consecutive gateway failures (502, 503, 504 status or connection
+        :param pulumi.Input[int] consecutive_gateway_failure: The number of consecutive gateway failures (502, 503, 504 status or connection
                errors that are mapped to one of those status codes) before a consecutive
                gateway failure ejection occurs. Defaults to 5.
-        :param pulumi.Input[float] enforcing_consecutive_errors: The percentage chance that a host will be actually ejected when an outlier
+        :param pulumi.Input[int] enforcing_consecutive_errors: The percentage chance that a host will be actually ejected when an outlier
                status is detected through consecutive 5xx. This setting can be used to disable
                ejection or to ramp it up slowly. Defaults to 100.
-        :param pulumi.Input[float] enforcing_consecutive_gateway_failure: The percentage chance that a host will be actually ejected when an outlier
+        :param pulumi.Input[int] enforcing_consecutive_gateway_failure: The percentage chance that a host will be actually ejected when an outlier
                status is detected through consecutive gateway failures. This setting can be
                used to disable ejection or to ramp it up slowly. Defaults to 0.
-        :param pulumi.Input[float] enforcing_success_rate: The percentage chance that a host will be actually ejected when an outlier
+        :param pulumi.Input[int] enforcing_success_rate: The percentage chance that a host will be actually ejected when an outlier
                status is detected through success rate statistics. This setting can be used to
                disable ejection or to ramp it up slowly. Defaults to 100.
         :param pulumi.Input['BackendServiceOutlierDetectionIntervalArgs'] interval: Time interval between ejection sweep analysis. This can result in both new
                ejections as well as hosts being returned to service. Defaults to 10 seconds.
                Structure is documented below.
-        :param pulumi.Input[float] max_ejection_percent: Maximum percentage of hosts in the load balancing pool for the backend service
+        :param pulumi.Input[int] max_ejection_percent: Maximum percentage of hosts in the load balancing pool for the backend service
                that can be ejected. Defaults to 10%.
-        :param pulumi.Input[float] success_rate_minimum_hosts: The number of hosts in a cluster that must have enough request volume to detect
+        :param pulumi.Input[int] success_rate_minimum_hosts: The number of hosts in a cluster that must have enough request volume to detect
                success rate outliers. If the number of hosts is less than this setting, outlier
                detection via success rate statistics is not performed for any host in the
                cluster. Defaults to 5.
-        :param pulumi.Input[float] success_rate_request_volume: The minimum number of total requests that must be collected in one interval (as
+        :param pulumi.Input[int] success_rate_request_volume: The minimum number of total requests that must be collected in one interval (as
                defined by the interval duration above) to include this host in success rate
                based outlier detection. If the volume is lower than this setting, outlier
                detection via success rate statistics is not performed for that host. Defaults
                to 100.
-        :param pulumi.Input[float] success_rate_stdev_factor: This factor is used to determine the ejection threshold for success rate outlier
+        :param pulumi.Input[int] success_rate_stdev_factor: This factor is used to determine the ejection threshold for success rate outlier
                ejection. The ejection threshold is the difference between the mean success
                rate, and the product of this factor and the standard deviation of the mean
                success rate: mean - (stdev * success_rate_stdev_factor). This factor is divided
@@ -2314,7 +2314,7 @@ class BackendServiceOutlierDetectionArgs:
 
     @property
     @pulumi.getter(name="consecutiveErrors")
-    def consecutive_errors(self) -> Optional[pulumi.Input[float]]:
+    def consecutive_errors(self) -> Optional[pulumi.Input[int]]:
         """
         Number of errors before a host is ejected from the connection pool. When the
         backend host is accessed over HTTP, a 5xx return code qualifies as an error.
@@ -2323,12 +2323,12 @@ class BackendServiceOutlierDetectionArgs:
         return pulumi.get(self, "consecutive_errors")
 
     @consecutive_errors.setter
-    def consecutive_errors(self, value: Optional[pulumi.Input[float]]):
+    def consecutive_errors(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "consecutive_errors", value)
 
     @property
     @pulumi.getter(name="consecutiveGatewayFailure")
-    def consecutive_gateway_failure(self) -> Optional[pulumi.Input[float]]:
+    def consecutive_gateway_failure(self) -> Optional[pulumi.Input[int]]:
         """
         The number of consecutive gateway failures (502, 503, 504 status or connection
         errors that are mapped to one of those status codes) before a consecutive
@@ -2337,12 +2337,12 @@ class BackendServiceOutlierDetectionArgs:
         return pulumi.get(self, "consecutive_gateway_failure")
 
     @consecutive_gateway_failure.setter
-    def consecutive_gateway_failure(self, value: Optional[pulumi.Input[float]]):
+    def consecutive_gateway_failure(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "consecutive_gateway_failure", value)
 
     @property
     @pulumi.getter(name="enforcingConsecutiveErrors")
-    def enforcing_consecutive_errors(self) -> Optional[pulumi.Input[float]]:
+    def enforcing_consecutive_errors(self) -> Optional[pulumi.Input[int]]:
         """
         The percentage chance that a host will be actually ejected when an outlier
         status is detected through consecutive 5xx. This setting can be used to disable
@@ -2351,12 +2351,12 @@ class BackendServiceOutlierDetectionArgs:
         return pulumi.get(self, "enforcing_consecutive_errors")
 
     @enforcing_consecutive_errors.setter
-    def enforcing_consecutive_errors(self, value: Optional[pulumi.Input[float]]):
+    def enforcing_consecutive_errors(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "enforcing_consecutive_errors", value)
 
     @property
     @pulumi.getter(name="enforcingConsecutiveGatewayFailure")
-    def enforcing_consecutive_gateway_failure(self) -> Optional[pulumi.Input[float]]:
+    def enforcing_consecutive_gateway_failure(self) -> Optional[pulumi.Input[int]]:
         """
         The percentage chance that a host will be actually ejected when an outlier
         status is detected through consecutive gateway failures. This setting can be
@@ -2365,12 +2365,12 @@ class BackendServiceOutlierDetectionArgs:
         return pulumi.get(self, "enforcing_consecutive_gateway_failure")
 
     @enforcing_consecutive_gateway_failure.setter
-    def enforcing_consecutive_gateway_failure(self, value: Optional[pulumi.Input[float]]):
+    def enforcing_consecutive_gateway_failure(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "enforcing_consecutive_gateway_failure", value)
 
     @property
     @pulumi.getter(name="enforcingSuccessRate")
-    def enforcing_success_rate(self) -> Optional[pulumi.Input[float]]:
+    def enforcing_success_rate(self) -> Optional[pulumi.Input[int]]:
         """
         The percentage chance that a host will be actually ejected when an outlier
         status is detected through success rate statistics. This setting can be used to
@@ -2379,7 +2379,7 @@ class BackendServiceOutlierDetectionArgs:
         return pulumi.get(self, "enforcing_success_rate")
 
     @enforcing_success_rate.setter
-    def enforcing_success_rate(self, value: Optional[pulumi.Input[float]]):
+    def enforcing_success_rate(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "enforcing_success_rate", value)
 
     @property
@@ -2398,7 +2398,7 @@ class BackendServiceOutlierDetectionArgs:
 
     @property
     @pulumi.getter(name="maxEjectionPercent")
-    def max_ejection_percent(self) -> Optional[pulumi.Input[float]]:
+    def max_ejection_percent(self) -> Optional[pulumi.Input[int]]:
         """
         Maximum percentage of hosts in the load balancing pool for the backend service
         that can be ejected. Defaults to 10%.
@@ -2406,12 +2406,12 @@ class BackendServiceOutlierDetectionArgs:
         return pulumi.get(self, "max_ejection_percent")
 
     @max_ejection_percent.setter
-    def max_ejection_percent(self, value: Optional[pulumi.Input[float]]):
+    def max_ejection_percent(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_ejection_percent", value)
 
     @property
     @pulumi.getter(name="successRateMinimumHosts")
-    def success_rate_minimum_hosts(self) -> Optional[pulumi.Input[float]]:
+    def success_rate_minimum_hosts(self) -> Optional[pulumi.Input[int]]:
         """
         The number of hosts in a cluster that must have enough request volume to detect
         success rate outliers. If the number of hosts is less than this setting, outlier
@@ -2421,12 +2421,12 @@ class BackendServiceOutlierDetectionArgs:
         return pulumi.get(self, "success_rate_minimum_hosts")
 
     @success_rate_minimum_hosts.setter
-    def success_rate_minimum_hosts(self, value: Optional[pulumi.Input[float]]):
+    def success_rate_minimum_hosts(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "success_rate_minimum_hosts", value)
 
     @property
     @pulumi.getter(name="successRateRequestVolume")
-    def success_rate_request_volume(self) -> Optional[pulumi.Input[float]]:
+    def success_rate_request_volume(self) -> Optional[pulumi.Input[int]]:
         """
         The minimum number of total requests that must be collected in one interval (as
         defined by the interval duration above) to include this host in success rate
@@ -2437,12 +2437,12 @@ class BackendServiceOutlierDetectionArgs:
         return pulumi.get(self, "success_rate_request_volume")
 
     @success_rate_request_volume.setter
-    def success_rate_request_volume(self, value: Optional[pulumi.Input[float]]):
+    def success_rate_request_volume(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "success_rate_request_volume", value)
 
     @property
     @pulumi.getter(name="successRateStdevFactor")
-    def success_rate_stdev_factor(self) -> Optional[pulumi.Input[float]]:
+    def success_rate_stdev_factor(self) -> Optional[pulumi.Input[int]]:
         """
         This factor is used to determine the ejection threshold for success rate outlier
         ejection. The ejection threshold is the difference between the mean success
@@ -2454,19 +2454,19 @@ class BackendServiceOutlierDetectionArgs:
         return pulumi.get(self, "success_rate_stdev_factor")
 
     @success_rate_stdev_factor.setter
-    def success_rate_stdev_factor(self, value: Optional[pulumi.Input[float]]):
+    def success_rate_stdev_factor(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "success_rate_stdev_factor", value)
 
 
 @pulumi.input_type
 class BackendServiceOutlierDetectionBaseEjectionTimeArgs:
     def __init__(__self__, *,
-                 seconds: pulumi.Input[float],
-                 nanos: Optional[pulumi.Input[float]] = None):
+                 seconds: pulumi.Input[int],
+                 nanos: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[float] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        :param pulumi.Input[int] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
                inclusive.
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
                less than one second are represented with a 0 `seconds` field and a positive
                `nanos` field. Must be from 0 to 999,999,999 inclusive.
         """
@@ -2476,7 +2476,7 @@ class BackendServiceOutlierDetectionBaseEjectionTimeArgs:
 
     @property
     @pulumi.getter
-    def seconds(self) -> pulumi.Input[float]:
+    def seconds(self) -> pulumi.Input[int]:
         """
         Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
         inclusive.
@@ -2484,12 +2484,12 @@ class BackendServiceOutlierDetectionBaseEjectionTimeArgs:
         return pulumi.get(self, "seconds")
 
     @seconds.setter
-    def seconds(self, value: pulumi.Input[float]):
+    def seconds(self, value: pulumi.Input[int]):
         pulumi.set(self, "seconds", value)
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations
         less than one second are represented with a 0 `seconds` field and a positive
@@ -2498,19 +2498,19 @@ class BackendServiceOutlierDetectionBaseEjectionTimeArgs:
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
 
 @pulumi.input_type
 class BackendServiceOutlierDetectionIntervalArgs:
     def __init__(__self__, *,
-                 seconds: pulumi.Input[float],
-                 nanos: Optional[pulumi.Input[float]] = None):
+                 seconds: pulumi.Input[int],
+                 nanos: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[float] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        :param pulumi.Input[int] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
                inclusive.
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
                less than one second are represented with a 0 `seconds` field and a positive
                `nanos` field. Must be from 0 to 999,999,999 inclusive.
         """
@@ -2520,7 +2520,7 @@ class BackendServiceOutlierDetectionIntervalArgs:
 
     @property
     @pulumi.getter
-    def seconds(self) -> pulumi.Input[float]:
+    def seconds(self) -> pulumi.Input[int]:
         """
         Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
         inclusive.
@@ -2528,12 +2528,12 @@ class BackendServiceOutlierDetectionIntervalArgs:
         return pulumi.get(self, "seconds")
 
     @seconds.setter
-    def seconds(self, value: pulumi.Input[float]):
+    def seconds(self, value: pulumi.Input[int]):
         pulumi.set(self, "seconds", value)
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations
         less than one second are represented with a 0 `seconds` field and a positive
@@ -2542,7 +2542,7 @@ class BackendServiceOutlierDetectionIntervalArgs:
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
 
@@ -2834,10 +2834,10 @@ class DiskSourceSnapshotEncryptionKeyArgs:
 @pulumi.input_type
 class ExternalVpnGatewayInterfaceArgs:
     def __init__(__self__, *,
-                 id: Optional[pulumi.Input[float]] = None,
+                 id: Optional[pulumi.Input[int]] = None,
                  ip_address: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[float] id: The numberic ID for this interface. Allowed values are based on the redundancy type
+        :param pulumi.Input[int] id: The numberic ID for this interface. Allowed values are based on the redundancy type
                of this external VPN gateway
                * `0 - SINGLE_IP_INTERNALLY_REDUNDANT`
                * `0, 1 - TWO_IPS_REDUNDANCY`
@@ -2854,7 +2854,7 @@ class ExternalVpnGatewayInterfaceArgs:
 
     @property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[float]]:
+    def id(self) -> Optional[pulumi.Input[int]]:
         """
         The numberic ID for this interface. Allowed values are based on the redundancy type
         of this external VPN gateway
@@ -2865,7 +2865,7 @@ class ExternalVpnGatewayInterfaceArgs:
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[float]]):
+    def id(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "id", value)
 
     @property
@@ -3115,10 +3115,10 @@ class GlobalForwardingRuleMetadataFilterFilterLabelArgs:
 @pulumi.input_type
 class HaVpnGatewayVpnInterfaceArgs:
     def __init__(__self__, *,
-                 id: Optional[pulumi.Input[float]] = None,
+                 id: Optional[pulumi.Input[int]] = None,
                  ip_address: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[float] id: an identifier for the resource with format `projects/{{project}}/regions/{{region}}/vpnGateways/{{name}}`
+        :param pulumi.Input[int] id: an identifier for the resource with format `projects/{{project}}/regions/{{region}}/vpnGateways/{{name}}`
         """
         if id is not None:
             pulumi.set(__self__, "id", id)
@@ -3127,14 +3127,14 @@ class HaVpnGatewayVpnInterfaceArgs:
 
     @property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[float]]:
+    def id(self) -> Optional[pulumi.Input[int]]:
         """
         an identifier for the resource with format `projects/{{project}}/regions/{{region}}/vpnGateways/{{name}}`
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[float]]):
+    def id(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "id", value)
 
     @property
@@ -3151,7 +3151,7 @@ class HaVpnGatewayVpnInterfaceArgs:
 class HealthCheckGrpcHealthCheckArgs:
     def __init__(__self__, *,
                  grpc_service_name: Optional[pulumi.Input[str]] = None,
-                 port: Optional[pulumi.Input[float]] = None,
+                 port: Optional[pulumi.Input[int]] = None,
                  port_name: Optional[pulumi.Input[str]] = None,
                  port_specification: Optional[pulumi.Input[str]] = None):
         """
@@ -3160,7 +3160,7 @@ class HealthCheckGrpcHealthCheckArgs:
                - Empty serviceName means the overall status of all services at the backend.
                - Non-empty serviceName means the health of that gRPC service, as defined by the owner of the service.
                The grpcServiceName can only be ASCII.
-        :param pulumi.Input[float] port: The port number for the health check request.
+        :param pulumi.Input[int] port: The port number for the health check request.
                Must be specified if portName and portSpecification are not set
                or if port_specification is USE_FIXED_PORT. Valid values are 1 through 65535.
         :param pulumi.Input[str] port_name: Port name as defined in InstanceGroup#NamedPort#name. If both port and
@@ -3204,7 +3204,7 @@ class HealthCheckGrpcHealthCheckArgs:
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[float]]:
+    def port(self) -> Optional[pulumi.Input[int]]:
         """
         The port number for the health check request.
         Must be specified if portName and portSpecification are not set
@@ -3213,7 +3213,7 @@ class HealthCheckGrpcHealthCheckArgs:
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[float]]):
+    def port(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "port", value)
 
     @property
@@ -3256,7 +3256,7 @@ class HealthCheckGrpcHealthCheckArgs:
 class HealthCheckHttp2HealthCheckArgs:
     def __init__(__self__, *,
                  host: Optional[pulumi.Input[str]] = None,
-                 port: Optional[pulumi.Input[float]] = None,
+                 port: Optional[pulumi.Input[int]] = None,
                  port_name: Optional[pulumi.Input[str]] = None,
                  port_specification: Optional[pulumi.Input[str]] = None,
                  proxy_header: Optional[pulumi.Input[str]] = None,
@@ -3266,7 +3266,7 @@ class HealthCheckHttp2HealthCheckArgs:
         :param pulumi.Input[str] host: The value of the host header in the HTTP2 health check request.
                If left empty (default value), the public IP on behalf of which this health
                check is performed will be used.
-        :param pulumi.Input[float] port: The port number for the health check request.
+        :param pulumi.Input[int] port: The port number for the health check request.
                Must be specified if portName and portSpecification are not set
                or if port_specification is USE_FIXED_PORT. Valid values are 1 through 65535.
         :param pulumi.Input[str] port_name: Port name as defined in InstanceGroup#NamedPort#name. If both port and
@@ -3323,7 +3323,7 @@ class HealthCheckHttp2HealthCheckArgs:
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[float]]:
+    def port(self) -> Optional[pulumi.Input[int]]:
         """
         The port number for the health check request.
         Must be specified if portName and portSpecification are not set
@@ -3332,7 +3332,7 @@ class HealthCheckHttp2HealthCheckArgs:
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[float]]):
+    def port(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "port", value)
 
     @property
@@ -3417,7 +3417,7 @@ class HealthCheckHttp2HealthCheckArgs:
 class HealthCheckHttpHealthCheckArgs:
     def __init__(__self__, *,
                  host: Optional[pulumi.Input[str]] = None,
-                 port: Optional[pulumi.Input[float]] = None,
+                 port: Optional[pulumi.Input[int]] = None,
                  port_name: Optional[pulumi.Input[str]] = None,
                  port_specification: Optional[pulumi.Input[str]] = None,
                  proxy_header: Optional[pulumi.Input[str]] = None,
@@ -3427,7 +3427,7 @@ class HealthCheckHttpHealthCheckArgs:
         :param pulumi.Input[str] host: The value of the host header in the HTTP2 health check request.
                If left empty (default value), the public IP on behalf of which this health
                check is performed will be used.
-        :param pulumi.Input[float] port: The port number for the health check request.
+        :param pulumi.Input[int] port: The port number for the health check request.
                Must be specified if portName and portSpecification are not set
                or if port_specification is USE_FIXED_PORT. Valid values are 1 through 65535.
         :param pulumi.Input[str] port_name: Port name as defined in InstanceGroup#NamedPort#name. If both port and
@@ -3484,7 +3484,7 @@ class HealthCheckHttpHealthCheckArgs:
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[float]]:
+    def port(self) -> Optional[pulumi.Input[int]]:
         """
         The port number for the health check request.
         Must be specified if portName and portSpecification are not set
@@ -3493,7 +3493,7 @@ class HealthCheckHttpHealthCheckArgs:
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[float]]):
+    def port(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "port", value)
 
     @property
@@ -3578,7 +3578,7 @@ class HealthCheckHttpHealthCheckArgs:
 class HealthCheckHttpsHealthCheckArgs:
     def __init__(__self__, *,
                  host: Optional[pulumi.Input[str]] = None,
-                 port: Optional[pulumi.Input[float]] = None,
+                 port: Optional[pulumi.Input[int]] = None,
                  port_name: Optional[pulumi.Input[str]] = None,
                  port_specification: Optional[pulumi.Input[str]] = None,
                  proxy_header: Optional[pulumi.Input[str]] = None,
@@ -3588,7 +3588,7 @@ class HealthCheckHttpsHealthCheckArgs:
         :param pulumi.Input[str] host: The value of the host header in the HTTP2 health check request.
                If left empty (default value), the public IP on behalf of which this health
                check is performed will be used.
-        :param pulumi.Input[float] port: The port number for the health check request.
+        :param pulumi.Input[int] port: The port number for the health check request.
                Must be specified if portName and portSpecification are not set
                or if port_specification is USE_FIXED_PORT. Valid values are 1 through 65535.
         :param pulumi.Input[str] port_name: Port name as defined in InstanceGroup#NamedPort#name. If both port and
@@ -3645,7 +3645,7 @@ class HealthCheckHttpsHealthCheckArgs:
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[float]]:
+    def port(self) -> Optional[pulumi.Input[int]]:
         """
         The port number for the health check request.
         Must be specified if portName and portSpecification are not set
@@ -3654,7 +3654,7 @@ class HealthCheckHttpsHealthCheckArgs:
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[float]]):
+    def port(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "port", value)
 
     @property
@@ -3763,14 +3763,14 @@ class HealthCheckLogConfigArgs:
 @pulumi.input_type
 class HealthCheckSslHealthCheckArgs:
     def __init__(__self__, *,
-                 port: Optional[pulumi.Input[float]] = None,
+                 port: Optional[pulumi.Input[int]] = None,
                  port_name: Optional[pulumi.Input[str]] = None,
                  port_specification: Optional[pulumi.Input[str]] = None,
                  proxy_header: Optional[pulumi.Input[str]] = None,
                  request: Optional[pulumi.Input[str]] = None,
                  response: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[float] port: The port number for the health check request.
+        :param pulumi.Input[int] port: The port number for the health check request.
                Must be specified if portName and portSpecification are not set
                or if port_specification is USE_FIXED_PORT. Valid values are 1 through 65535.
         :param pulumi.Input[str] port_name: Port name as defined in InstanceGroup#NamedPort#name. If both port and
@@ -3813,7 +3813,7 @@ class HealthCheckSslHealthCheckArgs:
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[float]]:
+    def port(self) -> Optional[pulumi.Input[int]]:
         """
         The port number for the health check request.
         Must be specified if portName and portSpecification are not set
@@ -3822,7 +3822,7 @@ class HealthCheckSslHealthCheckArgs:
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[float]]):
+    def port(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "port", value)
 
     @property
@@ -3908,14 +3908,14 @@ class HealthCheckSslHealthCheckArgs:
 @pulumi.input_type
 class HealthCheckTcpHealthCheckArgs:
     def __init__(__self__, *,
-                 port: Optional[pulumi.Input[float]] = None,
+                 port: Optional[pulumi.Input[int]] = None,
                  port_name: Optional[pulumi.Input[str]] = None,
                  port_specification: Optional[pulumi.Input[str]] = None,
                  proxy_header: Optional[pulumi.Input[str]] = None,
                  request: Optional[pulumi.Input[str]] = None,
                  response: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[float] port: The port number for the health check request.
+        :param pulumi.Input[int] port: The port number for the health check request.
                Must be specified if portName and portSpecification are not set
                or if port_specification is USE_FIXED_PORT. Valid values are 1 through 65535.
         :param pulumi.Input[str] port_name: Port name as defined in InstanceGroup#NamedPort#name. If both port and
@@ -3958,7 +3958,7 @@ class HealthCheckTcpHealthCheckArgs:
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[float]]:
+    def port(self) -> Optional[pulumi.Input[int]]:
         """
         The port number for the health check request.
         Must be specified if portName and portSpecification are not set
@@ -3967,7 +3967,7 @@ class HealthCheckTcpHealthCheckArgs:
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[float]]):
+    def port(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "port", value)
 
     @property
@@ -4526,7 +4526,7 @@ class InstanceBootDiskInitializeParamsArgs:
     def __init__(__self__, *,
                  image: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-                 size: Optional[pulumi.Input[float]] = None,
+                 size: Optional[pulumi.Input[int]] = None,
                  type: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] image: The image from which to initialize this disk. This can be
@@ -4539,7 +4539,7 @@ class InstanceBootDiskInitializeParamsArgs:
                For instance, the image `centos-6-v20180104` includes its family name `centos-6`.
                These images can be referred by family name here.
         :param pulumi.Input[Mapping[str, Any]] labels: A map of key/value label pairs to assign to the instance.
-        :param pulumi.Input[float] size: The size of the image in gigabytes. If not specified, it
+        :param pulumi.Input[int] size: The size of the image in gigabytes. If not specified, it
                will inherit the size of its base image.
         :param pulumi.Input[str] type: The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
         """
@@ -4586,7 +4586,7 @@ class InstanceBootDiskInitializeParamsArgs:
 
     @property
     @pulumi.getter
-    def size(self) -> Optional[pulumi.Input[float]]:
+    def size(self) -> Optional[pulumi.Input[int]]:
         """
         The size of the image in gigabytes. If not specified, it
         will inherit the size of its base image.
@@ -4594,7 +4594,7 @@ class InstanceBootDiskInitializeParamsArgs:
         return pulumi.get(self, "size")
 
     @size.setter
-    def size(self, value: Optional[pulumi.Input[float]]):
+    def size(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "size", value)
 
     @property
@@ -4808,7 +4808,7 @@ class InstanceFromTemplateBootDiskInitializeParamsArgs:
     def __init__(__self__, *,
                  image: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-                 size: Optional[pulumi.Input[float]] = None,
+                 size: Optional[pulumi.Input[int]] = None,
                  type: Optional[pulumi.Input[str]] = None):
         if image is not None:
             pulumi.set(__self__, "image", image)
@@ -4839,11 +4839,11 @@ class InstanceFromTemplateBootDiskInitializeParamsArgs:
 
     @property
     @pulumi.getter
-    def size(self) -> Optional[pulumi.Input[float]]:
+    def size(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "size")
 
     @size.setter
-    def size(self, value: Optional[pulumi.Input[float]]):
+    def size(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "size", value)
 
     @property
@@ -4875,18 +4875,18 @@ class InstanceFromTemplateConfidentialInstanceConfigArgs:
 @pulumi.input_type
 class InstanceFromTemplateGuestAcceleratorArgs:
     def __init__(__self__, *,
-                 count: pulumi.Input[float],
+                 count: pulumi.Input[int],
                  type: pulumi.Input[str]):
         pulumi.set(__self__, "count", count)
         pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter
-    def count(self) -> pulumi.Input[float]:
+    def count(self) -> pulumi.Input[int]:
         return pulumi.get(self, "count")
 
     @count.setter
-    def count(self, value: pulumi.Input[float]):
+    def count(self, value: pulumi.Input[int]):
         pulumi.set(self, "count", value)
 
     @property
@@ -5069,7 +5069,7 @@ class InstanceFromTemplateNetworkInterfaceAliasIpRangeArgs:
 class InstanceFromTemplateSchedulingArgs:
     def __init__(__self__, *,
                  automatic_restart: Optional[pulumi.Input[bool]] = None,
-                 min_node_cpus: Optional[pulumi.Input[float]] = None,
+                 min_node_cpus: Optional[pulumi.Input[int]] = None,
                  node_affinities: Optional[pulumi.Input[List[pulumi.Input['InstanceFromTemplateSchedulingNodeAffinityArgs']]]] = None,
                  on_host_maintenance: Optional[pulumi.Input[str]] = None,
                  preemptible: Optional[pulumi.Input[bool]] = None):
@@ -5095,11 +5095,11 @@ class InstanceFromTemplateSchedulingArgs:
 
     @property
     @pulumi.getter(name="minNodeCpus")
-    def min_node_cpus(self) -> Optional[pulumi.Input[float]]:
+    def min_node_cpus(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "min_node_cpus")
 
     @min_node_cpus.setter
-    def min_node_cpus(self, value: Optional[pulumi.Input[float]]):
+    def min_node_cpus(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "min_node_cpus", value)
 
     @property
@@ -5257,10 +5257,10 @@ class InstanceFromTemplateShieldedInstanceConfigArgs:
 class InstanceGroupManagerAutoHealingPoliciesArgs:
     def __init__(__self__, *,
                  health_check: pulumi.Input[str],
-                 initial_delay_sec: pulumi.Input[float]):
+                 initial_delay_sec: pulumi.Input[int]):
         """
         :param pulumi.Input[str] health_check: The health check resource that signals autohealing.
-        :param pulumi.Input[float] initial_delay_sec: The number of seconds that the managed instance group waits before
+        :param pulumi.Input[int] initial_delay_sec: The number of seconds that the managed instance group waits before
                it applies autohealing policies to new instances or recently recreated instances. Between 0 and 3600.
         """
         pulumi.set(__self__, "health_check", health_check)
@@ -5280,7 +5280,7 @@ class InstanceGroupManagerAutoHealingPoliciesArgs:
 
     @property
     @pulumi.getter(name="initialDelaySec")
-    def initial_delay_sec(self) -> pulumi.Input[float]:
+    def initial_delay_sec(self) -> pulumi.Input[int]:
         """
         The number of seconds that the managed instance group waits before
         it applies autohealing policies to new instances or recently recreated instances. Between 0 and 3600.
@@ -5288,7 +5288,7 @@ class InstanceGroupManagerAutoHealingPoliciesArgs:
         return pulumi.get(self, "initial_delay_sec")
 
     @initial_delay_sec.setter
-    def initial_delay_sec(self, value: pulumi.Input[float]):
+    def initial_delay_sec(self, value: pulumi.Input[int]):
         pulumi.set(self, "initial_delay_sec", value)
 
 
@@ -5296,10 +5296,10 @@ class InstanceGroupManagerAutoHealingPoliciesArgs:
 class InstanceGroupManagerNamedPortArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str],
-                 port: pulumi.Input[float]):
+                 port: pulumi.Input[int]):
         """
         :param pulumi.Input[str] name: - Version name.
-        :param pulumi.Input[float] port: The port number.
+        :param pulumi.Input[int] port: The port number.
                - - -
         """
         pulumi.set(__self__, "name", name)
@@ -5319,7 +5319,7 @@ class InstanceGroupManagerNamedPortArgs:
 
     @property
     @pulumi.getter
-    def port(self) -> pulumi.Input[float]:
+    def port(self) -> pulumi.Input[int]:
         """
         The port number.
         - - -
@@ -5327,7 +5327,7 @@ class InstanceGroupManagerNamedPortArgs:
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: pulumi.Input[float]):
+    def port(self, value: pulumi.Input[int]):
         pulumi.set(self, "port", value)
 
 
@@ -5374,19 +5374,19 @@ class InstanceGroupManagerUpdatePolicyArgs:
     def __init__(__self__, *,
                  minimal_action: pulumi.Input[str],
                  type: pulumi.Input[str],
-                 max_surge_fixed: Optional[pulumi.Input[float]] = None,
-                 max_surge_percent: Optional[pulumi.Input[float]] = None,
-                 max_unavailable_fixed: Optional[pulumi.Input[float]] = None,
-                 max_unavailable_percent: Optional[pulumi.Input[float]] = None,
-                 min_ready_sec: Optional[pulumi.Input[float]] = None):
+                 max_surge_fixed: Optional[pulumi.Input[int]] = None,
+                 max_surge_percent: Optional[pulumi.Input[int]] = None,
+                 max_unavailable_fixed: Optional[pulumi.Input[int]] = None,
+                 max_unavailable_percent: Optional[pulumi.Input[int]] = None,
+                 min_ready_sec: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] minimal_action: - Minimal action to be taken on an instance. You can specify either `RESTART` to restart existing instances or `REPLACE` to delete and create new instances from the target template. If you specify a `RESTART`, the Updater will attempt to perform that action only. However, if the Updater determines that the minimal action you specify is not enough to perform the update, it might perform a more disruptive action.
         :param pulumi.Input[str] type: - The type of update process. You can specify either `PROACTIVE` so that the instance group manager proactively executes actions in order to bring instances to their target versions or `OPPORTUNISTIC` so that no action is proactively executed but the update will be performed as part of other actions (for example, resizes or recreateInstances calls).
-        :param pulumi.Input[float] max_surge_fixed: , The maximum number of instances that can be created above the specified targetSize during the update process. Conflicts with `max_surge_percent`. If neither is set, defaults to 1
-        :param pulumi.Input[float] max_surge_percent: , The maximum number of instances(calculated as percentage) that can be created above the specified targetSize during the update process. Conflicts with `max_surge_fixed`.
-        :param pulumi.Input[float] max_unavailable_fixed: , The maximum number of instances that can be unavailable during the update process. Conflicts with `max_unavailable_percent`. If neither is set, defaults to 1
-        :param pulumi.Input[float] max_unavailable_percent: , The maximum number of instances(calculated as percentage) that can be unavailable during the update process. Conflicts with `max_unavailable_fixed`.
-        :param pulumi.Input[float] min_ready_sec: , Minimum number of seconds to wait for after a newly created instance becomes available. This value must be from range [0, 3600]
+        :param pulumi.Input[int] max_surge_fixed: , The maximum number of instances that can be created above the specified targetSize during the update process. Conflicts with `max_surge_percent`. If neither is set, defaults to 1
+        :param pulumi.Input[int] max_surge_percent: , The maximum number of instances(calculated as percentage) that can be created above the specified targetSize during the update process. Conflicts with `max_surge_fixed`.
+        :param pulumi.Input[int] max_unavailable_fixed: , The maximum number of instances that can be unavailable during the update process. Conflicts with `max_unavailable_percent`. If neither is set, defaults to 1
+        :param pulumi.Input[int] max_unavailable_percent: , The maximum number of instances(calculated as percentage) that can be unavailable during the update process. Conflicts with `max_unavailable_fixed`.
+        :param pulumi.Input[int] min_ready_sec: , Minimum number of seconds to wait for after a newly created instance becomes available. This value must be from range [0, 3600]
                - - -
         """
         pulumi.set(__self__, "minimal_action", minimal_action)
@@ -5428,55 +5428,55 @@ class InstanceGroupManagerUpdatePolicyArgs:
 
     @property
     @pulumi.getter(name="maxSurgeFixed")
-    def max_surge_fixed(self) -> Optional[pulumi.Input[float]]:
+    def max_surge_fixed(self) -> Optional[pulumi.Input[int]]:
         """
         , The maximum number of instances that can be created above the specified targetSize during the update process. Conflicts with `max_surge_percent`. If neither is set, defaults to 1
         """
         return pulumi.get(self, "max_surge_fixed")
 
     @max_surge_fixed.setter
-    def max_surge_fixed(self, value: Optional[pulumi.Input[float]]):
+    def max_surge_fixed(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_surge_fixed", value)
 
     @property
     @pulumi.getter(name="maxSurgePercent")
-    def max_surge_percent(self) -> Optional[pulumi.Input[float]]:
+    def max_surge_percent(self) -> Optional[pulumi.Input[int]]:
         """
         , The maximum number of instances(calculated as percentage) that can be created above the specified targetSize during the update process. Conflicts with `max_surge_fixed`.
         """
         return pulumi.get(self, "max_surge_percent")
 
     @max_surge_percent.setter
-    def max_surge_percent(self, value: Optional[pulumi.Input[float]]):
+    def max_surge_percent(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_surge_percent", value)
 
     @property
     @pulumi.getter(name="maxUnavailableFixed")
-    def max_unavailable_fixed(self) -> Optional[pulumi.Input[float]]:
+    def max_unavailable_fixed(self) -> Optional[pulumi.Input[int]]:
         """
         , The maximum number of instances that can be unavailable during the update process. Conflicts with `max_unavailable_percent`. If neither is set, defaults to 1
         """
         return pulumi.get(self, "max_unavailable_fixed")
 
     @max_unavailable_fixed.setter
-    def max_unavailable_fixed(self, value: Optional[pulumi.Input[float]]):
+    def max_unavailable_fixed(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_unavailable_fixed", value)
 
     @property
     @pulumi.getter(name="maxUnavailablePercent")
-    def max_unavailable_percent(self) -> Optional[pulumi.Input[float]]:
+    def max_unavailable_percent(self) -> Optional[pulumi.Input[int]]:
         """
         , The maximum number of instances(calculated as percentage) that can be unavailable during the update process. Conflicts with `max_unavailable_fixed`.
         """
         return pulumi.get(self, "max_unavailable_percent")
 
     @max_unavailable_percent.setter
-    def max_unavailable_percent(self, value: Optional[pulumi.Input[float]]):
+    def max_unavailable_percent(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_unavailable_percent", value)
 
     @property
     @pulumi.getter(name="minReadySec")
-    def min_ready_sec(self) -> Optional[pulumi.Input[float]]:
+    def min_ready_sec(self) -> Optional[pulumi.Input[int]]:
         """
         , Minimum number of seconds to wait for after a newly created instance becomes available. This value must be from range [0, 3600]
         - - -
@@ -5484,7 +5484,7 @@ class InstanceGroupManagerUpdatePolicyArgs:
         return pulumi.get(self, "min_ready_sec")
 
     @min_ready_sec.setter
-    def min_ready_sec(self, value: Optional[pulumi.Input[float]]):
+    def min_ready_sec(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "min_ready_sec", value)
 
 
@@ -5545,11 +5545,11 @@ class InstanceGroupManagerVersionArgs:
 @pulumi.input_type
 class InstanceGroupManagerVersionTargetSizeArgs:
     def __init__(__self__, *,
-                 fixed: Optional[pulumi.Input[float]] = None,
-                 percent: Optional[pulumi.Input[float]] = None):
+                 fixed: Optional[pulumi.Input[int]] = None,
+                 percent: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[float] fixed: , The number of instances which are managed for this version. Conflicts with `percent`.
-        :param pulumi.Input[float] percent: , The number of instances (calculated as percentage) which are managed for this version. Conflicts with `fixed`.
+        :param pulumi.Input[int] fixed: , The number of instances which are managed for this version. Conflicts with `percent`.
+        :param pulumi.Input[int] percent: , The number of instances (calculated as percentage) which are managed for this version. Conflicts with `fixed`.
                Note that when using `percent`, rounding will be in favor of explicitly set `target_size` values; a managed instance group with 2 instances and 2 `version`s,
                one of which has a `target_size.percent` of `60` will create 2 instances of that `version`.
         """
@@ -5560,19 +5560,19 @@ class InstanceGroupManagerVersionTargetSizeArgs:
 
     @property
     @pulumi.getter
-    def fixed(self) -> Optional[pulumi.Input[float]]:
+    def fixed(self) -> Optional[pulumi.Input[int]]:
         """
         , The number of instances which are managed for this version. Conflicts with `percent`.
         """
         return pulumi.get(self, "fixed")
 
     @fixed.setter
-    def fixed(self, value: Optional[pulumi.Input[float]]):
+    def fixed(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fixed", value)
 
     @property
     @pulumi.getter
-    def percent(self) -> Optional[pulumi.Input[float]]:
+    def percent(self) -> Optional[pulumi.Input[int]]:
         """
         , The number of instances (calculated as percentage) which are managed for this version. Conflicts with `fixed`.
         Note that when using `percent`, rounding will be in favor of explicitly set `target_size` values; a managed instance group with 2 instances and 2 `version`s,
@@ -5581,7 +5581,7 @@ class InstanceGroupManagerVersionTargetSizeArgs:
         return pulumi.get(self, "percent")
 
     @percent.setter
-    def percent(self, value: Optional[pulumi.Input[float]]):
+    def percent(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "percent", value)
 
 
@@ -5589,10 +5589,10 @@ class InstanceGroupManagerVersionTargetSizeArgs:
 class InstanceGroupNamedPortArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str],
-                 port: pulumi.Input[float]):
+                 port: pulumi.Input[int]):
         """
         :param pulumi.Input[str] name: The name which the port will be mapped to.
-        :param pulumi.Input[float] port: The port number to map the name to.
+        :param pulumi.Input[int] port: The port number to map the name to.
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "port", port)
@@ -5611,24 +5611,24 @@ class InstanceGroupNamedPortArgs:
 
     @property
     @pulumi.getter
-    def port(self) -> pulumi.Input[float]:
+    def port(self) -> pulumi.Input[int]:
         """
         The port number to map the name to.
         """
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: pulumi.Input[float]):
+    def port(self, value: pulumi.Input[int]):
         pulumi.set(self, "port", value)
 
 
 @pulumi.input_type
 class InstanceGuestAcceleratorArgs:
     def __init__(__self__, *,
-                 count: pulumi.Input[float],
+                 count: pulumi.Input[int],
                  type: pulumi.Input[str]):
         """
-        :param pulumi.Input[float] count: The number of the guest accelerator cards exposed to this instance.
+        :param pulumi.Input[int] count: The number of the guest accelerator cards exposed to this instance.
         :param pulumi.Input[str] type: The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
         """
         pulumi.set(__self__, "count", count)
@@ -5636,14 +5636,14 @@ class InstanceGuestAcceleratorArgs:
 
     @property
     @pulumi.getter
-    def count(self) -> pulumi.Input[float]:
+    def count(self) -> pulumi.Input[int]:
         """
         The number of the guest accelerator cards exposed to this instance.
         """
         return pulumi.get(self, "count")
 
     @count.setter
-    def count(self, value: pulumi.Input[float]):
+    def count(self, value: pulumi.Input[int]):
         pulumi.set(self, "count", value)
 
     @property
@@ -6033,7 +6033,7 @@ class InstanceNetworkInterfaceAliasIpRangeArgs:
 class InstanceSchedulingArgs:
     def __init__(__self__, *,
                  automatic_restart: Optional[pulumi.Input[bool]] = None,
-                 min_node_cpus: Optional[pulumi.Input[float]] = None,
+                 min_node_cpus: Optional[pulumi.Input[int]] = None,
                  node_affinities: Optional[pulumi.Input[List[pulumi.Input['InstanceSchedulingNodeAffinityArgs']]]] = None,
                  on_host_maintenance: Optional[pulumi.Input[str]] = None,
                  preemptible: Optional[pulumi.Input[bool]] = None):
@@ -6080,11 +6080,11 @@ class InstanceSchedulingArgs:
 
     @property
     @pulumi.getter(name="minNodeCpus")
-    def min_node_cpus(self) -> Optional[pulumi.Input[float]]:
+    def min_node_cpus(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "min_node_cpus")
 
     @min_node_cpus.setter
-    def min_node_cpus(self, value: Optional[pulumi.Input[float]]):
+    def min_node_cpus(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "min_node_cpus", value)
 
     @property
@@ -6341,7 +6341,7 @@ class InstanceTemplateDiskArgs:
                  device_name: Optional[pulumi.Input[str]] = None,
                  disk_encryption_key: Optional[pulumi.Input['InstanceTemplateDiskDiskEncryptionKeyArgs']] = None,
                  disk_name: Optional[pulumi.Input[str]] = None,
-                 disk_size_gb: Optional[pulumi.Input[float]] = None,
+                 disk_size_gb: Optional[pulumi.Input[int]] = None,
                  disk_type: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -6359,7 +6359,7 @@ class InstanceTemplateDiskArgs:
         :param pulumi.Input['InstanceTemplateDiskDiskEncryptionKeyArgs'] disk_encryption_key: Encrypts or decrypts a disk using a customer-supplied encryption key.
         :param pulumi.Input[str] disk_name: Name of the disk. When not provided, this defaults
                to the name of the instance.
-        :param pulumi.Input[float] disk_size_gb: The size of the image in gigabytes. If not
+        :param pulumi.Input[int] disk_size_gb: The size of the image in gigabytes. If not
                specified, it will inherit the size of its base image. For SCRATCH disks,
                the size must be exactly 375GB.
         :param pulumi.Input[str] disk_type: The GCE disk type. Can be either `"pd-ssd"`,
@@ -6476,7 +6476,7 @@ class InstanceTemplateDiskArgs:
 
     @property
     @pulumi.getter(name="diskSizeGb")
-    def disk_size_gb(self) -> Optional[pulumi.Input[float]]:
+    def disk_size_gb(self) -> Optional[pulumi.Input[int]]:
         """
         The size of the image in gigabytes. If not
         specified, it will inherit the size of its base image. For SCRATCH disks,
@@ -6485,7 +6485,7 @@ class InstanceTemplateDiskArgs:
         return pulumi.get(self, "disk_size_gb")
 
     @disk_size_gb.setter
-    def disk_size_gb(self, value: Optional[pulumi.Input[float]]):
+    def disk_size_gb(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "disk_size_gb", value)
 
     @property
@@ -6611,10 +6611,10 @@ class InstanceTemplateDiskDiskEncryptionKeyArgs:
 @pulumi.input_type
 class InstanceTemplateGuestAcceleratorArgs:
     def __init__(__self__, *,
-                 count: pulumi.Input[float],
+                 count: pulumi.Input[int],
                  type: pulumi.Input[str]):
         """
-        :param pulumi.Input[float] count: The number of the guest accelerator cards exposed to this instance.
+        :param pulumi.Input[int] count: The number of the guest accelerator cards exposed to this instance.
         :param pulumi.Input[str] type: The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
         """
         pulumi.set(__self__, "count", count)
@@ -6622,14 +6622,14 @@ class InstanceTemplateGuestAcceleratorArgs:
 
     @property
     @pulumi.getter
-    def count(self) -> pulumi.Input[float]:
+    def count(self) -> pulumi.Input[int]:
         """
         The number of the guest accelerator cards exposed to this instance.
         """
         return pulumi.get(self, "count")
 
     @count.setter
-    def count(self, value: pulumi.Input[float]):
+    def count(self, value: pulumi.Input[int]):
         pulumi.set(self, "count", value)
 
     @property
@@ -6903,7 +6903,7 @@ class InstanceTemplateNetworkInterfaceAliasIpRangeArgs:
 class InstanceTemplateSchedulingArgs:
     def __init__(__self__, *,
                  automatic_restart: Optional[pulumi.Input[bool]] = None,
-                 min_node_cpus: Optional[pulumi.Input[float]] = None,
+                 min_node_cpus: Optional[pulumi.Input[int]] = None,
                  node_affinities: Optional[pulumi.Input[List[pulumi.Input['InstanceTemplateSchedulingNodeAffinityArgs']]]] = None,
                  on_host_maintenance: Optional[pulumi.Input[str]] = None,
                  preemptible: Optional[pulumi.Input[bool]] = None):
@@ -6949,11 +6949,11 @@ class InstanceTemplateSchedulingArgs:
 
     @property
     @pulumi.getter(name="minNodeCpus")
-    def min_node_cpus(self) -> Optional[pulumi.Input[float]]:
+    def min_node_cpus(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "min_node_cpus")
 
     @min_node_cpus.setter
-    def min_node_cpus(self, value: Optional[pulumi.Input[float]]):
+    def min_node_cpus(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "min_node_cpus", value)
 
     @property
@@ -7152,17 +7152,17 @@ class InstanceTemplateShieldedInstanceConfigArgs:
 @pulumi.input_type
 class InterconnectAttachmentPrivateInterconnectInfoArgs:
     def __init__(__self__, *,
-                 tag8021q: Optional[pulumi.Input[float]] = None):
+                 tag8021q: Optional[pulumi.Input[int]] = None):
         if tag8021q is not None:
             pulumi.set(__self__, "tag8021q", tag8021q)
 
     @property
     @pulumi.getter
-    def tag8021q(self) -> Optional[pulumi.Input[float]]:
+    def tag8021q(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "tag8021q")
 
     @tag8021q.setter
-    def tag8021q(self, value: Optional[pulumi.Input[float]]):
+    def tag8021q(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "tag8021q", value)
 
 
@@ -7209,13 +7209,13 @@ class MangedSslCertificateManagedArgs:
 @pulumi.input_type
 class NodeGroupAutoscalingPolicyArgs:
     def __init__(__self__, *,
-                 max_nodes: Optional[pulumi.Input[float]] = None,
-                 min_nodes: Optional[pulumi.Input[float]] = None,
+                 max_nodes: Optional[pulumi.Input[int]] = None,
+                 min_nodes: Optional[pulumi.Input[int]] = None,
                  mode: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[float] max_nodes: Maximum size of the node group. Set to a value less than or equal
+        :param pulumi.Input[int] max_nodes: Maximum size of the node group. Set to a value less than or equal
                to 100 and greater than or equal to min-nodes.
-        :param pulumi.Input[float] min_nodes: Minimum size of the node group. Must be less
+        :param pulumi.Input[int] min_nodes: Minimum size of the node group. Must be less
                than or equal to max-nodes. The default value is 0.
         :param pulumi.Input[str] mode: The autoscaling mode. Set to one of the following:
                - OFF: Disables the autoscaler.
@@ -7234,7 +7234,7 @@ class NodeGroupAutoscalingPolicyArgs:
 
     @property
     @pulumi.getter(name="maxNodes")
-    def max_nodes(self) -> Optional[pulumi.Input[float]]:
+    def max_nodes(self) -> Optional[pulumi.Input[int]]:
         """
         Maximum size of the node group. Set to a value less than or equal
         to 100 and greater than or equal to min-nodes.
@@ -7242,12 +7242,12 @@ class NodeGroupAutoscalingPolicyArgs:
         return pulumi.get(self, "max_nodes")
 
     @max_nodes.setter
-    def max_nodes(self, value: Optional[pulumi.Input[float]]):
+    def max_nodes(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_nodes", value)
 
     @property
     @pulumi.getter(name="minNodes")
-    def min_nodes(self) -> Optional[pulumi.Input[float]]:
+    def min_nodes(self) -> Optional[pulumi.Input[int]]:
         """
         Minimum size of the node group. Must be less
         than or equal to max-nodes. The default value is 0.
@@ -7255,7 +7255,7 @@ class NodeGroupAutoscalingPolicyArgs:
         return pulumi.get(self, "min_nodes")
 
     @min_nodes.setter
-    def min_nodes(self, value: Optional[pulumi.Input[float]]):
+    def min_nodes(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "min_nodes", value)
 
     @property
@@ -7877,24 +7877,24 @@ class PerInstanceConfigPreservedStateDiskArgs:
 @pulumi.input_type
 class RegionAutoscalerAutoscalingPolicyArgs:
     def __init__(__self__, *,
-                 max_replicas: pulumi.Input[float],
-                 min_replicas: pulumi.Input[float],
-                 cooldown_period: Optional[pulumi.Input[float]] = None,
+                 max_replicas: pulumi.Input[int],
+                 min_replicas: pulumi.Input[int],
+                 cooldown_period: Optional[pulumi.Input[int]] = None,
                  cpu_utilization: Optional[pulumi.Input['RegionAutoscalerAutoscalingPolicyCpuUtilizationArgs']] = None,
                  load_balancing_utilization: Optional[pulumi.Input['RegionAutoscalerAutoscalingPolicyLoadBalancingUtilizationArgs']] = None,
                  metrics: Optional[pulumi.Input[List[pulumi.Input['RegionAutoscalerAutoscalingPolicyMetricArgs']]]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  scale_down_control: Optional[pulumi.Input['RegionAutoscalerAutoscalingPolicyScaleDownControlArgs']] = None):
         """
-        :param pulumi.Input[float] max_replicas: The maximum number of instances that the autoscaler can scale up
+        :param pulumi.Input[int] max_replicas: The maximum number of instances that the autoscaler can scale up
                to. This is required when creating or updating an autoscaler. The
                maximum number of replicas should not be lower than minimal number
                of replicas.
-        :param pulumi.Input[float] min_replicas: The minimum number of replicas that the autoscaler can scale down
+        :param pulumi.Input[int] min_replicas: The minimum number of replicas that the autoscaler can scale down
                to. This cannot be less than 0. If not provided, autoscaler will
                choose a default value depending on maximum number of instances
                allowed.
-        :param pulumi.Input[float] cooldown_period: The number of seconds that the autoscaler should wait before it
+        :param pulumi.Input[int] cooldown_period: The number of seconds that the autoscaler should wait before it
                starts collecting information from a new instance. This prevents
                the autoscaler from collecting information when the instance is
                initializing, during which the collected usage would not be
@@ -7932,7 +7932,7 @@ class RegionAutoscalerAutoscalingPolicyArgs:
 
     @property
     @pulumi.getter(name="maxReplicas")
-    def max_replicas(self) -> pulumi.Input[float]:
+    def max_replicas(self) -> pulumi.Input[int]:
         """
         The maximum number of instances that the autoscaler can scale up
         to. This is required when creating or updating an autoscaler. The
@@ -7942,12 +7942,12 @@ class RegionAutoscalerAutoscalingPolicyArgs:
         return pulumi.get(self, "max_replicas")
 
     @max_replicas.setter
-    def max_replicas(self, value: pulumi.Input[float]):
+    def max_replicas(self, value: pulumi.Input[int]):
         pulumi.set(self, "max_replicas", value)
 
     @property
     @pulumi.getter(name="minReplicas")
-    def min_replicas(self) -> pulumi.Input[float]:
+    def min_replicas(self) -> pulumi.Input[int]:
         """
         The minimum number of replicas that the autoscaler can scale down
         to. This cannot be less than 0. If not provided, autoscaler will
@@ -7957,12 +7957,12 @@ class RegionAutoscalerAutoscalingPolicyArgs:
         return pulumi.get(self, "min_replicas")
 
     @min_replicas.setter
-    def min_replicas(self, value: pulumi.Input[float]):
+    def min_replicas(self, value: pulumi.Input[int]):
         pulumi.set(self, "min_replicas", value)
 
     @property
     @pulumi.getter(name="cooldownPeriod")
-    def cooldown_period(self) -> Optional[pulumi.Input[float]]:
+    def cooldown_period(self) -> Optional[pulumi.Input[int]]:
         """
         The number of seconds that the autoscaler should wait before it
         starts collecting information from a new instance. This prevents
@@ -7977,7 +7977,7 @@ class RegionAutoscalerAutoscalingPolicyArgs:
         return pulumi.get(self, "cooldown_period")
 
     @cooldown_period.setter
-    def cooldown_period(self, value: Optional[pulumi.Input[float]]):
+    def cooldown_period(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "cooldown_period", value)
 
     @property
@@ -8277,11 +8277,11 @@ class RegionAutoscalerAutoscalingPolicyMetricArgs:
 class RegionAutoscalerAutoscalingPolicyScaleDownControlArgs:
     def __init__(__self__, *,
                  max_scaled_down_replicas: Optional[pulumi.Input['RegionAutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasArgs']] = None,
-                 time_window_sec: Optional[pulumi.Input[float]] = None):
+                 time_window_sec: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input['RegionAutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasArgs'] max_scaled_down_replicas: A nested object resource
                Structure is documented below.
-        :param pulumi.Input[float] time_window_sec: How long back autoscaling should look when computing recommendations
+        :param pulumi.Input[int] time_window_sec: How long back autoscaling should look when computing recommendations
                to include directives regarding slower scale down, as described above.
         """
         if max_scaled_down_replicas is not None:
@@ -8304,7 +8304,7 @@ class RegionAutoscalerAutoscalingPolicyScaleDownControlArgs:
 
     @property
     @pulumi.getter(name="timeWindowSec")
-    def time_window_sec(self) -> Optional[pulumi.Input[float]]:
+    def time_window_sec(self) -> Optional[pulumi.Input[int]]:
         """
         How long back autoscaling should look when computing recommendations
         to include directives regarding slower scale down, as described above.
@@ -8312,19 +8312,19 @@ class RegionAutoscalerAutoscalingPolicyScaleDownControlArgs:
         return pulumi.get(self, "time_window_sec")
 
     @time_window_sec.setter
-    def time_window_sec(self, value: Optional[pulumi.Input[float]]):
+    def time_window_sec(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "time_window_sec", value)
 
 
 @pulumi.input_type
 class RegionAutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasArgs:
     def __init__(__self__, *,
-                 fixed: Optional[pulumi.Input[float]] = None,
-                 percent: Optional[pulumi.Input[float]] = None):
+                 fixed: Optional[pulumi.Input[int]] = None,
+                 percent: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[float] fixed: Specifies a fixed number of VM instances. This must be a positive
+        :param pulumi.Input[int] fixed: Specifies a fixed number of VM instances. This must be a positive
                integer.
-        :param pulumi.Input[float] percent: Specifies a percentage of instances between 0 to 100%, inclusive.
+        :param pulumi.Input[int] percent: Specifies a percentage of instances between 0 to 100%, inclusive.
                For example, specify 80 for 80%.
         """
         if fixed is not None:
@@ -8334,7 +8334,7 @@ class RegionAutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasArgs
 
     @property
     @pulumi.getter
-    def fixed(self) -> Optional[pulumi.Input[float]]:
+    def fixed(self) -> Optional[pulumi.Input[int]]:
         """
         Specifies a fixed number of VM instances. This must be a positive
         integer.
@@ -8342,12 +8342,12 @@ class RegionAutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasArgs
         return pulumi.get(self, "fixed")
 
     @fixed.setter
-    def fixed(self, value: Optional[pulumi.Input[float]]):
+    def fixed(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fixed", value)
 
     @property
     @pulumi.getter
-    def percent(self) -> Optional[pulumi.Input[float]]:
+    def percent(self) -> Optional[pulumi.Input[int]]:
         """
         Specifies a percentage of instances between 0 to 100%, inclusive.
         For example, specify 80 for 80%.
@@ -8355,7 +8355,7 @@ class RegionAutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasArgs
         return pulumi.get(self, "percent")
 
     @percent.setter
-    def percent(self, value: Optional[pulumi.Input[float]]):
+    def percent(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "percent", value)
 
 
@@ -8367,10 +8367,10 @@ class RegionBackendServiceBackendArgs:
                  capacity_scaler: Optional[pulumi.Input[float]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  failover: Optional[pulumi.Input[bool]] = None,
-                 max_connections: Optional[pulumi.Input[float]] = None,
-                 max_connections_per_endpoint: Optional[pulumi.Input[float]] = None,
-                 max_connections_per_instance: Optional[pulumi.Input[float]] = None,
-                 max_rate: Optional[pulumi.Input[float]] = None,
+                 max_connections: Optional[pulumi.Input[int]] = None,
+                 max_connections_per_endpoint: Optional[pulumi.Input[int]] = None,
+                 max_connections_per_instance: Optional[pulumi.Input[int]] = None,
+                 max_rate: Optional[pulumi.Input[int]] = None,
                  max_rate_per_endpoint: Optional[pulumi.Input[float]] = None,
                  max_rate_per_instance: Optional[pulumi.Input[float]] = None,
                  max_utilization: Optional[pulumi.Input[float]] = None):
@@ -8406,23 +8406,23 @@ class RegionBackendServiceBackendArgs:
                Provide this property when you create the resource.
         :param pulumi.Input[bool] failover: This field designates whether this is a failover backend. More
                than one failover backend can be configured for a given RegionBackendService.
-        :param pulumi.Input[float] max_connections: The maximum number of connections to the backend cluster.
+        :param pulumi.Input[int] max_connections: The maximum number of connections to the backend cluster.
                Defaults to 1024.
-        :param pulumi.Input[float] max_connections_per_endpoint: The max number of simultaneous connections that a single backend
+        :param pulumi.Input[int] max_connections_per_endpoint: The max number of simultaneous connections that a single backend
                network endpoint can handle. Cannot be set
                for INTERNAL backend services.
                This is used to calculate the capacity of the group. Can be
                used in either CONNECTION or UTILIZATION balancing modes. For
                CONNECTION mode, either maxConnections or
                maxConnectionsPerEndpoint must be set.
-        :param pulumi.Input[float] max_connections_per_instance: The max number of simultaneous connections that a single
+        :param pulumi.Input[int] max_connections_per_instance: The max number of simultaneous connections that a single
                backend instance can handle. Cannot be set for INTERNAL backend
                services.
                This is used to calculate the capacity of the group.
                Can be used in either CONNECTION or UTILIZATION balancing modes.
                For CONNECTION mode, either maxConnections or
                maxConnectionsPerInstance must be set.
-        :param pulumi.Input[float] max_rate: The max requests per second (RPS) of the group. Cannot be set
+        :param pulumi.Input[int] max_rate: The max requests per second (RPS) of the group. Cannot be set
                for INTERNAL backend services.
                Can be used with either RATE or UTILIZATION balancing modes,
                but required if RATE mode. Either maxRate or one
@@ -8554,7 +8554,7 @@ class RegionBackendServiceBackendArgs:
 
     @property
     @pulumi.getter(name="maxConnections")
-    def max_connections(self) -> Optional[pulumi.Input[float]]:
+    def max_connections(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of connections to the backend cluster.
         Defaults to 1024.
@@ -8562,12 +8562,12 @@ class RegionBackendServiceBackendArgs:
         return pulumi.get(self, "max_connections")
 
     @max_connections.setter
-    def max_connections(self, value: Optional[pulumi.Input[float]]):
+    def max_connections(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_connections", value)
 
     @property
     @pulumi.getter(name="maxConnectionsPerEndpoint")
-    def max_connections_per_endpoint(self) -> Optional[pulumi.Input[float]]:
+    def max_connections_per_endpoint(self) -> Optional[pulumi.Input[int]]:
         """
         The max number of simultaneous connections that a single backend
         network endpoint can handle. Cannot be set
@@ -8580,12 +8580,12 @@ class RegionBackendServiceBackendArgs:
         return pulumi.get(self, "max_connections_per_endpoint")
 
     @max_connections_per_endpoint.setter
-    def max_connections_per_endpoint(self, value: Optional[pulumi.Input[float]]):
+    def max_connections_per_endpoint(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_connections_per_endpoint", value)
 
     @property
     @pulumi.getter(name="maxConnectionsPerInstance")
-    def max_connections_per_instance(self) -> Optional[pulumi.Input[float]]:
+    def max_connections_per_instance(self) -> Optional[pulumi.Input[int]]:
         """
         The max number of simultaneous connections that a single
         backend instance can handle. Cannot be set for INTERNAL backend
@@ -8598,12 +8598,12 @@ class RegionBackendServiceBackendArgs:
         return pulumi.get(self, "max_connections_per_instance")
 
     @max_connections_per_instance.setter
-    def max_connections_per_instance(self, value: Optional[pulumi.Input[float]]):
+    def max_connections_per_instance(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_connections_per_instance", value)
 
     @property
     @pulumi.getter(name="maxRate")
-    def max_rate(self) -> Optional[pulumi.Input[float]]:
+    def max_rate(self) -> Optional[pulumi.Input[int]]:
         """
         The max requests per second (RPS) of the group. Cannot be set
         for INTERNAL backend services.
@@ -8615,7 +8615,7 @@ class RegionBackendServiceBackendArgs:
         return pulumi.get(self, "max_rate")
 
     @max_rate.setter
-    def max_rate(self, value: Optional[pulumi.Input[float]]):
+    def max_rate(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_rate", value)
 
     @property
@@ -8669,24 +8669,24 @@ class RegionBackendServiceBackendArgs:
 class RegionBackendServiceCircuitBreakersArgs:
     def __init__(__self__, *,
                  connect_timeout: Optional[pulumi.Input['RegionBackendServiceCircuitBreakersConnectTimeoutArgs']] = None,
-                 max_connections: Optional[pulumi.Input[float]] = None,
-                 max_pending_requests: Optional[pulumi.Input[float]] = None,
-                 max_requests: Optional[pulumi.Input[float]] = None,
-                 max_requests_per_connection: Optional[pulumi.Input[float]] = None,
-                 max_retries: Optional[pulumi.Input[float]] = None):
+                 max_connections: Optional[pulumi.Input[int]] = None,
+                 max_pending_requests: Optional[pulumi.Input[int]] = None,
+                 max_requests: Optional[pulumi.Input[int]] = None,
+                 max_requests_per_connection: Optional[pulumi.Input[int]] = None,
+                 max_retries: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input['RegionBackendServiceCircuitBreakersConnectTimeoutArgs'] connect_timeout: The timeout for new network connections to hosts.  Structure is documented below.
-        :param pulumi.Input[float] max_connections: The maximum number of connections to the backend cluster.
+        :param pulumi.Input[int] max_connections: The maximum number of connections to the backend cluster.
                Defaults to 1024.
-        :param pulumi.Input[float] max_pending_requests: The maximum number of pending requests to the backend cluster.
+        :param pulumi.Input[int] max_pending_requests: The maximum number of pending requests to the backend cluster.
                Defaults to 1024.
-        :param pulumi.Input[float] max_requests: The maximum number of parallel requests to the backend cluster.
+        :param pulumi.Input[int] max_requests: The maximum number of parallel requests to the backend cluster.
                Defaults to 1024.
-        :param pulumi.Input[float] max_requests_per_connection: Maximum requests for a single backend connection. This parameter
+        :param pulumi.Input[int] max_requests_per_connection: Maximum requests for a single backend connection. This parameter
                is respected by both the HTTP/1.1 and HTTP/2 implementations. If
                not specified, there is no limit. Setting this parameter to 1
                will effectively disable keep alive.
-        :param pulumi.Input[float] max_retries: The maximum number of parallel retries to the backend cluster.
+        :param pulumi.Input[int] max_retries: The maximum number of parallel retries to the backend cluster.
                Defaults to 3.
         """
         if connect_timeout is not None:
@@ -8716,7 +8716,7 @@ class RegionBackendServiceCircuitBreakersArgs:
 
     @property
     @pulumi.getter(name="maxConnections")
-    def max_connections(self) -> Optional[pulumi.Input[float]]:
+    def max_connections(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of connections to the backend cluster.
         Defaults to 1024.
@@ -8724,12 +8724,12 @@ class RegionBackendServiceCircuitBreakersArgs:
         return pulumi.get(self, "max_connections")
 
     @max_connections.setter
-    def max_connections(self, value: Optional[pulumi.Input[float]]):
+    def max_connections(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_connections", value)
 
     @property
     @pulumi.getter(name="maxPendingRequests")
-    def max_pending_requests(self) -> Optional[pulumi.Input[float]]:
+    def max_pending_requests(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of pending requests to the backend cluster.
         Defaults to 1024.
@@ -8737,12 +8737,12 @@ class RegionBackendServiceCircuitBreakersArgs:
         return pulumi.get(self, "max_pending_requests")
 
     @max_pending_requests.setter
-    def max_pending_requests(self, value: Optional[pulumi.Input[float]]):
+    def max_pending_requests(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_pending_requests", value)
 
     @property
     @pulumi.getter(name="maxRequests")
-    def max_requests(self) -> Optional[pulumi.Input[float]]:
+    def max_requests(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of parallel requests to the backend cluster.
         Defaults to 1024.
@@ -8750,12 +8750,12 @@ class RegionBackendServiceCircuitBreakersArgs:
         return pulumi.get(self, "max_requests")
 
     @max_requests.setter
-    def max_requests(self, value: Optional[pulumi.Input[float]]):
+    def max_requests(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_requests", value)
 
     @property
     @pulumi.getter(name="maxRequestsPerConnection")
-    def max_requests_per_connection(self) -> Optional[pulumi.Input[float]]:
+    def max_requests_per_connection(self) -> Optional[pulumi.Input[int]]:
         """
         Maximum requests for a single backend connection. This parameter
         is respected by both the HTTP/1.1 and HTTP/2 implementations. If
@@ -8765,12 +8765,12 @@ class RegionBackendServiceCircuitBreakersArgs:
         return pulumi.get(self, "max_requests_per_connection")
 
     @max_requests_per_connection.setter
-    def max_requests_per_connection(self, value: Optional[pulumi.Input[float]]):
+    def max_requests_per_connection(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_requests_per_connection", value)
 
     @property
     @pulumi.getter(name="maxRetries")
-    def max_retries(self) -> Optional[pulumi.Input[float]]:
+    def max_retries(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of parallel retries to the backend cluster.
         Defaults to 3.
@@ -8778,19 +8778,19 @@ class RegionBackendServiceCircuitBreakersArgs:
         return pulumi.get(self, "max_retries")
 
     @max_retries.setter
-    def max_retries(self, value: Optional[pulumi.Input[float]]):
+    def max_retries(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_retries", value)
 
 
 @pulumi.input_type
 class RegionBackendServiceCircuitBreakersConnectTimeoutArgs:
     def __init__(__self__, *,
-                 seconds: pulumi.Input[float],
-                 nanos: Optional[pulumi.Input[float]] = None):
+                 seconds: pulumi.Input[int],
+                 nanos: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[float] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        :param pulumi.Input[int] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
                inclusive.
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
                less than one second are represented with a 0 `seconds` field and a positive
                `nanos` field. Must be from 0 to 999,999,999 inclusive.
         """
@@ -8800,7 +8800,7 @@ class RegionBackendServiceCircuitBreakersConnectTimeoutArgs:
 
     @property
     @pulumi.getter
-    def seconds(self) -> pulumi.Input[float]:
+    def seconds(self) -> pulumi.Input[int]:
         """
         Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
         inclusive.
@@ -8808,12 +8808,12 @@ class RegionBackendServiceCircuitBreakersConnectTimeoutArgs:
         return pulumi.get(self, "seconds")
 
     @seconds.setter
-    def seconds(self, value: pulumi.Input[float]):
+    def seconds(self, value: pulumi.Input[int]):
         pulumi.set(self, "seconds", value)
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations
         less than one second are represented with a 0 `seconds` field and a positive
@@ -8822,7 +8822,7 @@ class RegionBackendServiceCircuitBreakersConnectTimeoutArgs:
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
 
@@ -8831,7 +8831,7 @@ class RegionBackendServiceConsistentHashArgs:
     def __init__(__self__, *,
                  http_cookie: Optional[pulumi.Input['RegionBackendServiceConsistentHashHttpCookieArgs']] = None,
                  http_header_name: Optional[pulumi.Input[str]] = None,
-                 minimum_ring_size: Optional[pulumi.Input[float]] = None):
+                 minimum_ring_size: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input['RegionBackendServiceConsistentHashHttpCookieArgs'] http_cookie: Hash is based on HTTP Cookie. This field describes a HTTP cookie
                that will be used as the hash key for the consistent hash load
@@ -8840,7 +8840,7 @@ class RegionBackendServiceConsistentHashArgs:
                Structure is documented below.
         :param pulumi.Input[str] http_header_name: The hash based on the value of the specified header field.
                This field is applicable if the sessionAffinity is set to HEADER_FIELD.
-        :param pulumi.Input[float] minimum_ring_size: The minimum number of virtual nodes to use for the hash ring.
+        :param pulumi.Input[int] minimum_ring_size: The minimum number of virtual nodes to use for the hash ring.
                Larger ring sizes result in more granular load
                distributions. If the number of hosts in the load balancing pool
                is larger than the ring size, each host will be assigned a single
@@ -8885,7 +8885,7 @@ class RegionBackendServiceConsistentHashArgs:
 
     @property
     @pulumi.getter(name="minimumRingSize")
-    def minimum_ring_size(self) -> Optional[pulumi.Input[float]]:
+    def minimum_ring_size(self) -> Optional[pulumi.Input[int]]:
         """
         The minimum number of virtual nodes to use for the hash ring.
         Larger ring sizes result in more granular load
@@ -8897,7 +8897,7 @@ class RegionBackendServiceConsistentHashArgs:
         return pulumi.get(self, "minimum_ring_size")
 
     @minimum_ring_size.setter
-    def minimum_ring_size(self, value: Optional[pulumi.Input[float]]):
+    def minimum_ring_size(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "minimum_ring_size", value)
 
 
@@ -8961,12 +8961,12 @@ class RegionBackendServiceConsistentHashHttpCookieArgs:
 @pulumi.input_type
 class RegionBackendServiceConsistentHashHttpCookieTtlArgs:
     def __init__(__self__, *,
-                 seconds: pulumi.Input[float],
-                 nanos: Optional[pulumi.Input[float]] = None):
+                 seconds: pulumi.Input[int],
+                 nanos: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[float] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        :param pulumi.Input[int] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
                inclusive.
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
                less than one second are represented with a 0 `seconds` field and a positive
                `nanos` field. Must be from 0 to 999,999,999 inclusive.
         """
@@ -8976,7 +8976,7 @@ class RegionBackendServiceConsistentHashHttpCookieTtlArgs:
 
     @property
     @pulumi.getter
-    def seconds(self) -> pulumi.Input[float]:
+    def seconds(self) -> pulumi.Input[int]:
         """
         Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
         inclusive.
@@ -8984,12 +8984,12 @@ class RegionBackendServiceConsistentHashHttpCookieTtlArgs:
         return pulumi.get(self, "seconds")
 
     @seconds.setter
-    def seconds(self, value: pulumi.Input[float]):
+    def seconds(self, value: pulumi.Input[int]):
         pulumi.set(self, "seconds", value)
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations
         less than one second are represented with a 0 `seconds` field and a positive
@@ -8998,7 +8998,7 @@ class RegionBackendServiceConsistentHashHttpCookieTtlArgs:
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
 
@@ -9140,51 +9140,51 @@ class RegionBackendServiceLogConfigArgs:
 class RegionBackendServiceOutlierDetectionArgs:
     def __init__(__self__, *,
                  base_ejection_time: Optional[pulumi.Input['RegionBackendServiceOutlierDetectionBaseEjectionTimeArgs']] = None,
-                 consecutive_errors: Optional[pulumi.Input[float]] = None,
-                 consecutive_gateway_failure: Optional[pulumi.Input[float]] = None,
-                 enforcing_consecutive_errors: Optional[pulumi.Input[float]] = None,
-                 enforcing_consecutive_gateway_failure: Optional[pulumi.Input[float]] = None,
-                 enforcing_success_rate: Optional[pulumi.Input[float]] = None,
+                 consecutive_errors: Optional[pulumi.Input[int]] = None,
+                 consecutive_gateway_failure: Optional[pulumi.Input[int]] = None,
+                 enforcing_consecutive_errors: Optional[pulumi.Input[int]] = None,
+                 enforcing_consecutive_gateway_failure: Optional[pulumi.Input[int]] = None,
+                 enforcing_success_rate: Optional[pulumi.Input[int]] = None,
                  interval: Optional[pulumi.Input['RegionBackendServiceOutlierDetectionIntervalArgs']] = None,
-                 max_ejection_percent: Optional[pulumi.Input[float]] = None,
-                 success_rate_minimum_hosts: Optional[pulumi.Input[float]] = None,
-                 success_rate_request_volume: Optional[pulumi.Input[float]] = None,
-                 success_rate_stdev_factor: Optional[pulumi.Input[float]] = None):
+                 max_ejection_percent: Optional[pulumi.Input[int]] = None,
+                 success_rate_minimum_hosts: Optional[pulumi.Input[int]] = None,
+                 success_rate_request_volume: Optional[pulumi.Input[int]] = None,
+                 success_rate_stdev_factor: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input['RegionBackendServiceOutlierDetectionBaseEjectionTimeArgs'] base_ejection_time: The base time that a host is ejected for. The real time is equal to the base
                time multiplied by the number of times the host has been ejected. Defaults to
                30000ms or 30s.
                Structure is documented below.
-        :param pulumi.Input[float] consecutive_errors: Number of errors before a host is ejected from the connection pool. When the
+        :param pulumi.Input[int] consecutive_errors: Number of errors before a host is ejected from the connection pool. When the
                backend host is accessed over HTTP, a 5xx return code qualifies as an error.
                Defaults to 5.
-        :param pulumi.Input[float] consecutive_gateway_failure: The number of consecutive gateway failures (502, 503, 504 status or connection
+        :param pulumi.Input[int] consecutive_gateway_failure: The number of consecutive gateway failures (502, 503, 504 status or connection
                errors that are mapped to one of those status codes) before a consecutive
                gateway failure ejection occurs. Defaults to 5.
-        :param pulumi.Input[float] enforcing_consecutive_errors: The percentage chance that a host will be actually ejected when an outlier
+        :param pulumi.Input[int] enforcing_consecutive_errors: The percentage chance that a host will be actually ejected when an outlier
                status is detected through consecutive 5xx. This setting can be used to disable
                ejection or to ramp it up slowly. Defaults to 100.
-        :param pulumi.Input[float] enforcing_consecutive_gateway_failure: The percentage chance that a host will be actually ejected when an outlier
+        :param pulumi.Input[int] enforcing_consecutive_gateway_failure: The percentage chance that a host will be actually ejected when an outlier
                status is detected through consecutive gateway failures. This setting can be
                used to disable ejection or to ramp it up slowly. Defaults to 0.
-        :param pulumi.Input[float] enforcing_success_rate: The percentage chance that a host will be actually ejected when an outlier
+        :param pulumi.Input[int] enforcing_success_rate: The percentage chance that a host will be actually ejected when an outlier
                status is detected through success rate statistics. This setting can be used to
                disable ejection or to ramp it up slowly. Defaults to 100.
         :param pulumi.Input['RegionBackendServiceOutlierDetectionIntervalArgs'] interval: Time interval between ejection sweep analysis. This can result in both new
                ejections as well as hosts being returned to service. Defaults to 10 seconds.
                Structure is documented below.
-        :param pulumi.Input[float] max_ejection_percent: Maximum percentage of hosts in the load balancing pool for the backend service
+        :param pulumi.Input[int] max_ejection_percent: Maximum percentage of hosts in the load balancing pool for the backend service
                that can be ejected. Defaults to 10%.
-        :param pulumi.Input[float] success_rate_minimum_hosts: The number of hosts in a cluster that must have enough request volume to detect
+        :param pulumi.Input[int] success_rate_minimum_hosts: The number of hosts in a cluster that must have enough request volume to detect
                success rate outliers. If the number of hosts is less than this setting, outlier
                detection via success rate statistics is not performed for any host in the
                cluster. Defaults to 5.
-        :param pulumi.Input[float] success_rate_request_volume: The minimum number of total requests that must be collected in one interval (as
+        :param pulumi.Input[int] success_rate_request_volume: The minimum number of total requests that must be collected in one interval (as
                defined by the interval duration above) to include this host in success rate
                based outlier detection. If the volume is lower than this setting, outlier
                detection via success rate statistics is not performed for that host. Defaults
                to 100.
-        :param pulumi.Input[float] success_rate_stdev_factor: This factor is used to determine the ejection threshold for success rate outlier
+        :param pulumi.Input[int] success_rate_stdev_factor: This factor is used to determine the ejection threshold for success rate outlier
                ejection. The ejection threshold is the difference between the mean success
                rate, and the product of this factor and the standard deviation of the mean
                success rate: mean - (stdev * success_rate_stdev_factor). This factor is divided
@@ -9231,7 +9231,7 @@ class RegionBackendServiceOutlierDetectionArgs:
 
     @property
     @pulumi.getter(name="consecutiveErrors")
-    def consecutive_errors(self) -> Optional[pulumi.Input[float]]:
+    def consecutive_errors(self) -> Optional[pulumi.Input[int]]:
         """
         Number of errors before a host is ejected from the connection pool. When the
         backend host is accessed over HTTP, a 5xx return code qualifies as an error.
@@ -9240,12 +9240,12 @@ class RegionBackendServiceOutlierDetectionArgs:
         return pulumi.get(self, "consecutive_errors")
 
     @consecutive_errors.setter
-    def consecutive_errors(self, value: Optional[pulumi.Input[float]]):
+    def consecutive_errors(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "consecutive_errors", value)
 
     @property
     @pulumi.getter(name="consecutiveGatewayFailure")
-    def consecutive_gateway_failure(self) -> Optional[pulumi.Input[float]]:
+    def consecutive_gateway_failure(self) -> Optional[pulumi.Input[int]]:
         """
         The number of consecutive gateway failures (502, 503, 504 status or connection
         errors that are mapped to one of those status codes) before a consecutive
@@ -9254,12 +9254,12 @@ class RegionBackendServiceOutlierDetectionArgs:
         return pulumi.get(self, "consecutive_gateway_failure")
 
     @consecutive_gateway_failure.setter
-    def consecutive_gateway_failure(self, value: Optional[pulumi.Input[float]]):
+    def consecutive_gateway_failure(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "consecutive_gateway_failure", value)
 
     @property
     @pulumi.getter(name="enforcingConsecutiveErrors")
-    def enforcing_consecutive_errors(self) -> Optional[pulumi.Input[float]]:
+    def enforcing_consecutive_errors(self) -> Optional[pulumi.Input[int]]:
         """
         The percentage chance that a host will be actually ejected when an outlier
         status is detected through consecutive 5xx. This setting can be used to disable
@@ -9268,12 +9268,12 @@ class RegionBackendServiceOutlierDetectionArgs:
         return pulumi.get(self, "enforcing_consecutive_errors")
 
     @enforcing_consecutive_errors.setter
-    def enforcing_consecutive_errors(self, value: Optional[pulumi.Input[float]]):
+    def enforcing_consecutive_errors(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "enforcing_consecutive_errors", value)
 
     @property
     @pulumi.getter(name="enforcingConsecutiveGatewayFailure")
-    def enforcing_consecutive_gateway_failure(self) -> Optional[pulumi.Input[float]]:
+    def enforcing_consecutive_gateway_failure(self) -> Optional[pulumi.Input[int]]:
         """
         The percentage chance that a host will be actually ejected when an outlier
         status is detected through consecutive gateway failures. This setting can be
@@ -9282,12 +9282,12 @@ class RegionBackendServiceOutlierDetectionArgs:
         return pulumi.get(self, "enforcing_consecutive_gateway_failure")
 
     @enforcing_consecutive_gateway_failure.setter
-    def enforcing_consecutive_gateway_failure(self, value: Optional[pulumi.Input[float]]):
+    def enforcing_consecutive_gateway_failure(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "enforcing_consecutive_gateway_failure", value)
 
     @property
     @pulumi.getter(name="enforcingSuccessRate")
-    def enforcing_success_rate(self) -> Optional[pulumi.Input[float]]:
+    def enforcing_success_rate(self) -> Optional[pulumi.Input[int]]:
         """
         The percentage chance that a host will be actually ejected when an outlier
         status is detected through success rate statistics. This setting can be used to
@@ -9296,7 +9296,7 @@ class RegionBackendServiceOutlierDetectionArgs:
         return pulumi.get(self, "enforcing_success_rate")
 
     @enforcing_success_rate.setter
-    def enforcing_success_rate(self, value: Optional[pulumi.Input[float]]):
+    def enforcing_success_rate(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "enforcing_success_rate", value)
 
     @property
@@ -9315,7 +9315,7 @@ class RegionBackendServiceOutlierDetectionArgs:
 
     @property
     @pulumi.getter(name="maxEjectionPercent")
-    def max_ejection_percent(self) -> Optional[pulumi.Input[float]]:
+    def max_ejection_percent(self) -> Optional[pulumi.Input[int]]:
         """
         Maximum percentage of hosts in the load balancing pool for the backend service
         that can be ejected. Defaults to 10%.
@@ -9323,12 +9323,12 @@ class RegionBackendServiceOutlierDetectionArgs:
         return pulumi.get(self, "max_ejection_percent")
 
     @max_ejection_percent.setter
-    def max_ejection_percent(self, value: Optional[pulumi.Input[float]]):
+    def max_ejection_percent(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_ejection_percent", value)
 
     @property
     @pulumi.getter(name="successRateMinimumHosts")
-    def success_rate_minimum_hosts(self) -> Optional[pulumi.Input[float]]:
+    def success_rate_minimum_hosts(self) -> Optional[pulumi.Input[int]]:
         """
         The number of hosts in a cluster that must have enough request volume to detect
         success rate outliers. If the number of hosts is less than this setting, outlier
@@ -9338,12 +9338,12 @@ class RegionBackendServiceOutlierDetectionArgs:
         return pulumi.get(self, "success_rate_minimum_hosts")
 
     @success_rate_minimum_hosts.setter
-    def success_rate_minimum_hosts(self, value: Optional[pulumi.Input[float]]):
+    def success_rate_minimum_hosts(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "success_rate_minimum_hosts", value)
 
     @property
     @pulumi.getter(name="successRateRequestVolume")
-    def success_rate_request_volume(self) -> Optional[pulumi.Input[float]]:
+    def success_rate_request_volume(self) -> Optional[pulumi.Input[int]]:
         """
         The minimum number of total requests that must be collected in one interval (as
         defined by the interval duration above) to include this host in success rate
@@ -9354,12 +9354,12 @@ class RegionBackendServiceOutlierDetectionArgs:
         return pulumi.get(self, "success_rate_request_volume")
 
     @success_rate_request_volume.setter
-    def success_rate_request_volume(self, value: Optional[pulumi.Input[float]]):
+    def success_rate_request_volume(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "success_rate_request_volume", value)
 
     @property
     @pulumi.getter(name="successRateStdevFactor")
-    def success_rate_stdev_factor(self) -> Optional[pulumi.Input[float]]:
+    def success_rate_stdev_factor(self) -> Optional[pulumi.Input[int]]:
         """
         This factor is used to determine the ejection threshold for success rate outlier
         ejection. The ejection threshold is the difference between the mean success
@@ -9371,19 +9371,19 @@ class RegionBackendServiceOutlierDetectionArgs:
         return pulumi.get(self, "success_rate_stdev_factor")
 
     @success_rate_stdev_factor.setter
-    def success_rate_stdev_factor(self, value: Optional[pulumi.Input[float]]):
+    def success_rate_stdev_factor(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "success_rate_stdev_factor", value)
 
 
 @pulumi.input_type
 class RegionBackendServiceOutlierDetectionBaseEjectionTimeArgs:
     def __init__(__self__, *,
-                 seconds: pulumi.Input[float],
-                 nanos: Optional[pulumi.Input[float]] = None):
+                 seconds: pulumi.Input[int],
+                 nanos: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[float] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        :param pulumi.Input[int] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
                inclusive.
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
                less than one second are represented with a 0 `seconds` field and a positive
                `nanos` field. Must be from 0 to 999,999,999 inclusive.
         """
@@ -9393,7 +9393,7 @@ class RegionBackendServiceOutlierDetectionBaseEjectionTimeArgs:
 
     @property
     @pulumi.getter
-    def seconds(self) -> pulumi.Input[float]:
+    def seconds(self) -> pulumi.Input[int]:
         """
         Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
         inclusive.
@@ -9401,12 +9401,12 @@ class RegionBackendServiceOutlierDetectionBaseEjectionTimeArgs:
         return pulumi.get(self, "seconds")
 
     @seconds.setter
-    def seconds(self, value: pulumi.Input[float]):
+    def seconds(self, value: pulumi.Input[int]):
         pulumi.set(self, "seconds", value)
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations
         less than one second are represented with a 0 `seconds` field and a positive
@@ -9415,19 +9415,19 @@ class RegionBackendServiceOutlierDetectionBaseEjectionTimeArgs:
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
 
 @pulumi.input_type
 class RegionBackendServiceOutlierDetectionIntervalArgs:
     def __init__(__self__, *,
-                 seconds: pulumi.Input[float],
-                 nanos: Optional[pulumi.Input[float]] = None):
+                 seconds: pulumi.Input[int],
+                 nanos: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[float] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        :param pulumi.Input[int] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
                inclusive.
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
                less than one second are represented with a 0 `seconds` field and a positive
                `nanos` field. Must be from 0 to 999,999,999 inclusive.
         """
@@ -9437,7 +9437,7 @@ class RegionBackendServiceOutlierDetectionIntervalArgs:
 
     @property
     @pulumi.getter
-    def seconds(self) -> pulumi.Input[float]:
+    def seconds(self) -> pulumi.Input[int]:
         """
         Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
         inclusive.
@@ -9445,12 +9445,12 @@ class RegionBackendServiceOutlierDetectionIntervalArgs:
         return pulumi.get(self, "seconds")
 
     @seconds.setter
-    def seconds(self, value: pulumi.Input[float]):
+    def seconds(self, value: pulumi.Input[int]):
         pulumi.set(self, "seconds", value)
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations
         less than one second are represented with a 0 `seconds` field and a positive
@@ -9459,7 +9459,7 @@ class RegionBackendServiceOutlierDetectionIntervalArgs:
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
 
@@ -9667,7 +9667,7 @@ class RegionDiskSourceSnapshotEncryptionKeyArgs:
 class RegionHealthCheckGrpcHealthCheckArgs:
     def __init__(__self__, *,
                  grpc_service_name: Optional[pulumi.Input[str]] = None,
-                 port: Optional[pulumi.Input[float]] = None,
+                 port: Optional[pulumi.Input[int]] = None,
                  port_name: Optional[pulumi.Input[str]] = None,
                  port_specification: Optional[pulumi.Input[str]] = None):
         """
@@ -9676,7 +9676,7 @@ class RegionHealthCheckGrpcHealthCheckArgs:
                - Empty serviceName means the overall status of all services at the backend.
                - Non-empty serviceName means the health of that gRPC service, as defined by the owner of the service.
                The grpcServiceName can only be ASCII.
-        :param pulumi.Input[float] port: The port number for the health check request.
+        :param pulumi.Input[int] port: The port number for the health check request.
                Must be specified if portName and portSpecification are not set
                or if port_specification is USE_FIXED_PORT. Valid values are 1 through 65535.
         :param pulumi.Input[str] port_name: Port name as defined in InstanceGroup#NamedPort#name. If both port and
@@ -9720,7 +9720,7 @@ class RegionHealthCheckGrpcHealthCheckArgs:
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[float]]:
+    def port(self) -> Optional[pulumi.Input[int]]:
         """
         The port number for the health check request.
         Must be specified if portName and portSpecification are not set
@@ -9729,7 +9729,7 @@ class RegionHealthCheckGrpcHealthCheckArgs:
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[float]]):
+    def port(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "port", value)
 
     @property
@@ -9772,7 +9772,7 @@ class RegionHealthCheckGrpcHealthCheckArgs:
 class RegionHealthCheckHttp2HealthCheckArgs:
     def __init__(__self__, *,
                  host: Optional[pulumi.Input[str]] = None,
-                 port: Optional[pulumi.Input[float]] = None,
+                 port: Optional[pulumi.Input[int]] = None,
                  port_name: Optional[pulumi.Input[str]] = None,
                  port_specification: Optional[pulumi.Input[str]] = None,
                  proxy_header: Optional[pulumi.Input[str]] = None,
@@ -9782,7 +9782,7 @@ class RegionHealthCheckHttp2HealthCheckArgs:
         :param pulumi.Input[str] host: The value of the host header in the HTTP2 health check request.
                If left empty (default value), the public IP on behalf of which this health
                check is performed will be used.
-        :param pulumi.Input[float] port: The port number for the health check request.
+        :param pulumi.Input[int] port: The port number for the health check request.
                Must be specified if portName and portSpecification are not set
                or if port_specification is USE_FIXED_PORT. Valid values are 1 through 65535.
         :param pulumi.Input[str] port_name: Port name as defined in InstanceGroup#NamedPort#name. If both port and
@@ -9839,7 +9839,7 @@ class RegionHealthCheckHttp2HealthCheckArgs:
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[float]]:
+    def port(self) -> Optional[pulumi.Input[int]]:
         """
         The port number for the health check request.
         Must be specified if portName and portSpecification are not set
@@ -9848,7 +9848,7 @@ class RegionHealthCheckHttp2HealthCheckArgs:
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[float]]):
+    def port(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "port", value)
 
     @property
@@ -9933,7 +9933,7 @@ class RegionHealthCheckHttp2HealthCheckArgs:
 class RegionHealthCheckHttpHealthCheckArgs:
     def __init__(__self__, *,
                  host: Optional[pulumi.Input[str]] = None,
-                 port: Optional[pulumi.Input[float]] = None,
+                 port: Optional[pulumi.Input[int]] = None,
                  port_name: Optional[pulumi.Input[str]] = None,
                  port_specification: Optional[pulumi.Input[str]] = None,
                  proxy_header: Optional[pulumi.Input[str]] = None,
@@ -9943,7 +9943,7 @@ class RegionHealthCheckHttpHealthCheckArgs:
         :param pulumi.Input[str] host: The value of the host header in the HTTP2 health check request.
                If left empty (default value), the public IP on behalf of which this health
                check is performed will be used.
-        :param pulumi.Input[float] port: The port number for the health check request.
+        :param pulumi.Input[int] port: The port number for the health check request.
                Must be specified if portName and portSpecification are not set
                or if port_specification is USE_FIXED_PORT. Valid values are 1 through 65535.
         :param pulumi.Input[str] port_name: Port name as defined in InstanceGroup#NamedPort#name. If both port and
@@ -10000,7 +10000,7 @@ class RegionHealthCheckHttpHealthCheckArgs:
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[float]]:
+    def port(self) -> Optional[pulumi.Input[int]]:
         """
         The port number for the health check request.
         Must be specified if portName and portSpecification are not set
@@ -10009,7 +10009,7 @@ class RegionHealthCheckHttpHealthCheckArgs:
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[float]]):
+    def port(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "port", value)
 
     @property
@@ -10094,7 +10094,7 @@ class RegionHealthCheckHttpHealthCheckArgs:
 class RegionHealthCheckHttpsHealthCheckArgs:
     def __init__(__self__, *,
                  host: Optional[pulumi.Input[str]] = None,
-                 port: Optional[pulumi.Input[float]] = None,
+                 port: Optional[pulumi.Input[int]] = None,
                  port_name: Optional[pulumi.Input[str]] = None,
                  port_specification: Optional[pulumi.Input[str]] = None,
                  proxy_header: Optional[pulumi.Input[str]] = None,
@@ -10104,7 +10104,7 @@ class RegionHealthCheckHttpsHealthCheckArgs:
         :param pulumi.Input[str] host: The value of the host header in the HTTP2 health check request.
                If left empty (default value), the public IP on behalf of which this health
                check is performed will be used.
-        :param pulumi.Input[float] port: The port number for the health check request.
+        :param pulumi.Input[int] port: The port number for the health check request.
                Must be specified if portName and portSpecification are not set
                or if port_specification is USE_FIXED_PORT. Valid values are 1 through 65535.
         :param pulumi.Input[str] port_name: Port name as defined in InstanceGroup#NamedPort#name. If both port and
@@ -10161,7 +10161,7 @@ class RegionHealthCheckHttpsHealthCheckArgs:
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[float]]:
+    def port(self) -> Optional[pulumi.Input[int]]:
         """
         The port number for the health check request.
         Must be specified if portName and portSpecification are not set
@@ -10170,7 +10170,7 @@ class RegionHealthCheckHttpsHealthCheckArgs:
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[float]]):
+    def port(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "port", value)
 
     @property
@@ -10279,14 +10279,14 @@ class RegionHealthCheckLogConfigArgs:
 @pulumi.input_type
 class RegionHealthCheckSslHealthCheckArgs:
     def __init__(__self__, *,
-                 port: Optional[pulumi.Input[float]] = None,
+                 port: Optional[pulumi.Input[int]] = None,
                  port_name: Optional[pulumi.Input[str]] = None,
                  port_specification: Optional[pulumi.Input[str]] = None,
                  proxy_header: Optional[pulumi.Input[str]] = None,
                  request: Optional[pulumi.Input[str]] = None,
                  response: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[float] port: The port number for the health check request.
+        :param pulumi.Input[int] port: The port number for the health check request.
                Must be specified if portName and portSpecification are not set
                or if port_specification is USE_FIXED_PORT. Valid values are 1 through 65535.
         :param pulumi.Input[str] port_name: Port name as defined in InstanceGroup#NamedPort#name. If both port and
@@ -10329,7 +10329,7 @@ class RegionHealthCheckSslHealthCheckArgs:
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[float]]:
+    def port(self) -> Optional[pulumi.Input[int]]:
         """
         The port number for the health check request.
         Must be specified if portName and portSpecification are not set
@@ -10338,7 +10338,7 @@ class RegionHealthCheckSslHealthCheckArgs:
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[float]]):
+    def port(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "port", value)
 
     @property
@@ -10424,14 +10424,14 @@ class RegionHealthCheckSslHealthCheckArgs:
 @pulumi.input_type
 class RegionHealthCheckTcpHealthCheckArgs:
     def __init__(__self__, *,
-                 port: Optional[pulumi.Input[float]] = None,
+                 port: Optional[pulumi.Input[int]] = None,
                  port_name: Optional[pulumi.Input[str]] = None,
                  port_specification: Optional[pulumi.Input[str]] = None,
                  proxy_header: Optional[pulumi.Input[str]] = None,
                  request: Optional[pulumi.Input[str]] = None,
                  response: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[float] port: The port number for the health check request.
+        :param pulumi.Input[int] port: The port number for the health check request.
                Must be specified if portName and portSpecification are not set
                or if port_specification is USE_FIXED_PORT. Valid values are 1 through 65535.
         :param pulumi.Input[str] port_name: Port name as defined in InstanceGroup#NamedPort#name. If both port and
@@ -10474,7 +10474,7 @@ class RegionHealthCheckTcpHealthCheckArgs:
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[float]]:
+    def port(self) -> Optional[pulumi.Input[int]]:
         """
         The port number for the health check request.
         Must be specified if portName and portSpecification are not set
@@ -10483,7 +10483,7 @@ class RegionHealthCheckTcpHealthCheckArgs:
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[float]]):
+    def port(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "port", value)
 
     @property
@@ -10570,10 +10570,10 @@ class RegionHealthCheckTcpHealthCheckArgs:
 class RegionInstanceGroupManagerAutoHealingPoliciesArgs:
     def __init__(__self__, *,
                  health_check: pulumi.Input[str],
-                 initial_delay_sec: pulumi.Input[float]):
+                 initial_delay_sec: pulumi.Input[int]):
         """
         :param pulumi.Input[str] health_check: The health check resource that signals autohealing.
-        :param pulumi.Input[float] initial_delay_sec: The number of seconds that the managed instance group waits before
+        :param pulumi.Input[int] initial_delay_sec: The number of seconds that the managed instance group waits before
                it applies autohealing policies to new instances or recently recreated instances. Between 0 and 3600.
         """
         pulumi.set(__self__, "health_check", health_check)
@@ -10593,7 +10593,7 @@ class RegionInstanceGroupManagerAutoHealingPoliciesArgs:
 
     @property
     @pulumi.getter(name="initialDelaySec")
-    def initial_delay_sec(self) -> pulumi.Input[float]:
+    def initial_delay_sec(self) -> pulumi.Input[int]:
         """
         The number of seconds that the managed instance group waits before
         it applies autohealing policies to new instances or recently recreated instances. Between 0 and 3600.
@@ -10601,7 +10601,7 @@ class RegionInstanceGroupManagerAutoHealingPoliciesArgs:
         return pulumi.get(self, "initial_delay_sec")
 
     @initial_delay_sec.setter
-    def initial_delay_sec(self, value: pulumi.Input[float]):
+    def initial_delay_sec(self, value: pulumi.Input[int]):
         pulumi.set(self, "initial_delay_sec", value)
 
 
@@ -10609,10 +10609,10 @@ class RegionInstanceGroupManagerAutoHealingPoliciesArgs:
 class RegionInstanceGroupManagerNamedPortArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str],
-                 port: pulumi.Input[float]):
+                 port: pulumi.Input[int]):
         """
         :param pulumi.Input[str] name: - Version name.
-        :param pulumi.Input[float] port: The port number.
+        :param pulumi.Input[int] port: The port number.
                - - -
         """
         pulumi.set(__self__, "name", name)
@@ -10632,7 +10632,7 @@ class RegionInstanceGroupManagerNamedPortArgs:
 
     @property
     @pulumi.getter
-    def port(self) -> pulumi.Input[float]:
+    def port(self) -> pulumi.Input[int]:
         """
         The port number.
         - - -
@@ -10640,7 +10640,7 @@ class RegionInstanceGroupManagerNamedPortArgs:
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: pulumi.Input[float]):
+    def port(self, value: pulumi.Input[int]):
         pulumi.set(self, "port", value)
 
 
@@ -10688,20 +10688,20 @@ class RegionInstanceGroupManagerUpdatePolicyArgs:
                  minimal_action: pulumi.Input[str],
                  type: pulumi.Input[str],
                  instance_redistribution_type: Optional[pulumi.Input[str]] = None,
-                 max_surge_fixed: Optional[pulumi.Input[float]] = None,
-                 max_surge_percent: Optional[pulumi.Input[float]] = None,
-                 max_unavailable_fixed: Optional[pulumi.Input[float]] = None,
-                 max_unavailable_percent: Optional[pulumi.Input[float]] = None,
-                 min_ready_sec: Optional[pulumi.Input[float]] = None):
+                 max_surge_fixed: Optional[pulumi.Input[int]] = None,
+                 max_surge_percent: Optional[pulumi.Input[int]] = None,
+                 max_unavailable_fixed: Optional[pulumi.Input[int]] = None,
+                 max_unavailable_percent: Optional[pulumi.Input[int]] = None,
+                 min_ready_sec: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] minimal_action: - Minimal action to be taken on an instance. You can specify either `RESTART` to restart existing instances or `REPLACE` to delete and create new instances from the target template. If you specify a `RESTART`, the Updater will attempt to perform that action only. However, if the Updater determines that the minimal action you specify is not enough to perform the update, it might perform a more disruptive action.
         :param pulumi.Input[str] type: - The type of update process. You can specify either `PROACTIVE` so that the instance group manager proactively executes actions in order to bring instances to their target versions or `OPPORTUNISTIC` so that no action is proactively executed but the update will be performed as part of other actions (for example, resizes or recreateInstances calls).
         :param pulumi.Input[str] instance_redistribution_type: - The instance redistribution policy for regional managed instance groups. Valid values are: `"PROACTIVE"`, `"NONE"`. If `PROACTIVE` (default), the group attempts to maintain an even distribution of VM instances across zones in the region. If `NONE`, proactive redistribution is disabled.
-        :param pulumi.Input[float] max_surge_fixed: , The maximum number of instances that can be created above the specified targetSize during the update process. Conflicts with `max_surge_percent`. It has to be either 0 or at least equal to the number of zones.  If fixed values are used, at least one of `max_unavailable_fixed` or `max_surge_fixed` must be greater than 0.
-        :param pulumi.Input[float] max_surge_percent: , The maximum number of instances(calculated as percentage) that can be created above the specified targetSize during the update process. Conflicts with `max_surge_fixed`. Percent value is only allowed for regional managed instance groups with size at least 10.
-        :param pulumi.Input[float] max_unavailable_fixed: , The maximum number of instances that can be unavailable during the update process. Conflicts with `max_unavailable_percent`. It has to be either 0 or at least equal to the number of zones. If fixed values are used, at least one of `max_unavailable_fixed` or `max_surge_fixed` must be greater than 0.
-        :param pulumi.Input[float] max_unavailable_percent: , The maximum number of instances(calculated as percentage) that can be unavailable during the update process. Conflicts with `max_unavailable_fixed`. Percent value is only allowed for regional managed instance groups with size at least 10.
-        :param pulumi.Input[float] min_ready_sec: , Minimum number of seconds to wait for after a newly created instance becomes available. This value must be from range [0, 3600]
+        :param pulumi.Input[int] max_surge_fixed: , The maximum number of instances that can be created above the specified targetSize during the update process. Conflicts with `max_surge_percent`. It has to be either 0 or at least equal to the number of zones.  If fixed values are used, at least one of `max_unavailable_fixed` or `max_surge_fixed` must be greater than 0.
+        :param pulumi.Input[int] max_surge_percent: , The maximum number of instances(calculated as percentage) that can be created above the specified targetSize during the update process. Conflicts with `max_surge_fixed`. Percent value is only allowed for regional managed instance groups with size at least 10.
+        :param pulumi.Input[int] max_unavailable_fixed: , The maximum number of instances that can be unavailable during the update process. Conflicts with `max_unavailable_percent`. It has to be either 0 or at least equal to the number of zones. If fixed values are used, at least one of `max_unavailable_fixed` or `max_surge_fixed` must be greater than 0.
+        :param pulumi.Input[int] max_unavailable_percent: , The maximum number of instances(calculated as percentage) that can be unavailable during the update process. Conflicts with `max_unavailable_fixed`. Percent value is only allowed for regional managed instance groups with size at least 10.
+        :param pulumi.Input[int] min_ready_sec: , Minimum number of seconds to wait for after a newly created instance becomes available. This value must be from range [0, 3600]
                - - -
         """
         pulumi.set(__self__, "minimal_action", minimal_action)
@@ -10757,55 +10757,55 @@ class RegionInstanceGroupManagerUpdatePolicyArgs:
 
     @property
     @pulumi.getter(name="maxSurgeFixed")
-    def max_surge_fixed(self) -> Optional[pulumi.Input[float]]:
+    def max_surge_fixed(self) -> Optional[pulumi.Input[int]]:
         """
         , The maximum number of instances that can be created above the specified targetSize during the update process. Conflicts with `max_surge_percent`. It has to be either 0 or at least equal to the number of zones.  If fixed values are used, at least one of `max_unavailable_fixed` or `max_surge_fixed` must be greater than 0.
         """
         return pulumi.get(self, "max_surge_fixed")
 
     @max_surge_fixed.setter
-    def max_surge_fixed(self, value: Optional[pulumi.Input[float]]):
+    def max_surge_fixed(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_surge_fixed", value)
 
     @property
     @pulumi.getter(name="maxSurgePercent")
-    def max_surge_percent(self) -> Optional[pulumi.Input[float]]:
+    def max_surge_percent(self) -> Optional[pulumi.Input[int]]:
         """
         , The maximum number of instances(calculated as percentage) that can be created above the specified targetSize during the update process. Conflicts with `max_surge_fixed`. Percent value is only allowed for regional managed instance groups with size at least 10.
         """
         return pulumi.get(self, "max_surge_percent")
 
     @max_surge_percent.setter
-    def max_surge_percent(self, value: Optional[pulumi.Input[float]]):
+    def max_surge_percent(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_surge_percent", value)
 
     @property
     @pulumi.getter(name="maxUnavailableFixed")
-    def max_unavailable_fixed(self) -> Optional[pulumi.Input[float]]:
+    def max_unavailable_fixed(self) -> Optional[pulumi.Input[int]]:
         """
         , The maximum number of instances that can be unavailable during the update process. Conflicts with `max_unavailable_percent`. It has to be either 0 or at least equal to the number of zones. If fixed values are used, at least one of `max_unavailable_fixed` or `max_surge_fixed` must be greater than 0.
         """
         return pulumi.get(self, "max_unavailable_fixed")
 
     @max_unavailable_fixed.setter
-    def max_unavailable_fixed(self, value: Optional[pulumi.Input[float]]):
+    def max_unavailable_fixed(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_unavailable_fixed", value)
 
     @property
     @pulumi.getter(name="maxUnavailablePercent")
-    def max_unavailable_percent(self) -> Optional[pulumi.Input[float]]:
+    def max_unavailable_percent(self) -> Optional[pulumi.Input[int]]:
         """
         , The maximum number of instances(calculated as percentage) that can be unavailable during the update process. Conflicts with `max_unavailable_fixed`. Percent value is only allowed for regional managed instance groups with size at least 10.
         """
         return pulumi.get(self, "max_unavailable_percent")
 
     @max_unavailable_percent.setter
-    def max_unavailable_percent(self, value: Optional[pulumi.Input[float]]):
+    def max_unavailable_percent(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_unavailable_percent", value)
 
     @property
     @pulumi.getter(name="minReadySec")
-    def min_ready_sec(self) -> Optional[pulumi.Input[float]]:
+    def min_ready_sec(self) -> Optional[pulumi.Input[int]]:
         """
         , Minimum number of seconds to wait for after a newly created instance becomes available. This value must be from range [0, 3600]
         - - -
@@ -10813,7 +10813,7 @@ class RegionInstanceGroupManagerUpdatePolicyArgs:
         return pulumi.get(self, "min_ready_sec")
 
     @min_ready_sec.setter
-    def min_ready_sec(self, value: Optional[pulumi.Input[float]]):
+    def min_ready_sec(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "min_ready_sec", value)
 
 
@@ -10874,11 +10874,11 @@ class RegionInstanceGroupManagerVersionArgs:
 @pulumi.input_type
 class RegionInstanceGroupManagerVersionTargetSizeArgs:
     def __init__(__self__, *,
-                 fixed: Optional[pulumi.Input[float]] = None,
-                 percent: Optional[pulumi.Input[float]] = None):
+                 fixed: Optional[pulumi.Input[int]] = None,
+                 percent: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[float] fixed: , The number of instances which are managed for this version. Conflicts with `percent`.
-        :param pulumi.Input[float] percent: , The number of instances (calculated as percentage) which are managed for this version. Conflicts with `fixed`.
+        :param pulumi.Input[int] fixed: , The number of instances which are managed for this version. Conflicts with `percent`.
+        :param pulumi.Input[int] percent: , The number of instances (calculated as percentage) which are managed for this version. Conflicts with `fixed`.
                Note that when using `percent`, rounding will be in favor of explicitly set `target_size` values; a managed instance group with 2 instances and 2 `version`s,
                one of which has a `target_size.percent` of `60` will create 2 instances of that `version`.
         """
@@ -10889,19 +10889,19 @@ class RegionInstanceGroupManagerVersionTargetSizeArgs:
 
     @property
     @pulumi.getter
-    def fixed(self) -> Optional[pulumi.Input[float]]:
+    def fixed(self) -> Optional[pulumi.Input[int]]:
         """
         , The number of instances which are managed for this version. Conflicts with `percent`.
         """
         return pulumi.get(self, "fixed")
 
     @fixed.setter
-    def fixed(self, value: Optional[pulumi.Input[float]]):
+    def fixed(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fixed", value)
 
     @property
     @pulumi.getter
-    def percent(self) -> Optional[pulumi.Input[float]]:
+    def percent(self) -> Optional[pulumi.Input[int]]:
         """
         , The number of instances (calculated as percentage) which are managed for this version. Conflicts with `fixed`.
         Note that when using `percent`, rounding will be in favor of explicitly set `target_size` values; a managed instance group with 2 instances and 2 `version`s,
@@ -10910,7 +10910,7 @@ class RegionInstanceGroupManagerVersionTargetSizeArgs:
         return pulumi.get(self, "percent")
 
     @percent.setter
-    def percent(self, value: Optional[pulumi.Input[float]]):
+    def percent(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "percent", value)
 
 
@@ -12012,7 +12012,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionCorsPolicyArgs:
                  allow_origin_regexes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
                  allow_origins: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
                  expose_headers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 max_age: Optional[pulumi.Input[float]] = None):
+                 max_age: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[bool] disabled: If true, specifies the CORS policy is disabled.
         :param pulumi.Input[bool] allow_credentials: In response to a preflight request, setting this to true indicates that the
@@ -12026,7 +12026,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionCorsPolicyArgs:
         :param pulumi.Input[List[pulumi.Input[str]]] allow_origins: Specifies the list of origins that will be allowed to do CORS requests. An
                origin is allowed if it matches either allow_origins or allow_origin_regex.
         :param pulumi.Input[List[pulumi.Input[str]]] expose_headers: Specifies the content for the Access-Control-Expose-Headers header.
-        :param pulumi.Input[float] max_age: Specifies how long the results of a preflight request can be cached. This
+        :param pulumi.Input[int] max_age: Specifies how long the results of a preflight request can be cached. This
                translates to the content for the Access-Control-Max-Age header.
         """
         pulumi.set(__self__, "disabled", disabled)
@@ -12136,7 +12136,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionCorsPolicyArgs:
 
     @property
     @pulumi.getter(name="maxAge")
-    def max_age(self) -> Optional[pulumi.Input[float]]:
+    def max_age(self) -> Optional[pulumi.Input[int]]:
         """
         Specifies how long the results of a preflight request can be cached. This
         translates to the content for the Access-Control-Max-Age header.
@@ -12144,7 +12144,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionCorsPolicyArgs:
         return pulumi.get(self, "max_age")
 
     @max_age.setter
-    def max_age(self, value: Optional[pulumi.Input[float]]):
+    def max_age(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_age", value)
 
 
@@ -12198,10 +12198,10 @@ class RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyArgs:
 @pulumi.input_type
 class RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortArgs:
     def __init__(__self__, *,
-                 http_status: pulumi.Input[float],
+                 http_status: pulumi.Input[int],
                  percentage: pulumi.Input[float]):
         """
-        :param pulumi.Input[float] http_status: The HTTP status code used to abort the request. The value must be between 200
+        :param pulumi.Input[int] http_status: The HTTP status code used to abort the request. The value must be between 200
                and 599 inclusive.
         :param pulumi.Input[float] percentage: The percentage of traffic (connections/operations/requests) on which delay will
                be introduced as part of fault injection. The value must be between 0.0 and
@@ -12212,7 +12212,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortArgs:
 
     @property
     @pulumi.getter(name="httpStatus")
-    def http_status(self) -> pulumi.Input[float]:
+    def http_status(self) -> pulumi.Input[int]:
         """
         The HTTP status code used to abort the request. The value must be between 200
         and 599 inclusive.
@@ -12220,7 +12220,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortArgs:
         return pulumi.get(self, "http_status")
 
     @http_status.setter
-    def http_status(self, value: pulumi.Input[float]):
+    def http_status(self, value: pulumi.Input[int]):
         pulumi.set(self, "http_status", value)
 
     @property
@@ -12285,11 +12285,11 @@ class RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayArgs:
 class RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelayArgs:
     def __init__(__self__, *,
                  seconds: pulumi.Input[str],
-                 nanos: Optional[pulumi.Input[float]] = None):
+                 nanos: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
                inclusive.
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
                less than one second are represented with a 0 `seconds` field and a positive
                `nanos` field. Must be from 0 to 999,999,999 inclusive.
         """
@@ -12312,7 +12312,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDe
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations
         less than one second are represented with a 0 `seconds` field and a positive
@@ -12321,7 +12321,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDe
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
 
@@ -12354,11 +12354,11 @@ class RegionUrlMapPathMatcherPathRuleRouteActionRequestMirrorPolicyArgs:
 @pulumi.input_type
 class RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyArgs:
     def __init__(__self__, *,
-                 num_retries: Optional[pulumi.Input[float]] = None,
+                 num_retries: Optional[pulumi.Input[int]] = None,
                  per_try_timeout: Optional[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutArgs']] = None,
                  retry_conditions: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[float] num_retries: Specifies the allowed number retries. This number must be > 0.
+        :param pulumi.Input[int] num_retries: Specifies the allowed number retries. This number must be > 0.
         :param pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutArgs'] per_try_timeout: Specifies a non-zero timeout per retry attempt.
                Structure is documented below.
         :param pulumi.Input[List[pulumi.Input[str]]] retry_conditions: Specifies one or more conditions when this retry rule applies. Valid values are:
@@ -12392,14 +12392,14 @@ class RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyArgs:
 
     @property
     @pulumi.getter(name="numRetries")
-    def num_retries(self) -> Optional[pulumi.Input[float]]:
+    def num_retries(self) -> Optional[pulumi.Input[int]]:
         """
         Specifies the allowed number retries. This number must be > 0.
         """
         return pulumi.get(self, "num_retries")
 
     @num_retries.setter
-    def num_retries(self, value: Optional[pulumi.Input[float]]):
+    def num_retries(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "num_retries", value)
 
     @property
@@ -12452,11 +12452,11 @@ class RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyArgs:
 class RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutArgs:
     def __init__(__self__, *,
                  seconds: pulumi.Input[str],
-                 nanos: Optional[pulumi.Input[float]] = None):
+                 nanos: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
                inclusive.
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
                less than one second are represented with a 0 `seconds` field and a positive
                `nanos` field. Must be from 0 to 999,999,999 inclusive.
         """
@@ -12479,7 +12479,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutArgs:
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations
         less than one second are represented with a 0 `seconds` field and a positive
@@ -12488,7 +12488,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutArgs:
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
 
@@ -12496,11 +12496,11 @@ class RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutArgs:
 class RegionUrlMapPathMatcherPathRuleRouteActionTimeoutArgs:
     def __init__(__self__, *,
                  seconds: pulumi.Input[str],
-                 nanos: Optional[pulumi.Input[float]] = None):
+                 nanos: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
                inclusive.
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
                less than one second are represented with a 0 `seconds` field and a positive
                `nanos` field. Must be from 0 to 999,999,999 inclusive.
         """
@@ -12523,7 +12523,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionTimeoutArgs:
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations
         less than one second are represented with a 0 `seconds` field and a positive
@@ -12532,7 +12532,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionTimeoutArgs:
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
 
@@ -12587,13 +12587,13 @@ class RegionUrlMapPathMatcherPathRuleRouteActionUrlRewriteArgs:
 class RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs:
     def __init__(__self__, *,
                  backend_service: pulumi.Input[str],
-                 weight: pulumi.Input[float],
+                 weight: pulumi.Input[int],
                  header_action: Optional[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionArgs']] = None):
         """
         :param pulumi.Input[str] backend_service: The default RegionBackendService resource. Before
                forwarding the request to backendService, the loadbalancer applies any relevant
                headerActions specified as part of this backendServiceWeight.
-        :param pulumi.Input[float] weight: Specifies the fraction of traffic sent to backendService, computed as weight /
+        :param pulumi.Input[int] weight: Specifies the fraction of traffic sent to backendService, computed as weight /
                (sum of all weightedBackendService weights in routeAction) . The selection of a
                backend service is determined only for new traffic. Once a user's request has
                been directed to a backendService, subsequent requests will be sent to the same
@@ -12625,7 +12625,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs:
 
     @property
     @pulumi.getter
-    def weight(self) -> pulumi.Input[float]:
+    def weight(self) -> pulumi.Input[int]:
         """
         Specifies the fraction of traffic sent to backendService, computed as weight /
         (sum of all weightedBackendService weights in routeAction) . The selection of a
@@ -12637,7 +12637,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs:
         return pulumi.get(self, "weight")
 
     @weight.setter
-    def weight(self, value: pulumi.Input[float]):
+    def weight(self, value: pulumi.Input[int]):
         pulumi.set(self, "weight", value)
 
     @property
@@ -12998,14 +12998,14 @@ class RegionUrlMapPathMatcherPathRuleUrlRedirectArgs:
 @pulumi.input_type
 class RegionUrlMapPathMatcherRouteRuleArgs:
     def __init__(__self__, *,
-                 priority: pulumi.Input[float],
+                 priority: pulumi.Input[int],
                  header_action: Optional[pulumi.Input['RegionUrlMapPathMatcherRouteRuleHeaderActionArgs']] = None,
                  match_rules: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleArgs']]]] = None,
                  route_action: Optional[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionArgs']] = None,
                  service: Optional[pulumi.Input[str]] = None,
                  url_redirect: Optional[pulumi.Input['RegionUrlMapPathMatcherRouteRuleUrlRedirectArgs']] = None):
         """
-        :param pulumi.Input[float] priority: For routeRules within a given pathMatcher, priority determines the order
+        :param pulumi.Input[int] priority: For routeRules within a given pathMatcher, priority determines the order
                in which load balancer will interpret routeRules. RouteRules are evaluated
                in order of priority, from the lowest to highest number. The priority of
                a rule decreases as its number increases (1, 2, 3, N+1). The first rule
@@ -13051,7 +13051,7 @@ class RegionUrlMapPathMatcherRouteRuleArgs:
 
     @property
     @pulumi.getter
-    def priority(self) -> pulumi.Input[float]:
+    def priority(self) -> pulumi.Input[int]:
         """
         For routeRules within a given pathMatcher, priority determines the order
         in which load balancer will interpret routeRules. RouteRules are evaluated
@@ -13070,7 +13070,7 @@ class RegionUrlMapPathMatcherRouteRuleArgs:
         return pulumi.get(self, "priority")
 
     @priority.setter
-    def priority(self, value: pulumi.Input[float]):
+    def priority(self, value: pulumi.Input[int]):
         pulumi.set(self, "priority", value)
 
     @property
@@ -13684,37 +13684,37 @@ class RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchArgs:
 @pulumi.input_type
 class RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatchArgs:
     def __init__(__self__, *,
-                 range_end: pulumi.Input[float],
-                 range_start: pulumi.Input[float]):
+                 range_end: pulumi.Input[int],
+                 range_start: pulumi.Input[int]):
         """
-        :param pulumi.Input[float] range_end: The end of the range (exclusive).
-        :param pulumi.Input[float] range_start: The start of the range (inclusive).
+        :param pulumi.Input[int] range_end: The end of the range (exclusive).
+        :param pulumi.Input[int] range_start: The start of the range (inclusive).
         """
         pulumi.set(__self__, "range_end", range_end)
         pulumi.set(__self__, "range_start", range_start)
 
     @property
     @pulumi.getter(name="rangeEnd")
-    def range_end(self) -> pulumi.Input[float]:
+    def range_end(self) -> pulumi.Input[int]:
         """
         The end of the range (exclusive).
         """
         return pulumi.get(self, "range_end")
 
     @range_end.setter
-    def range_end(self, value: pulumi.Input[float]):
+    def range_end(self, value: pulumi.Input[int]):
         pulumi.set(self, "range_end", value)
 
     @property
     @pulumi.getter(name="rangeStart")
-    def range_start(self) -> pulumi.Input[float]:
+    def range_start(self) -> pulumi.Input[int]:
         """
         The start of the range (inclusive).
         """
         return pulumi.get(self, "range_start")
 
     @range_start.setter
-    def range_start(self, value: pulumi.Input[float]):
+    def range_start(self, value: pulumi.Input[int]):
         pulumi.set(self, "range_start", value)
 
 
@@ -14085,7 +14085,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicyArgs:
                  allow_origins: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
                  disabled: Optional[pulumi.Input[bool]] = None,
                  expose_headers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 max_age: Optional[pulumi.Input[float]] = None):
+                 max_age: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[bool] allow_credentials: In response to a preflight request, setting this to true indicates that the
                actual request can include user credentials. This translates to the Access-
@@ -14099,7 +14099,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicyArgs:
                origin is allowed if it matches either allow_origins or allow_origin_regex.
         :param pulumi.Input[bool] disabled: If true, specifies the CORS policy is disabled.
         :param pulumi.Input[List[pulumi.Input[str]]] expose_headers: Specifies the content for the Access-Control-Expose-Headers header.
-        :param pulumi.Input[float] max_age: Specifies how long the results of a preflight request can be cached. This
+        :param pulumi.Input[int] max_age: Specifies how long the results of a preflight request can be cached. This
                translates to the content for the Access-Control-Max-Age header.
         """
         if allow_credentials is not None:
@@ -14210,7 +14210,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicyArgs:
 
     @property
     @pulumi.getter(name="maxAge")
-    def max_age(self) -> Optional[pulumi.Input[float]]:
+    def max_age(self) -> Optional[pulumi.Input[int]]:
         """
         Specifies how long the results of a preflight request can be cached. This
         translates to the content for the Access-Control-Max-Age header.
@@ -14218,7 +14218,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicyArgs:
         return pulumi.get(self, "max_age")
 
     @max_age.setter
-    def max_age(self, value: Optional[pulumi.Input[float]]):
+    def max_age(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_age", value)
 
 
@@ -14272,10 +14272,10 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyArgs:
 @pulumi.input_type
 class RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortArgs:
     def __init__(__self__, *,
-                 http_status: Optional[pulumi.Input[float]] = None,
+                 http_status: Optional[pulumi.Input[int]] = None,
                  percentage: Optional[pulumi.Input[float]] = None):
         """
-        :param pulumi.Input[float] http_status: The HTTP status code used to abort the request. The value must be between 200
+        :param pulumi.Input[int] http_status: The HTTP status code used to abort the request. The value must be between 200
                and 599 inclusive.
         :param pulumi.Input[float] percentage: The percentage of traffic (connections/operations/requests) on which delay will
                be introduced as part of fault injection. The value must be between 0.0 and
@@ -14288,7 +14288,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortArgs:
 
     @property
     @pulumi.getter(name="httpStatus")
-    def http_status(self) -> Optional[pulumi.Input[float]]:
+    def http_status(self) -> Optional[pulumi.Input[int]]:
         """
         The HTTP status code used to abort the request. The value must be between 200
         and 599 inclusive.
@@ -14296,7 +14296,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortArgs:
         return pulumi.get(self, "http_status")
 
     @http_status.setter
-    def http_status(self, value: Optional[pulumi.Input[float]]):
+    def http_status(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "http_status", value)
 
     @property
@@ -14363,11 +14363,11 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayArgs:
 class RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelayArgs:
     def __init__(__self__, *,
                  seconds: pulumi.Input[str],
-                 nanos: Optional[pulumi.Input[float]] = None):
+                 nanos: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
                inclusive.
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
                less than one second are represented with a 0 `seconds` field and a positive
                `nanos` field. Must be from 0 to 999,999,999 inclusive.
         """
@@ -14390,7 +14390,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedD
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations
         less than one second are represented with a 0 `seconds` field and a positive
@@ -14399,7 +14399,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedD
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
 
@@ -14432,11 +14432,11 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionRequestMirrorPolicyArgs:
 @pulumi.input_type
 class RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyArgs:
     def __init__(__self__, *,
-                 num_retries: pulumi.Input[float],
+                 num_retries: pulumi.Input[int],
                  per_try_timeout: Optional[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutArgs']] = None,
                  retry_conditions: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[float] num_retries: Specifies the allowed number retries. This number must be > 0.
+        :param pulumi.Input[int] num_retries: Specifies the allowed number retries. This number must be > 0.
         :param pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutArgs'] per_try_timeout: Specifies a non-zero timeout per retry attempt.
                Structure is documented below.
         :param pulumi.Input[List[pulumi.Input[str]]] retry_conditions: Specifies one or more conditions when this retry rule applies. Valid values are:
@@ -14469,14 +14469,14 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyArgs:
 
     @property
     @pulumi.getter(name="numRetries")
-    def num_retries(self) -> pulumi.Input[float]:
+    def num_retries(self) -> pulumi.Input[int]:
         """
         Specifies the allowed number retries. This number must be > 0.
         """
         return pulumi.get(self, "num_retries")
 
     @num_retries.setter
-    def num_retries(self, value: pulumi.Input[float]):
+    def num_retries(self, value: pulumi.Input[int]):
         pulumi.set(self, "num_retries", value)
 
     @property
@@ -14529,11 +14529,11 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyArgs:
 class RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutArgs:
     def __init__(__self__, *,
                  seconds: pulumi.Input[str],
-                 nanos: Optional[pulumi.Input[float]] = None):
+                 nanos: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
                inclusive.
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
                less than one second are represented with a 0 `seconds` field and a positive
                `nanos` field. Must be from 0 to 999,999,999 inclusive.
         """
@@ -14556,7 +14556,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutArgs:
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations
         less than one second are represented with a 0 `seconds` field and a positive
@@ -14565,7 +14565,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutArgs:
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
 
@@ -14573,11 +14573,11 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutArgs:
 class RegionUrlMapPathMatcherRouteRuleRouteActionTimeoutArgs:
     def __init__(__self__, *,
                  seconds: pulumi.Input[str],
-                 nanos: Optional[pulumi.Input[float]] = None):
+                 nanos: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
                inclusive.
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
                less than one second are represented with a 0 `seconds` field and a positive
                `nanos` field. Must be from 0 to 999,999,999 inclusive.
         """
@@ -14600,7 +14600,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionTimeoutArgs:
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations
         less than one second are represented with a 0 `seconds` field and a positive
@@ -14609,7 +14609,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionTimeoutArgs:
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
 
@@ -14664,13 +14664,13 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionUrlRewriteArgs:
 class RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs:
     def __init__(__self__, *,
                  backend_service: pulumi.Input[str],
-                 weight: pulumi.Input[float],
+                 weight: pulumi.Input[int],
                  header_action: Optional[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionArgs']] = None):
         """
         :param pulumi.Input[str] backend_service: The default RegionBackendService resource. Before
                forwarding the request to backendService, the loadbalancer applies any relevant
                headerActions specified as part of this backendServiceWeight.
-        :param pulumi.Input[float] weight: Specifies the fraction of traffic sent to backendService, computed as weight /
+        :param pulumi.Input[int] weight: Specifies the fraction of traffic sent to backendService, computed as weight /
                (sum of all weightedBackendService weights in routeAction) . The selection of a
                backend service is determined only for new traffic. Once a user's request has
                been directed to a backendService, subsequent requests will be sent to the same
@@ -14702,7 +14702,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs:
 
     @property
     @pulumi.getter
-    def weight(self) -> pulumi.Input[float]:
+    def weight(self) -> pulumi.Input[int]:
         """
         Specifies the fraction of traffic sent to backendService, computed as weight /
         (sum of all weightedBackendService weights in routeAction) . The selection of a
@@ -14714,7 +14714,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs:
         return pulumi.get(self, "weight")
 
     @weight.setter
-    def weight(self, value: pulumi.Input[float]):
+    def weight(self, value: pulumi.Input[int]):
         pulumi.set(self, "weight", value)
 
     @property
@@ -15144,14 +15144,14 @@ class RegionUrlMapTestArgs:
 @pulumi.input_type
 class ReservationSpecificReservationArgs:
     def __init__(__self__, *,
-                 count: pulumi.Input[float],
+                 count: pulumi.Input[int],
                  instance_properties: pulumi.Input['ReservationSpecificReservationInstancePropertiesArgs'],
-                 in_use_count: Optional[pulumi.Input[float]] = None):
+                 in_use_count: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[float] count: The number of resources that are allocated.
+        :param pulumi.Input[int] count: The number of resources that are allocated.
         :param pulumi.Input['ReservationSpecificReservationInstancePropertiesArgs'] instance_properties: The instance properties for the reservation.
                Structure is documented below.
-        :param pulumi.Input[float] in_use_count: -
+        :param pulumi.Input[int] in_use_count: -
                How many instances are in use.
         """
         pulumi.set(__self__, "count", count)
@@ -15161,14 +15161,14 @@ class ReservationSpecificReservationArgs:
 
     @property
     @pulumi.getter
-    def count(self) -> pulumi.Input[float]:
+    def count(self) -> pulumi.Input[int]:
         """
         The number of resources that are allocated.
         """
         return pulumi.get(self, "count")
 
     @count.setter
-    def count(self, value: pulumi.Input[float]):
+    def count(self, value: pulumi.Input[int]):
         pulumi.set(self, "count", value)
 
     @property
@@ -15186,7 +15186,7 @@ class ReservationSpecificReservationArgs:
 
     @property
     @pulumi.getter(name="inUseCount")
-    def in_use_count(self) -> Optional[pulumi.Input[float]]:
+    def in_use_count(self) -> Optional[pulumi.Input[int]]:
         """
         -
         How many instances are in use.
@@ -15194,7 +15194,7 @@ class ReservationSpecificReservationArgs:
         return pulumi.get(self, "in_use_count")
 
     @in_use_count.setter
-    def in_use_count(self, value: Optional[pulumi.Input[float]]):
+    def in_use_count(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "in_use_count", value)
 
 
@@ -15283,10 +15283,10 @@ class ReservationSpecificReservationInstancePropertiesArgs:
 @pulumi.input_type
 class ReservationSpecificReservationInstancePropertiesGuestAcceleratorArgs:
     def __init__(__self__, *,
-                 accelerator_count: pulumi.Input[float],
+                 accelerator_count: pulumi.Input[int],
                  accelerator_type: pulumi.Input[str]):
         """
-        :param pulumi.Input[float] accelerator_count: The number of the guest accelerator cards exposed to
+        :param pulumi.Input[int] accelerator_count: The number of the guest accelerator cards exposed to
                this instance.
         :param pulumi.Input[str] accelerator_type: The full or partial URL of the accelerator type to
                attach to this instance. For example:
@@ -15298,7 +15298,7 @@ class ReservationSpecificReservationInstancePropertiesGuestAcceleratorArgs:
 
     @property
     @pulumi.getter(name="acceleratorCount")
-    def accelerator_count(self) -> pulumi.Input[float]:
+    def accelerator_count(self) -> pulumi.Input[int]:
         """
         The number of the guest accelerator cards exposed to
         this instance.
@@ -15306,7 +15306,7 @@ class ReservationSpecificReservationInstancePropertiesGuestAcceleratorArgs:
         return pulumi.get(self, "accelerator_count")
 
     @accelerator_count.setter
-    def accelerator_count(self, value: pulumi.Input[float]):
+    def accelerator_count(self, value: pulumi.Input[int]):
         pulumi.set(self, "accelerator_count", value)
 
     @property
@@ -15328,10 +15328,10 @@ class ReservationSpecificReservationInstancePropertiesGuestAcceleratorArgs:
 @pulumi.input_type
 class ReservationSpecificReservationInstancePropertiesLocalSsdArgs:
     def __init__(__self__, *,
-                 disk_size_gb: pulumi.Input[float],
+                 disk_size_gb: pulumi.Input[int],
                  interface: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[float] disk_size_gb: The size of the disk in base-2 GB.
+        :param pulumi.Input[int] disk_size_gb: The size of the disk in base-2 GB.
         :param pulumi.Input[str] interface: The disk interface to use for attaching this disk.
                Default value is `SCSI`.
                Possible values are `SCSI` and `NVME`.
@@ -15342,14 +15342,14 @@ class ReservationSpecificReservationInstancePropertiesLocalSsdArgs:
 
     @property
     @pulumi.getter(name="diskSizeGb")
-    def disk_size_gb(self) -> pulumi.Input[float]:
+    def disk_size_gb(self) -> pulumi.Input[int]:
         """
         The size of the disk in base-2 GB.
         """
         return pulumi.get(self, "disk_size_gb")
 
     @disk_size_gb.setter
-    def disk_size_gb(self, value: pulumi.Input[float]):
+    def disk_size_gb(self, value: pulumi.Input[int]):
         pulumi.set(self, "disk_size_gb", value)
 
     @property
@@ -15370,18 +15370,18 @@ class ReservationSpecificReservationInstancePropertiesLocalSsdArgs:
 @pulumi.input_type
 class ResourcePolicyGroupPlacementPolicyArgs:
     def __init__(__self__, *,
-                 availability_domain_count: Optional[pulumi.Input[float]] = None,
+                 availability_domain_count: Optional[pulumi.Input[int]] = None,
                  collocation: Optional[pulumi.Input[str]] = None,
-                 vm_count: Optional[pulumi.Input[float]] = None):
+                 vm_count: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[float] availability_domain_count: The number of availability domains instances will be spread across. If two instances are in different
+        :param pulumi.Input[int] availability_domain_count: The number of availability domains instances will be spread across. If two instances are in different
                availability domain, they will not be put in the same low latency network
         :param pulumi.Input[str] collocation: Collocation specifies whether to place VMs inside the same availability domain on the same low-latency network.
                Specify `COLLOCATED` to enable collocation. Can only be specified with `vm_count`. If compute instances are created
                with a COLLOCATED policy, then exactly `vm_count` instances must be created at the same time with the resource policy
                attached.
                Possible values are `COLLOCATED`.
-        :param pulumi.Input[float] vm_count: Number of vms in this placement group.
+        :param pulumi.Input[int] vm_count: Number of vms in this placement group.
         """
         if availability_domain_count is not None:
             pulumi.set(__self__, "availability_domain_count", availability_domain_count)
@@ -15392,7 +15392,7 @@ class ResourcePolicyGroupPlacementPolicyArgs:
 
     @property
     @pulumi.getter(name="availabilityDomainCount")
-    def availability_domain_count(self) -> Optional[pulumi.Input[float]]:
+    def availability_domain_count(self) -> Optional[pulumi.Input[int]]:
         """
         The number of availability domains instances will be spread across. If two instances are in different
         availability domain, they will not be put in the same low latency network
@@ -15400,7 +15400,7 @@ class ResourcePolicyGroupPlacementPolicyArgs:
         return pulumi.get(self, "availability_domain_count")
 
     @availability_domain_count.setter
-    def availability_domain_count(self, value: Optional[pulumi.Input[float]]):
+    def availability_domain_count(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "availability_domain_count", value)
 
     @property
@@ -15421,14 +15421,14 @@ class ResourcePolicyGroupPlacementPolicyArgs:
 
     @property
     @pulumi.getter(name="vmCount")
-    def vm_count(self) -> Optional[pulumi.Input[float]]:
+    def vm_count(self) -> Optional[pulumi.Input[int]]:
         """
         Number of vms in this placement group.
         """
         return pulumi.get(self, "vm_count")
 
     @vm_count.setter
-    def vm_count(self, value: Optional[pulumi.Input[float]]):
+    def vm_count(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "vm_count", value)
 
 
@@ -15495,10 +15495,10 @@ class ResourcePolicySnapshotSchedulePolicyArgs:
 @pulumi.input_type
 class ResourcePolicySnapshotSchedulePolicyRetentionPolicyArgs:
     def __init__(__self__, *,
-                 max_retention_days: pulumi.Input[float],
+                 max_retention_days: pulumi.Input[int],
                  on_source_disk_delete: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[float] max_retention_days: Maximum age of the snapshot that is allowed to be kept.
+        :param pulumi.Input[int] max_retention_days: Maximum age of the snapshot that is allowed to be kept.
         :param pulumi.Input[str] on_source_disk_delete: Specifies the behavior to apply to scheduled snapshots when
                the source disk is deleted.
                Default value is `KEEP_AUTO_SNAPSHOTS`.
@@ -15510,14 +15510,14 @@ class ResourcePolicySnapshotSchedulePolicyRetentionPolicyArgs:
 
     @property
     @pulumi.getter(name="maxRetentionDays")
-    def max_retention_days(self) -> pulumi.Input[float]:
+    def max_retention_days(self) -> pulumi.Input[int]:
         """
         Maximum age of the snapshot that is allowed to be kept.
         """
         return pulumi.get(self, "max_retention_days")
 
     @max_retention_days.setter
-    def max_retention_days(self, value: pulumi.Input[float]):
+    def max_retention_days(self, value: pulumi.Input[int]):
         pulumi.set(self, "max_retention_days", value)
 
     @property
@@ -15600,10 +15600,10 @@ class ResourcePolicySnapshotSchedulePolicyScheduleArgs:
 @pulumi.input_type
 class ResourcePolicySnapshotSchedulePolicyScheduleDailyScheduleArgs:
     def __init__(__self__, *,
-                 days_in_cycle: pulumi.Input[float],
+                 days_in_cycle: pulumi.Input[int],
                  start_time: pulumi.Input[str]):
         """
-        :param pulumi.Input[float] days_in_cycle: The number of days between snapshots.
+        :param pulumi.Input[int] days_in_cycle: The number of days between snapshots.
         :param pulumi.Input[str] start_time: Time within the window to start the operations.
                It must be in format "HH:MM", where HH : [00-23] and MM : [00-00] GMT.
         """
@@ -15612,14 +15612,14 @@ class ResourcePolicySnapshotSchedulePolicyScheduleDailyScheduleArgs:
 
     @property
     @pulumi.getter(name="daysInCycle")
-    def days_in_cycle(self) -> pulumi.Input[float]:
+    def days_in_cycle(self) -> pulumi.Input[int]:
         """
         The number of days between snapshots.
         """
         return pulumi.get(self, "days_in_cycle")
 
     @days_in_cycle.setter
-    def days_in_cycle(self, value: pulumi.Input[float]):
+    def days_in_cycle(self, value: pulumi.Input[int]):
         pulumi.set(self, "days_in_cycle", value)
 
     @property
@@ -15639,10 +15639,10 @@ class ResourcePolicySnapshotSchedulePolicyScheduleDailyScheduleArgs:
 @pulumi.input_type
 class ResourcePolicySnapshotSchedulePolicyScheduleHourlyScheduleArgs:
     def __init__(__self__, *,
-                 hours_in_cycle: pulumi.Input[float],
+                 hours_in_cycle: pulumi.Input[int],
                  start_time: pulumi.Input[str]):
         """
-        :param pulumi.Input[float] hours_in_cycle: The number of hours between snapshots.
+        :param pulumi.Input[int] hours_in_cycle: The number of hours between snapshots.
         :param pulumi.Input[str] start_time: Time within the window to start the operations.
                It must be in format "HH:MM", where HH : [00-23] and MM : [00-00] GMT.
         """
@@ -15651,14 +15651,14 @@ class ResourcePolicySnapshotSchedulePolicyScheduleHourlyScheduleArgs:
 
     @property
     @pulumi.getter(name="hoursInCycle")
-    def hours_in_cycle(self) -> pulumi.Input[float]:
+    def hours_in_cycle(self) -> pulumi.Input[int]:
         """
         The number of hours between snapshots.
         """
         return pulumi.get(self, "hours_in_cycle")
 
     @hours_in_cycle.setter
-    def hours_in_cycle(self, value: pulumi.Input[float]):
+    def hours_in_cycle(self, value: pulumi.Input[int]):
         pulumi.set(self, "hours_in_cycle", value)
 
     @property
@@ -15800,12 +15800,12 @@ class ResourcePolicySnapshotSchedulePolicySnapshotPropertiesArgs:
 @pulumi.input_type
 class RouterBgpArgs:
     def __init__(__self__, *,
-                 asn: pulumi.Input[float],
+                 asn: pulumi.Input[int],
                  advertise_mode: Optional[pulumi.Input[str]] = None,
                  advertised_groups: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
                  advertised_ip_ranges: Optional[pulumi.Input[List[pulumi.Input['RouterBgpAdvertisedIpRangeArgs']]]] = None):
         """
-        :param pulumi.Input[float] asn: Local BGP Autonomous System Number (ASN). Must be an RFC6996
+        :param pulumi.Input[int] asn: Local BGP Autonomous System Number (ASN). Must be an RFC6996
                private ASN, either 16-bit or 32-bit. The value will be fixed for
                this router resource. All VPN tunnels that link to this router
                will have the same local ASN.
@@ -15835,7 +15835,7 @@ class RouterBgpArgs:
 
     @property
     @pulumi.getter
-    def asn(self) -> pulumi.Input[float]:
+    def asn(self) -> pulumi.Input[int]:
         """
         Local BGP Autonomous System Number (ASN). Must be an RFC6996
         private ASN, either 16-bit or 32-bit. The value will be fixed for
@@ -15845,7 +15845,7 @@ class RouterBgpArgs:
         return pulumi.get(self, "asn")
 
     @asn.setter
-    def asn(self, value: pulumi.Input[float]):
+    def asn(self, value: pulumi.Input[int]):
         pulumi.set(self, "asn", value)
 
     @property
@@ -16086,7 +16086,7 @@ class SecurityPolicyRuleArgs:
     def __init__(__self__, *,
                  action: pulumi.Input[str],
                  match: pulumi.Input['SecurityPolicyRuleMatchArgs'],
-                 priority: pulumi.Input[float],
+                 priority: pulumi.Input[int],
                  description: Optional[pulumi.Input[str]] = None,
                  preview: Optional[pulumi.Input[bool]] = None):
         """
@@ -16095,7 +16095,7 @@ class SecurityPolicyRuleArgs:
                * "deny(status)" : deny access to target, returns the  HTTP response code specified (valid values are 403, 404 and 502)
         :param pulumi.Input['SecurityPolicyRuleMatchArgs'] match: A match condition that incoming traffic is evaluated against.
                If it evaluates to true, the corresponding `action` is enforced. Structure is documented below.
-        :param pulumi.Input[float] priority: An unique positive integer indicating the priority of evaluation for a rule.
+        :param pulumi.Input[int] priority: An unique positive integer indicating the priority of evaluation for a rule.
                Rules are evaluated from highest priority (lowest numerically) to lowest priority (highest numerically) in order.
         :param pulumi.Input[str] description: An optional description of this rule. Max size is 64.
         :param pulumi.Input[bool] preview: When set to true, the `action` specified above is not enforced.
@@ -16138,7 +16138,7 @@ class SecurityPolicyRuleArgs:
 
     @property
     @pulumi.getter
-    def priority(self) -> pulumi.Input[float]:
+    def priority(self) -> pulumi.Input[int]:
         """
         An unique positive integer indicating the priority of evaluation for a rule.
         Rules are evaluated from highest priority (lowest numerically) to lowest priority (highest numerically) in order.
@@ -16146,7 +16146,7 @@ class SecurityPolicyRuleArgs:
         return pulumi.get(self, "priority")
 
     @priority.setter
-    def priority(self, value: pulumi.Input[float]):
+    def priority(self, value: pulumi.Input[int]):
         pulumi.set(self, "priority", value)
 
     @property
@@ -16435,10 +16435,10 @@ class SecurityScanConfigAuthenticationGoogleAccountArgs:
 @pulumi.input_type
 class SecurityScanConfigScheduleArgs:
     def __init__(__self__, *,
-                 interval_duration_days: pulumi.Input[float],
+                 interval_duration_days: pulumi.Input[int],
                  schedule_time: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[float] interval_duration_days: The duration of time between executions in days
+        :param pulumi.Input[int] interval_duration_days: The duration of time between executions in days
         :param pulumi.Input[str] schedule_time: A timestamp indicates when the next run will be scheduled. The value is refreshed
                by the server after each run. If unspecified, it will default to current server time,
                which means the scan will be scheduled to start immediately.
@@ -16449,14 +16449,14 @@ class SecurityScanConfigScheduleArgs:
 
     @property
     @pulumi.getter(name="intervalDurationDays")
-    def interval_duration_days(self) -> pulumi.Input[float]:
+    def interval_duration_days(self) -> pulumi.Input[int]:
         """
         The duration of time between executions in days
         """
         return pulumi.get(self, "interval_duration_days")
 
     @interval_duration_days.setter
-    def interval_duration_days(self, value: pulumi.Input[float]):
+    def interval_duration_days(self, value: pulumi.Input[int]):
         pulumi.set(self, "interval_duration_days", value)
 
     @property
@@ -16992,7 +16992,7 @@ class URLMapDefaultRouteActionCorsPolicyArgs:
                  allow_origins: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
                  disabled: Optional[pulumi.Input[bool]] = None,
                  expose_headers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 max_age: Optional[pulumi.Input[float]] = None):
+                 max_age: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[bool] allow_credentials: In response to a preflight request, setting this to true indicates that the actual request can include user credentials.
                This translates to the Access-Control-Allow-Credentials header.
@@ -17005,7 +17005,7 @@ class URLMapDefaultRouteActionCorsPolicyArgs:
                An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
         :param pulumi.Input[bool] disabled: If true, specifies the CORS policy is disabled. The default value is false, which indicates that the CORS policy is in effect.
         :param pulumi.Input[List[pulumi.Input[str]]] expose_headers: Specifies the content for the Access-Control-Expose-Headers header.
-        :param pulumi.Input[float] max_age: Specifies how long results of a preflight request can be cached in seconds.
+        :param pulumi.Input[int] max_age: Specifies how long results of a preflight request can be cached in seconds.
                This translates to the Access-Control-Max-Age header.
         """
         if allow_credentials is not None:
@@ -17115,7 +17115,7 @@ class URLMapDefaultRouteActionCorsPolicyArgs:
 
     @property
     @pulumi.getter(name="maxAge")
-    def max_age(self) -> Optional[pulumi.Input[float]]:
+    def max_age(self) -> Optional[pulumi.Input[int]]:
         """
         Specifies how long results of a preflight request can be cached in seconds.
         This translates to the Access-Control-Max-Age header.
@@ -17123,7 +17123,7 @@ class URLMapDefaultRouteActionCorsPolicyArgs:
         return pulumi.get(self, "max_age")
 
     @max_age.setter
-    def max_age(self, value: Optional[pulumi.Input[float]]):
+    def max_age(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_age", value)
 
 
@@ -17173,10 +17173,10 @@ class URLMapDefaultRouteActionFaultInjectionPolicyArgs:
 @pulumi.input_type
 class URLMapDefaultRouteActionFaultInjectionPolicyAbortArgs:
     def __init__(__self__, *,
-                 http_status: Optional[pulumi.Input[float]] = None,
+                 http_status: Optional[pulumi.Input[int]] = None,
                  percentage: Optional[pulumi.Input[float]] = None):
         """
-        :param pulumi.Input[float] http_status: The HTTP status code used to abort the request.
+        :param pulumi.Input[int] http_status: The HTTP status code used to abort the request.
                The value must be between 200 and 599 inclusive.
         :param pulumi.Input[float] percentage: The percentage of traffic (connections/operations/requests) which will be aborted as part of fault injection.
                The value must be between 0.0 and 100.0 inclusive.
@@ -17188,7 +17188,7 @@ class URLMapDefaultRouteActionFaultInjectionPolicyAbortArgs:
 
     @property
     @pulumi.getter(name="httpStatus")
-    def http_status(self) -> Optional[pulumi.Input[float]]:
+    def http_status(self) -> Optional[pulumi.Input[int]]:
         """
         The HTTP status code used to abort the request.
         The value must be between 200 and 599 inclusive.
@@ -17196,7 +17196,7 @@ class URLMapDefaultRouteActionFaultInjectionPolicyAbortArgs:
         return pulumi.get(self, "http_status")
 
     @http_status.setter
-    def http_status(self, value: Optional[pulumi.Input[float]]):
+    def http_status(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "http_status", value)
 
     @property
@@ -17259,10 +17259,10 @@ class URLMapDefaultRouteActionFaultInjectionPolicyDelayArgs:
 @pulumi.input_type
 class URLMapDefaultRouteActionFaultInjectionPolicyDelayFixedDelayArgs:
     def __init__(__self__, *,
-                 nanos: Optional[pulumi.Input[float]] = None,
+                 nanos: Optional[pulumi.Input[int]] = None,
                  seconds: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
                represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
         :param pulumi.Input[str] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.
                Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
@@ -17274,7 +17274,7 @@ class URLMapDefaultRouteActionFaultInjectionPolicyDelayFixedDelayArgs:
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
         represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
@@ -17282,7 +17282,7 @@ class URLMapDefaultRouteActionFaultInjectionPolicyDelayFixedDelayArgs:
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
     @property
@@ -17324,11 +17324,11 @@ class URLMapDefaultRouteActionRequestMirrorPolicyArgs:
 @pulumi.input_type
 class URLMapDefaultRouteActionRetryPolicyArgs:
     def __init__(__self__, *,
-                 num_retries: Optional[pulumi.Input[float]] = None,
+                 num_retries: Optional[pulumi.Input[int]] = None,
                  per_try_timeout: Optional[pulumi.Input['URLMapDefaultRouteActionRetryPolicyPerTryTimeoutArgs']] = None,
                  retry_conditions: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[float] num_retries: Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
+        :param pulumi.Input[int] num_retries: Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
         :param pulumi.Input['URLMapDefaultRouteActionRetryPolicyPerTryTimeoutArgs'] per_try_timeout: Specifies a non-zero timeout per retry attempt.
                If not specified, will use the timeout set in HttpRouteAction. If timeout in HttpRouteAction is not set,
                will use the largest timeout among all backend services associated with the route.
@@ -17358,14 +17358,14 @@ class URLMapDefaultRouteActionRetryPolicyArgs:
 
     @property
     @pulumi.getter(name="numRetries")
-    def num_retries(self) -> Optional[pulumi.Input[float]]:
+    def num_retries(self) -> Optional[pulumi.Input[int]]:
         """
         Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
         """
         return pulumi.get(self, "num_retries")
 
     @num_retries.setter
-    def num_retries(self, value: Optional[pulumi.Input[float]]):
+    def num_retries(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "num_retries", value)
 
     @property
@@ -17413,10 +17413,10 @@ class URLMapDefaultRouteActionRetryPolicyArgs:
 @pulumi.input_type
 class URLMapDefaultRouteActionRetryPolicyPerTryTimeoutArgs:
     def __init__(__self__, *,
-                 nanos: Optional[pulumi.Input[float]] = None,
+                 nanos: Optional[pulumi.Input[int]] = None,
                  seconds: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
                represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
         :param pulumi.Input[str] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.
                Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
@@ -17428,7 +17428,7 @@ class URLMapDefaultRouteActionRetryPolicyPerTryTimeoutArgs:
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
         represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
@@ -17436,7 +17436,7 @@ class URLMapDefaultRouteActionRetryPolicyPerTryTimeoutArgs:
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
     @property
@@ -17456,10 +17456,10 @@ class URLMapDefaultRouteActionRetryPolicyPerTryTimeoutArgs:
 @pulumi.input_type
 class URLMapDefaultRouteActionTimeoutArgs:
     def __init__(__self__, *,
-                 nanos: Optional[pulumi.Input[float]] = None,
+                 nanos: Optional[pulumi.Input[int]] = None,
                  seconds: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
                represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
         :param pulumi.Input[str] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.
                Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
@@ -17471,7 +17471,7 @@ class URLMapDefaultRouteActionTimeoutArgs:
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
         represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
@@ -17479,7 +17479,7 @@ class URLMapDefaultRouteActionTimeoutArgs:
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
     @property
@@ -17548,7 +17548,7 @@ class URLMapDefaultRouteActionWeightedBackendServiceArgs:
     def __init__(__self__, *,
                  backend_service: Optional[pulumi.Input[str]] = None,
                  header_action: Optional[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceHeaderActionArgs']] = None,
-                 weight: Optional[pulumi.Input[float]] = None):
+                 weight: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] backend_service: The full or partial URL to the BackendService resource being mirrored to.
         :param pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceHeaderActionArgs'] header_action: Specifies changes to request and response headers that need to take effect for
@@ -17556,7 +17556,7 @@ class URLMapDefaultRouteActionWeightedBackendServiceArgs:
                headerAction specified here take effect before headerAction in the enclosing
                HttpRouteRule, PathMatcher and UrlMap.
                Structure is documented below.
-        :param pulumi.Input[float] weight: Specifies the fraction of traffic sent to backendService, computed as
+        :param pulumi.Input[int] weight: Specifies the fraction of traffic sent to backendService, computed as
                weight / (sum of all weightedBackendService weights in routeAction) .
                The selection of a backend service is determined only for new traffic. Once a user's request
                has been directed to a backendService, subsequent requests will be sent to the same backendService
@@ -17600,7 +17600,7 @@ class URLMapDefaultRouteActionWeightedBackendServiceArgs:
 
     @property
     @pulumi.getter
-    def weight(self) -> Optional[pulumi.Input[float]]:
+    def weight(self) -> Optional[pulumi.Input[int]]:
         """
         Specifies the fraction of traffic sent to backendService, computed as
         weight / (sum of all weightedBackendService weights in routeAction) .
@@ -17612,7 +17612,7 @@ class URLMapDefaultRouteActionWeightedBackendServiceArgs:
         return pulumi.get(self, "weight")
 
     @weight.setter
-    def weight(self, value: Optional[pulumi.Input[float]]):
+    def weight(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "weight", value)
 
 
@@ -18558,7 +18558,7 @@ class URLMapPathMatcherDefaultRouteActionCorsPolicyArgs:
                  allow_origins: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
                  disabled: Optional[pulumi.Input[bool]] = None,
                  expose_headers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 max_age: Optional[pulumi.Input[float]] = None):
+                 max_age: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[bool] allow_credentials: In response to a preflight request, setting this to true indicates that the actual request can include user credentials.
                This translates to the Access-Control-Allow-Credentials header.
@@ -18571,7 +18571,7 @@ class URLMapPathMatcherDefaultRouteActionCorsPolicyArgs:
                An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
         :param pulumi.Input[bool] disabled: If true, specifies the CORS policy is disabled. The default value is false, which indicates that the CORS policy is in effect.
         :param pulumi.Input[List[pulumi.Input[str]]] expose_headers: Specifies the content for the Access-Control-Expose-Headers header.
-        :param pulumi.Input[float] max_age: Specifies how long results of a preflight request can be cached in seconds.
+        :param pulumi.Input[int] max_age: Specifies how long results of a preflight request can be cached in seconds.
                This translates to the Access-Control-Max-Age header.
         """
         if allow_credentials is not None:
@@ -18681,7 +18681,7 @@ class URLMapPathMatcherDefaultRouteActionCorsPolicyArgs:
 
     @property
     @pulumi.getter(name="maxAge")
-    def max_age(self) -> Optional[pulumi.Input[float]]:
+    def max_age(self) -> Optional[pulumi.Input[int]]:
         """
         Specifies how long results of a preflight request can be cached in seconds.
         This translates to the Access-Control-Max-Age header.
@@ -18689,7 +18689,7 @@ class URLMapPathMatcherDefaultRouteActionCorsPolicyArgs:
         return pulumi.get(self, "max_age")
 
     @max_age.setter
-    def max_age(self, value: Optional[pulumi.Input[float]]):
+    def max_age(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_age", value)
 
 
@@ -18739,10 +18739,10 @@ class URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyArgs:
 @pulumi.input_type
 class URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyAbortArgs:
     def __init__(__self__, *,
-                 http_status: Optional[pulumi.Input[float]] = None,
+                 http_status: Optional[pulumi.Input[int]] = None,
                  percentage: Optional[pulumi.Input[float]] = None):
         """
-        :param pulumi.Input[float] http_status: The HTTP status code used to abort the request.
+        :param pulumi.Input[int] http_status: The HTTP status code used to abort the request.
                The value must be between 200 and 599 inclusive.
         :param pulumi.Input[float] percentage: The percentage of traffic (connections/operations/requests) which will be aborted as part of fault injection.
                The value must be between 0.0 and 100.0 inclusive.
@@ -18754,7 +18754,7 @@ class URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyAbortArgs:
 
     @property
     @pulumi.getter(name="httpStatus")
-    def http_status(self) -> Optional[pulumi.Input[float]]:
+    def http_status(self) -> Optional[pulumi.Input[int]]:
         """
         The HTTP status code used to abort the request.
         The value must be between 200 and 599 inclusive.
@@ -18762,7 +18762,7 @@ class URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyAbortArgs:
         return pulumi.get(self, "http_status")
 
     @http_status.setter
-    def http_status(self, value: Optional[pulumi.Input[float]]):
+    def http_status(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "http_status", value)
 
     @property
@@ -18825,10 +18825,10 @@ class URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayArgs:
 @pulumi.input_type
 class URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayFixedDelayArgs:
     def __init__(__self__, *,
-                 nanos: Optional[pulumi.Input[float]] = None,
+                 nanos: Optional[pulumi.Input[int]] = None,
                  seconds: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
                represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
         :param pulumi.Input[str] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.
                Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
@@ -18840,7 +18840,7 @@ class URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayFixedDelayArgs
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
         represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
@@ -18848,7 +18848,7 @@ class URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayFixedDelayArgs
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
     @property
@@ -18890,11 +18890,11 @@ class URLMapPathMatcherDefaultRouteActionRequestMirrorPolicyArgs:
 @pulumi.input_type
 class URLMapPathMatcherDefaultRouteActionRetryPolicyArgs:
     def __init__(__self__, *,
-                 num_retries: Optional[pulumi.Input[float]] = None,
+                 num_retries: Optional[pulumi.Input[int]] = None,
                  per_try_timeout: Optional[pulumi.Input['URLMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeoutArgs']] = None,
                  retry_conditions: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[float] num_retries: Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
+        :param pulumi.Input[int] num_retries: Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
         :param pulumi.Input['URLMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeoutArgs'] per_try_timeout: Specifies a non-zero timeout per retry attempt.
                If not specified, will use the timeout set in HttpRouteAction. If timeout in HttpRouteAction is not set,
                will use the largest timeout among all backend services associated with the route.
@@ -18924,14 +18924,14 @@ class URLMapPathMatcherDefaultRouteActionRetryPolicyArgs:
 
     @property
     @pulumi.getter(name="numRetries")
-    def num_retries(self) -> Optional[pulumi.Input[float]]:
+    def num_retries(self) -> Optional[pulumi.Input[int]]:
         """
         Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
         """
         return pulumi.get(self, "num_retries")
 
     @num_retries.setter
-    def num_retries(self, value: Optional[pulumi.Input[float]]):
+    def num_retries(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "num_retries", value)
 
     @property
@@ -18979,10 +18979,10 @@ class URLMapPathMatcherDefaultRouteActionRetryPolicyArgs:
 @pulumi.input_type
 class URLMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeoutArgs:
     def __init__(__self__, *,
-                 nanos: Optional[pulumi.Input[float]] = None,
+                 nanos: Optional[pulumi.Input[int]] = None,
                  seconds: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
                represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
         :param pulumi.Input[str] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.
                Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
@@ -18994,7 +18994,7 @@ class URLMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeoutArgs:
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
         represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
@@ -19002,7 +19002,7 @@ class URLMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeoutArgs:
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
     @property
@@ -19022,10 +19022,10 @@ class URLMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeoutArgs:
 @pulumi.input_type
 class URLMapPathMatcherDefaultRouteActionTimeoutArgs:
     def __init__(__self__, *,
-                 nanos: Optional[pulumi.Input[float]] = None,
+                 nanos: Optional[pulumi.Input[int]] = None,
                  seconds: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
                represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
         :param pulumi.Input[str] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.
                Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
@@ -19037,7 +19037,7 @@ class URLMapPathMatcherDefaultRouteActionTimeoutArgs:
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
         represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
@@ -19045,7 +19045,7 @@ class URLMapPathMatcherDefaultRouteActionTimeoutArgs:
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
     @property
@@ -19114,7 +19114,7 @@ class URLMapPathMatcherDefaultRouteActionWeightedBackendServiceArgs:
     def __init__(__self__, *,
                  backend_service: Optional[pulumi.Input[str]] = None,
                  header_action: Optional[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionArgs']] = None,
-                 weight: Optional[pulumi.Input[float]] = None):
+                 weight: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] backend_service: The full or partial URL to the BackendService resource being mirrored to.
         :param pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionArgs'] header_action: Specifies changes to request and response headers that need to take effect for
@@ -19122,7 +19122,7 @@ class URLMapPathMatcherDefaultRouteActionWeightedBackendServiceArgs:
                headerAction specified here take effect before headerAction in the enclosing
                HttpRouteRule, PathMatcher and UrlMap.
                Structure is documented below.
-        :param pulumi.Input[float] weight: Specifies the fraction of traffic sent to backendService, computed as
+        :param pulumi.Input[int] weight: Specifies the fraction of traffic sent to backendService, computed as
                weight / (sum of all weightedBackendService weights in routeAction) .
                The selection of a backend service is determined only for new traffic. Once a user's request
                has been directed to a backendService, subsequent requests will be sent to the same backendService
@@ -19166,7 +19166,7 @@ class URLMapPathMatcherDefaultRouteActionWeightedBackendServiceArgs:
 
     @property
     @pulumi.getter
-    def weight(self) -> Optional[pulumi.Input[float]]:
+    def weight(self) -> Optional[pulumi.Input[int]]:
         """
         Specifies the fraction of traffic sent to backendService, computed as
         weight / (sum of all weightedBackendService weights in routeAction) .
@@ -19178,7 +19178,7 @@ class URLMapPathMatcherDefaultRouteActionWeightedBackendServiceArgs:
         return pulumi.get(self, "weight")
 
     @weight.setter
-    def weight(self, value: Optional[pulumi.Input[float]]):
+    def weight(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "weight", value)
 
 
@@ -19975,7 +19975,7 @@ class URLMapPathMatcherPathRuleRouteActionCorsPolicyArgs:
                  allow_origin_regexes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
                  allow_origins: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
                  expose_headers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 max_age: Optional[pulumi.Input[float]] = None):
+                 max_age: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[bool] disabled: If true, specifies the CORS policy is disabled. The default value is false, which indicates that the CORS policy is in effect.
         :param pulumi.Input[bool] allow_credentials: In response to a preflight request, setting this to true indicates that the actual request can include user credentials.
@@ -19988,7 +19988,7 @@ class URLMapPathMatcherPathRuleRouteActionCorsPolicyArgs:
         :param pulumi.Input[List[pulumi.Input[str]]] allow_origins: Specifies the list of origins that will be allowed to do CORS requests.
                An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
         :param pulumi.Input[List[pulumi.Input[str]]] expose_headers: Specifies the content for the Access-Control-Expose-Headers header.
-        :param pulumi.Input[float] max_age: Specifies how long results of a preflight request can be cached in seconds.
+        :param pulumi.Input[int] max_age: Specifies how long results of a preflight request can be cached in seconds.
                This translates to the Access-Control-Max-Age header.
         """
         pulumi.set(__self__, "disabled", disabled)
@@ -20097,7 +20097,7 @@ class URLMapPathMatcherPathRuleRouteActionCorsPolicyArgs:
 
     @property
     @pulumi.getter(name="maxAge")
-    def max_age(self) -> Optional[pulumi.Input[float]]:
+    def max_age(self) -> Optional[pulumi.Input[int]]:
         """
         Specifies how long results of a preflight request can be cached in seconds.
         This translates to the Access-Control-Max-Age header.
@@ -20105,7 +20105,7 @@ class URLMapPathMatcherPathRuleRouteActionCorsPolicyArgs:
         return pulumi.get(self, "max_age")
 
     @max_age.setter
-    def max_age(self, value: Optional[pulumi.Input[float]]):
+    def max_age(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_age", value)
 
 
@@ -20155,10 +20155,10 @@ class URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyArgs:
 @pulumi.input_type
 class URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortArgs:
     def __init__(__self__, *,
-                 http_status: pulumi.Input[float],
+                 http_status: pulumi.Input[int],
                  percentage: pulumi.Input[float]):
         """
-        :param pulumi.Input[float] http_status: The HTTP status code used to abort the request.
+        :param pulumi.Input[int] http_status: The HTTP status code used to abort the request.
                The value must be between 200 and 599 inclusive.
         :param pulumi.Input[float] percentage: The percentage of traffic (connections/operations/requests) which will be aborted as part of fault injection.
                The value must be between 0.0 and 100.0 inclusive.
@@ -20168,7 +20168,7 @@ class URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortArgs:
 
     @property
     @pulumi.getter(name="httpStatus")
-    def http_status(self) -> pulumi.Input[float]:
+    def http_status(self) -> pulumi.Input[int]:
         """
         The HTTP status code used to abort the request.
         The value must be between 200 and 599 inclusive.
@@ -20176,7 +20176,7 @@ class URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortArgs:
         return pulumi.get(self, "http_status")
 
     @http_status.setter
-    def http_status(self, value: pulumi.Input[float]):
+    def http_status(self, value: pulumi.Input[int]):
         pulumi.set(self, "http_status", value)
 
     @property
@@ -20238,11 +20238,11 @@ class URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayArgs:
 class URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelayArgs:
     def __init__(__self__, *,
                  seconds: pulumi.Input[str],
-                 nanos: Optional[pulumi.Input[float]] = None):
+                 nanos: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.
                Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
                represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
         """
         pulumi.set(__self__, "seconds", seconds)
@@ -20264,7 +20264,7 @@ class URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelayArg
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
         represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
@@ -20272,7 +20272,7 @@ class URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelayArg
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
 
@@ -20301,11 +20301,11 @@ class URLMapPathMatcherPathRuleRouteActionRequestMirrorPolicyArgs:
 @pulumi.input_type
 class URLMapPathMatcherPathRuleRouteActionRetryPolicyArgs:
     def __init__(__self__, *,
-                 num_retries: Optional[pulumi.Input[float]] = None,
+                 num_retries: Optional[pulumi.Input[int]] = None,
                  per_try_timeout: Optional[pulumi.Input['URLMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutArgs']] = None,
                  retry_conditions: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[float] num_retries: Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
+        :param pulumi.Input[int] num_retries: Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
         :param pulumi.Input['URLMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutArgs'] per_try_timeout: Specifies a non-zero timeout per retry attempt.
                If not specified, will use the timeout set in HttpRouteAction. If timeout in HttpRouteAction is not set,
                will use the largest timeout among all backend services associated with the route.
@@ -20335,14 +20335,14 @@ class URLMapPathMatcherPathRuleRouteActionRetryPolicyArgs:
 
     @property
     @pulumi.getter(name="numRetries")
-    def num_retries(self) -> Optional[pulumi.Input[float]]:
+    def num_retries(self) -> Optional[pulumi.Input[int]]:
         """
         Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
         """
         return pulumi.get(self, "num_retries")
 
     @num_retries.setter
-    def num_retries(self, value: Optional[pulumi.Input[float]]):
+    def num_retries(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "num_retries", value)
 
     @property
@@ -20391,11 +20391,11 @@ class URLMapPathMatcherPathRuleRouteActionRetryPolicyArgs:
 class URLMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutArgs:
     def __init__(__self__, *,
                  seconds: pulumi.Input[str],
-                 nanos: Optional[pulumi.Input[float]] = None):
+                 nanos: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.
                Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
                represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
         """
         pulumi.set(__self__, "seconds", seconds)
@@ -20417,7 +20417,7 @@ class URLMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutArgs:
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
         represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
@@ -20425,7 +20425,7 @@ class URLMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutArgs:
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
 
@@ -20433,11 +20433,11 @@ class URLMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutArgs:
 class URLMapPathMatcherPathRuleRouteActionTimeoutArgs:
     def __init__(__self__, *,
                  seconds: pulumi.Input[str],
-                 nanos: Optional[pulumi.Input[float]] = None):
+                 nanos: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.
                Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
                represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
         """
         pulumi.set(__self__, "seconds", seconds)
@@ -20459,7 +20459,7 @@ class URLMapPathMatcherPathRuleRouteActionTimeoutArgs:
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
         represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
@@ -20467,7 +20467,7 @@ class URLMapPathMatcherPathRuleRouteActionTimeoutArgs:
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
 
@@ -20522,11 +20522,11 @@ class URLMapPathMatcherPathRuleRouteActionUrlRewriteArgs:
 class URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs:
     def __init__(__self__, *,
                  backend_service: pulumi.Input[str],
-                 weight: pulumi.Input[float],
+                 weight: pulumi.Input[int],
                  header_action: Optional[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionArgs']] = None):
         """
         :param pulumi.Input[str] backend_service: The full or partial URL to the BackendService resource being mirrored to.
-        :param pulumi.Input[float] weight: Specifies the fraction of traffic sent to backendService, computed as
+        :param pulumi.Input[int] weight: Specifies the fraction of traffic sent to backendService, computed as
                weight / (sum of all weightedBackendService weights in routeAction) .
                The selection of a backend service is determined only for new traffic. Once a user's request
                has been directed to a backendService, subsequent requests will be sent to the same backendService
@@ -20557,7 +20557,7 @@ class URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs:
 
     @property
     @pulumi.getter
-    def weight(self) -> pulumi.Input[float]:
+    def weight(self) -> pulumi.Input[int]:
         """
         Specifies the fraction of traffic sent to backendService, computed as
         weight / (sum of all weightedBackendService weights in routeAction) .
@@ -20569,7 +20569,7 @@ class URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs:
         return pulumi.get(self, "weight")
 
     @weight.setter
-    def weight(self, value: pulumi.Input[float]):
+    def weight(self, value: pulumi.Input[int]):
         pulumi.set(self, "weight", value)
 
     @property
@@ -20925,14 +20925,14 @@ class URLMapPathMatcherPathRuleUrlRedirectArgs:
 @pulumi.input_type
 class URLMapPathMatcherRouteRuleArgs:
     def __init__(__self__, *,
-                 priority: pulumi.Input[float],
+                 priority: pulumi.Input[int],
                  header_action: Optional[pulumi.Input['URLMapPathMatcherRouteRuleHeaderActionArgs']] = None,
                  match_rules: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleArgs']]]] = None,
                  route_action: Optional[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionArgs']] = None,
                  service: Optional[pulumi.Input[str]] = None,
                  url_redirect: Optional[pulumi.Input['URLMapPathMatcherRouteRuleUrlRedirectArgs']] = None):
         """
-        :param pulumi.Input[float] priority: For routeRules within a given pathMatcher, priority determines the order
+        :param pulumi.Input[int] priority: For routeRules within a given pathMatcher, priority determines the order
                in which load balancer will interpret routeRules. RouteRules are evaluated
                in order of priority, from the lowest to highest number. The priority of
                a rule decreases as its number increases (1, 2, 3, N+1). The first rule
@@ -20979,7 +20979,7 @@ class URLMapPathMatcherRouteRuleArgs:
 
     @property
     @pulumi.getter
-    def priority(self) -> pulumi.Input[float]:
+    def priority(self) -> pulumi.Input[int]:
         """
         For routeRules within a given pathMatcher, priority determines the order
         in which load balancer will interpret routeRules. RouteRules are evaluated
@@ -20998,7 +20998,7 @@ class URLMapPathMatcherRouteRuleArgs:
         return pulumi.get(self, "priority")
 
     @priority.setter
-    def priority(self, value: pulumi.Input[float]):
+    def priority(self, value: pulumi.Input[int]):
         pulumi.set(self, "priority", value)
 
     @property
@@ -21607,37 +21607,37 @@ class URLMapPathMatcherRouteRuleMatchRuleHeaderMatchArgs:
 @pulumi.input_type
 class URLMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatchArgs:
     def __init__(__self__, *,
-                 range_end: pulumi.Input[float],
-                 range_start: pulumi.Input[float]):
+                 range_end: pulumi.Input[int],
+                 range_start: pulumi.Input[int]):
         """
-        :param pulumi.Input[float] range_end: The end of the range (exclusive).
-        :param pulumi.Input[float] range_start: The start of the range (inclusive).
+        :param pulumi.Input[int] range_end: The end of the range (exclusive).
+        :param pulumi.Input[int] range_start: The start of the range (inclusive).
         """
         pulumi.set(__self__, "range_end", range_end)
         pulumi.set(__self__, "range_start", range_start)
 
     @property
     @pulumi.getter(name="rangeEnd")
-    def range_end(self) -> pulumi.Input[float]:
+    def range_end(self) -> pulumi.Input[int]:
         """
         The end of the range (exclusive).
         """
         return pulumi.get(self, "range_end")
 
     @range_end.setter
-    def range_end(self, value: pulumi.Input[float]):
+    def range_end(self, value: pulumi.Input[int]):
         pulumi.set(self, "range_end", value)
 
     @property
     @pulumi.getter(name="rangeStart")
-    def range_start(self) -> pulumi.Input[float]:
+    def range_start(self) -> pulumi.Input[int]:
         """
         The start of the range (inclusive).
         """
         return pulumi.get(self, "range_start")
 
     @range_start.setter
-    def range_start(self, value: pulumi.Input[float]):
+    def range_start(self, value: pulumi.Input[int]):
         pulumi.set(self, "range_start", value)
 
 
@@ -21996,7 +21996,7 @@ class URLMapPathMatcherRouteRuleRouteActionCorsPolicyArgs:
                  allow_origins: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
                  disabled: Optional[pulumi.Input[bool]] = None,
                  expose_headers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 max_age: Optional[pulumi.Input[float]] = None):
+                 max_age: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[bool] allow_credentials: In response to a preflight request, setting this to true indicates that the actual request can include user credentials.
                This translates to the Access-Control-Allow-Credentials header.
@@ -22009,7 +22009,7 @@ class URLMapPathMatcherRouteRuleRouteActionCorsPolicyArgs:
                An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
         :param pulumi.Input[bool] disabled: If true, specifies the CORS policy is disabled. The default value is false, which indicates that the CORS policy is in effect.
         :param pulumi.Input[List[pulumi.Input[str]]] expose_headers: Specifies the content for the Access-Control-Expose-Headers header.
-        :param pulumi.Input[float] max_age: Specifies how long results of a preflight request can be cached in seconds.
+        :param pulumi.Input[int] max_age: Specifies how long results of a preflight request can be cached in seconds.
                This translates to the Access-Control-Max-Age header.
         """
         if allow_credentials is not None:
@@ -22119,7 +22119,7 @@ class URLMapPathMatcherRouteRuleRouteActionCorsPolicyArgs:
 
     @property
     @pulumi.getter(name="maxAge")
-    def max_age(self) -> Optional[pulumi.Input[float]]:
+    def max_age(self) -> Optional[pulumi.Input[int]]:
         """
         Specifies how long results of a preflight request can be cached in seconds.
         This translates to the Access-Control-Max-Age header.
@@ -22127,7 +22127,7 @@ class URLMapPathMatcherRouteRuleRouteActionCorsPolicyArgs:
         return pulumi.get(self, "max_age")
 
     @max_age.setter
-    def max_age(self, value: Optional[pulumi.Input[float]]):
+    def max_age(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_age", value)
 
 
@@ -22177,10 +22177,10 @@ class URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyArgs:
 @pulumi.input_type
 class URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortArgs:
     def __init__(__self__, *,
-                 http_status: Optional[pulumi.Input[float]] = None,
+                 http_status: Optional[pulumi.Input[int]] = None,
                  percentage: Optional[pulumi.Input[float]] = None):
         """
-        :param pulumi.Input[float] http_status: The HTTP status code used to abort the request.
+        :param pulumi.Input[int] http_status: The HTTP status code used to abort the request.
                The value must be between 200 and 599 inclusive.
         :param pulumi.Input[float] percentage: The percentage of traffic (connections/operations/requests) which will be aborted as part of fault injection.
                The value must be between 0.0 and 100.0 inclusive.
@@ -22192,7 +22192,7 @@ class URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortArgs:
 
     @property
     @pulumi.getter(name="httpStatus")
-    def http_status(self) -> Optional[pulumi.Input[float]]:
+    def http_status(self) -> Optional[pulumi.Input[int]]:
         """
         The HTTP status code used to abort the request.
         The value must be between 200 and 599 inclusive.
@@ -22200,7 +22200,7 @@ class URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortArgs:
         return pulumi.get(self, "http_status")
 
     @http_status.setter
-    def http_status(self, value: Optional[pulumi.Input[float]]):
+    def http_status(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "http_status", value)
 
     @property
@@ -22264,11 +22264,11 @@ class URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayArgs:
 class URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelayArgs:
     def __init__(__self__, *,
                  seconds: pulumi.Input[str],
-                 nanos: Optional[pulumi.Input[float]] = None):
+                 nanos: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.
                Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
                represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
         """
         pulumi.set(__self__, "seconds", seconds)
@@ -22290,7 +22290,7 @@ class URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelayAr
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
         represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
@@ -22298,7 +22298,7 @@ class URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelayAr
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
 
@@ -22327,11 +22327,11 @@ class URLMapPathMatcherRouteRuleRouteActionRequestMirrorPolicyArgs:
 @pulumi.input_type
 class URLMapPathMatcherRouteRuleRouteActionRetryPolicyArgs:
     def __init__(__self__, *,
-                 num_retries: pulumi.Input[float],
+                 num_retries: pulumi.Input[int],
                  per_try_timeout: Optional[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutArgs']] = None,
                  retry_conditions: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[float] num_retries: Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
+        :param pulumi.Input[int] num_retries: Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
         :param pulumi.Input['URLMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutArgs'] per_try_timeout: Specifies a non-zero timeout per retry attempt.
                If not specified, will use the timeout set in HttpRouteAction. If timeout in HttpRouteAction is not set,
                will use the largest timeout among all backend services associated with the route.
@@ -22360,14 +22360,14 @@ class URLMapPathMatcherRouteRuleRouteActionRetryPolicyArgs:
 
     @property
     @pulumi.getter(name="numRetries")
-    def num_retries(self) -> pulumi.Input[float]:
+    def num_retries(self) -> pulumi.Input[int]:
         """
         Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
         """
         return pulumi.get(self, "num_retries")
 
     @num_retries.setter
-    def num_retries(self, value: pulumi.Input[float]):
+    def num_retries(self, value: pulumi.Input[int]):
         pulumi.set(self, "num_retries", value)
 
     @property
@@ -22416,11 +22416,11 @@ class URLMapPathMatcherRouteRuleRouteActionRetryPolicyArgs:
 class URLMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutArgs:
     def __init__(__self__, *,
                  seconds: pulumi.Input[str],
-                 nanos: Optional[pulumi.Input[float]] = None):
+                 nanos: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.
                Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
                represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
         """
         pulumi.set(__self__, "seconds", seconds)
@@ -22442,7 +22442,7 @@ class URLMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutArgs:
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
         represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
@@ -22450,7 +22450,7 @@ class URLMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutArgs:
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
 
@@ -22458,11 +22458,11 @@ class URLMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutArgs:
 class URLMapPathMatcherRouteRuleRouteActionTimeoutArgs:
     def __init__(__self__, *,
                  seconds: pulumi.Input[str],
-                 nanos: Optional[pulumi.Input[float]] = None):
+                 nanos: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.
                Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
                represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
         """
         pulumi.set(__self__, "seconds", seconds)
@@ -22484,7 +22484,7 @@ class URLMapPathMatcherRouteRuleRouteActionTimeoutArgs:
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
         represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
@@ -22492,7 +22492,7 @@ class URLMapPathMatcherRouteRuleRouteActionTimeoutArgs:
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
 
@@ -22547,11 +22547,11 @@ class URLMapPathMatcherRouteRuleRouteActionUrlRewriteArgs:
 class URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs:
     def __init__(__self__, *,
                  backend_service: pulumi.Input[str],
-                 weight: pulumi.Input[float],
+                 weight: pulumi.Input[int],
                  header_action: Optional[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionArgs']] = None):
         """
         :param pulumi.Input[str] backend_service: The full or partial URL to the BackendService resource being mirrored to.
-        :param pulumi.Input[float] weight: Specifies the fraction of traffic sent to backendService, computed as
+        :param pulumi.Input[int] weight: Specifies the fraction of traffic sent to backendService, computed as
                weight / (sum of all weightedBackendService weights in routeAction) .
                The selection of a backend service is determined only for new traffic. Once a user's request
                has been directed to a backendService, subsequent requests will be sent to the same backendService
@@ -22582,7 +22582,7 @@ class URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs:
 
     @property
     @pulumi.getter
-    def weight(self) -> pulumi.Input[float]:
+    def weight(self) -> pulumi.Input[int]:
         """
         Specifies the fraction of traffic sent to backendService, computed as
         weight / (sum of all weightedBackendService weights in routeAction) .
@@ -22594,7 +22594,7 @@ class URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs:
         return pulumi.get(self, "weight")
 
     @weight.setter
-    def weight(self, value: pulumi.Input[float]):
+    def weight(self, value: pulumi.Input[int]):
         pulumi.set(self, "weight", value)
 
     @property

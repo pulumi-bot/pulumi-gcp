@@ -204,15 +204,15 @@ class AutoscalingPolicyBasicAlgorithmYarnConfig(dict):
 @pulumi.output_type
 class AutoscalingPolicySecondaryWorkerConfig(dict):
     def __init__(__self__, *,
-                 max_instances: Optional[float] = None,
-                 min_instances: Optional[float] = None,
-                 weight: Optional[float] = None):
+                 max_instances: Optional[int] = None,
+                 min_instances: Optional[int] = None,
+                 weight: Optional[int] = None):
         """
-        :param float max_instances: Maximum number of instances for this group. Note that by default, clusters will not use
+        :param int max_instances: Maximum number of instances for this group. Note that by default, clusters will not use
                secondary workers. Required for secondary workers if the minimum secondary instances is set.
                Bounds: [minInstances, ). Defaults to 0.
-        :param float min_instances: Minimum number of instances for this group. Bounds: [0, maxInstances]. Defaults to 0.
-        :param float weight: Weight for the instance group, which is used to determine the fraction of total workers
+        :param int min_instances: Minimum number of instances for this group. Bounds: [0, maxInstances]. Defaults to 0.
+        :param int weight: Weight for the instance group, which is used to determine the fraction of total workers
                in the cluster from this instance group. For example, if primary workers have weight 2,
                and secondary workers have weight 1, the cluster will have approximately 2 primary workers
                for each secondary worker.
@@ -234,7 +234,7 @@ class AutoscalingPolicySecondaryWorkerConfig(dict):
 
     @property
     @pulumi.getter(name="maxInstances")
-    def max_instances(self) -> Optional[float]:
+    def max_instances(self) -> Optional[int]:
         """
         Maximum number of instances for this group. Note that by default, clusters will not use
         secondary workers. Required for secondary workers if the minimum secondary instances is set.
@@ -244,7 +244,7 @@ class AutoscalingPolicySecondaryWorkerConfig(dict):
 
     @property
     @pulumi.getter(name="minInstances")
-    def min_instances(self) -> Optional[float]:
+    def min_instances(self) -> Optional[int]:
         """
         Minimum number of instances for this group. Bounds: [0, maxInstances]. Defaults to 0.
         """
@@ -252,7 +252,7 @@ class AutoscalingPolicySecondaryWorkerConfig(dict):
 
     @property
     @pulumi.getter
-    def weight(self) -> Optional[float]:
+    def weight(self) -> Optional[int]:
         """
         Weight for the instance group, which is used to determine the fraction of total workers
         in the cluster from this instance group. For example, if primary workers have weight 2,
@@ -276,15 +276,15 @@ class AutoscalingPolicySecondaryWorkerConfig(dict):
 @pulumi.output_type
 class AutoscalingPolicyWorkerConfig(dict):
     def __init__(__self__, *,
-                 max_instances: float,
-                 min_instances: Optional[float] = None,
-                 weight: Optional[float] = None):
+                 max_instances: int,
+                 min_instances: Optional[int] = None,
+                 weight: Optional[int] = None):
         """
-        :param float max_instances: Maximum number of instances for this group. Note that by default, clusters will not use
+        :param int max_instances: Maximum number of instances for this group. Note that by default, clusters will not use
                secondary workers. Required for secondary workers if the minimum secondary instances is set.
                Bounds: [minInstances, ). Defaults to 0.
-        :param float min_instances: Minimum number of instances for this group. Bounds: [0, maxInstances]. Defaults to 0.
-        :param float weight: Weight for the instance group, which is used to determine the fraction of total workers
+        :param int min_instances: Minimum number of instances for this group. Bounds: [0, maxInstances]. Defaults to 0.
+        :param int weight: Weight for the instance group, which is used to determine the fraction of total workers
                in the cluster from this instance group. For example, if primary workers have weight 2,
                and secondary workers have weight 1, the cluster will have approximately 2 primary workers
                for each secondary worker.
@@ -305,7 +305,7 @@ class AutoscalingPolicyWorkerConfig(dict):
 
     @property
     @pulumi.getter(name="maxInstances")
-    def max_instances(self) -> float:
+    def max_instances(self) -> int:
         """
         Maximum number of instances for this group. Note that by default, clusters will not use
         secondary workers. Required for secondary workers if the minimum secondary instances is set.
@@ -315,7 +315,7 @@ class AutoscalingPolicyWorkerConfig(dict):
 
     @property
     @pulumi.getter(name="minInstances")
-    def min_instances(self) -> Optional[float]:
+    def min_instances(self) -> Optional[int]:
         """
         Minimum number of instances for this group. Bounds: [0, maxInstances]. Defaults to 0.
         """
@@ -323,7 +323,7 @@ class AutoscalingPolicyWorkerConfig(dict):
 
     @property
     @pulumi.getter
-    def weight(self) -> Optional[float]:
+    def weight(self) -> Optional[int]:
         """
         Weight for the instance group, which is used to determine the fraction of total workers
         in the cluster from this instance group. For example, if primary workers have weight 2,
@@ -765,11 +765,11 @@ class ClusterClusterConfigGceClusterConfig(dict):
 class ClusterClusterConfigInitializationAction(dict):
     def __init__(__self__, *,
                  script: str,
-                 timeout_sec: Optional[float] = None):
+                 timeout_sec: Optional[int] = None):
         """
         :param str script: The script to be executed during initialization of the cluster.
                The script must be a GCS file with a gs:// prefix.
-        :param float timeout_sec: The maximum duration (in seconds) which `script` is
+        :param int timeout_sec: The maximum duration (in seconds) which `script` is
                allowed to take to execute its action. GCP will default to a predetermined
                computed value if not set (currently 300).
         """
@@ -788,7 +788,7 @@ class ClusterClusterConfigInitializationAction(dict):
 
     @property
     @pulumi.getter(name="timeoutSec")
-    def timeout_sec(self) -> Optional[float]:
+    def timeout_sec(self) -> Optional[int]:
         """
         The maximum duration (in seconds) which `script` is
         allowed to take to execute its action. GCP will default to a predetermined
@@ -857,7 +857,7 @@ class ClusterClusterConfigMasterConfig(dict):
                  instance_names: Optional[List[str]] = None,
                  machine_type: Optional[str] = None,
                  min_cpu_platform: Optional[str] = None,
-                 num_instances: Optional[float] = None):
+                 num_instances: Optional[int] = None):
         """
         :param List['ClusterClusterConfigMasterConfigAcceleratorArgs'] accelerators: The Compute Engine accelerator configuration for these instances. Can be specified multiple times.
         :param 'ClusterClusterConfigMasterConfigDiskConfigArgs' disk_config: Disk Config
@@ -870,7 +870,7 @@ class ClusterClusterConfigMasterConfig(dict):
                for the master. If not specified, GCP will default to a predetermined computed value
                for each zone. See [the guide](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
                for details about which CPU families are available (and defaulted) for each zone.
-        :param float num_instances: Specifies the number of preemptible nodes to create.
+        :param int num_instances: Specifies the number of preemptible nodes to create.
                Defaults to 0.
         """
         if accelerators is not None:
@@ -941,7 +941,7 @@ class ClusterClusterConfigMasterConfig(dict):
 
     @property
     @pulumi.getter(name="numInstances")
-    def num_instances(self) -> Optional[float]:
+    def num_instances(self) -> Optional[int]:
         """
         Specifies the number of preemptible nodes to create.
         Defaults to 0.
@@ -955,10 +955,10 @@ class ClusterClusterConfigMasterConfig(dict):
 @pulumi.output_type
 class ClusterClusterConfigMasterConfigAccelerator(dict):
     def __init__(__self__, *,
-                 accelerator_count: float,
+                 accelerator_count: int,
                  accelerator_type: str):
         """
-        :param float accelerator_count: The number of the accelerator cards of this type exposed to this instance. Often restricted to one of `1`, `2`, `4`, or `8`.
+        :param int accelerator_count: The number of the accelerator cards of this type exposed to this instance. Often restricted to one of `1`, `2`, `4`, or `8`.
         :param str accelerator_type: The short name of the accelerator type to expose to this instance. For example, `nvidia-tesla-k80`.
         """
         pulumi.set(__self__, "accelerator_count", accelerator_count)
@@ -966,7 +966,7 @@ class ClusterClusterConfigMasterConfigAccelerator(dict):
 
     @property
     @pulumi.getter(name="acceleratorCount")
-    def accelerator_count(self) -> float:
+    def accelerator_count(self) -> int:
         """
         The number of the accelerator cards of this type exposed to this instance. Often restricted to one of `1`, `2`, `4`, or `8`.
         """
@@ -987,17 +987,17 @@ class ClusterClusterConfigMasterConfigAccelerator(dict):
 @pulumi.output_type
 class ClusterClusterConfigMasterConfigDiskConfig(dict):
     def __init__(__self__, *,
-                 boot_disk_size_gb: Optional[float] = None,
+                 boot_disk_size_gb: Optional[int] = None,
                  boot_disk_type: Optional[str] = None,
-                 num_local_ssds: Optional[float] = None):
+                 num_local_ssds: Optional[int] = None):
         """
-        :param float boot_disk_size_gb: Size of the primary disk attached to each preemptible worker node, specified
+        :param int boot_disk_size_gb: Size of the primary disk attached to each preemptible worker node, specified
                in GB. The smallest allowed disk size is 10GB. GCP will default to a predetermined
                computed value if not set (currently 500GB). Note: If SSDs are not
                attached, it also contains the HDFS data blocks and Hadoop working directories.
         :param str boot_disk_type: The disk type of the primary disk attached to each preemptible worker node.
                One of `"pd-ssd"` or `"pd-standard"`. Defaults to `"pd-standard"`.
-        :param float num_local_ssds: The amount of local SSD disks that will be
+        :param int num_local_ssds: The amount of local SSD disks that will be
                attached to each preemptible worker node. Defaults to 0.
         """
         if boot_disk_size_gb is not None:
@@ -1009,7 +1009,7 @@ class ClusterClusterConfigMasterConfigDiskConfig(dict):
 
     @property
     @pulumi.getter(name="bootDiskSizeGb")
-    def boot_disk_size_gb(self) -> Optional[float]:
+    def boot_disk_size_gb(self) -> Optional[int]:
         """
         Size of the primary disk attached to each preemptible worker node, specified
         in GB. The smallest allowed disk size is 10GB. GCP will default to a predetermined
@@ -1029,7 +1029,7 @@ class ClusterClusterConfigMasterConfigDiskConfig(dict):
 
     @property
     @pulumi.getter(name="numLocalSsds")
-    def num_local_ssds(self) -> Optional[float]:
+    def num_local_ssds(self) -> Optional[int]:
         """
         The amount of local SSD disks that will be
         attached to each preemptible worker node. Defaults to 0.
@@ -1045,10 +1045,10 @@ class ClusterClusterConfigPreemptibleWorkerConfig(dict):
     def __init__(__self__, *,
                  disk_config: Optional['outputs.ClusterClusterConfigPreemptibleWorkerConfigDiskConfig'] = None,
                  instance_names: Optional[List[str]] = None,
-                 num_instances: Optional[float] = None):
+                 num_instances: Optional[int] = None):
         """
         :param 'ClusterClusterConfigPreemptibleWorkerConfigDiskConfigArgs' disk_config: Disk Config
-        :param float num_instances: Specifies the number of preemptible nodes to create.
+        :param int num_instances: Specifies the number of preemptible nodes to create.
                Defaults to 0.
         """
         if disk_config is not None:
@@ -1073,7 +1073,7 @@ class ClusterClusterConfigPreemptibleWorkerConfig(dict):
 
     @property
     @pulumi.getter(name="numInstances")
-    def num_instances(self) -> Optional[float]:
+    def num_instances(self) -> Optional[int]:
         """
         Specifies the number of preemptible nodes to create.
         Defaults to 0.
@@ -1087,17 +1087,17 @@ class ClusterClusterConfigPreemptibleWorkerConfig(dict):
 @pulumi.output_type
 class ClusterClusterConfigPreemptibleWorkerConfigDiskConfig(dict):
     def __init__(__self__, *,
-                 boot_disk_size_gb: Optional[float] = None,
+                 boot_disk_size_gb: Optional[int] = None,
                  boot_disk_type: Optional[str] = None,
-                 num_local_ssds: Optional[float] = None):
+                 num_local_ssds: Optional[int] = None):
         """
-        :param float boot_disk_size_gb: Size of the primary disk attached to each preemptible worker node, specified
+        :param int boot_disk_size_gb: Size of the primary disk attached to each preemptible worker node, specified
                in GB. The smallest allowed disk size is 10GB. GCP will default to a predetermined
                computed value if not set (currently 500GB). Note: If SSDs are not
                attached, it also contains the HDFS data blocks and Hadoop working directories.
         :param str boot_disk_type: The disk type of the primary disk attached to each preemptible worker node.
                One of `"pd-ssd"` or `"pd-standard"`. Defaults to `"pd-standard"`.
-        :param float num_local_ssds: The amount of local SSD disks that will be
+        :param int num_local_ssds: The amount of local SSD disks that will be
                attached to each preemptible worker node. Defaults to 0.
         """
         if boot_disk_size_gb is not None:
@@ -1109,7 +1109,7 @@ class ClusterClusterConfigPreemptibleWorkerConfigDiskConfig(dict):
 
     @property
     @pulumi.getter(name="bootDiskSizeGb")
-    def boot_disk_size_gb(self) -> Optional[float]:
+    def boot_disk_size_gb(self) -> Optional[int]:
         """
         Size of the primary disk attached to each preemptible worker node, specified
         in GB. The smallest allowed disk size is 10GB. GCP will default to a predetermined
@@ -1129,7 +1129,7 @@ class ClusterClusterConfigPreemptibleWorkerConfigDiskConfig(dict):
 
     @property
     @pulumi.getter(name="numLocalSsds")
-    def num_local_ssds(self) -> Optional[float]:
+    def num_local_ssds(self) -> Optional[int]:
         """
         The amount of local SSD disks that will be
         attached to each preemptible worker node. Defaults to 0.
@@ -1176,7 +1176,7 @@ class ClusterClusterConfigSecurityConfigKerberosConfig(dict):
                  keystore_password_uri: Optional[str] = None,
                  keystore_uri: Optional[str] = None,
                  realm: Optional[str] = None,
-                 tgt_lifetime_hours: Optional[float] = None,
+                 tgt_lifetime_hours: Optional[int] = None,
                  truststore_password_uri: Optional[str] = None,
                  truststore_uri: Optional[str] = None):
         """
@@ -1205,7 +1205,7 @@ class ClusterClusterConfigSecurityConfigKerberosConfig(dict):
                If not provided, Dataproc will provide a self-signed certificate.
         :param str realm: The name of the on-cluster Kerberos realm. If not specified, the
                uppercased domain of hostnames will be the realm.
-        :param float tgt_lifetime_hours: The lifetime of the ticket granting ticket, in hours.
+        :param int tgt_lifetime_hours: The lifetime of the ticket granting ticket, in hours.
         :param str truststore_password_uri: The Cloud Storage URI of a KMS encrypted file
                containing the password to the user provided truststore. For the self-signed
                certificate, this password is generated by Dataproc.
@@ -1352,7 +1352,7 @@ class ClusterClusterConfigSecurityConfigKerberosConfig(dict):
 
     @property
     @pulumi.getter(name="tgtLifetimeHours")
-    def tgt_lifetime_hours(self) -> Optional[float]:
+    def tgt_lifetime_hours(self) -> Optional[int]:
         """
         The lifetime of the ticket granting ticket, in hours.
         """
@@ -1482,7 +1482,7 @@ class ClusterClusterConfigWorkerConfig(dict):
                  instance_names: Optional[List[str]] = None,
                  machine_type: Optional[str] = None,
                  min_cpu_platform: Optional[str] = None,
-                 num_instances: Optional[float] = None):
+                 num_instances: Optional[int] = None):
         """
         :param List['ClusterClusterConfigWorkerConfigAcceleratorArgs'] accelerators: The Compute Engine accelerator configuration for these instances. Can be specified multiple times.
         :param 'ClusterClusterConfigWorkerConfigDiskConfigArgs' disk_config: Disk Config
@@ -1495,7 +1495,7 @@ class ClusterClusterConfigWorkerConfig(dict):
                for the master. If not specified, GCP will default to a predetermined computed value
                for each zone. See [the guide](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
                for details about which CPU families are available (and defaulted) for each zone.
-        :param float num_instances: Specifies the number of preemptible nodes to create.
+        :param int num_instances: Specifies the number of preemptible nodes to create.
                Defaults to 0.
         """
         if accelerators is not None:
@@ -1566,7 +1566,7 @@ class ClusterClusterConfigWorkerConfig(dict):
 
     @property
     @pulumi.getter(name="numInstances")
-    def num_instances(self) -> Optional[float]:
+    def num_instances(self) -> Optional[int]:
         """
         Specifies the number of preemptible nodes to create.
         Defaults to 0.
@@ -1580,10 +1580,10 @@ class ClusterClusterConfigWorkerConfig(dict):
 @pulumi.output_type
 class ClusterClusterConfigWorkerConfigAccelerator(dict):
     def __init__(__self__, *,
-                 accelerator_count: float,
+                 accelerator_count: int,
                  accelerator_type: str):
         """
-        :param float accelerator_count: The number of the accelerator cards of this type exposed to this instance. Often restricted to one of `1`, `2`, `4`, or `8`.
+        :param int accelerator_count: The number of the accelerator cards of this type exposed to this instance. Often restricted to one of `1`, `2`, `4`, or `8`.
         :param str accelerator_type: The short name of the accelerator type to expose to this instance. For example, `nvidia-tesla-k80`.
         """
         pulumi.set(__self__, "accelerator_count", accelerator_count)
@@ -1591,7 +1591,7 @@ class ClusterClusterConfigWorkerConfigAccelerator(dict):
 
     @property
     @pulumi.getter(name="acceleratorCount")
-    def accelerator_count(self) -> float:
+    def accelerator_count(self) -> int:
         """
         The number of the accelerator cards of this type exposed to this instance. Often restricted to one of `1`, `2`, `4`, or `8`.
         """
@@ -1612,17 +1612,17 @@ class ClusterClusterConfigWorkerConfigAccelerator(dict):
 @pulumi.output_type
 class ClusterClusterConfigWorkerConfigDiskConfig(dict):
     def __init__(__self__, *,
-                 boot_disk_size_gb: Optional[float] = None,
+                 boot_disk_size_gb: Optional[int] = None,
                  boot_disk_type: Optional[str] = None,
-                 num_local_ssds: Optional[float] = None):
+                 num_local_ssds: Optional[int] = None):
         """
-        :param float boot_disk_size_gb: Size of the primary disk attached to each preemptible worker node, specified
+        :param int boot_disk_size_gb: Size of the primary disk attached to each preemptible worker node, specified
                in GB. The smallest allowed disk size is 10GB. GCP will default to a predetermined
                computed value if not set (currently 500GB). Note: If SSDs are not
                attached, it also contains the HDFS data blocks and Hadoop working directories.
         :param str boot_disk_type: The disk type of the primary disk attached to each preemptible worker node.
                One of `"pd-ssd"` or `"pd-standard"`. Defaults to `"pd-standard"`.
-        :param float num_local_ssds: The amount of local SSD disks that will be
+        :param int num_local_ssds: The amount of local SSD disks that will be
                attached to each preemptible worker node. Defaults to 0.
         """
         if boot_disk_size_gb is not None:
@@ -1634,7 +1634,7 @@ class ClusterClusterConfigWorkerConfigDiskConfig(dict):
 
     @property
     @pulumi.getter(name="bootDiskSizeGb")
-    def boot_disk_size_gb(self) -> Optional[float]:
+    def boot_disk_size_gb(self) -> Optional[int]:
         """
         Size of the primary disk attached to each preemptible worker node, specified
         in GB. The smallest allowed disk size is 10GB. GCP will default to a predetermined
@@ -1654,7 +1654,7 @@ class ClusterClusterConfigWorkerConfigDiskConfig(dict):
 
     @property
     @pulumi.getter(name="numLocalSsds")
-    def num_local_ssds(self) -> Optional[float]:
+    def num_local_ssds(self) -> Optional[int]:
         """
         The amount of local SSD disks that will be
         attached to each preemptible worker node. Defaults to 0.
@@ -2255,12 +2255,12 @@ class JobReference(dict):
 @pulumi.output_type
 class JobScheduling(dict):
     def __init__(__self__, *,
-                 max_failures_per_hour: float):
+                 max_failures_per_hour: int):
         pulumi.set(__self__, "max_failures_per_hour", max_failures_per_hour)
 
     @property
     @pulumi.getter(name="maxFailuresPerHour")
-    def max_failures_per_hour(self) -> float:
+    def max_failures_per_hour(self) -> int:
         return pulumi.get(self, "max_failures_per_hour")
 
     def _translate_property(self, prop):

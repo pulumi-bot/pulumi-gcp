@@ -17,11 +17,11 @@ class BackendService(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 affinity_cookie_ttl_sec: Optional[pulumi.Input[float]] = None,
+                 affinity_cookie_ttl_sec: Optional[pulumi.Input[int]] = None,
                  backends: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['BackendServiceBackendArgs']]]]] = None,
                  cdn_policy: Optional[pulumi.Input[pulumi.InputType['BackendServiceCdnPolicyArgs']]] = None,
                  circuit_breakers: Optional[pulumi.Input[pulumi.InputType['BackendServiceCircuitBreakersArgs']]] = None,
-                 connection_draining_timeout_sec: Optional[pulumi.Input[float]] = None,
+                 connection_draining_timeout_sec: Optional[pulumi.Input[int]] = None,
                  consistent_hash: Optional[pulumi.Input[pulumi.InputType['BackendServiceConsistentHashArgs']]] = None,
                  custom_request_headers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
@@ -38,7 +38,7 @@ class BackendService(pulumi.CustomResource):
                  protocol: Optional[pulumi.Input[str]] = None,
                  security_policy: Optional[pulumi.Input[str]] = None,
                  session_affinity: Optional[pulumi.Input[str]] = None,
-                 timeout_sec: Optional[pulumi.Input[float]] = None,
+                 timeout_sec: Optional[pulumi.Input[int]] = None,
                  __props__=None,
                  __name__=None,
                  __opts__=None):
@@ -60,7 +60,7 @@ class BackendService(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[float] affinity_cookie_ttl_sec: Lifetime of cookies in seconds if session_affinity is
+        :param pulumi.Input[int] affinity_cookie_ttl_sec: Lifetime of cookies in seconds if session_affinity is
                GENERATED_COOKIE. If set to 0, the cookie is non-persistent and lasts
                only until the end of the browser session (or equivalent). The
                maximum allowed value for TTL is one day.
@@ -72,7 +72,7 @@ class BackendService(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['BackendServiceCircuitBreakersArgs']] circuit_breakers: Settings controlling the volume of connections to a backend service. This field
                is applicable only when the load_balancing_scheme is set to INTERNAL_SELF_MANAGED.
                Structure is documented below.
-        :param pulumi.Input[float] connection_draining_timeout_sec: Time for which instance will be drained (not accept new
+        :param pulumi.Input[int] connection_draining_timeout_sec: Time for which instance will be drained (not accept new
                connections, but still work to finish started).
         :param pulumi.Input[pulumi.InputType['BackendServiceConsistentHashArgs']] consistent_hash: Consistent Hash-based load balancing can be used to provide soft session
                affinity based on HTTP headers, cookies or other properties. This load balancing
@@ -144,7 +144,7 @@ class BackendService(pulumi.CustomResource):
         :param pulumi.Input[str] session_affinity: Type of session affinity to use. The default is NONE. Session affinity is
                not applicable if the protocol is UDP.
                Possible values are `NONE`, `CLIENT_IP`, `CLIENT_IP_PORT_PROTO`, `CLIENT_IP_PROTO`, `GENERATED_COOKIE`, `HEADER_FIELD`, and `HTTP_COOKIE`.
-        :param pulumi.Input[float] timeout_sec: How many seconds to wait for the backend before considering it a
+        :param pulumi.Input[int] timeout_sec: How many seconds to wait for the backend before considering it a
                failed request. Default is 30 seconds. Valid range is [1, 86400].
         """
         if __name__ is not None:
@@ -199,11 +199,11 @@ class BackendService(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            affinity_cookie_ttl_sec: Optional[pulumi.Input[float]] = None,
+            affinity_cookie_ttl_sec: Optional[pulumi.Input[int]] = None,
             backends: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['BackendServiceBackendArgs']]]]] = None,
             cdn_policy: Optional[pulumi.Input[pulumi.InputType['BackendServiceCdnPolicyArgs']]] = None,
             circuit_breakers: Optional[pulumi.Input[pulumi.InputType['BackendServiceCircuitBreakersArgs']]] = None,
-            connection_draining_timeout_sec: Optional[pulumi.Input[float]] = None,
+            connection_draining_timeout_sec: Optional[pulumi.Input[int]] = None,
             consistent_hash: Optional[pulumi.Input[pulumi.InputType['BackendServiceConsistentHashArgs']]] = None,
             creation_timestamp: Optional[pulumi.Input[str]] = None,
             custom_request_headers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
@@ -223,7 +223,7 @@ class BackendService(pulumi.CustomResource):
             security_policy: Optional[pulumi.Input[str]] = None,
             self_link: Optional[pulumi.Input[str]] = None,
             session_affinity: Optional[pulumi.Input[str]] = None,
-            timeout_sec: Optional[pulumi.Input[float]] = None) -> 'BackendService':
+            timeout_sec: Optional[pulumi.Input[int]] = None) -> 'BackendService':
         """
         Get an existing BackendService resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -231,7 +231,7 @@ class BackendService(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[float] affinity_cookie_ttl_sec: Lifetime of cookies in seconds if session_affinity is
+        :param pulumi.Input[int] affinity_cookie_ttl_sec: Lifetime of cookies in seconds if session_affinity is
                GENERATED_COOKIE. If set to 0, the cookie is non-persistent and lasts
                only until the end of the browser session (or equivalent). The
                maximum allowed value for TTL is one day.
@@ -243,7 +243,7 @@ class BackendService(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['BackendServiceCircuitBreakersArgs']] circuit_breakers: Settings controlling the volume of connections to a backend service. This field
                is applicable only when the load_balancing_scheme is set to INTERNAL_SELF_MANAGED.
                Structure is documented below.
-        :param pulumi.Input[float] connection_draining_timeout_sec: Time for which instance will be drained (not accept new
+        :param pulumi.Input[int] connection_draining_timeout_sec: Time for which instance will be drained (not accept new
                connections, but still work to finish started).
         :param pulumi.Input[pulumi.InputType['BackendServiceConsistentHashArgs']] consistent_hash: Consistent Hash-based load balancing can be used to provide soft session
                affinity based on HTTP headers, cookies or other properties. This load balancing
@@ -318,7 +318,7 @@ class BackendService(pulumi.CustomResource):
         :param pulumi.Input[str] session_affinity: Type of session affinity to use. The default is NONE. Session affinity is
                not applicable if the protocol is UDP.
                Possible values are `NONE`, `CLIENT_IP`, `CLIENT_IP_PORT_PROTO`, `CLIENT_IP_PROTO`, `GENERATED_COOKIE`, `HEADER_FIELD`, and `HTTP_COOKIE`.
-        :param pulumi.Input[float] timeout_sec: How many seconds to wait for the backend before considering it a
+        :param pulumi.Input[int] timeout_sec: How many seconds to wait for the backend before considering it a
                failed request. Default is 30 seconds. Valid range is [1, 86400].
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -354,7 +354,7 @@ class BackendService(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="affinityCookieTtlSec")
-    def affinity_cookie_ttl_sec(self) -> pulumi.Output[Optional[float]]:
+    def affinity_cookie_ttl_sec(self) -> pulumi.Output[Optional[int]]:
         """
         Lifetime of cookies in seconds if session_affinity is
         GENERATED_COOKIE. If set to 0, the cookie is non-persistent and lasts
@@ -394,7 +394,7 @@ class BackendService(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="connectionDrainingTimeoutSec")
-    def connection_draining_timeout_sec(self) -> pulumi.Output[Optional[float]]:
+    def connection_draining_timeout_sec(self) -> pulumi.Output[Optional[int]]:
         """
         Time for which instance will be drained (not accept new
         connections, but still work to finish started).
@@ -609,7 +609,7 @@ class BackendService(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="timeoutSec")
-    def timeout_sec(self) -> pulumi.Output[float]:
+    def timeout_sec(self) -> pulumi.Output[int]:
         """
         How many seconds to wait for the backend before considering it a
         failed request. Default is 30 seconds. Valid range is [1, 86400].

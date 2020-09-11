@@ -45,8 +45,8 @@ class GetInstanceGroupResult:
         if self_link and not isinstance(self_link, str):
             raise TypeError("Expected argument 'self_link' to be a str")
         pulumi.set(__self__, "self_link", self_link)
-        if size and not isinstance(size, float):
-            raise TypeError("Expected argument 'size' to be a float")
+        if size and not isinstance(size, int):
+            raise TypeError("Expected argument 'size' to be a int")
         pulumi.set(__self__, "size", size)
         if zone and not isinstance(zone, str):
             raise TypeError("Expected argument 'zone' to be a str")
@@ -112,7 +112,7 @@ class GetInstanceGroupResult:
 
     @property
     @pulumi.getter
-    def size(self) -> float:
+    def size(self) -> int:
         """
         The number of instances in the group.
         """

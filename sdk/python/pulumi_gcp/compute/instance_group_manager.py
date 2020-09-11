@@ -25,7 +25,7 @@ class InstanceGroupManager(pulumi.CustomResource):
                  project: Optional[pulumi.Input[str]] = None,
                  stateful_disks: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['InstanceGroupManagerStatefulDiskArgs']]]]] = None,
                  target_pools: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 target_size: Optional[pulumi.Input[float]] = None,
+                 target_size: Optional[pulumi.Input[int]] = None,
                  update_policy: Optional[pulumi.Input[pulumi.InputType['InstanceGroupManagerUpdatePolicyArgs']]] = None,
                  versions: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['InstanceGroupManagerVersionArgs']]]]] = None,
                  wait_for_instances: Optional[pulumi.Input[bool]] = None,
@@ -64,7 +64,7 @@ class InstanceGroupManager(pulumi.CustomResource):
         :param pulumi.Input[List[pulumi.Input[str]]] target_pools: The full URL of all target pools to which new
                instances in the group are added. Updating the target pools attribute does
                not affect existing instances.
-        :param pulumi.Input[float] target_size: - The number of instances calculated as a fixed number or a percentage depending on the settings. Structure is documented below.
+        :param pulumi.Input[int] target_size: - The number of instances calculated as a fixed number or a percentage depending on the settings. Structure is documented below.
         :param pulumi.Input[pulumi.InputType['InstanceGroupManagerUpdatePolicyArgs']] update_policy: The update policy for this managed instance group. Structure is documented below. For more information, see the [official documentation](https://cloud.google.com/compute/docs/instance-groups/updating-managed-instance-groups) and [API](https://cloud.google.com/compute/docs/reference/rest/beta/instanceGroupManagers/patch)
         :param pulumi.Input[List[pulumi.Input[pulumi.InputType['InstanceGroupManagerVersionArgs']]]] versions: Application versions managed by this instance group. Each
                version deals with a specific instance template, allowing canary release scenarios.
@@ -135,7 +135,7 @@ class InstanceGroupManager(pulumi.CustomResource):
             self_link: Optional[pulumi.Input[str]] = None,
             stateful_disks: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['InstanceGroupManagerStatefulDiskArgs']]]]] = None,
             target_pools: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-            target_size: Optional[pulumi.Input[float]] = None,
+            target_size: Optional[pulumi.Input[int]] = None,
             update_policy: Optional[pulumi.Input[pulumi.InputType['InstanceGroupManagerUpdatePolicyArgs']]] = None,
             versions: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['InstanceGroupManagerVersionArgs']]]]] = None,
             wait_for_instances: Optional[pulumi.Input[bool]] = None,
@@ -169,7 +169,7 @@ class InstanceGroupManager(pulumi.CustomResource):
         :param pulumi.Input[List[pulumi.Input[str]]] target_pools: The full URL of all target pools to which new
                instances in the group are added. Updating the target pools attribute does
                not affect existing instances.
-        :param pulumi.Input[float] target_size: - The number of instances calculated as a fixed number or a percentage depending on the settings. Structure is documented below.
+        :param pulumi.Input[int] target_size: - The number of instances calculated as a fixed number or a percentage depending on the settings. Structure is documented below.
         :param pulumi.Input[pulumi.InputType['InstanceGroupManagerUpdatePolicyArgs']] update_policy: The update policy for this managed instance group. Structure is documented below. For more information, see the [official documentation](https://cloud.google.com/compute/docs/instance-groups/updating-managed-instance-groups) and [API](https://cloud.google.com/compute/docs/reference/rest/beta/instanceGroupManagers/patch)
         :param pulumi.Input[List[pulumi.Input[pulumi.InputType['InstanceGroupManagerVersionArgs']]]] versions: Application versions managed by this instance group. Each
                version deals with a specific instance template, allowing canary release scenarios.
@@ -309,7 +309,7 @@ class InstanceGroupManager(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="targetSize")
-    def target_size(self) -> pulumi.Output[float]:
+    def target_size(self) -> pulumi.Output[int]:
         """
         - The number of instances calculated as a fixed number or a percentage depending on the settings. Structure is documented below.
         """

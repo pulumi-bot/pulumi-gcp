@@ -28,14 +28,14 @@ class EnvironmentConfigArgs:
                  database_config: Optional[pulumi.Input['EnvironmentConfigDatabaseConfigArgs']] = None,
                  gke_cluster: Optional[pulumi.Input[str]] = None,
                  node_config: Optional[pulumi.Input['EnvironmentConfigNodeConfigArgs']] = None,
-                 node_count: Optional[pulumi.Input[float]] = None,
+                 node_count: Optional[pulumi.Input[int]] = None,
                  private_environment_config: Optional[pulumi.Input['EnvironmentConfigPrivateEnvironmentConfigArgs']] = None,
                  software_config: Optional[pulumi.Input['EnvironmentConfigSoftwareConfigArgs']] = None,
                  web_server_config: Optional[pulumi.Input['EnvironmentConfigWebServerConfigArgs']] = None,
                  web_server_network_access_control: Optional[pulumi.Input['EnvironmentConfigWebServerNetworkAccessControlArgs']] = None):
         """
         :param pulumi.Input['EnvironmentConfigNodeConfigArgs'] node_config: The configuration used for the Kubernetes Engine cluster.  Structure is documented below.
-        :param pulumi.Input[float] node_count: The number of nodes in the Kubernetes Engine cluster that
+        :param pulumi.Input[int] node_count: The number of nodes in the Kubernetes Engine cluster that
                will be used to run this environment.
         :param pulumi.Input['EnvironmentConfigPrivateEnvironmentConfigArgs'] private_environment_config: The configuration used for the Private IP Cloud Composer environment. Structure is documented below.
         :param pulumi.Input['EnvironmentConfigSoftwareConfigArgs'] software_config: The configuration settings for software inside the environment.  Structure is documented below.
@@ -112,7 +112,7 @@ class EnvironmentConfigArgs:
 
     @property
     @pulumi.getter(name="nodeCount")
-    def node_count(self) -> Optional[pulumi.Input[float]]:
+    def node_count(self) -> Optional[pulumi.Input[int]]:
         """
         The number of nodes in the Kubernetes Engine cluster that
         will be used to run this environment.
@@ -120,7 +120,7 @@ class EnvironmentConfigArgs:
         return pulumi.get(self, "node_count")
 
     @node_count.setter
-    def node_count(self, value: Optional[pulumi.Input[float]]):
+    def node_count(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "node_count", value)
 
     @property
@@ -201,7 +201,7 @@ class EnvironmentConfigDatabaseConfigArgs:
 class EnvironmentConfigNodeConfigArgs:
     def __init__(__self__, *,
                  zone: pulumi.Input[str],
-                 disk_size_gb: Optional[pulumi.Input[float]] = None,
+                 disk_size_gb: Optional[pulumi.Input[int]] = None,
                  ip_allocation_policy: Optional[pulumi.Input['EnvironmentConfigNodeConfigIpAllocationPolicyArgs']] = None,
                  machine_type: Optional[pulumi.Input[str]] = None,
                  network: Optional[pulumi.Input[str]] = None,
@@ -214,7 +214,7 @@ class EnvironmentConfigNodeConfigArgs:
                Apache Airflow software, specified as the zone name or
                relative resource name (e.g. "projects/{project}/zones/{zone}"). Must belong to the enclosing environment's project
                and region.
-        :param pulumi.Input[float] disk_size_gb: The disk size in GB used for node VMs. Minimum size is 20GB.
+        :param pulumi.Input[int] disk_size_gb: The disk size in GB used for node VMs. Minimum size is 20GB.
                If unspecified, defaults to 100GB. Cannot be updated.
         :param pulumi.Input['EnvironmentConfigNodeConfigIpAllocationPolicyArgs'] ip_allocation_policy: Configuration for controlling how IPs are allocated in the GKE cluster.
                Structure is documented below.
@@ -278,7 +278,7 @@ class EnvironmentConfigNodeConfigArgs:
 
     @property
     @pulumi.getter(name="diskSizeGb")
-    def disk_size_gb(self) -> Optional[pulumi.Input[float]]:
+    def disk_size_gb(self) -> Optional[pulumi.Input[int]]:
         """
         The disk size in GB used for node VMs. Minimum size is 20GB.
         If unspecified, defaults to 100GB. Cannot be updated.
@@ -286,7 +286,7 @@ class EnvironmentConfigNodeConfigArgs:
         return pulumi.get(self, "disk_size_gb")
 
     @disk_size_gb.setter
-    def disk_size_gb(self, value: Optional[pulumi.Input[float]]):
+    def disk_size_gb(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "disk_size_gb", value)
 
     @property

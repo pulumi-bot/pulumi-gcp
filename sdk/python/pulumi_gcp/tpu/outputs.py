@@ -17,7 +17,7 @@ __all__ = [
 class NodeNetworkEndpoint(dict):
     def __init__(__self__, *,
                  ip_address: Optional[str] = None,
-                 port: Optional[float] = None):
+                 port: Optional[int] = None):
         if ip_address is not None:
             pulumi.set(__self__, "ip_address", ip_address)
         if port is not None:
@@ -30,7 +30,7 @@ class NodeNetworkEndpoint(dict):
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[float]:
+    def port(self) -> Optional[int]:
         return pulumi.get(self, "port")
 
     def _translate_property(self, prop):

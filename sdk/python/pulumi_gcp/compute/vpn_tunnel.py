@@ -16,12 +16,12 @@ class VPNTunnel(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
-                 ike_version: Optional[pulumi.Input[float]] = None,
+                 ike_version: Optional[pulumi.Input[int]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  local_traffic_selectors: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  peer_external_gateway: Optional[pulumi.Input[str]] = None,
-                 peer_external_gateway_interface: Optional[pulumi.Input[float]] = None,
+                 peer_external_gateway_interface: Optional[pulumi.Input[int]] = None,
                  peer_gcp_gateway: Optional[pulumi.Input[str]] = None,
                  peer_ip: Optional[pulumi.Input[str]] = None,
                  project: Optional[pulumi.Input[str]] = None,
@@ -31,7 +31,7 @@ class VPNTunnel(pulumi.CustomResource):
                  shared_secret: Optional[pulumi.Input[str]] = None,
                  target_vpn_gateway: Optional[pulumi.Input[str]] = None,
                  vpn_gateway: Optional[pulumi.Input[str]] = None,
-                 vpn_gateway_interface: Optional[pulumi.Input[float]] = None,
+                 vpn_gateway_interface: Optional[pulumi.Input[int]] = None,
                  __props__=None,
                  __name__=None,
                  __opts__=None):
@@ -53,7 +53,7 @@ class VPNTunnel(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: An optional description of this resource.
-        :param pulumi.Input[float] ike_version: IKE protocol version to use when establishing the VPN tunnel with
+        :param pulumi.Input[int] ike_version: IKE protocol version to use when establishing the VPN tunnel with
                peer VPN gateway.
                Acceptable IKE versions are 1 or 2. Default version is 2.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to apply to this VpnTunnel.
@@ -69,7 +69,7 @@ class VPNTunnel(pulumi.CustomResource):
                be a dash, lowercase letter, or digit,
                except the last character, which cannot be a dash.
         :param pulumi.Input[str] peer_external_gateway: URL of the peer side external VPN gateway to which this VPN tunnel is connected.
-        :param pulumi.Input[float] peer_external_gateway_interface: The interface ID of the external VPN gateway to which this VPN tunnel is connected.
+        :param pulumi.Input[int] peer_external_gateway_interface: The interface ID of the external VPN gateway to which this VPN tunnel is connected.
         :param pulumi.Input[str] peer_gcp_gateway: URL of the peer side HA GCP VPN gateway to which this VPN tunnel is connected.
                If provided, the VPN tunnel will automatically use the same vpn_gateway_interface
                ID in the peer GCP VPN gateway.
@@ -91,7 +91,7 @@ class VPNTunnel(pulumi.CustomResource):
         :param pulumi.Input[str] vpn_gateway: URL of the VPN gateway with which this VPN tunnel is associated.
                This must be used if a High Availability VPN gateway resource is created.
                This field must reference a `compute.HaVpnGateway` resource.
-        :param pulumi.Input[float] vpn_gateway_interface: The interface ID of the VPN gateway with which this VPN tunnel is associated.
+        :param pulumi.Input[int] vpn_gateway_interface: The interface ID of the VPN gateway with which this VPN tunnel is associated.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -148,13 +148,13 @@ class VPNTunnel(pulumi.CustomResource):
             creation_timestamp: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             detailed_status: Optional[pulumi.Input[str]] = None,
-            ike_version: Optional[pulumi.Input[float]] = None,
+            ike_version: Optional[pulumi.Input[int]] = None,
             label_fingerprint: Optional[pulumi.Input[str]] = None,
             labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             local_traffic_selectors: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             peer_external_gateway: Optional[pulumi.Input[str]] = None,
-            peer_external_gateway_interface: Optional[pulumi.Input[float]] = None,
+            peer_external_gateway_interface: Optional[pulumi.Input[int]] = None,
             peer_gcp_gateway: Optional[pulumi.Input[str]] = None,
             peer_ip: Optional[pulumi.Input[str]] = None,
             project: Optional[pulumi.Input[str]] = None,
@@ -167,7 +167,7 @@ class VPNTunnel(pulumi.CustomResource):
             target_vpn_gateway: Optional[pulumi.Input[str]] = None,
             tunnel_id: Optional[pulumi.Input[str]] = None,
             vpn_gateway: Optional[pulumi.Input[str]] = None,
-            vpn_gateway_interface: Optional[pulumi.Input[float]] = None) -> 'VPNTunnel':
+            vpn_gateway_interface: Optional[pulumi.Input[int]] = None) -> 'VPNTunnel':
         """
         Get an existing VPNTunnel resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -178,7 +178,7 @@ class VPNTunnel(pulumi.CustomResource):
         :param pulumi.Input[str] creation_timestamp: Creation timestamp in RFC3339 text format.
         :param pulumi.Input[str] description: An optional description of this resource.
         :param pulumi.Input[str] detailed_status: Detailed status message for the VPN tunnel.
-        :param pulumi.Input[float] ike_version: IKE protocol version to use when establishing the VPN tunnel with
+        :param pulumi.Input[int] ike_version: IKE protocol version to use when establishing the VPN tunnel with
                peer VPN gateway.
                Acceptable IKE versions are 1 or 2. Default version is 2.
         :param pulumi.Input[str] label_fingerprint: The fingerprint used for optimistic locking of this resource. Used internally during updates.
@@ -195,7 +195,7 @@ class VPNTunnel(pulumi.CustomResource):
                be a dash, lowercase letter, or digit,
                except the last character, which cannot be a dash.
         :param pulumi.Input[str] peer_external_gateway: URL of the peer side external VPN gateway to which this VPN tunnel is connected.
-        :param pulumi.Input[float] peer_external_gateway_interface: The interface ID of the external VPN gateway to which this VPN tunnel is connected.
+        :param pulumi.Input[int] peer_external_gateway_interface: The interface ID of the external VPN gateway to which this VPN tunnel is connected.
         :param pulumi.Input[str] peer_gcp_gateway: URL of the peer side HA GCP VPN gateway to which this VPN tunnel is connected.
                If provided, the VPN tunnel will automatically use the same vpn_gateway_interface
                ID in the peer GCP VPN gateway.
@@ -220,7 +220,7 @@ class VPNTunnel(pulumi.CustomResource):
         :param pulumi.Input[str] vpn_gateway: URL of the VPN gateway with which this VPN tunnel is associated.
                This must be used if a High Availability VPN gateway resource is created.
                This field must reference a `compute.HaVpnGateway` resource.
-        :param pulumi.Input[float] vpn_gateway_interface: The interface ID of the VPN gateway with which this VPN tunnel is associated.
+        :param pulumi.Input[int] vpn_gateway_interface: The interface ID of the VPN gateway with which this VPN tunnel is associated.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -277,7 +277,7 @@ class VPNTunnel(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="ikeVersion")
-    def ike_version(self) -> pulumi.Output[Optional[float]]:
+    def ike_version(self) -> pulumi.Output[Optional[int]]:
         """
         IKE protocol version to use when establishing the VPN tunnel with
         peer VPN gateway.
@@ -336,7 +336,7 @@ class VPNTunnel(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="peerExternalGatewayInterface")
-    def peer_external_gateway_interface(self) -> pulumi.Output[Optional[float]]:
+    def peer_external_gateway_interface(self) -> pulumi.Output[Optional[int]]:
         """
         The interface ID of the external VPN gateway to which this VPN tunnel is connected.
         """
@@ -452,7 +452,7 @@ class VPNTunnel(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="vpnGatewayInterface")
-    def vpn_gateway_interface(self) -> pulumi.Output[Optional[float]]:
+    def vpn_gateway_interface(self) -> pulumi.Output[Optional[int]]:
         """
         The interface ID of the VPN gateway with which this VPN tunnel is associated.
         """

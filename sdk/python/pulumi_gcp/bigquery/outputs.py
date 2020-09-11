@@ -961,12 +961,12 @@ class JobLoad(dict):
                  encoding: Optional[str] = None,
                  field_delimiter: Optional[str] = None,
                  ignore_unknown_values: Optional[bool] = None,
-                 max_bad_records: Optional[float] = None,
+                 max_bad_records: Optional[int] = None,
                  null_marker: Optional[str] = None,
                  projection_fields: Optional[List[str]] = None,
                  quote: Optional[str] = None,
                  schema_update_options: Optional[List[str]] = None,
-                 skip_leading_rows: Optional[float] = None,
+                 skip_leading_rows: Optional[int] = None,
                  source_format: Optional[str] = None,
                  time_partitioning: Optional['outputs.JobLoadTimePartitioning'] = None,
                  write_disposition: Optional[str] = None):
@@ -1004,7 +1004,7 @@ class JobLoad(dict):
                The default value is false. The sourceFormat property determines what BigQuery treats as an extra value:
                CSV: Trailing columns
                JSON: Named values that don't match any column names
-        :param float max_bad_records: The maximum number of bad records that BigQuery can ignore when running the job. If the number of bad records exceeds this value,
+        :param int max_bad_records: The maximum number of bad records that BigQuery can ignore when running the job. If the number of bad records exceeds this value,
                an invalid error is returned in the job result. The default value is 0, which requires that all records are valid.
         :param str null_marker: Specifies a string that represents a null value in a CSV file. The default value is the empty string. If you set this
                property to a custom value, BigQuery throws an error if an
@@ -1023,7 +1023,7 @@ class JobLoad(dict):
                For normal tables, WRITE_TRUNCATE will always overwrite the schema. One or more of the following values are specified:
                ALLOW_FIELD_ADDITION: allow adding a nullable field to the schema.
                ALLOW_FIELD_RELAXATION: allow relaxing a required field in the original schema to nullable.
-        :param float skip_leading_rows: The number of rows at the top of a CSV file that BigQuery will skip when loading the data.
+        :param int skip_leading_rows: The number of rows at the top of a CSV file that BigQuery will skip when loading the data.
                The default value is 0. This property is useful if you have header rows in the file that should be skipped.
                When autodetect is on, the behavior is the following:
                skipLeadingRows unspecified - Autodetect tries to detect headers in the first row. If they are not detected,
@@ -1187,7 +1187,7 @@ class JobLoad(dict):
 
     @property
     @pulumi.getter(name="maxBadRecords")
-    def max_bad_records(self) -> Optional[float]:
+    def max_bad_records(self) -> Optional[int]:
         """
         The maximum number of bad records that BigQuery can ignore when running the job. If the number of bad records exceeds this value,
         an invalid error is returned in the job result. The default value is 0, which requires that all records are valid.
@@ -1241,7 +1241,7 @@ class JobLoad(dict):
 
     @property
     @pulumi.getter(name="skipLeadingRows")
-    def skip_leading_rows(self) -> Optional[float]:
+    def skip_leading_rows(self) -> Optional[int]:
         """
         The number of rows at the top of a CSV file that BigQuery will skip when loading the data.
         The default value is 0. This property is useful if you have header rows in the file that should be skipped.
@@ -1423,7 +1423,7 @@ class JobQuery(dict):
                  destination_encryption_configuration: Optional['outputs.JobQueryDestinationEncryptionConfiguration'] = None,
                  destination_table: Optional['outputs.JobQueryDestinationTable'] = None,
                  flatten_results: Optional[bool] = None,
-                 maximum_billing_tier: Optional[float] = None,
+                 maximum_billing_tier: Optional[int] = None,
                  maximum_bytes_billed: Optional[str] = None,
                  parameter_mode: Optional[str] = None,
                  priority: Optional[str] = None,
@@ -1453,7 +1453,7 @@ class JobQuery(dict):
                Structure is documented below.
         :param bool flatten_results: If true and query uses legacy SQL dialect, flattens all nested and repeated fields in the query results.
                allowLargeResults must be true if this is set to false. For standard SQL queries, this flag is ignored and results are never flattened.
-        :param float maximum_billing_tier: Limits the billing tier for this job. Queries that have resource usage beyond this tier will fail (without incurring a charge).
+        :param int maximum_billing_tier: Limits the billing tier for this job. Queries that have resource usage beyond this tier will fail (without incurring a charge).
                If unspecified, this will be set to your project default.
         :param str maximum_bytes_billed: Limits the bytes billed for this job. Queries that will have bytes billed beyond this limit will fail (without incurring a charge).
                If unspecified, this will be set to your project default.
@@ -1589,7 +1589,7 @@ class JobQuery(dict):
 
     @property
     @pulumi.getter(name="maximumBillingTier")
-    def maximum_billing_tier(self) -> Optional[float]:
+    def maximum_billing_tier(self) -> Optional[int]:
         """
         Limits the billing tier for this job. Queries that have resource usage beyond this tier will fail (without incurring a charge).
         If unspecified, this will be set to your project default.
@@ -1921,7 +1921,7 @@ class TableExternalDataConfiguration(dict):
                  google_sheets_options: Optional['outputs.TableExternalDataConfigurationGoogleSheetsOptions'] = None,
                  hive_partitioning_options: Optional['outputs.TableExternalDataConfigurationHivePartitioningOptions'] = None,
                  ignore_unknown_values: Optional[bool] = None,
-                 max_bad_records: Optional[float] = None,
+                 max_bad_records: Optional[int] = None,
                  schema: Optional[str] = None):
         """
         :param bool autodetect: - Let BigQuery try to autodetect the schema
@@ -1950,7 +1950,7 @@ class TableExternalDataConfiguration(dict):
                extra columns are treated as bad records, and if there are too
                many bad records, an invalid error is returned in the job result.
                The default value is false.
-        :param float max_bad_records: The maximum number of bad records that
+        :param int max_bad_records: The maximum number of bad records that
                BigQuery can ignore when reading data.
         :param str schema: A JSON schema for the external table. Schema is required
                for CSV and JSON formats if autodetect is not on. Schema is disallowed
@@ -2066,7 +2066,7 @@ class TableExternalDataConfiguration(dict):
 
     @property
     @pulumi.getter(name="maxBadRecords")
-    def max_bad_records(self) -> Optional[float]:
+    def max_bad_records(self) -> Optional[int]:
         """
         The maximum number of bad records that
         BigQuery can ignore when reading data.
@@ -2103,7 +2103,7 @@ class TableExternalDataConfigurationCsvOptions(dict):
                  allow_quoted_newlines: Optional[bool] = None,
                  encoding: Optional[str] = None,
                  field_delimiter: Optional[str] = None,
-                 skip_leading_rows: Optional[float] = None):
+                 skip_leading_rows: Optional[int] = None):
         """
         :param str quote: The value that is used to quote data sections in a
                CSV file. If your data does not contain quoted sections, set the
@@ -2120,7 +2120,7 @@ class TableExternalDataConfigurationCsvOptions(dict):
         :param str encoding: The character encoding of the data. The supported
                values are UTF-8 or ISO-8859-1.
         :param str field_delimiter: The separator for fields in a CSV file.
-        :param float skip_leading_rows: The number of rows at the top of the sheet
+        :param int skip_leading_rows: The number of rows at the top of the sheet
                that BigQuery will skip when reading the data. At least one of `range` or
                `skip_leading_rows` must be set.
         """
@@ -2188,7 +2188,7 @@ class TableExternalDataConfigurationCsvOptions(dict):
 
     @property
     @pulumi.getter(name="skipLeadingRows")
-    def skip_leading_rows(self) -> Optional[float]:
+    def skip_leading_rows(self) -> Optional[int]:
         """
         The number of rows at the top of the sheet
         that BigQuery will skip when reading the data. At least one of `range` or
@@ -2204,11 +2204,11 @@ class TableExternalDataConfigurationCsvOptions(dict):
 class TableExternalDataConfigurationGoogleSheetsOptions(dict):
     def __init__(__self__, *,
                  range: Optional[str] = None,
-                 skip_leading_rows: Optional[float] = None):
+                 skip_leading_rows: Optional[int] = None):
         """
         :param str range: Information required to partition based on ranges.
                Structure is documented below.
-        :param float skip_leading_rows: The number of rows at the top of the sheet
+        :param int skip_leading_rows: The number of rows at the top of the sheet
                that BigQuery will skip when reading the data. At least one of `range` or
                `skip_leading_rows` must be set.
         """
@@ -2228,7 +2228,7 @@ class TableExternalDataConfigurationGoogleSheetsOptions(dict):
 
     @property
     @pulumi.getter(name="skipLeadingRows")
-    def skip_leading_rows(self) -> Optional[float]:
+    def skip_leading_rows(self) -> Optional[int]:
         """
         The number of rows at the top of the sheet
         that BigQuery will skip when reading the data. At least one of `range` or
@@ -2341,13 +2341,13 @@ class TableRangePartitioning(dict):
 @pulumi.output_type
 class TableRangePartitioningRange(dict):
     def __init__(__self__, *,
-                 end: float,
-                 interval: float,
-                 start: float):
+                 end: int,
+                 interval: int,
+                 start: int):
         """
-        :param float end: End of the range partitioning, exclusive.
-        :param float interval: The width of each range within the partition.
-        :param float start: Start of the range partitioning, inclusive.
+        :param int end: End of the range partitioning, exclusive.
+        :param int interval: The width of each range within the partition.
+        :param int start: Start of the range partitioning, inclusive.
         """
         pulumi.set(__self__, "end", end)
         pulumi.set(__self__, "interval", interval)
@@ -2355,7 +2355,7 @@ class TableRangePartitioningRange(dict):
 
     @property
     @pulumi.getter
-    def end(self) -> float:
+    def end(self) -> int:
         """
         End of the range partitioning, exclusive.
         """
@@ -2363,7 +2363,7 @@ class TableRangePartitioningRange(dict):
 
     @property
     @pulumi.getter
-    def interval(self) -> float:
+    def interval(self) -> int:
         """
         The width of each range within the partition.
         """
@@ -2371,7 +2371,7 @@ class TableRangePartitioningRange(dict):
 
     @property
     @pulumi.getter
-    def start(self) -> float:
+    def start(self) -> int:
         """
         Start of the range partitioning, inclusive.
         """
@@ -2385,13 +2385,13 @@ class TableRangePartitioningRange(dict):
 class TableTimePartitioning(dict):
     def __init__(__self__, *,
                  type: str,
-                 expiration_ms: Optional[float] = None,
+                 expiration_ms: Optional[int] = None,
                  field: Optional[str] = None,
                  require_partition_filter: Optional[bool] = None):
         """
         :param str type: The only type supported is DAY, which will generate
                one partition per day based on data loading time.
-        :param float expiration_ms: Number of milliseconds for which to keep the
+        :param int expiration_ms: Number of milliseconds for which to keep the
                storage for a partition.
         :param str field: The field used to determine how to create a range-based
                partition.
@@ -2418,7 +2418,7 @@ class TableTimePartitioning(dict):
 
     @property
     @pulumi.getter(name="expirationMs")
-    def expiration_ms(self) -> Optional[float]:
+    def expiration_ms(self) -> Optional[int]:
         """
         Number of milliseconds for which to keep the
         storage for a partition.

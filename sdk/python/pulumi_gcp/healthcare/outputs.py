@@ -354,10 +354,10 @@ class FhirStoreStreamConfigBigqueryDestination(dict):
 @pulumi.output_type
 class FhirStoreStreamConfigBigqueryDestinationSchemaConfig(dict):
     def __init__(__self__, *,
-                 recursive_structure_depth: float,
+                 recursive_structure_depth: int,
                  schema_type: Optional[str] = None):
         """
-        :param float recursive_structure_depth: The depth for all recursive structures in the output analytics schema. For example, concept in the CodeSystem
+        :param int recursive_structure_depth: The depth for all recursive structures in the output analytics schema. For example, concept in the CodeSystem
                resource is a recursive structure; when the depth is 2, the CodeSystem table will have a column called
                concept.concept but not concept.concept.concept. If not specified or set to 0, the server will use the default
                value 2. The maximum depth allowed is 5.
@@ -373,7 +373,7 @@ class FhirStoreStreamConfigBigqueryDestinationSchemaConfig(dict):
 
     @property
     @pulumi.getter(name="recursiveStructureDepth")
-    def recursive_structure_depth(self) -> float:
+    def recursive_structure_depth(self) -> int:
         """
         The depth for all recursive structures in the output analytics schema. For example, concept in the CodeSystem
         resource is a recursive structure; when the depth is 2, the CodeSystem table will have a column called

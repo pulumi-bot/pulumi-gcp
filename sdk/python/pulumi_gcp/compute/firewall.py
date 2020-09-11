@@ -27,7 +27,7 @@ class Firewall(pulumi.CustomResource):
                  log_config: Optional[pulumi.Input[pulumi.InputType['FirewallLogConfigArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  network: Optional[pulumi.Input[str]] = None,
-                 priority: Optional[pulumi.Input[float]] = None,
+                 priority: Optional[pulumi.Input[int]] = None,
                  project: Optional[pulumi.Input[str]] = None,
                  source_ranges: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
                  source_service_accounts: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
@@ -95,7 +95,7 @@ class Firewall(pulumi.CustomResource):
                characters must be a dash, lowercase letter, or digit, except the last
                character, which cannot be a dash.
         :param pulumi.Input[str] network: The name or self_link of the network to attach this firewall to.
-        :param pulumi.Input[float] priority: Priority for this rule. This is an integer between 0 and 65535, both
+        :param pulumi.Input[int] priority: Priority for this rule. This is an integer between 0 and 65535, both
                inclusive. When not specified, the value assumed is 1000. Relative
                priorities determine precedence of conflicting rules. Lower value of
                priority implies higher precedence (eg, a rule with priority 0 has
@@ -204,7 +204,7 @@ class Firewall(pulumi.CustomResource):
             log_config: Optional[pulumi.Input[pulumi.InputType['FirewallLogConfigArgs']]] = None,
             name: Optional[pulumi.Input[str]] = None,
             network: Optional[pulumi.Input[str]] = None,
-            priority: Optional[pulumi.Input[float]] = None,
+            priority: Optional[pulumi.Input[int]] = None,
             project: Optional[pulumi.Input[str]] = None,
             self_link: Optional[pulumi.Input[str]] = None,
             source_ranges: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
@@ -254,7 +254,7 @@ class Firewall(pulumi.CustomResource):
                characters must be a dash, lowercase letter, or digit, except the last
                character, which cannot be a dash.
         :param pulumi.Input[str] network: The name or self_link of the network to attach this firewall to.
-        :param pulumi.Input[float] priority: Priority for this rule. This is an integer between 0 and 65535, both
+        :param pulumi.Input[int] priority: Priority for this rule. This is an integer between 0 and 65535, both
                inclusive. When not specified, the value assumed is 1000. Relative
                priorities determine precedence of conflicting rules. Lower value of
                priority implies higher precedence (eg, a rule with priority 0 has
@@ -441,7 +441,7 @@ class Firewall(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def priority(self) -> pulumi.Output[Optional[float]]:
+    def priority(self) -> pulumi.Output[Optional[int]]:
         """
         Priority for this rule. This is an integer between 0 and 65535, both
         inclusive. When not specified, the value assumed is 1000. Relative

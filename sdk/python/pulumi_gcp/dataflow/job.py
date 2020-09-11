@@ -19,7 +19,7 @@ class Job(pulumi.CustomResource):
                  ip_configuration: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  machine_type: Optional[pulumi.Input[str]] = None,
-                 max_workers: Optional[pulumi.Input[float]] = None,
+                 max_workers: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  network: Optional[pulumi.Input[str]] = None,
                  on_delete: Optional[pulumi.Input[str]] = None,
@@ -56,7 +56,7 @@ class Job(pulumi.CustomResource):
                **NOTE**: Google-provided Dataflow templates often provide default labels that begin with `goog-dataflow-provided`.
                Unless explicitly set in config, these labels will be ignored to prevent diffs on re-apply.
         :param pulumi.Input[str] machine_type: The machine type to use for the job.
-        :param pulumi.Input[float] max_workers: The number of workers permitted to work on the job.  More workers may improve processing speed at additional cost.
+        :param pulumi.Input[int] max_workers: The number of workers permitted to work on the job.  More workers may improve processing speed at additional cost.
         :param pulumi.Input[str] name: A unique name for the resource, required by Dataflow.
         :param pulumi.Input[str] network: The network to which VMs will be assigned. If it is not provided, "default" will be used.
         :param pulumi.Input[str] on_delete: One of "drain" or "cancel".  Specifies behavior of deletion during `pulumi destroy`.  See above note.
@@ -124,7 +124,7 @@ class Job(pulumi.CustomResource):
             job_id: Optional[pulumi.Input[str]] = None,
             labels: Optional[pulumi.Input[Mapping[str, Any]]] = None,
             machine_type: Optional[pulumi.Input[str]] = None,
-            max_workers: Optional[pulumi.Input[float]] = None,
+            max_workers: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
             network: Optional[pulumi.Input[str]] = None,
             on_delete: Optional[pulumi.Input[str]] = None,
@@ -153,7 +153,7 @@ class Job(pulumi.CustomResource):
                **NOTE**: Google-provided Dataflow templates often provide default labels that begin with `goog-dataflow-provided`.
                Unless explicitly set in config, these labels will be ignored to prevent diffs on re-apply.
         :param pulumi.Input[str] machine_type: The machine type to use for the job.
-        :param pulumi.Input[float] max_workers: The number of workers permitted to work on the job.  More workers may improve processing speed at additional cost.
+        :param pulumi.Input[int] max_workers: The number of workers permitted to work on the job.  More workers may improve processing speed at additional cost.
         :param pulumi.Input[str] name: A unique name for the resource, required by Dataflow.
         :param pulumi.Input[str] network: The network to which VMs will be assigned. If it is not provided, "default" will be used.
         :param pulumi.Input[str] on_delete: One of "drain" or "cancel".  Specifies behavior of deletion during `pulumi destroy`.  See above note.
@@ -238,7 +238,7 @@ class Job(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="maxWorkers")
-    def max_workers(self) -> pulumi.Output[Optional[float]]:
+    def max_workers(self) -> pulumi.Output[Optional[int]]:
         """
         The number of workers permitted to work on the job.  More workers may improve processing speed at additional cost.
         """

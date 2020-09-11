@@ -490,10 +490,10 @@ class AlertPolicyConditionConditionAbsentAggregation(dict):
 @pulumi.output_type
 class AlertPolicyConditionConditionAbsentTrigger(dict):
     def __init__(__self__, *,
-                 count: Optional[float] = None,
+                 count: Optional[int] = None,
                  percent: Optional[float] = None):
         """
-        :param float count: The absolute number of time series
+        :param int count: The absolute number of time series
                that must fail the predicate for the
                condition to be triggered.
         :param float percent: The percentage of time series that
@@ -507,7 +507,7 @@ class AlertPolicyConditionConditionAbsentTrigger(dict):
 
     @property
     @pulumi.getter
-    def count(self) -> Optional[float]:
+    def count(self) -> Optional[int]:
         """
         The absolute number of time series
         that must fail the predicate for the
@@ -1206,10 +1206,10 @@ class AlertPolicyConditionConditionThresholdDenominatorAggregation(dict):
 @pulumi.output_type
 class AlertPolicyConditionConditionThresholdTrigger(dict):
     def __init__(__self__, *,
-                 count: Optional[float] = None,
+                 count: Optional[int] = None,
                  percent: Optional[float] = None):
         """
-        :param float count: The absolute number of time series
+        :param int count: The absolute number of time series
                that must fail the predicate for the
                condition to be triggered.
         :param float percent: The percentage of time series that
@@ -1223,7 +1223,7 @@ class AlertPolicyConditionConditionThresholdTrigger(dict):
 
     @property
     @pulumi.getter
-    def count(self) -> Optional[float]:
+    def count(self) -> Optional[int]:
         """
         The absolute number of time series
         that must fail the predicate for the
@@ -1693,13 +1693,13 @@ class SloRequestBasedSliDistributionCut(dict):
 @pulumi.output_type
 class SloRequestBasedSliDistributionCutRange(dict):
     def __init__(__self__, *,
-                 max: Optional[float] = None,
-                 min: Optional[float] = None):
+                 max: Optional[int] = None,
+                 min: Optional[int] = None):
         """
-        :param float max: max value for the range (inclusive). If not given,
+        :param int max: max value for the range (inclusive). If not given,
                will be set to "infinity", defining an open range
                ">= range.min"
-        :param float min: Min value for the range (inclusive). If not given,
+        :param int min: Min value for the range (inclusive). If not given,
                will be set to "-infinity", defining an open range
                "< range.max"
         """
@@ -1710,7 +1710,7 @@ class SloRequestBasedSliDistributionCutRange(dict):
 
     @property
     @pulumi.getter
-    def max(self) -> Optional[float]:
+    def max(self) -> Optional[int]:
         """
         max value for the range (inclusive). If not given,
         will be set to "infinity", defining an open range
@@ -1720,7 +1720,7 @@ class SloRequestBasedSliDistributionCutRange(dict):
 
     @property
     @pulumi.getter
-    def min(self) -> Optional[float]:
+    def min(self) -> Optional[int]:
         """
         Min value for the range (inclusive). If not given,
         will be set to "-infinity", defining an open range
@@ -2205,13 +2205,13 @@ class SloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCut(dict):
 @pulumi.output_type
 class SloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCutRange(dict):
     def __init__(__self__, *,
-                 max: Optional[float] = None,
-                 min: Optional[float] = None):
+                 max: Optional[int] = None,
+                 min: Optional[int] = None):
         """
-        :param float max: max value for the range (inclusive). If not given,
+        :param int max: max value for the range (inclusive). If not given,
                will be set to "infinity", defining an open range
                ">= range.min"
-        :param float min: Min value for the range (inclusive). If not given,
+        :param int min: Min value for the range (inclusive). If not given,
                will be set to "-infinity", defining an open range
                "< range.max"
         """
@@ -2222,7 +2222,7 @@ class SloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCutRange(d
 
     @property
     @pulumi.getter
-    def max(self) -> Optional[float]:
+    def max(self) -> Optional[int]:
         """
         max value for the range (inclusive). If not given,
         will be set to "infinity", defining an open range
@@ -2232,7 +2232,7 @@ class SloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCutRange(d
 
     @property
     @pulumi.getter
-    def min(self) -> Optional[float]:
+    def min(self) -> Optional[int]:
         """
         Min value for the range (inclusive). If not given,
         will be set to "-infinity", defining an open range
@@ -2383,13 +2383,13 @@ class SloWindowsBasedSliMetricMeanInRange(dict):
 @pulumi.output_type
 class SloWindowsBasedSliMetricMeanInRangeRange(dict):
     def __init__(__self__, *,
-                 max: Optional[float] = None,
-                 min: Optional[float] = None):
+                 max: Optional[int] = None,
+                 min: Optional[int] = None):
         """
-        :param float max: max value for the range (inclusive). If not given,
+        :param int max: max value for the range (inclusive). If not given,
                will be set to "infinity", defining an open range
                ">= range.min"
-        :param float min: Min value for the range (inclusive). If not given,
+        :param int min: Min value for the range (inclusive). If not given,
                will be set to "-infinity", defining an open range
                "< range.max"
         """
@@ -2400,7 +2400,7 @@ class SloWindowsBasedSliMetricMeanInRangeRange(dict):
 
     @property
     @pulumi.getter
-    def max(self) -> Optional[float]:
+    def max(self) -> Optional[int]:
         """
         max value for the range (inclusive). If not given,
         will be set to "infinity", defining an open range
@@ -2410,7 +2410,7 @@ class SloWindowsBasedSliMetricMeanInRangeRange(dict):
 
     @property
     @pulumi.getter
-    def min(self) -> Optional[float]:
+    def min(self) -> Optional[int]:
         """
         Min value for the range (inclusive). If not given,
         will be set to "-infinity", defining an open range
@@ -2481,13 +2481,13 @@ class SloWindowsBasedSliMetricSumInRange(dict):
 @pulumi.output_type
 class SloWindowsBasedSliMetricSumInRangeRange(dict):
     def __init__(__self__, *,
-                 max: Optional[float] = None,
-                 min: Optional[float] = None):
+                 max: Optional[int] = None,
+                 min: Optional[int] = None):
         """
-        :param float max: max value for the range (inclusive). If not given,
+        :param int max: max value for the range (inclusive). If not given,
                will be set to "infinity", defining an open range
                ">= range.min"
-        :param float min: Min value for the range (inclusive). If not given,
+        :param int min: Min value for the range (inclusive). If not given,
                will be set to "-infinity", defining an open range
                "< range.max"
         """
@@ -2498,7 +2498,7 @@ class SloWindowsBasedSliMetricSumInRangeRange(dict):
 
     @property
     @pulumi.getter
-    def max(self) -> Optional[float]:
+    def max(self) -> Optional[int]:
         """
         max value for the range (inclusive). If not given,
         will be set to "infinity", defining an open range
@@ -2508,7 +2508,7 @@ class SloWindowsBasedSliMetricSumInRangeRange(dict):
 
     @property
     @pulumi.getter
-    def min(self) -> Optional[float]:
+    def min(self) -> Optional[int]:
         """
         Min value for the range (inclusive). If not given,
         will be set to "-infinity", defining an open range
@@ -2566,7 +2566,7 @@ class UptimeCheckConfigHttpCheck(dict):
                  headers: Optional[Mapping[str, str]] = None,
                  mask_headers: Optional[bool] = None,
                  path: Optional[str] = None,
-                 port: Optional[float] = None,
+                 port: Optional[int] = None,
                  request_method: Optional[str] = None,
                  use_ssl: Optional[bool] = None,
                  validate_ssl: Optional[bool] = None):
@@ -2579,7 +2579,7 @@ class UptimeCheckConfigHttpCheck(dict):
         :param Mapping[str, str] headers: The list of headers to send as part of the uptime check request. If two headers have the same key and different values, they should be entered as a single header, with the value being a comma-separated list of all the desired values as described at https://www.w3.org/Protocols/rfc2616/rfc2616.txt (page 31). Entering two separate headers with the same key in a Create call will cause the first to be overwritten by the second. The maximum number of headers allowed is 100.
         :param bool mask_headers: Boolean specifying whether to encrypt the header information. Encryption should be specified for any headers related to authentication that you do not wish to be seen when retrieving the configuration. The server will be responsible for encrypting the headers. On Get/List calls, if mask_headers is set to True then the headers will be obscured with ******.
         :param str path: The path to the page to run the check against. Will be combined with the host (specified within the MonitoredResource) and port to construct the full URL. Optional (defaults to "/").
-        :param float port: The port to the page to run the check against. Will be combined with host (specified within the MonitoredResource) to construct the full URL.
+        :param int port: The port to the page to run the check against. Will be combined with host (specified within the MonitoredResource) to construct the full URL.
         :param str request_method: The HTTP request method to use for the check. If set to METHOD_UNSPECIFIED then requestMethod defaults to GET.
                Default value is `GET`.
                Possible values are `METHOD_UNSPECIFIED`, `GET`, and `POST`.
@@ -2659,7 +2659,7 @@ class UptimeCheckConfigHttpCheck(dict):
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[float]:
+    def port(self) -> Optional[int]:
         """
         The port to the page to run the check against. Will be combined with host (specified within the MonitoredResource) to construct the full URL.
         """
@@ -2800,15 +2800,15 @@ class UptimeCheckConfigResourceGroup(dict):
 @pulumi.output_type
 class UptimeCheckConfigTcpCheck(dict):
     def __init__(__self__, *,
-                 port: float):
+                 port: int):
         """
-        :param float port: The port to the page to run the check against. Will be combined with host (specified within the MonitoredResource) to construct the full URL.
+        :param int port: The port to the page to run the check against. Will be combined with host (specified within the MonitoredResource) to construct the full URL.
         """
         pulumi.set(__self__, "port", port)
 
     @property
     @pulumi.getter
-    def port(self) -> float:
+    def port(self) -> int:
         """
         The port to the page to run the check against. Will be combined with host (specified within the MonitoredResource) to construct the full URL.
         """

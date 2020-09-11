@@ -363,24 +363,24 @@ __all__ = [
 @pulumi.output_type
 class AutoscalarAutoscalingPolicy(dict):
     def __init__(__self__, *,
-                 max_replicas: float,
-                 min_replicas: float,
-                 cooldown_period: Optional[float] = None,
+                 max_replicas: int,
+                 min_replicas: int,
+                 cooldown_period: Optional[int] = None,
                  cpu_utilization: Optional['outputs.AutoscalarAutoscalingPolicyCpuUtilization'] = None,
                  load_balancing_utilization: Optional['outputs.AutoscalarAutoscalingPolicyLoadBalancingUtilization'] = None,
                  metrics: Optional[List['outputs.AutoscalarAutoscalingPolicyMetric']] = None,
                  mode: Optional[str] = None,
                  scale_down_control: Optional['outputs.AutoscalarAutoscalingPolicyScaleDownControl'] = None):
         """
-        :param float max_replicas: The maximum number of instances that the autoscaler can scale up
+        :param int max_replicas: The maximum number of instances that the autoscaler can scale up
                to. This is required when creating or updating an autoscaler. The
                maximum number of replicas should not be lower than minimal number
                of replicas.
-        :param float min_replicas: The minimum number of replicas that the autoscaler can scale down
+        :param int min_replicas: The minimum number of replicas that the autoscaler can scale down
                to. This cannot be less than 0. If not provided, autoscaler will
                choose a default value depending on maximum number of instances
                allowed.
-        :param float cooldown_period: The number of seconds that the autoscaler should wait before it
+        :param int cooldown_period: The number of seconds that the autoscaler should wait before it
                starts collecting information from a new instance. This prevents
                the autoscaler from collecting information when the instance is
                initializing, during which the collected usage would not be
@@ -418,7 +418,7 @@ class AutoscalarAutoscalingPolicy(dict):
 
     @property
     @pulumi.getter(name="maxReplicas")
-    def max_replicas(self) -> float:
+    def max_replicas(self) -> int:
         """
         The maximum number of instances that the autoscaler can scale up
         to. This is required when creating or updating an autoscaler. The
@@ -429,7 +429,7 @@ class AutoscalarAutoscalingPolicy(dict):
 
     @property
     @pulumi.getter(name="minReplicas")
-    def min_replicas(self) -> float:
+    def min_replicas(self) -> int:
         """
         The minimum number of replicas that the autoscaler can scale down
         to. This cannot be less than 0. If not provided, autoscaler will
@@ -440,7 +440,7 @@ class AutoscalarAutoscalingPolicy(dict):
 
     @property
     @pulumi.getter(name="cooldownPeriod")
-    def cooldown_period(self) -> Optional[float]:
+    def cooldown_period(self) -> Optional[int]:
         """
         The number of seconds that the autoscaler should wait before it
         starts collecting information from a new instance. This prevents
@@ -715,11 +715,11 @@ class AutoscalarAutoscalingPolicyMetric(dict):
 class AutoscalarAutoscalingPolicyScaleDownControl(dict):
     def __init__(__self__, *,
                  max_scaled_down_replicas: Optional['outputs.AutoscalarAutoscalingPolicyScaleDownControlMaxScaledDownReplicas'] = None,
-                 time_window_sec: Optional[float] = None):
+                 time_window_sec: Optional[int] = None):
         """
         :param 'AutoscalarAutoscalingPolicyScaleDownControlMaxScaledDownReplicasArgs' max_scaled_down_replicas: A nested object resource
                Structure is documented below.
-        :param float time_window_sec: How long back autoscaling should look when computing recommendations
+        :param int time_window_sec: How long back autoscaling should look when computing recommendations
                to include directives regarding slower scale down, as described above.
         """
         if max_scaled_down_replicas is not None:
@@ -738,7 +738,7 @@ class AutoscalarAutoscalingPolicyScaleDownControl(dict):
 
     @property
     @pulumi.getter(name="timeWindowSec")
-    def time_window_sec(self) -> Optional[float]:
+    def time_window_sec(self) -> Optional[int]:
         """
         How long back autoscaling should look when computing recommendations
         to include directives regarding slower scale down, as described above.
@@ -752,12 +752,12 @@ class AutoscalarAutoscalingPolicyScaleDownControl(dict):
 @pulumi.output_type
 class AutoscalarAutoscalingPolicyScaleDownControlMaxScaledDownReplicas(dict):
     def __init__(__self__, *,
-                 fixed: Optional[float] = None,
-                 percent: Optional[float] = None):
+                 fixed: Optional[int] = None,
+                 percent: Optional[int] = None):
         """
-        :param float fixed: Specifies a fixed number of VM instances. This must be a positive
+        :param int fixed: Specifies a fixed number of VM instances. This must be a positive
                integer.
-        :param float percent: Specifies a percentage of instances between 0 to 100%, inclusive.
+        :param int percent: Specifies a percentage of instances between 0 to 100%, inclusive.
                For example, specify 80 for 80%.
         """
         if fixed is not None:
@@ -767,7 +767,7 @@ class AutoscalarAutoscalingPolicyScaleDownControlMaxScaledDownReplicas(dict):
 
     @property
     @pulumi.getter
-    def fixed(self) -> Optional[float]:
+    def fixed(self) -> Optional[int]:
         """
         Specifies a fixed number of VM instances. This must be a positive
         integer.
@@ -776,7 +776,7 @@ class AutoscalarAutoscalingPolicyScaleDownControlMaxScaledDownReplicas(dict):
 
     @property
     @pulumi.getter
-    def percent(self) -> Optional[float]:
+    def percent(self) -> Optional[int]:
         """
         Specifies a percentage of instances between 0 to 100%, inclusive.
         For example, specify 80 for 80%.
@@ -790,24 +790,24 @@ class AutoscalarAutoscalingPolicyScaleDownControlMaxScaledDownReplicas(dict):
 @pulumi.output_type
 class AutoscalerAutoscalingPolicy(dict):
     def __init__(__self__, *,
-                 max_replicas: float,
-                 min_replicas: float,
-                 cooldown_period: Optional[float] = None,
+                 max_replicas: int,
+                 min_replicas: int,
+                 cooldown_period: Optional[int] = None,
                  cpu_utilization: Optional['outputs.AutoscalerAutoscalingPolicyCpuUtilization'] = None,
                  load_balancing_utilization: Optional['outputs.AutoscalerAutoscalingPolicyLoadBalancingUtilization'] = None,
                  metrics: Optional[List['outputs.AutoscalerAutoscalingPolicyMetric']] = None,
                  mode: Optional[str] = None,
                  scale_down_control: Optional['outputs.AutoscalerAutoscalingPolicyScaleDownControl'] = None):
         """
-        :param float max_replicas: The maximum number of instances that the autoscaler can scale up
+        :param int max_replicas: The maximum number of instances that the autoscaler can scale up
                to. This is required when creating or updating an autoscaler. The
                maximum number of replicas should not be lower than minimal number
                of replicas.
-        :param float min_replicas: The minimum number of replicas that the autoscaler can scale down
+        :param int min_replicas: The minimum number of replicas that the autoscaler can scale down
                to. This cannot be less than 0. If not provided, autoscaler will
                choose a default value depending on maximum number of instances
                allowed.
-        :param float cooldown_period: The number of seconds that the autoscaler should wait before it
+        :param int cooldown_period: The number of seconds that the autoscaler should wait before it
                starts collecting information from a new instance. This prevents
                the autoscaler from collecting information when the instance is
                initializing, during which the collected usage would not be
@@ -845,7 +845,7 @@ class AutoscalerAutoscalingPolicy(dict):
 
     @property
     @pulumi.getter(name="maxReplicas")
-    def max_replicas(self) -> float:
+    def max_replicas(self) -> int:
         """
         The maximum number of instances that the autoscaler can scale up
         to. This is required when creating or updating an autoscaler. The
@@ -856,7 +856,7 @@ class AutoscalerAutoscalingPolicy(dict):
 
     @property
     @pulumi.getter(name="minReplicas")
-    def min_replicas(self) -> float:
+    def min_replicas(self) -> int:
         """
         The minimum number of replicas that the autoscaler can scale down
         to. This cannot be less than 0. If not provided, autoscaler will
@@ -867,7 +867,7 @@ class AutoscalerAutoscalingPolicy(dict):
 
     @property
     @pulumi.getter(name="cooldownPeriod")
-    def cooldown_period(self) -> Optional[float]:
+    def cooldown_period(self) -> Optional[int]:
         """
         The number of seconds that the autoscaler should wait before it
         starts collecting information from a new instance. This prevents
@@ -1142,11 +1142,11 @@ class AutoscalerAutoscalingPolicyMetric(dict):
 class AutoscalerAutoscalingPolicyScaleDownControl(dict):
     def __init__(__self__, *,
                  max_scaled_down_replicas: Optional['outputs.AutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicas'] = None,
-                 time_window_sec: Optional[float] = None):
+                 time_window_sec: Optional[int] = None):
         """
         :param 'AutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasArgs' max_scaled_down_replicas: A nested object resource
                Structure is documented below.
-        :param float time_window_sec: How long back autoscaling should look when computing recommendations
+        :param int time_window_sec: How long back autoscaling should look when computing recommendations
                to include directives regarding slower scale down, as described above.
         """
         if max_scaled_down_replicas is not None:
@@ -1165,7 +1165,7 @@ class AutoscalerAutoscalingPolicyScaleDownControl(dict):
 
     @property
     @pulumi.getter(name="timeWindowSec")
-    def time_window_sec(self) -> Optional[float]:
+    def time_window_sec(self) -> Optional[int]:
         """
         How long back autoscaling should look when computing recommendations
         to include directives regarding slower scale down, as described above.
@@ -1179,12 +1179,12 @@ class AutoscalerAutoscalingPolicyScaleDownControl(dict):
 @pulumi.output_type
 class AutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicas(dict):
     def __init__(__self__, *,
-                 fixed: Optional[float] = None,
-                 percent: Optional[float] = None):
+                 fixed: Optional[int] = None,
+                 percent: Optional[int] = None):
         """
-        :param float fixed: Specifies a fixed number of VM instances. This must be a positive
+        :param int fixed: Specifies a fixed number of VM instances. This must be a positive
                integer.
-        :param float percent: Specifies a percentage of instances between 0 to 100%, inclusive.
+        :param int percent: Specifies a percentage of instances between 0 to 100%, inclusive.
                For example, specify 80 for 80%.
         """
         if fixed is not None:
@@ -1194,7 +1194,7 @@ class AutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicas(dict):
 
     @property
     @pulumi.getter
-    def fixed(self) -> Optional[float]:
+    def fixed(self) -> Optional[int]:
         """
         Specifies a fixed number of VM instances. This must be a positive
         integer.
@@ -1203,7 +1203,7 @@ class AutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicas(dict):
 
     @property
     @pulumi.getter
-    def percent(self) -> Optional[float]:
+    def percent(self) -> Optional[int]:
         """
         Specifies a percentage of instances between 0 to 100%, inclusive.
         For example, specify 80 for 80%.
@@ -1217,9 +1217,9 @@ class AutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicas(dict):
 @pulumi.output_type
 class BackendBucketCdnPolicy(dict):
     def __init__(__self__, *,
-                 signed_url_cache_max_age_sec: float):
+                 signed_url_cache_max_age_sec: int):
         """
-        :param float signed_url_cache_max_age_sec: Maximum number of seconds the response to a signed URL request will
+        :param int signed_url_cache_max_age_sec: Maximum number of seconds the response to a signed URL request will
                be considered fresh. After this time period,
                the response will be revalidated before being served.
                When serving responses to signed URL requests,
@@ -1232,7 +1232,7 @@ class BackendBucketCdnPolicy(dict):
 
     @property
     @pulumi.getter(name="signedUrlCacheMaxAgeSec")
-    def signed_url_cache_max_age_sec(self) -> float:
+    def signed_url_cache_max_age_sec(self) -> int:
         """
         Maximum number of seconds the response to a signed URL request will
         be considered fresh. After this time period,
@@ -1256,10 +1256,10 @@ class BackendServiceBackend(dict):
                  balancing_mode: Optional[str] = None,
                  capacity_scaler: Optional[float] = None,
                  description: Optional[str] = None,
-                 max_connections: Optional[float] = None,
-                 max_connections_per_endpoint: Optional[float] = None,
-                 max_connections_per_instance: Optional[float] = None,
-                 max_rate: Optional[float] = None,
+                 max_connections: Optional[int] = None,
+                 max_connections_per_endpoint: Optional[int] = None,
+                 max_connections_per_instance: Optional[int] = None,
+                 max_rate: Optional[int] = None,
                  max_rate_per_endpoint: Optional[float] = None,
                  max_rate_per_instance: Optional[float] = None,
                  max_utilization: Optional[float] = None):
@@ -1292,21 +1292,21 @@ class BackendServiceBackend(dict):
                0% of its available Capacity. Valid range is [0.0,1.0].
         :param str description: An optional description of this resource.
                Provide this property when you create the resource.
-        :param float max_connections: The maximum number of connections to the backend cluster.
+        :param int max_connections: The maximum number of connections to the backend cluster.
                Defaults to 1024.
-        :param float max_connections_per_endpoint: The max number of simultaneous connections that a single backend
+        :param int max_connections_per_endpoint: The max number of simultaneous connections that a single backend
                network endpoint can handle. This is used to calculate the
                capacity of the group. Can be used in either CONNECTION or
                UTILIZATION balancing modes.
                For CONNECTION mode, either
                maxConnections or maxConnectionsPerEndpoint must be set.
-        :param float max_connections_per_instance: The max number of simultaneous connections that a single
+        :param int max_connections_per_instance: The max number of simultaneous connections that a single
                backend instance can handle. This is used to calculate the
                capacity of the group. Can be used in either CONNECTION or
                UTILIZATION balancing modes.
                For CONNECTION mode, either maxConnections or
                maxConnectionsPerInstance must be set.
-        :param float max_rate: The max requests per second (RPS) of the group.
+        :param int max_rate: The max requests per second (RPS) of the group.
                Can be used with either RATE or UTILIZATION balancing modes,
                but required if RATE mode. For RATE mode, either maxRate or one
                of maxRatePerInstance or maxRatePerEndpoint, as appropriate for
@@ -1403,7 +1403,7 @@ class BackendServiceBackend(dict):
 
     @property
     @pulumi.getter(name="maxConnections")
-    def max_connections(self) -> Optional[float]:
+    def max_connections(self) -> Optional[int]:
         """
         The maximum number of connections to the backend cluster.
         Defaults to 1024.
@@ -1412,7 +1412,7 @@ class BackendServiceBackend(dict):
 
     @property
     @pulumi.getter(name="maxConnectionsPerEndpoint")
-    def max_connections_per_endpoint(self) -> Optional[float]:
+    def max_connections_per_endpoint(self) -> Optional[int]:
         """
         The max number of simultaneous connections that a single backend
         network endpoint can handle. This is used to calculate the
@@ -1425,7 +1425,7 @@ class BackendServiceBackend(dict):
 
     @property
     @pulumi.getter(name="maxConnectionsPerInstance")
-    def max_connections_per_instance(self) -> Optional[float]:
+    def max_connections_per_instance(self) -> Optional[int]:
         """
         The max number of simultaneous connections that a single
         backend instance can handle. This is used to calculate the
@@ -1438,7 +1438,7 @@ class BackendServiceBackend(dict):
 
     @property
     @pulumi.getter(name="maxRate")
-    def max_rate(self) -> Optional[float]:
+    def max_rate(self) -> Optional[int]:
         """
         The max requests per second (RPS) of the group.
         Can be used with either RATE or UTILIZATION balancing modes,
@@ -1488,11 +1488,11 @@ class BackendServiceBackend(dict):
 class BackendServiceCdnPolicy(dict):
     def __init__(__self__, *,
                  cache_key_policy: Optional['outputs.BackendServiceCdnPolicyCacheKeyPolicy'] = None,
-                 signed_url_cache_max_age_sec: Optional[float] = None):
+                 signed_url_cache_max_age_sec: Optional[int] = None):
         """
         :param 'BackendServiceCdnPolicyCacheKeyPolicyArgs' cache_key_policy: The CacheKeyPolicy for this CdnPolicy.
                Structure is documented below.
-        :param float signed_url_cache_max_age_sec: Maximum number of seconds the response to a signed URL request
+        :param int signed_url_cache_max_age_sec: Maximum number of seconds the response to a signed URL request
                will be considered fresh, defaults to 1hr (3600s). After this
                time period, the response will be revalidated before
                being served.
@@ -1518,7 +1518,7 @@ class BackendServiceCdnPolicy(dict):
 
     @property
     @pulumi.getter(name="signedUrlCacheMaxAgeSec")
-    def signed_url_cache_max_age_sec(self) -> Optional[float]:
+    def signed_url_cache_max_age_sec(self) -> Optional[int]:
         """
         Maximum number of seconds the response to a signed URL request
         will be considered fresh, defaults to 1hr (3600s). After this
@@ -1636,24 +1636,24 @@ class BackendServiceCdnPolicyCacheKeyPolicy(dict):
 class BackendServiceCircuitBreakers(dict):
     def __init__(__self__, *,
                  connect_timeout: Optional['outputs.BackendServiceCircuitBreakersConnectTimeout'] = None,
-                 max_connections: Optional[float] = None,
-                 max_pending_requests: Optional[float] = None,
-                 max_requests: Optional[float] = None,
-                 max_requests_per_connection: Optional[float] = None,
-                 max_retries: Optional[float] = None):
+                 max_connections: Optional[int] = None,
+                 max_pending_requests: Optional[int] = None,
+                 max_requests: Optional[int] = None,
+                 max_requests_per_connection: Optional[int] = None,
+                 max_retries: Optional[int] = None):
         """
         :param 'BackendServiceCircuitBreakersConnectTimeoutArgs' connect_timeout: The timeout for new network connections to hosts.  Structure is documented below.
-        :param float max_connections: The maximum number of connections to the backend cluster.
+        :param int max_connections: The maximum number of connections to the backend cluster.
                Defaults to 1024.
-        :param float max_pending_requests: The maximum number of pending requests to the backend cluster.
+        :param int max_pending_requests: The maximum number of pending requests to the backend cluster.
                Defaults to 1024.
-        :param float max_requests: The maximum number of parallel requests to the backend cluster.
+        :param int max_requests: The maximum number of parallel requests to the backend cluster.
                Defaults to 1024.
-        :param float max_requests_per_connection: Maximum requests for a single backend connection. This parameter
+        :param int max_requests_per_connection: Maximum requests for a single backend connection. This parameter
                is respected by both the HTTP/1.1 and HTTP/2 implementations. If
                not specified, there is no limit. Setting this parameter to 1
                will effectively disable keep alive.
-        :param float max_retries: The maximum number of parallel retries to the backend cluster.
+        :param int max_retries: The maximum number of parallel retries to the backend cluster.
                Defaults to 3.
         """
         if connect_timeout is not None:
@@ -1679,7 +1679,7 @@ class BackendServiceCircuitBreakers(dict):
 
     @property
     @pulumi.getter(name="maxConnections")
-    def max_connections(self) -> Optional[float]:
+    def max_connections(self) -> Optional[int]:
         """
         The maximum number of connections to the backend cluster.
         Defaults to 1024.
@@ -1688,7 +1688,7 @@ class BackendServiceCircuitBreakers(dict):
 
     @property
     @pulumi.getter(name="maxPendingRequests")
-    def max_pending_requests(self) -> Optional[float]:
+    def max_pending_requests(self) -> Optional[int]:
         """
         The maximum number of pending requests to the backend cluster.
         Defaults to 1024.
@@ -1697,7 +1697,7 @@ class BackendServiceCircuitBreakers(dict):
 
     @property
     @pulumi.getter(name="maxRequests")
-    def max_requests(self) -> Optional[float]:
+    def max_requests(self) -> Optional[int]:
         """
         The maximum number of parallel requests to the backend cluster.
         Defaults to 1024.
@@ -1706,7 +1706,7 @@ class BackendServiceCircuitBreakers(dict):
 
     @property
     @pulumi.getter(name="maxRequestsPerConnection")
-    def max_requests_per_connection(self) -> Optional[float]:
+    def max_requests_per_connection(self) -> Optional[int]:
         """
         Maximum requests for a single backend connection. This parameter
         is respected by both the HTTP/1.1 and HTTP/2 implementations. If
@@ -1717,7 +1717,7 @@ class BackendServiceCircuitBreakers(dict):
 
     @property
     @pulumi.getter(name="maxRetries")
-    def max_retries(self) -> Optional[float]:
+    def max_retries(self) -> Optional[int]:
         """
         The maximum number of parallel retries to the backend cluster.
         Defaults to 3.
@@ -1731,12 +1731,12 @@ class BackendServiceCircuitBreakers(dict):
 @pulumi.output_type
 class BackendServiceCircuitBreakersConnectTimeout(dict):
     def __init__(__self__, *,
-                 seconds: float,
-                 nanos: Optional[float] = None):
+                 seconds: int,
+                 nanos: Optional[int] = None):
         """
-        :param float seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        :param int seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
                inclusive.
-        :param float nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
+        :param int nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
                less than one second are represented with a 0 `seconds` field and a positive
                `nanos` field. Must be from 0 to 999,999,999 inclusive.
         """
@@ -1746,7 +1746,7 @@ class BackendServiceCircuitBreakersConnectTimeout(dict):
 
     @property
     @pulumi.getter
-    def seconds(self) -> float:
+    def seconds(self) -> int:
         """
         Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
         inclusive.
@@ -1755,7 +1755,7 @@ class BackendServiceCircuitBreakersConnectTimeout(dict):
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[float]:
+    def nanos(self) -> Optional[int]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations
         less than one second are represented with a 0 `seconds` field and a positive
@@ -1772,7 +1772,7 @@ class BackendServiceConsistentHash(dict):
     def __init__(__self__, *,
                  http_cookie: Optional['outputs.BackendServiceConsistentHashHttpCookie'] = None,
                  http_header_name: Optional[str] = None,
-                 minimum_ring_size: Optional[float] = None):
+                 minimum_ring_size: Optional[int] = None):
         """
         :param 'BackendServiceConsistentHashHttpCookieArgs' http_cookie: Hash is based on HTTP Cookie. This field describes a HTTP cookie
                that will be used as the hash key for the consistent hash load
@@ -1781,7 +1781,7 @@ class BackendServiceConsistentHash(dict):
                Structure is documented below.
         :param str http_header_name: The hash based on the value of the specified header field.
                This field is applicable if the sessionAffinity is set to HEADER_FIELD.
-        :param float minimum_ring_size: The minimum number of virtual nodes to use for the hash ring.
+        :param int minimum_ring_size: The minimum number of virtual nodes to use for the hash ring.
                Larger ring sizes result in more granular load
                distributions. If the number of hosts in the load balancing pool
                is larger than the ring size, each host will be assigned a single
@@ -1818,7 +1818,7 @@ class BackendServiceConsistentHash(dict):
 
     @property
     @pulumi.getter(name="minimumRingSize")
-    def minimum_ring_size(self) -> Optional[float]:
+    def minimum_ring_size(self) -> Optional[int]:
         """
         The minimum number of virtual nodes to use for the hash ring.
         Larger ring sizes result in more granular load
@@ -1884,12 +1884,12 @@ class BackendServiceConsistentHashHttpCookie(dict):
 @pulumi.output_type
 class BackendServiceConsistentHashHttpCookieTtl(dict):
     def __init__(__self__, *,
-                 seconds: float,
-                 nanos: Optional[float] = None):
+                 seconds: int,
+                 nanos: Optional[int] = None):
         """
-        :param float seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        :param int seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
                inclusive.
-        :param float nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
+        :param int nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
                less than one second are represented with a 0 `seconds` field and a positive
                `nanos` field. Must be from 0 to 999,999,999 inclusive.
         """
@@ -1899,7 +1899,7 @@ class BackendServiceConsistentHashHttpCookieTtl(dict):
 
     @property
     @pulumi.getter
-    def seconds(self) -> float:
+    def seconds(self) -> int:
         """
         Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
         inclusive.
@@ -1908,7 +1908,7 @@ class BackendServiceConsistentHashHttpCookieTtl(dict):
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[float]:
+    def nanos(self) -> Optional[int]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations
         less than one second are represented with a 0 `seconds` field and a positive
@@ -2014,51 +2014,51 @@ class BackendServiceLogConfig(dict):
 class BackendServiceOutlierDetection(dict):
     def __init__(__self__, *,
                  base_ejection_time: Optional['outputs.BackendServiceOutlierDetectionBaseEjectionTime'] = None,
-                 consecutive_errors: Optional[float] = None,
-                 consecutive_gateway_failure: Optional[float] = None,
-                 enforcing_consecutive_errors: Optional[float] = None,
-                 enforcing_consecutive_gateway_failure: Optional[float] = None,
-                 enforcing_success_rate: Optional[float] = None,
+                 consecutive_errors: Optional[int] = None,
+                 consecutive_gateway_failure: Optional[int] = None,
+                 enforcing_consecutive_errors: Optional[int] = None,
+                 enforcing_consecutive_gateway_failure: Optional[int] = None,
+                 enforcing_success_rate: Optional[int] = None,
                  interval: Optional['outputs.BackendServiceOutlierDetectionInterval'] = None,
-                 max_ejection_percent: Optional[float] = None,
-                 success_rate_minimum_hosts: Optional[float] = None,
-                 success_rate_request_volume: Optional[float] = None,
-                 success_rate_stdev_factor: Optional[float] = None):
+                 max_ejection_percent: Optional[int] = None,
+                 success_rate_minimum_hosts: Optional[int] = None,
+                 success_rate_request_volume: Optional[int] = None,
+                 success_rate_stdev_factor: Optional[int] = None):
         """
         :param 'BackendServiceOutlierDetectionBaseEjectionTimeArgs' base_ejection_time: The base time that a host is ejected for. The real time is equal to the base
                time multiplied by the number of times the host has been ejected. Defaults to
                30000ms or 30s.
                Structure is documented below.
-        :param float consecutive_errors: Number of errors before a host is ejected from the connection pool. When the
+        :param int consecutive_errors: Number of errors before a host is ejected from the connection pool. When the
                backend host is accessed over HTTP, a 5xx return code qualifies as an error.
                Defaults to 5.
-        :param float consecutive_gateway_failure: The number of consecutive gateway failures (502, 503, 504 status or connection
+        :param int consecutive_gateway_failure: The number of consecutive gateway failures (502, 503, 504 status or connection
                errors that are mapped to one of those status codes) before a consecutive
                gateway failure ejection occurs. Defaults to 5.
-        :param float enforcing_consecutive_errors: The percentage chance that a host will be actually ejected when an outlier
+        :param int enforcing_consecutive_errors: The percentage chance that a host will be actually ejected when an outlier
                status is detected through consecutive 5xx. This setting can be used to disable
                ejection or to ramp it up slowly. Defaults to 100.
-        :param float enforcing_consecutive_gateway_failure: The percentage chance that a host will be actually ejected when an outlier
+        :param int enforcing_consecutive_gateway_failure: The percentage chance that a host will be actually ejected when an outlier
                status is detected through consecutive gateway failures. This setting can be
                used to disable ejection or to ramp it up slowly. Defaults to 0.
-        :param float enforcing_success_rate: The percentage chance that a host will be actually ejected when an outlier
+        :param int enforcing_success_rate: The percentage chance that a host will be actually ejected when an outlier
                status is detected through success rate statistics. This setting can be used to
                disable ejection or to ramp it up slowly. Defaults to 100.
         :param 'BackendServiceOutlierDetectionIntervalArgs' interval: Time interval between ejection sweep analysis. This can result in both new
                ejections as well as hosts being returned to service. Defaults to 10 seconds.
                Structure is documented below.
-        :param float max_ejection_percent: Maximum percentage of hosts in the load balancing pool for the backend service
+        :param int max_ejection_percent: Maximum percentage of hosts in the load balancing pool for the backend service
                that can be ejected. Defaults to 10%.
-        :param float success_rate_minimum_hosts: The number of hosts in a cluster that must have enough request volume to detect
+        :param int success_rate_minimum_hosts: The number of hosts in a cluster that must have enough request volume to detect
                success rate outliers. If the number of hosts is less than this setting, outlier
                detection via success rate statistics is not performed for any host in the
                cluster. Defaults to 5.
-        :param float success_rate_request_volume: The minimum number of total requests that must be collected in one interval (as
+        :param int success_rate_request_volume: The minimum number of total requests that must be collected in one interval (as
                defined by the interval duration above) to include this host in success rate
                based outlier detection. If the volume is lower than this setting, outlier
                detection via success rate statistics is not performed for that host. Defaults
                to 100.
-        :param float success_rate_stdev_factor: This factor is used to determine the ejection threshold for success rate outlier
+        :param int success_rate_stdev_factor: This factor is used to determine the ejection threshold for success rate outlier
                ejection. The ejection threshold is the difference between the mean success
                rate, and the product of this factor and the standard deviation of the mean
                success rate: mean - (stdev * success_rate_stdev_factor). This factor is divided
@@ -2101,7 +2101,7 @@ class BackendServiceOutlierDetection(dict):
 
     @property
     @pulumi.getter(name="consecutiveErrors")
-    def consecutive_errors(self) -> Optional[float]:
+    def consecutive_errors(self) -> Optional[int]:
         """
         Number of errors before a host is ejected from the connection pool. When the
         backend host is accessed over HTTP, a 5xx return code qualifies as an error.
@@ -2111,7 +2111,7 @@ class BackendServiceOutlierDetection(dict):
 
     @property
     @pulumi.getter(name="consecutiveGatewayFailure")
-    def consecutive_gateway_failure(self) -> Optional[float]:
+    def consecutive_gateway_failure(self) -> Optional[int]:
         """
         The number of consecutive gateway failures (502, 503, 504 status or connection
         errors that are mapped to one of those status codes) before a consecutive
@@ -2121,7 +2121,7 @@ class BackendServiceOutlierDetection(dict):
 
     @property
     @pulumi.getter(name="enforcingConsecutiveErrors")
-    def enforcing_consecutive_errors(self) -> Optional[float]:
+    def enforcing_consecutive_errors(self) -> Optional[int]:
         """
         The percentage chance that a host will be actually ejected when an outlier
         status is detected through consecutive 5xx. This setting can be used to disable
@@ -2131,7 +2131,7 @@ class BackendServiceOutlierDetection(dict):
 
     @property
     @pulumi.getter(name="enforcingConsecutiveGatewayFailure")
-    def enforcing_consecutive_gateway_failure(self) -> Optional[float]:
+    def enforcing_consecutive_gateway_failure(self) -> Optional[int]:
         """
         The percentage chance that a host will be actually ejected when an outlier
         status is detected through consecutive gateway failures. This setting can be
@@ -2141,7 +2141,7 @@ class BackendServiceOutlierDetection(dict):
 
     @property
     @pulumi.getter(name="enforcingSuccessRate")
-    def enforcing_success_rate(self) -> Optional[float]:
+    def enforcing_success_rate(self) -> Optional[int]:
         """
         The percentage chance that a host will be actually ejected when an outlier
         status is detected through success rate statistics. This setting can be used to
@@ -2161,7 +2161,7 @@ class BackendServiceOutlierDetection(dict):
 
     @property
     @pulumi.getter(name="maxEjectionPercent")
-    def max_ejection_percent(self) -> Optional[float]:
+    def max_ejection_percent(self) -> Optional[int]:
         """
         Maximum percentage of hosts in the load balancing pool for the backend service
         that can be ejected. Defaults to 10%.
@@ -2170,7 +2170,7 @@ class BackendServiceOutlierDetection(dict):
 
     @property
     @pulumi.getter(name="successRateMinimumHosts")
-    def success_rate_minimum_hosts(self) -> Optional[float]:
+    def success_rate_minimum_hosts(self) -> Optional[int]:
         """
         The number of hosts in a cluster that must have enough request volume to detect
         success rate outliers. If the number of hosts is less than this setting, outlier
@@ -2181,7 +2181,7 @@ class BackendServiceOutlierDetection(dict):
 
     @property
     @pulumi.getter(name="successRateRequestVolume")
-    def success_rate_request_volume(self) -> Optional[float]:
+    def success_rate_request_volume(self) -> Optional[int]:
         """
         The minimum number of total requests that must be collected in one interval (as
         defined by the interval duration above) to include this host in success rate
@@ -2193,7 +2193,7 @@ class BackendServiceOutlierDetection(dict):
 
     @property
     @pulumi.getter(name="successRateStdevFactor")
-    def success_rate_stdev_factor(self) -> Optional[float]:
+    def success_rate_stdev_factor(self) -> Optional[int]:
         """
         This factor is used to determine the ejection threshold for success rate outlier
         ejection. The ejection threshold is the difference between the mean success
@@ -2211,12 +2211,12 @@ class BackendServiceOutlierDetection(dict):
 @pulumi.output_type
 class BackendServiceOutlierDetectionBaseEjectionTime(dict):
     def __init__(__self__, *,
-                 seconds: float,
-                 nanos: Optional[float] = None):
+                 seconds: int,
+                 nanos: Optional[int] = None):
         """
-        :param float seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        :param int seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
                inclusive.
-        :param float nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
+        :param int nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
                less than one second are represented with a 0 `seconds` field and a positive
                `nanos` field. Must be from 0 to 999,999,999 inclusive.
         """
@@ -2226,7 +2226,7 @@ class BackendServiceOutlierDetectionBaseEjectionTime(dict):
 
     @property
     @pulumi.getter
-    def seconds(self) -> float:
+    def seconds(self) -> int:
         """
         Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
         inclusive.
@@ -2235,7 +2235,7 @@ class BackendServiceOutlierDetectionBaseEjectionTime(dict):
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[float]:
+    def nanos(self) -> Optional[int]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations
         less than one second are represented with a 0 `seconds` field and a positive
@@ -2250,12 +2250,12 @@ class BackendServiceOutlierDetectionBaseEjectionTime(dict):
 @pulumi.output_type
 class BackendServiceOutlierDetectionInterval(dict):
     def __init__(__self__, *,
-                 seconds: float,
-                 nanos: Optional[float] = None):
+                 seconds: int,
+                 nanos: Optional[int] = None):
         """
-        :param float seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        :param int seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
                inclusive.
-        :param float nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
+        :param int nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
                less than one second are represented with a 0 `seconds` field and a positive
                `nanos` field. Must be from 0 to 999,999,999 inclusive.
         """
@@ -2265,7 +2265,7 @@ class BackendServiceOutlierDetectionInterval(dict):
 
     @property
     @pulumi.getter
-    def seconds(self) -> float:
+    def seconds(self) -> int:
         """
         Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
         inclusive.
@@ -2274,7 +2274,7 @@ class BackendServiceOutlierDetectionInterval(dict):
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[float]:
+    def nanos(self) -> Optional[int]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations
         less than one second are represented with a 0 `seconds` field and a positive
@@ -2529,10 +2529,10 @@ class DiskSourceSnapshotEncryptionKey(dict):
 @pulumi.output_type
 class ExternalVpnGatewayInterface(dict):
     def __init__(__self__, *,
-                 id: Optional[float] = None,
+                 id: Optional[int] = None,
                  ip_address: Optional[str] = None):
         """
-        :param float id: The numberic ID for this interface. Allowed values are based on the redundancy type
+        :param int id: The numberic ID for this interface. Allowed values are based on the redundancy type
                of this external VPN gateway
                * `0 - SINGLE_IP_INTERNALLY_REDUNDANT`
                * `0, 1 - TWO_IPS_REDUNDANCY`
@@ -2549,7 +2549,7 @@ class ExternalVpnGatewayInterface(dict):
 
     @property
     @pulumi.getter
-    def id(self) -> Optional[float]:
+    def id(self) -> Optional[int]:
         """
         The numberic ID for this interface. Allowed values are based on the redundancy type
         of this external VPN gateway
@@ -2784,10 +2784,10 @@ class GlobalForwardingRuleMetadataFilterFilterLabel(dict):
 @pulumi.output_type
 class HaVpnGatewayVpnInterface(dict):
     def __init__(__self__, *,
-                 id: Optional[float] = None,
+                 id: Optional[int] = None,
                  ip_address: Optional[str] = None):
         """
-        :param float id: an identifier for the resource with format `projects/{{project}}/regions/{{region}}/vpnGateways/{{name}}`
+        :param int id: an identifier for the resource with format `projects/{{project}}/regions/{{region}}/vpnGateways/{{name}}`
         """
         if id is not None:
             pulumi.set(__self__, "id", id)
@@ -2796,7 +2796,7 @@ class HaVpnGatewayVpnInterface(dict):
 
     @property
     @pulumi.getter
-    def id(self) -> Optional[float]:
+    def id(self) -> Optional[int]:
         """
         an identifier for the resource with format `projects/{{project}}/regions/{{region}}/vpnGateways/{{name}}`
         """
@@ -2815,7 +2815,7 @@ class HaVpnGatewayVpnInterface(dict):
 class HealthCheckGrpcHealthCheck(dict):
     def __init__(__self__, *,
                  grpc_service_name: Optional[str] = None,
-                 port: Optional[float] = None,
+                 port: Optional[int] = None,
                  port_name: Optional[str] = None,
                  port_specification: Optional[str] = None):
         """
@@ -2824,7 +2824,7 @@ class HealthCheckGrpcHealthCheck(dict):
                - Empty serviceName means the overall status of all services at the backend.
                - Non-empty serviceName means the health of that gRPC service, as defined by the owner of the service.
                The grpcServiceName can only be ASCII.
-        :param float port: The port number for the health check request.
+        :param int port: The port number for the health check request.
                Must be specified if portName and portSpecification are not set
                or if port_specification is USE_FIXED_PORT. Valid values are 1 through 65535.
         :param str port_name: Port name as defined in InstanceGroup#NamedPort#name. If both port and
@@ -2864,7 +2864,7 @@ class HealthCheckGrpcHealthCheck(dict):
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[float]:
+    def port(self) -> Optional[int]:
         """
         The port number for the health check request.
         Must be specified if portName and portSpecification are not set
@@ -2907,7 +2907,7 @@ class HealthCheckGrpcHealthCheck(dict):
 class HealthCheckHttp2HealthCheck(dict):
     def __init__(__self__, *,
                  host: Optional[str] = None,
-                 port: Optional[float] = None,
+                 port: Optional[int] = None,
                  port_name: Optional[str] = None,
                  port_specification: Optional[str] = None,
                  proxy_header: Optional[str] = None,
@@ -2917,7 +2917,7 @@ class HealthCheckHttp2HealthCheck(dict):
         :param str host: The value of the host header in the HTTP2 health check request.
                If left empty (default value), the public IP on behalf of which this health
                check is performed will be used.
-        :param float port: The port number for the health check request.
+        :param int port: The port number for the health check request.
                Must be specified if portName and portSpecification are not set
                or if port_specification is USE_FIXED_PORT. Valid values are 1 through 65535.
         :param str port_name: Port name as defined in InstanceGroup#NamedPort#name. If both port and
@@ -2970,7 +2970,7 @@ class HealthCheckHttp2HealthCheck(dict):
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[float]:
+    def port(self) -> Optional[int]:
         """
         The port number for the health check request.
         Must be specified if portName and portSpecification are not set
@@ -3043,7 +3043,7 @@ class HealthCheckHttp2HealthCheck(dict):
 class HealthCheckHttpHealthCheck(dict):
     def __init__(__self__, *,
                  host: Optional[str] = None,
-                 port: Optional[float] = None,
+                 port: Optional[int] = None,
                  port_name: Optional[str] = None,
                  port_specification: Optional[str] = None,
                  proxy_header: Optional[str] = None,
@@ -3053,7 +3053,7 @@ class HealthCheckHttpHealthCheck(dict):
         :param str host: The value of the host header in the HTTP2 health check request.
                If left empty (default value), the public IP on behalf of which this health
                check is performed will be used.
-        :param float port: The port number for the health check request.
+        :param int port: The port number for the health check request.
                Must be specified if portName and portSpecification are not set
                or if port_specification is USE_FIXED_PORT. Valid values are 1 through 65535.
         :param str port_name: Port name as defined in InstanceGroup#NamedPort#name. If both port and
@@ -3106,7 +3106,7 @@ class HealthCheckHttpHealthCheck(dict):
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[float]:
+    def port(self) -> Optional[int]:
         """
         The port number for the health check request.
         Must be specified if portName and portSpecification are not set
@@ -3179,7 +3179,7 @@ class HealthCheckHttpHealthCheck(dict):
 class HealthCheckHttpsHealthCheck(dict):
     def __init__(__self__, *,
                  host: Optional[str] = None,
-                 port: Optional[float] = None,
+                 port: Optional[int] = None,
                  port_name: Optional[str] = None,
                  port_specification: Optional[str] = None,
                  proxy_header: Optional[str] = None,
@@ -3189,7 +3189,7 @@ class HealthCheckHttpsHealthCheck(dict):
         :param str host: The value of the host header in the HTTP2 health check request.
                If left empty (default value), the public IP on behalf of which this health
                check is performed will be used.
-        :param float port: The port number for the health check request.
+        :param int port: The port number for the health check request.
                Must be specified if portName and portSpecification are not set
                or if port_specification is USE_FIXED_PORT. Valid values are 1 through 65535.
         :param str port_name: Port name as defined in InstanceGroup#NamedPort#name. If both port and
@@ -3242,7 +3242,7 @@ class HealthCheckHttpsHealthCheck(dict):
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[float]:
+    def port(self) -> Optional[int]:
         """
         The port number for the health check request.
         Must be specified if portName and portSpecification are not set
@@ -3338,14 +3338,14 @@ class HealthCheckLogConfig(dict):
 @pulumi.output_type
 class HealthCheckSslHealthCheck(dict):
     def __init__(__self__, *,
-                 port: Optional[float] = None,
+                 port: Optional[int] = None,
                  port_name: Optional[str] = None,
                  port_specification: Optional[str] = None,
                  proxy_header: Optional[str] = None,
                  request: Optional[str] = None,
                  response: Optional[str] = None):
         """
-        :param float port: The port number for the health check request.
+        :param int port: The port number for the health check request.
                Must be specified if portName and portSpecification are not set
                or if port_specification is USE_FIXED_PORT. Valid values are 1 through 65535.
         :param str port_name: Port name as defined in InstanceGroup#NamedPort#name. If both port and
@@ -3388,7 +3388,7 @@ class HealthCheckSslHealthCheck(dict):
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[float]:
+    def port(self) -> Optional[int]:
         """
         The port number for the health check request.
         Must be specified if portName and portSpecification are not set
@@ -3462,14 +3462,14 @@ class HealthCheckSslHealthCheck(dict):
 @pulumi.output_type
 class HealthCheckTcpHealthCheck(dict):
     def __init__(__self__, *,
-                 port: Optional[float] = None,
+                 port: Optional[int] = None,
                  port_name: Optional[str] = None,
                  port_specification: Optional[str] = None,
                  proxy_header: Optional[str] = None,
                  request: Optional[str] = None,
                  response: Optional[str] = None):
         """
-        :param float port: The port number for the health check request.
+        :param int port: The port number for the health check request.
                Must be specified if portName and portSpecification are not set
                or if port_specification is USE_FIXED_PORT. Valid values are 1 through 65535.
         :param str port_name: Port name as defined in InstanceGroup#NamedPort#name. If both port and
@@ -3512,7 +3512,7 @@ class HealthCheckTcpHealthCheck(dict):
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[float]:
+    def port(self) -> Optional[int]:
         """
         The port number for the health check request.
         Must be specified if portName and portSpecification are not set
@@ -3981,7 +3981,7 @@ class InstanceBootDiskInitializeParams(dict):
     def __init__(__self__, *,
                  image: Optional[str] = None,
                  labels: Optional[Mapping[str, Any]] = None,
-                 size: Optional[float] = None,
+                 size: Optional[int] = None,
                  type: Optional[str] = None):
         """
         :param str image: The image from which to initialize this disk. This can be
@@ -3994,7 +3994,7 @@ class InstanceBootDiskInitializeParams(dict):
                For instance, the image `centos-6-v20180104` includes its family name `centos-6`.
                These images can be referred by family name here.
         :param Mapping[str, Any] labels: A map of key/value label pairs to assign to the instance.
-        :param float size: The size of the image in gigabytes. If not specified, it
+        :param int size: The size of the image in gigabytes. If not specified, it
                will inherit the size of its base image.
         :param str type: The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
         """
@@ -4033,7 +4033,7 @@ class InstanceBootDiskInitializeParams(dict):
 
     @property
     @pulumi.getter
-    def size(self) -> Optional[float]:
+    def size(self) -> Optional[int]:
         """
         The size of the image in gigabytes. If not specified, it
         will inherit the size of its base image.
@@ -4199,7 +4199,7 @@ class InstanceFromTemplateBootDiskInitializeParams(dict):
     def __init__(__self__, *,
                  image: Optional[str] = None,
                  labels: Optional[Mapping[str, Any]] = None,
-                 size: Optional[float] = None,
+                 size: Optional[int] = None,
                  type: Optional[str] = None):
         if image is not None:
             pulumi.set(__self__, "image", image)
@@ -4222,7 +4222,7 @@ class InstanceFromTemplateBootDiskInitializeParams(dict):
 
     @property
     @pulumi.getter
-    def size(self) -> Optional[float]:
+    def size(self) -> Optional[int]:
         return pulumi.get(self, "size")
 
     @property
@@ -4252,14 +4252,14 @@ class InstanceFromTemplateConfidentialInstanceConfig(dict):
 @pulumi.output_type
 class InstanceFromTemplateGuestAccelerator(dict):
     def __init__(__self__, *,
-                 count: float,
+                 count: int,
                  type: str):
         pulumi.set(__self__, "count", count)
         pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter
-    def count(self) -> float:
+    def count(self) -> int:
         return pulumi.get(self, "count")
 
     @property
@@ -4402,7 +4402,7 @@ class InstanceFromTemplateNetworkInterfaceAliasIpRange(dict):
 class InstanceFromTemplateScheduling(dict):
     def __init__(__self__, *,
                  automatic_restart: Optional[bool] = None,
-                 min_node_cpus: Optional[float] = None,
+                 min_node_cpus: Optional[int] = None,
                  node_affinities: Optional[List['outputs.InstanceFromTemplateSchedulingNodeAffinity']] = None,
                  on_host_maintenance: Optional[str] = None,
                  preemptible: Optional[bool] = None):
@@ -4424,7 +4424,7 @@ class InstanceFromTemplateScheduling(dict):
 
     @property
     @pulumi.getter(name="minNodeCpus")
-    def min_node_cpus(self) -> Optional[float]:
+    def min_node_cpus(self) -> Optional[int]:
         return pulumi.get(self, "min_node_cpus")
 
     @property
@@ -4549,10 +4549,10 @@ class InstanceFromTemplateShieldedInstanceConfig(dict):
 class InstanceGroupManagerAutoHealingPolicies(dict):
     def __init__(__self__, *,
                  health_check: str,
-                 initial_delay_sec: float):
+                 initial_delay_sec: int):
         """
         :param str health_check: The health check resource that signals autohealing.
-        :param float initial_delay_sec: The number of seconds that the managed instance group waits before
+        :param int initial_delay_sec: The number of seconds that the managed instance group waits before
                it applies autohealing policies to new instances or recently recreated instances. Between 0 and 3600.
         """
         pulumi.set(__self__, "health_check", health_check)
@@ -4568,7 +4568,7 @@ class InstanceGroupManagerAutoHealingPolicies(dict):
 
     @property
     @pulumi.getter(name="initialDelaySec")
-    def initial_delay_sec(self) -> float:
+    def initial_delay_sec(self) -> int:
         """
         The number of seconds that the managed instance group waits before
         it applies autohealing policies to new instances or recently recreated instances. Between 0 and 3600.
@@ -4583,10 +4583,10 @@ class InstanceGroupManagerAutoHealingPolicies(dict):
 class InstanceGroupManagerNamedPort(dict):
     def __init__(__self__, *,
                  name: str,
-                 port: float):
+                 port: int):
         """
         :param str name: - Version name.
-        :param float port: The port number.
+        :param int port: The port number.
                - - -
         """
         pulumi.set(__self__, "name", name)
@@ -4602,7 +4602,7 @@ class InstanceGroupManagerNamedPort(dict):
 
     @property
     @pulumi.getter
-    def port(self) -> float:
+    def port(self) -> int:
         """
         The port number.
         - - -
@@ -4651,19 +4651,19 @@ class InstanceGroupManagerUpdatePolicy(dict):
     def __init__(__self__, *,
                  minimal_action: str,
                  type: str,
-                 max_surge_fixed: Optional[float] = None,
-                 max_surge_percent: Optional[float] = None,
-                 max_unavailable_fixed: Optional[float] = None,
-                 max_unavailable_percent: Optional[float] = None,
-                 min_ready_sec: Optional[float] = None):
+                 max_surge_fixed: Optional[int] = None,
+                 max_surge_percent: Optional[int] = None,
+                 max_unavailable_fixed: Optional[int] = None,
+                 max_unavailable_percent: Optional[int] = None,
+                 min_ready_sec: Optional[int] = None):
         """
         :param str minimal_action: - Minimal action to be taken on an instance. You can specify either `RESTART` to restart existing instances or `REPLACE` to delete and create new instances from the target template. If you specify a `RESTART`, the Updater will attempt to perform that action only. However, if the Updater determines that the minimal action you specify is not enough to perform the update, it might perform a more disruptive action.
         :param str type: - The type of update process. You can specify either `PROACTIVE` so that the instance group manager proactively executes actions in order to bring instances to their target versions or `OPPORTUNISTIC` so that no action is proactively executed but the update will be performed as part of other actions (for example, resizes or recreateInstances calls).
-        :param float max_surge_fixed: , The maximum number of instances that can be created above the specified targetSize during the update process. Conflicts with `max_surge_percent`. If neither is set, defaults to 1
-        :param float max_surge_percent: , The maximum number of instances(calculated as percentage) that can be created above the specified targetSize during the update process. Conflicts with `max_surge_fixed`.
-        :param float max_unavailable_fixed: , The maximum number of instances that can be unavailable during the update process. Conflicts with `max_unavailable_percent`. If neither is set, defaults to 1
-        :param float max_unavailable_percent: , The maximum number of instances(calculated as percentage) that can be unavailable during the update process. Conflicts with `max_unavailable_fixed`.
-        :param float min_ready_sec: , Minimum number of seconds to wait for after a newly created instance becomes available. This value must be from range [0, 3600]
+        :param int max_surge_fixed: , The maximum number of instances that can be created above the specified targetSize during the update process. Conflicts with `max_surge_percent`. If neither is set, defaults to 1
+        :param int max_surge_percent: , The maximum number of instances(calculated as percentage) that can be created above the specified targetSize during the update process. Conflicts with `max_surge_fixed`.
+        :param int max_unavailable_fixed: , The maximum number of instances that can be unavailable during the update process. Conflicts with `max_unavailable_percent`. If neither is set, defaults to 1
+        :param int max_unavailable_percent: , The maximum number of instances(calculated as percentage) that can be unavailable during the update process. Conflicts with `max_unavailable_fixed`.
+        :param int min_ready_sec: , Minimum number of seconds to wait for after a newly created instance becomes available. This value must be from range [0, 3600]
                - - -
         """
         pulumi.set(__self__, "minimal_action", minimal_action)
@@ -4697,7 +4697,7 @@ class InstanceGroupManagerUpdatePolicy(dict):
 
     @property
     @pulumi.getter(name="maxSurgeFixed")
-    def max_surge_fixed(self) -> Optional[float]:
+    def max_surge_fixed(self) -> Optional[int]:
         """
         , The maximum number of instances that can be created above the specified targetSize during the update process. Conflicts with `max_surge_percent`. If neither is set, defaults to 1
         """
@@ -4705,7 +4705,7 @@ class InstanceGroupManagerUpdatePolicy(dict):
 
     @property
     @pulumi.getter(name="maxSurgePercent")
-    def max_surge_percent(self) -> Optional[float]:
+    def max_surge_percent(self) -> Optional[int]:
         """
         , The maximum number of instances(calculated as percentage) that can be created above the specified targetSize during the update process. Conflicts with `max_surge_fixed`.
         """
@@ -4713,7 +4713,7 @@ class InstanceGroupManagerUpdatePolicy(dict):
 
     @property
     @pulumi.getter(name="maxUnavailableFixed")
-    def max_unavailable_fixed(self) -> Optional[float]:
+    def max_unavailable_fixed(self) -> Optional[int]:
         """
         , The maximum number of instances that can be unavailable during the update process. Conflicts with `max_unavailable_percent`. If neither is set, defaults to 1
         """
@@ -4721,7 +4721,7 @@ class InstanceGroupManagerUpdatePolicy(dict):
 
     @property
     @pulumi.getter(name="maxUnavailablePercent")
-    def max_unavailable_percent(self) -> Optional[float]:
+    def max_unavailable_percent(self) -> Optional[int]:
         """
         , The maximum number of instances(calculated as percentage) that can be unavailable during the update process. Conflicts with `max_unavailable_fixed`.
         """
@@ -4729,7 +4729,7 @@ class InstanceGroupManagerUpdatePolicy(dict):
 
     @property
     @pulumi.getter(name="minReadySec")
-    def min_ready_sec(self) -> Optional[float]:
+    def min_ready_sec(self) -> Optional[int]:
         """
         , Minimum number of seconds to wait for after a newly created instance becomes available. This value must be from range [0, 3600]
         - - -
@@ -4788,11 +4788,11 @@ class InstanceGroupManagerVersion(dict):
 @pulumi.output_type
 class InstanceGroupManagerVersionTargetSize(dict):
     def __init__(__self__, *,
-                 fixed: Optional[float] = None,
-                 percent: Optional[float] = None):
+                 fixed: Optional[int] = None,
+                 percent: Optional[int] = None):
         """
-        :param float fixed: , The number of instances which are managed for this version. Conflicts with `percent`.
-        :param float percent: , The number of instances (calculated as percentage) which are managed for this version. Conflicts with `fixed`.
+        :param int fixed: , The number of instances which are managed for this version. Conflicts with `percent`.
+        :param int percent: , The number of instances (calculated as percentage) which are managed for this version. Conflicts with `fixed`.
                Note that when using `percent`, rounding will be in favor of explicitly set `target_size` values; a managed instance group with 2 instances and 2 `version`s,
                one of which has a `target_size.percent` of `60` will create 2 instances of that `version`.
         """
@@ -4803,7 +4803,7 @@ class InstanceGroupManagerVersionTargetSize(dict):
 
     @property
     @pulumi.getter
-    def fixed(self) -> Optional[float]:
+    def fixed(self) -> Optional[int]:
         """
         , The number of instances which are managed for this version. Conflicts with `percent`.
         """
@@ -4811,7 +4811,7 @@ class InstanceGroupManagerVersionTargetSize(dict):
 
     @property
     @pulumi.getter
-    def percent(self) -> Optional[float]:
+    def percent(self) -> Optional[int]:
         """
         , The number of instances (calculated as percentage) which are managed for this version. Conflicts with `fixed`.
         Note that when using `percent`, rounding will be in favor of explicitly set `target_size` values; a managed instance group with 2 instances and 2 `version`s,
@@ -4827,10 +4827,10 @@ class InstanceGroupManagerVersionTargetSize(dict):
 class InstanceGroupNamedPort(dict):
     def __init__(__self__, *,
                  name: str,
-                 port: float):
+                 port: int):
         """
         :param str name: The name which the port will be mapped to.
-        :param float port: The port number to map the name to.
+        :param int port: The port number to map the name to.
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "port", port)
@@ -4845,7 +4845,7 @@ class InstanceGroupNamedPort(dict):
 
     @property
     @pulumi.getter
-    def port(self) -> float:
+    def port(self) -> int:
         """
         The port number to map the name to.
         """
@@ -4858,10 +4858,10 @@ class InstanceGroupNamedPort(dict):
 @pulumi.output_type
 class InstanceGuestAccelerator(dict):
     def __init__(__self__, *,
-                 count: float,
+                 count: int,
                  type: str):
         """
-        :param float count: The number of the guest accelerator cards exposed to this instance.
+        :param int count: The number of the guest accelerator cards exposed to this instance.
         :param str type: The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
         """
         pulumi.set(__self__, "count", count)
@@ -4869,7 +4869,7 @@ class InstanceGuestAccelerator(dict):
 
     @property
     @pulumi.getter
-    def count(self) -> float:
+    def count(self) -> int:
         """
         The number of the guest accelerator cards exposed to this instance.
         """
@@ -5204,7 +5204,7 @@ class InstanceNetworkInterfaceAliasIpRange(dict):
 class InstanceScheduling(dict):
     def __init__(__self__, *,
                  automatic_restart: Optional[bool] = None,
-                 min_node_cpus: Optional[float] = None,
+                 min_node_cpus: Optional[int] = None,
                  node_affinities: Optional[List['outputs.InstanceSchedulingNodeAffinity']] = None,
                  on_host_maintenance: Optional[str] = None,
                  preemptible: Optional[bool] = None):
@@ -5247,7 +5247,7 @@ class InstanceScheduling(dict):
 
     @property
     @pulumi.getter(name="minNodeCpus")
-    def min_node_cpus(self) -> Optional[float]:
+    def min_node_cpus(self) -> Optional[int]:
         return pulumi.get(self, "min_node_cpus")
 
     @property
@@ -5470,7 +5470,7 @@ class InstanceTemplateDisk(dict):
                  device_name: Optional[str] = None,
                  disk_encryption_key: Optional['outputs.InstanceTemplateDiskDiskEncryptionKey'] = None,
                  disk_name: Optional[str] = None,
-                 disk_size_gb: Optional[float] = None,
+                 disk_size_gb: Optional[int] = None,
                  disk_type: Optional[str] = None,
                  interface: Optional[str] = None,
                  labels: Optional[Mapping[str, str]] = None,
@@ -5488,7 +5488,7 @@ class InstanceTemplateDisk(dict):
         :param 'InstanceTemplateDiskDiskEncryptionKeyArgs' disk_encryption_key: Encrypts or decrypts a disk using a customer-supplied encryption key.
         :param str disk_name: Name of the disk. When not provided, this defaults
                to the name of the instance.
-        :param float disk_size_gb: The size of the image in gigabytes. If not
+        :param int disk_size_gb: The size of the image in gigabytes. If not
                specified, it will inherit the size of its base image. For SCRATCH disks,
                the size must be exactly 375GB.
         :param str disk_type: The GCE disk type. Can be either `"pd-ssd"`,
@@ -5585,7 +5585,7 @@ class InstanceTemplateDisk(dict):
 
     @property
     @pulumi.getter(name="diskSizeGb")
-    def disk_size_gb(self) -> Optional[float]:
+    def disk_size_gb(self) -> Optional[int]:
         """
         The size of the image in gigabytes. If not
         specified, it will inherit the size of its base image. For SCRATCH disks,
@@ -5690,10 +5690,10 @@ class InstanceTemplateDiskDiskEncryptionKey(dict):
 @pulumi.output_type
 class InstanceTemplateGuestAccelerator(dict):
     def __init__(__self__, *,
-                 count: float,
+                 count: int,
                  type: str):
         """
-        :param float count: The number of the guest accelerator cards exposed to this instance.
+        :param int count: The number of the guest accelerator cards exposed to this instance.
         :param str type: The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
         """
         pulumi.set(__self__, "count", count)
@@ -5701,7 +5701,7 @@ class InstanceTemplateGuestAccelerator(dict):
 
     @property
     @pulumi.getter
-    def count(self) -> float:
+    def count(self) -> int:
         """
         The number of the guest accelerator cards exposed to this instance.
         """
@@ -5938,7 +5938,7 @@ class InstanceTemplateNetworkInterfaceAliasIpRange(dict):
 class InstanceTemplateScheduling(dict):
     def __init__(__self__, *,
                  automatic_restart: Optional[bool] = None,
-                 min_node_cpus: Optional[float] = None,
+                 min_node_cpus: Optional[int] = None,
                  node_affinities: Optional[List['outputs.InstanceTemplateSchedulingNodeAffinity']] = None,
                  on_host_maintenance: Optional[str] = None,
                  preemptible: Optional[bool] = None):
@@ -5980,7 +5980,7 @@ class InstanceTemplateScheduling(dict):
 
     @property
     @pulumi.getter(name="minNodeCpus")
-    def min_node_cpus(self) -> Optional[float]:
+    def min_node_cpus(self) -> Optional[int]:
         return pulumi.get(self, "min_node_cpus")
 
     @property
@@ -6147,13 +6147,13 @@ class InstanceTemplateShieldedInstanceConfig(dict):
 @pulumi.output_type
 class InterconnectAttachmentPrivateInterconnectInfo(dict):
     def __init__(__self__, *,
-                 tag8021q: Optional[float] = None):
+                 tag8021q: Optional[int] = None):
         if tag8021q is not None:
             pulumi.set(__self__, "tag8021q", tag8021q)
 
     @property
     @pulumi.getter
-    def tag8021q(self) -> Optional[float]:
+    def tag8021q(self) -> Optional[int]:
         return pulumi.get(self, "tag8021q")
 
     def _translate_property(self, prop):
@@ -6201,13 +6201,13 @@ class MangedSslCertificateManaged(dict):
 @pulumi.output_type
 class NodeGroupAutoscalingPolicy(dict):
     def __init__(__self__, *,
-                 max_nodes: Optional[float] = None,
-                 min_nodes: Optional[float] = None,
+                 max_nodes: Optional[int] = None,
+                 min_nodes: Optional[int] = None,
                  mode: Optional[str] = None):
         """
-        :param float max_nodes: Maximum size of the node group. Set to a value less than or equal
+        :param int max_nodes: Maximum size of the node group. Set to a value less than or equal
                to 100 and greater than or equal to min-nodes.
-        :param float min_nodes: Minimum size of the node group. Must be less
+        :param int min_nodes: Minimum size of the node group. Must be less
                than or equal to max-nodes. The default value is 0.
         :param str mode: The autoscaling mode. Set to one of the following:
                - OFF: Disables the autoscaler.
@@ -6226,7 +6226,7 @@ class NodeGroupAutoscalingPolicy(dict):
 
     @property
     @pulumi.getter(name="maxNodes")
-    def max_nodes(self) -> Optional[float]:
+    def max_nodes(self) -> Optional[int]:
         """
         Maximum size of the node group. Set to a value less than or equal
         to 100 and greater than or equal to min-nodes.
@@ -6235,7 +6235,7 @@ class NodeGroupAutoscalingPolicy(dict):
 
     @property
     @pulumi.getter(name="minNodes")
-    def min_nodes(self) -> Optional[float]:
+    def min_nodes(self) -> Optional[int]:
         """
         Minimum size of the node group. Must be less
         than or equal to max-nodes. The default value is 0.
@@ -6791,24 +6791,24 @@ class PerInstanceConfigPreservedStateDisk(dict):
 @pulumi.output_type
 class RegionAutoscalerAutoscalingPolicy(dict):
     def __init__(__self__, *,
-                 max_replicas: float,
-                 min_replicas: float,
-                 cooldown_period: Optional[float] = None,
+                 max_replicas: int,
+                 min_replicas: int,
+                 cooldown_period: Optional[int] = None,
                  cpu_utilization: Optional['outputs.RegionAutoscalerAutoscalingPolicyCpuUtilization'] = None,
                  load_balancing_utilization: Optional['outputs.RegionAutoscalerAutoscalingPolicyLoadBalancingUtilization'] = None,
                  metrics: Optional[List['outputs.RegionAutoscalerAutoscalingPolicyMetric']] = None,
                  mode: Optional[str] = None,
                  scale_down_control: Optional['outputs.RegionAutoscalerAutoscalingPolicyScaleDownControl'] = None):
         """
-        :param float max_replicas: The maximum number of instances that the autoscaler can scale up
+        :param int max_replicas: The maximum number of instances that the autoscaler can scale up
                to. This is required when creating or updating an autoscaler. The
                maximum number of replicas should not be lower than minimal number
                of replicas.
-        :param float min_replicas: The minimum number of replicas that the autoscaler can scale down
+        :param int min_replicas: The minimum number of replicas that the autoscaler can scale down
                to. This cannot be less than 0. If not provided, autoscaler will
                choose a default value depending on maximum number of instances
                allowed.
-        :param float cooldown_period: The number of seconds that the autoscaler should wait before it
+        :param int cooldown_period: The number of seconds that the autoscaler should wait before it
                starts collecting information from a new instance. This prevents
                the autoscaler from collecting information when the instance is
                initializing, during which the collected usage would not be
@@ -6846,7 +6846,7 @@ class RegionAutoscalerAutoscalingPolicy(dict):
 
     @property
     @pulumi.getter(name="maxReplicas")
-    def max_replicas(self) -> float:
+    def max_replicas(self) -> int:
         """
         The maximum number of instances that the autoscaler can scale up
         to. This is required when creating or updating an autoscaler. The
@@ -6857,7 +6857,7 @@ class RegionAutoscalerAutoscalingPolicy(dict):
 
     @property
     @pulumi.getter(name="minReplicas")
-    def min_replicas(self) -> float:
+    def min_replicas(self) -> int:
         """
         The minimum number of replicas that the autoscaler can scale down
         to. This cannot be less than 0. If not provided, autoscaler will
@@ -6868,7 +6868,7 @@ class RegionAutoscalerAutoscalingPolicy(dict):
 
     @property
     @pulumi.getter(name="cooldownPeriod")
-    def cooldown_period(self) -> Optional[float]:
+    def cooldown_period(self) -> Optional[int]:
         """
         The number of seconds that the autoscaler should wait before it
         starts collecting information from a new instance. This prevents
@@ -7143,11 +7143,11 @@ class RegionAutoscalerAutoscalingPolicyMetric(dict):
 class RegionAutoscalerAutoscalingPolicyScaleDownControl(dict):
     def __init__(__self__, *,
                  max_scaled_down_replicas: Optional['outputs.RegionAutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicas'] = None,
-                 time_window_sec: Optional[float] = None):
+                 time_window_sec: Optional[int] = None):
         """
         :param 'RegionAutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasArgs' max_scaled_down_replicas: A nested object resource
                Structure is documented below.
-        :param float time_window_sec: How long back autoscaling should look when computing recommendations
+        :param int time_window_sec: How long back autoscaling should look when computing recommendations
                to include directives regarding slower scale down, as described above.
         """
         if max_scaled_down_replicas is not None:
@@ -7166,7 +7166,7 @@ class RegionAutoscalerAutoscalingPolicyScaleDownControl(dict):
 
     @property
     @pulumi.getter(name="timeWindowSec")
-    def time_window_sec(self) -> Optional[float]:
+    def time_window_sec(self) -> Optional[int]:
         """
         How long back autoscaling should look when computing recommendations
         to include directives regarding slower scale down, as described above.
@@ -7180,12 +7180,12 @@ class RegionAutoscalerAutoscalingPolicyScaleDownControl(dict):
 @pulumi.output_type
 class RegionAutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicas(dict):
     def __init__(__self__, *,
-                 fixed: Optional[float] = None,
-                 percent: Optional[float] = None):
+                 fixed: Optional[int] = None,
+                 percent: Optional[int] = None):
         """
-        :param float fixed: Specifies a fixed number of VM instances. This must be a positive
+        :param int fixed: Specifies a fixed number of VM instances. This must be a positive
                integer.
-        :param float percent: Specifies a percentage of instances between 0 to 100%, inclusive.
+        :param int percent: Specifies a percentage of instances between 0 to 100%, inclusive.
                For example, specify 80 for 80%.
         """
         if fixed is not None:
@@ -7195,7 +7195,7 @@ class RegionAutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicas(dic
 
     @property
     @pulumi.getter
-    def fixed(self) -> Optional[float]:
+    def fixed(self) -> Optional[int]:
         """
         Specifies a fixed number of VM instances. This must be a positive
         integer.
@@ -7204,7 +7204,7 @@ class RegionAutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicas(dic
 
     @property
     @pulumi.getter
-    def percent(self) -> Optional[float]:
+    def percent(self) -> Optional[int]:
         """
         Specifies a percentage of instances between 0 to 100%, inclusive.
         For example, specify 80 for 80%.
@@ -7223,10 +7223,10 @@ class RegionBackendServiceBackend(dict):
                  capacity_scaler: Optional[float] = None,
                  description: Optional[str] = None,
                  failover: Optional[bool] = None,
-                 max_connections: Optional[float] = None,
-                 max_connections_per_endpoint: Optional[float] = None,
-                 max_connections_per_instance: Optional[float] = None,
-                 max_rate: Optional[float] = None,
+                 max_connections: Optional[int] = None,
+                 max_connections_per_endpoint: Optional[int] = None,
+                 max_connections_per_instance: Optional[int] = None,
+                 max_rate: Optional[int] = None,
                  max_rate_per_endpoint: Optional[float] = None,
                  max_rate_per_instance: Optional[float] = None,
                  max_utilization: Optional[float] = None):
@@ -7262,23 +7262,23 @@ class RegionBackendServiceBackend(dict):
                Provide this property when you create the resource.
         :param bool failover: This field designates whether this is a failover backend. More
                than one failover backend can be configured for a given RegionBackendService.
-        :param float max_connections: The maximum number of connections to the backend cluster.
+        :param int max_connections: The maximum number of connections to the backend cluster.
                Defaults to 1024.
-        :param float max_connections_per_endpoint: The max number of simultaneous connections that a single backend
+        :param int max_connections_per_endpoint: The max number of simultaneous connections that a single backend
                network endpoint can handle. Cannot be set
                for INTERNAL backend services.
                This is used to calculate the capacity of the group. Can be
                used in either CONNECTION or UTILIZATION balancing modes. For
                CONNECTION mode, either maxConnections or
                maxConnectionsPerEndpoint must be set.
-        :param float max_connections_per_instance: The max number of simultaneous connections that a single
+        :param int max_connections_per_instance: The max number of simultaneous connections that a single
                backend instance can handle. Cannot be set for INTERNAL backend
                services.
                This is used to calculate the capacity of the group.
                Can be used in either CONNECTION or UTILIZATION balancing modes.
                For CONNECTION mode, either maxConnections or
                maxConnectionsPerInstance must be set.
-        :param float max_rate: The max requests per second (RPS) of the group. Cannot be set
+        :param int max_rate: The max requests per second (RPS) of the group. Cannot be set
                for INTERNAL backend services.
                Can be used with either RATE or UTILIZATION balancing modes,
                but required if RATE mode. Either maxRate or one
@@ -7390,7 +7390,7 @@ class RegionBackendServiceBackend(dict):
 
     @property
     @pulumi.getter(name="maxConnections")
-    def max_connections(self) -> Optional[float]:
+    def max_connections(self) -> Optional[int]:
         """
         The maximum number of connections to the backend cluster.
         Defaults to 1024.
@@ -7399,7 +7399,7 @@ class RegionBackendServiceBackend(dict):
 
     @property
     @pulumi.getter(name="maxConnectionsPerEndpoint")
-    def max_connections_per_endpoint(self) -> Optional[float]:
+    def max_connections_per_endpoint(self) -> Optional[int]:
         """
         The max number of simultaneous connections that a single backend
         network endpoint can handle. Cannot be set
@@ -7413,7 +7413,7 @@ class RegionBackendServiceBackend(dict):
 
     @property
     @pulumi.getter(name="maxConnectionsPerInstance")
-    def max_connections_per_instance(self) -> Optional[float]:
+    def max_connections_per_instance(self) -> Optional[int]:
         """
         The max number of simultaneous connections that a single
         backend instance can handle. Cannot be set for INTERNAL backend
@@ -7427,7 +7427,7 @@ class RegionBackendServiceBackend(dict):
 
     @property
     @pulumi.getter(name="maxRate")
-    def max_rate(self) -> Optional[float]:
+    def max_rate(self) -> Optional[int]:
         """
         The max requests per second (RPS) of the group. Cannot be set
         for INTERNAL backend services.
@@ -7480,24 +7480,24 @@ class RegionBackendServiceBackend(dict):
 class RegionBackendServiceCircuitBreakers(dict):
     def __init__(__self__, *,
                  connect_timeout: Optional['outputs.RegionBackendServiceCircuitBreakersConnectTimeout'] = None,
-                 max_connections: Optional[float] = None,
-                 max_pending_requests: Optional[float] = None,
-                 max_requests: Optional[float] = None,
-                 max_requests_per_connection: Optional[float] = None,
-                 max_retries: Optional[float] = None):
+                 max_connections: Optional[int] = None,
+                 max_pending_requests: Optional[int] = None,
+                 max_requests: Optional[int] = None,
+                 max_requests_per_connection: Optional[int] = None,
+                 max_retries: Optional[int] = None):
         """
         :param 'RegionBackendServiceCircuitBreakersConnectTimeoutArgs' connect_timeout: The timeout for new network connections to hosts.  Structure is documented below.
-        :param float max_connections: The maximum number of connections to the backend cluster.
+        :param int max_connections: The maximum number of connections to the backend cluster.
                Defaults to 1024.
-        :param float max_pending_requests: The maximum number of pending requests to the backend cluster.
+        :param int max_pending_requests: The maximum number of pending requests to the backend cluster.
                Defaults to 1024.
-        :param float max_requests: The maximum number of parallel requests to the backend cluster.
+        :param int max_requests: The maximum number of parallel requests to the backend cluster.
                Defaults to 1024.
-        :param float max_requests_per_connection: Maximum requests for a single backend connection. This parameter
+        :param int max_requests_per_connection: Maximum requests for a single backend connection. This parameter
                is respected by both the HTTP/1.1 and HTTP/2 implementations. If
                not specified, there is no limit. Setting this parameter to 1
                will effectively disable keep alive.
-        :param float max_retries: The maximum number of parallel retries to the backend cluster.
+        :param int max_retries: The maximum number of parallel retries to the backend cluster.
                Defaults to 3.
         """
         if connect_timeout is not None:
@@ -7523,7 +7523,7 @@ class RegionBackendServiceCircuitBreakers(dict):
 
     @property
     @pulumi.getter(name="maxConnections")
-    def max_connections(self) -> Optional[float]:
+    def max_connections(self) -> Optional[int]:
         """
         The maximum number of connections to the backend cluster.
         Defaults to 1024.
@@ -7532,7 +7532,7 @@ class RegionBackendServiceCircuitBreakers(dict):
 
     @property
     @pulumi.getter(name="maxPendingRequests")
-    def max_pending_requests(self) -> Optional[float]:
+    def max_pending_requests(self) -> Optional[int]:
         """
         The maximum number of pending requests to the backend cluster.
         Defaults to 1024.
@@ -7541,7 +7541,7 @@ class RegionBackendServiceCircuitBreakers(dict):
 
     @property
     @pulumi.getter(name="maxRequests")
-    def max_requests(self) -> Optional[float]:
+    def max_requests(self) -> Optional[int]:
         """
         The maximum number of parallel requests to the backend cluster.
         Defaults to 1024.
@@ -7550,7 +7550,7 @@ class RegionBackendServiceCircuitBreakers(dict):
 
     @property
     @pulumi.getter(name="maxRequestsPerConnection")
-    def max_requests_per_connection(self) -> Optional[float]:
+    def max_requests_per_connection(self) -> Optional[int]:
         """
         Maximum requests for a single backend connection. This parameter
         is respected by both the HTTP/1.1 and HTTP/2 implementations. If
@@ -7561,7 +7561,7 @@ class RegionBackendServiceCircuitBreakers(dict):
 
     @property
     @pulumi.getter(name="maxRetries")
-    def max_retries(self) -> Optional[float]:
+    def max_retries(self) -> Optional[int]:
         """
         The maximum number of parallel retries to the backend cluster.
         Defaults to 3.
@@ -7575,12 +7575,12 @@ class RegionBackendServiceCircuitBreakers(dict):
 @pulumi.output_type
 class RegionBackendServiceCircuitBreakersConnectTimeout(dict):
     def __init__(__self__, *,
-                 seconds: float,
-                 nanos: Optional[float] = None):
+                 seconds: int,
+                 nanos: Optional[int] = None):
         """
-        :param float seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        :param int seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
                inclusive.
-        :param float nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
+        :param int nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
                less than one second are represented with a 0 `seconds` field and a positive
                `nanos` field. Must be from 0 to 999,999,999 inclusive.
         """
@@ -7590,7 +7590,7 @@ class RegionBackendServiceCircuitBreakersConnectTimeout(dict):
 
     @property
     @pulumi.getter
-    def seconds(self) -> float:
+    def seconds(self) -> int:
         """
         Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
         inclusive.
@@ -7599,7 +7599,7 @@ class RegionBackendServiceCircuitBreakersConnectTimeout(dict):
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[float]:
+    def nanos(self) -> Optional[int]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations
         less than one second are represented with a 0 `seconds` field and a positive
@@ -7616,7 +7616,7 @@ class RegionBackendServiceConsistentHash(dict):
     def __init__(__self__, *,
                  http_cookie: Optional['outputs.RegionBackendServiceConsistentHashHttpCookie'] = None,
                  http_header_name: Optional[str] = None,
-                 minimum_ring_size: Optional[float] = None):
+                 minimum_ring_size: Optional[int] = None):
         """
         :param 'RegionBackendServiceConsistentHashHttpCookieArgs' http_cookie: Hash is based on HTTP Cookie. This field describes a HTTP cookie
                that will be used as the hash key for the consistent hash load
@@ -7625,7 +7625,7 @@ class RegionBackendServiceConsistentHash(dict):
                Structure is documented below.
         :param str http_header_name: The hash based on the value of the specified header field.
                This field is applicable if the sessionAffinity is set to HEADER_FIELD.
-        :param float minimum_ring_size: The minimum number of virtual nodes to use for the hash ring.
+        :param int minimum_ring_size: The minimum number of virtual nodes to use for the hash ring.
                Larger ring sizes result in more granular load
                distributions. If the number of hosts in the load balancing pool
                is larger than the ring size, each host will be assigned a single
@@ -7662,7 +7662,7 @@ class RegionBackendServiceConsistentHash(dict):
 
     @property
     @pulumi.getter(name="minimumRingSize")
-    def minimum_ring_size(self) -> Optional[float]:
+    def minimum_ring_size(self) -> Optional[int]:
         """
         The minimum number of virtual nodes to use for the hash ring.
         Larger ring sizes result in more granular load
@@ -7728,12 +7728,12 @@ class RegionBackendServiceConsistentHashHttpCookie(dict):
 @pulumi.output_type
 class RegionBackendServiceConsistentHashHttpCookieTtl(dict):
     def __init__(__self__, *,
-                 seconds: float,
-                 nanos: Optional[float] = None):
+                 seconds: int,
+                 nanos: Optional[int] = None):
         """
-        :param float seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        :param int seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
                inclusive.
-        :param float nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
+        :param int nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
                less than one second are represented with a 0 `seconds` field and a positive
                `nanos` field. Must be from 0 to 999,999,999 inclusive.
         """
@@ -7743,7 +7743,7 @@ class RegionBackendServiceConsistentHashHttpCookieTtl(dict):
 
     @property
     @pulumi.getter
-    def seconds(self) -> float:
+    def seconds(self) -> int:
         """
         Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
         inclusive.
@@ -7752,7 +7752,7 @@ class RegionBackendServiceConsistentHashHttpCookieTtl(dict):
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[float]:
+    def nanos(self) -> Optional[int]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations
         less than one second are represented with a 0 `seconds` field and a positive
@@ -7888,51 +7888,51 @@ class RegionBackendServiceLogConfig(dict):
 class RegionBackendServiceOutlierDetection(dict):
     def __init__(__self__, *,
                  base_ejection_time: Optional['outputs.RegionBackendServiceOutlierDetectionBaseEjectionTime'] = None,
-                 consecutive_errors: Optional[float] = None,
-                 consecutive_gateway_failure: Optional[float] = None,
-                 enforcing_consecutive_errors: Optional[float] = None,
-                 enforcing_consecutive_gateway_failure: Optional[float] = None,
-                 enforcing_success_rate: Optional[float] = None,
+                 consecutive_errors: Optional[int] = None,
+                 consecutive_gateway_failure: Optional[int] = None,
+                 enforcing_consecutive_errors: Optional[int] = None,
+                 enforcing_consecutive_gateway_failure: Optional[int] = None,
+                 enforcing_success_rate: Optional[int] = None,
                  interval: Optional['outputs.RegionBackendServiceOutlierDetectionInterval'] = None,
-                 max_ejection_percent: Optional[float] = None,
-                 success_rate_minimum_hosts: Optional[float] = None,
-                 success_rate_request_volume: Optional[float] = None,
-                 success_rate_stdev_factor: Optional[float] = None):
+                 max_ejection_percent: Optional[int] = None,
+                 success_rate_minimum_hosts: Optional[int] = None,
+                 success_rate_request_volume: Optional[int] = None,
+                 success_rate_stdev_factor: Optional[int] = None):
         """
         :param 'RegionBackendServiceOutlierDetectionBaseEjectionTimeArgs' base_ejection_time: The base time that a host is ejected for. The real time is equal to the base
                time multiplied by the number of times the host has been ejected. Defaults to
                30000ms or 30s.
                Structure is documented below.
-        :param float consecutive_errors: Number of errors before a host is ejected from the connection pool. When the
+        :param int consecutive_errors: Number of errors before a host is ejected from the connection pool. When the
                backend host is accessed over HTTP, a 5xx return code qualifies as an error.
                Defaults to 5.
-        :param float consecutive_gateway_failure: The number of consecutive gateway failures (502, 503, 504 status or connection
+        :param int consecutive_gateway_failure: The number of consecutive gateway failures (502, 503, 504 status or connection
                errors that are mapped to one of those status codes) before a consecutive
                gateway failure ejection occurs. Defaults to 5.
-        :param float enforcing_consecutive_errors: The percentage chance that a host will be actually ejected when an outlier
+        :param int enforcing_consecutive_errors: The percentage chance that a host will be actually ejected when an outlier
                status is detected through consecutive 5xx. This setting can be used to disable
                ejection or to ramp it up slowly. Defaults to 100.
-        :param float enforcing_consecutive_gateway_failure: The percentage chance that a host will be actually ejected when an outlier
+        :param int enforcing_consecutive_gateway_failure: The percentage chance that a host will be actually ejected when an outlier
                status is detected through consecutive gateway failures. This setting can be
                used to disable ejection or to ramp it up slowly. Defaults to 0.
-        :param float enforcing_success_rate: The percentage chance that a host will be actually ejected when an outlier
+        :param int enforcing_success_rate: The percentage chance that a host will be actually ejected when an outlier
                status is detected through success rate statistics. This setting can be used to
                disable ejection or to ramp it up slowly. Defaults to 100.
         :param 'RegionBackendServiceOutlierDetectionIntervalArgs' interval: Time interval between ejection sweep analysis. This can result in both new
                ejections as well as hosts being returned to service. Defaults to 10 seconds.
                Structure is documented below.
-        :param float max_ejection_percent: Maximum percentage of hosts in the load balancing pool for the backend service
+        :param int max_ejection_percent: Maximum percentage of hosts in the load balancing pool for the backend service
                that can be ejected. Defaults to 10%.
-        :param float success_rate_minimum_hosts: The number of hosts in a cluster that must have enough request volume to detect
+        :param int success_rate_minimum_hosts: The number of hosts in a cluster that must have enough request volume to detect
                success rate outliers. If the number of hosts is less than this setting, outlier
                detection via success rate statistics is not performed for any host in the
                cluster. Defaults to 5.
-        :param float success_rate_request_volume: The minimum number of total requests that must be collected in one interval (as
+        :param int success_rate_request_volume: The minimum number of total requests that must be collected in one interval (as
                defined by the interval duration above) to include this host in success rate
                based outlier detection. If the volume is lower than this setting, outlier
                detection via success rate statistics is not performed for that host. Defaults
                to 100.
-        :param float success_rate_stdev_factor: This factor is used to determine the ejection threshold for success rate outlier
+        :param int success_rate_stdev_factor: This factor is used to determine the ejection threshold for success rate outlier
                ejection. The ejection threshold is the difference between the mean success
                rate, and the product of this factor and the standard deviation of the mean
                success rate: mean - (stdev * success_rate_stdev_factor). This factor is divided
@@ -7975,7 +7975,7 @@ class RegionBackendServiceOutlierDetection(dict):
 
     @property
     @pulumi.getter(name="consecutiveErrors")
-    def consecutive_errors(self) -> Optional[float]:
+    def consecutive_errors(self) -> Optional[int]:
         """
         Number of errors before a host is ejected from the connection pool. When the
         backend host is accessed over HTTP, a 5xx return code qualifies as an error.
@@ -7985,7 +7985,7 @@ class RegionBackendServiceOutlierDetection(dict):
 
     @property
     @pulumi.getter(name="consecutiveGatewayFailure")
-    def consecutive_gateway_failure(self) -> Optional[float]:
+    def consecutive_gateway_failure(self) -> Optional[int]:
         """
         The number of consecutive gateway failures (502, 503, 504 status or connection
         errors that are mapped to one of those status codes) before a consecutive
@@ -7995,7 +7995,7 @@ class RegionBackendServiceOutlierDetection(dict):
 
     @property
     @pulumi.getter(name="enforcingConsecutiveErrors")
-    def enforcing_consecutive_errors(self) -> Optional[float]:
+    def enforcing_consecutive_errors(self) -> Optional[int]:
         """
         The percentage chance that a host will be actually ejected when an outlier
         status is detected through consecutive 5xx. This setting can be used to disable
@@ -8005,7 +8005,7 @@ class RegionBackendServiceOutlierDetection(dict):
 
     @property
     @pulumi.getter(name="enforcingConsecutiveGatewayFailure")
-    def enforcing_consecutive_gateway_failure(self) -> Optional[float]:
+    def enforcing_consecutive_gateway_failure(self) -> Optional[int]:
         """
         The percentage chance that a host will be actually ejected when an outlier
         status is detected through consecutive gateway failures. This setting can be
@@ -8015,7 +8015,7 @@ class RegionBackendServiceOutlierDetection(dict):
 
     @property
     @pulumi.getter(name="enforcingSuccessRate")
-    def enforcing_success_rate(self) -> Optional[float]:
+    def enforcing_success_rate(self) -> Optional[int]:
         """
         The percentage chance that a host will be actually ejected when an outlier
         status is detected through success rate statistics. This setting can be used to
@@ -8035,7 +8035,7 @@ class RegionBackendServiceOutlierDetection(dict):
 
     @property
     @pulumi.getter(name="maxEjectionPercent")
-    def max_ejection_percent(self) -> Optional[float]:
+    def max_ejection_percent(self) -> Optional[int]:
         """
         Maximum percentage of hosts in the load balancing pool for the backend service
         that can be ejected. Defaults to 10%.
@@ -8044,7 +8044,7 @@ class RegionBackendServiceOutlierDetection(dict):
 
     @property
     @pulumi.getter(name="successRateMinimumHosts")
-    def success_rate_minimum_hosts(self) -> Optional[float]:
+    def success_rate_minimum_hosts(self) -> Optional[int]:
         """
         The number of hosts in a cluster that must have enough request volume to detect
         success rate outliers. If the number of hosts is less than this setting, outlier
@@ -8055,7 +8055,7 @@ class RegionBackendServiceOutlierDetection(dict):
 
     @property
     @pulumi.getter(name="successRateRequestVolume")
-    def success_rate_request_volume(self) -> Optional[float]:
+    def success_rate_request_volume(self) -> Optional[int]:
         """
         The minimum number of total requests that must be collected in one interval (as
         defined by the interval duration above) to include this host in success rate
@@ -8067,7 +8067,7 @@ class RegionBackendServiceOutlierDetection(dict):
 
     @property
     @pulumi.getter(name="successRateStdevFactor")
-    def success_rate_stdev_factor(self) -> Optional[float]:
+    def success_rate_stdev_factor(self) -> Optional[int]:
         """
         This factor is used to determine the ejection threshold for success rate outlier
         ejection. The ejection threshold is the difference between the mean success
@@ -8085,12 +8085,12 @@ class RegionBackendServiceOutlierDetection(dict):
 @pulumi.output_type
 class RegionBackendServiceOutlierDetectionBaseEjectionTime(dict):
     def __init__(__self__, *,
-                 seconds: float,
-                 nanos: Optional[float] = None):
+                 seconds: int,
+                 nanos: Optional[int] = None):
         """
-        :param float seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        :param int seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
                inclusive.
-        :param float nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
+        :param int nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
                less than one second are represented with a 0 `seconds` field and a positive
                `nanos` field. Must be from 0 to 999,999,999 inclusive.
         """
@@ -8100,7 +8100,7 @@ class RegionBackendServiceOutlierDetectionBaseEjectionTime(dict):
 
     @property
     @pulumi.getter
-    def seconds(self) -> float:
+    def seconds(self) -> int:
         """
         Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
         inclusive.
@@ -8109,7 +8109,7 @@ class RegionBackendServiceOutlierDetectionBaseEjectionTime(dict):
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[float]:
+    def nanos(self) -> Optional[int]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations
         less than one second are represented with a 0 `seconds` field and a positive
@@ -8124,12 +8124,12 @@ class RegionBackendServiceOutlierDetectionBaseEjectionTime(dict):
 @pulumi.output_type
 class RegionBackendServiceOutlierDetectionInterval(dict):
     def __init__(__self__, *,
-                 seconds: float,
-                 nanos: Optional[float] = None):
+                 seconds: int,
+                 nanos: Optional[int] = None):
         """
-        :param float seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        :param int seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
                inclusive.
-        :param float nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
+        :param int nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
                less than one second are represented with a 0 `seconds` field and a positive
                `nanos` field. Must be from 0 to 999,999,999 inclusive.
         """
@@ -8139,7 +8139,7 @@ class RegionBackendServiceOutlierDetectionInterval(dict):
 
     @property
     @pulumi.getter
-    def seconds(self) -> float:
+    def seconds(self) -> int:
         """
         Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
         inclusive.
@@ -8148,7 +8148,7 @@ class RegionBackendServiceOutlierDetectionInterval(dict):
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[float]:
+    def nanos(self) -> Optional[int]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations
         less than one second are represented with a 0 `seconds` field and a positive
@@ -8328,7 +8328,7 @@ class RegionDiskSourceSnapshotEncryptionKey(dict):
 class RegionHealthCheckGrpcHealthCheck(dict):
     def __init__(__self__, *,
                  grpc_service_name: Optional[str] = None,
-                 port: Optional[float] = None,
+                 port: Optional[int] = None,
                  port_name: Optional[str] = None,
                  port_specification: Optional[str] = None):
         """
@@ -8337,7 +8337,7 @@ class RegionHealthCheckGrpcHealthCheck(dict):
                - Empty serviceName means the overall status of all services at the backend.
                - Non-empty serviceName means the health of that gRPC service, as defined by the owner of the service.
                The grpcServiceName can only be ASCII.
-        :param float port: The port number for the health check request.
+        :param int port: The port number for the health check request.
                Must be specified if portName and portSpecification are not set
                or if port_specification is USE_FIXED_PORT. Valid values are 1 through 65535.
         :param str port_name: Port name as defined in InstanceGroup#NamedPort#name. If both port and
@@ -8377,7 +8377,7 @@ class RegionHealthCheckGrpcHealthCheck(dict):
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[float]:
+    def port(self) -> Optional[int]:
         """
         The port number for the health check request.
         Must be specified if portName and portSpecification are not set
@@ -8420,7 +8420,7 @@ class RegionHealthCheckGrpcHealthCheck(dict):
 class RegionHealthCheckHttp2HealthCheck(dict):
     def __init__(__self__, *,
                  host: Optional[str] = None,
-                 port: Optional[float] = None,
+                 port: Optional[int] = None,
                  port_name: Optional[str] = None,
                  port_specification: Optional[str] = None,
                  proxy_header: Optional[str] = None,
@@ -8430,7 +8430,7 @@ class RegionHealthCheckHttp2HealthCheck(dict):
         :param str host: The value of the host header in the HTTP2 health check request.
                If left empty (default value), the public IP on behalf of which this health
                check is performed will be used.
-        :param float port: The port number for the health check request.
+        :param int port: The port number for the health check request.
                Must be specified if portName and portSpecification are not set
                or if port_specification is USE_FIXED_PORT. Valid values are 1 through 65535.
         :param str port_name: Port name as defined in InstanceGroup#NamedPort#name. If both port and
@@ -8483,7 +8483,7 @@ class RegionHealthCheckHttp2HealthCheck(dict):
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[float]:
+    def port(self) -> Optional[int]:
         """
         The port number for the health check request.
         Must be specified if portName and portSpecification are not set
@@ -8556,7 +8556,7 @@ class RegionHealthCheckHttp2HealthCheck(dict):
 class RegionHealthCheckHttpHealthCheck(dict):
     def __init__(__self__, *,
                  host: Optional[str] = None,
-                 port: Optional[float] = None,
+                 port: Optional[int] = None,
                  port_name: Optional[str] = None,
                  port_specification: Optional[str] = None,
                  proxy_header: Optional[str] = None,
@@ -8566,7 +8566,7 @@ class RegionHealthCheckHttpHealthCheck(dict):
         :param str host: The value of the host header in the HTTP2 health check request.
                If left empty (default value), the public IP on behalf of which this health
                check is performed will be used.
-        :param float port: The port number for the health check request.
+        :param int port: The port number for the health check request.
                Must be specified if portName and portSpecification are not set
                or if port_specification is USE_FIXED_PORT. Valid values are 1 through 65535.
         :param str port_name: Port name as defined in InstanceGroup#NamedPort#name. If both port and
@@ -8619,7 +8619,7 @@ class RegionHealthCheckHttpHealthCheck(dict):
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[float]:
+    def port(self) -> Optional[int]:
         """
         The port number for the health check request.
         Must be specified if portName and portSpecification are not set
@@ -8692,7 +8692,7 @@ class RegionHealthCheckHttpHealthCheck(dict):
 class RegionHealthCheckHttpsHealthCheck(dict):
     def __init__(__self__, *,
                  host: Optional[str] = None,
-                 port: Optional[float] = None,
+                 port: Optional[int] = None,
                  port_name: Optional[str] = None,
                  port_specification: Optional[str] = None,
                  proxy_header: Optional[str] = None,
@@ -8702,7 +8702,7 @@ class RegionHealthCheckHttpsHealthCheck(dict):
         :param str host: The value of the host header in the HTTP2 health check request.
                If left empty (default value), the public IP on behalf of which this health
                check is performed will be used.
-        :param float port: The port number for the health check request.
+        :param int port: The port number for the health check request.
                Must be specified if portName and portSpecification are not set
                or if port_specification is USE_FIXED_PORT. Valid values are 1 through 65535.
         :param str port_name: Port name as defined in InstanceGroup#NamedPort#name. If both port and
@@ -8755,7 +8755,7 @@ class RegionHealthCheckHttpsHealthCheck(dict):
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[float]:
+    def port(self) -> Optional[int]:
         """
         The port number for the health check request.
         Must be specified if portName and portSpecification are not set
@@ -8851,14 +8851,14 @@ class RegionHealthCheckLogConfig(dict):
 @pulumi.output_type
 class RegionHealthCheckSslHealthCheck(dict):
     def __init__(__self__, *,
-                 port: Optional[float] = None,
+                 port: Optional[int] = None,
                  port_name: Optional[str] = None,
                  port_specification: Optional[str] = None,
                  proxy_header: Optional[str] = None,
                  request: Optional[str] = None,
                  response: Optional[str] = None):
         """
-        :param float port: The port number for the health check request.
+        :param int port: The port number for the health check request.
                Must be specified if portName and portSpecification are not set
                or if port_specification is USE_FIXED_PORT. Valid values are 1 through 65535.
         :param str port_name: Port name as defined in InstanceGroup#NamedPort#name. If both port and
@@ -8901,7 +8901,7 @@ class RegionHealthCheckSslHealthCheck(dict):
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[float]:
+    def port(self) -> Optional[int]:
         """
         The port number for the health check request.
         Must be specified if portName and portSpecification are not set
@@ -8975,14 +8975,14 @@ class RegionHealthCheckSslHealthCheck(dict):
 @pulumi.output_type
 class RegionHealthCheckTcpHealthCheck(dict):
     def __init__(__self__, *,
-                 port: Optional[float] = None,
+                 port: Optional[int] = None,
                  port_name: Optional[str] = None,
                  port_specification: Optional[str] = None,
                  proxy_header: Optional[str] = None,
                  request: Optional[str] = None,
                  response: Optional[str] = None):
         """
-        :param float port: The port number for the health check request.
+        :param int port: The port number for the health check request.
                Must be specified if portName and portSpecification are not set
                or if port_specification is USE_FIXED_PORT. Valid values are 1 through 65535.
         :param str port_name: Port name as defined in InstanceGroup#NamedPort#name. If both port and
@@ -9025,7 +9025,7 @@ class RegionHealthCheckTcpHealthCheck(dict):
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[float]:
+    def port(self) -> Optional[int]:
         """
         The port number for the health check request.
         Must be specified if portName and portSpecification are not set
@@ -9100,10 +9100,10 @@ class RegionHealthCheckTcpHealthCheck(dict):
 class RegionInstanceGroupManagerAutoHealingPolicies(dict):
     def __init__(__self__, *,
                  health_check: str,
-                 initial_delay_sec: float):
+                 initial_delay_sec: int):
         """
         :param str health_check: The health check resource that signals autohealing.
-        :param float initial_delay_sec: The number of seconds that the managed instance group waits before
+        :param int initial_delay_sec: The number of seconds that the managed instance group waits before
                it applies autohealing policies to new instances or recently recreated instances. Between 0 and 3600.
         """
         pulumi.set(__self__, "health_check", health_check)
@@ -9119,7 +9119,7 @@ class RegionInstanceGroupManagerAutoHealingPolicies(dict):
 
     @property
     @pulumi.getter(name="initialDelaySec")
-    def initial_delay_sec(self) -> float:
+    def initial_delay_sec(self) -> int:
         """
         The number of seconds that the managed instance group waits before
         it applies autohealing policies to new instances or recently recreated instances. Between 0 and 3600.
@@ -9134,10 +9134,10 @@ class RegionInstanceGroupManagerAutoHealingPolicies(dict):
 class RegionInstanceGroupManagerNamedPort(dict):
     def __init__(__self__, *,
                  name: str,
-                 port: float):
+                 port: int):
         """
         :param str name: - Version name.
-        :param float port: The port number.
+        :param int port: The port number.
                - - -
         """
         pulumi.set(__self__, "name", name)
@@ -9153,7 +9153,7 @@ class RegionInstanceGroupManagerNamedPort(dict):
 
     @property
     @pulumi.getter
-    def port(self) -> float:
+    def port(self) -> int:
         """
         The port number.
         - - -
@@ -9203,20 +9203,20 @@ class RegionInstanceGroupManagerUpdatePolicy(dict):
                  minimal_action: str,
                  type: str,
                  instance_redistribution_type: Optional[str] = None,
-                 max_surge_fixed: Optional[float] = None,
-                 max_surge_percent: Optional[float] = None,
-                 max_unavailable_fixed: Optional[float] = None,
-                 max_unavailable_percent: Optional[float] = None,
-                 min_ready_sec: Optional[float] = None):
+                 max_surge_fixed: Optional[int] = None,
+                 max_surge_percent: Optional[int] = None,
+                 max_unavailable_fixed: Optional[int] = None,
+                 max_unavailable_percent: Optional[int] = None,
+                 min_ready_sec: Optional[int] = None):
         """
         :param str minimal_action: - Minimal action to be taken on an instance. You can specify either `RESTART` to restart existing instances or `REPLACE` to delete and create new instances from the target template. If you specify a `RESTART`, the Updater will attempt to perform that action only. However, if the Updater determines that the minimal action you specify is not enough to perform the update, it might perform a more disruptive action.
         :param str type: - The type of update process. You can specify either `PROACTIVE` so that the instance group manager proactively executes actions in order to bring instances to their target versions or `OPPORTUNISTIC` so that no action is proactively executed but the update will be performed as part of other actions (for example, resizes or recreateInstances calls).
         :param str instance_redistribution_type: - The instance redistribution policy for regional managed instance groups. Valid values are: `"PROACTIVE"`, `"NONE"`. If `PROACTIVE` (default), the group attempts to maintain an even distribution of VM instances across zones in the region. If `NONE`, proactive redistribution is disabled.
-        :param float max_surge_fixed: , The maximum number of instances that can be created above the specified targetSize during the update process. Conflicts with `max_surge_percent`. It has to be either 0 or at least equal to the number of zones.  If fixed values are used, at least one of `max_unavailable_fixed` or `max_surge_fixed` must be greater than 0.
-        :param float max_surge_percent: , The maximum number of instances(calculated as percentage) that can be created above the specified targetSize during the update process. Conflicts with `max_surge_fixed`. Percent value is only allowed for regional managed instance groups with size at least 10.
-        :param float max_unavailable_fixed: , The maximum number of instances that can be unavailable during the update process. Conflicts with `max_unavailable_percent`. It has to be either 0 or at least equal to the number of zones. If fixed values are used, at least one of `max_unavailable_fixed` or `max_surge_fixed` must be greater than 0.
-        :param float max_unavailable_percent: , The maximum number of instances(calculated as percentage) that can be unavailable during the update process. Conflicts with `max_unavailable_fixed`. Percent value is only allowed for regional managed instance groups with size at least 10.
-        :param float min_ready_sec: , Minimum number of seconds to wait for after a newly created instance becomes available. This value must be from range [0, 3600]
+        :param int max_surge_fixed: , The maximum number of instances that can be created above the specified targetSize during the update process. Conflicts with `max_surge_percent`. It has to be either 0 or at least equal to the number of zones.  If fixed values are used, at least one of `max_unavailable_fixed` or `max_surge_fixed` must be greater than 0.
+        :param int max_surge_percent: , The maximum number of instances(calculated as percentage) that can be created above the specified targetSize during the update process. Conflicts with `max_surge_fixed`. Percent value is only allowed for regional managed instance groups with size at least 10.
+        :param int max_unavailable_fixed: , The maximum number of instances that can be unavailable during the update process. Conflicts with `max_unavailable_percent`. It has to be either 0 or at least equal to the number of zones. If fixed values are used, at least one of `max_unavailable_fixed` or `max_surge_fixed` must be greater than 0.
+        :param int max_unavailable_percent: , The maximum number of instances(calculated as percentage) that can be unavailable during the update process. Conflicts with `max_unavailable_fixed`. Percent value is only allowed for regional managed instance groups with size at least 10.
+        :param int min_ready_sec: , Minimum number of seconds to wait for after a newly created instance becomes available. This value must be from range [0, 3600]
                - - -
         """
         pulumi.set(__self__, "minimal_action", minimal_action)
@@ -9260,7 +9260,7 @@ class RegionInstanceGroupManagerUpdatePolicy(dict):
 
     @property
     @pulumi.getter(name="maxSurgeFixed")
-    def max_surge_fixed(self) -> Optional[float]:
+    def max_surge_fixed(self) -> Optional[int]:
         """
         , The maximum number of instances that can be created above the specified targetSize during the update process. Conflicts with `max_surge_percent`. It has to be either 0 or at least equal to the number of zones.  If fixed values are used, at least one of `max_unavailable_fixed` or `max_surge_fixed` must be greater than 0.
         """
@@ -9268,7 +9268,7 @@ class RegionInstanceGroupManagerUpdatePolicy(dict):
 
     @property
     @pulumi.getter(name="maxSurgePercent")
-    def max_surge_percent(self) -> Optional[float]:
+    def max_surge_percent(self) -> Optional[int]:
         """
         , The maximum number of instances(calculated as percentage) that can be created above the specified targetSize during the update process. Conflicts with `max_surge_fixed`. Percent value is only allowed for regional managed instance groups with size at least 10.
         """
@@ -9276,7 +9276,7 @@ class RegionInstanceGroupManagerUpdatePolicy(dict):
 
     @property
     @pulumi.getter(name="maxUnavailableFixed")
-    def max_unavailable_fixed(self) -> Optional[float]:
+    def max_unavailable_fixed(self) -> Optional[int]:
         """
         , The maximum number of instances that can be unavailable during the update process. Conflicts with `max_unavailable_percent`. It has to be either 0 or at least equal to the number of zones. If fixed values are used, at least one of `max_unavailable_fixed` or `max_surge_fixed` must be greater than 0.
         """
@@ -9284,7 +9284,7 @@ class RegionInstanceGroupManagerUpdatePolicy(dict):
 
     @property
     @pulumi.getter(name="maxUnavailablePercent")
-    def max_unavailable_percent(self) -> Optional[float]:
+    def max_unavailable_percent(self) -> Optional[int]:
         """
         , The maximum number of instances(calculated as percentage) that can be unavailable during the update process. Conflicts with `max_unavailable_fixed`. Percent value is only allowed for regional managed instance groups with size at least 10.
         """
@@ -9292,7 +9292,7 @@ class RegionInstanceGroupManagerUpdatePolicy(dict):
 
     @property
     @pulumi.getter(name="minReadySec")
-    def min_ready_sec(self) -> Optional[float]:
+    def min_ready_sec(self) -> Optional[int]:
         """
         , Minimum number of seconds to wait for after a newly created instance becomes available. This value must be from range [0, 3600]
         - - -
@@ -9351,11 +9351,11 @@ class RegionInstanceGroupManagerVersion(dict):
 @pulumi.output_type
 class RegionInstanceGroupManagerVersionTargetSize(dict):
     def __init__(__self__, *,
-                 fixed: Optional[float] = None,
-                 percent: Optional[float] = None):
+                 fixed: Optional[int] = None,
+                 percent: Optional[int] = None):
         """
-        :param float fixed: , The number of instances which are managed for this version. Conflicts with `percent`.
-        :param float percent: , The number of instances (calculated as percentage) which are managed for this version. Conflicts with `fixed`.
+        :param int fixed: , The number of instances which are managed for this version. Conflicts with `percent`.
+        :param int percent: , The number of instances (calculated as percentage) which are managed for this version. Conflicts with `fixed`.
                Note that when using `percent`, rounding will be in favor of explicitly set `target_size` values; a managed instance group with 2 instances and 2 `version`s,
                one of which has a `target_size.percent` of `60` will create 2 instances of that `version`.
         """
@@ -9366,7 +9366,7 @@ class RegionInstanceGroupManagerVersionTargetSize(dict):
 
     @property
     @pulumi.getter
-    def fixed(self) -> Optional[float]:
+    def fixed(self) -> Optional[int]:
         """
         , The number of instances which are managed for this version. Conflicts with `percent`.
         """
@@ -9374,7 +9374,7 @@ class RegionInstanceGroupManagerVersionTargetSize(dict):
 
     @property
     @pulumi.getter
-    def percent(self) -> Optional[float]:
+    def percent(self) -> Optional[int]:
         """
         , The number of instances (calculated as percentage) which are managed for this version. Conflicts with `fixed`.
         Note that when using `percent`, rounding will be in favor of explicitly set `target_size` values; a managed instance group with 2 instances and 2 `version`s,
@@ -10333,7 +10333,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionCorsPolicy(dict):
                  allow_origin_regexes: Optional[List[str]] = None,
                  allow_origins: Optional[List[str]] = None,
                  expose_headers: Optional[List[str]] = None,
-                 max_age: Optional[float] = None):
+                 max_age: Optional[int] = None):
         """
         :param bool disabled: If true, specifies the CORS policy is disabled.
         :param bool allow_credentials: In response to a preflight request, setting this to true indicates that the
@@ -10347,7 +10347,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionCorsPolicy(dict):
         :param List[str] allow_origins: Specifies the list of origins that will be allowed to do CORS requests. An
                origin is allowed if it matches either allow_origins or allow_origin_regex.
         :param List[str] expose_headers: Specifies the content for the Access-Control-Expose-Headers header.
-        :param float max_age: Specifies how long the results of a preflight request can be cached. This
+        :param int max_age: Specifies how long the results of a preflight request can be cached. This
                translates to the content for the Access-Control-Max-Age header.
         """
         pulumi.set(__self__, "disabled", disabled)
@@ -10429,7 +10429,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionCorsPolicy(dict):
 
     @property
     @pulumi.getter(name="maxAge")
-    def max_age(self) -> Optional[float]:
+    def max_age(self) -> Optional[int]:
         """
         Specifies how long the results of a preflight request can be cached. This
         translates to the content for the Access-Control-Max-Age header.
@@ -10485,10 +10485,10 @@ class RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicy(dict):
 @pulumi.output_type
 class RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbort(dict):
     def __init__(__self__, *,
-                 http_status: float,
+                 http_status: int,
                  percentage: float):
         """
-        :param float http_status: The HTTP status code used to abort the request. The value must be between 200
+        :param int http_status: The HTTP status code used to abort the request. The value must be between 200
                and 599 inclusive.
         :param float percentage: The percentage of traffic (connections/operations/requests) on which delay will
                be introduced as part of fault injection. The value must be between 0.0 and
@@ -10499,7 +10499,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbort(dict):
 
     @property
     @pulumi.getter(name="httpStatus")
-    def http_status(self) -> float:
+    def http_status(self) -> int:
         """
         The HTTP status code used to abort the request. The value must be between 200
         and 599 inclusive.
@@ -10562,11 +10562,11 @@ class RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelay(dict):
 class RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelay(dict):
     def __init__(__self__, *,
                  seconds: str,
-                 nanos: Optional[float] = None):
+                 nanos: Optional[int] = None):
         """
         :param str seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
                inclusive.
-        :param float nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
+        :param int nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
                less than one second are represented with a 0 `seconds` field and a positive
                `nanos` field. Must be from 0 to 999,999,999 inclusive.
         """
@@ -10585,7 +10585,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDe
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[float]:
+    def nanos(self) -> Optional[int]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations
         less than one second are represented with a 0 `seconds` field and a positive
@@ -10625,11 +10625,11 @@ class RegionUrlMapPathMatcherPathRuleRouteActionRequestMirrorPolicy(dict):
 @pulumi.output_type
 class RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicy(dict):
     def __init__(__self__, *,
-                 num_retries: Optional[float] = None,
+                 num_retries: Optional[int] = None,
                  per_try_timeout: Optional['outputs.RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeout'] = None,
                  retry_conditions: Optional[List[str]] = None):
         """
-        :param float num_retries: Specifies the allowed number retries. This number must be > 0.
+        :param int num_retries: Specifies the allowed number retries. This number must be > 0.
         :param 'RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutArgs' per_try_timeout: Specifies a non-zero timeout per retry attempt.
                Structure is documented below.
         :param List[str] retry_conditions: Specifies one or more conditions when this retry rule applies. Valid values are:
@@ -10663,7 +10663,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicy(dict):
 
     @property
     @pulumi.getter(name="numRetries")
-    def num_retries(self) -> Optional[float]:
+    def num_retries(self) -> Optional[int]:
         """
         Specifies the allowed number retries. This number must be > 0.
         """
@@ -10714,11 +10714,11 @@ class RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicy(dict):
 class RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeout(dict):
     def __init__(__self__, *,
                  seconds: str,
-                 nanos: Optional[float] = None):
+                 nanos: Optional[int] = None):
         """
         :param str seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
                inclusive.
-        :param float nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
+        :param int nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
                less than one second are represented with a 0 `seconds` field and a positive
                `nanos` field. Must be from 0 to 999,999,999 inclusive.
         """
@@ -10737,7 +10737,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeout(dict):
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[float]:
+    def nanos(self) -> Optional[int]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations
         less than one second are represented with a 0 `seconds` field and a positive
@@ -10753,11 +10753,11 @@ class RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeout(dict):
 class RegionUrlMapPathMatcherPathRuleRouteActionTimeout(dict):
     def __init__(__self__, *,
                  seconds: str,
-                 nanos: Optional[float] = None):
+                 nanos: Optional[int] = None):
         """
         :param str seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
                inclusive.
-        :param float nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
+        :param int nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
                less than one second are represented with a 0 `seconds` field and a positive
                `nanos` field. Must be from 0 to 999,999,999 inclusive.
         """
@@ -10776,7 +10776,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionTimeout(dict):
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[float]:
+    def nanos(self) -> Optional[int]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations
         less than one second are represented with a 0 `seconds` field and a positive
@@ -10834,13 +10834,13 @@ class RegionUrlMapPathMatcherPathRuleRouteActionUrlRewrite(dict):
 class RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendService(dict):
     def __init__(__self__, *,
                  backend_service: str,
-                 weight: float,
+                 weight: int,
                  header_action: Optional['outputs.RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderAction'] = None):
         """
         :param str backend_service: The default RegionBackendService resource. Before
                forwarding the request to backendService, the loadbalancer applies any relevant
                headerActions specified as part of this backendServiceWeight.
-        :param float weight: Specifies the fraction of traffic sent to backendService, computed as weight /
+        :param int weight: Specifies the fraction of traffic sent to backendService, computed as weight /
                (sum of all weightedBackendService weights in routeAction) . The selection of a
                backend service is determined only for new traffic. Once a user's request has
                been directed to a backendService, subsequent requests will be sent to the same
@@ -10868,7 +10868,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendService(dict):
 
     @property
     @pulumi.getter
-    def weight(self) -> float:
+    def weight(self) -> int:
         """
         Specifies the fraction of traffic sent to backendService, computed as weight /
         (sum of all weightedBackendService weights in routeAction) . The selection of a
@@ -11184,14 +11184,14 @@ class RegionUrlMapPathMatcherPathRuleUrlRedirect(dict):
 @pulumi.output_type
 class RegionUrlMapPathMatcherRouteRule(dict):
     def __init__(__self__, *,
-                 priority: float,
+                 priority: int,
                  header_action: Optional['outputs.RegionUrlMapPathMatcherRouteRuleHeaderAction'] = None,
                  match_rules: Optional[List['outputs.RegionUrlMapPathMatcherRouteRuleMatchRule']] = None,
                  route_action: Optional['outputs.RegionUrlMapPathMatcherRouteRuleRouteAction'] = None,
                  service: Optional[str] = None,
                  url_redirect: Optional['outputs.RegionUrlMapPathMatcherRouteRuleUrlRedirect'] = None):
         """
-        :param float priority: For routeRules within a given pathMatcher, priority determines the order
+        :param int priority: For routeRules within a given pathMatcher, priority determines the order
                in which load balancer will interpret routeRules. RouteRules are evaluated
                in order of priority, from the lowest to highest number. The priority of
                a rule decreases as its number increases (1, 2, 3, N+1). The first rule
@@ -11237,7 +11237,7 @@ class RegionUrlMapPathMatcherRouteRule(dict):
 
     @property
     @pulumi.getter
-    def priority(self) -> float:
+    def priority(self) -> int:
         """
         For routeRules within a given pathMatcher, priority determines the order
         in which load balancer will interpret routeRules. RouteRules are evaluated
@@ -11764,18 +11764,18 @@ class RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatch(dict):
 @pulumi.output_type
 class RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatch(dict):
     def __init__(__self__, *,
-                 range_end: float,
-                 range_start: float):
+                 range_end: int,
+                 range_start: int):
         """
-        :param float range_end: The end of the range (exclusive).
-        :param float range_start: The start of the range (inclusive).
+        :param int range_end: The end of the range (exclusive).
+        :param int range_start: The start of the range (inclusive).
         """
         pulumi.set(__self__, "range_end", range_end)
         pulumi.set(__self__, "range_start", range_start)
 
     @property
     @pulumi.getter(name="rangeEnd")
-    def range_end(self) -> float:
+    def range_end(self) -> int:
         """
         The end of the range (exclusive).
         """
@@ -11783,7 +11783,7 @@ class RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatch(dict):
 
     @property
     @pulumi.getter(name="rangeStart")
-    def range_start(self) -> float:
+    def range_start(self) -> int:
         """
         The start of the range (inclusive).
         """
@@ -12112,7 +12112,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicy(dict):
                  allow_origins: Optional[List[str]] = None,
                  disabled: Optional[bool] = None,
                  expose_headers: Optional[List[str]] = None,
-                 max_age: Optional[float] = None):
+                 max_age: Optional[int] = None):
         """
         :param bool allow_credentials: In response to a preflight request, setting this to true indicates that the
                actual request can include user credentials. This translates to the Access-
@@ -12126,7 +12126,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicy(dict):
                origin is allowed if it matches either allow_origins or allow_origin_regex.
         :param bool disabled: If true, specifies the CORS policy is disabled.
         :param List[str] expose_headers: Specifies the content for the Access-Control-Expose-Headers header.
-        :param float max_age: Specifies how long the results of a preflight request can be cached. This
+        :param int max_age: Specifies how long the results of a preflight request can be cached. This
                translates to the content for the Access-Control-Max-Age header.
         """
         if allow_credentials is not None:
@@ -12209,7 +12209,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicy(dict):
 
     @property
     @pulumi.getter(name="maxAge")
-    def max_age(self) -> Optional[float]:
+    def max_age(self) -> Optional[int]:
         """
         Specifies how long the results of a preflight request can be cached. This
         translates to the content for the Access-Control-Max-Age header.
@@ -12265,10 +12265,10 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicy(dict):
 @pulumi.output_type
 class RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbort(dict):
     def __init__(__self__, *,
-                 http_status: Optional[float] = None,
+                 http_status: Optional[int] = None,
                  percentage: Optional[float] = None):
         """
-        :param float http_status: The HTTP status code used to abort the request. The value must be between 200
+        :param int http_status: The HTTP status code used to abort the request. The value must be between 200
                and 599 inclusive.
         :param float percentage: The percentage of traffic (connections/operations/requests) on which delay will
                be introduced as part of fault injection. The value must be between 0.0 and
@@ -12281,7 +12281,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbort(dict)
 
     @property
     @pulumi.getter(name="httpStatus")
-    def http_status(self) -> Optional[float]:
+    def http_status(self) -> Optional[int]:
         """
         The HTTP status code used to abort the request. The value must be between 200
         and 599 inclusive.
@@ -12346,11 +12346,11 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelay(dict)
 class RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelay(dict):
     def __init__(__self__, *,
                  seconds: str,
-                 nanos: Optional[float] = None):
+                 nanos: Optional[int] = None):
         """
         :param str seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
                inclusive.
-        :param float nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
+        :param int nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
                less than one second are represented with a 0 `seconds` field and a positive
                `nanos` field. Must be from 0 to 999,999,999 inclusive.
         """
@@ -12369,7 +12369,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedD
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[float]:
+    def nanos(self) -> Optional[int]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations
         less than one second are represented with a 0 `seconds` field and a positive
@@ -12409,11 +12409,11 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionRequestMirrorPolicy(dict):
 @pulumi.output_type
 class RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicy(dict):
     def __init__(__self__, *,
-                 num_retries: float,
+                 num_retries: int,
                  per_try_timeout: Optional['outputs.RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeout'] = None,
                  retry_conditions: Optional[List[str]] = None):
         """
-        :param float num_retries: Specifies the allowed number retries. This number must be > 0.
+        :param int num_retries: Specifies the allowed number retries. This number must be > 0.
         :param 'RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutArgs' per_try_timeout: Specifies a non-zero timeout per retry attempt.
                Structure is documented below.
         :param List[str] retry_conditions: Specifies one or more conditions when this retry rule applies. Valid values are:
@@ -12446,7 +12446,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicy(dict):
 
     @property
     @pulumi.getter(name="numRetries")
-    def num_retries(self) -> float:
+    def num_retries(self) -> int:
         """
         Specifies the allowed number retries. This number must be > 0.
         """
@@ -12497,11 +12497,11 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicy(dict):
 class RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeout(dict):
     def __init__(__self__, *,
                  seconds: str,
-                 nanos: Optional[float] = None):
+                 nanos: Optional[int] = None):
         """
         :param str seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
                inclusive.
-        :param float nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
+        :param int nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
                less than one second are represented with a 0 `seconds` field and a positive
                `nanos` field. Must be from 0 to 999,999,999 inclusive.
         """
@@ -12520,7 +12520,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeout(dict):
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[float]:
+    def nanos(self) -> Optional[int]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations
         less than one second are represented with a 0 `seconds` field and a positive
@@ -12536,11 +12536,11 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeout(dict):
 class RegionUrlMapPathMatcherRouteRuleRouteActionTimeout(dict):
     def __init__(__self__, *,
                  seconds: str,
-                 nanos: Optional[float] = None):
+                 nanos: Optional[int] = None):
         """
         :param str seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
                inclusive.
-        :param float nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
+        :param int nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
                less than one second are represented with a 0 `seconds` field and a positive
                `nanos` field. Must be from 0 to 999,999,999 inclusive.
         """
@@ -12559,7 +12559,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionTimeout(dict):
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[float]:
+    def nanos(self) -> Optional[int]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations
         less than one second are represented with a 0 `seconds` field and a positive
@@ -12617,13 +12617,13 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionUrlRewrite(dict):
 class RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendService(dict):
     def __init__(__self__, *,
                  backend_service: str,
-                 weight: float,
+                 weight: int,
                  header_action: Optional['outputs.RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderAction'] = None):
         """
         :param str backend_service: The default RegionBackendService resource. Before
                forwarding the request to backendService, the loadbalancer applies any relevant
                headerActions specified as part of this backendServiceWeight.
-        :param float weight: Specifies the fraction of traffic sent to backendService, computed as weight /
+        :param int weight: Specifies the fraction of traffic sent to backendService, computed as weight /
                (sum of all weightedBackendService weights in routeAction) . The selection of a
                backend service is determined only for new traffic. Once a user's request has
                been directed to a backendService, subsequent requests will be sent to the same
@@ -12651,7 +12651,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendService(dict):
 
     @property
     @pulumi.getter
-    def weight(self) -> float:
+    def weight(self) -> int:
         """
         Specifies the fraction of traffic sent to backendService, computed as weight /
         (sum of all weightedBackendService weights in routeAction) . The selection of a
@@ -13023,14 +13023,14 @@ class RegionUrlMapTest(dict):
 @pulumi.output_type
 class ReservationSpecificReservation(dict):
     def __init__(__self__, *,
-                 count: float,
+                 count: int,
                  instance_properties: 'outputs.ReservationSpecificReservationInstanceProperties',
-                 in_use_count: Optional[float] = None):
+                 in_use_count: Optional[int] = None):
         """
-        :param float count: The number of resources that are allocated.
+        :param int count: The number of resources that are allocated.
         :param 'ReservationSpecificReservationInstancePropertiesArgs' instance_properties: The instance properties for the reservation.
                Structure is documented below.
-        :param float in_use_count: -
+        :param int in_use_count: -
                How many instances are in use.
         """
         pulumi.set(__self__, "count", count)
@@ -13040,7 +13040,7 @@ class ReservationSpecificReservation(dict):
 
     @property
     @pulumi.getter
-    def count(self) -> float:
+    def count(self) -> int:
         """
         The number of resources that are allocated.
         """
@@ -13057,7 +13057,7 @@ class ReservationSpecificReservation(dict):
 
     @property
     @pulumi.getter(name="inUseCount")
-    def in_use_count(self) -> Optional[float]:
+    def in_use_count(self) -> Optional[int]:
         """
         -
         How many instances are in use.
@@ -13140,10 +13140,10 @@ class ReservationSpecificReservationInstanceProperties(dict):
 @pulumi.output_type
 class ReservationSpecificReservationInstancePropertiesGuestAccelerator(dict):
     def __init__(__self__, *,
-                 accelerator_count: float,
+                 accelerator_count: int,
                  accelerator_type: str):
         """
-        :param float accelerator_count: The number of the guest accelerator cards exposed to
+        :param int accelerator_count: The number of the guest accelerator cards exposed to
                this instance.
         :param str accelerator_type: The full or partial URL of the accelerator type to
                attach to this instance. For example:
@@ -13155,7 +13155,7 @@ class ReservationSpecificReservationInstancePropertiesGuestAccelerator(dict):
 
     @property
     @pulumi.getter(name="acceleratorCount")
-    def accelerator_count(self) -> float:
+    def accelerator_count(self) -> int:
         """
         The number of the guest accelerator cards exposed to
         this instance.
@@ -13180,10 +13180,10 @@ class ReservationSpecificReservationInstancePropertiesGuestAccelerator(dict):
 @pulumi.output_type
 class ReservationSpecificReservationInstancePropertiesLocalSsd(dict):
     def __init__(__self__, *,
-                 disk_size_gb: float,
+                 disk_size_gb: int,
                  interface: Optional[str] = None):
         """
-        :param float disk_size_gb: The size of the disk in base-2 GB.
+        :param int disk_size_gb: The size of the disk in base-2 GB.
         :param str interface: The disk interface to use for attaching this disk.
                Default value is `SCSI`.
                Possible values are `SCSI` and `NVME`.
@@ -13194,7 +13194,7 @@ class ReservationSpecificReservationInstancePropertiesLocalSsd(dict):
 
     @property
     @pulumi.getter(name="diskSizeGb")
-    def disk_size_gb(self) -> float:
+    def disk_size_gb(self) -> int:
         """
         The size of the disk in base-2 GB.
         """
@@ -13217,18 +13217,18 @@ class ReservationSpecificReservationInstancePropertiesLocalSsd(dict):
 @pulumi.output_type
 class ResourcePolicyGroupPlacementPolicy(dict):
     def __init__(__self__, *,
-                 availability_domain_count: Optional[float] = None,
+                 availability_domain_count: Optional[int] = None,
                  collocation: Optional[str] = None,
-                 vm_count: Optional[float] = None):
+                 vm_count: Optional[int] = None):
         """
-        :param float availability_domain_count: The number of availability domains instances will be spread across. If two instances are in different
+        :param int availability_domain_count: The number of availability domains instances will be spread across. If two instances are in different
                availability domain, they will not be put in the same low latency network
         :param str collocation: Collocation specifies whether to place VMs inside the same availability domain on the same low-latency network.
                Specify `COLLOCATED` to enable collocation. Can only be specified with `vm_count`. If compute instances are created
                with a COLLOCATED policy, then exactly `vm_count` instances must be created at the same time with the resource policy
                attached.
                Possible values are `COLLOCATED`.
-        :param float vm_count: Number of vms in this placement group.
+        :param int vm_count: Number of vms in this placement group.
         """
         if availability_domain_count is not None:
             pulumi.set(__self__, "availability_domain_count", availability_domain_count)
@@ -13239,7 +13239,7 @@ class ResourcePolicyGroupPlacementPolicy(dict):
 
     @property
     @pulumi.getter(name="availabilityDomainCount")
-    def availability_domain_count(self) -> Optional[float]:
+    def availability_domain_count(self) -> Optional[int]:
         """
         The number of availability domains instances will be spread across. If two instances are in different
         availability domain, they will not be put in the same low latency network
@@ -13260,7 +13260,7 @@ class ResourcePolicyGroupPlacementPolicy(dict):
 
     @property
     @pulumi.getter(name="vmCount")
-    def vm_count(self) -> Optional[float]:
+    def vm_count(self) -> Optional[int]:
         """
         Number of vms in this placement group.
         """
@@ -13324,10 +13324,10 @@ class ResourcePolicySnapshotSchedulePolicy(dict):
 @pulumi.output_type
 class ResourcePolicySnapshotSchedulePolicyRetentionPolicy(dict):
     def __init__(__self__, *,
-                 max_retention_days: float,
+                 max_retention_days: int,
                  on_source_disk_delete: Optional[str] = None):
         """
-        :param float max_retention_days: Maximum age of the snapshot that is allowed to be kept.
+        :param int max_retention_days: Maximum age of the snapshot that is allowed to be kept.
         :param str on_source_disk_delete: Specifies the behavior to apply to scheduled snapshots when
                the source disk is deleted.
                Default value is `KEEP_AUTO_SNAPSHOTS`.
@@ -13339,7 +13339,7 @@ class ResourcePolicySnapshotSchedulePolicyRetentionPolicy(dict):
 
     @property
     @pulumi.getter(name="maxRetentionDays")
-    def max_retention_days(self) -> float:
+    def max_retention_days(self) -> int:
         """
         Maximum age of the snapshot that is allowed to be kept.
         """
@@ -13415,10 +13415,10 @@ class ResourcePolicySnapshotSchedulePolicySchedule(dict):
 @pulumi.output_type
 class ResourcePolicySnapshotSchedulePolicyScheduleDailySchedule(dict):
     def __init__(__self__, *,
-                 days_in_cycle: float,
+                 days_in_cycle: int,
                  start_time: str):
         """
-        :param float days_in_cycle: The number of days between snapshots.
+        :param int days_in_cycle: The number of days between snapshots.
         :param str start_time: Time within the window to start the operations.
                It must be in format "HH:MM", where HH : [00-23] and MM : [00-00] GMT.
         """
@@ -13427,7 +13427,7 @@ class ResourcePolicySnapshotSchedulePolicyScheduleDailySchedule(dict):
 
     @property
     @pulumi.getter(name="daysInCycle")
-    def days_in_cycle(self) -> float:
+    def days_in_cycle(self) -> int:
         """
         The number of days between snapshots.
         """
@@ -13449,10 +13449,10 @@ class ResourcePolicySnapshotSchedulePolicyScheduleDailySchedule(dict):
 @pulumi.output_type
 class ResourcePolicySnapshotSchedulePolicyScheduleHourlySchedule(dict):
     def __init__(__self__, *,
-                 hours_in_cycle: float,
+                 hours_in_cycle: int,
                  start_time: str):
         """
-        :param float hours_in_cycle: The number of hours between snapshots.
+        :param int hours_in_cycle: The number of hours between snapshots.
         :param str start_time: Time within the window to start the operations.
                It must be in format "HH:MM", where HH : [00-23] and MM : [00-00] GMT.
         """
@@ -13461,7 +13461,7 @@ class ResourcePolicySnapshotSchedulePolicyScheduleHourlySchedule(dict):
 
     @property
     @pulumi.getter(name="hoursInCycle")
-    def hours_in_cycle(self) -> float:
+    def hours_in_cycle(self) -> int:
         """
         The number of hours between snapshots.
         """
@@ -13590,12 +13590,12 @@ class ResourcePolicySnapshotSchedulePolicySnapshotProperties(dict):
 @pulumi.output_type
 class RouterBgp(dict):
     def __init__(__self__, *,
-                 asn: float,
+                 asn: int,
                  advertise_mode: Optional[str] = None,
                  advertised_groups: Optional[List[str]] = None,
                  advertised_ip_ranges: Optional[List['outputs.RouterBgpAdvertisedIpRange']] = None):
         """
-        :param float asn: Local BGP Autonomous System Number (ASN). Must be an RFC6996
+        :param int asn: Local BGP Autonomous System Number (ASN). Must be an RFC6996
                private ASN, either 16-bit or 32-bit. The value will be fixed for
                this router resource. All VPN tunnels that link to this router
                will have the same local ASN.
@@ -13625,7 +13625,7 @@ class RouterBgp(dict):
 
     @property
     @pulumi.getter
-    def asn(self) -> float:
+    def asn(self) -> int:
         """
         Local BGP Autonomous System Number (ASN). Must be an RFC6996
         private ASN, either 16-bit or 32-bit. The value will be fixed for
@@ -13839,7 +13839,7 @@ class SecurityPolicyRule(dict):
     def __init__(__self__, *,
                  action: str,
                  match: 'outputs.SecurityPolicyRuleMatch',
-                 priority: float,
+                 priority: int,
                  description: Optional[str] = None,
                  preview: Optional[bool] = None):
         """
@@ -13848,7 +13848,7 @@ class SecurityPolicyRule(dict):
                * "deny(status)" : deny access to target, returns the  HTTP response code specified (valid values are 403, 404 and 502)
         :param 'SecurityPolicyRuleMatchArgs' match: A match condition that incoming traffic is evaluated against.
                If it evaluates to true, the corresponding `action` is enforced. Structure is documented below.
-        :param float priority: An unique positive integer indicating the priority of evaluation for a rule.
+        :param int priority: An unique positive integer indicating the priority of evaluation for a rule.
                Rules are evaluated from highest priority (lowest numerically) to lowest priority (highest numerically) in order.
         :param str description: An optional description of this rule. Max size is 64.
         :param bool preview: When set to true, the `action` specified above is not enforced.
@@ -13883,7 +13883,7 @@ class SecurityPolicyRule(dict):
 
     @property
     @pulumi.getter
-    def priority(self) -> float:
+    def priority(self) -> int:
         """
         An unique positive integer indicating the priority of evaluation for a rule.
         Rules are evaluated from highest priority (lowest numerically) to lowest priority (highest numerically) in order.
@@ -14141,10 +14141,10 @@ class SecurityScanConfigAuthenticationGoogleAccount(dict):
 @pulumi.output_type
 class SecurityScanConfigSchedule(dict):
     def __init__(__self__, *,
-                 interval_duration_days: float,
+                 interval_duration_days: int,
                  schedule_time: Optional[str] = None):
         """
-        :param float interval_duration_days: The duration of time between executions in days
+        :param int interval_duration_days: The duration of time between executions in days
         :param str schedule_time: A timestamp indicates when the next run will be scheduled. The value is refreshed
                by the server after each run. If unspecified, it will default to current server time,
                which means the scan will be scheduled to start immediately.
@@ -14155,7 +14155,7 @@ class SecurityScanConfigSchedule(dict):
 
     @property
     @pulumi.getter(name="intervalDurationDays")
-    def interval_duration_days(self) -> float:
+    def interval_duration_days(self) -> int:
         """
         The duration of time between executions in days
         """
@@ -14622,7 +14622,7 @@ class URLMapDefaultRouteActionCorsPolicy(dict):
                  allow_origins: Optional[List[str]] = None,
                  disabled: Optional[bool] = None,
                  expose_headers: Optional[List[str]] = None,
-                 max_age: Optional[float] = None):
+                 max_age: Optional[int] = None):
         """
         :param bool allow_credentials: In response to a preflight request, setting this to true indicates that the actual request can include user credentials.
                This translates to the Access-Control-Allow-Credentials header.
@@ -14635,7 +14635,7 @@ class URLMapDefaultRouteActionCorsPolicy(dict):
                An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
         :param bool disabled: If true, specifies the CORS policy is disabled. The default value is false, which indicates that the CORS policy is in effect.
         :param List[str] expose_headers: Specifies the content for the Access-Control-Expose-Headers header.
-        :param float max_age: Specifies how long results of a preflight request can be cached in seconds.
+        :param int max_age: Specifies how long results of a preflight request can be cached in seconds.
                This translates to the Access-Control-Max-Age header.
         """
         if allow_credentials is not None:
@@ -14717,7 +14717,7 @@ class URLMapDefaultRouteActionCorsPolicy(dict):
 
     @property
     @pulumi.getter(name="maxAge")
-    def max_age(self) -> Optional[float]:
+    def max_age(self) -> Optional[int]:
         """
         Specifies how long results of a preflight request can be cached in seconds.
         This translates to the Access-Control-Max-Age header.
@@ -14769,10 +14769,10 @@ class URLMapDefaultRouteActionFaultInjectionPolicy(dict):
 @pulumi.output_type
 class URLMapDefaultRouteActionFaultInjectionPolicyAbort(dict):
     def __init__(__self__, *,
-                 http_status: Optional[float] = None,
+                 http_status: Optional[int] = None,
                  percentage: Optional[float] = None):
         """
-        :param float http_status: The HTTP status code used to abort the request.
+        :param int http_status: The HTTP status code used to abort the request.
                The value must be between 200 and 599 inclusive.
         :param float percentage: The percentage of traffic (connections/operations/requests) which will be aborted as part of fault injection.
                The value must be between 0.0 and 100.0 inclusive.
@@ -14784,7 +14784,7 @@ class URLMapDefaultRouteActionFaultInjectionPolicyAbort(dict):
 
     @property
     @pulumi.getter(name="httpStatus")
-    def http_status(self) -> Optional[float]:
+    def http_status(self) -> Optional[int]:
         """
         The HTTP status code used to abort the request.
         The value must be between 200 and 599 inclusive.
@@ -14845,10 +14845,10 @@ class URLMapDefaultRouteActionFaultInjectionPolicyDelay(dict):
 @pulumi.output_type
 class URLMapDefaultRouteActionFaultInjectionPolicyDelayFixedDelay(dict):
     def __init__(__self__, *,
-                 nanos: Optional[float] = None,
+                 nanos: Optional[int] = None,
                  seconds: Optional[str] = None):
         """
-        :param float nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
+        :param int nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
                represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
         :param str seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.
                Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
@@ -14860,7 +14860,7 @@ class URLMapDefaultRouteActionFaultInjectionPolicyDelayFixedDelay(dict):
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[float]:
+    def nanos(self) -> Optional[int]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
         represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
@@ -14904,11 +14904,11 @@ class URLMapDefaultRouteActionRequestMirrorPolicy(dict):
 @pulumi.output_type
 class URLMapDefaultRouteActionRetryPolicy(dict):
     def __init__(__self__, *,
-                 num_retries: Optional[float] = None,
+                 num_retries: Optional[int] = None,
                  per_try_timeout: Optional['outputs.URLMapDefaultRouteActionRetryPolicyPerTryTimeout'] = None,
                  retry_conditions: Optional[List[str]] = None):
         """
-        :param float num_retries: Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
+        :param int num_retries: Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
         :param 'URLMapDefaultRouteActionRetryPolicyPerTryTimeoutArgs' per_try_timeout: Specifies a non-zero timeout per retry attempt.
                If not specified, will use the timeout set in HttpRouteAction. If timeout in HttpRouteAction is not set,
                will use the largest timeout among all backend services associated with the route.
@@ -14938,7 +14938,7 @@ class URLMapDefaultRouteActionRetryPolicy(dict):
 
     @property
     @pulumi.getter(name="numRetries")
-    def num_retries(self) -> Optional[float]:
+    def num_retries(self) -> Optional[int]:
         """
         Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
         """
@@ -14984,10 +14984,10 @@ class URLMapDefaultRouteActionRetryPolicy(dict):
 @pulumi.output_type
 class URLMapDefaultRouteActionRetryPolicyPerTryTimeout(dict):
     def __init__(__self__, *,
-                 nanos: Optional[float] = None,
+                 nanos: Optional[int] = None,
                  seconds: Optional[str] = None):
         """
-        :param float nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
+        :param int nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
                represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
         :param str seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.
                Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
@@ -14999,7 +14999,7 @@ class URLMapDefaultRouteActionRetryPolicyPerTryTimeout(dict):
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[float]:
+    def nanos(self) -> Optional[int]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
         represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
@@ -15022,10 +15022,10 @@ class URLMapDefaultRouteActionRetryPolicyPerTryTimeout(dict):
 @pulumi.output_type
 class URLMapDefaultRouteActionTimeout(dict):
     def __init__(__self__, *,
-                 nanos: Optional[float] = None,
+                 nanos: Optional[int] = None,
                  seconds: Optional[str] = None):
         """
-        :param float nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
+        :param int nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
                represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
         :param str seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.
                Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
@@ -15037,7 +15037,7 @@ class URLMapDefaultRouteActionTimeout(dict):
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[float]:
+    def nanos(self) -> Optional[int]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
         represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
@@ -15104,7 +15104,7 @@ class URLMapDefaultRouteActionWeightedBackendService(dict):
     def __init__(__self__, *,
                  backend_service: Optional[str] = None,
                  header_action: Optional['outputs.URLMapDefaultRouteActionWeightedBackendServiceHeaderAction'] = None,
-                 weight: Optional[float] = None):
+                 weight: Optional[int] = None):
         """
         :param str backend_service: The full or partial URL to the BackendService resource being mirrored to.
         :param 'URLMapDefaultRouteActionWeightedBackendServiceHeaderActionArgs' header_action: Specifies changes to request and response headers that need to take effect for
@@ -15112,7 +15112,7 @@ class URLMapDefaultRouteActionWeightedBackendService(dict):
                headerAction specified here take effect before headerAction in the enclosing
                HttpRouteRule, PathMatcher and UrlMap.
                Structure is documented below.
-        :param float weight: Specifies the fraction of traffic sent to backendService, computed as
+        :param int weight: Specifies the fraction of traffic sent to backendService, computed as
                weight / (sum of all weightedBackendService weights in routeAction) .
                The selection of a backend service is determined only for new traffic. Once a user's request
                has been directed to a backendService, subsequent requests will be sent to the same backendService
@@ -15148,7 +15148,7 @@ class URLMapDefaultRouteActionWeightedBackendService(dict):
 
     @property
     @pulumi.getter
-    def weight(self) -> Optional[float]:
+    def weight(self) -> Optional[int]:
         """
         Specifies the fraction of traffic sent to backendService, computed as
         weight / (sum of all weightedBackendService weights in routeAction) .
@@ -15959,7 +15959,7 @@ class URLMapPathMatcherDefaultRouteActionCorsPolicy(dict):
                  allow_origins: Optional[List[str]] = None,
                  disabled: Optional[bool] = None,
                  expose_headers: Optional[List[str]] = None,
-                 max_age: Optional[float] = None):
+                 max_age: Optional[int] = None):
         """
         :param bool allow_credentials: In response to a preflight request, setting this to true indicates that the actual request can include user credentials.
                This translates to the Access-Control-Allow-Credentials header.
@@ -15972,7 +15972,7 @@ class URLMapPathMatcherDefaultRouteActionCorsPolicy(dict):
                An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
         :param bool disabled: If true, specifies the CORS policy is disabled. The default value is false, which indicates that the CORS policy is in effect.
         :param List[str] expose_headers: Specifies the content for the Access-Control-Expose-Headers header.
-        :param float max_age: Specifies how long results of a preflight request can be cached in seconds.
+        :param int max_age: Specifies how long results of a preflight request can be cached in seconds.
                This translates to the Access-Control-Max-Age header.
         """
         if allow_credentials is not None:
@@ -16054,7 +16054,7 @@ class URLMapPathMatcherDefaultRouteActionCorsPolicy(dict):
 
     @property
     @pulumi.getter(name="maxAge")
-    def max_age(self) -> Optional[float]:
+    def max_age(self) -> Optional[int]:
         """
         Specifies how long results of a preflight request can be cached in seconds.
         This translates to the Access-Control-Max-Age header.
@@ -16106,10 +16106,10 @@ class URLMapPathMatcherDefaultRouteActionFaultInjectionPolicy(dict):
 @pulumi.output_type
 class URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyAbort(dict):
     def __init__(__self__, *,
-                 http_status: Optional[float] = None,
+                 http_status: Optional[int] = None,
                  percentage: Optional[float] = None):
         """
-        :param float http_status: The HTTP status code used to abort the request.
+        :param int http_status: The HTTP status code used to abort the request.
                The value must be between 200 and 599 inclusive.
         :param float percentage: The percentage of traffic (connections/operations/requests) which will be aborted as part of fault injection.
                The value must be between 0.0 and 100.0 inclusive.
@@ -16121,7 +16121,7 @@ class URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyAbort(dict):
 
     @property
     @pulumi.getter(name="httpStatus")
-    def http_status(self) -> Optional[float]:
+    def http_status(self) -> Optional[int]:
         """
         The HTTP status code used to abort the request.
         The value must be between 200 and 599 inclusive.
@@ -16182,10 +16182,10 @@ class URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelay(dict):
 @pulumi.output_type
 class URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayFixedDelay(dict):
     def __init__(__self__, *,
-                 nanos: Optional[float] = None,
+                 nanos: Optional[int] = None,
                  seconds: Optional[str] = None):
         """
-        :param float nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
+        :param int nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
                represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
         :param str seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.
                Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
@@ -16197,7 +16197,7 @@ class URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayFixedDelay(dic
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[float]:
+    def nanos(self) -> Optional[int]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
         represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
@@ -16241,11 +16241,11 @@ class URLMapPathMatcherDefaultRouteActionRequestMirrorPolicy(dict):
 @pulumi.output_type
 class URLMapPathMatcherDefaultRouteActionRetryPolicy(dict):
     def __init__(__self__, *,
-                 num_retries: Optional[float] = None,
+                 num_retries: Optional[int] = None,
                  per_try_timeout: Optional['outputs.URLMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeout'] = None,
                  retry_conditions: Optional[List[str]] = None):
         """
-        :param float num_retries: Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
+        :param int num_retries: Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
         :param 'URLMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeoutArgs' per_try_timeout: Specifies a non-zero timeout per retry attempt.
                If not specified, will use the timeout set in HttpRouteAction. If timeout in HttpRouteAction is not set,
                will use the largest timeout among all backend services associated with the route.
@@ -16275,7 +16275,7 @@ class URLMapPathMatcherDefaultRouteActionRetryPolicy(dict):
 
     @property
     @pulumi.getter(name="numRetries")
-    def num_retries(self) -> Optional[float]:
+    def num_retries(self) -> Optional[int]:
         """
         Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
         """
@@ -16321,10 +16321,10 @@ class URLMapPathMatcherDefaultRouteActionRetryPolicy(dict):
 @pulumi.output_type
 class URLMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeout(dict):
     def __init__(__self__, *,
-                 nanos: Optional[float] = None,
+                 nanos: Optional[int] = None,
                  seconds: Optional[str] = None):
         """
-        :param float nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
+        :param int nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
                represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
         :param str seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.
                Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
@@ -16336,7 +16336,7 @@ class URLMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeout(dict):
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[float]:
+    def nanos(self) -> Optional[int]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
         represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
@@ -16359,10 +16359,10 @@ class URLMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeout(dict):
 @pulumi.output_type
 class URLMapPathMatcherDefaultRouteActionTimeout(dict):
     def __init__(__self__, *,
-                 nanos: Optional[float] = None,
+                 nanos: Optional[int] = None,
                  seconds: Optional[str] = None):
         """
-        :param float nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
+        :param int nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
                represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
         :param str seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.
                Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
@@ -16374,7 +16374,7 @@ class URLMapPathMatcherDefaultRouteActionTimeout(dict):
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[float]:
+    def nanos(self) -> Optional[int]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
         represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
@@ -16441,7 +16441,7 @@ class URLMapPathMatcherDefaultRouteActionWeightedBackendService(dict):
     def __init__(__self__, *,
                  backend_service: Optional[str] = None,
                  header_action: Optional['outputs.URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderAction'] = None,
-                 weight: Optional[float] = None):
+                 weight: Optional[int] = None):
         """
         :param str backend_service: The full or partial URL to the BackendService resource being mirrored to.
         :param 'URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionArgs' header_action: Specifies changes to request and response headers that need to take effect for
@@ -16449,7 +16449,7 @@ class URLMapPathMatcherDefaultRouteActionWeightedBackendService(dict):
                headerAction specified here take effect before headerAction in the enclosing
                HttpRouteRule, PathMatcher and UrlMap.
                Structure is documented below.
-        :param float weight: Specifies the fraction of traffic sent to backendService, computed as
+        :param int weight: Specifies the fraction of traffic sent to backendService, computed as
                weight / (sum of all weightedBackendService weights in routeAction) .
                The selection of a backend service is determined only for new traffic. Once a user's request
                has been directed to a backendService, subsequent requests will be sent to the same backendService
@@ -16485,7 +16485,7 @@ class URLMapPathMatcherDefaultRouteActionWeightedBackendService(dict):
 
     @property
     @pulumi.getter
-    def weight(self) -> Optional[float]:
+    def weight(self) -> Optional[int]:
         """
         Specifies the fraction of traffic sent to backendService, computed as
         weight / (sum of all weightedBackendService weights in routeAction) .
@@ -17172,7 +17172,7 @@ class URLMapPathMatcherPathRuleRouteActionCorsPolicy(dict):
                  allow_origin_regexes: Optional[List[str]] = None,
                  allow_origins: Optional[List[str]] = None,
                  expose_headers: Optional[List[str]] = None,
-                 max_age: Optional[float] = None):
+                 max_age: Optional[int] = None):
         """
         :param bool disabled: If true, specifies the CORS policy is disabled. The default value is false, which indicates that the CORS policy is in effect.
         :param bool allow_credentials: In response to a preflight request, setting this to true indicates that the actual request can include user credentials.
@@ -17185,7 +17185,7 @@ class URLMapPathMatcherPathRuleRouteActionCorsPolicy(dict):
         :param List[str] allow_origins: Specifies the list of origins that will be allowed to do CORS requests.
                An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
         :param List[str] expose_headers: Specifies the content for the Access-Control-Expose-Headers header.
-        :param float max_age: Specifies how long results of a preflight request can be cached in seconds.
+        :param int max_age: Specifies how long results of a preflight request can be cached in seconds.
                This translates to the Access-Control-Max-Age header.
         """
         pulumi.set(__self__, "disabled", disabled)
@@ -17266,7 +17266,7 @@ class URLMapPathMatcherPathRuleRouteActionCorsPolicy(dict):
 
     @property
     @pulumi.getter(name="maxAge")
-    def max_age(self) -> Optional[float]:
+    def max_age(self) -> Optional[int]:
         """
         Specifies how long results of a preflight request can be cached in seconds.
         This translates to the Access-Control-Max-Age header.
@@ -17318,10 +17318,10 @@ class URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicy(dict):
 @pulumi.output_type
 class URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbort(dict):
     def __init__(__self__, *,
-                 http_status: float,
+                 http_status: int,
                  percentage: float):
         """
-        :param float http_status: The HTTP status code used to abort the request.
+        :param int http_status: The HTTP status code used to abort the request.
                The value must be between 200 and 599 inclusive.
         :param float percentage: The percentage of traffic (connections/operations/requests) which will be aborted as part of fault injection.
                The value must be between 0.0 and 100.0 inclusive.
@@ -17331,7 +17331,7 @@ class URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbort(dict):
 
     @property
     @pulumi.getter(name="httpStatus")
-    def http_status(self) -> float:
+    def http_status(self) -> int:
         """
         The HTTP status code used to abort the request.
         The value must be between 200 and 599 inclusive.
@@ -17391,11 +17391,11 @@ class URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelay(dict):
 class URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelay(dict):
     def __init__(__self__, *,
                  seconds: str,
-                 nanos: Optional[float] = None):
+                 nanos: Optional[int] = None):
         """
         :param str seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.
                Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
-        :param float nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
+        :param int nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
                represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
         """
         pulumi.set(__self__, "seconds", seconds)
@@ -17413,7 +17413,7 @@ class URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelay(di
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[float]:
+    def nanos(self) -> Optional[int]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
         represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
@@ -17448,11 +17448,11 @@ class URLMapPathMatcherPathRuleRouteActionRequestMirrorPolicy(dict):
 @pulumi.output_type
 class URLMapPathMatcherPathRuleRouteActionRetryPolicy(dict):
     def __init__(__self__, *,
-                 num_retries: Optional[float] = None,
+                 num_retries: Optional[int] = None,
                  per_try_timeout: Optional['outputs.URLMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeout'] = None,
                  retry_conditions: Optional[List[str]] = None):
         """
-        :param float num_retries: Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
+        :param int num_retries: Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
         :param 'URLMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutArgs' per_try_timeout: Specifies a non-zero timeout per retry attempt.
                If not specified, will use the timeout set in HttpRouteAction. If timeout in HttpRouteAction is not set,
                will use the largest timeout among all backend services associated with the route.
@@ -17482,7 +17482,7 @@ class URLMapPathMatcherPathRuleRouteActionRetryPolicy(dict):
 
     @property
     @pulumi.getter(name="numRetries")
-    def num_retries(self) -> Optional[float]:
+    def num_retries(self) -> Optional[int]:
         """
         Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
         """
@@ -17529,11 +17529,11 @@ class URLMapPathMatcherPathRuleRouteActionRetryPolicy(dict):
 class URLMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeout(dict):
     def __init__(__self__, *,
                  seconds: str,
-                 nanos: Optional[float] = None):
+                 nanos: Optional[int] = None):
         """
         :param str seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.
                Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
-        :param float nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
+        :param int nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
                represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
         """
         pulumi.set(__self__, "seconds", seconds)
@@ -17551,7 +17551,7 @@ class URLMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeout(dict):
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[float]:
+    def nanos(self) -> Optional[int]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
         represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
@@ -17566,11 +17566,11 @@ class URLMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeout(dict):
 class URLMapPathMatcherPathRuleRouteActionTimeout(dict):
     def __init__(__self__, *,
                  seconds: str,
-                 nanos: Optional[float] = None):
+                 nanos: Optional[int] = None):
         """
         :param str seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.
                Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
-        :param float nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
+        :param int nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
                represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
         """
         pulumi.set(__self__, "seconds", seconds)
@@ -17588,7 +17588,7 @@ class URLMapPathMatcherPathRuleRouteActionTimeout(dict):
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[float]:
+    def nanos(self) -> Optional[int]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
         represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
@@ -17645,11 +17645,11 @@ class URLMapPathMatcherPathRuleRouteActionUrlRewrite(dict):
 class URLMapPathMatcherPathRuleRouteActionWeightedBackendService(dict):
     def __init__(__self__, *,
                  backend_service: str,
-                 weight: float,
+                 weight: int,
                  header_action: Optional['outputs.URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderAction'] = None):
         """
         :param str backend_service: The full or partial URL to the BackendService resource being mirrored to.
-        :param float weight: Specifies the fraction of traffic sent to backendService, computed as
+        :param int weight: Specifies the fraction of traffic sent to backendService, computed as
                weight / (sum of all weightedBackendService weights in routeAction) .
                The selection of a backend service is determined only for new traffic. Once a user's request
                has been directed to a backendService, subsequent requests will be sent to the same backendService
@@ -17676,7 +17676,7 @@ class URLMapPathMatcherPathRuleRouteActionWeightedBackendService(dict):
 
     @property
     @pulumi.getter
-    def weight(self) -> float:
+    def weight(self) -> int:
         """
         Specifies the fraction of traffic sent to backendService, computed as
         weight / (sum of all weightedBackendService weights in routeAction) .
@@ -17987,14 +17987,14 @@ class URLMapPathMatcherPathRuleUrlRedirect(dict):
 @pulumi.output_type
 class URLMapPathMatcherRouteRule(dict):
     def __init__(__self__, *,
-                 priority: float,
+                 priority: int,
                  header_action: Optional['outputs.URLMapPathMatcherRouteRuleHeaderAction'] = None,
                  match_rules: Optional[List['outputs.URLMapPathMatcherRouteRuleMatchRule']] = None,
                  route_action: Optional['outputs.URLMapPathMatcherRouteRuleRouteAction'] = None,
                  service: Optional[str] = None,
                  url_redirect: Optional['outputs.URLMapPathMatcherRouteRuleUrlRedirect'] = None):
         """
-        :param float priority: For routeRules within a given pathMatcher, priority determines the order
+        :param int priority: For routeRules within a given pathMatcher, priority determines the order
                in which load balancer will interpret routeRules. RouteRules are evaluated
                in order of priority, from the lowest to highest number. The priority of
                a rule decreases as its number increases (1, 2, 3, N+1). The first rule
@@ -18041,7 +18041,7 @@ class URLMapPathMatcherRouteRule(dict):
 
     @property
     @pulumi.getter
-    def priority(self) -> float:
+    def priority(self) -> int:
         """
         For routeRules within a given pathMatcher, priority determines the order
         in which load balancer will interpret routeRules. RouteRules are evaluated
@@ -18563,18 +18563,18 @@ class URLMapPathMatcherRouteRuleMatchRuleHeaderMatch(dict):
 @pulumi.output_type
 class URLMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatch(dict):
     def __init__(__self__, *,
-                 range_end: float,
-                 range_start: float):
+                 range_end: int,
+                 range_start: int):
         """
-        :param float range_end: The end of the range (exclusive).
-        :param float range_start: The start of the range (inclusive).
+        :param int range_end: The end of the range (exclusive).
+        :param int range_start: The start of the range (inclusive).
         """
         pulumi.set(__self__, "range_end", range_end)
         pulumi.set(__self__, "range_start", range_start)
 
     @property
     @pulumi.getter(name="rangeEnd")
-    def range_end(self) -> float:
+    def range_end(self) -> int:
         """
         The end of the range (exclusive).
         """
@@ -18582,7 +18582,7 @@ class URLMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatch(dict):
 
     @property
     @pulumi.getter(name="rangeStart")
-    def range_start(self) -> float:
+    def range_start(self) -> int:
         """
         The start of the range (inclusive).
         """
@@ -18899,7 +18899,7 @@ class URLMapPathMatcherRouteRuleRouteActionCorsPolicy(dict):
                  allow_origins: Optional[List[str]] = None,
                  disabled: Optional[bool] = None,
                  expose_headers: Optional[List[str]] = None,
-                 max_age: Optional[float] = None):
+                 max_age: Optional[int] = None):
         """
         :param bool allow_credentials: In response to a preflight request, setting this to true indicates that the actual request can include user credentials.
                This translates to the Access-Control-Allow-Credentials header.
@@ -18912,7 +18912,7 @@ class URLMapPathMatcherRouteRuleRouteActionCorsPolicy(dict):
                An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
         :param bool disabled: If true, specifies the CORS policy is disabled. The default value is false, which indicates that the CORS policy is in effect.
         :param List[str] expose_headers: Specifies the content for the Access-Control-Expose-Headers header.
-        :param float max_age: Specifies how long results of a preflight request can be cached in seconds.
+        :param int max_age: Specifies how long results of a preflight request can be cached in seconds.
                This translates to the Access-Control-Max-Age header.
         """
         if allow_credentials is not None:
@@ -18994,7 +18994,7 @@ class URLMapPathMatcherRouteRuleRouteActionCorsPolicy(dict):
 
     @property
     @pulumi.getter(name="maxAge")
-    def max_age(self) -> Optional[float]:
+    def max_age(self) -> Optional[int]:
         """
         Specifies how long results of a preflight request can be cached in seconds.
         This translates to the Access-Control-Max-Age header.
@@ -19046,10 +19046,10 @@ class URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicy(dict):
 @pulumi.output_type
 class URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbort(dict):
     def __init__(__self__, *,
-                 http_status: Optional[float] = None,
+                 http_status: Optional[int] = None,
                  percentage: Optional[float] = None):
         """
-        :param float http_status: The HTTP status code used to abort the request.
+        :param int http_status: The HTTP status code used to abort the request.
                The value must be between 200 and 599 inclusive.
         :param float percentage: The percentage of traffic (connections/operations/requests) which will be aborted as part of fault injection.
                The value must be between 0.0 and 100.0 inclusive.
@@ -19061,7 +19061,7 @@ class URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbort(dict):
 
     @property
     @pulumi.getter(name="httpStatus")
-    def http_status(self) -> Optional[float]:
+    def http_status(self) -> Optional[int]:
         """
         The HTTP status code used to abort the request.
         The value must be between 200 and 599 inclusive.
@@ -19123,11 +19123,11 @@ class URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelay(dict):
 class URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelay(dict):
     def __init__(__self__, *,
                  seconds: str,
-                 nanos: Optional[float] = None):
+                 nanos: Optional[int] = None):
         """
         :param str seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.
                Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
-        :param float nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
+        :param int nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
                represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
         """
         pulumi.set(__self__, "seconds", seconds)
@@ -19145,7 +19145,7 @@ class URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelay(d
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[float]:
+    def nanos(self) -> Optional[int]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
         represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
@@ -19180,11 +19180,11 @@ class URLMapPathMatcherRouteRuleRouteActionRequestMirrorPolicy(dict):
 @pulumi.output_type
 class URLMapPathMatcherRouteRuleRouteActionRetryPolicy(dict):
     def __init__(__self__, *,
-                 num_retries: float,
+                 num_retries: int,
                  per_try_timeout: Optional['outputs.URLMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeout'] = None,
                  retry_conditions: Optional[List[str]] = None):
         """
-        :param float num_retries: Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
+        :param int num_retries: Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
         :param 'URLMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutArgs' per_try_timeout: Specifies a non-zero timeout per retry attempt.
                If not specified, will use the timeout set in HttpRouteAction. If timeout in HttpRouteAction is not set,
                will use the largest timeout among all backend services associated with the route.
@@ -19213,7 +19213,7 @@ class URLMapPathMatcherRouteRuleRouteActionRetryPolicy(dict):
 
     @property
     @pulumi.getter(name="numRetries")
-    def num_retries(self) -> float:
+    def num_retries(self) -> int:
         """
         Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
         """
@@ -19260,11 +19260,11 @@ class URLMapPathMatcherRouteRuleRouteActionRetryPolicy(dict):
 class URLMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeout(dict):
     def __init__(__self__, *,
                  seconds: str,
-                 nanos: Optional[float] = None):
+                 nanos: Optional[int] = None):
         """
         :param str seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.
                Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
-        :param float nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
+        :param int nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
                represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
         """
         pulumi.set(__self__, "seconds", seconds)
@@ -19282,7 +19282,7 @@ class URLMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeout(dict):
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[float]:
+    def nanos(self) -> Optional[int]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
         represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
@@ -19297,11 +19297,11 @@ class URLMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeout(dict):
 class URLMapPathMatcherRouteRuleRouteActionTimeout(dict):
     def __init__(__self__, *,
                  seconds: str,
-                 nanos: Optional[float] = None):
+                 nanos: Optional[int] = None):
         """
         :param str seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.
                Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
-        :param float nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
+        :param int nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
                represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
         """
         pulumi.set(__self__, "seconds", seconds)
@@ -19319,7 +19319,7 @@ class URLMapPathMatcherRouteRuleRouteActionTimeout(dict):
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[float]:
+    def nanos(self) -> Optional[int]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
         represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
@@ -19376,11 +19376,11 @@ class URLMapPathMatcherRouteRuleRouteActionUrlRewrite(dict):
 class URLMapPathMatcherRouteRuleRouteActionWeightedBackendService(dict):
     def __init__(__self__, *,
                  backend_service: str,
-                 weight: float,
+                 weight: int,
                  header_action: Optional['outputs.URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderAction'] = None):
         """
         :param str backend_service: The full or partial URL to the BackendService resource being mirrored to.
-        :param float weight: Specifies the fraction of traffic sent to backendService, computed as
+        :param int weight: Specifies the fraction of traffic sent to backendService, computed as
                weight / (sum of all weightedBackendService weights in routeAction) .
                The selection of a backend service is determined only for new traffic. Once a user's request
                has been directed to a backendService, subsequent requests will be sent to the same backendService
@@ -19407,7 +19407,7 @@ class URLMapPathMatcherRouteRuleRouteActionWeightedBackendService(dict):
 
     @property
     @pulumi.getter
-    def weight(self) -> float:
+    def weight(self) -> int:
         """
         Specifies the fraction of traffic sent to backendService, computed as
         weight / (sum of all weightedBackendService weights in routeAction) .
@@ -19774,15 +19774,15 @@ class URLMapTest(dict):
 @pulumi.output_type
 class GetBackendBucketCdnPolicyResult(dict):
     def __init__(__self__, *,
-                 signed_url_cache_max_age_sec: float):
+                 signed_url_cache_max_age_sec: int):
         """
-        :param float signed_url_cache_max_age_sec: Maximum number of seconds the response to a signed URL request will be considered fresh. After this time period, the response will be revalidated before being served. When serving responses to signed URL requests, Cloud CDN will internally behave as though all responses from this backend had a "Cache-Control: public, max-age=[TTL]" header, regardless of any existing Cache-Control header. The actual headers served in responses will not be altered.
+        :param int signed_url_cache_max_age_sec: Maximum number of seconds the response to a signed URL request will be considered fresh. After this time period, the response will be revalidated before being served. When serving responses to signed URL requests, Cloud CDN will internally behave as though all responses from this backend had a "Cache-Control: public, max-age=[TTL]" header, regardless of any existing Cache-Control header. The actual headers served in responses will not be altered.
         """
         pulumi.set(__self__, "signed_url_cache_max_age_sec", signed_url_cache_max_age_sec)
 
     @property
     @pulumi.getter(name="signedUrlCacheMaxAgeSec")
-    def signed_url_cache_max_age_sec(self) -> float:
+    def signed_url_cache_max_age_sec(self) -> int:
         """
         Maximum number of seconds the response to a signed URL request will be considered fresh. After this time period, the response will be revalidated before being served. When serving responses to signed URL requests, Cloud CDN will internally behave as though all responses from this backend had a "Cache-Control: public, max-age=[TTL]" header, regardless of any existing Cache-Control header. The actual headers served in responses will not be altered.
         """
@@ -19796,10 +19796,10 @@ class GetBackendServiceBackendResult(dict):
                  capacity_scaler: float,
                  description: str,
                  group: str,
-                 max_connections: float,
-                 max_connections_per_endpoint: float,
-                 max_connections_per_instance: float,
-                 max_rate: float,
+                 max_connections: int,
+                 max_connections_per_endpoint: int,
+                 max_connections_per_instance: int,
+                 max_rate: int,
                  max_rate_per_endpoint: float,
                  max_rate_per_instance: float,
                  max_utilization: float):
@@ -19843,22 +19843,22 @@ class GetBackendServiceBackendResult(dict):
 
     @property
     @pulumi.getter(name="maxConnections")
-    def max_connections(self) -> float:
+    def max_connections(self) -> int:
         return pulumi.get(self, "max_connections")
 
     @property
     @pulumi.getter(name="maxConnectionsPerEndpoint")
-    def max_connections_per_endpoint(self) -> float:
+    def max_connections_per_endpoint(self) -> int:
         return pulumi.get(self, "max_connections_per_endpoint")
 
     @property
     @pulumi.getter(name="maxConnectionsPerInstance")
-    def max_connections_per_instance(self) -> float:
+    def max_connections_per_instance(self) -> int:
         return pulumi.get(self, "max_connections_per_instance")
 
     @property
     @pulumi.getter(name="maxRate")
-    def max_rate(self) -> float:
+    def max_rate(self) -> int:
         return pulumi.get(self, "max_rate")
 
     @property
@@ -19881,7 +19881,7 @@ class GetBackendServiceBackendResult(dict):
 class GetBackendServiceCdnPolicyResult(dict):
     def __init__(__self__, *,
                  cache_key_policies: List['outputs.GetBackendServiceCdnPolicyCacheKeyPolicyResult'],
-                 signed_url_cache_max_age_sec: float):
+                 signed_url_cache_max_age_sec: int):
         pulumi.set(__self__, "cache_key_policies", cache_key_policies)
         pulumi.set(__self__, "signed_url_cache_max_age_sec", signed_url_cache_max_age_sec)
 
@@ -19892,7 +19892,7 @@ class GetBackendServiceCdnPolicyResult(dict):
 
     @property
     @pulumi.getter(name="signedUrlCacheMaxAgeSec")
-    def signed_url_cache_max_age_sec(self) -> float:
+    def signed_url_cache_max_age_sec(self) -> int:
         return pulumi.get(self, "signed_url_cache_max_age_sec")
 
 
@@ -19940,11 +19940,11 @@ class GetBackendServiceCdnPolicyCacheKeyPolicyResult(dict):
 class GetBackendServiceCircuitBreakerResult(dict):
     def __init__(__self__, *,
                  connect_timeouts: List['outputs.GetBackendServiceCircuitBreakerConnectTimeoutResult'],
-                 max_connections: float,
-                 max_pending_requests: float,
-                 max_requests: float,
-                 max_requests_per_connection: float,
-                 max_retries: float):
+                 max_connections: int,
+                 max_pending_requests: int,
+                 max_requests: int,
+                 max_requests_per_connection: int,
+                 max_retries: int):
         pulumi.set(__self__, "connect_timeouts", connect_timeouts)
         pulumi.set(__self__, "max_connections", max_connections)
         pulumi.set(__self__, "max_pending_requests", max_pending_requests)
@@ -19959,46 +19959,46 @@ class GetBackendServiceCircuitBreakerResult(dict):
 
     @property
     @pulumi.getter(name="maxConnections")
-    def max_connections(self) -> float:
+    def max_connections(self) -> int:
         return pulumi.get(self, "max_connections")
 
     @property
     @pulumi.getter(name="maxPendingRequests")
-    def max_pending_requests(self) -> float:
+    def max_pending_requests(self) -> int:
         return pulumi.get(self, "max_pending_requests")
 
     @property
     @pulumi.getter(name="maxRequests")
-    def max_requests(self) -> float:
+    def max_requests(self) -> int:
         return pulumi.get(self, "max_requests")
 
     @property
     @pulumi.getter(name="maxRequestsPerConnection")
-    def max_requests_per_connection(self) -> float:
+    def max_requests_per_connection(self) -> int:
         return pulumi.get(self, "max_requests_per_connection")
 
     @property
     @pulumi.getter(name="maxRetries")
-    def max_retries(self) -> float:
+    def max_retries(self) -> int:
         return pulumi.get(self, "max_retries")
 
 
 @pulumi.output_type
 class GetBackendServiceCircuitBreakerConnectTimeoutResult(dict):
     def __init__(__self__, *,
-                 nanos: float,
-                 seconds: float):
+                 nanos: int,
+                 seconds: int):
         pulumi.set(__self__, "nanos", nanos)
         pulumi.set(__self__, "seconds", seconds)
 
     @property
     @pulumi.getter
-    def nanos(self) -> float:
+    def nanos(self) -> int:
         return pulumi.get(self, "nanos")
 
     @property
     @pulumi.getter
-    def seconds(self) -> float:
+    def seconds(self) -> int:
         return pulumi.get(self, "seconds")
 
 
@@ -20007,7 +20007,7 @@ class GetBackendServiceConsistentHashResult(dict):
     def __init__(__self__, *,
                  http_cookies: List['outputs.GetBackendServiceConsistentHashHttpCookyResult'],
                  http_header_name: str,
-                 minimum_ring_size: float):
+                 minimum_ring_size: int):
         pulumi.set(__self__, "http_cookies", http_cookies)
         pulumi.set(__self__, "http_header_name", http_header_name)
         pulumi.set(__self__, "minimum_ring_size", minimum_ring_size)
@@ -20024,7 +20024,7 @@ class GetBackendServiceConsistentHashResult(dict):
 
     @property
     @pulumi.getter(name="minimumRingSize")
-    def minimum_ring_size(self) -> float:
+    def minimum_ring_size(self) -> int:
         return pulumi.get(self, "minimum_ring_size")
 
 
@@ -20063,19 +20063,19 @@ class GetBackendServiceConsistentHashHttpCookyResult(dict):
 @pulumi.output_type
 class GetBackendServiceConsistentHashHttpCookyTtlResult(dict):
     def __init__(__self__, *,
-                 nanos: float,
-                 seconds: float):
+                 nanos: int,
+                 seconds: int):
         pulumi.set(__self__, "nanos", nanos)
         pulumi.set(__self__, "seconds", seconds)
 
     @property
     @pulumi.getter
-    def nanos(self) -> float:
+    def nanos(self) -> int:
         return pulumi.get(self, "nanos")
 
     @property
     @pulumi.getter
-    def seconds(self) -> float:
+    def seconds(self) -> int:
         return pulumi.get(self, "seconds")
 
 
@@ -20128,16 +20128,16 @@ class GetBackendServiceLogConfigResult(dict):
 class GetBackendServiceOutlierDetectionResult(dict):
     def __init__(__self__, *,
                  base_ejection_times: List['outputs.GetBackendServiceOutlierDetectionBaseEjectionTimeResult'],
-                 consecutive_errors: float,
-                 consecutive_gateway_failure: float,
-                 enforcing_consecutive_errors: float,
-                 enforcing_consecutive_gateway_failure: float,
-                 enforcing_success_rate: float,
+                 consecutive_errors: int,
+                 consecutive_gateway_failure: int,
+                 enforcing_consecutive_errors: int,
+                 enforcing_consecutive_gateway_failure: int,
+                 enforcing_success_rate: int,
                  intervals: List['outputs.GetBackendServiceOutlierDetectionIntervalResult'],
-                 max_ejection_percent: float,
-                 success_rate_minimum_hosts: float,
-                 success_rate_request_volume: float,
-                 success_rate_stdev_factor: float):
+                 max_ejection_percent: int,
+                 success_rate_minimum_hosts: int,
+                 success_rate_request_volume: int,
+                 success_rate_stdev_factor: int):
         pulumi.set(__self__, "base_ejection_times", base_ejection_times)
         pulumi.set(__self__, "consecutive_errors", consecutive_errors)
         pulumi.set(__self__, "consecutive_gateway_failure", consecutive_gateway_failure)
@@ -20157,27 +20157,27 @@ class GetBackendServiceOutlierDetectionResult(dict):
 
     @property
     @pulumi.getter(name="consecutiveErrors")
-    def consecutive_errors(self) -> float:
+    def consecutive_errors(self) -> int:
         return pulumi.get(self, "consecutive_errors")
 
     @property
     @pulumi.getter(name="consecutiveGatewayFailure")
-    def consecutive_gateway_failure(self) -> float:
+    def consecutive_gateway_failure(self) -> int:
         return pulumi.get(self, "consecutive_gateway_failure")
 
     @property
     @pulumi.getter(name="enforcingConsecutiveErrors")
-    def enforcing_consecutive_errors(self) -> float:
+    def enforcing_consecutive_errors(self) -> int:
         return pulumi.get(self, "enforcing_consecutive_errors")
 
     @property
     @pulumi.getter(name="enforcingConsecutiveGatewayFailure")
-    def enforcing_consecutive_gateway_failure(self) -> float:
+    def enforcing_consecutive_gateway_failure(self) -> int:
         return pulumi.get(self, "enforcing_consecutive_gateway_failure")
 
     @property
     @pulumi.getter(name="enforcingSuccessRate")
-    def enforcing_success_rate(self) -> float:
+    def enforcing_success_rate(self) -> int:
         return pulumi.get(self, "enforcing_success_rate")
 
     @property
@@ -20187,60 +20187,60 @@ class GetBackendServiceOutlierDetectionResult(dict):
 
     @property
     @pulumi.getter(name="maxEjectionPercent")
-    def max_ejection_percent(self) -> float:
+    def max_ejection_percent(self) -> int:
         return pulumi.get(self, "max_ejection_percent")
 
     @property
     @pulumi.getter(name="successRateMinimumHosts")
-    def success_rate_minimum_hosts(self) -> float:
+    def success_rate_minimum_hosts(self) -> int:
         return pulumi.get(self, "success_rate_minimum_hosts")
 
     @property
     @pulumi.getter(name="successRateRequestVolume")
-    def success_rate_request_volume(self) -> float:
+    def success_rate_request_volume(self) -> int:
         return pulumi.get(self, "success_rate_request_volume")
 
     @property
     @pulumi.getter(name="successRateStdevFactor")
-    def success_rate_stdev_factor(self) -> float:
+    def success_rate_stdev_factor(self) -> int:
         return pulumi.get(self, "success_rate_stdev_factor")
 
 
 @pulumi.output_type
 class GetBackendServiceOutlierDetectionBaseEjectionTimeResult(dict):
     def __init__(__self__, *,
-                 nanos: float,
-                 seconds: float):
+                 nanos: int,
+                 seconds: int):
         pulumi.set(__self__, "nanos", nanos)
         pulumi.set(__self__, "seconds", seconds)
 
     @property
     @pulumi.getter
-    def nanos(self) -> float:
+    def nanos(self) -> int:
         return pulumi.get(self, "nanos")
 
     @property
     @pulumi.getter
-    def seconds(self) -> float:
+    def seconds(self) -> int:
         return pulumi.get(self, "seconds")
 
 
 @pulumi.output_type
 class GetBackendServiceOutlierDetectionIntervalResult(dict):
     def __init__(__self__, *,
-                 nanos: float,
-                 seconds: float):
+                 nanos: int,
+                 seconds: int):
         pulumi.set(__self__, "nanos", nanos)
         pulumi.set(__self__, "seconds", seconds)
 
     @property
     @pulumi.getter
-    def nanos(self) -> float:
+    def nanos(self) -> int:
         return pulumi.get(self, "nanos")
 
     @property
     @pulumi.getter
-    def seconds(self) -> float:
+    def seconds(self) -> int:
         return pulumi.get(self, "seconds")
 
 
@@ -20399,12 +20399,12 @@ class GetInstanceBootDiskInitializeParamResult(dict):
     def __init__(__self__, *,
                  image: str,
                  labels: Mapping[str, Any],
-                 size: float,
+                 size: int,
                  type: str):
         """
         :param str image: The image from which this disk was initialised.
         :param Mapping[str, Any] labels: A set of key/value label pairs assigned to the instance.
-        :param float size: The size of the image in gigabytes.
+        :param int size: The size of the image in gigabytes.
         :param str type: The accelerator type resource exposed to this instance. E.g. `nvidia-tesla-k80`.
         """
         pulumi.set(__self__, "image", image)
@@ -20430,7 +20430,7 @@ class GetInstanceBootDiskInitializeParamResult(dict):
 
     @property
     @pulumi.getter
-    def size(self) -> float:
+    def size(self) -> int:
         """
         The size of the image in gigabytes.
         """
@@ -20461,7 +20461,7 @@ class GetInstanceConfidentialInstanceConfigResult(dict):
 class GetInstanceGroupNamedPortResult(dict):
     def __init__(__self__, *,
                  name: str,
-                 port: float):
+                 port: int):
         """
         :param str name: The name of the instance group. Either `name` or `self_link` must be provided.
         """
@@ -20478,17 +20478,17 @@ class GetInstanceGroupNamedPortResult(dict):
 
     @property
     @pulumi.getter
-    def port(self) -> float:
+    def port(self) -> int:
         return pulumi.get(self, "port")
 
 
 @pulumi.output_type
 class GetInstanceGuestAcceleratorResult(dict):
     def __init__(__self__, *,
-                 count: float,
+                 count: int,
                  type: str):
         """
-        :param float count: The number of the guest accelerator cards exposed to this instance.
+        :param int count: The number of the guest accelerator cards exposed to this instance.
         :param str type: The accelerator type resource exposed to this instance. E.g. `nvidia-tesla-k80`.
         """
         pulumi.set(__self__, "count", count)
@@ -20496,7 +20496,7 @@ class GetInstanceGuestAcceleratorResult(dict):
 
     @property
     @pulumi.getter
-    def count(self) -> float:
+    def count(self) -> int:
         """
         The number of the guest accelerator cards exposed to this instance.
         """
@@ -20676,7 +20676,7 @@ class GetInstanceNetworkInterfaceAliasIpRangeResult(dict):
 class GetInstanceSchedulingResult(dict):
     def __init__(__self__, *,
                  automatic_restart: bool,
-                 min_node_cpus: float,
+                 min_node_cpus: int,
                  node_affinities: List['outputs.GetInstanceSchedulingNodeAffinityResult'],
                  on_host_maintenance: str,
                  preemptible: bool):
@@ -20705,7 +20705,7 @@ class GetInstanceSchedulingResult(dict):
 
     @property
     @pulumi.getter(name="minNodeCpus")
-    def min_node_cpus(self) -> float:
+    def min_node_cpus(self) -> int:
         return pulumi.get(self, "min_node_cpus")
 
     @property
@@ -20875,10 +20875,10 @@ class GetRegionInstanceGroupInstanceResult(dict):
 class GetRegionInstanceGroupInstanceNamedPortResult(dict):
     def __init__(__self__, *,
                  name: str,
-                 port: float):
+                 port: int):
         """
         :param str name: The name of the instance group.  One of `name` or `self_link` must be provided.
-        :param float port: Integer port number
+        :param int port: Integer port number
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "port", port)
@@ -20893,7 +20893,7 @@ class GetRegionInstanceGroupInstanceNamedPortResult(dict):
 
     @property
     @pulumi.getter
-    def port(self) -> float:
+    def port(self) -> int:
         """
         Integer port number
         """
@@ -20906,7 +20906,7 @@ class GetRouterBgpResult(dict):
                  advertise_mode: str,
                  advertised_groups: List[str],
                  advertised_ip_ranges: List['outputs.GetRouterBgpAdvertisedIpRangeResult'],
-                 asn: float):
+                 asn: int):
         pulumi.set(__self__, "advertise_mode", advertise_mode)
         pulumi.set(__self__, "advertised_groups", advertised_groups)
         pulumi.set(__self__, "advertised_ip_ranges", advertised_ip_ranges)
@@ -20929,7 +20929,7 @@ class GetRouterBgpResult(dict):
 
     @property
     @pulumi.getter
-    def asn(self) -> float:
+    def asn(self) -> int:
         return pulumi.get(self, "asn")
 
 

@@ -105,13 +105,13 @@ class ManagedZoneDnssecConfig(dict):
 class ManagedZoneDnssecConfigDefaultKeySpec(dict):
     def __init__(__self__, *,
                  algorithm: Optional[str] = None,
-                 key_length: Optional[float] = None,
+                 key_length: Optional[int] = None,
                  key_type: Optional[str] = None,
                  kind: Optional[str] = None):
         """
         :param str algorithm: String mnemonic specifying the DNSSEC algorithm of this key
                Possible values are `ecdsap256sha256`, `ecdsap384sha384`, `rsasha1`, `rsasha256`, and `rsasha512`.
-        :param float key_length: Length of the keys in bits
+        :param int key_length: Length of the keys in bits
         :param str key_type: Specifies whether this is a key signing key (KSK) or a zone
                signing key (ZSK). Key signing keys have the Secure Entry
                Point flag set and, when active, will only be used to sign
@@ -141,7 +141,7 @@ class ManagedZoneDnssecConfigDefaultKeySpec(dict):
 
     @property
     @pulumi.getter(name="keyLength")
-    def key_length(self) -> Optional[float]:
+    def key_length(self) -> Optional[int]:
         """
         Length of the keys in bits
         """
@@ -468,8 +468,8 @@ class GetKeysKeySigningKeyResult(dict):
                  ds_record: str,
                  id: str,
                  is_active: bool,
-                 key_length: float,
-                 key_tag: float,
+                 key_length: int,
+                 key_tag: int,
                  public_key: str):
         """
         :param str algorithm: String mnemonic specifying the DNSSEC algorithm of this key. Immutable after creation time. Possible values are `ecdsap256sha256`, `ecdsap384sha384`, `rsasha1`, `rsasha256`, and `rsasha512`.
@@ -479,8 +479,8 @@ class GetKeysKeySigningKeyResult(dict):
         :param str ds_record: The DS record based on the KSK record. This is used when [delegating](https://cloud.google.com/dns/docs/dnssec-advanced#subdelegation) DNSSEC-signed subdomains.
         :param str id: Unique identifier for the resource; defined by the server.
         :param bool is_active: Active keys will be used to sign subsequent changes to the ManagedZone. Inactive keys will still be present as DNSKEY Resource Records for the use of resolvers validating existing signatures.
-        :param float key_length: Length of the key in bits. Specified at creation time then immutable.
-        :param float key_tag: The key tag is a non-cryptographic hash of the a DNSKEY resource record associated with this DnsKey. The key tag can be used to identify a DNSKEY more quickly (but it is not a unique identifier). In particular, the key tag is used in a parent zone's DS record to point at the DNSKEY in this child ManagedZone. The key tag is a number in the range [0, 65535] and the algorithm to calculate it is specified in RFC4034 Appendix B.
+        :param int key_length: Length of the key in bits. Specified at creation time then immutable.
+        :param int key_tag: The key tag is a non-cryptographic hash of the a DNSKEY resource record associated with this DnsKey. The key tag can be used to identify a DNSKEY more quickly (but it is not a unique identifier). In particular, the key tag is used in a parent zone's DS record to point at the DNSKEY in this child ManagedZone. The key tag is a number in the range [0, 65535] and the algorithm to calculate it is specified in RFC4034 Appendix B.
         :param str public_key: Base64 encoded public half of this key.
         """
         pulumi.set(__self__, "algorithm", algorithm)
@@ -552,7 +552,7 @@ class GetKeysKeySigningKeyResult(dict):
 
     @property
     @pulumi.getter(name="keyLength")
-    def key_length(self) -> float:
+    def key_length(self) -> int:
         """
         Length of the key in bits. Specified at creation time then immutable.
         """
@@ -560,7 +560,7 @@ class GetKeysKeySigningKeyResult(dict):
 
     @property
     @pulumi.getter(name="keyTag")
-    def key_tag(self) -> float:
+    def key_tag(self) -> int:
         """
         The key tag is a non-cryptographic hash of the a DNSKEY resource record associated with this DnsKey. The key tag can be used to identify a DNSKEY more quickly (but it is not a unique identifier). In particular, the key tag is used in a parent zone's DS record to point at the DNSKEY in this child ManagedZone. The key tag is a number in the range [0, 65535] and the algorithm to calculate it is specified in RFC4034 Appendix B.
         """
@@ -615,8 +615,8 @@ class GetKeysZoneSigningKeyResult(dict):
                  digests: List['outputs.GetKeysZoneSigningKeyDigestResult'],
                  id: str,
                  is_active: bool,
-                 key_length: float,
-                 key_tag: float,
+                 key_length: int,
+                 key_tag: int,
                  public_key: str):
         """
         :param str algorithm: String mnemonic specifying the DNSSEC algorithm of this key. Immutable after creation time. Possible values are `ecdsap256sha256`, `ecdsap384sha384`, `rsasha1`, `rsasha256`, and `rsasha512`.
@@ -625,8 +625,8 @@ class GetKeysZoneSigningKeyResult(dict):
         :param List['GetKeysZoneSigningKeyDigestArgs'] digests: A list of cryptographic hashes of the DNSKEY resource record associated with this DnsKey. These digests are needed to construct a DS record that points at this DNS key. Each contains:
         :param str id: Unique identifier for the resource; defined by the server.
         :param bool is_active: Active keys will be used to sign subsequent changes to the ManagedZone. Inactive keys will still be present as DNSKEY Resource Records for the use of resolvers validating existing signatures.
-        :param float key_length: Length of the key in bits. Specified at creation time then immutable.
-        :param float key_tag: The key tag is a non-cryptographic hash of the a DNSKEY resource record associated with this DnsKey. The key tag can be used to identify a DNSKEY more quickly (but it is not a unique identifier). In particular, the key tag is used in a parent zone's DS record to point at the DNSKEY in this child ManagedZone. The key tag is a number in the range [0, 65535] and the algorithm to calculate it is specified in RFC4034 Appendix B.
+        :param int key_length: Length of the key in bits. Specified at creation time then immutable.
+        :param int key_tag: The key tag is a non-cryptographic hash of the a DNSKEY resource record associated with this DnsKey. The key tag can be used to identify a DNSKEY more quickly (but it is not a unique identifier). In particular, the key tag is used in a parent zone's DS record to point at the DNSKEY in this child ManagedZone. The key tag is a number in the range [0, 65535] and the algorithm to calculate it is specified in RFC4034 Appendix B.
         :param str public_key: Base64 encoded public half of this key.
         """
         pulumi.set(__self__, "algorithm", algorithm)
@@ -689,7 +689,7 @@ class GetKeysZoneSigningKeyResult(dict):
 
     @property
     @pulumi.getter(name="keyLength")
-    def key_length(self) -> float:
+    def key_length(self) -> int:
         """
         Length of the key in bits. Specified at creation time then immutable.
         """
@@ -697,7 +697,7 @@ class GetKeysZoneSigningKeyResult(dict):
 
     @property
     @pulumi.getter(name="keyTag")
-    def key_tag(self) -> float:
+    def key_tag(self) -> int:
         """
         The key tag is a non-cryptographic hash of the a DNSKEY resource record associated with this DnsKey. The key tag can be used to identify a DNSKEY more quickly (but it is not a unique identifier). In particular, the key tag is used in a parent zone's DS record to point at the DNSKEY in this child ManagedZone. The key tag is a number in the range [0, 65535] and the algorithm to calculate it is specified in RFC4034 Appendix B.
         """

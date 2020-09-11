@@ -29,7 +29,7 @@ __all__ = [
 class EntryBigqueryDateShardedSpec(dict):
     def __init__(__self__, *,
                  dataset: Optional[str] = None,
-                 shard_count: Optional[float] = None,
+                 shard_count: Optional[int] = None,
                  table_prefix: Optional[str] = None):
         if dataset is not None:
             pulumi.set(__self__, "dataset", dataset)
@@ -45,7 +45,7 @@ class EntryBigqueryDateShardedSpec(dict):
 
     @property
     @pulumi.getter(name="shardCount")
-    def shard_count(self) -> Optional[float]:
+    def shard_count(self) -> Optional[int]:
         return pulumi.get(self, "shard_count")
 
     @property
@@ -182,11 +182,11 @@ class EntryGcsFilesetSpec(dict):
 class EntryGcsFilesetSpecSampleGcsFileSpec(dict):
     def __init__(__self__, *,
                  file_path: Optional[str] = None,
-                 size_bytes: Optional[float] = None):
+                 size_bytes: Optional[int] = None):
         """
         :param str file_path: -
                The full file path
-        :param float size_bytes: -
+        :param int size_bytes: -
                The size of the file, in bytes.
         """
         if file_path is not None:
@@ -205,7 +205,7 @@ class EntryGcsFilesetSpecSampleGcsFileSpec(dict):
 
     @property
     @pulumi.getter(name="sizeBytes")
-    def size_bytes(self) -> Optional[float]:
+    def size_bytes(self) -> Optional[int]:
         """
         -
         The size of the file, in bytes.
@@ -284,7 +284,7 @@ class TagField(dict):
                  display_name: Optional[str] = None,
                  double_value: Optional[float] = None,
                  enum_value: Optional[str] = None,
-                 order: Optional[float] = None,
+                 order: Optional[int] = None,
                  string_value: Optional[str] = None,
                  timestamp_value: Optional[str] = None):
         """
@@ -295,7 +295,7 @@ class TagField(dict):
         :param float double_value: Holds the value for a tag field with double type.
         :param str enum_value: Holds the value for a tag field with enum type. This value must be one of the allowed values in the definition of this enum.
                Structure is documented below.
-        :param float order: -
+        :param int order: -
                The order of this field with respect to other fields in this tag. For example, a higher value can indicate
                a more important field. The value can be negative. Multiple fields can have the same order, and field orders
                within a tag do not have to be sequential.
@@ -362,7 +362,7 @@ class TagField(dict):
 
     @property
     @pulumi.getter
-    def order(self) -> Optional[float]:
+    def order(self) -> Optional[int]:
         """
         -
         The order of this field with respect to other fields in this tag. For example, a higher value can indicate
@@ -399,7 +399,7 @@ class TagTemplateField(dict):
                  display_name: Optional[str] = None,
                  is_required: Optional[bool] = None,
                  name: Optional[str] = None,
-                 order: Optional[float] = None):
+                 order: Optional[int] = None):
         """
         :param str field_id: The identifier for this object. Format specified above.
         :param 'TagTemplateFieldTypeArgs' type: The type of value this tag field can contain.
@@ -408,7 +408,7 @@ class TagTemplateField(dict):
         :param bool is_required: Whether this is a required field. Defaults to false.
         :param str name: -
                The resource name of the tag template field in URL format. Example: projects/{project_id}/locations/{location}/tagTemplates/{tagTemplateId}/fields/{field}
-        :param float order: The order of this field with respect to other fields in this tag template.
+        :param int order: The order of this field with respect to other fields in this tag template.
                A higher value indicates a more important field. The value can be negative.
                Multiple fields can have the same order, and field orders within a tag do not have to be sequential.
         """
@@ -467,7 +467,7 @@ class TagTemplateField(dict):
 
     @property
     @pulumi.getter
-    def order(self) -> Optional[float]:
+    def order(self) -> Optional[int]:
         """
         The order of this field with respect to other fields in this tag template.
         A higher value indicates a more important field. The value can be negative.

@@ -45,8 +45,8 @@ class GetOrganizationPolicyResult:
         if update_time and not isinstance(update_time, str):
             raise TypeError("Expected argument 'update_time' to be a str")
         pulumi.set(__self__, "update_time", update_time)
-        if version and not isinstance(version, float):
-            raise TypeError("Expected argument 'version' to be a float")
+        if version and not isinstance(version, int):
+            raise TypeError("Expected argument 'version' to be a int")
         pulumi.set(__self__, "version", version)
 
     @property
@@ -94,7 +94,7 @@ class GetOrganizationPolicyResult:
 
     @property
     @pulumi.getter
-    def version(self) -> float:
+    def version(self) -> int:
         return pulumi.get(self, "version")
 
 

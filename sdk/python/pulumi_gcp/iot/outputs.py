@@ -206,7 +206,7 @@ class DeviceLastErrorStatus(dict):
     def __init__(__self__, *,
                  details: Optional[List[Mapping[str, Any]]] = None,
                  message: Optional[str] = None,
-                 number: Optional[float] = None):
+                 number: Optional[int] = None):
         if details is not None:
             pulumi.set(__self__, "details", details)
         if message is not None:
@@ -226,7 +226,7 @@ class DeviceLastErrorStatus(dict):
 
     @property
     @pulumi.getter
-    def number(self) -> Optional[float]:
+    def number(self) -> Optional[int]:
         return pulumi.get(self, "number")
 
     def _translate_property(self, prop):
