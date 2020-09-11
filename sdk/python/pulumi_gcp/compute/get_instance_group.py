@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 from . import outputs
 
@@ -70,7 +70,7 @@ class GetInstanceGroupResult:
 
     @property
     @pulumi.getter
-    def instances(self) -> List[str]:
+    def instances(self) -> Sequence[str]:
         """
         List of instances in the group.
         """
@@ -83,7 +83,7 @@ class GetInstanceGroupResult:
 
     @property
     @pulumi.getter(name="namedPorts")
-    def named_ports(self) -> List['outputs.GetInstanceGroupNamedPortResult']:
+    def named_ports(self) -> Sequence['outputs.GetInstanceGroupNamedPortResult']:
         """
         List of named ports in the group.
         """

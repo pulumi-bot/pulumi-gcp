@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
@@ -24,7 +24,7 @@ class Disk(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  physical_block_size_bytes: Optional[pulumi.Input[float]] = None,
                  project: Optional[pulumi.Input[str]] = None,
-                 resource_policies: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 resource_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  size: Optional[pulumi.Input[float]] = None,
                  snapshot: Optional[pulumi.Input[str]] = None,
                  source_image_encryption_key: Optional[pulumi.Input[pulumi.InputType['DiskSourceImageEncryptionKeyArgs']]] = None,
@@ -100,7 +100,7 @@ class Disk(pulumi.CustomResource):
                the supported values for the caller's project.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[List[pulumi.Input[str]]] resource_policies: Resource policies applied to this disk for automatic snapshot creations. ~>**NOTE** This value does not support updating
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] resource_policies: Resource policies applied to this disk for automatic snapshot creations. ~>**NOTE** This value does not support updating
                the resource policy, as resource policies can not be updated more than one at a time. Use
                ['google_compute_disk_resource_policy_attachment'](https://www.terraform.io/docs/providers/google/r/compute_disk_resource_policy_attachment.html)
                to allow for updating the resource policy attached to the disk.
@@ -190,7 +190,7 @@ class Disk(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             physical_block_size_bytes: Optional[pulumi.Input[float]] = None,
             project: Optional[pulumi.Input[str]] = None,
-            resource_policies: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            resource_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             self_link: Optional[pulumi.Input[str]] = None,
             size: Optional[pulumi.Input[float]] = None,
             snapshot: Optional[pulumi.Input[str]] = None,
@@ -199,7 +199,7 @@ class Disk(pulumi.CustomResource):
             source_snapshot_encryption_key: Optional[pulumi.Input[pulumi.InputType['DiskSourceSnapshotEncryptionKeyArgs']]] = None,
             source_snapshot_id: Optional[pulumi.Input[str]] = None,
             type: Optional[pulumi.Input[str]] = None,
-            users: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            users: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             zone: Optional[pulumi.Input[str]] = None) -> 'Disk':
         """
         Get an existing Disk resource's state with the given name, id, and optional extra
@@ -248,7 +248,7 @@ class Disk(pulumi.CustomResource):
                the supported values for the caller's project.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[List[pulumi.Input[str]]] resource_policies: Resource policies applied to this disk for automatic snapshot creations. ~>**NOTE** This value does not support updating
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] resource_policies: Resource policies applied to this disk for automatic snapshot creations. ~>**NOTE** This value does not support updating
                the resource policy, as resource policies can not be updated more than one at a time. Use
                ['google_compute_disk_resource_policy_attachment'](https://www.terraform.io/docs/providers/google/r/compute_disk_resource_policy_attachment.html)
                to allow for updating the resource policy attached to the disk.
@@ -283,7 +283,7 @@ class Disk(pulumi.CustomResource):
                recreated under the same name, the source snapshot ID would identify the exact version of the snapshot that was used.
         :param pulumi.Input[str] type: URL of the disk type resource describing which disk type to use to
                create the disk. Provide this when creating the disk.
-        :param pulumi.Input[List[pulumi.Input[str]]] users: Links to the users of the disk (attached instances) in form: project/zones/zone/instances/instance
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] users: Links to the users of the disk (attached instances) in form: project/zones/zone/instances/instance
         :param pulumi.Input[str] zone: A reference to the zone where the disk resides.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -433,7 +433,7 @@ class Disk(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="resourcePolicies")
-    def resource_policies(self) -> pulumi.Output[List[str]]:
+    def resource_policies(self) -> pulumi.Output[Sequence[str]]:
         """
         Resource policies applied to this disk for automatic snapshot creations. ~>**NOTE** This value does not support updating
         the resource policy, as resource policies can not be updated more than one at a time. Use
@@ -531,7 +531,7 @@ class Disk(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def users(self) -> pulumi.Output[List[str]]:
+    def users(self) -> pulumi.Output[Sequence[str]]:
         """
         Links to the users of the disk (attached instances) in form: project/zones/zone/instances/instance
         """

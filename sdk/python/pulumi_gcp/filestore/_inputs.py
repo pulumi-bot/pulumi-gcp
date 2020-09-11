@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = [
@@ -19,7 +19,7 @@ class InstanceFileSharesArgs:
     def __init__(__self__, *,
                  capacity_gb: pulumi.Input[float],
                  name: pulumi.Input[str],
-                 nfs_export_options: Optional[pulumi.Input[List[pulumi.Input['InstanceFileSharesNfsExportOptionArgs']]]] = None):
+                 nfs_export_options: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceFileSharesNfsExportOptionArgs']]]] = None):
         """
         :param pulumi.Input[float] capacity_gb: File share capacity in GiB. This must be at least 1024 GiB
                for the standard tier, or 2560 GiB for the premium tier.
@@ -57,11 +57,11 @@ class InstanceFileSharesArgs:
 
     @property
     @pulumi.getter(name="nfsExportOptions")
-    def nfs_export_options(self) -> Optional[pulumi.Input[List[pulumi.Input['InstanceFileSharesNfsExportOptionArgs']]]]:
+    def nfs_export_options(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceFileSharesNfsExportOptionArgs']]]]:
         return pulumi.get(self, "nfs_export_options")
 
     @nfs_export_options.setter
-    def nfs_export_options(self, value: Optional[pulumi.Input[List[pulumi.Input['InstanceFileSharesNfsExportOptionArgs']]]]):
+    def nfs_export_options(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceFileSharesNfsExportOptionArgs']]]]):
         pulumi.set(self, "nfs_export_options", value)
 
 
@@ -71,7 +71,7 @@ class InstanceFileSharesNfsExportOptionArgs:
                  access_mode: Optional[pulumi.Input[str]] = None,
                  anon_gid: Optional[pulumi.Input[float]] = None,
                  anon_uid: Optional[pulumi.Input[float]] = None,
-                 ip_ranges: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  squash_mode: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] access_mode: Either READ_ONLY, for allowing only read requests on the exported directory,
@@ -84,7 +84,7 @@ class InstanceFileSharesNfsExportOptionArgs:
         :param pulumi.Input[float] anon_uid: An integer representing the anonymous user id with a default value of 65534.
                Anon_uid may only be set with squashMode of ROOT_SQUASH. An error will be returned
                if this field is specified for other squashMode settings.
-        :param pulumi.Input[List[pulumi.Input[str]]] ip_ranges: List of either IPv4 addresses, or ranges in CIDR notation which may mount the file share.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_ranges: List of either IPv4 addresses, or ranges in CIDR notation which may mount the file share.
                Overlapping IP ranges are not allowed, both within and across NfsExportOptions. An error will be returned.
                The limit is 64 IP ranges/addresses for each FileShareConfig among all NfsExportOptions.
         :param pulumi.Input[str] squash_mode: Either NO_ROOT_SQUASH, for allowing root access on the exported directory, or ROOT_SQUASH,
@@ -148,7 +148,7 @@ class InstanceFileSharesNfsExportOptionArgs:
 
     @property
     @pulumi.getter(name="ipRanges")
-    def ip_ranges(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def ip_ranges(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         List of either IPv4 addresses, or ranges in CIDR notation which may mount the file share.
         Overlapping IP ranges are not allowed, both within and across NfsExportOptions. An error will be returned.
@@ -157,7 +157,7 @@ class InstanceFileSharesNfsExportOptionArgs:
         return pulumi.get(self, "ip_ranges")
 
     @ip_ranges.setter
-    def ip_ranges(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def ip_ranges(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "ip_ranges", value)
 
     @property
@@ -179,17 +179,17 @@ class InstanceFileSharesNfsExportOptionArgs:
 @pulumi.input_type
 class InstanceNetworkArgs:
     def __init__(__self__, *,
-                 modes: pulumi.Input[List[pulumi.Input[str]]],
+                 modes: pulumi.Input[Sequence[pulumi.Input[str]]],
                  network: pulumi.Input[str],
-                 ip_addresses: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 ip_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  reserved_ip_range: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input[str]]] modes: IP versions for which the instance has
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] modes: IP versions for which the instance has
                IP addresses assigned.
                Each value may be one of `ADDRESS_MODE_UNSPECIFIED`, `MODE_IPV4`, and `MODE_IPV6`.
         :param pulumi.Input[str] network: The name of the GCE VPC network to which the
                instance is connected.
-        :param pulumi.Input[List[pulumi.Input[str]]] ip_addresses: -
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_addresses: -
                A list of IPv4 or IPv6 addresses.
         :param pulumi.Input[str] reserved_ip_range: A /29 CIDR block that identifies the range of IP
                addresses reserved for this instance.
@@ -203,7 +203,7 @@ class InstanceNetworkArgs:
 
     @property
     @pulumi.getter
-    def modes(self) -> pulumi.Input[List[pulumi.Input[str]]]:
+    def modes(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
         IP versions for which the instance has
         IP addresses assigned.
@@ -212,7 +212,7 @@ class InstanceNetworkArgs:
         return pulumi.get(self, "modes")
 
     @modes.setter
-    def modes(self, value: pulumi.Input[List[pulumi.Input[str]]]):
+    def modes(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "modes", value)
 
     @property
@@ -230,7 +230,7 @@ class InstanceNetworkArgs:
 
     @property
     @pulumi.getter(name="ipAddresses")
-    def ip_addresses(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def ip_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         -
         A list of IPv4 or IPv6 addresses.
@@ -238,7 +238,7 @@ class InstanceNetworkArgs:
         return pulumi.get(self, "ip_addresses")
 
     @ip_addresses.setter
-    def ip_addresses(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def ip_addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "ip_addresses", value)
 
     @property

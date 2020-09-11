@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = [
@@ -391,7 +391,7 @@ class ClusterClusterConfigArgs:
                  encryption_config: Optional[pulumi.Input['ClusterClusterConfigEncryptionConfigArgs']] = None,
                  endpoint_config: Optional[pulumi.Input['ClusterClusterConfigEndpointConfigArgs']] = None,
                  gce_cluster_config: Optional[pulumi.Input['ClusterClusterConfigGceClusterConfigArgs']] = None,
-                 initialization_actions: Optional[pulumi.Input[List[pulumi.Input['ClusterClusterConfigInitializationActionArgs']]]] = None,
+                 initialization_actions: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterClusterConfigInitializationActionArgs']]]] = None,
                  lifecycle_config: Optional[pulumi.Input['ClusterClusterConfigLifecycleConfigArgs']] = None,
                  master_config: Optional[pulumi.Input['ClusterClusterConfigMasterConfigArgs']] = None,
                  preemptible_worker_config: Optional[pulumi.Input['ClusterClusterConfigPreemptibleWorkerConfigArgs']] = None,
@@ -409,7 +409,7 @@ class ClusterClusterConfigArgs:
                - - -
         :param pulumi.Input['ClusterClusterConfigGceClusterConfigArgs'] gce_cluster_config: Common config settings for resources of Google Compute Engine cluster
                instances, applicable to all instances in the cluster. Structure defined below.
-        :param pulumi.Input[List[pulumi.Input['ClusterClusterConfigInitializationActionArgs']]] initialization_actions: Commands to execute on each node after config is completed.
+        :param pulumi.Input[Sequence[pulumi.Input['ClusterClusterConfigInitializationActionArgs']]] initialization_actions: Commands to execute on each node after config is completed.
                You can specify multiple versions of these. Structure defined below.
         :param pulumi.Input['ClusterClusterConfigLifecycleConfigArgs'] lifecycle_config: The settings for auto deletion cluster schedule.
                Structure defined below.
@@ -521,7 +521,7 @@ class ClusterClusterConfigArgs:
 
     @property
     @pulumi.getter(name="initializationActions")
-    def initialization_actions(self) -> Optional[pulumi.Input[List[pulumi.Input['ClusterClusterConfigInitializationActionArgs']]]]:
+    def initialization_actions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterClusterConfigInitializationActionArgs']]]]:
         """
         Commands to execute on each node after config is completed.
         You can specify multiple versions of these. Structure defined below.
@@ -529,7 +529,7 @@ class ClusterClusterConfigArgs:
         return pulumi.get(self, "initialization_actions")
 
     @initialization_actions.setter
-    def initialization_actions(self, value: Optional[pulumi.Input[List[pulumi.Input['ClusterClusterConfigInitializationActionArgs']]]]):
+    def initialization_actions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterClusterConfigInitializationActionArgs']]]]):
         pulumi.set(self, "initialization_actions", value)
 
     @property
@@ -717,9 +717,9 @@ class ClusterClusterConfigGceClusterConfigArgs:
                  metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  network: Optional[pulumi.Input[str]] = None,
                  service_account: Optional[pulumi.Input[str]] = None,
-                 service_account_scopes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 service_account_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  subnetwork: Optional[pulumi.Input[str]] = None,
-                 tags: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  zone: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[bool] internal_ip_only: By default, clusters are not restricted to internal IP addresses, 
@@ -734,14 +734,14 @@ class ClusterClusterConfigGceClusterConfigArgs:
                If neither is specified, this defaults to the "default" network.
         :param pulumi.Input[str] service_account: The service account to be used by the Node VMs.
                If not specified, the "default" service account is used.
-        :param pulumi.Input[List[pulumi.Input[str]]] service_account_scopes: The set of Google API scopes
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] service_account_scopes: The set of Google API scopes
                to be made available on all of the node VMs under the `service_account`
                specified. These can be	either FQDNs, or scope aliases. The following scopes
                must be set if any other scopes are set. They're necessary to ensure the
                correct functioning ofthe cluster, and are set automatically by the API:
         :param pulumi.Input[str] subnetwork: The name or self_link of the Google Compute Engine
                subnetwork the cluster will be part of. Conflicts with `network`.
-        :param pulumi.Input[List[pulumi.Input[str]]] tags: The list of instance tags applied to instances in the cluster.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The list of instance tags applied to instances in the cluster.
                Tags are used to identify valid sources or targets for network firewalls.
         :param pulumi.Input[str] zone: The GCP zone where your data is stored and used (i.e. where
                the master and the worker nodes will be created in). If `region` is set to 'global' (default)
@@ -826,7 +826,7 @@ class ClusterClusterConfigGceClusterConfigArgs:
 
     @property
     @pulumi.getter(name="serviceAccountScopes")
-    def service_account_scopes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def service_account_scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         The set of Google API scopes
         to be made available on all of the node VMs under the `service_account`
@@ -837,7 +837,7 @@ class ClusterClusterConfigGceClusterConfigArgs:
         return pulumi.get(self, "service_account_scopes")
 
     @service_account_scopes.setter
-    def service_account_scopes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def service_account_scopes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "service_account_scopes", value)
 
     @property
@@ -855,7 +855,7 @@ class ClusterClusterConfigGceClusterConfigArgs:
 
     @property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         The list of instance tags applied to instances in the cluster.
         Tags are used to identify valid sources or targets for network firewalls.
@@ -863,7 +863,7 @@ class ClusterClusterConfigGceClusterConfigArgs:
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "tags", value)
 
     @property
@@ -989,15 +989,15 @@ class ClusterClusterConfigLifecycleConfigArgs:
 @pulumi.input_type
 class ClusterClusterConfigMasterConfigArgs:
     def __init__(__self__, *,
-                 accelerators: Optional[pulumi.Input[List[pulumi.Input['ClusterClusterConfigMasterConfigAcceleratorArgs']]]] = None,
+                 accelerators: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterClusterConfigMasterConfigAcceleratorArgs']]]] = None,
                  disk_config: Optional[pulumi.Input['ClusterClusterConfigMasterConfigDiskConfigArgs']] = None,
                  image_uri: Optional[pulumi.Input[str]] = None,
-                 instance_names: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 instance_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  machine_type: Optional[pulumi.Input[str]] = None,
                  min_cpu_platform: Optional[pulumi.Input[str]] = None,
                  num_instances: Optional[pulumi.Input[float]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input['ClusterClusterConfigMasterConfigAcceleratorArgs']]] accelerators: The Compute Engine accelerator configuration for these instances. Can be specified multiple times.
+        :param pulumi.Input[Sequence[pulumi.Input['ClusterClusterConfigMasterConfigAcceleratorArgs']]] accelerators: The Compute Engine accelerator configuration for these instances. Can be specified multiple times.
         :param pulumi.Input['ClusterClusterConfigMasterConfigDiskConfigArgs'] disk_config: Disk Config
         :param pulumi.Input[str] image_uri: The URI for the image to use for this worker.  See [the guide](https://cloud.google.com/dataproc/docs/guides/dataproc-images)
                for more information.
@@ -1028,14 +1028,14 @@ class ClusterClusterConfigMasterConfigArgs:
 
     @property
     @pulumi.getter
-    def accelerators(self) -> Optional[pulumi.Input[List[pulumi.Input['ClusterClusterConfigMasterConfigAcceleratorArgs']]]]:
+    def accelerators(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterClusterConfigMasterConfigAcceleratorArgs']]]]:
         """
         The Compute Engine accelerator configuration for these instances. Can be specified multiple times.
         """
         return pulumi.get(self, "accelerators")
 
     @accelerators.setter
-    def accelerators(self, value: Optional[pulumi.Input[List[pulumi.Input['ClusterClusterConfigMasterConfigAcceleratorArgs']]]]):
+    def accelerators(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterClusterConfigMasterConfigAcceleratorArgs']]]]):
         pulumi.set(self, "accelerators", value)
 
     @property
@@ -1065,11 +1065,11 @@ class ClusterClusterConfigMasterConfigArgs:
 
     @property
     @pulumi.getter(name="instanceNames")
-    def instance_names(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def instance_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         return pulumi.get(self, "instance_names")
 
     @instance_names.setter
-    def instance_names(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def instance_names(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "instance_names", value)
 
     @property
@@ -1221,7 +1221,7 @@ class ClusterClusterConfigMasterConfigDiskConfigArgs:
 class ClusterClusterConfigPreemptibleWorkerConfigArgs:
     def __init__(__self__, *,
                  disk_config: Optional[pulumi.Input['ClusterClusterConfigPreemptibleWorkerConfigDiskConfigArgs']] = None,
-                 instance_names: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 instance_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  num_instances: Optional[pulumi.Input[float]] = None):
         """
         :param pulumi.Input['ClusterClusterConfigPreemptibleWorkerConfigDiskConfigArgs'] disk_config: Disk Config
@@ -1249,11 +1249,11 @@ class ClusterClusterConfigPreemptibleWorkerConfigArgs:
 
     @property
     @pulumi.getter(name="instanceNames")
-    def instance_names(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def instance_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         return pulumi.get(self, "instance_names")
 
     @instance_names.setter
-    def instance_names(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def instance_names(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "instance_names", value)
 
     @property
@@ -1638,7 +1638,7 @@ class ClusterClusterConfigSecurityConfigKerberosConfigArgs:
 class ClusterClusterConfigSoftwareConfigArgs:
     def __init__(__self__, *,
                  image_version: Optional[pulumi.Input[str]] = None,
-                 optional_components: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 optional_components: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  override_properties: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  properties: Optional[pulumi.Input[Mapping[str, Any]]] = None):
         """
@@ -1647,7 +1647,7 @@ class ClusterClusterConfigSoftwareConfigArgs:
                installed onto the nodes when you create clusters. If not specified, defaults to the
                latest version. For a list of valid versions see
                [Cloud Dataproc versions](https://cloud.google.com/dataproc/docs/concepts/dataproc-versions)
-        :param pulumi.Input[List[pulumi.Input[str]]] optional_components: The set of optional components to activate on the cluster. 
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] optional_components: The set of optional components to activate on the cluster. 
                Accepted values are:
                * ANACONDA
                * DRUID
@@ -1692,7 +1692,7 @@ class ClusterClusterConfigSoftwareConfigArgs:
 
     @property
     @pulumi.getter(name="optionalComponents")
-    def optional_components(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def optional_components(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         The set of optional components to activate on the cluster. 
         Accepted values are:
@@ -1711,7 +1711,7 @@ class ClusterClusterConfigSoftwareConfigArgs:
         return pulumi.get(self, "optional_components")
 
     @optional_components.setter
-    def optional_components(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def optional_components(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "optional_components", value)
 
     @property
@@ -1742,15 +1742,15 @@ class ClusterClusterConfigSoftwareConfigArgs:
 @pulumi.input_type
 class ClusterClusterConfigWorkerConfigArgs:
     def __init__(__self__, *,
-                 accelerators: Optional[pulumi.Input[List[pulumi.Input['ClusterClusterConfigWorkerConfigAcceleratorArgs']]]] = None,
+                 accelerators: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterClusterConfigWorkerConfigAcceleratorArgs']]]] = None,
                  disk_config: Optional[pulumi.Input['ClusterClusterConfigWorkerConfigDiskConfigArgs']] = None,
                  image_uri: Optional[pulumi.Input[str]] = None,
-                 instance_names: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 instance_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  machine_type: Optional[pulumi.Input[str]] = None,
                  min_cpu_platform: Optional[pulumi.Input[str]] = None,
                  num_instances: Optional[pulumi.Input[float]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input['ClusterClusterConfigWorkerConfigAcceleratorArgs']]] accelerators: The Compute Engine accelerator configuration for these instances. Can be specified multiple times.
+        :param pulumi.Input[Sequence[pulumi.Input['ClusterClusterConfigWorkerConfigAcceleratorArgs']]] accelerators: The Compute Engine accelerator configuration for these instances. Can be specified multiple times.
         :param pulumi.Input['ClusterClusterConfigWorkerConfigDiskConfigArgs'] disk_config: Disk Config
         :param pulumi.Input[str] image_uri: The URI for the image to use for this worker.  See [the guide](https://cloud.google.com/dataproc/docs/guides/dataproc-images)
                for more information.
@@ -1781,14 +1781,14 @@ class ClusterClusterConfigWorkerConfigArgs:
 
     @property
     @pulumi.getter
-    def accelerators(self) -> Optional[pulumi.Input[List[pulumi.Input['ClusterClusterConfigWorkerConfigAcceleratorArgs']]]]:
+    def accelerators(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterClusterConfigWorkerConfigAcceleratorArgs']]]]:
         """
         The Compute Engine accelerator configuration for these instances. Can be specified multiple times.
         """
         return pulumi.get(self, "accelerators")
 
     @accelerators.setter
-    def accelerators(self, value: Optional[pulumi.Input[List[pulumi.Input['ClusterClusterConfigWorkerConfigAcceleratorArgs']]]]):
+    def accelerators(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterClusterConfigWorkerConfigAcceleratorArgs']]]]):
         pulumi.set(self, "accelerators", value)
 
     @property
@@ -1818,11 +1818,11 @@ class ClusterClusterConfigWorkerConfigArgs:
 
     @property
     @pulumi.getter(name="instanceNames")
-    def instance_names(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def instance_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         return pulumi.get(self, "instance_names")
 
     @instance_names.setter
-    def instance_names(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def instance_names(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "instance_names", value)
 
     @property
@@ -2051,19 +2051,19 @@ class ClusterIAMMemberConditionArgs:
 @pulumi.input_type
 class JobHadoopConfigArgs:
     def __init__(__self__, *,
-                 archive_uris: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 args: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 file_uris: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 jar_file_uris: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 archive_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 args: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 file_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 jar_file_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  logging_config: Optional[pulumi.Input['JobHadoopConfigLoggingConfigArgs']] = None,
                  main_class: Optional[pulumi.Input[str]] = None,
                  main_jar_file_uri: Optional[pulumi.Input[str]] = None,
                  properties: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input[str]]] archive_uris: HCFS URIs of archives to be extracted in the working directory of .jar, .tar, .tar.gz, .tgz, and .zip.
-        :param pulumi.Input[List[pulumi.Input[str]]] args: The arguments to pass to the driver. Do not include arguments, such as -libjars or -Dfoo=bar, that can be set as job properties, since a collision may occur that causes an incorrect job submission.
-        :param pulumi.Input[List[pulumi.Input[str]]] file_uris: HCFS URIs of files to be copied to the working directory of Hadoop drivers and distributed tasks. Useful for naively parallel tasks.
-        :param pulumi.Input[List[pulumi.Input[str]]] jar_file_uris: HCFS URIs of jar files to be added to the Spark CLASSPATH.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] archive_uris: HCFS URIs of archives to be extracted in the working directory of .jar, .tar, .tar.gz, .tgz, and .zip.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] args: The arguments to pass to the driver. Do not include arguments, such as -libjars or -Dfoo=bar, that can be set as job properties, since a collision may occur that causes an incorrect job submission.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] file_uris: HCFS URIs of files to be copied to the working directory of Hadoop drivers and distributed tasks. Useful for naively parallel tasks.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] jar_file_uris: HCFS URIs of jar files to be added to the Spark CLASSPATH.
         :param pulumi.Input[str] main_class: The name of the driver's main class. The jar file containing the class must be in the default CLASSPATH or specified in `jar_file_uris`. Conflicts with `main_jar_file_uri`
         :param pulumi.Input[str] main_jar_file_uri: The HCFS URI of the jar file containing the main class. Examples: 'gs://foo-bucket/analytics-binaries/extract-useful-metrics-mr.jar' 'hdfs:/tmp/test-samples/custom-wordcount.jar' 'file:///home/usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples.jar'. Conflicts with `main_class`
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] properties: A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
@@ -2087,50 +2087,50 @@ class JobHadoopConfigArgs:
 
     @property
     @pulumi.getter(name="archiveUris")
-    def archive_uris(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def archive_uris(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         HCFS URIs of archives to be extracted in the working directory of .jar, .tar, .tar.gz, .tgz, and .zip.
         """
         return pulumi.get(self, "archive_uris")
 
     @archive_uris.setter
-    def archive_uris(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def archive_uris(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "archive_uris", value)
 
     @property
     @pulumi.getter
-    def args(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def args(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         The arguments to pass to the driver. Do not include arguments, such as -libjars or -Dfoo=bar, that can be set as job properties, since a collision may occur that causes an incorrect job submission.
         """
         return pulumi.get(self, "args")
 
     @args.setter
-    def args(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def args(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "args", value)
 
     @property
     @pulumi.getter(name="fileUris")
-    def file_uris(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def file_uris(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         HCFS URIs of files to be copied to the working directory of Hadoop drivers and distributed tasks. Useful for naively parallel tasks.
         """
         return pulumi.get(self, "file_uris")
 
     @file_uris.setter
-    def file_uris(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def file_uris(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "file_uris", value)
 
     @property
     @pulumi.getter(name="jarFileUris")
-    def jar_file_uris(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def jar_file_uris(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         HCFS URIs of jar files to be added to the Spark CLASSPATH.
         """
         return pulumi.get(self, "jar_file_uris")
 
     @jar_file_uris.setter
-    def jar_file_uris(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def jar_file_uris(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "jar_file_uris", value)
 
     @property
@@ -2199,18 +2199,18 @@ class JobHadoopConfigLoggingConfigArgs:
 class JobHiveConfigArgs:
     def __init__(__self__, *,
                  continue_on_failure: Optional[pulumi.Input[bool]] = None,
-                 jar_file_uris: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 jar_file_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  properties: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  query_file_uri: Optional[pulumi.Input[str]] = None,
-                 query_lists: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 query_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  script_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
         """
         :param pulumi.Input[bool] continue_on_failure: Whether to continue executing queries if a query fails. The default value is false. Setting to true can be useful when executing independent parallel queries. Defaults to false.
-        :param pulumi.Input[List[pulumi.Input[str]]] jar_file_uris: HCFS URIs of jar files to be added to the Spark CLASSPATH.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] jar_file_uris: HCFS URIs of jar files to be added to the Spark CLASSPATH.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] properties: A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
         :param pulumi.Input[str] query_file_uri: The HCFS URI of the script that contains SQL queries.
                Conflicts with `query_list`
-        :param pulumi.Input[List[pulumi.Input[str]]] query_lists: The list of SQL queries or statements to execute as part of the job.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] query_lists: The list of SQL queries or statements to execute as part of the job.
                Conflicts with `query_file_uri`
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] script_variables: Mapping of query variable names to values (equivalent to the Spark SQL command: `SET name="value";`).
         """
@@ -2241,14 +2241,14 @@ class JobHiveConfigArgs:
 
     @property
     @pulumi.getter(name="jarFileUris")
-    def jar_file_uris(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def jar_file_uris(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         HCFS URIs of jar files to be added to the Spark CLASSPATH.
         """
         return pulumi.get(self, "jar_file_uris")
 
     @jar_file_uris.setter
-    def jar_file_uris(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def jar_file_uris(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "jar_file_uris", value)
 
     @property
@@ -2278,7 +2278,7 @@ class JobHiveConfigArgs:
 
     @property
     @pulumi.getter(name="queryLists")
-    def query_lists(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def query_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         The list of SQL queries or statements to execute as part of the job.
         Conflicts with `query_file_uri`
@@ -2286,7 +2286,7 @@ class JobHiveConfigArgs:
         return pulumi.get(self, "query_lists")
 
     @query_lists.setter
-    def query_lists(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def query_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "query_lists", value)
 
     @property
@@ -2384,19 +2384,19 @@ class JobIAMMemberConditionArgs:
 class JobPigConfigArgs:
     def __init__(__self__, *,
                  continue_on_failure: Optional[pulumi.Input[bool]] = None,
-                 jar_file_uris: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 jar_file_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  logging_config: Optional[pulumi.Input['JobPigConfigLoggingConfigArgs']] = None,
                  properties: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  query_file_uri: Optional[pulumi.Input[str]] = None,
-                 query_lists: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 query_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  script_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
         """
         :param pulumi.Input[bool] continue_on_failure: Whether to continue executing queries if a query fails. The default value is false. Setting to true can be useful when executing independent parallel queries. Defaults to false.
-        :param pulumi.Input[List[pulumi.Input[str]]] jar_file_uris: HCFS URIs of jar files to be added to the Spark CLASSPATH.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] jar_file_uris: HCFS URIs of jar files to be added to the Spark CLASSPATH.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] properties: A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
         :param pulumi.Input[str] query_file_uri: The HCFS URI of the script that contains SQL queries.
                Conflicts with `query_list`
-        :param pulumi.Input[List[pulumi.Input[str]]] query_lists: The list of SQL queries or statements to execute as part of the job.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] query_lists: The list of SQL queries or statements to execute as part of the job.
                Conflicts with `query_file_uri`
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] script_variables: Mapping of query variable names to values (equivalent to the Spark SQL command: `SET name="value";`).
         """
@@ -2429,14 +2429,14 @@ class JobPigConfigArgs:
 
     @property
     @pulumi.getter(name="jarFileUris")
-    def jar_file_uris(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def jar_file_uris(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         HCFS URIs of jar files to be added to the Spark CLASSPATH.
         """
         return pulumi.get(self, "jar_file_uris")
 
     @jar_file_uris.setter
-    def jar_file_uris(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def jar_file_uris(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "jar_file_uris", value)
 
     @property
@@ -2475,7 +2475,7 @@ class JobPigConfigArgs:
 
     @property
     @pulumi.getter(name="queryLists")
-    def query_lists(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def query_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         The list of SQL queries or statements to execute as part of the job.
         Conflicts with `query_file_uri`
@@ -2483,7 +2483,7 @@ class JobPigConfigArgs:
         return pulumi.get(self, "query_lists")
 
     @query_lists.setter
-    def query_lists(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def query_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "query_lists", value)
 
     @property
@@ -2547,21 +2547,21 @@ class JobPlacementArgs:
 class JobPysparkConfigArgs:
     def __init__(__self__, *,
                  main_python_file_uri: pulumi.Input[str],
-                 archive_uris: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 args: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 file_uris: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 jar_file_uris: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 archive_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 args: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 file_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 jar_file_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  logging_config: Optional[pulumi.Input['JobPysparkConfigLoggingConfigArgs']] = None,
                  properties: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-                 python_file_uris: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 python_file_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         :param pulumi.Input[str] main_python_file_uri: The HCFS URI of the main Python file to use as the driver. Must be a .py file.
-        :param pulumi.Input[List[pulumi.Input[str]]] archive_uris: HCFS URIs of archives to be extracted in the working directory of .jar, .tar, .tar.gz, .tgz, and .zip.
-        :param pulumi.Input[List[pulumi.Input[str]]] args: The arguments to pass to the driver. Do not include arguments, such as -libjars or -Dfoo=bar, that can be set as job properties, since a collision may occur that causes an incorrect job submission.
-        :param pulumi.Input[List[pulumi.Input[str]]] file_uris: HCFS URIs of files to be copied to the working directory of Hadoop drivers and distributed tasks. Useful for naively parallel tasks.
-        :param pulumi.Input[List[pulumi.Input[str]]] jar_file_uris: HCFS URIs of jar files to be added to the Spark CLASSPATH.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] archive_uris: HCFS URIs of archives to be extracted in the working directory of .jar, .tar, .tar.gz, .tgz, and .zip.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] args: The arguments to pass to the driver. Do not include arguments, such as -libjars or -Dfoo=bar, that can be set as job properties, since a collision may occur that causes an incorrect job submission.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] file_uris: HCFS URIs of files to be copied to the working directory of Hadoop drivers and distributed tasks. Useful for naively parallel tasks.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] jar_file_uris: HCFS URIs of jar files to be added to the Spark CLASSPATH.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] properties: A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
-        :param pulumi.Input[List[pulumi.Input[str]]] python_file_uris: HCFS file URIs of Python files to pass to the PySpark framework. Supported file types: .py, .egg, and .zip.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] python_file_uris: HCFS file URIs of Python files to pass to the PySpark framework. Supported file types: .py, .egg, and .zip.
         """
         pulumi.set(__self__, "main_python_file_uri", main_python_file_uri)
         if archive_uris is not None:
@@ -2593,50 +2593,50 @@ class JobPysparkConfigArgs:
 
     @property
     @pulumi.getter(name="archiveUris")
-    def archive_uris(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def archive_uris(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         HCFS URIs of archives to be extracted in the working directory of .jar, .tar, .tar.gz, .tgz, and .zip.
         """
         return pulumi.get(self, "archive_uris")
 
     @archive_uris.setter
-    def archive_uris(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def archive_uris(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "archive_uris", value)
 
     @property
     @pulumi.getter
-    def args(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def args(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         The arguments to pass to the driver. Do not include arguments, such as -libjars or -Dfoo=bar, that can be set as job properties, since a collision may occur that causes an incorrect job submission.
         """
         return pulumi.get(self, "args")
 
     @args.setter
-    def args(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def args(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "args", value)
 
     @property
     @pulumi.getter(name="fileUris")
-    def file_uris(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def file_uris(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         HCFS URIs of files to be copied to the working directory of Hadoop drivers and distributed tasks. Useful for naively parallel tasks.
         """
         return pulumi.get(self, "file_uris")
 
     @file_uris.setter
-    def file_uris(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def file_uris(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "file_uris", value)
 
     @property
     @pulumi.getter(name="jarFileUris")
-    def jar_file_uris(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def jar_file_uris(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         HCFS URIs of jar files to be added to the Spark CLASSPATH.
         """
         return pulumi.get(self, "jar_file_uris")
 
     @jar_file_uris.setter
-    def jar_file_uris(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def jar_file_uris(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "jar_file_uris", value)
 
     @property
@@ -2662,14 +2662,14 @@ class JobPysparkConfigArgs:
 
     @property
     @pulumi.getter(name="pythonFileUris")
-    def python_file_uris(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def python_file_uris(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         HCFS file URIs of Python files to pass to the PySpark framework. Supported file types: .py, .egg, and .zip.
         """
         return pulumi.get(self, "python_file_uris")
 
     @python_file_uris.setter
-    def python_file_uris(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def python_file_uris(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "python_file_uris", value)
 
 
@@ -2725,19 +2725,19 @@ class JobSchedulingArgs:
 @pulumi.input_type
 class JobSparkConfigArgs:
     def __init__(__self__, *,
-                 archive_uris: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 args: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 file_uris: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 jar_file_uris: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 archive_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 args: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 file_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 jar_file_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  logging_config: Optional[pulumi.Input['JobSparkConfigLoggingConfigArgs']] = None,
                  main_class: Optional[pulumi.Input[str]] = None,
                  main_jar_file_uri: Optional[pulumi.Input[str]] = None,
                  properties: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input[str]]] archive_uris: HCFS URIs of archives to be extracted in the working directory of .jar, .tar, .tar.gz, .tgz, and .zip.
-        :param pulumi.Input[List[pulumi.Input[str]]] args: The arguments to pass to the driver. Do not include arguments, such as -libjars or -Dfoo=bar, that can be set as job properties, since a collision may occur that causes an incorrect job submission.
-        :param pulumi.Input[List[pulumi.Input[str]]] file_uris: HCFS URIs of files to be copied to the working directory of Hadoop drivers and distributed tasks. Useful for naively parallel tasks.
-        :param pulumi.Input[List[pulumi.Input[str]]] jar_file_uris: HCFS URIs of jar files to be added to the Spark CLASSPATH.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] archive_uris: HCFS URIs of archives to be extracted in the working directory of .jar, .tar, .tar.gz, .tgz, and .zip.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] args: The arguments to pass to the driver. Do not include arguments, such as -libjars or -Dfoo=bar, that can be set as job properties, since a collision may occur that causes an incorrect job submission.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] file_uris: HCFS URIs of files to be copied to the working directory of Hadoop drivers and distributed tasks. Useful for naively parallel tasks.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] jar_file_uris: HCFS URIs of jar files to be added to the Spark CLASSPATH.
         :param pulumi.Input[str] main_class: The name of the driver's main class. The jar file containing the class must be in the default CLASSPATH or specified in `jar_file_uris`. Conflicts with `main_jar_file_uri`
         :param pulumi.Input[str] main_jar_file_uri: The HCFS URI of the jar file containing the main class. Examples: 'gs://foo-bucket/analytics-binaries/extract-useful-metrics-mr.jar' 'hdfs:/tmp/test-samples/custom-wordcount.jar' 'file:///home/usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples.jar'. Conflicts with `main_class`
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] properties: A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
@@ -2761,50 +2761,50 @@ class JobSparkConfigArgs:
 
     @property
     @pulumi.getter(name="archiveUris")
-    def archive_uris(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def archive_uris(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         HCFS URIs of archives to be extracted in the working directory of .jar, .tar, .tar.gz, .tgz, and .zip.
         """
         return pulumi.get(self, "archive_uris")
 
     @archive_uris.setter
-    def archive_uris(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def archive_uris(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "archive_uris", value)
 
     @property
     @pulumi.getter
-    def args(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def args(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         The arguments to pass to the driver. Do not include arguments, such as -libjars or -Dfoo=bar, that can be set as job properties, since a collision may occur that causes an incorrect job submission.
         """
         return pulumi.get(self, "args")
 
     @args.setter
-    def args(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def args(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "args", value)
 
     @property
     @pulumi.getter(name="fileUris")
-    def file_uris(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def file_uris(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         HCFS URIs of files to be copied to the working directory of Hadoop drivers and distributed tasks. Useful for naively parallel tasks.
         """
         return pulumi.get(self, "file_uris")
 
     @file_uris.setter
-    def file_uris(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def file_uris(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "file_uris", value)
 
     @property
     @pulumi.getter(name="jarFileUris")
-    def jar_file_uris(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def jar_file_uris(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         HCFS URIs of jar files to be added to the Spark CLASSPATH.
         """
         return pulumi.get(self, "jar_file_uris")
 
     @jar_file_uris.setter
-    def jar_file_uris(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def jar_file_uris(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "jar_file_uris", value)
 
     @property
@@ -2872,18 +2872,18 @@ class JobSparkConfigLoggingConfigArgs:
 @pulumi.input_type
 class JobSparksqlConfigArgs:
     def __init__(__self__, *,
-                 jar_file_uris: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 jar_file_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  logging_config: Optional[pulumi.Input['JobSparksqlConfigLoggingConfigArgs']] = None,
                  properties: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  query_file_uri: Optional[pulumi.Input[str]] = None,
-                 query_lists: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 query_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  script_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input[str]]] jar_file_uris: HCFS URIs of jar files to be added to the Spark CLASSPATH.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] jar_file_uris: HCFS URIs of jar files to be added to the Spark CLASSPATH.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] properties: A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
         :param pulumi.Input[str] query_file_uri: The HCFS URI of the script that contains SQL queries.
                Conflicts with `query_list`
-        :param pulumi.Input[List[pulumi.Input[str]]] query_lists: The list of SQL queries or statements to execute as part of the job.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] query_lists: The list of SQL queries or statements to execute as part of the job.
                Conflicts with `query_file_uri`
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] script_variables: Mapping of query variable names to values (equivalent to the Spark SQL command: `SET name="value";`).
         """
@@ -2902,14 +2902,14 @@ class JobSparksqlConfigArgs:
 
     @property
     @pulumi.getter(name="jarFileUris")
-    def jar_file_uris(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def jar_file_uris(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         HCFS URIs of jar files to be added to the Spark CLASSPATH.
         """
         return pulumi.get(self, "jar_file_uris")
 
     @jar_file_uris.setter
-    def jar_file_uris(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def jar_file_uris(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "jar_file_uris", value)
 
     @property
@@ -2948,7 +2948,7 @@ class JobSparksqlConfigArgs:
 
     @property
     @pulumi.getter(name="queryLists")
-    def query_lists(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def query_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         The list of SQL queries or statements to execute as part of the job.
         Conflicts with `query_file_uri`
@@ -2956,7 +2956,7 @@ class JobSparksqlConfigArgs:
         return pulumi.get(self, "query_lists")
 
     @query_lists.setter
-    def query_lists(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def query_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "query_lists", value)
 
     @property

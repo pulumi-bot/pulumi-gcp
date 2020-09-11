@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
@@ -18,9 +18,9 @@ class InstanceGroup(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
-                 instances: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 instances: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 named_ports: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['InstanceGroupNamedPortArgs']]]]] = None,
+                 named_ports: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceGroupNamedPortArgs']]]]] = None,
                  network: Optional[pulumi.Input[str]] = None,
                  project: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
@@ -38,11 +38,11 @@ class InstanceGroup(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: An optional textual description of the instance
                group.
-        :param pulumi.Input[List[pulumi.Input[str]]] instances: List of instances in the group. They should be given
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] instances: List of instances in the group. They should be given
                as either self_link or id. When adding instances they must all be in the same
                network and zone as the instance group.
         :param pulumi.Input[str] name: The name which the port will be mapped to.
-        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['InstanceGroupNamedPortArgs']]]] named_ports: The named port configuration. See the section below
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceGroupNamedPortArgs']]]] named_ports: The named port configuration. See the section below
                for details on configuration.
         :param pulumi.Input[str] network: The URL of the network the instance group is in. If
                this is different from the network where the instances are in, the creation
@@ -89,9 +89,9 @@ class InstanceGroup(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             description: Optional[pulumi.Input[str]] = None,
-            instances: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            instances: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            named_ports: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['InstanceGroupNamedPortArgs']]]]] = None,
+            named_ports: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceGroupNamedPortArgs']]]]] = None,
             network: Optional[pulumi.Input[str]] = None,
             project: Optional[pulumi.Input[str]] = None,
             self_link: Optional[pulumi.Input[str]] = None,
@@ -106,11 +106,11 @@ class InstanceGroup(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: An optional textual description of the instance
                group.
-        :param pulumi.Input[List[pulumi.Input[str]]] instances: List of instances in the group. They should be given
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] instances: List of instances in the group. They should be given
                as either self_link or id. When adding instances they must all be in the same
                network and zone as the instance group.
         :param pulumi.Input[str] name: The name which the port will be mapped to.
-        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['InstanceGroupNamedPortArgs']]]] named_ports: The named port configuration. See the section below
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceGroupNamedPortArgs']]]] named_ports: The named port configuration. See the section below
                for details on configuration.
         :param pulumi.Input[str] network: The URL of the network the instance group is in. If
                this is different from the network where the instances are in, the creation
@@ -148,7 +148,7 @@ class InstanceGroup(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def instances(self) -> pulumi.Output[List[str]]:
+    def instances(self) -> pulumi.Output[Sequence[str]]:
         """
         List of instances in the group. They should be given
         as either self_link or id. When adding instances they must all be in the same
@@ -166,7 +166,7 @@ class InstanceGroup(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="namedPorts")
-    def named_ports(self) -> pulumi.Output[Optional[List['outputs.InstanceGroupNamedPort']]]:
+    def named_ports(self) -> pulumi.Output[Optional[Sequence['outputs.InstanceGroupNamedPort']]]:
         """
         The named port configuration. See the section below
         for details on configuration.

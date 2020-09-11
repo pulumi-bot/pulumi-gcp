@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 from . import outputs
 
@@ -41,14 +41,14 @@ __all__ = [
 class BucketCor(dict):
     def __init__(__self__, *,
                  max_age_seconds: Optional[float] = None,
-                 methods: Optional[List[str]] = None,
-                 origins: Optional[List[str]] = None,
-                 response_headers: Optional[List[str]] = None):
+                 methods: Optional[Sequence[str]] = None,
+                 origins: Optional[Sequence[str]] = None,
+                 response_headers: Optional[Sequence[str]] = None):
         """
         :param float max_age_seconds: The value, in seconds, to return in the [Access-Control-Max-Age header](https://www.w3.org/TR/cors/#access-control-max-age-response-header) used in preflight responses.
-        :param List[str] methods: The list of HTTP methods on which to include CORS response headers, (GET, OPTIONS, POST, etc) Note: "*" is permitted in the list of methods, and means "any method".
-        :param List[str] origins: The list of [Origins](https://tools.ietf.org/html/rfc6454) eligible to receive CORS response headers. Note: "*" is permitted in the list of origins, and means "any Origin".
-        :param List[str] response_headers: The list of HTTP headers other than the [simple response headers](https://www.w3.org/TR/cors/#simple-response-header) to give permission for the user-agent to share across domains.
+        :param Sequence[str] methods: The list of HTTP methods on which to include CORS response headers, (GET, OPTIONS, POST, etc) Note: "*" is permitted in the list of methods, and means "any method".
+        :param Sequence[str] origins: The list of [Origins](https://tools.ietf.org/html/rfc6454) eligible to receive CORS response headers. Note: "*" is permitted in the list of origins, and means "any Origin".
+        :param Sequence[str] response_headers: The list of HTTP headers other than the [simple response headers](https://www.w3.org/TR/cors/#simple-response-header) to give permission for the user-agent to share across domains.
         """
         if max_age_seconds is not None:
             pulumi.set(__self__, "max_age_seconds", max_age_seconds)
@@ -69,7 +69,7 @@ class BucketCor(dict):
 
     @property
     @pulumi.getter
-    def methods(self) -> Optional[List[str]]:
+    def methods(self) -> Optional[Sequence[str]]:
         """
         The list of HTTP methods on which to include CORS response headers, (GET, OPTIONS, POST, etc) Note: "*" is permitted in the list of methods, and means "any method".
         """
@@ -77,7 +77,7 @@ class BucketCor(dict):
 
     @property
     @pulumi.getter
-    def origins(self) -> Optional[List[str]]:
+    def origins(self) -> Optional[Sequence[str]]:
         """
         The list of [Origins](https://tools.ietf.org/html/rfc6454) eligible to receive CORS response headers. Note: "*" is permitted in the list of origins, and means "any Origin".
         """
@@ -85,7 +85,7 @@ class BucketCor(dict):
 
     @property
     @pulumi.getter(name="responseHeaders")
-    def response_headers(self) -> Optional[List[str]]:
+    def response_headers(self) -> Optional[Sequence[str]]:
         """
         The list of HTTP headers other than the [simple response headers](https://www.w3.org/TR/cors/#simple-response-header) to give permission for the user-agent to share across domains.
         """
@@ -268,13 +268,13 @@ class BucketLifecycleRuleCondition(dict):
     def __init__(__self__, *,
                  age: Optional[float] = None,
                  created_before: Optional[str] = None,
-                 matches_storage_classes: Optional[List[str]] = None,
+                 matches_storage_classes: Optional[Sequence[str]] = None,
                  num_newer_versions: Optional[float] = None,
                  with_state: Optional[str] = None):
         """
         :param float age: Minimum age of an object in days to satisfy this condition.
         :param str created_before: Creation date of an object in RFC 3339 (e.g. `2017-06-13`) to satisfy this condition.
-        :param List[str] matches_storage_classes: [Storage Class](https://cloud.google.com/storage/docs/storage-classes) of objects to satisfy this condition. Supported values include: `MULTI_REGIONAL`, `REGIONAL`, `NEARLINE`, `COLDLINE`, `ARCHIVE`, `STANDARD`, `DURABLE_REDUCED_AVAILABILITY`.
+        :param Sequence[str] matches_storage_classes: [Storage Class](https://cloud.google.com/storage/docs/storage-classes) of objects to satisfy this condition. Supported values include: `MULTI_REGIONAL`, `REGIONAL`, `NEARLINE`, `COLDLINE`, `ARCHIVE`, `STANDARD`, `DURABLE_REDUCED_AVAILABILITY`.
         :param float num_newer_versions: Relevant only for versioned objects. The number of newer versions of an object to satisfy this condition.
         :param str with_state: Match to live and/or archived objects. Unversioned buckets have only live objects. Supported values include: `"LIVE"`, `"ARCHIVED"`, `"ANY"`.
         """
@@ -307,7 +307,7 @@ class BucketLifecycleRuleCondition(dict):
 
     @property
     @pulumi.getter(name="matchesStorageClasses")
-    def matches_storage_classes(self) -> Optional[List[str]]:
+    def matches_storage_classes(self) -> Optional[Sequence[str]]:
         """
         [Storage Class](https://cloud.google.com/storage/docs/storage-classes) of objects to satisfy this condition. Supported values include: `MULTI_REGIONAL`, `REGIONAL`, `NEARLINE`, `COLDLINE`, `ARCHIVE`, `STANDARD`, `DURABLE_REDUCED_AVAILABILITY`.
         """
@@ -905,13 +905,13 @@ class TransferJobTransferSpecHttpDataSource(dict):
 @pulumi.output_type
 class TransferJobTransferSpecObjectConditions(dict):
     def __init__(__self__, *,
-                 exclude_prefixes: Optional[List[str]] = None,
-                 include_prefixes: Optional[List[str]] = None,
+                 exclude_prefixes: Optional[Sequence[str]] = None,
+                 include_prefixes: Optional[Sequence[str]] = None,
                  max_time_elapsed_since_last_modification: Optional[str] = None,
                  min_time_elapsed_since_last_modification: Optional[str] = None):
         """
-        :param List[str] exclude_prefixes: `exclude_prefixes` must follow the requirements described for `include_prefixes`. See [Requirements](https://cloud.google.com/storage-transfer/docs/reference/rest/v1/TransferSpec#ObjectConditions).
-        :param List[str] include_prefixes: If `include_refixes` is specified, objects that satisfy the object conditions must have names that start with one of the `include_prefixes` and that do not start with any of the `exclude_prefixes`. If `include_prefixes` is not specified, all objects except those that have names starting with one of the `exclude_prefixes` must satisfy the object conditions. See [Requirements](https://cloud.google.com/storage-transfer/docs/reference/rest/v1/TransferSpec#ObjectConditions).
+        :param Sequence[str] exclude_prefixes: `exclude_prefixes` must follow the requirements described for `include_prefixes`. See [Requirements](https://cloud.google.com/storage-transfer/docs/reference/rest/v1/TransferSpec#ObjectConditions).
+        :param Sequence[str] include_prefixes: If `include_refixes` is specified, objects that satisfy the object conditions must have names that start with one of the `include_prefixes` and that do not start with any of the `exclude_prefixes`. If `include_prefixes` is not specified, all objects except those that have names starting with one of the `exclude_prefixes` must satisfy the object conditions. See [Requirements](https://cloud.google.com/storage-transfer/docs/reference/rest/v1/TransferSpec#ObjectConditions).
         :param str max_time_elapsed_since_last_modification: A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s".
         :param str min_time_elapsed_since_last_modification: A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s".
         """
@@ -926,7 +926,7 @@ class TransferJobTransferSpecObjectConditions(dict):
 
     @property
     @pulumi.getter(name="excludePrefixes")
-    def exclude_prefixes(self) -> Optional[List[str]]:
+    def exclude_prefixes(self) -> Optional[Sequence[str]]:
         """
         `exclude_prefixes` must follow the requirements described for `include_prefixes`. See [Requirements](https://cloud.google.com/storage-transfer/docs/reference/rest/v1/TransferSpec#ObjectConditions).
         """
@@ -934,7 +934,7 @@ class TransferJobTransferSpecObjectConditions(dict):
 
     @property
     @pulumi.getter(name="includePrefixes")
-    def include_prefixes(self) -> Optional[List[str]]:
+    def include_prefixes(self) -> Optional[Sequence[str]]:
         """
         If `include_refixes` is specified, objects that satisfy the object conditions must have names that start with one of the `include_prefixes` and that do not start with any of the `exclude_prefixes`. If `include_prefixes` is not specified, all objects except those that have names starting with one of the `exclude_prefixes` must satisfy the object conditions. See [Requirements](https://cloud.google.com/storage-transfer/docs/reference/rest/v1/TransferSpec#ObjectConditions).
         """

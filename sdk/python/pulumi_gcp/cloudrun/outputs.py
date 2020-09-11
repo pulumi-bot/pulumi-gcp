@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 from . import outputs
 
@@ -224,10 +224,10 @@ class DomainMappingSpec(dict):
 @pulumi.output_type
 class DomainMappingStatus(dict):
     def __init__(__self__, *,
-                 conditions: Optional[List['outputs.DomainMappingStatusCondition']] = None,
+                 conditions: Optional[Sequence['outputs.DomainMappingStatusCondition']] = None,
                  mapped_route_name: Optional[str] = None,
                  observed_generation: Optional[float] = None,
-                 resource_records: Optional[List['outputs.DomainMappingStatusResourceRecord']] = None):
+                 resource_records: Optional[Sequence['outputs.DomainMappingStatusResourceRecord']] = None):
         if conditions is not None:
             pulumi.set(__self__, "conditions", conditions)
         if mapped_route_name is not None:
@@ -239,7 +239,7 @@ class DomainMappingStatus(dict):
 
     @property
     @pulumi.getter
-    def conditions(self) -> Optional[List['outputs.DomainMappingStatusCondition']]:
+    def conditions(self) -> Optional[Sequence['outputs.DomainMappingStatusCondition']]:
         return pulumi.get(self, "conditions")
 
     @property
@@ -254,7 +254,7 @@ class DomainMappingStatus(dict):
 
     @property
     @pulumi.getter(name="resourceRecords")
-    def resource_records(self) -> Optional[List['outputs.DomainMappingStatusResourceRecord']]:
+    def resource_records(self) -> Optional[Sequence['outputs.DomainMappingStatusResourceRecord']]:
         return pulumi.get(self, "resource_records")
 
     def _translate_property(self, prop):
@@ -532,7 +532,7 @@ class ServiceMetadata(dict):
 @pulumi.output_type
 class ServiceStatus(dict):
     def __init__(__self__, *,
-                 conditions: Optional[List['outputs.ServiceStatusCondition']] = None,
+                 conditions: Optional[Sequence['outputs.ServiceStatusCondition']] = None,
                  latest_created_revision_name: Optional[str] = None,
                  latest_ready_revision_name: Optional[str] = None,
                  observed_generation: Optional[float] = None,
@@ -550,7 +550,7 @@ class ServiceStatus(dict):
 
     @property
     @pulumi.getter
-    def conditions(self) -> Optional[List['outputs.ServiceStatusCondition']]:
+    def conditions(self) -> Optional[Sequence['outputs.ServiceStatusCondition']]:
         return pulumi.get(self, "conditions")
 
     @property
@@ -803,14 +803,14 @@ class ServiceTemplateMetadata(dict):
 class ServiceTemplateSpec(dict):
     def __init__(__self__, *,
                  container_concurrency: Optional[float] = None,
-                 containers: Optional[List['outputs.ServiceTemplateSpecContainer']] = None,
+                 containers: Optional[Sequence['outputs.ServiceTemplateSpecContainer']] = None,
                  service_account_name: Optional[str] = None,
                  serving_state: Optional[str] = None,
                  timeout_seconds: Optional[float] = None):
         """
         :param float container_concurrency: ContainerConcurrency specifies the maximum allowed in-flight (concurrent)
                requests per container of the Revision. Values are:
-        :param List['ServiceTemplateSpecContainerArgs'] containers: Container defines the unit of execution for this Revision.
+        :param Sequence['ServiceTemplateSpecContainerArgs'] containers: Container defines the unit of execution for this Revision.
                In the context of a Revision, we disallow a number of the fields of
                this Container, including: name, ports, and volumeMounts.
                The runtime contract is documented here:
@@ -849,7 +849,7 @@ class ServiceTemplateSpec(dict):
 
     @property
     @pulumi.getter
-    def containers(self) -> Optional[List['outputs.ServiceTemplateSpecContainer']]:
+    def containers(self) -> Optional[Sequence['outputs.ServiceTemplateSpecContainer']]:
         """
         Container defines the unit of execution for this Revision.
         In the context of a Revision, we disallow a number of the fields of
@@ -899,18 +899,18 @@ class ServiceTemplateSpec(dict):
 class ServiceTemplateSpecContainer(dict):
     def __init__(__self__, *,
                  image: str,
-                 args: Optional[List[str]] = None,
-                 commands: Optional[List[str]] = None,
-                 env_froms: Optional[List['outputs.ServiceTemplateSpecContainerEnvFrom']] = None,
-                 envs: Optional[List['outputs.ServiceTemplateSpecContainerEnv']] = None,
-                 ports: Optional[List['outputs.ServiceTemplateSpecContainerPort']] = None,
+                 args: Optional[Sequence[str]] = None,
+                 commands: Optional[Sequence[str]] = None,
+                 env_froms: Optional[Sequence['outputs.ServiceTemplateSpecContainerEnvFrom']] = None,
+                 envs: Optional[Sequence['outputs.ServiceTemplateSpecContainerEnv']] = None,
+                 ports: Optional[Sequence['outputs.ServiceTemplateSpecContainerPort']] = None,
                  resources: Optional['outputs.ServiceTemplateSpecContainerResources'] = None,
                  working_dir: Optional[str] = None):
         """
         :param str image: Docker image name. This is most often a reference to a container located
                in the container registry, such as gcr.io/cloudrun/hello
                More info: https://kubernetes.io/docs/concepts/containers/images
-        :param List[str] args: Arguments to the entrypoint.
+        :param Sequence[str] args: Arguments to the entrypoint.
                The docker image's CMD is used if this is not provided.
                Variable references $(VAR_NAME) are expanded using the container's
                environment. If a variable cannot be resolved, the reference in the input
@@ -919,7 +919,7 @@ class ServiceTemplateSpecContainer(dict):
                regardless of whether the variable exists or not.
                More info:
                https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
-        :param List[str] commands: Entrypoint array. Not executed within a shell.
+        :param Sequence[str] commands: Entrypoint array. Not executed within a shell.
                The docker image's ENTRYPOINT is used if this is not provided.
                Variable references $(VAR_NAME) are expanded using the container's
                environment. If a variable cannot be resolved, the reference in the input
@@ -928,7 +928,7 @@ class ServiceTemplateSpecContainer(dict):
                regardless of whether the variable exists or not.
                More info:
                https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
-        :param List['ServiceTemplateSpecContainerEnvFromArgs'] env_froms: -
+        :param Sequence['ServiceTemplateSpecContainerEnvFromArgs'] env_froms: -
                (Optional, Deprecated)
                List of sources to populate environment variables in the container.
                All invalid keys will be reported as an event when the container is starting.
@@ -936,9 +936,9 @@ class ServiceTemplateSpecContainer(dict):
                take precedence. Values defined by an Env with a duplicate key will take
                precedence.
                Structure is documented below.
-        :param List['ServiceTemplateSpecContainerEnvArgs'] envs: List of environment variables to set in the container.
+        :param Sequence['ServiceTemplateSpecContainerEnvArgs'] envs: List of environment variables to set in the container.
                Structure is documented below.
-        :param List['ServiceTemplateSpecContainerPortArgs'] ports: List of open ports in the container.
+        :param Sequence['ServiceTemplateSpecContainerPortArgs'] ports: List of open ports in the container.
                More Info:
                https://cloud.google.com/run/docs/reference/rest/v1/RevisionSpec#ContainerPort
                Structure is documented below.
@@ -980,7 +980,7 @@ class ServiceTemplateSpecContainer(dict):
 
     @property
     @pulumi.getter
-    def args(self) -> Optional[List[str]]:
+    def args(self) -> Optional[Sequence[str]]:
         """
         Arguments to the entrypoint.
         The docker image's CMD is used if this is not provided.
@@ -996,7 +996,7 @@ class ServiceTemplateSpecContainer(dict):
 
     @property
     @pulumi.getter
-    def commands(self) -> Optional[List[str]]:
+    def commands(self) -> Optional[Sequence[str]]:
         """
         Entrypoint array. Not executed within a shell.
         The docker image's ENTRYPOINT is used if this is not provided.
@@ -1012,7 +1012,7 @@ class ServiceTemplateSpecContainer(dict):
 
     @property
     @pulumi.getter(name="envFroms")
-    def env_froms(self) -> Optional[List['outputs.ServiceTemplateSpecContainerEnvFrom']]:
+    def env_froms(self) -> Optional[Sequence['outputs.ServiceTemplateSpecContainerEnvFrom']]:
         """
         -
         (Optional, Deprecated)
@@ -1027,7 +1027,7 @@ class ServiceTemplateSpecContainer(dict):
 
     @property
     @pulumi.getter
-    def envs(self) -> Optional[List['outputs.ServiceTemplateSpecContainerEnv']]:
+    def envs(self) -> Optional[Sequence['outputs.ServiceTemplateSpecContainerEnv']]:
         """
         List of environment variables to set in the container.
         Structure is documented below.
@@ -1036,7 +1036,7 @@ class ServiceTemplateSpecContainer(dict):
 
     @property
     @pulumi.getter
-    def ports(self) -> Optional[List['outputs.ServiceTemplateSpecContainerPort']]:
+    def ports(self) -> Optional[Sequence['outputs.ServiceTemplateSpecContainerPort']]:
         """
         List of open ports in the container.
         More Info:

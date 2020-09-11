@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = ['VPNTunnel']
@@ -18,7 +18,7 @@ class VPNTunnel(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  ike_version: Optional[pulumi.Input[float]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-                 local_traffic_selectors: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 local_traffic_selectors: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  peer_external_gateway: Optional[pulumi.Input[str]] = None,
                  peer_external_gateway_interface: Optional[pulumi.Input[float]] = None,
@@ -26,7 +26,7 @@ class VPNTunnel(pulumi.CustomResource):
                  peer_ip: Optional[pulumi.Input[str]] = None,
                  project: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
-                 remote_traffic_selectors: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 remote_traffic_selectors: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  router: Optional[pulumi.Input[str]] = None,
                  shared_secret: Optional[pulumi.Input[str]] = None,
                  target_vpn_gateway: Optional[pulumi.Input[str]] = None,
@@ -57,7 +57,7 @@ class VPNTunnel(pulumi.CustomResource):
                peer VPN gateway.
                Acceptable IKE versions are 1 or 2. Default version is 2.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to apply to this VpnTunnel.
-        :param pulumi.Input[List[pulumi.Input[str]]] local_traffic_selectors: Local traffic selector to use when establishing the VPN tunnel with
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] local_traffic_selectors: Local traffic selector to use when establishing the VPN tunnel with
                peer VPN gateway. The value should be a CIDR formatted string,
                for example `192.168.0.0/16`. The ranges should be disjoint.
                Only IPv4 is supported.
@@ -78,7 +78,7 @@ class VPNTunnel(pulumi.CustomResource):
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         :param pulumi.Input[str] region: The region where the tunnel is located. If unset, is set to the region of `target_vpn_gateway`.
-        :param pulumi.Input[List[pulumi.Input[str]]] remote_traffic_selectors: Remote traffic selector to use when establishing the VPN tunnel with
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] remote_traffic_selectors: Remote traffic selector to use when establishing the VPN tunnel with
                peer VPN gateway. The value should be a CIDR formatted string,
                for example `192.168.0.0/16`. The ranges should be disjoint.
                Only IPv4 is supported.
@@ -151,7 +151,7 @@ class VPNTunnel(pulumi.CustomResource):
             ike_version: Optional[pulumi.Input[float]] = None,
             label_fingerprint: Optional[pulumi.Input[str]] = None,
             labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-            local_traffic_selectors: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            local_traffic_selectors: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             peer_external_gateway: Optional[pulumi.Input[str]] = None,
             peer_external_gateway_interface: Optional[pulumi.Input[float]] = None,
@@ -159,7 +159,7 @@ class VPNTunnel(pulumi.CustomResource):
             peer_ip: Optional[pulumi.Input[str]] = None,
             project: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
-            remote_traffic_selectors: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            remote_traffic_selectors: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             router: Optional[pulumi.Input[str]] = None,
             self_link: Optional[pulumi.Input[str]] = None,
             shared_secret: Optional[pulumi.Input[str]] = None,
@@ -183,7 +183,7 @@ class VPNTunnel(pulumi.CustomResource):
                Acceptable IKE versions are 1 or 2. Default version is 2.
         :param pulumi.Input[str] label_fingerprint: The fingerprint used for optimistic locking of this resource. Used internally during updates.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to apply to this VpnTunnel.
-        :param pulumi.Input[List[pulumi.Input[str]]] local_traffic_selectors: Local traffic selector to use when establishing the VPN tunnel with
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] local_traffic_selectors: Local traffic selector to use when establishing the VPN tunnel with
                peer VPN gateway. The value should be a CIDR formatted string,
                for example `192.168.0.0/16`. The ranges should be disjoint.
                Only IPv4 is supported.
@@ -204,7 +204,7 @@ class VPNTunnel(pulumi.CustomResource):
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         :param pulumi.Input[str] region: The region where the tunnel is located. If unset, is set to the region of `target_vpn_gateway`.
-        :param pulumi.Input[List[pulumi.Input[str]]] remote_traffic_selectors: Remote traffic selector to use when establishing the VPN tunnel with
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] remote_traffic_selectors: Remote traffic selector to use when establishing the VPN tunnel with
                peer VPN gateway. The value should be a CIDR formatted string,
                for example `192.168.0.0/16`. The ranges should be disjoint.
                Only IPv4 is supported.
@@ -303,7 +303,7 @@ class VPNTunnel(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="localTrafficSelectors")
-    def local_traffic_selectors(self) -> pulumi.Output[List[str]]:
+    def local_traffic_selectors(self) -> pulumi.Output[Sequence[str]]:
         """
         Local traffic selector to use when establishing the VPN tunnel with
         peer VPN gateway. The value should be a CIDR formatted string,
@@ -380,7 +380,7 @@ class VPNTunnel(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="remoteTrafficSelectors")
-    def remote_traffic_selectors(self) -> pulumi.Output[List[str]]:
+    def remote_traffic_selectors(self) -> pulumi.Output[Sequence[str]]:
         """
         Remote traffic selector to use when establishing the VPN tunnel with
         peer VPN gateway. The value should be a CIDR formatted string,

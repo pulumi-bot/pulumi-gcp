@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
@@ -17,7 +17,7 @@ class Table(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 clusterings: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 clusterings: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  dataset_id: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  encryption_configuration: Optional[pulumi.Input[pulumi.InputType['TableEncryptionConfigurationArgs']]] = None,
@@ -41,7 +41,7 @@ class Table(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[List[pulumi.Input[str]]] clusterings: Specifies column names to use for data clustering.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] clusterings: Specifies column names to use for data clustering.
                Up to four top-level columns are allowed, and should be specified in
                descending priority order.
         :param pulumi.Input[str] dataset_id: The dataset ID to create the table in.
@@ -136,7 +136,7 @@ class Table(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            clusterings: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            clusterings: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             creation_time: Optional[pulumi.Input[float]] = None,
             dataset_id: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
@@ -166,7 +166,7 @@ class Table(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[List[pulumi.Input[str]]] clusterings: Specifies column names to use for data clustering.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] clusterings: Specifies column names to use for data clustering.
                Up to four top-level columns are allowed, and should be specified in
                descending priority order.
         :param pulumi.Input[float] creation_time: The time when this table was created, in milliseconds since the epoch.
@@ -248,7 +248,7 @@ class Table(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def clusterings(self) -> pulumi.Output[Optional[List[str]]]:
+    def clusterings(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         Specifies column names to use for data clustering.
         Up to four top-level columns are allowed, and should be specified in

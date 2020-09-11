@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = [
@@ -143,10 +143,10 @@ class EntryBigqueryTableSpecViewSpecArgs:
 @pulumi.input_type
 class EntryGcsFilesetSpecArgs:
     def __init__(__self__, *,
-                 file_patterns: pulumi.Input[List[pulumi.Input[str]]],
-                 sample_gcs_file_specs: Optional[pulumi.Input[List[pulumi.Input['EntryGcsFilesetSpecSampleGcsFileSpecArgs']]]] = None):
+                 file_patterns: pulumi.Input[Sequence[pulumi.Input[str]]],
+                 sample_gcs_file_specs: Optional[pulumi.Input[Sequence[pulumi.Input['EntryGcsFilesetSpecSampleGcsFileSpecArgs']]]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input[str]]] file_patterns: Patterns to identify a set of files in Google Cloud Storage.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] file_patterns: Patterns to identify a set of files in Google Cloud Storage.
                See [Cloud Storage documentation](https://cloud.google.com/storage/docs/gsutil/addlhelp/WildcardNames)
                for more information. Note that bucket wildcards are currently not supported. Examples of valid filePatterns:
                * gs://bucket_name/dir/*: matches all files within bucket_name/dir directory.
@@ -157,7 +157,7 @@ class EntryGcsFilesetSpecArgs:
                * gs://bucket_name/[a-m].txt: matches files that contain a, b, ... or m followed by .txt in bucket_name
                * gs://bucket_name/a/*/b: matches all files in bucket_name that match a/*/b pattern, such as a/c/b, a/d/b
                * gs://another_bucket/a.txt: matches gs://another_bucket/a.txt
-        :param pulumi.Input[List[pulumi.Input['EntryGcsFilesetSpecSampleGcsFileSpecArgs']]] sample_gcs_file_specs: -
+        :param pulumi.Input[Sequence[pulumi.Input['EntryGcsFilesetSpecSampleGcsFileSpecArgs']]] sample_gcs_file_specs: -
                Sample files contained in this fileset, not all files contained in this fileset are represented here.
                Structure is documented below.
         """
@@ -167,7 +167,7 @@ class EntryGcsFilesetSpecArgs:
 
     @property
     @pulumi.getter(name="filePatterns")
-    def file_patterns(self) -> pulumi.Input[List[pulumi.Input[str]]]:
+    def file_patterns(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
         Patterns to identify a set of files in Google Cloud Storage.
         See [Cloud Storage documentation](https://cloud.google.com/storage/docs/gsutil/addlhelp/WildcardNames)
@@ -184,12 +184,12 @@ class EntryGcsFilesetSpecArgs:
         return pulumi.get(self, "file_patterns")
 
     @file_patterns.setter
-    def file_patterns(self, value: pulumi.Input[List[pulumi.Input[str]]]):
+    def file_patterns(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "file_patterns", value)
 
     @property
     @pulumi.getter(name="sampleGcsFileSpecs")
-    def sample_gcs_file_specs(self) -> Optional[pulumi.Input[List[pulumi.Input['EntryGcsFilesetSpecSampleGcsFileSpecArgs']]]]:
+    def sample_gcs_file_specs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['EntryGcsFilesetSpecSampleGcsFileSpecArgs']]]]:
         """
         -
         Sample files contained in this fileset, not all files contained in this fileset are represented here.
@@ -198,7 +198,7 @@ class EntryGcsFilesetSpecArgs:
         return pulumi.get(self, "sample_gcs_file_specs")
 
     @sample_gcs_file_specs.setter
-    def sample_gcs_file_specs(self, value: Optional[pulumi.Input[List[pulumi.Input['EntryGcsFilesetSpecSampleGcsFileSpecArgs']]]]):
+    def sample_gcs_file_specs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['EntryGcsFilesetSpecSampleGcsFileSpecArgs']]]]):
         pulumi.set(self, "sample_gcs_file_specs", value)
 
 
@@ -626,9 +626,9 @@ class TagTemplateFieldTypeArgs:
 @pulumi.input_type
 class TagTemplateFieldTypeEnumTypeArgs:
     def __init__(__self__, *,
-                 allowed_values: pulumi.Input[List[pulumi.Input['TagTemplateFieldTypeEnumTypeAllowedValueArgs']]]):
+                 allowed_values: pulumi.Input[Sequence[pulumi.Input['TagTemplateFieldTypeEnumTypeAllowedValueArgs']]]):
         """
-        :param pulumi.Input[List[pulumi.Input['TagTemplateFieldTypeEnumTypeAllowedValueArgs']]] allowed_values: The set of allowed values for this enum. The display names of the
+        :param pulumi.Input[Sequence[pulumi.Input['TagTemplateFieldTypeEnumTypeAllowedValueArgs']]] allowed_values: The set of allowed values for this enum. The display names of the
                values must be case-insensitively unique within this set. Currently,
                enum values can only be added to the list of allowed values. Deletion
                and renaming of enum values are not supported.
@@ -639,7 +639,7 @@ class TagTemplateFieldTypeEnumTypeArgs:
 
     @property
     @pulumi.getter(name="allowedValues")
-    def allowed_values(self) -> pulumi.Input[List[pulumi.Input['TagTemplateFieldTypeEnumTypeAllowedValueArgs']]]:
+    def allowed_values(self) -> pulumi.Input[Sequence[pulumi.Input['TagTemplateFieldTypeEnumTypeAllowedValueArgs']]]:
         """
         The set of allowed values for this enum. The display names of the
         values must be case-insensitively unique within this set. Currently,
@@ -651,7 +651,7 @@ class TagTemplateFieldTypeEnumTypeArgs:
         return pulumi.get(self, "allowed_values")
 
     @allowed_values.setter
-    def allowed_values(self, value: pulumi.Input[List[pulumi.Input['TagTemplateFieldTypeEnumTypeAllowedValueArgs']]]):
+    def allowed_values(self, value: pulumi.Input[Sequence[pulumi.Input['TagTemplateFieldTypeEnumTypeAllowedValueArgs']]]):
         pulumi.set(self, "allowed_values", value)
 
 
