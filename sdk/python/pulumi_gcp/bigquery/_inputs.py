@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = [
@@ -618,13 +618,13 @@ class IamMemberConditionArgs:
 @pulumi.input_type
 class JobCopyArgs:
     def __init__(__self__, *,
-                 source_tables: pulumi.Input[List[pulumi.Input['JobCopySourceTableArgs']]],
+                 source_tables: pulumi.Input[Sequence[pulumi.Input['JobCopySourceTableArgs']]],
                  create_disposition: Optional[pulumi.Input[str]] = None,
                  destination_encryption_configuration: Optional[pulumi.Input['JobCopyDestinationEncryptionConfigurationArgs']] = None,
                  destination_table: Optional[pulumi.Input['JobCopyDestinationTableArgs']] = None,
                  write_disposition: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input['JobCopySourceTableArgs']]] source_tables: Source tables to copy.
+        :param pulumi.Input[Sequence[pulumi.Input['JobCopySourceTableArgs']]] source_tables: Source tables to copy.
                Structure is documented below.
         :param pulumi.Input[str] create_disposition: Specifies whether the job is allowed to create new tables. The following values are supported:
                CREATE_IF_NEEDED: If the table does not exist, BigQuery creates the table.
@@ -657,7 +657,7 @@ class JobCopyArgs:
 
     @property
     @pulumi.getter(name="sourceTables")
-    def source_tables(self) -> pulumi.Input[List[pulumi.Input['JobCopySourceTableArgs']]]:
+    def source_tables(self) -> pulumi.Input[Sequence[pulumi.Input['JobCopySourceTableArgs']]]:
         """
         Source tables to copy.
         Structure is documented below.
@@ -665,7 +665,7 @@ class JobCopyArgs:
         return pulumi.get(self, "source_tables")
 
     @source_tables.setter
-    def source_tables(self, value: pulumi.Input[List[pulumi.Input['JobCopySourceTableArgs']]]):
+    def source_tables(self, value: pulumi.Input[Sequence[pulumi.Input['JobCopySourceTableArgs']]]):
         pulumi.set(self, "source_tables", value)
 
     @property
@@ -870,7 +870,7 @@ class JobCopySourceTableArgs:
 @pulumi.input_type
 class JobExtractArgs:
     def __init__(__self__, *,
-                 destination_uris: pulumi.Input[List[pulumi.Input[str]]],
+                 destination_uris: pulumi.Input[Sequence[pulumi.Input[str]]],
                  compression: Optional[pulumi.Input[str]] = None,
                  destination_format: Optional[pulumi.Input[str]] = None,
                  field_delimiter: Optional[pulumi.Input[str]] = None,
@@ -879,7 +879,7 @@ class JobExtractArgs:
                  source_table: Optional[pulumi.Input['JobExtractSourceTableArgs']] = None,
                  use_avro_logical_types: Optional[pulumi.Input[bool]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input[str]]] destination_uris: A list of fully-qualified Google Cloud Storage URIs where the extracted table should be written.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] destination_uris: A list of fully-qualified Google Cloud Storage URIs where the extracted table should be written.
         :param pulumi.Input[str] compression: The compression type to use for exported files. Possible values include GZIP, DEFLATE, SNAPPY, and NONE.
                The default value is NONE. DEFLATE and SNAPPY are only supported for Avro.
         :param pulumi.Input[str] destination_format: The exported file format. Possible values include CSV, NEWLINE_DELIMITED_JSON and AVRO for tables and SAVED_MODEL for models.
@@ -912,14 +912,14 @@ class JobExtractArgs:
 
     @property
     @pulumi.getter(name="destinationUris")
-    def destination_uris(self) -> pulumi.Input[List[pulumi.Input[str]]]:
+    def destination_uris(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
         A list of fully-qualified Google Cloud Storage URIs where the extracted table should be written.
         """
         return pulumi.get(self, "destination_uris")
 
     @destination_uris.setter
-    def destination_uris(self, value: pulumi.Input[List[pulumi.Input[str]]]):
+    def destination_uris(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "destination_uris", value)
 
     @property
@@ -1125,7 +1125,7 @@ class JobExtractSourceTableArgs:
 class JobLoadArgs:
     def __init__(__self__, *,
                  destination_table: pulumi.Input['JobLoadDestinationTableArgs'],
-                 source_uris: pulumi.Input[List[pulumi.Input[str]]],
+                 source_uris: pulumi.Input[Sequence[pulumi.Input[str]]],
                  allow_jagged_rows: Optional[pulumi.Input[bool]] = None,
                  allow_quoted_newlines: Optional[pulumi.Input[bool]] = None,
                  autodetect: Optional[pulumi.Input[bool]] = None,
@@ -1136,9 +1136,9 @@ class JobLoadArgs:
                  ignore_unknown_values: Optional[pulumi.Input[bool]] = None,
                  max_bad_records: Optional[pulumi.Input[float]] = None,
                  null_marker: Optional[pulumi.Input[str]] = None,
-                 projection_fields: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 projection_fields: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  quote: Optional[pulumi.Input[str]] = None,
-                 schema_update_options: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 schema_update_options: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  skip_leading_rows: Optional[pulumi.Input[float]] = None,
                  source_format: Optional[pulumi.Input[str]] = None,
                  time_partitioning: Optional[pulumi.Input['JobLoadTimePartitioningArgs']] = None,
@@ -1146,7 +1146,7 @@ class JobLoadArgs:
         """
         :param pulumi.Input['JobLoadDestinationTableArgs'] destination_table: The destination table.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] source_uris: The fully-qualified URIs that point to your data in Google Cloud.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] source_uris: The fully-qualified URIs that point to your data in Google Cloud.
                For Google Cloud Storage URIs: Each URI can contain one '*' wildcard character
                and it must come after the 'bucket' name. Size limits related to load jobs apply
                to external data sources. For Google Cloud Bigtable URIs: Exactly one URI can be
@@ -1183,14 +1183,14 @@ class JobLoadArgs:
                property to a custom value, BigQuery throws an error if an
                empty string is present for all data types except for STRING and BYTE. For STRING and BYTE columns, BigQuery interprets the empty string as
                an empty value.
-        :param pulumi.Input[List[pulumi.Input[str]]] projection_fields: If sourceFormat is set to "DATASTORE_BACKUP", indicates which entity properties to load into BigQuery from a Cloud Datastore backup.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] projection_fields: If sourceFormat is set to "DATASTORE_BACKUP", indicates which entity properties to load into BigQuery from a Cloud Datastore backup.
                Property names are case sensitive and must be top-level properties. If no properties are specified, BigQuery loads all properties.
                If any named property isn't found in the Cloud Datastore backup, an invalid error is returned in the job result.
         :param pulumi.Input[str] quote: The value that is used to quote data sections in a CSV file. BigQuery converts the string to ISO-8859-1 encoding,
                and then uses the first byte of the encoded string to split the data in its raw, binary state.
                The default value is a double-quote ('"'). If your data does not contain quoted sections, set the property value to an empty string.
                If your data contains quoted newline characters, you must also set the allowQuotedNewlines property to true.
-        :param pulumi.Input[List[pulumi.Input[str]]] schema_update_options: Allows the schema of the destination table to be updated as a side effect of the load job if a schema is autodetected or
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] schema_update_options: Allows the schema of the destination table to be updated as a side effect of the load job if a schema is autodetected or
                supplied in the job configuration. Schema update options are supported in two cases: when writeDisposition is WRITE_APPEND;
                when writeDisposition is WRITE_TRUNCATE and the destination table is a partition of a table, specified by partition decorators.
                For normal tables, WRITE_TRUNCATE will always overwrite the schema. One or more of the following values are specified:
@@ -1270,7 +1270,7 @@ class JobLoadArgs:
 
     @property
     @pulumi.getter(name="sourceUris")
-    def source_uris(self) -> pulumi.Input[List[pulumi.Input[str]]]:
+    def source_uris(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
         The fully-qualified URIs that point to your data in Google Cloud.
         For Google Cloud Storage URIs: Each URI can contain one '*' wildcard character
@@ -1282,7 +1282,7 @@ class JobLoadArgs:
         return pulumi.get(self, "source_uris")
 
     @source_uris.setter
-    def source_uris(self, value: pulumi.Input[List[pulumi.Input[str]]]):
+    def source_uris(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "source_uris", value)
 
     @property
@@ -1428,7 +1428,7 @@ class JobLoadArgs:
 
     @property
     @pulumi.getter(name="projectionFields")
-    def projection_fields(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def projection_fields(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         If sourceFormat is set to "DATASTORE_BACKUP", indicates which entity properties to load into BigQuery from a Cloud Datastore backup.
         Property names are case sensitive and must be top-level properties. If no properties are specified, BigQuery loads all properties.
@@ -1437,7 +1437,7 @@ class JobLoadArgs:
         return pulumi.get(self, "projection_fields")
 
     @projection_fields.setter
-    def projection_fields(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def projection_fields(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "projection_fields", value)
 
     @property
@@ -1457,7 +1457,7 @@ class JobLoadArgs:
 
     @property
     @pulumi.getter(name="schemaUpdateOptions")
-    def schema_update_options(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def schema_update_options(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Allows the schema of the destination table to be updated as a side effect of the load job if a schema is autodetected or
         supplied in the job configuration. Schema update options are supported in two cases: when writeDisposition is WRITE_APPEND;
@@ -1469,7 +1469,7 @@ class JobLoadArgs:
         return pulumi.get(self, "schema_update_options")
 
     @schema_update_options.setter
-    def schema_update_options(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def schema_update_options(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "schema_update_options", value)
 
     @property
@@ -1692,11 +1692,11 @@ class JobQueryArgs:
                  maximum_bytes_billed: Optional[pulumi.Input[str]] = None,
                  parameter_mode: Optional[pulumi.Input[str]] = None,
                  priority: Optional[pulumi.Input[str]] = None,
-                 schema_update_options: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 schema_update_options: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  script_options: Optional[pulumi.Input['JobQueryScriptOptionsArgs']] = None,
                  use_legacy_sql: Optional[pulumi.Input[bool]] = None,
                  use_query_cache: Optional[pulumi.Input[bool]] = None,
-                 user_defined_function_resources: Optional[pulumi.Input[List[pulumi.Input['JobQueryUserDefinedFunctionResourceArgs']]]] = None,
+                 user_defined_function_resources: Optional[pulumi.Input[Sequence[pulumi.Input['JobQueryUserDefinedFunctionResourceArgs']]]] = None,
                  write_disposition: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] query: Configures a query job.
@@ -1726,7 +1726,7 @@ class JobQueryArgs:
         :param pulumi.Input[str] priority: Specifies a priority for the query.
                Default value is `INTERACTIVE`.
                Possible values are `INTERACTIVE` and `BATCH`.
-        :param pulumi.Input[List[pulumi.Input[str]]] schema_update_options: Allows the schema of the destination table to be updated as a side effect of the load job if a schema is autodetected or
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] schema_update_options: Allows the schema of the destination table to be updated as a side effect of the load job if a schema is autodetected or
                supplied in the job configuration. Schema update options are supported in two cases: when writeDisposition is WRITE_APPEND;
                when writeDisposition is WRITE_TRUNCATE and the destination table is a partition of a table, specified by partition decorators.
                For normal tables, WRITE_TRUNCATE will always overwrite the schema. One or more of the following values are specified:
@@ -1739,7 +1739,7 @@ class JobQueryArgs:
         :param pulumi.Input[bool] use_query_cache: Whether to look for the result in the query cache. The query cache is a best-effort cache that will be flushed whenever
                tables in the query are modified. Moreover, the query cache is only available when a query does not have a destination table specified.
                The default value is true.
-        :param pulumi.Input[List[pulumi.Input['JobQueryUserDefinedFunctionResourceArgs']]] user_defined_function_resources: Describes user-defined function resources used in the query.
+        :param pulumi.Input[Sequence[pulumi.Input['JobQueryUserDefinedFunctionResourceArgs']]] user_defined_function_resources: Describes user-defined function resources used in the query.
                Structure is documented below.
         :param pulumi.Input[str] write_disposition: Specifies the action that occurs if the destination table already exists. The following values are supported:
                WRITE_TRUNCATE: If the table already exists, BigQuery overwrites the table data and uses the schema from the query result.
@@ -1934,7 +1934,7 @@ class JobQueryArgs:
 
     @property
     @pulumi.getter(name="schemaUpdateOptions")
-    def schema_update_options(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def schema_update_options(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Allows the schema of the destination table to be updated as a side effect of the load job if a schema is autodetected or
         supplied in the job configuration. Schema update options are supported in two cases: when writeDisposition is WRITE_APPEND;
@@ -1946,7 +1946,7 @@ class JobQueryArgs:
         return pulumi.get(self, "schema_update_options")
 
     @schema_update_options.setter
-    def schema_update_options(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def schema_update_options(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "schema_update_options", value)
 
     @property
@@ -1991,7 +1991,7 @@ class JobQueryArgs:
 
     @property
     @pulumi.getter(name="userDefinedFunctionResources")
-    def user_defined_function_resources(self) -> Optional[pulumi.Input[List[pulumi.Input['JobQueryUserDefinedFunctionResourceArgs']]]]:
+    def user_defined_function_resources(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['JobQueryUserDefinedFunctionResourceArgs']]]]:
         """
         Describes user-defined function resources used in the query.
         Structure is documented below.
@@ -1999,7 +1999,7 @@ class JobQueryArgs:
         return pulumi.get(self, "user_defined_function_resources")
 
     @user_defined_function_resources.setter
-    def user_defined_function_resources(self, value: Optional[pulumi.Input[List[pulumi.Input['JobQueryUserDefinedFunctionResourceArgs']]]]):
+    def user_defined_function_resources(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['JobQueryUserDefinedFunctionResourceArgs']]]]):
         pulumi.set(self, "user_defined_function_resources", value)
 
     @property
@@ -2275,7 +2275,7 @@ class TableExternalDataConfigurationArgs:
     def __init__(__self__, *,
                  autodetect: pulumi.Input[bool],
                  source_format: pulumi.Input[str],
-                 source_uris: pulumi.Input[List[pulumi.Input[str]]],
+                 source_uris: pulumi.Input[Sequence[pulumi.Input[str]]],
                  compression: Optional[pulumi.Input[str]] = None,
                  csv_options: Optional[pulumi.Input['TableExternalDataConfigurationCsvOptionsArgs']] = None,
                  google_sheets_options: Optional[pulumi.Input['TableExternalDataConfigurationGoogleSheetsOptionsArgs']] = None,
@@ -2291,7 +2291,7 @@ class TableExternalDataConfigurationArgs:
                and "DATSTORE_BACKUP". To use "GOOGLE_SHEETS"
                the `scopes` must include
                "https://www.googleapis.com/auth/drive.readonly".
-        :param pulumi.Input[List[pulumi.Input[str]]] source_uris: A list of the fully-qualified URIs that point to
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] source_uris: A list of the fully-qualified URIs that point to
                your data in Google Cloud.
         :param pulumi.Input[str] compression: The compression type of the data source.
                Valid values are "NONE" or "GZIP".
@@ -2373,7 +2373,7 @@ class TableExternalDataConfigurationArgs:
 
     @property
     @pulumi.getter(name="sourceUris")
-    def source_uris(self) -> pulumi.Input[List[pulumi.Input[str]]]:
+    def source_uris(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
         A list of the fully-qualified URIs that point to
         your data in Google Cloud.
@@ -2381,7 +2381,7 @@ class TableExternalDataConfigurationArgs:
         return pulumi.get(self, "source_uris")
 
     @source_uris.setter
-    def source_uris(self, value: pulumi.Input[List[pulumi.Input[str]]]):
+    def source_uris(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "source_uris", value)
 
     @property

@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
@@ -18,7 +18,7 @@ class RegionBackendService(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  affinity_cookie_ttl_sec: Optional[pulumi.Input[float]] = None,
-                 backends: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['RegionBackendServiceBackendArgs']]]]] = None,
+                 backends: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RegionBackendServiceBackendArgs']]]]] = None,
                  circuit_breakers: Optional[pulumi.Input[pulumi.InputType['RegionBackendServiceCircuitBreakersArgs']]] = None,
                  connection_draining_timeout_sec: Optional[pulumi.Input[float]] = None,
                  consistent_hash: Optional[pulumi.Input[pulumi.InputType['RegionBackendServiceConsistentHashArgs']]] = None,
@@ -59,7 +59,7 @@ class RegionBackendService(pulumi.CustomResource):
                only until the end of the browser session (or equivalent). The
                maximum allowed value for TTL is one day.
                When the load balancing scheme is INTERNAL, this field is not used.
-        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['RegionBackendServiceBackendArgs']]]] backends: The set of backends that serve this RegionBackendService.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RegionBackendServiceBackendArgs']]]] backends: The set of backends that serve this RegionBackendService.
                Structure is documented below.
         :param pulumi.Input[pulumi.InputType['RegionBackendServiceCircuitBreakersArgs']] circuit_breakers: Settings controlling the volume of connections to a backend service. This field
                is applicable only when the `load_balancing_scheme` is set to INTERNAL_MANAGED
@@ -193,7 +193,7 @@ class RegionBackendService(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             affinity_cookie_ttl_sec: Optional[pulumi.Input[float]] = None,
-            backends: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['RegionBackendServiceBackendArgs']]]]] = None,
+            backends: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RegionBackendServiceBackendArgs']]]]] = None,
             circuit_breakers: Optional[pulumi.Input[pulumi.InputType['RegionBackendServiceCircuitBreakersArgs']]] = None,
             connection_draining_timeout_sec: Optional[pulumi.Input[float]] = None,
             consistent_hash: Optional[pulumi.Input[pulumi.InputType['RegionBackendServiceConsistentHashArgs']]] = None,
@@ -227,7 +227,7 @@ class RegionBackendService(pulumi.CustomResource):
                only until the end of the browser session (or equivalent). The
                maximum allowed value for TTL is one day.
                When the load balancing scheme is INTERNAL, this field is not used.
-        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['RegionBackendServiceBackendArgs']]]] backends: The set of backends that serve this RegionBackendService.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RegionBackendServiceBackendArgs']]]] backends: The set of backends that serve this RegionBackendService.
                Structure is documented below.
         :param pulumi.Input[pulumi.InputType['RegionBackendServiceCircuitBreakersArgs']] circuit_breakers: Settings controlling the volume of connections to a backend service. This field
                is applicable only when the `load_balancing_scheme` is set to INTERNAL_MANAGED
@@ -354,7 +354,7 @@ class RegionBackendService(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def backends(self) -> pulumi.Output[Optional[List['outputs.RegionBackendServiceBackend']]]:
+    def backends(self) -> pulumi.Output[Optional[Sequence['outputs.RegionBackendServiceBackend']]]:
         """
         The set of backends that serve this RegionBackendService.
         Structure is documented below.

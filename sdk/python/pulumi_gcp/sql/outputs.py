@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 from . import outputs
 
@@ -284,11 +284,11 @@ class DatabaseInstanceSettings(dict):
     def __init__(__self__, *,
                  tier: str,
                  activation_policy: Optional[str] = None,
-                 authorized_gae_applications: Optional[List[str]] = None,
+                 authorized_gae_applications: Optional[Sequence[str]] = None,
                  availability_type: Optional[str] = None,
                  backup_configuration: Optional['outputs.DatabaseInstanceSettingsBackupConfiguration'] = None,
                  crash_safe_replication: Optional[bool] = None,
-                 database_flags: Optional[List['outputs.DatabaseInstanceSettingsDatabaseFlag']] = None,
+                 database_flags: Optional[Sequence['outputs.DatabaseInstanceSettingsDatabaseFlag']] = None,
                  disk_autoresize: Optional[bool] = None,
                  disk_size: Optional[float] = None,
                  disk_type: Optional[str] = None,
@@ -305,7 +305,7 @@ class DatabaseInstanceSettings(dict):
                and custom machine types such as `db-custom-2-13312`. See the [Custom Machine Type Documentation](https://cloud.google.com/compute/docs/instances/creating-instance-with-custom-machine-type#create) to learn about specifying custom machine types.
         :param str activation_policy: This specifies when the instance should be
                active. Can be either `ALWAYS`, `NEVER` or `ON_DEMAND`.
-        :param List[str] authorized_gae_applications: This property is only applicable to First Generation instances.
+        :param Sequence[str] authorized_gae_applications: This property is only applicable to First Generation instances.
                First Generation instances are now deprecated, see [here](https://cloud.google.com/sql/docs/mysql/upgrade-2nd-gen)
                for information on how to upgrade to Second Generation instances.
                A list of Google App Engine (GAE) project names that are allowed to access this instance.
@@ -383,7 +383,7 @@ class DatabaseInstanceSettings(dict):
 
     @property
     @pulumi.getter(name="authorizedGaeApplications")
-    def authorized_gae_applications(self) -> Optional[List[str]]:
+    def authorized_gae_applications(self) -> Optional[Sequence[str]]:
         """
         This property is only applicable to First Generation instances.
         First Generation instances are now deprecated, see [here](https://cloud.google.com/sql/docs/mysql/upgrade-2nd-gen)
@@ -422,7 +422,7 @@ class DatabaseInstanceSettings(dict):
 
     @property
     @pulumi.getter(name="databaseFlags")
-    def database_flags(self) -> Optional[List['outputs.DatabaseInstanceSettingsDatabaseFlag']]:
+    def database_flags(self) -> Optional[Sequence['outputs.DatabaseInstanceSettingsDatabaseFlag']]:
         return pulumi.get(self, "database_flags")
 
     @property
@@ -611,7 +611,7 @@ class DatabaseInstanceSettingsDatabaseFlag(dict):
 @pulumi.output_type
 class DatabaseInstanceSettingsIpConfiguration(dict):
     def __init__(__self__, *,
-                 authorized_networks: Optional[List['outputs.DatabaseInstanceSettingsIpConfigurationAuthorizedNetwork']] = None,
+                 authorized_networks: Optional[Sequence['outputs.DatabaseInstanceSettingsIpConfigurationAuthorizedNetwork']] = None,
                  ipv4_enabled: Optional[bool] = None,
                  private_network: Optional[str] = None,
                  require_ssl: Optional[bool] = None):
@@ -638,7 +638,7 @@ class DatabaseInstanceSettingsIpConfiguration(dict):
 
     @property
     @pulumi.getter(name="authorizedNetworks")
-    def authorized_networks(self) -> Optional[List['outputs.DatabaseInstanceSettingsIpConfigurationAuthorizedNetwork']]:
+    def authorized_networks(self) -> Optional[Sequence['outputs.DatabaseInstanceSettingsIpConfigurationAuthorizedNetwork']]:
         return pulumi.get(self, "authorized_networks")
 
     @property
@@ -1077,17 +1077,17 @@ class GetDatabaseInstanceServerCaCertResult(dict):
 class GetDatabaseInstanceSettingResult(dict):
     def __init__(__self__, *,
                  activation_policy: str,
-                 authorized_gae_applications: List[str],
+                 authorized_gae_applications: Sequence[str],
                  availability_type: str,
-                 backup_configurations: List['outputs.GetDatabaseInstanceSettingBackupConfigurationResult'],
+                 backup_configurations: Sequence['outputs.GetDatabaseInstanceSettingBackupConfigurationResult'],
                  crash_safe_replication: bool,
-                 database_flags: List['outputs.GetDatabaseInstanceSettingDatabaseFlagResult'],
+                 database_flags: Sequence['outputs.GetDatabaseInstanceSettingDatabaseFlagResult'],
                  disk_autoresize: bool,
                  disk_size: float,
                  disk_type: str,
-                 ip_configurations: List['outputs.GetDatabaseInstanceSettingIpConfigurationResult'],
-                 location_preferences: List['outputs.GetDatabaseInstanceSettingLocationPreferenceResult'],
-                 maintenance_windows: List['outputs.GetDatabaseInstanceSettingMaintenanceWindowResult'],
+                 ip_configurations: Sequence['outputs.GetDatabaseInstanceSettingIpConfigurationResult'],
+                 location_preferences: Sequence['outputs.GetDatabaseInstanceSettingLocationPreferenceResult'],
+                 maintenance_windows: Sequence['outputs.GetDatabaseInstanceSettingMaintenanceWindowResult'],
                  pricing_plan: str,
                  replication_type: str,
                  tier: str,
@@ -1096,7 +1096,7 @@ class GetDatabaseInstanceSettingResult(dict):
         """
         :param str activation_policy: This specifies when the instance should be
                active. Can be either `ALWAYS`, `NEVER` or `ON_DEMAND`.
-        :param List[str] authorized_gae_applications: (Deprecated) This property is only applicable to First Generation instances.
+        :param Sequence[str] authorized_gae_applications: (Deprecated) This property is only applicable to First Generation instances.
                First Generation instances are now deprecated, see [here](https://cloud.google.com/sql/docs/mysql/upgrade-2nd-gen)
                for information on how to upgrade to Second Generation instances.
                A list of Google App Engine (GAE) project names that are allowed to access this instance.
@@ -1142,7 +1142,7 @@ class GetDatabaseInstanceSettingResult(dict):
 
     @property
     @pulumi.getter(name="authorizedGaeApplications")
-    def authorized_gae_applications(self) -> List[str]:
+    def authorized_gae_applications(self) -> Sequence[str]:
         """
         (Deprecated) This property is only applicable to First Generation instances.
         First Generation instances are now deprecated, see [here](https://cloud.google.com/sql/docs/mysql/upgrade-2nd-gen)
@@ -1162,7 +1162,7 @@ class GetDatabaseInstanceSettingResult(dict):
 
     @property
     @pulumi.getter(name="backupConfigurations")
-    def backup_configurations(self) -> List['outputs.GetDatabaseInstanceSettingBackupConfigurationResult']:
+    def backup_configurations(self) -> Sequence['outputs.GetDatabaseInstanceSettingBackupConfigurationResult']:
         return pulumi.get(self, "backup_configurations")
 
     @property
@@ -1176,7 +1176,7 @@ class GetDatabaseInstanceSettingResult(dict):
 
     @property
     @pulumi.getter(name="databaseFlags")
-    def database_flags(self) -> List['outputs.GetDatabaseInstanceSettingDatabaseFlagResult']:
+    def database_flags(self) -> Sequence['outputs.GetDatabaseInstanceSettingDatabaseFlagResult']:
         return pulumi.get(self, "database_flags")
 
     @property
@@ -1205,17 +1205,17 @@ class GetDatabaseInstanceSettingResult(dict):
 
     @property
     @pulumi.getter(name="ipConfigurations")
-    def ip_configurations(self) -> List['outputs.GetDatabaseInstanceSettingIpConfigurationResult']:
+    def ip_configurations(self) -> Sequence['outputs.GetDatabaseInstanceSettingIpConfigurationResult']:
         return pulumi.get(self, "ip_configurations")
 
     @property
     @pulumi.getter(name="locationPreferences")
-    def location_preferences(self) -> List['outputs.GetDatabaseInstanceSettingLocationPreferenceResult']:
+    def location_preferences(self) -> Sequence['outputs.GetDatabaseInstanceSettingLocationPreferenceResult']:
         return pulumi.get(self, "location_preferences")
 
     @property
     @pulumi.getter(name="maintenanceWindows")
-    def maintenance_windows(self) -> List['outputs.GetDatabaseInstanceSettingMaintenanceWindowResult']:
+    def maintenance_windows(self) -> Sequence['outputs.GetDatabaseInstanceSettingMaintenanceWindowResult']:
         return pulumi.get(self, "maintenance_windows")
 
     @property
@@ -1343,7 +1343,7 @@ class GetDatabaseInstanceSettingDatabaseFlagResult(dict):
 @pulumi.output_type
 class GetDatabaseInstanceSettingIpConfigurationResult(dict):
     def __init__(__self__, *,
-                 authorized_networks: List['outputs.GetDatabaseInstanceSettingIpConfigurationAuthorizedNetworkResult'],
+                 authorized_networks: Sequence['outputs.GetDatabaseInstanceSettingIpConfigurationAuthorizedNetworkResult'],
                  ipv4_enabled: bool,
                  private_network: str,
                  require_ssl: bool):
@@ -1359,7 +1359,7 @@ class GetDatabaseInstanceSettingIpConfigurationResult(dict):
 
     @property
     @pulumi.getter(name="authorizedNetworks")
-    def authorized_networks(self) -> List['outputs.GetDatabaseInstanceSettingIpConfigurationAuthorizedNetworkResult']:
+    def authorized_networks(self) -> Sequence['outputs.GetDatabaseInstanceSettingIpConfigurationAuthorizedNetworkResult']:
         return pulumi.get(self, "authorized_networks")
 
     @property

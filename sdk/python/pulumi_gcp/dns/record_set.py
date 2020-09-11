@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = ['RecordSet']
@@ -18,7 +18,7 @@ class RecordSet(pulumi.CustomResource):
                  managed_zone: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project: Optional[pulumi.Input[str]] = None,
-                 rrdatas: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 rrdatas: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ttl: Optional[pulumi.Input[float]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None,
@@ -42,7 +42,7 @@ class RecordSet(pulumi.CustomResource):
         :param pulumi.Input[str] name: The DNS name this record set will apply to.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs. If it
                is not provided, the provider project is used.
-        :param pulumi.Input[List[pulumi.Input[str]]] rrdatas: The string data for the records in this record set
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] rrdatas: The string data for the records in this record set
                whose meaning depends on the DNS type. For TXT record, if the string data contains spaces, add surrounding `\"` if you don't want your string to get split on spaces. To specify a single record value longer than 255 characters such as a TXT record for DKIM, add `\"\"` inside the provider configuration string (e.g. `"first255characters\"\"morecharacters"`).
         :param pulumi.Input[float] ttl: The time-to-live of this record set (seconds).
         :param pulumi.Input[str] type: The DNS record set type.
@@ -91,7 +91,7 @@ class RecordSet(pulumi.CustomResource):
             managed_zone: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             project: Optional[pulumi.Input[str]] = None,
-            rrdatas: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            rrdatas: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             ttl: Optional[pulumi.Input[float]] = None,
             type: Optional[pulumi.Input[str]] = None) -> 'RecordSet':
         """
@@ -106,7 +106,7 @@ class RecordSet(pulumi.CustomResource):
         :param pulumi.Input[str] name: The DNS name this record set will apply to.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs. If it
                is not provided, the provider project is used.
-        :param pulumi.Input[List[pulumi.Input[str]]] rrdatas: The string data for the records in this record set
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] rrdatas: The string data for the records in this record set
                whose meaning depends on the DNS type. For TXT record, if the string data contains spaces, add surrounding `\"` if you don't want your string to get split on spaces. To specify a single record value longer than 255 characters such as a TXT record for DKIM, add `\"\"` inside the provider configuration string (e.g. `"first255characters\"\"morecharacters"`).
         :param pulumi.Input[float] ttl: The time-to-live of this record set (seconds).
         :param pulumi.Input[str] type: The DNS record set type.
@@ -151,7 +151,7 @@ class RecordSet(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def rrdatas(self) -> pulumi.Output[List[str]]:
+    def rrdatas(self) -> pulumi.Output[Sequence[str]]:
         """
         The string data for the records in this record set
         whose meaning depends on the DNS type. For TXT record, if the string data contains spaces, add surrounding `\"` if you don't want your string to get split on spaces. To specify a single record value longer than 255 characters such as a TXT record for DKIM, add `\"\"` inside the provider configuration string (e.g. `"first255characters\"\"morecharacters"`).

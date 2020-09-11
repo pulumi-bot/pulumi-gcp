@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 from . import outputs
 
@@ -536,7 +536,7 @@ class ClusterClusterAutoscaling(dict):
                  enabled: bool,
                  auto_provisioning_defaults: Optional['outputs.ClusterClusterAutoscalingAutoProvisioningDefaults'] = None,
                  autoscaling_profile: Optional[str] = None,
-                 resource_limits: Optional[List['outputs.ClusterClusterAutoscalingResourceLimit']] = None):
+                 resource_limits: Optional[Sequence['outputs.ClusterClusterAutoscalingResourceLimit']] = None):
         """
         :param bool enabled: Enable the PodSecurityPolicy controller for this cluster.
                If enabled, pods must be valid under a PodSecurityPolicy to be created.
@@ -546,7 +546,7 @@ class ClusterClusterAutoscaling(dict):
                options for the [Autoscaling profile](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-autoscaler#autoscaling_profiles)
                feature, which lets you choose whether the cluster autoscaler should optimize for resource utilization or resource availability
                when deciding to remove nodes from a cluster. Can be `BALANCED` or `OPTIMIZE_UTILIZATION`. Defaults to `BALANCED`.
-        :param List['ClusterClusterAutoscalingResourceLimitArgs'] resource_limits: Global constraints for machine resources in the
+        :param Sequence['ClusterClusterAutoscalingResourceLimitArgs'] resource_limits: Global constraints for machine resources in the
                cluster. Configuring the `cpu` and `memory` types is required if node
                auto-provisioning is enabled. These limits will apply to node pool autoscaling
                in addition to node auto-provisioning. Structure is documented below.
@@ -590,7 +590,7 @@ class ClusterClusterAutoscaling(dict):
 
     @property
     @pulumi.getter(name="resourceLimits")
-    def resource_limits(self) -> Optional[List['outputs.ClusterClusterAutoscalingResourceLimit']]:
+    def resource_limits(self) -> Optional[Sequence['outputs.ClusterClusterAutoscalingResourceLimit']]:
         """
         Global constraints for machine resources in the
         cluster. Configuring the `cpu` and `memory` types is required if node
@@ -607,7 +607,7 @@ class ClusterClusterAutoscaling(dict):
 class ClusterClusterAutoscalingAutoProvisioningDefaults(dict):
     def __init__(__self__, *,
                  min_cpu_platform: Optional[str] = None,
-                 oauth_scopes: Optional[List[str]] = None,
+                 oauth_scopes: Optional[Sequence[str]] = None,
                  service_account: Optional[str] = None):
         """
         :param str min_cpu_platform: Minimum CPU platform to be used by this instance.
@@ -615,7 +615,7 @@ class ClusterClusterAutoscalingAutoProvisioningDefaults(dict):
                values are the friendly names of CPU platforms, such as `Intel Haswell`. See the
                [official documentation](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
                for more information.
-        :param List[str] oauth_scopes: The set of Google API scopes to be made available
+        :param Sequence[str] oauth_scopes: The set of Google API scopes to be made available
                on all of the node VMs under the "default" service account. These can be
                either FQDNs, or scope aliases. The following scopes are necessary to ensure
                the correct functioning of the cluster:
@@ -646,7 +646,7 @@ class ClusterClusterAutoscalingAutoProvisioningDefaults(dict):
 
     @property
     @pulumi.getter(name="oauthScopes")
-    def oauth_scopes(self) -> Optional[List[str]]:
+    def oauth_scopes(self) -> Optional[Sequence[str]]:
         """
         The set of Google API scopes to be made available
         on all of the node VMs under the "default" service account. These can be
@@ -1065,9 +1065,9 @@ class ClusterMasterAuthClientCertificateConfig(dict):
 @pulumi.output_type
 class ClusterMasterAuthorizedNetworksConfig(dict):
     def __init__(__self__, *,
-                 cidr_blocks: Optional[List['outputs.ClusterMasterAuthorizedNetworksConfigCidrBlock']] = None):
+                 cidr_blocks: Optional[Sequence['outputs.ClusterMasterAuthorizedNetworksConfigCidrBlock']] = None):
         """
-        :param List['ClusterMasterAuthorizedNetworksConfigCidrBlockArgs'] cidr_blocks: External networks that can access the
+        :param Sequence['ClusterMasterAuthorizedNetworksConfigCidrBlockArgs'] cidr_blocks: External networks that can access the
                Kubernetes cluster master through HTTPS.
         """
         if cidr_blocks is not None:
@@ -1075,7 +1075,7 @@ class ClusterMasterAuthorizedNetworksConfig(dict):
 
     @property
     @pulumi.getter(name="cidrBlocks")
-    def cidr_blocks(self) -> Optional[List['outputs.ClusterMasterAuthorizedNetworksConfigCidrBlock']]:
+    def cidr_blocks(self) -> Optional[Sequence['outputs.ClusterMasterAuthorizedNetworksConfigCidrBlock']]:
         """
         External networks that can access the
         Kubernetes cluster master through HTTPS.
@@ -1162,7 +1162,7 @@ class ClusterNodeConfig(dict):
                  boot_disk_kms_key: Optional[str] = None,
                  disk_size_gb: Optional[float] = None,
                  disk_type: Optional[str] = None,
-                 guest_accelerators: Optional[List['outputs.ClusterNodeConfigGuestAccelerator']] = None,
+                 guest_accelerators: Optional[Sequence['outputs.ClusterNodeConfigGuestAccelerator']] = None,
                  image_type: Optional[str] = None,
                  kubelet_config: Optional['outputs.ClusterNodeConfigKubeletConfig'] = None,
                  labels: Optional[Mapping[str, str]] = None,
@@ -1171,13 +1171,13 @@ class ClusterNodeConfig(dict):
                  machine_type: Optional[str] = None,
                  metadata: Optional[Mapping[str, str]] = None,
                  min_cpu_platform: Optional[str] = None,
-                 oauth_scopes: Optional[List[str]] = None,
+                 oauth_scopes: Optional[Sequence[str]] = None,
                  preemptible: Optional[bool] = None,
                  sandbox_config: Optional['outputs.ClusterNodeConfigSandboxConfig'] = None,
                  service_account: Optional[str] = None,
                  shielded_instance_config: Optional['outputs.ClusterNodeConfigShieldedInstanceConfig'] = None,
-                 tags: Optional[List[str]] = None,
-                 taints: Optional[List['outputs.ClusterNodeConfigTaint']] = None,
+                 tags: Optional[Sequence[str]] = None,
+                 taints: Optional[Sequence['outputs.ClusterNodeConfigTaint']] = None,
                  workload_metadata_config: Optional['outputs.ClusterNodeConfigWorkloadMetadataConfig'] = None):
         """
         :param str boot_disk_kms_key: The Customer Managed Encryption Key used to encrypt the boot disk attached to each node in the node pool. This should be of the form projects/[KEY_PROJECT_ID]/locations/[LOCATION]/keyRings/[RING_NAME]/cryptoKeys/[KEY_NAME]. For more information about protecting resources with Cloud KMS Keys please see: https://cloud.google.com/compute/docs/disks/customer-managed-encryption
@@ -1185,7 +1185,7 @@ class ClusterNodeConfig(dict):
                in GB. The smallest allowed disk size is 10GB. Defaults to 100GB.
         :param str disk_type: Type of the disk attached to each node
                (e.g. 'pd-standard', 'pd-balanced' or 'pd-ssd'). If unspecified, the default disk type is 'pd-standard'
-        :param List['ClusterNodeConfigGuestAcceleratorArgs'] guest_accelerators: List of the type and count of accelerator cards attached to the instance.
+        :param Sequence['ClusterNodeConfigGuestAcceleratorArgs'] guest_accelerators: List of the type and count of accelerator cards attached to the instance.
                Structure documented below.
         :param str image_type: The image type to use for this node. Note that changing the image type
                will delete and recreate all nodes in the node pool.
@@ -1213,7 +1213,7 @@ class ClusterNodeConfig(dict):
                values are the friendly names of CPU platforms, such as `Intel Haswell`. See the
                [official documentation](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
                for more information.
-        :param List[str] oauth_scopes: The set of Google API scopes to be made available
+        :param Sequence[str] oauth_scopes: The set of Google API scopes to be made available
                on all of the node VMs under the "default" service account. These can be
                either FQDNs, or scope aliases. The following scopes are necessary to ensure
                the correct functioning of the cluster:
@@ -1228,9 +1228,9 @@ class ClusterNodeConfig(dict):
                [roles/logging.logWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_logging_roles) and
                [roles/monitoring.metricWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_monitoring_roles) roles.
         :param 'ClusterNodeConfigShieldedInstanceConfigArgs' shielded_instance_config: Shielded Instance options. Structure is documented below.
-        :param List[str] tags: The list of instance tags applied to all nodes. Tags are used to identify
+        :param Sequence[str] tags: The list of instance tags applied to all nodes. Tags are used to identify
                valid sources or targets for network firewalls.
-        :param List['ClusterNodeConfigTaintArgs'] taints: A list of [Kubernetes taints](https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/)
+        :param Sequence['ClusterNodeConfigTaintArgs'] taints: A list of [Kubernetes taints](https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/)
                to apply to nodes. GKE's API can only set this field on cluster creation.
                However, GKE will add taints to your nodes if you enable certain features such
                as GPUs. If this field is set, any diffs on this field will cause the provider to
@@ -1310,7 +1310,7 @@ class ClusterNodeConfig(dict):
 
     @property
     @pulumi.getter(name="guestAccelerators")
-    def guest_accelerators(self) -> Optional[List['outputs.ClusterNodeConfigGuestAccelerator']]:
+    def guest_accelerators(self) -> Optional[Sequence['outputs.ClusterNodeConfigGuestAccelerator']]:
         """
         List of the type and count of accelerator cards attached to the instance.
         Structure documented below.
@@ -1401,7 +1401,7 @@ class ClusterNodeConfig(dict):
 
     @property
     @pulumi.getter(name="oauthScopes")
-    def oauth_scopes(self) -> Optional[List[str]]:
+    def oauth_scopes(self) -> Optional[Sequence[str]]:
         """
         The set of Google API scopes to be made available
         on all of the node VMs under the "default" service account. These can be
@@ -1451,7 +1451,7 @@ class ClusterNodeConfig(dict):
 
     @property
     @pulumi.getter
-    def tags(self) -> Optional[List[str]]:
+    def tags(self) -> Optional[Sequence[str]]:
         """
         The list of instance tags applied to all nodes. Tags are used to identify
         valid sources or targets for network firewalls.
@@ -1460,7 +1460,7 @@ class ClusterNodeConfig(dict):
 
     @property
     @pulumi.getter
-    def taints(self) -> Optional[List['outputs.ClusterNodeConfigTaint']]:
+    def taints(self) -> Optional[Sequence['outputs.ClusterNodeConfigTaint']]:
         """
         A list of [Kubernetes taints](https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/)
         to apply to nodes. GKE's API can only set this field on cluster creation.
@@ -1736,14 +1736,14 @@ class ClusterNodePool(dict):
     def __init__(__self__, *,
                  autoscaling: Optional['outputs.ClusterNodePoolAutoscaling'] = None,
                  initial_node_count: Optional[float] = None,
-                 instance_group_urls: Optional[List[str]] = None,
+                 instance_group_urls: Optional[Sequence[str]] = None,
                  management: Optional['outputs.ClusterNodePoolManagement'] = None,
                  max_pods_per_node: Optional[float] = None,
                  name: Optional[str] = None,
                  name_prefix: Optional[str] = None,
                  node_config: Optional['outputs.ClusterNodePoolNodeConfig'] = None,
                  node_count: Optional[float] = None,
-                 node_locations: Optional[List[str]] = None,
+                 node_locations: Optional[Sequence[str]] = None,
                  upgrade_settings: Optional['outputs.ClusterNodePoolUpgradeSettings'] = None,
                  version: Optional[str] = None):
         """
@@ -1753,7 +1753,7 @@ class ClusterNodePool(dict):
                `container.NodePool` objects with no default node pool, you'll need to
                set this to a value of at least `1`, alongside setting
                `remove_default_node_pool` to `true`.
-        :param List[str] instance_group_urls: List of instance group URLs which have been assigned
+        :param Sequence[str] instance_group_urls: List of instance group URLs which have been assigned
                to the cluster.
         :param str name: The name of the cluster, unique within the project and
                location.
@@ -1762,7 +1762,7 @@ class ClusterNodePool(dict):
                `container.NodePool` or a `node_pool` block; this configuration
                manages the default node pool, which isn't recommended to be used.
                Structure is documented below.
-        :param List[str] node_locations: The list of zones in which the cluster's nodes
+        :param Sequence[str] node_locations: The list of zones in which the cluster's nodes
                are located. Nodes must be in the region of their regional cluster or in the
                same region as their cluster's zone for zonal clusters. If this is specified for
                a zonal cluster, omit the cluster's zone.
@@ -1812,7 +1812,7 @@ class ClusterNodePool(dict):
 
     @property
     @pulumi.getter(name="instanceGroupUrls")
-    def instance_group_urls(self) -> Optional[List[str]]:
+    def instance_group_urls(self) -> Optional[Sequence[str]]:
         """
         List of instance group URLs which have been assigned
         to the cluster.
@@ -1862,7 +1862,7 @@ class ClusterNodePool(dict):
 
     @property
     @pulumi.getter(name="nodeLocations")
-    def node_locations(self) -> Optional[List[str]]:
+    def node_locations(self) -> Optional[Sequence[str]]:
         """
         The list of zones in which the cluster's nodes
         are located. Nodes must be in the region of their regional cluster or in the
@@ -1937,7 +1937,7 @@ class ClusterNodePoolNodeConfig(dict):
                  boot_disk_kms_key: Optional[str] = None,
                  disk_size_gb: Optional[float] = None,
                  disk_type: Optional[str] = None,
-                 guest_accelerators: Optional[List['outputs.ClusterNodePoolNodeConfigGuestAccelerator']] = None,
+                 guest_accelerators: Optional[Sequence['outputs.ClusterNodePoolNodeConfigGuestAccelerator']] = None,
                  image_type: Optional[str] = None,
                  kubelet_config: Optional['outputs.ClusterNodePoolNodeConfigKubeletConfig'] = None,
                  labels: Optional[Mapping[str, str]] = None,
@@ -1946,13 +1946,13 @@ class ClusterNodePoolNodeConfig(dict):
                  machine_type: Optional[str] = None,
                  metadata: Optional[Mapping[str, str]] = None,
                  min_cpu_platform: Optional[str] = None,
-                 oauth_scopes: Optional[List[str]] = None,
+                 oauth_scopes: Optional[Sequence[str]] = None,
                  preemptible: Optional[bool] = None,
                  sandbox_config: Optional['outputs.ClusterNodePoolNodeConfigSandboxConfig'] = None,
                  service_account: Optional[str] = None,
                  shielded_instance_config: Optional['outputs.ClusterNodePoolNodeConfigShieldedInstanceConfig'] = None,
-                 tags: Optional[List[str]] = None,
-                 taints: Optional[List['outputs.ClusterNodePoolNodeConfigTaint']] = None,
+                 tags: Optional[Sequence[str]] = None,
+                 taints: Optional[Sequence['outputs.ClusterNodePoolNodeConfigTaint']] = None,
                  workload_metadata_config: Optional['outputs.ClusterNodePoolNodeConfigWorkloadMetadataConfig'] = None):
         """
         :param str boot_disk_kms_key: The Customer Managed Encryption Key used to encrypt the boot disk attached to each node in the node pool. This should be of the form projects/[KEY_PROJECT_ID]/locations/[LOCATION]/keyRings/[RING_NAME]/cryptoKeys/[KEY_NAME]. For more information about protecting resources with Cloud KMS Keys please see: https://cloud.google.com/compute/docs/disks/customer-managed-encryption
@@ -1960,7 +1960,7 @@ class ClusterNodePoolNodeConfig(dict):
                in GB. The smallest allowed disk size is 10GB. Defaults to 100GB.
         :param str disk_type: Type of the disk attached to each node
                (e.g. 'pd-standard', 'pd-balanced' or 'pd-ssd'). If unspecified, the default disk type is 'pd-standard'
-        :param List['ClusterNodePoolNodeConfigGuestAcceleratorArgs'] guest_accelerators: List of the type and count of accelerator cards attached to the instance.
+        :param Sequence['ClusterNodePoolNodeConfigGuestAcceleratorArgs'] guest_accelerators: List of the type and count of accelerator cards attached to the instance.
                Structure documented below.
         :param str image_type: The image type to use for this node. Note that changing the image type
                will delete and recreate all nodes in the node pool.
@@ -1988,7 +1988,7 @@ class ClusterNodePoolNodeConfig(dict):
                values are the friendly names of CPU platforms, such as `Intel Haswell`. See the
                [official documentation](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
                for more information.
-        :param List[str] oauth_scopes: The set of Google API scopes to be made available
+        :param Sequence[str] oauth_scopes: The set of Google API scopes to be made available
                on all of the node VMs under the "default" service account. These can be
                either FQDNs, or scope aliases. The following scopes are necessary to ensure
                the correct functioning of the cluster:
@@ -2003,9 +2003,9 @@ class ClusterNodePoolNodeConfig(dict):
                [roles/logging.logWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_logging_roles) and
                [roles/monitoring.metricWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_monitoring_roles) roles.
         :param 'ClusterNodePoolNodeConfigShieldedInstanceConfigArgs' shielded_instance_config: Shielded Instance options. Structure is documented below.
-        :param List[str] tags: The list of instance tags applied to all nodes. Tags are used to identify
+        :param Sequence[str] tags: The list of instance tags applied to all nodes. Tags are used to identify
                valid sources or targets for network firewalls.
-        :param List['ClusterNodePoolNodeConfigTaintArgs'] taints: A list of [Kubernetes taints](https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/)
+        :param Sequence['ClusterNodePoolNodeConfigTaintArgs'] taints: A list of [Kubernetes taints](https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/)
                to apply to nodes. GKE's API can only set this field on cluster creation.
                However, GKE will add taints to your nodes if you enable certain features such
                as GPUs. If this field is set, any diffs on this field will cause the provider to
@@ -2085,7 +2085,7 @@ class ClusterNodePoolNodeConfig(dict):
 
     @property
     @pulumi.getter(name="guestAccelerators")
-    def guest_accelerators(self) -> Optional[List['outputs.ClusterNodePoolNodeConfigGuestAccelerator']]:
+    def guest_accelerators(self) -> Optional[Sequence['outputs.ClusterNodePoolNodeConfigGuestAccelerator']]:
         """
         List of the type and count of accelerator cards attached to the instance.
         Structure documented below.
@@ -2176,7 +2176,7 @@ class ClusterNodePoolNodeConfig(dict):
 
     @property
     @pulumi.getter(name="oauthScopes")
-    def oauth_scopes(self) -> Optional[List[str]]:
+    def oauth_scopes(self) -> Optional[Sequence[str]]:
         """
         The set of Google API scopes to be made available
         on all of the node VMs under the "default" service account. These can be
@@ -2226,7 +2226,7 @@ class ClusterNodePoolNodeConfig(dict):
 
     @property
     @pulumi.getter
-    def tags(self) -> Optional[List[str]]:
+    def tags(self) -> Optional[Sequence[str]]:
         """
         The list of instance tags applied to all nodes. Tags are used to identify
         valid sources or targets for network firewalls.
@@ -2235,7 +2235,7 @@ class ClusterNodePoolNodeConfig(dict):
 
     @property
     @pulumi.getter
-    def taints(self) -> Optional[List['outputs.ClusterNodePoolNodeConfigTaint']]:
+    def taints(self) -> Optional[Sequence['outputs.ClusterNodePoolNodeConfigTaint']]:
         """
         A list of [Kubernetes taints](https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/)
         to apply to nodes. GKE's API can only set this field on cluster creation.
@@ -2906,7 +2906,7 @@ class NodePoolNodeConfig(dict):
                  boot_disk_kms_key: Optional[str] = None,
                  disk_size_gb: Optional[float] = None,
                  disk_type: Optional[str] = None,
-                 guest_accelerators: Optional[List['outputs.NodePoolNodeConfigGuestAccelerator']] = None,
+                 guest_accelerators: Optional[Sequence['outputs.NodePoolNodeConfigGuestAccelerator']] = None,
                  image_type: Optional[str] = None,
                  kubelet_config: Optional['outputs.NodePoolNodeConfigKubeletConfig'] = None,
                  labels: Optional[Mapping[str, str]] = None,
@@ -2915,13 +2915,13 @@ class NodePoolNodeConfig(dict):
                  machine_type: Optional[str] = None,
                  metadata: Optional[Mapping[str, str]] = None,
                  min_cpu_platform: Optional[str] = None,
-                 oauth_scopes: Optional[List[str]] = None,
+                 oauth_scopes: Optional[Sequence[str]] = None,
                  preemptible: Optional[bool] = None,
                  sandbox_config: Optional['outputs.NodePoolNodeConfigSandboxConfig'] = None,
                  service_account: Optional[str] = None,
                  shielded_instance_config: Optional['outputs.NodePoolNodeConfigShieldedInstanceConfig'] = None,
-                 tags: Optional[List[str]] = None,
-                 taints: Optional[List['outputs.NodePoolNodeConfigTaint']] = None,
+                 tags: Optional[Sequence[str]] = None,
+                 taints: Optional[Sequence['outputs.NodePoolNodeConfigTaint']] = None,
                  workload_metadata_config: Optional['outputs.NodePoolNodeConfigWorkloadMetadataConfig'] = None):
         if boot_disk_kms_key is not None:
             pulumi.set(__self__, "boot_disk_kms_key", boot_disk_kms_key)
@@ -2981,7 +2981,7 @@ class NodePoolNodeConfig(dict):
 
     @property
     @pulumi.getter(name="guestAccelerators")
-    def guest_accelerators(self) -> Optional[List['outputs.NodePoolNodeConfigGuestAccelerator']]:
+    def guest_accelerators(self) -> Optional[Sequence['outputs.NodePoolNodeConfigGuestAccelerator']]:
         return pulumi.get(self, "guest_accelerators")
 
     @property
@@ -3026,7 +3026,7 @@ class NodePoolNodeConfig(dict):
 
     @property
     @pulumi.getter(name="oauthScopes")
-    def oauth_scopes(self) -> Optional[List[str]]:
+    def oauth_scopes(self) -> Optional[Sequence[str]]:
         return pulumi.get(self, "oauth_scopes")
 
     @property
@@ -3051,12 +3051,12 @@ class NodePoolNodeConfig(dict):
 
     @property
     @pulumi.getter
-    def tags(self) -> Optional[List[str]]:
+    def tags(self) -> Optional[Sequence[str]]:
         return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
-    def taints(self) -> Optional[List['outputs.NodePoolNodeConfigTaint']]:
+    def taints(self) -> Optional[Sequence['outputs.NodePoolNodeConfigTaint']]:
         return pulumi.get(self, "taints")
 
     @property
@@ -3262,16 +3262,16 @@ class NodePoolUpgradeSettings(dict):
 @pulumi.output_type
 class GetClusterAddonsConfigResult(dict):
     def __init__(__self__, *,
-                 cloudrun_configs: List['outputs.GetClusterAddonsConfigCloudrunConfigResult'],
-                 config_connector_configs: List['outputs.GetClusterAddonsConfigConfigConnectorConfigResult'],
-                 dns_cache_configs: List['outputs.GetClusterAddonsConfigDnsCacheConfigResult'],
-                 gce_persistent_disk_csi_driver_configs: List['outputs.GetClusterAddonsConfigGcePersistentDiskCsiDriverConfigResult'],
-                 horizontal_pod_autoscalings: List['outputs.GetClusterAddonsConfigHorizontalPodAutoscalingResult'],
-                 http_load_balancings: List['outputs.GetClusterAddonsConfigHttpLoadBalancingResult'],
-                 istio_configs: List['outputs.GetClusterAddonsConfigIstioConfigResult'],
-                 kalm_configs: List['outputs.GetClusterAddonsConfigKalmConfigResult'],
-                 kubernetes_dashboards: List['outputs.GetClusterAddonsConfigKubernetesDashboardResult'],
-                 network_policy_configs: List['outputs.GetClusterAddonsConfigNetworkPolicyConfigResult']):
+                 cloudrun_configs: Sequence['outputs.GetClusterAddonsConfigCloudrunConfigResult'],
+                 config_connector_configs: Sequence['outputs.GetClusterAddonsConfigConfigConnectorConfigResult'],
+                 dns_cache_configs: Sequence['outputs.GetClusterAddonsConfigDnsCacheConfigResult'],
+                 gce_persistent_disk_csi_driver_configs: Sequence['outputs.GetClusterAddonsConfigGcePersistentDiskCsiDriverConfigResult'],
+                 horizontal_pod_autoscalings: Sequence['outputs.GetClusterAddonsConfigHorizontalPodAutoscalingResult'],
+                 http_load_balancings: Sequence['outputs.GetClusterAddonsConfigHttpLoadBalancingResult'],
+                 istio_configs: Sequence['outputs.GetClusterAddonsConfigIstioConfigResult'],
+                 kalm_configs: Sequence['outputs.GetClusterAddonsConfigKalmConfigResult'],
+                 kubernetes_dashboards: Sequence['outputs.GetClusterAddonsConfigKubernetesDashboardResult'],
+                 network_policy_configs: Sequence['outputs.GetClusterAddonsConfigNetworkPolicyConfigResult']):
         pulumi.set(__self__, "cloudrun_configs", cloudrun_configs)
         pulumi.set(__self__, "config_connector_configs", config_connector_configs)
         pulumi.set(__self__, "dns_cache_configs", dns_cache_configs)
@@ -3285,52 +3285,52 @@ class GetClusterAddonsConfigResult(dict):
 
     @property
     @pulumi.getter(name="cloudrunConfigs")
-    def cloudrun_configs(self) -> List['outputs.GetClusterAddonsConfigCloudrunConfigResult']:
+    def cloudrun_configs(self) -> Sequence['outputs.GetClusterAddonsConfigCloudrunConfigResult']:
         return pulumi.get(self, "cloudrun_configs")
 
     @property
     @pulumi.getter(name="configConnectorConfigs")
-    def config_connector_configs(self) -> List['outputs.GetClusterAddonsConfigConfigConnectorConfigResult']:
+    def config_connector_configs(self) -> Sequence['outputs.GetClusterAddonsConfigConfigConnectorConfigResult']:
         return pulumi.get(self, "config_connector_configs")
 
     @property
     @pulumi.getter(name="dnsCacheConfigs")
-    def dns_cache_configs(self) -> List['outputs.GetClusterAddonsConfigDnsCacheConfigResult']:
+    def dns_cache_configs(self) -> Sequence['outputs.GetClusterAddonsConfigDnsCacheConfigResult']:
         return pulumi.get(self, "dns_cache_configs")
 
     @property
     @pulumi.getter(name="gcePersistentDiskCsiDriverConfigs")
-    def gce_persistent_disk_csi_driver_configs(self) -> List['outputs.GetClusterAddonsConfigGcePersistentDiskCsiDriverConfigResult']:
+    def gce_persistent_disk_csi_driver_configs(self) -> Sequence['outputs.GetClusterAddonsConfigGcePersistentDiskCsiDriverConfigResult']:
         return pulumi.get(self, "gce_persistent_disk_csi_driver_configs")
 
     @property
     @pulumi.getter(name="horizontalPodAutoscalings")
-    def horizontal_pod_autoscalings(self) -> List['outputs.GetClusterAddonsConfigHorizontalPodAutoscalingResult']:
+    def horizontal_pod_autoscalings(self) -> Sequence['outputs.GetClusterAddonsConfigHorizontalPodAutoscalingResult']:
         return pulumi.get(self, "horizontal_pod_autoscalings")
 
     @property
     @pulumi.getter(name="httpLoadBalancings")
-    def http_load_balancings(self) -> List['outputs.GetClusterAddonsConfigHttpLoadBalancingResult']:
+    def http_load_balancings(self) -> Sequence['outputs.GetClusterAddonsConfigHttpLoadBalancingResult']:
         return pulumi.get(self, "http_load_balancings")
 
     @property
     @pulumi.getter(name="istioConfigs")
-    def istio_configs(self) -> List['outputs.GetClusterAddonsConfigIstioConfigResult']:
+    def istio_configs(self) -> Sequence['outputs.GetClusterAddonsConfigIstioConfigResult']:
         return pulumi.get(self, "istio_configs")
 
     @property
     @pulumi.getter(name="kalmConfigs")
-    def kalm_configs(self) -> List['outputs.GetClusterAddonsConfigKalmConfigResult']:
+    def kalm_configs(self) -> Sequence['outputs.GetClusterAddonsConfigKalmConfigResult']:
         return pulumi.get(self, "kalm_configs")
 
     @property
     @pulumi.getter(name="kubernetesDashboards")
-    def kubernetes_dashboards(self) -> List['outputs.GetClusterAddonsConfigKubernetesDashboardResult']:
+    def kubernetes_dashboards(self) -> Sequence['outputs.GetClusterAddonsConfigKubernetesDashboardResult']:
         return pulumi.get(self, "kubernetes_dashboards")
 
     @property
     @pulumi.getter(name="networkPolicyConfigs")
-    def network_policy_configs(self) -> List['outputs.GetClusterAddonsConfigNetworkPolicyConfigResult']:
+    def network_policy_configs(self) -> Sequence['outputs.GetClusterAddonsConfigNetworkPolicyConfigResult']:
         return pulumi.get(self, "network_policy_configs")
 
 
@@ -3476,10 +3476,10 @@ class GetClusterAuthenticatorGroupsConfigResult(dict):
 @pulumi.output_type
 class GetClusterClusterAutoscalingResult(dict):
     def __init__(__self__, *,
-                 auto_provisioning_defaults: List['outputs.GetClusterClusterAutoscalingAutoProvisioningDefaultResult'],
+                 auto_provisioning_defaults: Sequence['outputs.GetClusterClusterAutoscalingAutoProvisioningDefaultResult'],
                  autoscaling_profile: str,
                  enabled: bool,
-                 resource_limits: List['outputs.GetClusterClusterAutoscalingResourceLimitResult']):
+                 resource_limits: Sequence['outputs.GetClusterClusterAutoscalingResourceLimitResult']):
         pulumi.set(__self__, "auto_provisioning_defaults", auto_provisioning_defaults)
         pulumi.set(__self__, "autoscaling_profile", autoscaling_profile)
         pulumi.set(__self__, "enabled", enabled)
@@ -3487,7 +3487,7 @@ class GetClusterClusterAutoscalingResult(dict):
 
     @property
     @pulumi.getter(name="autoProvisioningDefaults")
-    def auto_provisioning_defaults(self) -> List['outputs.GetClusterClusterAutoscalingAutoProvisioningDefaultResult']:
+    def auto_provisioning_defaults(self) -> Sequence['outputs.GetClusterClusterAutoscalingAutoProvisioningDefaultResult']:
         return pulumi.get(self, "auto_provisioning_defaults")
 
     @property
@@ -3502,7 +3502,7 @@ class GetClusterClusterAutoscalingResult(dict):
 
     @property
     @pulumi.getter(name="resourceLimits")
-    def resource_limits(self) -> List['outputs.GetClusterClusterAutoscalingResourceLimitResult']:
+    def resource_limits(self) -> Sequence['outputs.GetClusterClusterAutoscalingResourceLimitResult']:
         return pulumi.get(self, "resource_limits")
 
 
@@ -3510,7 +3510,7 @@ class GetClusterClusterAutoscalingResult(dict):
 class GetClusterClusterAutoscalingAutoProvisioningDefaultResult(dict):
     def __init__(__self__, *,
                  min_cpu_platform: str,
-                 oauth_scopes: List[str],
+                 oauth_scopes: Sequence[str],
                  service_account: str):
         pulumi.set(__self__, "min_cpu_platform", min_cpu_platform)
         pulumi.set(__self__, "oauth_scopes", oauth_scopes)
@@ -3523,7 +3523,7 @@ class GetClusterClusterAutoscalingAutoProvisioningDefaultResult(dict):
 
     @property
     @pulumi.getter(name="oauthScopes")
-    def oauth_scopes(self) -> List[str]:
+    def oauth_scopes(self) -> Sequence[str]:
         return pulumi.get(self, "oauth_scopes")
 
     @property
@@ -3651,19 +3651,19 @@ class GetClusterIpAllocationPolicyResult(dict):
 @pulumi.output_type
 class GetClusterMaintenancePolicyResult(dict):
     def __init__(__self__, *,
-                 daily_maintenance_windows: List['outputs.GetClusterMaintenancePolicyDailyMaintenanceWindowResult'],
-                 recurring_windows: List['outputs.GetClusterMaintenancePolicyRecurringWindowResult']):
+                 daily_maintenance_windows: Sequence['outputs.GetClusterMaintenancePolicyDailyMaintenanceWindowResult'],
+                 recurring_windows: Sequence['outputs.GetClusterMaintenancePolicyRecurringWindowResult']):
         pulumi.set(__self__, "daily_maintenance_windows", daily_maintenance_windows)
         pulumi.set(__self__, "recurring_windows", recurring_windows)
 
     @property
     @pulumi.getter(name="dailyMaintenanceWindows")
-    def daily_maintenance_windows(self) -> List['outputs.GetClusterMaintenancePolicyDailyMaintenanceWindowResult']:
+    def daily_maintenance_windows(self) -> Sequence['outputs.GetClusterMaintenancePolicyDailyMaintenanceWindowResult']:
         return pulumi.get(self, "daily_maintenance_windows")
 
     @property
     @pulumi.getter(name="recurringWindows")
-    def recurring_windows(self) -> List['outputs.GetClusterMaintenancePolicyRecurringWindowResult']:
+    def recurring_windows(self) -> Sequence['outputs.GetClusterMaintenancePolicyRecurringWindowResult']:
         return pulumi.get(self, "recurring_windows")
 
 
@@ -3716,7 +3716,7 @@ class GetClusterMaintenancePolicyRecurringWindowResult(dict):
 class GetClusterMasterAuthResult(dict):
     def __init__(__self__, *,
                  client_certificate: str,
-                 client_certificate_configs: List['outputs.GetClusterMasterAuthClientCertificateConfigResult'],
+                 client_certificate_configs: Sequence['outputs.GetClusterMasterAuthClientCertificateConfigResult'],
                  client_key: str,
                  cluster_ca_certificate: str,
                  password: str,
@@ -3735,7 +3735,7 @@ class GetClusterMasterAuthResult(dict):
 
     @property
     @pulumi.getter(name="clientCertificateConfigs")
-    def client_certificate_configs(self) -> List['outputs.GetClusterMasterAuthClientCertificateConfigResult']:
+    def client_certificate_configs(self) -> Sequence['outputs.GetClusterMasterAuthClientCertificateConfigResult']:
         return pulumi.get(self, "client_certificate_configs")
 
     @property
@@ -3774,12 +3774,12 @@ class GetClusterMasterAuthClientCertificateConfigResult(dict):
 @pulumi.output_type
 class GetClusterMasterAuthorizedNetworksConfigResult(dict):
     def __init__(__self__, *,
-                 cidr_blocks: List['outputs.GetClusterMasterAuthorizedNetworksConfigCidrBlockResult']):
+                 cidr_blocks: Sequence['outputs.GetClusterMasterAuthorizedNetworksConfigCidrBlockResult']):
         pulumi.set(__self__, "cidr_blocks", cidr_blocks)
 
     @property
     @pulumi.getter(name="cidrBlocks")
-    def cidr_blocks(self) -> List['outputs.GetClusterMasterAuthorizedNetworksConfigCidrBlockResult']:
+    def cidr_blocks(self) -> Sequence['outputs.GetClusterMasterAuthorizedNetworksConfigCidrBlockResult']:
         return pulumi.get(self, "cidr_blocks")
 
 
@@ -3827,23 +3827,23 @@ class GetClusterNodeConfigResult(dict):
                  boot_disk_kms_key: str,
                  disk_size_gb: float,
                  disk_type: str,
-                 guest_accelerators: List['outputs.GetClusterNodeConfigGuestAcceleratorResult'],
+                 guest_accelerators: Sequence['outputs.GetClusterNodeConfigGuestAcceleratorResult'],
                  image_type: str,
-                 kubelet_configs: List['outputs.GetClusterNodeConfigKubeletConfigResult'],
+                 kubelet_configs: Sequence['outputs.GetClusterNodeConfigKubeletConfigResult'],
                  labels: Mapping[str, str],
-                 linux_node_configs: List['outputs.GetClusterNodeConfigLinuxNodeConfigResult'],
+                 linux_node_configs: Sequence['outputs.GetClusterNodeConfigLinuxNodeConfigResult'],
                  local_ssd_count: float,
                  machine_type: str,
                  metadata: Mapping[str, str],
                  min_cpu_platform: str,
-                 oauth_scopes: List[str],
+                 oauth_scopes: Sequence[str],
                  preemptible: bool,
-                 sandbox_configs: List['outputs.GetClusterNodeConfigSandboxConfigResult'],
+                 sandbox_configs: Sequence['outputs.GetClusterNodeConfigSandboxConfigResult'],
                  service_account: str,
-                 shielded_instance_configs: List['outputs.GetClusterNodeConfigShieldedInstanceConfigResult'],
-                 tags: List[str],
-                 taints: List['outputs.GetClusterNodeConfigTaintResult'],
-                 workload_metadata_configs: List['outputs.GetClusterNodeConfigWorkloadMetadataConfigResult']):
+                 shielded_instance_configs: Sequence['outputs.GetClusterNodeConfigShieldedInstanceConfigResult'],
+                 tags: Sequence[str],
+                 taints: Sequence['outputs.GetClusterNodeConfigTaintResult'],
+                 workload_metadata_configs: Sequence['outputs.GetClusterNodeConfigWorkloadMetadataConfigResult']):
         pulumi.set(__self__, "boot_disk_kms_key", boot_disk_kms_key)
         pulumi.set(__self__, "disk_size_gb", disk_size_gb)
         pulumi.set(__self__, "disk_type", disk_type)
@@ -3882,7 +3882,7 @@ class GetClusterNodeConfigResult(dict):
 
     @property
     @pulumi.getter(name="guestAccelerators")
-    def guest_accelerators(self) -> List['outputs.GetClusterNodeConfigGuestAcceleratorResult']:
+    def guest_accelerators(self) -> Sequence['outputs.GetClusterNodeConfigGuestAcceleratorResult']:
         return pulumi.get(self, "guest_accelerators")
 
     @property
@@ -3892,7 +3892,7 @@ class GetClusterNodeConfigResult(dict):
 
     @property
     @pulumi.getter(name="kubeletConfigs")
-    def kubelet_configs(self) -> List['outputs.GetClusterNodeConfigKubeletConfigResult']:
+    def kubelet_configs(self) -> Sequence['outputs.GetClusterNodeConfigKubeletConfigResult']:
         return pulumi.get(self, "kubelet_configs")
 
     @property
@@ -3902,7 +3902,7 @@ class GetClusterNodeConfigResult(dict):
 
     @property
     @pulumi.getter(name="linuxNodeConfigs")
-    def linux_node_configs(self) -> List['outputs.GetClusterNodeConfigLinuxNodeConfigResult']:
+    def linux_node_configs(self) -> Sequence['outputs.GetClusterNodeConfigLinuxNodeConfigResult']:
         return pulumi.get(self, "linux_node_configs")
 
     @property
@@ -3927,7 +3927,7 @@ class GetClusterNodeConfigResult(dict):
 
     @property
     @pulumi.getter(name="oauthScopes")
-    def oauth_scopes(self) -> List[str]:
+    def oauth_scopes(self) -> Sequence[str]:
         return pulumi.get(self, "oauth_scopes")
 
     @property
@@ -3937,7 +3937,7 @@ class GetClusterNodeConfigResult(dict):
 
     @property
     @pulumi.getter(name="sandboxConfigs")
-    def sandbox_configs(self) -> List['outputs.GetClusterNodeConfigSandboxConfigResult']:
+    def sandbox_configs(self) -> Sequence['outputs.GetClusterNodeConfigSandboxConfigResult']:
         return pulumi.get(self, "sandbox_configs")
 
     @property
@@ -3947,22 +3947,22 @@ class GetClusterNodeConfigResult(dict):
 
     @property
     @pulumi.getter(name="shieldedInstanceConfigs")
-    def shielded_instance_configs(self) -> List['outputs.GetClusterNodeConfigShieldedInstanceConfigResult']:
+    def shielded_instance_configs(self) -> Sequence['outputs.GetClusterNodeConfigShieldedInstanceConfigResult']:
         return pulumi.get(self, "shielded_instance_configs")
 
     @property
     @pulumi.getter
-    def tags(self) -> List[str]:
+    def tags(self) -> Sequence[str]:
         return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
-    def taints(self) -> List['outputs.GetClusterNodeConfigTaintResult']:
+    def taints(self) -> Sequence['outputs.GetClusterNodeConfigTaintResult']:
         return pulumi.get(self, "taints")
 
     @property
     @pulumi.getter(name="workloadMetadataConfigs")
-    def workload_metadata_configs(self) -> List['outputs.GetClusterNodeConfigWorkloadMetadataConfigResult']:
+    def workload_metadata_configs(self) -> Sequence['outputs.GetClusterNodeConfigWorkloadMetadataConfigResult']:
         return pulumi.get(self, "workload_metadata_configs")
 
 
@@ -4095,17 +4095,17 @@ class GetClusterNodeConfigWorkloadMetadataConfigResult(dict):
 @pulumi.output_type
 class GetClusterNodePoolResult(dict):
     def __init__(__self__, *,
-                 autoscalings: List['outputs.GetClusterNodePoolAutoscalingResult'],
+                 autoscalings: Sequence['outputs.GetClusterNodePoolAutoscalingResult'],
                  initial_node_count: float,
-                 instance_group_urls: List[str],
-                 managements: List['outputs.GetClusterNodePoolManagementResult'],
+                 instance_group_urls: Sequence[str],
+                 managements: Sequence['outputs.GetClusterNodePoolManagementResult'],
                  max_pods_per_node: float,
                  name: str,
                  name_prefix: str,
-                 node_configs: List['outputs.GetClusterNodePoolNodeConfigResult'],
+                 node_configs: Sequence['outputs.GetClusterNodePoolNodeConfigResult'],
                  node_count: float,
-                 node_locations: List[str],
-                 upgrade_settings: List['outputs.GetClusterNodePoolUpgradeSettingResult'],
+                 node_locations: Sequence[str],
+                 upgrade_settings: Sequence['outputs.GetClusterNodePoolUpgradeSettingResult'],
                  version: str):
         """
         :param str name: The name of the cluster.
@@ -4125,7 +4125,7 @@ class GetClusterNodePoolResult(dict):
 
     @property
     @pulumi.getter
-    def autoscalings(self) -> List['outputs.GetClusterNodePoolAutoscalingResult']:
+    def autoscalings(self) -> Sequence['outputs.GetClusterNodePoolAutoscalingResult']:
         return pulumi.get(self, "autoscalings")
 
     @property
@@ -4135,12 +4135,12 @@ class GetClusterNodePoolResult(dict):
 
     @property
     @pulumi.getter(name="instanceGroupUrls")
-    def instance_group_urls(self) -> List[str]:
+    def instance_group_urls(self) -> Sequence[str]:
         return pulumi.get(self, "instance_group_urls")
 
     @property
     @pulumi.getter
-    def managements(self) -> List['outputs.GetClusterNodePoolManagementResult']:
+    def managements(self) -> Sequence['outputs.GetClusterNodePoolManagementResult']:
         return pulumi.get(self, "managements")
 
     @property
@@ -4163,7 +4163,7 @@ class GetClusterNodePoolResult(dict):
 
     @property
     @pulumi.getter(name="nodeConfigs")
-    def node_configs(self) -> List['outputs.GetClusterNodePoolNodeConfigResult']:
+    def node_configs(self) -> Sequence['outputs.GetClusterNodePoolNodeConfigResult']:
         return pulumi.get(self, "node_configs")
 
     @property
@@ -4173,12 +4173,12 @@ class GetClusterNodePoolResult(dict):
 
     @property
     @pulumi.getter(name="nodeLocations")
-    def node_locations(self) -> List[str]:
+    def node_locations(self) -> Sequence[str]:
         return pulumi.get(self, "node_locations")
 
     @property
     @pulumi.getter(name="upgradeSettings")
-    def upgrade_settings(self) -> List['outputs.GetClusterNodePoolUpgradeSettingResult']:
+    def upgrade_settings(self) -> Sequence['outputs.GetClusterNodePoolUpgradeSettingResult']:
         return pulumi.get(self, "upgrade_settings")
 
     @property
@@ -4231,23 +4231,23 @@ class GetClusterNodePoolNodeConfigResult(dict):
                  boot_disk_kms_key: str,
                  disk_size_gb: float,
                  disk_type: str,
-                 guest_accelerators: List['outputs.GetClusterNodePoolNodeConfigGuestAcceleratorResult'],
+                 guest_accelerators: Sequence['outputs.GetClusterNodePoolNodeConfigGuestAcceleratorResult'],
                  image_type: str,
-                 kubelet_configs: List['outputs.GetClusterNodePoolNodeConfigKubeletConfigResult'],
+                 kubelet_configs: Sequence['outputs.GetClusterNodePoolNodeConfigKubeletConfigResult'],
                  labels: Mapping[str, str],
-                 linux_node_configs: List['outputs.GetClusterNodePoolNodeConfigLinuxNodeConfigResult'],
+                 linux_node_configs: Sequence['outputs.GetClusterNodePoolNodeConfigLinuxNodeConfigResult'],
                  local_ssd_count: float,
                  machine_type: str,
                  metadata: Mapping[str, str],
                  min_cpu_platform: str,
-                 oauth_scopes: List[str],
+                 oauth_scopes: Sequence[str],
                  preemptible: bool,
-                 sandbox_configs: List['outputs.GetClusterNodePoolNodeConfigSandboxConfigResult'],
+                 sandbox_configs: Sequence['outputs.GetClusterNodePoolNodeConfigSandboxConfigResult'],
                  service_account: str,
-                 shielded_instance_configs: List['outputs.GetClusterNodePoolNodeConfigShieldedInstanceConfigResult'],
-                 tags: List[str],
-                 taints: List['outputs.GetClusterNodePoolNodeConfigTaintResult'],
-                 workload_metadata_configs: List['outputs.GetClusterNodePoolNodeConfigWorkloadMetadataConfigResult']):
+                 shielded_instance_configs: Sequence['outputs.GetClusterNodePoolNodeConfigShieldedInstanceConfigResult'],
+                 tags: Sequence[str],
+                 taints: Sequence['outputs.GetClusterNodePoolNodeConfigTaintResult'],
+                 workload_metadata_configs: Sequence['outputs.GetClusterNodePoolNodeConfigWorkloadMetadataConfigResult']):
         pulumi.set(__self__, "boot_disk_kms_key", boot_disk_kms_key)
         pulumi.set(__self__, "disk_size_gb", disk_size_gb)
         pulumi.set(__self__, "disk_type", disk_type)
@@ -4286,7 +4286,7 @@ class GetClusterNodePoolNodeConfigResult(dict):
 
     @property
     @pulumi.getter(name="guestAccelerators")
-    def guest_accelerators(self) -> List['outputs.GetClusterNodePoolNodeConfigGuestAcceleratorResult']:
+    def guest_accelerators(self) -> Sequence['outputs.GetClusterNodePoolNodeConfigGuestAcceleratorResult']:
         return pulumi.get(self, "guest_accelerators")
 
     @property
@@ -4296,7 +4296,7 @@ class GetClusterNodePoolNodeConfigResult(dict):
 
     @property
     @pulumi.getter(name="kubeletConfigs")
-    def kubelet_configs(self) -> List['outputs.GetClusterNodePoolNodeConfigKubeletConfigResult']:
+    def kubelet_configs(self) -> Sequence['outputs.GetClusterNodePoolNodeConfigKubeletConfigResult']:
         return pulumi.get(self, "kubelet_configs")
 
     @property
@@ -4306,7 +4306,7 @@ class GetClusterNodePoolNodeConfigResult(dict):
 
     @property
     @pulumi.getter(name="linuxNodeConfigs")
-    def linux_node_configs(self) -> List['outputs.GetClusterNodePoolNodeConfigLinuxNodeConfigResult']:
+    def linux_node_configs(self) -> Sequence['outputs.GetClusterNodePoolNodeConfigLinuxNodeConfigResult']:
         return pulumi.get(self, "linux_node_configs")
 
     @property
@@ -4331,7 +4331,7 @@ class GetClusterNodePoolNodeConfigResult(dict):
 
     @property
     @pulumi.getter(name="oauthScopes")
-    def oauth_scopes(self) -> List[str]:
+    def oauth_scopes(self) -> Sequence[str]:
         return pulumi.get(self, "oauth_scopes")
 
     @property
@@ -4341,7 +4341,7 @@ class GetClusterNodePoolNodeConfigResult(dict):
 
     @property
     @pulumi.getter(name="sandboxConfigs")
-    def sandbox_configs(self) -> List['outputs.GetClusterNodePoolNodeConfigSandboxConfigResult']:
+    def sandbox_configs(self) -> Sequence['outputs.GetClusterNodePoolNodeConfigSandboxConfigResult']:
         return pulumi.get(self, "sandbox_configs")
 
     @property
@@ -4351,22 +4351,22 @@ class GetClusterNodePoolNodeConfigResult(dict):
 
     @property
     @pulumi.getter(name="shieldedInstanceConfigs")
-    def shielded_instance_configs(self) -> List['outputs.GetClusterNodePoolNodeConfigShieldedInstanceConfigResult']:
+    def shielded_instance_configs(self) -> Sequence['outputs.GetClusterNodePoolNodeConfigShieldedInstanceConfigResult']:
         return pulumi.get(self, "shielded_instance_configs")
 
     @property
     @pulumi.getter
-    def tags(self) -> List[str]:
+    def tags(self) -> Sequence[str]:
         return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
-    def taints(self) -> List['outputs.GetClusterNodePoolNodeConfigTaintResult']:
+    def taints(self) -> Sequence['outputs.GetClusterNodePoolNodeConfigTaintResult']:
         return pulumi.get(self, "taints")
 
     @property
     @pulumi.getter(name="workloadMetadataConfigs")
-    def workload_metadata_configs(self) -> List['outputs.GetClusterNodePoolNodeConfigWorkloadMetadataConfigResult']:
+    def workload_metadata_configs(self) -> Sequence['outputs.GetClusterNodePoolNodeConfigWorkloadMetadataConfigResult']:
         return pulumi.get(self, "workload_metadata_configs")
 
 
@@ -4532,7 +4532,7 @@ class GetClusterPrivateClusterConfigResult(dict):
     def __init__(__self__, *,
                  enable_private_endpoint: bool,
                  enable_private_nodes: bool,
-                 master_global_access_configs: List['outputs.GetClusterPrivateClusterConfigMasterGlobalAccessConfigResult'],
+                 master_global_access_configs: Sequence['outputs.GetClusterPrivateClusterConfigMasterGlobalAccessConfigResult'],
                  master_ipv4_cidr_block: str,
                  peering_name: str,
                  private_endpoint: str,
@@ -4557,7 +4557,7 @@ class GetClusterPrivateClusterConfigResult(dict):
 
     @property
     @pulumi.getter(name="masterGlobalAccessConfigs")
-    def master_global_access_configs(self) -> List['outputs.GetClusterPrivateClusterConfigMasterGlobalAccessConfigResult']:
+    def master_global_access_configs(self) -> Sequence['outputs.GetClusterPrivateClusterConfigMasterGlobalAccessConfigResult']:
         return pulumi.get(self, "master_global_access_configs")
 
     @property
@@ -4608,7 +4608,7 @@ class GetClusterReleaseChannelResult(dict):
 @pulumi.output_type
 class GetClusterResourceUsageExportConfigResult(dict):
     def __init__(__self__, *,
-                 bigquery_destinations: List['outputs.GetClusterResourceUsageExportConfigBigqueryDestinationResult'],
+                 bigquery_destinations: Sequence['outputs.GetClusterResourceUsageExportConfigBigqueryDestinationResult'],
                  enable_network_egress_metering: bool,
                  enable_resource_consumption_metering: bool):
         pulumi.set(__self__, "bigquery_destinations", bigquery_destinations)
@@ -4617,7 +4617,7 @@ class GetClusterResourceUsageExportConfigResult(dict):
 
     @property
     @pulumi.getter(name="bigqueryDestinations")
-    def bigquery_destinations(self) -> List['outputs.GetClusterResourceUsageExportConfigBigqueryDestinationResult']:
+    def bigquery_destinations(self) -> Sequence['outputs.GetClusterResourceUsageExportConfigBigqueryDestinationResult']:
         return pulumi.get(self, "bigquery_destinations")
 
     @property

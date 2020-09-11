@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 from . import outputs
 
@@ -107,7 +107,7 @@ class GetBackendServiceResult:
 
     @property
     @pulumi.getter
-    def backends(self) -> List['outputs.GetBackendServiceBackendResult']:
+    def backends(self) -> Sequence['outputs.GetBackendServiceBackendResult']:
         """
         The set of backends that serve this Backend Service.
         """
@@ -115,12 +115,12 @@ class GetBackendServiceResult:
 
     @property
     @pulumi.getter(name="cdnPolicies")
-    def cdn_policies(self) -> List['outputs.GetBackendServiceCdnPolicyResult']:
+    def cdn_policies(self) -> Sequence['outputs.GetBackendServiceCdnPolicyResult']:
         return pulumi.get(self, "cdn_policies")
 
     @property
     @pulumi.getter(name="circuitBreakers")
-    def circuit_breakers(self) -> List['outputs.GetBackendServiceCircuitBreakerResult']:
+    def circuit_breakers(self) -> Sequence['outputs.GetBackendServiceCircuitBreakerResult']:
         return pulumi.get(self, "circuit_breakers")
 
     @property
@@ -133,7 +133,7 @@ class GetBackendServiceResult:
 
     @property
     @pulumi.getter(name="consistentHash")
-    def consistent_hash(self) -> List['outputs.GetBackendServiceConsistentHashResult']:
+    def consistent_hash(self) -> Sequence['outputs.GetBackendServiceConsistentHashResult']:
         return pulumi.get(self, "consistent_hash")
 
     @property
@@ -143,7 +143,7 @@ class GetBackendServiceResult:
 
     @property
     @pulumi.getter(name="customRequestHeaders")
-    def custom_request_headers(self) -> List[str]:
+    def custom_request_headers(self) -> Sequence[str]:
         return pulumi.get(self, "custom_request_headers")
 
     @property
@@ -172,7 +172,7 @@ class GetBackendServiceResult:
 
     @property
     @pulumi.getter(name="healthChecks")
-    def health_checks(self) -> List[str]:
+    def health_checks(self) -> Sequence[str]:
         """
         The set of HTTP/HTTPS health checks used by the Backend Service.
         """
@@ -180,7 +180,7 @@ class GetBackendServiceResult:
 
     @property
     @pulumi.getter
-    def iaps(self) -> List['outputs.GetBackendServiceIapResult']:
+    def iaps(self) -> Sequence['outputs.GetBackendServiceIapResult']:
         return pulumi.get(self, "iaps")
 
     @property
@@ -203,7 +203,7 @@ class GetBackendServiceResult:
 
     @property
     @pulumi.getter(name="logConfigs")
-    def log_configs(self) -> List['outputs.GetBackendServiceLogConfigResult']:
+    def log_configs(self) -> Sequence['outputs.GetBackendServiceLogConfigResult']:
         return pulumi.get(self, "log_configs")
 
     @property
@@ -213,7 +213,7 @@ class GetBackendServiceResult:
 
     @property
     @pulumi.getter(name="outlierDetections")
-    def outlier_detections(self) -> List['outputs.GetBackendServiceOutlierDetectionResult']:
+    def outlier_detections(self) -> Sequence['outputs.GetBackendServiceOutlierDetectionResult']:
         return pulumi.get(self, "outlier_detections")
 
     @property

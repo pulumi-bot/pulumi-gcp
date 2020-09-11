@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 from . import outputs
 
@@ -135,15 +135,15 @@ class MetricBucketOptions(dict):
 @pulumi.output_type
 class MetricBucketOptionsExplicitBuckets(dict):
     def __init__(__self__, *,
-                 bounds: List[float]):
+                 bounds: Sequence[float]):
         """
-        :param List[float] bounds: The values must be monotonically increasing.
+        :param Sequence[float] bounds: The values must be monotonically increasing.
         """
         pulumi.set(__self__, "bounds", bounds)
 
     @property
     @pulumi.getter
-    def bounds(self) -> List[float]:
+    def bounds(self) -> Sequence[float]:
         """
         The values must be monotonically increasing.
         """
@@ -251,7 +251,7 @@ class MetricMetricDescriptor(dict):
                  metric_kind: str,
                  value_type: str,
                  display_name: Optional[str] = None,
-                 labels: Optional[List['outputs.MetricMetricDescriptorLabel']] = None,
+                 labels: Optional[Sequence['outputs.MetricMetricDescriptorLabel']] = None,
                  unit: Optional[str] = None):
         """
         :param str metric_kind: Whether the metric records instantaneous values, changes to a value, etc.
@@ -264,7 +264,7 @@ class MetricMetricDescriptor(dict):
         :param str display_name: A concise name for the metric, which can be displayed in user interfaces. Use sentence case
                without an ending period, for example "Request count". This field is optional but it is
                recommended to be set for any metrics associated with user-visible concepts, such as Quota.
-        :param List['MetricMetricDescriptorLabelArgs'] labels: The set of labels that can be used to describe a specific instance of this metric type. For
+        :param Sequence['MetricMetricDescriptorLabelArgs'] labels: The set of labels that can be used to describe a specific instance of this metric type. For
                example, the appengine.googleapis.com/http/server/response_latencies metric type has a label
                for the HTTP response code, response_code, so you can look at latencies for successful responses
                or just for responses that failed.
@@ -315,7 +315,7 @@ class MetricMetricDescriptor(dict):
 
     @property
     @pulumi.getter
-    def labels(self) -> Optional[List['outputs.MetricMetricDescriptorLabel']]:
+    def labels(self) -> Optional[Sequence['outputs.MetricMetricDescriptorLabel']]:
         """
         The set of labels that can be used to describe a specific instance of this metric type. For
         example, the appengine.googleapis.com/http/server/response_latencies metric type has a label
