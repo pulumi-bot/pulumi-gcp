@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
@@ -27,7 +27,7 @@ class Instance(pulumi.CustomResource):
                  node_count: Optional[pulumi.Input[float]] = None,
                  project: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
-                 zones: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 zones: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None,
                  __name__=None,
                  __opts__=None):
@@ -53,7 +53,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         :param pulumi.Input[str] region: The name of the Memcache region of the instance.
-        :param pulumi.Input[List[pulumi.Input[str]]] zones: Zones where memcache nodes should be provisioned.  If not
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] zones: Zones where memcache nodes should be provisioned.  If not
                provided, all zones will be used.
         """
         if __name__ is not None:
@@ -110,7 +110,7 @@ class Instance(pulumi.CustomResource):
             display_name: Optional[pulumi.Input[str]] = None,
             labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             memcache_full_version: Optional[pulumi.Input[str]] = None,
-            memcache_nodes: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['InstanceMemcacheNodeArgs']]]]] = None,
+            memcache_nodes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceMemcacheNodeArgs']]]]] = None,
             memcache_parameters: Optional[pulumi.Input[pulumi.InputType['InstanceMemcacheParametersArgs']]] = None,
             memcache_version: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
@@ -118,7 +118,7 @@ class Instance(pulumi.CustomResource):
             node_count: Optional[pulumi.Input[float]] = None,
             project: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
-            zones: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None) -> 'Instance':
+            zones: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'Instance':
         """
         Get an existing Instance resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -133,7 +133,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] display_name: A user-visible name for the instance.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Resource labels to represent user-provided metadata.
         :param pulumi.Input[str] memcache_full_version: The full version of memcached server running on this instance.
-        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['InstanceMemcacheNodeArgs']]]] memcache_nodes: Additional information about the instance state, if available.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceMemcacheNodeArgs']]]] memcache_nodes: Additional information about the instance state, if available.
         :param pulumi.Input[pulumi.InputType['InstanceMemcacheParametersArgs']] memcache_parameters: User-specified parameters for this memcache instance.
                Structure is documented below.
         :param pulumi.Input[str] memcache_version: The major version of Memcached software. If not provided, latest supported version will be used.
@@ -148,7 +148,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         :param pulumi.Input[str] region: The name of the Memcache region of the instance.
-        :param pulumi.Input[List[pulumi.Input[str]]] zones: Zones where memcache nodes should be provisioned.  If not
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] zones: Zones where memcache nodes should be provisioned.  If not
                provided, all zones will be used.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -223,7 +223,7 @@ class Instance(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="memcacheNodes")
-    def memcache_nodes(self) -> pulumi.Output[List['outputs.InstanceMemcacheNode']]:
+    def memcache_nodes(self) -> pulumi.Output[Sequence['outputs.InstanceMemcacheNode']]:
         """
         Additional information about the instance state, if available.
         """
@@ -294,7 +294,7 @@ class Instance(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def zones(self) -> pulumi.Output[List[str]]:
+    def zones(self) -> pulumi.Output[Sequence[str]]:
         """
         Zones where memcache nodes should be provisioned.  If not
         provided, all zones will be used.

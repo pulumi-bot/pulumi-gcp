@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = [
@@ -257,10 +257,10 @@ class DomainMappingSpecArgs:
 @pulumi.input_type
 class DomainMappingStatusArgs:
     def __init__(__self__, *,
-                 conditions: Optional[pulumi.Input[List[pulumi.Input['DomainMappingStatusConditionArgs']]]] = None,
+                 conditions: Optional[pulumi.Input[Sequence[pulumi.Input['DomainMappingStatusConditionArgs']]]] = None,
                  mapped_route_name: Optional[pulumi.Input[str]] = None,
                  observed_generation: Optional[pulumi.Input[float]] = None,
-                 resource_records: Optional[pulumi.Input[List[pulumi.Input['DomainMappingStatusResourceRecordArgs']]]] = None):
+                 resource_records: Optional[pulumi.Input[Sequence[pulumi.Input['DomainMappingStatusResourceRecordArgs']]]] = None):
         if conditions is not None:
             pulumi.set(__self__, "conditions", conditions)
         if mapped_route_name is not None:
@@ -272,11 +272,11 @@ class DomainMappingStatusArgs:
 
     @property
     @pulumi.getter
-    def conditions(self) -> Optional[pulumi.Input[List[pulumi.Input['DomainMappingStatusConditionArgs']]]]:
+    def conditions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DomainMappingStatusConditionArgs']]]]:
         return pulumi.get(self, "conditions")
 
     @conditions.setter
-    def conditions(self, value: Optional[pulumi.Input[List[pulumi.Input['DomainMappingStatusConditionArgs']]]]):
+    def conditions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DomainMappingStatusConditionArgs']]]]):
         pulumi.set(self, "conditions", value)
 
     @property
@@ -299,11 +299,11 @@ class DomainMappingStatusArgs:
 
     @property
     @pulumi.getter(name="resourceRecords")
-    def resource_records(self) -> Optional[pulumi.Input[List[pulumi.Input['DomainMappingStatusResourceRecordArgs']]]]:
+    def resource_records(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DomainMappingStatusResourceRecordArgs']]]]:
         return pulumi.get(self, "resource_records")
 
     @resource_records.setter
-    def resource_records(self, value: Optional[pulumi.Input[List[pulumi.Input['DomainMappingStatusResourceRecordArgs']]]]):
+    def resource_records(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DomainMappingStatusResourceRecordArgs']]]]):
         pulumi.set(self, "resource_records", value)
 
 
@@ -643,7 +643,7 @@ class ServiceMetadataArgs:
 @pulumi.input_type
 class ServiceStatusArgs:
     def __init__(__self__, *,
-                 conditions: Optional[pulumi.Input[List[pulumi.Input['ServiceStatusConditionArgs']]]] = None,
+                 conditions: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceStatusConditionArgs']]]] = None,
                  latest_created_revision_name: Optional[pulumi.Input[str]] = None,
                  latest_ready_revision_name: Optional[pulumi.Input[str]] = None,
                  observed_generation: Optional[pulumi.Input[float]] = None,
@@ -661,11 +661,11 @@ class ServiceStatusArgs:
 
     @property
     @pulumi.getter
-    def conditions(self) -> Optional[pulumi.Input[List[pulumi.Input['ServiceStatusConditionArgs']]]]:
+    def conditions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceStatusConditionArgs']]]]:
         return pulumi.get(self, "conditions")
 
     @conditions.setter
-    def conditions(self, value: Optional[pulumi.Input[List[pulumi.Input['ServiceStatusConditionArgs']]]]):
+    def conditions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceStatusConditionArgs']]]]):
         pulumi.set(self, "conditions", value)
 
     @property
@@ -978,14 +978,14 @@ class ServiceTemplateMetadataArgs:
 class ServiceTemplateSpecArgs:
     def __init__(__self__, *,
                  container_concurrency: Optional[pulumi.Input[float]] = None,
-                 containers: Optional[pulumi.Input[List[pulumi.Input['ServiceTemplateSpecContainerArgs']]]] = None,
+                 containers: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceTemplateSpecContainerArgs']]]] = None,
                  service_account_name: Optional[pulumi.Input[str]] = None,
                  serving_state: Optional[pulumi.Input[str]] = None,
                  timeout_seconds: Optional[pulumi.Input[float]] = None):
         """
         :param pulumi.Input[float] container_concurrency: ContainerConcurrency specifies the maximum allowed in-flight (concurrent)
                requests per container of the Revision. Values are:
-        :param pulumi.Input[List[pulumi.Input['ServiceTemplateSpecContainerArgs']]] containers: Container defines the unit of execution for this Revision.
+        :param pulumi.Input[Sequence[pulumi.Input['ServiceTemplateSpecContainerArgs']]] containers: Container defines the unit of execution for this Revision.
                In the context of a Revision, we disallow a number of the fields of
                this Container, including: name, ports, and volumeMounts.
                The runtime contract is documented here:
@@ -1031,7 +1031,7 @@ class ServiceTemplateSpecArgs:
 
     @property
     @pulumi.getter
-    def containers(self) -> Optional[pulumi.Input[List[pulumi.Input['ServiceTemplateSpecContainerArgs']]]]:
+    def containers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceTemplateSpecContainerArgs']]]]:
         """
         Container defines the unit of execution for this Revision.
         In the context of a Revision, we disallow a number of the fields of
@@ -1043,7 +1043,7 @@ class ServiceTemplateSpecArgs:
         return pulumi.get(self, "containers")
 
     @containers.setter
-    def containers(self, value: Optional[pulumi.Input[List[pulumi.Input['ServiceTemplateSpecContainerArgs']]]]):
+    def containers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceTemplateSpecContainerArgs']]]]):
         pulumi.set(self, "containers", value)
 
     @property
@@ -1094,18 +1094,18 @@ class ServiceTemplateSpecArgs:
 class ServiceTemplateSpecContainerArgs:
     def __init__(__self__, *,
                  image: pulumi.Input[str],
-                 args: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 commands: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 env_froms: Optional[pulumi.Input[List[pulumi.Input['ServiceTemplateSpecContainerEnvFromArgs']]]] = None,
-                 envs: Optional[pulumi.Input[List[pulumi.Input['ServiceTemplateSpecContainerEnvArgs']]]] = None,
-                 ports: Optional[pulumi.Input[List[pulumi.Input['ServiceTemplateSpecContainerPortArgs']]]] = None,
+                 args: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 commands: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 env_froms: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceTemplateSpecContainerEnvFromArgs']]]] = None,
+                 envs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceTemplateSpecContainerEnvArgs']]]] = None,
+                 ports: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceTemplateSpecContainerPortArgs']]]] = None,
                  resources: Optional[pulumi.Input['ServiceTemplateSpecContainerResourcesArgs']] = None,
                  working_dir: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] image: Docker image name. This is most often a reference to a container located
                in the container registry, such as gcr.io/cloudrun/hello
                More info: https://kubernetes.io/docs/concepts/containers/images
-        :param pulumi.Input[List[pulumi.Input[str]]] args: Arguments to the entrypoint.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] args: Arguments to the entrypoint.
                The docker image's CMD is used if this is not provided.
                Variable references $(VAR_NAME) are expanded using the container's
                environment. If a variable cannot be resolved, the reference in the input
@@ -1114,7 +1114,7 @@ class ServiceTemplateSpecContainerArgs:
                regardless of whether the variable exists or not.
                More info:
                https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
-        :param pulumi.Input[List[pulumi.Input[str]]] commands: Entrypoint array. Not executed within a shell.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] commands: Entrypoint array. Not executed within a shell.
                The docker image's ENTRYPOINT is used if this is not provided.
                Variable references $(VAR_NAME) are expanded using the container's
                environment. If a variable cannot be resolved, the reference in the input
@@ -1123,7 +1123,7 @@ class ServiceTemplateSpecContainerArgs:
                regardless of whether the variable exists or not.
                More info:
                https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
-        :param pulumi.Input[List[pulumi.Input['ServiceTemplateSpecContainerEnvFromArgs']]] env_froms: -
+        :param pulumi.Input[Sequence[pulumi.Input['ServiceTemplateSpecContainerEnvFromArgs']]] env_froms: -
                (Optional, Deprecated)
                List of sources to populate environment variables in the container.
                All invalid keys will be reported as an event when the container is starting.
@@ -1131,9 +1131,9 @@ class ServiceTemplateSpecContainerArgs:
                take precedence. Values defined by an Env with a duplicate key will take
                precedence.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input['ServiceTemplateSpecContainerEnvArgs']]] envs: List of environment variables to set in the container.
+        :param pulumi.Input[Sequence[pulumi.Input['ServiceTemplateSpecContainerEnvArgs']]] envs: List of environment variables to set in the container.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input['ServiceTemplateSpecContainerPortArgs']]] ports: List of open ports in the container.
+        :param pulumi.Input[Sequence[pulumi.Input['ServiceTemplateSpecContainerPortArgs']]] ports: List of open ports in the container.
                More Info:
                https://cloud.google.com/run/docs/reference/rest/v1/RevisionSpec#ContainerPort
                Structure is documented below.
@@ -1185,7 +1185,7 @@ class ServiceTemplateSpecContainerArgs:
 
     @property
     @pulumi.getter
-    def args(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def args(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Arguments to the entrypoint.
         The docker image's CMD is used if this is not provided.
@@ -1200,12 +1200,12 @@ class ServiceTemplateSpecContainerArgs:
         return pulumi.get(self, "args")
 
     @args.setter
-    def args(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def args(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "args", value)
 
     @property
     @pulumi.getter
-    def commands(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def commands(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Entrypoint array. Not executed within a shell.
         The docker image's ENTRYPOINT is used if this is not provided.
@@ -1220,12 +1220,12 @@ class ServiceTemplateSpecContainerArgs:
         return pulumi.get(self, "commands")
 
     @commands.setter
-    def commands(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def commands(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "commands", value)
 
     @property
     @pulumi.getter(name="envFroms")
-    def env_froms(self) -> Optional[pulumi.Input[List[pulumi.Input['ServiceTemplateSpecContainerEnvFromArgs']]]]:
+    def env_froms(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceTemplateSpecContainerEnvFromArgs']]]]:
         """
         -
         (Optional, Deprecated)
@@ -1239,12 +1239,12 @@ class ServiceTemplateSpecContainerArgs:
         return pulumi.get(self, "env_froms")
 
     @env_froms.setter
-    def env_froms(self, value: Optional[pulumi.Input[List[pulumi.Input['ServiceTemplateSpecContainerEnvFromArgs']]]]):
+    def env_froms(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceTemplateSpecContainerEnvFromArgs']]]]):
         pulumi.set(self, "env_froms", value)
 
     @property
     @pulumi.getter
-    def envs(self) -> Optional[pulumi.Input[List[pulumi.Input['ServiceTemplateSpecContainerEnvArgs']]]]:
+    def envs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceTemplateSpecContainerEnvArgs']]]]:
         """
         List of environment variables to set in the container.
         Structure is documented below.
@@ -1252,12 +1252,12 @@ class ServiceTemplateSpecContainerArgs:
         return pulumi.get(self, "envs")
 
     @envs.setter
-    def envs(self, value: Optional[pulumi.Input[List[pulumi.Input['ServiceTemplateSpecContainerEnvArgs']]]]):
+    def envs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceTemplateSpecContainerEnvArgs']]]]):
         pulumi.set(self, "envs", value)
 
     @property
     @pulumi.getter
-    def ports(self) -> Optional[pulumi.Input[List[pulumi.Input['ServiceTemplateSpecContainerPortArgs']]]]:
+    def ports(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceTemplateSpecContainerPortArgs']]]]:
         """
         List of open ports in the container.
         More Info:
@@ -1267,7 +1267,7 @@ class ServiceTemplateSpecContainerArgs:
         return pulumi.get(self, "ports")
 
     @ports.setter
-    def ports(self, value: Optional[pulumi.Input[List[pulumi.Input['ServiceTemplateSpecContainerPortArgs']]]]):
+    def ports(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceTemplateSpecContainerPortArgs']]]]):
         pulumi.set(self, "ports", value)
 
     @property

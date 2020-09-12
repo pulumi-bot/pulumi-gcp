@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = [
@@ -40,14 +40,14 @@ __all__ = [
 class BucketCorArgs:
     def __init__(__self__, *,
                  max_age_seconds: Optional[pulumi.Input[float]] = None,
-                 methods: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 origins: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 response_headers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 methods: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 origins: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 response_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         :param pulumi.Input[float] max_age_seconds: The value, in seconds, to return in the [Access-Control-Max-Age header](https://www.w3.org/TR/cors/#access-control-max-age-response-header) used in preflight responses.
-        :param pulumi.Input[List[pulumi.Input[str]]] methods: The list of HTTP methods on which to include CORS response headers, (GET, OPTIONS, POST, etc) Note: "*" is permitted in the list of methods, and means "any method".
-        :param pulumi.Input[List[pulumi.Input[str]]] origins: The list of [Origins](https://tools.ietf.org/html/rfc6454) eligible to receive CORS response headers. Note: "*" is permitted in the list of origins, and means "any Origin".
-        :param pulumi.Input[List[pulumi.Input[str]]] response_headers: The list of HTTP headers other than the [simple response headers](https://www.w3.org/TR/cors/#simple-response-header) to give permission for the user-agent to share across domains.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] methods: The list of HTTP methods on which to include CORS response headers, (GET, OPTIONS, POST, etc) Note: "*" is permitted in the list of methods, and means "any method".
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] origins: The list of [Origins](https://tools.ietf.org/html/rfc6454) eligible to receive CORS response headers. Note: "*" is permitted in the list of origins, and means "any Origin".
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] response_headers: The list of HTTP headers other than the [simple response headers](https://www.w3.org/TR/cors/#simple-response-header) to give permission for the user-agent to share across domains.
         """
         if max_age_seconds is not None:
             pulumi.set(__self__, "max_age_seconds", max_age_seconds)
@@ -72,38 +72,38 @@ class BucketCorArgs:
 
     @property
     @pulumi.getter
-    def methods(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def methods(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         The list of HTTP methods on which to include CORS response headers, (GET, OPTIONS, POST, etc) Note: "*" is permitted in the list of methods, and means "any method".
         """
         return pulumi.get(self, "methods")
 
     @methods.setter
-    def methods(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def methods(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "methods", value)
 
     @property
     @pulumi.getter
-    def origins(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def origins(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         The list of [Origins](https://tools.ietf.org/html/rfc6454) eligible to receive CORS response headers. Note: "*" is permitted in the list of origins, and means "any Origin".
         """
         return pulumi.get(self, "origins")
 
     @origins.setter
-    def origins(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def origins(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "origins", value)
 
     @property
     @pulumi.getter(name="responseHeaders")
-    def response_headers(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def response_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         The list of HTTP headers other than the [simple response headers](https://www.w3.org/TR/cors/#simple-response-header) to give permission for the user-agent to share across domains.
         """
         return pulumi.get(self, "response_headers")
 
     @response_headers.setter
-    def response_headers(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def response_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "response_headers", value)
 
 
@@ -309,13 +309,13 @@ class BucketLifecycleRuleConditionArgs:
     def __init__(__self__, *,
                  age: Optional[pulumi.Input[float]] = None,
                  created_before: Optional[pulumi.Input[str]] = None,
-                 matches_storage_classes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 matches_storage_classes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  num_newer_versions: Optional[pulumi.Input[float]] = None,
                  with_state: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[float] age: Minimum age of an object in days to satisfy this condition.
         :param pulumi.Input[str] created_before: Creation date of an object in RFC 3339 (e.g. `2017-06-13`) to satisfy this condition.
-        :param pulumi.Input[List[pulumi.Input[str]]] matches_storage_classes: [Storage Class](https://cloud.google.com/storage/docs/storage-classes) of objects to satisfy this condition. Supported values include: `MULTI_REGIONAL`, `REGIONAL`, `NEARLINE`, `COLDLINE`, `ARCHIVE`, `STANDARD`, `DURABLE_REDUCED_AVAILABILITY`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] matches_storage_classes: [Storage Class](https://cloud.google.com/storage/docs/storage-classes) of objects to satisfy this condition. Supported values include: `MULTI_REGIONAL`, `REGIONAL`, `NEARLINE`, `COLDLINE`, `ARCHIVE`, `STANDARD`, `DURABLE_REDUCED_AVAILABILITY`.
         :param pulumi.Input[float] num_newer_versions: Relevant only for versioned objects. The number of newer versions of an object to satisfy this condition.
         :param pulumi.Input[str] with_state: Match to live and/or archived objects. Unversioned buckets have only live objects. Supported values include: `"LIVE"`, `"ARCHIVED"`, `"ANY"`.
         """
@@ -356,14 +356,14 @@ class BucketLifecycleRuleConditionArgs:
 
     @property
     @pulumi.getter(name="matchesStorageClasses")
-    def matches_storage_classes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def matches_storage_classes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         [Storage Class](https://cloud.google.com/storage/docs/storage-classes) of objects to satisfy this condition. Supported values include: `MULTI_REGIONAL`, `REGIONAL`, `NEARLINE`, `COLDLINE`, `ARCHIVE`, `STANDARD`, `DURABLE_REDUCED_AVAILABILITY`.
         """
         return pulumi.get(self, "matches_storage_classes")
 
     @matches_storage_classes.setter
-    def matches_storage_classes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def matches_storage_classes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "matches_storage_classes", value)
 
     @property
@@ -1063,13 +1063,13 @@ class TransferJobTransferSpecHttpDataSourceArgs:
 @pulumi.input_type
 class TransferJobTransferSpecObjectConditionsArgs:
     def __init__(__self__, *,
-                 exclude_prefixes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 include_prefixes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 exclude_prefixes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 include_prefixes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  max_time_elapsed_since_last_modification: Optional[pulumi.Input[str]] = None,
                  min_time_elapsed_since_last_modification: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input[str]]] exclude_prefixes: `exclude_prefixes` must follow the requirements described for `include_prefixes`. See [Requirements](https://cloud.google.com/storage-transfer/docs/reference/rest/v1/TransferSpec#ObjectConditions).
-        :param pulumi.Input[List[pulumi.Input[str]]] include_prefixes: If `include_refixes` is specified, objects that satisfy the object conditions must have names that start with one of the `include_prefixes` and that do not start with any of the `exclude_prefixes`. If `include_prefixes` is not specified, all objects except those that have names starting with one of the `exclude_prefixes` must satisfy the object conditions. See [Requirements](https://cloud.google.com/storage-transfer/docs/reference/rest/v1/TransferSpec#ObjectConditions).
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] exclude_prefixes: `exclude_prefixes` must follow the requirements described for `include_prefixes`. See [Requirements](https://cloud.google.com/storage-transfer/docs/reference/rest/v1/TransferSpec#ObjectConditions).
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] include_prefixes: If `include_refixes` is specified, objects that satisfy the object conditions must have names that start with one of the `include_prefixes` and that do not start with any of the `exclude_prefixes`. If `include_prefixes` is not specified, all objects except those that have names starting with one of the `exclude_prefixes` must satisfy the object conditions. See [Requirements](https://cloud.google.com/storage-transfer/docs/reference/rest/v1/TransferSpec#ObjectConditions).
         :param pulumi.Input[str] max_time_elapsed_since_last_modification: A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s".
         :param pulumi.Input[str] min_time_elapsed_since_last_modification: A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s".
         """
@@ -1084,26 +1084,26 @@ class TransferJobTransferSpecObjectConditionsArgs:
 
     @property
     @pulumi.getter(name="excludePrefixes")
-    def exclude_prefixes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def exclude_prefixes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         `exclude_prefixes` must follow the requirements described for `include_prefixes`. See [Requirements](https://cloud.google.com/storage-transfer/docs/reference/rest/v1/TransferSpec#ObjectConditions).
         """
         return pulumi.get(self, "exclude_prefixes")
 
     @exclude_prefixes.setter
-    def exclude_prefixes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def exclude_prefixes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "exclude_prefixes", value)
 
     @property
     @pulumi.getter(name="includePrefixes")
-    def include_prefixes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def include_prefixes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         If `include_refixes` is specified, objects that satisfy the object conditions must have names that start with one of the `include_prefixes` and that do not start with any of the `exclude_prefixes`. If `include_prefixes` is not specified, all objects except those that have names starting with one of the `exclude_prefixes` must satisfy the object conditions. See [Requirements](https://cloud.google.com/storage-transfer/docs/reference/rest/v1/TransferSpec#ObjectConditions).
         """
         return pulumi.get(self, "include_prefixes")
 
     @include_prefixes.setter
-    def include_prefixes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def include_prefixes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "include_prefixes", value)
 
     @property

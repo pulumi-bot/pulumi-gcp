@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = ['RegionTargetHttpsProxy']
@@ -19,7 +19,7 @@ class RegionTargetHttpsProxy(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  project: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
-                 ssl_certificates: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 ssl_certificates: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  url_map: Optional[pulumi.Input[str]] = None,
                  __props__=None,
                  __name__=None,
@@ -50,7 +50,7 @@ class RegionTargetHttpsProxy(pulumi.CustomResource):
                If it is not provided, the provider project is used.
         :param pulumi.Input[str] region: The Region in which the created target https proxy should reside.
                If it is not provided, the provider region is used.
-        :param pulumi.Input[List[pulumi.Input[str]]] ssl_certificates: A list of RegionSslCertificate resources that are used to authenticate
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ssl_certificates: A list of RegionSslCertificate resources that are used to authenticate
                connections between users and the load balancer. Currently, exactly
                one SSL certificate must be specified.
         :param pulumi.Input[str] url_map: A reference to the RegionUrlMap resource that defines the mapping from URL
@@ -103,7 +103,7 @@ class RegionTargetHttpsProxy(pulumi.CustomResource):
             proxy_id: Optional[pulumi.Input[float]] = None,
             region: Optional[pulumi.Input[str]] = None,
             self_link: Optional[pulumi.Input[str]] = None,
-            ssl_certificates: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            ssl_certificates: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             url_map: Optional[pulumi.Input[str]] = None) -> 'RegionTargetHttpsProxy':
         """
         Get an existing RegionTargetHttpsProxy resource's state with the given name, id, and optional extra
@@ -127,7 +127,7 @@ class RegionTargetHttpsProxy(pulumi.CustomResource):
         :param pulumi.Input[str] region: The Region in which the created target https proxy should reside.
                If it is not provided, the provider region is used.
         :param pulumi.Input[str] self_link: The URI of the created resource.
-        :param pulumi.Input[List[pulumi.Input[str]]] ssl_certificates: A list of RegionSslCertificate resources that are used to authenticate
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ssl_certificates: A list of RegionSslCertificate resources that are used to authenticate
                connections between users and the load balancer. Currently, exactly
                one SSL certificate must be specified.
         :param pulumi.Input[str] url_map: A reference to the RegionUrlMap resource that defines the mapping from URL
@@ -214,7 +214,7 @@ class RegionTargetHttpsProxy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="sslCertificates")
-    def ssl_certificates(self) -> pulumi.Output[List[str]]:
+    def ssl_certificates(self) -> pulumi.Output[Sequence[str]]:
         """
         A list of RegionSslCertificate resources that are used to authenticate
         connections between users and the load balancer. Currently, exactly

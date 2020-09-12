@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
@@ -92,7 +92,7 @@ class MangedSslCertificate(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             project: Optional[pulumi.Input[str]] = None,
             self_link: Optional[pulumi.Input[str]] = None,
-            subject_alternative_names: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            subject_alternative_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             type: Optional[pulumi.Input[str]] = None) -> 'MangedSslCertificate':
         """
         Get an existing MangedSslCertificate resource's state with the given name, id, and optional extra
@@ -112,7 +112,7 @@ class MangedSslCertificate(pulumi.CustomResource):
                '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
                must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash. These are in the same
                namespace as the managed SSL certificates.
-        :param pulumi.Input[List[pulumi.Input[str]]] subject_alternative_names: Domains associated with the certificate via Subject Alternative Name.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] subject_alternative_names: Domains associated with the certificate via Subject Alternative Name.
         :param pulumi.Input[str] type: Enum field whose value is always 'MANAGED' - used to signal to the API which type this is. Default value: "MANAGED"
                Possible values: ["MANAGED"]
         """
@@ -197,7 +197,7 @@ class MangedSslCertificate(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="subjectAlternativeNames")
-    def subject_alternative_names(self) -> pulumi.Output[List[str]]:
+    def subject_alternative_names(self) -> pulumi.Output[Sequence[str]]:
         """
         Domains associated with the certificate via Subject Alternative Name.
         """

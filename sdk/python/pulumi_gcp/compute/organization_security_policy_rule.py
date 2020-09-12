@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
@@ -25,8 +25,8 @@ class OrganizationSecurityPolicyRule(pulumi.CustomResource):
                  policy_id: Optional[pulumi.Input[str]] = None,
                  preview: Optional[pulumi.Input[bool]] = None,
                  priority: Optional[pulumi.Input[float]] = None,
-                 target_resources: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 target_service_accounts: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 target_resources: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 target_service_accounts: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None,
                  __name__=None,
                  __opts__=None):
@@ -49,11 +49,11 @@ class OrganizationSecurityPolicyRule(pulumi.CustomResource):
         :param pulumi.Input[float] priority: An integer indicating the priority of a rule in the list. The priority must be a value
                between 0 and 2147483647. Rules are evaluated from highest to lowest priority where 0 is the
                highest priority and 2147483647 is the lowest prority.
-        :param pulumi.Input[List[pulumi.Input[str]]] target_resources: A list of network resource URLs to which this rule applies.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] target_resources: A list of network resource URLs to which this rule applies.
                This field allows you to control which network's VMs get
                this rule. If this field is left blank, all VMs
                within the organization will receive the rule.
-        :param pulumi.Input[List[pulumi.Input[str]]] target_service_accounts: A list of service accounts indicating the sets of
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] target_service_accounts: A list of service accounts indicating the sets of
                instances that are applied with this rule.
         """
         if __name__ is not None:
@@ -109,8 +109,8 @@ class OrganizationSecurityPolicyRule(pulumi.CustomResource):
             policy_id: Optional[pulumi.Input[str]] = None,
             preview: Optional[pulumi.Input[bool]] = None,
             priority: Optional[pulumi.Input[float]] = None,
-            target_resources: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-            target_service_accounts: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None) -> 'OrganizationSecurityPolicyRule':
+            target_resources: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            target_service_accounts: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'OrganizationSecurityPolicyRule':
         """
         Get an existing OrganizationSecurityPolicyRule resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -133,11 +133,11 @@ class OrganizationSecurityPolicyRule(pulumi.CustomResource):
         :param pulumi.Input[float] priority: An integer indicating the priority of a rule in the list. The priority must be a value
                between 0 and 2147483647. Rules are evaluated from highest to lowest priority where 0 is the
                highest priority and 2147483647 is the lowest prority.
-        :param pulumi.Input[List[pulumi.Input[str]]] target_resources: A list of network resource URLs to which this rule applies.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] target_resources: A list of network resource URLs to which this rule applies.
                This field allows you to control which network's VMs get
                this rule. If this field is left blank, all VMs
                within the organization will receive the rule.
-        :param pulumi.Input[List[pulumi.Input[str]]] target_service_accounts: A list of service accounts indicating the sets of
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] target_service_accounts: A list of service accounts indicating the sets of
                instances that are applied with this rule.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -229,7 +229,7 @@ class OrganizationSecurityPolicyRule(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="targetResources")
-    def target_resources(self) -> pulumi.Output[Optional[List[str]]]:
+    def target_resources(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         A list of network resource URLs to which this rule applies.
         This field allows you to control which network's VMs get
@@ -240,7 +240,7 @@ class OrganizationSecurityPolicyRule(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="targetServiceAccounts")
-    def target_service_accounts(self) -> pulumi.Output[Optional[List[str]]]:
+    def target_service_accounts(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         A list of service accounts indicating the sets of
         instances that are applied with this rule.

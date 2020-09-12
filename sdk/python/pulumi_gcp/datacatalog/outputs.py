@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 from . import outputs
 
@@ -124,10 +124,10 @@ class EntryBigqueryTableSpecViewSpec(dict):
 @pulumi.output_type
 class EntryGcsFilesetSpec(dict):
     def __init__(__self__, *,
-                 file_patterns: List[str],
-                 sample_gcs_file_specs: Optional[List['outputs.EntryGcsFilesetSpecSampleGcsFileSpec']] = None):
+                 file_patterns: Sequence[str],
+                 sample_gcs_file_specs: Optional[Sequence['outputs.EntryGcsFilesetSpecSampleGcsFileSpec']] = None):
         """
-        :param List[str] file_patterns: Patterns to identify a set of files in Google Cloud Storage.
+        :param Sequence[str] file_patterns: Patterns to identify a set of files in Google Cloud Storage.
                See [Cloud Storage documentation](https://cloud.google.com/storage/docs/gsutil/addlhelp/WildcardNames)
                for more information. Note that bucket wildcards are currently not supported. Examples of valid filePatterns:
                * gs://bucket_name/dir/*: matches all files within bucket_name/dir directory.
@@ -138,7 +138,7 @@ class EntryGcsFilesetSpec(dict):
                * gs://bucket_name/[a-m].txt: matches files that contain a, b, ... or m followed by .txt in bucket_name
                * gs://bucket_name/a/*/b: matches all files in bucket_name that match a/*/b pattern, such as a/c/b, a/d/b
                * gs://another_bucket/a.txt: matches gs://another_bucket/a.txt
-        :param List['EntryGcsFilesetSpecSampleGcsFileSpecArgs'] sample_gcs_file_specs: -
+        :param Sequence['EntryGcsFilesetSpecSampleGcsFileSpecArgs'] sample_gcs_file_specs: -
                Sample files contained in this fileset, not all files contained in this fileset are represented here.
                Structure is documented below.
         """
@@ -148,7 +148,7 @@ class EntryGcsFilesetSpec(dict):
 
     @property
     @pulumi.getter(name="filePatterns")
-    def file_patterns(self) -> List[str]:
+    def file_patterns(self) -> Sequence[str]:
         """
         Patterns to identify a set of files in Google Cloud Storage.
         See [Cloud Storage documentation](https://cloud.google.com/storage/docs/gsutil/addlhelp/WildcardNames)
@@ -166,7 +166,7 @@ class EntryGcsFilesetSpec(dict):
 
     @property
     @pulumi.getter(name="sampleGcsFileSpecs")
-    def sample_gcs_file_specs(self) -> Optional[List['outputs.EntryGcsFilesetSpecSampleGcsFileSpec']]:
+    def sample_gcs_file_specs(self) -> Optional[Sequence['outputs.EntryGcsFilesetSpecSampleGcsFileSpec']]:
         """
         -
         Sample files contained in this fileset, not all files contained in this fileset are represented here.
@@ -524,9 +524,9 @@ class TagTemplateFieldType(dict):
 @pulumi.output_type
 class TagTemplateFieldTypeEnumType(dict):
     def __init__(__self__, *,
-                 allowed_values: List['outputs.TagTemplateFieldTypeEnumTypeAllowedValue']):
+                 allowed_values: Sequence['outputs.TagTemplateFieldTypeEnumTypeAllowedValue']):
         """
-        :param List['TagTemplateFieldTypeEnumTypeAllowedValueArgs'] allowed_values: The set of allowed values for this enum. The display names of the
+        :param Sequence['TagTemplateFieldTypeEnumTypeAllowedValueArgs'] allowed_values: The set of allowed values for this enum. The display names of the
                values must be case-insensitively unique within this set. Currently,
                enum values can only be added to the list of allowed values. Deletion
                and renaming of enum values are not supported.
@@ -537,7 +537,7 @@ class TagTemplateFieldTypeEnumType(dict):
 
     @property
     @pulumi.getter(name="allowedValues")
-    def allowed_values(self) -> List['outputs.TagTemplateFieldTypeEnumTypeAllowedValue']:
+    def allowed_values(self) -> Sequence['outputs.TagTemplateFieldTypeEnumTypeAllowedValue']:
         """
         The set of allowed values for this enum. The display names of the
         values must be case-insensitively unique within this set. Currently,

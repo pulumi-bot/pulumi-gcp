@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
@@ -27,7 +27,7 @@ class NodePool(pulumi.CustomResource):
                  name_prefix: Optional[pulumi.Input[str]] = None,
                  node_config: Optional[pulumi.Input[pulumi.InputType['NodePoolNodeConfigArgs']]] = None,
                  node_count: Optional[pulumi.Input[float]] = None,
-                 node_locations: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 node_locations: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  project: Optional[pulumi.Input[str]] = None,
                  upgrade_settings: Optional[pulumi.Input[pulumi.InputType['NodePoolUpgradeSettingsArgs']]] = None,
                  version: Optional[pulumi.Input[str]] = None,
@@ -64,7 +64,7 @@ class NodePool(pulumi.CustomResource):
                container.Cluster for schema.
         :param pulumi.Input[float] node_count: The number of nodes per instance group. This field can be used to
                update the number of nodes per instance group but should not be used alongside `autoscaling`.
-        :param pulumi.Input[List[pulumi.Input[str]]] node_locations: The list of zones in which the node pool's nodes should be located. Nodes must
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] node_locations: The list of zones in which the node pool's nodes should be located. Nodes must
                be in the region of their regional cluster or in the same region as their
                cluster's zone for zonal clusters. If unspecified, the cluster-level
                `node_locations` will be used.
@@ -127,7 +127,7 @@ class NodePool(pulumi.CustomResource):
             autoscaling: Optional[pulumi.Input[pulumi.InputType['NodePoolAutoscalingArgs']]] = None,
             cluster: Optional[pulumi.Input[str]] = None,
             initial_node_count: Optional[pulumi.Input[float]] = None,
-            instance_group_urls: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            instance_group_urls: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             location: Optional[pulumi.Input[str]] = None,
             management: Optional[pulumi.Input[pulumi.InputType['NodePoolManagementArgs']]] = None,
             max_pods_per_node: Optional[pulumi.Input[float]] = None,
@@ -135,7 +135,7 @@ class NodePool(pulumi.CustomResource):
             name_prefix: Optional[pulumi.Input[str]] = None,
             node_config: Optional[pulumi.Input[pulumi.InputType['NodePoolNodeConfigArgs']]] = None,
             node_count: Optional[pulumi.Input[float]] = None,
-            node_locations: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            node_locations: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             project: Optional[pulumi.Input[str]] = None,
             upgrade_settings: Optional[pulumi.Input[pulumi.InputType['NodePoolUpgradeSettingsArgs']]] = None,
             version: Optional[pulumi.Input[str]] = None) -> 'NodePool':
@@ -151,7 +151,7 @@ class NodePool(pulumi.CustomResource):
         :param pulumi.Input[str] cluster: The cluster to create the node pool for. Cluster must be present in `location` provided for zonal clusters.
         :param pulumi.Input[float] initial_node_count: The initial number of nodes for the pool. In regional or multi-zonal clusters, this is the number of nodes per zone.
                Changing this will force recreation of the resource.
-        :param pulumi.Input[List[pulumi.Input[str]]] instance_group_urls: The resource URLs of the managed instance groups associated with this node pool.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] instance_group_urls: The resource URLs of the managed instance groups associated with this node pool.
         :param pulumi.Input[str] location: The location (region or zone) of the cluster.
         :param pulumi.Input[pulumi.InputType['NodePoolManagementArgs']] management: Node management configuration, wherein auto-repair and
                auto-upgrade is configured. Structure is documented below.
@@ -168,7 +168,7 @@ class NodePool(pulumi.CustomResource):
                container.Cluster for schema.
         :param pulumi.Input[float] node_count: The number of nodes per instance group. This field can be used to
                update the number of nodes per instance group but should not be used alongside `autoscaling`.
-        :param pulumi.Input[List[pulumi.Input[str]]] node_locations: The list of zones in which the node pool's nodes should be located. Nodes must
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] node_locations: The list of zones in which the node pool's nodes should be located. Nodes must
                be in the region of their regional cluster or in the same region as their
                cluster's zone for zonal clusters. If unspecified, the cluster-level
                `node_locations` will be used.
@@ -233,7 +233,7 @@ class NodePool(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="instanceGroupUrls")
-    def instance_group_urls(self) -> pulumi.Output[List[str]]:
+    def instance_group_urls(self) -> pulumi.Output[Sequence[str]]:
         """
         The resource URLs of the managed instance groups associated with this node pool.
         """
@@ -306,7 +306,7 @@ class NodePool(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="nodeLocations")
-    def node_locations(self) -> pulumi.Output[List[str]]:
+    def node_locations(self) -> pulumi.Output[Sequence[str]]:
         """
         The list of zones in which the node pool's nodes should be located. Nodes must
         be in the region of their regional cluster or in the same region as their

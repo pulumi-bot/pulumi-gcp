@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
@@ -24,7 +24,7 @@ class RegionDisk(pulumi.CustomResource):
                  physical_block_size_bytes: Optional[pulumi.Input[float]] = None,
                  project: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
-                 replica_zones: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 replica_zones: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  size: Optional[pulumi.Input[float]] = None,
                  snapshot: Optional[pulumi.Input[str]] = None,
                  source_snapshot_encryption_key: Optional[pulumi.Input[pulumi.InputType['RegionDiskSourceSnapshotEncryptionKeyArgs']]] = None,
@@ -90,7 +90,7 @@ class RegionDisk(pulumi.CustomResource):
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         :param pulumi.Input[str] region: A reference to the region where the disk resides.
-        :param pulumi.Input[List[pulumi.Input[str]]] replica_zones: URLs of the zones where the disk should be replicated to.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] replica_zones: URLs of the zones where the disk should be replicated to.
         :param pulumi.Input[float] size: Size of the persistent disk, specified in GB. You can specify this
                field when creating a persistent disk using the sourceImage or
                sourceSnapshot parameter, or specify it alone to create an empty
@@ -171,14 +171,14 @@ class RegionDisk(pulumi.CustomResource):
             physical_block_size_bytes: Optional[pulumi.Input[float]] = None,
             project: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
-            replica_zones: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            replica_zones: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             self_link: Optional[pulumi.Input[str]] = None,
             size: Optional[pulumi.Input[float]] = None,
             snapshot: Optional[pulumi.Input[str]] = None,
             source_snapshot_encryption_key: Optional[pulumi.Input[pulumi.InputType['RegionDiskSourceSnapshotEncryptionKeyArgs']]] = None,
             source_snapshot_id: Optional[pulumi.Input[str]] = None,
             type: Optional[pulumi.Input[str]] = None,
-            users: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None) -> 'RegionDisk':
+            users: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'RegionDisk':
         """
         Get an existing RegionDisk resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -218,7 +218,7 @@ class RegionDisk(pulumi.CustomResource):
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         :param pulumi.Input[str] region: A reference to the region where the disk resides.
-        :param pulumi.Input[List[pulumi.Input[str]]] replica_zones: URLs of the zones where the disk should be replicated to.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] replica_zones: URLs of the zones where the disk should be replicated to.
         :param pulumi.Input[str] self_link: The URI of the created resource.
         :param pulumi.Input[float] size: Size of the persistent disk, specified in GB. You can specify this
                field when creating a persistent disk using the sourceImage or
@@ -243,7 +243,7 @@ class RegionDisk(pulumi.CustomResource):
                recreated under the same name, the source snapshot ID would identify the exact version of the snapshot that was used.
         :param pulumi.Input[str] type: URL of the disk type resource describing which disk type to use to
                create the disk. Provide this when creating the disk.
-        :param pulumi.Input[List[pulumi.Input[str]]] users: Links to the users of the disk (attached instances) in form: project/zones/zone/instances/instance
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] users: Links to the users of the disk (attached instances) in form: project/zones/zone/instances/instance
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -381,7 +381,7 @@ class RegionDisk(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="replicaZones")
-    def replica_zones(self) -> pulumi.Output[List[str]]:
+    def replica_zones(self) -> pulumi.Output[Sequence[str]]:
         """
         URLs of the zones where the disk should be replicated to.
         """
@@ -455,7 +455,7 @@ class RegionDisk(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def users(self) -> pulumi.Output[List[str]]:
+    def users(self) -> pulumi.Output[Sequence[str]]:
         """
         Links to the users of the disk (attached instances) in form: project/zones/zone/instances/instance
         """

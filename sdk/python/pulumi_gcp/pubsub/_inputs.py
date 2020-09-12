@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = [
@@ -472,9 +472,9 @@ class TopicIAMMemberConditionArgs:
 @pulumi.input_type
 class TopicMessageStoragePolicyArgs:
     def __init__(__self__, *,
-                 allowed_persistence_regions: pulumi.Input[List[pulumi.Input[str]]]):
+                 allowed_persistence_regions: pulumi.Input[Sequence[pulumi.Input[str]]]):
         """
-        :param pulumi.Input[List[pulumi.Input[str]]] allowed_persistence_regions: A list of IDs of GCP regions where messages that are published to
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_persistence_regions: A list of IDs of GCP regions where messages that are published to
                the topic may be persisted in storage. Messages published by
                publishers running in non-allowed GCP regions (or running outside
                of GCP altogether) will be routed for storage in one of the
@@ -485,7 +485,7 @@ class TopicMessageStoragePolicyArgs:
 
     @property
     @pulumi.getter(name="allowedPersistenceRegions")
-    def allowed_persistence_regions(self) -> pulumi.Input[List[pulumi.Input[str]]]:
+    def allowed_persistence_regions(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
         A list of IDs of GCP regions where messages that are published to
         the topic may be persisted in storage. Messages published by
@@ -497,7 +497,7 @@ class TopicMessageStoragePolicyArgs:
         return pulumi.get(self, "allowed_persistence_regions")
 
     @allowed_persistence_regions.setter
-    def allowed_persistence_regions(self, value: pulumi.Input[List[pulumi.Input[str]]]):
+    def allowed_persistence_regions(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "allowed_persistence_regions", value)
 
 
