@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = [
@@ -527,7 +527,7 @@ class ClusterClusterAutoscalingArgs:
                  enabled: pulumi.Input[bool],
                  auto_provisioning_defaults: Optional[pulumi.Input['ClusterClusterAutoscalingAutoProvisioningDefaultsArgs']] = None,
                  autoscaling_profile: Optional[pulumi.Input[str]] = None,
-                 resource_limits: Optional[pulumi.Input[List[pulumi.Input['ClusterClusterAutoscalingResourceLimitArgs']]]] = None):
+                 resource_limits: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterClusterAutoscalingResourceLimitArgs']]]] = None):
         """
         :param pulumi.Input[bool] enabled: Enable the PodSecurityPolicy controller for this cluster.
                If enabled, pods must be valid under a PodSecurityPolicy to be created.
@@ -537,7 +537,7 @@ class ClusterClusterAutoscalingArgs:
                options for the [Autoscaling profile](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-autoscaler#autoscaling_profiles)
                feature, which lets you choose whether the cluster autoscaler should optimize for resource utilization or resource availability
                when deciding to remove nodes from a cluster. Can be `BALANCED` or `OPTIMIZE_UTILIZATION`. Defaults to `BALANCED`.
-        :param pulumi.Input[List[pulumi.Input['ClusterClusterAutoscalingResourceLimitArgs']]] resource_limits: Global constraints for machine resources in the
+        :param pulumi.Input[Sequence[pulumi.Input['ClusterClusterAutoscalingResourceLimitArgs']]] resource_limits: Global constraints for machine resources in the
                cluster. Configuring the `cpu` and `memory` types is required if node
                auto-provisioning is enabled. These limits will apply to node pool autoscaling
                in addition to node auto-provisioning. Structure is documented below.
@@ -593,7 +593,7 @@ class ClusterClusterAutoscalingArgs:
 
     @property
     @pulumi.getter(name="resourceLimits")
-    def resource_limits(self) -> Optional[pulumi.Input[List[pulumi.Input['ClusterClusterAutoscalingResourceLimitArgs']]]]:
+    def resource_limits(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterClusterAutoscalingResourceLimitArgs']]]]:
         """
         Global constraints for machine resources in the
         cluster. Configuring the `cpu` and `memory` types is required if node
@@ -603,7 +603,7 @@ class ClusterClusterAutoscalingArgs:
         return pulumi.get(self, "resource_limits")
 
     @resource_limits.setter
-    def resource_limits(self, value: Optional[pulumi.Input[List[pulumi.Input['ClusterClusterAutoscalingResourceLimitArgs']]]]):
+    def resource_limits(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterClusterAutoscalingResourceLimitArgs']]]]):
         pulumi.set(self, "resource_limits", value)
 
 
@@ -611,7 +611,7 @@ class ClusterClusterAutoscalingArgs:
 class ClusterClusterAutoscalingAutoProvisioningDefaultsArgs:
     def __init__(__self__, *,
                  min_cpu_platform: Optional[pulumi.Input[str]] = None,
-                 oauth_scopes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 oauth_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  service_account: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] min_cpu_platform: Minimum CPU platform to be used by this instance.
@@ -619,7 +619,7 @@ class ClusterClusterAutoscalingAutoProvisioningDefaultsArgs:
                values are the friendly names of CPU platforms, such as `Intel Haswell`. See the
                [official documentation](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
                for more information.
-        :param pulumi.Input[List[pulumi.Input[str]]] oauth_scopes: The set of Google API scopes to be made available
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] oauth_scopes: The set of Google API scopes to be made available
                on all of the node VMs under the "default" service account. These can be
                either FQDNs, or scope aliases. The following scopes are necessary to ensure
                the correct functioning of the cluster:
@@ -654,7 +654,7 @@ class ClusterClusterAutoscalingAutoProvisioningDefaultsArgs:
 
     @property
     @pulumi.getter(name="oauthScopes")
-    def oauth_scopes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def oauth_scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         The set of Google API scopes to be made available
         on all of the node VMs under the "default" service account. These can be
@@ -664,7 +664,7 @@ class ClusterClusterAutoscalingAutoProvisioningDefaultsArgs:
         return pulumi.get(self, "oauth_scopes")
 
     @oauth_scopes.setter
-    def oauth_scopes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def oauth_scopes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "oauth_scopes", value)
 
     @property
@@ -688,14 +688,14 @@ class ClusterClusterAutoscalingAutoProvisioningDefaultsArgs:
 class ClusterClusterAutoscalingResourceLimitArgs:
     def __init__(__self__, *,
                  resource_type: pulumi.Input[str],
-                 maximum: Optional[pulumi.Input[float]] = None,
-                 minimum: Optional[pulumi.Input[float]] = None):
+                 maximum: Optional[pulumi.Input[int]] = None,
+                 minimum: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] resource_type: The type of the resource. For example, `cpu` and
                `memory`.  See the [guide to using Node Auto-Provisioning](https://cloud.google.com/kubernetes-engine/docs/how-to/node-auto-provisioning)
                for a list of types.
-        :param pulumi.Input[float] maximum: Maximum amount of the resource in the cluster.
-        :param pulumi.Input[float] minimum: Minimum amount of the resource in the cluster.
+        :param pulumi.Input[int] maximum: Maximum amount of the resource in the cluster.
+        :param pulumi.Input[int] minimum: Minimum amount of the resource in the cluster.
         """
         pulumi.set(__self__, "resource_type", resource_type)
         if maximum is not None:
@@ -719,26 +719,26 @@ class ClusterClusterAutoscalingResourceLimitArgs:
 
     @property
     @pulumi.getter
-    def maximum(self) -> Optional[pulumi.Input[float]]:
+    def maximum(self) -> Optional[pulumi.Input[int]]:
         """
         Maximum amount of the resource in the cluster.
         """
         return pulumi.get(self, "maximum")
 
     @maximum.setter
-    def maximum(self, value: Optional[pulumi.Input[float]]):
+    def maximum(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "maximum", value)
 
     @property
     @pulumi.getter
-    def minimum(self) -> Optional[pulumi.Input[float]]:
+    def minimum(self) -> Optional[pulumi.Input[int]]:
         """
         Minimum amount of the resource in the cluster.
         """
         return pulumi.get(self, "minimum")
 
     @minimum.setter
-    def minimum(self, value: Optional[pulumi.Input[float]]):
+    def minimum(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "minimum", value)
 
 
@@ -1148,9 +1148,9 @@ class ClusterMasterAuthClientCertificateConfigArgs:
 @pulumi.input_type
 class ClusterMasterAuthorizedNetworksConfigArgs:
     def __init__(__self__, *,
-                 cidr_blocks: Optional[pulumi.Input[List[pulumi.Input['ClusterMasterAuthorizedNetworksConfigCidrBlockArgs']]]] = None):
+                 cidr_blocks: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterMasterAuthorizedNetworksConfigCidrBlockArgs']]]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input['ClusterMasterAuthorizedNetworksConfigCidrBlockArgs']]] cidr_blocks: External networks that can access the
+        :param pulumi.Input[Sequence[pulumi.Input['ClusterMasterAuthorizedNetworksConfigCidrBlockArgs']]] cidr_blocks: External networks that can access the
                Kubernetes cluster master through HTTPS.
         """
         if cidr_blocks is not None:
@@ -1158,7 +1158,7 @@ class ClusterMasterAuthorizedNetworksConfigArgs:
 
     @property
     @pulumi.getter(name="cidrBlocks")
-    def cidr_blocks(self) -> Optional[pulumi.Input[List[pulumi.Input['ClusterMasterAuthorizedNetworksConfigCidrBlockArgs']]]]:
+    def cidr_blocks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterMasterAuthorizedNetworksConfigCidrBlockArgs']]]]:
         """
         External networks that can access the
         Kubernetes cluster master through HTTPS.
@@ -1166,7 +1166,7 @@ class ClusterMasterAuthorizedNetworksConfigArgs:
         return pulumi.get(self, "cidr_blocks")
 
     @cidr_blocks.setter
-    def cidr_blocks(self, value: Optional[pulumi.Input[List[pulumi.Input['ClusterMasterAuthorizedNetworksConfigCidrBlockArgs']]]]):
+    def cidr_blocks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterMasterAuthorizedNetworksConfigCidrBlockArgs']]]]):
         pulumi.set(self, "cidr_blocks", value)
 
 
@@ -1254,32 +1254,32 @@ class ClusterNetworkPolicyArgs:
 class ClusterNodeConfigArgs:
     def __init__(__self__, *,
                  boot_disk_kms_key: Optional[pulumi.Input[str]] = None,
-                 disk_size_gb: Optional[pulumi.Input[float]] = None,
+                 disk_size_gb: Optional[pulumi.Input[int]] = None,
                  disk_type: Optional[pulumi.Input[str]] = None,
-                 guest_accelerators: Optional[pulumi.Input[List[pulumi.Input['ClusterNodeConfigGuestAcceleratorArgs']]]] = None,
+                 guest_accelerators: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterNodeConfigGuestAcceleratorArgs']]]] = None,
                  image_type: Optional[pulumi.Input[str]] = None,
                  kubelet_config: Optional[pulumi.Input['ClusterNodeConfigKubeletConfigArgs']] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  linux_node_config: Optional[pulumi.Input['ClusterNodeConfigLinuxNodeConfigArgs']] = None,
-                 local_ssd_count: Optional[pulumi.Input[float]] = None,
+                 local_ssd_count: Optional[pulumi.Input[int]] = None,
                  machine_type: Optional[pulumi.Input[str]] = None,
                  metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  min_cpu_platform: Optional[pulumi.Input[str]] = None,
-                 oauth_scopes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 oauth_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  preemptible: Optional[pulumi.Input[bool]] = None,
                  sandbox_config: Optional[pulumi.Input['ClusterNodeConfigSandboxConfigArgs']] = None,
                  service_account: Optional[pulumi.Input[str]] = None,
                  shielded_instance_config: Optional[pulumi.Input['ClusterNodeConfigShieldedInstanceConfigArgs']] = None,
-                 tags: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 taints: Optional[pulumi.Input[List[pulumi.Input['ClusterNodeConfigTaintArgs']]]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 taints: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterNodeConfigTaintArgs']]]] = None,
                  workload_metadata_config: Optional[pulumi.Input['ClusterNodeConfigWorkloadMetadataConfigArgs']] = None):
         """
         :param pulumi.Input[str] boot_disk_kms_key: The Customer Managed Encryption Key used to encrypt the boot disk attached to each node in the node pool. This should be of the form projects/[KEY_PROJECT_ID]/locations/[LOCATION]/keyRings/[RING_NAME]/cryptoKeys/[KEY_NAME]. For more information about protecting resources with Cloud KMS Keys please see: https://cloud.google.com/compute/docs/disks/customer-managed-encryption
-        :param pulumi.Input[float] disk_size_gb: Size of the disk attached to each node, specified
+        :param pulumi.Input[int] disk_size_gb: Size of the disk attached to each node, specified
                in GB. The smallest allowed disk size is 10GB. Defaults to 100GB.
         :param pulumi.Input[str] disk_type: Type of the disk attached to each node
                (e.g. 'pd-standard', 'pd-balanced' or 'pd-ssd'). If unspecified, the default disk type is 'pd-standard'
-        :param pulumi.Input[List[pulumi.Input['ClusterNodeConfigGuestAcceleratorArgs']]] guest_accelerators: List of the type and count of accelerator cards attached to the instance.
+        :param pulumi.Input[Sequence[pulumi.Input['ClusterNodeConfigGuestAcceleratorArgs']]] guest_accelerators: List of the type and count of accelerator cards attached to the instance.
                Structure documented below.
         :param pulumi.Input[str] image_type: The image type to use for this node. Note that changing the image type
                will delete and recreate all nodes in the node pool.
@@ -1292,7 +1292,7 @@ class ClusterNodeConfigArgs:
                Linux node configuration, currently supported attributes can be found [here](https://cloud.google.com/sdk/gcloud/reference/beta/container/node-pools/create#--system-config-from-file).
                Note that validations happen all server side. All attributes are optional.
                Structure is documented below.
-        :param pulumi.Input[float] local_ssd_count: The amount of local SSD disks that will be
+        :param pulumi.Input[int] local_ssd_count: The amount of local SSD disks that will be
                attached to each cluster node. Defaults to 0.
         :param pulumi.Input[str] machine_type: The name of a Google Compute Engine machine type.
                Defaults to `e2-medium`. To create a custom machine type, value should be set as specified
@@ -1307,7 +1307,7 @@ class ClusterNodeConfigArgs:
                values are the friendly names of CPU platforms, such as `Intel Haswell`. See the
                [official documentation](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
                for more information.
-        :param pulumi.Input[List[pulumi.Input[str]]] oauth_scopes: The set of Google API scopes to be made available
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] oauth_scopes: The set of Google API scopes to be made available
                on all of the node VMs under the "default" service account. These can be
                either FQDNs, or scope aliases. The following scopes are necessary to ensure
                the correct functioning of the cluster:
@@ -1322,9 +1322,9 @@ class ClusterNodeConfigArgs:
                [roles/logging.logWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_logging_roles) and
                [roles/monitoring.metricWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_monitoring_roles) roles.
         :param pulumi.Input['ClusterNodeConfigShieldedInstanceConfigArgs'] shielded_instance_config: Shielded Instance options. Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] tags: The list of instance tags applied to all nodes. Tags are used to identify
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The list of instance tags applied to all nodes. Tags are used to identify
                valid sources or targets for network firewalls.
-        :param pulumi.Input[List[pulumi.Input['ClusterNodeConfigTaintArgs']]] taints: A list of [Kubernetes taints](https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/)
+        :param pulumi.Input[Sequence[pulumi.Input['ClusterNodeConfigTaintArgs']]] taints: A list of [Kubernetes taints](https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/)
                to apply to nodes. GKE's API can only set this field on cluster creation.
                However, GKE will add taints to your nodes if you enable certain features such
                as GPUs. If this field is set, any diffs on this field will cause the provider to
@@ -1390,7 +1390,7 @@ class ClusterNodeConfigArgs:
 
     @property
     @pulumi.getter(name="diskSizeGb")
-    def disk_size_gb(self) -> Optional[pulumi.Input[float]]:
+    def disk_size_gb(self) -> Optional[pulumi.Input[int]]:
         """
         Size of the disk attached to each node, specified
         in GB. The smallest allowed disk size is 10GB. Defaults to 100GB.
@@ -1398,7 +1398,7 @@ class ClusterNodeConfigArgs:
         return pulumi.get(self, "disk_size_gb")
 
     @disk_size_gb.setter
-    def disk_size_gb(self, value: Optional[pulumi.Input[float]]):
+    def disk_size_gb(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "disk_size_gb", value)
 
     @property
@@ -1416,7 +1416,7 @@ class ClusterNodeConfigArgs:
 
     @property
     @pulumi.getter(name="guestAccelerators")
-    def guest_accelerators(self) -> Optional[pulumi.Input[List[pulumi.Input['ClusterNodeConfigGuestAcceleratorArgs']]]]:
+    def guest_accelerators(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterNodeConfigGuestAcceleratorArgs']]]]:
         """
         List of the type and count of accelerator cards attached to the instance.
         Structure documented below.
@@ -1424,7 +1424,7 @@ class ClusterNodeConfigArgs:
         return pulumi.get(self, "guest_accelerators")
 
     @guest_accelerators.setter
-    def guest_accelerators(self, value: Optional[pulumi.Input[List[pulumi.Input['ClusterNodeConfigGuestAcceleratorArgs']]]]):
+    def guest_accelerators(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterNodeConfigGuestAcceleratorArgs']]]]):
         pulumi.set(self, "guest_accelerators", value)
 
     @property
@@ -1484,7 +1484,7 @@ class ClusterNodeConfigArgs:
 
     @property
     @pulumi.getter(name="localSsdCount")
-    def local_ssd_count(self) -> Optional[pulumi.Input[float]]:
+    def local_ssd_count(self) -> Optional[pulumi.Input[int]]:
         """
         The amount of local SSD disks that will be
         attached to each cluster node. Defaults to 0.
@@ -1492,7 +1492,7 @@ class ClusterNodeConfigArgs:
         return pulumi.get(self, "local_ssd_count")
 
     @local_ssd_count.setter
-    def local_ssd_count(self, value: Optional[pulumi.Input[float]]):
+    def local_ssd_count(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "local_ssd_count", value)
 
     @property
@@ -1543,7 +1543,7 @@ class ClusterNodeConfigArgs:
 
     @property
     @pulumi.getter(name="oauthScopes")
-    def oauth_scopes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def oauth_scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         The set of Google API scopes to be made available
         on all of the node VMs under the "default" service account. These can be
@@ -1553,7 +1553,7 @@ class ClusterNodeConfigArgs:
         return pulumi.get(self, "oauth_scopes")
 
     @oauth_scopes.setter
-    def oauth_scopes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def oauth_scopes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "oauth_scopes", value)
 
     @property
@@ -1613,7 +1613,7 @@ class ClusterNodeConfigArgs:
 
     @property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         The list of instance tags applied to all nodes. Tags are used to identify
         valid sources or targets for network firewalls.
@@ -1621,12 +1621,12 @@ class ClusterNodeConfigArgs:
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "tags", value)
 
     @property
     @pulumi.getter
-    def taints(self) -> Optional[pulumi.Input[List[pulumi.Input['ClusterNodeConfigTaintArgs']]]]:
+    def taints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterNodeConfigTaintArgs']]]]:
         """
         A list of [Kubernetes taints](https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/)
         to apply to nodes. GKE's API can only set this field on cluster creation.
@@ -1640,7 +1640,7 @@ class ClusterNodeConfigArgs:
         return pulumi.get(self, "taints")
 
     @taints.setter
-    def taints(self, value: Optional[pulumi.Input[List[pulumi.Input['ClusterNodeConfigTaintArgs']]]]):
+    def taints(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterNodeConfigTaintArgs']]]]):
         pulumi.set(self, "taints", value)
 
     @property
@@ -1660,10 +1660,10 @@ class ClusterNodeConfigArgs:
 @pulumi.input_type
 class ClusterNodeConfigGuestAcceleratorArgs:
     def __init__(__self__, *,
-                 count: pulumi.Input[float],
+                 count: pulumi.Input[int],
                  type: pulumi.Input[str]):
         """
-        :param pulumi.Input[float] count: The number of the guest accelerator cards exposed to this instance.
+        :param pulumi.Input[int] count: The number of the guest accelerator cards exposed to this instance.
         :param pulumi.Input[str] type: The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
         """
         pulumi.set(__self__, "count", count)
@@ -1671,14 +1671,14 @@ class ClusterNodeConfigGuestAcceleratorArgs:
 
     @property
     @pulumi.getter
-    def count(self) -> pulumi.Input[float]:
+    def count(self) -> pulumi.Input[int]:
         """
         The number of the guest accelerator cards exposed to this instance.
         """
         return pulumi.get(self, "count")
 
     @count.setter
-    def count(self, value: pulumi.Input[float]):
+    def count(self, value: pulumi.Input[int]):
         pulumi.set(self, "count", value)
 
     @property
@@ -1937,25 +1937,25 @@ class ClusterNodeConfigWorkloadMetadataConfigArgs:
 class ClusterNodePoolArgs:
     def __init__(__self__, *,
                  autoscaling: Optional[pulumi.Input['ClusterNodePoolAutoscalingArgs']] = None,
-                 initial_node_count: Optional[pulumi.Input[float]] = None,
-                 instance_group_urls: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 initial_node_count: Optional[pulumi.Input[int]] = None,
+                 instance_group_urls: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  management: Optional[pulumi.Input['ClusterNodePoolManagementArgs']] = None,
-                 max_pods_per_node: Optional[pulumi.Input[float]] = None,
+                 max_pods_per_node: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  name_prefix: Optional[pulumi.Input[str]] = None,
                  node_config: Optional[pulumi.Input['ClusterNodePoolNodeConfigArgs']] = None,
-                 node_count: Optional[pulumi.Input[float]] = None,
-                 node_locations: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 node_count: Optional[pulumi.Input[int]] = None,
+                 node_locations: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  upgrade_settings: Optional[pulumi.Input['ClusterNodePoolUpgradeSettingsArgs']] = None,
                  version: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[float] initial_node_count: The number of nodes to create in this
+        :param pulumi.Input[int] initial_node_count: The number of nodes to create in this
                cluster's default node pool. In regional or multi-zonal clusters, this is the
                number of nodes per zone. Must be set if `node_pool` is not set. If you're using
                `container.NodePool` objects with no default node pool, you'll need to
                set this to a value of at least `1`, alongside setting
                `remove_default_node_pool` to `true`.
-        :param pulumi.Input[List[pulumi.Input[str]]] instance_group_urls: List of instance group URLs which have been assigned
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] instance_group_urls: List of instance group URLs which have been assigned
                to the cluster.
         :param pulumi.Input[str] name: The name of the cluster, unique within the project and
                location.
@@ -1964,7 +1964,7 @@ class ClusterNodePoolArgs:
                `container.NodePool` or a `node_pool` block; this configuration
                manages the default node pool, which isn't recommended to be used.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] node_locations: The list of zones in which the cluster's nodes
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] node_locations: The list of zones in which the cluster's nodes
                are located. Nodes must be in the region of their regional cluster or in the
                same region as their cluster's zone for zonal clusters. If this is specified for
                a zonal cluster, omit the cluster's zone.
@@ -2005,7 +2005,7 @@ class ClusterNodePoolArgs:
 
     @property
     @pulumi.getter(name="initialNodeCount")
-    def initial_node_count(self) -> Optional[pulumi.Input[float]]:
+    def initial_node_count(self) -> Optional[pulumi.Input[int]]:
         """
         The number of nodes to create in this
         cluster's default node pool. In regional or multi-zonal clusters, this is the
@@ -2017,12 +2017,12 @@ class ClusterNodePoolArgs:
         return pulumi.get(self, "initial_node_count")
 
     @initial_node_count.setter
-    def initial_node_count(self, value: Optional[pulumi.Input[float]]):
+    def initial_node_count(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "initial_node_count", value)
 
     @property
     @pulumi.getter(name="instanceGroupUrls")
-    def instance_group_urls(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def instance_group_urls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         List of instance group URLs which have been assigned
         to the cluster.
@@ -2030,7 +2030,7 @@ class ClusterNodePoolArgs:
         return pulumi.get(self, "instance_group_urls")
 
     @instance_group_urls.setter
-    def instance_group_urls(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def instance_group_urls(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "instance_group_urls", value)
 
     @property
@@ -2044,11 +2044,11 @@ class ClusterNodePoolArgs:
 
     @property
     @pulumi.getter(name="maxPodsPerNode")
-    def max_pods_per_node(self) -> Optional[pulumi.Input[float]]:
+    def max_pods_per_node(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "max_pods_per_node")
 
     @max_pods_per_node.setter
-    def max_pods_per_node(self, value: Optional[pulumi.Input[float]]):
+    def max_pods_per_node(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_pods_per_node", value)
 
     @property
@@ -2091,16 +2091,16 @@ class ClusterNodePoolArgs:
 
     @property
     @pulumi.getter(name="nodeCount")
-    def node_count(self) -> Optional[pulumi.Input[float]]:
+    def node_count(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "node_count")
 
     @node_count.setter
-    def node_count(self, value: Optional[pulumi.Input[float]]):
+    def node_count(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "node_count", value)
 
     @property
     @pulumi.getter(name="nodeLocations")
-    def node_locations(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def node_locations(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         The list of zones in which the cluster's nodes
         are located. Nodes must be in the region of their regional cluster or in the
@@ -2110,7 +2110,7 @@ class ClusterNodePoolArgs:
         return pulumi.get(self, "node_locations")
 
     @node_locations.setter
-    def node_locations(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def node_locations(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "node_locations", value)
 
     @property
@@ -2135,27 +2135,27 @@ class ClusterNodePoolArgs:
 @pulumi.input_type
 class ClusterNodePoolAutoscalingArgs:
     def __init__(__self__, *,
-                 max_node_count: pulumi.Input[float],
-                 min_node_count: pulumi.Input[float]):
+                 max_node_count: pulumi.Input[int],
+                 min_node_count: pulumi.Input[int]):
         pulumi.set(__self__, "max_node_count", max_node_count)
         pulumi.set(__self__, "min_node_count", min_node_count)
 
     @property
     @pulumi.getter(name="maxNodeCount")
-    def max_node_count(self) -> pulumi.Input[float]:
+    def max_node_count(self) -> pulumi.Input[int]:
         return pulumi.get(self, "max_node_count")
 
     @max_node_count.setter
-    def max_node_count(self, value: pulumi.Input[float]):
+    def max_node_count(self, value: pulumi.Input[int]):
         pulumi.set(self, "max_node_count", value)
 
     @property
     @pulumi.getter(name="minNodeCount")
-    def min_node_count(self) -> pulumi.Input[float]:
+    def min_node_count(self) -> pulumi.Input[int]:
         return pulumi.get(self, "min_node_count")
 
     @min_node_count.setter
-    def min_node_count(self, value: pulumi.Input[float]):
+    def min_node_count(self, value: pulumi.Input[int]):
         pulumi.set(self, "min_node_count", value)
 
 
@@ -2192,32 +2192,32 @@ class ClusterNodePoolManagementArgs:
 class ClusterNodePoolNodeConfigArgs:
     def __init__(__self__, *,
                  boot_disk_kms_key: Optional[pulumi.Input[str]] = None,
-                 disk_size_gb: Optional[pulumi.Input[float]] = None,
+                 disk_size_gb: Optional[pulumi.Input[int]] = None,
                  disk_type: Optional[pulumi.Input[str]] = None,
-                 guest_accelerators: Optional[pulumi.Input[List[pulumi.Input['ClusterNodePoolNodeConfigGuestAcceleratorArgs']]]] = None,
+                 guest_accelerators: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterNodePoolNodeConfigGuestAcceleratorArgs']]]] = None,
                  image_type: Optional[pulumi.Input[str]] = None,
                  kubelet_config: Optional[pulumi.Input['ClusterNodePoolNodeConfigKubeletConfigArgs']] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  linux_node_config: Optional[pulumi.Input['ClusterNodePoolNodeConfigLinuxNodeConfigArgs']] = None,
-                 local_ssd_count: Optional[pulumi.Input[float]] = None,
+                 local_ssd_count: Optional[pulumi.Input[int]] = None,
                  machine_type: Optional[pulumi.Input[str]] = None,
                  metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  min_cpu_platform: Optional[pulumi.Input[str]] = None,
-                 oauth_scopes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 oauth_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  preemptible: Optional[pulumi.Input[bool]] = None,
                  sandbox_config: Optional[pulumi.Input['ClusterNodePoolNodeConfigSandboxConfigArgs']] = None,
                  service_account: Optional[pulumi.Input[str]] = None,
                  shielded_instance_config: Optional[pulumi.Input['ClusterNodePoolNodeConfigShieldedInstanceConfigArgs']] = None,
-                 tags: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 taints: Optional[pulumi.Input[List[pulumi.Input['ClusterNodePoolNodeConfigTaintArgs']]]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 taints: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterNodePoolNodeConfigTaintArgs']]]] = None,
                  workload_metadata_config: Optional[pulumi.Input['ClusterNodePoolNodeConfigWorkloadMetadataConfigArgs']] = None):
         """
         :param pulumi.Input[str] boot_disk_kms_key: The Customer Managed Encryption Key used to encrypt the boot disk attached to each node in the node pool. This should be of the form projects/[KEY_PROJECT_ID]/locations/[LOCATION]/keyRings/[RING_NAME]/cryptoKeys/[KEY_NAME]. For more information about protecting resources with Cloud KMS Keys please see: https://cloud.google.com/compute/docs/disks/customer-managed-encryption
-        :param pulumi.Input[float] disk_size_gb: Size of the disk attached to each node, specified
+        :param pulumi.Input[int] disk_size_gb: Size of the disk attached to each node, specified
                in GB. The smallest allowed disk size is 10GB. Defaults to 100GB.
         :param pulumi.Input[str] disk_type: Type of the disk attached to each node
                (e.g. 'pd-standard', 'pd-balanced' or 'pd-ssd'). If unspecified, the default disk type is 'pd-standard'
-        :param pulumi.Input[List[pulumi.Input['ClusterNodePoolNodeConfigGuestAcceleratorArgs']]] guest_accelerators: List of the type and count of accelerator cards attached to the instance.
+        :param pulumi.Input[Sequence[pulumi.Input['ClusterNodePoolNodeConfigGuestAcceleratorArgs']]] guest_accelerators: List of the type and count of accelerator cards attached to the instance.
                Structure documented below.
         :param pulumi.Input[str] image_type: The image type to use for this node. Note that changing the image type
                will delete and recreate all nodes in the node pool.
@@ -2230,7 +2230,7 @@ class ClusterNodePoolNodeConfigArgs:
                Linux node configuration, currently supported attributes can be found [here](https://cloud.google.com/sdk/gcloud/reference/beta/container/node-pools/create#--system-config-from-file).
                Note that validations happen all server side. All attributes are optional.
                Structure is documented below.
-        :param pulumi.Input[float] local_ssd_count: The amount of local SSD disks that will be
+        :param pulumi.Input[int] local_ssd_count: The amount of local SSD disks that will be
                attached to each cluster node. Defaults to 0.
         :param pulumi.Input[str] machine_type: The name of a Google Compute Engine machine type.
                Defaults to `e2-medium`. To create a custom machine type, value should be set as specified
@@ -2245,7 +2245,7 @@ class ClusterNodePoolNodeConfigArgs:
                values are the friendly names of CPU platforms, such as `Intel Haswell`. See the
                [official documentation](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
                for more information.
-        :param pulumi.Input[List[pulumi.Input[str]]] oauth_scopes: The set of Google API scopes to be made available
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] oauth_scopes: The set of Google API scopes to be made available
                on all of the node VMs under the "default" service account. These can be
                either FQDNs, or scope aliases. The following scopes are necessary to ensure
                the correct functioning of the cluster:
@@ -2260,9 +2260,9 @@ class ClusterNodePoolNodeConfigArgs:
                [roles/logging.logWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_logging_roles) and
                [roles/monitoring.metricWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_monitoring_roles) roles.
         :param pulumi.Input['ClusterNodePoolNodeConfigShieldedInstanceConfigArgs'] shielded_instance_config: Shielded Instance options. Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] tags: The list of instance tags applied to all nodes. Tags are used to identify
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The list of instance tags applied to all nodes. Tags are used to identify
                valid sources or targets for network firewalls.
-        :param pulumi.Input[List[pulumi.Input['ClusterNodePoolNodeConfigTaintArgs']]] taints: A list of [Kubernetes taints](https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/)
+        :param pulumi.Input[Sequence[pulumi.Input['ClusterNodePoolNodeConfigTaintArgs']]] taints: A list of [Kubernetes taints](https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/)
                to apply to nodes. GKE's API can only set this field on cluster creation.
                However, GKE will add taints to your nodes if you enable certain features such
                as GPUs. If this field is set, any diffs on this field will cause the provider to
@@ -2328,7 +2328,7 @@ class ClusterNodePoolNodeConfigArgs:
 
     @property
     @pulumi.getter(name="diskSizeGb")
-    def disk_size_gb(self) -> Optional[pulumi.Input[float]]:
+    def disk_size_gb(self) -> Optional[pulumi.Input[int]]:
         """
         Size of the disk attached to each node, specified
         in GB. The smallest allowed disk size is 10GB. Defaults to 100GB.
@@ -2336,7 +2336,7 @@ class ClusterNodePoolNodeConfigArgs:
         return pulumi.get(self, "disk_size_gb")
 
     @disk_size_gb.setter
-    def disk_size_gb(self, value: Optional[pulumi.Input[float]]):
+    def disk_size_gb(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "disk_size_gb", value)
 
     @property
@@ -2354,7 +2354,7 @@ class ClusterNodePoolNodeConfigArgs:
 
     @property
     @pulumi.getter(name="guestAccelerators")
-    def guest_accelerators(self) -> Optional[pulumi.Input[List[pulumi.Input['ClusterNodePoolNodeConfigGuestAcceleratorArgs']]]]:
+    def guest_accelerators(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterNodePoolNodeConfigGuestAcceleratorArgs']]]]:
         """
         List of the type and count of accelerator cards attached to the instance.
         Structure documented below.
@@ -2362,7 +2362,7 @@ class ClusterNodePoolNodeConfigArgs:
         return pulumi.get(self, "guest_accelerators")
 
     @guest_accelerators.setter
-    def guest_accelerators(self, value: Optional[pulumi.Input[List[pulumi.Input['ClusterNodePoolNodeConfigGuestAcceleratorArgs']]]]):
+    def guest_accelerators(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterNodePoolNodeConfigGuestAcceleratorArgs']]]]):
         pulumi.set(self, "guest_accelerators", value)
 
     @property
@@ -2422,7 +2422,7 @@ class ClusterNodePoolNodeConfigArgs:
 
     @property
     @pulumi.getter(name="localSsdCount")
-    def local_ssd_count(self) -> Optional[pulumi.Input[float]]:
+    def local_ssd_count(self) -> Optional[pulumi.Input[int]]:
         """
         The amount of local SSD disks that will be
         attached to each cluster node. Defaults to 0.
@@ -2430,7 +2430,7 @@ class ClusterNodePoolNodeConfigArgs:
         return pulumi.get(self, "local_ssd_count")
 
     @local_ssd_count.setter
-    def local_ssd_count(self, value: Optional[pulumi.Input[float]]):
+    def local_ssd_count(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "local_ssd_count", value)
 
     @property
@@ -2481,7 +2481,7 @@ class ClusterNodePoolNodeConfigArgs:
 
     @property
     @pulumi.getter(name="oauthScopes")
-    def oauth_scopes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def oauth_scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         The set of Google API scopes to be made available
         on all of the node VMs under the "default" service account. These can be
@@ -2491,7 +2491,7 @@ class ClusterNodePoolNodeConfigArgs:
         return pulumi.get(self, "oauth_scopes")
 
     @oauth_scopes.setter
-    def oauth_scopes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def oauth_scopes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "oauth_scopes", value)
 
     @property
@@ -2551,7 +2551,7 @@ class ClusterNodePoolNodeConfigArgs:
 
     @property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         The list of instance tags applied to all nodes. Tags are used to identify
         valid sources or targets for network firewalls.
@@ -2559,12 +2559,12 @@ class ClusterNodePoolNodeConfigArgs:
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "tags", value)
 
     @property
     @pulumi.getter
-    def taints(self) -> Optional[pulumi.Input[List[pulumi.Input['ClusterNodePoolNodeConfigTaintArgs']]]]:
+    def taints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterNodePoolNodeConfigTaintArgs']]]]:
         """
         A list of [Kubernetes taints](https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/)
         to apply to nodes. GKE's API can only set this field on cluster creation.
@@ -2578,7 +2578,7 @@ class ClusterNodePoolNodeConfigArgs:
         return pulumi.get(self, "taints")
 
     @taints.setter
-    def taints(self, value: Optional[pulumi.Input[List[pulumi.Input['ClusterNodePoolNodeConfigTaintArgs']]]]):
+    def taints(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterNodePoolNodeConfigTaintArgs']]]]):
         pulumi.set(self, "taints", value)
 
     @property
@@ -2598,10 +2598,10 @@ class ClusterNodePoolNodeConfigArgs:
 @pulumi.input_type
 class ClusterNodePoolNodeConfigGuestAcceleratorArgs:
     def __init__(__self__, *,
-                 count: pulumi.Input[float],
+                 count: pulumi.Input[int],
                  type: pulumi.Input[str]):
         """
-        :param pulumi.Input[float] count: The number of the guest accelerator cards exposed to this instance.
+        :param pulumi.Input[int] count: The number of the guest accelerator cards exposed to this instance.
         :param pulumi.Input[str] type: The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
         """
         pulumi.set(__self__, "count", count)
@@ -2609,14 +2609,14 @@ class ClusterNodePoolNodeConfigGuestAcceleratorArgs:
 
     @property
     @pulumi.getter
-    def count(self) -> pulumi.Input[float]:
+    def count(self) -> pulumi.Input[int]:
         """
         The number of the guest accelerator cards exposed to this instance.
         """
         return pulumi.get(self, "count")
 
     @count.setter
-    def count(self, value: pulumi.Input[float]):
+    def count(self, value: pulumi.Input[int]):
         pulumi.set(self, "count", value)
 
     @property
@@ -2874,27 +2874,27 @@ class ClusterNodePoolNodeConfigWorkloadMetadataConfigArgs:
 @pulumi.input_type
 class ClusterNodePoolUpgradeSettingsArgs:
     def __init__(__self__, *,
-                 max_surge: pulumi.Input[float],
-                 max_unavailable: pulumi.Input[float]):
+                 max_surge: pulumi.Input[int],
+                 max_unavailable: pulumi.Input[int]):
         pulumi.set(__self__, "max_surge", max_surge)
         pulumi.set(__self__, "max_unavailable", max_unavailable)
 
     @property
     @pulumi.getter(name="maxSurge")
-    def max_surge(self) -> pulumi.Input[float]:
+    def max_surge(self) -> pulumi.Input[int]:
         return pulumi.get(self, "max_surge")
 
     @max_surge.setter
-    def max_surge(self, value: pulumi.Input[float]):
+    def max_surge(self, value: pulumi.Input[int]):
         pulumi.set(self, "max_surge", value)
 
     @property
     @pulumi.getter(name="maxUnavailable")
-    def max_unavailable(self) -> pulumi.Input[float]:
+    def max_unavailable(self) -> pulumi.Input[int]:
         return pulumi.get(self, "max_unavailable")
 
     @max_unavailable.setter
-    def max_unavailable(self, value: pulumi.Input[float]):
+    def max_unavailable(self, value: pulumi.Input[int]):
         pulumi.set(self, "max_unavailable", value)
 
 
@@ -3245,11 +3245,11 @@ class ClusterWorkloadIdentityConfigArgs:
 @pulumi.input_type
 class NodePoolAutoscalingArgs:
     def __init__(__self__, *,
-                 max_node_count: pulumi.Input[float],
-                 min_node_count: pulumi.Input[float]):
+                 max_node_count: pulumi.Input[int],
+                 min_node_count: pulumi.Input[int]):
         """
-        :param pulumi.Input[float] max_node_count: Maximum number of nodes in the NodePool. Must be >= min_node_count.
-        :param pulumi.Input[float] min_node_count: Minimum number of nodes in the NodePool. Must be >=0 and
+        :param pulumi.Input[int] max_node_count: Maximum number of nodes in the NodePool. Must be >= min_node_count.
+        :param pulumi.Input[int] min_node_count: Minimum number of nodes in the NodePool. Must be >=0 and
                <= `max_node_count`.
         """
         pulumi.set(__self__, "max_node_count", max_node_count)
@@ -3257,19 +3257,19 @@ class NodePoolAutoscalingArgs:
 
     @property
     @pulumi.getter(name="maxNodeCount")
-    def max_node_count(self) -> pulumi.Input[float]:
+    def max_node_count(self) -> pulumi.Input[int]:
         """
         Maximum number of nodes in the NodePool. Must be >= min_node_count.
         """
         return pulumi.get(self, "max_node_count")
 
     @max_node_count.setter
-    def max_node_count(self, value: pulumi.Input[float]):
+    def max_node_count(self, value: pulumi.Input[int]):
         pulumi.set(self, "max_node_count", value)
 
     @property
     @pulumi.getter(name="minNodeCount")
-    def min_node_count(self) -> pulumi.Input[float]:
+    def min_node_count(self) -> pulumi.Input[int]:
         """
         Minimum number of nodes in the NodePool. Must be >=0 and
         <= `max_node_count`.
@@ -3277,7 +3277,7 @@ class NodePoolAutoscalingArgs:
         return pulumi.get(self, "min_node_count")
 
     @min_node_count.setter
-    def min_node_count(self, value: pulumi.Input[float]):
+    def min_node_count(self, value: pulumi.Input[int]):
         pulumi.set(self, "min_node_count", value)
 
 
@@ -3324,24 +3324,24 @@ class NodePoolManagementArgs:
 class NodePoolNodeConfigArgs:
     def __init__(__self__, *,
                  boot_disk_kms_key: Optional[pulumi.Input[str]] = None,
-                 disk_size_gb: Optional[pulumi.Input[float]] = None,
+                 disk_size_gb: Optional[pulumi.Input[int]] = None,
                  disk_type: Optional[pulumi.Input[str]] = None,
-                 guest_accelerators: Optional[pulumi.Input[List[pulumi.Input['NodePoolNodeConfigGuestAcceleratorArgs']]]] = None,
+                 guest_accelerators: Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolNodeConfigGuestAcceleratorArgs']]]] = None,
                  image_type: Optional[pulumi.Input[str]] = None,
                  kubelet_config: Optional[pulumi.Input['NodePoolNodeConfigKubeletConfigArgs']] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  linux_node_config: Optional[pulumi.Input['NodePoolNodeConfigLinuxNodeConfigArgs']] = None,
-                 local_ssd_count: Optional[pulumi.Input[float]] = None,
+                 local_ssd_count: Optional[pulumi.Input[int]] = None,
                  machine_type: Optional[pulumi.Input[str]] = None,
                  metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  min_cpu_platform: Optional[pulumi.Input[str]] = None,
-                 oauth_scopes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 oauth_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  preemptible: Optional[pulumi.Input[bool]] = None,
                  sandbox_config: Optional[pulumi.Input['NodePoolNodeConfigSandboxConfigArgs']] = None,
                  service_account: Optional[pulumi.Input[str]] = None,
                  shielded_instance_config: Optional[pulumi.Input['NodePoolNodeConfigShieldedInstanceConfigArgs']] = None,
-                 tags: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 taints: Optional[pulumi.Input[List[pulumi.Input['NodePoolNodeConfigTaintArgs']]]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 taints: Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolNodeConfigTaintArgs']]]] = None,
                  workload_metadata_config: Optional[pulumi.Input['NodePoolNodeConfigWorkloadMetadataConfigArgs']] = None):
         if boot_disk_kms_key is not None:
             pulumi.set(__self__, "boot_disk_kms_key", boot_disk_kms_key)
@@ -3395,11 +3395,11 @@ class NodePoolNodeConfigArgs:
 
     @property
     @pulumi.getter(name="diskSizeGb")
-    def disk_size_gb(self) -> Optional[pulumi.Input[float]]:
+    def disk_size_gb(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "disk_size_gb")
 
     @disk_size_gb.setter
-    def disk_size_gb(self, value: Optional[pulumi.Input[float]]):
+    def disk_size_gb(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "disk_size_gb", value)
 
     @property
@@ -3413,11 +3413,11 @@ class NodePoolNodeConfigArgs:
 
     @property
     @pulumi.getter(name="guestAccelerators")
-    def guest_accelerators(self) -> Optional[pulumi.Input[List[pulumi.Input['NodePoolNodeConfigGuestAcceleratorArgs']]]]:
+    def guest_accelerators(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolNodeConfigGuestAcceleratorArgs']]]]:
         return pulumi.get(self, "guest_accelerators")
 
     @guest_accelerators.setter
-    def guest_accelerators(self, value: Optional[pulumi.Input[List[pulumi.Input['NodePoolNodeConfigGuestAcceleratorArgs']]]]):
+    def guest_accelerators(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolNodeConfigGuestAcceleratorArgs']]]]):
         pulumi.set(self, "guest_accelerators", value)
 
     @property
@@ -3458,11 +3458,11 @@ class NodePoolNodeConfigArgs:
 
     @property
     @pulumi.getter(name="localSsdCount")
-    def local_ssd_count(self) -> Optional[pulumi.Input[float]]:
+    def local_ssd_count(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "local_ssd_count")
 
     @local_ssd_count.setter
-    def local_ssd_count(self, value: Optional[pulumi.Input[float]]):
+    def local_ssd_count(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "local_ssd_count", value)
 
     @property
@@ -3494,11 +3494,11 @@ class NodePoolNodeConfigArgs:
 
     @property
     @pulumi.getter(name="oauthScopes")
-    def oauth_scopes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def oauth_scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         return pulumi.get(self, "oauth_scopes")
 
     @oauth_scopes.setter
-    def oauth_scopes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def oauth_scopes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "oauth_scopes", value)
 
     @property
@@ -3539,20 +3539,20 @@ class NodePoolNodeConfigArgs:
 
     @property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "tags", value)
 
     @property
     @pulumi.getter
-    def taints(self) -> Optional[pulumi.Input[List[pulumi.Input['NodePoolNodeConfigTaintArgs']]]]:
+    def taints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolNodeConfigTaintArgs']]]]:
         return pulumi.get(self, "taints")
 
     @taints.setter
-    def taints(self, value: Optional[pulumi.Input[List[pulumi.Input['NodePoolNodeConfigTaintArgs']]]]):
+    def taints(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolNodeConfigTaintArgs']]]]):
         pulumi.set(self, "taints", value)
 
     @property
@@ -3568,18 +3568,18 @@ class NodePoolNodeConfigArgs:
 @pulumi.input_type
 class NodePoolNodeConfigGuestAcceleratorArgs:
     def __init__(__self__, *,
-                 count: pulumi.Input[float],
+                 count: pulumi.Input[int],
                  type: pulumi.Input[str]):
         pulumi.set(__self__, "count", count)
         pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter
-    def count(self) -> pulumi.Input[float]:
+    def count(self) -> pulumi.Input[int]:
         return pulumi.get(self, "count")
 
     @count.setter
-    def count(self, value: pulumi.Input[float]):
+    def count(self, value: pulumi.Input[int]):
         pulumi.set(self, "count", value)
 
     @property
@@ -3750,13 +3750,13 @@ class NodePoolNodeConfigWorkloadMetadataConfigArgs:
 @pulumi.input_type
 class NodePoolUpgradeSettingsArgs:
     def __init__(__self__, *,
-                 max_surge: pulumi.Input[float],
-                 max_unavailable: pulumi.Input[float]):
+                 max_surge: pulumi.Input[int],
+                 max_unavailable: pulumi.Input[int]):
         """
-        :param pulumi.Input[float] max_surge: The number of additional nodes that can be added to the node pool during
+        :param pulumi.Input[int] max_surge: The number of additional nodes that can be added to the node pool during
                an upgrade. Increasing `max_surge` raises the number of nodes that can be upgraded simultaneously.
                Can be set to 0 or greater.
-        :param pulumi.Input[float] max_unavailable: The number of nodes that can be simultaneously unavailable during
+        :param pulumi.Input[int] max_unavailable: The number of nodes that can be simultaneously unavailable during
                an upgrade. Increasing `max_unavailable` raises the number of nodes that can be upgraded in
                parallel. Can be set to 0 or greater.
         """
@@ -3765,7 +3765,7 @@ class NodePoolUpgradeSettingsArgs:
 
     @property
     @pulumi.getter(name="maxSurge")
-    def max_surge(self) -> pulumi.Input[float]:
+    def max_surge(self) -> pulumi.Input[int]:
         """
         The number of additional nodes that can be added to the node pool during
         an upgrade. Increasing `max_surge` raises the number of nodes that can be upgraded simultaneously.
@@ -3774,12 +3774,12 @@ class NodePoolUpgradeSettingsArgs:
         return pulumi.get(self, "max_surge")
 
     @max_surge.setter
-    def max_surge(self, value: pulumi.Input[float]):
+    def max_surge(self, value: pulumi.Input[int]):
         pulumi.set(self, "max_surge", value)
 
     @property
     @pulumi.getter(name="maxUnavailable")
-    def max_unavailable(self) -> pulumi.Input[float]:
+    def max_unavailable(self) -> pulumi.Input[int]:
         """
         The number of nodes that can be simultaneously unavailable during
         an upgrade. Increasing `max_unavailable` raises the number of nodes that can be upgraded in
@@ -3788,7 +3788,7 @@ class NodePoolUpgradeSettingsArgs:
         return pulumi.get(self, "max_unavailable")
 
     @max_unavailable.setter
-    def max_unavailable(self, value: pulumi.Input[float]):
+    def max_unavailable(self, value: pulumi.Input[int]):
         pulumi.set(self, "max_unavailable", value)
 
 
