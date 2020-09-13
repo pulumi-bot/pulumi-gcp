@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 from . import outputs
 
@@ -26,19 +26,19 @@ __all__ = [
 @pulumi.output_type
 class TriggerBuild(dict):
     def __init__(__self__, *,
-                 steps: List['outputs.TriggerBuildStep'],
-                 images: Optional[List[str]] = None,
+                 steps: Sequence['outputs.TriggerBuildStep'],
+                 images: Optional[Sequence[str]] = None,
                  logs_bucket: Optional[str] = None,
                  queue_ttl: Optional[str] = None,
-                 secrets: Optional[List['outputs.TriggerBuildSecret']] = None,
+                 secrets: Optional[Sequence['outputs.TriggerBuildSecret']] = None,
                  source: Optional['outputs.TriggerBuildSource'] = None,
                  substitutions: Optional[Mapping[str, str]] = None,
-                 tags: Optional[List[str]] = None,
+                 tags: Optional[Sequence[str]] = None,
                  timeout: Optional[str] = None):
         """
-        :param List['TriggerBuildStepArgs'] steps: The operations to be performed on the workspace.
+        :param Sequence['TriggerBuildStepArgs'] steps: The operations to be performed on the workspace.
                Structure is documented below.
-        :param List[str] images: A list of images to be pushed upon the successful completion of all build steps.
+        :param Sequence[str] images: A list of images to be pushed upon the successful completion of all build steps.
                The images are pushed using the builder service account's credentials.
                The digests of the pushed images will be stored in the Build resource's results field.
                If any of the images fail to be pushed, the build status is marked FAILURE.
@@ -48,13 +48,13 @@ class TriggerBuild(dict):
                the build will expire and the build status will be EXPIRED.
                The TTL starts ticking from createTime.
                A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s".
-        :param List['TriggerBuildSecretArgs'] secrets: Secrets to decrypt using Cloud Key Management Service.
+        :param Sequence['TriggerBuildSecretArgs'] secrets: Secrets to decrypt using Cloud Key Management Service.
                Structure is documented below.
         :param 'TriggerBuildSourceArgs' source: The location of the source files to build.
                One of `storageSource` or `repoSource` must be provided.
                Structure is documented below.
         :param Mapping[str, str] substitutions: Substitutions to use in a triggered build. Should only be used with triggers.run
-        :param List[str] tags: Tags for annotation of a Build. These are not docker tags.
+        :param Sequence[str] tags: Tags for annotation of a Build. These are not docker tags.
         :param str timeout: Time limit for executing this build step. If not defined,
                the step has no
                time limit and will be allowed to continue to run until either it
@@ -80,7 +80,7 @@ class TriggerBuild(dict):
 
     @property
     @pulumi.getter
-    def steps(self) -> List['outputs.TriggerBuildStep']:
+    def steps(self) -> Sequence['outputs.TriggerBuildStep']:
         """
         The operations to be performed on the workspace.
         Structure is documented below.
@@ -89,7 +89,7 @@ class TriggerBuild(dict):
 
     @property
     @pulumi.getter
-    def images(self) -> Optional[List[str]]:
+    def images(self) -> Optional[Sequence[str]]:
         """
         A list of images to be pushed upon the successful completion of all build steps.
         The images are pushed using the builder service account's credentials.
@@ -120,7 +120,7 @@ class TriggerBuild(dict):
 
     @property
     @pulumi.getter
-    def secrets(self) -> Optional[List['outputs.TriggerBuildSecret']]:
+    def secrets(self) -> Optional[Sequence['outputs.TriggerBuildSecret']]:
         """
         Secrets to decrypt using Cloud Key Management Service.
         Structure is documented below.
@@ -147,7 +147,7 @@ class TriggerBuild(dict):
 
     @property
     @pulumi.getter
-    def tags(self) -> Optional[List[str]]:
+    def tags(self) -> Optional[Sequence[str]]:
         """
         Tags for annotation of a Build. These are not docker tags.
         """
@@ -428,21 +428,21 @@ class TriggerBuildSourceStorageSource(dict):
 class TriggerBuildStep(dict):
     def __init__(__self__, *,
                  name: str,
-                 args: Optional[List[str]] = None,
+                 args: Optional[Sequence[str]] = None,
                  dir: Optional[str] = None,
                  entrypoint: Optional[str] = None,
-                 envs: Optional[List[str]] = None,
+                 envs: Optional[Sequence[str]] = None,
                  id: Optional[str] = None,
-                 secret_envs: Optional[List[str]] = None,
+                 secret_envs: Optional[Sequence[str]] = None,
                  timeout: Optional[str] = None,
                  timing: Optional[str] = None,
-                 volumes: Optional[List['outputs.TriggerBuildStepVolume']] = None,
-                 wait_fors: Optional[List[str]] = None):
+                 volumes: Optional[Sequence['outputs.TriggerBuildStepVolume']] = None,
+                 wait_fors: Optional[Sequence[str]] = None):
         """
         :param str name: Name of the volume to mount.
                Volume names must be unique per build step and must be valid names for
                Docker volumes. Each named volume must be used by at least two build steps.
-        :param List[str] args: A list of arguments that will be presented to the step when it is started.
+        :param Sequence[str] args: A list of arguments that will be presented to the step when it is started.
                If the image used to run the step's container has an entrypoint, the args
                are used as arguments to that entrypoint. If the image does not define an
                entrypoint, the first element in args is used as the entrypoint, and the
@@ -459,13 +459,13 @@ class TriggerBuildStep(dict):
         :param str entrypoint: Entrypoint to be used instead of the build step image's
                default entrypoint.
                If unset, the image's default entrypoint is used
-        :param List[str] envs: A list of environment variable definitions to be used when
+        :param Sequence[str] envs: A list of environment variable definitions to be used when
                running a step.
                The elements are of the form "KEY=VALUE" for the environment variable
                "KEY" being given the value "VALUE".
         :param str id: Unique identifier for this build step, used in `wait_for` to
                reference this build step as a dependency.
-        :param List[str] secret_envs: A list of environment variables which are encrypted using
+        :param Sequence[str] secret_envs: A list of environment variables which are encrypted using
                a Cloud Key
                Management Service crypto key. These values must be specified in
                the build's `Secret`.
@@ -475,14 +475,14 @@ class TriggerBuildStep(dict):
                completes or the build itself times out.
         :param str timing: Output only. Stores timing information for executing this
                build step.
-        :param List['TriggerBuildStepVolumeArgs'] volumes: List of volumes to mount into the build step.
+        :param Sequence['TriggerBuildStepVolumeArgs'] volumes: List of volumes to mount into the build step.
                Each volume is created as an empty volume prior to execution of the
                build step. Upon completion of the build, volumes and their contents
                are discarded.
                Using a named volume in only one step is not valid as it is
                indicative of a build request with an incorrect configuration.
                Structure is documented below.
-        :param List[str] wait_fors: The ID(s) of the step(s) that this build step depends on.
+        :param Sequence[str] wait_fors: The ID(s) of the step(s) that this build step depends on.
                This build step will not start until all the build steps in `wait_for`
                have completed successfully. If `wait_for` is empty, this build step
                will start when all previous build steps in the `Build.Steps` list
@@ -522,7 +522,7 @@ class TriggerBuildStep(dict):
 
     @property
     @pulumi.getter
-    def args(self) -> Optional[List[str]]:
+    def args(self) -> Optional[Sequence[str]]:
         """
         A list of arguments that will be presented to the step when it is started.
         If the image used to run the step's container has an entrypoint, the args
@@ -560,7 +560,7 @@ class TriggerBuildStep(dict):
 
     @property
     @pulumi.getter
-    def envs(self) -> Optional[List[str]]:
+    def envs(self) -> Optional[Sequence[str]]:
         """
         A list of environment variable definitions to be used when
         running a step.
@@ -580,7 +580,7 @@ class TriggerBuildStep(dict):
 
     @property
     @pulumi.getter(name="secretEnvs")
-    def secret_envs(self) -> Optional[List[str]]:
+    def secret_envs(self) -> Optional[Sequence[str]]:
         """
         A list of environment variables which are encrypted using
         a Cloud Key
@@ -611,7 +611,7 @@ class TriggerBuildStep(dict):
 
     @property
     @pulumi.getter
-    def volumes(self) -> Optional[List['outputs.TriggerBuildStepVolume']]:
+    def volumes(self) -> Optional[Sequence['outputs.TriggerBuildStepVolume']]:
         """
         List of volumes to mount into the build step.
         Each volume is created as an empty volume prior to execution of the
@@ -625,7 +625,7 @@ class TriggerBuildStep(dict):
 
     @property
     @pulumi.getter(name="waitFors")
-    def wait_fors(self) -> Optional[List[str]]:
+    def wait_fors(self) -> Optional[Sequence[str]]:
         """
         The ID(s) of the step(s) that this build step depends on.
         This build step will not start until all the build steps in `wait_for`

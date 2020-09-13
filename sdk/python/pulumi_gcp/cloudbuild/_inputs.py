@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = [
@@ -25,19 +25,19 @@ __all__ = [
 @pulumi.input_type
 class TriggerBuildArgs:
     def __init__(__self__, *,
-                 steps: pulumi.Input[List[pulumi.Input['TriggerBuildStepArgs']]],
-                 images: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 steps: pulumi.Input[Sequence[pulumi.Input['TriggerBuildStepArgs']]],
+                 images: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  logs_bucket: Optional[pulumi.Input[str]] = None,
                  queue_ttl: Optional[pulumi.Input[str]] = None,
-                 secrets: Optional[pulumi.Input[List[pulumi.Input['TriggerBuildSecretArgs']]]] = None,
+                 secrets: Optional[pulumi.Input[Sequence[pulumi.Input['TriggerBuildSecretArgs']]]] = None,
                  source: Optional[pulumi.Input['TriggerBuildSourceArgs']] = None,
                  substitutions: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-                 tags: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  timeout: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input['TriggerBuildStepArgs']]] steps: The operations to be performed on the workspace.
+        :param pulumi.Input[Sequence[pulumi.Input['TriggerBuildStepArgs']]] steps: The operations to be performed on the workspace.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] images: A list of images to be pushed upon the successful completion of all build steps.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] images: A list of images to be pushed upon the successful completion of all build steps.
                The images are pushed using the builder service account's credentials.
                The digests of the pushed images will be stored in the Build resource's results field.
                If any of the images fail to be pushed, the build status is marked FAILURE.
@@ -47,13 +47,13 @@ class TriggerBuildArgs:
                the build will expire and the build status will be EXPIRED.
                The TTL starts ticking from createTime.
                A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s".
-        :param pulumi.Input[List[pulumi.Input['TriggerBuildSecretArgs']]] secrets: Secrets to decrypt using Cloud Key Management Service.
+        :param pulumi.Input[Sequence[pulumi.Input['TriggerBuildSecretArgs']]] secrets: Secrets to decrypt using Cloud Key Management Service.
                Structure is documented below.
         :param pulumi.Input['TriggerBuildSourceArgs'] source: The location of the source files to build.
                One of `storageSource` or `repoSource` must be provided.
                Structure is documented below.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] substitutions: Substitutions to use in a triggered build. Should only be used with triggers.run
-        :param pulumi.Input[List[pulumi.Input[str]]] tags: Tags for annotation of a Build. These are not docker tags.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: Tags for annotation of a Build. These are not docker tags.
         :param pulumi.Input[str] timeout: Time limit for executing this build step. If not defined,
                the step has no
                time limit and will be allowed to continue to run until either it
@@ -79,7 +79,7 @@ class TriggerBuildArgs:
 
     @property
     @pulumi.getter
-    def steps(self) -> pulumi.Input[List[pulumi.Input['TriggerBuildStepArgs']]]:
+    def steps(self) -> pulumi.Input[Sequence[pulumi.Input['TriggerBuildStepArgs']]]:
         """
         The operations to be performed on the workspace.
         Structure is documented below.
@@ -87,12 +87,12 @@ class TriggerBuildArgs:
         return pulumi.get(self, "steps")
 
     @steps.setter
-    def steps(self, value: pulumi.Input[List[pulumi.Input['TriggerBuildStepArgs']]]):
+    def steps(self, value: pulumi.Input[Sequence[pulumi.Input['TriggerBuildStepArgs']]]):
         pulumi.set(self, "steps", value)
 
     @property
     @pulumi.getter
-    def images(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def images(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A list of images to be pushed upon the successful completion of all build steps.
         The images are pushed using the builder service account's credentials.
@@ -102,7 +102,7 @@ class TriggerBuildArgs:
         return pulumi.get(self, "images")
 
     @images.setter
-    def images(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def images(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "images", value)
 
     @property
@@ -135,7 +135,7 @@ class TriggerBuildArgs:
 
     @property
     @pulumi.getter
-    def secrets(self) -> Optional[pulumi.Input[List[pulumi.Input['TriggerBuildSecretArgs']]]]:
+    def secrets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TriggerBuildSecretArgs']]]]:
         """
         Secrets to decrypt using Cloud Key Management Service.
         Structure is documented below.
@@ -143,7 +143,7 @@ class TriggerBuildArgs:
         return pulumi.get(self, "secrets")
 
     @secrets.setter
-    def secrets(self, value: Optional[pulumi.Input[List[pulumi.Input['TriggerBuildSecretArgs']]]]):
+    def secrets(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['TriggerBuildSecretArgs']]]]):
         pulumi.set(self, "secrets", value)
 
     @property
@@ -174,14 +174,14 @@ class TriggerBuildArgs:
 
     @property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Tags for annotation of a Build. These are not docker tags.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "tags", value)
 
     @property
@@ -508,21 +508,21 @@ class TriggerBuildSourceStorageSourceArgs:
 class TriggerBuildStepArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str],
-                 args: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 args: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  dir: Optional[pulumi.Input[str]] = None,
                  entrypoint: Optional[pulumi.Input[str]] = None,
-                 envs: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 envs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  id: Optional[pulumi.Input[str]] = None,
-                 secret_envs: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 secret_envs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  timeout: Optional[pulumi.Input[str]] = None,
                  timing: Optional[pulumi.Input[str]] = None,
-                 volumes: Optional[pulumi.Input[List[pulumi.Input['TriggerBuildStepVolumeArgs']]]] = None,
-                 wait_fors: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 volumes: Optional[pulumi.Input[Sequence[pulumi.Input['TriggerBuildStepVolumeArgs']]]] = None,
+                 wait_fors: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         :param pulumi.Input[str] name: Name of the volume to mount.
                Volume names must be unique per build step and must be valid names for
                Docker volumes. Each named volume must be used by at least two build steps.
-        :param pulumi.Input[List[pulumi.Input[str]]] args: A list of arguments that will be presented to the step when it is started.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] args: A list of arguments that will be presented to the step when it is started.
                If the image used to run the step's container has an entrypoint, the args
                are used as arguments to that entrypoint. If the image does not define an
                entrypoint, the first element in args is used as the entrypoint, and the
@@ -539,13 +539,13 @@ class TriggerBuildStepArgs:
         :param pulumi.Input[str] entrypoint: Entrypoint to be used instead of the build step image's
                default entrypoint.
                If unset, the image's default entrypoint is used
-        :param pulumi.Input[List[pulumi.Input[str]]] envs: A list of environment variable definitions to be used when
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] envs: A list of environment variable definitions to be used when
                running a step.
                The elements are of the form "KEY=VALUE" for the environment variable
                "KEY" being given the value "VALUE".
         :param pulumi.Input[str] id: Unique identifier for this build step, used in `wait_for` to
                reference this build step as a dependency.
-        :param pulumi.Input[List[pulumi.Input[str]]] secret_envs: A list of environment variables which are encrypted using
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] secret_envs: A list of environment variables which are encrypted using
                a Cloud Key
                Management Service crypto key. These values must be specified in
                the build's `Secret`.
@@ -555,14 +555,14 @@ class TriggerBuildStepArgs:
                completes or the build itself times out.
         :param pulumi.Input[str] timing: Output only. Stores timing information for executing this
                build step.
-        :param pulumi.Input[List[pulumi.Input['TriggerBuildStepVolumeArgs']]] volumes: List of volumes to mount into the build step.
+        :param pulumi.Input[Sequence[pulumi.Input['TriggerBuildStepVolumeArgs']]] volumes: List of volumes to mount into the build step.
                Each volume is created as an empty volume prior to execution of the
                build step. Upon completion of the build, volumes and their contents
                are discarded.
                Using a named volume in only one step is not valid as it is
                indicative of a build request with an incorrect configuration.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] wait_fors: The ID(s) of the step(s) that this build step depends on.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] wait_fors: The ID(s) of the step(s) that this build step depends on.
                This build step will not start until all the build steps in `wait_for`
                have completed successfully. If `wait_for` is empty, this build step
                will start when all previous build steps in the `Build.Steps` list
@@ -606,7 +606,7 @@ class TriggerBuildStepArgs:
 
     @property
     @pulumi.getter
-    def args(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def args(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A list of arguments that will be presented to the step when it is started.
         If the image used to run the step's container has an entrypoint, the args
@@ -617,7 +617,7 @@ class TriggerBuildStepArgs:
         return pulumi.get(self, "args")
 
     @args.setter
-    def args(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def args(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "args", value)
 
     @property
@@ -656,7 +656,7 @@ class TriggerBuildStepArgs:
 
     @property
     @pulumi.getter
-    def envs(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def envs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A list of environment variable definitions to be used when
         running a step.
@@ -666,7 +666,7 @@ class TriggerBuildStepArgs:
         return pulumi.get(self, "envs")
 
     @envs.setter
-    def envs(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def envs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "envs", value)
 
     @property
@@ -684,7 +684,7 @@ class TriggerBuildStepArgs:
 
     @property
     @pulumi.getter(name="secretEnvs")
-    def secret_envs(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def secret_envs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A list of environment variables which are encrypted using
         a Cloud Key
@@ -694,7 +694,7 @@ class TriggerBuildStepArgs:
         return pulumi.get(self, "secret_envs")
 
     @secret_envs.setter
-    def secret_envs(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def secret_envs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "secret_envs", value)
 
     @property
@@ -727,7 +727,7 @@ class TriggerBuildStepArgs:
 
     @property
     @pulumi.getter
-    def volumes(self) -> Optional[pulumi.Input[List[pulumi.Input['TriggerBuildStepVolumeArgs']]]]:
+    def volumes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TriggerBuildStepVolumeArgs']]]]:
         """
         List of volumes to mount into the build step.
         Each volume is created as an empty volume prior to execution of the
@@ -740,12 +740,12 @@ class TriggerBuildStepArgs:
         return pulumi.get(self, "volumes")
 
     @volumes.setter
-    def volumes(self, value: Optional[pulumi.Input[List[pulumi.Input['TriggerBuildStepVolumeArgs']]]]):
+    def volumes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['TriggerBuildStepVolumeArgs']]]]):
         pulumi.set(self, "volumes", value)
 
     @property
     @pulumi.getter(name="waitFors")
-    def wait_fors(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def wait_fors(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         The ID(s) of the step(s) that this build step depends on.
         This build step will not start until all the build steps in `wait_for`
@@ -756,7 +756,7 @@ class TriggerBuildStepArgs:
         return pulumi.get(self, "wait_fors")
 
     @wait_fors.setter
-    def wait_fors(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def wait_fors(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "wait_fors", value)
 
 

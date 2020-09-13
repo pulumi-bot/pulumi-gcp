@@ -15,34 +15,6 @@ type Batching struct {
 	SendAfter      *string `pulumi:"sendAfter"`
 }
 
-// BatchingInput is an input type that accepts BatchingArgs and BatchingOutput values.
-// You can construct a concrete instance of `BatchingInput` via:
-//
-//          BatchingArgs{...}
-type BatchingInput interface {
-	pulumi.Input
-
-	ToBatchingOutput() BatchingOutput
-	ToBatchingOutputWithContext(context.Context) BatchingOutput
-}
-
-type BatchingArgs struct {
-	EnableBatching pulumi.BoolPtrInput   `pulumi:"enableBatching"`
-	SendAfter      pulumi.StringPtrInput `pulumi:"sendAfter"`
-}
-
-func (BatchingArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*Batching)(nil)).Elem()
-}
-
-func (i BatchingArgs) ToBatchingOutput() BatchingOutput {
-	return i.ToBatchingOutputWithContext(context.Background())
-}
-
-func (i BatchingArgs) ToBatchingOutputWithContext(ctx context.Context) BatchingOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BatchingOutput)
-}
-
 type BatchingOutput struct{ *pulumi.OutputState }
 
 func (BatchingOutput) ElementType() reflect.Type {
