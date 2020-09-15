@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = [
@@ -329,24 +329,24 @@ __all__ = [
 @pulumi.input_type
 class AutoscalarAutoscalingPolicyArgs:
     def __init__(__self__, *,
-                 max_replicas: pulumi.Input[float],
-                 min_replicas: pulumi.Input[float],
-                 cooldown_period: Optional[pulumi.Input[float]] = None,
+                 max_replicas: pulumi.Input[int],
+                 min_replicas: pulumi.Input[int],
+                 cooldown_period: Optional[pulumi.Input[int]] = None,
                  cpu_utilization: Optional[pulumi.Input['AutoscalarAutoscalingPolicyCpuUtilizationArgs']] = None,
                  load_balancing_utilization: Optional[pulumi.Input['AutoscalarAutoscalingPolicyLoadBalancingUtilizationArgs']] = None,
-                 metrics: Optional[pulumi.Input[List[pulumi.Input['AutoscalarAutoscalingPolicyMetricArgs']]]] = None,
+                 metrics: Optional[pulumi.Input[Sequence[pulumi.Input['AutoscalarAutoscalingPolicyMetricArgs']]]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  scale_down_control: Optional[pulumi.Input['AutoscalarAutoscalingPolicyScaleDownControlArgs']] = None):
         """
-        :param pulumi.Input[float] max_replicas: The maximum number of instances that the autoscaler can scale up
+        :param pulumi.Input[int] max_replicas: The maximum number of instances that the autoscaler can scale up
                to. This is required when creating or updating an autoscaler. The
                maximum number of replicas should not be lower than minimal number
                of replicas.
-        :param pulumi.Input[float] min_replicas: The minimum number of replicas that the autoscaler can scale down
+        :param pulumi.Input[int] min_replicas: The minimum number of replicas that the autoscaler can scale down
                to. This cannot be less than 0. If not provided, autoscaler will
                choose a default value depending on maximum number of instances
                allowed.
-        :param pulumi.Input[float] cooldown_period: The number of seconds that the autoscaler should wait before it
+        :param pulumi.Input[int] cooldown_period: The number of seconds that the autoscaler should wait before it
                starts collecting information from a new instance. This prevents
                the autoscaler from collecting information when the instance is
                initializing, during which the collected usage would not be
@@ -361,7 +361,7 @@ class AutoscalarAutoscalingPolicyArgs:
                Structure is documented below.
         :param pulumi.Input['AutoscalarAutoscalingPolicyLoadBalancingUtilizationArgs'] load_balancing_utilization: Configuration parameters of autoscaling based on a load balancer.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input['AutoscalarAutoscalingPolicyMetricArgs']]] metrics: Configuration parameters of autoscaling based on a custom metric.
+        :param pulumi.Input[Sequence[pulumi.Input['AutoscalarAutoscalingPolicyMetricArgs']]] metrics: Configuration parameters of autoscaling based on a custom metric.
                Structure is documented below.
         :param pulumi.Input[str] mode: Defines operating mode for this policy.
                Default value is `ON`.
@@ -384,7 +384,7 @@ class AutoscalarAutoscalingPolicyArgs:
 
     @property
     @pulumi.getter(name="maxReplicas")
-    def max_replicas(self) -> pulumi.Input[float]:
+    def max_replicas(self) -> pulumi.Input[int]:
         """
         The maximum number of instances that the autoscaler can scale up
         to. This is required when creating or updating an autoscaler. The
@@ -394,12 +394,12 @@ class AutoscalarAutoscalingPolicyArgs:
         return pulumi.get(self, "max_replicas")
 
     @max_replicas.setter
-    def max_replicas(self, value: pulumi.Input[float]):
+    def max_replicas(self, value: pulumi.Input[int]):
         pulumi.set(self, "max_replicas", value)
 
     @property
     @pulumi.getter(name="minReplicas")
-    def min_replicas(self) -> pulumi.Input[float]:
+    def min_replicas(self) -> pulumi.Input[int]:
         """
         The minimum number of replicas that the autoscaler can scale down
         to. This cannot be less than 0. If not provided, autoscaler will
@@ -409,12 +409,12 @@ class AutoscalarAutoscalingPolicyArgs:
         return pulumi.get(self, "min_replicas")
 
     @min_replicas.setter
-    def min_replicas(self, value: pulumi.Input[float]):
+    def min_replicas(self, value: pulumi.Input[int]):
         pulumi.set(self, "min_replicas", value)
 
     @property
     @pulumi.getter(name="cooldownPeriod")
-    def cooldown_period(self) -> Optional[pulumi.Input[float]]:
+    def cooldown_period(self) -> Optional[pulumi.Input[int]]:
         """
         The number of seconds that the autoscaler should wait before it
         starts collecting information from a new instance. This prevents
@@ -429,7 +429,7 @@ class AutoscalarAutoscalingPolicyArgs:
         return pulumi.get(self, "cooldown_period")
 
     @cooldown_period.setter
-    def cooldown_period(self, value: Optional[pulumi.Input[float]]):
+    def cooldown_period(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "cooldown_period", value)
 
     @property
@@ -462,7 +462,7 @@ class AutoscalarAutoscalingPolicyArgs:
 
     @property
     @pulumi.getter
-    def metrics(self) -> Optional[pulumi.Input[List[pulumi.Input['AutoscalarAutoscalingPolicyMetricArgs']]]]:
+    def metrics(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AutoscalarAutoscalingPolicyMetricArgs']]]]:
         """
         Configuration parameters of autoscaling based on a custom metric.
         Structure is documented below.
@@ -470,7 +470,7 @@ class AutoscalarAutoscalingPolicyArgs:
         return pulumi.get(self, "metrics")
 
     @metrics.setter
-    def metrics(self, value: Optional[pulumi.Input[List[pulumi.Input['AutoscalarAutoscalingPolicyMetricArgs']]]]):
+    def metrics(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AutoscalarAutoscalingPolicyMetricArgs']]]]):
         pulumi.set(self, "metrics", value)
 
     @property
@@ -729,11 +729,11 @@ class AutoscalarAutoscalingPolicyMetricArgs:
 class AutoscalarAutoscalingPolicyScaleDownControlArgs:
     def __init__(__self__, *,
                  max_scaled_down_replicas: Optional[pulumi.Input['AutoscalarAutoscalingPolicyScaleDownControlMaxScaledDownReplicasArgs']] = None,
-                 time_window_sec: Optional[pulumi.Input[float]] = None):
+                 time_window_sec: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input['AutoscalarAutoscalingPolicyScaleDownControlMaxScaledDownReplicasArgs'] max_scaled_down_replicas: A nested object resource
                Structure is documented below.
-        :param pulumi.Input[float] time_window_sec: How long back autoscaling should look when computing recommendations
+        :param pulumi.Input[int] time_window_sec: How long back autoscaling should look when computing recommendations
                to include directives regarding slower scale down, as described above.
         """
         if max_scaled_down_replicas is not None:
@@ -756,7 +756,7 @@ class AutoscalarAutoscalingPolicyScaleDownControlArgs:
 
     @property
     @pulumi.getter(name="timeWindowSec")
-    def time_window_sec(self) -> Optional[pulumi.Input[float]]:
+    def time_window_sec(self) -> Optional[pulumi.Input[int]]:
         """
         How long back autoscaling should look when computing recommendations
         to include directives regarding slower scale down, as described above.
@@ -764,19 +764,19 @@ class AutoscalarAutoscalingPolicyScaleDownControlArgs:
         return pulumi.get(self, "time_window_sec")
 
     @time_window_sec.setter
-    def time_window_sec(self, value: Optional[pulumi.Input[float]]):
+    def time_window_sec(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "time_window_sec", value)
 
 
 @pulumi.input_type
 class AutoscalarAutoscalingPolicyScaleDownControlMaxScaledDownReplicasArgs:
     def __init__(__self__, *,
-                 fixed: Optional[pulumi.Input[float]] = None,
-                 percent: Optional[pulumi.Input[float]] = None):
+                 fixed: Optional[pulumi.Input[int]] = None,
+                 percent: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[float] fixed: Specifies a fixed number of VM instances. This must be a positive
+        :param pulumi.Input[int] fixed: Specifies a fixed number of VM instances. This must be a positive
                integer.
-        :param pulumi.Input[float] percent: Specifies a percentage of instances between 0 to 100%, inclusive.
+        :param pulumi.Input[int] percent: Specifies a percentage of instances between 0 to 100%, inclusive.
                For example, specify 80 for 80%.
         """
         if fixed is not None:
@@ -786,7 +786,7 @@ class AutoscalarAutoscalingPolicyScaleDownControlMaxScaledDownReplicasArgs:
 
     @property
     @pulumi.getter
-    def fixed(self) -> Optional[pulumi.Input[float]]:
+    def fixed(self) -> Optional[pulumi.Input[int]]:
         """
         Specifies a fixed number of VM instances. This must be a positive
         integer.
@@ -794,12 +794,12 @@ class AutoscalarAutoscalingPolicyScaleDownControlMaxScaledDownReplicasArgs:
         return pulumi.get(self, "fixed")
 
     @fixed.setter
-    def fixed(self, value: Optional[pulumi.Input[float]]):
+    def fixed(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fixed", value)
 
     @property
     @pulumi.getter
-    def percent(self) -> Optional[pulumi.Input[float]]:
+    def percent(self) -> Optional[pulumi.Input[int]]:
         """
         Specifies a percentage of instances between 0 to 100%, inclusive.
         For example, specify 80 for 80%.
@@ -807,31 +807,31 @@ class AutoscalarAutoscalingPolicyScaleDownControlMaxScaledDownReplicasArgs:
         return pulumi.get(self, "percent")
 
     @percent.setter
-    def percent(self, value: Optional[pulumi.Input[float]]):
+    def percent(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "percent", value)
 
 
 @pulumi.input_type
 class AutoscalerAutoscalingPolicyArgs:
     def __init__(__self__, *,
-                 max_replicas: pulumi.Input[float],
-                 min_replicas: pulumi.Input[float],
-                 cooldown_period: Optional[pulumi.Input[float]] = None,
+                 max_replicas: pulumi.Input[int],
+                 min_replicas: pulumi.Input[int],
+                 cooldown_period: Optional[pulumi.Input[int]] = None,
                  cpu_utilization: Optional[pulumi.Input['AutoscalerAutoscalingPolicyCpuUtilizationArgs']] = None,
                  load_balancing_utilization: Optional[pulumi.Input['AutoscalerAutoscalingPolicyLoadBalancingUtilizationArgs']] = None,
-                 metrics: Optional[pulumi.Input[List[pulumi.Input['AutoscalerAutoscalingPolicyMetricArgs']]]] = None,
+                 metrics: Optional[pulumi.Input[Sequence[pulumi.Input['AutoscalerAutoscalingPolicyMetricArgs']]]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  scale_down_control: Optional[pulumi.Input['AutoscalerAutoscalingPolicyScaleDownControlArgs']] = None):
         """
-        :param pulumi.Input[float] max_replicas: The maximum number of instances that the autoscaler can scale up
+        :param pulumi.Input[int] max_replicas: The maximum number of instances that the autoscaler can scale up
                to. This is required when creating or updating an autoscaler. The
                maximum number of replicas should not be lower than minimal number
                of replicas.
-        :param pulumi.Input[float] min_replicas: The minimum number of replicas that the autoscaler can scale down
+        :param pulumi.Input[int] min_replicas: The minimum number of replicas that the autoscaler can scale down
                to. This cannot be less than 0. If not provided, autoscaler will
                choose a default value depending on maximum number of instances
                allowed.
-        :param pulumi.Input[float] cooldown_period: The number of seconds that the autoscaler should wait before it
+        :param pulumi.Input[int] cooldown_period: The number of seconds that the autoscaler should wait before it
                starts collecting information from a new instance. This prevents
                the autoscaler from collecting information when the instance is
                initializing, during which the collected usage would not be
@@ -846,7 +846,7 @@ class AutoscalerAutoscalingPolicyArgs:
                Structure is documented below.
         :param pulumi.Input['AutoscalerAutoscalingPolicyLoadBalancingUtilizationArgs'] load_balancing_utilization: Configuration parameters of autoscaling based on a load balancer.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input['AutoscalerAutoscalingPolicyMetricArgs']]] metrics: Configuration parameters of autoscaling based on a custom metric.
+        :param pulumi.Input[Sequence[pulumi.Input['AutoscalerAutoscalingPolicyMetricArgs']]] metrics: Configuration parameters of autoscaling based on a custom metric.
                Structure is documented below.
         :param pulumi.Input[str] mode: Defines operating mode for this policy.
                Default value is `ON`.
@@ -869,7 +869,7 @@ class AutoscalerAutoscalingPolicyArgs:
 
     @property
     @pulumi.getter(name="maxReplicas")
-    def max_replicas(self) -> pulumi.Input[float]:
+    def max_replicas(self) -> pulumi.Input[int]:
         """
         The maximum number of instances that the autoscaler can scale up
         to. This is required when creating or updating an autoscaler. The
@@ -879,12 +879,12 @@ class AutoscalerAutoscalingPolicyArgs:
         return pulumi.get(self, "max_replicas")
 
     @max_replicas.setter
-    def max_replicas(self, value: pulumi.Input[float]):
+    def max_replicas(self, value: pulumi.Input[int]):
         pulumi.set(self, "max_replicas", value)
 
     @property
     @pulumi.getter(name="minReplicas")
-    def min_replicas(self) -> pulumi.Input[float]:
+    def min_replicas(self) -> pulumi.Input[int]:
         """
         The minimum number of replicas that the autoscaler can scale down
         to. This cannot be less than 0. If not provided, autoscaler will
@@ -894,12 +894,12 @@ class AutoscalerAutoscalingPolicyArgs:
         return pulumi.get(self, "min_replicas")
 
     @min_replicas.setter
-    def min_replicas(self, value: pulumi.Input[float]):
+    def min_replicas(self, value: pulumi.Input[int]):
         pulumi.set(self, "min_replicas", value)
 
     @property
     @pulumi.getter(name="cooldownPeriod")
-    def cooldown_period(self) -> Optional[pulumi.Input[float]]:
+    def cooldown_period(self) -> Optional[pulumi.Input[int]]:
         """
         The number of seconds that the autoscaler should wait before it
         starts collecting information from a new instance. This prevents
@@ -914,7 +914,7 @@ class AutoscalerAutoscalingPolicyArgs:
         return pulumi.get(self, "cooldown_period")
 
     @cooldown_period.setter
-    def cooldown_period(self, value: Optional[pulumi.Input[float]]):
+    def cooldown_period(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "cooldown_period", value)
 
     @property
@@ -947,7 +947,7 @@ class AutoscalerAutoscalingPolicyArgs:
 
     @property
     @pulumi.getter
-    def metrics(self) -> Optional[pulumi.Input[List[pulumi.Input['AutoscalerAutoscalingPolicyMetricArgs']]]]:
+    def metrics(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AutoscalerAutoscalingPolicyMetricArgs']]]]:
         """
         Configuration parameters of autoscaling based on a custom metric.
         Structure is documented below.
@@ -955,7 +955,7 @@ class AutoscalerAutoscalingPolicyArgs:
         return pulumi.get(self, "metrics")
 
     @metrics.setter
-    def metrics(self, value: Optional[pulumi.Input[List[pulumi.Input['AutoscalerAutoscalingPolicyMetricArgs']]]]):
+    def metrics(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AutoscalerAutoscalingPolicyMetricArgs']]]]):
         pulumi.set(self, "metrics", value)
 
     @property
@@ -1214,11 +1214,11 @@ class AutoscalerAutoscalingPolicyMetricArgs:
 class AutoscalerAutoscalingPolicyScaleDownControlArgs:
     def __init__(__self__, *,
                  max_scaled_down_replicas: Optional[pulumi.Input['AutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasArgs']] = None,
-                 time_window_sec: Optional[pulumi.Input[float]] = None):
+                 time_window_sec: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input['AutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasArgs'] max_scaled_down_replicas: A nested object resource
                Structure is documented below.
-        :param pulumi.Input[float] time_window_sec: How long back autoscaling should look when computing recommendations
+        :param pulumi.Input[int] time_window_sec: How long back autoscaling should look when computing recommendations
                to include directives regarding slower scale down, as described above.
         """
         if max_scaled_down_replicas is not None:
@@ -1241,7 +1241,7 @@ class AutoscalerAutoscalingPolicyScaleDownControlArgs:
 
     @property
     @pulumi.getter(name="timeWindowSec")
-    def time_window_sec(self) -> Optional[pulumi.Input[float]]:
+    def time_window_sec(self) -> Optional[pulumi.Input[int]]:
         """
         How long back autoscaling should look when computing recommendations
         to include directives regarding slower scale down, as described above.
@@ -1249,19 +1249,19 @@ class AutoscalerAutoscalingPolicyScaleDownControlArgs:
         return pulumi.get(self, "time_window_sec")
 
     @time_window_sec.setter
-    def time_window_sec(self, value: Optional[pulumi.Input[float]]):
+    def time_window_sec(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "time_window_sec", value)
 
 
 @pulumi.input_type
 class AutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasArgs:
     def __init__(__self__, *,
-                 fixed: Optional[pulumi.Input[float]] = None,
-                 percent: Optional[pulumi.Input[float]] = None):
+                 fixed: Optional[pulumi.Input[int]] = None,
+                 percent: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[float] fixed: Specifies a fixed number of VM instances. This must be a positive
+        :param pulumi.Input[int] fixed: Specifies a fixed number of VM instances. This must be a positive
                integer.
-        :param pulumi.Input[float] percent: Specifies a percentage of instances between 0 to 100%, inclusive.
+        :param pulumi.Input[int] percent: Specifies a percentage of instances between 0 to 100%, inclusive.
                For example, specify 80 for 80%.
         """
         if fixed is not None:
@@ -1271,7 +1271,7 @@ class AutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasArgs:
 
     @property
     @pulumi.getter
-    def fixed(self) -> Optional[pulumi.Input[float]]:
+    def fixed(self) -> Optional[pulumi.Input[int]]:
         """
         Specifies a fixed number of VM instances. This must be a positive
         integer.
@@ -1279,12 +1279,12 @@ class AutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasArgs:
         return pulumi.get(self, "fixed")
 
     @fixed.setter
-    def fixed(self, value: Optional[pulumi.Input[float]]):
+    def fixed(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fixed", value)
 
     @property
     @pulumi.getter
-    def percent(self) -> Optional[pulumi.Input[float]]:
+    def percent(self) -> Optional[pulumi.Input[int]]:
         """
         Specifies a percentage of instances between 0 to 100%, inclusive.
         For example, specify 80 for 80%.
@@ -1292,16 +1292,16 @@ class AutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasArgs:
         return pulumi.get(self, "percent")
 
     @percent.setter
-    def percent(self, value: Optional[pulumi.Input[float]]):
+    def percent(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "percent", value)
 
 
 @pulumi.input_type
 class BackendBucketCdnPolicyArgs:
     def __init__(__self__, *,
-                 signed_url_cache_max_age_sec: pulumi.Input[float]):
+                 signed_url_cache_max_age_sec: pulumi.Input[int]):
         """
-        :param pulumi.Input[float] signed_url_cache_max_age_sec: Maximum number of seconds the response to a signed URL request will
+        :param pulumi.Input[int] signed_url_cache_max_age_sec: Maximum number of seconds the response to a signed URL request will
                be considered fresh. After this time period,
                the response will be revalidated before being served.
                When serving responses to signed URL requests,
@@ -1314,7 +1314,7 @@ class BackendBucketCdnPolicyArgs:
 
     @property
     @pulumi.getter(name="signedUrlCacheMaxAgeSec")
-    def signed_url_cache_max_age_sec(self) -> pulumi.Input[float]:
+    def signed_url_cache_max_age_sec(self) -> pulumi.Input[int]:
         """
         Maximum number of seconds the response to a signed URL request will
         be considered fresh. After this time period,
@@ -1328,7 +1328,7 @@ class BackendBucketCdnPolicyArgs:
         return pulumi.get(self, "signed_url_cache_max_age_sec")
 
     @signed_url_cache_max_age_sec.setter
-    def signed_url_cache_max_age_sec(self, value: pulumi.Input[float]):
+    def signed_url_cache_max_age_sec(self, value: pulumi.Input[int]):
         pulumi.set(self, "signed_url_cache_max_age_sec", value)
 
 
@@ -1339,10 +1339,10 @@ class BackendServiceBackendArgs:
                  balancing_mode: Optional[pulumi.Input[str]] = None,
                  capacity_scaler: Optional[pulumi.Input[float]] = None,
                  description: Optional[pulumi.Input[str]] = None,
-                 max_connections: Optional[pulumi.Input[float]] = None,
-                 max_connections_per_endpoint: Optional[pulumi.Input[float]] = None,
-                 max_connections_per_instance: Optional[pulumi.Input[float]] = None,
-                 max_rate: Optional[pulumi.Input[float]] = None,
+                 max_connections: Optional[pulumi.Input[int]] = None,
+                 max_connections_per_endpoint: Optional[pulumi.Input[int]] = None,
+                 max_connections_per_instance: Optional[pulumi.Input[int]] = None,
+                 max_rate: Optional[pulumi.Input[int]] = None,
                  max_rate_per_endpoint: Optional[pulumi.Input[float]] = None,
                  max_rate_per_instance: Optional[pulumi.Input[float]] = None,
                  max_utilization: Optional[pulumi.Input[float]] = None):
@@ -1375,21 +1375,21 @@ class BackendServiceBackendArgs:
                0% of its available Capacity. Valid range is [0.0,1.0].
         :param pulumi.Input[str] description: An optional description of this resource.
                Provide this property when you create the resource.
-        :param pulumi.Input[float] max_connections: The maximum number of connections to the backend cluster.
+        :param pulumi.Input[int] max_connections: The maximum number of connections to the backend cluster.
                Defaults to 1024.
-        :param pulumi.Input[float] max_connections_per_endpoint: The max number of simultaneous connections that a single backend
+        :param pulumi.Input[int] max_connections_per_endpoint: The max number of simultaneous connections that a single backend
                network endpoint can handle. This is used to calculate the
                capacity of the group. Can be used in either CONNECTION or
                UTILIZATION balancing modes.
                For CONNECTION mode, either
                maxConnections or maxConnectionsPerEndpoint must be set.
-        :param pulumi.Input[float] max_connections_per_instance: The max number of simultaneous connections that a single
+        :param pulumi.Input[int] max_connections_per_instance: The max number of simultaneous connections that a single
                backend instance can handle. This is used to calculate the
                capacity of the group. Can be used in either CONNECTION or
                UTILIZATION balancing modes.
                For CONNECTION mode, either maxConnections or
                maxConnectionsPerInstance must be set.
-        :param pulumi.Input[float] max_rate: The max requests per second (RPS) of the group.
+        :param pulumi.Input[int] max_rate: The max requests per second (RPS) of the group.
                Can be used with either RATE or UTILIZATION balancing modes,
                but required if RATE mode. For RATE mode, either maxRate or one
                of maxRatePerInstance or maxRatePerEndpoint, as appropriate for
@@ -1502,7 +1502,7 @@ class BackendServiceBackendArgs:
 
     @property
     @pulumi.getter(name="maxConnections")
-    def max_connections(self) -> Optional[pulumi.Input[float]]:
+    def max_connections(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of connections to the backend cluster.
         Defaults to 1024.
@@ -1510,12 +1510,12 @@ class BackendServiceBackendArgs:
         return pulumi.get(self, "max_connections")
 
     @max_connections.setter
-    def max_connections(self, value: Optional[pulumi.Input[float]]):
+    def max_connections(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_connections", value)
 
     @property
     @pulumi.getter(name="maxConnectionsPerEndpoint")
-    def max_connections_per_endpoint(self) -> Optional[pulumi.Input[float]]:
+    def max_connections_per_endpoint(self) -> Optional[pulumi.Input[int]]:
         """
         The max number of simultaneous connections that a single backend
         network endpoint can handle. This is used to calculate the
@@ -1527,12 +1527,12 @@ class BackendServiceBackendArgs:
         return pulumi.get(self, "max_connections_per_endpoint")
 
     @max_connections_per_endpoint.setter
-    def max_connections_per_endpoint(self, value: Optional[pulumi.Input[float]]):
+    def max_connections_per_endpoint(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_connections_per_endpoint", value)
 
     @property
     @pulumi.getter(name="maxConnectionsPerInstance")
-    def max_connections_per_instance(self) -> Optional[pulumi.Input[float]]:
+    def max_connections_per_instance(self) -> Optional[pulumi.Input[int]]:
         """
         The max number of simultaneous connections that a single
         backend instance can handle. This is used to calculate the
@@ -1544,12 +1544,12 @@ class BackendServiceBackendArgs:
         return pulumi.get(self, "max_connections_per_instance")
 
     @max_connections_per_instance.setter
-    def max_connections_per_instance(self, value: Optional[pulumi.Input[float]]):
+    def max_connections_per_instance(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_connections_per_instance", value)
 
     @property
     @pulumi.getter(name="maxRate")
-    def max_rate(self) -> Optional[pulumi.Input[float]]:
+    def max_rate(self) -> Optional[pulumi.Input[int]]:
         """
         The max requests per second (RPS) of the group.
         Can be used with either RATE or UTILIZATION balancing modes,
@@ -1560,7 +1560,7 @@ class BackendServiceBackendArgs:
         return pulumi.get(self, "max_rate")
 
     @max_rate.setter
-    def max_rate(self, value: Optional[pulumi.Input[float]]):
+    def max_rate(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_rate", value)
 
     @property
@@ -1612,11 +1612,11 @@ class BackendServiceBackendArgs:
 class BackendServiceCdnPolicyArgs:
     def __init__(__self__, *,
                  cache_key_policy: Optional[pulumi.Input['BackendServiceCdnPolicyCacheKeyPolicyArgs']] = None,
-                 signed_url_cache_max_age_sec: Optional[pulumi.Input[float]] = None):
+                 signed_url_cache_max_age_sec: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input['BackendServiceCdnPolicyCacheKeyPolicyArgs'] cache_key_policy: The CacheKeyPolicy for this CdnPolicy.
                Structure is documented below.
-        :param pulumi.Input[float] signed_url_cache_max_age_sec: Maximum number of seconds the response to a signed URL request
+        :param pulumi.Input[int] signed_url_cache_max_age_sec: Maximum number of seconds the response to a signed URL request
                will be considered fresh, defaults to 1hr (3600s). After this
                time period, the response will be revalidated before
                being served.
@@ -1646,7 +1646,7 @@ class BackendServiceCdnPolicyArgs:
 
     @property
     @pulumi.getter(name="signedUrlCacheMaxAgeSec")
-    def signed_url_cache_max_age_sec(self) -> Optional[pulumi.Input[float]]:
+    def signed_url_cache_max_age_sec(self) -> Optional[pulumi.Input[int]]:
         """
         Maximum number of seconds the response to a signed URL request
         will be considered fresh, defaults to 1hr (3600s). After this
@@ -1661,7 +1661,7 @@ class BackendServiceCdnPolicyArgs:
         return pulumi.get(self, "signed_url_cache_max_age_sec")
 
     @signed_url_cache_max_age_sec.setter
-    def signed_url_cache_max_age_sec(self, value: Optional[pulumi.Input[float]]):
+    def signed_url_cache_max_age_sec(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "signed_url_cache_max_age_sec", value)
 
 
@@ -1671,8 +1671,8 @@ class BackendServiceCdnPolicyCacheKeyPolicyArgs:
                  include_host: Optional[pulumi.Input[bool]] = None,
                  include_protocol: Optional[pulumi.Input[bool]] = None,
                  include_query_string: Optional[pulumi.Input[bool]] = None,
-                 query_string_blacklists: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 query_string_whitelists: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 query_string_blacklists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 query_string_whitelists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         :param pulumi.Input[bool] include_host: If true requests to different hosts will be cached separately.
         :param pulumi.Input[bool] include_protocol: If true, http and https requests will be cached separately.
@@ -1682,12 +1682,12 @@ class BackendServiceCdnPolicyCacheKeyPolicyArgs:
                string will be included.
                If false, the query string will be excluded from the cache
                key entirely.
-        :param pulumi.Input[List[pulumi.Input[str]]] query_string_blacklists: Names of query string parameters to exclude in cache keys.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] query_string_blacklists: Names of query string parameters to exclude in cache keys.
                All other parameters will be included. Either specify
                query_string_whitelist or query_string_blacklist, not both.
                '&' and '=' will be percent encoded and not treated as
                delimiters.
-        :param pulumi.Input[List[pulumi.Input[str]]] query_string_whitelists: Names of query string parameters to include in cache keys.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] query_string_whitelists: Names of query string parameters to include in cache keys.
                All other parameters will be excluded. Either specify
                query_string_whitelist or query_string_blacklist, not both.
                '&' and '=' will be percent encoded and not treated as
@@ -1747,7 +1747,7 @@ class BackendServiceCdnPolicyCacheKeyPolicyArgs:
 
     @property
     @pulumi.getter(name="queryStringBlacklists")
-    def query_string_blacklists(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def query_string_blacklists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Names of query string parameters to exclude in cache keys.
         All other parameters will be included. Either specify
@@ -1758,12 +1758,12 @@ class BackendServiceCdnPolicyCacheKeyPolicyArgs:
         return pulumi.get(self, "query_string_blacklists")
 
     @query_string_blacklists.setter
-    def query_string_blacklists(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def query_string_blacklists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "query_string_blacklists", value)
 
     @property
     @pulumi.getter(name="queryStringWhitelists")
-    def query_string_whitelists(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def query_string_whitelists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Names of query string parameters to include in cache keys.
         All other parameters will be excluded. Either specify
@@ -1774,7 +1774,7 @@ class BackendServiceCdnPolicyCacheKeyPolicyArgs:
         return pulumi.get(self, "query_string_whitelists")
 
     @query_string_whitelists.setter
-    def query_string_whitelists(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def query_string_whitelists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "query_string_whitelists", value)
 
 
@@ -1782,24 +1782,24 @@ class BackendServiceCdnPolicyCacheKeyPolicyArgs:
 class BackendServiceCircuitBreakersArgs:
     def __init__(__self__, *,
                  connect_timeout: Optional[pulumi.Input['BackendServiceCircuitBreakersConnectTimeoutArgs']] = None,
-                 max_connections: Optional[pulumi.Input[float]] = None,
-                 max_pending_requests: Optional[pulumi.Input[float]] = None,
-                 max_requests: Optional[pulumi.Input[float]] = None,
-                 max_requests_per_connection: Optional[pulumi.Input[float]] = None,
-                 max_retries: Optional[pulumi.Input[float]] = None):
+                 max_connections: Optional[pulumi.Input[int]] = None,
+                 max_pending_requests: Optional[pulumi.Input[int]] = None,
+                 max_requests: Optional[pulumi.Input[int]] = None,
+                 max_requests_per_connection: Optional[pulumi.Input[int]] = None,
+                 max_retries: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input['BackendServiceCircuitBreakersConnectTimeoutArgs'] connect_timeout: The timeout for new network connections to hosts.  Structure is documented below.
-        :param pulumi.Input[float] max_connections: The maximum number of connections to the backend cluster.
+        :param pulumi.Input[int] max_connections: The maximum number of connections to the backend cluster.
                Defaults to 1024.
-        :param pulumi.Input[float] max_pending_requests: The maximum number of pending requests to the backend cluster.
+        :param pulumi.Input[int] max_pending_requests: The maximum number of pending requests to the backend cluster.
                Defaults to 1024.
-        :param pulumi.Input[float] max_requests: The maximum number of parallel requests to the backend cluster.
+        :param pulumi.Input[int] max_requests: The maximum number of parallel requests to the backend cluster.
                Defaults to 1024.
-        :param pulumi.Input[float] max_requests_per_connection: Maximum requests for a single backend connection. This parameter
+        :param pulumi.Input[int] max_requests_per_connection: Maximum requests for a single backend connection. This parameter
                is respected by both the HTTP/1.1 and HTTP/2 implementations. If
                not specified, there is no limit. Setting this parameter to 1
                will effectively disable keep alive.
-        :param pulumi.Input[float] max_retries: The maximum number of parallel retries to the backend cluster.
+        :param pulumi.Input[int] max_retries: The maximum number of parallel retries to the backend cluster.
                Defaults to 3.
         """
         if connect_timeout is not None:
@@ -1829,7 +1829,7 @@ class BackendServiceCircuitBreakersArgs:
 
     @property
     @pulumi.getter(name="maxConnections")
-    def max_connections(self) -> Optional[pulumi.Input[float]]:
+    def max_connections(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of connections to the backend cluster.
         Defaults to 1024.
@@ -1837,12 +1837,12 @@ class BackendServiceCircuitBreakersArgs:
         return pulumi.get(self, "max_connections")
 
     @max_connections.setter
-    def max_connections(self, value: Optional[pulumi.Input[float]]):
+    def max_connections(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_connections", value)
 
     @property
     @pulumi.getter(name="maxPendingRequests")
-    def max_pending_requests(self) -> Optional[pulumi.Input[float]]:
+    def max_pending_requests(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of pending requests to the backend cluster.
         Defaults to 1024.
@@ -1850,12 +1850,12 @@ class BackendServiceCircuitBreakersArgs:
         return pulumi.get(self, "max_pending_requests")
 
     @max_pending_requests.setter
-    def max_pending_requests(self, value: Optional[pulumi.Input[float]]):
+    def max_pending_requests(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_pending_requests", value)
 
     @property
     @pulumi.getter(name="maxRequests")
-    def max_requests(self) -> Optional[pulumi.Input[float]]:
+    def max_requests(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of parallel requests to the backend cluster.
         Defaults to 1024.
@@ -1863,12 +1863,12 @@ class BackendServiceCircuitBreakersArgs:
         return pulumi.get(self, "max_requests")
 
     @max_requests.setter
-    def max_requests(self, value: Optional[pulumi.Input[float]]):
+    def max_requests(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_requests", value)
 
     @property
     @pulumi.getter(name="maxRequestsPerConnection")
-    def max_requests_per_connection(self) -> Optional[pulumi.Input[float]]:
+    def max_requests_per_connection(self) -> Optional[pulumi.Input[int]]:
         """
         Maximum requests for a single backend connection. This parameter
         is respected by both the HTTP/1.1 and HTTP/2 implementations. If
@@ -1878,12 +1878,12 @@ class BackendServiceCircuitBreakersArgs:
         return pulumi.get(self, "max_requests_per_connection")
 
     @max_requests_per_connection.setter
-    def max_requests_per_connection(self, value: Optional[pulumi.Input[float]]):
+    def max_requests_per_connection(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_requests_per_connection", value)
 
     @property
     @pulumi.getter(name="maxRetries")
-    def max_retries(self) -> Optional[pulumi.Input[float]]:
+    def max_retries(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of parallel retries to the backend cluster.
         Defaults to 3.
@@ -1891,19 +1891,19 @@ class BackendServiceCircuitBreakersArgs:
         return pulumi.get(self, "max_retries")
 
     @max_retries.setter
-    def max_retries(self, value: Optional[pulumi.Input[float]]):
+    def max_retries(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_retries", value)
 
 
 @pulumi.input_type
 class BackendServiceCircuitBreakersConnectTimeoutArgs:
     def __init__(__self__, *,
-                 seconds: pulumi.Input[float],
-                 nanos: Optional[pulumi.Input[float]] = None):
+                 seconds: pulumi.Input[int],
+                 nanos: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[float] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        :param pulumi.Input[int] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
                inclusive.
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
                less than one second are represented with a 0 `seconds` field and a positive
                `nanos` field. Must be from 0 to 999,999,999 inclusive.
         """
@@ -1913,7 +1913,7 @@ class BackendServiceCircuitBreakersConnectTimeoutArgs:
 
     @property
     @pulumi.getter
-    def seconds(self) -> pulumi.Input[float]:
+    def seconds(self) -> pulumi.Input[int]:
         """
         Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
         inclusive.
@@ -1921,12 +1921,12 @@ class BackendServiceCircuitBreakersConnectTimeoutArgs:
         return pulumi.get(self, "seconds")
 
     @seconds.setter
-    def seconds(self, value: pulumi.Input[float]):
+    def seconds(self, value: pulumi.Input[int]):
         pulumi.set(self, "seconds", value)
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations
         less than one second are represented with a 0 `seconds` field and a positive
@@ -1935,7 +1935,7 @@ class BackendServiceCircuitBreakersConnectTimeoutArgs:
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
 
@@ -1944,7 +1944,7 @@ class BackendServiceConsistentHashArgs:
     def __init__(__self__, *,
                  http_cookie: Optional[pulumi.Input['BackendServiceConsistentHashHttpCookieArgs']] = None,
                  http_header_name: Optional[pulumi.Input[str]] = None,
-                 minimum_ring_size: Optional[pulumi.Input[float]] = None):
+                 minimum_ring_size: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input['BackendServiceConsistentHashHttpCookieArgs'] http_cookie: Hash is based on HTTP Cookie. This field describes a HTTP cookie
                that will be used as the hash key for the consistent hash load
@@ -1953,7 +1953,7 @@ class BackendServiceConsistentHashArgs:
                Structure is documented below.
         :param pulumi.Input[str] http_header_name: The hash based on the value of the specified header field.
                This field is applicable if the sessionAffinity is set to HEADER_FIELD.
-        :param pulumi.Input[float] minimum_ring_size: The minimum number of virtual nodes to use for the hash ring.
+        :param pulumi.Input[int] minimum_ring_size: The minimum number of virtual nodes to use for the hash ring.
                Larger ring sizes result in more granular load
                distributions. If the number of hosts in the load balancing pool
                is larger than the ring size, each host will be assigned a single
@@ -1998,7 +1998,7 @@ class BackendServiceConsistentHashArgs:
 
     @property
     @pulumi.getter(name="minimumRingSize")
-    def minimum_ring_size(self) -> Optional[pulumi.Input[float]]:
+    def minimum_ring_size(self) -> Optional[pulumi.Input[int]]:
         """
         The minimum number of virtual nodes to use for the hash ring.
         Larger ring sizes result in more granular load
@@ -2010,7 +2010,7 @@ class BackendServiceConsistentHashArgs:
         return pulumi.get(self, "minimum_ring_size")
 
     @minimum_ring_size.setter
-    def minimum_ring_size(self, value: Optional[pulumi.Input[float]]):
+    def minimum_ring_size(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "minimum_ring_size", value)
 
 
@@ -2074,12 +2074,12 @@ class BackendServiceConsistentHashHttpCookieArgs:
 @pulumi.input_type
 class BackendServiceConsistentHashHttpCookieTtlArgs:
     def __init__(__self__, *,
-                 seconds: pulumi.Input[float],
-                 nanos: Optional[pulumi.Input[float]] = None):
+                 seconds: pulumi.Input[int],
+                 nanos: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[float] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        :param pulumi.Input[int] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
                inclusive.
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
                less than one second are represented with a 0 `seconds` field and a positive
                `nanos` field. Must be from 0 to 999,999,999 inclusive.
         """
@@ -2089,7 +2089,7 @@ class BackendServiceConsistentHashHttpCookieTtlArgs:
 
     @property
     @pulumi.getter
-    def seconds(self) -> pulumi.Input[float]:
+    def seconds(self) -> pulumi.Input[int]:
         """
         Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
         inclusive.
@@ -2097,12 +2097,12 @@ class BackendServiceConsistentHashHttpCookieTtlArgs:
         return pulumi.get(self, "seconds")
 
     @seconds.setter
-    def seconds(self, value: pulumi.Input[float]):
+    def seconds(self, value: pulumi.Input[int]):
         pulumi.set(self, "seconds", value)
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations
         less than one second are represented with a 0 `seconds` field and a positive
@@ -2111,7 +2111,7 @@ class BackendServiceConsistentHashHttpCookieTtlArgs:
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
 
@@ -2223,51 +2223,51 @@ class BackendServiceLogConfigArgs:
 class BackendServiceOutlierDetectionArgs:
     def __init__(__self__, *,
                  base_ejection_time: Optional[pulumi.Input['BackendServiceOutlierDetectionBaseEjectionTimeArgs']] = None,
-                 consecutive_errors: Optional[pulumi.Input[float]] = None,
-                 consecutive_gateway_failure: Optional[pulumi.Input[float]] = None,
-                 enforcing_consecutive_errors: Optional[pulumi.Input[float]] = None,
-                 enforcing_consecutive_gateway_failure: Optional[pulumi.Input[float]] = None,
-                 enforcing_success_rate: Optional[pulumi.Input[float]] = None,
+                 consecutive_errors: Optional[pulumi.Input[int]] = None,
+                 consecutive_gateway_failure: Optional[pulumi.Input[int]] = None,
+                 enforcing_consecutive_errors: Optional[pulumi.Input[int]] = None,
+                 enforcing_consecutive_gateway_failure: Optional[pulumi.Input[int]] = None,
+                 enforcing_success_rate: Optional[pulumi.Input[int]] = None,
                  interval: Optional[pulumi.Input['BackendServiceOutlierDetectionIntervalArgs']] = None,
-                 max_ejection_percent: Optional[pulumi.Input[float]] = None,
-                 success_rate_minimum_hosts: Optional[pulumi.Input[float]] = None,
-                 success_rate_request_volume: Optional[pulumi.Input[float]] = None,
-                 success_rate_stdev_factor: Optional[pulumi.Input[float]] = None):
+                 max_ejection_percent: Optional[pulumi.Input[int]] = None,
+                 success_rate_minimum_hosts: Optional[pulumi.Input[int]] = None,
+                 success_rate_request_volume: Optional[pulumi.Input[int]] = None,
+                 success_rate_stdev_factor: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input['BackendServiceOutlierDetectionBaseEjectionTimeArgs'] base_ejection_time: The base time that a host is ejected for. The real time is equal to the base
                time multiplied by the number of times the host has been ejected. Defaults to
                30000ms or 30s.
                Structure is documented below.
-        :param pulumi.Input[float] consecutive_errors: Number of errors before a host is ejected from the connection pool. When the
+        :param pulumi.Input[int] consecutive_errors: Number of errors before a host is ejected from the connection pool. When the
                backend host is accessed over HTTP, a 5xx return code qualifies as an error.
                Defaults to 5.
-        :param pulumi.Input[float] consecutive_gateway_failure: The number of consecutive gateway failures (502, 503, 504 status or connection
+        :param pulumi.Input[int] consecutive_gateway_failure: The number of consecutive gateway failures (502, 503, 504 status or connection
                errors that are mapped to one of those status codes) before a consecutive
                gateway failure ejection occurs. Defaults to 5.
-        :param pulumi.Input[float] enforcing_consecutive_errors: The percentage chance that a host will be actually ejected when an outlier
+        :param pulumi.Input[int] enforcing_consecutive_errors: The percentage chance that a host will be actually ejected when an outlier
                status is detected through consecutive 5xx. This setting can be used to disable
                ejection or to ramp it up slowly. Defaults to 100.
-        :param pulumi.Input[float] enforcing_consecutive_gateway_failure: The percentage chance that a host will be actually ejected when an outlier
+        :param pulumi.Input[int] enforcing_consecutive_gateway_failure: The percentage chance that a host will be actually ejected when an outlier
                status is detected through consecutive gateway failures. This setting can be
                used to disable ejection or to ramp it up slowly. Defaults to 0.
-        :param pulumi.Input[float] enforcing_success_rate: The percentage chance that a host will be actually ejected when an outlier
+        :param pulumi.Input[int] enforcing_success_rate: The percentage chance that a host will be actually ejected when an outlier
                status is detected through success rate statistics. This setting can be used to
                disable ejection or to ramp it up slowly. Defaults to 100.
         :param pulumi.Input['BackendServiceOutlierDetectionIntervalArgs'] interval: Time interval between ejection sweep analysis. This can result in both new
                ejections as well as hosts being returned to service. Defaults to 10 seconds.
                Structure is documented below.
-        :param pulumi.Input[float] max_ejection_percent: Maximum percentage of hosts in the load balancing pool for the backend service
+        :param pulumi.Input[int] max_ejection_percent: Maximum percentage of hosts in the load balancing pool for the backend service
                that can be ejected. Defaults to 10%.
-        :param pulumi.Input[float] success_rate_minimum_hosts: The number of hosts in a cluster that must have enough request volume to detect
+        :param pulumi.Input[int] success_rate_minimum_hosts: The number of hosts in a cluster that must have enough request volume to detect
                success rate outliers. If the number of hosts is less than this setting, outlier
                detection via success rate statistics is not performed for any host in the
                cluster. Defaults to 5.
-        :param pulumi.Input[float] success_rate_request_volume: The minimum number of total requests that must be collected in one interval (as
+        :param pulumi.Input[int] success_rate_request_volume: The minimum number of total requests that must be collected in one interval (as
                defined by the interval duration above) to include this host in success rate
                based outlier detection. If the volume is lower than this setting, outlier
                detection via success rate statistics is not performed for that host. Defaults
                to 100.
-        :param pulumi.Input[float] success_rate_stdev_factor: This factor is used to determine the ejection threshold for success rate outlier
+        :param pulumi.Input[int] success_rate_stdev_factor: This factor is used to determine the ejection threshold for success rate outlier
                ejection. The ejection threshold is the difference between the mean success
                rate, and the product of this factor and the standard deviation of the mean
                success rate: mean - (stdev * success_rate_stdev_factor). This factor is divided
@@ -2314,7 +2314,7 @@ class BackendServiceOutlierDetectionArgs:
 
     @property
     @pulumi.getter(name="consecutiveErrors")
-    def consecutive_errors(self) -> Optional[pulumi.Input[float]]:
+    def consecutive_errors(self) -> Optional[pulumi.Input[int]]:
         """
         Number of errors before a host is ejected from the connection pool. When the
         backend host is accessed over HTTP, a 5xx return code qualifies as an error.
@@ -2323,12 +2323,12 @@ class BackendServiceOutlierDetectionArgs:
         return pulumi.get(self, "consecutive_errors")
 
     @consecutive_errors.setter
-    def consecutive_errors(self, value: Optional[pulumi.Input[float]]):
+    def consecutive_errors(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "consecutive_errors", value)
 
     @property
     @pulumi.getter(name="consecutiveGatewayFailure")
-    def consecutive_gateway_failure(self) -> Optional[pulumi.Input[float]]:
+    def consecutive_gateway_failure(self) -> Optional[pulumi.Input[int]]:
         """
         The number of consecutive gateway failures (502, 503, 504 status or connection
         errors that are mapped to one of those status codes) before a consecutive
@@ -2337,12 +2337,12 @@ class BackendServiceOutlierDetectionArgs:
         return pulumi.get(self, "consecutive_gateway_failure")
 
     @consecutive_gateway_failure.setter
-    def consecutive_gateway_failure(self, value: Optional[pulumi.Input[float]]):
+    def consecutive_gateway_failure(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "consecutive_gateway_failure", value)
 
     @property
     @pulumi.getter(name="enforcingConsecutiveErrors")
-    def enforcing_consecutive_errors(self) -> Optional[pulumi.Input[float]]:
+    def enforcing_consecutive_errors(self) -> Optional[pulumi.Input[int]]:
         """
         The percentage chance that a host will be actually ejected when an outlier
         status is detected through consecutive 5xx. This setting can be used to disable
@@ -2351,12 +2351,12 @@ class BackendServiceOutlierDetectionArgs:
         return pulumi.get(self, "enforcing_consecutive_errors")
 
     @enforcing_consecutive_errors.setter
-    def enforcing_consecutive_errors(self, value: Optional[pulumi.Input[float]]):
+    def enforcing_consecutive_errors(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "enforcing_consecutive_errors", value)
 
     @property
     @pulumi.getter(name="enforcingConsecutiveGatewayFailure")
-    def enforcing_consecutive_gateway_failure(self) -> Optional[pulumi.Input[float]]:
+    def enforcing_consecutive_gateway_failure(self) -> Optional[pulumi.Input[int]]:
         """
         The percentage chance that a host will be actually ejected when an outlier
         status is detected through consecutive gateway failures. This setting can be
@@ -2365,12 +2365,12 @@ class BackendServiceOutlierDetectionArgs:
         return pulumi.get(self, "enforcing_consecutive_gateway_failure")
 
     @enforcing_consecutive_gateway_failure.setter
-    def enforcing_consecutive_gateway_failure(self, value: Optional[pulumi.Input[float]]):
+    def enforcing_consecutive_gateway_failure(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "enforcing_consecutive_gateway_failure", value)
 
     @property
     @pulumi.getter(name="enforcingSuccessRate")
-    def enforcing_success_rate(self) -> Optional[pulumi.Input[float]]:
+    def enforcing_success_rate(self) -> Optional[pulumi.Input[int]]:
         """
         The percentage chance that a host will be actually ejected when an outlier
         status is detected through success rate statistics. This setting can be used to
@@ -2379,7 +2379,7 @@ class BackendServiceOutlierDetectionArgs:
         return pulumi.get(self, "enforcing_success_rate")
 
     @enforcing_success_rate.setter
-    def enforcing_success_rate(self, value: Optional[pulumi.Input[float]]):
+    def enforcing_success_rate(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "enforcing_success_rate", value)
 
     @property
@@ -2398,7 +2398,7 @@ class BackendServiceOutlierDetectionArgs:
 
     @property
     @pulumi.getter(name="maxEjectionPercent")
-    def max_ejection_percent(self) -> Optional[pulumi.Input[float]]:
+    def max_ejection_percent(self) -> Optional[pulumi.Input[int]]:
         """
         Maximum percentage of hosts in the load balancing pool for the backend service
         that can be ejected. Defaults to 10%.
@@ -2406,12 +2406,12 @@ class BackendServiceOutlierDetectionArgs:
         return pulumi.get(self, "max_ejection_percent")
 
     @max_ejection_percent.setter
-    def max_ejection_percent(self, value: Optional[pulumi.Input[float]]):
+    def max_ejection_percent(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_ejection_percent", value)
 
     @property
     @pulumi.getter(name="successRateMinimumHosts")
-    def success_rate_minimum_hosts(self) -> Optional[pulumi.Input[float]]:
+    def success_rate_minimum_hosts(self) -> Optional[pulumi.Input[int]]:
         """
         The number of hosts in a cluster that must have enough request volume to detect
         success rate outliers. If the number of hosts is less than this setting, outlier
@@ -2421,12 +2421,12 @@ class BackendServiceOutlierDetectionArgs:
         return pulumi.get(self, "success_rate_minimum_hosts")
 
     @success_rate_minimum_hosts.setter
-    def success_rate_minimum_hosts(self, value: Optional[pulumi.Input[float]]):
+    def success_rate_minimum_hosts(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "success_rate_minimum_hosts", value)
 
     @property
     @pulumi.getter(name="successRateRequestVolume")
-    def success_rate_request_volume(self) -> Optional[pulumi.Input[float]]:
+    def success_rate_request_volume(self) -> Optional[pulumi.Input[int]]:
         """
         The minimum number of total requests that must be collected in one interval (as
         defined by the interval duration above) to include this host in success rate
@@ -2437,12 +2437,12 @@ class BackendServiceOutlierDetectionArgs:
         return pulumi.get(self, "success_rate_request_volume")
 
     @success_rate_request_volume.setter
-    def success_rate_request_volume(self, value: Optional[pulumi.Input[float]]):
+    def success_rate_request_volume(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "success_rate_request_volume", value)
 
     @property
     @pulumi.getter(name="successRateStdevFactor")
-    def success_rate_stdev_factor(self) -> Optional[pulumi.Input[float]]:
+    def success_rate_stdev_factor(self) -> Optional[pulumi.Input[int]]:
         """
         This factor is used to determine the ejection threshold for success rate outlier
         ejection. The ejection threshold is the difference between the mean success
@@ -2454,19 +2454,19 @@ class BackendServiceOutlierDetectionArgs:
         return pulumi.get(self, "success_rate_stdev_factor")
 
     @success_rate_stdev_factor.setter
-    def success_rate_stdev_factor(self, value: Optional[pulumi.Input[float]]):
+    def success_rate_stdev_factor(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "success_rate_stdev_factor", value)
 
 
 @pulumi.input_type
 class BackendServiceOutlierDetectionBaseEjectionTimeArgs:
     def __init__(__self__, *,
-                 seconds: pulumi.Input[float],
-                 nanos: Optional[pulumi.Input[float]] = None):
+                 seconds: pulumi.Input[int],
+                 nanos: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[float] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        :param pulumi.Input[int] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
                inclusive.
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
                less than one second are represented with a 0 `seconds` field and a positive
                `nanos` field. Must be from 0 to 999,999,999 inclusive.
         """
@@ -2476,7 +2476,7 @@ class BackendServiceOutlierDetectionBaseEjectionTimeArgs:
 
     @property
     @pulumi.getter
-    def seconds(self) -> pulumi.Input[float]:
+    def seconds(self) -> pulumi.Input[int]:
         """
         Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
         inclusive.
@@ -2484,12 +2484,12 @@ class BackendServiceOutlierDetectionBaseEjectionTimeArgs:
         return pulumi.get(self, "seconds")
 
     @seconds.setter
-    def seconds(self, value: pulumi.Input[float]):
+    def seconds(self, value: pulumi.Input[int]):
         pulumi.set(self, "seconds", value)
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations
         less than one second are represented with a 0 `seconds` field and a positive
@@ -2498,19 +2498,19 @@ class BackendServiceOutlierDetectionBaseEjectionTimeArgs:
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
 
 @pulumi.input_type
 class BackendServiceOutlierDetectionIntervalArgs:
     def __init__(__self__, *,
-                 seconds: pulumi.Input[float],
-                 nanos: Optional[pulumi.Input[float]] = None):
+                 seconds: pulumi.Input[int],
+                 nanos: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[float] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        :param pulumi.Input[int] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
                inclusive.
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
                less than one second are represented with a 0 `seconds` field and a positive
                `nanos` field. Must be from 0 to 999,999,999 inclusive.
         """
@@ -2520,7 +2520,7 @@ class BackendServiceOutlierDetectionIntervalArgs:
 
     @property
     @pulumi.getter
-    def seconds(self) -> pulumi.Input[float]:
+    def seconds(self) -> pulumi.Input[int]:
         """
         Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
         inclusive.
@@ -2528,12 +2528,12 @@ class BackendServiceOutlierDetectionIntervalArgs:
         return pulumi.get(self, "seconds")
 
     @seconds.setter
-    def seconds(self, value: pulumi.Input[float]):
+    def seconds(self, value: pulumi.Input[int]):
         pulumi.set(self, "seconds", value)
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations
         less than one second are represented with a 0 `seconds` field and a positive
@@ -2542,7 +2542,7 @@ class BackendServiceOutlierDetectionIntervalArgs:
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
 
@@ -2834,10 +2834,10 @@ class DiskSourceSnapshotEncryptionKeyArgs:
 @pulumi.input_type
 class ExternalVpnGatewayInterfaceArgs:
     def __init__(__self__, *,
-                 id: Optional[pulumi.Input[float]] = None,
+                 id: Optional[pulumi.Input[int]] = None,
                  ip_address: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[float] id: The numberic ID for this interface. Allowed values are based on the redundancy type
+        :param pulumi.Input[int] id: The numberic ID for this interface. Allowed values are based on the redundancy type
                of this external VPN gateway
                * `0 - SINGLE_IP_INTERNALLY_REDUNDANT`
                * `0, 1 - TWO_IPS_REDUNDANCY`
@@ -2854,7 +2854,7 @@ class ExternalVpnGatewayInterfaceArgs:
 
     @property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[float]]:
+    def id(self) -> Optional[pulumi.Input[int]]:
         """
         The numberic ID for this interface. Allowed values are based on the redundancy type
         of this external VPN gateway
@@ -2865,7 +2865,7 @@ class ExternalVpnGatewayInterfaceArgs:
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[float]]):
+    def id(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "id", value)
 
     @property
@@ -2888,13 +2888,13 @@ class ExternalVpnGatewayInterfaceArgs:
 class FirewallAllowArgs:
     def __init__(__self__, *,
                  protocol: pulumi.Input[str],
-                 ports: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 ports: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         :param pulumi.Input[str] protocol: The IP protocol to which this rule applies. The protocol type is
                required when creating a firewall rule. This value can either be
                one of the following well known protocol strings (tcp, udp,
                icmp, esp, ah, sctp, ipip), or the IP protocol number.
-        :param pulumi.Input[List[pulumi.Input[str]]] ports: An optional list of ports to which this rule applies. This field
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ports: An optional list of ports to which this rule applies. This field
                is only applicable for UDP or TCP protocol. Each entry must be
                either an integer or a range. If not specified, this rule
                applies to connections through any port.
@@ -2922,7 +2922,7 @@ class FirewallAllowArgs:
 
     @property
     @pulumi.getter
-    def ports(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def ports(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         An optional list of ports to which this rule applies. This field
         is only applicable for UDP or TCP protocol. Each entry must be
@@ -2934,7 +2934,7 @@ class FirewallAllowArgs:
         return pulumi.get(self, "ports")
 
     @ports.setter
-    def ports(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def ports(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "ports", value)
 
 
@@ -2942,13 +2942,13 @@ class FirewallAllowArgs:
 class FirewallDenyArgs:
     def __init__(__self__, *,
                  protocol: pulumi.Input[str],
-                 ports: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 ports: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         :param pulumi.Input[str] protocol: The IP protocol to which this rule applies. The protocol type is
                required when creating a firewall rule. This value can either be
                one of the following well known protocol strings (tcp, udp,
                icmp, esp, ah, sctp, ipip), or the IP protocol number.
-        :param pulumi.Input[List[pulumi.Input[str]]] ports: An optional list of ports to which this rule applies. This field
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ports: An optional list of ports to which this rule applies. This field
                is only applicable for UDP or TCP protocol. Each entry must be
                either an integer or a range. If not specified, this rule
                applies to connections through any port.
@@ -2976,7 +2976,7 @@ class FirewallDenyArgs:
 
     @property
     @pulumi.getter
-    def ports(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def ports(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         An optional list of ports to which this rule applies. This field
         is only applicable for UDP or TCP protocol. Each entry must be
@@ -2988,7 +2988,7 @@ class FirewallDenyArgs:
         return pulumi.get(self, "ports")
 
     @ports.setter
-    def ports(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def ports(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "ports", value)
 
 
@@ -3019,10 +3019,10 @@ class FirewallLogConfigArgs:
 @pulumi.input_type
 class GlobalForwardingRuleMetadataFilterArgs:
     def __init__(__self__, *,
-                 filter_labels: pulumi.Input[List[pulumi.Input['GlobalForwardingRuleMetadataFilterFilterLabelArgs']]],
+                 filter_labels: pulumi.Input[Sequence[pulumi.Input['GlobalForwardingRuleMetadataFilterFilterLabelArgs']]],
                  filter_match_criteria: pulumi.Input[str]):
         """
-        :param pulumi.Input[List[pulumi.Input['GlobalForwardingRuleMetadataFilterFilterLabelArgs']]] filter_labels: The list of label value pairs that must match labels in the
+        :param pulumi.Input[Sequence[pulumi.Input['GlobalForwardingRuleMetadataFilterFilterLabelArgs']]] filter_labels: The list of label value pairs that must match labels in the
                provided metadata based on filterMatchCriteria
                This list must not be empty and can have at the most 64 entries.
                Structure is documented below.
@@ -3039,7 +3039,7 @@ class GlobalForwardingRuleMetadataFilterArgs:
 
     @property
     @pulumi.getter(name="filterLabels")
-    def filter_labels(self) -> pulumi.Input[List[pulumi.Input['GlobalForwardingRuleMetadataFilterFilterLabelArgs']]]:
+    def filter_labels(self) -> pulumi.Input[Sequence[pulumi.Input['GlobalForwardingRuleMetadataFilterFilterLabelArgs']]]:
         """
         The list of label value pairs that must match labels in the
         provided metadata based on filterMatchCriteria
@@ -3049,7 +3049,7 @@ class GlobalForwardingRuleMetadataFilterArgs:
         return pulumi.get(self, "filter_labels")
 
     @filter_labels.setter
-    def filter_labels(self, value: pulumi.Input[List[pulumi.Input['GlobalForwardingRuleMetadataFilterFilterLabelArgs']]]):
+    def filter_labels(self, value: pulumi.Input[Sequence[pulumi.Input['GlobalForwardingRuleMetadataFilterFilterLabelArgs']]]):
         pulumi.set(self, "filter_labels", value)
 
     @property
@@ -3115,10 +3115,10 @@ class GlobalForwardingRuleMetadataFilterFilterLabelArgs:
 @pulumi.input_type
 class HaVpnGatewayVpnInterfaceArgs:
     def __init__(__self__, *,
-                 id: Optional[pulumi.Input[float]] = None,
+                 id: Optional[pulumi.Input[int]] = None,
                  ip_address: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[float] id: an identifier for the resource with format `projects/{{project}}/regions/{{region}}/vpnGateways/{{name}}`
+        :param pulumi.Input[int] id: an identifier for the resource with format `projects/{{project}}/regions/{{region}}/vpnGateways/{{name}}`
         """
         if id is not None:
             pulumi.set(__self__, "id", id)
@@ -3127,14 +3127,14 @@ class HaVpnGatewayVpnInterfaceArgs:
 
     @property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[float]]:
+    def id(self) -> Optional[pulumi.Input[int]]:
         """
         an identifier for the resource with format `projects/{{project}}/regions/{{region}}/vpnGateways/{{name}}`
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[float]]):
+    def id(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "id", value)
 
     @property
@@ -3151,7 +3151,7 @@ class HaVpnGatewayVpnInterfaceArgs:
 class HealthCheckGrpcHealthCheckArgs:
     def __init__(__self__, *,
                  grpc_service_name: Optional[pulumi.Input[str]] = None,
-                 port: Optional[pulumi.Input[float]] = None,
+                 port: Optional[pulumi.Input[int]] = None,
                  port_name: Optional[pulumi.Input[str]] = None,
                  port_specification: Optional[pulumi.Input[str]] = None):
         """
@@ -3160,7 +3160,7 @@ class HealthCheckGrpcHealthCheckArgs:
                - Empty serviceName means the overall status of all services at the backend.
                - Non-empty serviceName means the health of that gRPC service, as defined by the owner of the service.
                The grpcServiceName can only be ASCII.
-        :param pulumi.Input[float] port: The port number for the health check request.
+        :param pulumi.Input[int] port: The port number for the health check request.
                Must be specified if portName and portSpecification are not set
                or if port_specification is USE_FIXED_PORT. Valid values are 1 through 65535.
         :param pulumi.Input[str] port_name: Port name as defined in InstanceGroup#NamedPort#name. If both port and
@@ -3204,7 +3204,7 @@ class HealthCheckGrpcHealthCheckArgs:
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[float]]:
+    def port(self) -> Optional[pulumi.Input[int]]:
         """
         The port number for the health check request.
         Must be specified if portName and portSpecification are not set
@@ -3213,7 +3213,7 @@ class HealthCheckGrpcHealthCheckArgs:
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[float]]):
+    def port(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "port", value)
 
     @property
@@ -3256,7 +3256,7 @@ class HealthCheckGrpcHealthCheckArgs:
 class HealthCheckHttp2HealthCheckArgs:
     def __init__(__self__, *,
                  host: Optional[pulumi.Input[str]] = None,
-                 port: Optional[pulumi.Input[float]] = None,
+                 port: Optional[pulumi.Input[int]] = None,
                  port_name: Optional[pulumi.Input[str]] = None,
                  port_specification: Optional[pulumi.Input[str]] = None,
                  proxy_header: Optional[pulumi.Input[str]] = None,
@@ -3266,7 +3266,7 @@ class HealthCheckHttp2HealthCheckArgs:
         :param pulumi.Input[str] host: The value of the host header in the HTTP2 health check request.
                If left empty (default value), the public IP on behalf of which this health
                check is performed will be used.
-        :param pulumi.Input[float] port: The port number for the health check request.
+        :param pulumi.Input[int] port: The port number for the health check request.
                Must be specified if portName and portSpecification are not set
                or if port_specification is USE_FIXED_PORT. Valid values are 1 through 65535.
         :param pulumi.Input[str] port_name: Port name as defined in InstanceGroup#NamedPort#name. If both port and
@@ -3323,7 +3323,7 @@ class HealthCheckHttp2HealthCheckArgs:
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[float]]:
+    def port(self) -> Optional[pulumi.Input[int]]:
         """
         The port number for the health check request.
         Must be specified if portName and portSpecification are not set
@@ -3332,7 +3332,7 @@ class HealthCheckHttp2HealthCheckArgs:
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[float]]):
+    def port(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "port", value)
 
     @property
@@ -3417,7 +3417,7 @@ class HealthCheckHttp2HealthCheckArgs:
 class HealthCheckHttpHealthCheckArgs:
     def __init__(__self__, *,
                  host: Optional[pulumi.Input[str]] = None,
-                 port: Optional[pulumi.Input[float]] = None,
+                 port: Optional[pulumi.Input[int]] = None,
                  port_name: Optional[pulumi.Input[str]] = None,
                  port_specification: Optional[pulumi.Input[str]] = None,
                  proxy_header: Optional[pulumi.Input[str]] = None,
@@ -3427,7 +3427,7 @@ class HealthCheckHttpHealthCheckArgs:
         :param pulumi.Input[str] host: The value of the host header in the HTTP2 health check request.
                If left empty (default value), the public IP on behalf of which this health
                check is performed will be used.
-        :param pulumi.Input[float] port: The port number for the health check request.
+        :param pulumi.Input[int] port: The port number for the health check request.
                Must be specified if portName and portSpecification are not set
                or if port_specification is USE_FIXED_PORT. Valid values are 1 through 65535.
         :param pulumi.Input[str] port_name: Port name as defined in InstanceGroup#NamedPort#name. If both port and
@@ -3484,7 +3484,7 @@ class HealthCheckHttpHealthCheckArgs:
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[float]]:
+    def port(self) -> Optional[pulumi.Input[int]]:
         """
         The port number for the health check request.
         Must be specified if portName and portSpecification are not set
@@ -3493,7 +3493,7 @@ class HealthCheckHttpHealthCheckArgs:
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[float]]):
+    def port(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "port", value)
 
     @property
@@ -3578,7 +3578,7 @@ class HealthCheckHttpHealthCheckArgs:
 class HealthCheckHttpsHealthCheckArgs:
     def __init__(__self__, *,
                  host: Optional[pulumi.Input[str]] = None,
-                 port: Optional[pulumi.Input[float]] = None,
+                 port: Optional[pulumi.Input[int]] = None,
                  port_name: Optional[pulumi.Input[str]] = None,
                  port_specification: Optional[pulumi.Input[str]] = None,
                  proxy_header: Optional[pulumi.Input[str]] = None,
@@ -3588,7 +3588,7 @@ class HealthCheckHttpsHealthCheckArgs:
         :param pulumi.Input[str] host: The value of the host header in the HTTP2 health check request.
                If left empty (default value), the public IP on behalf of which this health
                check is performed will be used.
-        :param pulumi.Input[float] port: The port number for the health check request.
+        :param pulumi.Input[int] port: The port number for the health check request.
                Must be specified if portName and portSpecification are not set
                or if port_specification is USE_FIXED_PORT. Valid values are 1 through 65535.
         :param pulumi.Input[str] port_name: Port name as defined in InstanceGroup#NamedPort#name. If both port and
@@ -3645,7 +3645,7 @@ class HealthCheckHttpsHealthCheckArgs:
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[float]]:
+    def port(self) -> Optional[pulumi.Input[int]]:
         """
         The port number for the health check request.
         Must be specified if portName and portSpecification are not set
@@ -3654,7 +3654,7 @@ class HealthCheckHttpsHealthCheckArgs:
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[float]]):
+    def port(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "port", value)
 
     @property
@@ -3763,14 +3763,14 @@ class HealthCheckLogConfigArgs:
 @pulumi.input_type
 class HealthCheckSslHealthCheckArgs:
     def __init__(__self__, *,
-                 port: Optional[pulumi.Input[float]] = None,
+                 port: Optional[pulumi.Input[int]] = None,
                  port_name: Optional[pulumi.Input[str]] = None,
                  port_specification: Optional[pulumi.Input[str]] = None,
                  proxy_header: Optional[pulumi.Input[str]] = None,
                  request: Optional[pulumi.Input[str]] = None,
                  response: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[float] port: The port number for the health check request.
+        :param pulumi.Input[int] port: The port number for the health check request.
                Must be specified if portName and portSpecification are not set
                or if port_specification is USE_FIXED_PORT. Valid values are 1 through 65535.
         :param pulumi.Input[str] port_name: Port name as defined in InstanceGroup#NamedPort#name. If both port and
@@ -3813,7 +3813,7 @@ class HealthCheckSslHealthCheckArgs:
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[float]]:
+    def port(self) -> Optional[pulumi.Input[int]]:
         """
         The port number for the health check request.
         Must be specified if portName and portSpecification are not set
@@ -3822,7 +3822,7 @@ class HealthCheckSslHealthCheckArgs:
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[float]]):
+    def port(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "port", value)
 
     @property
@@ -3908,14 +3908,14 @@ class HealthCheckSslHealthCheckArgs:
 @pulumi.input_type
 class HealthCheckTcpHealthCheckArgs:
     def __init__(__self__, *,
-                 port: Optional[pulumi.Input[float]] = None,
+                 port: Optional[pulumi.Input[int]] = None,
                  port_name: Optional[pulumi.Input[str]] = None,
                  port_specification: Optional[pulumi.Input[str]] = None,
                  proxy_header: Optional[pulumi.Input[str]] = None,
                  request: Optional[pulumi.Input[str]] = None,
                  response: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[float] port: The port number for the health check request.
+        :param pulumi.Input[int] port: The port number for the health check request.
                Must be specified if portName and portSpecification are not set
                or if port_specification is USE_FIXED_PORT. Valid values are 1 through 65535.
         :param pulumi.Input[str] port_name: Port name as defined in InstanceGroup#NamedPort#name. If both port and
@@ -3958,7 +3958,7 @@ class HealthCheckTcpHealthCheckArgs:
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[float]]:
+    def port(self) -> Optional[pulumi.Input[int]]:
         """
         The port number for the health check request.
         Must be specified if portName and portSpecification are not set
@@ -3967,7 +3967,7 @@ class HealthCheckTcpHealthCheckArgs:
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[float]]):
+    def port(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "port", value)
 
     @property
@@ -4526,7 +4526,7 @@ class InstanceBootDiskInitializeParamsArgs:
     def __init__(__self__, *,
                  image: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-                 size: Optional[pulumi.Input[float]] = None,
+                 size: Optional[pulumi.Input[int]] = None,
                  type: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] image: The image from which to initialize this disk. This can be
@@ -4539,7 +4539,7 @@ class InstanceBootDiskInitializeParamsArgs:
                For instance, the image `centos-6-v20180104` includes its family name `centos-6`.
                These images can be referred by family name here.
         :param pulumi.Input[Mapping[str, Any]] labels: A map of key/value label pairs to assign to the instance.
-        :param pulumi.Input[float] size: The size of the image in gigabytes. If not specified, it
+        :param pulumi.Input[int] size: The size of the image in gigabytes. If not specified, it
                will inherit the size of its base image.
         :param pulumi.Input[str] type: The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
         """
@@ -4586,7 +4586,7 @@ class InstanceBootDiskInitializeParamsArgs:
 
     @property
     @pulumi.getter
-    def size(self) -> Optional[pulumi.Input[float]]:
+    def size(self) -> Optional[pulumi.Input[int]]:
         """
         The size of the image in gigabytes. If not specified, it
         will inherit the size of its base image.
@@ -4594,7 +4594,7 @@ class InstanceBootDiskInitializeParamsArgs:
         return pulumi.get(self, "size")
 
     @size.setter
-    def size(self, value: Optional[pulumi.Input[float]]):
+    def size(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "size", value)
 
     @property
@@ -4808,7 +4808,7 @@ class InstanceFromTemplateBootDiskInitializeParamsArgs:
     def __init__(__self__, *,
                  image: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-                 size: Optional[pulumi.Input[float]] = None,
+                 size: Optional[pulumi.Input[int]] = None,
                  type: Optional[pulumi.Input[str]] = None):
         if image is not None:
             pulumi.set(__self__, "image", image)
@@ -4839,11 +4839,11 @@ class InstanceFromTemplateBootDiskInitializeParamsArgs:
 
     @property
     @pulumi.getter
-    def size(self) -> Optional[pulumi.Input[float]]:
+    def size(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "size")
 
     @size.setter
-    def size(self, value: Optional[pulumi.Input[float]]):
+    def size(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "size", value)
 
     @property
@@ -4875,18 +4875,18 @@ class InstanceFromTemplateConfidentialInstanceConfigArgs:
 @pulumi.input_type
 class InstanceFromTemplateGuestAcceleratorArgs:
     def __init__(__self__, *,
-                 count: pulumi.Input[float],
+                 count: pulumi.Input[int],
                  type: pulumi.Input[str]):
         pulumi.set(__self__, "count", count)
         pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter
-    def count(self) -> pulumi.Input[float]:
+    def count(self) -> pulumi.Input[int]:
         return pulumi.get(self, "count")
 
     @count.setter
-    def count(self, value: pulumi.Input[float]):
+    def count(self, value: pulumi.Input[int]):
         pulumi.set(self, "count", value)
 
     @property
@@ -4902,8 +4902,8 @@ class InstanceFromTemplateGuestAcceleratorArgs:
 @pulumi.input_type
 class InstanceFromTemplateNetworkInterfaceArgs:
     def __init__(__self__, *,
-                 access_configs: Optional[pulumi.Input[List[pulumi.Input['InstanceFromTemplateNetworkInterfaceAccessConfigArgs']]]] = None,
-                 alias_ip_ranges: Optional[pulumi.Input[List[pulumi.Input['InstanceFromTemplateNetworkInterfaceAliasIpRangeArgs']]]] = None,
+                 access_configs: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceFromTemplateNetworkInterfaceAccessConfigArgs']]]] = None,
+                 alias_ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceFromTemplateNetworkInterfaceAliasIpRangeArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  network: Optional[pulumi.Input[str]] = None,
                  network_ip: Optional[pulumi.Input[str]] = None,
@@ -4930,20 +4930,20 @@ class InstanceFromTemplateNetworkInterfaceArgs:
 
     @property
     @pulumi.getter(name="accessConfigs")
-    def access_configs(self) -> Optional[pulumi.Input[List[pulumi.Input['InstanceFromTemplateNetworkInterfaceAccessConfigArgs']]]]:
+    def access_configs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceFromTemplateNetworkInterfaceAccessConfigArgs']]]]:
         return pulumi.get(self, "access_configs")
 
     @access_configs.setter
-    def access_configs(self, value: Optional[pulumi.Input[List[pulumi.Input['InstanceFromTemplateNetworkInterfaceAccessConfigArgs']]]]):
+    def access_configs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceFromTemplateNetworkInterfaceAccessConfigArgs']]]]):
         pulumi.set(self, "access_configs", value)
 
     @property
     @pulumi.getter(name="aliasIpRanges")
-    def alias_ip_ranges(self) -> Optional[pulumi.Input[List[pulumi.Input['InstanceFromTemplateNetworkInterfaceAliasIpRangeArgs']]]]:
+    def alias_ip_ranges(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceFromTemplateNetworkInterfaceAliasIpRangeArgs']]]]:
         return pulumi.get(self, "alias_ip_ranges")
 
     @alias_ip_ranges.setter
-    def alias_ip_ranges(self, value: Optional[pulumi.Input[List[pulumi.Input['InstanceFromTemplateNetworkInterfaceAliasIpRangeArgs']]]]):
+    def alias_ip_ranges(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceFromTemplateNetworkInterfaceAliasIpRangeArgs']]]]):
         pulumi.set(self, "alias_ip_ranges", value)
 
     @property
@@ -5069,8 +5069,8 @@ class InstanceFromTemplateNetworkInterfaceAliasIpRangeArgs:
 class InstanceFromTemplateSchedulingArgs:
     def __init__(__self__, *,
                  automatic_restart: Optional[pulumi.Input[bool]] = None,
-                 min_node_cpus: Optional[pulumi.Input[float]] = None,
-                 node_affinities: Optional[pulumi.Input[List[pulumi.Input['InstanceFromTemplateSchedulingNodeAffinityArgs']]]] = None,
+                 min_node_cpus: Optional[pulumi.Input[int]] = None,
+                 node_affinities: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceFromTemplateSchedulingNodeAffinityArgs']]]] = None,
                  on_host_maintenance: Optional[pulumi.Input[str]] = None,
                  preemptible: Optional[pulumi.Input[bool]] = None):
         if automatic_restart is not None:
@@ -5095,20 +5095,20 @@ class InstanceFromTemplateSchedulingArgs:
 
     @property
     @pulumi.getter(name="minNodeCpus")
-    def min_node_cpus(self) -> Optional[pulumi.Input[float]]:
+    def min_node_cpus(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "min_node_cpus")
 
     @min_node_cpus.setter
-    def min_node_cpus(self, value: Optional[pulumi.Input[float]]):
+    def min_node_cpus(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "min_node_cpus", value)
 
     @property
     @pulumi.getter(name="nodeAffinities")
-    def node_affinities(self) -> Optional[pulumi.Input[List[pulumi.Input['InstanceFromTemplateSchedulingNodeAffinityArgs']]]]:
+    def node_affinities(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceFromTemplateSchedulingNodeAffinityArgs']]]]:
         return pulumi.get(self, "node_affinities")
 
     @node_affinities.setter
-    def node_affinities(self, value: Optional[pulumi.Input[List[pulumi.Input['InstanceFromTemplateSchedulingNodeAffinityArgs']]]]):
+    def node_affinities(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceFromTemplateSchedulingNodeAffinityArgs']]]]):
         pulumi.set(self, "node_affinities", value)
 
     @property
@@ -5135,7 +5135,7 @@ class InstanceFromTemplateSchedulingNodeAffinityArgs:
     def __init__(__self__, *,
                  key: pulumi.Input[str],
                  operator: pulumi.Input[str],
-                 values: pulumi.Input[List[pulumi.Input[str]]]):
+                 values: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "operator", operator)
         pulumi.set(__self__, "values", values)
@@ -5160,11 +5160,11 @@ class InstanceFromTemplateSchedulingNodeAffinityArgs:
 
     @property
     @pulumi.getter
-    def values(self) -> pulumi.Input[List[pulumi.Input[str]]]:
+    def values(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         return pulumi.get(self, "values")
 
     @values.setter
-    def values(self, value: pulumi.Input[List[pulumi.Input[str]]]):
+    def values(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "values", value)
 
 
@@ -5187,7 +5187,7 @@ class InstanceFromTemplateScratchDiskArgs:
 @pulumi.input_type
 class InstanceFromTemplateServiceAccountArgs:
     def __init__(__self__, *,
-                 scopes: pulumi.Input[List[pulumi.Input[str]]],
+                 scopes: pulumi.Input[Sequence[pulumi.Input[str]]],
                  email: Optional[pulumi.Input[str]] = None):
         pulumi.set(__self__, "scopes", scopes)
         if email is not None:
@@ -5195,11 +5195,11 @@ class InstanceFromTemplateServiceAccountArgs:
 
     @property
     @pulumi.getter
-    def scopes(self) -> pulumi.Input[List[pulumi.Input[str]]]:
+    def scopes(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         return pulumi.get(self, "scopes")
 
     @scopes.setter
-    def scopes(self, value: pulumi.Input[List[pulumi.Input[str]]]):
+    def scopes(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "scopes", value)
 
     @property
@@ -5257,10 +5257,10 @@ class InstanceFromTemplateShieldedInstanceConfigArgs:
 class InstanceGroupManagerAutoHealingPoliciesArgs:
     def __init__(__self__, *,
                  health_check: pulumi.Input[str],
-                 initial_delay_sec: pulumi.Input[float]):
+                 initial_delay_sec: pulumi.Input[int]):
         """
         :param pulumi.Input[str] health_check: The health check resource that signals autohealing.
-        :param pulumi.Input[float] initial_delay_sec: The number of seconds that the managed instance group waits before
+        :param pulumi.Input[int] initial_delay_sec: The number of seconds that the managed instance group waits before
                it applies autohealing policies to new instances or recently recreated instances. Between 0 and 3600.
         """
         pulumi.set(__self__, "health_check", health_check)
@@ -5280,7 +5280,7 @@ class InstanceGroupManagerAutoHealingPoliciesArgs:
 
     @property
     @pulumi.getter(name="initialDelaySec")
-    def initial_delay_sec(self) -> pulumi.Input[float]:
+    def initial_delay_sec(self) -> pulumi.Input[int]:
         """
         The number of seconds that the managed instance group waits before
         it applies autohealing policies to new instances or recently recreated instances. Between 0 and 3600.
@@ -5288,7 +5288,7 @@ class InstanceGroupManagerAutoHealingPoliciesArgs:
         return pulumi.get(self, "initial_delay_sec")
 
     @initial_delay_sec.setter
-    def initial_delay_sec(self, value: pulumi.Input[float]):
+    def initial_delay_sec(self, value: pulumi.Input[int]):
         pulumi.set(self, "initial_delay_sec", value)
 
 
@@ -5296,10 +5296,10 @@ class InstanceGroupManagerAutoHealingPoliciesArgs:
 class InstanceGroupManagerNamedPortArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str],
-                 port: pulumi.Input[float]):
+                 port: pulumi.Input[int]):
         """
         :param pulumi.Input[str] name: - Version name.
-        :param pulumi.Input[float] port: The port number.
+        :param pulumi.Input[int] port: The port number.
                - - -
         """
         pulumi.set(__self__, "name", name)
@@ -5319,7 +5319,7 @@ class InstanceGroupManagerNamedPortArgs:
 
     @property
     @pulumi.getter
-    def port(self) -> pulumi.Input[float]:
+    def port(self) -> pulumi.Input[int]:
         """
         The port number.
         - - -
@@ -5327,7 +5327,7 @@ class InstanceGroupManagerNamedPortArgs:
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: pulumi.Input[float]):
+    def port(self, value: pulumi.Input[int]):
         pulumi.set(self, "port", value)
 
 
@@ -5374,19 +5374,19 @@ class InstanceGroupManagerUpdatePolicyArgs:
     def __init__(__self__, *,
                  minimal_action: pulumi.Input[str],
                  type: pulumi.Input[str],
-                 max_surge_fixed: Optional[pulumi.Input[float]] = None,
-                 max_surge_percent: Optional[pulumi.Input[float]] = None,
-                 max_unavailable_fixed: Optional[pulumi.Input[float]] = None,
-                 max_unavailable_percent: Optional[pulumi.Input[float]] = None,
-                 min_ready_sec: Optional[pulumi.Input[float]] = None):
+                 max_surge_fixed: Optional[pulumi.Input[int]] = None,
+                 max_surge_percent: Optional[pulumi.Input[int]] = None,
+                 max_unavailable_fixed: Optional[pulumi.Input[int]] = None,
+                 max_unavailable_percent: Optional[pulumi.Input[int]] = None,
+                 min_ready_sec: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] minimal_action: - Minimal action to be taken on an instance. You can specify either `RESTART` to restart existing instances or `REPLACE` to delete and create new instances from the target template. If you specify a `RESTART`, the Updater will attempt to perform that action only. However, if the Updater determines that the minimal action you specify is not enough to perform the update, it might perform a more disruptive action.
         :param pulumi.Input[str] type: - The type of update process. You can specify either `PROACTIVE` so that the instance group manager proactively executes actions in order to bring instances to their target versions or `OPPORTUNISTIC` so that no action is proactively executed but the update will be performed as part of other actions (for example, resizes or recreateInstances calls).
-        :param pulumi.Input[float] max_surge_fixed: , The maximum number of instances that can be created above the specified targetSize during the update process. Conflicts with `max_surge_percent`. If neither is set, defaults to 1
-        :param pulumi.Input[float] max_surge_percent: , The maximum number of instances(calculated as percentage) that can be created above the specified targetSize during the update process. Conflicts with `max_surge_fixed`.
-        :param pulumi.Input[float] max_unavailable_fixed: , The maximum number of instances that can be unavailable during the update process. Conflicts with `max_unavailable_percent`. If neither is set, defaults to 1
-        :param pulumi.Input[float] max_unavailable_percent: , The maximum number of instances(calculated as percentage) that can be unavailable during the update process. Conflicts with `max_unavailable_fixed`.
-        :param pulumi.Input[float] min_ready_sec: , Minimum number of seconds to wait for after a newly created instance becomes available. This value must be from range [0, 3600]
+        :param pulumi.Input[int] max_surge_fixed: , The maximum number of instances that can be created above the specified targetSize during the update process. Conflicts with `max_surge_percent`. If neither is set, defaults to 1
+        :param pulumi.Input[int] max_surge_percent: , The maximum number of instances(calculated as percentage) that can be created above the specified targetSize during the update process. Conflicts with `max_surge_fixed`.
+        :param pulumi.Input[int] max_unavailable_fixed: , The maximum number of instances that can be unavailable during the update process. Conflicts with `max_unavailable_percent`. If neither is set, defaults to 1
+        :param pulumi.Input[int] max_unavailable_percent: , The maximum number of instances(calculated as percentage) that can be unavailable during the update process. Conflicts with `max_unavailable_fixed`.
+        :param pulumi.Input[int] min_ready_sec: , Minimum number of seconds to wait for after a newly created instance becomes available. This value must be from range [0, 3600]
                - - -
         """
         pulumi.set(__self__, "minimal_action", minimal_action)
@@ -5428,55 +5428,55 @@ class InstanceGroupManagerUpdatePolicyArgs:
 
     @property
     @pulumi.getter(name="maxSurgeFixed")
-    def max_surge_fixed(self) -> Optional[pulumi.Input[float]]:
+    def max_surge_fixed(self) -> Optional[pulumi.Input[int]]:
         """
         , The maximum number of instances that can be created above the specified targetSize during the update process. Conflicts with `max_surge_percent`. If neither is set, defaults to 1
         """
         return pulumi.get(self, "max_surge_fixed")
 
     @max_surge_fixed.setter
-    def max_surge_fixed(self, value: Optional[pulumi.Input[float]]):
+    def max_surge_fixed(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_surge_fixed", value)
 
     @property
     @pulumi.getter(name="maxSurgePercent")
-    def max_surge_percent(self) -> Optional[pulumi.Input[float]]:
+    def max_surge_percent(self) -> Optional[pulumi.Input[int]]:
         """
         , The maximum number of instances(calculated as percentage) that can be created above the specified targetSize during the update process. Conflicts with `max_surge_fixed`.
         """
         return pulumi.get(self, "max_surge_percent")
 
     @max_surge_percent.setter
-    def max_surge_percent(self, value: Optional[pulumi.Input[float]]):
+    def max_surge_percent(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_surge_percent", value)
 
     @property
     @pulumi.getter(name="maxUnavailableFixed")
-    def max_unavailable_fixed(self) -> Optional[pulumi.Input[float]]:
+    def max_unavailable_fixed(self) -> Optional[pulumi.Input[int]]:
         """
         , The maximum number of instances that can be unavailable during the update process. Conflicts with `max_unavailable_percent`. If neither is set, defaults to 1
         """
         return pulumi.get(self, "max_unavailable_fixed")
 
     @max_unavailable_fixed.setter
-    def max_unavailable_fixed(self, value: Optional[pulumi.Input[float]]):
+    def max_unavailable_fixed(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_unavailable_fixed", value)
 
     @property
     @pulumi.getter(name="maxUnavailablePercent")
-    def max_unavailable_percent(self) -> Optional[pulumi.Input[float]]:
+    def max_unavailable_percent(self) -> Optional[pulumi.Input[int]]:
         """
         , The maximum number of instances(calculated as percentage) that can be unavailable during the update process. Conflicts with `max_unavailable_fixed`.
         """
         return pulumi.get(self, "max_unavailable_percent")
 
     @max_unavailable_percent.setter
-    def max_unavailable_percent(self, value: Optional[pulumi.Input[float]]):
+    def max_unavailable_percent(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_unavailable_percent", value)
 
     @property
     @pulumi.getter(name="minReadySec")
-    def min_ready_sec(self) -> Optional[pulumi.Input[float]]:
+    def min_ready_sec(self) -> Optional[pulumi.Input[int]]:
         """
         , Minimum number of seconds to wait for after a newly created instance becomes available. This value must be from range [0, 3600]
         - - -
@@ -5484,7 +5484,7 @@ class InstanceGroupManagerUpdatePolicyArgs:
         return pulumi.get(self, "min_ready_sec")
 
     @min_ready_sec.setter
-    def min_ready_sec(self, value: Optional[pulumi.Input[float]]):
+    def min_ready_sec(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "min_ready_sec", value)
 
 
@@ -5545,11 +5545,11 @@ class InstanceGroupManagerVersionArgs:
 @pulumi.input_type
 class InstanceGroupManagerVersionTargetSizeArgs:
     def __init__(__self__, *,
-                 fixed: Optional[pulumi.Input[float]] = None,
-                 percent: Optional[pulumi.Input[float]] = None):
+                 fixed: Optional[pulumi.Input[int]] = None,
+                 percent: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[float] fixed: , The number of instances which are managed for this version. Conflicts with `percent`.
-        :param pulumi.Input[float] percent: , The number of instances (calculated as percentage) which are managed for this version. Conflicts with `fixed`.
+        :param pulumi.Input[int] fixed: , The number of instances which are managed for this version. Conflicts with `percent`.
+        :param pulumi.Input[int] percent: , The number of instances (calculated as percentage) which are managed for this version. Conflicts with `fixed`.
                Note that when using `percent`, rounding will be in favor of explicitly set `target_size` values; a managed instance group with 2 instances and 2 `version`s,
                one of which has a `target_size.percent` of `60` will create 2 instances of that `version`.
         """
@@ -5560,19 +5560,19 @@ class InstanceGroupManagerVersionTargetSizeArgs:
 
     @property
     @pulumi.getter
-    def fixed(self) -> Optional[pulumi.Input[float]]:
+    def fixed(self) -> Optional[pulumi.Input[int]]:
         """
         , The number of instances which are managed for this version. Conflicts with `percent`.
         """
         return pulumi.get(self, "fixed")
 
     @fixed.setter
-    def fixed(self, value: Optional[pulumi.Input[float]]):
+    def fixed(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fixed", value)
 
     @property
     @pulumi.getter
-    def percent(self) -> Optional[pulumi.Input[float]]:
+    def percent(self) -> Optional[pulumi.Input[int]]:
         """
         , The number of instances (calculated as percentage) which are managed for this version. Conflicts with `fixed`.
         Note that when using `percent`, rounding will be in favor of explicitly set `target_size` values; a managed instance group with 2 instances and 2 `version`s,
@@ -5581,7 +5581,7 @@ class InstanceGroupManagerVersionTargetSizeArgs:
         return pulumi.get(self, "percent")
 
     @percent.setter
-    def percent(self, value: Optional[pulumi.Input[float]]):
+    def percent(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "percent", value)
 
 
@@ -5589,10 +5589,10 @@ class InstanceGroupManagerVersionTargetSizeArgs:
 class InstanceGroupNamedPortArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str],
-                 port: pulumi.Input[float]):
+                 port: pulumi.Input[int]):
         """
         :param pulumi.Input[str] name: The name which the port will be mapped to.
-        :param pulumi.Input[float] port: The port number to map the name to.
+        :param pulumi.Input[int] port: The port number to map the name to.
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "port", port)
@@ -5611,24 +5611,24 @@ class InstanceGroupNamedPortArgs:
 
     @property
     @pulumi.getter
-    def port(self) -> pulumi.Input[float]:
+    def port(self) -> pulumi.Input[int]:
         """
         The port number to map the name to.
         """
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: pulumi.Input[float]):
+    def port(self, value: pulumi.Input[int]):
         pulumi.set(self, "port", value)
 
 
 @pulumi.input_type
 class InstanceGuestAcceleratorArgs:
     def __init__(__self__, *,
-                 count: pulumi.Input[float],
+                 count: pulumi.Input[int],
                  type: pulumi.Input[str]):
         """
-        :param pulumi.Input[float] count: The number of the guest accelerator cards exposed to this instance.
+        :param pulumi.Input[int] count: The number of the guest accelerator cards exposed to this instance.
         :param pulumi.Input[str] type: The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
         """
         pulumi.set(__self__, "count", count)
@@ -5636,14 +5636,14 @@ class InstanceGuestAcceleratorArgs:
 
     @property
     @pulumi.getter
-    def count(self) -> pulumi.Input[float]:
+    def count(self) -> pulumi.Input[int]:
         """
         The number of the guest accelerator cards exposed to this instance.
         """
         return pulumi.get(self, "count")
 
     @count.setter
-    def count(self, value: pulumi.Input[float]):
+    def count(self, value: pulumi.Input[int]):
         pulumi.set(self, "count", value)
 
     @property
@@ -5768,21 +5768,21 @@ class InstanceIAMMemberConditionArgs:
 @pulumi.input_type
 class InstanceNetworkInterfaceArgs:
     def __init__(__self__, *,
-                 access_configs: Optional[pulumi.Input[List[pulumi.Input['InstanceNetworkInterfaceAccessConfigArgs']]]] = None,
-                 alias_ip_ranges: Optional[pulumi.Input[List[pulumi.Input['InstanceNetworkInterfaceAliasIpRangeArgs']]]] = None,
+                 access_configs: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceNetworkInterfaceAccessConfigArgs']]]] = None,
+                 alias_ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceNetworkInterfaceAliasIpRangeArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  network: Optional[pulumi.Input[str]] = None,
                  network_ip: Optional[pulumi.Input[str]] = None,
                  subnetwork: Optional[pulumi.Input[str]] = None,
                  subnetwork_project: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input['InstanceNetworkInterfaceAccessConfigArgs']]] access_configs: Access configurations, i.e. IPs via which this
+        :param pulumi.Input[Sequence[pulumi.Input['InstanceNetworkInterfaceAccessConfigArgs']]] access_configs: Access configurations, i.e. IPs via which this
                instance can be accessed via the Internet. Omit to ensure that the instance
                is not accessible from the Internet. If omitted, ssh will not
                work unless this provider can send traffic to the instance's network (e.g. via
                tunnel or because it is running on another cloud instance on that network).
                This block can be repeated multiple times. Structure documented below.
-        :param pulumi.Input[List[pulumi.Input['InstanceNetworkInterfaceAliasIpRangeArgs']]] alias_ip_ranges: An
+        :param pulumi.Input[Sequence[pulumi.Input['InstanceNetworkInterfaceAliasIpRangeArgs']]] alias_ip_ranges: An
                array of alias IP ranges for this network interface. Can only be specified for network
                interfaces on subnet-mode networks. Structure documented below.
         :param pulumi.Input[str] name: A unique name for the resource, required by GCE.
@@ -5816,7 +5816,7 @@ class InstanceNetworkInterfaceArgs:
 
     @property
     @pulumi.getter(name="accessConfigs")
-    def access_configs(self) -> Optional[pulumi.Input[List[pulumi.Input['InstanceNetworkInterfaceAccessConfigArgs']]]]:
+    def access_configs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceNetworkInterfaceAccessConfigArgs']]]]:
         """
         Access configurations, i.e. IPs via which this
         instance can be accessed via the Internet. Omit to ensure that the instance
@@ -5828,12 +5828,12 @@ class InstanceNetworkInterfaceArgs:
         return pulumi.get(self, "access_configs")
 
     @access_configs.setter
-    def access_configs(self, value: Optional[pulumi.Input[List[pulumi.Input['InstanceNetworkInterfaceAccessConfigArgs']]]]):
+    def access_configs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceNetworkInterfaceAccessConfigArgs']]]]):
         pulumi.set(self, "access_configs", value)
 
     @property
     @pulumi.getter(name="aliasIpRanges")
-    def alias_ip_ranges(self) -> Optional[pulumi.Input[List[pulumi.Input['InstanceNetworkInterfaceAliasIpRangeArgs']]]]:
+    def alias_ip_ranges(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceNetworkInterfaceAliasIpRangeArgs']]]]:
         """
         An
         array of alias IP ranges for this network interface. Can only be specified for network
@@ -5842,7 +5842,7 @@ class InstanceNetworkInterfaceArgs:
         return pulumi.get(self, "alias_ip_ranges")
 
     @alias_ip_ranges.setter
-    def alias_ip_ranges(self, value: Optional[pulumi.Input[List[pulumi.Input['InstanceNetworkInterfaceAliasIpRangeArgs']]]]):
+    def alias_ip_ranges(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceNetworkInterfaceAliasIpRangeArgs']]]]):
         pulumi.set(self, "alias_ip_ranges", value)
 
     @property
@@ -6033,15 +6033,15 @@ class InstanceNetworkInterfaceAliasIpRangeArgs:
 class InstanceSchedulingArgs:
     def __init__(__self__, *,
                  automatic_restart: Optional[pulumi.Input[bool]] = None,
-                 min_node_cpus: Optional[pulumi.Input[float]] = None,
-                 node_affinities: Optional[pulumi.Input[List[pulumi.Input['InstanceSchedulingNodeAffinityArgs']]]] = None,
+                 min_node_cpus: Optional[pulumi.Input[int]] = None,
+                 node_affinities: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceSchedulingNodeAffinityArgs']]]] = None,
                  on_host_maintenance: Optional[pulumi.Input[str]] = None,
                  preemptible: Optional[pulumi.Input[bool]] = None):
         """
         :param pulumi.Input[bool] automatic_restart: Specifies if the instance should be
                restarted if it was terminated by Compute Engine (not a user).
                Defaults to true.
-        :param pulumi.Input[List[pulumi.Input['InstanceSchedulingNodeAffinityArgs']]] node_affinities: Specifies node affinities or anti-affinities
+        :param pulumi.Input[Sequence[pulumi.Input['InstanceSchedulingNodeAffinityArgs']]] node_affinities: Specifies node affinities or anti-affinities
                to determine which sole-tenant nodes your instances and managed instance
                groups will use as host systems. Read more on sole-tenant node creation
                [here](https://cloud.google.com/compute/docs/nodes/create-nodes).
@@ -6080,16 +6080,16 @@ class InstanceSchedulingArgs:
 
     @property
     @pulumi.getter(name="minNodeCpus")
-    def min_node_cpus(self) -> Optional[pulumi.Input[float]]:
+    def min_node_cpus(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "min_node_cpus")
 
     @min_node_cpus.setter
-    def min_node_cpus(self, value: Optional[pulumi.Input[float]]):
+    def min_node_cpus(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "min_node_cpus", value)
 
     @property
     @pulumi.getter(name="nodeAffinities")
-    def node_affinities(self) -> Optional[pulumi.Input[List[pulumi.Input['InstanceSchedulingNodeAffinityArgs']]]]:
+    def node_affinities(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceSchedulingNodeAffinityArgs']]]]:
         """
         Specifies node affinities or anti-affinities
         to determine which sole-tenant nodes your instances and managed instance
@@ -6100,7 +6100,7 @@ class InstanceSchedulingArgs:
         return pulumi.get(self, "node_affinities")
 
     @node_affinities.setter
-    def node_affinities(self, value: Optional[pulumi.Input[List[pulumi.Input['InstanceSchedulingNodeAffinityArgs']]]]):
+    def node_affinities(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceSchedulingNodeAffinityArgs']]]]):
         pulumi.set(self, "node_affinities", value)
 
     @property
@@ -6137,12 +6137,12 @@ class InstanceSchedulingNodeAffinityArgs:
     def __init__(__self__, *,
                  key: pulumi.Input[str],
                  operator: pulumi.Input[str],
-                 values: pulumi.Input[List[pulumi.Input[str]]]):
+                 values: pulumi.Input[Sequence[pulumi.Input[str]]]):
         """
         :param pulumi.Input[str] key: The key for the node affinity label.
         :param pulumi.Input[str] operator: The operator. Can be `IN` for node-affinities
                or `NOT_IN` for anti-affinities.
-        :param pulumi.Input[List[pulumi.Input[str]]] values: The values for the node affinity label.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] values: The values for the node affinity label.
         """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "operator", operator)
@@ -6175,14 +6175,14 @@ class InstanceSchedulingNodeAffinityArgs:
 
     @property
     @pulumi.getter
-    def values(self) -> pulumi.Input[List[pulumi.Input[str]]]:
+    def values(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
         The values for the node affinity label.
         """
         return pulumi.get(self, "values")
 
     @values.setter
-    def values(self, value: pulumi.Input[List[pulumi.Input[str]]]):
+    def values(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "values", value)
 
 
@@ -6211,10 +6211,10 @@ class InstanceScratchDiskArgs:
 @pulumi.input_type
 class InstanceServiceAccountArgs:
     def __init__(__self__, *,
-                 scopes: pulumi.Input[List[pulumi.Input[str]]],
+                 scopes: pulumi.Input[Sequence[pulumi.Input[str]]],
                  email: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input[str]]] scopes: A list of service scopes. Both OAuth2 URLs and gcloud
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] scopes: A list of service scopes. Both OAuth2 URLs and gcloud
                short names are supported. To allow full access to all Cloud APIs, use the
                `cloud-platform` scope. See a complete list of scopes [here](https://cloud.google.com/sdk/gcloud/reference/alpha/compute/instances/set-scopes#--scopes).
                **Note**: `allow_stopping_for_update` must be set to true or your instance must have a `desired_status` of `TERMINATED` in order to update this field.
@@ -6228,7 +6228,7 @@ class InstanceServiceAccountArgs:
 
     @property
     @pulumi.getter
-    def scopes(self) -> pulumi.Input[List[pulumi.Input[str]]]:
+    def scopes(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
         A list of service scopes. Both OAuth2 URLs and gcloud
         short names are supported. To allow full access to all Cloud APIs, use the
@@ -6238,7 +6238,7 @@ class InstanceServiceAccountArgs:
         return pulumi.get(self, "scopes")
 
     @scopes.setter
-    def scopes(self, value: pulumi.Input[List[pulumi.Input[str]]]):
+    def scopes(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "scopes", value)
 
     @property
@@ -6341,7 +6341,7 @@ class InstanceTemplateDiskArgs:
                  device_name: Optional[pulumi.Input[str]] = None,
                  disk_encryption_key: Optional[pulumi.Input['InstanceTemplateDiskDiskEncryptionKeyArgs']] = None,
                  disk_name: Optional[pulumi.Input[str]] = None,
-                 disk_size_gb: Optional[pulumi.Input[float]] = None,
+                 disk_size_gb: Optional[pulumi.Input[int]] = None,
                  disk_type: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -6359,7 +6359,7 @@ class InstanceTemplateDiskArgs:
         :param pulumi.Input['InstanceTemplateDiskDiskEncryptionKeyArgs'] disk_encryption_key: Encrypts or decrypts a disk using a customer-supplied encryption key.
         :param pulumi.Input[str] disk_name: Name of the disk. When not provided, this defaults
                to the name of the instance.
-        :param pulumi.Input[float] disk_size_gb: The size of the image in gigabytes. If not
+        :param pulumi.Input[int] disk_size_gb: The size of the image in gigabytes. If not
                specified, it will inherit the size of its base image. For SCRATCH disks,
                the size must be exactly 375GB.
         :param pulumi.Input[str] disk_type: The GCE disk type. Can be either `"pd-ssd"`,
@@ -6476,7 +6476,7 @@ class InstanceTemplateDiskArgs:
 
     @property
     @pulumi.getter(name="diskSizeGb")
-    def disk_size_gb(self) -> Optional[pulumi.Input[float]]:
+    def disk_size_gb(self) -> Optional[pulumi.Input[int]]:
         """
         The size of the image in gigabytes. If not
         specified, it will inherit the size of its base image. For SCRATCH disks,
@@ -6485,7 +6485,7 @@ class InstanceTemplateDiskArgs:
         return pulumi.get(self, "disk_size_gb")
 
     @disk_size_gb.setter
-    def disk_size_gb(self, value: Optional[pulumi.Input[float]]):
+    def disk_size_gb(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "disk_size_gb", value)
 
     @property
@@ -6611,10 +6611,10 @@ class InstanceTemplateDiskDiskEncryptionKeyArgs:
 @pulumi.input_type
 class InstanceTemplateGuestAcceleratorArgs:
     def __init__(__self__, *,
-                 count: pulumi.Input[float],
+                 count: pulumi.Input[int],
                  type: pulumi.Input[str]):
         """
-        :param pulumi.Input[float] count: The number of the guest accelerator cards exposed to this instance.
+        :param pulumi.Input[int] count: The number of the guest accelerator cards exposed to this instance.
         :param pulumi.Input[str] type: The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
         """
         pulumi.set(__self__, "count", count)
@@ -6622,14 +6622,14 @@ class InstanceTemplateGuestAcceleratorArgs:
 
     @property
     @pulumi.getter
-    def count(self) -> pulumi.Input[float]:
+    def count(self) -> pulumi.Input[int]:
         """
         The number of the guest accelerator cards exposed to this instance.
         """
         return pulumi.get(self, "count")
 
     @count.setter
-    def count(self, value: pulumi.Input[float]):
+    def count(self, value: pulumi.Input[int]):
         pulumi.set(self, "count", value)
 
     @property
@@ -6648,21 +6648,21 @@ class InstanceTemplateGuestAcceleratorArgs:
 @pulumi.input_type
 class InstanceTemplateNetworkInterfaceArgs:
     def __init__(__self__, *,
-                 access_configs: Optional[pulumi.Input[List[pulumi.Input['InstanceTemplateNetworkInterfaceAccessConfigArgs']]]] = None,
-                 alias_ip_ranges: Optional[pulumi.Input[List[pulumi.Input['InstanceTemplateNetworkInterfaceAliasIpRangeArgs']]]] = None,
+                 access_configs: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceTemplateNetworkInterfaceAccessConfigArgs']]]] = None,
+                 alias_ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceTemplateNetworkInterfaceAliasIpRangeArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  network: Optional[pulumi.Input[str]] = None,
                  network_ip: Optional[pulumi.Input[str]] = None,
                  subnetwork: Optional[pulumi.Input[str]] = None,
                  subnetwork_project: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input['InstanceTemplateNetworkInterfaceAccessConfigArgs']]] access_configs: Access configurations, i.e. IPs via which this
+        :param pulumi.Input[Sequence[pulumi.Input['InstanceTemplateNetworkInterfaceAccessConfigArgs']]] access_configs: Access configurations, i.e. IPs via which this
                instance can be accessed via the Internet. Omit to ensure that the instance
                is not accessible from the Internet (this means that ssh provisioners will
                not work unless you can send traffic to the instance's
                network (e.g. via tunnel or because it is running on another cloud instance
                on that network). This block can be repeated multiple times. Structure documented below.
-        :param pulumi.Input[List[pulumi.Input['InstanceTemplateNetworkInterfaceAliasIpRangeArgs']]] alias_ip_ranges: An
+        :param pulumi.Input[Sequence[pulumi.Input['InstanceTemplateNetworkInterfaceAliasIpRangeArgs']]] alias_ip_ranges: An
                array of alias IP ranges for this network interface. Can only be specified for network
                interfaces on subnet-mode networks. Structure documented below.
         :param pulumi.Input[str] name: The name of the instance template. If you leave
@@ -6695,7 +6695,7 @@ class InstanceTemplateNetworkInterfaceArgs:
 
     @property
     @pulumi.getter(name="accessConfigs")
-    def access_configs(self) -> Optional[pulumi.Input[List[pulumi.Input['InstanceTemplateNetworkInterfaceAccessConfigArgs']]]]:
+    def access_configs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceTemplateNetworkInterfaceAccessConfigArgs']]]]:
         """
         Access configurations, i.e. IPs via which this
         instance can be accessed via the Internet. Omit to ensure that the instance
@@ -6707,12 +6707,12 @@ class InstanceTemplateNetworkInterfaceArgs:
         return pulumi.get(self, "access_configs")
 
     @access_configs.setter
-    def access_configs(self, value: Optional[pulumi.Input[List[pulumi.Input['InstanceTemplateNetworkInterfaceAccessConfigArgs']]]]):
+    def access_configs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceTemplateNetworkInterfaceAccessConfigArgs']]]]):
         pulumi.set(self, "access_configs", value)
 
     @property
     @pulumi.getter(name="aliasIpRanges")
-    def alias_ip_ranges(self) -> Optional[pulumi.Input[List[pulumi.Input['InstanceTemplateNetworkInterfaceAliasIpRangeArgs']]]]:
+    def alias_ip_ranges(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceTemplateNetworkInterfaceAliasIpRangeArgs']]]]:
         """
         An
         array of alias IP ranges for this network interface. Can only be specified for network
@@ -6721,7 +6721,7 @@ class InstanceTemplateNetworkInterfaceArgs:
         return pulumi.get(self, "alias_ip_ranges")
 
     @alias_ip_ranges.setter
-    def alias_ip_ranges(self, value: Optional[pulumi.Input[List[pulumi.Input['InstanceTemplateNetworkInterfaceAliasIpRangeArgs']]]]):
+    def alias_ip_ranges(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceTemplateNetworkInterfaceAliasIpRangeArgs']]]]):
         pulumi.set(self, "alias_ip_ranges", value)
 
     @property
@@ -6903,15 +6903,15 @@ class InstanceTemplateNetworkInterfaceAliasIpRangeArgs:
 class InstanceTemplateSchedulingArgs:
     def __init__(__self__, *,
                  automatic_restart: Optional[pulumi.Input[bool]] = None,
-                 min_node_cpus: Optional[pulumi.Input[float]] = None,
-                 node_affinities: Optional[pulumi.Input[List[pulumi.Input['InstanceTemplateSchedulingNodeAffinityArgs']]]] = None,
+                 min_node_cpus: Optional[pulumi.Input[int]] = None,
+                 node_affinities: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceTemplateSchedulingNodeAffinityArgs']]]] = None,
                  on_host_maintenance: Optional[pulumi.Input[str]] = None,
                  preemptible: Optional[pulumi.Input[bool]] = None):
         """
         :param pulumi.Input[bool] automatic_restart: Specifies whether the instance should be
                automatically restarted if it is terminated by Compute Engine (not
                terminated by a user). This defaults to true.
-        :param pulumi.Input[List[pulumi.Input['InstanceTemplateSchedulingNodeAffinityArgs']]] node_affinities: Specifies node affinities or anti-affinities
+        :param pulumi.Input[Sequence[pulumi.Input['InstanceTemplateSchedulingNodeAffinityArgs']]] node_affinities: Specifies node affinities or anti-affinities
                to determine which sole-tenant nodes your instances and managed instance
                groups will use as host systems. Read more on sole-tenant node creation
                [here](https://cloud.google.com/compute/docs/nodes/create-nodes).
@@ -6949,16 +6949,16 @@ class InstanceTemplateSchedulingArgs:
 
     @property
     @pulumi.getter(name="minNodeCpus")
-    def min_node_cpus(self) -> Optional[pulumi.Input[float]]:
+    def min_node_cpus(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "min_node_cpus")
 
     @min_node_cpus.setter
-    def min_node_cpus(self, value: Optional[pulumi.Input[float]]):
+    def min_node_cpus(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "min_node_cpus", value)
 
     @property
     @pulumi.getter(name="nodeAffinities")
-    def node_affinities(self) -> Optional[pulumi.Input[List[pulumi.Input['InstanceTemplateSchedulingNodeAffinityArgs']]]]:
+    def node_affinities(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceTemplateSchedulingNodeAffinityArgs']]]]:
         """
         Specifies node affinities or anti-affinities
         to determine which sole-tenant nodes your instances and managed instance
@@ -6969,7 +6969,7 @@ class InstanceTemplateSchedulingArgs:
         return pulumi.get(self, "node_affinities")
 
     @node_affinities.setter
-    def node_affinities(self, value: Optional[pulumi.Input[List[pulumi.Input['InstanceTemplateSchedulingNodeAffinityArgs']]]]):
+    def node_affinities(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceTemplateSchedulingNodeAffinityArgs']]]]):
         pulumi.set(self, "node_affinities", value)
 
     @property
@@ -7005,7 +7005,7 @@ class InstanceTemplateSchedulingNodeAffinityArgs:
     def __init__(__self__, *,
                  key: pulumi.Input[str],
                  operator: pulumi.Input[str],
-                 values: pulumi.Input[List[pulumi.Input[str]]]):
+                 values: pulumi.Input[Sequence[pulumi.Input[str]]]):
         """
         :param pulumi.Input[str] key: The key for the node affinity label.
         :param pulumi.Input[str] operator: The operator. Can be `IN` for node-affinities
@@ -7042,21 +7042,21 @@ class InstanceTemplateSchedulingNodeAffinityArgs:
 
     @property
     @pulumi.getter
-    def values(self) -> pulumi.Input[List[pulumi.Input[str]]]:
+    def values(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         return pulumi.get(self, "values")
 
     @values.setter
-    def values(self, value: pulumi.Input[List[pulumi.Input[str]]]):
+    def values(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "values", value)
 
 
 @pulumi.input_type
 class InstanceTemplateServiceAccountArgs:
     def __init__(__self__, *,
-                 scopes: pulumi.Input[List[pulumi.Input[str]]],
+                 scopes: pulumi.Input[Sequence[pulumi.Input[str]]],
                  email: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input[str]]] scopes: A list of service scopes. Both OAuth2 URLs and gcloud
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] scopes: A list of service scopes. Both OAuth2 URLs and gcloud
                short names are supported. To allow full access to all Cloud APIs, use the
                `cloud-platform` scope. See a complete list of scopes [here](https://cloud.google.com/sdk/gcloud/reference/alpha/compute/instances/set-scopes#--scopes).
         :param pulumi.Input[str] email: The service account e-mail address. If not given, the
@@ -7068,7 +7068,7 @@ class InstanceTemplateServiceAccountArgs:
 
     @property
     @pulumi.getter
-    def scopes(self) -> pulumi.Input[List[pulumi.Input[str]]]:
+    def scopes(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
         A list of service scopes. Both OAuth2 URLs and gcloud
         short names are supported. To allow full access to all Cloud APIs, use the
@@ -7077,7 +7077,7 @@ class InstanceTemplateServiceAccountArgs:
         return pulumi.get(self, "scopes")
 
     @scopes.setter
-    def scopes(self, value: pulumi.Input[List[pulumi.Input[str]]]):
+    def scopes(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "scopes", value)
 
     @property
@@ -7152,33 +7152,33 @@ class InstanceTemplateShieldedInstanceConfigArgs:
 @pulumi.input_type
 class InterconnectAttachmentPrivateInterconnectInfoArgs:
     def __init__(__self__, *,
-                 tag8021q: Optional[pulumi.Input[float]] = None):
+                 tag8021q: Optional[pulumi.Input[int]] = None):
         if tag8021q is not None:
             pulumi.set(__self__, "tag8021q", tag8021q)
 
     @property
     @pulumi.getter
-    def tag8021q(self) -> Optional[pulumi.Input[float]]:
+    def tag8021q(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "tag8021q")
 
     @tag8021q.setter
-    def tag8021q(self, value: Optional[pulumi.Input[float]]):
+    def tag8021q(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "tag8021q", value)
 
 
 @pulumi.input_type
 class ManagedSslCertificateManagedArgs:
     def __init__(__self__, *,
-                 domains: pulumi.Input[List[pulumi.Input[str]]]):
+                 domains: pulumi.Input[Sequence[pulumi.Input[str]]]):
         """
-        :param pulumi.Input[List[pulumi.Input[str]]] domains: Domains for which a managed SSL certificate will be valid.  Currently,
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] domains: Domains for which a managed SSL certificate will be valid.  Currently,
                there can be up to 100 domains in this list.
         """
         pulumi.set(__self__, "domains", domains)
 
     @property
     @pulumi.getter
-    def domains(self) -> pulumi.Input[List[pulumi.Input[str]]]:
+    def domains(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
         Domains for which a managed SSL certificate will be valid.  Currently,
         there can be up to 100 domains in this list.
@@ -7186,36 +7186,36 @@ class ManagedSslCertificateManagedArgs:
         return pulumi.get(self, "domains")
 
     @domains.setter
-    def domains(self, value: pulumi.Input[List[pulumi.Input[str]]]):
+    def domains(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "domains", value)
 
 
 @pulumi.input_type
 class MangedSslCertificateManagedArgs:
     def __init__(__self__, *,
-                 domains: pulumi.Input[List[pulumi.Input[str]]]):
+                 domains: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(__self__, "domains", domains)
 
     @property
     @pulumi.getter
-    def domains(self) -> pulumi.Input[List[pulumi.Input[str]]]:
+    def domains(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         return pulumi.get(self, "domains")
 
     @domains.setter
-    def domains(self, value: pulumi.Input[List[pulumi.Input[str]]]):
+    def domains(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "domains", value)
 
 
 @pulumi.input_type
 class NodeGroupAutoscalingPolicyArgs:
     def __init__(__self__, *,
-                 max_nodes: Optional[pulumi.Input[float]] = None,
-                 min_nodes: Optional[pulumi.Input[float]] = None,
+                 max_nodes: Optional[pulumi.Input[int]] = None,
+                 min_nodes: Optional[pulumi.Input[int]] = None,
                  mode: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[float] max_nodes: Maximum size of the node group. Set to a value less than or equal
+        :param pulumi.Input[int] max_nodes: Maximum size of the node group. Set to a value less than or equal
                to 100 and greater than or equal to min-nodes.
-        :param pulumi.Input[float] min_nodes: Minimum size of the node group. Must be less
+        :param pulumi.Input[int] min_nodes: Minimum size of the node group. Must be less
                than or equal to max-nodes. The default value is 0.
         :param pulumi.Input[str] mode: The autoscaling mode. Set to one of the following:
                - OFF: Disables the autoscaler.
@@ -7234,7 +7234,7 @@ class NodeGroupAutoscalingPolicyArgs:
 
     @property
     @pulumi.getter(name="maxNodes")
-    def max_nodes(self) -> Optional[pulumi.Input[float]]:
+    def max_nodes(self) -> Optional[pulumi.Input[int]]:
         """
         Maximum size of the node group. Set to a value less than or equal
         to 100 and greater than or equal to min-nodes.
@@ -7242,12 +7242,12 @@ class NodeGroupAutoscalingPolicyArgs:
         return pulumi.get(self, "max_nodes")
 
     @max_nodes.setter
-    def max_nodes(self, value: Optional[pulumi.Input[float]]):
+    def max_nodes(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_nodes", value)
 
     @property
     @pulumi.getter(name="minNodes")
-    def min_nodes(self) -> Optional[pulumi.Input[float]]:
+    def min_nodes(self) -> Optional[pulumi.Input[int]]:
         """
         Minimum size of the node group. Must be less
         than or equal to max-nodes. The default value is 0.
@@ -7255,7 +7255,7 @@ class NodeGroupAutoscalingPolicyArgs:
         return pulumi.get(self, "min_nodes")
 
     @min_nodes.setter
-    def min_nodes(self, value: Optional[pulumi.Input[float]]):
+    def min_nodes(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "min_nodes", value)
 
     @property
@@ -7443,15 +7443,15 @@ class OrganizationSecurityPolicyRuleMatchArgs:
 @pulumi.input_type
 class OrganizationSecurityPolicyRuleMatchConfigArgs:
     def __init__(__self__, *,
-                 layer4_configs: pulumi.Input[List[pulumi.Input['OrganizationSecurityPolicyRuleMatchConfigLayer4ConfigArgs']]],
-                 dest_ip_ranges: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 src_ip_ranges: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 layer4_configs: pulumi.Input[Sequence[pulumi.Input['OrganizationSecurityPolicyRuleMatchConfigLayer4ConfigArgs']]],
+                 dest_ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 src_ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input['OrganizationSecurityPolicyRuleMatchConfigLayer4ConfigArgs']]] layer4_configs: Pairs of IP protocols and ports that the rule should match.
+        :param pulumi.Input[Sequence[pulumi.Input['OrganizationSecurityPolicyRuleMatchConfigLayer4ConfigArgs']]] layer4_configs: Pairs of IP protocols and ports that the rule should match.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] dest_ip_ranges: Destination IP address range in CIDR format. Required for
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] dest_ip_ranges: Destination IP address range in CIDR format. Required for
                EGRESS rules.
-        :param pulumi.Input[List[pulumi.Input[str]]] src_ip_ranges: Source IP address range in CIDR format. Required for
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] src_ip_ranges: Source IP address range in CIDR format. Required for
                INGRESS rules.
         """
         pulumi.set(__self__, "layer4_configs", layer4_configs)
@@ -7462,7 +7462,7 @@ class OrganizationSecurityPolicyRuleMatchConfigArgs:
 
     @property
     @pulumi.getter(name="layer4Configs")
-    def layer4_configs(self) -> pulumi.Input[List[pulumi.Input['OrganizationSecurityPolicyRuleMatchConfigLayer4ConfigArgs']]]:
+    def layer4_configs(self) -> pulumi.Input[Sequence[pulumi.Input['OrganizationSecurityPolicyRuleMatchConfigLayer4ConfigArgs']]]:
         """
         Pairs of IP protocols and ports that the rule should match.
         Structure is documented below.
@@ -7470,12 +7470,12 @@ class OrganizationSecurityPolicyRuleMatchConfigArgs:
         return pulumi.get(self, "layer4_configs")
 
     @layer4_configs.setter
-    def layer4_configs(self, value: pulumi.Input[List[pulumi.Input['OrganizationSecurityPolicyRuleMatchConfigLayer4ConfigArgs']]]):
+    def layer4_configs(self, value: pulumi.Input[Sequence[pulumi.Input['OrganizationSecurityPolicyRuleMatchConfigLayer4ConfigArgs']]]):
         pulumi.set(self, "layer4_configs", value)
 
     @property
     @pulumi.getter(name="destIpRanges")
-    def dest_ip_ranges(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def dest_ip_ranges(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Destination IP address range in CIDR format. Required for
         EGRESS rules.
@@ -7483,12 +7483,12 @@ class OrganizationSecurityPolicyRuleMatchConfigArgs:
         return pulumi.get(self, "dest_ip_ranges")
 
     @dest_ip_ranges.setter
-    def dest_ip_ranges(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def dest_ip_ranges(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "dest_ip_ranges", value)
 
     @property
     @pulumi.getter(name="srcIpRanges")
-    def src_ip_ranges(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def src_ip_ranges(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Source IP address range in CIDR format. Required for
         INGRESS rules.
@@ -7496,7 +7496,7 @@ class OrganizationSecurityPolicyRuleMatchConfigArgs:
         return pulumi.get(self, "src_ip_ranges")
 
     @src_ip_ranges.setter
-    def src_ip_ranges(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def src_ip_ranges(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "src_ip_ranges", value)
 
 
@@ -7504,14 +7504,14 @@ class OrganizationSecurityPolicyRuleMatchConfigArgs:
 class OrganizationSecurityPolicyRuleMatchConfigLayer4ConfigArgs:
     def __init__(__self__, *,
                  ip_protocol: pulumi.Input[str],
-                 ports: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 ports: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         :param pulumi.Input[str] ip_protocol: The IP protocol to which this rule applies. The protocol
                type is required when creating a firewall rule.
                This value can either be one of the following well
                known protocol strings (tcp, udp, icmp, esp, ah, ipip, sctp),
                or the IP protocol number.
-        :param pulumi.Input[List[pulumi.Input[str]]] ports: An optional list of ports to which this rule applies. This field
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ports: An optional list of ports to which this rule applies. This field
                is only applicable for UDP or TCP protocol. Each entry must be
                either an integer or a range. If not specified, this rule
                applies to connections through any port.
@@ -7540,7 +7540,7 @@ class OrganizationSecurityPolicyRuleMatchConfigLayer4ConfigArgs:
 
     @property
     @pulumi.getter
-    def ports(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def ports(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         An optional list of ports to which this rule applies. This field
         is only applicable for UDP or TCP protocol. Each entry must be
@@ -7552,7 +7552,7 @@ class OrganizationSecurityPolicyRuleMatchConfigLayer4ConfigArgs:
         return pulumi.get(self, "ports")
 
     @ports.setter
-    def ports(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def ports(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "ports", value)
 
 
@@ -7581,12 +7581,12 @@ class PacketMirroringCollectorIlbArgs:
 @pulumi.input_type
 class PacketMirroringFilterArgs:
     def __init__(__self__, *,
-                 cidr_ranges: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 ip_protocols: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 cidr_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 ip_protocols: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input[str]]] cidr_ranges: IP CIDR ranges that apply as a filter on the source (ingress) or
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] cidr_ranges: IP CIDR ranges that apply as a filter on the source (ingress) or
                destination (egress) IP in the IP header. Only IPv4 is supported.
-        :param pulumi.Input[List[pulumi.Input[str]]] ip_protocols: Protocols that apply as a filter on mirrored traffic.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_protocols: Protocols that apply as a filter on mirrored traffic.
                Each value may be one of `tcp`, `udp`, and `icmp`.
         """
         if cidr_ranges is not None:
@@ -7596,7 +7596,7 @@ class PacketMirroringFilterArgs:
 
     @property
     @pulumi.getter(name="cidrRanges")
-    def cidr_ranges(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def cidr_ranges(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         IP CIDR ranges that apply as a filter on the source (ingress) or
         destination (egress) IP in the IP header. Only IPv4 is supported.
@@ -7604,12 +7604,12 @@ class PacketMirroringFilterArgs:
         return pulumi.get(self, "cidr_ranges")
 
     @cidr_ranges.setter
-    def cidr_ranges(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def cidr_ranges(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "cidr_ranges", value)
 
     @property
     @pulumi.getter(name="ipProtocols")
-    def ip_protocols(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def ip_protocols(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Protocols that apply as a filter on mirrored traffic.
         Each value may be one of `tcp`, `udp`, and `icmp`.
@@ -7617,22 +7617,22 @@ class PacketMirroringFilterArgs:
         return pulumi.get(self, "ip_protocols")
 
     @ip_protocols.setter
-    def ip_protocols(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def ip_protocols(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "ip_protocols", value)
 
 
 @pulumi.input_type
 class PacketMirroringMirroredResourcesArgs:
     def __init__(__self__, *,
-                 instances: Optional[pulumi.Input[List[pulumi.Input['PacketMirroringMirroredResourcesInstanceArgs']]]] = None,
-                 subnetworks: Optional[pulumi.Input[List[pulumi.Input['PacketMirroringMirroredResourcesSubnetworkArgs']]]] = None,
-                 tags: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 instances: Optional[pulumi.Input[Sequence[pulumi.Input['PacketMirroringMirroredResourcesInstanceArgs']]]] = None,
+                 subnetworks: Optional[pulumi.Input[Sequence[pulumi.Input['PacketMirroringMirroredResourcesSubnetworkArgs']]]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input['PacketMirroringMirroredResourcesInstanceArgs']]] instances: All the listed instances will be mirrored.  Specify at most 50.
+        :param pulumi.Input[Sequence[pulumi.Input['PacketMirroringMirroredResourcesInstanceArgs']]] instances: All the listed instances will be mirrored.  Specify at most 50.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input['PacketMirroringMirroredResourcesSubnetworkArgs']]] subnetworks: All instances in one of these subnetworks will be mirrored.
+        :param pulumi.Input[Sequence[pulumi.Input['PacketMirroringMirroredResourcesSubnetworkArgs']]] subnetworks: All instances in one of these subnetworks will be mirrored.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] tags: All instances with these tags will be mirrored.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: All instances with these tags will be mirrored.
         """
         if instances is not None:
             pulumi.set(__self__, "instances", instances)
@@ -7643,7 +7643,7 @@ class PacketMirroringMirroredResourcesArgs:
 
     @property
     @pulumi.getter
-    def instances(self) -> Optional[pulumi.Input[List[pulumi.Input['PacketMirroringMirroredResourcesInstanceArgs']]]]:
+    def instances(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['PacketMirroringMirroredResourcesInstanceArgs']]]]:
         """
         All the listed instances will be mirrored.  Specify at most 50.
         Structure is documented below.
@@ -7651,12 +7651,12 @@ class PacketMirroringMirroredResourcesArgs:
         return pulumi.get(self, "instances")
 
     @instances.setter
-    def instances(self, value: Optional[pulumi.Input[List[pulumi.Input['PacketMirroringMirroredResourcesInstanceArgs']]]]):
+    def instances(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['PacketMirroringMirroredResourcesInstanceArgs']]]]):
         pulumi.set(self, "instances", value)
 
     @property
     @pulumi.getter
-    def subnetworks(self) -> Optional[pulumi.Input[List[pulumi.Input['PacketMirroringMirroredResourcesSubnetworkArgs']]]]:
+    def subnetworks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['PacketMirroringMirroredResourcesSubnetworkArgs']]]]:
         """
         All instances in one of these subnetworks will be mirrored.
         Structure is documented below.
@@ -7664,19 +7664,19 @@ class PacketMirroringMirroredResourcesArgs:
         return pulumi.get(self, "subnetworks")
 
     @subnetworks.setter
-    def subnetworks(self, value: Optional[pulumi.Input[List[pulumi.Input['PacketMirroringMirroredResourcesSubnetworkArgs']]]]):
+    def subnetworks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['PacketMirroringMirroredResourcesSubnetworkArgs']]]]):
         pulumi.set(self, "subnetworks", value)
 
     @property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         All instances with these tags will be mirrored.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "tags", value)
 
 
@@ -7749,10 +7749,10 @@ class PacketMirroringNetworkArgs:
 @pulumi.input_type
 class PerInstanceConfigPreservedStateArgs:
     def __init__(__self__, *,
-                 disks: Optional[pulumi.Input[List[pulumi.Input['PerInstanceConfigPreservedStateDiskArgs']]]] = None,
+                 disks: Optional[pulumi.Input[Sequence[pulumi.Input['PerInstanceConfigPreservedStateDiskArgs']]]] = None,
                  metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input['PerInstanceConfigPreservedStateDiskArgs']]] disks: Stateful disks for the instance.
+        :param pulumi.Input[Sequence[pulumi.Input['PerInstanceConfigPreservedStateDiskArgs']]] disks: Stateful disks for the instance.
                Structure is documented below.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Preserved metadata defined for this instance. This is a list of key->value pairs.
         """
@@ -7763,7 +7763,7 @@ class PerInstanceConfigPreservedStateArgs:
 
     @property
     @pulumi.getter
-    def disks(self) -> Optional[pulumi.Input[List[pulumi.Input['PerInstanceConfigPreservedStateDiskArgs']]]]:
+    def disks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['PerInstanceConfigPreservedStateDiskArgs']]]]:
         """
         Stateful disks for the instance.
         Structure is documented below.
@@ -7771,7 +7771,7 @@ class PerInstanceConfigPreservedStateArgs:
         return pulumi.get(self, "disks")
 
     @disks.setter
-    def disks(self, value: Optional[pulumi.Input[List[pulumi.Input['PerInstanceConfigPreservedStateDiskArgs']]]]):
+    def disks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['PerInstanceConfigPreservedStateDiskArgs']]]]):
         pulumi.set(self, "disks", value)
 
     @property
@@ -7877,24 +7877,24 @@ class PerInstanceConfigPreservedStateDiskArgs:
 @pulumi.input_type
 class RegionAutoscalerAutoscalingPolicyArgs:
     def __init__(__self__, *,
-                 max_replicas: pulumi.Input[float],
-                 min_replicas: pulumi.Input[float],
-                 cooldown_period: Optional[pulumi.Input[float]] = None,
+                 max_replicas: pulumi.Input[int],
+                 min_replicas: pulumi.Input[int],
+                 cooldown_period: Optional[pulumi.Input[int]] = None,
                  cpu_utilization: Optional[pulumi.Input['RegionAutoscalerAutoscalingPolicyCpuUtilizationArgs']] = None,
                  load_balancing_utilization: Optional[pulumi.Input['RegionAutoscalerAutoscalingPolicyLoadBalancingUtilizationArgs']] = None,
-                 metrics: Optional[pulumi.Input[List[pulumi.Input['RegionAutoscalerAutoscalingPolicyMetricArgs']]]] = None,
+                 metrics: Optional[pulumi.Input[Sequence[pulumi.Input['RegionAutoscalerAutoscalingPolicyMetricArgs']]]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  scale_down_control: Optional[pulumi.Input['RegionAutoscalerAutoscalingPolicyScaleDownControlArgs']] = None):
         """
-        :param pulumi.Input[float] max_replicas: The maximum number of instances that the autoscaler can scale up
+        :param pulumi.Input[int] max_replicas: The maximum number of instances that the autoscaler can scale up
                to. This is required when creating or updating an autoscaler. The
                maximum number of replicas should not be lower than minimal number
                of replicas.
-        :param pulumi.Input[float] min_replicas: The minimum number of replicas that the autoscaler can scale down
+        :param pulumi.Input[int] min_replicas: The minimum number of replicas that the autoscaler can scale down
                to. This cannot be less than 0. If not provided, autoscaler will
                choose a default value depending on maximum number of instances
                allowed.
-        :param pulumi.Input[float] cooldown_period: The number of seconds that the autoscaler should wait before it
+        :param pulumi.Input[int] cooldown_period: The number of seconds that the autoscaler should wait before it
                starts collecting information from a new instance. This prevents
                the autoscaler from collecting information when the instance is
                initializing, during which the collected usage would not be
@@ -7909,7 +7909,7 @@ class RegionAutoscalerAutoscalingPolicyArgs:
                Structure is documented below.
         :param pulumi.Input['RegionAutoscalerAutoscalingPolicyLoadBalancingUtilizationArgs'] load_balancing_utilization: Configuration parameters of autoscaling based on a load balancer.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input['RegionAutoscalerAutoscalingPolicyMetricArgs']]] metrics: Configuration parameters of autoscaling based on a custom metric.
+        :param pulumi.Input[Sequence[pulumi.Input['RegionAutoscalerAutoscalingPolicyMetricArgs']]] metrics: Configuration parameters of autoscaling based on a custom metric.
                Structure is documented below.
         :param pulumi.Input[str] mode: Defines operating mode for this policy.
                Default value is `ON`.
@@ -7932,7 +7932,7 @@ class RegionAutoscalerAutoscalingPolicyArgs:
 
     @property
     @pulumi.getter(name="maxReplicas")
-    def max_replicas(self) -> pulumi.Input[float]:
+    def max_replicas(self) -> pulumi.Input[int]:
         """
         The maximum number of instances that the autoscaler can scale up
         to. This is required when creating or updating an autoscaler. The
@@ -7942,12 +7942,12 @@ class RegionAutoscalerAutoscalingPolicyArgs:
         return pulumi.get(self, "max_replicas")
 
     @max_replicas.setter
-    def max_replicas(self, value: pulumi.Input[float]):
+    def max_replicas(self, value: pulumi.Input[int]):
         pulumi.set(self, "max_replicas", value)
 
     @property
     @pulumi.getter(name="minReplicas")
-    def min_replicas(self) -> pulumi.Input[float]:
+    def min_replicas(self) -> pulumi.Input[int]:
         """
         The minimum number of replicas that the autoscaler can scale down
         to. This cannot be less than 0. If not provided, autoscaler will
@@ -7957,12 +7957,12 @@ class RegionAutoscalerAutoscalingPolicyArgs:
         return pulumi.get(self, "min_replicas")
 
     @min_replicas.setter
-    def min_replicas(self, value: pulumi.Input[float]):
+    def min_replicas(self, value: pulumi.Input[int]):
         pulumi.set(self, "min_replicas", value)
 
     @property
     @pulumi.getter(name="cooldownPeriod")
-    def cooldown_period(self) -> Optional[pulumi.Input[float]]:
+    def cooldown_period(self) -> Optional[pulumi.Input[int]]:
         """
         The number of seconds that the autoscaler should wait before it
         starts collecting information from a new instance. This prevents
@@ -7977,7 +7977,7 @@ class RegionAutoscalerAutoscalingPolicyArgs:
         return pulumi.get(self, "cooldown_period")
 
     @cooldown_period.setter
-    def cooldown_period(self, value: Optional[pulumi.Input[float]]):
+    def cooldown_period(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "cooldown_period", value)
 
     @property
@@ -8010,7 +8010,7 @@ class RegionAutoscalerAutoscalingPolicyArgs:
 
     @property
     @pulumi.getter
-    def metrics(self) -> Optional[pulumi.Input[List[pulumi.Input['RegionAutoscalerAutoscalingPolicyMetricArgs']]]]:
+    def metrics(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RegionAutoscalerAutoscalingPolicyMetricArgs']]]]:
         """
         Configuration parameters of autoscaling based on a custom metric.
         Structure is documented below.
@@ -8018,7 +8018,7 @@ class RegionAutoscalerAutoscalingPolicyArgs:
         return pulumi.get(self, "metrics")
 
     @metrics.setter
-    def metrics(self, value: Optional[pulumi.Input[List[pulumi.Input['RegionAutoscalerAutoscalingPolicyMetricArgs']]]]):
+    def metrics(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RegionAutoscalerAutoscalingPolicyMetricArgs']]]]):
         pulumi.set(self, "metrics", value)
 
     @property
@@ -8277,11 +8277,11 @@ class RegionAutoscalerAutoscalingPolicyMetricArgs:
 class RegionAutoscalerAutoscalingPolicyScaleDownControlArgs:
     def __init__(__self__, *,
                  max_scaled_down_replicas: Optional[pulumi.Input['RegionAutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasArgs']] = None,
-                 time_window_sec: Optional[pulumi.Input[float]] = None):
+                 time_window_sec: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input['RegionAutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasArgs'] max_scaled_down_replicas: A nested object resource
                Structure is documented below.
-        :param pulumi.Input[float] time_window_sec: How long back autoscaling should look when computing recommendations
+        :param pulumi.Input[int] time_window_sec: How long back autoscaling should look when computing recommendations
                to include directives regarding slower scale down, as described above.
         """
         if max_scaled_down_replicas is not None:
@@ -8304,7 +8304,7 @@ class RegionAutoscalerAutoscalingPolicyScaleDownControlArgs:
 
     @property
     @pulumi.getter(name="timeWindowSec")
-    def time_window_sec(self) -> Optional[pulumi.Input[float]]:
+    def time_window_sec(self) -> Optional[pulumi.Input[int]]:
         """
         How long back autoscaling should look when computing recommendations
         to include directives regarding slower scale down, as described above.
@@ -8312,19 +8312,19 @@ class RegionAutoscalerAutoscalingPolicyScaleDownControlArgs:
         return pulumi.get(self, "time_window_sec")
 
     @time_window_sec.setter
-    def time_window_sec(self, value: Optional[pulumi.Input[float]]):
+    def time_window_sec(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "time_window_sec", value)
 
 
 @pulumi.input_type
 class RegionAutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasArgs:
     def __init__(__self__, *,
-                 fixed: Optional[pulumi.Input[float]] = None,
-                 percent: Optional[pulumi.Input[float]] = None):
+                 fixed: Optional[pulumi.Input[int]] = None,
+                 percent: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[float] fixed: Specifies a fixed number of VM instances. This must be a positive
+        :param pulumi.Input[int] fixed: Specifies a fixed number of VM instances. This must be a positive
                integer.
-        :param pulumi.Input[float] percent: Specifies a percentage of instances between 0 to 100%, inclusive.
+        :param pulumi.Input[int] percent: Specifies a percentage of instances between 0 to 100%, inclusive.
                For example, specify 80 for 80%.
         """
         if fixed is not None:
@@ -8334,7 +8334,7 @@ class RegionAutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasArgs
 
     @property
     @pulumi.getter
-    def fixed(self) -> Optional[pulumi.Input[float]]:
+    def fixed(self) -> Optional[pulumi.Input[int]]:
         """
         Specifies a fixed number of VM instances. This must be a positive
         integer.
@@ -8342,12 +8342,12 @@ class RegionAutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasArgs
         return pulumi.get(self, "fixed")
 
     @fixed.setter
-    def fixed(self, value: Optional[pulumi.Input[float]]):
+    def fixed(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fixed", value)
 
     @property
     @pulumi.getter
-    def percent(self) -> Optional[pulumi.Input[float]]:
+    def percent(self) -> Optional[pulumi.Input[int]]:
         """
         Specifies a percentage of instances between 0 to 100%, inclusive.
         For example, specify 80 for 80%.
@@ -8355,7 +8355,7 @@ class RegionAutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasArgs
         return pulumi.get(self, "percent")
 
     @percent.setter
-    def percent(self, value: Optional[pulumi.Input[float]]):
+    def percent(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "percent", value)
 
 
@@ -8367,10 +8367,10 @@ class RegionBackendServiceBackendArgs:
                  capacity_scaler: Optional[pulumi.Input[float]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  failover: Optional[pulumi.Input[bool]] = None,
-                 max_connections: Optional[pulumi.Input[float]] = None,
-                 max_connections_per_endpoint: Optional[pulumi.Input[float]] = None,
-                 max_connections_per_instance: Optional[pulumi.Input[float]] = None,
-                 max_rate: Optional[pulumi.Input[float]] = None,
+                 max_connections: Optional[pulumi.Input[int]] = None,
+                 max_connections_per_endpoint: Optional[pulumi.Input[int]] = None,
+                 max_connections_per_instance: Optional[pulumi.Input[int]] = None,
+                 max_rate: Optional[pulumi.Input[int]] = None,
                  max_rate_per_endpoint: Optional[pulumi.Input[float]] = None,
                  max_rate_per_instance: Optional[pulumi.Input[float]] = None,
                  max_utilization: Optional[pulumi.Input[float]] = None):
@@ -8406,23 +8406,23 @@ class RegionBackendServiceBackendArgs:
                Provide this property when you create the resource.
         :param pulumi.Input[bool] failover: This field designates whether this is a failover backend. More
                than one failover backend can be configured for a given RegionBackendService.
-        :param pulumi.Input[float] max_connections: The maximum number of connections to the backend cluster.
+        :param pulumi.Input[int] max_connections: The maximum number of connections to the backend cluster.
                Defaults to 1024.
-        :param pulumi.Input[float] max_connections_per_endpoint: The max number of simultaneous connections that a single backend
+        :param pulumi.Input[int] max_connections_per_endpoint: The max number of simultaneous connections that a single backend
                network endpoint can handle. Cannot be set
                for INTERNAL backend services.
                This is used to calculate the capacity of the group. Can be
                used in either CONNECTION or UTILIZATION balancing modes. For
                CONNECTION mode, either maxConnections or
                maxConnectionsPerEndpoint must be set.
-        :param pulumi.Input[float] max_connections_per_instance: The max number of simultaneous connections that a single
+        :param pulumi.Input[int] max_connections_per_instance: The max number of simultaneous connections that a single
                backend instance can handle. Cannot be set for INTERNAL backend
                services.
                This is used to calculate the capacity of the group.
                Can be used in either CONNECTION or UTILIZATION balancing modes.
                For CONNECTION mode, either maxConnections or
                maxConnectionsPerInstance must be set.
-        :param pulumi.Input[float] max_rate: The max requests per second (RPS) of the group. Cannot be set
+        :param pulumi.Input[int] max_rate: The max requests per second (RPS) of the group. Cannot be set
                for INTERNAL backend services.
                Can be used with either RATE or UTILIZATION balancing modes,
                but required if RATE mode. Either maxRate or one
@@ -8554,7 +8554,7 @@ class RegionBackendServiceBackendArgs:
 
     @property
     @pulumi.getter(name="maxConnections")
-    def max_connections(self) -> Optional[pulumi.Input[float]]:
+    def max_connections(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of connections to the backend cluster.
         Defaults to 1024.
@@ -8562,12 +8562,12 @@ class RegionBackendServiceBackendArgs:
         return pulumi.get(self, "max_connections")
 
     @max_connections.setter
-    def max_connections(self, value: Optional[pulumi.Input[float]]):
+    def max_connections(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_connections", value)
 
     @property
     @pulumi.getter(name="maxConnectionsPerEndpoint")
-    def max_connections_per_endpoint(self) -> Optional[pulumi.Input[float]]:
+    def max_connections_per_endpoint(self) -> Optional[pulumi.Input[int]]:
         """
         The max number of simultaneous connections that a single backend
         network endpoint can handle. Cannot be set
@@ -8580,12 +8580,12 @@ class RegionBackendServiceBackendArgs:
         return pulumi.get(self, "max_connections_per_endpoint")
 
     @max_connections_per_endpoint.setter
-    def max_connections_per_endpoint(self, value: Optional[pulumi.Input[float]]):
+    def max_connections_per_endpoint(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_connections_per_endpoint", value)
 
     @property
     @pulumi.getter(name="maxConnectionsPerInstance")
-    def max_connections_per_instance(self) -> Optional[pulumi.Input[float]]:
+    def max_connections_per_instance(self) -> Optional[pulumi.Input[int]]:
         """
         The max number of simultaneous connections that a single
         backend instance can handle. Cannot be set for INTERNAL backend
@@ -8598,12 +8598,12 @@ class RegionBackendServiceBackendArgs:
         return pulumi.get(self, "max_connections_per_instance")
 
     @max_connections_per_instance.setter
-    def max_connections_per_instance(self, value: Optional[pulumi.Input[float]]):
+    def max_connections_per_instance(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_connections_per_instance", value)
 
     @property
     @pulumi.getter(name="maxRate")
-    def max_rate(self) -> Optional[pulumi.Input[float]]:
+    def max_rate(self) -> Optional[pulumi.Input[int]]:
         """
         The max requests per second (RPS) of the group. Cannot be set
         for INTERNAL backend services.
@@ -8615,7 +8615,7 @@ class RegionBackendServiceBackendArgs:
         return pulumi.get(self, "max_rate")
 
     @max_rate.setter
-    def max_rate(self, value: Optional[pulumi.Input[float]]):
+    def max_rate(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_rate", value)
 
     @property
@@ -8669,24 +8669,24 @@ class RegionBackendServiceBackendArgs:
 class RegionBackendServiceCircuitBreakersArgs:
     def __init__(__self__, *,
                  connect_timeout: Optional[pulumi.Input['RegionBackendServiceCircuitBreakersConnectTimeoutArgs']] = None,
-                 max_connections: Optional[pulumi.Input[float]] = None,
-                 max_pending_requests: Optional[pulumi.Input[float]] = None,
-                 max_requests: Optional[pulumi.Input[float]] = None,
-                 max_requests_per_connection: Optional[pulumi.Input[float]] = None,
-                 max_retries: Optional[pulumi.Input[float]] = None):
+                 max_connections: Optional[pulumi.Input[int]] = None,
+                 max_pending_requests: Optional[pulumi.Input[int]] = None,
+                 max_requests: Optional[pulumi.Input[int]] = None,
+                 max_requests_per_connection: Optional[pulumi.Input[int]] = None,
+                 max_retries: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input['RegionBackendServiceCircuitBreakersConnectTimeoutArgs'] connect_timeout: The timeout for new network connections to hosts.  Structure is documented below.
-        :param pulumi.Input[float] max_connections: The maximum number of connections to the backend cluster.
+        :param pulumi.Input[int] max_connections: The maximum number of connections to the backend cluster.
                Defaults to 1024.
-        :param pulumi.Input[float] max_pending_requests: The maximum number of pending requests to the backend cluster.
+        :param pulumi.Input[int] max_pending_requests: The maximum number of pending requests to the backend cluster.
                Defaults to 1024.
-        :param pulumi.Input[float] max_requests: The maximum number of parallel requests to the backend cluster.
+        :param pulumi.Input[int] max_requests: The maximum number of parallel requests to the backend cluster.
                Defaults to 1024.
-        :param pulumi.Input[float] max_requests_per_connection: Maximum requests for a single backend connection. This parameter
+        :param pulumi.Input[int] max_requests_per_connection: Maximum requests for a single backend connection. This parameter
                is respected by both the HTTP/1.1 and HTTP/2 implementations. If
                not specified, there is no limit. Setting this parameter to 1
                will effectively disable keep alive.
-        :param pulumi.Input[float] max_retries: The maximum number of parallel retries to the backend cluster.
+        :param pulumi.Input[int] max_retries: The maximum number of parallel retries to the backend cluster.
                Defaults to 3.
         """
         if connect_timeout is not None:
@@ -8716,7 +8716,7 @@ class RegionBackendServiceCircuitBreakersArgs:
 
     @property
     @pulumi.getter(name="maxConnections")
-    def max_connections(self) -> Optional[pulumi.Input[float]]:
+    def max_connections(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of connections to the backend cluster.
         Defaults to 1024.
@@ -8724,12 +8724,12 @@ class RegionBackendServiceCircuitBreakersArgs:
         return pulumi.get(self, "max_connections")
 
     @max_connections.setter
-    def max_connections(self, value: Optional[pulumi.Input[float]]):
+    def max_connections(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_connections", value)
 
     @property
     @pulumi.getter(name="maxPendingRequests")
-    def max_pending_requests(self) -> Optional[pulumi.Input[float]]:
+    def max_pending_requests(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of pending requests to the backend cluster.
         Defaults to 1024.
@@ -8737,12 +8737,12 @@ class RegionBackendServiceCircuitBreakersArgs:
         return pulumi.get(self, "max_pending_requests")
 
     @max_pending_requests.setter
-    def max_pending_requests(self, value: Optional[pulumi.Input[float]]):
+    def max_pending_requests(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_pending_requests", value)
 
     @property
     @pulumi.getter(name="maxRequests")
-    def max_requests(self) -> Optional[pulumi.Input[float]]:
+    def max_requests(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of parallel requests to the backend cluster.
         Defaults to 1024.
@@ -8750,12 +8750,12 @@ class RegionBackendServiceCircuitBreakersArgs:
         return pulumi.get(self, "max_requests")
 
     @max_requests.setter
-    def max_requests(self, value: Optional[pulumi.Input[float]]):
+    def max_requests(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_requests", value)
 
     @property
     @pulumi.getter(name="maxRequestsPerConnection")
-    def max_requests_per_connection(self) -> Optional[pulumi.Input[float]]:
+    def max_requests_per_connection(self) -> Optional[pulumi.Input[int]]:
         """
         Maximum requests for a single backend connection. This parameter
         is respected by both the HTTP/1.1 and HTTP/2 implementations. If
@@ -8765,12 +8765,12 @@ class RegionBackendServiceCircuitBreakersArgs:
         return pulumi.get(self, "max_requests_per_connection")
 
     @max_requests_per_connection.setter
-    def max_requests_per_connection(self, value: Optional[pulumi.Input[float]]):
+    def max_requests_per_connection(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_requests_per_connection", value)
 
     @property
     @pulumi.getter(name="maxRetries")
-    def max_retries(self) -> Optional[pulumi.Input[float]]:
+    def max_retries(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of parallel retries to the backend cluster.
         Defaults to 3.
@@ -8778,19 +8778,19 @@ class RegionBackendServiceCircuitBreakersArgs:
         return pulumi.get(self, "max_retries")
 
     @max_retries.setter
-    def max_retries(self, value: Optional[pulumi.Input[float]]):
+    def max_retries(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_retries", value)
 
 
 @pulumi.input_type
 class RegionBackendServiceCircuitBreakersConnectTimeoutArgs:
     def __init__(__self__, *,
-                 seconds: pulumi.Input[float],
-                 nanos: Optional[pulumi.Input[float]] = None):
+                 seconds: pulumi.Input[int],
+                 nanos: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[float] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        :param pulumi.Input[int] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
                inclusive.
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
                less than one second are represented with a 0 `seconds` field and a positive
                `nanos` field. Must be from 0 to 999,999,999 inclusive.
         """
@@ -8800,7 +8800,7 @@ class RegionBackendServiceCircuitBreakersConnectTimeoutArgs:
 
     @property
     @pulumi.getter
-    def seconds(self) -> pulumi.Input[float]:
+    def seconds(self) -> pulumi.Input[int]:
         """
         Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
         inclusive.
@@ -8808,12 +8808,12 @@ class RegionBackendServiceCircuitBreakersConnectTimeoutArgs:
         return pulumi.get(self, "seconds")
 
     @seconds.setter
-    def seconds(self, value: pulumi.Input[float]):
+    def seconds(self, value: pulumi.Input[int]):
         pulumi.set(self, "seconds", value)
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations
         less than one second are represented with a 0 `seconds` field and a positive
@@ -8822,7 +8822,7 @@ class RegionBackendServiceCircuitBreakersConnectTimeoutArgs:
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
 
@@ -8831,7 +8831,7 @@ class RegionBackendServiceConsistentHashArgs:
     def __init__(__self__, *,
                  http_cookie: Optional[pulumi.Input['RegionBackendServiceConsistentHashHttpCookieArgs']] = None,
                  http_header_name: Optional[pulumi.Input[str]] = None,
-                 minimum_ring_size: Optional[pulumi.Input[float]] = None):
+                 minimum_ring_size: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input['RegionBackendServiceConsistentHashHttpCookieArgs'] http_cookie: Hash is based on HTTP Cookie. This field describes a HTTP cookie
                that will be used as the hash key for the consistent hash load
@@ -8840,7 +8840,7 @@ class RegionBackendServiceConsistentHashArgs:
                Structure is documented below.
         :param pulumi.Input[str] http_header_name: The hash based on the value of the specified header field.
                This field is applicable if the sessionAffinity is set to HEADER_FIELD.
-        :param pulumi.Input[float] minimum_ring_size: The minimum number of virtual nodes to use for the hash ring.
+        :param pulumi.Input[int] minimum_ring_size: The minimum number of virtual nodes to use for the hash ring.
                Larger ring sizes result in more granular load
                distributions. If the number of hosts in the load balancing pool
                is larger than the ring size, each host will be assigned a single
@@ -8885,7 +8885,7 @@ class RegionBackendServiceConsistentHashArgs:
 
     @property
     @pulumi.getter(name="minimumRingSize")
-    def minimum_ring_size(self) -> Optional[pulumi.Input[float]]:
+    def minimum_ring_size(self) -> Optional[pulumi.Input[int]]:
         """
         The minimum number of virtual nodes to use for the hash ring.
         Larger ring sizes result in more granular load
@@ -8897,7 +8897,7 @@ class RegionBackendServiceConsistentHashArgs:
         return pulumi.get(self, "minimum_ring_size")
 
     @minimum_ring_size.setter
-    def minimum_ring_size(self, value: Optional[pulumi.Input[float]]):
+    def minimum_ring_size(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "minimum_ring_size", value)
 
 
@@ -8961,12 +8961,12 @@ class RegionBackendServiceConsistentHashHttpCookieArgs:
 @pulumi.input_type
 class RegionBackendServiceConsistentHashHttpCookieTtlArgs:
     def __init__(__self__, *,
-                 seconds: pulumi.Input[float],
-                 nanos: Optional[pulumi.Input[float]] = None):
+                 seconds: pulumi.Input[int],
+                 nanos: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[float] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        :param pulumi.Input[int] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
                inclusive.
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
                less than one second are represented with a 0 `seconds` field and a positive
                `nanos` field. Must be from 0 to 999,999,999 inclusive.
         """
@@ -8976,7 +8976,7 @@ class RegionBackendServiceConsistentHashHttpCookieTtlArgs:
 
     @property
     @pulumi.getter
-    def seconds(self) -> pulumi.Input[float]:
+    def seconds(self) -> pulumi.Input[int]:
         """
         Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
         inclusive.
@@ -8984,12 +8984,12 @@ class RegionBackendServiceConsistentHashHttpCookieTtlArgs:
         return pulumi.get(self, "seconds")
 
     @seconds.setter
-    def seconds(self, value: pulumi.Input[float]):
+    def seconds(self, value: pulumi.Input[int]):
         pulumi.set(self, "seconds", value)
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations
         less than one second are represented with a 0 `seconds` field and a positive
@@ -8998,7 +8998,7 @@ class RegionBackendServiceConsistentHashHttpCookieTtlArgs:
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
 
@@ -9140,51 +9140,51 @@ class RegionBackendServiceLogConfigArgs:
 class RegionBackendServiceOutlierDetectionArgs:
     def __init__(__self__, *,
                  base_ejection_time: Optional[pulumi.Input['RegionBackendServiceOutlierDetectionBaseEjectionTimeArgs']] = None,
-                 consecutive_errors: Optional[pulumi.Input[float]] = None,
-                 consecutive_gateway_failure: Optional[pulumi.Input[float]] = None,
-                 enforcing_consecutive_errors: Optional[pulumi.Input[float]] = None,
-                 enforcing_consecutive_gateway_failure: Optional[pulumi.Input[float]] = None,
-                 enforcing_success_rate: Optional[pulumi.Input[float]] = None,
+                 consecutive_errors: Optional[pulumi.Input[int]] = None,
+                 consecutive_gateway_failure: Optional[pulumi.Input[int]] = None,
+                 enforcing_consecutive_errors: Optional[pulumi.Input[int]] = None,
+                 enforcing_consecutive_gateway_failure: Optional[pulumi.Input[int]] = None,
+                 enforcing_success_rate: Optional[pulumi.Input[int]] = None,
                  interval: Optional[pulumi.Input['RegionBackendServiceOutlierDetectionIntervalArgs']] = None,
-                 max_ejection_percent: Optional[pulumi.Input[float]] = None,
-                 success_rate_minimum_hosts: Optional[pulumi.Input[float]] = None,
-                 success_rate_request_volume: Optional[pulumi.Input[float]] = None,
-                 success_rate_stdev_factor: Optional[pulumi.Input[float]] = None):
+                 max_ejection_percent: Optional[pulumi.Input[int]] = None,
+                 success_rate_minimum_hosts: Optional[pulumi.Input[int]] = None,
+                 success_rate_request_volume: Optional[pulumi.Input[int]] = None,
+                 success_rate_stdev_factor: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input['RegionBackendServiceOutlierDetectionBaseEjectionTimeArgs'] base_ejection_time: The base time that a host is ejected for. The real time is equal to the base
                time multiplied by the number of times the host has been ejected. Defaults to
                30000ms or 30s.
                Structure is documented below.
-        :param pulumi.Input[float] consecutive_errors: Number of errors before a host is ejected from the connection pool. When the
+        :param pulumi.Input[int] consecutive_errors: Number of errors before a host is ejected from the connection pool. When the
                backend host is accessed over HTTP, a 5xx return code qualifies as an error.
                Defaults to 5.
-        :param pulumi.Input[float] consecutive_gateway_failure: The number of consecutive gateway failures (502, 503, 504 status or connection
+        :param pulumi.Input[int] consecutive_gateway_failure: The number of consecutive gateway failures (502, 503, 504 status or connection
                errors that are mapped to one of those status codes) before a consecutive
                gateway failure ejection occurs. Defaults to 5.
-        :param pulumi.Input[float] enforcing_consecutive_errors: The percentage chance that a host will be actually ejected when an outlier
+        :param pulumi.Input[int] enforcing_consecutive_errors: The percentage chance that a host will be actually ejected when an outlier
                status is detected through consecutive 5xx. This setting can be used to disable
                ejection or to ramp it up slowly. Defaults to 100.
-        :param pulumi.Input[float] enforcing_consecutive_gateway_failure: The percentage chance that a host will be actually ejected when an outlier
+        :param pulumi.Input[int] enforcing_consecutive_gateway_failure: The percentage chance that a host will be actually ejected when an outlier
                status is detected through consecutive gateway failures. This setting can be
                used to disable ejection or to ramp it up slowly. Defaults to 0.
-        :param pulumi.Input[float] enforcing_success_rate: The percentage chance that a host will be actually ejected when an outlier
+        :param pulumi.Input[int] enforcing_success_rate: The percentage chance that a host will be actually ejected when an outlier
                status is detected through success rate statistics. This setting can be used to
                disable ejection or to ramp it up slowly. Defaults to 100.
         :param pulumi.Input['RegionBackendServiceOutlierDetectionIntervalArgs'] interval: Time interval between ejection sweep analysis. This can result in both new
                ejections as well as hosts being returned to service. Defaults to 10 seconds.
                Structure is documented below.
-        :param pulumi.Input[float] max_ejection_percent: Maximum percentage of hosts in the load balancing pool for the backend service
+        :param pulumi.Input[int] max_ejection_percent: Maximum percentage of hosts in the load balancing pool for the backend service
                that can be ejected. Defaults to 10%.
-        :param pulumi.Input[float] success_rate_minimum_hosts: The number of hosts in a cluster that must have enough request volume to detect
+        :param pulumi.Input[int] success_rate_minimum_hosts: The number of hosts in a cluster that must have enough request volume to detect
                success rate outliers. If the number of hosts is less than this setting, outlier
                detection via success rate statistics is not performed for any host in the
                cluster. Defaults to 5.
-        :param pulumi.Input[float] success_rate_request_volume: The minimum number of total requests that must be collected in one interval (as
+        :param pulumi.Input[int] success_rate_request_volume: The minimum number of total requests that must be collected in one interval (as
                defined by the interval duration above) to include this host in success rate
                based outlier detection. If the volume is lower than this setting, outlier
                detection via success rate statistics is not performed for that host. Defaults
                to 100.
-        :param pulumi.Input[float] success_rate_stdev_factor: This factor is used to determine the ejection threshold for success rate outlier
+        :param pulumi.Input[int] success_rate_stdev_factor: This factor is used to determine the ejection threshold for success rate outlier
                ejection. The ejection threshold is the difference between the mean success
                rate, and the product of this factor and the standard deviation of the mean
                success rate: mean - (stdev * success_rate_stdev_factor). This factor is divided
@@ -9231,7 +9231,7 @@ class RegionBackendServiceOutlierDetectionArgs:
 
     @property
     @pulumi.getter(name="consecutiveErrors")
-    def consecutive_errors(self) -> Optional[pulumi.Input[float]]:
+    def consecutive_errors(self) -> Optional[pulumi.Input[int]]:
         """
         Number of errors before a host is ejected from the connection pool. When the
         backend host is accessed over HTTP, a 5xx return code qualifies as an error.
@@ -9240,12 +9240,12 @@ class RegionBackendServiceOutlierDetectionArgs:
         return pulumi.get(self, "consecutive_errors")
 
     @consecutive_errors.setter
-    def consecutive_errors(self, value: Optional[pulumi.Input[float]]):
+    def consecutive_errors(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "consecutive_errors", value)
 
     @property
     @pulumi.getter(name="consecutiveGatewayFailure")
-    def consecutive_gateway_failure(self) -> Optional[pulumi.Input[float]]:
+    def consecutive_gateway_failure(self) -> Optional[pulumi.Input[int]]:
         """
         The number of consecutive gateway failures (502, 503, 504 status or connection
         errors that are mapped to one of those status codes) before a consecutive
@@ -9254,12 +9254,12 @@ class RegionBackendServiceOutlierDetectionArgs:
         return pulumi.get(self, "consecutive_gateway_failure")
 
     @consecutive_gateway_failure.setter
-    def consecutive_gateway_failure(self, value: Optional[pulumi.Input[float]]):
+    def consecutive_gateway_failure(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "consecutive_gateway_failure", value)
 
     @property
     @pulumi.getter(name="enforcingConsecutiveErrors")
-    def enforcing_consecutive_errors(self) -> Optional[pulumi.Input[float]]:
+    def enforcing_consecutive_errors(self) -> Optional[pulumi.Input[int]]:
         """
         The percentage chance that a host will be actually ejected when an outlier
         status is detected through consecutive 5xx. This setting can be used to disable
@@ -9268,12 +9268,12 @@ class RegionBackendServiceOutlierDetectionArgs:
         return pulumi.get(self, "enforcing_consecutive_errors")
 
     @enforcing_consecutive_errors.setter
-    def enforcing_consecutive_errors(self, value: Optional[pulumi.Input[float]]):
+    def enforcing_consecutive_errors(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "enforcing_consecutive_errors", value)
 
     @property
     @pulumi.getter(name="enforcingConsecutiveGatewayFailure")
-    def enforcing_consecutive_gateway_failure(self) -> Optional[pulumi.Input[float]]:
+    def enforcing_consecutive_gateway_failure(self) -> Optional[pulumi.Input[int]]:
         """
         The percentage chance that a host will be actually ejected when an outlier
         status is detected through consecutive gateway failures. This setting can be
@@ -9282,12 +9282,12 @@ class RegionBackendServiceOutlierDetectionArgs:
         return pulumi.get(self, "enforcing_consecutive_gateway_failure")
 
     @enforcing_consecutive_gateway_failure.setter
-    def enforcing_consecutive_gateway_failure(self, value: Optional[pulumi.Input[float]]):
+    def enforcing_consecutive_gateway_failure(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "enforcing_consecutive_gateway_failure", value)
 
     @property
     @pulumi.getter(name="enforcingSuccessRate")
-    def enforcing_success_rate(self) -> Optional[pulumi.Input[float]]:
+    def enforcing_success_rate(self) -> Optional[pulumi.Input[int]]:
         """
         The percentage chance that a host will be actually ejected when an outlier
         status is detected through success rate statistics. This setting can be used to
@@ -9296,7 +9296,7 @@ class RegionBackendServiceOutlierDetectionArgs:
         return pulumi.get(self, "enforcing_success_rate")
 
     @enforcing_success_rate.setter
-    def enforcing_success_rate(self, value: Optional[pulumi.Input[float]]):
+    def enforcing_success_rate(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "enforcing_success_rate", value)
 
     @property
@@ -9315,7 +9315,7 @@ class RegionBackendServiceOutlierDetectionArgs:
 
     @property
     @pulumi.getter(name="maxEjectionPercent")
-    def max_ejection_percent(self) -> Optional[pulumi.Input[float]]:
+    def max_ejection_percent(self) -> Optional[pulumi.Input[int]]:
         """
         Maximum percentage of hosts in the load balancing pool for the backend service
         that can be ejected. Defaults to 10%.
@@ -9323,12 +9323,12 @@ class RegionBackendServiceOutlierDetectionArgs:
         return pulumi.get(self, "max_ejection_percent")
 
     @max_ejection_percent.setter
-    def max_ejection_percent(self, value: Optional[pulumi.Input[float]]):
+    def max_ejection_percent(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_ejection_percent", value)
 
     @property
     @pulumi.getter(name="successRateMinimumHosts")
-    def success_rate_minimum_hosts(self) -> Optional[pulumi.Input[float]]:
+    def success_rate_minimum_hosts(self) -> Optional[pulumi.Input[int]]:
         """
         The number of hosts in a cluster that must have enough request volume to detect
         success rate outliers. If the number of hosts is less than this setting, outlier
@@ -9338,12 +9338,12 @@ class RegionBackendServiceOutlierDetectionArgs:
         return pulumi.get(self, "success_rate_minimum_hosts")
 
     @success_rate_minimum_hosts.setter
-    def success_rate_minimum_hosts(self, value: Optional[pulumi.Input[float]]):
+    def success_rate_minimum_hosts(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "success_rate_minimum_hosts", value)
 
     @property
     @pulumi.getter(name="successRateRequestVolume")
-    def success_rate_request_volume(self) -> Optional[pulumi.Input[float]]:
+    def success_rate_request_volume(self) -> Optional[pulumi.Input[int]]:
         """
         The minimum number of total requests that must be collected in one interval (as
         defined by the interval duration above) to include this host in success rate
@@ -9354,12 +9354,12 @@ class RegionBackendServiceOutlierDetectionArgs:
         return pulumi.get(self, "success_rate_request_volume")
 
     @success_rate_request_volume.setter
-    def success_rate_request_volume(self, value: Optional[pulumi.Input[float]]):
+    def success_rate_request_volume(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "success_rate_request_volume", value)
 
     @property
     @pulumi.getter(name="successRateStdevFactor")
-    def success_rate_stdev_factor(self) -> Optional[pulumi.Input[float]]:
+    def success_rate_stdev_factor(self) -> Optional[pulumi.Input[int]]:
         """
         This factor is used to determine the ejection threshold for success rate outlier
         ejection. The ejection threshold is the difference between the mean success
@@ -9371,19 +9371,19 @@ class RegionBackendServiceOutlierDetectionArgs:
         return pulumi.get(self, "success_rate_stdev_factor")
 
     @success_rate_stdev_factor.setter
-    def success_rate_stdev_factor(self, value: Optional[pulumi.Input[float]]):
+    def success_rate_stdev_factor(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "success_rate_stdev_factor", value)
 
 
 @pulumi.input_type
 class RegionBackendServiceOutlierDetectionBaseEjectionTimeArgs:
     def __init__(__self__, *,
-                 seconds: pulumi.Input[float],
-                 nanos: Optional[pulumi.Input[float]] = None):
+                 seconds: pulumi.Input[int],
+                 nanos: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[float] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        :param pulumi.Input[int] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
                inclusive.
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
                less than one second are represented with a 0 `seconds` field and a positive
                `nanos` field. Must be from 0 to 999,999,999 inclusive.
         """
@@ -9393,7 +9393,7 @@ class RegionBackendServiceOutlierDetectionBaseEjectionTimeArgs:
 
     @property
     @pulumi.getter
-    def seconds(self) -> pulumi.Input[float]:
+    def seconds(self) -> pulumi.Input[int]:
         """
         Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
         inclusive.
@@ -9401,12 +9401,12 @@ class RegionBackendServiceOutlierDetectionBaseEjectionTimeArgs:
         return pulumi.get(self, "seconds")
 
     @seconds.setter
-    def seconds(self, value: pulumi.Input[float]):
+    def seconds(self, value: pulumi.Input[int]):
         pulumi.set(self, "seconds", value)
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations
         less than one second are represented with a 0 `seconds` field and a positive
@@ -9415,19 +9415,19 @@ class RegionBackendServiceOutlierDetectionBaseEjectionTimeArgs:
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
 
 @pulumi.input_type
 class RegionBackendServiceOutlierDetectionIntervalArgs:
     def __init__(__self__, *,
-                 seconds: pulumi.Input[float],
-                 nanos: Optional[pulumi.Input[float]] = None):
+                 seconds: pulumi.Input[int],
+                 nanos: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[float] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        :param pulumi.Input[int] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
                inclusive.
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
                less than one second are represented with a 0 `seconds` field and a positive
                `nanos` field. Must be from 0 to 999,999,999 inclusive.
         """
@@ -9437,7 +9437,7 @@ class RegionBackendServiceOutlierDetectionIntervalArgs:
 
     @property
     @pulumi.getter
-    def seconds(self) -> pulumi.Input[float]:
+    def seconds(self) -> pulumi.Input[int]:
         """
         Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
         inclusive.
@@ -9445,12 +9445,12 @@ class RegionBackendServiceOutlierDetectionIntervalArgs:
         return pulumi.get(self, "seconds")
 
     @seconds.setter
-    def seconds(self, value: pulumi.Input[float]):
+    def seconds(self, value: pulumi.Input[int]):
         pulumi.set(self, "seconds", value)
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations
         less than one second are represented with a 0 `seconds` field and a positive
@@ -9459,7 +9459,7 @@ class RegionBackendServiceOutlierDetectionIntervalArgs:
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
 
@@ -9667,7 +9667,7 @@ class RegionDiskSourceSnapshotEncryptionKeyArgs:
 class RegionHealthCheckGrpcHealthCheckArgs:
     def __init__(__self__, *,
                  grpc_service_name: Optional[pulumi.Input[str]] = None,
-                 port: Optional[pulumi.Input[float]] = None,
+                 port: Optional[pulumi.Input[int]] = None,
                  port_name: Optional[pulumi.Input[str]] = None,
                  port_specification: Optional[pulumi.Input[str]] = None):
         """
@@ -9676,7 +9676,7 @@ class RegionHealthCheckGrpcHealthCheckArgs:
                - Empty serviceName means the overall status of all services at the backend.
                - Non-empty serviceName means the health of that gRPC service, as defined by the owner of the service.
                The grpcServiceName can only be ASCII.
-        :param pulumi.Input[float] port: The port number for the health check request.
+        :param pulumi.Input[int] port: The port number for the health check request.
                Must be specified if portName and portSpecification are not set
                or if port_specification is USE_FIXED_PORT. Valid values are 1 through 65535.
         :param pulumi.Input[str] port_name: Port name as defined in InstanceGroup#NamedPort#name. If both port and
@@ -9720,7 +9720,7 @@ class RegionHealthCheckGrpcHealthCheckArgs:
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[float]]:
+    def port(self) -> Optional[pulumi.Input[int]]:
         """
         The port number for the health check request.
         Must be specified if portName and portSpecification are not set
@@ -9729,7 +9729,7 @@ class RegionHealthCheckGrpcHealthCheckArgs:
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[float]]):
+    def port(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "port", value)
 
     @property
@@ -9772,7 +9772,7 @@ class RegionHealthCheckGrpcHealthCheckArgs:
 class RegionHealthCheckHttp2HealthCheckArgs:
     def __init__(__self__, *,
                  host: Optional[pulumi.Input[str]] = None,
-                 port: Optional[pulumi.Input[float]] = None,
+                 port: Optional[pulumi.Input[int]] = None,
                  port_name: Optional[pulumi.Input[str]] = None,
                  port_specification: Optional[pulumi.Input[str]] = None,
                  proxy_header: Optional[pulumi.Input[str]] = None,
@@ -9782,7 +9782,7 @@ class RegionHealthCheckHttp2HealthCheckArgs:
         :param pulumi.Input[str] host: The value of the host header in the HTTP2 health check request.
                If left empty (default value), the public IP on behalf of which this health
                check is performed will be used.
-        :param pulumi.Input[float] port: The port number for the health check request.
+        :param pulumi.Input[int] port: The port number for the health check request.
                Must be specified if portName and portSpecification are not set
                or if port_specification is USE_FIXED_PORT. Valid values are 1 through 65535.
         :param pulumi.Input[str] port_name: Port name as defined in InstanceGroup#NamedPort#name. If both port and
@@ -9839,7 +9839,7 @@ class RegionHealthCheckHttp2HealthCheckArgs:
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[float]]:
+    def port(self) -> Optional[pulumi.Input[int]]:
         """
         The port number for the health check request.
         Must be specified if portName and portSpecification are not set
@@ -9848,7 +9848,7 @@ class RegionHealthCheckHttp2HealthCheckArgs:
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[float]]):
+    def port(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "port", value)
 
     @property
@@ -9933,7 +9933,7 @@ class RegionHealthCheckHttp2HealthCheckArgs:
 class RegionHealthCheckHttpHealthCheckArgs:
     def __init__(__self__, *,
                  host: Optional[pulumi.Input[str]] = None,
-                 port: Optional[pulumi.Input[float]] = None,
+                 port: Optional[pulumi.Input[int]] = None,
                  port_name: Optional[pulumi.Input[str]] = None,
                  port_specification: Optional[pulumi.Input[str]] = None,
                  proxy_header: Optional[pulumi.Input[str]] = None,
@@ -9943,7 +9943,7 @@ class RegionHealthCheckHttpHealthCheckArgs:
         :param pulumi.Input[str] host: The value of the host header in the HTTP2 health check request.
                If left empty (default value), the public IP on behalf of which this health
                check is performed will be used.
-        :param pulumi.Input[float] port: The port number for the health check request.
+        :param pulumi.Input[int] port: The port number for the health check request.
                Must be specified if portName and portSpecification are not set
                or if port_specification is USE_FIXED_PORT. Valid values are 1 through 65535.
         :param pulumi.Input[str] port_name: Port name as defined in InstanceGroup#NamedPort#name. If both port and
@@ -10000,7 +10000,7 @@ class RegionHealthCheckHttpHealthCheckArgs:
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[float]]:
+    def port(self) -> Optional[pulumi.Input[int]]:
         """
         The port number for the health check request.
         Must be specified if portName and portSpecification are not set
@@ -10009,7 +10009,7 @@ class RegionHealthCheckHttpHealthCheckArgs:
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[float]]):
+    def port(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "port", value)
 
     @property
@@ -10094,7 +10094,7 @@ class RegionHealthCheckHttpHealthCheckArgs:
 class RegionHealthCheckHttpsHealthCheckArgs:
     def __init__(__self__, *,
                  host: Optional[pulumi.Input[str]] = None,
-                 port: Optional[pulumi.Input[float]] = None,
+                 port: Optional[pulumi.Input[int]] = None,
                  port_name: Optional[pulumi.Input[str]] = None,
                  port_specification: Optional[pulumi.Input[str]] = None,
                  proxy_header: Optional[pulumi.Input[str]] = None,
@@ -10104,7 +10104,7 @@ class RegionHealthCheckHttpsHealthCheckArgs:
         :param pulumi.Input[str] host: The value of the host header in the HTTP2 health check request.
                If left empty (default value), the public IP on behalf of which this health
                check is performed will be used.
-        :param pulumi.Input[float] port: The port number for the health check request.
+        :param pulumi.Input[int] port: The port number for the health check request.
                Must be specified if portName and portSpecification are not set
                or if port_specification is USE_FIXED_PORT. Valid values are 1 through 65535.
         :param pulumi.Input[str] port_name: Port name as defined in InstanceGroup#NamedPort#name. If both port and
@@ -10161,7 +10161,7 @@ class RegionHealthCheckHttpsHealthCheckArgs:
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[float]]:
+    def port(self) -> Optional[pulumi.Input[int]]:
         """
         The port number for the health check request.
         Must be specified if portName and portSpecification are not set
@@ -10170,7 +10170,7 @@ class RegionHealthCheckHttpsHealthCheckArgs:
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[float]]):
+    def port(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "port", value)
 
     @property
@@ -10279,14 +10279,14 @@ class RegionHealthCheckLogConfigArgs:
 @pulumi.input_type
 class RegionHealthCheckSslHealthCheckArgs:
     def __init__(__self__, *,
-                 port: Optional[pulumi.Input[float]] = None,
+                 port: Optional[pulumi.Input[int]] = None,
                  port_name: Optional[pulumi.Input[str]] = None,
                  port_specification: Optional[pulumi.Input[str]] = None,
                  proxy_header: Optional[pulumi.Input[str]] = None,
                  request: Optional[pulumi.Input[str]] = None,
                  response: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[float] port: The port number for the health check request.
+        :param pulumi.Input[int] port: The port number for the health check request.
                Must be specified if portName and portSpecification are not set
                or if port_specification is USE_FIXED_PORT. Valid values are 1 through 65535.
         :param pulumi.Input[str] port_name: Port name as defined in InstanceGroup#NamedPort#name. If both port and
@@ -10329,7 +10329,7 @@ class RegionHealthCheckSslHealthCheckArgs:
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[float]]:
+    def port(self) -> Optional[pulumi.Input[int]]:
         """
         The port number for the health check request.
         Must be specified if portName and portSpecification are not set
@@ -10338,7 +10338,7 @@ class RegionHealthCheckSslHealthCheckArgs:
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[float]]):
+    def port(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "port", value)
 
     @property
@@ -10424,14 +10424,14 @@ class RegionHealthCheckSslHealthCheckArgs:
 @pulumi.input_type
 class RegionHealthCheckTcpHealthCheckArgs:
     def __init__(__self__, *,
-                 port: Optional[pulumi.Input[float]] = None,
+                 port: Optional[pulumi.Input[int]] = None,
                  port_name: Optional[pulumi.Input[str]] = None,
                  port_specification: Optional[pulumi.Input[str]] = None,
                  proxy_header: Optional[pulumi.Input[str]] = None,
                  request: Optional[pulumi.Input[str]] = None,
                  response: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[float] port: The port number for the health check request.
+        :param pulumi.Input[int] port: The port number for the health check request.
                Must be specified if portName and portSpecification are not set
                or if port_specification is USE_FIXED_PORT. Valid values are 1 through 65535.
         :param pulumi.Input[str] port_name: Port name as defined in InstanceGroup#NamedPort#name. If both port and
@@ -10474,7 +10474,7 @@ class RegionHealthCheckTcpHealthCheckArgs:
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[float]]:
+    def port(self) -> Optional[pulumi.Input[int]]:
         """
         The port number for the health check request.
         Must be specified if portName and portSpecification are not set
@@ -10483,7 +10483,7 @@ class RegionHealthCheckTcpHealthCheckArgs:
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[float]]):
+    def port(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "port", value)
 
     @property
@@ -10570,10 +10570,10 @@ class RegionHealthCheckTcpHealthCheckArgs:
 class RegionInstanceGroupManagerAutoHealingPoliciesArgs:
     def __init__(__self__, *,
                  health_check: pulumi.Input[str],
-                 initial_delay_sec: pulumi.Input[float]):
+                 initial_delay_sec: pulumi.Input[int]):
         """
         :param pulumi.Input[str] health_check: The health check resource that signals autohealing.
-        :param pulumi.Input[float] initial_delay_sec: The number of seconds that the managed instance group waits before
+        :param pulumi.Input[int] initial_delay_sec: The number of seconds that the managed instance group waits before
                it applies autohealing policies to new instances or recently recreated instances. Between 0 and 3600.
         """
         pulumi.set(__self__, "health_check", health_check)
@@ -10593,7 +10593,7 @@ class RegionInstanceGroupManagerAutoHealingPoliciesArgs:
 
     @property
     @pulumi.getter(name="initialDelaySec")
-    def initial_delay_sec(self) -> pulumi.Input[float]:
+    def initial_delay_sec(self) -> pulumi.Input[int]:
         """
         The number of seconds that the managed instance group waits before
         it applies autohealing policies to new instances or recently recreated instances. Between 0 and 3600.
@@ -10601,7 +10601,7 @@ class RegionInstanceGroupManagerAutoHealingPoliciesArgs:
         return pulumi.get(self, "initial_delay_sec")
 
     @initial_delay_sec.setter
-    def initial_delay_sec(self, value: pulumi.Input[float]):
+    def initial_delay_sec(self, value: pulumi.Input[int]):
         pulumi.set(self, "initial_delay_sec", value)
 
 
@@ -10609,10 +10609,10 @@ class RegionInstanceGroupManagerAutoHealingPoliciesArgs:
 class RegionInstanceGroupManagerNamedPortArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str],
-                 port: pulumi.Input[float]):
+                 port: pulumi.Input[int]):
         """
         :param pulumi.Input[str] name: - Version name.
-        :param pulumi.Input[float] port: The port number.
+        :param pulumi.Input[int] port: The port number.
                - - -
         """
         pulumi.set(__self__, "name", name)
@@ -10632,7 +10632,7 @@ class RegionInstanceGroupManagerNamedPortArgs:
 
     @property
     @pulumi.getter
-    def port(self) -> pulumi.Input[float]:
+    def port(self) -> pulumi.Input[int]:
         """
         The port number.
         - - -
@@ -10640,7 +10640,7 @@ class RegionInstanceGroupManagerNamedPortArgs:
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: pulumi.Input[float]):
+    def port(self, value: pulumi.Input[int]):
         pulumi.set(self, "port", value)
 
 
@@ -10688,20 +10688,20 @@ class RegionInstanceGroupManagerUpdatePolicyArgs:
                  minimal_action: pulumi.Input[str],
                  type: pulumi.Input[str],
                  instance_redistribution_type: Optional[pulumi.Input[str]] = None,
-                 max_surge_fixed: Optional[pulumi.Input[float]] = None,
-                 max_surge_percent: Optional[pulumi.Input[float]] = None,
-                 max_unavailable_fixed: Optional[pulumi.Input[float]] = None,
-                 max_unavailable_percent: Optional[pulumi.Input[float]] = None,
-                 min_ready_sec: Optional[pulumi.Input[float]] = None):
+                 max_surge_fixed: Optional[pulumi.Input[int]] = None,
+                 max_surge_percent: Optional[pulumi.Input[int]] = None,
+                 max_unavailable_fixed: Optional[pulumi.Input[int]] = None,
+                 max_unavailable_percent: Optional[pulumi.Input[int]] = None,
+                 min_ready_sec: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] minimal_action: - Minimal action to be taken on an instance. You can specify either `RESTART` to restart existing instances or `REPLACE` to delete and create new instances from the target template. If you specify a `RESTART`, the Updater will attempt to perform that action only. However, if the Updater determines that the minimal action you specify is not enough to perform the update, it might perform a more disruptive action.
         :param pulumi.Input[str] type: - The type of update process. You can specify either `PROACTIVE` so that the instance group manager proactively executes actions in order to bring instances to their target versions or `OPPORTUNISTIC` so that no action is proactively executed but the update will be performed as part of other actions (for example, resizes or recreateInstances calls).
         :param pulumi.Input[str] instance_redistribution_type: - The instance redistribution policy for regional managed instance groups. Valid values are: `"PROACTIVE"`, `"NONE"`. If `PROACTIVE` (default), the group attempts to maintain an even distribution of VM instances across zones in the region. If `NONE`, proactive redistribution is disabled.
-        :param pulumi.Input[float] max_surge_fixed: , The maximum number of instances that can be created above the specified targetSize during the update process. Conflicts with `max_surge_percent`. It has to be either 0 or at least equal to the number of zones.  If fixed values are used, at least one of `max_unavailable_fixed` or `max_surge_fixed` must be greater than 0.
-        :param pulumi.Input[float] max_surge_percent: , The maximum number of instances(calculated as percentage) that can be created above the specified targetSize during the update process. Conflicts with `max_surge_fixed`. Percent value is only allowed for regional managed instance groups with size at least 10.
-        :param pulumi.Input[float] max_unavailable_fixed: , The maximum number of instances that can be unavailable during the update process. Conflicts with `max_unavailable_percent`. It has to be either 0 or at least equal to the number of zones. If fixed values are used, at least one of `max_unavailable_fixed` or `max_surge_fixed` must be greater than 0.
-        :param pulumi.Input[float] max_unavailable_percent: , The maximum number of instances(calculated as percentage) that can be unavailable during the update process. Conflicts with `max_unavailable_fixed`. Percent value is only allowed for regional managed instance groups with size at least 10.
-        :param pulumi.Input[float] min_ready_sec: , Minimum number of seconds to wait for after a newly created instance becomes available. This value must be from range [0, 3600]
+        :param pulumi.Input[int] max_surge_fixed: , The maximum number of instances that can be created above the specified targetSize during the update process. Conflicts with `max_surge_percent`. It has to be either 0 or at least equal to the number of zones.  If fixed values are used, at least one of `max_unavailable_fixed` or `max_surge_fixed` must be greater than 0.
+        :param pulumi.Input[int] max_surge_percent: , The maximum number of instances(calculated as percentage) that can be created above the specified targetSize during the update process. Conflicts with `max_surge_fixed`. Percent value is only allowed for regional managed instance groups with size at least 10.
+        :param pulumi.Input[int] max_unavailable_fixed: , The maximum number of instances that can be unavailable during the update process. Conflicts with `max_unavailable_percent`. It has to be either 0 or at least equal to the number of zones. If fixed values are used, at least one of `max_unavailable_fixed` or `max_surge_fixed` must be greater than 0.
+        :param pulumi.Input[int] max_unavailable_percent: , The maximum number of instances(calculated as percentage) that can be unavailable during the update process. Conflicts with `max_unavailable_fixed`. Percent value is only allowed for regional managed instance groups with size at least 10.
+        :param pulumi.Input[int] min_ready_sec: , Minimum number of seconds to wait for after a newly created instance becomes available. This value must be from range [0, 3600]
                - - -
         """
         pulumi.set(__self__, "minimal_action", minimal_action)
@@ -10757,55 +10757,55 @@ class RegionInstanceGroupManagerUpdatePolicyArgs:
 
     @property
     @pulumi.getter(name="maxSurgeFixed")
-    def max_surge_fixed(self) -> Optional[pulumi.Input[float]]:
+    def max_surge_fixed(self) -> Optional[pulumi.Input[int]]:
         """
         , The maximum number of instances that can be created above the specified targetSize during the update process. Conflicts with `max_surge_percent`. It has to be either 0 or at least equal to the number of zones.  If fixed values are used, at least one of `max_unavailable_fixed` or `max_surge_fixed` must be greater than 0.
         """
         return pulumi.get(self, "max_surge_fixed")
 
     @max_surge_fixed.setter
-    def max_surge_fixed(self, value: Optional[pulumi.Input[float]]):
+    def max_surge_fixed(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_surge_fixed", value)
 
     @property
     @pulumi.getter(name="maxSurgePercent")
-    def max_surge_percent(self) -> Optional[pulumi.Input[float]]:
+    def max_surge_percent(self) -> Optional[pulumi.Input[int]]:
         """
         , The maximum number of instances(calculated as percentage) that can be created above the specified targetSize during the update process. Conflicts with `max_surge_fixed`. Percent value is only allowed for regional managed instance groups with size at least 10.
         """
         return pulumi.get(self, "max_surge_percent")
 
     @max_surge_percent.setter
-    def max_surge_percent(self, value: Optional[pulumi.Input[float]]):
+    def max_surge_percent(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_surge_percent", value)
 
     @property
     @pulumi.getter(name="maxUnavailableFixed")
-    def max_unavailable_fixed(self) -> Optional[pulumi.Input[float]]:
+    def max_unavailable_fixed(self) -> Optional[pulumi.Input[int]]:
         """
         , The maximum number of instances that can be unavailable during the update process. Conflicts with `max_unavailable_percent`. It has to be either 0 or at least equal to the number of zones. If fixed values are used, at least one of `max_unavailable_fixed` or `max_surge_fixed` must be greater than 0.
         """
         return pulumi.get(self, "max_unavailable_fixed")
 
     @max_unavailable_fixed.setter
-    def max_unavailable_fixed(self, value: Optional[pulumi.Input[float]]):
+    def max_unavailable_fixed(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_unavailable_fixed", value)
 
     @property
     @pulumi.getter(name="maxUnavailablePercent")
-    def max_unavailable_percent(self) -> Optional[pulumi.Input[float]]:
+    def max_unavailable_percent(self) -> Optional[pulumi.Input[int]]:
         """
         , The maximum number of instances(calculated as percentage) that can be unavailable during the update process. Conflicts with `max_unavailable_fixed`. Percent value is only allowed for regional managed instance groups with size at least 10.
         """
         return pulumi.get(self, "max_unavailable_percent")
 
     @max_unavailable_percent.setter
-    def max_unavailable_percent(self, value: Optional[pulumi.Input[float]]):
+    def max_unavailable_percent(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_unavailable_percent", value)
 
     @property
     @pulumi.getter(name="minReadySec")
-    def min_ready_sec(self) -> Optional[pulumi.Input[float]]:
+    def min_ready_sec(self) -> Optional[pulumi.Input[int]]:
         """
         , Minimum number of seconds to wait for after a newly created instance becomes available. This value must be from range [0, 3600]
         - - -
@@ -10813,7 +10813,7 @@ class RegionInstanceGroupManagerUpdatePolicyArgs:
         return pulumi.get(self, "min_ready_sec")
 
     @min_ready_sec.setter
-    def min_ready_sec(self, value: Optional[pulumi.Input[float]]):
+    def min_ready_sec(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "min_ready_sec", value)
 
 
@@ -10874,11 +10874,11 @@ class RegionInstanceGroupManagerVersionArgs:
 @pulumi.input_type
 class RegionInstanceGroupManagerVersionTargetSizeArgs:
     def __init__(__self__, *,
-                 fixed: Optional[pulumi.Input[float]] = None,
-                 percent: Optional[pulumi.Input[float]] = None):
+                 fixed: Optional[pulumi.Input[int]] = None,
+                 percent: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[float] fixed: , The number of instances which are managed for this version. Conflicts with `percent`.
-        :param pulumi.Input[float] percent: , The number of instances (calculated as percentage) which are managed for this version. Conflicts with `fixed`.
+        :param pulumi.Input[int] fixed: , The number of instances which are managed for this version. Conflicts with `percent`.
+        :param pulumi.Input[int] percent: , The number of instances (calculated as percentage) which are managed for this version. Conflicts with `fixed`.
                Note that when using `percent`, rounding will be in favor of explicitly set `target_size` values; a managed instance group with 2 instances and 2 `version`s,
                one of which has a `target_size.percent` of `60` will create 2 instances of that `version`.
         """
@@ -10889,19 +10889,19 @@ class RegionInstanceGroupManagerVersionTargetSizeArgs:
 
     @property
     @pulumi.getter
-    def fixed(self) -> Optional[pulumi.Input[float]]:
+    def fixed(self) -> Optional[pulumi.Input[int]]:
         """
         , The number of instances which are managed for this version. Conflicts with `percent`.
         """
         return pulumi.get(self, "fixed")
 
     @fixed.setter
-    def fixed(self, value: Optional[pulumi.Input[float]]):
+    def fixed(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fixed", value)
 
     @property
     @pulumi.getter
-    def percent(self) -> Optional[pulumi.Input[float]]:
+    def percent(self) -> Optional[pulumi.Input[int]]:
         """
         , The number of instances (calculated as percentage) which are managed for this version. Conflicts with `fixed`.
         Note that when using `percent`, rounding will be in favor of explicitly set `target_size` values; a managed instance group with 2 instances and 2 `version`s,
@@ -10910,7 +10910,7 @@ class RegionInstanceGroupManagerVersionTargetSizeArgs:
         return pulumi.get(self, "percent")
 
     @percent.setter
-    def percent(self, value: Optional[pulumi.Input[float]]):
+    def percent(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "percent", value)
 
 
@@ -11118,10 +11118,10 @@ class RegionNetworkEndpointGroupCloudRunArgs:
 @pulumi.input_type
 class RegionPerInstanceConfigPreservedStateArgs:
     def __init__(__self__, *,
-                 disks: Optional[pulumi.Input[List[pulumi.Input['RegionPerInstanceConfigPreservedStateDiskArgs']]]] = None,
+                 disks: Optional[pulumi.Input[Sequence[pulumi.Input['RegionPerInstanceConfigPreservedStateDiskArgs']]]] = None,
                  metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input['RegionPerInstanceConfigPreservedStateDiskArgs']]] disks: Stateful disks for the instance.
+        :param pulumi.Input[Sequence[pulumi.Input['RegionPerInstanceConfigPreservedStateDiskArgs']]] disks: Stateful disks for the instance.
                Structure is documented below.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Preserved metadata defined for this instance. This is a list of key->value pairs.
         """
@@ -11132,7 +11132,7 @@ class RegionPerInstanceConfigPreservedStateArgs:
 
     @property
     @pulumi.getter
-    def disks(self) -> Optional[pulumi.Input[List[pulumi.Input['RegionPerInstanceConfigPreservedStateDiskArgs']]]]:
+    def disks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RegionPerInstanceConfigPreservedStateDiskArgs']]]]:
         """
         Stateful disks for the instance.
         Structure is documented below.
@@ -11140,7 +11140,7 @@ class RegionPerInstanceConfigPreservedStateArgs:
         return pulumi.get(self, "disks")
 
     @disks.setter
-    def disks(self, value: Optional[pulumi.Input[List[pulumi.Input['RegionPerInstanceConfigPreservedStateDiskArgs']]]]):
+    def disks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RegionPerInstanceConfigPreservedStateDiskArgs']]]]):
         pulumi.set(self, "disks", value)
 
     @property
@@ -11392,11 +11392,11 @@ class RegionUrlMapDefaultUrlRedirectArgs:
 @pulumi.input_type
 class RegionUrlMapHostRuleArgs:
     def __init__(__self__, *,
-                 hosts: pulumi.Input[List[pulumi.Input[str]]],
+                 hosts: pulumi.Input[Sequence[pulumi.Input[str]]],
                  path_matcher: pulumi.Input[str],
                  description: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input[str]]] hosts: The list of host patterns to match. They must be valid
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] hosts: The list of host patterns to match. They must be valid
                hostnames, except * will match any string of ([a-z0-9-.]*). In
                that case, * must be the first character and must be followed in
                the pattern by either - or ..
@@ -11411,7 +11411,7 @@ class RegionUrlMapHostRuleArgs:
 
     @property
     @pulumi.getter
-    def hosts(self) -> pulumi.Input[List[pulumi.Input[str]]]:
+    def hosts(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
         The list of host patterns to match. They must be valid
         hostnames, except * will match any string of ([a-z0-9-.]*). In
@@ -11421,7 +11421,7 @@ class RegionUrlMapHostRuleArgs:
         return pulumi.get(self, "hosts")
 
     @hosts.setter
-    def hosts(self, value: pulumi.Input[List[pulumi.Input[str]]]):
+    def hosts(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "hosts", value)
 
     @property
@@ -11457,8 +11457,8 @@ class RegionUrlMapPathMatcherArgs:
                  name: pulumi.Input[str],
                  default_url_redirect: Optional[pulumi.Input['RegionUrlMapPathMatcherDefaultUrlRedirectArgs']] = None,
                  description: Optional[pulumi.Input[str]] = None,
-                 path_rules: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherPathRuleArgs']]]] = None,
-                 route_rules: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleArgs']]]] = None):
+                 path_rules: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherPathRuleArgs']]]] = None,
+                 route_rules: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleArgs']]]] = None):
         """
         :param pulumi.Input[str] default_service: A reference to a RegionBackendService resource. This will be used if
                none of the pathRules defined by this PathMatcher is matched by
@@ -11470,14 +11470,14 @@ class RegionUrlMapPathMatcherArgs:
                defaultRouteAction must not be set.
                Structure is documented below.
         :param pulumi.Input[str] description: Description of this test case.
-        :param pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherPathRuleArgs']]] path_rules: The list of path rules. Use this list instead of routeRules when routing based
+        :param pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherPathRuleArgs']]] path_rules: The list of path rules. Use this list instead of routeRules when routing based
                on simple path matching is all that's required. The order by which path rules
                are specified does not matter. Matches are always done on the longest-path-first
                basis. For example: a pathRule with a path /a/b/c/* will match before /a/b/*
                irrespective of the order in which those paths appear in this list. Within a
                given pathMatcher, only one of pathRules or routeRules must be set.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleArgs']]] route_rules: The list of ordered HTTP route rules. Use this list instead of pathRules when
+        :param pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleArgs']]] route_rules: The list of ordered HTTP route rules. Use this list instead of pathRules when
                advanced route matching and routing actions are desired. The order of specifying
                routeRules matters: the first rule that matches will cause its specified routing
                action to take effect. Within a given pathMatcher, only one of pathRules or
@@ -11552,7 +11552,7 @@ class RegionUrlMapPathMatcherArgs:
 
     @property
     @pulumi.getter(name="pathRules")
-    def path_rules(self) -> Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherPathRuleArgs']]]]:
+    def path_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherPathRuleArgs']]]]:
         """
         The list of path rules. Use this list instead of routeRules when routing based
         on simple path matching is all that's required. The order by which path rules
@@ -11565,12 +11565,12 @@ class RegionUrlMapPathMatcherArgs:
         return pulumi.get(self, "path_rules")
 
     @path_rules.setter
-    def path_rules(self, value: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherPathRuleArgs']]]]):
+    def path_rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherPathRuleArgs']]]]):
         pulumi.set(self, "path_rules", value)
 
     @property
     @pulumi.getter(name="routeRules")
-    def route_rules(self) -> Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleArgs']]]]:
+    def route_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleArgs']]]]:
         """
         The list of ordered HTTP route rules. Use this list instead of pathRules when
         advanced route matching and routing actions are desired. The order of specifying
@@ -11583,7 +11583,7 @@ class RegionUrlMapPathMatcherArgs:
         return pulumi.get(self, "route_rules")
 
     @route_rules.setter
-    def route_rules(self, value: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleArgs']]]]):
+    def route_rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleArgs']]]]):
         pulumi.set(self, "route_rules", value)
 
 
@@ -11736,12 +11736,12 @@ class RegionUrlMapPathMatcherDefaultUrlRedirectArgs:
 @pulumi.input_type
 class RegionUrlMapPathMatcherPathRuleArgs:
     def __init__(__self__, *,
-                 paths: pulumi.Input[List[pulumi.Input[str]]],
+                 paths: pulumi.Input[Sequence[pulumi.Input[str]]],
                  route_action: Optional[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionArgs']] = None,
                  service: Optional[pulumi.Input[str]] = None,
                  url_redirect: Optional[pulumi.Input['RegionUrlMapPathMatcherPathRuleUrlRedirectArgs']] = None):
         """
-        :param pulumi.Input[List[pulumi.Input[str]]] paths: The list of path patterns to match. Each must start with / and the only place a
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] paths: The list of path patterns to match. Each must start with / and the only place a
                * is allowed is at the end following a /. The string fed to the path matcher
                does not include any text after the first ? or #, and those chars are not
                allowed here.
@@ -11768,7 +11768,7 @@ class RegionUrlMapPathMatcherPathRuleArgs:
 
     @property
     @pulumi.getter
-    def paths(self) -> pulumi.Input[List[pulumi.Input[str]]]:
+    def paths(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
         The list of path patterns to match. Each must start with / and the only place a
         * is allowed is at the end following a /. The string fed to the path matcher
@@ -11778,7 +11778,7 @@ class RegionUrlMapPathMatcherPathRuleArgs:
         return pulumi.get(self, "paths")
 
     @paths.setter
-    def paths(self, value: pulumi.Input[List[pulumi.Input[str]]]):
+    def paths(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "paths", value)
 
     @property
@@ -11836,7 +11836,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionArgs:
                  retry_policy: Optional[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyArgs']] = None,
                  timeout: Optional[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionTimeoutArgs']] = None,
                  url_rewrite: Optional[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionUrlRewriteArgs']] = None,
-                 weighted_backend_services: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs']]]] = None):
+                 weighted_backend_services: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs']]]] = None):
         """
         :param pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionCorsPolicyArgs'] cors_policy: The specification for allowing client side cross-origin requests. Please see W3C
                Recommendation for Cross Origin Resource Sharing
@@ -11864,7 +11864,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionArgs:
         :param pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionUrlRewriteArgs'] url_rewrite: The spec to modify the URL of the request, prior to forwarding the request to
                the matched service
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs']]] weighted_backend_services: A list of weighted backend services to send traffic to when a route match
+        :param pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs']]] weighted_backend_services: A list of weighted backend services to send traffic to when a route match
                occurs. The weights determine the fraction of traffic that flows to their
                corresponding backend service. If all traffic needs to go to a single backend
                service, there must be one  weightedBackendService with weight set to a non 0
@@ -11983,7 +11983,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionArgs:
 
     @property
     @pulumi.getter(name="weightedBackendServices")
-    def weighted_backend_services(self) -> Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs']]]]:
+    def weighted_backend_services(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs']]]]:
         """
         A list of weighted backend services to send traffic to when a route match
         occurs. The weights determine the fraction of traffic that flows to their
@@ -11998,7 +11998,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionArgs:
         return pulumi.get(self, "weighted_backend_services")
 
     @weighted_backend_services.setter
-    def weighted_backend_services(self, value: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs']]]]):
+    def weighted_backend_services(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs']]]]):
         pulumi.set(self, "weighted_backend_services", value)
 
 
@@ -12007,26 +12007,26 @@ class RegionUrlMapPathMatcherPathRuleRouteActionCorsPolicyArgs:
     def __init__(__self__, *,
                  disabled: pulumi.Input[bool],
                  allow_credentials: Optional[pulumi.Input[bool]] = None,
-                 allow_headers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 allow_methods: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 allow_origin_regexes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 allow_origins: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 expose_headers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 max_age: Optional[pulumi.Input[float]] = None):
+                 allow_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allow_methods: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allow_origin_regexes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allow_origins: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 expose_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 max_age: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[bool] disabled: If true, specifies the CORS policy is disabled.
         :param pulumi.Input[bool] allow_credentials: In response to a preflight request, setting this to true indicates that the
                actual request can include user credentials. This translates to the Access-
                Control-Allow-Credentials header. Defaults to false.
-        :param pulumi.Input[List[pulumi.Input[str]]] allow_headers: Specifies the content for the Access-Control-Allow-Headers header.
-        :param pulumi.Input[List[pulumi.Input[str]]] allow_methods: Specifies the content for the Access-Control-Allow-Methods header.
-        :param pulumi.Input[List[pulumi.Input[str]]] allow_origin_regexes: Specifies the regualar expression patterns that match allowed origins. For
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_headers: Specifies the content for the Access-Control-Allow-Headers header.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_methods: Specifies the content for the Access-Control-Allow-Methods header.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_origin_regexes: Specifies the regualar expression patterns that match allowed origins. For
                regular expression grammar please see en.cppreference.com/w/cpp/regex/ecmascript
                An origin is allowed if it matches either allow_origins or allow_origin_regex.
-        :param pulumi.Input[List[pulumi.Input[str]]] allow_origins: Specifies the list of origins that will be allowed to do CORS requests. An
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_origins: Specifies the list of origins that will be allowed to do CORS requests. An
                origin is allowed if it matches either allow_origins or allow_origin_regex.
-        :param pulumi.Input[List[pulumi.Input[str]]] expose_headers: Specifies the content for the Access-Control-Expose-Headers header.
-        :param pulumi.Input[float] max_age: Specifies how long the results of a preflight request can be cached. This
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] expose_headers: Specifies the content for the Access-Control-Expose-Headers header.
+        :param pulumi.Input[int] max_age: Specifies how long the results of a preflight request can be cached. This
                translates to the content for the Access-Control-Max-Age header.
         """
         pulumi.set(__self__, "disabled", disabled)
@@ -12073,31 +12073,31 @@ class RegionUrlMapPathMatcherPathRuleRouteActionCorsPolicyArgs:
 
     @property
     @pulumi.getter(name="allowHeaders")
-    def allow_headers(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def allow_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the content for the Access-Control-Allow-Headers header.
         """
         return pulumi.get(self, "allow_headers")
 
     @allow_headers.setter
-    def allow_headers(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def allow_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allow_headers", value)
 
     @property
     @pulumi.getter(name="allowMethods")
-    def allow_methods(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def allow_methods(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the content for the Access-Control-Allow-Methods header.
         """
         return pulumi.get(self, "allow_methods")
 
     @allow_methods.setter
-    def allow_methods(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def allow_methods(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allow_methods", value)
 
     @property
     @pulumi.getter(name="allowOriginRegexes")
-    def allow_origin_regexes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def allow_origin_regexes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the regualar expression patterns that match allowed origins. For
         regular expression grammar please see en.cppreference.com/w/cpp/regex/ecmascript
@@ -12106,12 +12106,12 @@ class RegionUrlMapPathMatcherPathRuleRouteActionCorsPolicyArgs:
         return pulumi.get(self, "allow_origin_regexes")
 
     @allow_origin_regexes.setter
-    def allow_origin_regexes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def allow_origin_regexes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allow_origin_regexes", value)
 
     @property
     @pulumi.getter(name="allowOrigins")
-    def allow_origins(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def allow_origins(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the list of origins that will be allowed to do CORS requests. An
         origin is allowed if it matches either allow_origins or allow_origin_regex.
@@ -12119,24 +12119,24 @@ class RegionUrlMapPathMatcherPathRuleRouteActionCorsPolicyArgs:
         return pulumi.get(self, "allow_origins")
 
     @allow_origins.setter
-    def allow_origins(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def allow_origins(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allow_origins", value)
 
     @property
     @pulumi.getter(name="exposeHeaders")
-    def expose_headers(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def expose_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the content for the Access-Control-Expose-Headers header.
         """
         return pulumi.get(self, "expose_headers")
 
     @expose_headers.setter
-    def expose_headers(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def expose_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "expose_headers", value)
 
     @property
     @pulumi.getter(name="maxAge")
-    def max_age(self) -> Optional[pulumi.Input[float]]:
+    def max_age(self) -> Optional[pulumi.Input[int]]:
         """
         Specifies how long the results of a preflight request can be cached. This
         translates to the content for the Access-Control-Max-Age header.
@@ -12144,7 +12144,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionCorsPolicyArgs:
         return pulumi.get(self, "max_age")
 
     @max_age.setter
-    def max_age(self, value: Optional[pulumi.Input[float]]):
+    def max_age(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_age", value)
 
 
@@ -12198,10 +12198,10 @@ class RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyArgs:
 @pulumi.input_type
 class RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortArgs:
     def __init__(__self__, *,
-                 http_status: pulumi.Input[float],
+                 http_status: pulumi.Input[int],
                  percentage: pulumi.Input[float]):
         """
-        :param pulumi.Input[float] http_status: The HTTP status code used to abort the request. The value must be between 200
+        :param pulumi.Input[int] http_status: The HTTP status code used to abort the request. The value must be between 200
                and 599 inclusive.
         :param pulumi.Input[float] percentage: The percentage of traffic (connections/operations/requests) on which delay will
                be introduced as part of fault injection. The value must be between 0.0 and
@@ -12212,7 +12212,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortArgs:
 
     @property
     @pulumi.getter(name="httpStatus")
-    def http_status(self) -> pulumi.Input[float]:
+    def http_status(self) -> pulumi.Input[int]:
         """
         The HTTP status code used to abort the request. The value must be between 200
         and 599 inclusive.
@@ -12220,7 +12220,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortArgs:
         return pulumi.get(self, "http_status")
 
     @http_status.setter
-    def http_status(self, value: pulumi.Input[float]):
+    def http_status(self, value: pulumi.Input[int]):
         pulumi.set(self, "http_status", value)
 
     @property
@@ -12285,11 +12285,11 @@ class RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayArgs:
 class RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelayArgs:
     def __init__(__self__, *,
                  seconds: pulumi.Input[str],
-                 nanos: Optional[pulumi.Input[float]] = None):
+                 nanos: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
                inclusive.
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
                less than one second are represented with a 0 `seconds` field and a positive
                `nanos` field. Must be from 0 to 999,999,999 inclusive.
         """
@@ -12312,7 +12312,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDe
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations
         less than one second are represented with a 0 `seconds` field and a positive
@@ -12321,7 +12321,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDe
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
 
@@ -12354,14 +12354,14 @@ class RegionUrlMapPathMatcherPathRuleRouteActionRequestMirrorPolicyArgs:
 @pulumi.input_type
 class RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyArgs:
     def __init__(__self__, *,
-                 num_retries: Optional[pulumi.Input[float]] = None,
+                 num_retries: Optional[pulumi.Input[int]] = None,
                  per_try_timeout: Optional[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutArgs']] = None,
-                 retry_conditions: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 retry_conditions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[float] num_retries: Specifies the allowed number retries. This number must be > 0.
+        :param pulumi.Input[int] num_retries: Specifies the allowed number retries. This number must be > 0.
         :param pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutArgs'] per_try_timeout: Specifies a non-zero timeout per retry attempt.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] retry_conditions: Specifies one or more conditions when this retry rule applies. Valid values are:
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] retry_conditions: Specifies one or more conditions when this retry rule applies. Valid values are:
                - 5xx: Loadbalancer will attempt a retry if the backend service responds with
                any 5xx response code, or if the backend service does not respond at all,
                example: disconnects, reset, read timeout, connection failure, and refused
@@ -12392,14 +12392,14 @@ class RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyArgs:
 
     @property
     @pulumi.getter(name="numRetries")
-    def num_retries(self) -> Optional[pulumi.Input[float]]:
+    def num_retries(self) -> Optional[pulumi.Input[int]]:
         """
         Specifies the allowed number retries. This number must be > 0.
         """
         return pulumi.get(self, "num_retries")
 
     @num_retries.setter
-    def num_retries(self, value: Optional[pulumi.Input[float]]):
+    def num_retries(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "num_retries", value)
 
     @property
@@ -12417,7 +12417,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyArgs:
 
     @property
     @pulumi.getter(name="retryConditions")
-    def retry_conditions(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def retry_conditions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies one or more conditions when this retry rule applies. Valid values are:
         - 5xx: Loadbalancer will attempt a retry if the backend service responds with
@@ -12444,7 +12444,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyArgs:
         return pulumi.get(self, "retry_conditions")
 
     @retry_conditions.setter
-    def retry_conditions(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def retry_conditions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "retry_conditions", value)
 
 
@@ -12452,11 +12452,11 @@ class RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyArgs:
 class RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutArgs:
     def __init__(__self__, *,
                  seconds: pulumi.Input[str],
-                 nanos: Optional[pulumi.Input[float]] = None):
+                 nanos: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
                inclusive.
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
                less than one second are represented with a 0 `seconds` field and a positive
                `nanos` field. Must be from 0 to 999,999,999 inclusive.
         """
@@ -12479,7 +12479,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutArgs:
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations
         less than one second are represented with a 0 `seconds` field and a positive
@@ -12488,7 +12488,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutArgs:
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
 
@@ -12496,11 +12496,11 @@ class RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutArgs:
 class RegionUrlMapPathMatcherPathRuleRouteActionTimeoutArgs:
     def __init__(__self__, *,
                  seconds: pulumi.Input[str],
-                 nanos: Optional[pulumi.Input[float]] = None):
+                 nanos: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
                inclusive.
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
                less than one second are represented with a 0 `seconds` field and a positive
                `nanos` field. Must be from 0 to 999,999,999 inclusive.
         """
@@ -12523,7 +12523,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionTimeoutArgs:
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations
         less than one second are represented with a 0 `seconds` field and a positive
@@ -12532,7 +12532,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionTimeoutArgs:
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
 
@@ -12587,13 +12587,13 @@ class RegionUrlMapPathMatcherPathRuleRouteActionUrlRewriteArgs:
 class RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs:
     def __init__(__self__, *,
                  backend_service: pulumi.Input[str],
-                 weight: pulumi.Input[float],
+                 weight: pulumi.Input[int],
                  header_action: Optional[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionArgs']] = None):
         """
         :param pulumi.Input[str] backend_service: The default RegionBackendService resource. Before
                forwarding the request to backendService, the loadbalancer applies any relevant
                headerActions specified as part of this backendServiceWeight.
-        :param pulumi.Input[float] weight: Specifies the fraction of traffic sent to backendService, computed as weight /
+        :param pulumi.Input[int] weight: Specifies the fraction of traffic sent to backendService, computed as weight /
                (sum of all weightedBackendService weights in routeAction) . The selection of a
                backend service is determined only for new traffic. Once a user's request has
                been directed to a backendService, subsequent requests will be sent to the same
@@ -12625,7 +12625,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs:
 
     @property
     @pulumi.getter
-    def weight(self) -> pulumi.Input[float]:
+    def weight(self) -> pulumi.Input[int]:
         """
         Specifies the fraction of traffic sent to backendService, computed as weight /
         (sum of all weightedBackendService weights in routeAction) . The selection of a
@@ -12637,7 +12637,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs:
         return pulumi.get(self, "weight")
 
     @weight.setter
-    def weight(self, value: pulumi.Input[float]):
+    def weight(self, value: pulumi.Input[int]):
         pulumi.set(self, "weight", value)
 
     @property
@@ -12659,19 +12659,19 @@ class RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs:
 @pulumi.input_type
 class RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionArgs:
     def __init__(__self__, *,
-                 request_headers_to_adds: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]] = None,
-                 request_headers_to_removes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 response_headers_to_adds: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]] = None,
-                 response_headers_to_removes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 request_headers_to_adds: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]] = None,
+                 request_headers_to_removes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 response_headers_to_adds: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]] = None,
+                 response_headers_to_removes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the
+        :param pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the
                backendService.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] request_headers_to_removes: A list of header names for headers that need to be removed from the request
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] request_headers_to_removes: A list of header names for headers that need to be removed from the request
                prior to forwarding the request to the backendService.
-        :param pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
+        :param pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] response_headers_to_removes: A list of header names for headers that need to be removed from the response
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] response_headers_to_removes: A list of header names for headers that need to be removed from the response
                prior to sending the response back to the client.
         """
         if request_headers_to_adds is not None:
@@ -12685,7 +12685,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActi
 
     @property
     @pulumi.getter(name="requestHeadersToAdds")
-    def request_headers_to_adds(self) -> Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]]:
+    def request_headers_to_adds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]]:
         """
         Headers to add to a matching request prior to forwarding the request to the
         backendService.
@@ -12694,12 +12694,12 @@ class RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActi
         return pulumi.get(self, "request_headers_to_adds")
 
     @request_headers_to_adds.setter
-    def request_headers_to_adds(self, value: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]]):
+    def request_headers_to_adds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]]):
         pulumi.set(self, "request_headers_to_adds", value)
 
     @property
     @pulumi.getter(name="requestHeadersToRemoves")
-    def request_headers_to_removes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def request_headers_to_removes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A list of header names for headers that need to be removed from the request
         prior to forwarding the request to the backendService.
@@ -12707,12 +12707,12 @@ class RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActi
         return pulumi.get(self, "request_headers_to_removes")
 
     @request_headers_to_removes.setter
-    def request_headers_to_removes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def request_headers_to_removes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "request_headers_to_removes", value)
 
     @property
     @pulumi.getter(name="responseHeadersToAdds")
-    def response_headers_to_adds(self) -> Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]]:
+    def response_headers_to_adds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]]:
         """
         Headers to add the response prior to sending the response back to the client.
         Structure is documented below.
@@ -12720,12 +12720,12 @@ class RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActi
         return pulumi.get(self, "response_headers_to_adds")
 
     @response_headers_to_adds.setter
-    def response_headers_to_adds(self, value: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]]):
+    def response_headers_to_adds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]]):
         pulumi.set(self, "response_headers_to_adds", value)
 
     @property
     @pulumi.getter(name="responseHeadersToRemoves")
-    def response_headers_to_removes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def response_headers_to_removes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A list of header names for headers that need to be removed from the response
         prior to sending the response back to the client.
@@ -12733,7 +12733,7 @@ class RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActi
         return pulumi.get(self, "response_headers_to_removes")
 
     @response_headers_to_removes.setter
-    def response_headers_to_removes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def response_headers_to_removes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "response_headers_to_removes", value)
 
 
@@ -12998,14 +12998,14 @@ class RegionUrlMapPathMatcherPathRuleUrlRedirectArgs:
 @pulumi.input_type
 class RegionUrlMapPathMatcherRouteRuleArgs:
     def __init__(__self__, *,
-                 priority: pulumi.Input[float],
+                 priority: pulumi.Input[int],
                  header_action: Optional[pulumi.Input['RegionUrlMapPathMatcherRouteRuleHeaderActionArgs']] = None,
-                 match_rules: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleArgs']]]] = None,
+                 match_rules: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleArgs']]]] = None,
                  route_action: Optional[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionArgs']] = None,
                  service: Optional[pulumi.Input[str]] = None,
                  url_redirect: Optional[pulumi.Input['RegionUrlMapPathMatcherRouteRuleUrlRedirectArgs']] = None):
         """
-        :param pulumi.Input[float] priority: For routeRules within a given pathMatcher, priority determines the order
+        :param pulumi.Input[int] priority: For routeRules within a given pathMatcher, priority determines the order
                in which load balancer will interpret routeRules. RouteRules are evaluated
                in order of priority, from the lowest to highest number. The priority of
                a rule decreases as its number increases (1, 2, 3, N+1). The first rule
@@ -13022,7 +13022,7 @@ class RegionUrlMapPathMatcherRouteRuleArgs:
                the selected backendService. headerAction specified here take effect before
                headerAction in the enclosing HttpRouteRule, PathMatcher and UrlMap.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleArgs']]] match_rules: The rules for determining a match.
+        :param pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleArgs']]] match_rules: The rules for determining a match.
                Structure is documented below.
         :param pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionArgs'] route_action: In response to a matching path, the load balancer performs advanced routing
                actions like URL rewrites, header transformations, etc. prior to forwarding the
@@ -13051,7 +13051,7 @@ class RegionUrlMapPathMatcherRouteRuleArgs:
 
     @property
     @pulumi.getter
-    def priority(self) -> pulumi.Input[float]:
+    def priority(self) -> pulumi.Input[int]:
         """
         For routeRules within a given pathMatcher, priority determines the order
         in which load balancer will interpret routeRules. RouteRules are evaluated
@@ -13070,7 +13070,7 @@ class RegionUrlMapPathMatcherRouteRuleArgs:
         return pulumi.get(self, "priority")
 
     @priority.setter
-    def priority(self, value: pulumi.Input[float]):
+    def priority(self, value: pulumi.Input[int]):
         pulumi.set(self, "priority", value)
 
     @property
@@ -13090,7 +13090,7 @@ class RegionUrlMapPathMatcherRouteRuleArgs:
 
     @property
     @pulumi.getter(name="matchRules")
-    def match_rules(self) -> Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleArgs']]]]:
+    def match_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleArgs']]]]:
         """
         The rules for determining a match.
         Structure is documented below.
@@ -13098,7 +13098,7 @@ class RegionUrlMapPathMatcherRouteRuleArgs:
         return pulumi.get(self, "match_rules")
 
     @match_rules.setter
-    def match_rules(self, value: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleArgs']]]]):
+    def match_rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleArgs']]]]):
         pulumi.set(self, "match_rules", value)
 
     @property
@@ -13150,19 +13150,19 @@ class RegionUrlMapPathMatcherRouteRuleArgs:
 @pulumi.input_type
 class RegionUrlMapPathMatcherRouteRuleHeaderActionArgs:
     def __init__(__self__, *,
-                 request_headers_to_adds: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleHeaderActionRequestHeadersToAddArgs']]]] = None,
-                 request_headers_to_removes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 response_headers_to_adds: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleHeaderActionResponseHeadersToAddArgs']]]] = None,
-                 response_headers_to_removes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 request_headers_to_adds: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleHeaderActionRequestHeadersToAddArgs']]]] = None,
+                 request_headers_to_removes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 response_headers_to_adds: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleHeaderActionResponseHeadersToAddArgs']]]] = None,
+                 response_headers_to_removes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleHeaderActionRequestHeadersToAddArgs']]] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the
+        :param pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleHeaderActionRequestHeadersToAddArgs']]] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the
                backendService.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] request_headers_to_removes: A list of header names for headers that need to be removed from the request
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] request_headers_to_removes: A list of header names for headers that need to be removed from the request
                prior to forwarding the request to the backendService.
-        :param pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleHeaderActionResponseHeadersToAddArgs']]] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
+        :param pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleHeaderActionResponseHeadersToAddArgs']]] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] response_headers_to_removes: A list of header names for headers that need to be removed from the response
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] response_headers_to_removes: A list of header names for headers that need to be removed from the response
                prior to sending the response back to the client.
         """
         if request_headers_to_adds is not None:
@@ -13176,7 +13176,7 @@ class RegionUrlMapPathMatcherRouteRuleHeaderActionArgs:
 
     @property
     @pulumi.getter(name="requestHeadersToAdds")
-    def request_headers_to_adds(self) -> Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleHeaderActionRequestHeadersToAddArgs']]]]:
+    def request_headers_to_adds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleHeaderActionRequestHeadersToAddArgs']]]]:
         """
         Headers to add to a matching request prior to forwarding the request to the
         backendService.
@@ -13185,12 +13185,12 @@ class RegionUrlMapPathMatcherRouteRuleHeaderActionArgs:
         return pulumi.get(self, "request_headers_to_adds")
 
     @request_headers_to_adds.setter
-    def request_headers_to_adds(self, value: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleHeaderActionRequestHeadersToAddArgs']]]]):
+    def request_headers_to_adds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleHeaderActionRequestHeadersToAddArgs']]]]):
         pulumi.set(self, "request_headers_to_adds", value)
 
     @property
     @pulumi.getter(name="requestHeadersToRemoves")
-    def request_headers_to_removes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def request_headers_to_removes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A list of header names for headers that need to be removed from the request
         prior to forwarding the request to the backendService.
@@ -13198,12 +13198,12 @@ class RegionUrlMapPathMatcherRouteRuleHeaderActionArgs:
         return pulumi.get(self, "request_headers_to_removes")
 
     @request_headers_to_removes.setter
-    def request_headers_to_removes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def request_headers_to_removes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "request_headers_to_removes", value)
 
     @property
     @pulumi.getter(name="responseHeadersToAdds")
-    def response_headers_to_adds(self) -> Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleHeaderActionResponseHeadersToAddArgs']]]]:
+    def response_headers_to_adds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleHeaderActionResponseHeadersToAddArgs']]]]:
         """
         Headers to add the response prior to sending the response back to the client.
         Structure is documented below.
@@ -13211,12 +13211,12 @@ class RegionUrlMapPathMatcherRouteRuleHeaderActionArgs:
         return pulumi.get(self, "response_headers_to_adds")
 
     @response_headers_to_adds.setter
-    def response_headers_to_adds(self, value: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleHeaderActionResponseHeadersToAddArgs']]]]):
+    def response_headers_to_adds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleHeaderActionResponseHeadersToAddArgs']]]]):
         pulumi.set(self, "response_headers_to_adds", value)
 
     @property
     @pulumi.getter(name="responseHeadersToRemoves")
-    def response_headers_to_removes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def response_headers_to_removes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A list of header names for headers that need to be removed from the response
         prior to sending the response back to the client.
@@ -13224,7 +13224,7 @@ class RegionUrlMapPathMatcherRouteRuleHeaderActionArgs:
         return pulumi.get(self, "response_headers_to_removes")
 
     @response_headers_to_removes.setter
-    def response_headers_to_removes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def response_headers_to_removes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "response_headers_to_removes", value)
 
 
@@ -13344,11 +13344,11 @@ class RegionUrlMapPathMatcherRouteRuleHeaderActionResponseHeadersToAddArgs:
 class RegionUrlMapPathMatcherRouteRuleMatchRuleArgs:
     def __init__(__self__, *,
                  full_path_match: Optional[pulumi.Input[str]] = None,
-                 header_matches: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchArgs']]]] = None,
+                 header_matches: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchArgs']]]] = None,
                  ignore_case: Optional[pulumi.Input[bool]] = None,
-                 metadata_filters: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilterArgs']]]] = None,
+                 metadata_filters: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilterArgs']]]] = None,
                  prefix_match: Optional[pulumi.Input[str]] = None,
-                 query_parameter_matches: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleQueryParameterMatchArgs']]]] = None,
+                 query_parameter_matches: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleQueryParameterMatchArgs']]]] = None,
                  regex_match: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] full_path_match: For satifying the matchRule condition, the path of the request must exactly
@@ -13356,12 +13356,12 @@ class RegionUrlMapPathMatcherRouteRuleMatchRuleArgs:
                and anchor that may be part of the original URL. FullPathMatch must be between 1
                and 1024 characters. Only one of prefixMatch, fullPathMatch or regexMatch must
                be specified.
-        :param pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchArgs']]] header_matches: Specifies a list of header match criteria, all of which must match corresponding
+        :param pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchArgs']]] header_matches: Specifies a list of header match criteria, all of which must match corresponding
                headers in the request.
                Structure is documented below.
         :param pulumi.Input[bool] ignore_case: Specifies that prefixMatch and fullPathMatch matches are case sensitive.
                Defaults to false.
-        :param pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilterArgs']]] metadata_filters: Opaque filter criteria used by Loadbalancer to restrict routing configuration to
+        :param pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilterArgs']]] metadata_filters: Opaque filter criteria used by Loadbalancer to restrict routing configuration to
                a limited set xDS compliant clients. In their xDS requests to Loadbalancer, xDS
                clients present node metadata. If a match takes place, the relevant routing
                configuration is made available to those proxies. For each metadataFilter in
@@ -13376,7 +13376,7 @@ class RegionUrlMapPathMatcherRouteRuleMatchRuleArgs:
         :param pulumi.Input[str] prefix_match: The value of the header must start with the contents of prefixMatch. Only one of
                exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch
                must be set.
-        :param pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleQueryParameterMatchArgs']]] query_parameter_matches: Specifies a list of query parameter match criteria, all of which must match
+        :param pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleQueryParameterMatchArgs']]] query_parameter_matches: Specifies a list of query parameter match criteria, all of which must match
                corresponding query parameters in the request.
                Structure is documented below.
         :param pulumi.Input[str] regex_match: The queryParameterMatch matches if the value of the parameter matches the
@@ -13417,7 +13417,7 @@ class RegionUrlMapPathMatcherRouteRuleMatchRuleArgs:
 
     @property
     @pulumi.getter(name="headerMatches")
-    def header_matches(self) -> Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchArgs']]]]:
+    def header_matches(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchArgs']]]]:
         """
         Specifies a list of header match criteria, all of which must match corresponding
         headers in the request.
@@ -13426,7 +13426,7 @@ class RegionUrlMapPathMatcherRouteRuleMatchRuleArgs:
         return pulumi.get(self, "header_matches")
 
     @header_matches.setter
-    def header_matches(self, value: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchArgs']]]]):
+    def header_matches(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchArgs']]]]):
         pulumi.set(self, "header_matches", value)
 
     @property
@@ -13444,7 +13444,7 @@ class RegionUrlMapPathMatcherRouteRuleMatchRuleArgs:
 
     @property
     @pulumi.getter(name="metadataFilters")
-    def metadata_filters(self) -> Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilterArgs']]]]:
+    def metadata_filters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilterArgs']]]]:
         """
         Opaque filter criteria used by Loadbalancer to restrict routing configuration to
         a limited set xDS compliant clients. In their xDS requests to Loadbalancer, xDS
@@ -13462,7 +13462,7 @@ class RegionUrlMapPathMatcherRouteRuleMatchRuleArgs:
         return pulumi.get(self, "metadata_filters")
 
     @metadata_filters.setter
-    def metadata_filters(self, value: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilterArgs']]]]):
+    def metadata_filters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilterArgs']]]]):
         pulumi.set(self, "metadata_filters", value)
 
     @property
@@ -13481,7 +13481,7 @@ class RegionUrlMapPathMatcherRouteRuleMatchRuleArgs:
 
     @property
     @pulumi.getter(name="queryParameterMatches")
-    def query_parameter_matches(self) -> Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleQueryParameterMatchArgs']]]]:
+    def query_parameter_matches(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleQueryParameterMatchArgs']]]]:
         """
         Specifies a list of query parameter match criteria, all of which must match
         corresponding query parameters in the request.
@@ -13490,7 +13490,7 @@ class RegionUrlMapPathMatcherRouteRuleMatchRuleArgs:
         return pulumi.get(self, "query_parameter_matches")
 
     @query_parameter_matches.setter
-    def query_parameter_matches(self, value: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleQueryParameterMatchArgs']]]]):
+    def query_parameter_matches(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleQueryParameterMatchArgs']]]]):
         pulumi.set(self, "query_parameter_matches", value)
 
     @property
@@ -13684,47 +13684,47 @@ class RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchArgs:
 @pulumi.input_type
 class RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatchArgs:
     def __init__(__self__, *,
-                 range_end: pulumi.Input[float],
-                 range_start: pulumi.Input[float]):
+                 range_end: pulumi.Input[int],
+                 range_start: pulumi.Input[int]):
         """
-        :param pulumi.Input[float] range_end: The end of the range (exclusive).
-        :param pulumi.Input[float] range_start: The start of the range (inclusive).
+        :param pulumi.Input[int] range_end: The end of the range (exclusive).
+        :param pulumi.Input[int] range_start: The start of the range (inclusive).
         """
         pulumi.set(__self__, "range_end", range_end)
         pulumi.set(__self__, "range_start", range_start)
 
     @property
     @pulumi.getter(name="rangeEnd")
-    def range_end(self) -> pulumi.Input[float]:
+    def range_end(self) -> pulumi.Input[int]:
         """
         The end of the range (exclusive).
         """
         return pulumi.get(self, "range_end")
 
     @range_end.setter
-    def range_end(self, value: pulumi.Input[float]):
+    def range_end(self, value: pulumi.Input[int]):
         pulumi.set(self, "range_end", value)
 
     @property
     @pulumi.getter(name="rangeStart")
-    def range_start(self) -> pulumi.Input[float]:
+    def range_start(self) -> pulumi.Input[int]:
         """
         The start of the range (inclusive).
         """
         return pulumi.get(self, "range_start")
 
     @range_start.setter
-    def range_start(self, value: pulumi.Input[float]):
+    def range_start(self, value: pulumi.Input[int]):
         pulumi.set(self, "range_start", value)
 
 
 @pulumi.input_type
 class RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilterArgs:
     def __init__(__self__, *,
-                 filter_labels: pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilterFilterLabelArgs']]],
+                 filter_labels: pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilterFilterLabelArgs']]],
                  filter_match_criteria: pulumi.Input[str]):
         """
-        :param pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilterFilterLabelArgs']]] filter_labels: The list of label value pairs that must match labels in the provided metadata
+        :param pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilterFilterLabelArgs']]] filter_labels: The list of label value pairs that must match labels in the provided metadata
                based on filterMatchCriteria  This list must not be empty and can have at the
                most 64 entries.
                Structure is documented below.
@@ -13741,7 +13741,7 @@ class RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilterArgs:
 
     @property
     @pulumi.getter(name="filterLabels")
-    def filter_labels(self) -> pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilterFilterLabelArgs']]]:
+    def filter_labels(self) -> pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilterFilterLabelArgs']]]:
         """
         The list of label value pairs that must match labels in the provided metadata
         based on filterMatchCriteria  This list must not be empty and can have at the
@@ -13751,7 +13751,7 @@ class RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilterArgs:
         return pulumi.get(self, "filter_labels")
 
     @filter_labels.setter
-    def filter_labels(self, value: pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilterFilterLabelArgs']]]):
+    def filter_labels(self, value: pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilterFilterLabelArgs']]]):
         pulumi.set(self, "filter_labels", value)
 
     @property
@@ -13909,7 +13909,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionArgs:
                  retry_policy: Optional[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyArgs']] = None,
                  timeout: Optional[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionTimeoutArgs']] = None,
                  url_rewrite: Optional[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionUrlRewriteArgs']] = None,
-                 weighted_backend_services: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs']]]] = None):
+                 weighted_backend_services: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs']]]] = None):
         """
         :param pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicyArgs'] cors_policy: The specification for allowing client side cross-origin requests. Please see W3C
                Recommendation for Cross Origin Resource Sharing
@@ -13937,7 +13937,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionArgs:
         :param pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionUrlRewriteArgs'] url_rewrite: The spec to modify the URL of the request, prior to forwarding the request to
                the matched service
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs']]] weighted_backend_services: A list of weighted backend services to send traffic to when a route match
+        :param pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs']]] weighted_backend_services: A list of weighted backend services to send traffic to when a route match
                occurs. The weights determine the fraction of traffic that flows to their
                corresponding backend service. If all traffic needs to go to a single backend
                service, there must be one  weightedBackendService with weight set to a non 0
@@ -14056,7 +14056,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionArgs:
 
     @property
     @pulumi.getter(name="weightedBackendServices")
-    def weighted_backend_services(self) -> Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs']]]]:
+    def weighted_backend_services(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs']]]]:
         """
         A list of weighted backend services to send traffic to when a route match
         occurs. The weights determine the fraction of traffic that flows to their
@@ -14071,7 +14071,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionArgs:
         return pulumi.get(self, "weighted_backend_services")
 
     @weighted_backend_services.setter
-    def weighted_backend_services(self, value: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs']]]]):
+    def weighted_backend_services(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs']]]]):
         pulumi.set(self, "weighted_backend_services", value)
 
 
@@ -14079,27 +14079,27 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionArgs:
 class RegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicyArgs:
     def __init__(__self__, *,
                  allow_credentials: Optional[pulumi.Input[bool]] = None,
-                 allow_headers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 allow_methods: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 allow_origin_regexes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 allow_origins: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 allow_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allow_methods: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allow_origin_regexes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allow_origins: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  disabled: Optional[pulumi.Input[bool]] = None,
-                 expose_headers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 max_age: Optional[pulumi.Input[float]] = None):
+                 expose_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 max_age: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[bool] allow_credentials: In response to a preflight request, setting this to true indicates that the
                actual request can include user credentials. This translates to the Access-
                Control-Allow-Credentials header. Defaults to false.
-        :param pulumi.Input[List[pulumi.Input[str]]] allow_headers: Specifies the content for the Access-Control-Allow-Headers header.
-        :param pulumi.Input[List[pulumi.Input[str]]] allow_methods: Specifies the content for the Access-Control-Allow-Methods header.
-        :param pulumi.Input[List[pulumi.Input[str]]] allow_origin_regexes: Specifies the regualar expression patterns that match allowed origins. For
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_headers: Specifies the content for the Access-Control-Allow-Headers header.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_methods: Specifies the content for the Access-Control-Allow-Methods header.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_origin_regexes: Specifies the regualar expression patterns that match allowed origins. For
                regular expression grammar please see en.cppreference.com/w/cpp/regex/ecmascript
                An origin is allowed if it matches either allow_origins or allow_origin_regex.
-        :param pulumi.Input[List[pulumi.Input[str]]] allow_origins: Specifies the list of origins that will be allowed to do CORS requests. An
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_origins: Specifies the list of origins that will be allowed to do CORS requests. An
                origin is allowed if it matches either allow_origins or allow_origin_regex.
         :param pulumi.Input[bool] disabled: If true, specifies the CORS policy is disabled.
-        :param pulumi.Input[List[pulumi.Input[str]]] expose_headers: Specifies the content for the Access-Control-Expose-Headers header.
-        :param pulumi.Input[float] max_age: Specifies how long the results of a preflight request can be cached. This
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] expose_headers: Specifies the content for the Access-Control-Expose-Headers header.
+        :param pulumi.Input[int] max_age: Specifies how long the results of a preflight request can be cached. This
                translates to the content for the Access-Control-Max-Age header.
         """
         if allow_credentials is not None:
@@ -14135,31 +14135,31 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicyArgs:
 
     @property
     @pulumi.getter(name="allowHeaders")
-    def allow_headers(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def allow_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the content for the Access-Control-Allow-Headers header.
         """
         return pulumi.get(self, "allow_headers")
 
     @allow_headers.setter
-    def allow_headers(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def allow_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allow_headers", value)
 
     @property
     @pulumi.getter(name="allowMethods")
-    def allow_methods(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def allow_methods(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the content for the Access-Control-Allow-Methods header.
         """
         return pulumi.get(self, "allow_methods")
 
     @allow_methods.setter
-    def allow_methods(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def allow_methods(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allow_methods", value)
 
     @property
     @pulumi.getter(name="allowOriginRegexes")
-    def allow_origin_regexes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def allow_origin_regexes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the regualar expression patterns that match allowed origins. For
         regular expression grammar please see en.cppreference.com/w/cpp/regex/ecmascript
@@ -14168,12 +14168,12 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicyArgs:
         return pulumi.get(self, "allow_origin_regexes")
 
     @allow_origin_regexes.setter
-    def allow_origin_regexes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def allow_origin_regexes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allow_origin_regexes", value)
 
     @property
     @pulumi.getter(name="allowOrigins")
-    def allow_origins(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def allow_origins(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the list of origins that will be allowed to do CORS requests. An
         origin is allowed if it matches either allow_origins or allow_origin_regex.
@@ -14181,7 +14181,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicyArgs:
         return pulumi.get(self, "allow_origins")
 
     @allow_origins.setter
-    def allow_origins(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def allow_origins(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allow_origins", value)
 
     @property
@@ -14198,19 +14198,19 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicyArgs:
 
     @property
     @pulumi.getter(name="exposeHeaders")
-    def expose_headers(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def expose_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the content for the Access-Control-Expose-Headers header.
         """
         return pulumi.get(self, "expose_headers")
 
     @expose_headers.setter
-    def expose_headers(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def expose_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "expose_headers", value)
 
     @property
     @pulumi.getter(name="maxAge")
-    def max_age(self) -> Optional[pulumi.Input[float]]:
+    def max_age(self) -> Optional[pulumi.Input[int]]:
         """
         Specifies how long the results of a preflight request can be cached. This
         translates to the content for the Access-Control-Max-Age header.
@@ -14218,7 +14218,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicyArgs:
         return pulumi.get(self, "max_age")
 
     @max_age.setter
-    def max_age(self, value: Optional[pulumi.Input[float]]):
+    def max_age(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_age", value)
 
 
@@ -14272,10 +14272,10 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyArgs:
 @pulumi.input_type
 class RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortArgs:
     def __init__(__self__, *,
-                 http_status: Optional[pulumi.Input[float]] = None,
+                 http_status: Optional[pulumi.Input[int]] = None,
                  percentage: Optional[pulumi.Input[float]] = None):
         """
-        :param pulumi.Input[float] http_status: The HTTP status code used to abort the request. The value must be between 200
+        :param pulumi.Input[int] http_status: The HTTP status code used to abort the request. The value must be between 200
                and 599 inclusive.
         :param pulumi.Input[float] percentage: The percentage of traffic (connections/operations/requests) on which delay will
                be introduced as part of fault injection. The value must be between 0.0 and
@@ -14288,7 +14288,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortArgs:
 
     @property
     @pulumi.getter(name="httpStatus")
-    def http_status(self) -> Optional[pulumi.Input[float]]:
+    def http_status(self) -> Optional[pulumi.Input[int]]:
         """
         The HTTP status code used to abort the request. The value must be between 200
         and 599 inclusive.
@@ -14296,7 +14296,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortArgs:
         return pulumi.get(self, "http_status")
 
     @http_status.setter
-    def http_status(self, value: Optional[pulumi.Input[float]]):
+    def http_status(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "http_status", value)
 
     @property
@@ -14363,11 +14363,11 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayArgs:
 class RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelayArgs:
     def __init__(__self__, *,
                  seconds: pulumi.Input[str],
-                 nanos: Optional[pulumi.Input[float]] = None):
+                 nanos: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
                inclusive.
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
                less than one second are represented with a 0 `seconds` field and a positive
                `nanos` field. Must be from 0 to 999,999,999 inclusive.
         """
@@ -14390,7 +14390,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedD
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations
         less than one second are represented with a 0 `seconds` field and a positive
@@ -14399,7 +14399,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedD
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
 
@@ -14432,14 +14432,14 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionRequestMirrorPolicyArgs:
 @pulumi.input_type
 class RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyArgs:
     def __init__(__self__, *,
-                 num_retries: pulumi.Input[float],
+                 num_retries: pulumi.Input[int],
                  per_try_timeout: Optional[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutArgs']] = None,
-                 retry_conditions: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 retry_conditions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[float] num_retries: Specifies the allowed number retries. This number must be > 0.
+        :param pulumi.Input[int] num_retries: Specifies the allowed number retries. This number must be > 0.
         :param pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutArgs'] per_try_timeout: Specifies a non-zero timeout per retry attempt.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] retry_conditions: Specifies one or more conditions when this retry rule applies. Valid values are:
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] retry_conditions: Specifies one or more conditions when this retry rule applies. Valid values are:
                - 5xx: Loadbalancer will attempt a retry if the backend service responds with
                any 5xx response code, or if the backend service does not respond at all,
                example: disconnects, reset, read timeout, connection failure, and refused
@@ -14469,14 +14469,14 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyArgs:
 
     @property
     @pulumi.getter(name="numRetries")
-    def num_retries(self) -> pulumi.Input[float]:
+    def num_retries(self) -> pulumi.Input[int]:
         """
         Specifies the allowed number retries. This number must be > 0.
         """
         return pulumi.get(self, "num_retries")
 
     @num_retries.setter
-    def num_retries(self, value: pulumi.Input[float]):
+    def num_retries(self, value: pulumi.Input[int]):
         pulumi.set(self, "num_retries", value)
 
     @property
@@ -14494,7 +14494,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyArgs:
 
     @property
     @pulumi.getter(name="retryConditions")
-    def retry_conditions(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def retry_conditions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies one or more conditions when this retry rule applies. Valid values are:
         - 5xx: Loadbalancer will attempt a retry if the backend service responds with
@@ -14521,7 +14521,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyArgs:
         return pulumi.get(self, "retry_conditions")
 
     @retry_conditions.setter
-    def retry_conditions(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def retry_conditions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "retry_conditions", value)
 
 
@@ -14529,11 +14529,11 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyArgs:
 class RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutArgs:
     def __init__(__self__, *,
                  seconds: pulumi.Input[str],
-                 nanos: Optional[pulumi.Input[float]] = None):
+                 nanos: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
                inclusive.
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
                less than one second are represented with a 0 `seconds` field and a positive
                `nanos` field. Must be from 0 to 999,999,999 inclusive.
         """
@@ -14556,7 +14556,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutArgs:
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations
         less than one second are represented with a 0 `seconds` field and a positive
@@ -14565,7 +14565,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutArgs:
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
 
@@ -14573,11 +14573,11 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutArgs:
 class RegionUrlMapPathMatcherRouteRuleRouteActionTimeoutArgs:
     def __init__(__self__, *,
                  seconds: pulumi.Input[str],
-                 nanos: Optional[pulumi.Input[float]] = None):
+                 nanos: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
                inclusive.
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations
                less than one second are represented with a 0 `seconds` field and a positive
                `nanos` field. Must be from 0 to 999,999,999 inclusive.
         """
@@ -14600,7 +14600,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionTimeoutArgs:
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations
         less than one second are represented with a 0 `seconds` field and a positive
@@ -14609,7 +14609,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionTimeoutArgs:
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
 
@@ -14664,13 +14664,13 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionUrlRewriteArgs:
 class RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs:
     def __init__(__self__, *,
                  backend_service: pulumi.Input[str],
-                 weight: pulumi.Input[float],
+                 weight: pulumi.Input[int],
                  header_action: Optional[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionArgs']] = None):
         """
         :param pulumi.Input[str] backend_service: The default RegionBackendService resource. Before
                forwarding the request to backendService, the loadbalancer applies any relevant
                headerActions specified as part of this backendServiceWeight.
-        :param pulumi.Input[float] weight: Specifies the fraction of traffic sent to backendService, computed as weight /
+        :param pulumi.Input[int] weight: Specifies the fraction of traffic sent to backendService, computed as weight /
                (sum of all weightedBackendService weights in routeAction) . The selection of a
                backend service is determined only for new traffic. Once a user's request has
                been directed to a backendService, subsequent requests will be sent to the same
@@ -14702,7 +14702,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs:
 
     @property
     @pulumi.getter
-    def weight(self) -> pulumi.Input[float]:
+    def weight(self) -> pulumi.Input[int]:
         """
         Specifies the fraction of traffic sent to backendService, computed as weight /
         (sum of all weightedBackendService weights in routeAction) . The selection of a
@@ -14714,7 +14714,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs:
         return pulumi.get(self, "weight")
 
     @weight.setter
-    def weight(self, value: pulumi.Input[float]):
+    def weight(self, value: pulumi.Input[int]):
         pulumi.set(self, "weight", value)
 
     @property
@@ -14736,19 +14736,19 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs:
 @pulumi.input_type
 class RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionArgs:
     def __init__(__self__, *,
-                 request_headers_to_adds: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]] = None,
-                 request_headers_to_removes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 response_headers_to_adds: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]] = None,
-                 response_headers_to_removes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 request_headers_to_adds: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]] = None,
+                 request_headers_to_removes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 response_headers_to_adds: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]] = None,
+                 response_headers_to_removes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the
+        :param pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the
                backendService.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] request_headers_to_removes: A list of header names for headers that need to be removed from the request
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] request_headers_to_removes: A list of header names for headers that need to be removed from the request
                prior to forwarding the request to the backendService.
-        :param pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
+        :param pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] response_headers_to_removes: A list of header names for headers that need to be removed from the response
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] response_headers_to_removes: A list of header names for headers that need to be removed from the response
                prior to sending the response back to the client.
         """
         if request_headers_to_adds is not None:
@@ -14762,7 +14762,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderAct
 
     @property
     @pulumi.getter(name="requestHeadersToAdds")
-    def request_headers_to_adds(self) -> Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]]:
+    def request_headers_to_adds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]]:
         """
         Headers to add to a matching request prior to forwarding the request to the
         backendService.
@@ -14771,12 +14771,12 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderAct
         return pulumi.get(self, "request_headers_to_adds")
 
     @request_headers_to_adds.setter
-    def request_headers_to_adds(self, value: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]]):
+    def request_headers_to_adds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]]):
         pulumi.set(self, "request_headers_to_adds", value)
 
     @property
     @pulumi.getter(name="requestHeadersToRemoves")
-    def request_headers_to_removes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def request_headers_to_removes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A list of header names for headers that need to be removed from the request
         prior to forwarding the request to the backendService.
@@ -14784,12 +14784,12 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderAct
         return pulumi.get(self, "request_headers_to_removes")
 
     @request_headers_to_removes.setter
-    def request_headers_to_removes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def request_headers_to_removes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "request_headers_to_removes", value)
 
     @property
     @pulumi.getter(name="responseHeadersToAdds")
-    def response_headers_to_adds(self) -> Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]]:
+    def response_headers_to_adds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]]:
         """
         Headers to add the response prior to sending the response back to the client.
         Structure is documented below.
@@ -14797,12 +14797,12 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderAct
         return pulumi.get(self, "response_headers_to_adds")
 
     @response_headers_to_adds.setter
-    def response_headers_to_adds(self, value: Optional[pulumi.Input[List[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]]):
+    def response_headers_to_adds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]]):
         pulumi.set(self, "response_headers_to_adds", value)
 
     @property
     @pulumi.getter(name="responseHeadersToRemoves")
-    def response_headers_to_removes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def response_headers_to_removes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A list of header names for headers that need to be removed from the response
         prior to sending the response back to the client.
@@ -14810,7 +14810,7 @@ class RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderAct
         return pulumi.get(self, "response_headers_to_removes")
 
     @response_headers_to_removes.setter
-    def response_headers_to_removes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def response_headers_to_removes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "response_headers_to_removes", value)
 
 
@@ -15144,14 +15144,14 @@ class RegionUrlMapTestArgs:
 @pulumi.input_type
 class ReservationSpecificReservationArgs:
     def __init__(__self__, *,
-                 count: pulumi.Input[float],
+                 count: pulumi.Input[int],
                  instance_properties: pulumi.Input['ReservationSpecificReservationInstancePropertiesArgs'],
-                 in_use_count: Optional[pulumi.Input[float]] = None):
+                 in_use_count: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[float] count: The number of resources that are allocated.
+        :param pulumi.Input[int] count: The number of resources that are allocated.
         :param pulumi.Input['ReservationSpecificReservationInstancePropertiesArgs'] instance_properties: The instance properties for the reservation.
                Structure is documented below.
-        :param pulumi.Input[float] in_use_count: -
+        :param pulumi.Input[int] in_use_count: -
                How many instances are in use.
         """
         pulumi.set(__self__, "count", count)
@@ -15161,14 +15161,14 @@ class ReservationSpecificReservationArgs:
 
     @property
     @pulumi.getter
-    def count(self) -> pulumi.Input[float]:
+    def count(self) -> pulumi.Input[int]:
         """
         The number of resources that are allocated.
         """
         return pulumi.get(self, "count")
 
     @count.setter
-    def count(self, value: pulumi.Input[float]):
+    def count(self, value: pulumi.Input[int]):
         pulumi.set(self, "count", value)
 
     @property
@@ -15186,7 +15186,7 @@ class ReservationSpecificReservationArgs:
 
     @property
     @pulumi.getter(name="inUseCount")
-    def in_use_count(self) -> Optional[pulumi.Input[float]]:
+    def in_use_count(self) -> Optional[pulumi.Input[int]]:
         """
         -
         How many instances are in use.
@@ -15194,7 +15194,7 @@ class ReservationSpecificReservationArgs:
         return pulumi.get(self, "in_use_count")
 
     @in_use_count.setter
-    def in_use_count(self, value: Optional[pulumi.Input[float]]):
+    def in_use_count(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "in_use_count", value)
 
 
@@ -15202,14 +15202,14 @@ class ReservationSpecificReservationArgs:
 class ReservationSpecificReservationInstancePropertiesArgs:
     def __init__(__self__, *,
                  machine_type: pulumi.Input[str],
-                 guest_accelerators: Optional[pulumi.Input[List[pulumi.Input['ReservationSpecificReservationInstancePropertiesGuestAcceleratorArgs']]]] = None,
-                 local_ssds: Optional[pulumi.Input[List[pulumi.Input['ReservationSpecificReservationInstancePropertiesLocalSsdArgs']]]] = None,
+                 guest_accelerators: Optional[pulumi.Input[Sequence[pulumi.Input['ReservationSpecificReservationInstancePropertiesGuestAcceleratorArgs']]]] = None,
+                 local_ssds: Optional[pulumi.Input[Sequence[pulumi.Input['ReservationSpecificReservationInstancePropertiesLocalSsdArgs']]]] = None,
                  min_cpu_platform: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] machine_type: The name of the machine type to reserve.
-        :param pulumi.Input[List[pulumi.Input['ReservationSpecificReservationInstancePropertiesGuestAcceleratorArgs']]] guest_accelerators: Guest accelerator type and count.
+        :param pulumi.Input[Sequence[pulumi.Input['ReservationSpecificReservationInstancePropertiesGuestAcceleratorArgs']]] guest_accelerators: Guest accelerator type and count.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input['ReservationSpecificReservationInstancePropertiesLocalSsdArgs']]] local_ssds: The amount of local ssd to reserve with each instance. This
+        :param pulumi.Input[Sequence[pulumi.Input['ReservationSpecificReservationInstancePropertiesLocalSsdArgs']]] local_ssds: The amount of local ssd to reserve with each instance. This
                reserves disks of type `local-ssd`.
                Structure is documented below.
         :param pulumi.Input[str] min_cpu_platform: The minimum CPU platform for the reservation. For example,
@@ -15239,7 +15239,7 @@ class ReservationSpecificReservationInstancePropertiesArgs:
 
     @property
     @pulumi.getter(name="guestAccelerators")
-    def guest_accelerators(self) -> Optional[pulumi.Input[List[pulumi.Input['ReservationSpecificReservationInstancePropertiesGuestAcceleratorArgs']]]]:
+    def guest_accelerators(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ReservationSpecificReservationInstancePropertiesGuestAcceleratorArgs']]]]:
         """
         Guest accelerator type and count.
         Structure is documented below.
@@ -15247,12 +15247,12 @@ class ReservationSpecificReservationInstancePropertiesArgs:
         return pulumi.get(self, "guest_accelerators")
 
     @guest_accelerators.setter
-    def guest_accelerators(self, value: Optional[pulumi.Input[List[pulumi.Input['ReservationSpecificReservationInstancePropertiesGuestAcceleratorArgs']]]]):
+    def guest_accelerators(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ReservationSpecificReservationInstancePropertiesGuestAcceleratorArgs']]]]):
         pulumi.set(self, "guest_accelerators", value)
 
     @property
     @pulumi.getter(name="localSsds")
-    def local_ssds(self) -> Optional[pulumi.Input[List[pulumi.Input['ReservationSpecificReservationInstancePropertiesLocalSsdArgs']]]]:
+    def local_ssds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ReservationSpecificReservationInstancePropertiesLocalSsdArgs']]]]:
         """
         The amount of local ssd to reserve with each instance. This
         reserves disks of type `local-ssd`.
@@ -15261,7 +15261,7 @@ class ReservationSpecificReservationInstancePropertiesArgs:
         return pulumi.get(self, "local_ssds")
 
     @local_ssds.setter
-    def local_ssds(self, value: Optional[pulumi.Input[List[pulumi.Input['ReservationSpecificReservationInstancePropertiesLocalSsdArgs']]]]):
+    def local_ssds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ReservationSpecificReservationInstancePropertiesLocalSsdArgs']]]]):
         pulumi.set(self, "local_ssds", value)
 
     @property
@@ -15283,10 +15283,10 @@ class ReservationSpecificReservationInstancePropertiesArgs:
 @pulumi.input_type
 class ReservationSpecificReservationInstancePropertiesGuestAcceleratorArgs:
     def __init__(__self__, *,
-                 accelerator_count: pulumi.Input[float],
+                 accelerator_count: pulumi.Input[int],
                  accelerator_type: pulumi.Input[str]):
         """
-        :param pulumi.Input[float] accelerator_count: The number of the guest accelerator cards exposed to
+        :param pulumi.Input[int] accelerator_count: The number of the guest accelerator cards exposed to
                this instance.
         :param pulumi.Input[str] accelerator_type: The full or partial URL of the accelerator type to
                attach to this instance. For example:
@@ -15298,7 +15298,7 @@ class ReservationSpecificReservationInstancePropertiesGuestAcceleratorArgs:
 
     @property
     @pulumi.getter(name="acceleratorCount")
-    def accelerator_count(self) -> pulumi.Input[float]:
+    def accelerator_count(self) -> pulumi.Input[int]:
         """
         The number of the guest accelerator cards exposed to
         this instance.
@@ -15306,7 +15306,7 @@ class ReservationSpecificReservationInstancePropertiesGuestAcceleratorArgs:
         return pulumi.get(self, "accelerator_count")
 
     @accelerator_count.setter
-    def accelerator_count(self, value: pulumi.Input[float]):
+    def accelerator_count(self, value: pulumi.Input[int]):
         pulumi.set(self, "accelerator_count", value)
 
     @property
@@ -15328,10 +15328,10 @@ class ReservationSpecificReservationInstancePropertiesGuestAcceleratorArgs:
 @pulumi.input_type
 class ReservationSpecificReservationInstancePropertiesLocalSsdArgs:
     def __init__(__self__, *,
-                 disk_size_gb: pulumi.Input[float],
+                 disk_size_gb: pulumi.Input[int],
                  interface: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[float] disk_size_gb: The size of the disk in base-2 GB.
+        :param pulumi.Input[int] disk_size_gb: The size of the disk in base-2 GB.
         :param pulumi.Input[str] interface: The disk interface to use for attaching this disk.
                Default value is `SCSI`.
                Possible values are `SCSI` and `NVME`.
@@ -15342,14 +15342,14 @@ class ReservationSpecificReservationInstancePropertiesLocalSsdArgs:
 
     @property
     @pulumi.getter(name="diskSizeGb")
-    def disk_size_gb(self) -> pulumi.Input[float]:
+    def disk_size_gb(self) -> pulumi.Input[int]:
         """
         The size of the disk in base-2 GB.
         """
         return pulumi.get(self, "disk_size_gb")
 
     @disk_size_gb.setter
-    def disk_size_gb(self, value: pulumi.Input[float]):
+    def disk_size_gb(self, value: pulumi.Input[int]):
         pulumi.set(self, "disk_size_gb", value)
 
     @property
@@ -15370,18 +15370,18 @@ class ReservationSpecificReservationInstancePropertiesLocalSsdArgs:
 @pulumi.input_type
 class ResourcePolicyGroupPlacementPolicyArgs:
     def __init__(__self__, *,
-                 availability_domain_count: Optional[pulumi.Input[float]] = None,
+                 availability_domain_count: Optional[pulumi.Input[int]] = None,
                  collocation: Optional[pulumi.Input[str]] = None,
-                 vm_count: Optional[pulumi.Input[float]] = None):
+                 vm_count: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[float] availability_domain_count: The number of availability domains instances will be spread across. If two instances are in different
+        :param pulumi.Input[int] availability_domain_count: The number of availability domains instances will be spread across. If two instances are in different
                availability domain, they will not be put in the same low latency network
         :param pulumi.Input[str] collocation: Collocation specifies whether to place VMs inside the same availability domain on the same low-latency network.
                Specify `COLLOCATED` to enable collocation. Can only be specified with `vm_count`. If compute instances are created
                with a COLLOCATED policy, then exactly `vm_count` instances must be created at the same time with the resource policy
                attached.
                Possible values are `COLLOCATED`.
-        :param pulumi.Input[float] vm_count: Number of vms in this placement group.
+        :param pulumi.Input[int] vm_count: Number of vms in this placement group.
         """
         if availability_domain_count is not None:
             pulumi.set(__self__, "availability_domain_count", availability_domain_count)
@@ -15392,7 +15392,7 @@ class ResourcePolicyGroupPlacementPolicyArgs:
 
     @property
     @pulumi.getter(name="availabilityDomainCount")
-    def availability_domain_count(self) -> Optional[pulumi.Input[float]]:
+    def availability_domain_count(self) -> Optional[pulumi.Input[int]]:
         """
         The number of availability domains instances will be spread across. If two instances are in different
         availability domain, they will not be put in the same low latency network
@@ -15400,7 +15400,7 @@ class ResourcePolicyGroupPlacementPolicyArgs:
         return pulumi.get(self, "availability_domain_count")
 
     @availability_domain_count.setter
-    def availability_domain_count(self, value: Optional[pulumi.Input[float]]):
+    def availability_domain_count(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "availability_domain_count", value)
 
     @property
@@ -15421,14 +15421,14 @@ class ResourcePolicyGroupPlacementPolicyArgs:
 
     @property
     @pulumi.getter(name="vmCount")
-    def vm_count(self) -> Optional[pulumi.Input[float]]:
+    def vm_count(self) -> Optional[pulumi.Input[int]]:
         """
         Number of vms in this placement group.
         """
         return pulumi.get(self, "vm_count")
 
     @vm_count.setter
-    def vm_count(self, value: Optional[pulumi.Input[float]]):
+    def vm_count(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "vm_count", value)
 
 
@@ -15495,10 +15495,10 @@ class ResourcePolicySnapshotSchedulePolicyArgs:
 @pulumi.input_type
 class ResourcePolicySnapshotSchedulePolicyRetentionPolicyArgs:
     def __init__(__self__, *,
-                 max_retention_days: pulumi.Input[float],
+                 max_retention_days: pulumi.Input[int],
                  on_source_disk_delete: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[float] max_retention_days: Maximum age of the snapshot that is allowed to be kept.
+        :param pulumi.Input[int] max_retention_days: Maximum age of the snapshot that is allowed to be kept.
         :param pulumi.Input[str] on_source_disk_delete: Specifies the behavior to apply to scheduled snapshots when
                the source disk is deleted.
                Default value is `KEEP_AUTO_SNAPSHOTS`.
@@ -15510,14 +15510,14 @@ class ResourcePolicySnapshotSchedulePolicyRetentionPolicyArgs:
 
     @property
     @pulumi.getter(name="maxRetentionDays")
-    def max_retention_days(self) -> pulumi.Input[float]:
+    def max_retention_days(self) -> pulumi.Input[int]:
         """
         Maximum age of the snapshot that is allowed to be kept.
         """
         return pulumi.get(self, "max_retention_days")
 
     @max_retention_days.setter
-    def max_retention_days(self, value: pulumi.Input[float]):
+    def max_retention_days(self, value: pulumi.Input[int]):
         pulumi.set(self, "max_retention_days", value)
 
     @property
@@ -15600,10 +15600,10 @@ class ResourcePolicySnapshotSchedulePolicyScheduleArgs:
 @pulumi.input_type
 class ResourcePolicySnapshotSchedulePolicyScheduleDailyScheduleArgs:
     def __init__(__self__, *,
-                 days_in_cycle: pulumi.Input[float],
+                 days_in_cycle: pulumi.Input[int],
                  start_time: pulumi.Input[str]):
         """
-        :param pulumi.Input[float] days_in_cycle: The number of days between snapshots.
+        :param pulumi.Input[int] days_in_cycle: The number of days between snapshots.
         :param pulumi.Input[str] start_time: Time within the window to start the operations.
                It must be in format "HH:MM", where HH : [00-23] and MM : [00-00] GMT.
         """
@@ -15612,14 +15612,14 @@ class ResourcePolicySnapshotSchedulePolicyScheduleDailyScheduleArgs:
 
     @property
     @pulumi.getter(name="daysInCycle")
-    def days_in_cycle(self) -> pulumi.Input[float]:
+    def days_in_cycle(self) -> pulumi.Input[int]:
         """
         The number of days between snapshots.
         """
         return pulumi.get(self, "days_in_cycle")
 
     @days_in_cycle.setter
-    def days_in_cycle(self, value: pulumi.Input[float]):
+    def days_in_cycle(self, value: pulumi.Input[int]):
         pulumi.set(self, "days_in_cycle", value)
 
     @property
@@ -15639,10 +15639,10 @@ class ResourcePolicySnapshotSchedulePolicyScheduleDailyScheduleArgs:
 @pulumi.input_type
 class ResourcePolicySnapshotSchedulePolicyScheduleHourlyScheduleArgs:
     def __init__(__self__, *,
-                 hours_in_cycle: pulumi.Input[float],
+                 hours_in_cycle: pulumi.Input[int],
                  start_time: pulumi.Input[str]):
         """
-        :param pulumi.Input[float] hours_in_cycle: The number of hours between snapshots.
+        :param pulumi.Input[int] hours_in_cycle: The number of hours between snapshots.
         :param pulumi.Input[str] start_time: Time within the window to start the operations.
                It must be in format "HH:MM", where HH : [00-23] and MM : [00-00] GMT.
         """
@@ -15651,14 +15651,14 @@ class ResourcePolicySnapshotSchedulePolicyScheduleHourlyScheduleArgs:
 
     @property
     @pulumi.getter(name="hoursInCycle")
-    def hours_in_cycle(self) -> pulumi.Input[float]:
+    def hours_in_cycle(self) -> pulumi.Input[int]:
         """
         The number of hours between snapshots.
         """
         return pulumi.get(self, "hours_in_cycle")
 
     @hours_in_cycle.setter
-    def hours_in_cycle(self, value: pulumi.Input[float]):
+    def hours_in_cycle(self, value: pulumi.Input[int]):
         pulumi.set(self, "hours_in_cycle", value)
 
     @property
@@ -15678,16 +15678,16 @@ class ResourcePolicySnapshotSchedulePolicyScheduleHourlyScheduleArgs:
 @pulumi.input_type
 class ResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleArgs:
     def __init__(__self__, *,
-                 day_of_weeks: pulumi.Input[List[pulumi.Input['ResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleDayOfWeekArgs']]]):
+                 day_of_weeks: pulumi.Input[Sequence[pulumi.Input['ResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleDayOfWeekArgs']]]):
         """
-        :param pulumi.Input[List[pulumi.Input['ResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleDayOfWeekArgs']]] day_of_weeks: May contain up to seven (one for each day of the week) snapshot times.
+        :param pulumi.Input[Sequence[pulumi.Input['ResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleDayOfWeekArgs']]] day_of_weeks: May contain up to seven (one for each day of the week) snapshot times.
                Structure is documented below.
         """
         pulumi.set(__self__, "day_of_weeks", day_of_weeks)
 
     @property
     @pulumi.getter(name="dayOfWeeks")
-    def day_of_weeks(self) -> pulumi.Input[List[pulumi.Input['ResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleDayOfWeekArgs']]]:
+    def day_of_weeks(self) -> pulumi.Input[Sequence[pulumi.Input['ResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleDayOfWeekArgs']]]:
         """
         May contain up to seven (one for each day of the week) snapshot times.
         Structure is documented below.
@@ -15695,7 +15695,7 @@ class ResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleArgs:
         return pulumi.get(self, "day_of_weeks")
 
     @day_of_weeks.setter
-    def day_of_weeks(self, value: pulumi.Input[List[pulumi.Input['ResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleDayOfWeekArgs']]]):
+    def day_of_weeks(self, value: pulumi.Input[Sequence[pulumi.Input['ResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleDayOfWeekArgs']]]):
         pulumi.set(self, "day_of_weeks", value)
 
 
@@ -15800,25 +15800,25 @@ class ResourcePolicySnapshotSchedulePolicySnapshotPropertiesArgs:
 @pulumi.input_type
 class RouterBgpArgs:
     def __init__(__self__, *,
-                 asn: pulumi.Input[float],
+                 asn: pulumi.Input[int],
                  advertise_mode: Optional[pulumi.Input[str]] = None,
-                 advertised_groups: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 advertised_ip_ranges: Optional[pulumi.Input[List[pulumi.Input['RouterBgpAdvertisedIpRangeArgs']]]] = None):
+                 advertised_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 advertised_ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input['RouterBgpAdvertisedIpRangeArgs']]]] = None):
         """
-        :param pulumi.Input[float] asn: Local BGP Autonomous System Number (ASN). Must be an RFC6996
+        :param pulumi.Input[int] asn: Local BGP Autonomous System Number (ASN). Must be an RFC6996
                private ASN, either 16-bit or 32-bit. The value will be fixed for
                this router resource. All VPN tunnels that link to this router
                will have the same local ASN.
         :param pulumi.Input[str] advertise_mode: User-specified flag to indicate which mode to use for advertisement.
                Default value is `DEFAULT`.
                Possible values are `DEFAULT` and `CUSTOM`.
-        :param pulumi.Input[List[pulumi.Input[str]]] advertised_groups: User-specified list of prefix groups to advertise in custom mode.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] advertised_groups: User-specified list of prefix groups to advertise in custom mode.
                This field can only be populated if advertiseMode is CUSTOM and
                is advertised to all peers of the router. These groups will be
                advertised in addition to any specified prefixes. Leave this field
                blank to advertise no custom groups.
                This enum field has the one valid value: ALL_SUBNETS
-        :param pulumi.Input[List[pulumi.Input['RouterBgpAdvertisedIpRangeArgs']]] advertised_ip_ranges: User-specified list of individual IP ranges to advertise in
+        :param pulumi.Input[Sequence[pulumi.Input['RouterBgpAdvertisedIpRangeArgs']]] advertised_ip_ranges: User-specified list of individual IP ranges to advertise in
                custom mode. This field can only be populated if advertiseMode
                is CUSTOM and is advertised to all peers of the router. These IP
                ranges will be advertised in addition to any specified groups.
@@ -15835,7 +15835,7 @@ class RouterBgpArgs:
 
     @property
     @pulumi.getter
-    def asn(self) -> pulumi.Input[float]:
+    def asn(self) -> pulumi.Input[int]:
         """
         Local BGP Autonomous System Number (ASN). Must be an RFC6996
         private ASN, either 16-bit or 32-bit. The value will be fixed for
@@ -15845,7 +15845,7 @@ class RouterBgpArgs:
         return pulumi.get(self, "asn")
 
     @asn.setter
-    def asn(self, value: pulumi.Input[float]):
+    def asn(self, value: pulumi.Input[int]):
         pulumi.set(self, "asn", value)
 
     @property
@@ -15864,7 +15864,7 @@ class RouterBgpArgs:
 
     @property
     @pulumi.getter(name="advertisedGroups")
-    def advertised_groups(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def advertised_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         User-specified list of prefix groups to advertise in custom mode.
         This field can only be populated if advertiseMode is CUSTOM and
@@ -15876,12 +15876,12 @@ class RouterBgpArgs:
         return pulumi.get(self, "advertised_groups")
 
     @advertised_groups.setter
-    def advertised_groups(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def advertised_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "advertised_groups", value)
 
     @property
     @pulumi.getter(name="advertisedIpRanges")
-    def advertised_ip_ranges(self) -> Optional[pulumi.Input[List[pulumi.Input['RouterBgpAdvertisedIpRangeArgs']]]]:
+    def advertised_ip_ranges(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RouterBgpAdvertisedIpRangeArgs']]]]:
         """
         User-specified list of individual IP ranges to advertise in
         custom mode. This field can only be populated if advertiseMode
@@ -15893,7 +15893,7 @@ class RouterBgpArgs:
         return pulumi.get(self, "advertised_ip_ranges")
 
     @advertised_ip_ranges.setter
-    def advertised_ip_ranges(self, value: Optional[pulumi.Input[List[pulumi.Input['RouterBgpAdvertisedIpRangeArgs']]]]):
+    def advertised_ip_ranges(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RouterBgpAdvertisedIpRangeArgs']]]]):
         pulumi.set(self, "advertised_ip_ranges", value)
 
 
@@ -15980,15 +15980,15 @@ class RouterNatLogConfigArgs:
 class RouterNatSubnetworkArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str],
-                 source_ip_ranges_to_nats: pulumi.Input[List[pulumi.Input[str]]],
-                 secondary_ip_range_names: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 source_ip_ranges_to_nats: pulumi.Input[Sequence[pulumi.Input[str]]],
+                 secondary_ip_range_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         :param pulumi.Input[str] name: Self-link of subnetwork to NAT
-        :param pulumi.Input[List[pulumi.Input[str]]] source_ip_ranges_to_nats: List of options for which source IPs in the subnetwork
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] source_ip_ranges_to_nats: List of options for which source IPs in the subnetwork
                should have NAT enabled. Supported values include:
                `ALL_IP_RANGES`, `LIST_OF_SECONDARY_IP_RANGES`,
                `PRIMARY_IP_RANGE`.
-        :param pulumi.Input[List[pulumi.Input[str]]] secondary_ip_range_names: List of the secondary ranges of the subnetwork that are allowed
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] secondary_ip_range_names: List of the secondary ranges of the subnetwork that are allowed
                to use NAT. This can be populated only if
                `LIST_OF_SECONDARY_IP_RANGES` is one of the values in
                sourceIpRangesToNat
@@ -16012,7 +16012,7 @@ class RouterNatSubnetworkArgs:
 
     @property
     @pulumi.getter(name="sourceIpRangesToNats")
-    def source_ip_ranges_to_nats(self) -> pulumi.Input[List[pulumi.Input[str]]]:
+    def source_ip_ranges_to_nats(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
         List of options for which source IPs in the subnetwork
         should have NAT enabled. Supported values include:
@@ -16022,12 +16022,12 @@ class RouterNatSubnetworkArgs:
         return pulumi.get(self, "source_ip_ranges_to_nats")
 
     @source_ip_ranges_to_nats.setter
-    def source_ip_ranges_to_nats(self, value: pulumi.Input[List[pulumi.Input[str]]]):
+    def source_ip_ranges_to_nats(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "source_ip_ranges_to_nats", value)
 
     @property
     @pulumi.getter(name="secondaryIpRangeNames")
-    def secondary_ip_range_names(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def secondary_ip_range_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         List of the secondary ranges of the subnetwork that are allowed
         to use NAT. This can be populated only if
@@ -16037,7 +16037,7 @@ class RouterNatSubnetworkArgs:
         return pulumi.get(self, "secondary_ip_range_names")
 
     @secondary_ip_range_names.setter
-    def secondary_ip_range_names(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def secondary_ip_range_names(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "secondary_ip_range_names", value)
 
 
@@ -16086,7 +16086,7 @@ class SecurityPolicyRuleArgs:
     def __init__(__self__, *,
                  action: pulumi.Input[str],
                  match: pulumi.Input['SecurityPolicyRuleMatchArgs'],
-                 priority: pulumi.Input[float],
+                 priority: pulumi.Input[int],
                  description: Optional[pulumi.Input[str]] = None,
                  preview: Optional[pulumi.Input[bool]] = None):
         """
@@ -16095,7 +16095,7 @@ class SecurityPolicyRuleArgs:
                * "deny(status)" : deny access to target, returns the  HTTP response code specified (valid values are 403, 404 and 502)
         :param pulumi.Input['SecurityPolicyRuleMatchArgs'] match: A match condition that incoming traffic is evaluated against.
                If it evaluates to true, the corresponding `action` is enforced. Structure is documented below.
-        :param pulumi.Input[float] priority: An unique positive integer indicating the priority of evaluation for a rule.
+        :param pulumi.Input[int] priority: An unique positive integer indicating the priority of evaluation for a rule.
                Rules are evaluated from highest priority (lowest numerically) to lowest priority (highest numerically) in order.
         :param pulumi.Input[str] description: An optional description of this rule. Max size is 64.
         :param pulumi.Input[bool] preview: When set to true, the `action` specified above is not enforced.
@@ -16138,7 +16138,7 @@ class SecurityPolicyRuleArgs:
 
     @property
     @pulumi.getter
-    def priority(self) -> pulumi.Input[float]:
+    def priority(self) -> pulumi.Input[int]:
         """
         An unique positive integer indicating the priority of evaluation for a rule.
         Rules are evaluated from highest priority (lowest numerically) to lowest priority (highest numerically) in order.
@@ -16146,7 +16146,7 @@ class SecurityPolicyRuleArgs:
         return pulumi.get(self, "priority")
 
     @priority.setter
-    def priority(self, value: pulumi.Input[float]):
+    def priority(self, value: pulumi.Input[int]):
         pulumi.set(self, "priority", value)
 
     @property
@@ -16245,9 +16245,9 @@ class SecurityPolicyRuleMatchArgs:
 @pulumi.input_type
 class SecurityPolicyRuleMatchConfigArgs:
     def __init__(__self__, *,
-                 src_ip_ranges: pulumi.Input[List[pulumi.Input[str]]]):
+                 src_ip_ranges: pulumi.Input[Sequence[pulumi.Input[str]]]):
         """
-        :param pulumi.Input[List[pulumi.Input[str]]] src_ip_ranges: Set of IP addresses or ranges (IPV4 or IPV6) in CIDR notation
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] src_ip_ranges: Set of IP addresses or ranges (IPV4 or IPV6) in CIDR notation
                to match against inbound traffic. There is a limit of 10 IP ranges per rule. A value of '\*' matches all IPs
                (can be used to override the default behavior).
         """
@@ -16255,7 +16255,7 @@ class SecurityPolicyRuleMatchConfigArgs:
 
     @property
     @pulumi.getter(name="srcIpRanges")
-    def src_ip_ranges(self) -> pulumi.Input[List[pulumi.Input[str]]]:
+    def src_ip_ranges(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
         Set of IP addresses or ranges (IPV4 or IPV6) in CIDR notation
         to match against inbound traffic. There is a limit of 10 IP ranges per rule. A value of '\*' matches all IPs
@@ -16264,7 +16264,7 @@ class SecurityPolicyRuleMatchConfigArgs:
         return pulumi.get(self, "src_ip_ranges")
 
     @src_ip_ranges.setter
-    def src_ip_ranges(self, value: pulumi.Input[List[pulumi.Input[str]]]):
+    def src_ip_ranges(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "src_ip_ranges", value)
 
 
@@ -16435,10 +16435,10 @@ class SecurityScanConfigAuthenticationGoogleAccountArgs:
 @pulumi.input_type
 class SecurityScanConfigScheduleArgs:
     def __init__(__self__, *,
-                 interval_duration_days: pulumi.Input[float],
+                 interval_duration_days: pulumi.Input[int],
                  schedule_time: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[float] interval_duration_days: The duration of time between executions in days
+        :param pulumi.Input[int] interval_duration_days: The duration of time between executions in days
         :param pulumi.Input[str] schedule_time: A timestamp indicates when the next run will be scheduled. The value is refreshed
                by the server after each run. If unspecified, it will default to current server time,
                which means the scan will be scheduled to start immediately.
@@ -16449,14 +16449,14 @@ class SecurityScanConfigScheduleArgs:
 
     @property
     @pulumi.getter(name="intervalDurationDays")
-    def interval_duration_days(self) -> pulumi.Input[float]:
+    def interval_duration_days(self) -> pulumi.Input[int]:
         """
         The duration of time between executions in days
         """
         return pulumi.get(self, "interval_duration_days")
 
     @interval_duration_days.setter
-    def interval_duration_days(self, value: pulumi.Input[float]):
+    def interval_duration_days(self, value: pulumi.Input[int]):
         pulumi.set(self, "interval_duration_days", value)
 
     @property
@@ -16660,7 +16660,7 @@ class SubnetworkLogConfigArgs:
                  filter_expr: Optional[pulumi.Input[str]] = None,
                  flow_sampling: Optional[pulumi.Input[float]] = None,
                  metadata: Optional[pulumi.Input[str]] = None,
-                 metadata_fields: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 metadata_fields: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         :param pulumi.Input[str] aggregation_interval: Can only be specified if VPC flow logging for this subnetwork is enabled.
                Toggles the aggregation interval for collecting flow logs. Increasing the
@@ -16680,7 +16680,7 @@ class SubnetworkLogConfigArgs:
                flow logs.
                Default value is `INCLUDE_ALL_METADATA`.
                Possible values are `EXCLUDE_ALL_METADATA`, `INCLUDE_ALL_METADATA`, and `CUSTOM_METADATA`.
-        :param pulumi.Input[List[pulumi.Input[str]]] metadata_fields: List of metadata fields that should be added to reported logs.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] metadata_fields: List of metadata fields that should be added to reported logs.
                Can only be specified if VPC flow logs for this subnetwork is enabled and "metadata" is set to CUSTOM_METADATA.
         """
         if aggregation_interval is not None:
@@ -16758,7 +16758,7 @@ class SubnetworkLogConfigArgs:
 
     @property
     @pulumi.getter(name="metadataFields")
-    def metadata_fields(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def metadata_fields(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         List of metadata fields that should be added to reported logs.
         Can only be specified if VPC flow logs for this subnetwork is enabled and "metadata" is set to CUSTOM_METADATA.
@@ -16766,7 +16766,7 @@ class SubnetworkLogConfigArgs:
         return pulumi.get(self, "metadata_fields")
 
     @metadata_fields.setter
-    def metadata_fields(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def metadata_fields(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "metadata_fields", value)
 
 
@@ -16828,7 +16828,7 @@ class URLMapDefaultRouteActionArgs:
                  retry_policy: Optional[pulumi.Input['URLMapDefaultRouteActionRetryPolicyArgs']] = None,
                  timeout: Optional[pulumi.Input['URLMapDefaultRouteActionTimeoutArgs']] = None,
                  url_rewrite: Optional[pulumi.Input['URLMapDefaultRouteActionUrlRewriteArgs']] = None,
-                 weighted_backend_services: Optional[pulumi.Input[List[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceArgs']]]] = None):
+                 weighted_backend_services: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceArgs']]]] = None):
         """
         :param pulumi.Input['URLMapDefaultRouteActionCorsPolicyArgs'] cors_policy: The specification for allowing client side cross-origin requests. Please see
                [W3C Recommendation for Cross Origin Resource Sharing](https://www.w3.org/TR/cors/)
@@ -16851,7 +16851,7 @@ class URLMapDefaultRouteActionArgs:
                Structure is documented below.
         :param pulumi.Input['URLMapDefaultRouteActionUrlRewriteArgs'] url_rewrite: The spec to modify the URL of the request, prior to forwarding the request to the matched service.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceArgs']]] weighted_backend_services: A list of weighted backend services to send traffic to when a route match occurs.
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceArgs']]] weighted_backend_services: A list of weighted backend services to send traffic to when a route match occurs.
                The weights determine the fraction of traffic that flows to their corresponding backend service.
                If all traffic needs to go to a single backend service, there must be one weightedBackendService
                with weight set to a non 0 number.
@@ -16964,7 +16964,7 @@ class URLMapDefaultRouteActionArgs:
 
     @property
     @pulumi.getter(name="weightedBackendServices")
-    def weighted_backend_services(self) -> Optional[pulumi.Input[List[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceArgs']]]]:
+    def weighted_backend_services(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceArgs']]]]:
         """
         A list of weighted backend services to send traffic to when a route match occurs.
         The weights determine the fraction of traffic that flows to their corresponding backend service.
@@ -16978,7 +16978,7 @@ class URLMapDefaultRouteActionArgs:
         return pulumi.get(self, "weighted_backend_services")
 
     @weighted_backend_services.setter
-    def weighted_backend_services(self, value: Optional[pulumi.Input[List[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceArgs']]]]):
+    def weighted_backend_services(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceArgs']]]]):
         pulumi.set(self, "weighted_backend_services", value)
 
 
@@ -16986,26 +16986,26 @@ class URLMapDefaultRouteActionArgs:
 class URLMapDefaultRouteActionCorsPolicyArgs:
     def __init__(__self__, *,
                  allow_credentials: Optional[pulumi.Input[bool]] = None,
-                 allow_headers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 allow_methods: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 allow_origin_regexes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 allow_origins: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 allow_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allow_methods: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allow_origin_regexes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allow_origins: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  disabled: Optional[pulumi.Input[bool]] = None,
-                 expose_headers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 max_age: Optional[pulumi.Input[float]] = None):
+                 expose_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 max_age: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[bool] allow_credentials: In response to a preflight request, setting this to true indicates that the actual request can include user credentials.
                This translates to the Access-Control-Allow-Credentials header.
-        :param pulumi.Input[List[pulumi.Input[str]]] allow_headers: Specifies the content for the Access-Control-Allow-Headers header.
-        :param pulumi.Input[List[pulumi.Input[str]]] allow_methods: Specifies the content for the Access-Control-Allow-Methods header.
-        :param pulumi.Input[List[pulumi.Input[str]]] allow_origin_regexes: Specifies the regualar expression patterns that match allowed origins. For regular expression grammar
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_headers: Specifies the content for the Access-Control-Allow-Headers header.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_methods: Specifies the content for the Access-Control-Allow-Methods header.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_origin_regexes: Specifies the regualar expression patterns that match allowed origins. For regular expression grammar
                please see en.cppreference.com/w/cpp/regex/ecmascript
                An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
-        :param pulumi.Input[List[pulumi.Input[str]]] allow_origins: Specifies the list of origins that will be allowed to do CORS requests.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_origins: Specifies the list of origins that will be allowed to do CORS requests.
                An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
         :param pulumi.Input[bool] disabled: If true, specifies the CORS policy is disabled. The default value is false, which indicates that the CORS policy is in effect.
-        :param pulumi.Input[List[pulumi.Input[str]]] expose_headers: Specifies the content for the Access-Control-Expose-Headers header.
-        :param pulumi.Input[float] max_age: Specifies how long results of a preflight request can be cached in seconds.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] expose_headers: Specifies the content for the Access-Control-Expose-Headers header.
+        :param pulumi.Input[int] max_age: Specifies how long results of a preflight request can be cached in seconds.
                This translates to the Access-Control-Max-Age header.
         """
         if allow_credentials is not None:
@@ -17040,31 +17040,31 @@ class URLMapDefaultRouteActionCorsPolicyArgs:
 
     @property
     @pulumi.getter(name="allowHeaders")
-    def allow_headers(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def allow_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the content for the Access-Control-Allow-Headers header.
         """
         return pulumi.get(self, "allow_headers")
 
     @allow_headers.setter
-    def allow_headers(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def allow_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allow_headers", value)
 
     @property
     @pulumi.getter(name="allowMethods")
-    def allow_methods(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def allow_methods(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the content for the Access-Control-Allow-Methods header.
         """
         return pulumi.get(self, "allow_methods")
 
     @allow_methods.setter
-    def allow_methods(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def allow_methods(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allow_methods", value)
 
     @property
     @pulumi.getter(name="allowOriginRegexes")
-    def allow_origin_regexes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def allow_origin_regexes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the regualar expression patterns that match allowed origins. For regular expression grammar
         please see en.cppreference.com/w/cpp/regex/ecmascript
@@ -17073,12 +17073,12 @@ class URLMapDefaultRouteActionCorsPolicyArgs:
         return pulumi.get(self, "allow_origin_regexes")
 
     @allow_origin_regexes.setter
-    def allow_origin_regexes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def allow_origin_regexes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allow_origin_regexes", value)
 
     @property
     @pulumi.getter(name="allowOrigins")
-    def allow_origins(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def allow_origins(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the list of origins that will be allowed to do CORS requests.
         An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
@@ -17086,7 +17086,7 @@ class URLMapDefaultRouteActionCorsPolicyArgs:
         return pulumi.get(self, "allow_origins")
 
     @allow_origins.setter
-    def allow_origins(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def allow_origins(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allow_origins", value)
 
     @property
@@ -17103,19 +17103,19 @@ class URLMapDefaultRouteActionCorsPolicyArgs:
 
     @property
     @pulumi.getter(name="exposeHeaders")
-    def expose_headers(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def expose_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the content for the Access-Control-Expose-Headers header.
         """
         return pulumi.get(self, "expose_headers")
 
     @expose_headers.setter
-    def expose_headers(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def expose_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "expose_headers", value)
 
     @property
     @pulumi.getter(name="maxAge")
-    def max_age(self) -> Optional[pulumi.Input[float]]:
+    def max_age(self) -> Optional[pulumi.Input[int]]:
         """
         Specifies how long results of a preflight request can be cached in seconds.
         This translates to the Access-Control-Max-Age header.
@@ -17123,7 +17123,7 @@ class URLMapDefaultRouteActionCorsPolicyArgs:
         return pulumi.get(self, "max_age")
 
     @max_age.setter
-    def max_age(self, value: Optional[pulumi.Input[float]]):
+    def max_age(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_age", value)
 
 
@@ -17173,10 +17173,10 @@ class URLMapDefaultRouteActionFaultInjectionPolicyArgs:
 @pulumi.input_type
 class URLMapDefaultRouteActionFaultInjectionPolicyAbortArgs:
     def __init__(__self__, *,
-                 http_status: Optional[pulumi.Input[float]] = None,
+                 http_status: Optional[pulumi.Input[int]] = None,
                  percentage: Optional[pulumi.Input[float]] = None):
         """
-        :param pulumi.Input[float] http_status: The HTTP status code used to abort the request.
+        :param pulumi.Input[int] http_status: The HTTP status code used to abort the request.
                The value must be between 200 and 599 inclusive.
         :param pulumi.Input[float] percentage: The percentage of traffic (connections/operations/requests) which will be aborted as part of fault injection.
                The value must be between 0.0 and 100.0 inclusive.
@@ -17188,7 +17188,7 @@ class URLMapDefaultRouteActionFaultInjectionPolicyAbortArgs:
 
     @property
     @pulumi.getter(name="httpStatus")
-    def http_status(self) -> Optional[pulumi.Input[float]]:
+    def http_status(self) -> Optional[pulumi.Input[int]]:
         """
         The HTTP status code used to abort the request.
         The value must be between 200 and 599 inclusive.
@@ -17196,7 +17196,7 @@ class URLMapDefaultRouteActionFaultInjectionPolicyAbortArgs:
         return pulumi.get(self, "http_status")
 
     @http_status.setter
-    def http_status(self, value: Optional[pulumi.Input[float]]):
+    def http_status(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "http_status", value)
 
     @property
@@ -17259,10 +17259,10 @@ class URLMapDefaultRouteActionFaultInjectionPolicyDelayArgs:
 @pulumi.input_type
 class URLMapDefaultRouteActionFaultInjectionPolicyDelayFixedDelayArgs:
     def __init__(__self__, *,
-                 nanos: Optional[pulumi.Input[float]] = None,
+                 nanos: Optional[pulumi.Input[int]] = None,
                  seconds: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
                represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
         :param pulumi.Input[str] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.
                Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
@@ -17274,7 +17274,7 @@ class URLMapDefaultRouteActionFaultInjectionPolicyDelayFixedDelayArgs:
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
         represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
@@ -17282,7 +17282,7 @@ class URLMapDefaultRouteActionFaultInjectionPolicyDelayFixedDelayArgs:
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
     @property
@@ -17324,16 +17324,16 @@ class URLMapDefaultRouteActionRequestMirrorPolicyArgs:
 @pulumi.input_type
 class URLMapDefaultRouteActionRetryPolicyArgs:
     def __init__(__self__, *,
-                 num_retries: Optional[pulumi.Input[float]] = None,
+                 num_retries: Optional[pulumi.Input[int]] = None,
                  per_try_timeout: Optional[pulumi.Input['URLMapDefaultRouteActionRetryPolicyPerTryTimeoutArgs']] = None,
-                 retry_conditions: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 retry_conditions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[float] num_retries: Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
+        :param pulumi.Input[int] num_retries: Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
         :param pulumi.Input['URLMapDefaultRouteActionRetryPolicyPerTryTimeoutArgs'] per_try_timeout: Specifies a non-zero timeout per retry attempt.
                If not specified, will use the timeout set in HttpRouteAction. If timeout in HttpRouteAction is not set,
                will use the largest timeout among all backend services associated with the route.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] retry_conditions: Specfies one or more conditions when this retry rule applies. Valid values are:
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] retry_conditions: Specfies one or more conditions when this retry rule applies. Valid values are:
                5xx: Loadbalancer will attempt a retry if the backend service responds with any 5xx response code,
                or if the backend service does not respond at all, example: disconnects, reset, read timeout,
                connection failure, and refused streams.
@@ -17358,14 +17358,14 @@ class URLMapDefaultRouteActionRetryPolicyArgs:
 
     @property
     @pulumi.getter(name="numRetries")
-    def num_retries(self) -> Optional[pulumi.Input[float]]:
+    def num_retries(self) -> Optional[pulumi.Input[int]]:
         """
         Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
         """
         return pulumi.get(self, "num_retries")
 
     @num_retries.setter
-    def num_retries(self, value: Optional[pulumi.Input[float]]):
+    def num_retries(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "num_retries", value)
 
     @property
@@ -17385,7 +17385,7 @@ class URLMapDefaultRouteActionRetryPolicyArgs:
 
     @property
     @pulumi.getter(name="retryConditions")
-    def retry_conditions(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def retry_conditions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specfies one or more conditions when this retry rule applies. Valid values are:
         5xx: Loadbalancer will attempt a retry if the backend service responds with any 5xx response code,
@@ -17406,17 +17406,17 @@ class URLMapDefaultRouteActionRetryPolicyArgs:
         return pulumi.get(self, "retry_conditions")
 
     @retry_conditions.setter
-    def retry_conditions(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def retry_conditions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "retry_conditions", value)
 
 
 @pulumi.input_type
 class URLMapDefaultRouteActionRetryPolicyPerTryTimeoutArgs:
     def __init__(__self__, *,
-                 nanos: Optional[pulumi.Input[float]] = None,
+                 nanos: Optional[pulumi.Input[int]] = None,
                  seconds: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
                represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
         :param pulumi.Input[str] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.
                Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
@@ -17428,7 +17428,7 @@ class URLMapDefaultRouteActionRetryPolicyPerTryTimeoutArgs:
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
         represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
@@ -17436,7 +17436,7 @@ class URLMapDefaultRouteActionRetryPolicyPerTryTimeoutArgs:
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
     @property
@@ -17456,10 +17456,10 @@ class URLMapDefaultRouteActionRetryPolicyPerTryTimeoutArgs:
 @pulumi.input_type
 class URLMapDefaultRouteActionTimeoutArgs:
     def __init__(__self__, *,
-                 nanos: Optional[pulumi.Input[float]] = None,
+                 nanos: Optional[pulumi.Input[int]] = None,
                  seconds: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
                represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
         :param pulumi.Input[str] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.
                Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
@@ -17471,7 +17471,7 @@ class URLMapDefaultRouteActionTimeoutArgs:
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
         represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
@@ -17479,7 +17479,7 @@ class URLMapDefaultRouteActionTimeoutArgs:
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
     @property
@@ -17548,7 +17548,7 @@ class URLMapDefaultRouteActionWeightedBackendServiceArgs:
     def __init__(__self__, *,
                  backend_service: Optional[pulumi.Input[str]] = None,
                  header_action: Optional[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceHeaderActionArgs']] = None,
-                 weight: Optional[pulumi.Input[float]] = None):
+                 weight: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] backend_service: The full or partial URL to the BackendService resource being mirrored to.
         :param pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceHeaderActionArgs'] header_action: Specifies changes to request and response headers that need to take effect for
@@ -17556,7 +17556,7 @@ class URLMapDefaultRouteActionWeightedBackendServiceArgs:
                headerAction specified here take effect before headerAction in the enclosing
                HttpRouteRule, PathMatcher and UrlMap.
                Structure is documented below.
-        :param pulumi.Input[float] weight: Specifies the fraction of traffic sent to backendService, computed as
+        :param pulumi.Input[int] weight: Specifies the fraction of traffic sent to backendService, computed as
                weight / (sum of all weightedBackendService weights in routeAction) .
                The selection of a backend service is determined only for new traffic. Once a user's request
                has been directed to a backendService, subsequent requests will be sent to the same backendService
@@ -17600,7 +17600,7 @@ class URLMapDefaultRouteActionWeightedBackendServiceArgs:
 
     @property
     @pulumi.getter
-    def weight(self) -> Optional[pulumi.Input[float]]:
+    def weight(self) -> Optional[pulumi.Input[int]]:
         """
         Specifies the fraction of traffic sent to backendService, computed as
         weight / (sum of all weightedBackendService weights in routeAction) .
@@ -17612,25 +17612,25 @@ class URLMapDefaultRouteActionWeightedBackendServiceArgs:
         return pulumi.get(self, "weight")
 
     @weight.setter
-    def weight(self, value: Optional[pulumi.Input[float]]):
+    def weight(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "weight", value)
 
 
 @pulumi.input_type
 class URLMapDefaultRouteActionWeightedBackendServiceHeaderActionArgs:
     def __init__(__self__, *,
-                 request_headers_to_adds: Optional[pulumi.Input[List[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]] = None,
-                 request_headers_to_removes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 response_headers_to_adds: Optional[pulumi.Input[List[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]] = None,
-                 response_headers_to_removes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 request_headers_to_adds: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]] = None,
+                 request_headers_to_removes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 response_headers_to_adds: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]] = None,
+                 response_headers_to_removes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the backendService.
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the backendService.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] request_headers_to_removes: A list of header names for headers that need to be removed from the request prior to
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] request_headers_to_removes: A list of header names for headers that need to be removed from the request prior to
                forwarding the request to the backendService.
-        :param pulumi.Input[List[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] response_headers_to_removes: A list of header names for headers that need to be removed from the response prior to sending the
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] response_headers_to_removes: A list of header names for headers that need to be removed from the response prior to sending the
                response back to the client.
         """
         if request_headers_to_adds is not None:
@@ -17644,7 +17644,7 @@ class URLMapDefaultRouteActionWeightedBackendServiceHeaderActionArgs:
 
     @property
     @pulumi.getter(name="requestHeadersToAdds")
-    def request_headers_to_adds(self) -> Optional[pulumi.Input[List[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]]:
+    def request_headers_to_adds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]]:
         """
         Headers to add to a matching request prior to forwarding the request to the backendService.
         Structure is documented below.
@@ -17652,12 +17652,12 @@ class URLMapDefaultRouteActionWeightedBackendServiceHeaderActionArgs:
         return pulumi.get(self, "request_headers_to_adds")
 
     @request_headers_to_adds.setter
-    def request_headers_to_adds(self, value: Optional[pulumi.Input[List[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]]):
+    def request_headers_to_adds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]]):
         pulumi.set(self, "request_headers_to_adds", value)
 
     @property
     @pulumi.getter(name="requestHeadersToRemoves")
-    def request_headers_to_removes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def request_headers_to_removes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A list of header names for headers that need to be removed from the request prior to
         forwarding the request to the backendService.
@@ -17665,12 +17665,12 @@ class URLMapDefaultRouteActionWeightedBackendServiceHeaderActionArgs:
         return pulumi.get(self, "request_headers_to_removes")
 
     @request_headers_to_removes.setter
-    def request_headers_to_removes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def request_headers_to_removes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "request_headers_to_removes", value)
 
     @property
     @pulumi.getter(name="responseHeadersToAdds")
-    def response_headers_to_adds(self) -> Optional[pulumi.Input[List[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]]:
+    def response_headers_to_adds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]]:
         """
         Headers to add the response prior to sending the response back to the client.
         Structure is documented below.
@@ -17678,12 +17678,12 @@ class URLMapDefaultRouteActionWeightedBackendServiceHeaderActionArgs:
         return pulumi.get(self, "response_headers_to_adds")
 
     @response_headers_to_adds.setter
-    def response_headers_to_adds(self, value: Optional[pulumi.Input[List[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]]):
+    def response_headers_to_adds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]]):
         pulumi.set(self, "response_headers_to_adds", value)
 
     @property
     @pulumi.getter(name="responseHeadersToRemoves")
-    def response_headers_to_removes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def response_headers_to_removes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A list of header names for headers that need to be removed from the response prior to sending the
         response back to the client.
@@ -17691,7 +17691,7 @@ class URLMapDefaultRouteActionWeightedBackendServiceHeaderActionArgs:
         return pulumi.get(self, "response_headers_to_removes")
 
     @response_headers_to_removes.setter
-    def response_headers_to_removes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def response_headers_to_removes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "response_headers_to_removes", value)
 
 
@@ -17958,18 +17958,18 @@ class URLMapDefaultUrlRedirectArgs:
 @pulumi.input_type
 class URLMapHeaderActionArgs:
     def __init__(__self__, *,
-                 request_headers_to_adds: Optional[pulumi.Input[List[pulumi.Input['URLMapHeaderActionRequestHeadersToAddArgs']]]] = None,
-                 request_headers_to_removes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 response_headers_to_adds: Optional[pulumi.Input[List[pulumi.Input['URLMapHeaderActionResponseHeadersToAddArgs']]]] = None,
-                 response_headers_to_removes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 request_headers_to_adds: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapHeaderActionRequestHeadersToAddArgs']]]] = None,
+                 request_headers_to_removes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 response_headers_to_adds: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapHeaderActionResponseHeadersToAddArgs']]]] = None,
+                 response_headers_to_removes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input['URLMapHeaderActionRequestHeadersToAddArgs']]] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the backendService.
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapHeaderActionRequestHeadersToAddArgs']]] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the backendService.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] request_headers_to_removes: A list of header names for headers that need to be removed from the request prior to
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] request_headers_to_removes: A list of header names for headers that need to be removed from the request prior to
                forwarding the request to the backendService.
-        :param pulumi.Input[List[pulumi.Input['URLMapHeaderActionResponseHeadersToAddArgs']]] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapHeaderActionResponseHeadersToAddArgs']]] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] response_headers_to_removes: A list of header names for headers that need to be removed from the response prior to sending the
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] response_headers_to_removes: A list of header names for headers that need to be removed from the response prior to sending the
                response back to the client.
         """
         if request_headers_to_adds is not None:
@@ -17983,7 +17983,7 @@ class URLMapHeaderActionArgs:
 
     @property
     @pulumi.getter(name="requestHeadersToAdds")
-    def request_headers_to_adds(self) -> Optional[pulumi.Input[List[pulumi.Input['URLMapHeaderActionRequestHeadersToAddArgs']]]]:
+    def request_headers_to_adds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['URLMapHeaderActionRequestHeadersToAddArgs']]]]:
         """
         Headers to add to a matching request prior to forwarding the request to the backendService.
         Structure is documented below.
@@ -17991,12 +17991,12 @@ class URLMapHeaderActionArgs:
         return pulumi.get(self, "request_headers_to_adds")
 
     @request_headers_to_adds.setter
-    def request_headers_to_adds(self, value: Optional[pulumi.Input[List[pulumi.Input['URLMapHeaderActionRequestHeadersToAddArgs']]]]):
+    def request_headers_to_adds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapHeaderActionRequestHeadersToAddArgs']]]]):
         pulumi.set(self, "request_headers_to_adds", value)
 
     @property
     @pulumi.getter(name="requestHeadersToRemoves")
-    def request_headers_to_removes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def request_headers_to_removes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A list of header names for headers that need to be removed from the request prior to
         forwarding the request to the backendService.
@@ -18004,12 +18004,12 @@ class URLMapHeaderActionArgs:
         return pulumi.get(self, "request_headers_to_removes")
 
     @request_headers_to_removes.setter
-    def request_headers_to_removes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def request_headers_to_removes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "request_headers_to_removes", value)
 
     @property
     @pulumi.getter(name="responseHeadersToAdds")
-    def response_headers_to_adds(self) -> Optional[pulumi.Input[List[pulumi.Input['URLMapHeaderActionResponseHeadersToAddArgs']]]]:
+    def response_headers_to_adds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['URLMapHeaderActionResponseHeadersToAddArgs']]]]:
         """
         Headers to add the response prior to sending the response back to the client.
         Structure is documented below.
@@ -18017,12 +18017,12 @@ class URLMapHeaderActionArgs:
         return pulumi.get(self, "response_headers_to_adds")
 
     @response_headers_to_adds.setter
-    def response_headers_to_adds(self, value: Optional[pulumi.Input[List[pulumi.Input['URLMapHeaderActionResponseHeadersToAddArgs']]]]):
+    def response_headers_to_adds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapHeaderActionResponseHeadersToAddArgs']]]]):
         pulumi.set(self, "response_headers_to_adds", value)
 
     @property
     @pulumi.getter(name="responseHeadersToRemoves")
-    def response_headers_to_removes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def response_headers_to_removes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A list of header names for headers that need to be removed from the response prior to sending the
         response back to the client.
@@ -18030,7 +18030,7 @@ class URLMapHeaderActionArgs:
         return pulumi.get(self, "response_headers_to_removes")
 
     @response_headers_to_removes.setter
-    def response_headers_to_removes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def response_headers_to_removes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "response_headers_to_removes", value)
 
 
@@ -18145,11 +18145,11 @@ class URLMapHeaderActionResponseHeadersToAddArgs:
 @pulumi.input_type
 class URLMapHostRuleArgs:
     def __init__(__self__, *,
-                 hosts: pulumi.Input[List[pulumi.Input[str]]],
+                 hosts: pulumi.Input[Sequence[pulumi.Input[str]]],
                  path_matcher: pulumi.Input[str],
                  description: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input[str]]] hosts: The list of host patterns to match. They must be valid hostnames, except * will
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] hosts: The list of host patterns to match. They must be valid hostnames, except * will
                match any string of ([a-z0-9-.]*). In that case, * must be the first character
                and must be followed in the pattern by either - or ..
         :param pulumi.Input[str] path_matcher: The name of the PathMatcher to use to match the path portion of the URL if the
@@ -18163,7 +18163,7 @@ class URLMapHostRuleArgs:
 
     @property
     @pulumi.getter
-    def hosts(self) -> pulumi.Input[List[pulumi.Input[str]]]:
+    def hosts(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
         The list of host patterns to match. They must be valid hostnames, except * will
         match any string of ([a-z0-9-.]*). In that case, * must be the first character
@@ -18172,7 +18172,7 @@ class URLMapHostRuleArgs:
         return pulumi.get(self, "hosts")
 
     @hosts.setter
-    def hosts(self, value: pulumi.Input[List[pulumi.Input[str]]]):
+    def hosts(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "hosts", value)
 
     @property
@@ -18210,8 +18210,8 @@ class URLMapPathMatcherArgs:
                  default_url_redirect: Optional[pulumi.Input['URLMapPathMatcherDefaultUrlRedirectArgs']] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  header_action: Optional[pulumi.Input['URLMapPathMatcherHeaderActionArgs']] = None,
-                 path_rules: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherPathRuleArgs']]]] = None,
-                 route_rules: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleArgs']]]] = None):
+                 path_rules: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherPathRuleArgs']]]] = None,
+                 route_rules: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleArgs']]]] = None):
         """
         :param pulumi.Input[str] name: The name of the query parameter to match. The query parameter must exist in the
                request, in the absence of which the request match fails.
@@ -18232,14 +18232,14 @@ class URLMapPathMatcherArgs:
                headerAction specified here take effect before headerAction in the enclosing
                HttpRouteRule, PathMatcher and UrlMap.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input['URLMapPathMatcherPathRuleArgs']]] path_rules: The list of path rules. Use this list instead of routeRules when routing based
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherPathRuleArgs']]] path_rules: The list of path rules. Use this list instead of routeRules when routing based
                on simple path matching is all that's required. The order by which path rules
                are specified does not matter. Matches are always done on the longest-path-first
                basis. For example: a pathRule with a path /a/b/c/* will match before /a/b/*
                irrespective of the order in which those paths appear in this list. Within a
                given pathMatcher, only one of pathRules or routeRules must be set.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleArgs']]] route_rules: The list of ordered HTTP route rules. Use this list instead of pathRules when
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleArgs']]] route_rules: The list of ordered HTTP route rules. Use this list instead of pathRules when
                advanced route matching and routing actions are desired. The order of specifying
                routeRules matters: the first rule that matches will cause its specified routing
                action to take effect. Within a given pathMatcher, only one of pathRules or
@@ -18350,7 +18350,7 @@ class URLMapPathMatcherArgs:
 
     @property
     @pulumi.getter(name="pathRules")
-    def path_rules(self) -> Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherPathRuleArgs']]]]:
+    def path_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherPathRuleArgs']]]]:
         """
         The list of path rules. Use this list instead of routeRules when routing based
         on simple path matching is all that's required. The order by which path rules
@@ -18363,12 +18363,12 @@ class URLMapPathMatcherArgs:
         return pulumi.get(self, "path_rules")
 
     @path_rules.setter
-    def path_rules(self, value: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherPathRuleArgs']]]]):
+    def path_rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherPathRuleArgs']]]]):
         pulumi.set(self, "path_rules", value)
 
     @property
     @pulumi.getter(name="routeRules")
-    def route_rules(self) -> Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleArgs']]]]:
+    def route_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleArgs']]]]:
         """
         The list of ordered HTTP route rules. Use this list instead of pathRules when
         advanced route matching and routing actions are desired. The order of specifying
@@ -18381,7 +18381,7 @@ class URLMapPathMatcherArgs:
         return pulumi.get(self, "route_rules")
 
     @route_rules.setter
-    def route_rules(self, value: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleArgs']]]]):
+    def route_rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleArgs']]]]):
         pulumi.set(self, "route_rules", value)
 
 
@@ -18394,7 +18394,7 @@ class URLMapPathMatcherDefaultRouteActionArgs:
                  retry_policy: Optional[pulumi.Input['URLMapPathMatcherDefaultRouteActionRetryPolicyArgs']] = None,
                  timeout: Optional[pulumi.Input['URLMapPathMatcherDefaultRouteActionTimeoutArgs']] = None,
                  url_rewrite: Optional[pulumi.Input['URLMapPathMatcherDefaultRouteActionUrlRewriteArgs']] = None,
-                 weighted_backend_services: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceArgs']]]] = None):
+                 weighted_backend_services: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceArgs']]]] = None):
         """
         :param pulumi.Input['URLMapPathMatcherDefaultRouteActionCorsPolicyArgs'] cors_policy: The specification for allowing client side cross-origin requests. Please see
                [W3C Recommendation for Cross Origin Resource Sharing](https://www.w3.org/TR/cors/)
@@ -18417,7 +18417,7 @@ class URLMapPathMatcherDefaultRouteActionArgs:
                Structure is documented below.
         :param pulumi.Input['URLMapPathMatcherDefaultRouteActionUrlRewriteArgs'] url_rewrite: The spec to modify the URL of the request, prior to forwarding the request to the matched service.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceArgs']]] weighted_backend_services: A list of weighted backend services to send traffic to when a route match occurs.
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceArgs']]] weighted_backend_services: A list of weighted backend services to send traffic to when a route match occurs.
                The weights determine the fraction of traffic that flows to their corresponding backend service.
                If all traffic needs to go to a single backend service, there must be one weightedBackendService
                with weight set to a non 0 number.
@@ -18530,7 +18530,7 @@ class URLMapPathMatcherDefaultRouteActionArgs:
 
     @property
     @pulumi.getter(name="weightedBackendServices")
-    def weighted_backend_services(self) -> Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceArgs']]]]:
+    def weighted_backend_services(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceArgs']]]]:
         """
         A list of weighted backend services to send traffic to when a route match occurs.
         The weights determine the fraction of traffic that flows to their corresponding backend service.
@@ -18544,7 +18544,7 @@ class URLMapPathMatcherDefaultRouteActionArgs:
         return pulumi.get(self, "weighted_backend_services")
 
     @weighted_backend_services.setter
-    def weighted_backend_services(self, value: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceArgs']]]]):
+    def weighted_backend_services(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceArgs']]]]):
         pulumi.set(self, "weighted_backend_services", value)
 
 
@@ -18552,26 +18552,26 @@ class URLMapPathMatcherDefaultRouteActionArgs:
 class URLMapPathMatcherDefaultRouteActionCorsPolicyArgs:
     def __init__(__self__, *,
                  allow_credentials: Optional[pulumi.Input[bool]] = None,
-                 allow_headers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 allow_methods: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 allow_origin_regexes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 allow_origins: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 allow_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allow_methods: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allow_origin_regexes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allow_origins: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  disabled: Optional[pulumi.Input[bool]] = None,
-                 expose_headers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 max_age: Optional[pulumi.Input[float]] = None):
+                 expose_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 max_age: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[bool] allow_credentials: In response to a preflight request, setting this to true indicates that the actual request can include user credentials.
                This translates to the Access-Control-Allow-Credentials header.
-        :param pulumi.Input[List[pulumi.Input[str]]] allow_headers: Specifies the content for the Access-Control-Allow-Headers header.
-        :param pulumi.Input[List[pulumi.Input[str]]] allow_methods: Specifies the content for the Access-Control-Allow-Methods header.
-        :param pulumi.Input[List[pulumi.Input[str]]] allow_origin_regexes: Specifies the regualar expression patterns that match allowed origins. For regular expression grammar
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_headers: Specifies the content for the Access-Control-Allow-Headers header.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_methods: Specifies the content for the Access-Control-Allow-Methods header.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_origin_regexes: Specifies the regualar expression patterns that match allowed origins. For regular expression grammar
                please see en.cppreference.com/w/cpp/regex/ecmascript
                An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
-        :param pulumi.Input[List[pulumi.Input[str]]] allow_origins: Specifies the list of origins that will be allowed to do CORS requests.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_origins: Specifies the list of origins that will be allowed to do CORS requests.
                An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
         :param pulumi.Input[bool] disabled: If true, specifies the CORS policy is disabled. The default value is false, which indicates that the CORS policy is in effect.
-        :param pulumi.Input[List[pulumi.Input[str]]] expose_headers: Specifies the content for the Access-Control-Expose-Headers header.
-        :param pulumi.Input[float] max_age: Specifies how long results of a preflight request can be cached in seconds.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] expose_headers: Specifies the content for the Access-Control-Expose-Headers header.
+        :param pulumi.Input[int] max_age: Specifies how long results of a preflight request can be cached in seconds.
                This translates to the Access-Control-Max-Age header.
         """
         if allow_credentials is not None:
@@ -18606,31 +18606,31 @@ class URLMapPathMatcherDefaultRouteActionCorsPolicyArgs:
 
     @property
     @pulumi.getter(name="allowHeaders")
-    def allow_headers(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def allow_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the content for the Access-Control-Allow-Headers header.
         """
         return pulumi.get(self, "allow_headers")
 
     @allow_headers.setter
-    def allow_headers(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def allow_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allow_headers", value)
 
     @property
     @pulumi.getter(name="allowMethods")
-    def allow_methods(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def allow_methods(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the content for the Access-Control-Allow-Methods header.
         """
         return pulumi.get(self, "allow_methods")
 
     @allow_methods.setter
-    def allow_methods(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def allow_methods(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allow_methods", value)
 
     @property
     @pulumi.getter(name="allowOriginRegexes")
-    def allow_origin_regexes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def allow_origin_regexes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the regualar expression patterns that match allowed origins. For regular expression grammar
         please see en.cppreference.com/w/cpp/regex/ecmascript
@@ -18639,12 +18639,12 @@ class URLMapPathMatcherDefaultRouteActionCorsPolicyArgs:
         return pulumi.get(self, "allow_origin_regexes")
 
     @allow_origin_regexes.setter
-    def allow_origin_regexes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def allow_origin_regexes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allow_origin_regexes", value)
 
     @property
     @pulumi.getter(name="allowOrigins")
-    def allow_origins(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def allow_origins(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the list of origins that will be allowed to do CORS requests.
         An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
@@ -18652,7 +18652,7 @@ class URLMapPathMatcherDefaultRouteActionCorsPolicyArgs:
         return pulumi.get(self, "allow_origins")
 
     @allow_origins.setter
-    def allow_origins(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def allow_origins(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allow_origins", value)
 
     @property
@@ -18669,19 +18669,19 @@ class URLMapPathMatcherDefaultRouteActionCorsPolicyArgs:
 
     @property
     @pulumi.getter(name="exposeHeaders")
-    def expose_headers(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def expose_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the content for the Access-Control-Expose-Headers header.
         """
         return pulumi.get(self, "expose_headers")
 
     @expose_headers.setter
-    def expose_headers(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def expose_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "expose_headers", value)
 
     @property
     @pulumi.getter(name="maxAge")
-    def max_age(self) -> Optional[pulumi.Input[float]]:
+    def max_age(self) -> Optional[pulumi.Input[int]]:
         """
         Specifies how long results of a preflight request can be cached in seconds.
         This translates to the Access-Control-Max-Age header.
@@ -18689,7 +18689,7 @@ class URLMapPathMatcherDefaultRouteActionCorsPolicyArgs:
         return pulumi.get(self, "max_age")
 
     @max_age.setter
-    def max_age(self, value: Optional[pulumi.Input[float]]):
+    def max_age(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_age", value)
 
 
@@ -18739,10 +18739,10 @@ class URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyArgs:
 @pulumi.input_type
 class URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyAbortArgs:
     def __init__(__self__, *,
-                 http_status: Optional[pulumi.Input[float]] = None,
+                 http_status: Optional[pulumi.Input[int]] = None,
                  percentage: Optional[pulumi.Input[float]] = None):
         """
-        :param pulumi.Input[float] http_status: The HTTP status code used to abort the request.
+        :param pulumi.Input[int] http_status: The HTTP status code used to abort the request.
                The value must be between 200 and 599 inclusive.
         :param pulumi.Input[float] percentage: The percentage of traffic (connections/operations/requests) which will be aborted as part of fault injection.
                The value must be between 0.0 and 100.0 inclusive.
@@ -18754,7 +18754,7 @@ class URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyAbortArgs:
 
     @property
     @pulumi.getter(name="httpStatus")
-    def http_status(self) -> Optional[pulumi.Input[float]]:
+    def http_status(self) -> Optional[pulumi.Input[int]]:
         """
         The HTTP status code used to abort the request.
         The value must be between 200 and 599 inclusive.
@@ -18762,7 +18762,7 @@ class URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyAbortArgs:
         return pulumi.get(self, "http_status")
 
     @http_status.setter
-    def http_status(self, value: Optional[pulumi.Input[float]]):
+    def http_status(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "http_status", value)
 
     @property
@@ -18825,10 +18825,10 @@ class URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayArgs:
 @pulumi.input_type
 class URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayFixedDelayArgs:
     def __init__(__self__, *,
-                 nanos: Optional[pulumi.Input[float]] = None,
+                 nanos: Optional[pulumi.Input[int]] = None,
                  seconds: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
                represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
         :param pulumi.Input[str] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.
                Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
@@ -18840,7 +18840,7 @@ class URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayFixedDelayArgs
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
         represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
@@ -18848,7 +18848,7 @@ class URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayFixedDelayArgs
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
     @property
@@ -18890,16 +18890,16 @@ class URLMapPathMatcherDefaultRouteActionRequestMirrorPolicyArgs:
 @pulumi.input_type
 class URLMapPathMatcherDefaultRouteActionRetryPolicyArgs:
     def __init__(__self__, *,
-                 num_retries: Optional[pulumi.Input[float]] = None,
+                 num_retries: Optional[pulumi.Input[int]] = None,
                  per_try_timeout: Optional[pulumi.Input['URLMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeoutArgs']] = None,
-                 retry_conditions: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 retry_conditions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[float] num_retries: Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
+        :param pulumi.Input[int] num_retries: Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
         :param pulumi.Input['URLMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeoutArgs'] per_try_timeout: Specifies a non-zero timeout per retry attempt.
                If not specified, will use the timeout set in HttpRouteAction. If timeout in HttpRouteAction is not set,
                will use the largest timeout among all backend services associated with the route.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] retry_conditions: Specfies one or more conditions when this retry rule applies. Valid values are:
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] retry_conditions: Specfies one or more conditions when this retry rule applies. Valid values are:
                5xx: Loadbalancer will attempt a retry if the backend service responds with any 5xx response code,
                or if the backend service does not respond at all, example: disconnects, reset, read timeout,
                connection failure, and refused streams.
@@ -18924,14 +18924,14 @@ class URLMapPathMatcherDefaultRouteActionRetryPolicyArgs:
 
     @property
     @pulumi.getter(name="numRetries")
-    def num_retries(self) -> Optional[pulumi.Input[float]]:
+    def num_retries(self) -> Optional[pulumi.Input[int]]:
         """
         Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
         """
         return pulumi.get(self, "num_retries")
 
     @num_retries.setter
-    def num_retries(self, value: Optional[pulumi.Input[float]]):
+    def num_retries(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "num_retries", value)
 
     @property
@@ -18951,7 +18951,7 @@ class URLMapPathMatcherDefaultRouteActionRetryPolicyArgs:
 
     @property
     @pulumi.getter(name="retryConditions")
-    def retry_conditions(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def retry_conditions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specfies one or more conditions when this retry rule applies. Valid values are:
         5xx: Loadbalancer will attempt a retry if the backend service responds with any 5xx response code,
@@ -18972,17 +18972,17 @@ class URLMapPathMatcherDefaultRouteActionRetryPolicyArgs:
         return pulumi.get(self, "retry_conditions")
 
     @retry_conditions.setter
-    def retry_conditions(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def retry_conditions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "retry_conditions", value)
 
 
 @pulumi.input_type
 class URLMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeoutArgs:
     def __init__(__self__, *,
-                 nanos: Optional[pulumi.Input[float]] = None,
+                 nanos: Optional[pulumi.Input[int]] = None,
                  seconds: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
                represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
         :param pulumi.Input[str] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.
                Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
@@ -18994,7 +18994,7 @@ class URLMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeoutArgs:
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
         represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
@@ -19002,7 +19002,7 @@ class URLMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeoutArgs:
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
     @property
@@ -19022,10 +19022,10 @@ class URLMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeoutArgs:
 @pulumi.input_type
 class URLMapPathMatcherDefaultRouteActionTimeoutArgs:
     def __init__(__self__, *,
-                 nanos: Optional[pulumi.Input[float]] = None,
+                 nanos: Optional[pulumi.Input[int]] = None,
                  seconds: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
                represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
         :param pulumi.Input[str] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.
                Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
@@ -19037,7 +19037,7 @@ class URLMapPathMatcherDefaultRouteActionTimeoutArgs:
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
         represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
@@ -19045,7 +19045,7 @@ class URLMapPathMatcherDefaultRouteActionTimeoutArgs:
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
     @property
@@ -19114,7 +19114,7 @@ class URLMapPathMatcherDefaultRouteActionWeightedBackendServiceArgs:
     def __init__(__self__, *,
                  backend_service: Optional[pulumi.Input[str]] = None,
                  header_action: Optional[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionArgs']] = None,
-                 weight: Optional[pulumi.Input[float]] = None):
+                 weight: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] backend_service: The full or partial URL to the BackendService resource being mirrored to.
         :param pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionArgs'] header_action: Specifies changes to request and response headers that need to take effect for
@@ -19122,7 +19122,7 @@ class URLMapPathMatcherDefaultRouteActionWeightedBackendServiceArgs:
                headerAction specified here take effect before headerAction in the enclosing
                HttpRouteRule, PathMatcher and UrlMap.
                Structure is documented below.
-        :param pulumi.Input[float] weight: Specifies the fraction of traffic sent to backendService, computed as
+        :param pulumi.Input[int] weight: Specifies the fraction of traffic sent to backendService, computed as
                weight / (sum of all weightedBackendService weights in routeAction) .
                The selection of a backend service is determined only for new traffic. Once a user's request
                has been directed to a backendService, subsequent requests will be sent to the same backendService
@@ -19166,7 +19166,7 @@ class URLMapPathMatcherDefaultRouteActionWeightedBackendServiceArgs:
 
     @property
     @pulumi.getter
-    def weight(self) -> Optional[pulumi.Input[float]]:
+    def weight(self) -> Optional[pulumi.Input[int]]:
         """
         Specifies the fraction of traffic sent to backendService, computed as
         weight / (sum of all weightedBackendService weights in routeAction) .
@@ -19178,25 +19178,25 @@ class URLMapPathMatcherDefaultRouteActionWeightedBackendServiceArgs:
         return pulumi.get(self, "weight")
 
     @weight.setter
-    def weight(self, value: Optional[pulumi.Input[float]]):
+    def weight(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "weight", value)
 
 
 @pulumi.input_type
 class URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionArgs:
     def __init__(__self__, *,
-                 request_headers_to_adds: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]] = None,
-                 request_headers_to_removes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 response_headers_to_adds: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]] = None,
-                 response_headers_to_removes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 request_headers_to_adds: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]] = None,
+                 request_headers_to_removes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 response_headers_to_adds: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]] = None,
+                 response_headers_to_removes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the backendService.
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the backendService.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] request_headers_to_removes: A list of header names for headers that need to be removed from the request prior to
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] request_headers_to_removes: A list of header names for headers that need to be removed from the request prior to
                forwarding the request to the backendService.
-        :param pulumi.Input[List[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] response_headers_to_removes: A list of header names for headers that need to be removed from the response prior to sending the
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] response_headers_to_removes: A list of header names for headers that need to be removed from the response prior to sending the
                response back to the client.
         """
         if request_headers_to_adds is not None:
@@ -19210,7 +19210,7 @@ class URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionArgs:
 
     @property
     @pulumi.getter(name="requestHeadersToAdds")
-    def request_headers_to_adds(self) -> Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]]:
+    def request_headers_to_adds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]]:
         """
         Headers to add to a matching request prior to forwarding the request to the backendService.
         Structure is documented below.
@@ -19218,12 +19218,12 @@ class URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionArgs:
         return pulumi.get(self, "request_headers_to_adds")
 
     @request_headers_to_adds.setter
-    def request_headers_to_adds(self, value: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]]):
+    def request_headers_to_adds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]]):
         pulumi.set(self, "request_headers_to_adds", value)
 
     @property
     @pulumi.getter(name="requestHeadersToRemoves")
-    def request_headers_to_removes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def request_headers_to_removes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A list of header names for headers that need to be removed from the request prior to
         forwarding the request to the backendService.
@@ -19231,12 +19231,12 @@ class URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionArgs:
         return pulumi.get(self, "request_headers_to_removes")
 
     @request_headers_to_removes.setter
-    def request_headers_to_removes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def request_headers_to_removes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "request_headers_to_removes", value)
 
     @property
     @pulumi.getter(name="responseHeadersToAdds")
-    def response_headers_to_adds(self) -> Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]]:
+    def response_headers_to_adds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]]:
         """
         Headers to add the response prior to sending the response back to the client.
         Structure is documented below.
@@ -19244,12 +19244,12 @@ class URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionArgs:
         return pulumi.get(self, "response_headers_to_adds")
 
     @response_headers_to_adds.setter
-    def response_headers_to_adds(self, value: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]]):
+    def response_headers_to_adds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]]):
         pulumi.set(self, "response_headers_to_adds", value)
 
     @property
     @pulumi.getter(name="responseHeadersToRemoves")
-    def response_headers_to_removes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def response_headers_to_removes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A list of header names for headers that need to be removed from the response prior to sending the
         response back to the client.
@@ -19257,7 +19257,7 @@ class URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionArgs:
         return pulumi.get(self, "response_headers_to_removes")
 
     @response_headers_to_removes.setter
-    def response_headers_to_removes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def response_headers_to_removes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "response_headers_to_removes", value)
 
 
@@ -19524,18 +19524,18 @@ class URLMapPathMatcherDefaultUrlRedirectArgs:
 @pulumi.input_type
 class URLMapPathMatcherHeaderActionArgs:
     def __init__(__self__, *,
-                 request_headers_to_adds: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherHeaderActionRequestHeadersToAddArgs']]]] = None,
-                 request_headers_to_removes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 response_headers_to_adds: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherHeaderActionResponseHeadersToAddArgs']]]] = None,
-                 response_headers_to_removes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 request_headers_to_adds: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherHeaderActionRequestHeadersToAddArgs']]]] = None,
+                 request_headers_to_removes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 response_headers_to_adds: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherHeaderActionResponseHeadersToAddArgs']]]] = None,
+                 response_headers_to_removes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input['URLMapPathMatcherHeaderActionRequestHeadersToAddArgs']]] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the backendService.
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherHeaderActionRequestHeadersToAddArgs']]] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the backendService.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] request_headers_to_removes: A list of header names for headers that need to be removed from the request prior to
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] request_headers_to_removes: A list of header names for headers that need to be removed from the request prior to
                forwarding the request to the backendService.
-        :param pulumi.Input[List[pulumi.Input['URLMapPathMatcherHeaderActionResponseHeadersToAddArgs']]] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherHeaderActionResponseHeadersToAddArgs']]] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] response_headers_to_removes: A list of header names for headers that need to be removed from the response prior to sending the
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] response_headers_to_removes: A list of header names for headers that need to be removed from the response prior to sending the
                response back to the client.
         """
         if request_headers_to_adds is not None:
@@ -19549,7 +19549,7 @@ class URLMapPathMatcherHeaderActionArgs:
 
     @property
     @pulumi.getter(name="requestHeadersToAdds")
-    def request_headers_to_adds(self) -> Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherHeaderActionRequestHeadersToAddArgs']]]]:
+    def request_headers_to_adds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherHeaderActionRequestHeadersToAddArgs']]]]:
         """
         Headers to add to a matching request prior to forwarding the request to the backendService.
         Structure is documented below.
@@ -19557,12 +19557,12 @@ class URLMapPathMatcherHeaderActionArgs:
         return pulumi.get(self, "request_headers_to_adds")
 
     @request_headers_to_adds.setter
-    def request_headers_to_adds(self, value: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherHeaderActionRequestHeadersToAddArgs']]]]):
+    def request_headers_to_adds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherHeaderActionRequestHeadersToAddArgs']]]]):
         pulumi.set(self, "request_headers_to_adds", value)
 
     @property
     @pulumi.getter(name="requestHeadersToRemoves")
-    def request_headers_to_removes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def request_headers_to_removes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A list of header names for headers that need to be removed from the request prior to
         forwarding the request to the backendService.
@@ -19570,12 +19570,12 @@ class URLMapPathMatcherHeaderActionArgs:
         return pulumi.get(self, "request_headers_to_removes")
 
     @request_headers_to_removes.setter
-    def request_headers_to_removes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def request_headers_to_removes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "request_headers_to_removes", value)
 
     @property
     @pulumi.getter(name="responseHeadersToAdds")
-    def response_headers_to_adds(self) -> Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherHeaderActionResponseHeadersToAddArgs']]]]:
+    def response_headers_to_adds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherHeaderActionResponseHeadersToAddArgs']]]]:
         """
         Headers to add the response prior to sending the response back to the client.
         Structure is documented below.
@@ -19583,12 +19583,12 @@ class URLMapPathMatcherHeaderActionArgs:
         return pulumi.get(self, "response_headers_to_adds")
 
     @response_headers_to_adds.setter
-    def response_headers_to_adds(self, value: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherHeaderActionResponseHeadersToAddArgs']]]]):
+    def response_headers_to_adds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherHeaderActionResponseHeadersToAddArgs']]]]):
         pulumi.set(self, "response_headers_to_adds", value)
 
     @property
     @pulumi.getter(name="responseHeadersToRemoves")
-    def response_headers_to_removes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def response_headers_to_removes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A list of header names for headers that need to be removed from the response prior to sending the
         response back to the client.
@@ -19596,7 +19596,7 @@ class URLMapPathMatcherHeaderActionArgs:
         return pulumi.get(self, "response_headers_to_removes")
 
     @response_headers_to_removes.setter
-    def response_headers_to_removes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def response_headers_to_removes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "response_headers_to_removes", value)
 
 
@@ -19711,12 +19711,12 @@ class URLMapPathMatcherHeaderActionResponseHeadersToAddArgs:
 @pulumi.input_type
 class URLMapPathMatcherPathRuleArgs:
     def __init__(__self__, *,
-                 paths: pulumi.Input[List[pulumi.Input[str]]],
+                 paths: pulumi.Input[Sequence[pulumi.Input[str]]],
                  route_action: Optional[pulumi.Input['URLMapPathMatcherPathRuleRouteActionArgs']] = None,
                  service: Optional[pulumi.Input[str]] = None,
                  url_redirect: Optional[pulumi.Input['URLMapPathMatcherPathRuleUrlRedirectArgs']] = None):
         """
-        :param pulumi.Input[List[pulumi.Input[str]]] paths: The list of path patterns to match. Each must start with / and the only place a
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] paths: The list of path patterns to match. Each must start with / and the only place a
                * is allowed is at the end following a /. The string fed to the path matcher
                does not include any text after the first ? or #, and those chars are not
                allowed here.
@@ -19743,7 +19743,7 @@ class URLMapPathMatcherPathRuleArgs:
 
     @property
     @pulumi.getter
-    def paths(self) -> pulumi.Input[List[pulumi.Input[str]]]:
+    def paths(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
         The list of path patterns to match. Each must start with / and the only place a
         * is allowed is at the end following a /. The string fed to the path matcher
@@ -19753,7 +19753,7 @@ class URLMapPathMatcherPathRuleArgs:
         return pulumi.get(self, "paths")
 
     @paths.setter
-    def paths(self, value: pulumi.Input[List[pulumi.Input[str]]]):
+    def paths(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "paths", value)
 
     @property
@@ -19811,7 +19811,7 @@ class URLMapPathMatcherPathRuleRouteActionArgs:
                  retry_policy: Optional[pulumi.Input['URLMapPathMatcherPathRuleRouteActionRetryPolicyArgs']] = None,
                  timeout: Optional[pulumi.Input['URLMapPathMatcherPathRuleRouteActionTimeoutArgs']] = None,
                  url_rewrite: Optional[pulumi.Input['URLMapPathMatcherPathRuleRouteActionUrlRewriteArgs']] = None,
-                 weighted_backend_services: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs']]]] = None):
+                 weighted_backend_services: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs']]]] = None):
         """
         :param pulumi.Input['URLMapPathMatcherPathRuleRouteActionCorsPolicyArgs'] cors_policy: The specification for allowing client side cross-origin requests. Please see
                [W3C Recommendation for Cross Origin Resource Sharing](https://www.w3.org/TR/cors/)
@@ -19834,7 +19834,7 @@ class URLMapPathMatcherPathRuleRouteActionArgs:
                Structure is documented below.
         :param pulumi.Input['URLMapPathMatcherPathRuleRouteActionUrlRewriteArgs'] url_rewrite: The spec to modify the URL of the request, prior to forwarding the request to the matched service.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs']]] weighted_backend_services: A list of weighted backend services to send traffic to when a route match occurs.
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs']]] weighted_backend_services: A list of weighted backend services to send traffic to when a route match occurs.
                The weights determine the fraction of traffic that flows to their corresponding backend service.
                If all traffic needs to go to a single backend service, there must be one weightedBackendService
                with weight set to a non 0 number.
@@ -19947,7 +19947,7 @@ class URLMapPathMatcherPathRuleRouteActionArgs:
 
     @property
     @pulumi.getter(name="weightedBackendServices")
-    def weighted_backend_services(self) -> Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs']]]]:
+    def weighted_backend_services(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs']]]]:
         """
         A list of weighted backend services to send traffic to when a route match occurs.
         The weights determine the fraction of traffic that flows to their corresponding backend service.
@@ -19961,7 +19961,7 @@ class URLMapPathMatcherPathRuleRouteActionArgs:
         return pulumi.get(self, "weighted_backend_services")
 
     @weighted_backend_services.setter
-    def weighted_backend_services(self, value: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs']]]]):
+    def weighted_backend_services(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs']]]]):
         pulumi.set(self, "weighted_backend_services", value)
 
 
@@ -19970,25 +19970,25 @@ class URLMapPathMatcherPathRuleRouteActionCorsPolicyArgs:
     def __init__(__self__, *,
                  disabled: pulumi.Input[bool],
                  allow_credentials: Optional[pulumi.Input[bool]] = None,
-                 allow_headers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 allow_methods: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 allow_origin_regexes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 allow_origins: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 expose_headers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 max_age: Optional[pulumi.Input[float]] = None):
+                 allow_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allow_methods: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allow_origin_regexes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allow_origins: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 expose_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 max_age: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[bool] disabled: If true, specifies the CORS policy is disabled. The default value is false, which indicates that the CORS policy is in effect.
         :param pulumi.Input[bool] allow_credentials: In response to a preflight request, setting this to true indicates that the actual request can include user credentials.
                This translates to the Access-Control-Allow-Credentials header.
-        :param pulumi.Input[List[pulumi.Input[str]]] allow_headers: Specifies the content for the Access-Control-Allow-Headers header.
-        :param pulumi.Input[List[pulumi.Input[str]]] allow_methods: Specifies the content for the Access-Control-Allow-Methods header.
-        :param pulumi.Input[List[pulumi.Input[str]]] allow_origin_regexes: Specifies the regualar expression patterns that match allowed origins. For regular expression grammar
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_headers: Specifies the content for the Access-Control-Allow-Headers header.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_methods: Specifies the content for the Access-Control-Allow-Methods header.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_origin_regexes: Specifies the regualar expression patterns that match allowed origins. For regular expression grammar
                please see en.cppreference.com/w/cpp/regex/ecmascript
                An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
-        :param pulumi.Input[List[pulumi.Input[str]]] allow_origins: Specifies the list of origins that will be allowed to do CORS requests.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_origins: Specifies the list of origins that will be allowed to do CORS requests.
                An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
-        :param pulumi.Input[List[pulumi.Input[str]]] expose_headers: Specifies the content for the Access-Control-Expose-Headers header.
-        :param pulumi.Input[float] max_age: Specifies how long results of a preflight request can be cached in seconds.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] expose_headers: Specifies the content for the Access-Control-Expose-Headers header.
+        :param pulumi.Input[int] max_age: Specifies how long results of a preflight request can be cached in seconds.
                This translates to the Access-Control-Max-Age header.
         """
         pulumi.set(__self__, "disabled", disabled)
@@ -20034,31 +20034,31 @@ class URLMapPathMatcherPathRuleRouteActionCorsPolicyArgs:
 
     @property
     @pulumi.getter(name="allowHeaders")
-    def allow_headers(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def allow_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the content for the Access-Control-Allow-Headers header.
         """
         return pulumi.get(self, "allow_headers")
 
     @allow_headers.setter
-    def allow_headers(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def allow_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allow_headers", value)
 
     @property
     @pulumi.getter(name="allowMethods")
-    def allow_methods(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def allow_methods(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the content for the Access-Control-Allow-Methods header.
         """
         return pulumi.get(self, "allow_methods")
 
     @allow_methods.setter
-    def allow_methods(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def allow_methods(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allow_methods", value)
 
     @property
     @pulumi.getter(name="allowOriginRegexes")
-    def allow_origin_regexes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def allow_origin_regexes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the regualar expression patterns that match allowed origins. For regular expression grammar
         please see en.cppreference.com/w/cpp/regex/ecmascript
@@ -20067,12 +20067,12 @@ class URLMapPathMatcherPathRuleRouteActionCorsPolicyArgs:
         return pulumi.get(self, "allow_origin_regexes")
 
     @allow_origin_regexes.setter
-    def allow_origin_regexes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def allow_origin_regexes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allow_origin_regexes", value)
 
     @property
     @pulumi.getter(name="allowOrigins")
-    def allow_origins(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def allow_origins(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the list of origins that will be allowed to do CORS requests.
         An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
@@ -20080,24 +20080,24 @@ class URLMapPathMatcherPathRuleRouteActionCorsPolicyArgs:
         return pulumi.get(self, "allow_origins")
 
     @allow_origins.setter
-    def allow_origins(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def allow_origins(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allow_origins", value)
 
     @property
     @pulumi.getter(name="exposeHeaders")
-    def expose_headers(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def expose_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the content for the Access-Control-Expose-Headers header.
         """
         return pulumi.get(self, "expose_headers")
 
     @expose_headers.setter
-    def expose_headers(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def expose_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "expose_headers", value)
 
     @property
     @pulumi.getter(name="maxAge")
-    def max_age(self) -> Optional[pulumi.Input[float]]:
+    def max_age(self) -> Optional[pulumi.Input[int]]:
         """
         Specifies how long results of a preflight request can be cached in seconds.
         This translates to the Access-Control-Max-Age header.
@@ -20105,7 +20105,7 @@ class URLMapPathMatcherPathRuleRouteActionCorsPolicyArgs:
         return pulumi.get(self, "max_age")
 
     @max_age.setter
-    def max_age(self, value: Optional[pulumi.Input[float]]):
+    def max_age(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_age", value)
 
 
@@ -20155,10 +20155,10 @@ class URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyArgs:
 @pulumi.input_type
 class URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortArgs:
     def __init__(__self__, *,
-                 http_status: pulumi.Input[float],
+                 http_status: pulumi.Input[int],
                  percentage: pulumi.Input[float]):
         """
-        :param pulumi.Input[float] http_status: The HTTP status code used to abort the request.
+        :param pulumi.Input[int] http_status: The HTTP status code used to abort the request.
                The value must be between 200 and 599 inclusive.
         :param pulumi.Input[float] percentage: The percentage of traffic (connections/operations/requests) which will be aborted as part of fault injection.
                The value must be between 0.0 and 100.0 inclusive.
@@ -20168,7 +20168,7 @@ class URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortArgs:
 
     @property
     @pulumi.getter(name="httpStatus")
-    def http_status(self) -> pulumi.Input[float]:
+    def http_status(self) -> pulumi.Input[int]:
         """
         The HTTP status code used to abort the request.
         The value must be between 200 and 599 inclusive.
@@ -20176,7 +20176,7 @@ class URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortArgs:
         return pulumi.get(self, "http_status")
 
     @http_status.setter
-    def http_status(self, value: pulumi.Input[float]):
+    def http_status(self, value: pulumi.Input[int]):
         pulumi.set(self, "http_status", value)
 
     @property
@@ -20238,11 +20238,11 @@ class URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayArgs:
 class URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelayArgs:
     def __init__(__self__, *,
                  seconds: pulumi.Input[str],
-                 nanos: Optional[pulumi.Input[float]] = None):
+                 nanos: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.
                Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
                represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
         """
         pulumi.set(__self__, "seconds", seconds)
@@ -20264,7 +20264,7 @@ class URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelayArg
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
         represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
@@ -20272,7 +20272,7 @@ class URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelayArg
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
 
@@ -20301,16 +20301,16 @@ class URLMapPathMatcherPathRuleRouteActionRequestMirrorPolicyArgs:
 @pulumi.input_type
 class URLMapPathMatcherPathRuleRouteActionRetryPolicyArgs:
     def __init__(__self__, *,
-                 num_retries: Optional[pulumi.Input[float]] = None,
+                 num_retries: Optional[pulumi.Input[int]] = None,
                  per_try_timeout: Optional[pulumi.Input['URLMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutArgs']] = None,
-                 retry_conditions: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 retry_conditions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[float] num_retries: Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
+        :param pulumi.Input[int] num_retries: Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
         :param pulumi.Input['URLMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutArgs'] per_try_timeout: Specifies a non-zero timeout per retry attempt.
                If not specified, will use the timeout set in HttpRouteAction. If timeout in HttpRouteAction is not set,
                will use the largest timeout among all backend services associated with the route.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] retry_conditions: Specfies one or more conditions when this retry rule applies. Valid values are:
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] retry_conditions: Specfies one or more conditions when this retry rule applies. Valid values are:
                5xx: Loadbalancer will attempt a retry if the backend service responds with any 5xx response code,
                or if the backend service does not respond at all, example: disconnects, reset, read timeout,
                connection failure, and refused streams.
@@ -20335,14 +20335,14 @@ class URLMapPathMatcherPathRuleRouteActionRetryPolicyArgs:
 
     @property
     @pulumi.getter(name="numRetries")
-    def num_retries(self) -> Optional[pulumi.Input[float]]:
+    def num_retries(self) -> Optional[pulumi.Input[int]]:
         """
         Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
         """
         return pulumi.get(self, "num_retries")
 
     @num_retries.setter
-    def num_retries(self, value: Optional[pulumi.Input[float]]):
+    def num_retries(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "num_retries", value)
 
     @property
@@ -20362,7 +20362,7 @@ class URLMapPathMatcherPathRuleRouteActionRetryPolicyArgs:
 
     @property
     @pulumi.getter(name="retryConditions")
-    def retry_conditions(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def retry_conditions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specfies one or more conditions when this retry rule applies. Valid values are:
         5xx: Loadbalancer will attempt a retry if the backend service responds with any 5xx response code,
@@ -20383,7 +20383,7 @@ class URLMapPathMatcherPathRuleRouteActionRetryPolicyArgs:
         return pulumi.get(self, "retry_conditions")
 
     @retry_conditions.setter
-    def retry_conditions(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def retry_conditions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "retry_conditions", value)
 
 
@@ -20391,11 +20391,11 @@ class URLMapPathMatcherPathRuleRouteActionRetryPolicyArgs:
 class URLMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutArgs:
     def __init__(__self__, *,
                  seconds: pulumi.Input[str],
-                 nanos: Optional[pulumi.Input[float]] = None):
+                 nanos: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.
                Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
                represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
         """
         pulumi.set(__self__, "seconds", seconds)
@@ -20417,7 +20417,7 @@ class URLMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutArgs:
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
         represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
@@ -20425,7 +20425,7 @@ class URLMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutArgs:
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
 
@@ -20433,11 +20433,11 @@ class URLMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutArgs:
 class URLMapPathMatcherPathRuleRouteActionTimeoutArgs:
     def __init__(__self__, *,
                  seconds: pulumi.Input[str],
-                 nanos: Optional[pulumi.Input[float]] = None):
+                 nanos: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.
                Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
                represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
         """
         pulumi.set(__self__, "seconds", seconds)
@@ -20459,7 +20459,7 @@ class URLMapPathMatcherPathRuleRouteActionTimeoutArgs:
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
         represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
@@ -20467,7 +20467,7 @@ class URLMapPathMatcherPathRuleRouteActionTimeoutArgs:
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
 
@@ -20522,11 +20522,11 @@ class URLMapPathMatcherPathRuleRouteActionUrlRewriteArgs:
 class URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs:
     def __init__(__self__, *,
                  backend_service: pulumi.Input[str],
-                 weight: pulumi.Input[float],
+                 weight: pulumi.Input[int],
                  header_action: Optional[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionArgs']] = None):
         """
         :param pulumi.Input[str] backend_service: The full or partial URL to the BackendService resource being mirrored to.
-        :param pulumi.Input[float] weight: Specifies the fraction of traffic sent to backendService, computed as
+        :param pulumi.Input[int] weight: Specifies the fraction of traffic sent to backendService, computed as
                weight / (sum of all weightedBackendService weights in routeAction) .
                The selection of a backend service is determined only for new traffic. Once a user's request
                has been directed to a backendService, subsequent requests will be sent to the same backendService
@@ -20557,7 +20557,7 @@ class URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs:
 
     @property
     @pulumi.getter
-    def weight(self) -> pulumi.Input[float]:
+    def weight(self) -> pulumi.Input[int]:
         """
         Specifies the fraction of traffic sent to backendService, computed as
         weight / (sum of all weightedBackendService weights in routeAction) .
@@ -20569,7 +20569,7 @@ class URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs:
         return pulumi.get(self, "weight")
 
     @weight.setter
-    def weight(self, value: pulumi.Input[float]):
+    def weight(self, value: pulumi.Input[int]):
         pulumi.set(self, "weight", value)
 
     @property
@@ -20592,18 +20592,18 @@ class URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs:
 @pulumi.input_type
 class URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionArgs:
     def __init__(__self__, *,
-                 request_headers_to_adds: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]] = None,
-                 request_headers_to_removes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 response_headers_to_adds: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]] = None,
-                 response_headers_to_removes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 request_headers_to_adds: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]] = None,
+                 request_headers_to_removes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 response_headers_to_adds: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]] = None,
+                 response_headers_to_removes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the backendService.
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the backendService.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] request_headers_to_removes: A list of header names for headers that need to be removed from the request prior to
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] request_headers_to_removes: A list of header names for headers that need to be removed from the request prior to
                forwarding the request to the backendService.
-        :param pulumi.Input[List[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] response_headers_to_removes: A list of header names for headers that need to be removed from the response prior to sending the
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] response_headers_to_removes: A list of header names for headers that need to be removed from the response prior to sending the
                response back to the client.
         """
         if request_headers_to_adds is not None:
@@ -20617,7 +20617,7 @@ class URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionArgs
 
     @property
     @pulumi.getter(name="requestHeadersToAdds")
-    def request_headers_to_adds(self) -> Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]]:
+    def request_headers_to_adds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]]:
         """
         Headers to add to a matching request prior to forwarding the request to the backendService.
         Structure is documented below.
@@ -20625,12 +20625,12 @@ class URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionArgs
         return pulumi.get(self, "request_headers_to_adds")
 
     @request_headers_to_adds.setter
-    def request_headers_to_adds(self, value: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]]):
+    def request_headers_to_adds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]]):
         pulumi.set(self, "request_headers_to_adds", value)
 
     @property
     @pulumi.getter(name="requestHeadersToRemoves")
-    def request_headers_to_removes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def request_headers_to_removes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A list of header names for headers that need to be removed from the request prior to
         forwarding the request to the backendService.
@@ -20638,12 +20638,12 @@ class URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionArgs
         return pulumi.get(self, "request_headers_to_removes")
 
     @request_headers_to_removes.setter
-    def request_headers_to_removes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def request_headers_to_removes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "request_headers_to_removes", value)
 
     @property
     @pulumi.getter(name="responseHeadersToAdds")
-    def response_headers_to_adds(self) -> Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]]:
+    def response_headers_to_adds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]]:
         """
         Headers to add the response prior to sending the response back to the client.
         Structure is documented below.
@@ -20651,12 +20651,12 @@ class URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionArgs
         return pulumi.get(self, "response_headers_to_adds")
 
     @response_headers_to_adds.setter
-    def response_headers_to_adds(self, value: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]]):
+    def response_headers_to_adds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]]):
         pulumi.set(self, "response_headers_to_adds", value)
 
     @property
     @pulumi.getter(name="responseHeadersToRemoves")
-    def response_headers_to_removes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def response_headers_to_removes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A list of header names for headers that need to be removed from the response prior to sending the
         response back to the client.
@@ -20664,7 +20664,7 @@ class URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionArgs
         return pulumi.get(self, "response_headers_to_removes")
 
     @response_headers_to_removes.setter
-    def response_headers_to_removes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def response_headers_to_removes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "response_headers_to_removes", value)
 
 
@@ -20925,14 +20925,14 @@ class URLMapPathMatcherPathRuleUrlRedirectArgs:
 @pulumi.input_type
 class URLMapPathMatcherRouteRuleArgs:
     def __init__(__self__, *,
-                 priority: pulumi.Input[float],
+                 priority: pulumi.Input[int],
                  header_action: Optional[pulumi.Input['URLMapPathMatcherRouteRuleHeaderActionArgs']] = None,
-                 match_rules: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleArgs']]]] = None,
+                 match_rules: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleArgs']]]] = None,
                  route_action: Optional[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionArgs']] = None,
                  service: Optional[pulumi.Input[str]] = None,
                  url_redirect: Optional[pulumi.Input['URLMapPathMatcherRouteRuleUrlRedirectArgs']] = None):
         """
-        :param pulumi.Input[float] priority: For routeRules within a given pathMatcher, priority determines the order
+        :param pulumi.Input[int] priority: For routeRules within a given pathMatcher, priority determines the order
                in which load balancer will interpret routeRules. RouteRules are evaluated
                in order of priority, from the lowest to highest number. The priority of
                a rule decreases as its number increases (1, 2, 3, N+1). The first rule
@@ -20950,7 +20950,7 @@ class URLMapPathMatcherRouteRuleArgs:
                headerAction specified here take effect before headerAction in the enclosing
                HttpRouteRule, PathMatcher and UrlMap.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleArgs']]] match_rules: The rules for determining a match.
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleArgs']]] match_rules: The rules for determining a match.
                Structure is documented below.
         :param pulumi.Input['URLMapPathMatcherRouteRuleRouteActionArgs'] route_action: In response to a matching matchRule, the load balancer performs advanced routing
                actions like URL rewrites, header transformations, etc. prior to forwarding the
@@ -20979,7 +20979,7 @@ class URLMapPathMatcherRouteRuleArgs:
 
     @property
     @pulumi.getter
-    def priority(self) -> pulumi.Input[float]:
+    def priority(self) -> pulumi.Input[int]:
         """
         For routeRules within a given pathMatcher, priority determines the order
         in which load balancer will interpret routeRules. RouteRules are evaluated
@@ -20998,7 +20998,7 @@ class URLMapPathMatcherRouteRuleArgs:
         return pulumi.get(self, "priority")
 
     @priority.setter
-    def priority(self, value: pulumi.Input[float]):
+    def priority(self, value: pulumi.Input[int]):
         pulumi.set(self, "priority", value)
 
     @property
@@ -21019,7 +21019,7 @@ class URLMapPathMatcherRouteRuleArgs:
 
     @property
     @pulumi.getter(name="matchRules")
-    def match_rules(self) -> Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleArgs']]]]:
+    def match_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleArgs']]]]:
         """
         The rules for determining a match.
         Structure is documented below.
@@ -21027,7 +21027,7 @@ class URLMapPathMatcherRouteRuleArgs:
         return pulumi.get(self, "match_rules")
 
     @match_rules.setter
-    def match_rules(self, value: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleArgs']]]]):
+    def match_rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleArgs']]]]):
         pulumi.set(self, "match_rules", value)
 
     @property
@@ -21079,18 +21079,18 @@ class URLMapPathMatcherRouteRuleArgs:
 @pulumi.input_type
 class URLMapPathMatcherRouteRuleHeaderActionArgs:
     def __init__(__self__, *,
-                 request_headers_to_adds: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleHeaderActionRequestHeadersToAddArgs']]]] = None,
-                 request_headers_to_removes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 response_headers_to_adds: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleHeaderActionResponseHeadersToAddArgs']]]] = None,
-                 response_headers_to_removes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 request_headers_to_adds: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleHeaderActionRequestHeadersToAddArgs']]]] = None,
+                 request_headers_to_removes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 response_headers_to_adds: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleHeaderActionResponseHeadersToAddArgs']]]] = None,
+                 response_headers_to_removes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleHeaderActionRequestHeadersToAddArgs']]] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the backendService.
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleHeaderActionRequestHeadersToAddArgs']]] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the backendService.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] request_headers_to_removes: A list of header names for headers that need to be removed from the request prior to
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] request_headers_to_removes: A list of header names for headers that need to be removed from the request prior to
                forwarding the request to the backendService.
-        :param pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleHeaderActionResponseHeadersToAddArgs']]] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleHeaderActionResponseHeadersToAddArgs']]] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] response_headers_to_removes: A list of header names for headers that need to be removed from the response prior to sending the
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] response_headers_to_removes: A list of header names for headers that need to be removed from the response prior to sending the
                response back to the client.
         """
         if request_headers_to_adds is not None:
@@ -21104,7 +21104,7 @@ class URLMapPathMatcherRouteRuleHeaderActionArgs:
 
     @property
     @pulumi.getter(name="requestHeadersToAdds")
-    def request_headers_to_adds(self) -> Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleHeaderActionRequestHeadersToAddArgs']]]]:
+    def request_headers_to_adds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleHeaderActionRequestHeadersToAddArgs']]]]:
         """
         Headers to add to a matching request prior to forwarding the request to the backendService.
         Structure is documented below.
@@ -21112,12 +21112,12 @@ class URLMapPathMatcherRouteRuleHeaderActionArgs:
         return pulumi.get(self, "request_headers_to_adds")
 
     @request_headers_to_adds.setter
-    def request_headers_to_adds(self, value: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleHeaderActionRequestHeadersToAddArgs']]]]):
+    def request_headers_to_adds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleHeaderActionRequestHeadersToAddArgs']]]]):
         pulumi.set(self, "request_headers_to_adds", value)
 
     @property
     @pulumi.getter(name="requestHeadersToRemoves")
-    def request_headers_to_removes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def request_headers_to_removes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A list of header names for headers that need to be removed from the request prior to
         forwarding the request to the backendService.
@@ -21125,12 +21125,12 @@ class URLMapPathMatcherRouteRuleHeaderActionArgs:
         return pulumi.get(self, "request_headers_to_removes")
 
     @request_headers_to_removes.setter
-    def request_headers_to_removes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def request_headers_to_removes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "request_headers_to_removes", value)
 
     @property
     @pulumi.getter(name="responseHeadersToAdds")
-    def response_headers_to_adds(self) -> Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleHeaderActionResponseHeadersToAddArgs']]]]:
+    def response_headers_to_adds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleHeaderActionResponseHeadersToAddArgs']]]]:
         """
         Headers to add the response prior to sending the response back to the client.
         Structure is documented below.
@@ -21138,12 +21138,12 @@ class URLMapPathMatcherRouteRuleHeaderActionArgs:
         return pulumi.get(self, "response_headers_to_adds")
 
     @response_headers_to_adds.setter
-    def response_headers_to_adds(self, value: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleHeaderActionResponseHeadersToAddArgs']]]]):
+    def response_headers_to_adds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleHeaderActionResponseHeadersToAddArgs']]]]):
         pulumi.set(self, "response_headers_to_adds", value)
 
     @property
     @pulumi.getter(name="responseHeadersToRemoves")
-    def response_headers_to_removes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def response_headers_to_removes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A list of header names for headers that need to be removed from the response prior to sending the
         response back to the client.
@@ -21151,7 +21151,7 @@ class URLMapPathMatcherRouteRuleHeaderActionArgs:
         return pulumi.get(self, "response_headers_to_removes")
 
     @response_headers_to_removes.setter
-    def response_headers_to_removes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def response_headers_to_removes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "response_headers_to_removes", value)
 
 
@@ -21267,11 +21267,11 @@ class URLMapPathMatcherRouteRuleHeaderActionResponseHeadersToAddArgs:
 class URLMapPathMatcherRouteRuleMatchRuleArgs:
     def __init__(__self__, *,
                  full_path_match: Optional[pulumi.Input[str]] = None,
-                 header_matches: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleHeaderMatchArgs']]]] = None,
+                 header_matches: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleHeaderMatchArgs']]]] = None,
                  ignore_case: Optional[pulumi.Input[bool]] = None,
-                 metadata_filters: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleMetadataFilterArgs']]]] = None,
+                 metadata_filters: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleMetadataFilterArgs']]]] = None,
                  prefix_match: Optional[pulumi.Input[str]] = None,
-                 query_parameter_matches: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleQueryParameterMatchArgs']]]] = None,
+                 query_parameter_matches: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleQueryParameterMatchArgs']]]] = None,
                  regex_match: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] full_path_match: For satifying the matchRule condition, the path of the request must exactly
@@ -21279,12 +21279,12 @@ class URLMapPathMatcherRouteRuleMatchRuleArgs:
                and anchor that may be part of the original URL. FullPathMatch must be between 1
                and 1024 characters. Only one of prefixMatch, fullPathMatch or regexMatch must
                be specified.
-        :param pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleHeaderMatchArgs']]] header_matches: Specifies a list of header match criteria, all of which must match corresponding
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleHeaderMatchArgs']]] header_matches: Specifies a list of header match criteria, all of which must match corresponding
                headers in the request.
                Structure is documented below.
         :param pulumi.Input[bool] ignore_case: Specifies that prefixMatch and fullPathMatch matches are case sensitive.
                Defaults to false.
-        :param pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleMetadataFilterArgs']]] metadata_filters: Opaque filter criteria used by Loadbalancer to restrict routing configuration to
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleMetadataFilterArgs']]] metadata_filters: Opaque filter criteria used by Loadbalancer to restrict routing configuration to
                a limited set xDS compliant clients. In their xDS requests to Loadbalancer, xDS
                clients present node metadata. If a match takes place, the relevant routing
                configuration is made available to those proxies. For each metadataFilter in
@@ -21299,7 +21299,7 @@ class URLMapPathMatcherRouteRuleMatchRuleArgs:
         :param pulumi.Input[str] prefix_match: The value of the header must start with the contents of prefixMatch. Only one of
                exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch
                must be set.
-        :param pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleQueryParameterMatchArgs']]] query_parameter_matches: Specifies a list of query parameter match criteria, all of which must match
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleQueryParameterMatchArgs']]] query_parameter_matches: Specifies a list of query parameter match criteria, all of which must match
                corresponding query parameters in the request.
                Structure is documented below.
         :param pulumi.Input[str] regex_match: The queryParameterMatch matches if the value of the parameter matches the
@@ -21340,7 +21340,7 @@ class URLMapPathMatcherRouteRuleMatchRuleArgs:
 
     @property
     @pulumi.getter(name="headerMatches")
-    def header_matches(self) -> Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleHeaderMatchArgs']]]]:
+    def header_matches(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleHeaderMatchArgs']]]]:
         """
         Specifies a list of header match criteria, all of which must match corresponding
         headers in the request.
@@ -21349,7 +21349,7 @@ class URLMapPathMatcherRouteRuleMatchRuleArgs:
         return pulumi.get(self, "header_matches")
 
     @header_matches.setter
-    def header_matches(self, value: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleHeaderMatchArgs']]]]):
+    def header_matches(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleHeaderMatchArgs']]]]):
         pulumi.set(self, "header_matches", value)
 
     @property
@@ -21367,7 +21367,7 @@ class URLMapPathMatcherRouteRuleMatchRuleArgs:
 
     @property
     @pulumi.getter(name="metadataFilters")
-    def metadata_filters(self) -> Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleMetadataFilterArgs']]]]:
+    def metadata_filters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleMetadataFilterArgs']]]]:
         """
         Opaque filter criteria used by Loadbalancer to restrict routing configuration to
         a limited set xDS compliant clients. In their xDS requests to Loadbalancer, xDS
@@ -21385,7 +21385,7 @@ class URLMapPathMatcherRouteRuleMatchRuleArgs:
         return pulumi.get(self, "metadata_filters")
 
     @metadata_filters.setter
-    def metadata_filters(self, value: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleMetadataFilterArgs']]]]):
+    def metadata_filters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleMetadataFilterArgs']]]]):
         pulumi.set(self, "metadata_filters", value)
 
     @property
@@ -21404,7 +21404,7 @@ class URLMapPathMatcherRouteRuleMatchRuleArgs:
 
     @property
     @pulumi.getter(name="queryParameterMatches")
-    def query_parameter_matches(self) -> Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleQueryParameterMatchArgs']]]]:
+    def query_parameter_matches(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleQueryParameterMatchArgs']]]]:
         """
         Specifies a list of query parameter match criteria, all of which must match
         corresponding query parameters in the request.
@@ -21413,7 +21413,7 @@ class URLMapPathMatcherRouteRuleMatchRuleArgs:
         return pulumi.get(self, "query_parameter_matches")
 
     @query_parameter_matches.setter
-    def query_parameter_matches(self, value: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleQueryParameterMatchArgs']]]]):
+    def query_parameter_matches(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleQueryParameterMatchArgs']]]]):
         pulumi.set(self, "query_parameter_matches", value)
 
     @property
@@ -21607,47 +21607,47 @@ class URLMapPathMatcherRouteRuleMatchRuleHeaderMatchArgs:
 @pulumi.input_type
 class URLMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatchArgs:
     def __init__(__self__, *,
-                 range_end: pulumi.Input[float],
-                 range_start: pulumi.Input[float]):
+                 range_end: pulumi.Input[int],
+                 range_start: pulumi.Input[int]):
         """
-        :param pulumi.Input[float] range_end: The end of the range (exclusive).
-        :param pulumi.Input[float] range_start: The start of the range (inclusive).
+        :param pulumi.Input[int] range_end: The end of the range (exclusive).
+        :param pulumi.Input[int] range_start: The start of the range (inclusive).
         """
         pulumi.set(__self__, "range_end", range_end)
         pulumi.set(__self__, "range_start", range_start)
 
     @property
     @pulumi.getter(name="rangeEnd")
-    def range_end(self) -> pulumi.Input[float]:
+    def range_end(self) -> pulumi.Input[int]:
         """
         The end of the range (exclusive).
         """
         return pulumi.get(self, "range_end")
 
     @range_end.setter
-    def range_end(self, value: pulumi.Input[float]):
+    def range_end(self, value: pulumi.Input[int]):
         pulumi.set(self, "range_end", value)
 
     @property
     @pulumi.getter(name="rangeStart")
-    def range_start(self) -> pulumi.Input[float]:
+    def range_start(self) -> pulumi.Input[int]:
         """
         The start of the range (inclusive).
         """
         return pulumi.get(self, "range_start")
 
     @range_start.setter
-    def range_start(self, value: pulumi.Input[float]):
+    def range_start(self, value: pulumi.Input[int]):
         pulumi.set(self, "range_start", value)
 
 
 @pulumi.input_type
 class URLMapPathMatcherRouteRuleMatchRuleMetadataFilterArgs:
     def __init__(__self__, *,
-                 filter_labels: pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleMetadataFilterFilterLabelArgs']]],
+                 filter_labels: pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleMetadataFilterFilterLabelArgs']]],
                  filter_match_criteria: pulumi.Input[str]):
         """
-        :param pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleMetadataFilterFilterLabelArgs']]] filter_labels: The list of label value pairs that must match labels in the provided metadata
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleMetadataFilterFilterLabelArgs']]] filter_labels: The list of label value pairs that must match labels in the provided metadata
                based on filterMatchCriteria  This list must not be empty and can have at the
                most 64 entries.
                Structure is documented below.
@@ -21664,7 +21664,7 @@ class URLMapPathMatcherRouteRuleMatchRuleMetadataFilterArgs:
 
     @property
     @pulumi.getter(name="filterLabels")
-    def filter_labels(self) -> pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleMetadataFilterFilterLabelArgs']]]:
+    def filter_labels(self) -> pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleMetadataFilterFilterLabelArgs']]]:
         """
         The list of label value pairs that must match labels in the provided metadata
         based on filterMatchCriteria  This list must not be empty and can have at the
@@ -21674,7 +21674,7 @@ class URLMapPathMatcherRouteRuleMatchRuleMetadataFilterArgs:
         return pulumi.get(self, "filter_labels")
 
     @filter_labels.setter
-    def filter_labels(self, value: pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleMetadataFilterFilterLabelArgs']]]):
+    def filter_labels(self, value: pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleMatchRuleMetadataFilterFilterLabelArgs']]]):
         pulumi.set(self, "filter_labels", value)
 
     @property
@@ -21832,7 +21832,7 @@ class URLMapPathMatcherRouteRuleRouteActionArgs:
                  retry_policy: Optional[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionRetryPolicyArgs']] = None,
                  timeout: Optional[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionTimeoutArgs']] = None,
                  url_rewrite: Optional[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionUrlRewriteArgs']] = None,
-                 weighted_backend_services: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs']]]] = None):
+                 weighted_backend_services: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs']]]] = None):
         """
         :param pulumi.Input['URLMapPathMatcherRouteRuleRouteActionCorsPolicyArgs'] cors_policy: The specification for allowing client side cross-origin requests. Please see
                [W3C Recommendation for Cross Origin Resource Sharing](https://www.w3.org/TR/cors/)
@@ -21855,7 +21855,7 @@ class URLMapPathMatcherRouteRuleRouteActionArgs:
                Structure is documented below.
         :param pulumi.Input['URLMapPathMatcherRouteRuleRouteActionUrlRewriteArgs'] url_rewrite: The spec to modify the URL of the request, prior to forwarding the request to the matched service.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs']]] weighted_backend_services: A list of weighted backend services to send traffic to when a route match occurs.
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs']]] weighted_backend_services: A list of weighted backend services to send traffic to when a route match occurs.
                The weights determine the fraction of traffic that flows to their corresponding backend service.
                If all traffic needs to go to a single backend service, there must be one weightedBackendService
                with weight set to a non 0 number.
@@ -21968,7 +21968,7 @@ class URLMapPathMatcherRouteRuleRouteActionArgs:
 
     @property
     @pulumi.getter(name="weightedBackendServices")
-    def weighted_backend_services(self) -> Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs']]]]:
+    def weighted_backend_services(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs']]]]:
         """
         A list of weighted backend services to send traffic to when a route match occurs.
         The weights determine the fraction of traffic that flows to their corresponding backend service.
@@ -21982,7 +21982,7 @@ class URLMapPathMatcherRouteRuleRouteActionArgs:
         return pulumi.get(self, "weighted_backend_services")
 
     @weighted_backend_services.setter
-    def weighted_backend_services(self, value: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs']]]]):
+    def weighted_backend_services(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs']]]]):
         pulumi.set(self, "weighted_backend_services", value)
 
 
@@ -21990,26 +21990,26 @@ class URLMapPathMatcherRouteRuleRouteActionArgs:
 class URLMapPathMatcherRouteRuleRouteActionCorsPolicyArgs:
     def __init__(__self__, *,
                  allow_credentials: Optional[pulumi.Input[bool]] = None,
-                 allow_headers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 allow_methods: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 allow_origin_regexes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 allow_origins: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 allow_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allow_methods: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allow_origin_regexes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allow_origins: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  disabled: Optional[pulumi.Input[bool]] = None,
-                 expose_headers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 max_age: Optional[pulumi.Input[float]] = None):
+                 expose_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 max_age: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[bool] allow_credentials: In response to a preflight request, setting this to true indicates that the actual request can include user credentials.
                This translates to the Access-Control-Allow-Credentials header.
-        :param pulumi.Input[List[pulumi.Input[str]]] allow_headers: Specifies the content for the Access-Control-Allow-Headers header.
-        :param pulumi.Input[List[pulumi.Input[str]]] allow_methods: Specifies the content for the Access-Control-Allow-Methods header.
-        :param pulumi.Input[List[pulumi.Input[str]]] allow_origin_regexes: Specifies the regualar expression patterns that match allowed origins. For regular expression grammar
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_headers: Specifies the content for the Access-Control-Allow-Headers header.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_methods: Specifies the content for the Access-Control-Allow-Methods header.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_origin_regexes: Specifies the regualar expression patterns that match allowed origins. For regular expression grammar
                please see en.cppreference.com/w/cpp/regex/ecmascript
                An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
-        :param pulumi.Input[List[pulumi.Input[str]]] allow_origins: Specifies the list of origins that will be allowed to do CORS requests.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allow_origins: Specifies the list of origins that will be allowed to do CORS requests.
                An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
         :param pulumi.Input[bool] disabled: If true, specifies the CORS policy is disabled. The default value is false, which indicates that the CORS policy is in effect.
-        :param pulumi.Input[List[pulumi.Input[str]]] expose_headers: Specifies the content for the Access-Control-Expose-Headers header.
-        :param pulumi.Input[float] max_age: Specifies how long results of a preflight request can be cached in seconds.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] expose_headers: Specifies the content for the Access-Control-Expose-Headers header.
+        :param pulumi.Input[int] max_age: Specifies how long results of a preflight request can be cached in seconds.
                This translates to the Access-Control-Max-Age header.
         """
         if allow_credentials is not None:
@@ -22044,31 +22044,31 @@ class URLMapPathMatcherRouteRuleRouteActionCorsPolicyArgs:
 
     @property
     @pulumi.getter(name="allowHeaders")
-    def allow_headers(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def allow_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the content for the Access-Control-Allow-Headers header.
         """
         return pulumi.get(self, "allow_headers")
 
     @allow_headers.setter
-    def allow_headers(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def allow_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allow_headers", value)
 
     @property
     @pulumi.getter(name="allowMethods")
-    def allow_methods(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def allow_methods(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the content for the Access-Control-Allow-Methods header.
         """
         return pulumi.get(self, "allow_methods")
 
     @allow_methods.setter
-    def allow_methods(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def allow_methods(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allow_methods", value)
 
     @property
     @pulumi.getter(name="allowOriginRegexes")
-    def allow_origin_regexes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def allow_origin_regexes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the regualar expression patterns that match allowed origins. For regular expression grammar
         please see en.cppreference.com/w/cpp/regex/ecmascript
@@ -22077,12 +22077,12 @@ class URLMapPathMatcherRouteRuleRouteActionCorsPolicyArgs:
         return pulumi.get(self, "allow_origin_regexes")
 
     @allow_origin_regexes.setter
-    def allow_origin_regexes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def allow_origin_regexes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allow_origin_regexes", value)
 
     @property
     @pulumi.getter(name="allowOrigins")
-    def allow_origins(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def allow_origins(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the list of origins that will be allowed to do CORS requests.
         An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
@@ -22090,7 +22090,7 @@ class URLMapPathMatcherRouteRuleRouteActionCorsPolicyArgs:
         return pulumi.get(self, "allow_origins")
 
     @allow_origins.setter
-    def allow_origins(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def allow_origins(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allow_origins", value)
 
     @property
@@ -22107,19 +22107,19 @@ class URLMapPathMatcherRouteRuleRouteActionCorsPolicyArgs:
 
     @property
     @pulumi.getter(name="exposeHeaders")
-    def expose_headers(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def expose_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the content for the Access-Control-Expose-Headers header.
         """
         return pulumi.get(self, "expose_headers")
 
     @expose_headers.setter
-    def expose_headers(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def expose_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "expose_headers", value)
 
     @property
     @pulumi.getter(name="maxAge")
-    def max_age(self) -> Optional[pulumi.Input[float]]:
+    def max_age(self) -> Optional[pulumi.Input[int]]:
         """
         Specifies how long results of a preflight request can be cached in seconds.
         This translates to the Access-Control-Max-Age header.
@@ -22127,7 +22127,7 @@ class URLMapPathMatcherRouteRuleRouteActionCorsPolicyArgs:
         return pulumi.get(self, "max_age")
 
     @max_age.setter
-    def max_age(self, value: Optional[pulumi.Input[float]]):
+    def max_age(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_age", value)
 
 
@@ -22177,10 +22177,10 @@ class URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyArgs:
 @pulumi.input_type
 class URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortArgs:
     def __init__(__self__, *,
-                 http_status: Optional[pulumi.Input[float]] = None,
+                 http_status: Optional[pulumi.Input[int]] = None,
                  percentage: Optional[pulumi.Input[float]] = None):
         """
-        :param pulumi.Input[float] http_status: The HTTP status code used to abort the request.
+        :param pulumi.Input[int] http_status: The HTTP status code used to abort the request.
                The value must be between 200 and 599 inclusive.
         :param pulumi.Input[float] percentage: The percentage of traffic (connections/operations/requests) which will be aborted as part of fault injection.
                The value must be between 0.0 and 100.0 inclusive.
@@ -22192,7 +22192,7 @@ class URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortArgs:
 
     @property
     @pulumi.getter(name="httpStatus")
-    def http_status(self) -> Optional[pulumi.Input[float]]:
+    def http_status(self) -> Optional[pulumi.Input[int]]:
         """
         The HTTP status code used to abort the request.
         The value must be between 200 and 599 inclusive.
@@ -22200,7 +22200,7 @@ class URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortArgs:
         return pulumi.get(self, "http_status")
 
     @http_status.setter
-    def http_status(self, value: Optional[pulumi.Input[float]]):
+    def http_status(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "http_status", value)
 
     @property
@@ -22264,11 +22264,11 @@ class URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayArgs:
 class URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelayArgs:
     def __init__(__self__, *,
                  seconds: pulumi.Input[str],
-                 nanos: Optional[pulumi.Input[float]] = None):
+                 nanos: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.
                Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
                represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
         """
         pulumi.set(__self__, "seconds", seconds)
@@ -22290,7 +22290,7 @@ class URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelayAr
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
         represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
@@ -22298,7 +22298,7 @@ class URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelayAr
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
 
@@ -22327,16 +22327,16 @@ class URLMapPathMatcherRouteRuleRouteActionRequestMirrorPolicyArgs:
 @pulumi.input_type
 class URLMapPathMatcherRouteRuleRouteActionRetryPolicyArgs:
     def __init__(__self__, *,
-                 num_retries: pulumi.Input[float],
+                 num_retries: pulumi.Input[int],
                  per_try_timeout: Optional[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutArgs']] = None,
-                 retry_conditions: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 retry_conditions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[float] num_retries: Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
+        :param pulumi.Input[int] num_retries: Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
         :param pulumi.Input['URLMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutArgs'] per_try_timeout: Specifies a non-zero timeout per retry attempt.
                If not specified, will use the timeout set in HttpRouteAction. If timeout in HttpRouteAction is not set,
                will use the largest timeout among all backend services associated with the route.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] retry_conditions: Specfies one or more conditions when this retry rule applies. Valid values are:
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] retry_conditions: Specfies one or more conditions when this retry rule applies. Valid values are:
                5xx: Loadbalancer will attempt a retry if the backend service responds with any 5xx response code,
                or if the backend service does not respond at all, example: disconnects, reset, read timeout,
                connection failure, and refused streams.
@@ -22360,14 +22360,14 @@ class URLMapPathMatcherRouteRuleRouteActionRetryPolicyArgs:
 
     @property
     @pulumi.getter(name="numRetries")
-    def num_retries(self) -> pulumi.Input[float]:
+    def num_retries(self) -> pulumi.Input[int]:
         """
         Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
         """
         return pulumi.get(self, "num_retries")
 
     @num_retries.setter
-    def num_retries(self, value: pulumi.Input[float]):
+    def num_retries(self, value: pulumi.Input[int]):
         pulumi.set(self, "num_retries", value)
 
     @property
@@ -22387,7 +22387,7 @@ class URLMapPathMatcherRouteRuleRouteActionRetryPolicyArgs:
 
     @property
     @pulumi.getter(name="retryConditions")
-    def retry_conditions(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def retry_conditions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specfies one or more conditions when this retry rule applies. Valid values are:
         5xx: Loadbalancer will attempt a retry if the backend service responds with any 5xx response code,
@@ -22408,7 +22408,7 @@ class URLMapPathMatcherRouteRuleRouteActionRetryPolicyArgs:
         return pulumi.get(self, "retry_conditions")
 
     @retry_conditions.setter
-    def retry_conditions(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def retry_conditions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "retry_conditions", value)
 
 
@@ -22416,11 +22416,11 @@ class URLMapPathMatcherRouteRuleRouteActionRetryPolicyArgs:
 class URLMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutArgs:
     def __init__(__self__, *,
                  seconds: pulumi.Input[str],
-                 nanos: Optional[pulumi.Input[float]] = None):
+                 nanos: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.
                Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
                represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
         """
         pulumi.set(__self__, "seconds", seconds)
@@ -22442,7 +22442,7 @@ class URLMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutArgs:
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
         represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
@@ -22450,7 +22450,7 @@ class URLMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutArgs:
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
 
@@ -22458,11 +22458,11 @@ class URLMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutArgs:
 class URLMapPathMatcherRouteRuleRouteActionTimeoutArgs:
     def __init__(__self__, *,
                  seconds: pulumi.Input[str],
-                 nanos: Optional[pulumi.Input[float]] = None):
+                 nanos: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] seconds: Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.
                Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
-        :param pulumi.Input[float] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
+        :param pulumi.Input[int] nanos: Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
                represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
         """
         pulumi.set(__self__, "seconds", seconds)
@@ -22484,7 +22484,7 @@ class URLMapPathMatcherRouteRuleRouteActionTimeoutArgs:
 
     @property
     @pulumi.getter
-    def nanos(self) -> Optional[pulumi.Input[float]]:
+    def nanos(self) -> Optional[pulumi.Input[int]]:
         """
         Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
         represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
@@ -22492,7 +22492,7 @@ class URLMapPathMatcherRouteRuleRouteActionTimeoutArgs:
         return pulumi.get(self, "nanos")
 
     @nanos.setter
-    def nanos(self, value: Optional[pulumi.Input[float]]):
+    def nanos(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "nanos", value)
 
 
@@ -22547,11 +22547,11 @@ class URLMapPathMatcherRouteRuleRouteActionUrlRewriteArgs:
 class URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs:
     def __init__(__self__, *,
                  backend_service: pulumi.Input[str],
-                 weight: pulumi.Input[float],
+                 weight: pulumi.Input[int],
                  header_action: Optional[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionArgs']] = None):
         """
         :param pulumi.Input[str] backend_service: The full or partial URL to the BackendService resource being mirrored to.
-        :param pulumi.Input[float] weight: Specifies the fraction of traffic sent to backendService, computed as
+        :param pulumi.Input[int] weight: Specifies the fraction of traffic sent to backendService, computed as
                weight / (sum of all weightedBackendService weights in routeAction) .
                The selection of a backend service is determined only for new traffic. Once a user's request
                has been directed to a backendService, subsequent requests will be sent to the same backendService
@@ -22582,7 +22582,7 @@ class URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs:
 
     @property
     @pulumi.getter
-    def weight(self) -> pulumi.Input[float]:
+    def weight(self) -> pulumi.Input[int]:
         """
         Specifies the fraction of traffic sent to backendService, computed as
         weight / (sum of all weightedBackendService weights in routeAction) .
@@ -22594,7 +22594,7 @@ class URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs:
         return pulumi.get(self, "weight")
 
     @weight.setter
-    def weight(self, value: pulumi.Input[float]):
+    def weight(self, value: pulumi.Input[int]):
         pulumi.set(self, "weight", value)
 
     @property
@@ -22617,18 +22617,18 @@ class URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceArgs:
 @pulumi.input_type
 class URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionArgs:
     def __init__(__self__, *,
-                 request_headers_to_adds: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]] = None,
-                 request_headers_to_removes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 response_headers_to_adds: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]] = None,
-                 response_headers_to_removes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 request_headers_to_adds: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]] = None,
+                 request_headers_to_removes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 response_headers_to_adds: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]] = None,
+                 response_headers_to_removes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the backendService.
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]] request_headers_to_adds: Headers to add to a matching request prior to forwarding the request to the backendService.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] request_headers_to_removes: A list of header names for headers that need to be removed from the request prior to
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] request_headers_to_removes: A list of header names for headers that need to be removed from the request prior to
                forwarding the request to the backendService.
-        :param pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
+        :param pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]] response_headers_to_adds: Headers to add the response prior to sending the response back to the client.
                Structure is documented below.
-        :param pulumi.Input[List[pulumi.Input[str]]] response_headers_to_removes: A list of header names for headers that need to be removed from the response prior to sending the
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] response_headers_to_removes: A list of header names for headers that need to be removed from the response prior to sending the
                response back to the client.
         """
         if request_headers_to_adds is not None:
@@ -22642,7 +22642,7 @@ class URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionArg
 
     @property
     @pulumi.getter(name="requestHeadersToAdds")
-    def request_headers_to_adds(self) -> Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]]:
+    def request_headers_to_adds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]]:
         """
         Headers to add to a matching request prior to forwarding the request to the backendService.
         Structure is documented below.
@@ -22650,12 +22650,12 @@ class URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionArg
         return pulumi.get(self, "request_headers_to_adds")
 
     @request_headers_to_adds.setter
-    def request_headers_to_adds(self, value: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]]):
+    def request_headers_to_adds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs']]]]):
         pulumi.set(self, "request_headers_to_adds", value)
 
     @property
     @pulumi.getter(name="requestHeadersToRemoves")
-    def request_headers_to_removes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def request_headers_to_removes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A list of header names for headers that need to be removed from the request prior to
         forwarding the request to the backendService.
@@ -22663,12 +22663,12 @@ class URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionArg
         return pulumi.get(self, "request_headers_to_removes")
 
     @request_headers_to_removes.setter
-    def request_headers_to_removes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def request_headers_to_removes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "request_headers_to_removes", value)
 
     @property
     @pulumi.getter(name="responseHeadersToAdds")
-    def response_headers_to_adds(self) -> Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]]:
+    def response_headers_to_adds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]]:
         """
         Headers to add the response prior to sending the response back to the client.
         Structure is documented below.
@@ -22676,12 +22676,12 @@ class URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionArg
         return pulumi.get(self, "response_headers_to_adds")
 
     @response_headers_to_adds.setter
-    def response_headers_to_adds(self, value: Optional[pulumi.Input[List[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]]):
+    def response_headers_to_adds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs']]]]):
         pulumi.set(self, "response_headers_to_adds", value)
 
     @property
     @pulumi.getter(name="responseHeadersToRemoves")
-    def response_headers_to_removes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def response_headers_to_removes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A list of header names for headers that need to be removed from the response prior to sending the
         response back to the client.
@@ -22689,7 +22689,7 @@ class URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionArg
         return pulumi.get(self, "response_headers_to_removes")
 
     @response_headers_to_removes.setter
-    def response_headers_to_removes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def response_headers_to_removes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "response_headers_to_removes", value)
 
 
