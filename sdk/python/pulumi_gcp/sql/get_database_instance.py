@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 from . import outputs
 
@@ -115,7 +115,7 @@ class GetDatabaseInstanceResult:
 
     @property
     @pulumi.getter(name="ipAddresses")
-    def ip_addresses(self) -> List['outputs.GetDatabaseInstanceIpAddressResult']:
+    def ip_addresses(self) -> Sequence['outputs.GetDatabaseInstanceIpAddressResult']:
         return pulumi.get(self, "ip_addresses")
 
     @property
@@ -163,7 +163,7 @@ class GetDatabaseInstanceResult:
 
     @property
     @pulumi.getter(name="replicaConfigurations")
-    def replica_configurations(self) -> List['outputs.GetDatabaseInstanceReplicaConfigurationResult']:
+    def replica_configurations(self) -> Sequence['outputs.GetDatabaseInstanceReplicaConfigurationResult']:
         """
         The configuration for replication. The
         configuration is detailed below.
@@ -188,7 +188,7 @@ class GetDatabaseInstanceResult:
 
     @property
     @pulumi.getter(name="serverCaCerts")
-    def server_ca_certs(self) -> List['outputs.GetDatabaseInstanceServerCaCertResult']:
+    def server_ca_certs(self) -> Sequence['outputs.GetDatabaseInstanceServerCaCertResult']:
         return pulumi.get(self, "server_ca_certs")
 
     @property
@@ -201,7 +201,7 @@ class GetDatabaseInstanceResult:
 
     @property
     @pulumi.getter
-    def settings(self) -> List['outputs.GetDatabaseInstanceSettingResult']:
+    def settings(self) -> Sequence['outputs.GetDatabaseInstanceSettingResult']:
         """
         The settings to use for the database. The
         configuration is detailed below.
