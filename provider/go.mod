@@ -15,3 +15,5 @@ replace (
 	github.com/hashicorp/vault => github.com/hashicorp/vault v1.2.0
 	google.golang.org/api => google.golang.org/api v0.31.1-0.20200914161323-7b3b1fe2dc94
 )
+
+replace github.com/pulumi/tf2pulumi => ../../tf2pulumi
