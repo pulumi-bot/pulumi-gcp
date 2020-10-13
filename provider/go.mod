@@ -6,7 +6,7 @@ require (
 	github.com/hashicorp/terraform-plugin-sdk v1.11.0
 	github.com/hashicorp/terraform-provider-google-beta v0.0.0-20200309221941-5fc1579be217
 	github.com/pulumi/pulumi-terraform-bridge/v2 v2.10.2
-	github.com/pulumi/pulumi/sdk/v2 v2.10.2
+	github.com/pulumi/pulumi/sdk/v2 v2.11.3-0.20201009201355-249140242ebb
 )
 
 replace (
@@ -16,3 +16,5 @@ replace (
 	github.com/hashicorp/vault => github.com/hashicorp/vault v1.2.0
 	google.golang.org/api => google.golang.org/api v0.31.1-0.20200914161323-7b3b1fe2dc94
 )
+
+replace github.com/pulumi/pulumi-terraform-bridge/v2 => ../../pulumi-terraform-bridge
