@@ -4,6 +4,7 @@
 package iap
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -137,4 +138,43 @@ type WebIamMemberArgs struct {
 
 func (WebIamMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*webIamMemberArgs)(nil)).Elem()
+}
+
+type WebIamMemberInput interface {
+	pulumi.Input
+
+	ToWebIamMemberOutput() WebIamMemberOutput
+	ToWebIamMemberOutputWithContext(ctx context.Context) WebIamMemberOutput
+}
+
+func (WebIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebIamMember)(nil)).Elem()
+}
+
+func (i WebIamMember) ToWebIamMemberOutput() WebIamMemberOutput {
+	return i.ToWebIamMemberOutputWithContext(context.Background())
+}
+
+func (i WebIamMember) ToWebIamMemberOutputWithContext(ctx context.Context) WebIamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebIamMemberOutput)
+}
+
+type WebIamMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (WebIamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebIamMemberOutput)(nil)).Elem()
+}
+
+func (o WebIamMemberOutput) ToWebIamMemberOutput() WebIamMemberOutput {
+	return o
+}
+
+func (o WebIamMemberOutput) ToWebIamMemberOutputWithContext(ctx context.Context) WebIamMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(WebIamMemberOutput{})
 }

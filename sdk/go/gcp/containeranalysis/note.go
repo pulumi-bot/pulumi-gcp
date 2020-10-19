@@ -4,6 +4,7 @@
 package containeranalysis
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -228,4 +229,43 @@ type NoteArgs struct {
 
 func (NoteArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*noteArgs)(nil)).Elem()
+}
+
+type NoteInput interface {
+	pulumi.Input
+
+	ToNoteOutput() NoteOutput
+	ToNoteOutputWithContext(ctx context.Context) NoteOutput
+}
+
+func (Note) ElementType() reflect.Type {
+	return reflect.TypeOf((*Note)(nil)).Elem()
+}
+
+func (i Note) ToNoteOutput() NoteOutput {
+	return i.ToNoteOutputWithContext(context.Background())
+}
+
+func (i Note) ToNoteOutputWithContext(ctx context.Context) NoteOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NoteOutput)
+}
+
+type NoteOutput struct {
+	*pulumi.OutputState
+}
+
+func (NoteOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NoteOutput)(nil)).Elem()
+}
+
+func (o NoteOutput) ToNoteOutput() NoteOutput {
+	return o
+}
+
+func (o NoteOutput) ToNoteOutputWithContext(ctx context.Context) NoteOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(NoteOutput{})
 }

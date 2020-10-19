@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -193,4 +194,43 @@ type RouterInterfaceArgs struct {
 
 func (RouterInterfaceArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*routerInterfaceArgs)(nil)).Elem()
+}
+
+type RouterInterfaceInput interface {
+	pulumi.Input
+
+	ToRouterInterfaceOutput() RouterInterfaceOutput
+	ToRouterInterfaceOutputWithContext(ctx context.Context) RouterInterfaceOutput
+}
+
+func (RouterInterface) ElementType() reflect.Type {
+	return reflect.TypeOf((*RouterInterface)(nil)).Elem()
+}
+
+func (i RouterInterface) ToRouterInterfaceOutput() RouterInterfaceOutput {
+	return i.ToRouterInterfaceOutputWithContext(context.Background())
+}
+
+func (i RouterInterface) ToRouterInterfaceOutputWithContext(ctx context.Context) RouterInterfaceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RouterInterfaceOutput)
+}
+
+type RouterInterfaceOutput struct {
+	*pulumi.OutputState
+}
+
+func (RouterInterfaceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RouterInterfaceOutput)(nil)).Elem()
+}
+
+func (o RouterInterfaceOutput) ToRouterInterfaceOutput() RouterInterfaceOutput {
+	return o
+}
+
+func (o RouterInterfaceOutput) ToRouterInterfaceOutputWithContext(ctx context.Context) RouterInterfaceOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RouterInterfaceOutput{})
 }

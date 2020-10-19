@@ -4,6 +4,7 @@
 package runtimeconfig
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -122,4 +123,43 @@ type ConfigIamPolicyArgs struct {
 
 func (ConfigIamPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*configIamPolicyArgs)(nil)).Elem()
+}
+
+type ConfigIamPolicyInput interface {
+	pulumi.Input
+
+	ToConfigIamPolicyOutput() ConfigIamPolicyOutput
+	ToConfigIamPolicyOutputWithContext(ctx context.Context) ConfigIamPolicyOutput
+}
+
+func (ConfigIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConfigIamPolicy)(nil)).Elem()
+}
+
+func (i ConfigIamPolicy) ToConfigIamPolicyOutput() ConfigIamPolicyOutput {
+	return i.ToConfigIamPolicyOutputWithContext(context.Background())
+}
+
+func (i ConfigIamPolicy) ToConfigIamPolicyOutputWithContext(ctx context.Context) ConfigIamPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConfigIamPolicyOutput)
+}
+
+type ConfigIamPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (ConfigIamPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConfigIamPolicyOutput)(nil)).Elem()
+}
+
+func (o ConfigIamPolicyOutput) ToConfigIamPolicyOutput() ConfigIamPolicyOutput {
+	return o
+}
+
+func (o ConfigIamPolicyOutput) ToConfigIamPolicyOutputWithContext(ctx context.Context) ConfigIamPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ConfigIamPolicyOutput{})
 }

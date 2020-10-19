@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -153,4 +154,43 @@ type OrganizationSecurityPolicyArgs struct {
 
 func (OrganizationSecurityPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*organizationSecurityPolicyArgs)(nil)).Elem()
+}
+
+type OrganizationSecurityPolicyInput interface {
+	pulumi.Input
+
+	ToOrganizationSecurityPolicyOutput() OrganizationSecurityPolicyOutput
+	ToOrganizationSecurityPolicyOutputWithContext(ctx context.Context) OrganizationSecurityPolicyOutput
+}
+
+func (OrganizationSecurityPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationSecurityPolicy)(nil)).Elem()
+}
+
+func (i OrganizationSecurityPolicy) ToOrganizationSecurityPolicyOutput() OrganizationSecurityPolicyOutput {
+	return i.ToOrganizationSecurityPolicyOutputWithContext(context.Background())
+}
+
+func (i OrganizationSecurityPolicy) ToOrganizationSecurityPolicyOutputWithContext(ctx context.Context) OrganizationSecurityPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationSecurityPolicyOutput)
+}
+
+type OrganizationSecurityPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (OrganizationSecurityPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationSecurityPolicyOutput)(nil)).Elem()
+}
+
+func (o OrganizationSecurityPolicyOutput) ToOrganizationSecurityPolicyOutput() OrganizationSecurityPolicyOutput {
+	return o
+}
+
+func (o OrganizationSecurityPolicyOutput) ToOrganizationSecurityPolicyOutputWithContext(ctx context.Context) OrganizationSecurityPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(OrganizationSecurityPolicyOutput{})
 }

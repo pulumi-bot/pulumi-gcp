@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
@@ -745,4 +746,43 @@ type ForwardingRuleArgs struct {
 
 func (ForwardingRuleArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*forwardingRuleArgs)(nil)).Elem()
+}
+
+type ForwardingRuleInput interface {
+	pulumi.Input
+
+	ToForwardingRuleOutput() ForwardingRuleOutput
+	ToForwardingRuleOutputWithContext(ctx context.Context) ForwardingRuleOutput
+}
+
+func (ForwardingRule) ElementType() reflect.Type {
+	return reflect.TypeOf((*ForwardingRule)(nil)).Elem()
+}
+
+func (i ForwardingRule) ToForwardingRuleOutput() ForwardingRuleOutput {
+	return i.ToForwardingRuleOutputWithContext(context.Background())
+}
+
+func (i ForwardingRule) ToForwardingRuleOutputWithContext(ctx context.Context) ForwardingRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ForwardingRuleOutput)
+}
+
+type ForwardingRuleOutput struct {
+	*pulumi.OutputState
+}
+
+func (ForwardingRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ForwardingRuleOutput)(nil)).Elem()
+}
+
+func (o ForwardingRuleOutput) ToForwardingRuleOutput() ForwardingRuleOutput {
+	return o
+}
+
+func (o ForwardingRuleOutput) ToForwardingRuleOutputWithContext(ctx context.Context) ForwardingRuleOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ForwardingRuleOutput{})
 }
