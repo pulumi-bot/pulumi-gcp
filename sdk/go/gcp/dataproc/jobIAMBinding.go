@@ -4,6 +4,7 @@
 package dataproc
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -150,4 +151,43 @@ type JobIAMBindingArgs struct {
 
 func (JobIAMBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*jobIAMBindingArgs)(nil)).Elem()
+}
+
+type JobIAMBindingInput interface {
+	pulumi.Input
+
+	ToJobIAMBindingOutput() JobIAMBindingOutput
+	ToJobIAMBindingOutputWithContext(ctx context.Context) JobIAMBindingOutput
+}
+
+func (JobIAMBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*JobIAMBinding)(nil)).Elem()
+}
+
+func (i JobIAMBinding) ToJobIAMBindingOutput() JobIAMBindingOutput {
+	return i.ToJobIAMBindingOutputWithContext(context.Background())
+}
+
+func (i JobIAMBinding) ToJobIAMBindingOutputWithContext(ctx context.Context) JobIAMBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(JobIAMBindingOutput)
+}
+
+type JobIAMBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (JobIAMBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*JobIAMBindingOutput)(nil)).Elem()
+}
+
+func (o JobIAMBindingOutput) ToJobIAMBindingOutput() JobIAMBindingOutput {
+	return o
+}
+
+func (o JobIAMBindingOutput) ToJobIAMBindingOutputWithContext(ctx context.Context) JobIAMBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(JobIAMBindingOutput{})
 }

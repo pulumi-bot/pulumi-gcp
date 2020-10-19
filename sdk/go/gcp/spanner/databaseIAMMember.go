@@ -4,6 +4,7 @@
 package spanner
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -156,4 +157,43 @@ type DatabaseIAMMemberArgs struct {
 
 func (DatabaseIAMMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*databaseIAMMemberArgs)(nil)).Elem()
+}
+
+type DatabaseIAMMemberInput interface {
+	pulumi.Input
+
+	ToDatabaseIAMMemberOutput() DatabaseIAMMemberOutput
+	ToDatabaseIAMMemberOutputWithContext(ctx context.Context) DatabaseIAMMemberOutput
+}
+
+func (DatabaseIAMMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatabaseIAMMember)(nil)).Elem()
+}
+
+func (i DatabaseIAMMember) ToDatabaseIAMMemberOutput() DatabaseIAMMemberOutput {
+	return i.ToDatabaseIAMMemberOutputWithContext(context.Background())
+}
+
+func (i DatabaseIAMMember) ToDatabaseIAMMemberOutputWithContext(ctx context.Context) DatabaseIAMMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatabaseIAMMemberOutput)
+}
+
+type DatabaseIAMMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (DatabaseIAMMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatabaseIAMMemberOutput)(nil)).Elem()
+}
+
+func (o DatabaseIAMMemberOutput) ToDatabaseIAMMemberOutput() DatabaseIAMMemberOutput {
+	return o
+}
+
+func (o DatabaseIAMMemberOutput) ToDatabaseIAMMemberOutputWithContext(ctx context.Context) DatabaseIAMMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DatabaseIAMMemberOutput{})
 }

@@ -4,6 +4,7 @@
 package pubsub
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -140,4 +141,43 @@ type SubscriptionIAMMemberArgs struct {
 
 func (SubscriptionIAMMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*subscriptionIAMMemberArgs)(nil)).Elem()
+}
+
+type SubscriptionIAMMemberInput interface {
+	pulumi.Input
+
+	ToSubscriptionIAMMemberOutput() SubscriptionIAMMemberOutput
+	ToSubscriptionIAMMemberOutputWithContext(ctx context.Context) SubscriptionIAMMemberOutput
+}
+
+func (SubscriptionIAMMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*SubscriptionIAMMember)(nil)).Elem()
+}
+
+func (i SubscriptionIAMMember) ToSubscriptionIAMMemberOutput() SubscriptionIAMMemberOutput {
+	return i.ToSubscriptionIAMMemberOutputWithContext(context.Background())
+}
+
+func (i SubscriptionIAMMember) ToSubscriptionIAMMemberOutputWithContext(ctx context.Context) SubscriptionIAMMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SubscriptionIAMMemberOutput)
+}
+
+type SubscriptionIAMMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (SubscriptionIAMMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SubscriptionIAMMemberOutput)(nil)).Elem()
+}
+
+func (o SubscriptionIAMMemberOutput) ToSubscriptionIAMMemberOutput() SubscriptionIAMMemberOutput {
+	return o
+}
+
+func (o SubscriptionIAMMemberOutput) ToSubscriptionIAMMemberOutputWithContext(ctx context.Context) SubscriptionIAMMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SubscriptionIAMMemberOutput{})
 }

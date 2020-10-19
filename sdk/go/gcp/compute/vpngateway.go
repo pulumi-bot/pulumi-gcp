@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -175,4 +176,43 @@ type VPNGatewayArgs struct {
 
 func (VPNGatewayArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*vpngatewayArgs)(nil)).Elem()
+}
+
+type VPNGatewayInput interface {
+	pulumi.Input
+
+	ToVPNGatewayOutput() VPNGatewayOutput
+	ToVPNGatewayOutputWithContext(ctx context.Context) VPNGatewayOutput
+}
+
+func (VPNGateway) ElementType() reflect.Type {
+	return reflect.TypeOf((*VPNGateway)(nil)).Elem()
+}
+
+func (i VPNGateway) ToVPNGatewayOutput() VPNGatewayOutput {
+	return i.ToVPNGatewayOutputWithContext(context.Background())
+}
+
+func (i VPNGateway) ToVPNGatewayOutputWithContext(ctx context.Context) VPNGatewayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VPNGatewayOutput)
+}
+
+type VPNGatewayOutput struct {
+	*pulumi.OutputState
+}
+
+func (VPNGatewayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VPNGatewayOutput)(nil)).Elem()
+}
+
+func (o VPNGatewayOutput) ToVPNGatewayOutput() VPNGatewayOutput {
+	return o
+}
+
+func (o VPNGatewayOutput) ToVPNGatewayOutputWithContext(ctx context.Context) VPNGatewayOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(VPNGatewayOutput{})
 }

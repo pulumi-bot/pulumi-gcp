@@ -4,6 +4,7 @@
 package dns
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -294,4 +295,43 @@ type ManagedZoneArgs struct {
 
 func (ManagedZoneArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*managedZoneArgs)(nil)).Elem()
+}
+
+type ManagedZoneInput interface {
+	pulumi.Input
+
+	ToManagedZoneOutput() ManagedZoneOutput
+	ToManagedZoneOutputWithContext(ctx context.Context) ManagedZoneOutput
+}
+
+func (ManagedZone) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedZone)(nil)).Elem()
+}
+
+func (i ManagedZone) ToManagedZoneOutput() ManagedZoneOutput {
+	return i.ToManagedZoneOutputWithContext(context.Background())
+}
+
+func (i ManagedZone) ToManagedZoneOutputWithContext(ctx context.Context) ManagedZoneOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedZoneOutput)
+}
+
+type ManagedZoneOutput struct {
+	*pulumi.OutputState
+}
+
+func (ManagedZoneOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedZoneOutput)(nil)).Elem()
+}
+
+func (o ManagedZoneOutput) ToManagedZoneOutput() ManagedZoneOutput {
+	return o
+}
+
+func (o ManagedZoneOutput) ToManagedZoneOutputWithContext(ctx context.Context) ManagedZoneOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ManagedZoneOutput{})
 }

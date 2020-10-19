@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -139,4 +140,43 @@ type DiskIamPolicyArgs struct {
 
 func (DiskIamPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*diskIamPolicyArgs)(nil)).Elem()
+}
+
+type DiskIamPolicyInput interface {
+	pulumi.Input
+
+	ToDiskIamPolicyOutput() DiskIamPolicyOutput
+	ToDiskIamPolicyOutputWithContext(ctx context.Context) DiskIamPolicyOutput
+}
+
+func (DiskIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*DiskIamPolicy)(nil)).Elem()
+}
+
+func (i DiskIamPolicy) ToDiskIamPolicyOutput() DiskIamPolicyOutput {
+	return i.ToDiskIamPolicyOutputWithContext(context.Background())
+}
+
+func (i DiskIamPolicy) ToDiskIamPolicyOutputWithContext(ctx context.Context) DiskIamPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DiskIamPolicyOutput)
+}
+
+type DiskIamPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (DiskIamPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DiskIamPolicyOutput)(nil)).Elem()
+}
+
+func (o DiskIamPolicyOutput) ToDiskIamPolicyOutput() DiskIamPolicyOutput {
+	return o
+}
+
+func (o DiskIamPolicyOutput) ToDiskIamPolicyOutputWithContext(ctx context.Context) DiskIamPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DiskIamPolicyOutput{})
 }

@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -175,4 +176,43 @@ type SubnetworkIAMBindingArgs struct {
 
 func (SubnetworkIAMBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*subnetworkIAMBindingArgs)(nil)).Elem()
+}
+
+type SubnetworkIAMBindingInput interface {
+	pulumi.Input
+
+	ToSubnetworkIAMBindingOutput() SubnetworkIAMBindingOutput
+	ToSubnetworkIAMBindingOutputWithContext(ctx context.Context) SubnetworkIAMBindingOutput
+}
+
+func (SubnetworkIAMBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*SubnetworkIAMBinding)(nil)).Elem()
+}
+
+func (i SubnetworkIAMBinding) ToSubnetworkIAMBindingOutput() SubnetworkIAMBindingOutput {
+	return i.ToSubnetworkIAMBindingOutputWithContext(context.Background())
+}
+
+func (i SubnetworkIAMBinding) ToSubnetworkIAMBindingOutputWithContext(ctx context.Context) SubnetworkIAMBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SubnetworkIAMBindingOutput)
+}
+
+type SubnetworkIAMBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (SubnetworkIAMBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SubnetworkIAMBindingOutput)(nil)).Elem()
+}
+
+func (o SubnetworkIAMBindingOutput) ToSubnetworkIAMBindingOutput() SubnetworkIAMBindingOutput {
+	return o
+}
+
+func (o SubnetworkIAMBindingOutput) ToSubnetworkIAMBindingOutputWithContext(ctx context.Context) SubnetworkIAMBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SubnetworkIAMBindingOutput{})
 }
