@@ -4,6 +4,7 @@
 package iap
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -176,4 +177,43 @@ type AppEngineVersionIamBindingArgs struct {
 
 func (AppEngineVersionIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*appEngineVersionIamBindingArgs)(nil)).Elem()
+}
+
+type AppEngineVersionIamBindingInput interface {
+	pulumi.Input
+
+	ToAppEngineVersionIamBindingOutput() AppEngineVersionIamBindingOutput
+	ToAppEngineVersionIamBindingOutputWithContext(ctx context.Context) AppEngineVersionIamBindingOutput
+}
+
+func (AppEngineVersionIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*AppEngineVersionIamBinding)(nil)).Elem()
+}
+
+func (i AppEngineVersionIamBinding) ToAppEngineVersionIamBindingOutput() AppEngineVersionIamBindingOutput {
+	return i.ToAppEngineVersionIamBindingOutputWithContext(context.Background())
+}
+
+func (i AppEngineVersionIamBinding) ToAppEngineVersionIamBindingOutputWithContext(ctx context.Context) AppEngineVersionIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AppEngineVersionIamBindingOutput)
+}
+
+type AppEngineVersionIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (AppEngineVersionIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AppEngineVersionIamBindingOutput)(nil)).Elem()
+}
+
+func (o AppEngineVersionIamBindingOutput) ToAppEngineVersionIamBindingOutput() AppEngineVersionIamBindingOutput {
+	return o
+}
+
+func (o AppEngineVersionIamBindingOutput) ToAppEngineVersionIamBindingOutputWithContext(ctx context.Context) AppEngineVersionIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AppEngineVersionIamBindingOutput{})
 }

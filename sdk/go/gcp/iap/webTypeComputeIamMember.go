@@ -4,6 +4,7 @@
 package iap
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -137,4 +138,43 @@ type WebTypeComputeIamMemberArgs struct {
 
 func (WebTypeComputeIamMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*webTypeComputeIamMemberArgs)(nil)).Elem()
+}
+
+type WebTypeComputeIamMemberInput interface {
+	pulumi.Input
+
+	ToWebTypeComputeIamMemberOutput() WebTypeComputeIamMemberOutput
+	ToWebTypeComputeIamMemberOutputWithContext(ctx context.Context) WebTypeComputeIamMemberOutput
+}
+
+func (WebTypeComputeIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebTypeComputeIamMember)(nil)).Elem()
+}
+
+func (i WebTypeComputeIamMember) ToWebTypeComputeIamMemberOutput() WebTypeComputeIamMemberOutput {
+	return i.ToWebTypeComputeIamMemberOutputWithContext(context.Background())
+}
+
+func (i WebTypeComputeIamMember) ToWebTypeComputeIamMemberOutputWithContext(ctx context.Context) WebTypeComputeIamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebTypeComputeIamMemberOutput)
+}
+
+type WebTypeComputeIamMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (WebTypeComputeIamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebTypeComputeIamMemberOutput)(nil)).Elem()
+}
+
+func (o WebTypeComputeIamMemberOutput) ToWebTypeComputeIamMemberOutput() WebTypeComputeIamMemberOutput {
+	return o
+}
+
+func (o WebTypeComputeIamMemberOutput) ToWebTypeComputeIamMemberOutputWithContext(ctx context.Context) WebTypeComputeIamMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(WebTypeComputeIamMemberOutput{})
 }

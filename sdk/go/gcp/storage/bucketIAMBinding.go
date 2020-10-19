@@ -4,6 +4,7 @@
 package storage
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -135,4 +136,43 @@ type BucketIAMBindingArgs struct {
 
 func (BucketIAMBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*bucketIAMBindingArgs)(nil)).Elem()
+}
+
+type BucketIAMBindingInput interface {
+	pulumi.Input
+
+	ToBucketIAMBindingOutput() BucketIAMBindingOutput
+	ToBucketIAMBindingOutputWithContext(ctx context.Context) BucketIAMBindingOutput
+}
+
+func (BucketIAMBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketIAMBinding)(nil)).Elem()
+}
+
+func (i BucketIAMBinding) ToBucketIAMBindingOutput() BucketIAMBindingOutput {
+	return i.ToBucketIAMBindingOutputWithContext(context.Background())
+}
+
+func (i BucketIAMBinding) ToBucketIAMBindingOutputWithContext(ctx context.Context) BucketIAMBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketIAMBindingOutput)
+}
+
+type BucketIAMBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (BucketIAMBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketIAMBindingOutput)(nil)).Elem()
+}
+
+func (o BucketIAMBindingOutput) ToBucketIAMBindingOutput() BucketIAMBindingOutput {
+	return o
+}
+
+func (o BucketIAMBindingOutput) ToBucketIAMBindingOutputWithContext(ctx context.Context) BucketIAMBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(BucketIAMBindingOutput{})
 }

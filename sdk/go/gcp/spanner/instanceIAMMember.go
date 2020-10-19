@@ -4,6 +4,7 @@
 package spanner
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -143,4 +144,43 @@ type InstanceIAMMemberArgs struct {
 
 func (InstanceIAMMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*instanceIAMMemberArgs)(nil)).Elem()
+}
+
+type InstanceIAMMemberInput interface {
+	pulumi.Input
+
+	ToInstanceIAMMemberOutput() InstanceIAMMemberOutput
+	ToInstanceIAMMemberOutputWithContext(ctx context.Context) InstanceIAMMemberOutput
+}
+
+func (InstanceIAMMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceIAMMember)(nil)).Elem()
+}
+
+func (i InstanceIAMMember) ToInstanceIAMMemberOutput() InstanceIAMMemberOutput {
+	return i.ToInstanceIAMMemberOutputWithContext(context.Background())
+}
+
+func (i InstanceIAMMember) ToInstanceIAMMemberOutputWithContext(ctx context.Context) InstanceIAMMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceIAMMemberOutput)
+}
+
+type InstanceIAMMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (InstanceIAMMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceIAMMemberOutput)(nil)).Elem()
+}
+
+func (o InstanceIAMMemberOutput) ToInstanceIAMMemberOutput() InstanceIAMMemberOutput {
+	return o
+}
+
+func (o InstanceIAMMemberOutput) ToInstanceIAMMemberOutputWithContext(ctx context.Context) InstanceIAMMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(InstanceIAMMemberOutput{})
 }

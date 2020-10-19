@@ -4,6 +4,7 @@
 package iap
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -137,4 +138,43 @@ type WebTypeComputeIamBindingArgs struct {
 
 func (WebTypeComputeIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*webTypeComputeIamBindingArgs)(nil)).Elem()
+}
+
+type WebTypeComputeIamBindingInput interface {
+	pulumi.Input
+
+	ToWebTypeComputeIamBindingOutput() WebTypeComputeIamBindingOutput
+	ToWebTypeComputeIamBindingOutputWithContext(ctx context.Context) WebTypeComputeIamBindingOutput
+}
+
+func (WebTypeComputeIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebTypeComputeIamBinding)(nil)).Elem()
+}
+
+func (i WebTypeComputeIamBinding) ToWebTypeComputeIamBindingOutput() WebTypeComputeIamBindingOutput {
+	return i.ToWebTypeComputeIamBindingOutputWithContext(context.Background())
+}
+
+func (i WebTypeComputeIamBinding) ToWebTypeComputeIamBindingOutputWithContext(ctx context.Context) WebTypeComputeIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebTypeComputeIamBindingOutput)
+}
+
+type WebTypeComputeIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (WebTypeComputeIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebTypeComputeIamBindingOutput)(nil)).Elem()
+}
+
+func (o WebTypeComputeIamBindingOutput) ToWebTypeComputeIamBindingOutput() WebTypeComputeIamBindingOutput {
+	return o
+}
+
+func (o WebTypeComputeIamBindingOutput) ToWebTypeComputeIamBindingOutputWithContext(ctx context.Context) WebTypeComputeIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(WebTypeComputeIamBindingOutput{})
 }

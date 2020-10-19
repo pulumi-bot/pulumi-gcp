@@ -4,6 +4,7 @@
 package logging
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -137,4 +138,43 @@ type BillingAccountBucketConfigArgs struct {
 
 func (BillingAccountBucketConfigArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*billingAccountBucketConfigArgs)(nil)).Elem()
+}
+
+type BillingAccountBucketConfigInput interface {
+	pulumi.Input
+
+	ToBillingAccountBucketConfigOutput() BillingAccountBucketConfigOutput
+	ToBillingAccountBucketConfigOutputWithContext(ctx context.Context) BillingAccountBucketConfigOutput
+}
+
+func (BillingAccountBucketConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*BillingAccountBucketConfig)(nil)).Elem()
+}
+
+func (i BillingAccountBucketConfig) ToBillingAccountBucketConfigOutput() BillingAccountBucketConfigOutput {
+	return i.ToBillingAccountBucketConfigOutputWithContext(context.Background())
+}
+
+func (i BillingAccountBucketConfig) ToBillingAccountBucketConfigOutputWithContext(ctx context.Context) BillingAccountBucketConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BillingAccountBucketConfigOutput)
+}
+
+type BillingAccountBucketConfigOutput struct {
+	*pulumi.OutputState
+}
+
+func (BillingAccountBucketConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BillingAccountBucketConfigOutput)(nil)).Elem()
+}
+
+func (o BillingAccountBucketConfigOutput) ToBillingAccountBucketConfigOutput() BillingAccountBucketConfigOutput {
+	return o
+}
+
+func (o BillingAccountBucketConfigOutput) ToBillingAccountBucketConfigOutputWithContext(ctx context.Context) BillingAccountBucketConfigOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(BillingAccountBucketConfigOutput{})
 }

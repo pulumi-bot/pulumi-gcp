@@ -4,6 +4,7 @@
 package healthcare
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -122,4 +123,43 @@ type FhirStoreIamPolicyArgs struct {
 
 func (FhirStoreIamPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*fhirStoreIamPolicyArgs)(nil)).Elem()
+}
+
+type FhirStoreIamPolicyInput interface {
+	pulumi.Input
+
+	ToFhirStoreIamPolicyOutput() FhirStoreIamPolicyOutput
+	ToFhirStoreIamPolicyOutputWithContext(ctx context.Context) FhirStoreIamPolicyOutput
+}
+
+func (FhirStoreIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*FhirStoreIamPolicy)(nil)).Elem()
+}
+
+func (i FhirStoreIamPolicy) ToFhirStoreIamPolicyOutput() FhirStoreIamPolicyOutput {
+	return i.ToFhirStoreIamPolicyOutputWithContext(context.Background())
+}
+
+func (i FhirStoreIamPolicy) ToFhirStoreIamPolicyOutputWithContext(ctx context.Context) FhirStoreIamPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FhirStoreIamPolicyOutput)
+}
+
+type FhirStoreIamPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (FhirStoreIamPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FhirStoreIamPolicyOutput)(nil)).Elem()
+}
+
+func (o FhirStoreIamPolicyOutput) ToFhirStoreIamPolicyOutput() FhirStoreIamPolicyOutput {
+	return o
+}
+
+func (o FhirStoreIamPolicyOutput) ToFhirStoreIamPolicyOutputWithContext(ctx context.Context) FhirStoreIamPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(FhirStoreIamPolicyOutput{})
 }

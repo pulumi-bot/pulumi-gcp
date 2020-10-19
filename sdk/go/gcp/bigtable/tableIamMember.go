@@ -4,6 +4,7 @@
 package bigtable
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -143,4 +144,43 @@ type TableIamMemberArgs struct {
 
 func (TableIamMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*tableIamMemberArgs)(nil)).Elem()
+}
+
+type TableIamMemberInput interface {
+	pulumi.Input
+
+	ToTableIamMemberOutput() TableIamMemberOutput
+	ToTableIamMemberOutputWithContext(ctx context.Context) TableIamMemberOutput
+}
+
+func (TableIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*TableIamMember)(nil)).Elem()
+}
+
+func (i TableIamMember) ToTableIamMemberOutput() TableIamMemberOutput {
+	return i.ToTableIamMemberOutputWithContext(context.Background())
+}
+
+func (i TableIamMember) ToTableIamMemberOutputWithContext(ctx context.Context) TableIamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TableIamMemberOutput)
+}
+
+type TableIamMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (TableIamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TableIamMemberOutput)(nil)).Elem()
+}
+
+func (o TableIamMemberOutput) ToTableIamMemberOutput() TableIamMemberOutput {
+	return o
+}
+
+func (o TableIamMemberOutput) ToTableIamMemberOutputWithContext(ctx context.Context) TableIamMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TableIamMemberOutput{})
 }
