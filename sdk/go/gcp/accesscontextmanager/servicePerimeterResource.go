@@ -4,6 +4,7 @@
 package accesscontextmanager
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -119,4 +120,43 @@ type ServicePerimeterResourceArgs struct {
 
 func (ServicePerimeterResourceArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*servicePerimeterResourceArgs)(nil)).Elem()
+}
+
+type ServicePerimeterResourceInput interface {
+	pulumi.Input
+
+	ToServicePerimeterResourceOutput() ServicePerimeterResourceOutput
+	ToServicePerimeterResourceOutputWithContext(ctx context.Context) ServicePerimeterResourceOutput
+}
+
+func (ServicePerimeterResource) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServicePerimeterResource)(nil)).Elem()
+}
+
+func (i ServicePerimeterResource) ToServicePerimeterResourceOutput() ServicePerimeterResourceOutput {
+	return i.ToServicePerimeterResourceOutputWithContext(context.Background())
+}
+
+func (i ServicePerimeterResource) ToServicePerimeterResourceOutputWithContext(ctx context.Context) ServicePerimeterResourceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServicePerimeterResourceOutput)
+}
+
+type ServicePerimeterResourceOutput struct {
+	*pulumi.OutputState
+}
+
+func (ServicePerimeterResourceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServicePerimeterResourceOutput)(nil)).Elem()
+}
+
+func (o ServicePerimeterResourceOutput) ToServicePerimeterResourceOutput() ServicePerimeterResourceOutput {
+	return o
+}
+
+func (o ServicePerimeterResourceOutput) ToServicePerimeterResourceOutputWithContext(ctx context.Context) ServicePerimeterResourceOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ServicePerimeterResourceOutput{})
 }

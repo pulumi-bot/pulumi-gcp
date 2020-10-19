@@ -4,6 +4,7 @@
 package logging
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -219,4 +220,43 @@ type BillingAccountSinkArgs struct {
 
 func (BillingAccountSinkArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*billingAccountSinkArgs)(nil)).Elem()
+}
+
+type BillingAccountSinkInput interface {
+	pulumi.Input
+
+	ToBillingAccountSinkOutput() BillingAccountSinkOutput
+	ToBillingAccountSinkOutputWithContext(ctx context.Context) BillingAccountSinkOutput
+}
+
+func (BillingAccountSink) ElementType() reflect.Type {
+	return reflect.TypeOf((*BillingAccountSink)(nil)).Elem()
+}
+
+func (i BillingAccountSink) ToBillingAccountSinkOutput() BillingAccountSinkOutput {
+	return i.ToBillingAccountSinkOutputWithContext(context.Background())
+}
+
+func (i BillingAccountSink) ToBillingAccountSinkOutputWithContext(ctx context.Context) BillingAccountSinkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BillingAccountSinkOutput)
+}
+
+type BillingAccountSinkOutput struct {
+	*pulumi.OutputState
+}
+
+func (BillingAccountSinkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BillingAccountSinkOutput)(nil)).Elem()
+}
+
+func (o BillingAccountSinkOutput) ToBillingAccountSinkOutput() BillingAccountSinkOutput {
+	return o
+}
+
+func (o BillingAccountSinkOutput) ToBillingAccountSinkOutputWithContext(ctx context.Context) BillingAccountSinkOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(BillingAccountSinkOutput{})
 }

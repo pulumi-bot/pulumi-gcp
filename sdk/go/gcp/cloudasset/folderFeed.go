@@ -4,6 +4,7 @@
 package cloudasset
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -219,4 +220,43 @@ type FolderFeedArgs struct {
 
 func (FolderFeedArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*folderFeedArgs)(nil)).Elem()
+}
+
+type FolderFeedInput interface {
+	pulumi.Input
+
+	ToFolderFeedOutput() FolderFeedOutput
+	ToFolderFeedOutputWithContext(ctx context.Context) FolderFeedOutput
+}
+
+func (FolderFeed) ElementType() reflect.Type {
+	return reflect.TypeOf((*FolderFeed)(nil)).Elem()
+}
+
+func (i FolderFeed) ToFolderFeedOutput() FolderFeedOutput {
+	return i.ToFolderFeedOutputWithContext(context.Background())
+}
+
+func (i FolderFeed) ToFolderFeedOutputWithContext(ctx context.Context) FolderFeedOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FolderFeedOutput)
+}
+
+type FolderFeedOutput struct {
+	*pulumi.OutputState
+}
+
+func (FolderFeedOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FolderFeedOutput)(nil)).Elem()
+}
+
+func (o FolderFeedOutput) ToFolderFeedOutput() FolderFeedOutput {
+	return o
+}
+
+func (o FolderFeedOutput) ToFolderFeedOutputWithContext(ctx context.Context) FolderFeedOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(FolderFeedOutput{})
 }

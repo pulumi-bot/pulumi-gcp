@@ -4,6 +4,7 @@
 package storage
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -208,4 +209,43 @@ type BucketAccessControlArgs struct {
 
 func (BucketAccessControlArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*bucketAccessControlArgs)(nil)).Elem()
+}
+
+type BucketAccessControlInput interface {
+	pulumi.Input
+
+	ToBucketAccessControlOutput() BucketAccessControlOutput
+	ToBucketAccessControlOutputWithContext(ctx context.Context) BucketAccessControlOutput
+}
+
+func (BucketAccessControl) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketAccessControl)(nil)).Elem()
+}
+
+func (i BucketAccessControl) ToBucketAccessControlOutput() BucketAccessControlOutput {
+	return i.ToBucketAccessControlOutputWithContext(context.Background())
+}
+
+func (i BucketAccessControl) ToBucketAccessControlOutputWithContext(ctx context.Context) BucketAccessControlOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketAccessControlOutput)
+}
+
+type BucketAccessControlOutput struct {
+	*pulumi.OutputState
+}
+
+func (BucketAccessControlOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketAccessControlOutput)(nil)).Elem()
+}
+
+func (o BucketAccessControlOutput) ToBucketAccessControlOutput() BucketAccessControlOutput {
+	return o
+}
+
+func (o BucketAccessControlOutput) ToBucketAccessControlOutputWithContext(ctx context.Context) BucketAccessControlOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(BucketAccessControlOutput{})
 }

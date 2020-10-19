@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -239,4 +240,43 @@ type RegionNetworkEndpointGroupArgs struct {
 
 func (RegionNetworkEndpointGroupArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*regionNetworkEndpointGroupArgs)(nil)).Elem()
+}
+
+type RegionNetworkEndpointGroupInput interface {
+	pulumi.Input
+
+	ToRegionNetworkEndpointGroupOutput() RegionNetworkEndpointGroupOutput
+	ToRegionNetworkEndpointGroupOutputWithContext(ctx context.Context) RegionNetworkEndpointGroupOutput
+}
+
+func (RegionNetworkEndpointGroup) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionNetworkEndpointGroup)(nil)).Elem()
+}
+
+func (i RegionNetworkEndpointGroup) ToRegionNetworkEndpointGroupOutput() RegionNetworkEndpointGroupOutput {
+	return i.ToRegionNetworkEndpointGroupOutputWithContext(context.Background())
+}
+
+func (i RegionNetworkEndpointGroup) ToRegionNetworkEndpointGroupOutputWithContext(ctx context.Context) RegionNetworkEndpointGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegionNetworkEndpointGroupOutput)
+}
+
+type RegionNetworkEndpointGroupOutput struct {
+	*pulumi.OutputState
+}
+
+func (RegionNetworkEndpointGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionNetworkEndpointGroupOutput)(nil)).Elem()
+}
+
+func (o RegionNetworkEndpointGroupOutput) ToRegionNetworkEndpointGroupOutput() RegionNetworkEndpointGroupOutput {
+	return o
+}
+
+func (o RegionNetworkEndpointGroupOutput) ToRegionNetworkEndpointGroupOutputWithContext(ctx context.Context) RegionNetworkEndpointGroupOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RegionNetworkEndpointGroupOutput{})
 }

@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -139,4 +140,43 @@ type InstanceGroupNamedPortArgs struct {
 
 func (InstanceGroupNamedPortArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*instanceGroupNamedPortArgs)(nil)).Elem()
+}
+
+type InstanceGroupNamedPortInput interface {
+	pulumi.Input
+
+	ToInstanceGroupNamedPortOutput() InstanceGroupNamedPortOutput
+	ToInstanceGroupNamedPortOutputWithContext(ctx context.Context) InstanceGroupNamedPortOutput
+}
+
+func (InstanceGroupNamedPort) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceGroupNamedPort)(nil)).Elem()
+}
+
+func (i InstanceGroupNamedPort) ToInstanceGroupNamedPortOutput() InstanceGroupNamedPortOutput {
+	return i.ToInstanceGroupNamedPortOutputWithContext(context.Background())
+}
+
+func (i InstanceGroupNamedPort) ToInstanceGroupNamedPortOutputWithContext(ctx context.Context) InstanceGroupNamedPortOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceGroupNamedPortOutput)
+}
+
+type InstanceGroupNamedPortOutput struct {
+	*pulumi.OutputState
+}
+
+func (InstanceGroupNamedPortOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceGroupNamedPortOutput)(nil)).Elem()
+}
+
+func (o InstanceGroupNamedPortOutput) ToInstanceGroupNamedPortOutput() InstanceGroupNamedPortOutput {
+	return o
+}
+
+func (o InstanceGroupNamedPortOutput) ToInstanceGroupNamedPortOutputWithContext(ctx context.Context) InstanceGroupNamedPortOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(InstanceGroupNamedPortOutput{})
 }

@@ -4,6 +4,7 @@
 package pubsub
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -122,4 +123,43 @@ type SubscriptionIAMPolicyArgs struct {
 
 func (SubscriptionIAMPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*subscriptionIAMPolicyArgs)(nil)).Elem()
+}
+
+type SubscriptionIAMPolicyInput interface {
+	pulumi.Input
+
+	ToSubscriptionIAMPolicyOutput() SubscriptionIAMPolicyOutput
+	ToSubscriptionIAMPolicyOutputWithContext(ctx context.Context) SubscriptionIAMPolicyOutput
+}
+
+func (SubscriptionIAMPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*SubscriptionIAMPolicy)(nil)).Elem()
+}
+
+func (i SubscriptionIAMPolicy) ToSubscriptionIAMPolicyOutput() SubscriptionIAMPolicyOutput {
+	return i.ToSubscriptionIAMPolicyOutputWithContext(context.Background())
+}
+
+func (i SubscriptionIAMPolicy) ToSubscriptionIAMPolicyOutputWithContext(ctx context.Context) SubscriptionIAMPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SubscriptionIAMPolicyOutput)
+}
+
+type SubscriptionIAMPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (SubscriptionIAMPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SubscriptionIAMPolicyOutput)(nil)).Elem()
+}
+
+func (o SubscriptionIAMPolicyOutput) ToSubscriptionIAMPolicyOutput() SubscriptionIAMPolicyOutput {
+	return o
+}
+
+func (o SubscriptionIAMPolicyOutput) ToSubscriptionIAMPolicyOutputWithContext(ctx context.Context) SubscriptionIAMPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SubscriptionIAMPolicyOutput{})
 }

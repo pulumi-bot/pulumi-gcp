@@ -4,6 +4,7 @@
 package bigquery
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -328,4 +329,43 @@ type DataTransferConfigArgs struct {
 
 func (DataTransferConfigArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*dataTransferConfigArgs)(nil)).Elem()
+}
+
+type DataTransferConfigInput interface {
+	pulumi.Input
+
+	ToDataTransferConfigOutput() DataTransferConfigOutput
+	ToDataTransferConfigOutputWithContext(ctx context.Context) DataTransferConfigOutput
+}
+
+func (DataTransferConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*DataTransferConfig)(nil)).Elem()
+}
+
+func (i DataTransferConfig) ToDataTransferConfigOutput() DataTransferConfigOutput {
+	return i.ToDataTransferConfigOutputWithContext(context.Background())
+}
+
+func (i DataTransferConfig) ToDataTransferConfigOutputWithContext(ctx context.Context) DataTransferConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DataTransferConfigOutput)
+}
+
+type DataTransferConfigOutput struct {
+	*pulumi.OutputState
+}
+
+func (DataTransferConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DataTransferConfigOutput)(nil)).Elem()
+}
+
+func (o DataTransferConfigOutput) ToDataTransferConfigOutput() DataTransferConfigOutput {
+	return o
+}
+
+func (o DataTransferConfigOutput) ToDataTransferConfigOutputWithContext(ctx context.Context) DataTransferConfigOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DataTransferConfigOutput{})
 }

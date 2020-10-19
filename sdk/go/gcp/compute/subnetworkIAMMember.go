@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -175,4 +176,43 @@ type SubnetworkIAMMemberArgs struct {
 
 func (SubnetworkIAMMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*subnetworkIAMMemberArgs)(nil)).Elem()
+}
+
+type SubnetworkIAMMemberInput interface {
+	pulumi.Input
+
+	ToSubnetworkIAMMemberOutput() SubnetworkIAMMemberOutput
+	ToSubnetworkIAMMemberOutputWithContext(ctx context.Context) SubnetworkIAMMemberOutput
+}
+
+func (SubnetworkIAMMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*SubnetworkIAMMember)(nil)).Elem()
+}
+
+func (i SubnetworkIAMMember) ToSubnetworkIAMMemberOutput() SubnetworkIAMMemberOutput {
+	return i.ToSubnetworkIAMMemberOutputWithContext(context.Background())
+}
+
+func (i SubnetworkIAMMember) ToSubnetworkIAMMemberOutputWithContext(ctx context.Context) SubnetworkIAMMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SubnetworkIAMMemberOutput)
+}
+
+type SubnetworkIAMMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (SubnetworkIAMMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SubnetworkIAMMemberOutput)(nil)).Elem()
+}
+
+func (o SubnetworkIAMMemberOutput) ToSubnetworkIAMMemberOutput() SubnetworkIAMMemberOutput {
+	return o
+}
+
+func (o SubnetworkIAMMemberOutput) ToSubnetworkIAMMemberOutputWithContext(ctx context.Context) SubnetworkIAMMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SubnetworkIAMMemberOutput{})
 }

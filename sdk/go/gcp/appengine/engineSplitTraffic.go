@@ -4,6 +4,7 @@
 package appengine
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -124,4 +125,43 @@ type EngineSplitTrafficArgs struct {
 
 func (EngineSplitTrafficArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*engineSplitTrafficArgs)(nil)).Elem()
+}
+
+type EngineSplitTrafficInput interface {
+	pulumi.Input
+
+	ToEngineSplitTrafficOutput() EngineSplitTrafficOutput
+	ToEngineSplitTrafficOutputWithContext(ctx context.Context) EngineSplitTrafficOutput
+}
+
+func (EngineSplitTraffic) ElementType() reflect.Type {
+	return reflect.TypeOf((*EngineSplitTraffic)(nil)).Elem()
+}
+
+func (i EngineSplitTraffic) ToEngineSplitTrafficOutput() EngineSplitTrafficOutput {
+	return i.ToEngineSplitTrafficOutputWithContext(context.Background())
+}
+
+func (i EngineSplitTraffic) ToEngineSplitTrafficOutputWithContext(ctx context.Context) EngineSplitTrafficOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EngineSplitTrafficOutput)
+}
+
+type EngineSplitTrafficOutput struct {
+	*pulumi.OutputState
+}
+
+func (EngineSplitTrafficOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EngineSplitTrafficOutput)(nil)).Elem()
+}
+
+func (o EngineSplitTrafficOutput) ToEngineSplitTrafficOutput() EngineSplitTrafficOutput {
+	return o
+}
+
+func (o EngineSplitTrafficOutput) ToEngineSplitTrafficOutputWithContext(ctx context.Context) EngineSplitTrafficOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(EngineSplitTrafficOutput{})
 }

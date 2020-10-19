@@ -4,6 +4,7 @@
 package dataproc
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -132,4 +133,43 @@ type ClusterIAMPolicyArgs struct {
 
 func (ClusterIAMPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*clusterIAMPolicyArgs)(nil)).Elem()
+}
+
+type ClusterIAMPolicyInput interface {
+	pulumi.Input
+
+	ToClusterIAMPolicyOutput() ClusterIAMPolicyOutput
+	ToClusterIAMPolicyOutputWithContext(ctx context.Context) ClusterIAMPolicyOutput
+}
+
+func (ClusterIAMPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterIAMPolicy)(nil)).Elem()
+}
+
+func (i ClusterIAMPolicy) ToClusterIAMPolicyOutput() ClusterIAMPolicyOutput {
+	return i.ToClusterIAMPolicyOutputWithContext(context.Background())
+}
+
+func (i ClusterIAMPolicy) ToClusterIAMPolicyOutputWithContext(ctx context.Context) ClusterIAMPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterIAMPolicyOutput)
+}
+
+type ClusterIAMPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (ClusterIAMPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterIAMPolicyOutput)(nil)).Elem()
+}
+
+func (o ClusterIAMPolicyOutput) ToClusterIAMPolicyOutput() ClusterIAMPolicyOutput {
+	return o
+}
+
+func (o ClusterIAMPolicyOutput) ToClusterIAMPolicyOutputWithContext(ctx context.Context) ClusterIAMPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ClusterIAMPolicyOutput{})
 }

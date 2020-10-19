@@ -4,6 +4,7 @@
 package artifactregistry
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -137,4 +138,43 @@ type RepositoryIamPolicyArgs struct {
 
 func (RepositoryIamPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*repositoryIamPolicyArgs)(nil)).Elem()
+}
+
+type RepositoryIamPolicyInput interface {
+	pulumi.Input
+
+	ToRepositoryIamPolicyOutput() RepositoryIamPolicyOutput
+	ToRepositoryIamPolicyOutputWithContext(ctx context.Context) RepositoryIamPolicyOutput
+}
+
+func (RepositoryIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*RepositoryIamPolicy)(nil)).Elem()
+}
+
+func (i RepositoryIamPolicy) ToRepositoryIamPolicyOutput() RepositoryIamPolicyOutput {
+	return i.ToRepositoryIamPolicyOutputWithContext(context.Background())
+}
+
+func (i RepositoryIamPolicy) ToRepositoryIamPolicyOutputWithContext(ctx context.Context) RepositoryIamPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RepositoryIamPolicyOutput)
+}
+
+type RepositoryIamPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (RepositoryIamPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RepositoryIamPolicyOutput)(nil)).Elem()
+}
+
+func (o RepositoryIamPolicyOutput) ToRepositoryIamPolicyOutput() RepositoryIamPolicyOutput {
+	return o
+}
+
+func (o RepositoryIamPolicyOutput) ToRepositoryIamPolicyOutputWithContext(ctx context.Context) RepositoryIamPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RepositoryIamPolicyOutput{})
 }

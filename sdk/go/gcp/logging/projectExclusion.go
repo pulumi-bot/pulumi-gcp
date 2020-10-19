@@ -4,6 +4,7 @@
 package logging
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -140,4 +141,43 @@ type ProjectExclusionArgs struct {
 
 func (ProjectExclusionArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*projectExclusionArgs)(nil)).Elem()
+}
+
+type ProjectExclusionInput interface {
+	pulumi.Input
+
+	ToProjectExclusionOutput() ProjectExclusionOutput
+	ToProjectExclusionOutputWithContext(ctx context.Context) ProjectExclusionOutput
+}
+
+func (ProjectExclusion) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProjectExclusion)(nil)).Elem()
+}
+
+func (i ProjectExclusion) ToProjectExclusionOutput() ProjectExclusionOutput {
+	return i.ToProjectExclusionOutputWithContext(context.Background())
+}
+
+func (i ProjectExclusion) ToProjectExclusionOutputWithContext(ctx context.Context) ProjectExclusionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProjectExclusionOutput)
+}
+
+type ProjectExclusionOutput struct {
+	*pulumi.OutputState
+}
+
+func (ProjectExclusionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProjectExclusionOutput)(nil)).Elem()
+}
+
+func (o ProjectExclusionOutput) ToProjectExclusionOutput() ProjectExclusionOutput {
+	return o
+}
+
+func (o ProjectExclusionOutput) ToProjectExclusionOutputWithContext(ctx context.Context) ProjectExclusionOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ProjectExclusionOutput{})
 }

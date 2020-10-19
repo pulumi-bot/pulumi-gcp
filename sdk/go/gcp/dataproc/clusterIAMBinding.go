@@ -4,6 +4,7 @@
 package dataproc
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -155,4 +156,43 @@ type ClusterIAMBindingArgs struct {
 
 func (ClusterIAMBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*clusterIAMBindingArgs)(nil)).Elem()
+}
+
+type ClusterIAMBindingInput interface {
+	pulumi.Input
+
+	ToClusterIAMBindingOutput() ClusterIAMBindingOutput
+	ToClusterIAMBindingOutputWithContext(ctx context.Context) ClusterIAMBindingOutput
+}
+
+func (ClusterIAMBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterIAMBinding)(nil)).Elem()
+}
+
+func (i ClusterIAMBinding) ToClusterIAMBindingOutput() ClusterIAMBindingOutput {
+	return i.ToClusterIAMBindingOutputWithContext(context.Background())
+}
+
+func (i ClusterIAMBinding) ToClusterIAMBindingOutputWithContext(ctx context.Context) ClusterIAMBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterIAMBindingOutput)
+}
+
+type ClusterIAMBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (ClusterIAMBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterIAMBindingOutput)(nil)).Elem()
+}
+
+func (o ClusterIAMBindingOutput) ToClusterIAMBindingOutput() ClusterIAMBindingOutput {
+	return o
+}
+
+func (o ClusterIAMBindingOutput) ToClusterIAMBindingOutputWithContext(ctx context.Context) ClusterIAMBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ClusterIAMBindingOutput{})
 }
