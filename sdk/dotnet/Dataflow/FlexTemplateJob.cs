@@ -149,7 +149,7 @@ namespace Pulumi.Gcp.Dataflow
 
         [Input("labels")]
         private InputMap<object>? _labels;
-        [Obsolete(@"Deprecated until the API supports this field")]
+    [Obsolete(@"Deprecated until the API supports this field")]
         public InputMap<object> Labels
         {
             get => _labels ?? (_labels = new InputMap<object>());
@@ -217,7 +217,7 @@ namespace Pulumi.Gcp.Dataflow
 
         [Input("labels")]
         private InputMap<object>? _labels;
-        [Obsolete(@"Deprecated until the API supports this field")]
+    [Obsolete(@"Deprecated until the API supports this field")]
         public InputMap<object> Labels
         {
             get => _labels ?? (_labels = new InputMap<object>());
