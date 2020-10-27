@@ -65,7 +65,7 @@ namespace Pulumi.Gcp.CloudRun.Inputs
         /// precedence.
         /// Structure is documented below.
         /// </summary>
-        [Obsolete(@"Not supported by Cloud Run fully managed")]
+    [Obsolete(@"Not supported by Cloud Run fully managed")]
         public InputList<Inputs.ServiceTemplateSpecContainerEnvFromGetArgs> EnvFroms
         {
             get => _envFroms ?? (_envFroms = new InputList<Inputs.ServiceTemplateSpecContainerEnvFromGetArgs>());

@@ -28,7 +28,7 @@ namespace Pulumi.Gcp.Sql.Inputs
         /// for information on how to upgrade to Second Generation instances.
         /// A list of Google App Engine (GAE) project names that are allowed to access this instance.
         /// </summary>
-        [Obsolete(@"This property is only applicable to First Generation instances, and First Generation instances are now deprecated.")]
+    [Obsolete(@"This property is only applicable to First Generation instances, and First Generation instances are now deprecated.")]
         public InputList<string> AuthorizedGaeApplications
         {
             get => _authorizedGaeApplications ?? (_authorizedGaeApplications = new InputList<string>());
