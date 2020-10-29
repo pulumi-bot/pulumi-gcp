@@ -4,6 +4,7 @@
 package iap
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -153,4 +154,43 @@ type BrandArgs struct {
 
 func (BrandArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*brandArgs)(nil)).Elem()
+}
+
+type BrandInput interface {
+	pulumi.Input
+
+	ToBrandOutput() BrandOutput
+	ToBrandOutputWithContext(ctx context.Context) BrandOutput
+}
+
+func (Brand) ElementType() reflect.Type {
+	return reflect.TypeOf((*Brand)(nil)).Elem()
+}
+
+func (i Brand) ToBrandOutput() BrandOutput {
+	return i.ToBrandOutputWithContext(context.Background())
+}
+
+func (i Brand) ToBrandOutputWithContext(ctx context.Context) BrandOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BrandOutput)
+}
+
+type BrandOutput struct {
+	*pulumi.OutputState
+}
+
+func (BrandOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BrandOutput)(nil)).Elem()
+}
+
+func (o BrandOutput) ToBrandOutput() BrandOutput {
+	return o
+}
+
+func (o BrandOutput) ToBrandOutputWithContext(ctx context.Context) BrandOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(BrandOutput{})
 }

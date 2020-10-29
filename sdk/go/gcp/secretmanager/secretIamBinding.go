@@ -4,6 +4,7 @@
 package secretmanager
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -135,4 +136,43 @@ type SecretIamBindingArgs struct {
 
 func (SecretIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretIamBindingArgs)(nil)).Elem()
+}
+
+type SecretIamBindingInput interface {
+	pulumi.Input
+
+	ToSecretIamBindingOutput() SecretIamBindingOutput
+	ToSecretIamBindingOutputWithContext(ctx context.Context) SecretIamBindingOutput
+}
+
+func (SecretIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretIamBinding)(nil)).Elem()
+}
+
+func (i SecretIamBinding) ToSecretIamBindingOutput() SecretIamBindingOutput {
+	return i.ToSecretIamBindingOutputWithContext(context.Background())
+}
+
+func (i SecretIamBinding) ToSecretIamBindingOutputWithContext(ctx context.Context) SecretIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretIamBindingOutput)
+}
+
+type SecretIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (SecretIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretIamBindingOutput)(nil)).Elem()
+}
+
+func (o SecretIamBindingOutput) ToSecretIamBindingOutput() SecretIamBindingOutput {
+	return o
+}
+
+func (o SecretIamBindingOutput) ToSecretIamBindingOutputWithContext(ctx context.Context) SecretIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SecretIamBindingOutput{})
 }

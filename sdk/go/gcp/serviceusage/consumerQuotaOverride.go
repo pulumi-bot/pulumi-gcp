@@ -4,6 +4,7 @@
 package serviceusage
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -170,4 +171,43 @@ type ConsumerQuotaOverrideArgs struct {
 
 func (ConsumerQuotaOverrideArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*consumerQuotaOverrideArgs)(nil)).Elem()
+}
+
+type ConsumerQuotaOverrideInput interface {
+	pulumi.Input
+
+	ToConsumerQuotaOverrideOutput() ConsumerQuotaOverrideOutput
+	ToConsumerQuotaOverrideOutputWithContext(ctx context.Context) ConsumerQuotaOverrideOutput
+}
+
+func (ConsumerQuotaOverride) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumerQuotaOverride)(nil)).Elem()
+}
+
+func (i ConsumerQuotaOverride) ToConsumerQuotaOverrideOutput() ConsumerQuotaOverrideOutput {
+	return i.ToConsumerQuotaOverrideOutputWithContext(context.Background())
+}
+
+func (i ConsumerQuotaOverride) ToConsumerQuotaOverrideOutputWithContext(ctx context.Context) ConsumerQuotaOverrideOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumerQuotaOverrideOutput)
+}
+
+type ConsumerQuotaOverrideOutput struct {
+	*pulumi.OutputState
+}
+
+func (ConsumerQuotaOverrideOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsumerQuotaOverrideOutput)(nil)).Elem()
+}
+
+func (o ConsumerQuotaOverrideOutput) ToConsumerQuotaOverrideOutput() ConsumerQuotaOverrideOutput {
+	return o
+}
+
+func (o ConsumerQuotaOverrideOutput) ToConsumerQuotaOverrideOutputWithContext(ctx context.Context) ConsumerQuotaOverrideOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ConsumerQuotaOverrideOutput{})
 }

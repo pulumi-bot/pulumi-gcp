@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -227,4 +228,43 @@ type PerInstanceConfigArgs struct {
 
 func (PerInstanceConfigArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*perInstanceConfigArgs)(nil)).Elem()
+}
+
+type PerInstanceConfigInput interface {
+	pulumi.Input
+
+	ToPerInstanceConfigOutput() PerInstanceConfigOutput
+	ToPerInstanceConfigOutputWithContext(ctx context.Context) PerInstanceConfigOutput
+}
+
+func (PerInstanceConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*PerInstanceConfig)(nil)).Elem()
+}
+
+func (i PerInstanceConfig) ToPerInstanceConfigOutput() PerInstanceConfigOutput {
+	return i.ToPerInstanceConfigOutputWithContext(context.Background())
+}
+
+func (i PerInstanceConfig) ToPerInstanceConfigOutputWithContext(ctx context.Context) PerInstanceConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PerInstanceConfigOutput)
+}
+
+type PerInstanceConfigOutput struct {
+	*pulumi.OutputState
+}
+
+func (PerInstanceConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PerInstanceConfigOutput)(nil)).Elem()
+}
+
+func (o PerInstanceConfigOutput) ToPerInstanceConfigOutput() PerInstanceConfigOutput {
+	return o
+}
+
+func (o PerInstanceConfigOutput) ToPerInstanceConfigOutputWithContext(ctx context.Context) PerInstanceConfigOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(PerInstanceConfigOutput{})
 }

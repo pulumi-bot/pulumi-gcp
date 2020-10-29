@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -180,4 +181,43 @@ type GlobalNetworkEndpointGroupArgs struct {
 
 func (GlobalNetworkEndpointGroupArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*globalNetworkEndpointGroupArgs)(nil)).Elem()
+}
+
+type GlobalNetworkEndpointGroupInput interface {
+	pulumi.Input
+
+	ToGlobalNetworkEndpointGroupOutput() GlobalNetworkEndpointGroupOutput
+	ToGlobalNetworkEndpointGroupOutputWithContext(ctx context.Context) GlobalNetworkEndpointGroupOutput
+}
+
+func (GlobalNetworkEndpointGroup) ElementType() reflect.Type {
+	return reflect.TypeOf((*GlobalNetworkEndpointGroup)(nil)).Elem()
+}
+
+func (i GlobalNetworkEndpointGroup) ToGlobalNetworkEndpointGroupOutput() GlobalNetworkEndpointGroupOutput {
+	return i.ToGlobalNetworkEndpointGroupOutputWithContext(context.Background())
+}
+
+func (i GlobalNetworkEndpointGroup) ToGlobalNetworkEndpointGroupOutputWithContext(ctx context.Context) GlobalNetworkEndpointGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalNetworkEndpointGroupOutput)
+}
+
+type GlobalNetworkEndpointGroupOutput struct {
+	*pulumi.OutputState
+}
+
+func (GlobalNetworkEndpointGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GlobalNetworkEndpointGroupOutput)(nil)).Elem()
+}
+
+func (o GlobalNetworkEndpointGroupOutput) ToGlobalNetworkEndpointGroupOutput() GlobalNetworkEndpointGroupOutput {
+	return o
+}
+
+func (o GlobalNetworkEndpointGroupOutput) ToGlobalNetworkEndpointGroupOutputWithContext(ctx context.Context) GlobalNetworkEndpointGroupOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(GlobalNetworkEndpointGroupOutput{})
 }
