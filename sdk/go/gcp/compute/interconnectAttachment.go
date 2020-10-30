@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -409,4 +410,43 @@ type InterconnectAttachmentArgs struct {
 
 func (InterconnectAttachmentArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*interconnectAttachmentArgs)(nil)).Elem()
+}
+
+type InterconnectAttachmentInput interface {
+	pulumi.Input
+
+	ToInterconnectAttachmentOutput() InterconnectAttachmentOutput
+	ToInterconnectAttachmentOutputWithContext(ctx context.Context) InterconnectAttachmentOutput
+}
+
+func (InterconnectAttachment) ElementType() reflect.Type {
+	return reflect.TypeOf((*InterconnectAttachment)(nil)).Elem()
+}
+
+func (i InterconnectAttachment) ToInterconnectAttachmentOutput() InterconnectAttachmentOutput {
+	return i.ToInterconnectAttachmentOutputWithContext(context.Background())
+}
+
+func (i InterconnectAttachment) ToInterconnectAttachmentOutputWithContext(ctx context.Context) InterconnectAttachmentOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InterconnectAttachmentOutput)
+}
+
+type InterconnectAttachmentOutput struct {
+	*pulumi.OutputState
+}
+
+func (InterconnectAttachmentOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InterconnectAttachmentOutput)(nil)).Elem()
+}
+
+func (o InterconnectAttachmentOutput) ToInterconnectAttachmentOutput() InterconnectAttachmentOutput {
+	return o
+}
+
+func (o InterconnectAttachmentOutput) ToInterconnectAttachmentOutputWithContext(ctx context.Context) InterconnectAttachmentOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(InterconnectAttachmentOutput{})
 }

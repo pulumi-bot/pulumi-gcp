@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -150,4 +151,43 @@ type ImageIamBindingArgs struct {
 
 func (ImageIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*imageIamBindingArgs)(nil)).Elem()
+}
+
+type ImageIamBindingInput interface {
+	pulumi.Input
+
+	ToImageIamBindingOutput() ImageIamBindingOutput
+	ToImageIamBindingOutputWithContext(ctx context.Context) ImageIamBindingOutput
+}
+
+func (ImageIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*ImageIamBinding)(nil)).Elem()
+}
+
+func (i ImageIamBinding) ToImageIamBindingOutput() ImageIamBindingOutput {
+	return i.ToImageIamBindingOutputWithContext(context.Background())
+}
+
+func (i ImageIamBinding) ToImageIamBindingOutputWithContext(ctx context.Context) ImageIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ImageIamBindingOutput)
+}
+
+type ImageIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (ImageIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ImageIamBindingOutput)(nil)).Elem()
+}
+
+func (o ImageIamBindingOutput) ToImageIamBindingOutput() ImageIamBindingOutput {
+	return o
+}
+
+func (o ImageIamBindingOutput) ToImageIamBindingOutputWithContext(ctx context.Context) ImageIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ImageIamBindingOutput{})
 }

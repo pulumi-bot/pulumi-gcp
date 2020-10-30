@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -195,4 +196,43 @@ type AttachedDiskArgs struct {
 
 func (AttachedDiskArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*attachedDiskArgs)(nil)).Elem()
+}
+
+type AttachedDiskInput interface {
+	pulumi.Input
+
+	ToAttachedDiskOutput() AttachedDiskOutput
+	ToAttachedDiskOutputWithContext(ctx context.Context) AttachedDiskOutput
+}
+
+func (AttachedDisk) ElementType() reflect.Type {
+	return reflect.TypeOf((*AttachedDisk)(nil)).Elem()
+}
+
+func (i AttachedDisk) ToAttachedDiskOutput() AttachedDiskOutput {
+	return i.ToAttachedDiskOutputWithContext(context.Background())
+}
+
+func (i AttachedDisk) ToAttachedDiskOutputWithContext(ctx context.Context) AttachedDiskOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AttachedDiskOutput)
+}
+
+type AttachedDiskOutput struct {
+	*pulumi.OutputState
+}
+
+func (AttachedDiskOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AttachedDiskOutput)(nil)).Elem()
+}
+
+func (o AttachedDiskOutput) ToAttachedDiskOutput() AttachedDiskOutput {
+	return o
+}
+
+func (o AttachedDiskOutput) ToAttachedDiskOutputWithContext(ctx context.Context) AttachedDiskOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AttachedDiskOutput{})
 }

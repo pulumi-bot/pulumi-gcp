@@ -4,6 +4,7 @@
 package servicedirectory
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -122,4 +123,43 @@ type NamespaceIamMemberArgs struct {
 
 func (NamespaceIamMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*namespaceIamMemberArgs)(nil)).Elem()
+}
+
+type NamespaceIamMemberInput interface {
+	pulumi.Input
+
+	ToNamespaceIamMemberOutput() NamespaceIamMemberOutput
+	ToNamespaceIamMemberOutputWithContext(ctx context.Context) NamespaceIamMemberOutput
+}
+
+func (NamespaceIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*NamespaceIamMember)(nil)).Elem()
+}
+
+func (i NamespaceIamMember) ToNamespaceIamMemberOutput() NamespaceIamMemberOutput {
+	return i.ToNamespaceIamMemberOutputWithContext(context.Background())
+}
+
+func (i NamespaceIamMember) ToNamespaceIamMemberOutputWithContext(ctx context.Context) NamespaceIamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NamespaceIamMemberOutput)
+}
+
+type NamespaceIamMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (NamespaceIamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NamespaceIamMemberOutput)(nil)).Elem()
+}
+
+func (o NamespaceIamMemberOutput) ToNamespaceIamMemberOutput() NamespaceIamMemberOutput {
+	return o
+}
+
+func (o NamespaceIamMemberOutput) ToNamespaceIamMemberOutputWithContext(ctx context.Context) NamespaceIamMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(NamespaceIamMemberOutput{})
 }

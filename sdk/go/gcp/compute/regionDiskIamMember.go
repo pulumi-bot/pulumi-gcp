@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -142,4 +143,43 @@ type RegionDiskIamMemberArgs struct {
 
 func (RegionDiskIamMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*regionDiskIamMemberArgs)(nil)).Elem()
+}
+
+type RegionDiskIamMemberInput interface {
+	pulumi.Input
+
+	ToRegionDiskIamMemberOutput() RegionDiskIamMemberOutput
+	ToRegionDiskIamMemberOutputWithContext(ctx context.Context) RegionDiskIamMemberOutput
+}
+
+func (RegionDiskIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionDiskIamMember)(nil)).Elem()
+}
+
+func (i RegionDiskIamMember) ToRegionDiskIamMemberOutput() RegionDiskIamMemberOutput {
+	return i.ToRegionDiskIamMemberOutputWithContext(context.Background())
+}
+
+func (i RegionDiskIamMember) ToRegionDiskIamMemberOutputWithContext(ctx context.Context) RegionDiskIamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegionDiskIamMemberOutput)
+}
+
+type RegionDiskIamMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (RegionDiskIamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionDiskIamMemberOutput)(nil)).Elem()
+}
+
+func (o RegionDiskIamMemberOutput) ToRegionDiskIamMemberOutput() RegionDiskIamMemberOutput {
+	return o
+}
+
+func (o RegionDiskIamMemberOutput) ToRegionDiskIamMemberOutputWithContext(ctx context.Context) RegionDiskIamMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RegionDiskIamMemberOutput{})
 }

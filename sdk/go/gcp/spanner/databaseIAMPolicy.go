@@ -4,6 +4,7 @@
 package spanner
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -138,4 +139,43 @@ type DatabaseIAMPolicyArgs struct {
 
 func (DatabaseIAMPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*databaseIAMPolicyArgs)(nil)).Elem()
+}
+
+type DatabaseIAMPolicyInput interface {
+	pulumi.Input
+
+	ToDatabaseIAMPolicyOutput() DatabaseIAMPolicyOutput
+	ToDatabaseIAMPolicyOutputWithContext(ctx context.Context) DatabaseIAMPolicyOutput
+}
+
+func (DatabaseIAMPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatabaseIAMPolicy)(nil)).Elem()
+}
+
+func (i DatabaseIAMPolicy) ToDatabaseIAMPolicyOutput() DatabaseIAMPolicyOutput {
+	return i.ToDatabaseIAMPolicyOutputWithContext(context.Background())
+}
+
+func (i DatabaseIAMPolicy) ToDatabaseIAMPolicyOutputWithContext(ctx context.Context) DatabaseIAMPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatabaseIAMPolicyOutput)
+}
+
+type DatabaseIAMPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (DatabaseIAMPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatabaseIAMPolicyOutput)(nil)).Elem()
+}
+
+func (o DatabaseIAMPolicyOutput) ToDatabaseIAMPolicyOutput() DatabaseIAMPolicyOutput {
+	return o
+}
+
+func (o DatabaseIAMPolicyOutput) ToDatabaseIAMPolicyOutputWithContext(ctx context.Context) DatabaseIAMPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DatabaseIAMPolicyOutput{})
 }

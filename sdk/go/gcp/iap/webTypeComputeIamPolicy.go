@@ -4,6 +4,7 @@
 package iap
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -109,4 +110,43 @@ type WebTypeComputeIamPolicyArgs struct {
 
 func (WebTypeComputeIamPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*webTypeComputeIamPolicyArgs)(nil)).Elem()
+}
+
+type WebTypeComputeIamPolicyInput interface {
+	pulumi.Input
+
+	ToWebTypeComputeIamPolicyOutput() WebTypeComputeIamPolicyOutput
+	ToWebTypeComputeIamPolicyOutputWithContext(ctx context.Context) WebTypeComputeIamPolicyOutput
+}
+
+func (WebTypeComputeIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebTypeComputeIamPolicy)(nil)).Elem()
+}
+
+func (i WebTypeComputeIamPolicy) ToWebTypeComputeIamPolicyOutput() WebTypeComputeIamPolicyOutput {
+	return i.ToWebTypeComputeIamPolicyOutputWithContext(context.Background())
+}
+
+func (i WebTypeComputeIamPolicy) ToWebTypeComputeIamPolicyOutputWithContext(ctx context.Context) WebTypeComputeIamPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebTypeComputeIamPolicyOutput)
+}
+
+type WebTypeComputeIamPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (WebTypeComputeIamPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebTypeComputeIamPolicyOutput)(nil)).Elem()
+}
+
+func (o WebTypeComputeIamPolicyOutput) ToWebTypeComputeIamPolicyOutput() WebTypeComputeIamPolicyOutput {
+	return o
+}
+
+func (o WebTypeComputeIamPolicyOutput) ToWebTypeComputeIamPolicyOutputWithContext(ctx context.Context) WebTypeComputeIamPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(WebTypeComputeIamPolicyOutput{})
 }

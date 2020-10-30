@@ -4,6 +4,7 @@
 package monitoring
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -322,4 +323,43 @@ type SloArgs struct {
 
 func (SloArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*sloArgs)(nil)).Elem()
+}
+
+type SloInput interface {
+	pulumi.Input
+
+	ToSloOutput() SloOutput
+	ToSloOutputWithContext(ctx context.Context) SloOutput
+}
+
+func (Slo) ElementType() reflect.Type {
+	return reflect.TypeOf((*Slo)(nil)).Elem()
+}
+
+func (i Slo) ToSloOutput() SloOutput {
+	return i.ToSloOutputWithContext(context.Background())
+}
+
+func (i Slo) ToSloOutputWithContext(ctx context.Context) SloOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SloOutput)
+}
+
+type SloOutput struct {
+	*pulumi.OutputState
+}
+
+func (SloOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SloOutput)(nil)).Elem()
+}
+
+func (o SloOutput) ToSloOutput() SloOutput {
+	return o
+}
+
+func (o SloOutput) ToSloOutputWithContext(ctx context.Context) SloOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SloOutput{})
 }
