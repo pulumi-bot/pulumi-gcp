@@ -16,6 +16,10 @@ namespace Pulumi.Gcp.SecretManager
     /// state as plain-text.
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// SecretVersion can be imported using any of these accepted formats
     /// </summary>
     public partial class SecretVersion : Pulumi.CustomResource
     {

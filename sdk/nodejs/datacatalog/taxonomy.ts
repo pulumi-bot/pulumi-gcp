@@ -4,6 +4,11 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * ## Import
+ *
+ * Taxonomy can be imported using any of these accepted formats
+ */
 export class Taxonomy extends pulumi.CustomResource {
     /**
      * Get an existing Taxonomy resource's state with the given name, ID, and optional extra

@@ -16,6 +16,10 @@ import (
 // > **Note:** This resource does not support zonal disks (`compute.Disk`). For zonal disks, please refer to the `compute.DiskResourcePolicyAttachment` resource.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// RegionDiskResourcePolicyAttachment can be imported using any of these accepted formats
 type RegionDiskResourcePolicyAttachment struct {
 	pulumi.CustomResourceState
 

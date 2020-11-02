@@ -14,6 +14,10 @@ namespace Pulumi.Gcp.Sql
     /// Google's cloud.
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Database can be imported using any of these accepted formats
     /// </summary>
     public partial class Database : Pulumi.CustomResource
     {

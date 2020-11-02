@@ -14,6 +14,10 @@ import * as utilities from "../utilities";
  * the marketplace prior to using this resource.
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * TenantInboundSamlConfig can be imported using any of these accepted formats
  */
 export class TenantInboundSamlConfig extends pulumi.CustomResource {
     /**

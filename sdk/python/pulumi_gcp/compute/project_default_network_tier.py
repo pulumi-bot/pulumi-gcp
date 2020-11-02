@@ -28,6 +28,10 @@ class ProjectDefaultNetworkTier(pulumi.CustomResource):
         For more information, see,
         [the Project API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/projects/setDefaultNetworkTier).
 
+        ## Import
+
+        This resource can be imported using the project ID
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] network_tier: The default network tier to be configured for the project.

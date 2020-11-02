@@ -33,6 +33,8 @@ class AccountIamPolicy(pulumi.CustomResource):
            `billing.AccountIamMember` or `billing.AccountIamBinding`
            or they will fight over what your policy should be.
 
+        ## Import
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] billing_account_id: The billing account id.

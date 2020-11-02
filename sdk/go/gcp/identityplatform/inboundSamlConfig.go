@@ -17,6 +17,10 @@ import (
 // the marketplace prior to using this resource.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// InboundSamlConfig can be imported using any of these accepted formats
 type InboundSamlConfig struct {
 	pulumi.CustomResourceState
 

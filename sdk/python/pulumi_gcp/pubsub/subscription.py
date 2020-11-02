@@ -45,6 +45,10 @@ class Subscription(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        Subscription can be imported using any of these accepted formats
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] ack_deadline_seconds: This value is the maximum time after a subscriber receives a message

@@ -20,6 +20,10 @@ import * as utilities from "../utilities";
  *     * [Autoscaling Groups of Instances](https://cloud.google.com/compute/docs/autoscaler/)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Autoscaler can be imported using any of these accepted formats
  */
 export class Autoscaler extends pulumi.CustomResource {
     /**

@@ -31,6 +31,10 @@ import (
 //     * [Official Documentation](https://cloud.google.com/run/docs/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Service can be imported using any of these accepted formats
 type Service struct {
 	pulumi.CustomResourceState
 

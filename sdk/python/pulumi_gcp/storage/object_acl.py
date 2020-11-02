@@ -35,6 +35,10 @@ class ObjectACL(pulumi.CustomResource):
         > Want fine-grained control over object ACLs? Use `storage.ObjectAccessControl` to control individual
         role entity pairs.
 
+        ## Import
+
+        This resource does not support import.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] bucket: The name of the bucket the object is stored in.

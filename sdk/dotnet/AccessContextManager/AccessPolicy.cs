@@ -29,6 +29,10 @@ namespace Pulumi.Gcp.AccessContextManager
     /// `billing_project` you defined.
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// AccessPolicy can be imported using any of these accepted formats
     /// </summary>
     public partial class AccessPolicy : Pulumi.CustomResource
     {

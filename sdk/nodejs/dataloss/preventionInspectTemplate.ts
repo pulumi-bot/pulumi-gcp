@@ -16,6 +16,10 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/dlp/docs/creating-templates-inspect)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * InspectTemplate can be imported using any of these accepted formats
  */
 export class PreventionInspectTemplate extends pulumi.CustomResource {
     /**

@@ -40,6 +40,10 @@ class Table(pulumi.CustomResource):
         [the official documentation](https://cloud.google.com/bigquery/docs/) and
         [API](https://cloud.google.com/bigquery/docs/reference/rest/v2/tables).
 
+        ## Import
+
+        BigQuery tables can be imported using the `project`, `dataset_id`, and `table_id`, e.g.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] clusterings: Specifies column names to use for data clustering.

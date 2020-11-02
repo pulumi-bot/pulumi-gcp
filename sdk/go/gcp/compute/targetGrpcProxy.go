@@ -21,6 +21,10 @@ import (
 //     * [Using Target gRPC Proxies](https://cloud.google.com/traffic-director/docs/proxyless-overview)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// TargetGrpcProxy can be imported using any of these accepted formats
 type TargetGrpcProxy struct {
 	pulumi.CustomResourceState
 

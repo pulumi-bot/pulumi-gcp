@@ -21,6 +21,10 @@ import (
 //     * [Setting Up TCP proxy for Google Cloud Load Balancing](https://cloud.google.com/compute/docs/load-balancing/tcp-ssl/tcp-proxy)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// TargetTcpProxy can be imported using any of these accepted formats
 type TargetTCPProxy struct {
 	pulumi.CustomResourceState
 

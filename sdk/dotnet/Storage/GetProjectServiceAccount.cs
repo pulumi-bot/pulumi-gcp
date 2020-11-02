@@ -45,8 +45,10 @@ namespace Pulumi.Gcp.Storage
         /// For more information see
         /// [the API reference](https://cloud.google.com/storage/docs/json_api/v1/projects/serviceAccount).
         /// 
+        /// 
         /// {{% examples %}}
         /// ## Example Usage
+        /// 
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetProjectServiceAccountResult> InvokeAsync(GetProjectServiceAccountArgs? args = null, InvokeOptions? options = null)

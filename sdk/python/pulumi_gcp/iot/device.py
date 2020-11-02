@@ -38,6 +38,10 @@ class Device(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        Device can be imported using any of these accepted formats
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] blocked: If a device is blocked, connections or requests from this device will fail.

@@ -44,6 +44,10 @@ class Intent(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        Intent can be imported using any of these accepted formats
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] action: The name of the action associated with the intent.

@@ -20,6 +20,10 @@ namespace Pulumi.Gcp.Spanner
     ///     * [Official Documentation](https://cloud.google.com/spanner/)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Instance can be imported using any of these accepted formats
     /// </summary>
     public partial class Instance : Pulumi.CustomResource
     {

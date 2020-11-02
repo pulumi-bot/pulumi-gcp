@@ -19,6 +19,10 @@ import (
 //     * [Official Documentation](https://cloud.google.com/monitoring/custom-metrics/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// MetricDescriptor can be imported using any of these accepted formats
 type MetricDescriptor struct {
 	pulumi.CustomResourceState
 

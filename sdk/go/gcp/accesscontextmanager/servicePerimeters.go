@@ -21,6 +21,10 @@ import (
 //     * [Service Perimeter Quickstart](https://cloud.google.com/vpc-service-controls/docs/quickstart)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// ServicePerimeters can be imported using any of these accepted formats
 type ServicePerimeters struct {
 	pulumi.CustomResourceState
 

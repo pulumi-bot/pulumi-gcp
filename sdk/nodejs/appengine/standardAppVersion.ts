@@ -19,6 +19,10 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/appengine/docs/standard)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * StandardAppVersion can be imported using any of these accepted formats
  */
 export class StandardAppVersion extends pulumi.CustomResource {
     /**

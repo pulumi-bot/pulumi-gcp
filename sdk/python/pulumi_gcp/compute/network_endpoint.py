@@ -39,6 +39,10 @@ class NetworkEndpoint(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        NetworkEndpoint can be imported using any of these accepted formats
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] instance: The name for a specific VM instance that the IP address belongs to.

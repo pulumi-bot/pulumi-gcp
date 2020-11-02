@@ -26,6 +26,10 @@ import (
 // `billingProject` you defined.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// AccessLevel can be imported using any of these accepted formats
 type AccessLevel struct {
 	pulumi.CustomResourceState
 

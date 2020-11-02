@@ -35,6 +35,20 @@ class KeyRingIAMMember(pulumi.CustomResource):
 
         > **Note:** `kms.KeyRingIAMBinding` resources **can be** used in conjunction with `kms.KeyRingIAMMember` resources **only if** they do not grant privilege to the same role.
 
+        ## Import
+
+        IAM member imports use space-delimited identifiers; the resource in question, the role, and the account.
+
+        This member resource can be imported using the `key_ring_id`, role, and account e.g.
+
+         IAM binding imports use space-delimited identifiers; the resource in question and the role.
+
+        This binding resource can be imported using the `key_ring_id` and role, e.g.
+
+         IAM policy imports use the identifier of the resource in question.
+
+        This policy resource can be imported using the `key_ring_id`, e.g.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['KeyRingIAMMemberConditionArgs']] condition: An [IAM Condition](https://cloud.google.com/iam/docs/conditions-overview) for a given binding.

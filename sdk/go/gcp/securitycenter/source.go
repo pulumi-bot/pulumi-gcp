@@ -22,6 +22,10 @@ import (
 //     * [Official Documentation](https://cloud.google.com/binary-authorization/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Source can be imported using any of these accepted formats
 type Source struct {
 	pulumi.CustomResourceState
 

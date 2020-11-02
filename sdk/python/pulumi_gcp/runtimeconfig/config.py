@@ -27,6 +27,12 @@ class Config(pulumi.CustomResource):
         or the
         [JSON API](https://cloud.google.com/deployment-manager/runtime-configurator/reference/rest/).
 
+        ## Import
+
+        Runtime Configs can be imported using the `name` or full config name, e.g.
+
+         When importing using only the name, the provider project must be set.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: The description to associate with the runtime

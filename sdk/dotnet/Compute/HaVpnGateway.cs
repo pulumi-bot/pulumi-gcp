@@ -22,6 +22,10 @@ namespace Pulumi.Gcp.Compute
     ///     * [Cloud VPN Overview](https://cloud.google.com/vpn/docs/concepts/overview)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// HaVpnGateway can be imported using any of these accepted formats
     /// </summary>
     public partial class HaVpnGateway : Pulumi.CustomResource
     {

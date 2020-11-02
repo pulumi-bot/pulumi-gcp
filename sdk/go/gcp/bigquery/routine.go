@@ -19,6 +19,10 @@ import (
 //     * [Routines Intro](https://cloud.google.com/bigquery/docs/reference/rest/v2/routines)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Routine can be imported using any of these accepted formats
 type Routine struct {
 	pulumi.CustomResourceState
 

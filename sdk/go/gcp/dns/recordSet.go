@@ -19,6 +19,12 @@ import (
 // will not actually remove NS records during destroy but will report that it did.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// DNS record sets can be imported using either of these accepted formats
+//
+//  NoteThe record name must include the trailing dot at the end.
 type RecordSet struct {
 	pulumi.CustomResourceState
 

@@ -19,6 +19,10 @@ import (
 //     * [Associating a policy with the organization or folder](https://cloud.google.com/vpc/docs/using-firewall-policies#associate)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// OrganizationSecurityPolicyAssociation can be imported using any of these accepted formats
 type OrganizationSecurityPolicyAssociation struct {
 	pulumi.CustomResourceState
 

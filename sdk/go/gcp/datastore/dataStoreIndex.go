@@ -19,6 +19,10 @@ import (
 //     * [Official Documentation](https://cloud.google.com/datastore/docs/concepts/indexes)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Index can be imported using any of these accepted formats
 type DataStoreIndex struct {
 	pulumi.CustomResourceState
 

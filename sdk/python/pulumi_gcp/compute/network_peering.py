@@ -36,6 +36,10 @@ class NetworkPeering(pulumi.CustomResource):
 
         > Subnets IP ranges across peered VPC networks cannot overlap.
 
+        ## Import
+
+        VPC network peerings can be imported using the name and project of the primary network the peering exists in and the name of the network peering
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] export_custom_routes: Whether to export the custom routes to the peer network. Defaults to `false`.

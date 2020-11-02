@@ -20,6 +20,10 @@ namespace Pulumi.Gcp.OsConfig
     ///     * [Official Documentation](https://cloud.google.com/compute/docs/os-patch-management)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// PatchDeployment can be imported using any of these accepted formats
     /// </summary>
     public partial class PatchDeployment : Pulumi.CustomResource
     {

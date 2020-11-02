@@ -16,6 +16,10 @@ import * as utilities from "../utilities";
  *     * [Datasets Intro](https://cloud.google.com/bigquery/docs/datasets-intro)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Dataset can be imported using any of these accepted formats
  */
 export class Dataset extends pulumi.CustomResource {
     /**

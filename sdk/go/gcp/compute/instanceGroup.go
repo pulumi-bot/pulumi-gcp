@@ -14,6 +14,10 @@ import (
 // and [API](https://cloud.google.com/compute/docs/reference/latest/instanceGroups)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Instance group can be imported using the `zone` and `name` with an optional `project`, e.g.
 type InstanceGroup struct {
 	pulumi.CustomResourceState
 

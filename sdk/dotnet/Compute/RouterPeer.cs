@@ -22,6 +22,10 @@ namespace Pulumi.Gcp.Compute
     ///     * [Google Cloud Router](https://cloud.google.com/router/docs/)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// RouterBgpPeer can be imported using any of these accepted formats
     /// </summary>
     public partial class RouterPeer : Pulumi.CustomResource
     {

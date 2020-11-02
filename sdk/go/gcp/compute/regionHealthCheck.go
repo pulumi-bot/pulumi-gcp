@@ -28,6 +28,10 @@ import (
 //     * [Official Documentation](https://cloud.google.com/load-balancing/docs/health-checks)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// RegionHealthCheck can be imported using any of these accepted formats
 type RegionHealthCheck struct {
 	pulumi.CustomResourceState
 

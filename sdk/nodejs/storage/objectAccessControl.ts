@@ -27,6 +27,10 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/storage/docs/access-control/create-manage-lists)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * ObjectAccessControl can be imported using any of these accepted formats
  */
 export class ObjectAccessControl extends pulumi.CustomResource {
     /**

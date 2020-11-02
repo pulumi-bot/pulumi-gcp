@@ -12,6 +12,10 @@ import * as utilities from "../utilities";
  * the marketplace prior to using this resource.
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * OauthIdpConfig can be imported using any of these accepted formats
  */
 export class OauthIdpConfig extends pulumi.CustomResource {
     /**

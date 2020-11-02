@@ -50,6 +50,10 @@ class Service(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        Service can be imported using any of these accepted formats
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] autogenerate_revision_name: If set to `true`, the revision name (template.metadata.name) will be omitted and 

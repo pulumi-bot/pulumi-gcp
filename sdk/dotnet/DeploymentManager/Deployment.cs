@@ -25,6 +25,10 @@ namespace Pulumi.Gcp.DeploymentManager
     /// `preview=false`).
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Deployment can be imported using any of these accepted formats
     /// </summary>
     public partial class Deployment : Pulumi.CustomResource
     {

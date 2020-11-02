@@ -16,6 +16,10 @@ namespace Pulumi.Gcp.Logging
     /// 
     /// Note that you must have the "Logs Configuration Writer" IAM role (`roles/logging.configWriter`)
     /// granted to the credentials used with this provider.
+    /// 
+    /// ## Import
+    /// 
+    /// Organization-level logging exclusions can be imported using their URI, e.g.
     /// </summary>
     public partial class OrganizationExclusion : Pulumi.CustomResource
     {

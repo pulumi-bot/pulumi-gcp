@@ -27,6 +27,10 @@ import (
 // state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
 //
 // ## Example Usage
+//
+// ## Import
+//
+// This resource does not support import.
 type SecretCiphertext struct {
 	pulumi.CustomResourceState
 

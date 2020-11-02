@@ -19,6 +19,10 @@ namespace Pulumi.Gcp.Projects
     /// resource must have `roles/resourcemanager.projectCreator`. See the
     /// [Access Control for Organizations Using IAM](https://cloud.google.com/resource-manager/docs/access-control-org)
     /// doc for more information.
+    /// 
+    /// ## Import
+    /// 
+    /// Projects can be imported using the `project_id`, e.g.
     /// </summary>
     public partial class UsageExportBucket : Pulumi.CustomResource
     {

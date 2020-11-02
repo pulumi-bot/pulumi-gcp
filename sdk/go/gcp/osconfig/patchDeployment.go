@@ -20,6 +20,10 @@ import (
 //     * [Official Documentation](https://cloud.google.com/compute/docs/os-patch-management)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// PatchDeployment can be imported using any of these accepted formats
 type PatchDeployment struct {
 	pulumi.CustomResourceState
 

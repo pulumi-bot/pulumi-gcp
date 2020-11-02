@@ -22,6 +22,10 @@ import (
 //     * [Google Cloud Router](https://cloud.google.com/router/docs/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// RouterBgpPeer can be imported using any of these accepted formats
 type RouterPeer struct {
 	pulumi.CustomResourceState
 

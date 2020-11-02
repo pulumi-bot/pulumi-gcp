@@ -31,6 +31,10 @@ class ProjectMetadata(pulumi.CustomResource):
         key/value pairs within the project metadata rather than the entire set, then use
         google_compute_project_metadata_item.
 
+        ## Import
+
+        This resource can be imported using the project ID
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: A series of key value pairs.

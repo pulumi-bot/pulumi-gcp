@@ -13,6 +13,10 @@ import * as utilities from "../utilities";
  *
  * Note that you must have the "Logs Configuration Writer" IAM role (`roles/logging.configWriter`)
  * granted to the credentials used with this provider.
+ *
+ * ## Import
+ *
+ * Organization-level logging sinks can be imported using this format
  */
 export class OrganizationSink extends pulumi.CustomResource {
     /**

@@ -35,6 +35,10 @@ class RegionUrlMap(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        RegionUrlMap can be imported using any of these accepted formats
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] default_service: A reference to a RegionBackendService resource. This will be used if

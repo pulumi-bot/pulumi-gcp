@@ -16,6 +16,10 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/datastore/docs/concepts/indexes)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Index can be imported using any of these accepted formats
  */
 export class DataStoreIndex extends pulumi.CustomResource {
     /**

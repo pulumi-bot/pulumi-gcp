@@ -20,6 +20,10 @@ namespace Pulumi.Gcp.Healthcare
     ///     * [Creating a DICOM store](https://cloud.google.com/healthcare/docs/how-tos/dicom)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// DicomStore can be imported using any of these accepted formats
     /// </summary>
     public partial class DicomStore : Pulumi.CustomResource
     {

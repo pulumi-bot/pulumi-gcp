@@ -34,6 +34,10 @@ class Namespace(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        Namespace can be imported using any of these accepted formats
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Resource labels associated with this Namespace. No more than 64 user

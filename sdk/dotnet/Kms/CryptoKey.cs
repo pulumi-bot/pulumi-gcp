@@ -27,6 +27,10 @@ namespace Pulumi.Gcp.Kms
     ///     * [Creating a key](https://cloud.google.com/kms/docs/creating-keys#create_a_key)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// CryptoKey can be imported using any of these accepted formats
     /// </summary>
     public partial class CryptoKey : Pulumi.CustomResource
     {

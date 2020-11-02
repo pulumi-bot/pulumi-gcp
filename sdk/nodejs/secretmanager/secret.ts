@@ -14,6 +14,10 @@ import * as utilities from "../utilities";
  * * [API documentation](https://cloud.google.com/secret-manager/docs/reference/rest/v1/projects.secrets)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Secret can be imported using any of these accepted formats
  */
 export class Secret extends pulumi.CustomResource {
     /**

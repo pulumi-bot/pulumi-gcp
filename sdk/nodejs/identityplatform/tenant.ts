@@ -15,6 +15,10 @@ import * as utilities from "../utilities";
  * the Cloud Console prior to creating tenants.
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Tenant can be imported using any of these accepted formats
  */
 export class Tenant extends pulumi.CustomResource {
     /**

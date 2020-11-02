@@ -9,6 +9,11 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Gcp.DataCatalog
 {
+    /// <summary>
+    /// ## Import
+    /// 
+    /// Taxonomy can be imported using any of these accepted formats
+    /// </summary>
     public partial class Taxonomy : Pulumi.CustomResource
     {
         /// <summary>

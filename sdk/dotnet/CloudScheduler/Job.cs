@@ -24,6 +24,10 @@ namespace Pulumi.Gcp.CloudScheduler
     ///     * [Official Documentation](https://cloud.google.com/scheduler/)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Job can be imported using any of these accepted formats
     /// </summary>
     public partial class Job : Pulumi.CustomResource
     {

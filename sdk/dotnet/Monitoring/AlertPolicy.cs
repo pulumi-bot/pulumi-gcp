@@ -21,6 +21,10 @@ namespace Pulumi.Gcp.Monitoring
     ///     * [Official Documentation](https://cloud.google.com/monitoring/alerts/)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// AlertPolicy can be imported using any of these accepted formats
     /// </summary>
     public partial class AlertPolicy : Pulumi.CustomResource
     {

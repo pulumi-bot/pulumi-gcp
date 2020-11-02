@@ -34,6 +34,10 @@ class InstanceGroup(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        Instance group can be imported using the `zone` and `name` with an optional `project`, e.g.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: An optional textual description of the instance

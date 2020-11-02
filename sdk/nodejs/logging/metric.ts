@@ -18,6 +18,10 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/logging/docs/apis)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Metric can be imported using any of these accepted formats
  */
 export class Metric extends pulumi.CustomResource {
     /**

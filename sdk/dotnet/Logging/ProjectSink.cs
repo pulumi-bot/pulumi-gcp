@@ -19,6 +19,10 @@ namespace Pulumi.Gcp.Logging
     /// &gt; **Note:** You must have [granted the "Logs Configuration Writer"](https://cloud.google.com/logging/docs/access-control) IAM role (`roles/logging.configWriter`) to the credentials used with this provider.
     /// 
     /// &gt; **Note** You must [enable the Cloud Resource Manager API](https://console.cloud.google.com/apis/library/cloudresourcemanager.googleapis.com)
+    /// 
+    /// ## Import
+    /// 
+    /// Project-level logging sinks can be imported using their URI, e.g.
     /// </summary>
     public partial class ProjectSink : Pulumi.CustomResource
     {

@@ -23,6 +23,10 @@ import (
 //     * [Autoscaling Groups of Instances](https://cloud.google.com/compute/docs/autoscaler/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// RegionAutoscaler can be imported using any of these accepted formats
 type RegionAutoscaler struct {
 	pulumi.CustomResourceState
 

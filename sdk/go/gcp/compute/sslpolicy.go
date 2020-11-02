@@ -19,6 +19,10 @@ import (
 //     * [Using SSL Policies](https://cloud.google.com/compute/docs/load-balancing/ssl-policies)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// SslPolicy can be imported using any of these accepted formats
 type SSLPolicy struct {
 	pulumi.CustomResourceState
 

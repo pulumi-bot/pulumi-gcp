@@ -23,6 +23,10 @@ import * as utilities from "../utilities";
  * `billingProject` you defined.
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * AccessLevel can be imported using any of these accepted formats
  */
 export class AccessLevel extends pulumi.CustomResource {
     /**

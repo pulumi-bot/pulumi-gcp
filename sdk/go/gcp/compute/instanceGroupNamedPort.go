@@ -22,6 +22,10 @@ import (
 //     * [Official Documentation](https://cloud.google.com/compute/docs/instance-groups/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// InstanceGroupNamedPort can be imported using any of these accepted formats
 type InstanceGroupNamedPort struct {
 	pulumi.CustomResourceState
 

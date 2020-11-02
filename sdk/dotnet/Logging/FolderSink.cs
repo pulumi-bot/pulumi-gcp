@@ -16,6 +16,10 @@ namespace Pulumi.Gcp.Logging
     /// 
     /// Note that you must have the "Logs Configuration Writer" IAM role (`roles/logging.configWriter`)
     /// granted to the credentials used with this provider.
+    /// 
+    /// ## Import
+    /// 
+    /// Folder-level logging sinks can be imported using this format
     /// </summary>
     public partial class FolderSink : Pulumi.CustomResource
     {

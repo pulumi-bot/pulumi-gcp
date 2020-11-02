@@ -26,6 +26,10 @@ namespace Pulumi.Gcp.Monitoring
     ///     * [Monitoring API Documentation](https://cloud.google.com/monitoring/api/v3/)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Slo can be imported using any of these accepted formats
     /// </summary>
     public partial class Slo : Pulumi.CustomResource
     {

@@ -19,6 +19,10 @@ namespace Pulumi.Gcp.VpcAccess
     ///     * [Configuring Serverless VPC Access](https://cloud.google.com/vpc/docs/configure-serverless-vpc-access)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Connector can be imported using any of these accepted formats
     /// </summary>
     public partial class Connector : Pulumi.CustomResource
     {

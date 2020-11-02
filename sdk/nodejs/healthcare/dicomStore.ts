@@ -17,6 +17,10 @@ import * as utilities from "../utilities";
  *     * [Creating a DICOM store](https://cloud.google.com/healthcare/docs/how-tos/dicom)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * DicomStore can be imported using any of these accepted formats
  */
 export class DicomStore extends pulumi.CustomResource {
     /**

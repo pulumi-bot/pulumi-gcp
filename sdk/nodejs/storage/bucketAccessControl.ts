@@ -29,6 +29,10 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/storage/docs/access-control/lists)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * BucketAccessControl can be imported using any of these accepted formats
  */
 export class BucketAccessControl extends pulumi.CustomResource {
     /**

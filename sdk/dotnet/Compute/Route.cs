@@ -40,6 +40,10 @@ namespace Pulumi.Gcp.Compute
     ///     * [Using Routes](https://cloud.google.com/vpc/docs/using-routes)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Route can be imported using any of these accepted formats
     /// </summary>
     public partial class Route : Pulumi.CustomResource
     {

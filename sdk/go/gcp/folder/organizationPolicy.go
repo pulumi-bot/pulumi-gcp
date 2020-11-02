@@ -14,6 +14,10 @@ import (
 // [the official
 // documentation](https://cloud.google.com/resource-manager/docs/organization-policy/overview) and
 // [API](https://cloud.google.com/resource-manager/reference/rest/v1/folders/setOrgPolicy).
+//
+// ## Import
+//
+// Folder organization policies can be imported using any of the follow formats
 type OrganizationPolicy struct {
 	pulumi.CustomResourceState
 

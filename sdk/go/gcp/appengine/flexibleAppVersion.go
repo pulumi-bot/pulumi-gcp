@@ -25,6 +25,10 @@ import (
 //     * [Official Documentation](https://cloud.google.com/appengine/docs/flexible)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// FlexibleAppVersion can be imported using any of these accepted formats
 type FlexibleAppVersion struct {
 	pulumi.CustomResourceState
 

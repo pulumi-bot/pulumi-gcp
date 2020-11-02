@@ -18,6 +18,10 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/network-intelligence-center/docs)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * ConnectivityTest can be imported using any of these accepted formats
  */
 export class ConnectivityTest extends pulumi.CustomResource {
     /**

@@ -35,6 +35,10 @@ import (
 //     * [Monitoring API Documentation](https://cloud.google.com/monitoring/api/v3/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// NotificationChannel can be imported using any of these accepted formats
 type NotificationChannel struct {
 	pulumi.CustomResourceState
 

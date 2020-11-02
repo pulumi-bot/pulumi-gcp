@@ -41,6 +41,20 @@ class CryptoKeyIAMMember(pulumi.CustomResource):
 
         With IAM Conditions:
 
+        ## Import
+
+        IAM member imports use space-delimited identifiers; the resource in question, the role, and the account.
+
+        This member resource can be imported using the `crypto_key_id`, role, and member identity e.g.
+
+         IAM binding imports use space-delimited identifiers; first the resource in question and then the role.
+
+        These bindings can be imported using the `crypto_key_id` and role, e.g.
+
+         IAM policy imports use the identifier of the resource in question.
+
+        This policy resource can be imported using the `crypto_key_id`, e.g.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['CryptoKeyIAMMemberConditionArgs']] condition: An [IAM Condition](https://cloud.google.com/iam/docs/conditions-overview) for a given binding.

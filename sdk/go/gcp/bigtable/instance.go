@@ -14,6 +14,10 @@ import (
 // [API](https://cloud.google.com/bigtable/docs/go/reference).
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Bigtable Instances can be imported using any of these accepted formats
 type Instance struct {
 	pulumi.CustomResourceState
 

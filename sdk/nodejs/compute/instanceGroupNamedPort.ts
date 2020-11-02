@@ -17,6 +17,10 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/compute/docs/instance-groups/)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * InstanceGroupNamedPort can be imported using any of these accepted formats
  */
 export class InstanceGroupNamedPort extends pulumi.CustomResource {
     /**

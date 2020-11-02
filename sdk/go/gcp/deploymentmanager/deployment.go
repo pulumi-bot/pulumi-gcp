@@ -25,6 +25,10 @@ import (
 // `preview=false`).
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Deployment can be imported using any of these accepted formats
 type Deployment struct {
 	pulumi.CustomResourceState
 

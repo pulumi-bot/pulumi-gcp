@@ -19,6 +19,10 @@ namespace Pulumi.Gcp.DataLoss
     ///     * [Official Documentation](https://cloud.google.com/dlp/docs/creating-templates-inspect)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// InspectTemplate can be imported using any of these accepted formats
     /// </summary>
     public partial class PreventionInspectTemplate : Pulumi.CustomResource
     {

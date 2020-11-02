@@ -14,6 +14,10 @@ import * as utilities from "../utilities";
  *     * [Managed Microsoft Active Directory Quickstart](https://cloud.google.com/managed-microsoft-ad/docs/quickstarts)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Domain can be imported using any of these accepted formats
  */
 export class Domain extends pulumi.CustomResource {
     /**

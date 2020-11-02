@@ -20,6 +20,10 @@ namespace Pulumi.Gcp.ServiceDirectory
     ///     * [Configuring a namespace](https://cloud.google.com/service-directory/docs/configuring-service-directory#configuring_a_namespace)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Namespace can be imported using any of these accepted formats
     /// </summary>
     public partial class Namespace : Pulumi.CustomResource
     {

@@ -35,6 +35,10 @@ import * as utilities from "../utilities";
  *     * [Using Routes](https://cloud.google.com/vpc/docs/using-routes)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Route can be imported using any of these accepted formats
  */
 export class Route extends pulumi.CustomResource {
     /**

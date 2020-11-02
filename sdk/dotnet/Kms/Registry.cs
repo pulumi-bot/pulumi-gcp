@@ -19,6 +19,10 @@ namespace Pulumi.Gcp.Kms
     ///     * [Official Documentation](https://cloud.google.com/iot/docs/)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// DeviceRegistry can be imported using any of these accepted formats
     /// </summary>
     [Obsolete(@"gcp.kms.Registry has been deprecated in favor of gcp.iot.Registry")]
     public partial class Registry : Pulumi.CustomResource

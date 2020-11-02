@@ -17,6 +17,10 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/game-servers/docs)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * GameServerDeploymentRollout can be imported using any of these accepted formats
  */
 export class GameServerDeploymentRollout extends pulumi.CustomResource {
     /**

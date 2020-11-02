@@ -47,6 +47,10 @@ class DataTransferConfig(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        Config can be imported using any of these accepted formats
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] data_refresh_window_days: The number of days to look back to automatically refresh the data.

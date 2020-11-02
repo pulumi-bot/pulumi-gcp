@@ -21,6 +21,10 @@ import (
 //     * [Official Documentation](https://cloud.google.com/network-intelligence-center/docs)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// ConnectivityTest can be imported using any of these accepted formats
 type ConnectivityTest struct {
 	pulumi.CustomResourceState
 

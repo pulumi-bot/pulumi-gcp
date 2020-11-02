@@ -23,6 +23,10 @@ import * as utilities from "../utilities";
  *     * [Importing a key](https://cloud.google.com/kms/docs/importing-a-key)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * KeyRingImportJob can be imported using any of these accepted formats
  */
 export class KeyRingImportJob extends pulumi.CustomResource {
     /**

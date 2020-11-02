@@ -19,6 +19,10 @@ namespace Pulumi.Gcp.Healthcare
     ///     * [Creating a dataset](https://cloud.google.com/healthcare/docs/how-tos/datasets)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Dataset can be imported using any of these accepted formats
     /// </summary>
     public partial class Dataset : Pulumi.CustomResource
     {

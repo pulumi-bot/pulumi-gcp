@@ -19,6 +19,10 @@ namespace Pulumi.Gcp.Compute
     /// https://cloud.google.com/compute/docs/load-balancing/http/
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// GlobalForwardingRule can be imported using any of these accepted formats
     /// </summary>
     public partial class GlobalForwardingRule : Pulumi.CustomResource
     {

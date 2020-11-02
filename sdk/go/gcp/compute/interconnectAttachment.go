@@ -14,6 +14,10 @@ import (
 // information, see Creating VLAN Attachments.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// InterconnectAttachment can be imported using any of these accepted formats
 type InterconnectAttachment struct {
 	pulumi.CustomResourceState
 

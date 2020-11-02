@@ -17,6 +17,10 @@ import * as utilities from "../utilities";
  *     * [Internal TCP/UDP Load Balancing](https://cloud.google.com/compute/docs/load-balancing/internal/)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * RegionBackendService can be imported using any of these accepted formats
  */
 export class RegionBackendService extends pulumi.CustomResource {
     /**

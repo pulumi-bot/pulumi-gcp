@@ -40,6 +40,10 @@ class PerInstanceConfig(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        PerInstanceConfig can be imported using any of these accepted formats
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] instance_group_manager: The instance group manager this instance config is part of.

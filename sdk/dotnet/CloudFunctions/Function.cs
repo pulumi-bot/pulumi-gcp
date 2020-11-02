@@ -22,6 +22,10 @@ namespace Pulumi.Gcp.CloudFunctions
     /// for Cloud Functions.
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Functions can be imported using the `name` or `{{project}}/{{region}}/name`, e.g.
     /// </summary>
     public partial class Function : Pulumi.CustomResource
     {

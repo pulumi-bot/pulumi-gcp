@@ -14,6 +14,10 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/monitoring/dashboards)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Dashboard can be imported using any of these accepted formats
  */
 export class Dashboard extends pulumi.CustomResource {
     /**

@@ -19,6 +19,10 @@ namespace Pulumi.Gcp.GameServices
     ///     * [Official Documentation](https://cloud.google.com/game-servers/docs)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Realm can be imported using any of these accepted formats
     /// </summary>
     public partial class Realm : Pulumi.CustomResource
     {

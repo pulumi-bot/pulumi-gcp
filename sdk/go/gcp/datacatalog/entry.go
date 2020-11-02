@@ -24,6 +24,10 @@ import (
 //     * [Official Documentation](https://cloud.google.com/data-catalog/docs)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Entry can be imported using any of these accepted formats
 type Entry struct {
 	pulumi.CustomResourceState
 

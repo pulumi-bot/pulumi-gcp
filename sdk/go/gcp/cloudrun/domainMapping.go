@@ -19,6 +19,10 @@ import (
 //     * [Official Documentation](https://cloud.google.com/run/docs/mapping-custom-domains)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// DomainMapping can be imported using any of these accepted formats
 type DomainMapping struct {
 	pulumi.CustomResourceState
 

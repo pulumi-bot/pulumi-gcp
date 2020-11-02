@@ -34,6 +34,10 @@ class OauthIdpConfig(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        OauthIdpConfig can be imported using any of these accepted formats
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] client_id: The client id of an OAuth client.

@@ -21,6 +21,10 @@ namespace Pulumi.Gcp.OsConfig
     ///     * [Official Documentation](https://cloud.google.com/compute/docs/os-config-management)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// GuestPolicies can be imported using any of these accepted formats
     /// </summary>
     public partial class GuestPolicies : Pulumi.CustomResource
     {

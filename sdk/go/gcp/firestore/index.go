@@ -21,6 +21,10 @@ import (
 //     * [Official Documentation](https://cloud.google.com/firestore/docs/query-data/indexing)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Index can be imported using any of these accepted formats
 type Index struct {
 	pulumi.CustomResourceState
 

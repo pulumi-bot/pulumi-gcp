@@ -16,6 +16,10 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/dlp/docs/creating-job-triggers)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * JobTrigger can be imported using any of these accepted formats
  */
 export class PreventionJobTrigger extends pulumi.CustomResource {
     /**

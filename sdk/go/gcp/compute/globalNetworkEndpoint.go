@@ -21,6 +21,10 @@ import (
 //     * [Official Documentation](https://cloud.google.com/load-balancing/docs/negs/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// GlobalNetworkEndpoint can be imported using any of these accepted formats
 type GlobalNetworkEndpoint struct {
 	pulumi.CustomResourceState
 

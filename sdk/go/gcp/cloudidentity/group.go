@@ -19,6 +19,10 @@ import (
 // `billingProject` you defined.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Group can be imported using any of these accepted formats
 type Group struct {
 	pulumi.CustomResourceState
 

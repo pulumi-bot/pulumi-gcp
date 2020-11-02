@@ -19,6 +19,10 @@ import * as utilities from "../utilities";
  *     * [Google Cloud Router](https://cloud.google.com/router/docs/)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * RouterBgpPeer can be imported using any of these accepted formats
  */
 export class RouterPeer extends pulumi.CustomResource {
     /**

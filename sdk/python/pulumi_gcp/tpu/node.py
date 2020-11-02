@@ -42,6 +42,10 @@ class Node(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        Node can be imported using any of these accepted formats
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] accelerator_type: The type of hardware accelerators associated with this node.

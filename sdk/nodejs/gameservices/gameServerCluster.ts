@@ -16,6 +16,10 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/game-servers/docs)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * GameServerCluster can be imported using any of these accepted formats
  */
 export class GameServerCluster extends pulumi.CustomResource {
     /**

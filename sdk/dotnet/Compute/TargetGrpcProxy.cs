@@ -22,6 +22,10 @@ namespace Pulumi.Gcp.Compute
     ///     * [Using Target gRPC Proxies](https://cloud.google.com/traffic-director/docs/proxyless-overview)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// TargetGrpcProxy can be imported using any of these accepted formats
     /// </summary>
     public partial class TargetGrpcProxy : Pulumi.CustomResource
     {

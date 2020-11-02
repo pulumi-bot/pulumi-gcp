@@ -20,6 +20,10 @@ import * as utilities from "../utilities";
  *     * [Monitoring API Documentation](https://cloud.google.com/monitoring/api/v3/)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Service can be imported using any of these accepted formats
  */
 export class CustomService extends pulumi.CustomResource {
     /**

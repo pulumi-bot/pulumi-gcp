@@ -36,6 +36,10 @@ import (
 // In conclusion: Be extremely cautious.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// ManagedSslCertificate can be imported using any of these accepted formats
 type ManagedSslCertificate struct {
 	pulumi.CustomResourceState
 

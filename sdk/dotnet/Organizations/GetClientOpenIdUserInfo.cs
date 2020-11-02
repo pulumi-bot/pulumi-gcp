@@ -24,8 +24,10 @@ namespace Pulumi.Gcp.Organizations
         /// use the `https://www.googleapis.com/auth/userinfo.email` scope! You will
         /// receive an error otherwise.
         /// 
+        /// 
         /// {{% examples %}}
         /// ## Example Usage
+        /// 
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetClientOpenIdUserInfoResult> InvokeAsync(InvokeOptions? options = null)

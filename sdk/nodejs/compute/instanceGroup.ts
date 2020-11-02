@@ -12,6 +12,10 @@ import * as utilities from "../utilities";
  * and [API](https://cloud.google.com/compute/docs/reference/latest/instanceGroups)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Instance group can be imported using the `zone` and `name` with an optional `project`, e.g.
  */
 export class InstanceGroup extends pulumi.CustomResource {
     /**

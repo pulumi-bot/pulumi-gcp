@@ -20,6 +20,10 @@ import (
 //     * [Managing Subscriptions](https://cloud.google.com/pubsub/docs/admin#managing_subscriptions)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Subscription can be imported using any of these accepted formats
 type Subscription struct {
 	pulumi.CustomResourceState
 

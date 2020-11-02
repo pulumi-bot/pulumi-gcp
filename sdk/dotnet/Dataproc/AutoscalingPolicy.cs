@@ -13,6 +13,10 @@ namespace Pulumi.Gcp.Dataproc
     /// Describes an autoscaling policy for Dataproc cluster autoscaler.
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// AutoscalingPolicy can be imported using any of these accepted formats
     /// </summary>
     public partial class AutoscalingPolicy : Pulumi.CustomResource
     {

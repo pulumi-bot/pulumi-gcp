@@ -20,6 +20,10 @@ namespace Pulumi.Gcp.Compute
     ///     * [Official Documentation](https://cloud.google.com/compute/docs/load-balancing/http/target-proxies)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// RegionTargetHttpsProxy can be imported using any of these accepted formats
     /// </summary>
     public partial class RegionTargetHttpsProxy : Pulumi.CustomResource
     {

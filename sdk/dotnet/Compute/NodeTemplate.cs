@@ -21,6 +21,10 @@ namespace Pulumi.Gcp.Compute
     ///     * [Sole-Tenant Nodes](https://cloud.google.com/compute/docs/nodes/)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// NodeTemplate can be imported using any of these accepted formats
     /// </summary>
     public partial class NodeTemplate : Pulumi.CustomResource
     {

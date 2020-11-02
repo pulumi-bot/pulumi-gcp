@@ -16,6 +16,10 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/tpu/docs/)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Node can be imported using any of these accepted formats
  */
 export class Node extends pulumi.CustomResource {
     /**

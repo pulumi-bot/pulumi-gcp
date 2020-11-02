@@ -22,6 +22,10 @@ import (
 //     * [Cloud VPN Overview](https://cloud.google.com/vpn/docs/concepts/overview)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// HaVpnGateway can be imported using any of these accepted formats
 type HaVpnGateway struct {
 	pulumi.CustomResourceState
 

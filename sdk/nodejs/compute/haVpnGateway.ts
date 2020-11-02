@@ -19,6 +19,10 @@ import * as utilities from "../utilities";
  *     * [Cloud VPN Overview](https://cloud.google.com/vpn/docs/concepts/overview)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * HaVpnGateway can be imported using any of these accepted formats
  */
 export class HaVpnGateway extends pulumi.CustomResource {
     /**

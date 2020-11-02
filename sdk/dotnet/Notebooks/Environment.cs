@@ -19,6 +19,10 @@ namespace Pulumi.Gcp.Notebooks
     ///     * [Official Documentation](https://cloud.google.com/ai-platform-notebooks)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Environment can be imported using any of these accepted formats
     /// </summary>
     public partial class Environment : Pulumi.CustomResource
     {

@@ -11,6 +11,10 @@ import * as utilities from "../utilities";
  * information, see Creating VLAN Attachments.
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * InterconnectAttachment can be imported using any of these accepted formats
  */
 export class InterconnectAttachment extends pulumi.CustomResource {
     /**

@@ -19,6 +19,10 @@ import (
 //     * [Official Documentation](https://cloud.google.com/game-servers/docs)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// GameServerCluster can be imported using any of these accepted formats
 type GameServerCluster struct {
 	pulumi.CustomResourceState
 
