@@ -19,6 +19,10 @@ namespace Pulumi.Gcp.CloudIdentity
     /// `billing_project` you defined.
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Group can be imported using any of these accepted formats
     /// </summary>
     public partial class Group : Pulumi.CustomResource
     {

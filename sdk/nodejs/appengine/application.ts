@@ -16,6 +16,10 @@ import * as utilities from "../utilities";
  *
  * > **Warning:** All arguments including `iap.oauth2_client_secret` will be stored in the raw
  * state as plain-text. [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
+ *
+ * ## Import
+ *
+ * Applications can be imported using the ID of the project the application belongs to, e.g.
  */
 export class Application extends pulumi.CustomResource {
     /**

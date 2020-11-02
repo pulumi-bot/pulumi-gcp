@@ -13,6 +13,12 @@ namespace Pulumi.Gcp.BigTable
     /// Creates a Google Cloud Bigtable table inside an instance. For more information see
     /// [the official documentation](https://cloud.google.com/bigtable/) and
     /// [API](https://cloud.google.com/bigtable/docs/go/reference).
+    /// 
+    /// ## Import
+    /// 
+    /// Bigtable Tables can be imported using any of these accepted formats
+    /// 
+    ///  The following fields can't be read and will show diffs if set in config when imported- `split_keys`
     /// </summary>
     public partial class Table : Pulumi.CustomResource
     {

@@ -41,6 +41,10 @@ namespace Pulumi.Gcp.Compute
     ///     * [Cloud Networking](https://cloud.google.com/vpc/docs/using-vpc)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Subnetwork can be imported using any of these accepted formats
     /// </summary>
     public partial class Subnetwork : Pulumi.CustomResource
     {

@@ -23,6 +23,10 @@ namespace Pulumi.Gcp.Compute
     ///     * [Autoscaling Groups of Instances](https://cloud.google.com/compute/docs/autoscaler/)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Autoscaler can be imported using any of these accepted formats
     /// </summary>
     public partial class Autoscaler : Pulumi.CustomResource
     {

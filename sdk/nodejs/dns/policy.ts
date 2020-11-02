@@ -17,6 +17,10 @@ import * as utilities from "../utilities";
  *     * [Using DNS server policies](https://cloud.google.com/dns/zones/#using-dns-server-policies)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Policy can be imported using any of these accepted formats
  */
 export class Policy extends pulumi.CustomResource {
     /**

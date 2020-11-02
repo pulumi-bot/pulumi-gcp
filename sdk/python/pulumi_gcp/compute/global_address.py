@@ -40,6 +40,10 @@ class GlobalAddress(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        GlobalAddress can be imported using any of these accepted formats
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] address: The IP address or beginning of the address range represented by this

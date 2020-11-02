@@ -19,6 +19,10 @@ import (
 //     * [Internal TCP/UDP Load Balancing](https://cloud.google.com/compute/docs/load-balancing/internal/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// RegionBackendService can be imported using any of these accepted formats
 type RegionBackendService struct {
 	pulumi.CustomResourceState
 

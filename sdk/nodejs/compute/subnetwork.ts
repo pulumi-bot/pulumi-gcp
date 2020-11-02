@@ -38,6 +38,10 @@ import * as utilities from "../utilities";
  *     * [Cloud Networking](https://cloud.google.com/vpc/docs/using-vpc)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Subnetwork can be imported using any of these accepted formats
  */
 export class Subnetwork extends pulumi.CustomResource {
     /**

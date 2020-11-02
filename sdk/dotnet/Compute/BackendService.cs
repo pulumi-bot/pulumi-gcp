@@ -24,6 +24,10 @@ namespace Pulumi.Gcp.Compute
     ///     * [Official Documentation](https://cloud.google.com/compute/docs/load-balancing/http/backend-service)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// BackendService can be imported using any of these accepted formats
     /// </summary>
     public partial class BackendService : Pulumi.CustomResource
     {

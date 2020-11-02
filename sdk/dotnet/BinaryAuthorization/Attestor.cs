@@ -19,6 +19,10 @@ namespace Pulumi.Gcp.BinaryAuthorization
     ///     * [Official Documentation](https://cloud.google.com/binary-authorization/)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Attestor can be imported using any of these accepted formats
     /// </summary>
     public partial class Attestor : Pulumi.CustomResource
     {

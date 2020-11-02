@@ -16,6 +16,10 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/dlp/docs/creating-stored-infotypes)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * StoredInfoType can be imported using any of these accepted formats
  */
 export class PreventionStoredInfoType extends pulumi.CustomResource {
     /**

@@ -16,6 +16,10 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/asset-inventory/docs)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * OrganizationFeed can be imported using any of these accepted formats
  */
 export class OrganizationFeed extends pulumi.CustomResource {
     /**

@@ -10,6 +10,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// ## Import
+//
+// Taxonomy can be imported using any of these accepted formats
 type Taxonomy struct {
 	pulumi.CustomResourceState
 

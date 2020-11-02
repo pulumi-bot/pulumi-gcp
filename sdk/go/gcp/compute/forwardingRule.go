@@ -20,6 +20,10 @@ import (
 //     * [Official Documentation](https://cloud.google.com/compute/docs/load-balancing/network/forwarding-rules)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// ForwardingRule can be imported using any of these accepted formats
 type ForwardingRule struct {
 	pulumi.CustomResourceState
 

@@ -10,6 +10,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// ## Import
+//
+// PolicyTag can be imported using any of these accepted formats
 type PolicyTag struct {
 	pulumi.CustomResourceState
 

@@ -36,6 +36,10 @@ class EntityType(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        EntityType can be imported using any of these accepted formats
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] display_name: The name of this entity type to be displayed on the console.

@@ -32,6 +32,10 @@ import (
 // `billingProject` you defined.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// ServicePerimeterResource can be imported using any of these accepted formats
 type ServicePerimeterResource struct {
 	pulumi.CustomResourceState
 

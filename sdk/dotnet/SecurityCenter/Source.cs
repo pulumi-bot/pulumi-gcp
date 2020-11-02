@@ -22,6 +22,10 @@ namespace Pulumi.Gcp.SecurityCenter
     ///     * [Official Documentation](https://cloud.google.com/binary-authorization/)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Source can be imported using any of these accepted formats
     /// </summary>
     public partial class Source : Pulumi.CustomResource
     {

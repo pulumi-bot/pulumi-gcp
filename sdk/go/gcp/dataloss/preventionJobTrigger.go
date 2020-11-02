@@ -19,6 +19,10 @@ import (
 //     * [Official Documentation](https://cloud.google.com/dlp/docs/creating-job-triggers)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// JobTrigger can be imported using any of these accepted formats
 type PreventionJobTrigger struct {
 	pulumi.CustomResourceState
 

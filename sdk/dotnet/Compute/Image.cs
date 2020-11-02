@@ -34,6 +34,10 @@ namespace Pulumi.Gcp.Compute
     ///     * [Official Documentation](https://cloud.google.com/compute/docs/images)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Image can be imported using any of these accepted formats
     /// </summary>
     public partial class Image : Pulumi.CustomResource
     {

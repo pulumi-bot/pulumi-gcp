@@ -13,6 +13,10 @@ import (
 // A Lien represents an encumbrance on the actions that can be performed on a resource.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Lien can be imported using any of these accepted formats
 type Lien struct {
 	pulumi.CustomResourceState
 

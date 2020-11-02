@@ -20,6 +20,10 @@ import (
 //     * [Official Documentation](https://cloud.google.com/appengine/docs/standard/python/creating-firewalls#creating_firewall_rules)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// FirewallRule can be imported using any of these accepted formats
 type FirewallRule struct {
 	pulumi.CustomResourceState
 

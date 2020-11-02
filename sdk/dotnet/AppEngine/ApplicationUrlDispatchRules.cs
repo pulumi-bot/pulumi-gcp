@@ -17,6 +17,10 @@ namespace Pulumi.Gcp.AppEngine
     /// * [API documentation](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps#UrlDispatchRule)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// ApplicationUrlDispatchRules can be imported using any of these accepted formats
     /// </summary>
     public partial class ApplicationUrlDispatchRules : Pulumi.CustomResource
     {

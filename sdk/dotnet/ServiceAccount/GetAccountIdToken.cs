@@ -17,8 +17,10 @@ namespace Pulumi.Gcp.ServiceAccount
         /// For more information see
         /// [OpenID Connect](https://openid.net/specs/openid-connect-core-1_0.html#IDToken).
         /// 
+        /// 
         /// {{% examples %}}
         /// ## Example Usage
+        /// 
         /// 
         /// ### ServiceAccount JSON Credential File.
         ///   `gcp.serviceAccount.getAccountIdToken` will use the configured provider credentials
@@ -32,6 +34,7 @@ namespace Pulumi.Gcp.ServiceAccount
         ///     value = data.google_service_account_id_token.oidc.id_token
         ///   }
         ///   ```
+        /// 
         /// 
         /// 
         /// ### Service Account Impersonation.
@@ -66,6 +69,7 @@ namespace Pulumi.Gcp.ServiceAccount
         ///     value = data.google_service_account_id_token.oidc.id_token
         ///   }
         ///   ```
+        /// 
         /// 
         /// {{% /examples %}}
         /// </summary>

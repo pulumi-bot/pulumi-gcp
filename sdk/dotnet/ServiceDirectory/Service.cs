@@ -19,6 +19,10 @@ namespace Pulumi.Gcp.ServiceDirectory
     ///     * [Configuring a service](https://cloud.google.com/service-directory/docs/configuring-service-directory#configuring_a_service)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Service can be imported using any of these accepted formats
     /// </summary>
     public partial class Service : Pulumi.CustomResource
     {

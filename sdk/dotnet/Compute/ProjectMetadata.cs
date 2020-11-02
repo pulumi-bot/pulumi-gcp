@@ -19,6 +19,10 @@ namespace Pulumi.Gcp.Compute
     /// Keys unset in config but set on the server will be removed. If you want to manage only single
     /// key/value pairs within the project metadata rather than the entire set, then use
     /// google_compute_project_metadata_item.
+    /// 
+    /// ## Import
+    /// 
+    /// This resource can be imported using the project ID
     /// </summary>
     public partial class ProjectMetadata : Pulumi.CustomResource
     {

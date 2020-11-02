@@ -18,6 +18,10 @@ namespace Pulumi.Gcp.Compute
     /// &gt; **Note:** Use [gcp.compute.InstanceGroupManager](https://www.terraform.io/docs/providers/google/r/compute_instance_group_manager.html) to create a single-zone instance group manager.
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Instance group managers can be imported using the `name`, e.g.
     /// </summary>
     public partial class RegionInstanceGroupManager : Pulumi.CustomResource
     {

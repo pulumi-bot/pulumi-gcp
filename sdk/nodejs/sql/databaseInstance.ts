@@ -6,6 +6,13 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
+/**
+ * ## Import
+ *
+ * Database instances can be imported using one of any of these accepted formats
+ *
+ *  ~> **NOTE:** Some fields (such as `replica_configuration`) won't show a diff if they are unset in config and set on the server. When importing, double-check that your config has all the fields set that you expect- just seeing no diff isn't sufficient to know that your config could reproduce the imported resource.
+ */
 export class DatabaseInstance extends pulumi.CustomResource {
     /**
      * Get an existing DatabaseInstance resource's state with the given name, ID, and optional extra

@@ -16,6 +16,10 @@ import * as utilities from "../utilities";
  *     * [Google Cloud Router](https://cloud.google.com/router/docs/)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * RouterNat can be imported using any of these accepted formats
  */
 export class RouterNat extends pulumi.CustomResource {
     /**

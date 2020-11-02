@@ -53,6 +53,10 @@ class FlexTemplateJob(pulumi.CustomResource):
         configuration, you may experience a long wait for your `pulumi destroy` to
         complete.
 
+        ## Import
+
+        This resource does not support import.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] container_spec_gcs_path: The GCS path to the Dataflow job Flex

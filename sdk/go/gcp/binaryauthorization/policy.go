@@ -19,6 +19,10 @@ import (
 //     * [Official Documentation](https://cloud.google.com/binary-authorization/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Policy can be imported using any of these accepted formats
 type Policy struct {
 	pulumi.CustomResourceState
 

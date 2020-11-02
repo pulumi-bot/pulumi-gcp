@@ -11,6 +11,10 @@ import * as utilities from "../utilities";
  * Once a BigQuery job is created, it cannot be changed or deleted.
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Job can be imported using any of these accepted formats
  */
 export class Job extends pulumi.CustomResource {
     /**

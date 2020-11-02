@@ -35,6 +35,10 @@ class Attestor(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        Attestor can be imported using any of these accepted formats
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['AttestorAttestationAuthorityNoteArgs']] attestation_authority_note: A Container Analysis ATTESTATION_AUTHORITY Note, created by the user.

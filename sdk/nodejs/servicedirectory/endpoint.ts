@@ -14,6 +14,10 @@ import * as utilities from "../utilities";
  *     * [Configuring an endpoint](https://cloud.google.com/service-directory/docs/configuring-service-directory#configuring_an_endpoint)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Endpoint can be imported using any of these accepted formats
  */
 export class Endpoint extends pulumi.CustomResource {
     /**

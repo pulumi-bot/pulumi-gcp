@@ -18,6 +18,10 @@ import * as utilities from "../utilities";
  *     * [Sole-Tenant Nodes](https://cloud.google.com/compute/docs/nodes/)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * NodeTemplate can be imported using any of these accepted formats
  */
 export class NodeTemplate extends pulumi.CustomResource {
     /**

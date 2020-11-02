@@ -23,6 +23,10 @@ import (
 //     * [Adding a persistent disk](https://cloud.google.com/compute/docs/disks/add-persistent-disk)
 //
 // **Note:** When using `compute.AttachedDisk` you **must** use `lifecycle.ignore_changes = ["attachedDisk"]` on the `compute.Instance` resource that has the disks attached. Otherwise the two resources will fight for control of the attached disk block.
+//
+// ## Import
+//
+// Attached Disk can be imported the following ways
 type AttachedDisk struct {
 	pulumi.CustomResourceState
 

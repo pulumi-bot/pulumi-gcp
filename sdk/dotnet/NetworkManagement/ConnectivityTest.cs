@@ -21,6 +21,10 @@ namespace Pulumi.Gcp.NetworkManagement
     ///     * [Official Documentation](https://cloud.google.com/network-intelligence-center/docs)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// ConnectivityTest can be imported using any of these accepted formats
     /// </summary>
     public partial class ConnectivityTest : Pulumi.CustomResource
     {

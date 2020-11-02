@@ -19,6 +19,10 @@ import (
 //     * [Introduction to Reservations](https://cloud.google.com/bigquery/docs/reservations-intro)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Reservation can be imported using any of these accepted formats
 type Reservation struct {
 	pulumi.CustomResourceState
 

@@ -15,6 +15,10 @@ import * as utilities from "../utilities";
  * > **Note:** Use [gcp.compute.RegionInstanceGroupManager](https://www.terraform.io/docs/providers/google/r/compute_region_instance_group_manager.html) to create a regional (multi-zone) instance group manager.
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Instance group managers can be imported using any of these accepted formats
  */
 export class InstanceGroupManager extends pulumi.CustomResource {
     /**

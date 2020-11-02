@@ -20,6 +20,10 @@ import (
 //     * [Official Documentation](https://cloud.google.com/data-catalog/docs)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// TagTemplate can be imported using any of these accepted formats
 type TagTemplate struct {
 	pulumi.CustomResourceState
 

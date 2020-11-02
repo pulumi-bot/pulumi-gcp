@@ -12,6 +12,10 @@ import (
 // A policy that can be attached to a resource to specify or schedule actions on that resource.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// ResourcePolicy can be imported using any of these accepted formats
 type ResourcePolicy struct {
 	pulumi.CustomResourceState
 

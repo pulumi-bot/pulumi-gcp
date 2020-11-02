@@ -32,6 +32,10 @@ namespace Pulumi.Gcp.AccessContextManager
     /// `billing_project` you defined.
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// ServicePerimeterResource can be imported using any of these accepted formats
     /// </summary>
     public partial class ServicePerimeterResource : Pulumi.CustomResource
     {

@@ -37,6 +37,10 @@ namespace Pulumi.Gcp.Compute
     /// In conclusion: Be extremely cautious.
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// ManagedSslCertificate can be imported using any of these accepted formats
     /// </summary>
     public partial class ManagedSslCertificate : Pulumi.CustomResource
     {

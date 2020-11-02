@@ -10,6 +10,10 @@ import * as utilities from "../utilities";
  * Creates a table resource in a dataset for Google BigQuery. For more information see
  * [the official documentation](https://cloud.google.com/bigquery/docs/) and
  * [API](https://cloud.google.com/bigquery/docs/reference/rest/v2/tables).
+ *
+ * ## Import
+ *
+ * BigQuery tables can be imported using the `project`, `dataset_id`, and `table_id`, e.g.
  */
 export class Table extends pulumi.CustomResource {
     /**

@@ -28,6 +28,10 @@ import (
 //     * [Official Documentation](https://firebase.google.com/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// ProjectLocation can be imported using any of these accepted formats
 type ProjectLocation struct {
 	pulumi.CustomResourceState
 

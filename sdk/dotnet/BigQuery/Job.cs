@@ -14,6 +14,10 @@ namespace Pulumi.Gcp.BigQuery
     /// Once a BigQuery job is created, it cannot be changed or deleted.
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Job can be imported using any of these accepted formats
     /// </summary>
     public partial class Job : Pulumi.CustomResource
     {

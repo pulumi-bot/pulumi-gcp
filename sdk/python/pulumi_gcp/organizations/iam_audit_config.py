@@ -26,6 +26,10 @@ class IamAuditConfig(pulumi.CustomResource):
         """
         Allows management of audit logging config for a given service for a Google Cloud Platform Organization.
 
+        ## Import
+
+        IAM audit config imports use the identifier of the resource in question and the service, e.g.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IamAuditConfigAuditLogConfigArgs']]]] audit_log_configs: The configuration for logging of each type of permission.  This can be specified multiple times.  Structure is documented below.

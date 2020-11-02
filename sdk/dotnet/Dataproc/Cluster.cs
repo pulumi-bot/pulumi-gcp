@@ -18,6 +18,10 @@ namespace Pulumi.Gcp.Dataproc
     /// whole cluster!
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// This resource does not support import.
     /// </summary>
     public partial class Cluster : Pulumi.CustomResource
     {

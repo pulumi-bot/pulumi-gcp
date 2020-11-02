@@ -20,6 +20,10 @@ import (
 //     * [Official Documentation](https://cloud.google.com/container-analysis/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Occurrence can be imported using any of these accepted formats
 type Occurence struct {
 	pulumi.CustomResourceState
 

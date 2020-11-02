@@ -10,6 +10,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// ## Import
+//
+// Database instances can be imported using one of any of these accepted formats
+//
+//  ~> **NOTE:** Some fields (such as `replica_configuration`) won't show a diff if they are unset in config and set on the server. When importing, double-check that your config has all the fields set that you expect- just seeing no diff isn't sufficient to know that your config could reproduce the imported resource.
 type DatabaseInstance struct {
 	pulumi.CustomResourceState
 

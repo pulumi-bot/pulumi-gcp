@@ -44,6 +44,10 @@ class RegionInstanceGroupManager(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        Instance group managers can be imported using the `name`, e.g.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['RegionInstanceGroupManagerAutoHealingPoliciesArgs']] auto_healing_policies: The autohealing policies for this managed instance

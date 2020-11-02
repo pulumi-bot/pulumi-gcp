@@ -19,6 +19,10 @@ namespace Pulumi.Gcp.OsLogin
     ///     * [Official Documentation](https://cloud.google.com/compute/docs/oslogin)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// SSHPublicKey can be imported using any of these accepted formats
     /// </summary>
     public partial class SshPublicKey : Pulumi.CustomResource
     {

@@ -20,6 +20,10 @@ import (
 //     * [Official Documentation](https://cloud.google.com/dialogflow/docs/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Intent can be imported using any of these accepted formats
 type Intent struct {
 	pulumi.CustomResourceState
 

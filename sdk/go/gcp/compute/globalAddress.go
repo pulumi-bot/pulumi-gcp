@@ -19,6 +19,10 @@ import (
 //     * [Reserving a Static External IP Address](https://cloud.google.com/compute/docs/ip-addresses/reserve-static-external-ip-address)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// GlobalAddress can be imported using any of these accepted formats
 type GlobalAddress struct {
 	pulumi.CustomResourceState
 

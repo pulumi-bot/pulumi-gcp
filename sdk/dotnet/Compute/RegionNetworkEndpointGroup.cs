@@ -19,6 +19,10 @@ namespace Pulumi.Gcp.Compute
     ///     * [Official Documentation](https://cloud.google.com/load-balancing/docs/negs/serverless-neg-concepts)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// RegionNetworkEndpointGroup can be imported using any of these accepted formats
     /// </summary>
     public partial class RegionNetworkEndpointGroup : Pulumi.CustomResource
     {

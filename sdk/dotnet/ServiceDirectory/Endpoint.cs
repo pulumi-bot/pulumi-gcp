@@ -19,6 +19,10 @@ namespace Pulumi.Gcp.ServiceDirectory
     ///     * [Configuring an endpoint](https://cloud.google.com/service-directory/docs/configuring-service-directory#configuring_an_endpoint)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Endpoint can be imported using any of these accepted formats
     /// </summary>
     public partial class Endpoint : Pulumi.CustomResource
     {

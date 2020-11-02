@@ -42,6 +42,10 @@ class PacketMirroring(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        PacketMirroring can be imported using any of these accepted formats
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['PacketMirroringCollectorIlbArgs']] collector_ilb: The Forwarding Rule resource (of type load_balancing_scheme=INTERNAL)

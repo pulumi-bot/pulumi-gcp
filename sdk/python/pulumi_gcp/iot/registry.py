@@ -40,6 +40,10 @@ class Registry(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        DeviceRegistry can be imported using any of these accepted formats
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RegistryCredentialArgs']]]] credentials: List of public key certificates to authenticate devices.

@@ -10,6 +10,10 @@ import * as utilities from "../utilities";
  * [the official
  * documentation](https://cloud.google.com/compute/docs/load-balancing/network/target-pools)
  * and [API](https://cloud.google.com/compute/docs/reference/latest/targetPools).
+ *
+ * ## Import
+ *
+ * Target pools can be imported using any of the following formats
  */
 export class TargetPool extends pulumi.CustomResource {
     /**

@@ -16,6 +16,10 @@ import (
 // state as plain-text.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// SecretVersion can be imported using any of these accepted formats
 type SecretVersion struct {
 	pulumi.CustomResourceState
 

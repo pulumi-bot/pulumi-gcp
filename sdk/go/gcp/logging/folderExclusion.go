@@ -16,6 +16,10 @@ import (
 //
 // Note that you must have the "Logs Configuration Writer" IAM role (`roles/logging.configWriter`)
 // granted to the credentials used with this provider.
+//
+// ## Import
+//
+// Folder-level logging exclusions can be imported using their URI, e.g.
 type FolderExclusion struct {
 	pulumi.CustomResourceState
 

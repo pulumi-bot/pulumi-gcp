@@ -16,6 +16,10 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/dlp/docs/concepts-templates)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * DeidentifyTemplate can be imported using any of these accepted formats
  */
 export class PreventionDeidentifyTemplate extends pulumi.CustomResource {
     /**

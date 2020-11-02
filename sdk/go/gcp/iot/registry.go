@@ -18,6 +18,10 @@ import (
 //     * [Official Documentation](https://cloud.google.com/iot/docs/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// DeviceRegistry can be imported using any of these accepted formats
 type Registry struct {
 	pulumi.CustomResourceState
 

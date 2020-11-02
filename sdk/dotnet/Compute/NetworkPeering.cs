@@ -19,6 +19,10 @@ namespace Pulumi.Gcp.Compute
     /// to be functional.
     /// 
     /// &gt; Subnets IP ranges across peered VPC networks cannot overlap.
+    /// 
+    /// ## Import
+    /// 
+    /// VPC network peerings can be imported using the name and project of the primary network the peering exists in and the name of the network peering
     /// </summary>
     public partial class NetworkPeering : Pulumi.CustomResource
     {

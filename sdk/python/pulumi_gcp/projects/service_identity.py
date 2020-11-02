@@ -32,6 +32,10 @@ class ServiceIdentity(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        This resource does not support import.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.

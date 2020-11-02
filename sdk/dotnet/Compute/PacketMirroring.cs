@@ -21,6 +21,10 @@ namespace Pulumi.Gcp.Compute
     ///     * [Using Packet Mirroring](https://cloud.google.com/vpc/docs/using-packet-mirroring#creating)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// PacketMirroring can be imported using any of these accepted formats
     /// </summary>
     public partial class PacketMirroring : Pulumi.CustomResource
     {

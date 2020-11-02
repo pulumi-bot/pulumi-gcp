@@ -20,6 +20,10 @@ namespace Pulumi.Gcp.GameServices
     ///     * [Official Documentation](https://cloud.google.com/game-servers/docs)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// GameServerDeploymentRollout can be imported using any of these accepted formats
     /// </summary>
     public partial class GameServerDeploymentRollout : Pulumi.CustomResource
     {

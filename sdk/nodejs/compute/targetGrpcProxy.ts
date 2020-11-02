@@ -17,6 +17,10 @@ import * as utilities from "../utilities";
  *     * [Using Target gRPC Proxies](https://cloud.google.com/traffic-director/docs/proxyless-overview)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * TargetGrpcProxy can be imported using any of these accepted formats
  */
 export class TargetGrpcProxy extends pulumi.CustomResource {
     /**

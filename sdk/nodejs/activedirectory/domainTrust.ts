@@ -17,6 +17,10 @@ import * as utilities from "../utilities";
  * state as plain-text. [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * DomainTrust can be imported using any of these accepted formats
  */
 export class DomainTrust extends pulumi.CustomResource {
     /**

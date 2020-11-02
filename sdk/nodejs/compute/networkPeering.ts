@@ -14,6 +14,10 @@ import * as utilities from "../utilities";
  * to be functional.
  *
  * > Subnets IP ranges across peered VPC networks cannot overlap.
+ *
+ * ## Import
+ *
+ * VPC network peerings can be imported using the name and project of the primary network the peering exists in and the name of the network peering
  */
 export class NetworkPeering extends pulumi.CustomResource {
     /**

@@ -17,6 +17,10 @@ namespace Pulumi.Gcp.Sql
     /// affect billing. You cannot update the source representation instance.
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// SourceRepresentationInstance can be imported using any of these accepted formats
     /// </summary>
     public partial class SourceRepresentationInstance : Pulumi.CustomResource
     {

@@ -17,6 +17,10 @@ namespace Pulumi.Gcp.AppEngine
     /// * [API documentation](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// ServiceSplitTraffic can be imported using any of these accepted formats
     /// </summary>
     public partial class EngineSplitTraffic : Pulumi.CustomResource
     {

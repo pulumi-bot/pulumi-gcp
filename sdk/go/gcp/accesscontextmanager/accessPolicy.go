@@ -29,6 +29,10 @@ import (
 // `billingProject` you defined.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// AccessPolicy can be imported using any of these accepted formats
 type AccessPolicy struct {
 	pulumi.CustomResourceState
 

@@ -15,6 +15,10 @@ namespace Pulumi.Gcp.Compute
     /// and [API](https://cloud.google.com/compute/docs/reference/latest/instanceGroups)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Instance group can be imported using the `zone` and `name` with an optional `project`, e.g.
     /// </summary>
     public partial class InstanceGroup : Pulumi.CustomResource
     {

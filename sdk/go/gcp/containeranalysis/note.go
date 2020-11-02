@@ -21,6 +21,10 @@ import (
 //     * [Creating Attestations (Occurrences)](https://cloud.google.com/binary-authorization/docs/making-attestations)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Note can be imported using any of these accepted formats
 type Note struct {
 	pulumi.CustomResourceState
 

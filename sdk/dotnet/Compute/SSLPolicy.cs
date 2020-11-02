@@ -20,6 +20,10 @@ namespace Pulumi.Gcp.Compute
     ///     * [Using SSL Policies](https://cloud.google.com/compute/docs/load-balancing/ssl-policies)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// SslPolicy can be imported using any of these accepted formats
     /// </summary>
     public partial class SSLPolicy : Pulumi.CustomResource
     {

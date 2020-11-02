@@ -31,6 +31,10 @@ namespace Pulumi.Gcp.CloudRun
     ///     * [Official Documentation](https://cloud.google.com/run/docs/)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Service can be imported using any of these accepted formats
     /// </summary>
     public partial class Service : Pulumi.CustomResource
     {

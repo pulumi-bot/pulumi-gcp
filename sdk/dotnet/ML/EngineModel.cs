@@ -16,6 +16,10 @@ namespace Pulumi.Gcp.ML
     /// ready to receive prediction requests. The model itself is just a container.
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Model can be imported using any of these accepted formats
     /// </summary>
     public partial class EngineModel : Pulumi.CustomResource
     {

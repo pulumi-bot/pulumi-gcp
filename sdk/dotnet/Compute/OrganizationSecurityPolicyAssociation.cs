@@ -19,6 +19,10 @@ namespace Pulumi.Gcp.Compute
     ///     * [Associating a policy with the organization or folder](https://cloud.google.com/vpc/docs/using-firewall-policies#associate)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// OrganizationSecurityPolicyAssociation can be imported using any of these accepted formats
     /// </summary>
     public partial class OrganizationSecurityPolicyAssociation : Pulumi.CustomResource
     {

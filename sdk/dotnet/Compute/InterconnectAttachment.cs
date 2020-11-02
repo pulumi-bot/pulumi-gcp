@@ -14,6 +14,10 @@ namespace Pulumi.Gcp.Compute
     /// information, see Creating VLAN Attachments.
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// InterconnectAttachment can be imported using any of these accepted formats
     /// </summary>
     public partial class InterconnectAttachment : Pulumi.CustomResource
     {

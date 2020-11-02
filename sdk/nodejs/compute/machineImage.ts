@@ -16,6 +16,10 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/compute/docs/machine-images)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * MachineImage can be imported using any of these accepted formats
  */
 export class MachineImage extends pulumi.CustomResource {
     /**

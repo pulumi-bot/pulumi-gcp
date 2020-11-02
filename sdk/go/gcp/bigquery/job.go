@@ -14,6 +14,10 @@ import (
 // Once a BigQuery job is created, it cannot be changed or deleted.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Job can be imported using any of these accepted formats
 type Job struct {
 	pulumi.CustomResourceState
 

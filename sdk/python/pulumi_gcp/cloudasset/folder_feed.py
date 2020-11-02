@@ -38,6 +38,10 @@ class FolderFeed(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        FolderFeed can be imported using any of these accepted formats
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] asset_names: A list of the full names of the assets to receive updates. You must specify either or both of

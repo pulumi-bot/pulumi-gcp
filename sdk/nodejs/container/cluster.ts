@@ -16,6 +16,12 @@ import * as utilities from "../utilities";
  * plaintext. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * GKE clusters can be imported using the `project` , `location`, and `name`. If the project is omitted, the default provider value will be used. Examples
+ *
+ *  ~> **Note:** This resource has several fields that control Terraform-specific behavior and aren't present in the API. If they are set in config and you import a cluster, Terraform may need to perform an update immediately after import. Most of these updates should be no-ops but some may modify your cluster if the imported state differs. For example, the following fields will show diffs if set in config- `min_master_version` - `remove_default_node_pool`
  */
 export class Cluster extends pulumi.CustomResource {
     /**

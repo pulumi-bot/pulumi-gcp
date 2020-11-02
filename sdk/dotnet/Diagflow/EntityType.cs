@@ -19,6 +19,10 @@ namespace Pulumi.Gcp.Diagflow
     ///     * [Official Documentation](https://cloud.google.com/dialogflow/docs/)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// EntityType can be imported using any of these accepted formats
     /// </summary>
     public partial class EntityType : Pulumi.CustomResource
     {

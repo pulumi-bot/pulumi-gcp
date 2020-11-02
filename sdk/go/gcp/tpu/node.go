@@ -19,6 +19,10 @@ import (
 //     * [Official Documentation](https://cloud.google.com/tpu/docs/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Node can be imported using any of these accepted formats
 type Node struct {
 	pulumi.CustomResourceState
 

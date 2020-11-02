@@ -21,6 +21,10 @@ import * as utilities from "../utilities";
  *
  * > **NOTE**: This resource can affect your storage IAM policy. If you are using this in the same config as your storage IAM policy resources, consider
  * making this resource dependent on those IAM resources via `dependsOn`. This will safeguard against errors due to IAM race conditions.
+ *
+ * ## Import
+ *
+ * Storage notifications can be imported using the notification `id` in the format `<bucket_name>/notificationConfigs/<id>` e.g.
  */
 export class Notification extends pulumi.CustomResource {
     /**

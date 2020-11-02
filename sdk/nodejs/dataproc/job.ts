@@ -11,6 +11,10 @@ import * as utilities from "../utilities";
  * [the official dataproc documentation](https://cloud.google.com/dataproc/).
  *
  * !> **Note:** This resource does not support 'update' and changing any attributes will cause the resource to be recreated.
+ *
+ * ## Import
+ *
+ * This resource does not support import.
  */
 export class Job extends pulumi.CustomResource {
     /**

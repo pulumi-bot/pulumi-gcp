@@ -31,6 +31,10 @@ import * as utilities from "../utilities";
  *     deletion. [More about Composer's use of Cloud Storage](https://cloud.google.com/composer/docs/concepts/cloud-storage).
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Environment can be imported using any of these accepted formats
  */
 export class Environment extends pulumi.CustomResource {
     /**

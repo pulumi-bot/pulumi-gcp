@@ -24,6 +24,10 @@ import * as utilities from "../utilities";
  * `billingProject` you defined.
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * AccessPolicy can be imported using any of these accepted formats
  */
 export class AccessPolicy extends pulumi.CustomResource {
     /**

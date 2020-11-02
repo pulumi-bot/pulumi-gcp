@@ -28,6 +28,10 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/run/docs/)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Service can be imported using any of these accepted formats
  */
 export class Service extends pulumi.CustomResource {
     /**

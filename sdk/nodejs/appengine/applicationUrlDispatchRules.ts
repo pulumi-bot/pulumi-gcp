@@ -14,6 +14,10 @@ import * as utilities from "../utilities";
  * * [API documentation](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps#UrlDispatchRule)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * ApplicationUrlDispatchRules can be imported using any of these accepted formats
  */
 export class ApplicationUrlDispatchRules extends pulumi.CustomResource {
     /**

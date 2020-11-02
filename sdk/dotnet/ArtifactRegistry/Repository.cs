@@ -19,6 +19,10 @@ namespace Pulumi.Gcp.ArtifactRegistry
     ///     * [Official Documentation](https://cloud.google.com/artifact-registry/docs/overview)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Repository can be imported using any of these accepted formats
     /// </summary>
     public partial class Repository : Pulumi.CustomResource
     {

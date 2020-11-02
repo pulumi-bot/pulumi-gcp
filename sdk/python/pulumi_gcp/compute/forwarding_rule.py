@@ -50,6 +50,10 @@ class ForwardingRule(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        ForwardingRule can be imported using any of these accepted formats
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] all_ports: For internal TCP/UDP load balancing (i.e. load balancing scheme is

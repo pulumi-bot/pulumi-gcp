@@ -45,6 +45,10 @@ class RouterPeer(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        RouterBgpPeer can be imported using any of these accepted formats
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] advertise_mode: User-specified flag to indicate which mode to use for advertisement.

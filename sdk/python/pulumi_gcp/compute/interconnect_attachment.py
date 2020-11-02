@@ -38,6 +38,10 @@ class InterconnectAttachment(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        InterconnectAttachment can be imported using any of these accepted formats
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] admin_enabled: Whether the VLAN attachment is enabled or disabled.  When using

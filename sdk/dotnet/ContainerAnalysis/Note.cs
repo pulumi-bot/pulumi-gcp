@@ -21,6 +21,10 @@ namespace Pulumi.Gcp.ContainerAnalysis
     ///     * [Creating Attestations (Occurrences)](https://cloud.google.com/binary-authorization/docs/making-attestations)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Note can be imported using any of these accepted formats
     /// </summary>
     public partial class Note : Pulumi.CustomResource
     {

@@ -19,6 +19,10 @@ import (
 //     * [Official Documentation](https://cloud.google.com/dlp/docs/creating-stored-infotypes)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// StoredInfoType can be imported using any of these accepted formats
 type PreventionStoredInfoType struct {
 	pulumi.CustomResourceState
 

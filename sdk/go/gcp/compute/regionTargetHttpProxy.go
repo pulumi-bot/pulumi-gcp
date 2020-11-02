@@ -20,6 +20,10 @@ import (
 //     * [Official Documentation](https://cloud.google.com/compute/docs/load-balancing/http/target-proxies)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// RegionTargetHttpProxy can be imported using any of these accepted formats
 type RegionTargetHttpProxy struct {
 	pulumi.CustomResourceState
 

@@ -8,6 +8,10 @@ import * as utilities from "../utilities";
 
 /**
  * This resource creates and rolls out a Cloud Endpoints service using OpenAPI or gRPC.  View the relevant docs for [OpenAPI](https://cloud.google.com/endpoints/docs/openapi/) and [gRPC](https://cloud.google.com/endpoints/docs/grpc/).
+ *
+ * ## Import
+ *
+ * This resource does not support import.
  */
 export class Service extends pulumi.CustomResource {
     /**

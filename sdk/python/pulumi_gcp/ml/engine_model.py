@@ -36,6 +36,10 @@ class EngineModel(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        Model can be imported using any of these accepted formats
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['EngineModelDefaultVersionArgs']] default_version: The default version of the model. This version will be used to handle

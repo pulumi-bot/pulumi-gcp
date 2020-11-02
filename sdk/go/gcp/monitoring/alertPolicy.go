@@ -21,6 +21,10 @@ import (
 //     * [Official Documentation](https://cloud.google.com/monitoring/alerts/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// AlertPolicy can be imported using any of these accepted formats
 type AlertPolicy struct {
 	pulumi.CustomResourceState
 

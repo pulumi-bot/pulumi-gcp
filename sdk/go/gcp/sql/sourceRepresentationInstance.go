@@ -17,6 +17,10 @@ import (
 // affect billing. You cannot update the source representation instance.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// SourceRepresentationInstance can be imported using any of these accepted formats
 type SourceRepresentationInstance struct {
 	pulumi.CustomResourceState
 

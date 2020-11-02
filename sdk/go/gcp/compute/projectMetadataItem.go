@@ -14,6 +14,10 @@ import (
 // a project in GCE. Using `compute.ProjectMetadataItem` lets you
 // manage a single key/value setting in the provider rather than the entire
 // project metadata map.
+//
+// ## Import
+//
+// Project metadata items can be imported using the `key`, e.g.
 type ProjectMetadataItem struct {
 	pulumi.CustomResourceState
 
