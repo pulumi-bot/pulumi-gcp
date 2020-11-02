@@ -31,6 +31,10 @@ class RouterInterface(pulumi.CustomResource):
         and
         [API](https://cloud.google.com/compute/docs/reference/latest/routers).
 
+        ## Import
+
+        Router interfaces can be imported using the `region`, `router`, and `name`, e.g.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] interconnect_attachment: The name or resource link to the

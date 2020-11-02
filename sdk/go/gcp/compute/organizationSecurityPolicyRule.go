@@ -19,6 +19,10 @@ import (
 //     * [Creating firewall rules](https://cloud.google.com/vpc/docs/using-firewall-policies#create-rules)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// OrganizationSecurityPolicyRule can be imported using any of these accepted formats
 type OrganizationSecurityPolicyRule struct {
 	pulumi.CustomResourceState
 

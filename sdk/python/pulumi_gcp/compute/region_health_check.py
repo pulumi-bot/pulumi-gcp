@@ -56,6 +56,10 @@ class RegionHealthCheck(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        RegionHealthCheck can be imported using any of these accepted formats
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] check_interval_sec: How often (in seconds) to send a health check. The default value is 5

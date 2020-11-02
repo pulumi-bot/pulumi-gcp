@@ -14,6 +14,10 @@ import * as utilities from "../utilities";
  * * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/externalVpnGateways)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * ExternalVpnGateway can be imported using any of these accepted formats
  */
 export class ExternalVpnGateway extends pulumi.CustomResource {
     /**

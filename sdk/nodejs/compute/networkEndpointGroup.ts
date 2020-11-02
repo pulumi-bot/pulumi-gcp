@@ -27,6 +27,10 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/load-balancing/docs/negs/)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * NetworkEndpointGroup can be imported using any of these accepted formats
  */
 export class NetworkEndpointGroup extends pulumi.CustomResource {
     /**

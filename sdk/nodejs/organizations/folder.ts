@@ -18,6 +18,10 @@ import * as utilities from "../utilities";
  * resource must have `roles/resourcemanager.folderCreator`. See the
  * [Access Control for Folders Using IAM](https://cloud.google.com/resource-manager/docs/access-control-folders)
  * doc for more information.
+ *
+ * ## Import
+ *
+ * Folders can be imported using the folder's id, e.g. # Both syntaxes are valid
  */
 export class Folder extends pulumi.CustomResource {
     /**

@@ -16,6 +16,10 @@ import * as utilities from "../utilities";
  *     * [Routines Intro](https://cloud.google.com/bigquery/docs/reference/rest/v2/routines)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Routine can be imported using any of these accepted formats
  */
 export class Routine extends pulumi.CustomResource {
     /**

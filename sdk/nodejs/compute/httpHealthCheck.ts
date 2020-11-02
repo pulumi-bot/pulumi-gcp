@@ -21,6 +21,10 @@ import * as utilities from "../utilities";
  *     * [Adding Health Checks](https://cloud.google.com/compute/docs/load-balancing/health-checks#legacy_health_checks)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * HttpHealthCheck can be imported using any of these accepted formats
  */
 export class HttpHealthCheck extends pulumi.CustomResource {
     /**

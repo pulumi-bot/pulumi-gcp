@@ -20,6 +20,10 @@ import (
 //     * [Creating a FHIR store](https://cloud.google.com/healthcare/docs/how-tos/fhir)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// FhirStore can be imported using any of these accepted formats
 type FhirStore struct {
 	pulumi.CustomResourceState
 

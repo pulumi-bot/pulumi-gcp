@@ -27,6 +27,10 @@ import * as utilities from "../utilities";
  *     * [Reserving a Static Internal IP Address](https://cloud.google.com/compute/docs/ip-addresses/reserve-static-internal-ip-address)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Address can be imported using any of these accepted formats
  */
 export class Address extends pulumi.CustomResource {
     /**

@@ -15,6 +15,10 @@ namespace Pulumi.Gcp.BigTable
     /// [API](https://cloud.google.com/bigtable/docs/go/reference).
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Bigtable Instances can be imported using any of these accepted formats
     /// </summary>
     public partial class Instance : Pulumi.CustomResource
     {

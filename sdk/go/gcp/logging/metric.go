@@ -21,6 +21,10 @@ import (
 //     * [Official Documentation](https://cloud.google.com/logging/docs/apis)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Metric can be imported using any of these accepted formats
 type Metric struct {
 	pulumi.CustomResourceState
 

@@ -23,6 +23,10 @@ namespace Pulumi.Gcp.Firebase
     ///     * [Official Documentation](https://firebase.google.com/)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Project can be imported using any of these accepted formats
     /// </summary>
     public partial class Project : Pulumi.CustomResource
     {

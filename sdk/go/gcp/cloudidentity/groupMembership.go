@@ -19,6 +19,10 @@ import (
 // `billingProject` you defined.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// GroupMembership can be imported using any of these accepted formats
 type GroupMembership struct {
 	pulumi.CustomResourceState
 

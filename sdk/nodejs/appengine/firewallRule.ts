@@ -15,6 +15,10 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/appengine/docs/standard/python/creating-firewalls#creating_firewall_rules)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * FirewallRule can be imported using any of these accepted formats
  */
 export class FirewallRule extends pulumi.CustomResource {
     /**

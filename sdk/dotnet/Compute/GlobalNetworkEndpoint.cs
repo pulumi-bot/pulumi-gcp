@@ -21,6 +21,10 @@ namespace Pulumi.Gcp.Compute
     ///     * [Official Documentation](https://cloud.google.com/load-balancing/docs/negs/)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// GlobalNetworkEndpoint can be imported using any of these accepted formats
     /// </summary>
     public partial class GlobalNetworkEndpoint : Pulumi.CustomResource
     {

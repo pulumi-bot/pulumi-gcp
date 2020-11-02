@@ -18,6 +18,10 @@ import * as utilities from "../utilities";
  *     * [Creating a key ring](https://cloud.google.com/kms/docs/creating-keys#create_a_key_ring)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * KeyRing can be imported using any of these accepted formats
  */
 export class KeyRing extends pulumi.CustomResource {
     /**

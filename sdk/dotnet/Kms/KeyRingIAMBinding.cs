@@ -19,6 +19,20 @@ namespace Pulumi.Gcp.Kms
     /// &gt; **Note:** `gcp.kms.KeyRingIAMPolicy` **cannot** be used in conjunction with `gcp.kms.KeyRingIAMBinding` and `gcp.kms.KeyRingIAMMember` or they will fight over what your policy should be.
     /// 
     /// &gt; **Note:** `gcp.kms.KeyRingIAMBinding` resources **can be** used in conjunction with `gcp.kms.KeyRingIAMMember` resources **only if** they do not grant privilege to the same role.
+    /// 
+    /// ## Import
+    /// 
+    /// IAM member imports use space-delimited identifiers; the resource in question, the role, and the account.
+    /// 
+    /// This member resource can be imported using the `key_ring_id`, role, and account e.g.
+    /// 
+    ///  IAM binding imports use space-delimited identifiers; the resource in question and the role.
+    /// 
+    /// This binding resource can be imported using the `key_ring_id` and role, e.g.
+    /// 
+    ///  IAM policy imports use the identifier of the resource in question.
+    /// 
+    /// This policy resource can be imported using the `key_ring_id`, e.g.
     /// </summary>
     public partial class KeyRingIAMBinding : Pulumi.CustomResource
     {

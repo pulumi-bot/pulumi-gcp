@@ -19,6 +19,10 @@ import (
 //     * [Official Documentation](https://cloud.google.com/dialogflow/docs/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// EntityType can be imported using any of these accepted formats
 type EntityType struct {
 	pulumi.CustomResourceState
 

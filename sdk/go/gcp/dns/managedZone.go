@@ -21,6 +21,10 @@ import (
 //     * [Managing Zones](https://cloud.google.com/dns/zones/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// ManagedZone can be imported using any of these accepted formats
 type ManagedZone struct {
 	pulumi.CustomResourceState
 

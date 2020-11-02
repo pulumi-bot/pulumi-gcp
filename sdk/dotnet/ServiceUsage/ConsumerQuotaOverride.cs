@@ -21,6 +21,10 @@ namespace Pulumi.Gcp.ServiceUsage
     ///     * [REST API documentation](https://cloud.google.com/service-usage/docs/reference/rest/v1beta1/services.consumerQuotaMetrics.limits.consumerOverrides)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// ConsumerQuotaOverride can be imported using any of these accepted formats
     /// </summary>
     public partial class ConsumerQuotaOverride : Pulumi.CustomResource
     {

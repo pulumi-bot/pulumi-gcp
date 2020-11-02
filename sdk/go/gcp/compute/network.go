@@ -18,6 +18,10 @@ import (
 //     * [Official Documentation](https://cloud.google.com/vpc/docs/vpc)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Network can be imported using any of these accepted formats
 type Network struct {
 	pulumi.CustomResourceState
 

@@ -21,6 +21,10 @@ namespace Pulumi.Gcp.DataCatalog
     ///     * [Official Documentation](https://cloud.google.com/data-catalog/docs)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Tag can be imported using any of these accepted formats
     /// </summary>
     public partial class Tag : Pulumi.CustomResource
     {

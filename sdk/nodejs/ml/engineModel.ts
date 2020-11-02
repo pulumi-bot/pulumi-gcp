@@ -13,6 +13,10 @@ import * as utilities from "../utilities";
  * ready to receive prediction requests. The model itself is just a container.
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Model can be imported using any of these accepted formats
  */
 export class EngineModel extends pulumi.CustomResource {
     /**

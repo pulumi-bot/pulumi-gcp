@@ -21,6 +21,10 @@ import (
 // > **Warning:** It is strongly recommended to set `lifecycle { preventDestroy = true }` on databases in order to prevent accidental data loss.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Database can be imported using any of these accepted formats
 type Database struct {
 	pulumi.CustomResourceState
 

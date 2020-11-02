@@ -11,6 +11,10 @@ import * as utilities from "../utilities";
  * [the official
  * documentation](https://cloud.google.com/resource-manager/docs/organization-policy/overview) and
  * [API](https://cloud.google.com/resource-manager/reference/rest/v1/projects/setOrgPolicy).
+ *
+ * ## Import
+ *
+ * Project organization policies can be imported using any of the follow formats
  */
 export class OrganizationPolicy extends pulumi.CustomResource {
     /**

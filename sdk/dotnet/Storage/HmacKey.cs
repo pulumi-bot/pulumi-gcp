@@ -28,6 +28,10 @@ namespace Pulumi.Gcp.Storage
     /// state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// HmacKey can be imported using any of these accepted formats
     /// </summary>
     public partial class HmacKey : Pulumi.CustomResource
     {

@@ -27,6 +27,10 @@ import * as utilities from "../utilities";
  * `billingProject` you defined.
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * ServicePerimeterResource can be imported using any of these accepted formats
  */
 export class ServicePerimeterResource extends pulumi.CustomResource {
     /**

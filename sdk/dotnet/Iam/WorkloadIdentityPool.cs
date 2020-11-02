@@ -9,6 +9,11 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Gcp.Iam
 {
+    /// <summary>
+    /// ## Import
+    /// 
+    /// WorkloadIdentityPool can be imported using any of these accepted formats
+    /// </summary>
     public partial class WorkloadIdentityPool : Pulumi.CustomResource
     {
         /// <summary>

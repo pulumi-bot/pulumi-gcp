@@ -26,6 +26,10 @@ import (
 //     * [Reserving zonal resources](https://cloud.google.com/compute/docs/instances/reserving-zonal-resources)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Reservation can be imported using any of these accepted formats
 type Reservation struct {
 	pulumi.CustomResourceState
 

@@ -40,6 +40,10 @@ class URLMap(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        UrlMap can be imported using any of these accepted formats
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['URLMapDefaultRouteActionArgs']] default_route_action: defaultRouteAction takes effect when none of the pathRules or routeRules match. The load balancer performs

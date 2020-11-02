@@ -23,6 +23,10 @@ namespace Pulumi.Gcp.Compute
     /// state as plain-text.
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// VpnTunnel can be imported using any of these accepted formats
     /// </summary>
     public partial class VPNTunnel : Pulumi.CustomResource
     {

@@ -22,6 +22,10 @@ import (
 //     * [Official Documentation](https://cloud.google.com/monitoring/groups/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Group can be imported using any of these accepted formats
 type Group struct {
 	pulumi.CustomResourceState
 

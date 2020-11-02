@@ -16,6 +16,10 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/load-balancing/docs/negs/)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * GlobalNetworkEndpoint can be imported using any of these accepted formats
  */
 export class GlobalNetworkEndpoint extends pulumi.CustomResource {
     /**

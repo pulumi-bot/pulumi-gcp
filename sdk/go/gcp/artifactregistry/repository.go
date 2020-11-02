@@ -19,6 +19,10 @@ import (
 //     * [Official Documentation](https://cloud.google.com/artifact-registry/docs/overview)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Repository can be imported using any of these accepted formats
 type Repository struct {
 	pulumi.CustomResourceState
 

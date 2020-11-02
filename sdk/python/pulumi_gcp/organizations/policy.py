@@ -32,6 +32,12 @@ class Policy(pulumi.CustomResource):
         documentation](https://cloud.google.com/resource-manager/docs/organization-policy/overview) and
         [API](https://cloud.google.com/resource-manager/reference/rest/v1/organizations/setOrgPolicy).
 
+        ## Import
+
+        Organization Policies can be imported using the `org_id` and the `constraint`, e.g.
+
+         It is all right if the constraint contains a slash, as in the example above.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['PolicyBooleanPolicyArgs']] boolean_policy: A boolean policy is a constraint that is either enforced or not. Structure is documented below.

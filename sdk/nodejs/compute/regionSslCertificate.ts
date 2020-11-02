@@ -19,6 +19,10 @@ import * as utilities from "../utilities";
  * state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * RegionSslCertificate can be imported using any of these accepted formats
  */
 export class RegionSslCertificate extends pulumi.CustomResource {
     /**

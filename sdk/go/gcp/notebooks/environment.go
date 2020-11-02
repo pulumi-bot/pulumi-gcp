@@ -19,6 +19,10 @@ import (
 //     * [Official Documentation](https://cloud.google.com/ai-platform-notebooks)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Environment can be imported using any of these accepted formats
 type Environment struct {
 	pulumi.CustomResourceState
 

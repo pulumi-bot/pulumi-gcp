@@ -21,6 +21,10 @@ namespace Pulumi.Gcp.Compute
     /// see the [Classic VPN partial deprecation page](https://cloud.google.com/network-connectivity/docs/vpn/deprecations/classic-vpn-deprecation).
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// VpnGateway can be imported using any of these accepted formats
     /// </summary>
     public partial class VPNGateway : Pulumi.CustomResource
     {

@@ -22,6 +22,10 @@ import (
 //     * [Official Documentation](https://firebase.google.com/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Project can be imported using any of these accepted formats
 type Project struct {
 	pulumi.CustomResourceState
 

@@ -15,6 +15,10 @@ import (
 // and [the API reference](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1beta1/projects.locations.clusters.nodePools).
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Node pools can be imported using the `project`, `zone`, `cluster` and `name`. If the project is omitted, the default provider value will be used. Examples
 type NodePool struct {
 	pulumi.CustomResourceState
 

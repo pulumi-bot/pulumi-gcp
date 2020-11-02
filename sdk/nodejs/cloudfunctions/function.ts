@@ -19,6 +19,10 @@ import * as utilities from "../utilities";
  * for Cloud Functions.
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Functions can be imported using the `name` or `{{project}}/{{region}}/name`, e.g.
  */
 export class Function extends pulumi.CustomResource {
     /**

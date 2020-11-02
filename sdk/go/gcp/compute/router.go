@@ -19,6 +19,10 @@ import (
 //     * [Google Cloud Router](https://cloud.google.com/router/docs/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Router can be imported using any of these accepted formats
 type Router struct {
 	pulumi.CustomResourceState
 

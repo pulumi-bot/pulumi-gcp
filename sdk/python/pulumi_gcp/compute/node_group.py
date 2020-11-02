@@ -44,6 +44,10 @@ class NodeGroup(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        NodeGroup can be imported using any of these accepted formats
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['NodeGroupAutoscalingPolicyArgs']] autoscaling_policy: If you use sole-tenant nodes for your workloads, you can use the node

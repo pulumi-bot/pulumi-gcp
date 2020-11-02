@@ -15,6 +15,10 @@ import * as utilities from "../utilities";
  * This resource is specifically to create a compute instance from a given
  * `sourceInstanceTemplate`. To create an instance without a template, use the
  * `gcp.compute.Instance` resource.
+ *
+ * ## Import
+ *
+ * This resource does not support import.
  */
 export class InstanceFromTemplate extends pulumi.CustomResource {
     /**

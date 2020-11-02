@@ -45,6 +45,10 @@ class Deployment(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        Deployment can be imported using any of these accepted formats
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] create_policy: Set the policy to use for creating new resources. Only used on

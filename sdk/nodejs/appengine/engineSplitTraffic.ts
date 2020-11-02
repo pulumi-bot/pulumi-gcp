@@ -14,6 +14,10 @@ import * as utilities from "../utilities";
  * * [API documentation](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * ServiceSplitTraffic can be imported using any of these accepted formats
  */
 export class EngineSplitTraffic extends pulumi.CustomResource {
     /**

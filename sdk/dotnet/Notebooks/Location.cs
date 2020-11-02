@@ -11,6 +11,10 @@ namespace Pulumi.Gcp.Notebooks
 {
     /// <summary>
     /// Represents a Location resource.
+    /// 
+    /// ## Import
+    /// 
+    /// Location can be imported using any of these accepted formats
     /// </summary>
     public partial class Location : Pulumi.CustomResource
     {

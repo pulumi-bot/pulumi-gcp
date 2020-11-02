@@ -22,6 +22,10 @@ import * as utilities from "../utilities";
  * `preview=false`).
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Deployment can be imported using any of these accepted formats
  */
 export class Deployment extends pulumi.CustomResource {
     /**

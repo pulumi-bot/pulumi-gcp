@@ -21,6 +21,10 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/data-catalog/docs)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Entry can be imported using any of these accepted formats
  */
 export class Entry extends pulumi.CustomResource {
     /**

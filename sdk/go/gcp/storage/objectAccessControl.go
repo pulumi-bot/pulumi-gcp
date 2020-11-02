@@ -30,6 +30,10 @@ import (
 //     * [Official Documentation](https://cloud.google.com/storage/docs/access-control/create-manage-lists)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// ObjectAccessControl can be imported using any of these accepted formats
 type ObjectAccessControl struct {
 	pulumi.CustomResourceState
 

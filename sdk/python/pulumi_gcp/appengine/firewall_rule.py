@@ -35,6 +35,10 @@ class FirewallRule(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        FirewallRule can be imported using any of these accepted formats
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] action: The action to take if this rule matches.

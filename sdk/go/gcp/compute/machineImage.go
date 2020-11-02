@@ -21,6 +21,10 @@ import (
 //     * [Official Documentation](https://cloud.google.com/compute/docs/machine-images)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// MachineImage can be imported using any of these accepted formats
 type MachineImage struct {
 	pulumi.CustomResourceState
 

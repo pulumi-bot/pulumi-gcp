@@ -21,6 +21,12 @@ import (
 // > **Note:** `serviceAccount.IAMPolicy` **cannot** be used in conjunction with `serviceAccount.IAMBinding` and `serviceAccount.IAMMember` or they will fight over what your policy should be.
 //
 // > **Note:** `serviceAccount.IAMBinding` resources **can be** used in conjunction with `serviceAccount.IAMMember` resources **only if** they do not grant privilege to the same role.
+//
+// ## Import
+//
+// Service account IAM resources can be imported using the project, service account email, role, member identity, and condition (beta).
+//
+//  -> **Custom Roles**If you're importing a IAM resource with a custom role, make sure to use the full name of the custom role, e.g. `[projects/my-project|organizations/my-org]/roles/my-custom-role`. With conditions
 type IAMPolicy struct {
 	pulumi.CustomResourceState
 

@@ -19,6 +19,10 @@ namespace Pulumi.Gcp.CloudBuild
     ///     * [Automating builds using build triggers](https://cloud.google.com/cloud-build/docs/running-builds/automate-builds)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Trigger can be imported using any of these accepted formats
     /// </summary>
     public partial class Trigger : Pulumi.CustomResource
     {

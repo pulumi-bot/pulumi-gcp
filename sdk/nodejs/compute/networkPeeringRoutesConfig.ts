@@ -17,6 +17,10 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/vpc/docs/vpc-peering)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * NetworkPeeringRoutesConfig can be imported using any of these accepted formats
  */
 export class NetworkPeeringRoutesConfig extends pulumi.CustomResource {
     /**

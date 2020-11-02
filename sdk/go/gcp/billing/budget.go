@@ -19,6 +19,10 @@ import (
 //     * [Creating a budget](https://cloud.google.com/billing/docs/how-to/budgets)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Budget can be imported using any of these accepted formats
 type Budget struct {
 	pulumi.CustomResourceState
 

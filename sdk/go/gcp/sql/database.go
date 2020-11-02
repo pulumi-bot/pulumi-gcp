@@ -14,6 +14,10 @@ import (
 // Google's cloud.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Database can be imported using any of these accepted formats
 type Database struct {
 	pulumi.CustomResourceState
 

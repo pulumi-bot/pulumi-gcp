@@ -19,6 +19,10 @@ namespace Pulumi.Gcp.Tpu
     ///     * [Official Documentation](https://cloud.google.com/tpu/docs/)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Node can be imported using any of these accepted formats
     /// </summary>
     public partial class Node : Pulumi.CustomResource
     {

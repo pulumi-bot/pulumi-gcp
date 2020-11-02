@@ -16,6 +16,10 @@ import * as utilities from "../utilities";
  *     * [Managing Topics](https://cloud.google.com/pubsub/docs/admin#managing_topics)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Topic can be imported using any of these accepted formats
  */
 export class Topic extends pulumi.CustomResource {
     /**

@@ -10,6 +10,10 @@ import (
 )
 
 // Represents a Location resource.
+//
+// ## Import
+//
+// Location can be imported using any of these accepted formats
 type Location struct {
 	pulumi.CustomResourceState
 

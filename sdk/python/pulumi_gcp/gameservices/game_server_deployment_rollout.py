@@ -36,6 +36,10 @@ class GameServerDeploymentRollout(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        GameServerDeploymentRollout can be imported using any of these accepted formats
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] default_game_server_config: This field points to the game server config that is

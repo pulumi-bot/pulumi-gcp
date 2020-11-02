@@ -38,6 +38,10 @@ class ConsumerQuotaOverride(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        ConsumerQuotaOverride can be imported using any of these accepted formats
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] dimensions: If this map is nonempty, then this override applies only to specific values for dimensions defined in the limit unit.

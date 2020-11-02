@@ -26,6 +26,10 @@ import (
 // state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Client can be imported using any of these accepted formats
 type Client struct {
 	pulumi.CustomResourceState
 

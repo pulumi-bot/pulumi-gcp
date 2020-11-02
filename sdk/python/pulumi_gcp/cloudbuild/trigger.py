@@ -43,6 +43,10 @@ class Trigger(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        Trigger can be imported using any of these accepted formats
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['TriggerBuildArgs']] build: Contents of the build template. Either a filename or build template must be provided.

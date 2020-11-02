@@ -18,6 +18,10 @@ import (
 // For more information, see,
 // [the Project API documentation](https://cloud.google.com/compute/docs/reference/latest/projects),
 // where the Shared VPC feature is referred to by its former name "XPN".
+//
+// ## Import
+//
+// Google Compute Engine Shared VPC service project feature can be imported using the `host_project` and `service_project`, e.g.
 type SharedVPCServiceProject struct {
 	pulumi.CustomResourceState
 

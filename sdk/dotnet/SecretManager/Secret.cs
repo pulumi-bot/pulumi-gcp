@@ -17,6 +17,10 @@ namespace Pulumi.Gcp.SecretManager
     /// * [API documentation](https://cloud.google.com/secret-manager/docs/reference/rest/v1/projects.secrets)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Secret can be imported using any of these accepted formats
     /// </summary>
     public partial class Secret : Pulumi.CustomResource
     {

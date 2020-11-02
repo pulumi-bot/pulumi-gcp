@@ -21,6 +21,10 @@ import (
 //     * [Access Policy Quickstart](https://cloud.google.com/access-context-manager/docs/quickstart)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// AccessLevels can be imported using any of these accepted formats
 type AccessLevels struct {
 	pulumi.CustomResourceState
 

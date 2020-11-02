@@ -17,6 +17,10 @@ namespace Pulumi.Gcp.IdentityPlatform
     /// the marketplace prior to using this resource.
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// OauthIdpConfig can be imported using any of these accepted formats
     /// </summary>
     public partial class OauthIdpConfig : Pulumi.CustomResource
     {

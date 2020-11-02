@@ -19,6 +19,10 @@ namespace Pulumi.Gcp.Redis
     ///     * [Official Documentation](https://cloud.google.com/memorystore/docs/redis/)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Instance can be imported using any of these accepted formats
     /// </summary>
     public partial class Instance : Pulumi.CustomResource
     {

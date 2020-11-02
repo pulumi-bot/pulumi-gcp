@@ -19,6 +19,10 @@ import (
 //     * [Official Documentation](https://cloud.google.com/compute/docs/oslogin)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// SSHPublicKey can be imported using any of these accepted formats
 type SshPublicKey struct {
 	pulumi.CustomResourceState
 

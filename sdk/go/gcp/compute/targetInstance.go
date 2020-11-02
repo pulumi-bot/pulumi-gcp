@@ -24,6 +24,10 @@ import (
 //     * [Using Protocol Forwarding](https://cloud.google.com/compute/docs/protocol-forwarding)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// TargetInstance can be imported using any of these accepted formats
 type TargetInstance struct {
 	pulumi.CustomResourceState
 

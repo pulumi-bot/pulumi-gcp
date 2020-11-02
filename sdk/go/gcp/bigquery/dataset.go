@@ -19,6 +19,10 @@ import (
 //     * [Datasets Intro](https://cloud.google.com/bigquery/docs/datasets-intro)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Dataset can be imported using any of these accepted formats
 type Dataset struct {
 	pulumi.CustomResourceState
 

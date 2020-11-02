@@ -10,6 +10,10 @@ import * as utilities from "../utilities";
  * Describes an autoscaling policy for Dataproc cluster autoscaler.
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * AutoscalingPolicy can be imported using any of these accepted formats
  */
 export class AutoscalingPolicy extends pulumi.CustomResource {
     /**

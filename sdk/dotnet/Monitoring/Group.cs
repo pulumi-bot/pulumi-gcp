@@ -22,6 +22,10 @@ namespace Pulumi.Gcp.Monitoring
     ///     * [Official Documentation](https://cloud.google.com/monitoring/groups/)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Group can be imported using any of these accepted formats
     /// </summary>
     public partial class Group : Pulumi.CustomResource
     {

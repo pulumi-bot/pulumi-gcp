@@ -15,6 +15,10 @@ import * as utilities from "../utilities";
  * whole cluster!
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * This resource does not support import.
  */
 export class Cluster extends pulumi.CustomResource {
     /**

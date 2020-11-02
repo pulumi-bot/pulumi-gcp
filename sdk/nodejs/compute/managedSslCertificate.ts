@@ -34,6 +34,10 @@ import * as utilities from "../utilities";
  * In conclusion: Be extremely cautious.
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * ManagedSslCertificate can be imported using any of these accepted formats
  */
 export class ManagedSslCertificate extends pulumi.CustomResource {
     /**

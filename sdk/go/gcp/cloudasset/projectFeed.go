@@ -19,6 +19,10 @@ import (
 //     * [Official Documentation](https://cloud.google.com/asset-inventory/docs)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// ProjectFeed can be imported using any of these accepted formats
 type ProjectFeed struct {
 	pulumi.CustomResourceState
 

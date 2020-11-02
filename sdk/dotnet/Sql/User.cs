@@ -11,6 +11,12 @@ namespace Pulumi.Gcp.Sql
 {
     /// <summary>
     /// Creates a new Google SQL User on a Google SQL User Instance. For more information, see the [official documentation](https://cloud.google.com/sql/), or the [JSON API](https://cloud.google.com/sql/docs/admin-api/v1beta4/users).
+    /// 
+    /// ## Import
+    /// 
+    /// SQL users for MySQL databases can be imported using the `project`, `instance`, `host` and `name`, e.g.
+    /// 
+    ///  SQL users for PostgreSQL databases can be imported using the `project`, `instance` and `name`, e.g.
     /// </summary>
     public partial class User : Pulumi.CustomResource
     {

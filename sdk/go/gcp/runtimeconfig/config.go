@@ -13,6 +13,12 @@ import (
 // [official documentation](https://cloud.google.com/deployment-manager/runtime-configurator/),
 // or the
 // [JSON API](https://cloud.google.com/deployment-manager/runtime-configurator/reference/rest/).
+//
+// ## Import
+//
+// Runtime Configs can be imported using the `name` or full config name, e.g.
+//
+//  When importing using only the name, the provider project must be set.
 type Config struct {
 	pulumi.CustomResourceState
 

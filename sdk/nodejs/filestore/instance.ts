@@ -18,6 +18,10 @@ import * as utilities from "../utilities";
  *     * [Copying Data In/Out](https://cloud.google.com/filestore/docs/copying-data)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Instance can be imported using any of these accepted formats
  */
 export class Instance extends pulumi.CustomResource {
     /**

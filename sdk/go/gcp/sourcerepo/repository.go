@@ -18,6 +18,10 @@ import (
 //     * [Official Documentation](https://cloud.google.com/source-repositories/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Repository can be imported using any of these accepted formats
 type Repository struct {
 	pulumi.CustomResourceState
 

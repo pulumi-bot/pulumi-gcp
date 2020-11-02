@@ -23,6 +23,10 @@ namespace Pulumi.Gcp.Monitoring
     ///     * [Monitoring API Documentation](https://cloud.google.com/monitoring/api/v3/)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Service can be imported using any of these accepted formats
     /// </summary>
     public partial class CustomService : Pulumi.CustomResource
     {

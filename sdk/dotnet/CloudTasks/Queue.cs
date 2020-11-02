@@ -13,6 +13,10 @@ namespace Pulumi.Gcp.CloudTasks
     /// A named resource to which messages are sent by publishers.
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Queue can be imported using any of these accepted formats
     /// </summary>
     public partial class Queue : Pulumi.CustomResource
     {

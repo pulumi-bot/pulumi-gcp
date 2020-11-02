@@ -36,6 +36,10 @@ class Database(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        Database can be imported using any of these accepted formats
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ddls: An optional list of DDL statements to run inside the newly created

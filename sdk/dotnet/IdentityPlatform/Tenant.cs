@@ -20,6 +20,10 @@ namespace Pulumi.Gcp.IdentityPlatform
     /// the Cloud Console prior to creating tenants.
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Tenant can be imported using any of these accepted formats
     /// </summary>
     public partial class Tenant : Pulumi.CustomResource
     {

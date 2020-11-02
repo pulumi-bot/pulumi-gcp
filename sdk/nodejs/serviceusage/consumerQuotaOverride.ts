@@ -16,6 +16,10 @@ import * as utilities from "../utilities";
  *     * [REST API documentation](https://cloud.google.com/service-usage/docs/reference/rest/v1beta1/services.consumerQuotaMetrics.limits.consumerOverrides)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * ConsumerQuotaOverride can be imported using any of these accepted formats
  */
 export class ConsumerQuotaOverride extends pulumi.CustomResource {
     /**

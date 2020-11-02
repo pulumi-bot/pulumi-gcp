@@ -14,6 +14,10 @@ import (
 // [the official documentation](https://cloud.google.com/compute/docs/cloudrouter)
 // and
 // [API](https://cloud.google.com/compute/docs/reference/latest/routers).
+//
+// ## Import
+//
+// Router interfaces can be imported using the `region`, `router`, and `name`, e.g.
 type RouterInterface struct {
 	pulumi.CustomResourceState
 

@@ -29,6 +29,10 @@ import * as utilities from "../utilities";
  * `billingProject` you defined.
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * This resource does not support import.
  */
 export class AccessLevelCondition extends pulumi.CustomResource {
     /**

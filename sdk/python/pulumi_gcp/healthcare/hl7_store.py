@@ -38,6 +38,10 @@ class Hl7Store(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        Hl7V2Store can be imported using any of these accepted formats
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dataset: Identifies the dataset addressed by this request. Must be in the format

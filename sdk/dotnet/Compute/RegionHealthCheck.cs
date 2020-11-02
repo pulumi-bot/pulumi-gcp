@@ -29,6 +29,10 @@ namespace Pulumi.Gcp.Compute
     ///     * [Official Documentation](https://cloud.google.com/load-balancing/docs/health-checks)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// RegionHealthCheck can be imported using any of these accepted formats
     /// </summary>
     public partial class RegionHealthCheck : Pulumi.CustomResource
     {

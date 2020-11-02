@@ -18,6 +18,10 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/monitoring/alerts/)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * AlertPolicy can be imported using any of these accepted formats
  */
 export class AlertPolicy extends pulumi.CustomResource {
     /**

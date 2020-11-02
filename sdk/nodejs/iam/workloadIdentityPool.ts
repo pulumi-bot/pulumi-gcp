@@ -4,6 +4,11 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * ## Import
+ *
+ * WorkloadIdentityPool can be imported using any of these accepted formats
+ */
 export class WorkloadIdentityPool extends pulumi.CustomResource {
     /**
      * Get an existing WorkloadIdentityPool resource's state with the given name, ID, and optional extra

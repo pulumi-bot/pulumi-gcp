@@ -17,6 +17,10 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/compute/docs/instance-groups/stateful-migs#per-instance_configs)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * PerInstanceConfig can be imported using any of these accepted formats
  */
 export class PerInstanceConfig extends pulumi.CustomResource {
     /**

@@ -16,6 +16,10 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/binary-authorization/)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Attestor can be imported using any of these accepted formats
  */
 export class Attestor extends pulumi.CustomResource {
     /**

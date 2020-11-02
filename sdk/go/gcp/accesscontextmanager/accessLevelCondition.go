@@ -32,6 +32,10 @@ import (
 // `billingProject` you defined.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// This resource does not support import.
 type AccessLevelCondition struct {
 	pulumi.CustomResourceState
 

@@ -26,6 +26,10 @@ import (
 //     * [Setting up IAP Brand](https://cloud.google.com/iap/docs/tutorial-gce#set_up_iap)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Brand can be imported using any of these accepted formats
 type Brand struct {
 	pulumi.CustomResourceState
 

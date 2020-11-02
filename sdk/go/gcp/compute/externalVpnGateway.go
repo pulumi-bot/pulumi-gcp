@@ -16,6 +16,10 @@ import (
 // * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/externalVpnGateways)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// ExternalVpnGateway can be imported using any of these accepted formats
 type ExternalVpnGateway struct {
 	pulumi.CustomResourceState
 

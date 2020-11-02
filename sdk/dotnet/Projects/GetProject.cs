@@ -16,8 +16,10 @@ namespace Pulumi.Gcp.Projects
         /// [REST API](https://cloud.google.com/resource-manager/reference/rest/v1/projects/list)
         /// for more details.
         /// 
+        /// 
         /// {{% examples %}}
         /// ## Example Usage
+        /// 
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetProjectResult> InvokeAsync(GetProjectArgs args, InvokeOptions? options = null)

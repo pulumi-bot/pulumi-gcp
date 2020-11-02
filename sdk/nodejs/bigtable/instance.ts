@@ -12,6 +12,10 @@ import * as utilities from "../utilities";
  * [API](https://cloud.google.com/bigtable/docs/go/reference).
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Bigtable Instances can be imported using any of these accepted formats
  */
 export class Instance extends pulumi.CustomResource {
     /**

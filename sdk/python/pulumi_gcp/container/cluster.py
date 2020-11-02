@@ -75,6 +75,12 @@ class Cluster(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        GKE clusters can be imported using the `project` , `location`, and `name`. If the project is omitted, the default provider value will be used. Examples
+
+         ~> **Note:** This resource has several fields that control Terraform-specific behavior and aren't present in the API. If they are set in config and you import a cluster, Terraform may need to perform an update immediately after import. Most of these updates should be no-ops but some may modify your cluster if the imported state differs. For example, the following fields will show diffs if set in config- `min_master_version` - `remove_default_node_pool`
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['ClusterAddonsConfigArgs']] addons_config: The configuration for addons supported by GKE.

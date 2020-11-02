@@ -16,6 +16,10 @@ namespace Pulumi.Gcp.Compute
     /// &gt; **Note:** This resource does not support regional disks (`gcp.compute.RegionDisk`). For regional disks, please refer to the `gcp.compute.RegionDiskResourcePolicyAttachment` resource.
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// DiskResourcePolicyAttachment can be imported using any of these accepted formats
     /// </summary>
     public partial class DiskResourcePolicyAttachment : Pulumi.CustomResource
     {

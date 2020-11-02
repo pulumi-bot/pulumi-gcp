@@ -13,6 +13,10 @@ import (
 // Describes an autoscaling policy for Dataproc cluster autoscaler.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// AutoscalingPolicy can be imported using any of these accepted formats
 type AutoscalingPolicy struct {
 	pulumi.CustomResourceState
 

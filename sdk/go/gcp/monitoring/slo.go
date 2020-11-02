@@ -26,6 +26,10 @@ import (
 //     * [Monitoring API Documentation](https://cloud.google.com/monitoring/api/v3/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Slo can be imported using any of these accepted formats
 type Slo struct {
 	pulumi.CustomResourceState
 

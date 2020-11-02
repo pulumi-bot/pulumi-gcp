@@ -16,6 +16,10 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/dialogflow/docs/)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * EntityType can be imported using any of these accepted formats
  */
 export class EntityType extends pulumi.CustomResource {
     /**

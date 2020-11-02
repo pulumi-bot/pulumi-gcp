@@ -23,6 +23,10 @@ import (
 //     * [Official Documentation](https://cloud.google.com/compute/docs/load-balancing/http/backend-service)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// BackendService can be imported using any of these accepted formats
 type BackendService struct {
 	pulumi.CustomResourceState
 

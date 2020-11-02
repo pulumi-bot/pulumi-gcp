@@ -21,6 +21,10 @@ namespace Pulumi.Gcp.AccessContextManager
     ///     * [Service Perimeter Quickstart](https://cloud.google.com/vpc-service-controls/docs/quickstart)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// ServicePerimeters can be imported using any of these accepted formats
     /// </summary>
     public partial class ServicePerimeters : Pulumi.CustomResource
     {

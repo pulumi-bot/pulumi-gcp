@@ -32,6 +32,10 @@ class UsageExportBucket(pulumi.CustomResource):
         [Access Control for Organizations Using IAM](https://cloud.google.com/resource-manager/docs/access-control-org)
         doc for more information.
 
+        ## Import
+
+        Projects can be imported using the `project_id`, e.g.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] bucket_name: The bucket to store reports in.

@@ -10,6 +10,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// ## Import
+//
+// WorkloadIdentityPool can be imported using any of these accepted formats
 type WorkloadIdentityPool struct {
 	pulumi.CustomResourceState
 

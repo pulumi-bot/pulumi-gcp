@@ -13,6 +13,16 @@ import * as utilities from "../utilities";
  * > **Note:** This resource __must not__ be used in conjunction with
  *    `gcp.billing.AccountIamBinding` for the __same role__ or they will fight over
  *    what your policy should be.
+ *
+ * ## Import
+ *
+ * IAM member imports use space-delimited identifiers; the resource in question, the role, and the account.
+ *
+ * This member resource can be imported using the `billing_account_id`, role, and member identity, e.g.
+ *
+ *  -> **Custom Roles**If you're importing a IAM member with a custom role, make sure to use the
+ *
+ * full name of the custom role, e.g. `[projects/my-project|organizations/my-org]/roles/my-custom-role`.
  */
 export class AccountIamMember extends pulumi.CustomResource {
     /**

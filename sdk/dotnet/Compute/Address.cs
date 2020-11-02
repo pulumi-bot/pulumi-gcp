@@ -32,6 +32,10 @@ namespace Pulumi.Gcp.Compute
     ///     * [Reserving a Static Internal IP Address](https://cloud.google.com/compute/docs/ip-addresses/reserve-static-internal-ip-address)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Address can be imported using any of these accepted formats
     /// </summary>
     public partial class Address : Pulumi.CustomResource
     {

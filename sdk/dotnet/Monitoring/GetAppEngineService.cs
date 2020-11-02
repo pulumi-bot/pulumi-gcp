@@ -27,8 +27,10 @@ namespace Pulumi.Gcp.Monitoring
         ///     * [Service Monitoring](https://cloud.google.com/monitoring/service-monitoring)
         ///     * [Monitoring API Documentation](https://cloud.google.com/monitoring/api/v3/)
         /// 
+        /// 
         /// {{% examples %}}
         /// ## Example Usage
+        /// 
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetAppEngineServiceResult> InvokeAsync(GetAppEngineServiceArgs args, InvokeOptions? options = null)

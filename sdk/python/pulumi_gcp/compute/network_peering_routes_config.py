@@ -37,6 +37,10 @@ class NetworkPeeringRoutesConfig(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        NetworkPeeringRoutesConfig can be imported using any of these accepted formats
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] export_custom_routes: Whether to export the custom routes to the peer network.

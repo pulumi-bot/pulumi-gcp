@@ -9,6 +9,10 @@ import * as utilities from "../utilities";
  * Google's cloud.
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Database can be imported using any of these accepted formats
  */
 export class Database extends pulumi.CustomResource {
     /**

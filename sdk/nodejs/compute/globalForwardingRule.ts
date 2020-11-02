@@ -16,6 +16,10 @@ import * as utilities from "../utilities";
  * https://cloud.google.com/compute/docs/load-balancing/http/
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * GlobalForwardingRule can be imported using any of these accepted formats
  */
 export class GlobalForwardingRule extends pulumi.CustomResource {
     /**

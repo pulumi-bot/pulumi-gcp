@@ -36,6 +36,10 @@ class TargetTCPProxy(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        TargetTcpProxy can be imported using any of these accepted formats
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend_service: A reference to the BackendService resource.

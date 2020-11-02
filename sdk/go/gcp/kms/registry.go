@@ -19,6 +19,10 @@ import (
 //
 // ## Example Usage
 //
+// ## Import
+//
+// DeviceRegistry can be imported using any of these accepted formats
+//
 // Deprecated: gcp.kms.Registry has been deprecated in favor of gcp.iot.Registry
 type Registry struct {
 	pulumi.CustomResourceState

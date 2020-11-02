@@ -17,6 +17,10 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/container-analysis/)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Occurrence can be imported using any of these accepted formats
  */
 export class Occurence extends pulumi.CustomResource {
     /**

@@ -16,6 +16,10 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/appengine/docs/standard/python/mapping-custom-domains)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * DomainMapping can be imported using any of these accepted formats
  */
 export class DomainMapping extends pulumi.CustomResource {
     /**

@@ -19,6 +19,10 @@ import (
 // https://cloud.google.com/compute/docs/load-balancing/http/
 //
 // ## Example Usage
+//
+// ## Import
+//
+// GlobalForwardingRule can be imported using any of these accepted formats
 type GlobalForwardingRule struct {
 	pulumi.CustomResourceState
 

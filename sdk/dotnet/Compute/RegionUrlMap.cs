@@ -14,6 +14,10 @@ namespace Pulumi.Gcp.Compute
     /// that you define for the host and path of an incoming URL.
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// RegionUrlMap can be imported using any of these accepted formats
     /// </summary>
     public partial class RegionUrlMap : Pulumi.CustomResource
     {

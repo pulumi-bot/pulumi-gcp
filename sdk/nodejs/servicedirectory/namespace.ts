@@ -15,6 +15,10 @@ import * as utilities from "../utilities";
  *     * [Configuring a namespace](https://cloud.google.com/service-directory/docs/configuring-service-directory#configuring_a_namespace)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Namespace can be imported using any of these accepted formats
  */
 export class Namespace extends pulumi.CustomResource {
     /**

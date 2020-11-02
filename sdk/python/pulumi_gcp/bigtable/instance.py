@@ -34,6 +34,10 @@ class Instance(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        Bigtable Instances can be imported using any of these accepted formats
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceClusterArgs']]]] clusters: A block of cluster configuration options. This can be specified at least once, and up to 4 times.

@@ -14,6 +14,10 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://firebase.google.com/)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * WebApp can be imported using any of these accepted formats
  */
 export class WebApp extends pulumi.CustomResource {
     /**

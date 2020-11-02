@@ -16,6 +16,10 @@ import (
 // > **Note:** This resource does not support regional disks (`compute.RegionDisk`). For regional disks, please refer to the `compute.RegionDiskResourcePolicyAttachment` resource.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// DiskResourcePolicyAttachment can be imported using any of these accepted formats
 type DiskResourcePolicyAttachment struct {
 	pulumi.CustomResourceState
 

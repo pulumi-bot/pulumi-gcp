@@ -16,6 +16,10 @@ import * as utilities from "../utilities";
  *     * [Creating firewall rules](https://cloud.google.com/vpc/docs/using-firewall-policies#create-rules)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * OrganizationSecurityPolicyRule can be imported using any of these accepted formats
  */
 export class OrganizationSecurityPolicyRule extends pulumi.CustomResource {
     /**

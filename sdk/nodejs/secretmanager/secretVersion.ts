@@ -11,6 +11,10 @@ import * as utilities from "../utilities";
  * state as plain-text.
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * SecretVersion can be imported using any of these accepted formats
  */
 export class SecretVersion extends pulumi.CustomResource {
     /**

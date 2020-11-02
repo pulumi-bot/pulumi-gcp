@@ -11,6 +11,10 @@ import * as utilities from "../utilities";
  * that you define for the host and path of an incoming URL.
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * RegionUrlMap can be imported using any of these accepted formats
  */
 export class RegionUrlMap extends pulumi.CustomResource {
     /**

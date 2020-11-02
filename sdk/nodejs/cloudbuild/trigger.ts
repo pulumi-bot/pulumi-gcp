@@ -16,6 +16,10 @@ import * as utilities from "../utilities";
  *     * [Automating builds using build triggers](https://cloud.google.com/cloud-build/docs/running-builds/automate-builds)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Trigger can be imported using any of these accepted formats
  */
 export class Trigger extends pulumi.CustomResource {
     /**

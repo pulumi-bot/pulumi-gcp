@@ -14,6 +14,12 @@ import (
 // [the official
 // documentation](https://cloud.google.com/resource-manager/docs/organization-policy/overview) and
 // [API](https://cloud.google.com/resource-manager/reference/rest/v1/organizations/setOrgPolicy).
+//
+// ## Import
+//
+// Organization Policies can be imported using the `org_id` and the `constraint`, e.g.
+//
+//  It is all right if the constraint contains a slash, as in the example above.
 type Policy struct {
 	pulumi.CustomResourceState
 

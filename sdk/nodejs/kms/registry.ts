@@ -17,6 +17,10 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * ## Import
+ *
+ * DeviceRegistry can be imported using any of these accepted formats
+ *
  * @deprecated gcp.kms.Registry has been deprecated in favor of gcp.iot.Registry
  */
 export class Registry extends pulumi.CustomResource {

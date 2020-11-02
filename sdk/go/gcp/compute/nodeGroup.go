@@ -24,6 +24,10 @@ import (
 // the provider to delete and recreate the node group.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// NodeGroup can be imported using any of these accepted formats
 type NodeGroup struct {
 	pulumi.CustomResourceState
 

@@ -20,6 +20,12 @@ import (
 // > **Note:** On create, this resource will overwrite members of any existing roles.
 //     Use `pulumi import` and inspect the output to ensure
 //     your existing members are preserved.
+//
+// ## Import
+//
+// IAM binding imports use space-delimited identifiers; first the resource in question and then the role.
+//
+// These bindings can be imported using the `billing_account_id` and role, e.g.
 type AccountIamBinding struct {
 	pulumi.CustomResourceState
 
