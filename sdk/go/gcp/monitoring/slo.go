@@ -89,9 +89,6 @@ func NewSlo(ctx *pulumi.Context,
 	if args == nil || args.Service == nil {
 		return nil, errors.New("missing required argument 'Service'")
 	}
-	if args == nil {
-		args = &SloArgs{}
-	}
 	var resource Slo
 	err := ctx.RegisterResource("gcp:monitoring/slo:Slo", name, args, &resource, opts...)
 	if err != nil {

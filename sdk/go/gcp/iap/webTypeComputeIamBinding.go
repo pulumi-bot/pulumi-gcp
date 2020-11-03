@@ -46,9 +46,6 @@ func NewWebTypeComputeIamBinding(ctx *pulumi.Context,
 	if args == nil || args.Role == nil {
 		return nil, errors.New("missing required argument 'Role'")
 	}
-	if args == nil {
-		args = &WebTypeComputeIamBindingArgs{}
-	}
 	var resource WebTypeComputeIamBinding
 	err := ctx.RegisterResource("gcp:iap/webTypeComputeIamBinding:WebTypeComputeIamBinding", name, args, &resource, opts...)
 	if err != nil {

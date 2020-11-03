@@ -63,9 +63,6 @@ func NewHl7Store(ctx *pulumi.Context,
 	if args == nil || args.Dataset == nil {
 		return nil, errors.New("missing required argument 'Dataset'")
 	}
-	if args == nil {
-		args = &Hl7StoreArgs{}
-	}
 	var resource Hl7Store
 	err := ctx.RegisterResource("gcp:healthcare/hl7Store:Hl7Store", name, args, &resource, opts...)
 	if err != nil {

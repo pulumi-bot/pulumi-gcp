@@ -46,9 +46,6 @@ func NewPreventionInspectTemplate(ctx *pulumi.Context,
 	if args == nil || args.Parent == nil {
 		return nil, errors.New("missing required argument 'Parent'")
 	}
-	if args == nil {
-		args = &PreventionInspectTemplateArgs{}
-	}
 	var resource PreventionInspectTemplate
 	err := ctx.RegisterResource("gcp:dataloss/preventionInspectTemplate:PreventionInspectTemplate", name, args, &resource, opts...)
 	if err != nil {

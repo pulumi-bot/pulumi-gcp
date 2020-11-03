@@ -83,9 +83,6 @@ func NewDeployment(ctx *pulumi.Context,
 	if args == nil || args.Target == nil {
 		return nil, errors.New("missing required argument 'Target'")
 	}
-	if args == nil {
-		args = &DeploymentArgs{}
-	}
 	var resource Deployment
 	err := ctx.RegisterResource("gcp:deploymentmanager/deployment:Deployment", name, args, &resource, opts...)
 	if err != nil {

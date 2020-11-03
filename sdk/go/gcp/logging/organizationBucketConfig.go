@@ -46,9 +46,6 @@ func NewOrganizationBucketConfig(ctx *pulumi.Context,
 	if args == nil || args.Organization == nil {
 		return nil, errors.New("missing required argument 'Organization'")
 	}
-	if args == nil {
-		args = &OrganizationBucketConfigArgs{}
-	}
 	var resource OrganizationBucketConfig
 	err := ctx.RegisterResource("gcp:logging/organizationBucketConfig:OrganizationBucketConfig", name, args, &resource, opts...)
 	if err != nil {

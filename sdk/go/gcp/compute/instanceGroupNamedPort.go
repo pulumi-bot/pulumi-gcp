@@ -48,9 +48,6 @@ func NewInstanceGroupNamedPort(ctx *pulumi.Context,
 	if args == nil || args.Port == nil {
 		return nil, errors.New("missing required argument 'Port'")
 	}
-	if args == nil {
-		args = &InstanceGroupNamedPortArgs{}
-	}
 	var resource InstanceGroupNamedPort
 	err := ctx.RegisterResource("gcp:compute/instanceGroupNamedPort:InstanceGroupNamedPort", name, args, &resource, opts...)
 	if err != nil {

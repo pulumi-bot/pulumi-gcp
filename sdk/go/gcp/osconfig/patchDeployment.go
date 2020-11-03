@@ -77,9 +77,6 @@ func NewPatchDeployment(ctx *pulumi.Context,
 	if args == nil || args.PatchDeploymentId == nil {
 		return nil, errors.New("missing required argument 'PatchDeploymentId'")
 	}
-	if args == nil {
-		args = &PatchDeploymentArgs{}
-	}
 	var resource PatchDeployment
 	err := ctx.RegisterResource("gcp:osconfig/patchDeployment:PatchDeployment", name, args, &resource, opts...)
 	if err != nil {

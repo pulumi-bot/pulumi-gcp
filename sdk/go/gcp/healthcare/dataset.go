@@ -43,9 +43,6 @@ func NewDataset(ctx *pulumi.Context,
 	if args == nil || args.Location == nil {
 		return nil, errors.New("missing required argument 'Location'")
 	}
-	if args == nil {
-		args = &DatasetArgs{}
-	}
 	var resource Dataset
 	err := ctx.RegisterResource("gcp:healthcare/dataset:Dataset", name, args, &resource, opts...)
 	if err != nil {

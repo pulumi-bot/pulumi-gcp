@@ -54,9 +54,6 @@ func NewRecordSet(ctx *pulumi.Context,
 	if args == nil || args.Type == nil {
 		return nil, errors.New("missing required argument 'Type'")
 	}
-	if args == nil {
-		args = &RecordSetArgs{}
-	}
 	var resource RecordSet
 	err := ctx.RegisterResource("gcp:dns/recordSet:RecordSet", name, args, &resource, opts...)
 	if err != nil {

@@ -83,9 +83,6 @@ func NewNodePool(ctx *pulumi.Context,
 	if args == nil || args.Cluster == nil {
 		return nil, errors.New("missing required argument 'Cluster'")
 	}
-	if args == nil {
-		args = &NodePoolArgs{}
-	}
 	var resource NodePool
 	err := ctx.RegisterResource("gcp:container/nodePool:NodePool", name, args, &resource, opts...)
 	if err != nil {

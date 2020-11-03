@@ -30,9 +30,6 @@ func NewSharedVPCHostProject(ctx *pulumi.Context,
 	if args == nil || args.Project == nil {
 		return nil, errors.New("missing required argument 'Project'")
 	}
-	if args == nil {
-		args = &SharedVPCHostProjectArgs{}
-	}
 	var resource SharedVPCHostProject
 	err := ctx.RegisterResource("gcp:compute/sharedVPCHostProject:SharedVPCHostProject", name, args, &resource, opts...)
 	if err != nil {

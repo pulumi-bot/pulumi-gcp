@@ -27,9 +27,6 @@ func NewIAMPolicy(ctx *pulumi.Context,
 	if args == nil || args.PolicyData == nil {
 		return nil, errors.New("missing required argument 'PolicyData'")
 	}
-	if args == nil {
-		args = &IAMPolicyArgs{}
-	}
 	var resource IAMPolicy
 	err := ctx.RegisterResource("gcp:folder/iAMPolicy:IAMPolicy", name, args, &resource, opts...)
 	if err != nil {

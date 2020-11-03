@@ -68,9 +68,6 @@ func NewSSLCertificate(ctx *pulumi.Context,
 	if args == nil || args.PrivateKey == nil {
 		return nil, errors.New("missing required argument 'PrivateKey'")
 	}
-	if args == nil {
-		args = &SSLCertificateArgs{}
-	}
 	var resource SSLCertificate
 	err := ctx.RegisterResource("gcp:compute/sSLCertificate:SSLCertificate", name, args, &resource, opts...)
 	if err != nil {

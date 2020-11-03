@@ -59,9 +59,6 @@ func NewConsumerQuotaOverride(ctx *pulumi.Context,
 	if args == nil || args.Service == nil {
 		return nil, errors.New("missing required argument 'Service'")
 	}
-	if args == nil {
-		args = &ConsumerQuotaOverrideArgs{}
-	}
 	var resource ConsumerQuotaOverride
 	err := ctx.RegisterResource("gcp:serviceusage/consumerQuotaOverride:ConsumerQuotaOverride", name, args, &resource, opts...)
 	if err != nil {

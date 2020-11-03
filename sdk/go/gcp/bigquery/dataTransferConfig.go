@@ -93,9 +93,6 @@ func NewDataTransferConfig(ctx *pulumi.Context,
 	if args == nil || args.Params == nil {
 		return nil, errors.New("missing required argument 'Params'")
 	}
-	if args == nil {
-		args = &DataTransferConfigArgs{}
-	}
 	var resource DataTransferConfig
 	err := ctx.RegisterResource("gcp:bigquery/dataTransferConfig:DataTransferConfig", name, args, &resource, opts...)
 	if err != nil {

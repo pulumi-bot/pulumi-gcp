@@ -48,9 +48,6 @@ func NewAppEngineServiceIamPolicy(ctx *pulumi.Context,
 	if args == nil || args.Service == nil {
 		return nil, errors.New("missing required argument 'Service'")
 	}
-	if args == nil {
-		args = &AppEngineServiceIamPolicyArgs{}
-	}
 	var resource AppEngineServiceIamPolicy
 	err := ctx.RegisterResource("gcp:iap/appEngineServiceIamPolicy:AppEngineServiceIamPolicy", name, args, &resource, opts...)
 	if err != nil {

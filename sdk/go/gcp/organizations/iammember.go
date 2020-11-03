@@ -33,9 +33,6 @@ func NewIAMMember(ctx *pulumi.Context,
 	if args == nil || args.Role == nil {
 		return nil, errors.New("missing required argument 'Role'")
 	}
-	if args == nil {
-		args = &IAMMemberArgs{}
-	}
 	var resource IAMMember
 	err := ctx.RegisterResource("gcp:organizations/iAMMember:IAMMember", name, args, &resource, opts...)
 	if err != nil {

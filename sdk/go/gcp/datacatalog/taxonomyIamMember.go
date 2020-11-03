@@ -41,9 +41,6 @@ func NewTaxonomyIamMember(ctx *pulumi.Context,
 	if args == nil || args.Taxonomy == nil {
 		return nil, errors.New("missing required argument 'Taxonomy'")
 	}
-	if args == nil {
-		args = &TaxonomyIamMemberArgs{}
-	}
 	var resource TaxonomyIamMember
 	err := ctx.RegisterResource("gcp:datacatalog/taxonomyIamMember:TaxonomyIamMember", name, args, &resource, opts...)
 	if err != nil {

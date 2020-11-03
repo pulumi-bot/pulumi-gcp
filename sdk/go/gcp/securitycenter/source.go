@@ -49,9 +49,6 @@ func NewSource(ctx *pulumi.Context,
 	if args == nil || args.Organization == nil {
 		return nil, errors.New("missing required argument 'Organization'")
 	}
-	if args == nil {
-		args = &SourceArgs{}
-	}
 	var resource Source
 	err := ctx.RegisterResource("gcp:securitycenter/source:Source", name, args, &resource, opts...)
 	if err != nil {

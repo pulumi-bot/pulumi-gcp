@@ -49,9 +49,6 @@ func NewInstanceIamBinding(ctx *pulumi.Context,
 	if args == nil || args.Role == nil {
 		return nil, errors.New("missing required argument 'Role'")
 	}
-	if args == nil {
-		args = &InstanceIamBindingArgs{}
-	}
 	var resource InstanceIamBinding
 	err := ctx.RegisterResource("gcp:bigtable/instanceIamBinding:InstanceIamBinding", name, args, &resource, opts...)
 	if err != nil {

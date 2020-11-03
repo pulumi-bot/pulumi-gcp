@@ -49,9 +49,6 @@ func NewDatasetIamPolicy(ctx *pulumi.Context,
 	if args == nil || args.PolicyData == nil {
 		return nil, errors.New("missing required argument 'PolicyData'")
 	}
-	if args == nil {
-		args = &DatasetIamPolicyArgs{}
-	}
 	var resource DatasetIamPolicy
 	err := ctx.RegisterResource("gcp:bigquery/datasetIamPolicy:DatasetIamPolicy", name, args, &resource, opts...)
 	if err != nil {

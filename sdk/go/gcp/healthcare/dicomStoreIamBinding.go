@@ -49,9 +49,6 @@ func NewDicomStoreIamBinding(ctx *pulumi.Context,
 	if args == nil || args.Role == nil {
 		return nil, errors.New("missing required argument 'Role'")
 	}
-	if args == nil {
-		args = &DicomStoreIamBindingArgs{}
-	}
 	var resource DicomStoreIamBinding
 	err := ctx.RegisterResource("gcp:healthcare/dicomStoreIamBinding:DicomStoreIamBinding", name, args, &resource, opts...)
 	if err != nil {

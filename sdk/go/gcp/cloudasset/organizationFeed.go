@@ -66,9 +66,6 @@ func NewOrganizationFeed(ctx *pulumi.Context,
 	if args == nil || args.OrgId == nil {
 		return nil, errors.New("missing required argument 'OrgId'")
 	}
-	if args == nil {
-		args = &OrganizationFeedArgs{}
-	}
 	var resource OrganizationFeed
 	err := ctx.RegisterResource("gcp:cloudasset/organizationFeed:OrganizationFeed", name, args, &resource, opts...)
 	if err != nil {

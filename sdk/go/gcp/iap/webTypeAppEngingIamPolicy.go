@@ -43,9 +43,6 @@ func NewWebTypeAppEngingIamPolicy(ctx *pulumi.Context,
 	if args == nil || args.PolicyData == nil {
 		return nil, errors.New("missing required argument 'PolicyData'")
 	}
-	if args == nil {
-		args = &WebTypeAppEngingIamPolicyArgs{}
-	}
 	var resource WebTypeAppEngingIamPolicy
 	err := ctx.RegisterResource("gcp:iap/webTypeAppEngingIamPolicy:WebTypeAppEngingIamPolicy", name, args, &resource, opts...)
 	if err != nil {

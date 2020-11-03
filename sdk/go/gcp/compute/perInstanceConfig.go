@@ -64,9 +64,6 @@ func NewPerInstanceConfig(ctx *pulumi.Context,
 	if args == nil || args.Zone == nil {
 		return nil, errors.New("missing required argument 'Zone'")
 	}
-	if args == nil {
-		args = &PerInstanceConfigArgs{}
-	}
 	var resource PerInstanceConfig
 	err := ctx.RegisterResource("gcp:compute/perInstanceConfig:PerInstanceConfig", name, args, &resource, opts...)
 	if err != nil {

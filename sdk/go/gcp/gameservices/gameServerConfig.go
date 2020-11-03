@@ -58,9 +58,6 @@ func NewGameServerConfig(ctx *pulumi.Context,
 	if args == nil || args.FleetConfigs == nil {
 		return nil, errors.New("missing required argument 'FleetConfigs'")
 	}
-	if args == nil {
-		args = &GameServerConfigArgs{}
-	}
 	var resource GameServerConfig
 	err := ctx.RegisterResource("gcp:gameservices/gameServerConfig:GameServerConfig", name, args, &resource, opts...)
 	if err != nil {

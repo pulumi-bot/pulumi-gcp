@@ -50,9 +50,6 @@ func NewClient(ctx *pulumi.Context,
 	if args == nil || args.DisplayName == nil {
 		return nil, errors.New("missing required argument 'DisplayName'")
 	}
-	if args == nil {
-		args = &ClientArgs{}
-	}
 	var resource Client
 	err := ctx.RegisterResource("gcp:iap/client:Client", name, args, &resource, opts...)
 	if err != nil {

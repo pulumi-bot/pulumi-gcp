@@ -144,9 +144,6 @@ func NewFirewall(ctx *pulumi.Context,
 	if args == nil || args.Network == nil {
 		return nil, errors.New("missing required argument 'Network'")
 	}
-	if args == nil {
-		args = &FirewallArgs{}
-	}
 	var resource Firewall
 	err := ctx.RegisterResource("gcp:compute/firewall:Firewall", name, args, &resource, opts...)
 	if err != nil {

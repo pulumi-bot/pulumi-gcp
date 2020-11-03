@@ -57,9 +57,6 @@ func NewIAMCustomRole(ctx *pulumi.Context,
 	if args == nil || args.Title == nil {
 		return nil, errors.New("missing required argument 'Title'")
 	}
-	if args == nil {
-		args = &IAMCustomRoleArgs{}
-	}
 	var resource IAMCustomRole
 	err := ctx.RegisterResource("gcp:projects/iAMCustomRole:IAMCustomRole", name, args, &resource, opts...)
 	if err != nil {

@@ -50,9 +50,6 @@ func NewDiskIamMember(ctx *pulumi.Context,
 	if args == nil || args.Role == nil {
 		return nil, errors.New("missing required argument 'Role'")
 	}
-	if args == nil {
-		args = &DiskIamMemberArgs{}
-	}
 	var resource DiskIamMember
 	err := ctx.RegisterResource("gcp:compute/diskIamMember:DiskIamMember", name, args, &resource, opts...)
 	if err != nil {

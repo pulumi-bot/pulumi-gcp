@@ -57,9 +57,6 @@ func NewGlobalNetworkEndpointGroup(ctx *pulumi.Context,
 	if args == nil || args.NetworkEndpointType == nil {
 		return nil, errors.New("missing required argument 'NetworkEndpointType'")
 	}
-	if args == nil {
-		args = &GlobalNetworkEndpointGroupArgs{}
-	}
 	var resource GlobalNetworkEndpointGroup
 	err := ctx.RegisterResource("gcp:compute/globalNetworkEndpointGroup:GlobalNetworkEndpointGroup", name, args, &resource, opts...)
 	if err != nil {

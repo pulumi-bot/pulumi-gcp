@@ -67,9 +67,6 @@ func NewProjectSink(ctx *pulumi.Context,
 	if args == nil || args.Destination == nil {
 		return nil, errors.New("missing required argument 'Destination'")
 	}
-	if args == nil {
-		args = &ProjectSinkArgs{}
-	}
 	var resource ProjectSink
 	err := ctx.RegisterResource("gcp:logging/projectSink:ProjectSink", name, args, &resource, opts...)
 	if err != nil {

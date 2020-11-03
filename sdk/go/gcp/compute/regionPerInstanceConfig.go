@@ -65,9 +65,6 @@ func NewRegionPerInstanceConfig(ctx *pulumi.Context,
 	if args == nil || args.RegionInstanceGroupManager == nil {
 		return nil, errors.New("missing required argument 'RegionInstanceGroupManager'")
 	}
-	if args == nil {
-		args = &RegionPerInstanceConfigArgs{}
-	}
 	var resource RegionPerInstanceConfig
 	err := ctx.RegisterResource("gcp:compute/regionPerInstanceConfig:RegionPerInstanceConfig", name, args, &resource, opts...)
 	if err != nil {

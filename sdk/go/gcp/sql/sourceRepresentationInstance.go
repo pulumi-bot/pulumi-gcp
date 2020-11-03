@@ -47,9 +47,6 @@ func NewSourceRepresentationInstance(ctx *pulumi.Context,
 	if args == nil || args.Host == nil {
 		return nil, errors.New("missing required argument 'Host'")
 	}
-	if args == nil {
-		args = &SourceRepresentationInstanceArgs{}
-	}
 	var resource SourceRepresentationInstance
 	err := ctx.RegisterResource("gcp:sql/sourceRepresentationInstance:SourceRepresentationInstance", name, args, &resource, opts...)
 	if err != nil {

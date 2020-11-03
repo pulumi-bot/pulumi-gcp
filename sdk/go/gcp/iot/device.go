@@ -68,9 +68,6 @@ func NewDevice(ctx *pulumi.Context,
 	if args == nil || args.Registry == nil {
 		return nil, errors.New("missing required argument 'Registry'")
 	}
-	if args == nil {
-		args = &DeviceArgs{}
-	}
 	var resource Device
 	err := ctx.RegisterResource("gcp:iot/device:Device", name, args, &resource, opts...)
 	if err != nil {

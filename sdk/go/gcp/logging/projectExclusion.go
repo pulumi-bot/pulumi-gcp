@@ -41,9 +41,6 @@ func NewProjectExclusion(ctx *pulumi.Context,
 	if args == nil || args.Filter == nil {
 		return nil, errors.New("missing required argument 'Filter'")
 	}
-	if args == nil {
-		args = &ProjectExclusionArgs{}
-	}
 	var resource ProjectExclusion
 	err := ctx.RegisterResource("gcp:logging/projectExclusion:ProjectExclusion", name, args, &resource, opts...)
 	if err != nil {

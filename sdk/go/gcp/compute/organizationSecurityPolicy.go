@@ -50,9 +50,6 @@ func NewOrganizationSecurityPolicy(ctx *pulumi.Context,
 	if args == nil || args.Parent == nil {
 		return nil, errors.New("missing required argument 'Parent'")
 	}
-	if args == nil {
-		args = &OrganizationSecurityPolicyArgs{}
-	}
 	var resource OrganizationSecurityPolicy
 	err := ctx.RegisterResource("gcp:compute/organizationSecurityPolicy:OrganizationSecurityPolicy", name, args, &resource, opts...)
 	if err != nil {

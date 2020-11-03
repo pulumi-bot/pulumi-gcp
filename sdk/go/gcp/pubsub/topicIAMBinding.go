@@ -49,9 +49,6 @@ func NewTopicIAMBinding(ctx *pulumi.Context,
 	if args == nil || args.Topic == nil {
 		return nil, errors.New("missing required argument 'Topic'")
 	}
-	if args == nil {
-		args = &TopicIAMBindingArgs{}
-	}
 	var resource TopicIAMBinding
 	err := ctx.RegisterResource("gcp:pubsub/topicIAMBinding:TopicIAMBinding", name, args, &resource, opts...)
 	if err != nil {

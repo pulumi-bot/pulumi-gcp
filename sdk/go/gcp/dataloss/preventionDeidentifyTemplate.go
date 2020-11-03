@@ -48,9 +48,6 @@ func NewPreventionDeidentifyTemplate(ctx *pulumi.Context,
 	if args == nil || args.Parent == nil {
 		return nil, errors.New("missing required argument 'Parent'")
 	}
-	if args == nil {
-		args = &PreventionDeidentifyTemplateArgs{}
-	}
 	var resource PreventionDeidentifyTemplate
 	err := ctx.RegisterResource("gcp:dataloss/preventionDeidentifyTemplate:PreventionDeidentifyTemplate", name, args, &resource, opts...)
 	if err != nil {

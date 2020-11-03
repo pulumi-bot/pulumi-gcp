@@ -48,9 +48,6 @@ func NewRepositoryIamBinding(ctx *pulumi.Context,
 	if args == nil || args.Role == nil {
 		return nil, errors.New("missing required argument 'Role'")
 	}
-	if args == nil {
-		args = &RepositoryIamBindingArgs{}
-	}
 	var resource RepositoryIamBinding
 	err := ctx.RegisterResource("gcp:sourcerepo/repositoryIamBinding:RepositoryIamBinding", name, args, &resource, opts...)
 	if err != nil {

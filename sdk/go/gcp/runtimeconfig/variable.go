@@ -44,9 +44,6 @@ func NewVariable(ctx *pulumi.Context,
 	if args == nil || args.Parent == nil {
 		return nil, errors.New("missing required argument 'Parent'")
 	}
-	if args == nil {
-		args = &VariableArgs{}
-	}
 	var resource Variable
 	err := ctx.RegisterResource("gcp:runtimeconfig/variable:Variable", name, args, &resource, opts...)
 	if err != nil {

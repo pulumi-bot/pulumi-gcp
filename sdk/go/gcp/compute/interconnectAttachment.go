@@ -102,9 +102,6 @@ func NewInterconnectAttachment(ctx *pulumi.Context,
 	if args == nil || args.Router == nil {
 		return nil, errors.New("missing required argument 'Router'")
 	}
-	if args == nil {
-		args = &InterconnectAttachmentArgs{}
-	}
 	var resource InterconnectAttachment
 	err := ctx.RegisterResource("gcp:compute/interconnectAttachment:InterconnectAttachment", name, args, &resource, opts...)
 	if err != nil {

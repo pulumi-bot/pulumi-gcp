@@ -69,9 +69,6 @@ func NewFlexTemplateJob(ctx *pulumi.Context,
 	if args == nil || args.ContainerSpecGcsPath == nil {
 		return nil, errors.New("missing required argument 'ContainerSpecGcsPath'")
 	}
-	if args == nil {
-		args = &FlexTemplateJobArgs{}
-	}
 	var resource FlexTemplateJob
 	err := ctx.RegisterResource("gcp:dataflow/flexTemplateJob:FlexTemplateJob", name, args, &resource, opts...)
 	if err != nil {

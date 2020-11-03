@@ -38,9 +38,6 @@ func NewServicePerimeters(ctx *pulumi.Context,
 	if args == nil || args.Parent == nil {
 		return nil, errors.New("missing required argument 'Parent'")
 	}
-	if args == nil {
-		args = &ServicePerimetersArgs{}
-	}
 	var resource ServicePerimeters
 	err := ctx.RegisterResource("gcp:accesscontextmanager/servicePerimeters:ServicePerimeters", name, args, &resource, opts...)
 	if err != nil {

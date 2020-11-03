@@ -57,9 +57,6 @@ func NewDefaultSupportedIdpConfig(ctx *pulumi.Context,
 	if args == nil || args.IdpId == nil {
 		return nil, errors.New("missing required argument 'IdpId'")
 	}
-	if args == nil {
-		args = &DefaultSupportedIdpConfigArgs{}
-	}
 	var resource DefaultSupportedIdpConfig
 	err := ctx.RegisterResource("gcp:identityplatform/defaultSupportedIdpConfig:DefaultSupportedIdpConfig", name, args, &resource, opts...)
 	if err != nil {

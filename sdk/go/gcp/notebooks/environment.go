@@ -53,9 +53,6 @@ func NewEnvironment(ctx *pulumi.Context,
 	if args == nil || args.Location == nil {
 		return nil, errors.New("missing required argument 'Location'")
 	}
-	if args == nil {
-		args = &EnvironmentArgs{}
-	}
 	var resource Environment
 	err := ctx.RegisterResource("gcp:notebooks/environment:Environment", name, args, &resource, opts...)
 	if err != nil {

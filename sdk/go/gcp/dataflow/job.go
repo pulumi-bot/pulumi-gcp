@@ -78,9 +78,6 @@ func NewJob(ctx *pulumi.Context,
 	if args == nil || args.TemplateGcsPath == nil {
 		return nil, errors.New("missing required argument 'TemplateGcsPath'")
 	}
-	if args == nil {
-		args = &JobArgs{}
-	}
 	var resource Job
 	err := ctx.RegisterResource("gcp:dataflow/job:Job", name, args, &resource, opts...)
 	if err != nil {

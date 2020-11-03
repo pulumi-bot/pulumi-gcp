@@ -52,9 +52,6 @@ func NewOrganizationSink(ctx *pulumi.Context,
 	if args == nil || args.OrgId == nil {
 		return nil, errors.New("missing required argument 'OrgId'")
 	}
-	if args == nil {
-		args = &OrganizationSinkArgs{}
-	}
 	var resource OrganizationSink
 	err := ctx.RegisterResource("gcp:logging/organizationSink:OrganizationSink", name, args, &resource, opts...)
 	if err != nil {

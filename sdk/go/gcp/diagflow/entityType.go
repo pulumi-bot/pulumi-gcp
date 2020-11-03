@@ -52,9 +52,6 @@ func NewEntityType(ctx *pulumi.Context,
 	if args == nil || args.Kind == nil {
 		return nil, errors.New("missing required argument 'Kind'")
 	}
-	if args == nil {
-		args = &EntityTypeArgs{}
-	}
 	var resource EntityType
 	err := ctx.RegisterResource("gcp:diagflow/entityType:EntityType", name, args, &resource, opts...)
 	if err != nil {

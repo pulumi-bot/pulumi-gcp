@@ -44,9 +44,6 @@ func NewFolderExclusion(ctx *pulumi.Context,
 	if args == nil || args.Folder == nil {
 		return nil, errors.New("missing required argument 'Folder'")
 	}
-	if args == nil {
-		args = &FolderExclusionArgs{}
-	}
 	var resource FolderExclusion
 	err := ctx.RegisterResource("gcp:logging/folderExclusion:FolderExclusion", name, args, &resource, opts...)
 	if err != nil {

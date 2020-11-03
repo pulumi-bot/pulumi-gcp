@@ -44,9 +44,6 @@ func NewGCPolicy(ctx *pulumi.Context,
 	if args == nil || args.Table == nil {
 		return nil, errors.New("missing required argument 'Table'")
 	}
-	if args == nil {
-		args = &GCPolicyArgs{}
-	}
 	var resource GCPolicy
 	err := ctx.RegisterResource("gcp:bigtable/gCPolicy:GCPolicy", name, args, &resource, opts...)
 	if err != nil {

@@ -52,9 +52,6 @@ func NewFolder(ctx *pulumi.Context,
 	if args == nil || args.Parent == nil {
 		return nil, errors.New("missing required argument 'Parent'")
 	}
-	if args == nil {
-		args = &FolderArgs{}
-	}
 	var resource Folder
 	err := ctx.RegisterResource("gcp:organizations/folder:Folder", name, args, &resource, opts...)
 	if err != nil {

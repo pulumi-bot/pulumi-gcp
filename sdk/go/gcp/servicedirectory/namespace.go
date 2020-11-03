@@ -50,9 +50,6 @@ func NewNamespace(ctx *pulumi.Context,
 	if args == nil || args.NamespaceId == nil {
 		return nil, errors.New("missing required argument 'NamespaceId'")
 	}
-	if args == nil {
-		args = &NamespaceArgs{}
-	}
 	var resource Namespace
 	err := ctx.RegisterResource("gcp:servicedirectory/namespace:Namespace", name, args, &resource, opts...)
 	if err != nil {

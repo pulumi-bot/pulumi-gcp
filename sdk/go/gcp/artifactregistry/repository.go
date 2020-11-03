@@ -63,9 +63,6 @@ func NewRepository(ctx *pulumi.Context,
 	if args == nil || args.RepositoryId == nil {
 		return nil, errors.New("missing required argument 'RepositoryId'")
 	}
-	if args == nil {
-		args = &RepositoryArgs{}
-	}
 	var resource Repository
 	err := ctx.RegisterResource("gcp:artifactregistry/repository:Repository", name, args, &resource, opts...)
 	if err != nil {

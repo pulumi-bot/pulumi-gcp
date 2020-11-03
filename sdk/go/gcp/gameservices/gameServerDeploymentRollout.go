@@ -52,9 +52,6 @@ func NewGameServerDeploymentRollout(ctx *pulumi.Context,
 	if args == nil || args.DeploymentId == nil {
 		return nil, errors.New("missing required argument 'DeploymentId'")
 	}
-	if args == nil {
-		args = &GameServerDeploymentRolloutArgs{}
-	}
 	var resource GameServerDeploymentRollout
 	err := ctx.RegisterResource("gcp:gameservices/gameServerDeploymentRollout:GameServerDeploymentRollout", name, args, &resource, opts...)
 	if err != nil {

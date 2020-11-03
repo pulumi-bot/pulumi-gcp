@@ -45,9 +45,6 @@ func NewProjectLocation(ctx *pulumi.Context,
 	if args == nil || args.LocationId == nil {
 		return nil, errors.New("missing required argument 'LocationId'")
 	}
-	if args == nil {
-		args = &ProjectLocationArgs{}
-	}
 	var resource ProjectLocation
 	err := ctx.RegisterResource("gcp:firebase/projectLocation:ProjectLocation", name, args, &resource, opts...)
 	if err != nil {

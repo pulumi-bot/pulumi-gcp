@@ -131,9 +131,6 @@ func NewInstance(ctx *pulumi.Context,
 	if args == nil || args.NetworkInterfaces == nil {
 		return nil, errors.New("missing required argument 'NetworkInterfaces'")
 	}
-	if args == nil {
-		args = &InstanceArgs{}
-	}
 	var resource Instance
 	err := ctx.RegisterResource("gcp:compute/instance:Instance", name, args, &resource, opts...)
 	if err != nil {

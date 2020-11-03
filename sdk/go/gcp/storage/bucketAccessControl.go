@@ -73,9 +73,6 @@ func NewBucketAccessControl(ctx *pulumi.Context,
 	if args == nil || args.Entity == nil {
 		return nil, errors.New("missing required argument 'Entity'")
 	}
-	if args == nil {
-		args = &BucketAccessControlArgs{}
-	}
 	var resource BucketAccessControl
 	err := ctx.RegisterResource("gcp:storage/bucketAccessControl:BucketAccessControl", name, args, &resource, opts...)
 	if err != nil {

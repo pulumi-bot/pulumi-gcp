@@ -69,9 +69,6 @@ func NewDomainTrust(ctx *pulumi.Context,
 	if args == nil || args.TrustType == nil {
 		return nil, errors.New("missing required argument 'TrustType'")
 	}
-	if args == nil {
-		args = &DomainTrustArgs{}
-	}
 	var resource DomainTrust
 	err := ctx.RegisterResource("gcp:activedirectory/domainTrust:DomainTrust", name, args, &resource, opts...)
 	if err != nil {

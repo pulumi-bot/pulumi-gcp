@@ -64,9 +64,6 @@ func NewRegionNetworkEndpointGroup(ctx *pulumi.Context,
 	if args == nil || args.Region == nil {
 		return nil, errors.New("missing required argument 'Region'")
 	}
-	if args == nil {
-		args = &RegionNetworkEndpointGroupArgs{}
-	}
 	var resource RegionNetworkEndpointGroup
 	err := ctx.RegisterResource("gcp:compute/regionNetworkEndpointGroup:RegionNetworkEndpointGroup", name, args, &resource, opts...)
 	if err != nil {

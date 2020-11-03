@@ -36,9 +36,6 @@ func NewIamAuditConfig(ctx *pulumi.Context,
 	if args == nil || args.Service == nil {
 		return nil, errors.New("missing required argument 'Service'")
 	}
-	if args == nil {
-		args = &IamAuditConfigArgs{}
-	}
 	var resource IamAuditConfig
 	err := ctx.RegisterResource("gcp:organizations/iamAuditConfig:IamAuditConfig", name, args, &resource, opts...)
 	if err != nil {

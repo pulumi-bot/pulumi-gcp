@@ -60,9 +60,6 @@ func NewAttachedDisk(ctx *pulumi.Context,
 	if args == nil || args.Instance == nil {
 		return nil, errors.New("missing required argument 'Instance'")
 	}
-	if args == nil {
-		args = &AttachedDiskArgs{}
-	}
 	var resource AttachedDisk
 	err := ctx.RegisterResource("gcp:compute/attachedDisk:AttachedDisk", name, args, &resource, opts...)
 	if err != nil {

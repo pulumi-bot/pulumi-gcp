@@ -56,9 +56,6 @@ func NewCryptoKeyIAMBinding(ctx *pulumi.Context,
 	if args == nil || args.Role == nil {
 		return nil, errors.New("missing required argument 'Role'")
 	}
-	if args == nil {
-		args = &CryptoKeyIAMBindingArgs{}
-	}
 	var resource CryptoKeyIAMBinding
 	err := ctx.RegisterResource("gcp:kms/cryptoKeyIAMBinding:CryptoKeyIAMBinding", name, args, &resource, opts...)
 	if err != nil {

@@ -54,9 +54,6 @@ func NewPreventionJobTrigger(ctx *pulumi.Context,
 	if args == nil || args.Triggers == nil {
 		return nil, errors.New("missing required argument 'Triggers'")
 	}
-	if args == nil {
-		args = &PreventionJobTriggerArgs{}
-	}
 	var resource PreventionJobTrigger
 	err := ctx.RegisterResource("gcp:dataloss/preventionJobTrigger:PreventionJobTrigger", name, args, &resource, opts...)
 	if err != nil {

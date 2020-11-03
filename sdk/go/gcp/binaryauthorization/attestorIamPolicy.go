@@ -43,9 +43,6 @@ func NewAttestorIamPolicy(ctx *pulumi.Context,
 	if args == nil || args.PolicyData == nil {
 		return nil, errors.New("missing required argument 'PolicyData'")
 	}
-	if args == nil {
-		args = &AttestorIamPolicyArgs{}
-	}
 	var resource AttestorIamPolicy
 	err := ctx.RegisterResource("gcp:binaryauthorization/attestorIamPolicy:AttestorIamPolicy", name, args, &resource, opts...)
 	if err != nil {

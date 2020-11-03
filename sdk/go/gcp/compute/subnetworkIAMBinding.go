@@ -56,9 +56,6 @@ func NewSubnetworkIAMBinding(ctx *pulumi.Context,
 	if args == nil || args.Subnetwork == nil {
 		return nil, errors.New("missing required argument 'Subnetwork'")
 	}
-	if args == nil {
-		args = &SubnetworkIAMBindingArgs{}
-	}
 	var resource SubnetworkIAMBinding
 	err := ctx.RegisterResource("gcp:compute/subnetworkIAMBinding:SubnetworkIAMBinding", name, args, &resource, opts...)
 	if err != nil {

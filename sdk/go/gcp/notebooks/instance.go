@@ -127,9 +127,6 @@ func NewInstance(ctx *pulumi.Context,
 	if args == nil || args.MachineType == nil {
 		return nil, errors.New("missing required argument 'MachineType'")
 	}
-	if args == nil {
-		args = &InstanceArgs{}
-	}
 	var resource Instance
 	err := ctx.RegisterResource("gcp:notebooks/instance:Instance", name, args, &resource, opts...)
 	if err != nil {

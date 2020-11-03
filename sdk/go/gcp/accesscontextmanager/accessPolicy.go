@@ -54,9 +54,6 @@ func NewAccessPolicy(ctx *pulumi.Context,
 	if args == nil || args.Title == nil {
 		return nil, errors.New("missing required argument 'Title'")
 	}
-	if args == nil {
-		args = &AccessPolicyArgs{}
-	}
 	var resource AccessPolicy
 	err := ctx.RegisterResource("gcp:accesscontextmanager/accessPolicy:AccessPolicy", name, args, &resource, opts...)
 	if err != nil {

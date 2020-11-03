@@ -54,9 +54,6 @@ func NewIamMember(ctx *pulumi.Context,
 	if args == nil || args.TableId == nil {
 		return nil, errors.New("missing required argument 'TableId'")
 	}
-	if args == nil {
-		args = &IamMemberArgs{}
-	}
 	var resource IamMember
 	err := ctx.RegisterResource("gcp:bigquery/iamMember:IamMember", name, args, &resource, opts...)
 	if err != nil {

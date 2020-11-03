@@ -43,9 +43,6 @@ func NewKeyRing(ctx *pulumi.Context,
 	if args == nil || args.Location == nil {
 		return nil, errors.New("missing required argument 'Location'")
 	}
-	if args == nil {
-		args = &KeyRingArgs{}
-	}
 	var resource KeyRing
 	err := ctx.RegisterResource("gcp:kms/keyRing:KeyRing", name, args, &resource, opts...)
 	if err != nil {

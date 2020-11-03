@@ -41,9 +41,6 @@ func NewAttestor(ctx *pulumi.Context,
 	if args == nil || args.AttestationAuthorityNote == nil {
 		return nil, errors.New("missing required argument 'AttestationAuthorityNote'")
 	}
-	if args == nil {
-		args = &AttestorArgs{}
-	}
 	var resource Attestor
 	err := ctx.RegisterResource("gcp:binaryauthorization/attestor:Attestor", name, args, &resource, opts...)
 	if err != nil {

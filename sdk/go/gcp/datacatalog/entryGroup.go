@@ -45,9 +45,6 @@ func NewEntryGroup(ctx *pulumi.Context,
 	if args == nil || args.EntryGroupId == nil {
 		return nil, errors.New("missing required argument 'EntryGroupId'")
 	}
-	if args == nil {
-		args = &EntryGroupArgs{}
-	}
 	var resource EntryGroup
 	err := ctx.RegisterResource("gcp:datacatalog/entryGroup:EntryGroup", name, args, &resource, opts...)
 	if err != nil {

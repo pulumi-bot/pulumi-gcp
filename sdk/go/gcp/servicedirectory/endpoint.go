@@ -50,9 +50,6 @@ func NewEndpoint(ctx *pulumi.Context,
 	if args == nil || args.Service == nil {
 		return nil, errors.New("missing required argument 'Service'")
 	}
-	if args == nil {
-		args = &EndpointArgs{}
-	}
 	var resource Endpoint
 	err := ctx.RegisterResource("gcp:servicedirectory/endpoint:Endpoint", name, args, &resource, opts...)
 	if err != nil {

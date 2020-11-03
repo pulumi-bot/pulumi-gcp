@@ -51,9 +51,6 @@ func NewDicomStore(ctx *pulumi.Context,
 	if args == nil || args.Dataset == nil {
 		return nil, errors.New("missing required argument 'Dataset'")
 	}
-	if args == nil {
-		args = &DicomStoreArgs{}
-	}
 	var resource DicomStore
 	err := ctx.RegisterResource("gcp:healthcare/dicomStore:DicomStore", name, args, &resource, opts...)
 	if err != nil {

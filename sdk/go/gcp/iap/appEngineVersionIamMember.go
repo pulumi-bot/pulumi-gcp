@@ -61,9 +61,6 @@ func NewAppEngineVersionIamMember(ctx *pulumi.Context,
 	if args == nil || args.VersionId == nil {
 		return nil, errors.New("missing required argument 'VersionId'")
 	}
-	if args == nil {
-		args = &AppEngineVersionIamMemberArgs{}
-	}
 	var resource AppEngineVersionIamMember
 	err := ctx.RegisterResource("gcp:iap/appEngineVersionIamMember:AppEngineVersionIamMember", name, args, &resource, opts...)
 	if err != nil {

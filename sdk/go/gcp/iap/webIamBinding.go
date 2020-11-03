@@ -46,9 +46,6 @@ func NewWebIamBinding(ctx *pulumi.Context,
 	if args == nil || args.Role == nil {
 		return nil, errors.New("missing required argument 'Role'")
 	}
-	if args == nil {
-		args = &WebIamBindingArgs{}
-	}
 	var resource WebIamBinding
 	err := ctx.RegisterResource("gcp:iap/webIamBinding:WebIamBinding", name, args, &resource, opts...)
 	if err != nil {

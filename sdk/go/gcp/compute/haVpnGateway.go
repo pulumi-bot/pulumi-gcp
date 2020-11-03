@@ -54,9 +54,6 @@ func NewHaVpnGateway(ctx *pulumi.Context,
 	if args == nil || args.Network == nil {
 		return nil, errors.New("missing required argument 'Network'")
 	}
-	if args == nil {
-		args = &HaVpnGatewayArgs{}
-	}
 	var resource HaVpnGateway
 	err := ctx.RegisterResource("gcp:compute/haVpnGateway:HaVpnGateway", name, args, &resource, opts...)
 	if err != nil {

@@ -92,9 +92,6 @@ func NewMetricDescriptor(ctx *pulumi.Context,
 	if args == nil || args.ValueType == nil {
 		return nil, errors.New("missing required argument 'ValueType'")
 	}
-	if args == nil {
-		args = &MetricDescriptorArgs{}
-	}
 	var resource MetricDescriptor
 	err := ctx.RegisterResource("gcp:monitoring/metricDescriptor:MetricDescriptor", name, args, &resource, opts...)
 	if err != nil {

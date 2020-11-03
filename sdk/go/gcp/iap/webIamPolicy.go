@@ -38,9 +38,6 @@ func NewWebIamPolicy(ctx *pulumi.Context,
 	if args == nil || args.PolicyData == nil {
 		return nil, errors.New("missing required argument 'PolicyData'")
 	}
-	if args == nil {
-		args = &WebIamPolicyArgs{}
-	}
 	var resource WebIamPolicy
 	err := ctx.RegisterResource("gcp:iap/webIamPolicy:WebIamPolicy", name, args, &resource, opts...)
 	if err != nil {

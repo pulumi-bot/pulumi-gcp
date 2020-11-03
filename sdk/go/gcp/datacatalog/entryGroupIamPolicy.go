@@ -44,9 +44,6 @@ func NewEntryGroupIamPolicy(ctx *pulumi.Context,
 	if args == nil || args.PolicyData == nil {
 		return nil, errors.New("missing required argument 'PolicyData'")
 	}
-	if args == nil {
-		args = &EntryGroupIamPolicyArgs{}
-	}
 	var resource EntryGroupIamPolicy
 	err := ctx.RegisterResource("gcp:datacatalog/entryGroupIamPolicy:EntryGroupIamPolicy", name, args, &resource, opts...)
 	if err != nil {

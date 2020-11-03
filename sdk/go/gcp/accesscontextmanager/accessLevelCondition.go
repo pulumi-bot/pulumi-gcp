@@ -83,9 +83,6 @@ func NewAccessLevelCondition(ctx *pulumi.Context,
 	if args == nil || args.AccessLevel == nil {
 		return nil, errors.New("missing required argument 'AccessLevel'")
 	}
-	if args == nil {
-		args = &AccessLevelConditionArgs{}
-	}
 	var resource AccessLevelCondition
 	err := ctx.RegisterResource("gcp:accesscontextmanager/accessLevelCondition:AccessLevelCondition", name, args, &resource, opts...)
 	if err != nil {

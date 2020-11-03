@@ -40,9 +40,6 @@ func NewWebApp(ctx *pulumi.Context,
 	if args == nil || args.DisplayName == nil {
 		return nil, errors.New("missing required argument 'DisplayName'")
 	}
-	if args == nil {
-		args = &WebAppArgs{}
-	}
 	var resource WebApp
 	err := ctx.RegisterResource("gcp:firebase/webApp:WebApp", name, args, &resource, opts...)
 	if err != nil {

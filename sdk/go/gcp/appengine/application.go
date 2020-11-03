@@ -64,9 +64,6 @@ func NewApplication(ctx *pulumi.Context,
 	if args == nil || args.LocationId == nil {
 		return nil, errors.New("missing required argument 'LocationId'")
 	}
-	if args == nil {
-		args = &ApplicationArgs{}
-	}
 	var resource Application
 	err := ctx.RegisterResource("gcp:appengine/application:Application", name, args, &resource, opts...)
 	if err != nil {

@@ -56,9 +56,6 @@ func NewSubnetworkIAMMember(ctx *pulumi.Context,
 	if args == nil || args.Subnetwork == nil {
 		return nil, errors.New("missing required argument 'Subnetwork'")
 	}
-	if args == nil {
-		args = &SubnetworkIAMMemberArgs{}
-	}
 	var resource SubnetworkIAMMember
 	err := ctx.RegisterResource("gcp:compute/subnetworkIAMMember:SubnetworkIAMMember", name, args, &resource, opts...)
 	if err != nil {

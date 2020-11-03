@@ -63,9 +63,6 @@ func NewAutoscaler(ctx *pulumi.Context,
 	if args == nil || args.Target == nil {
 		return nil, errors.New("missing required argument 'Target'")
 	}
-	if args == nil {
-		args = &AutoscalerArgs{}
-	}
 	aliases := pulumi.Aliases([]pulumi.Alias{
 		{
 			Type: pulumi.String("gcp:compute/autoscalar:Autoscalar"),

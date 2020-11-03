@@ -44,9 +44,6 @@ func NewTunnelInstanceIAMPolicy(ctx *pulumi.Context,
 	if args == nil || args.PolicyData == nil {
 		return nil, errors.New("missing required argument 'PolicyData'")
 	}
-	if args == nil {
-		args = &TunnelInstanceIAMPolicyArgs{}
-	}
 	var resource TunnelInstanceIAMPolicy
 	err := ctx.RegisterResource("gcp:iap/tunnelInstanceIAMPolicy:TunnelInstanceIAMPolicy", name, args, &resource, opts...)
 	if err != nil {

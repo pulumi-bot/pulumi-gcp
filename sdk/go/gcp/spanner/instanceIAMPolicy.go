@@ -46,9 +46,6 @@ func NewInstanceIAMPolicy(ctx *pulumi.Context,
 	if args == nil || args.PolicyData == nil {
 		return nil, errors.New("missing required argument 'PolicyData'")
 	}
-	if args == nil {
-		args = &InstanceIAMPolicyArgs{}
-	}
 	var resource InstanceIAMPolicy
 	err := ctx.RegisterResource("gcp:spanner/instanceIAMPolicy:InstanceIAMPolicy", name, args, &resource, opts...)
 	if err != nil {

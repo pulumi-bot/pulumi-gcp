@@ -37,9 +37,6 @@ func NewDiskResourcePolicyAttachment(ctx *pulumi.Context,
 	if args == nil || args.Disk == nil {
 		return nil, errors.New("missing required argument 'Disk'")
 	}
-	if args == nil {
-		args = &DiskResourcePolicyAttachmentArgs{}
-	}
 	var resource DiskResourcePolicyAttachment
 	err := ctx.RegisterResource("gcp:compute/diskResourcePolicyAttachment:DiskResourcePolicyAttachment", name, args, &resource, opts...)
 	if err != nil {

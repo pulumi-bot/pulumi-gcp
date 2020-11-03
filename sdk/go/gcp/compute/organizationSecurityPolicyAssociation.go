@@ -41,9 +41,6 @@ func NewOrganizationSecurityPolicyAssociation(ctx *pulumi.Context,
 	if args == nil || args.PolicyId == nil {
 		return nil, errors.New("missing required argument 'PolicyId'")
 	}
-	if args == nil {
-		args = &OrganizationSecurityPolicyAssociationArgs{}
-	}
 	var resource OrganizationSecurityPolicyAssociation
 	err := ctx.RegisterResource("gcp:compute/organizationSecurityPolicyAssociation:OrganizationSecurityPolicyAssociation", name, args, &resource, opts...)
 	if err != nil {

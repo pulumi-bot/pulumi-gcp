@@ -85,9 +85,6 @@ func NewNotificationChannel(ctx *pulumi.Context,
 	if args == nil || args.Type == nil {
 		return nil, errors.New("missing required argument 'Type'")
 	}
-	if args == nil {
-		args = &NotificationChannelArgs{}
-	}
 	var resource NotificationChannel
 	err := ctx.RegisterResource("gcp:monitoring/notificationChannel:NotificationChannel", name, args, &resource, opts...)
 	if err != nil {

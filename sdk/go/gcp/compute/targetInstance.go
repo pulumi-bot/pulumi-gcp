@@ -68,9 +68,6 @@ func NewTargetInstance(ctx *pulumi.Context,
 	if args == nil || args.Instance == nil {
 		return nil, errors.New("missing required argument 'Instance'")
 	}
-	if args == nil {
-		args = &TargetInstanceArgs{}
-	}
 	var resource TargetInstance
 	err := ctx.RegisterResource("gcp:compute/targetInstance:TargetInstance", name, args, &resource, opts...)
 	if err != nil {

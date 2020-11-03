@@ -52,9 +52,6 @@ func NewRepositoryIamMember(ctx *pulumi.Context,
 	if args == nil || args.Role == nil {
 		return nil, errors.New("missing required argument 'Role'")
 	}
-	if args == nil {
-		args = &RepositoryIamMemberArgs{}
-	}
 	var resource RepositoryIamMember
 	err := ctx.RegisterResource("gcp:artifactregistry/repositoryIamMember:RepositoryIamMember", name, args, &resource, opts...)
 	if err != nil {

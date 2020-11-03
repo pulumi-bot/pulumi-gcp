@@ -49,9 +49,6 @@ func NewDatasetIamMember(ctx *pulumi.Context,
 	if args == nil || args.Role == nil {
 		return nil, errors.New("missing required argument 'Role'")
 	}
-	if args == nil {
-		args = &DatasetIamMemberArgs{}
-	}
 	var resource DatasetIamMember
 	err := ctx.RegisterResource("gcp:healthcare/datasetIamMember:DatasetIamMember", name, args, &resource, opts...)
 	if err != nil {

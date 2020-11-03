@@ -41,9 +41,6 @@ func NewEngineSplitTraffic(ctx *pulumi.Context,
 	if args == nil || args.Split == nil {
 		return nil, errors.New("missing required argument 'Split'")
 	}
-	if args == nil {
-		args = &EngineSplitTrafficArgs{}
-	}
 	var resource EngineSplitTraffic
 	err := ctx.RegisterResource("gcp:appengine/engineSplitTraffic:EngineSplitTraffic", name, args, &resource, opts...)
 	if err != nil {

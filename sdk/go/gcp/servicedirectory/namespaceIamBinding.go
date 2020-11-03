@@ -43,9 +43,6 @@ func NewNamespaceIamBinding(ctx *pulumi.Context,
 	if args == nil || args.Role == nil {
 		return nil, errors.New("missing required argument 'Role'")
 	}
-	if args == nil {
-		args = &NamespaceIamBindingArgs{}
-	}
 	var resource NamespaceIamBinding
 	err := ctx.RegisterResource("gcp:servicedirectory/namespaceIamBinding:NamespaceIamBinding", name, args, &resource, opts...)
 	if err != nil {

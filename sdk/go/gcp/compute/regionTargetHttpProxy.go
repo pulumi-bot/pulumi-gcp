@@ -56,9 +56,6 @@ func NewRegionTargetHttpProxy(ctx *pulumi.Context,
 	if args == nil || args.UrlMap == nil {
 		return nil, errors.New("missing required argument 'UrlMap'")
 	}
-	if args == nil {
-		args = &RegionTargetHttpProxyArgs{}
-	}
 	var resource RegionTargetHttpProxy
 	err := ctx.RegisterResource("gcp:compute/regionTargetHttpProxy:RegionTargetHttpProxy", name, args, &resource, opts...)
 	if err != nil {

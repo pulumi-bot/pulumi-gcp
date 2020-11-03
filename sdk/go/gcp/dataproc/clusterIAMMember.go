@@ -52,9 +52,6 @@ func NewClusterIAMMember(ctx *pulumi.Context,
 	if args == nil || args.Role == nil {
 		return nil, errors.New("missing required argument 'Role'")
 	}
-	if args == nil {
-		args = &ClusterIAMMemberArgs{}
-	}
 	var resource ClusterIAMMember
 	err := ctx.RegisterResource("gcp:dataproc/clusterIAMMember:ClusterIAMMember", name, args, &resource, opts...)
 	if err != nil {

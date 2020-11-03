@@ -45,9 +45,6 @@ func NewClusterIAMPolicy(ctx *pulumi.Context,
 	if args == nil || args.PolicyData == nil {
 		return nil, errors.New("missing required argument 'PolicyData'")
 	}
-	if args == nil {
-		args = &ClusterIAMPolicyArgs{}
-	}
 	var resource ClusterIAMPolicy
 	err := ctx.RegisterResource("gcp:dataproc/clusterIAMPolicy:ClusterIAMPolicy", name, args, &resource, opts...)
 	if err != nil {

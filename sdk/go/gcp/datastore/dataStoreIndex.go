@@ -44,9 +44,6 @@ func NewDataStoreIndex(ctx *pulumi.Context,
 	if args == nil || args.Kind == nil {
 		return nil, errors.New("missing required argument 'Kind'")
 	}
-	if args == nil {
-		args = &DataStoreIndexArgs{}
-	}
 	var resource DataStoreIndex
 	err := ctx.RegisterResource("gcp:datastore/dataStoreIndex:DataStoreIndex", name, args, &resource, opts...)
 	if err != nil {

@@ -40,9 +40,6 @@ func NewAccessApprovalSettings(ctx *pulumi.Context,
 	if args == nil || args.FolderId == nil {
 		return nil, errors.New("missing required argument 'FolderId'")
 	}
-	if args == nil {
-		args = &AccessApprovalSettingsArgs{}
-	}
 	var resource AccessApprovalSettings
 	err := ctx.RegisterResource("gcp:folder/accessApprovalSettings:AccessApprovalSettings", name, args, &resource, opts...)
 	if err != nil {

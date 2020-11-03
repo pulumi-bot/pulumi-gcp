@@ -58,9 +58,6 @@ func NewTargetTCPProxy(ctx *pulumi.Context,
 	if args == nil || args.BackendService == nil {
 		return nil, errors.New("missing required argument 'BackendService'")
 	}
-	if args == nil {
-		args = &TargetTCPProxyArgs{}
-	}
 	var resource TargetTCPProxy
 	err := ctx.RegisterResource("gcp:compute/targetTCPProxy:TargetTCPProxy", name, args, &resource, opts...)
 	if err != nil {

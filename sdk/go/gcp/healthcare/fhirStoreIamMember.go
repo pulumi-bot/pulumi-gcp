@@ -49,9 +49,6 @@ func NewFhirStoreIamMember(ctx *pulumi.Context,
 	if args == nil || args.Role == nil {
 		return nil, errors.New("missing required argument 'Role'")
 	}
-	if args == nil {
-		args = &FhirStoreIamMemberArgs{}
-	}
 	var resource FhirStoreIamMember
 	err := ctx.RegisterResource("gcp:healthcare/fhirStoreIamMember:FhirStoreIamMember", name, args, &resource, opts...)
 	if err != nil {

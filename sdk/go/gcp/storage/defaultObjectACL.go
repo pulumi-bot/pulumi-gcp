@@ -40,9 +40,6 @@ func NewDefaultObjectACL(ctx *pulumi.Context,
 	if args == nil || args.Bucket == nil {
 		return nil, errors.New("missing required argument 'Bucket'")
 	}
-	if args == nil {
-		args = &DefaultObjectACLArgs{}
-	}
 	var resource DefaultObjectACL
 	err := ctx.RegisterResource("gcp:storage/defaultObjectACL:DefaultObjectACL", name, args, &resource, opts...)
 	if err != nil {

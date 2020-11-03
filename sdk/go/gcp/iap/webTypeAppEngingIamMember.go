@@ -51,9 +51,6 @@ func NewWebTypeAppEngingIamMember(ctx *pulumi.Context,
 	if args == nil || args.Role == nil {
 		return nil, errors.New("missing required argument 'Role'")
 	}
-	if args == nil {
-		args = &WebTypeAppEngingIamMemberArgs{}
-	}
 	var resource WebTypeAppEngingIamMember
 	err := ctx.RegisterResource("gcp:iap/webTypeAppEngingIamMember:WebTypeAppEngingIamMember", name, args, &resource, opts...)
 	if err != nil {

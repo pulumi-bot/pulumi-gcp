@@ -51,9 +51,6 @@ func NewJobIAMBinding(ctx *pulumi.Context,
 	if args == nil || args.Role == nil {
 		return nil, errors.New("missing required argument 'Role'")
 	}
-	if args == nil {
-		args = &JobIAMBindingArgs{}
-	}
 	var resource JobIAMBinding
 	err := ctx.RegisterResource("gcp:dataproc/jobIAMBinding:JobIAMBinding", name, args, &resource, opts...)
 	if err != nil {

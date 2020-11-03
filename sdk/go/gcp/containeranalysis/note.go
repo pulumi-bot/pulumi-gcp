@@ -65,9 +65,6 @@ func NewNote(ctx *pulumi.Context,
 	if args == nil || args.AttestationAuthority == nil {
 		return nil, errors.New("missing required argument 'AttestationAuthority'")
 	}
-	if args == nil {
-		args = &NoteArgs{}
-	}
 	var resource Note
 	err := ctx.RegisterResource("gcp:containeranalysis/note:Note", name, args, &resource, opts...)
 	if err != nil {

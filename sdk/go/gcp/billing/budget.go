@@ -60,9 +60,6 @@ func NewBudget(ctx *pulumi.Context,
 	if args == nil || args.ThresholdRules == nil {
 		return nil, errors.New("missing required argument 'ThresholdRules'")
 	}
-	if args == nil {
-		args = &BudgetArgs{}
-	}
 	var resource Budget
 	err := ctx.RegisterResource("gcp:billing/budget:Budget", name, args, &resource, opts...)
 	if err != nil {

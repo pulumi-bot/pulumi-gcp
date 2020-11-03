@@ -48,9 +48,6 @@ func NewDomainMapping(ctx *pulumi.Context,
 	if args == nil || args.DomainName == nil {
 		return nil, errors.New("missing required argument 'DomainName'")
 	}
-	if args == nil {
-		args = &DomainMappingArgs{}
-	}
 	var resource DomainMapping
 	err := ctx.RegisterResource("gcp:appengine/domainMapping:DomainMapping", name, args, &resource, opts...)
 	if err != nil {

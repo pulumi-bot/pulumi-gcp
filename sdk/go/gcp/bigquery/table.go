@@ -103,9 +103,6 @@ func NewTable(ctx *pulumi.Context,
 	if args == nil || args.TableId == nil {
 		return nil, errors.New("missing required argument 'TableId'")
 	}
-	if args == nil {
-		args = &TableArgs{}
-	}
 	var resource Table
 	err := ctx.RegisterResource("gcp:bigquery/table:Table", name, args, &resource, opts...)
 	if err != nil {

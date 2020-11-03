@@ -87,9 +87,6 @@ func NewEntry(ctx *pulumi.Context,
 	if args == nil || args.EntryId == nil {
 		return nil, errors.New("missing required argument 'EntryId'")
 	}
-	if args == nil {
-		args = &EntryArgs{}
-	}
 	var resource Entry
 	err := ctx.RegisterResource("gcp:datacatalog/entry:Entry", name, args, &resource, opts...)
 	if err != nil {

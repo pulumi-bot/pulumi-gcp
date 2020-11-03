@@ -50,9 +50,6 @@ func NewIAMMember(ctx *pulumi.Context,
 	if args == nil || args.ServiceAccountId == nil {
 		return nil, errors.New("missing required argument 'ServiceAccountId'")
 	}
-	if args == nil {
-		args = &IAMMemberArgs{}
-	}
 	var resource IAMMember
 	err := ctx.RegisterResource("gcp:serviceAccount/iAMMember:IAMMember", name, args, &resource, opts...)
 	if err != nil {

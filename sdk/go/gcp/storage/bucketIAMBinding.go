@@ -48,9 +48,6 @@ func NewBucketIAMBinding(ctx *pulumi.Context,
 	if args == nil || args.Role == nil {
 		return nil, errors.New("missing required argument 'Role'")
 	}
-	if args == nil {
-		args = &BucketIAMBindingArgs{}
-	}
 	var resource BucketIAMBinding
 	err := ctx.RegisterResource("gcp:storage/bucketIAMBinding:BucketIAMBinding", name, args, &resource, opts...)
 	if err != nil {

@@ -90,9 +90,6 @@ func NewAlertPolicy(ctx *pulumi.Context,
 	if args == nil || args.DisplayName == nil {
 		return nil, errors.New("missing required argument 'DisplayName'")
 	}
-	if args == nil {
-		args = &AlertPolicyArgs{}
-	}
 	var resource AlertPolicy
 	err := ctx.RegisterResource("gcp:monitoring/alertPolicy:AlertPolicy", name, args, &resource, opts...)
 	if err != nil {

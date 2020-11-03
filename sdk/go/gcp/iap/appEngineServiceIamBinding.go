@@ -56,9 +56,6 @@ func NewAppEngineServiceIamBinding(ctx *pulumi.Context,
 	if args == nil || args.Service == nil {
 		return nil, errors.New("missing required argument 'Service'")
 	}
-	if args == nil {
-		args = &AppEngineServiceIamBindingArgs{}
-	}
 	var resource AppEngineServiceIamBinding
 	err := ctx.RegisterResource("gcp:iap/appEngineServiceIamBinding:AppEngineServiceIamBinding", name, args, &resource, opts...)
 	if err != nil {

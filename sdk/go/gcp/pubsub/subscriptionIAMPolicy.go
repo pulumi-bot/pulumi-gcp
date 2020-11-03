@@ -43,9 +43,6 @@ func NewSubscriptionIAMPolicy(ctx *pulumi.Context,
 	if args == nil || args.Subscription == nil {
 		return nil, errors.New("missing required argument 'Subscription'")
 	}
-	if args == nil {
-		args = &SubscriptionIAMPolicyArgs{}
-	}
 	var resource SubscriptionIAMPolicy
 	err := ctx.RegisterResource("gcp:pubsub/subscriptionIAMPolicy:SubscriptionIAMPolicy", name, args, &resource, opts...)
 	if err != nil {

@@ -69,9 +69,6 @@ func NewSecurityScanConfig(ctx *pulumi.Context,
 	if args == nil || args.StartingUrls == nil {
 		return nil, errors.New("missing required argument 'StartingUrls'")
 	}
-	if args == nil {
-		args = &SecurityScanConfigArgs{}
-	}
 	var resource SecurityScanConfig
 	err := ctx.RegisterResource("gcp:compute/securityScanConfig:SecurityScanConfig", name, args, &resource, opts...)
 	if err != nil {

@@ -45,9 +45,6 @@ func NewIamPolicy(ctx *pulumi.Context,
 	if args == nil || args.Service == nil {
 		return nil, errors.New("missing required argument 'Service'")
 	}
-	if args == nil {
-		args = &IamPolicyArgs{}
-	}
 	var resource IamPolicy
 	err := ctx.RegisterResource("gcp:cloudrun/iamPolicy:IamPolicy", name, args, &resource, opts...)
 	if err != nil {

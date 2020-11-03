@@ -77,9 +77,6 @@ func NewFunction(ctx *pulumi.Context,
 	if args == nil || args.Runtime == nil {
 		return nil, errors.New("missing required argument 'Runtime'")
 	}
-	if args == nil {
-		args = &FunctionArgs{}
-	}
 	var resource Function
 	err := ctx.RegisterResource("gcp:cloudfunctions/function:Function", name, args, &resource, opts...)
 	if err != nil {

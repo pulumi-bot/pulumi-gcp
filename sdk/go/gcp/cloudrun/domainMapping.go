@@ -51,9 +51,6 @@ func NewDomainMapping(ctx *pulumi.Context,
 	if args == nil || args.Spec == nil {
 		return nil, errors.New("missing required argument 'Spec'")
 	}
-	if args == nil {
-		args = &DomainMappingArgs{}
-	}
 	var resource DomainMapping
 	err := ctx.RegisterResource("gcp:cloudrun/domainMapping:DomainMapping", name, args, &resource, opts...)
 	if err != nil {

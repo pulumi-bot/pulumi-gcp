@@ -55,9 +55,6 @@ func NewGroup(ctx *pulumi.Context,
 	if args == nil || args.Filter == nil {
 		return nil, errors.New("missing required argument 'Filter'")
 	}
-	if args == nil {
-		args = &GroupArgs{}
-	}
 	var resource Group
 	err := ctx.RegisterResource("gcp:monitoring/group:Group", name, args, &resource, opts...)
 	if err != nil {

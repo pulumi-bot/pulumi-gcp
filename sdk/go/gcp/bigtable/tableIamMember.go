@@ -52,9 +52,6 @@ func NewTableIamMember(ctx *pulumi.Context,
 	if args == nil || args.Table == nil {
 		return nil, errors.New("missing required argument 'Table'")
 	}
-	if args == nil {
-		args = &TableIamMemberArgs{}
-	}
 	var resource TableIamMember
 	err := ctx.RegisterResource("gcp:bigtable/tableIamMember:TableIamMember", name, args, &resource, opts...)
 	if err != nil {

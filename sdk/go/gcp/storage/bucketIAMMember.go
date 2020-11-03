@@ -48,9 +48,6 @@ func NewBucketIAMMember(ctx *pulumi.Context,
 	if args == nil || args.Role == nil {
 		return nil, errors.New("missing required argument 'Role'")
 	}
-	if args == nil {
-		args = &BucketIAMMemberArgs{}
-	}
 	var resource BucketIAMMember
 	err := ctx.RegisterResource("gcp:storage/bucketIAMMember:BucketIAMMember", name, args, &resource, opts...)
 	if err != nil {

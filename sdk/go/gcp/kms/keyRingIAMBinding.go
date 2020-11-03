@@ -51,9 +51,6 @@ func NewKeyRingIAMBinding(ctx *pulumi.Context,
 	if args == nil || args.Role == nil {
 		return nil, errors.New("missing required argument 'Role'")
 	}
-	if args == nil {
-		args = &KeyRingIAMBindingArgs{}
-	}
 	var resource KeyRingIAMBinding
 	err := ctx.RegisterResource("gcp:kms/keyRingIAMBinding:KeyRingIAMBinding", name, args, &resource, opts...)
 	if err != nil {

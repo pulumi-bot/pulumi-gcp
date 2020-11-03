@@ -43,9 +43,6 @@ func NewMachineImage(ctx *pulumi.Context,
 	if args == nil || args.SourceInstance == nil {
 		return nil, errors.New("missing required argument 'SourceInstance'")
 	}
-	if args == nil {
-		args = &MachineImageArgs{}
-	}
 	var resource MachineImage
 	err := ctx.RegisterResource("gcp:compute/machineImage:MachineImage", name, args, &resource, opts...)
 	if err != nil {

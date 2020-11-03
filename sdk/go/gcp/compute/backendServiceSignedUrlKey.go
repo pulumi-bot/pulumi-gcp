@@ -47,9 +47,6 @@ func NewBackendServiceSignedUrlKey(ctx *pulumi.Context,
 	if args == nil || args.KeyValue == nil {
 		return nil, errors.New("missing required argument 'KeyValue'")
 	}
-	if args == nil {
-		args = &BackendServiceSignedUrlKeyArgs{}
-	}
 	var resource BackendServiceSignedUrlKey
 	err := ctx.RegisterResource("gcp:compute/backendServiceSignedUrlKey:BackendServiceSignedUrlKey", name, args, &resource, opts...)
 	if err != nil {

@@ -62,9 +62,6 @@ func NewNotification(ctx *pulumi.Context,
 	if args == nil || args.Topic == nil {
 		return nil, errors.New("missing required argument 'Topic'")
 	}
-	if args == nil {
-		args = &NotificationArgs{}
-	}
 	var resource Notification
 	err := ctx.RegisterResource("gcp:storage/notification:Notification", name, args, &resource, opts...)
 	if err != nil {

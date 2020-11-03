@@ -55,9 +55,6 @@ func NewConnector(ctx *pulumi.Context,
 	if args == nil || args.Region == nil {
 		return nil, errors.New("missing required argument 'Region'")
 	}
-	if args == nil {
-		args = &ConnectorArgs{}
-	}
 	var resource Connector
 	err := ctx.RegisterResource("gcp:vpcaccess/connector:Connector", name, args, &resource, opts...)
 	if err != nil {

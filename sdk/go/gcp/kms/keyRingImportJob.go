@@ -70,9 +70,6 @@ func NewKeyRingImportJob(ctx *pulumi.Context,
 	if args == nil || args.ProtectionLevel == nil {
 		return nil, errors.New("missing required argument 'ProtectionLevel'")
 	}
-	if args == nil {
-		args = &KeyRingImportJobArgs{}
-	}
 	var resource KeyRingImportJob
 	err := ctx.RegisterResource("gcp:kms/keyRingImportJob:KeyRingImportJob", name, args, &resource, opts...)
 	if err != nil {

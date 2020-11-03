@@ -43,9 +43,6 @@ func NewBillingAccountExclusion(ctx *pulumi.Context,
 	if args == nil || args.Filter == nil {
 		return nil, errors.New("missing required argument 'Filter'")
 	}
-	if args == nil {
-		args = &BillingAccountExclusionArgs{}
-	}
 	var resource BillingAccountExclusion
 	err := ctx.RegisterResource("gcp:logging/billingAccountExclusion:BillingAccountExclusion", name, args, &resource, opts...)
 	if err != nil {

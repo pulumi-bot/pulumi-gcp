@@ -49,9 +49,6 @@ func NewSubscriptionIAMMember(ctx *pulumi.Context,
 	if args == nil || args.Subscription == nil {
 		return nil, errors.New("missing required argument 'Subscription'")
 	}
-	if args == nil {
-		args = &SubscriptionIAMMemberArgs{}
-	}
 	var resource SubscriptionIAMMember
 	err := ctx.RegisterResource("gcp:pubsub/subscriptionIAMMember:SubscriptionIAMMember", name, args, &resource, opts...)
 	if err != nil {

@@ -71,9 +71,6 @@ func NewDataset(ctx *pulumi.Context,
 	if args == nil || args.DatasetId == nil {
 		return nil, errors.New("missing required argument 'DatasetId'")
 	}
-	if args == nil {
-		args = &DatasetArgs{}
-	}
 	var resource Dataset
 	err := ctx.RegisterResource("gcp:bigquery/dataset:Dataset", name, args, &resource, opts...)
 	if err != nil {

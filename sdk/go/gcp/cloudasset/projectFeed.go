@@ -62,9 +62,6 @@ func NewProjectFeed(ctx *pulumi.Context,
 	if args == nil || args.FeedOutputConfig == nil {
 		return nil, errors.New("missing required argument 'FeedOutputConfig'")
 	}
-	if args == nil {
-		args = &ProjectFeedArgs{}
-	}
 	var resource ProjectFeed
 	err := ctx.RegisterResource("gcp:cloudasset/projectFeed:ProjectFeed", name, args, &resource, opts...)
 	if err != nil {

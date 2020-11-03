@@ -53,9 +53,6 @@ func NewRealm(ctx *pulumi.Context,
 	if args == nil || args.TimeZone == nil {
 		return nil, errors.New("missing required argument 'TimeZone'")
 	}
-	if args == nil {
-		args = &RealmArgs{}
-	}
 	var resource Realm
 	err := ctx.RegisterResource("gcp:gameservices/realm:Realm", name, args, &resource, opts...)
 	if err != nil {

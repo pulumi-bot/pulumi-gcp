@@ -61,9 +61,6 @@ func NewNodeGroup(ctx *pulumi.Context,
 	if args == nil || args.Size == nil {
 		return nil, errors.New("missing required argument 'Size'")
 	}
-	if args == nil {
-		args = &NodeGroupArgs{}
-	}
 	var resource NodeGroup
 	err := ctx.RegisterResource("gcp:compute/nodeGroup:NodeGroup", name, args, &resource, opts...)
 	if err != nil {

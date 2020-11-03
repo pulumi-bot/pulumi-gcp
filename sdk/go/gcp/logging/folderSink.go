@@ -57,9 +57,6 @@ func NewFolderSink(ctx *pulumi.Context,
 	if args == nil || args.Folder == nil {
 		return nil, errors.New("missing required argument 'Folder'")
 	}
-	if args == nil {
-		args = &FolderSinkArgs{}
-	}
 	var resource FolderSink
 	err := ctx.RegisterResource("gcp:logging/folderSink:FolderSink", name, args, &resource, opts...)
 	if err != nil {

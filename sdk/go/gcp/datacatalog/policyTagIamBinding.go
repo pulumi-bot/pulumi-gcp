@@ -37,9 +37,6 @@ func NewPolicyTagIamBinding(ctx *pulumi.Context,
 	if args == nil || args.Role == nil {
 		return nil, errors.New("missing required argument 'Role'")
 	}
-	if args == nil {
-		args = &PolicyTagIamBindingArgs{}
-	}
 	var resource PolicyTagIamBinding
 	err := ctx.RegisterResource("gcp:datacatalog/policyTagIamBinding:PolicyTagIamBinding", name, args, &resource, opts...)
 	if err != nil {

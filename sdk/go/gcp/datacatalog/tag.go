@@ -58,9 +58,6 @@ func NewTag(ctx *pulumi.Context,
 	if args == nil || args.Template == nil {
 		return nil, errors.New("missing required argument 'Template'")
 	}
-	if args == nil {
-		args = &TagArgs{}
-	}
 	var resource Tag
 	err := ctx.RegisterResource("gcp:datacatalog/tag:Tag", name, args, &resource, opts...)
 	if err != nil {

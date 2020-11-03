@@ -43,9 +43,6 @@ func NewImageIamPolicy(ctx *pulumi.Context,
 	if args == nil || args.PolicyData == nil {
 		return nil, errors.New("missing required argument 'PolicyData'")
 	}
-	if args == nil {
-		args = &ImageIamPolicyArgs{}
-	}
 	var resource ImageIamPolicy
 	err := ctx.RegisterResource("gcp:compute/imageIamPolicy:ImageIamPolicy", name, args, &resource, opts...)
 	if err != nil {

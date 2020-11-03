@@ -54,9 +54,6 @@ func NewTenantOauthIdpConfig(ctx *pulumi.Context,
 	if args == nil || args.Tenant == nil {
 		return nil, errors.New("missing required argument 'Tenant'")
 	}
-	if args == nil {
-		args = &TenantOauthIdpConfigArgs{}
-	}
 	var resource TenantOauthIdpConfig
 	err := ctx.RegisterResource("gcp:identityplatform/tenantOauthIdpConfig:TenantOauthIdpConfig", name, args, &resource, opts...)
 	if err != nil {

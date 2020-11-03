@@ -51,9 +51,6 @@ func NewIamBinding(ctx *pulumi.Context,
 	if args == nil || args.Service == nil {
 		return nil, errors.New("missing required argument 'Service'")
 	}
-	if args == nil {
-		args = &IamBindingArgs{}
-	}
 	var resource IamBinding
 	err := ctx.RegisterResource("gcp:cloudrun/iamBinding:IamBinding", name, args, &resource, opts...)
 	if err != nil {

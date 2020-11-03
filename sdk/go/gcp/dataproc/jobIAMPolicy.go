@@ -44,9 +44,6 @@ func NewJobIAMPolicy(ctx *pulumi.Context,
 	if args == nil || args.PolicyData == nil {
 		return nil, errors.New("missing required argument 'PolicyData'")
 	}
-	if args == nil {
-		args = &JobIAMPolicyArgs{}
-	}
 	var resource JobIAMPolicy
 	err := ctx.RegisterResource("gcp:dataproc/jobIAMPolicy:JobIAMPolicy", name, args, &resource, opts...)
 	if err != nil {

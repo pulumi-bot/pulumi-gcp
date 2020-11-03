@@ -71,9 +71,6 @@ func NewRegionSslCertificate(ctx *pulumi.Context,
 	if args == nil || args.PrivateKey == nil {
 		return nil, errors.New("missing required argument 'PrivateKey'")
 	}
-	if args == nil {
-		args = &RegionSslCertificateArgs{}
-	}
 	var resource RegionSslCertificate
 	err := ctx.RegisterResource("gcp:compute/regionSslCertificate:RegionSslCertificate", name, args, &resource, opts...)
 	if err != nil {

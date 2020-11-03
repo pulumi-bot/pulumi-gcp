@@ -40,9 +40,6 @@ func NewSecretVersion(ctx *pulumi.Context,
 	if args == nil || args.Secret == nil {
 		return nil, errors.New("missing required argument 'Secret'")
 	}
-	if args == nil {
-		args = &SecretVersionArgs{}
-	}
 	var resource SecretVersion
 	err := ctx.RegisterResource("gcp:secretmanager/secretVersion:SecretVersion", name, args, &resource, opts...)
 	if err != nil {

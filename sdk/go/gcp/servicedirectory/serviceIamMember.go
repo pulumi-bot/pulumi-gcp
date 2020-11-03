@@ -43,9 +43,6 @@ func NewServiceIamMember(ctx *pulumi.Context,
 	if args == nil || args.Role == nil {
 		return nil, errors.New("missing required argument 'Role'")
 	}
-	if args == nil {
-		args = &ServiceIamMemberArgs{}
-	}
 	var resource ServiceIamMember
 	err := ctx.RegisterResource("gcp:servicedirectory/serviceIamMember:ServiceIamMember", name, args, &resource, opts...)
 	if err != nil {

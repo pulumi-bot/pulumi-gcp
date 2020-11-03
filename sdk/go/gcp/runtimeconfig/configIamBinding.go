@@ -49,9 +49,6 @@ func NewConfigIamBinding(ctx *pulumi.Context,
 	if args == nil || args.Role == nil {
 		return nil, errors.New("missing required argument 'Role'")
 	}
-	if args == nil {
-		args = &ConfigIamBindingArgs{}
-	}
 	var resource ConfigIamBinding
 	err := ctx.RegisterResource("gcp:runtimeconfig/configIamBinding:ConfigIamBinding", name, args, &resource, opts...)
 	if err != nil {

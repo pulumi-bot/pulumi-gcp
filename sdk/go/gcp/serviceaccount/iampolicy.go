@@ -42,9 +42,6 @@ func NewIAMPolicy(ctx *pulumi.Context,
 	if args == nil || args.ServiceAccountId == nil {
 		return nil, errors.New("missing required argument 'ServiceAccountId'")
 	}
-	if args == nil {
-		args = &IAMPolicyArgs{}
-	}
 	var resource IAMPolicy
 	err := ctx.RegisterResource("gcp:serviceAccount/iAMPolicy:IAMPolicy", name, args, &resource, opts...)
 	if err != nil {

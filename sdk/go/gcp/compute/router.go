@@ -53,9 +53,6 @@ func NewRouter(ctx *pulumi.Context,
 	if args == nil || args.Network == nil {
 		return nil, errors.New("missing required argument 'Network'")
 	}
-	if args == nil {
-		args = &RouterArgs{}
-	}
 	var resource Router
 	err := ctx.RegisterResource("gcp:compute/router:Router", name, args, &resource, opts...)
 	if err != nil {

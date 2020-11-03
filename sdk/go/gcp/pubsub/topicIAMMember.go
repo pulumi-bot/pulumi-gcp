@@ -49,9 +49,6 @@ func NewTopicIAMMember(ctx *pulumi.Context,
 	if args == nil || args.Topic == nil {
 		return nil, errors.New("missing required argument 'Topic'")
 	}
-	if args == nil {
-		args = &TopicIAMMemberArgs{}
-	}
 	var resource TopicIAMMember
 	err := ctx.RegisterResource("gcp:pubsub/topicIAMMember:TopicIAMMember", name, args, &resource, opts...)
 	if err != nil {

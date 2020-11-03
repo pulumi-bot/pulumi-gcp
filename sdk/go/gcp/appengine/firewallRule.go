@@ -50,9 +50,6 @@ func NewFirewallRule(ctx *pulumi.Context,
 	if args == nil || args.SourceRange == nil {
 		return nil, errors.New("missing required argument 'SourceRange'")
 	}
-	if args == nil {
-		args = &FirewallRuleArgs{}
-	}
 	var resource FirewallRule
 	err := ctx.RegisterResource("gcp:appengine/firewallRule:FirewallRule", name, args, &resource, opts...)
 	if err != nil {

@@ -36,9 +36,6 @@ func NewDashboard(ctx *pulumi.Context,
 	if args == nil || args.DashboardJson == nil {
 		return nil, errors.New("missing required argument 'DashboardJson'")
 	}
-	if args == nil {
-		args = &DashboardArgs{}
-	}
 	var resource Dashboard
 	err := ctx.RegisterResource("gcp:monitoring/dashboard:Dashboard", name, args, &resource, opts...)
 	if err != nil {

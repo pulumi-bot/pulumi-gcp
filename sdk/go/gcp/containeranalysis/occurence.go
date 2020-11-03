@@ -69,9 +69,6 @@ func NewOccurence(ctx *pulumi.Context,
 	if args == nil || args.ResourceUri == nil {
 		return nil, errors.New("missing required argument 'ResourceUri'")
 	}
-	if args == nil {
-		args = &OccurenceArgs{}
-	}
 	var resource Occurence
 	err := ctx.RegisterResource("gcp:containeranalysis/occurence:Occurence", name, args, &resource, opts...)
 	if err != nil {

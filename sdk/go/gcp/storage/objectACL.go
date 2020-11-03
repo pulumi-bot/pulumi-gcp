@@ -44,9 +44,6 @@ func NewObjectACL(ctx *pulumi.Context,
 	if args == nil || args.Object == nil {
 		return nil, errors.New("missing required argument 'Object'")
 	}
-	if args == nil {
-		args = &ObjectACLArgs{}
-	}
 	var resource ObjectACL
 	err := ctx.RegisterResource("gcp:storage/objectACL:ObjectACL", name, args, &resource, opts...)
 	if err != nil {

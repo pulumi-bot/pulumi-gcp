@@ -38,9 +38,6 @@ func NewServiceIdentity(ctx *pulumi.Context,
 	if args == nil || args.Service == nil {
 		return nil, errors.New("missing required argument 'Service'")
 	}
-	if args == nil {
-		args = &ServiceIdentityArgs{}
-	}
 	var resource ServiceIdentity
 	err := ctx.RegisterResource("gcp:projects/serviceIdentity:ServiceIdentity", name, args, &resource, opts...)
 	if err != nil {

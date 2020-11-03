@@ -48,9 +48,6 @@ func NewAccount(ctx *pulumi.Context,
 	if args == nil || args.AccountId == nil {
 		return nil, errors.New("missing required argument 'AccountId'")
 	}
-	if args == nil {
-		args = &AccountArgs{}
-	}
 	var resource Account
 	err := ctx.RegisterResource("gcp:serviceAccount/account:Account", name, args, &resource, opts...)
 	if err != nil {

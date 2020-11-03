@@ -45,9 +45,6 @@ func NewReservation(ctx *pulumi.Context,
 	if args == nil || args.SlotCapacity == nil {
 		return nil, errors.New("missing required argument 'SlotCapacity'")
 	}
-	if args == nil {
-		args = &ReservationArgs{}
-	}
 	var resource Reservation
 	err := ctx.RegisterResource("gcp:bigquery/reservation:Reservation", name, args, &resource, opts...)
 	if err != nil {

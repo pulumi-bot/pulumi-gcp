@@ -36,9 +36,6 @@ func NewSharedVPCServiceProject(ctx *pulumi.Context,
 	if args == nil || args.ServiceProject == nil {
 		return nil, errors.New("missing required argument 'ServiceProject'")
 	}
-	if args == nil {
-		args = &SharedVPCServiceProjectArgs{}
-	}
 	var resource SharedVPCServiceProject
 	err := ctx.RegisterResource("gcp:compute/sharedVPCServiceProject:SharedVPCServiceProject", name, args, &resource, opts...)
 	if err != nil {

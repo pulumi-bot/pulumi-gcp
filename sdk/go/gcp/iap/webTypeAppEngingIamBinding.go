@@ -51,9 +51,6 @@ func NewWebTypeAppEngingIamBinding(ctx *pulumi.Context,
 	if args == nil || args.Role == nil {
 		return nil, errors.New("missing required argument 'Role'")
 	}
-	if args == nil {
-		args = &WebTypeAppEngingIamBindingArgs{}
-	}
 	var resource WebTypeAppEngingIamBinding
 	err := ctx.RegisterResource("gcp:iap/webTypeAppEngingIamBinding:WebTypeAppEngingIamBinding", name, args, &resource, opts...)
 	if err != nil {

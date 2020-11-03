@@ -49,9 +49,6 @@ func NewSubscriptionIAMBinding(ctx *pulumi.Context,
 	if args == nil || args.Subscription == nil {
 		return nil, errors.New("missing required argument 'Subscription'")
 	}
-	if args == nil {
-		args = &SubscriptionIAMBindingArgs{}
-	}
 	var resource SubscriptionIAMBinding
 	err := ctx.RegisterResource("gcp:pubsub/subscriptionIAMBinding:SubscriptionIAMBinding", name, args, &resource, opts...)
 	if err != nil {

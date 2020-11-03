@@ -39,9 +39,6 @@ func NewBucketACL(ctx *pulumi.Context,
 	if args == nil || args.Bucket == nil {
 		return nil, errors.New("missing required argument 'Bucket'")
 	}
-	if args == nil {
-		args = &BucketACLArgs{}
-	}
 	var resource BucketACL
 	err := ctx.RegisterResource("gcp:storage/bucketACL:BucketACL", name, args, &resource, opts...)
 	if err != nil {

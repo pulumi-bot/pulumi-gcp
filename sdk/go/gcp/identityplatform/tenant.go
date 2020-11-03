@@ -46,9 +46,6 @@ func NewTenant(ctx *pulumi.Context,
 	if args == nil || args.DisplayName == nil {
 		return nil, errors.New("missing required argument 'DisplayName'")
 	}
-	if args == nil {
-		args = &TenantArgs{}
-	}
 	var resource Tenant
 	err := ctx.RegisterResource("gcp:identityplatform/tenant:Tenant", name, args, &resource, opts...)
 	if err != nil {

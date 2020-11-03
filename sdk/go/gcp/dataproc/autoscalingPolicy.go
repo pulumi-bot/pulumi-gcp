@@ -45,9 +45,6 @@ func NewAutoscalingPolicy(ctx *pulumi.Context,
 	if args == nil || args.PolicyId == nil {
 		return nil, errors.New("missing required argument 'PolicyId'")
 	}
-	if args == nil {
-		args = &AutoscalingPolicyArgs{}
-	}
 	var resource AutoscalingPolicy
 	err := ctx.RegisterResource("gcp:dataproc/autoscalingPolicy:AutoscalingPolicy", name, args, &resource, opts...)
 	if err != nil {

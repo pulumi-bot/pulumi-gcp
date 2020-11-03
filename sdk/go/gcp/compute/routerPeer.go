@@ -94,9 +94,6 @@ func NewRouterPeer(ctx *pulumi.Context,
 	if args == nil || args.Router == nil {
 		return nil, errors.New("missing required argument 'Router'")
 	}
-	if args == nil {
-		args = &RouterPeerArgs{}
-	}
 	var resource RouterPeer
 	err := ctx.RegisterResource("gcp:compute/routerPeer:RouterPeer", name, args, &resource, opts...)
 	if err != nil {

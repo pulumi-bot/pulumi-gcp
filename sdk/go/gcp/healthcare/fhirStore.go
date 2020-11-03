@@ -91,9 +91,6 @@ func NewFhirStore(ctx *pulumi.Context,
 	if args == nil || args.Dataset == nil {
 		return nil, errors.New("missing required argument 'Dataset'")
 	}
-	if args == nil {
-		args = &FhirStoreArgs{}
-	}
 	var resource FhirStore
 	err := ctx.RegisterResource("gcp:healthcare/fhirStore:FhirStore", name, args, &resource, opts...)
 	if err != nil {

@@ -46,9 +46,6 @@ func NewProjectBucketConfig(ctx *pulumi.Context,
 	if args == nil || args.Project == nil {
 		return nil, errors.New("missing required argument 'Project'")
 	}
-	if args == nil {
-		args = &ProjectBucketConfigArgs{}
-	}
 	var resource ProjectBucketConfig
 	err := ctx.RegisterResource("gcp:logging/projectBucketConfig:ProjectBucketConfig", name, args, &resource, opts...)
 	if err != nil {

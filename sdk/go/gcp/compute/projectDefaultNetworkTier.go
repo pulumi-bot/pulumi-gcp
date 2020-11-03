@@ -33,9 +33,6 @@ func NewProjectDefaultNetworkTier(ctx *pulumi.Context,
 	if args == nil || args.NetworkTier == nil {
 		return nil, errors.New("missing required argument 'NetworkTier'")
 	}
-	if args == nil {
-		args = &ProjectDefaultNetworkTierArgs{}
-	}
 	var resource ProjectDefaultNetworkTier
 	err := ctx.RegisterResource("gcp:compute/projectDefaultNetworkTier:ProjectDefaultNetworkTier", name, args, &resource, opts...)
 	if err != nil {

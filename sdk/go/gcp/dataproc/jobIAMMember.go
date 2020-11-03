@@ -51,9 +51,6 @@ func NewJobIAMMember(ctx *pulumi.Context,
 	if args == nil || args.Role == nil {
 		return nil, errors.New("missing required argument 'Role'")
 	}
-	if args == nil {
-		args = &JobIAMMemberArgs{}
-	}
 	var resource JobIAMMember
 	err := ctx.RegisterResource("gcp:dataproc/jobIAMMember:JobIAMMember", name, args, &resource, opts...)
 	if err != nil {

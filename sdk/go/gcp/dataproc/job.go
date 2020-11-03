@@ -61,9 +61,6 @@ func NewJob(ctx *pulumi.Context,
 	if args == nil || args.Placement == nil {
 		return nil, errors.New("missing required argument 'Placement'")
 	}
-	if args == nil {
-		args = &JobArgs{}
-	}
 	var resource Job
 	err := ctx.RegisterResource("gcp:dataproc/job:Job", name, args, &resource, opts...)
 	if err != nil {

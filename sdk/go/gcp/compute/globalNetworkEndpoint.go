@@ -47,9 +47,6 @@ func NewGlobalNetworkEndpoint(ctx *pulumi.Context,
 	if args == nil || args.Port == nil {
 		return nil, errors.New("missing required argument 'Port'")
 	}
-	if args == nil {
-		args = &GlobalNetworkEndpointArgs{}
-	}
 	var resource GlobalNetworkEndpoint
 	err := ctx.RegisterResource("gcp:compute/globalNetworkEndpoint:GlobalNetworkEndpoint", name, args, &resource, opts...)
 	if err != nil {

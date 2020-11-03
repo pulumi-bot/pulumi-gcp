@@ -126,9 +126,6 @@ func NewFlexibleAppVersion(ctx *pulumi.Context,
 	if args == nil || args.Service == nil {
 		return nil, errors.New("missing required argument 'Service'")
 	}
-	if args == nil {
-		args = &FlexibleAppVersionArgs{}
-	}
 	var resource FlexibleAppVersion
 	err := ctx.RegisterResource("gcp:appengine/flexibleAppVersion:FlexibleAppVersion", name, args, &resource, opts...)
 	if err != nil {

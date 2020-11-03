@@ -60,9 +60,6 @@ func NewGroup(ctx *pulumi.Context,
 	if args == nil || args.Parent == nil {
 		return nil, errors.New("missing required argument 'Parent'")
 	}
-	if args == nil {
-		args = &GroupArgs{}
-	}
 	var resource Group
 	err := ctx.RegisterResource("gcp:cloudidentity/group:Group", name, args, &resource, opts...)
 	if err != nil {

@@ -81,9 +81,6 @@ func NewInstanceGroupManager(ctx *pulumi.Context,
 	if args == nil || args.Versions == nil {
 		return nil, errors.New("missing required argument 'Versions'")
 	}
-	if args == nil {
-		args = &InstanceGroupManagerArgs{}
-	}
 	var resource InstanceGroupManager
 	err := ctx.RegisterResource("gcp:compute/instanceGroupManager:InstanceGroupManager", name, args, &resource, opts...)
 	if err != nil {

@@ -42,9 +42,6 @@ func NewInstanceIamPolicy(ctx *pulumi.Context,
 	if args == nil || args.PolicyData == nil {
 		return nil, errors.New("missing required argument 'PolicyData'")
 	}
-	if args == nil {
-		args = &InstanceIamPolicyArgs{}
-	}
 	var resource InstanceIamPolicy
 	err := ctx.RegisterResource("gcp:bigtable/instanceIamPolicy:InstanceIamPolicy", name, args, &resource, opts...)
 	if err != nil {

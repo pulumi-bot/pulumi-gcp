@@ -43,9 +43,6 @@ func NewDicomStoreIamPolicy(ctx *pulumi.Context,
 	if args == nil || args.PolicyData == nil {
 		return nil, errors.New("missing required argument 'PolicyData'")
 	}
-	if args == nil {
-		args = &DicomStoreIamPolicyArgs{}
-	}
 	var resource DicomStoreIamPolicy
 	err := ctx.RegisterResource("gcp:healthcare/dicomStoreIamPolicy:DicomStoreIamPolicy", name, args, &resource, opts...)
 	if err != nil {

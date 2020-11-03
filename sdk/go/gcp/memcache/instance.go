@@ -75,9 +75,6 @@ func NewInstance(ctx *pulumi.Context,
 	if args == nil || args.Region == nil {
 		return nil, errors.New("missing required argument 'Region'")
 	}
-	if args == nil {
-		args = &InstanceArgs{}
-	}
 	var resource Instance
 	err := ctx.RegisterResource("gcp:memcache/instance:Instance", name, args, &resource, opts...)
 	if err != nil {

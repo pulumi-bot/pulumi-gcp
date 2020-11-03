@@ -51,9 +51,6 @@ func NewImageIamBinding(ctx *pulumi.Context,
 	if args == nil || args.Role == nil {
 		return nil, errors.New("missing required argument 'Role'")
 	}
-	if args == nil {
-		args = &ImageIamBindingArgs{}
-	}
 	var resource ImageIamBinding
 	err := ctx.RegisterResource("gcp:compute/imageIamBinding:ImageIamBinding", name, args, &resource, opts...)
 	if err != nil {

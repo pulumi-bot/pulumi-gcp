@@ -58,9 +58,6 @@ func NewGameServerCluster(ctx *pulumi.Context,
 	if args == nil || args.RealmId == nil {
 		return nil, errors.New("missing required argument 'RealmId'")
 	}
-	if args == nil {
-		args = &GameServerClusterArgs{}
-	}
 	var resource GameServerCluster
 	err := ctx.RegisterResource("gcp:gameservices/gameServerCluster:GameServerCluster", name, args, &resource, opts...)
 	if err != nil {

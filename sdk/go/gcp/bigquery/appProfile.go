@@ -45,9 +45,6 @@ func NewAppProfile(ctx *pulumi.Context,
 	if args == nil || args.AppProfileId == nil {
 		return nil, errors.New("missing required argument 'AppProfileId'")
 	}
-	if args == nil {
-		args = &AppProfileArgs{}
-	}
 	var resource AppProfile
 	err := ctx.RegisterResource("gcp:bigquery/appProfile:AppProfile", name, args, &resource, opts...)
 	if err != nil {

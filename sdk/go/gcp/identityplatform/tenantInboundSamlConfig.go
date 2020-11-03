@@ -57,9 +57,6 @@ func NewTenantInboundSamlConfig(ctx *pulumi.Context,
 	if args == nil || args.Tenant == nil {
 		return nil, errors.New("missing required argument 'Tenant'")
 	}
-	if args == nil {
-		args = &TenantInboundSamlConfigArgs{}
-	}
 	var resource TenantInboundSamlConfig
 	err := ctx.RegisterResource("gcp:identityplatform/tenantInboundSamlConfig:TenantInboundSamlConfig", name, args, &resource, opts...)
 	if err != nil {

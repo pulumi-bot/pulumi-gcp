@@ -61,9 +61,6 @@ func NewAppEngineVersionIamBinding(ctx *pulumi.Context,
 	if args == nil || args.VersionId == nil {
 		return nil, errors.New("missing required argument 'VersionId'")
 	}
-	if args == nil {
-		args = &AppEngineVersionIamBindingArgs{}
-	}
 	var resource AppEngineVersionIamBinding
 	err := ctx.RegisterResource("gcp:iap/appEngineVersionIamBinding:AppEngineVersionIamBinding", name, args, &resource, opts...)
 	if err != nil {

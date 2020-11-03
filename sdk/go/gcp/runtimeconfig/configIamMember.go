@@ -49,9 +49,6 @@ func NewConfigIamMember(ctx *pulumi.Context,
 	if args == nil || args.Role == nil {
 		return nil, errors.New("missing required argument 'Role'")
 	}
-	if args == nil {
-		args = &ConfigIamMemberArgs{}
-	}
 	var resource ConfigIamMember
 	err := ctx.RegisterResource("gcp:runtimeconfig/configIamMember:ConfigIamMember", name, args, &resource, opts...)
 	if err != nil {

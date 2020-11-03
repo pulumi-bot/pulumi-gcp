@@ -51,9 +51,6 @@ func NewKey(ctx *pulumi.Context,
 	if args == nil || args.ServiceAccountId == nil {
 		return nil, errors.New("missing required argument 'ServiceAccountId'")
 	}
-	if args == nil {
-		args = &KeyArgs{}
-	}
 	var resource Key
 	err := ctx.RegisterResource("gcp:serviceAccount/key:Key", name, args, &resource, opts...)
 	if err != nil {

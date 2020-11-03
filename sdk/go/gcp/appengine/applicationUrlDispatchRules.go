@@ -34,9 +34,6 @@ func NewApplicationUrlDispatchRules(ctx *pulumi.Context,
 	if args == nil || args.DispatchRules == nil {
 		return nil, errors.New("missing required argument 'DispatchRules'")
 	}
-	if args == nil {
-		args = &ApplicationUrlDispatchRulesArgs{}
-	}
 	var resource ApplicationUrlDispatchRules
 	err := ctx.RegisterResource("gcp:appengine/applicationUrlDispatchRules:ApplicationUrlDispatchRules", name, args, &resource, opts...)
 	if err != nil {

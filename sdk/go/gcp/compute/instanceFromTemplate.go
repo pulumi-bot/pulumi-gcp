@@ -106,9 +106,6 @@ func NewInstanceFromTemplate(ctx *pulumi.Context,
 	if args == nil || args.SourceInstanceTemplate == nil {
 		return nil, errors.New("missing required argument 'SourceInstanceTemplate'")
 	}
-	if args == nil {
-		args = &InstanceFromTemplateArgs{}
-	}
 	var resource InstanceFromTemplate
 	err := ctx.RegisterResource("gcp:compute/instanceFromTemplate:InstanceFromTemplate", name, args, &resource, opts...)
 	if err != nil {

@@ -54,9 +54,6 @@ func NewTransferJob(ctx *pulumi.Context,
 	if args == nil || args.TransferSpec == nil {
 		return nil, errors.New("missing required argument 'TransferSpec'")
 	}
-	if args == nil {
-		args = &TransferJobArgs{}
-	}
 	var resource TransferJob
 	err := ctx.RegisterResource("gcp:storage/transferJob:TransferJob", name, args, &resource, opts...)
 	if err != nil {

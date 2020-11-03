@@ -53,9 +53,6 @@ func NewFunctionIamBinding(ctx *pulumi.Context,
 	if args == nil || args.Role == nil {
 		return nil, errors.New("missing required argument 'Role'")
 	}
-	if args == nil {
-		args = &FunctionIamBindingArgs{}
-	}
 	var resource FunctionIamBinding
 	err := ctx.RegisterResource("gcp:cloudfunctions/functionIamBinding:FunctionIamBinding", name, args, &resource, opts...)
 	if err != nil {

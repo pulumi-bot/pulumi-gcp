@@ -48,9 +48,6 @@ func NewDatabase(ctx *pulumi.Context,
 	if args == nil || args.Instance == nil {
 		return nil, errors.New("missing required argument 'Instance'")
 	}
-	if args == nil {
-		args = &DatabaseArgs{}
-	}
 	var resource Database
 	err := ctx.RegisterResource("gcp:sql/database:Database", name, args, &resource, opts...)
 	if err != nil {

@@ -62,9 +62,6 @@ func NewTenantDefaultSupportedIdpConfig(ctx *pulumi.Context,
 	if args == nil || args.Tenant == nil {
 		return nil, errors.New("missing required argument 'Tenant'")
 	}
-	if args == nil {
-		args = &TenantDefaultSupportedIdpConfigArgs{}
-	}
 	var resource TenantDefaultSupportedIdpConfig
 	err := ctx.RegisterResource("gcp:identityplatform/tenantDefaultSupportedIdpConfig:TenantDefaultSupportedIdpConfig", name, args, &resource, opts...)
 	if err != nil {

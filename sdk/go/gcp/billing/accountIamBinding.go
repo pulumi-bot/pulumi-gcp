@@ -46,9 +46,6 @@ func NewAccountIamBinding(ctx *pulumi.Context,
 	if args == nil || args.Role == nil {
 		return nil, errors.New("missing required argument 'Role'")
 	}
-	if args == nil {
-		args = &AccountIamBindingArgs{}
-	}
 	var resource AccountIamBinding
 	err := ctx.RegisterResource("gcp:billing/accountIamBinding:AccountIamBinding", name, args, &resource, opts...)
 	if err != nil {

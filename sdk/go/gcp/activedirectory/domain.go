@@ -61,9 +61,6 @@ func NewDomain(ctx *pulumi.Context,
 	if args == nil || args.ReservedIpRange == nil {
 		return nil, errors.New("missing required argument 'ReservedIpRange'")
 	}
-	if args == nil {
-		args = &DomainArgs{}
-	}
 	var resource Domain
 	err := ctx.RegisterResource("gcp:activedirectory/domain:Domain", name, args, &resource, opts...)
 	if err != nil {

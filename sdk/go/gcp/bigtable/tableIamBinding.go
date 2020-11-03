@@ -52,9 +52,6 @@ func NewTableIamBinding(ctx *pulumi.Context,
 	if args == nil || args.Table == nil {
 		return nil, errors.New("missing required argument 'Table'")
 	}
-	if args == nil {
-		args = &TableIamBindingArgs{}
-	}
 	var resource TableIamBinding
 	err := ctx.RegisterResource("gcp:bigtable/tableIamBinding:TableIamBinding", name, args, &resource, opts...)
 	if err != nil {

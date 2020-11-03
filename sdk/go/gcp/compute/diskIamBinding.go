@@ -50,9 +50,6 @@ func NewDiskIamBinding(ctx *pulumi.Context,
 	if args == nil || args.Role == nil {
 		return nil, errors.New("missing required argument 'Role'")
 	}
-	if args == nil {
-		args = &DiskIamBindingArgs{}
-	}
 	var resource DiskIamBinding
 	err := ctx.RegisterResource("gcp:compute/diskIamBinding:DiskIamBinding", name, args, &resource, opts...)
 	if err != nil {

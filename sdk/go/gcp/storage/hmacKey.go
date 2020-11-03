@@ -56,9 +56,6 @@ func NewHmacKey(ctx *pulumi.Context,
 	if args == nil || args.ServiceAccountEmail == nil {
 		return nil, errors.New("missing required argument 'ServiceAccountEmail'")
 	}
-	if args == nil {
-		args = &HmacKeyArgs{}
-	}
 	var resource HmacKey
 	err := ctx.RegisterResource("gcp:storage/hmacKey:HmacKey", name, args, &resource, opts...)
 	if err != nil {

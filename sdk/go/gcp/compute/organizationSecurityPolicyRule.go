@@ -70,9 +70,6 @@ func NewOrganizationSecurityPolicyRule(ctx *pulumi.Context,
 	if args == nil || args.Priority == nil {
 		return nil, errors.New("missing required argument 'Priority'")
 	}
-	if args == nil {
-		args = &OrganizationSecurityPolicyRuleArgs{}
-	}
 	var resource OrganizationSecurityPolicyRule
 	err := ctx.RegisterResource("gcp:compute/organizationSecurityPolicyRule:OrganizationSecurityPolicyRule", name, args, &resource, opts...)
 	if err != nil {

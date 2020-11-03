@@ -70,9 +70,6 @@ func NewReservation(ctx *pulumi.Context,
 	if args == nil || args.Zone == nil {
 		return nil, errors.New("missing required argument 'Zone'")
 	}
-	if args == nil {
-		args = &ReservationArgs{}
-	}
 	var resource Reservation
 	err := ctx.RegisterResource("gcp:compute/reservation:Reservation", name, args, &resource, opts...)
 	if err != nil {

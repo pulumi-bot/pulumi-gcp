@@ -61,9 +61,6 @@ func NewBackendBucket(ctx *pulumi.Context,
 	if args == nil || args.BucketName == nil {
 		return nil, errors.New("missing required argument 'BucketName'")
 	}
-	if args == nil {
-		args = &BackendBucketArgs{}
-	}
 	var resource BackendBucket
 	err := ctx.RegisterResource("gcp:compute/backendBucket:BackendBucket", name, args, &resource, opts...)
 	if err != nil {

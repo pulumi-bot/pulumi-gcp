@@ -31,9 +31,6 @@ func NewPolicyTagIamPolicy(ctx *pulumi.Context,
 	if args == nil || args.PolicyTag == nil {
 		return nil, errors.New("missing required argument 'PolicyTag'")
 	}
-	if args == nil {
-		args = &PolicyTagIamPolicyArgs{}
-	}
 	var resource PolicyTagIamPolicy
 	err := ctx.RegisterResource("gcp:datacatalog/policyTagIamPolicy:PolicyTagIamPolicy", name, args, &resource, opts...)
 	if err != nil {

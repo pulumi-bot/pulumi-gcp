@@ -52,9 +52,6 @@ func NewJob(ctx *pulumi.Context,
 	if args == nil || args.JobId == nil {
 		return nil, errors.New("missing required argument 'JobId'")
 	}
-	if args == nil {
-		args = &JobArgs{}
-	}
 	var resource Job
 	err := ctx.RegisterResource("gcp:bigquery/job:Job", name, args, &resource, opts...)
 	if err != nil {

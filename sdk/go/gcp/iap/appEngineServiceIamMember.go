@@ -56,9 +56,6 @@ func NewAppEngineServiceIamMember(ctx *pulumi.Context,
 	if args == nil || args.Service == nil {
 		return nil, errors.New("missing required argument 'Service'")
 	}
-	if args == nil {
-		args = &AppEngineServiceIamMemberArgs{}
-	}
 	var resource AppEngineServiceIamMember
 	err := ctx.RegisterResource("gcp:iap/appEngineServiceIamMember:AppEngineServiceIamMember", name, args, &resource, opts...)
 	if err != nil {

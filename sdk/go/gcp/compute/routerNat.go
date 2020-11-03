@@ -87,9 +87,6 @@ func NewRouterNat(ctx *pulumi.Context,
 	if args == nil || args.SourceSubnetworkIpRangesToNat == nil {
 		return nil, errors.New("missing required argument 'SourceSubnetworkIpRangesToNat'")
 	}
-	if args == nil {
-		args = &RouterNatArgs{}
-	}
 	var resource RouterNat
 	err := ctx.RegisterResource("gcp:compute/routerNat:RouterNat", name, args, &resource, opts...)
 	if err != nil {

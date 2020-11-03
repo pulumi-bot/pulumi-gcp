@@ -60,9 +60,6 @@ func NewCryptoKey(ctx *pulumi.Context,
 	if args == nil || args.KeyRing == nil {
 		return nil, errors.New("missing required argument 'KeyRing'")
 	}
-	if args == nil {
-		args = &CryptoKeyArgs{}
-	}
 	var resource CryptoKey
 	err := ctx.RegisterResource("gcp:kms/cryptoKey:CryptoKey", name, args, &resource, opts...)
 	if err != nil {

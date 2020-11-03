@@ -77,9 +77,6 @@ func NewObjectAccessControl(ctx *pulumi.Context,
 	if args == nil || args.Role == nil {
 		return nil, errors.New("missing required argument 'Role'")
 	}
-	if args == nil {
-		args = &ObjectAccessControlArgs{}
-	}
 	var resource ObjectAccessControl
 	err := ctx.RegisterResource("gcp:storage/objectAccessControl:ObjectAccessControl", name, args, &resource, opts...)
 	if err != nil {

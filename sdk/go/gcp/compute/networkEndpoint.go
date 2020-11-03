@@ -60,9 +60,6 @@ func NewNetworkEndpoint(ctx *pulumi.Context,
 	if args == nil || args.Port == nil {
 		return nil, errors.New("missing required argument 'Port'")
 	}
-	if args == nil {
-		args = &NetworkEndpointArgs{}
-	}
 	var resource NetworkEndpoint
 	err := ctx.RegisterResource("gcp:compute/networkEndpoint:NetworkEndpoint", name, args, &resource, opts...)
 	if err != nil {

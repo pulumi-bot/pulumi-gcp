@@ -75,9 +75,6 @@ func NewManagedZone(ctx *pulumi.Context,
 	if args == nil || args.DnsName == nil {
 		return nil, errors.New("missing required argument 'DnsName'")
 	}
-	if args == nil {
-		args = &ManagedZoneArgs{}
-	}
 	if args.Description == nil {
 		args.Description = pulumi.StringPtr("Managed by Pulumi")
 	}

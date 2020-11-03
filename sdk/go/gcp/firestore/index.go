@@ -57,9 +57,6 @@ func NewIndex(ctx *pulumi.Context,
 	if args == nil || args.Fields == nil {
 		return nil, errors.New("missing required argument 'Fields'")
 	}
-	if args == nil {
-		args = &IndexArgs{}
-	}
 	var resource Index
 	err := ctx.RegisterResource("gcp:firestore/index:Index", name, args, &resource, opts...)
 	if err != nil {

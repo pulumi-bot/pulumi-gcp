@@ -56,9 +56,6 @@ func NewCryptoKeyIAMMember(ctx *pulumi.Context,
 	if args == nil || args.Role == nil {
 		return nil, errors.New("missing required argument 'Role'")
 	}
-	if args == nil {
-		args = &CryptoKeyIAMMemberArgs{}
-	}
 	var resource CryptoKeyIAMMember
 	err := ctx.RegisterResource("gcp:kms/cryptoKeyIAMMember:CryptoKeyIAMMember", name, args, &resource, opts...)
 	if err != nil {

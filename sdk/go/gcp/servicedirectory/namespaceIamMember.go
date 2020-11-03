@@ -43,9 +43,6 @@ func NewNamespaceIamMember(ctx *pulumi.Context,
 	if args == nil || args.Role == nil {
 		return nil, errors.New("missing required argument 'Role'")
 	}
-	if args == nil {
-		args = &NamespaceIamMemberArgs{}
-	}
 	var resource NamespaceIamMember
 	err := ctx.RegisterResource("gcp:servicedirectory/namespaceIamMember:NamespaceIamMember", name, args, &resource, opts...)
 	if err != nil {

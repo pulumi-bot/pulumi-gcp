@@ -65,9 +65,6 @@ func NewProject(ctx *pulumi.Context,
 	if args == nil || args.ProjectId == nil {
 		return nil, errors.New("missing required argument 'ProjectId'")
 	}
-	if args == nil {
-		args = &ProjectArgs{}
-	}
 	var resource Project
 	err := ctx.RegisterResource("gcp:organizations/project:Project", name, args, &resource, opts...)
 	if err != nil {

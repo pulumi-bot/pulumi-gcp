@@ -44,9 +44,6 @@ func NewPolicy(ctx *pulumi.Context,
 	if args == nil || args.OrgId == nil {
 		return nil, errors.New("missing required argument 'OrgId'")
 	}
-	if args == nil {
-		args = &PolicyArgs{}
-	}
 	var resource Policy
 	err := ctx.RegisterResource("gcp:organizations/policy:Policy", name, args, &resource, opts...)
 	if err != nil {

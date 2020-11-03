@@ -41,9 +41,6 @@ func NewRegionDiskIamPolicy(ctx *pulumi.Context,
 	if args == nil || args.PolicyData == nil {
 		return nil, errors.New("missing required argument 'PolicyData'")
 	}
-	if args == nil {
-		args = &RegionDiskIamPolicyArgs{}
-	}
 	var resource RegionDiskIamPolicy
 	err := ctx.RegisterResource("gcp:compute/regionDiskIamPolicy:RegionDiskIamPolicy", name, args, &resource, opts...)
 	if err != nil {

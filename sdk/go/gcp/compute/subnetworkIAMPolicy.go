@@ -48,9 +48,6 @@ func NewSubnetworkIAMPolicy(ctx *pulumi.Context,
 	if args == nil || args.Subnetwork == nil {
 		return nil, errors.New("missing required argument 'Subnetwork'")
 	}
-	if args == nil {
-		args = &SubnetworkIAMPolicyArgs{}
-	}
 	var resource SubnetworkIAMPolicy
 	err := ctx.RegisterResource("gcp:compute/subnetworkIAMPolicy:SubnetworkIAMPolicy", name, args, &resource, opts...)
 	if err != nil {

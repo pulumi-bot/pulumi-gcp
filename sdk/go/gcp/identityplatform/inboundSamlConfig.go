@@ -52,9 +52,6 @@ func NewInboundSamlConfig(ctx *pulumi.Context,
 	if args == nil || args.SpConfig == nil {
 		return nil, errors.New("missing required argument 'SpConfig'")
 	}
-	if args == nil {
-		args = &InboundSamlConfigArgs{}
-	}
 	var resource InboundSamlConfig
 	err := ctx.RegisterResource("gcp:identityplatform/inboundSamlConfig:InboundSamlConfig", name, args, &resource, opts...)
 	if err != nil {

@@ -127,9 +127,6 @@ func NewGlobalForwardingRule(ctx *pulumi.Context,
 	if args == nil || args.Target == nil {
 		return nil, errors.New("missing required argument 'Target'")
 	}
-	if args == nil {
-		args = &GlobalForwardingRuleArgs{}
-	}
 	var resource GlobalForwardingRule
 	err := ctx.RegisterResource("gcp:compute/globalForwardingRule:GlobalForwardingRule", name, args, &resource, opts...)
 	if err != nil {

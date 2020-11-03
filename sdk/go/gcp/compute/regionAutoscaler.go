@@ -63,9 +63,6 @@ func NewRegionAutoscaler(ctx *pulumi.Context,
 	if args == nil || args.Target == nil {
 		return nil, errors.New("missing required argument 'Target'")
 	}
-	if args == nil {
-		args = &RegionAutoscalerArgs{}
-	}
 	var resource RegionAutoscaler
 	err := ctx.RegisterResource("gcp:compute/regionAutoscaler:RegionAutoscaler", name, args, &resource, opts...)
 	if err != nil {

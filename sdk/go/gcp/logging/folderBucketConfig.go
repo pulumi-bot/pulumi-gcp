@@ -46,9 +46,6 @@ func NewFolderBucketConfig(ctx *pulumi.Context,
 	if args == nil || args.Location == nil {
 		return nil, errors.New("missing required argument 'Location'")
 	}
-	if args == nil {
-		args = &FolderBucketConfigArgs{}
-	}
 	var resource FolderBucketConfig
 	err := ctx.RegisterResource("gcp:logging/folderBucketConfig:FolderBucketConfig", name, args, &resource, opts...)
 	if err != nil {

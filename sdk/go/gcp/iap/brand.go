@@ -56,9 +56,6 @@ func NewBrand(ctx *pulumi.Context,
 	if args == nil || args.SupportEmail == nil {
 		return nil, errors.New("missing required argument 'SupportEmail'")
 	}
-	if args == nil {
-		args = &BrandArgs{}
-	}
 	var resource Brand
 	err := ctx.RegisterResource("gcp:iap/brand:Brand", name, args, &resource, opts...)
 	if err != nil {

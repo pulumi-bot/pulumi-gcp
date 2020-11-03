@@ -53,9 +53,6 @@ func NewFunctionIamMember(ctx *pulumi.Context,
 	if args == nil || args.Role == nil {
 		return nil, errors.New("missing required argument 'Role'")
 	}
-	if args == nil {
-		args = &FunctionIamMemberArgs{}
-	}
 	var resource FunctionIamMember
 	err := ctx.RegisterResource("gcp:cloudfunctions/functionIamMember:FunctionIamMember", name, args, &resource, opts...)
 	if err != nil {

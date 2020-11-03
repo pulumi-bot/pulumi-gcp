@@ -87,9 +87,6 @@ func NewConnectivityTest(ctx *pulumi.Context,
 	if args == nil || args.Source == nil {
 		return nil, errors.New("missing required argument 'Source'")
 	}
-	if args == nil {
-		args = &ConnectivityTestArgs{}
-	}
 	var resource ConnectivityTest
 	err := ctx.RegisterResource("gcp:networkmanagement/connectivityTest:ConnectivityTest", name, args, &resource, opts...)
 	if err != nil {

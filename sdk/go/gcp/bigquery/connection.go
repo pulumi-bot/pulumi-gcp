@@ -55,9 +55,6 @@ func NewConnection(ctx *pulumi.Context,
 	if args == nil || args.CloudSql == nil {
 		return nil, errors.New("missing required argument 'CloudSql'")
 	}
-	if args == nil {
-		args = &ConnectionArgs{}
-	}
 	var resource Connection
 	err := ctx.RegisterResource("gcp:bigquery/connection:Connection", name, args, &resource, opts...)
 	if err != nil {

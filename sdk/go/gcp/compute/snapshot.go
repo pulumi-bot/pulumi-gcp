@@ -92,9 +92,6 @@ func NewSnapshot(ctx *pulumi.Context,
 	if args == nil || args.SourceDisk == nil {
 		return nil, errors.New("missing required argument 'SourceDisk'")
 	}
-	if args == nil {
-		args = &SnapshotArgs{}
-	}
 	var resource Snapshot
 	err := ctx.RegisterResource("gcp:compute/snapshot:Snapshot", name, args, &resource, opts...)
 	if err != nil {

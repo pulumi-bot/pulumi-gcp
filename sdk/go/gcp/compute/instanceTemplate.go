@@ -100,9 +100,6 @@ func NewInstanceTemplate(ctx *pulumi.Context,
 	if args == nil || args.MachineType == nil {
 		return nil, errors.New("missing required argument 'MachineType'")
 	}
-	if args == nil {
-		args = &InstanceTemplateArgs{}
-	}
 	var resource InstanceTemplate
 	err := ctx.RegisterResource("gcp:compute/instanceTemplate:InstanceTemplate", name, args, &resource, opts...)
 	if err != nil {

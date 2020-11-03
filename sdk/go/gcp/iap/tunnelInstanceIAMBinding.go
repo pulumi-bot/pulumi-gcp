@@ -52,9 +52,6 @@ func NewTunnelInstanceIAMBinding(ctx *pulumi.Context,
 	if args == nil || args.Role == nil {
 		return nil, errors.New("missing required argument 'Role'")
 	}
-	if args == nil {
-		args = &TunnelInstanceIAMBindingArgs{}
-	}
 	var resource TunnelInstanceIAMBinding
 	err := ctx.RegisterResource("gcp:iap/tunnelInstanceIAMBinding:TunnelInstanceIAMBinding", name, args, &resource, opts...)
 	if err != nil {

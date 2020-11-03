@@ -43,9 +43,6 @@ func NewSshPublicKey(ctx *pulumi.Context,
 	if args == nil || args.User == nil {
 		return nil, errors.New("missing required argument 'User'")
 	}
-	if args == nil {
-		args = &SshPublicKeyArgs{}
-	}
 	var resource SshPublicKey
 	err := ctx.RegisterResource("gcp:oslogin/sshPublicKey:SshPublicKey", name, args, &resource, opts...)
 	if err != nil {

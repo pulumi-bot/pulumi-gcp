@@ -51,9 +51,6 @@ func NewWebBackendServiceIamBinding(ctx *pulumi.Context,
 	if args == nil || args.WebBackendService == nil {
 		return nil, errors.New("missing required argument 'WebBackendService'")
 	}
-	if args == nil {
-		args = &WebBackendServiceIamBindingArgs{}
-	}
 	var resource WebBackendServiceIamBinding
 	err := ctx.RegisterResource("gcp:iap/webBackendServiceIamBinding:WebBackendServiceIamBinding", name, args, &resource, opts...)
 	if err != nil {

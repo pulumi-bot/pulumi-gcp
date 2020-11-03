@@ -54,9 +54,6 @@ func NewGroupMembership(ctx *pulumi.Context,
 	if args == nil || args.Roles == nil {
 		return nil, errors.New("missing required argument 'Roles'")
 	}
-	if args == nil {
-		args = &GroupMembershipArgs{}
-	}
 	var resource GroupMembership
 	err := ctx.RegisterResource("gcp:cloudidentity/groupMembership:GroupMembership", name, args, &resource, opts...)
 	if err != nil {

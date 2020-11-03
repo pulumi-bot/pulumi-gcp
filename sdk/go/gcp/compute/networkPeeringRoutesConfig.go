@@ -53,9 +53,6 @@ func NewNetworkPeeringRoutesConfig(ctx *pulumi.Context,
 	if args == nil || args.Peering == nil {
 		return nil, errors.New("missing required argument 'Peering'")
 	}
-	if args == nil {
-		args = &NetworkPeeringRoutesConfigArgs{}
-	}
 	var resource NetworkPeeringRoutesConfig
 	err := ctx.RegisterResource("gcp:compute/networkPeeringRoutesConfig:NetworkPeeringRoutesConfig", name, args, &resource, opts...)
 	if err != nil {

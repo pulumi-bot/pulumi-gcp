@@ -43,9 +43,6 @@ func NewOrganizationExclusion(ctx *pulumi.Context,
 	if args == nil || args.OrgId == nil {
 		return nil, errors.New("missing required argument 'OrgId'")
 	}
-	if args == nil {
-		args = &OrganizationExclusionArgs{}
-	}
 	var resource OrganizationExclusion
 	err := ctx.RegisterResource("gcp:logging/organizationExclusion:OrganizationExclusion", name, args, &resource, opts...)
 	if err != nil {

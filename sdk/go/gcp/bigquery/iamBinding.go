@@ -54,9 +54,6 @@ func NewIamBinding(ctx *pulumi.Context,
 	if args == nil || args.TableId == nil {
 		return nil, errors.New("missing required argument 'TableId'")
 	}
-	if args == nil {
-		args = &IamBindingArgs{}
-	}
 	var resource IamBinding
 	err := ctx.RegisterResource("gcp:bigquery/iamBinding:IamBinding", name, args, &resource, opts...)
 	if err != nil {

@@ -35,9 +35,6 @@ func NewProjectMetadataItem(ctx *pulumi.Context,
 	if args == nil || args.Value == nil {
 		return nil, errors.New("missing required argument 'Value'")
 	}
-	if args == nil {
-		args = &ProjectMetadataItemArgs{}
-	}
 	var resource ProjectMetadataItem
 	err := ctx.RegisterResource("gcp:compute/projectMetadataItem:ProjectMetadataItem", name, args, &resource, opts...)
 	if err != nil {

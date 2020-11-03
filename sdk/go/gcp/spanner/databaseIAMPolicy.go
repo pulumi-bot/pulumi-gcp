@@ -51,9 +51,6 @@ func NewDatabaseIAMPolicy(ctx *pulumi.Context,
 	if args == nil || args.PolicyData == nil {
 		return nil, errors.New("missing required argument 'PolicyData'")
 	}
-	if args == nil {
-		args = &DatabaseIAMPolicyArgs{}
-	}
 	var resource DatabaseIAMPolicy
 	err := ctx.RegisterResource("gcp:spanner/databaseIAMPolicy:DatabaseIAMPolicy", name, args, &resource, opts...)
 	if err != nil {

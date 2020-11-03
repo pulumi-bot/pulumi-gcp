@@ -79,9 +79,6 @@ func NewNode(ctx *pulumi.Context,
 	if args == nil || args.Zone == nil {
 		return nil, errors.New("missing required argument 'Zone'")
 	}
-	if args == nil {
-		args = &NodeArgs{}
-	}
 	var resource Node
 	err := ctx.RegisterResource("gcp:tpu/node:Node", name, args, &resource, opts...)
 	if err != nil {

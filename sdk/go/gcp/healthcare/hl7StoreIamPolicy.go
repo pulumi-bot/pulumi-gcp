@@ -43,9 +43,6 @@ func NewHl7StoreIamPolicy(ctx *pulumi.Context,
 	if args == nil || args.PolicyData == nil {
 		return nil, errors.New("missing required argument 'PolicyData'")
 	}
-	if args == nil {
-		args = &Hl7StoreIamPolicyArgs{}
-	}
 	var resource Hl7StoreIamPolicy
 	err := ctx.RegisterResource("gcp:healthcare/hl7StoreIamPolicy:Hl7StoreIamPolicy", name, args, &resource, opts...)
 	if err != nil {

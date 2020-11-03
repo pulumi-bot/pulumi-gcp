@@ -51,9 +51,6 @@ func NewPreventionStoredInfoType(ctx *pulumi.Context,
 	if args == nil || args.Parent == nil {
 		return nil, errors.New("missing required argument 'Parent'")
 	}
-	if args == nil {
-		args = &PreventionStoredInfoTypeArgs{}
-	}
 	var resource PreventionStoredInfoType
 	err := ctx.RegisterResource("gcp:dataloss/preventionStoredInfoType:PreventionStoredInfoType", name, args, &resource, opts...)
 	if err != nil {

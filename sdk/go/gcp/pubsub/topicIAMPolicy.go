@@ -43,9 +43,6 @@ func NewTopicIAMPolicy(ctx *pulumi.Context,
 	if args == nil || args.Topic == nil {
 		return nil, errors.New("missing required argument 'Topic'")
 	}
-	if args == nil {
-		args = &TopicIAMPolicyArgs{}
-	}
 	var resource TopicIAMPolicy
 	err := ctx.RegisterResource("gcp:pubsub/topicIAMPolicy:TopicIAMPolicy", name, args, &resource, opts...)
 	if err != nil {

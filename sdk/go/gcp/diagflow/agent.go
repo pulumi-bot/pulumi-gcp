@@ -91,9 +91,6 @@ func NewAgent(ctx *pulumi.Context,
 	if args == nil || args.TimeZone == nil {
 		return nil, errors.New("missing required argument 'TimeZone'")
 	}
-	if args == nil {
-		args = &AgentArgs{}
-	}
 	var resource Agent
 	err := ctx.RegisterResource("gcp:diagflow/agent:Agent", name, args, &resource, opts...)
 	if err != nil {

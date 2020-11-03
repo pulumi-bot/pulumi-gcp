@@ -36,9 +36,6 @@ func NewUsageExportBucket(ctx *pulumi.Context,
 	if args == nil || args.BucketName == nil {
 		return nil, errors.New("missing required argument 'BucketName'")
 	}
-	if args == nil {
-		args = &UsageExportBucketArgs{}
-	}
 	var resource UsageExportBucket
 	err := ctx.RegisterResource("gcp:projects/usageExportBucket:UsageExportBucket", name, args, &resource, opts...)
 	if err != nil {

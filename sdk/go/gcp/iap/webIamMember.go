@@ -46,9 +46,6 @@ func NewWebIamMember(ctx *pulumi.Context,
 	if args == nil || args.Role == nil {
 		return nil, errors.New("missing required argument 'Role'")
 	}
-	if args == nil {
-		args = &WebIamMemberArgs{}
-	}
 	var resource WebIamMember
 	err := ctx.RegisterResource("gcp:iap/webIamMember:WebIamMember", name, args, &resource, opts...)
 	if err != nil {

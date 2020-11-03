@@ -46,9 +46,6 @@ func NewOauthIdpConfig(ctx *pulumi.Context,
 	if args == nil || args.Issuer == nil {
 		return nil, errors.New("missing required argument 'Issuer'")
 	}
-	if args == nil {
-		args = &OauthIdpConfigArgs{}
-	}
 	var resource OauthIdpConfig
 	err := ctx.RegisterResource("gcp:identityplatform/oauthIdpConfig:OauthIdpConfig", name, args, &resource, opts...)
 	if err != nil {

@@ -69,9 +69,6 @@ func NewTargetSSLProxy(ctx *pulumi.Context,
 	if args == nil || args.SslCertificates == nil {
 		return nil, errors.New("missing required argument 'SslCertificates'")
 	}
-	if args == nil {
-		args = &TargetSSLProxyArgs{}
-	}
 	var resource TargetSSLProxy
 	err := ctx.RegisterResource("gcp:compute/targetSSLProxy:TargetSSLProxy", name, args, &resource, opts...)
 	if err != nil {

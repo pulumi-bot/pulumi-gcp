@@ -65,9 +65,6 @@ func NewBillingAccountSink(ctx *pulumi.Context,
 	if args == nil || args.Destination == nil {
 		return nil, errors.New("missing required argument 'Destination'")
 	}
-	if args == nil {
-		args = &BillingAccountSinkArgs{}
-	}
 	var resource BillingAccountSink
 	err := ctx.RegisterResource("gcp:logging/billingAccountSink:BillingAccountSink", name, args, &resource, opts...)
 	if err != nil {

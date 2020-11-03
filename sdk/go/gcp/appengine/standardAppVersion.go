@@ -94,9 +94,6 @@ func NewStandardAppVersion(ctx *pulumi.Context,
 	if args == nil || args.Service == nil {
 		return nil, errors.New("missing required argument 'Service'")
 	}
-	if args == nil {
-		args = &StandardAppVersionArgs{}
-	}
 	var resource StandardAppVersion
 	err := ctx.RegisterResource("gcp:appengine/standardAppVersion:StandardAppVersion", name, args, &resource, opts...)
 	if err != nil {

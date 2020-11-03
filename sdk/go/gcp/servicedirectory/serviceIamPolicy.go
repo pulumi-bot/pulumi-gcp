@@ -37,9 +37,6 @@ func NewServiceIamPolicy(ctx *pulumi.Context,
 	if args == nil || args.PolicyData == nil {
 		return nil, errors.New("missing required argument 'PolicyData'")
 	}
-	if args == nil {
-		args = &ServiceIamPolicyArgs{}
-	}
 	var resource ServiceIamPolicy
 	err := ctx.RegisterResource("gcp:servicedirectory/serviceIamPolicy:ServiceIamPolicy", name, args, &resource, opts...)
 	if err != nil {

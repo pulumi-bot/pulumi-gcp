@@ -55,9 +55,6 @@ func NewLien(ctx *pulumi.Context,
 	if args == nil || args.Restrictions == nil {
 		return nil, errors.New("missing required argument 'Restrictions'")
 	}
-	if args == nil {
-		args = &LienArgs{}
-	}
 	var resource Lien
 	err := ctx.RegisterResource("gcp:resourcemanager/lien:Lien", name, args, &resource, opts...)
 	if err != nil {

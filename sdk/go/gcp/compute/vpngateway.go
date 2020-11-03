@@ -55,9 +55,6 @@ func NewVPNGateway(ctx *pulumi.Context,
 	if args == nil || args.Network == nil {
 		return nil, errors.New("missing required argument 'Network'")
 	}
-	if args == nil {
-		args = &VPNGatewayArgs{}
-	}
 	var resource VPNGateway
 	err := ctx.RegisterResource("gcp:compute/vPNGateway:VPNGateway", name, args, &resource, opts...)
 	if err != nil {

@@ -49,9 +49,6 @@ func NewHl7StoreIamBinding(ctx *pulumi.Context,
 	if args == nil || args.Role == nil {
 		return nil, errors.New("missing required argument 'Role'")
 	}
-	if args == nil {
-		args = &Hl7StoreIamBindingArgs{}
-	}
 	var resource Hl7StoreIamBinding
 	err := ctx.RegisterResource("gcp:healthcare/hl7StoreIamBinding:Hl7StoreIamBinding", name, args, &resource, opts...)
 	if err != nil {

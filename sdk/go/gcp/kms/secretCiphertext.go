@@ -52,9 +52,6 @@ func NewSecretCiphertext(ctx *pulumi.Context,
 	if args == nil || args.Plaintext == nil {
 		return nil, errors.New("missing required argument 'Plaintext'")
 	}
-	if args == nil {
-		args = &SecretCiphertextArgs{}
-	}
 	var resource SecretCiphertext
 	err := ctx.RegisterResource("gcp:kms/secretCiphertext:SecretCiphertext", name, args, &resource, opts...)
 	if err != nil {

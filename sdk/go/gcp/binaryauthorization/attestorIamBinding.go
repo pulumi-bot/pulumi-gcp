@@ -49,9 +49,6 @@ func NewAttestorIamBinding(ctx *pulumi.Context,
 	if args == nil || args.Role == nil {
 		return nil, errors.New("missing required argument 'Role'")
 	}
-	if args == nil {
-		args = &AttestorIamBindingArgs{}
-	}
 	var resource AttestorIamBinding
 	err := ctx.RegisterResource("gcp:binaryauthorization/attestorIamBinding:AttestorIamBinding", name, args, &resource, opts...)
 	if err != nil {

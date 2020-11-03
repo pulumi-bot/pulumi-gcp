@@ -115,9 +115,6 @@ func NewRoute(ctx *pulumi.Context,
 	if args == nil || args.Network == nil {
 		return nil, errors.New("missing required argument 'Network'")
 	}
-	if args == nil {
-		args = &RouteArgs{}
-	}
 	var resource Route
 	err := ctx.RegisterResource("gcp:compute/route:Route", name, args, &resource, opts...)
 	if err != nil {

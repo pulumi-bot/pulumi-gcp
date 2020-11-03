@@ -65,9 +65,6 @@ func NewBucketObject(ctx *pulumi.Context,
 	if args == nil || args.Bucket == nil {
 		return nil, errors.New("missing required argument 'Bucket'")
 	}
-	if args == nil {
-		args = &BucketObjectArgs{}
-	}
 	var resource BucketObject
 	err := ctx.RegisterResource("gcp:storage/bucketObject:BucketObject", name, args, &resource, opts...)
 	if err != nil {

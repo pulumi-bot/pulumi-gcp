@@ -40,9 +40,6 @@ func NewBucketIAMPolicy(ctx *pulumi.Context,
 	if args == nil || args.PolicyData == nil {
 		return nil, errors.New("missing required argument 'PolicyData'")
 	}
-	if args == nil {
-		args = &BucketIAMPolicyArgs{}
-	}
 	var resource BucketIAMPolicy
 	err := ctx.RegisterResource("gcp:storage/bucketIAMPolicy:BucketIAMPolicy", name, args, &resource, opts...)
 	if err != nil {

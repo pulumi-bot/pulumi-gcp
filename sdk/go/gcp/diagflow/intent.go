@@ -80,9 +80,6 @@ func NewIntent(ctx *pulumi.Context,
 	if args == nil || args.DisplayName == nil {
 		return nil, errors.New("missing required argument 'DisplayName'")
 	}
-	if args == nil {
-		args = &IntentArgs{}
-	}
 	var resource Intent
 	err := ctx.RegisterResource("gcp:diagflow/intent:Intent", name, args, &resource, opts...)
 	if err != nil {

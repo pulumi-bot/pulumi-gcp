@@ -49,9 +49,6 @@ func NewCryptoKeyIAMPolicy(ctx *pulumi.Context,
 	if args == nil || args.PolicyData == nil {
 		return nil, errors.New("missing required argument 'PolicyData'")
 	}
-	if args == nil {
-		args = &CryptoKeyIAMPolicyArgs{}
-	}
 	var resource CryptoKeyIAMPolicy
 	err := ctx.RegisterResource("gcp:kms/cryptoKeyIAMPolicy:CryptoKeyIAMPolicy", name, args, &resource, opts...)
 	if err != nil {

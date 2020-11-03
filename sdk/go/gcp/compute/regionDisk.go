@@ -124,9 +124,6 @@ func NewRegionDisk(ctx *pulumi.Context,
 	if args == nil || args.ReplicaZones == nil {
 		return nil, errors.New("missing required argument 'ReplicaZones'")
 	}
-	if args == nil {
-		args = &RegionDiskArgs{}
-	}
 	var resource RegionDisk
 	err := ctx.RegisterResource("gcp:compute/regionDisk:RegionDisk", name, args, &resource, opts...)
 	if err != nil {

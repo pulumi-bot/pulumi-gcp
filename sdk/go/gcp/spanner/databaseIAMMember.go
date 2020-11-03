@@ -57,9 +57,6 @@ func NewDatabaseIAMMember(ctx *pulumi.Context,
 	if args == nil || args.Role == nil {
 		return nil, errors.New("missing required argument 'Role'")
 	}
-	if args == nil {
-		args = &DatabaseIAMMemberArgs{}
-	}
 	var resource DatabaseIAMMember
 	err := ctx.RegisterResource("gcp:spanner/databaseIAMMember:DatabaseIAMMember", name, args, &resource, opts...)
 	if err != nil {

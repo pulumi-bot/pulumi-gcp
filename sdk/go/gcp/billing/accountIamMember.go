@@ -42,9 +42,6 @@ func NewAccountIamMember(ctx *pulumi.Context,
 	if args == nil || args.Role == nil {
 		return nil, errors.New("missing required argument 'Role'")
 	}
-	if args == nil {
-		args = &AccountIamMemberArgs{}
-	}
 	var resource AccountIamMember
 	err := ctx.RegisterResource("gcp:billing/accountIamMember:AccountIamMember", name, args, &resource, opts...)
 	if err != nil {

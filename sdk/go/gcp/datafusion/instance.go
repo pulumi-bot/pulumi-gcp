@@ -80,9 +80,6 @@ func NewInstance(ctx *pulumi.Context,
 	if args == nil || args.Type == nil {
 		return nil, errors.New("missing required argument 'Type'")
 	}
-	if args == nil {
-		args = &InstanceArgs{}
-	}
 	var resource Instance
 	err := ctx.RegisterResource("gcp:datafusion/instance:Instance", name, args, &resource, opts...)
 	if err != nil {

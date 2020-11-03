@@ -44,9 +44,6 @@ func NewWorkloadIdentityPool(ctx *pulumi.Context,
 	if args == nil || args.WorkloadIdentityPoolId == nil {
 		return nil, errors.New("missing required argument 'WorkloadIdentityPoolId'")
 	}
-	if args == nil {
-		args = &WorkloadIdentityPoolArgs{}
-	}
 	var resource WorkloadIdentityPool
 	err := ctx.RegisterResource("gcp:iam/workloadIdentityPool:WorkloadIdentityPool", name, args, &resource, opts...)
 	if err != nil {

@@ -38,9 +38,6 @@ func NewUser(ctx *pulumi.Context,
 	if args == nil || args.Instance == nil {
 		return nil, errors.New("missing required argument 'Instance'")
 	}
-	if args == nil {
-		args = &UserArgs{}
-	}
 	var resource User
 	err := ctx.RegisterResource("gcp:sql/user:User", name, args, &resource, opts...)
 	if err != nil {

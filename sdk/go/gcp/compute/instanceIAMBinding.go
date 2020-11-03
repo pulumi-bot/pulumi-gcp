@@ -55,9 +55,6 @@ func NewInstanceIAMBinding(ctx *pulumi.Context,
 	if args == nil || args.Role == nil {
 		return nil, errors.New("missing required argument 'Role'")
 	}
-	if args == nil {
-		args = &InstanceIAMBindingArgs{}
-	}
 	var resource InstanceIAMBinding
 	err := ctx.RegisterResource("gcp:compute/instanceIAMBinding:InstanceIAMBinding", name, args, &resource, opts...)
 	if err != nil {

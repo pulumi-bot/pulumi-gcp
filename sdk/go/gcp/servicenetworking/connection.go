@@ -38,9 +38,6 @@ func NewConnection(ctx *pulumi.Context,
 	if args == nil || args.Service == nil {
 		return nil, errors.New("missing required argument 'Service'")
 	}
-	if args == nil {
-		args = &ConnectionArgs{}
-	}
 	var resource Connection
 	err := ctx.RegisterResource("gcp:servicenetworking/connection:Connection", name, args, &resource, opts...)
 	if err != nil {

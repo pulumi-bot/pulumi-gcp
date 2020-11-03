@@ -42,9 +42,6 @@ func NewSecretIamPolicy(ctx *pulumi.Context,
 	if args == nil || args.SecretId == nil {
 		return nil, errors.New("missing required argument 'SecretId'")
 	}
-	if args == nil {
-		args = &SecretIamPolicyArgs{}
-	}
 	var resource SecretIamPolicy
 	err := ctx.RegisterResource("gcp:secretmanager/secretIamPolicy:SecretIamPolicy", name, args, &resource, opts...)
 	if err != nil {

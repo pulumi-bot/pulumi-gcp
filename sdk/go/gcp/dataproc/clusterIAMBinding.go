@@ -52,9 +52,6 @@ func NewClusterIAMBinding(ctx *pulumi.Context,
 	if args == nil || args.Role == nil {
 		return nil, errors.New("missing required argument 'Role'")
 	}
-	if args == nil {
-		args = &ClusterIAMBindingArgs{}
-	}
 	var resource ClusterIAMBinding
 	err := ctx.RegisterResource("gcp:dataproc/clusterIAMBinding:ClusterIAMBinding", name, args, &resource, opts...)
 	if err != nil {

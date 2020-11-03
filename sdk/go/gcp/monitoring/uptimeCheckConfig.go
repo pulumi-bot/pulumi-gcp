@@ -67,9 +67,6 @@ func NewUptimeCheckConfig(ctx *pulumi.Context,
 	if args == nil || args.Timeout == nil {
 		return nil, errors.New("missing required argument 'Timeout'")
 	}
-	if args == nil {
-		args = &UptimeCheckConfigArgs{}
-	}
 	var resource UptimeCheckConfig
 	err := ctx.RegisterResource("gcp:monitoring/uptimeCheckConfig:UptimeCheckConfig", name, args, &resource, opts...)
 	if err != nil {

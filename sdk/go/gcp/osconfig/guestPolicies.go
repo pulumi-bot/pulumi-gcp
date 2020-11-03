@@ -80,9 +80,6 @@ func NewGuestPolicies(ctx *pulumi.Context,
 	if args == nil || args.GuestPolicyId == nil {
 		return nil, errors.New("missing required argument 'GuestPolicyId'")
 	}
-	if args == nil {
-		args = &GuestPoliciesArgs{}
-	}
 	var resource GuestPolicies
 	err := ctx.RegisterResource("gcp:osconfig/guestPolicies:GuestPolicies", name, args, &resource, opts...)
 	if err != nil {

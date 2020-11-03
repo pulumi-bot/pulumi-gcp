@@ -58,9 +58,6 @@ func NewInstance(ctx *pulumi.Context,
 	if args == nil || args.DisplayName == nil {
 		return nil, errors.New("missing required argument 'DisplayName'")
 	}
-	if args == nil {
-		args = &InstanceArgs{}
-	}
 	var resource Instance
 	err := ctx.RegisterResource("gcp:spanner/instance:Instance", name, args, &resource, opts...)
 	if err != nil {

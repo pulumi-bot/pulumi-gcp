@@ -69,9 +69,6 @@ func NewPacketMirroring(ctx *pulumi.Context,
 	if args == nil || args.Network == nil {
 		return nil, errors.New("missing required argument 'Network'")
 	}
-	if args == nil {
-		args = &PacketMirroringArgs{}
-	}
 	var resource PacketMirroring
 	err := ctx.RegisterResource("gcp:compute/packetMirroring:PacketMirroring", name, args, &resource, opts...)
 	if err != nil {

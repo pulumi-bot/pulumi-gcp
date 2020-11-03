@@ -77,9 +77,6 @@ func NewRoutine(ctx *pulumi.Context,
 	if args == nil || args.RoutineId == nil {
 		return nil, errors.New("missing required argument 'RoutineId'")
 	}
-	if args == nil {
-		args = &RoutineArgs{}
-	}
 	var resource Routine
 	err := ctx.RegisterResource("gcp:bigquery/routine:Routine", name, args, &resource, opts...)
 	if err != nil {

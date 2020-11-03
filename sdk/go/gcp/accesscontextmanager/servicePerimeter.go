@@ -101,9 +101,6 @@ func NewServicePerimeter(ctx *pulumi.Context,
 	if args == nil || args.Title == nil {
 		return nil, errors.New("missing required argument 'Title'")
 	}
-	if args == nil {
-		args = &ServicePerimeterArgs{}
-	}
 	var resource ServicePerimeter
 	err := ctx.RegisterResource("gcp:accesscontextmanager/servicePerimeter:ServicePerimeter", name, args, &resource, opts...)
 	if err != nil {

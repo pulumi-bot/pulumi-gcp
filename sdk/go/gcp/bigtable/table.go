@@ -37,9 +37,6 @@ func NewTable(ctx *pulumi.Context,
 	if args == nil || args.InstanceName == nil {
 		return nil, errors.New("missing required argument 'InstanceName'")
 	}
-	if args == nil {
-		args = &TableArgs{}
-	}
 	var resource Table
 	err := ctx.RegisterResource("gcp:bigtable/table:Table", name, args, &resource, opts...)
 	if err != nil {
