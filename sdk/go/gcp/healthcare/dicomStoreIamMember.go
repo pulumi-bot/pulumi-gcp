@@ -4,6 +4,7 @@
 package healthcare
 
 import (
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -40,17 +41,17 @@ type DicomStoreIamMember struct {
 // NewDicomStoreIamMember registers a new resource with the given unique name, arguments, and options.
 func NewDicomStoreIamMember(ctx *pulumi.Context,
 	name string, args *DicomStoreIamMemberArgs, opts ...pulumi.ResourceOption) (*DicomStoreIamMember, error) {
-	if args == nil || args.DicomStoreId == nil {
-		return nil, errors.New("missing required argument 'DicomStoreId'")
-	}
-	if args == nil || args.Member == nil {
-		return nil, errors.New("missing required argument 'Member'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &DicomStoreIamMemberArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.DicomStoreId == nil {
+		return nil, errors.New("invalid value for required argument 'DicomStoreId'")
+	}
+	if args.Member == nil {
+		return nil, errors.New("invalid value for required argument 'Member'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource DicomStoreIamMember
 	err := ctx.RegisterResource("gcp:healthcare/dicomStoreIamMember:DicomStoreIamMember", name, args, &resource, opts...)

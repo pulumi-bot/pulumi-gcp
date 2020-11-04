@@ -4,6 +4,7 @@
 package storage
 
 import (
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -36,11 +37,11 @@ type BucketACL struct {
 // NewBucketACL registers a new resource with the given unique name, arguments, and options.
 func NewBucketACL(ctx *pulumi.Context,
 	name string, args *BucketACLArgs, opts ...pulumi.ResourceOption) (*BucketACL, error) {
-	if args == nil || args.Bucket == nil {
-		return nil, errors.New("missing required argument 'Bucket'")
-	}
 	if args == nil {
-		args = &BucketACLArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Bucket == nil {
+		return nil, errors.New("invalid value for required argument 'Bucket'")
 	}
 	var resource BucketACL
 	err := ctx.RegisterResource("gcp:storage/bucketACL:BucketACL", name, args, &resource, opts...)
