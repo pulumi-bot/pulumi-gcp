@@ -4,6 +4,7 @@
 package diagflow
 
 import (
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -46,14 +47,14 @@ type EntityType struct {
 // NewEntityType registers a new resource with the given unique name, arguments, and options.
 func NewEntityType(ctx *pulumi.Context,
 	name string, args *EntityTypeArgs, opts ...pulumi.ResourceOption) (*EntityType, error) {
-	if args == nil || args.DisplayName == nil {
-		return nil, errors.New("missing required argument 'DisplayName'")
-	}
-	if args == nil || args.Kind == nil {
-		return nil, errors.New("missing required argument 'Kind'")
-	}
 	if args == nil {
-		args = &EntityTypeArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.DisplayName == nil {
+		return nil, errors.New("invalid value for required argument 'DisplayName'")
+	}
+	if args.Kind == nil {
+		return nil, errors.New("invalid value for required argument 'Kind'")
 	}
 	var resource EntityType
 	err := ctx.RegisterResource("gcp:diagflow/entityType:EntityType", name, args, &resource, opts...)

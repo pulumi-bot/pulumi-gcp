@@ -4,6 +4,7 @@
 package storage
 
 import (
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -62,11 +63,11 @@ type BucketObject struct {
 // NewBucketObject registers a new resource with the given unique name, arguments, and options.
 func NewBucketObject(ctx *pulumi.Context,
 	name string, args *BucketObjectArgs, opts ...pulumi.ResourceOption) (*BucketObject, error) {
-	if args == nil || args.Bucket == nil {
-		return nil, errors.New("missing required argument 'Bucket'")
-	}
 	if args == nil {
-		args = &BucketObjectArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Bucket == nil {
+		return nil, errors.New("invalid value for required argument 'Bucket'")
 	}
 	var resource BucketObject
 	err := ctx.RegisterResource("gcp:storage/bucketObject:BucketObject", name, args, &resource, opts...)
