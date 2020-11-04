@@ -4,6 +4,7 @@
 package billing
 
 import (
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -36,14 +37,14 @@ type AccountIamPolicy struct {
 // NewAccountIamPolicy registers a new resource with the given unique name, arguments, and options.
 func NewAccountIamPolicy(ctx *pulumi.Context,
 	name string, args *AccountIamPolicyArgs, opts ...pulumi.ResourceOption) (*AccountIamPolicy, error) {
-	if args == nil || args.BillingAccountId == nil {
-		return nil, errors.New("missing required argument 'BillingAccountId'")
-	}
-	if args == nil || args.PolicyData == nil {
-		return nil, errors.New("missing required argument 'PolicyData'")
-	}
 	if args == nil {
-		args = &AccountIamPolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.BillingAccountId == nil {
+		return nil, errors.New("invalid value for required argument 'BillingAccountId'")
+	}
+	if args.PolicyData == nil {
+		return nil, errors.New("invalid value for required argument 'PolicyData'")
 	}
 	var resource AccountIamPolicy
 	err := ctx.RegisterResource("gcp:billing/accountIamPolicy:AccountIamPolicy", name, args, &resource, opts...)

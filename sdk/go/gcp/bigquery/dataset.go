@@ -4,6 +4,7 @@
 package bigquery
 
 import (
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -68,11 +69,11 @@ type Dataset struct {
 // NewDataset registers a new resource with the given unique name, arguments, and options.
 func NewDataset(ctx *pulumi.Context,
 	name string, args *DatasetArgs, opts ...pulumi.ResourceOption) (*Dataset, error) {
-	if args == nil || args.DatasetId == nil {
-		return nil, errors.New("missing required argument 'DatasetId'")
-	}
 	if args == nil {
-		args = &DatasetArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.DatasetId == nil {
+		return nil, errors.New("invalid value for required argument 'DatasetId'")
 	}
 	var resource Dataset
 	err := ctx.RegisterResource("gcp:bigquery/dataset:Dataset", name, args, &resource, opts...)

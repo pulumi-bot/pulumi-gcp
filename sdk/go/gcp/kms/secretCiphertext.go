@@ -4,6 +4,7 @@
 package kms
 
 import (
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -46,14 +47,14 @@ type SecretCiphertext struct {
 // NewSecretCiphertext registers a new resource with the given unique name, arguments, and options.
 func NewSecretCiphertext(ctx *pulumi.Context,
 	name string, args *SecretCiphertextArgs, opts ...pulumi.ResourceOption) (*SecretCiphertext, error) {
-	if args == nil || args.CryptoKey == nil {
-		return nil, errors.New("missing required argument 'CryptoKey'")
-	}
-	if args == nil || args.Plaintext == nil {
-		return nil, errors.New("missing required argument 'Plaintext'")
-	}
 	if args == nil {
-		args = &SecretCiphertextArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.CryptoKey == nil {
+		return nil, errors.New("invalid value for required argument 'CryptoKey'")
+	}
+	if args.Plaintext == nil {
+		return nil, errors.New("invalid value for required argument 'Plaintext'")
 	}
 	var resource SecretCiphertext
 	err := ctx.RegisterResource("gcp:kms/secretCiphertext:SecretCiphertext", name, args, &resource, opts...)
