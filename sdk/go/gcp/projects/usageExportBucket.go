@@ -4,6 +4,7 @@
 package projects
 
 import (
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -33,11 +34,11 @@ type UsageExportBucket struct {
 // NewUsageExportBucket registers a new resource with the given unique name, arguments, and options.
 func NewUsageExportBucket(ctx *pulumi.Context,
 	name string, args *UsageExportBucketArgs, opts ...pulumi.ResourceOption) (*UsageExportBucket, error) {
-	if args == nil || args.BucketName == nil {
-		return nil, errors.New("missing required argument 'BucketName'")
-	}
 	if args == nil {
-		args = &UsageExportBucketArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.BucketName == nil {
+		return nil, errors.New("invalid value for required argument 'BucketName'")
 	}
 	var resource UsageExportBucket
 	err := ctx.RegisterResource("gcp:projects/usageExportBucket:UsageExportBucket", name, args, &resource, opts...)

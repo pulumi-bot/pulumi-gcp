@@ -4,6 +4,7 @@
 package container
 
 import (
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -80,11 +81,11 @@ type NodePool struct {
 // NewNodePool registers a new resource with the given unique name, arguments, and options.
 func NewNodePool(ctx *pulumi.Context,
 	name string, args *NodePoolArgs, opts ...pulumi.ResourceOption) (*NodePool, error) {
-	if args == nil || args.Cluster == nil {
-		return nil, errors.New("missing required argument 'Cluster'")
-	}
 	if args == nil {
-		args = &NodePoolArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Cluster == nil {
+		return nil, errors.New("invalid value for required argument 'Cluster'")
 	}
 	var resource NodePool
 	err := ctx.RegisterResource("gcp:container/nodePool:NodePool", name, args, &resource, opts...)

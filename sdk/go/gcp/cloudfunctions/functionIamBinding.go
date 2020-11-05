@@ -4,6 +4,7 @@
 package cloudfunctions
 
 import (
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -44,17 +45,17 @@ type FunctionIamBinding struct {
 // NewFunctionIamBinding registers a new resource with the given unique name, arguments, and options.
 func NewFunctionIamBinding(ctx *pulumi.Context,
 	name string, args *FunctionIamBindingArgs, opts ...pulumi.ResourceOption) (*FunctionIamBinding, error) {
-	if args == nil || args.CloudFunction == nil {
-		return nil, errors.New("missing required argument 'CloudFunction'")
-	}
-	if args == nil || args.Members == nil {
-		return nil, errors.New("missing required argument 'Members'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &FunctionIamBindingArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.CloudFunction == nil {
+		return nil, errors.New("invalid value for required argument 'CloudFunction'")
+	}
+	if args.Members == nil {
+		return nil, errors.New("invalid value for required argument 'Members'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource FunctionIamBinding
 	err := ctx.RegisterResource("gcp:cloudfunctions/functionIamBinding:FunctionIamBinding", name, args, &resource, opts...)
