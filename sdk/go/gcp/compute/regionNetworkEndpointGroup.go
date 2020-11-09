@@ -19,6 +19,26 @@ import (
 //     * [Official Documentation](https://cloud.google.com/load-balancing/docs/negs/serverless-neg-concepts)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// RegionNetworkEndpointGroup can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:compute/regionNetworkEndpointGroup:RegionNetworkEndpointGroup default projects/{{project}}/regions/{{region}}/networkEndpointGroups/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/regionNetworkEndpointGroup:RegionNetworkEndpointGroup default {{project}}/{{region}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/regionNetworkEndpointGroup:RegionNetworkEndpointGroup default {{region}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/regionNetworkEndpointGroup:RegionNetworkEndpointGroup default {{name}}
+// ```
 type RegionNetworkEndpointGroup struct {
 	pulumi.CustomResourceState
 

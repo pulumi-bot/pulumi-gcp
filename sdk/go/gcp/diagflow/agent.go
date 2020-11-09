@@ -22,6 +22,14 @@ import (
 //     * [Official Documentation](https://cloud.google.com/dialogflow/docs/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Agent can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:diagflow/agent:Agent default {{project}}
+// ```
 type Agent struct {
 	pulumi.CustomResourceState
 

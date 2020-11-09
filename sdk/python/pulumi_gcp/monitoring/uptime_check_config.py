@@ -44,6 +44,14 @@ class UptimeCheckConfig(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        UptimeCheckConfig can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:monitoring/uptimeCheckConfig:UptimeCheckConfig default {{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UptimeCheckConfigContentMatcherArgs']]]] content_matchers: The expected content on the page the check is run against. Currently, only the first entry in the list is supported, and other entries will be ignored. The server will look for an exact match of the string in the page response's content. This field is optional and should only be specified if a content match is required.

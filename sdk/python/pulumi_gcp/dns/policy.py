@@ -39,6 +39,22 @@ class Policy(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        Policy can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:dns/policy:Policy default projects/{{project}}/policies/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:dns/policy:Policy default {{project}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:dns/policy:Policy default {{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['PolicyAlternativeNameServerConfigArgs']] alternative_name_server_config: Sets an alternative name server for the associated networks.

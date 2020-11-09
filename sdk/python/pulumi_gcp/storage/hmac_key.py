@@ -41,6 +41,22 @@ class HmacKey(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        HmacKey can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:storage/hmacKey:HmacKey default projects/{{project}}/hmacKeys/{{access_id}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:storage/hmacKey:HmacKey default {{project}}/{{access_id}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:storage/hmacKey:HmacKey default {{access_id}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.

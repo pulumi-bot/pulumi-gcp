@@ -21,6 +21,18 @@ namespace Pulumi.Gcp.Logging
     ///     * [Official Documentation](https://cloud.google.com/logging/docs/apis)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Metric can be imported using any of these accepted formats
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:logging/metric:Metric default {{project}} {{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:logging/metric:Metric default {{name}}
+    /// ```
     /// </summary>
     public partial class Metric : Pulumi.CustomResource
     {

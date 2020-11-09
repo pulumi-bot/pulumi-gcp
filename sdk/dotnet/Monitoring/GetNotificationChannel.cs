@@ -26,8 +26,10 @@ namespace Pulumi.Gcp.Monitoring
         ///     * [Monitoring API Documentation](https://cloud.google.com/monitoring/api/v3/)
         /// 
         /// 
+        /// 
         /// {{% examples %}}
         /// ## Example Usage
+        /// 
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetNotificationChannelResult> InvokeAsync(GetNotificationChannelArgs? args = null, InvokeOptions? options = null)

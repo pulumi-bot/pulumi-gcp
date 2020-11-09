@@ -21,6 +21,18 @@ import (
 //     * [Service Perimeter Quickstart](https://cloud.google.com/vpc-service-controls/docs/quickstart)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// ServicePerimeters can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:accesscontextmanager/servicePerimeters:ServicePerimeters default {{parent}}/servicePerimeters
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:accesscontextmanager/servicePerimeters:ServicePerimeters default {{parent}}
+// ```
 type ServicePerimeters struct {
 	pulumi.CustomResourceState
 

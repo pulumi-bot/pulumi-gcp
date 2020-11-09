@@ -26,6 +26,14 @@ import (
 // `billingProject` you defined.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// AccessLevel can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:accesscontextmanager/accessLevel:AccessLevel default {{name}}
+// ```
 type AccessLevel struct {
 	pulumi.CustomResourceState
 

@@ -36,6 +36,22 @@ class TenantInboundSamlConfig(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        TenantInboundSamlConfig can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:identityplatform/tenantInboundSamlConfig:TenantInboundSamlConfig default projects/{{project}}/tenants/{{tenant}}/inboundSamlConfigs/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:identityplatform/tenantInboundSamlConfig:TenantInboundSamlConfig default {{project}}/{{tenant}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:identityplatform/tenantInboundSamlConfig:TenantInboundSamlConfig default {{tenant}}/{{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] display_name: Human friendly display name.

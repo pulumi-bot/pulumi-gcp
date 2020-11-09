@@ -50,6 +50,26 @@ class NetworkEndpointGroup(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        NetworkEndpointGroup can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:compute/networkEndpointGroup:NetworkEndpointGroup default projects/{{project}}/zones/{{zone}}/networkEndpointGroups/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/networkEndpointGroup:NetworkEndpointGroup default {{project}}/{{zone}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/networkEndpointGroup:NetworkEndpointGroup default {{zone}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/networkEndpointGroup:NetworkEndpointGroup default {{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] default_port: The default port used if the port number is not specified in the

@@ -28,6 +28,14 @@ class SharedVPCHostProject(pulumi.CustomResource):
         [the Project API documentation](https://cloud.google.com/compute/docs/reference/latest/projects),
         where the Shared VPC feature is referred to by its former name "XPN".
 
+        ## Import
+
+        Google Compute Engine Shared VPC host project feature can be imported using the `project`, e.g.
+
+        ```sh
+         $ pulumi import gcp:compute/sharedVPCHostProject:SharedVPCHostProject host host-project-id
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] project: The ID of the project that will serve as a Shared VPC host project

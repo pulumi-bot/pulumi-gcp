@@ -19,6 +19,14 @@ namespace Pulumi.Gcp.DataCatalog
     ///     * [Official Documentation](https://cloud.google.com/data-catalog/docs)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// EntryGroup can be imported using any of these accepted formats
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:datacatalog/entryGroup:EntryGroup default {{name}}
+    /// ```
     /// </summary>
     public partial class EntryGroup : Pulumi.CustomResource
     {

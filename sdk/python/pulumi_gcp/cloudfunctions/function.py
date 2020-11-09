@@ -56,6 +56,18 @@ class Function(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        Functions can be imported using the `name` or `{{project}}/{{region}}/name`, e.g.
+
+        ```sh
+         $ pulumi import gcp:cloudfunctions/function:Function default function-test
+        ```
+
+        ```sh
+         $ pulumi import gcp:cloudfunctions/function:Function default {{project}}/{{region}}/function-test
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] available_memory_mb: Memory (in MB), available to the function. Default value is 256MB. Allowed values are: 128MB, 256MB, 512MB, 1024MB, and 2048MB.

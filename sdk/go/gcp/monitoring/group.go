@@ -22,6 +22,14 @@ import (
 //     * [Official Documentation](https://cloud.google.com/monitoring/groups/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Group can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:monitoring/group:Group default {{name}}
+// ```
 type Group struct {
 	pulumi.CustomResourceState
 

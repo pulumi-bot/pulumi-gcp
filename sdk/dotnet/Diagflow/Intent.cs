@@ -20,6 +20,14 @@ namespace Pulumi.Gcp.Diagflow
     ///     * [Official Documentation](https://cloud.google.com/dialogflow/docs/)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Intent can be imported using any of these accepted formats
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:diagflow/intent:Intent default {{name}}
+    /// ```
     /// </summary>
     public partial class Intent : Pulumi.CustomResource
     {

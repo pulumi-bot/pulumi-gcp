@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
+import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
@@ -18,6 +17,22 @@ import * as utilities from "../utilities";
  *     * [Creating Attestations (Occurrences)](https://cloud.google.com/binary-authorization/docs/making-attestations)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Note can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import gcp:containeranalysis/note:Note default projects/{{project}}/notes/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:containeranalysis/note:Note default {{project}}/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:containeranalysis/note:Note default {{name}}
+ * ```
  */
 export class Note extends pulumi.CustomResource {
     /**

@@ -19,6 +19,22 @@ namespace Pulumi.Gcp.CloudRun
     ///     * [Official Documentation](https://cloud.google.com/run/docs/mapping-custom-domains)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// DomainMapping can be imported using any of these accepted formats
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:cloudrun/domainMapping:DomainMapping default locations/{{location}}/namespaces/{{project}}/domainmappings/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:cloudrun/domainMapping:DomainMapping default {{location}}/{{project}}/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:cloudrun/domainMapping:DomainMapping default {{location}}/{{name}}
+    /// ```
     /// </summary>
     public partial class DomainMapping : Pulumi.CustomResource
     {

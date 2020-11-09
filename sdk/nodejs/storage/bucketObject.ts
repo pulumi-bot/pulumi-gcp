@@ -11,6 +11,10 @@ import * as utilities from "../utilities";
  * [the official documentation](https://cloud.google.com/storage/docs/key-terms#objects)
  * and
  * [API](https://cloud.google.com/storage/docs/json_api/v1/objects).
+ *
+ * ## Import
+ *
+ * This resource does not support import.
  */
 export class BucketObject extends pulumi.CustomResource {
     /**

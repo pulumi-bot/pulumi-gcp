@@ -19,6 +19,14 @@ import (
 //     * [Official Documentation](https://cloud.google.com/dialogflow/docs/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// EntityType can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:diagflow/entityType:EntityType default {{name}}
+// ```
 type EntityType struct {
 	pulumi.CustomResourceState
 

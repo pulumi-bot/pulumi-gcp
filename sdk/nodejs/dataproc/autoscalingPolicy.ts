@@ -2,14 +2,29 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
+import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
  * Describes an autoscaling policy for Dataproc cluster autoscaler.
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * AutoscalingPolicy can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import gcp:dataproc/autoscalingPolicy:AutoscalingPolicy default projects/{{project}}/locations/{{location}}/autoscalingPolicies/{{policy_id}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:dataproc/autoscalingPolicy:AutoscalingPolicy default {{project}}/{{location}}/{{policy_id}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:dataproc/autoscalingPolicy:AutoscalingPolicy default {{location}}/{{policy_id}}
+ * ```
  */
 export class AutoscalingPolicy extends pulumi.CustomResource {
     /**

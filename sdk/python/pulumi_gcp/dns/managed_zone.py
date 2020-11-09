@@ -46,6 +46,22 @@ class ManagedZone(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        ManagedZone can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:dns/managedZone:ManagedZone default projects/{{project}}/managedZones/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:dns/managedZone:ManagedZone default {{project}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:dns/managedZone:ManagedZone default {{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: A textual description field. Defaults to 'Managed by Pulumi'.

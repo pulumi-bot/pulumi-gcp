@@ -20,6 +20,22 @@ namespace Pulumi.Gcp.Dns
     ///     * [Using DNS server policies](https://cloud.google.com/dns/zones/#using-dns-server-policies)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Policy can be imported using any of these accepted formats
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:dns/policy:Policy default projects/{{project}}/policies/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:dns/policy:Policy default {{project}}/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:dns/policy:Policy default {{name}}
+    /// ```
     /// </summary>
     public partial class Policy : Pulumi.CustomResource
     {

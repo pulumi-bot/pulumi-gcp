@@ -17,6 +17,22 @@ import (
 // * [API documentation](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// ServiceSplitTraffic can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:appengine/engineSplitTraffic:EngineSplitTraffic default apps/{{project}}/services/{{service}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:appengine/engineSplitTraffic:EngineSplitTraffic default {{project}}/{{service}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:appengine/engineSplitTraffic:EngineSplitTraffic default {{service}}
+// ```
 type EngineSplitTraffic struct {
 	pulumi.CustomResourceState
 

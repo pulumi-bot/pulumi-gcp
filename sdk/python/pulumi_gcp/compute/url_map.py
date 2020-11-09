@@ -40,6 +40,22 @@ class URLMap(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        UrlMap can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:compute/uRLMap:URLMap default projects/{{project}}/global/urlMaps/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/uRLMap:URLMap default {{project}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/uRLMap:URLMap default {{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['URLMapDefaultRouteActionArgs']] default_route_action: defaultRouteAction takes effect when none of the pathRules or routeRules match. The load balancer performs
