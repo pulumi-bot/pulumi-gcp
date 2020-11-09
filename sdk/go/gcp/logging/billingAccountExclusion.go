@@ -4,6 +4,7 @@
 package logging
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -138,4 +139,43 @@ type BillingAccountExclusionArgs struct {
 
 func (BillingAccountExclusionArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*billingAccountExclusionArgs)(nil)).Elem()
+}
+
+type BillingAccountExclusionInput interface {
+	pulumi.Input
+
+	ToBillingAccountExclusionOutput() BillingAccountExclusionOutput
+	ToBillingAccountExclusionOutputWithContext(ctx context.Context) BillingAccountExclusionOutput
+}
+
+func (BillingAccountExclusion) ElementType() reflect.Type {
+	return reflect.TypeOf((*BillingAccountExclusion)(nil)).Elem()
+}
+
+func (i BillingAccountExclusion) ToBillingAccountExclusionOutput() BillingAccountExclusionOutput {
+	return i.ToBillingAccountExclusionOutputWithContext(context.Background())
+}
+
+func (i BillingAccountExclusion) ToBillingAccountExclusionOutputWithContext(ctx context.Context) BillingAccountExclusionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BillingAccountExclusionOutput)
+}
+
+type BillingAccountExclusionOutput struct {
+	*pulumi.OutputState
+}
+
+func (BillingAccountExclusionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BillingAccountExclusionOutput)(nil)).Elem()
+}
+
+func (o BillingAccountExclusionOutput) ToBillingAccountExclusionOutput() BillingAccountExclusionOutput {
+	return o
+}
+
+func (o BillingAccountExclusionOutput) ToBillingAccountExclusionOutputWithContext(ctx context.Context) BillingAccountExclusionOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(BillingAccountExclusionOutput{})
 }

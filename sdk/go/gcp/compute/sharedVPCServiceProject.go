@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -95,4 +96,43 @@ type SharedVPCServiceProjectArgs struct {
 
 func (SharedVPCServiceProjectArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*sharedVPCServiceProjectArgs)(nil)).Elem()
+}
+
+type SharedVPCServiceProjectInput interface {
+	pulumi.Input
+
+	ToSharedVPCServiceProjectOutput() SharedVPCServiceProjectOutput
+	ToSharedVPCServiceProjectOutputWithContext(ctx context.Context) SharedVPCServiceProjectOutput
+}
+
+func (SharedVPCServiceProject) ElementType() reflect.Type {
+	return reflect.TypeOf((*SharedVPCServiceProject)(nil)).Elem()
+}
+
+func (i SharedVPCServiceProject) ToSharedVPCServiceProjectOutput() SharedVPCServiceProjectOutput {
+	return i.ToSharedVPCServiceProjectOutputWithContext(context.Background())
+}
+
+func (i SharedVPCServiceProject) ToSharedVPCServiceProjectOutputWithContext(ctx context.Context) SharedVPCServiceProjectOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SharedVPCServiceProjectOutput)
+}
+
+type SharedVPCServiceProjectOutput struct {
+	*pulumi.OutputState
+}
+
+func (SharedVPCServiceProjectOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SharedVPCServiceProjectOutput)(nil)).Elem()
+}
+
+func (o SharedVPCServiceProjectOutput) ToSharedVPCServiceProjectOutput() SharedVPCServiceProjectOutput {
+	return o
+}
+
+func (o SharedVPCServiceProjectOutput) ToSharedVPCServiceProjectOutputWithContext(ctx context.Context) SharedVPCServiceProjectOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SharedVPCServiceProjectOutput{})
 }

@@ -4,6 +4,7 @@
 package healthcare
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -370,4 +371,43 @@ type FhirStoreArgs struct {
 
 func (FhirStoreArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*fhirStoreArgs)(nil)).Elem()
+}
+
+type FhirStoreInput interface {
+	pulumi.Input
+
+	ToFhirStoreOutput() FhirStoreOutput
+	ToFhirStoreOutputWithContext(ctx context.Context) FhirStoreOutput
+}
+
+func (FhirStore) ElementType() reflect.Type {
+	return reflect.TypeOf((*FhirStore)(nil)).Elem()
+}
+
+func (i FhirStore) ToFhirStoreOutput() FhirStoreOutput {
+	return i.ToFhirStoreOutputWithContext(context.Background())
+}
+
+func (i FhirStore) ToFhirStoreOutputWithContext(ctx context.Context) FhirStoreOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FhirStoreOutput)
+}
+
+type FhirStoreOutput struct {
+	*pulumi.OutputState
+}
+
+func (FhirStoreOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FhirStoreOutput)(nil)).Elem()
+}
+
+func (o FhirStoreOutput) ToFhirStoreOutput() FhirStoreOutput {
+	return o
+}
+
+func (o FhirStoreOutput) ToFhirStoreOutputWithContext(ctx context.Context) FhirStoreOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(FhirStoreOutput{})
 }

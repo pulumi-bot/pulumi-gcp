@@ -4,6 +4,7 @@
 package datacatalog
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -304,4 +305,43 @@ type EntryArgs struct {
 
 func (EntryArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*entryArgs)(nil)).Elem()
+}
+
+type EntryInput interface {
+	pulumi.Input
+
+	ToEntryOutput() EntryOutput
+	ToEntryOutputWithContext(ctx context.Context) EntryOutput
+}
+
+func (Entry) ElementType() reflect.Type {
+	return reflect.TypeOf((*Entry)(nil)).Elem()
+}
+
+func (i Entry) ToEntryOutput() EntryOutput {
+	return i.ToEntryOutputWithContext(context.Background())
+}
+
+func (i Entry) ToEntryOutputWithContext(ctx context.Context) EntryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EntryOutput)
+}
+
+type EntryOutput struct {
+	*pulumi.OutputState
+}
+
+func (EntryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EntryOutput)(nil)).Elem()
+}
+
+func (o EntryOutput) ToEntryOutput() EntryOutput {
+	return o
+}
+
+func (o EntryOutput) ToEntryOutputWithContext(ctx context.Context) EntryOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(EntryOutput{})
 }

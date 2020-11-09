@@ -4,6 +4,7 @@
 package iap
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -135,4 +136,43 @@ type AppEngineServiceIamPolicyArgs struct {
 
 func (AppEngineServiceIamPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*appEngineServiceIamPolicyArgs)(nil)).Elem()
+}
+
+type AppEngineServiceIamPolicyInput interface {
+	pulumi.Input
+
+	ToAppEngineServiceIamPolicyOutput() AppEngineServiceIamPolicyOutput
+	ToAppEngineServiceIamPolicyOutputWithContext(ctx context.Context) AppEngineServiceIamPolicyOutput
+}
+
+func (AppEngineServiceIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*AppEngineServiceIamPolicy)(nil)).Elem()
+}
+
+func (i AppEngineServiceIamPolicy) ToAppEngineServiceIamPolicyOutput() AppEngineServiceIamPolicyOutput {
+	return i.ToAppEngineServiceIamPolicyOutputWithContext(context.Background())
+}
+
+func (i AppEngineServiceIamPolicy) ToAppEngineServiceIamPolicyOutputWithContext(ctx context.Context) AppEngineServiceIamPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AppEngineServiceIamPolicyOutput)
+}
+
+type AppEngineServiceIamPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (AppEngineServiceIamPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AppEngineServiceIamPolicyOutput)(nil)).Elem()
+}
+
+func (o AppEngineServiceIamPolicyOutput) ToAppEngineServiceIamPolicyOutput() AppEngineServiceIamPolicyOutput {
+	return o
+}
+
+func (o AppEngineServiceIamPolicyOutput) ToAppEngineServiceIamPolicyOutputWithContext(ctx context.Context) AppEngineServiceIamPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AppEngineServiceIamPolicyOutput{})
 }

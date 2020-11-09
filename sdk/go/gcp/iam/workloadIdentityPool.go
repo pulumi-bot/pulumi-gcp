@@ -4,6 +4,7 @@
 package iam
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -163,4 +164,43 @@ type WorkloadIdentityPoolArgs struct {
 
 func (WorkloadIdentityPoolArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*workloadIdentityPoolArgs)(nil)).Elem()
+}
+
+type WorkloadIdentityPoolInput interface {
+	pulumi.Input
+
+	ToWorkloadIdentityPoolOutput() WorkloadIdentityPoolOutput
+	ToWorkloadIdentityPoolOutputWithContext(ctx context.Context) WorkloadIdentityPoolOutput
+}
+
+func (WorkloadIdentityPool) ElementType() reflect.Type {
+	return reflect.TypeOf((*WorkloadIdentityPool)(nil)).Elem()
+}
+
+func (i WorkloadIdentityPool) ToWorkloadIdentityPoolOutput() WorkloadIdentityPoolOutput {
+	return i.ToWorkloadIdentityPoolOutputWithContext(context.Background())
+}
+
+func (i WorkloadIdentityPool) ToWorkloadIdentityPoolOutputWithContext(ctx context.Context) WorkloadIdentityPoolOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WorkloadIdentityPoolOutput)
+}
+
+type WorkloadIdentityPoolOutput struct {
+	*pulumi.OutputState
+}
+
+func (WorkloadIdentityPoolOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WorkloadIdentityPoolOutput)(nil)).Elem()
+}
+
+func (o WorkloadIdentityPoolOutput) ToWorkloadIdentityPoolOutput() WorkloadIdentityPoolOutput {
+	return o
+}
+
+func (o WorkloadIdentityPoolOutput) ToWorkloadIdentityPoolOutputWithContext(ctx context.Context) WorkloadIdentityPoolOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(WorkloadIdentityPoolOutput{})
 }

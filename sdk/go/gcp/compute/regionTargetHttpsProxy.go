@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -210,4 +211,43 @@ type RegionTargetHttpsProxyArgs struct {
 
 func (RegionTargetHttpsProxyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*regionTargetHttpsProxyArgs)(nil)).Elem()
+}
+
+type RegionTargetHttpsProxyInput interface {
+	pulumi.Input
+
+	ToRegionTargetHttpsProxyOutput() RegionTargetHttpsProxyOutput
+	ToRegionTargetHttpsProxyOutputWithContext(ctx context.Context) RegionTargetHttpsProxyOutput
+}
+
+func (RegionTargetHttpsProxy) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionTargetHttpsProxy)(nil)).Elem()
+}
+
+func (i RegionTargetHttpsProxy) ToRegionTargetHttpsProxyOutput() RegionTargetHttpsProxyOutput {
+	return i.ToRegionTargetHttpsProxyOutputWithContext(context.Background())
+}
+
+func (i RegionTargetHttpsProxy) ToRegionTargetHttpsProxyOutputWithContext(ctx context.Context) RegionTargetHttpsProxyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegionTargetHttpsProxyOutput)
+}
+
+type RegionTargetHttpsProxyOutput struct {
+	*pulumi.OutputState
+}
+
+func (RegionTargetHttpsProxyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionTargetHttpsProxyOutput)(nil)).Elem()
+}
+
+func (o RegionTargetHttpsProxyOutput) ToRegionTargetHttpsProxyOutput() RegionTargetHttpsProxyOutput {
+	return o
+}
+
+func (o RegionTargetHttpsProxyOutput) ToRegionTargetHttpsProxyOutputWithContext(ctx context.Context) RegionTargetHttpsProxyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RegionTargetHttpsProxyOutput{})
 }

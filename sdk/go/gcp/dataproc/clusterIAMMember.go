@@ -4,6 +4,7 @@
 package dataproc
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -155,4 +156,43 @@ type ClusterIAMMemberArgs struct {
 
 func (ClusterIAMMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*clusterIAMMemberArgs)(nil)).Elem()
+}
+
+type ClusterIAMMemberInput interface {
+	pulumi.Input
+
+	ToClusterIAMMemberOutput() ClusterIAMMemberOutput
+	ToClusterIAMMemberOutputWithContext(ctx context.Context) ClusterIAMMemberOutput
+}
+
+func (ClusterIAMMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterIAMMember)(nil)).Elem()
+}
+
+func (i ClusterIAMMember) ToClusterIAMMemberOutput() ClusterIAMMemberOutput {
+	return i.ToClusterIAMMemberOutputWithContext(context.Background())
+}
+
+func (i ClusterIAMMember) ToClusterIAMMemberOutputWithContext(ctx context.Context) ClusterIAMMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterIAMMemberOutput)
+}
+
+type ClusterIAMMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (ClusterIAMMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterIAMMemberOutput)(nil)).Elem()
+}
+
+func (o ClusterIAMMemberOutput) ToClusterIAMMemberOutput() ClusterIAMMemberOutput {
+	return o
+}
+
+func (o ClusterIAMMemberOutput) ToClusterIAMMemberOutputWithContext(ctx context.Context) ClusterIAMMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ClusterIAMMemberOutput{})
 }

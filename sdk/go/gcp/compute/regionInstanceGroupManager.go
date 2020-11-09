@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -316,4 +317,43 @@ type RegionInstanceGroupManagerArgs struct {
 
 func (RegionInstanceGroupManagerArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*regionInstanceGroupManagerArgs)(nil)).Elem()
+}
+
+type RegionInstanceGroupManagerInput interface {
+	pulumi.Input
+
+	ToRegionInstanceGroupManagerOutput() RegionInstanceGroupManagerOutput
+	ToRegionInstanceGroupManagerOutputWithContext(ctx context.Context) RegionInstanceGroupManagerOutput
+}
+
+func (RegionInstanceGroupManager) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionInstanceGroupManager)(nil)).Elem()
+}
+
+func (i RegionInstanceGroupManager) ToRegionInstanceGroupManagerOutput() RegionInstanceGroupManagerOutput {
+	return i.ToRegionInstanceGroupManagerOutputWithContext(context.Background())
+}
+
+func (i RegionInstanceGroupManager) ToRegionInstanceGroupManagerOutputWithContext(ctx context.Context) RegionInstanceGroupManagerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegionInstanceGroupManagerOutput)
+}
+
+type RegionInstanceGroupManagerOutput struct {
+	*pulumi.OutputState
+}
+
+func (RegionInstanceGroupManagerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionInstanceGroupManagerOutput)(nil)).Elem()
+}
+
+func (o RegionInstanceGroupManagerOutput) ToRegionInstanceGroupManagerOutput() RegionInstanceGroupManagerOutput {
+	return o
+}
+
+func (o RegionInstanceGroupManagerOutput) ToRegionInstanceGroupManagerOutputWithContext(ctx context.Context) RegionInstanceGroupManagerOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RegionInstanceGroupManagerOutput{})
 }

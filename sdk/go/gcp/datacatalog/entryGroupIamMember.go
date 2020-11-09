@@ -4,6 +4,7 @@
 package datacatalog
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -145,4 +146,43 @@ type EntryGroupIamMemberArgs struct {
 
 func (EntryGroupIamMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*entryGroupIamMemberArgs)(nil)).Elem()
+}
+
+type EntryGroupIamMemberInput interface {
+	pulumi.Input
+
+	ToEntryGroupIamMemberOutput() EntryGroupIamMemberOutput
+	ToEntryGroupIamMemberOutputWithContext(ctx context.Context) EntryGroupIamMemberOutput
+}
+
+func (EntryGroupIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*EntryGroupIamMember)(nil)).Elem()
+}
+
+func (i EntryGroupIamMember) ToEntryGroupIamMemberOutput() EntryGroupIamMemberOutput {
+	return i.ToEntryGroupIamMemberOutputWithContext(context.Background())
+}
+
+func (i EntryGroupIamMember) ToEntryGroupIamMemberOutputWithContext(ctx context.Context) EntryGroupIamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EntryGroupIamMemberOutput)
+}
+
+type EntryGroupIamMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (EntryGroupIamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EntryGroupIamMemberOutput)(nil)).Elem()
+}
+
+func (o EntryGroupIamMemberOutput) ToEntryGroupIamMemberOutput() EntryGroupIamMemberOutput {
+	return o
+}
+
+func (o EntryGroupIamMemberOutput) ToEntryGroupIamMemberOutputWithContext(ctx context.Context) EntryGroupIamMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(EntryGroupIamMemberOutput{})
 }

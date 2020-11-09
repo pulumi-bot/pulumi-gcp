@@ -4,6 +4,7 @@
 package endpoints
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -107,4 +108,43 @@ type ServiceIamPolicyArgs struct {
 
 func (ServiceIamPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*serviceIamPolicyArgs)(nil)).Elem()
+}
+
+type ServiceIamPolicyInput interface {
+	pulumi.Input
+
+	ToServiceIamPolicyOutput() ServiceIamPolicyOutput
+	ToServiceIamPolicyOutputWithContext(ctx context.Context) ServiceIamPolicyOutput
+}
+
+func (ServiceIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceIamPolicy)(nil)).Elem()
+}
+
+func (i ServiceIamPolicy) ToServiceIamPolicyOutput() ServiceIamPolicyOutput {
+	return i.ToServiceIamPolicyOutputWithContext(context.Background())
+}
+
+func (i ServiceIamPolicy) ToServiceIamPolicyOutputWithContext(ctx context.Context) ServiceIamPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceIamPolicyOutput)
+}
+
+type ServiceIamPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (ServiceIamPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceIamPolicyOutput)(nil)).Elem()
+}
+
+func (o ServiceIamPolicyOutput) ToServiceIamPolicyOutput() ServiceIamPolicyOutput {
+	return o
+}
+
+func (o ServiceIamPolicyOutput) ToServiceIamPolicyOutputWithContext(ctx context.Context) ServiceIamPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ServiceIamPolicyOutput{})
 }

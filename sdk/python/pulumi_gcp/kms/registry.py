@@ -12,11 +12,11 @@ from ._inputs import *
 
 __all__ = ['Registry']
 
-warnings.warn("gcp.kms.Registry has been deprecated in favor of gcp.iot.Registry", DeprecationWarning)
+warnings.warn("""gcp.kms.Registry has been deprecated in favor of gcp.iot.Registry""", DeprecationWarning)
 
 
 class Registry(pulumi.CustomResource):
-    warnings.warn("gcp.kms.Registry has been deprecated in favor of gcp.iot.Registry", DeprecationWarning)
+    warnings.warn("""gcp.kms.Registry has been deprecated in favor of gcp.iot.Registry""", DeprecationWarning)
 
     def __init__(__self__,
                  resource_name: str,

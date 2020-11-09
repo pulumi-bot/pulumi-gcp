@@ -4,6 +4,7 @@
 package appengine
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -489,4 +490,43 @@ type FlexibleAppVersionArgs struct {
 
 func (FlexibleAppVersionArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*flexibleAppVersionArgs)(nil)).Elem()
+}
+
+type FlexibleAppVersionInput interface {
+	pulumi.Input
+
+	ToFlexibleAppVersionOutput() FlexibleAppVersionOutput
+	ToFlexibleAppVersionOutputWithContext(ctx context.Context) FlexibleAppVersionOutput
+}
+
+func (FlexibleAppVersion) ElementType() reflect.Type {
+	return reflect.TypeOf((*FlexibleAppVersion)(nil)).Elem()
+}
+
+func (i FlexibleAppVersion) ToFlexibleAppVersionOutput() FlexibleAppVersionOutput {
+	return i.ToFlexibleAppVersionOutputWithContext(context.Background())
+}
+
+func (i FlexibleAppVersion) ToFlexibleAppVersionOutputWithContext(ctx context.Context) FlexibleAppVersionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionOutput)
+}
+
+type FlexibleAppVersionOutput struct {
+	*pulumi.OutputState
+}
+
+func (FlexibleAppVersionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FlexibleAppVersionOutput)(nil)).Elem()
+}
+
+func (o FlexibleAppVersionOutput) ToFlexibleAppVersionOutput() FlexibleAppVersionOutput {
+	return o
+}
+
+func (o FlexibleAppVersionOutput) ToFlexibleAppVersionOutputWithContext(ctx context.Context) FlexibleAppVersionOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(FlexibleAppVersionOutput{})
 }

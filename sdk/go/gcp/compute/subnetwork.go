@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -403,4 +404,43 @@ type SubnetworkArgs struct {
 
 func (SubnetworkArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*subnetworkArgs)(nil)).Elem()
+}
+
+type SubnetworkInput interface {
+	pulumi.Input
+
+	ToSubnetworkOutput() SubnetworkOutput
+	ToSubnetworkOutputWithContext(ctx context.Context) SubnetworkOutput
+}
+
+func (Subnetwork) ElementType() reflect.Type {
+	return reflect.TypeOf((*Subnetwork)(nil)).Elem()
+}
+
+func (i Subnetwork) ToSubnetworkOutput() SubnetworkOutput {
+	return i.ToSubnetworkOutputWithContext(context.Background())
+}
+
+func (i Subnetwork) ToSubnetworkOutputWithContext(ctx context.Context) SubnetworkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SubnetworkOutput)
+}
+
+type SubnetworkOutput struct {
+	*pulumi.OutputState
+}
+
+func (SubnetworkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SubnetworkOutput)(nil)).Elem()
+}
+
+func (o SubnetworkOutput) ToSubnetworkOutput() SubnetworkOutput {
+	return o
+}
+
+func (o SubnetworkOutput) ToSubnetworkOutputWithContext(ctx context.Context) SubnetworkOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SubnetworkOutput{})
 }
