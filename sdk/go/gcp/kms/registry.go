@@ -19,6 +19,26 @@ import (
 //
 // ## Example Usage
 //
+// ## Import
+//
+// DeviceRegistry can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:kms/registry:Registry default {{project}}/locations/{{region}}/registries/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:kms/registry:Registry default {{project}}/{{region}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:kms/registry:Registry default {{region}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:kms/registry:Registry default {{name}}
+// ```
+//
 // Deprecated: gcp.kms.Registry has been deprecated in favor of gcp.iot.Registry
 type Registry struct {
 	pulumi.CustomResourceState

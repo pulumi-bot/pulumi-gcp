@@ -25,6 +25,10 @@ namespace Pulumi.Gcp.BigQuery
     ///     * [Controlling access to datasets](https://cloud.google.com/bigquery/docs/dataset-access-controls)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// This resource does not support import.
     /// </summary>
     public partial class DatasetAccess : Pulumi.CustomResource
     {

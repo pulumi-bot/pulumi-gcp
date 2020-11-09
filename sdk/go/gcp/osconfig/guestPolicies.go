@@ -21,6 +21,22 @@ import (
 //     * [Official Documentation](https://cloud.google.com/compute/docs/os-config-management)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// GuestPolicies can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:osconfig/guestPolicies:GuestPolicies default projects/{{project}}/guestPolicies/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:osconfig/guestPolicies:GuestPolicies default {{project}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:osconfig/guestPolicies:GuestPolicies default {{name}}
+// ```
 type GuestPolicies struct {
 	pulumi.CustomResourceState
 

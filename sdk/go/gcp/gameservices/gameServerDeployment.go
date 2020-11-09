@@ -19,6 +19,22 @@ import (
 //     * [Official Documentation](https://cloud.google.com/game-servers/docs)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// GameServerDeployment can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:gameservices/gameServerDeployment:GameServerDeployment default projects/{{project}}/locations/{{location}}/gameServerDeployments/{{deployment_id}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:gameservices/gameServerDeployment:GameServerDeployment default {{project}}/{{location}}/{{deployment_id}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:gameservices/gameServerDeployment:GameServerDeployment default {{location}}/{{deployment_id}}
+// ```
 type GameServerDeployment struct {
 	pulumi.CustomResourceState
 

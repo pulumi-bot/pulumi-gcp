@@ -10,6 +10,23 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// ## Import
+//
+// Database instances can be imported using one of any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:sql/databaseInstance:DatabaseInstance master projects/{{project}}/instances/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:sql/databaseInstance:DatabaseInstance master {{project}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:sql/databaseInstance:DatabaseInstance master {{name}}
+// ```
+//
+//  config and set on the server. When importing, double-check that your config has all the fields set that you expect- just seeing no diff isn't sufficient to know that your config could reproduce the imported resource.
 type DatabaseInstance struct {
 	pulumi.CustomResourceState
 

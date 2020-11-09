@@ -19,6 +19,22 @@ import (
 //     * [Introduction to Reservations](https://cloud.google.com/bigquery/docs/reservations-intro)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Reservation can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:bigquery/reservation:Reservation default projects/{{project}}/locations/{{location}}/reservations/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:bigquery/reservation:Reservation default {{project}}/{{location}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:bigquery/reservation:Reservation default {{location}}/{{name}}
+// ```
 type Reservation struct {
 	pulumi.CustomResourceState
 

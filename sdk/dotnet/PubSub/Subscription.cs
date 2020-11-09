@@ -20,6 +20,22 @@ namespace Pulumi.Gcp.PubSub
     ///     * [Managing Subscriptions](https://cloud.google.com/pubsub/docs/admin#managing_subscriptions)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Subscription can be imported using any of these accepted formats
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:pubsub/subscription:Subscription default projects/{{project}}/subscriptions/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:pubsub/subscription:Subscription default {{project}}/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:pubsub/subscription:Subscription default {{name}}
+    /// ```
     /// </summary>
     public partial class Subscription : Pulumi.CustomResource
     {

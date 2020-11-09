@@ -18,6 +18,24 @@ import (
 // plaintext. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
 //
 // ## Example Usage
+//
+// ## Import
+//
+// GKE clusters can be imported using the `project` , `location`, and `name`. If the project is omitted, the default provider value will be used. Examples
+//
+// ```sh
+//  $ pulumi import gcp:container/cluster:Cluster mycluster projects/my-gcp-project/locations/us-east1-a/clusters/my-cluster
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:container/cluster:Cluster mycluster my-gcp-project/us-east1-a/my-cluster
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:container/cluster:Cluster mycluster us-east1-a/my-cluster
+// ```
+//
+//  For example, the following fields will show diffs if set in config- `min_master_version` - `remove_default_node_pool`
 type Cluster struct {
 	pulumi.CustomResourceState
 

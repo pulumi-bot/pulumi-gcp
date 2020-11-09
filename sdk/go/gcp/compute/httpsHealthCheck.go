@@ -25,6 +25,22 @@ import (
 //     * [Adding Health Checks](https://cloud.google.com/compute/docs/load-balancing/health-checks#legacy_health_checks)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// HttpsHealthCheck can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:compute/httpsHealthCheck:HttpsHealthCheck default projects/{{project}}/global/httpsHealthChecks/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/httpsHealthCheck:HttpsHealthCheck default {{project}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/httpsHealthCheck:HttpsHealthCheck default {{name}}
+// ```
 type HttpsHealthCheck struct {
 	pulumi.CustomResourceState
 

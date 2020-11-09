@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
+import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
@@ -16,6 +15,22 @@ import * as utilities from "../utilities";
  *     * [Managing Topics](https://cloud.google.com/pubsub/docs/admin#managing_topics)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Topic can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import gcp:pubsub/topic:Topic default projects/{{project}}/topics/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:pubsub/topic:Topic default {{project}}/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:pubsub/topic:Topic default {{name}}
+ * ```
  */
 export class Topic extends pulumi.CustomResource {
     /**

@@ -27,6 +27,18 @@ import (
 //     * [Creating a key](https://cloud.google.com/kms/docs/creating-keys#create_a_key)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// CryptoKey can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:kms/cryptoKey:CryptoKey default {{key_ring}}/cryptoKeys/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:kms/cryptoKey:CryptoKey default {{key_ring}}/{{name}}
+// ```
 type CryptoKey struct {
 	pulumi.CustomResourceState
 

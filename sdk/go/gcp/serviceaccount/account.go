@@ -15,6 +15,14 @@ import (
 // > Creation of service accounts is eventually consistent, and that can lead to
 // errors when you try to apply ACLs to service accounts immediately after
 // creation.
+//
+// ## Import
+//
+// Service accounts can be imported using their URI, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:serviceAccount/account:Account my_sa projects/my-project/serviceAccounts/my-sa@my-project.iam.gserviceaccount.com
+// ```
 type Account struct {
 	pulumi.CustomResourceState
 

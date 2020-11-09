@@ -31,6 +31,10 @@ import * as utilities from "../utilities";
  * is "cancelled", but if a user sets `onDelete` to `"drain"` in the
  * configuration, you may experience a long wait for your `pulumi destroy` to
  * complete.
+ *
+ * ## Import
+ *
+ * This resource does not support import.
  */
 export class FlexTemplateJob extends pulumi.CustomResource {
     /**

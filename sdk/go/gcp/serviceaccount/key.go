@@ -13,6 +13,10 @@ import (
 // Creates and manages service account key-pairs, which allow the user to establish identity of a service account outside of GCP. For more information, see [the official documentation](https://cloud.google.com/iam/docs/creating-managing-service-account-keys) and [API](https://cloud.google.com/iam/reference/rest/v1/projects.serviceAccounts.keys).
 //
 // ## Example Usage
+//
+// ## Import
+//
+// This resource does not support import.
 type Key struct {
 	pulumi.CustomResourceState
 

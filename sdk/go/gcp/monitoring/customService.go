@@ -22,6 +22,14 @@ import (
 //     * [Monitoring API Documentation](https://cloud.google.com/monitoring/api/v3/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Service can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:monitoring/customService:CustomService default {{name}}
+// ```
 type CustomService struct {
 	pulumi.CustomResourceState
 

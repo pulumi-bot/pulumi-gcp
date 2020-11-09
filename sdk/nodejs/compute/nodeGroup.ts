@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
+import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
@@ -21,6 +20,26 @@ import * as utilities from "../utilities";
  * the provider to delete and recreate the node group.
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * NodeGroup can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import gcp:compute/nodeGroup:NodeGroup default projects/{{project}}/zones/{{zone}}/nodeGroups/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:compute/nodeGroup:NodeGroup default {{project}}/{{zone}}/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:compute/nodeGroup:NodeGroup default {{zone}}/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:compute/nodeGroup:NodeGroup default {{name}}
+ * ```
  */
 export class NodeGroup extends pulumi.CustomResource {
     /**

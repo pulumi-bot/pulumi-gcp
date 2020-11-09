@@ -40,6 +40,22 @@ class DomainTrust(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        DomainTrust can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:activedirectory/domainTrust:DomainTrust default projects/{{project}}/locations/global/domains/{{domain}}/{{target_domain_name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:activedirectory/domainTrust:DomainTrust default {{project}}/{{domain}}/{{target_domain_name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:activedirectory/domainTrust:DomainTrust default {{domain}}/{{target_domain_name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] domain: The fully qualified domain name. e.g. mydomain.myorganization.com, with the restrictions,

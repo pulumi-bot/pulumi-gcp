@@ -41,6 +41,14 @@ class AlertPolicy(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        AlertPolicy can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:monitoring/alertPolicy:AlertPolicy default {{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] combiner: How to combine the results of multiple conditions to

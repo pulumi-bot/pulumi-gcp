@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
+import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
@@ -16,6 +15,22 @@ import * as utilities from "../utilities";
  *     * [Routines Intro](https://cloud.google.com/bigquery/docs/reference/rest/v2/routines)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Routine can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import gcp:bigquery/routine:Routine default projects/{{project}}/datasets/{{dataset_id}}/routines/{{routine_id}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:bigquery/routine:Routine default {{project}}/{{dataset_id}}/{{routine_id}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:bigquery/routine:Routine default {{dataset_id}}/{{routine_id}}
+ * ```
  */
 export class Routine extends pulumi.CustomResource {
     /**

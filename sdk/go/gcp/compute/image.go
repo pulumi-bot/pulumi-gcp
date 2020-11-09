@@ -33,6 +33,22 @@ import (
 //     * [Official Documentation](https://cloud.google.com/compute/docs/images)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Image can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:compute/image:Image default projects/{{project}}/global/images/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/image:Image default {{project}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/image:Image default {{name}}
+// ```
 type Image struct {
 	pulumi.CustomResourceState
 

@@ -65,6 +65,22 @@ class FlexibleAppVersion(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        FlexibleAppVersion can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:appengine/flexibleAppVersion:FlexibleAppVersion default apps/{{project}}/services/{{service}}/versions/{{version_id}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:appengine/flexibleAppVersion:FlexibleAppVersion default {{project}}/{{service}}/{{version_id}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:appengine/flexibleAppVersion:FlexibleAppVersion default {{service}}/{{version_id}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['FlexibleAppVersionApiConfigArgs']] api_config: Serving configuration for Google Cloud Endpoints.

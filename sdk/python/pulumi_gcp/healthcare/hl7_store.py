@@ -38,6 +38,18 @@ class Hl7Store(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        Hl7V2Store can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:healthcare/hl7Store:Hl7Store default {{dataset}}/hl7V2Stores/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:healthcare/hl7Store:Hl7Store default {{dataset}}/{{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dataset: Identifies the dataset addressed by this request. Must be in the format
@@ -86,7 +98,7 @@ class Hl7Store(pulumi.CustomResource):
             __props__['labels'] = labels
             __props__['name'] = name
             if notification_config is not None:
-                warnings.warn("This field has been replaced by notificationConfigs", DeprecationWarning)
+                warnings.warn("""This field has been replaced by notificationConfigs""", DeprecationWarning)
                 pulumi.log.warn("notification_config is deprecated: This field has been replaced by notificationConfigs")
             __props__['notification_config'] = notification_config
             __props__['notification_configs'] = notification_configs

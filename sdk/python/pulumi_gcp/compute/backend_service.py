@@ -58,6 +58,22 @@ class BackendService(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        BackendService can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:compute/backendService:BackendService default projects/{{project}}/global/backendServices/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/backendService:BackendService default {{project}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/backendService:BackendService default {{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] affinity_cookie_ttl_sec: Lifetime of cookies in seconds if session_affinity is

@@ -13,6 +13,24 @@ import (
 // Creates a Google Cloud Bigtable table inside an instance. For more information see
 // [the official documentation](https://cloud.google.com/bigtable/) and
 // [API](https://cloud.google.com/bigtable/docs/go/reference).
+//
+// ## Import
+//
+// Bigtable Tables can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:bigtable/table:Table default projects/{{project}}/instances/{{instance_name}}/tables/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:bigtable/table:Table default {{project}}/{{instance_name}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:bigtable/table:Table default {{instance_name}}/{{name}}
+// ```
+//
+//  The following fields can't be read and will show diffs if set in config when imported- `split_keys`
 type Table struct {
 	pulumi.CustomResourceState
 

@@ -13,6 +13,10 @@ import (
 // Creates a Google Cloud Bigtable GC Policy inside a family. For more information see
 // [the official documentation](https://cloud.google.com/bigtable/) and
 // [API](https://cloud.google.com/bigtable/docs/go/reference).
+//
+// ## Import
+//
+// This resource does not support import.
 type GCPolicy struct {
 	pulumi.CustomResourceState
 

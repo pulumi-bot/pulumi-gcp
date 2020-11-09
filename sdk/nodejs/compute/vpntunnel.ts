@@ -18,6 +18,26 @@ import * as utilities from "../utilities";
  * state as plain-text.
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * VpnTunnel can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import gcp:compute/vPNTunnel:VPNTunnel default projects/{{project}}/regions/{{region}}/vpnTunnels/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:compute/vPNTunnel:VPNTunnel default {{project}}/{{region}}/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:compute/vPNTunnel:VPNTunnel default {{region}}/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:compute/vPNTunnel:VPNTunnel default {{name}}
+ * ```
  */
 export class VPNTunnel extends pulumi.CustomResource {
     /**

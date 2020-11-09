@@ -12,6 +12,22 @@ import * as utilities from "../utilities";
  * the marketplace prior to using this resource.
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * TenantDefaultSupportedIdpConfig can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import gcp:identityplatform/tenantDefaultSupportedIdpConfig:TenantDefaultSupportedIdpConfig default projects/{{project}}/tenants/{{tenant}}/defaultSupportedIdpConfigs/{{idp_id}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:identityplatform/tenantDefaultSupportedIdpConfig:TenantDefaultSupportedIdpConfig default {{project}}/{{tenant}}/{{idp_id}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:identityplatform/tenantDefaultSupportedIdpConfig:TenantDefaultSupportedIdpConfig default {{tenant}}/{{idp_id}}
+ * ```
  */
 export class TenantDefaultSupportedIdpConfig extends pulumi.CustomResource {
     /**

@@ -21,6 +21,22 @@ import (
 //     * [Official Documentation](https://cloud.google.com/compute/docs/machine-images)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// MachineImage can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:compute/machineImage:MachineImage default projects/{{project}}/global/machineImages/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/machineImage:MachineImage default {{project}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/machineImage:MachineImage default {{name}}
+// ```
 type MachineImage struct {
 	pulumi.CustomResourceState
 
