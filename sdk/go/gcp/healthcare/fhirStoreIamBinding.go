@@ -4,6 +4,7 @@
 package healthcare
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -140,4 +141,43 @@ type FhirStoreIamBindingArgs struct {
 
 func (FhirStoreIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*fhirStoreIamBindingArgs)(nil)).Elem()
+}
+
+type FhirStoreIamBindingInput interface {
+	pulumi.Input
+
+	ToFhirStoreIamBindingOutput() FhirStoreIamBindingOutput
+	ToFhirStoreIamBindingOutputWithContext(ctx context.Context) FhirStoreIamBindingOutput
+}
+
+func (FhirStoreIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*FhirStoreIamBinding)(nil)).Elem()
+}
+
+func (i FhirStoreIamBinding) ToFhirStoreIamBindingOutput() FhirStoreIamBindingOutput {
+	return i.ToFhirStoreIamBindingOutputWithContext(context.Background())
+}
+
+func (i FhirStoreIamBinding) ToFhirStoreIamBindingOutputWithContext(ctx context.Context) FhirStoreIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FhirStoreIamBindingOutput)
+}
+
+type FhirStoreIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (FhirStoreIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FhirStoreIamBindingOutput)(nil)).Elem()
+}
+
+func (o FhirStoreIamBindingOutput) ToFhirStoreIamBindingOutput() FhirStoreIamBindingOutput {
+	return o
+}
+
+func (o FhirStoreIamBindingOutput) ToFhirStoreIamBindingOutputWithContext(ctx context.Context) FhirStoreIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(FhirStoreIamBindingOutput{})
 }

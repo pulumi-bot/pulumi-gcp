@@ -4,6 +4,7 @@
 package kms
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -204,4 +205,43 @@ type CryptoKeyArgs struct {
 
 func (CryptoKeyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*cryptoKeyArgs)(nil)).Elem()
+}
+
+type CryptoKeyInput interface {
+	pulumi.Input
+
+	ToCryptoKeyOutput() CryptoKeyOutput
+	ToCryptoKeyOutputWithContext(ctx context.Context) CryptoKeyOutput
+}
+
+func (CryptoKey) ElementType() reflect.Type {
+	return reflect.TypeOf((*CryptoKey)(nil)).Elem()
+}
+
+func (i CryptoKey) ToCryptoKeyOutput() CryptoKeyOutput {
+	return i.ToCryptoKeyOutputWithContext(context.Background())
+}
+
+func (i CryptoKey) ToCryptoKeyOutputWithContext(ctx context.Context) CryptoKeyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CryptoKeyOutput)
+}
+
+type CryptoKeyOutput struct {
+	*pulumi.OutputState
+}
+
+func (CryptoKeyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CryptoKeyOutput)(nil)).Elem()
+}
+
+func (o CryptoKeyOutput) ToCryptoKeyOutput() CryptoKeyOutput {
+	return o
+}
+
+func (o CryptoKeyOutput) ToCryptoKeyOutputWithContext(ctx context.Context) CryptoKeyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(CryptoKeyOutput{})
 }

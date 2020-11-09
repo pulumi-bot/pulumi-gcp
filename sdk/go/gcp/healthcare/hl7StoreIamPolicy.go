@@ -4,6 +4,7 @@
 package healthcare
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -122,4 +123,43 @@ type Hl7StoreIamPolicyArgs struct {
 
 func (Hl7StoreIamPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*hl7StoreIamPolicyArgs)(nil)).Elem()
+}
+
+type Hl7StoreIamPolicyInput interface {
+	pulumi.Input
+
+	ToHl7StoreIamPolicyOutput() Hl7StoreIamPolicyOutput
+	ToHl7StoreIamPolicyOutputWithContext(ctx context.Context) Hl7StoreIamPolicyOutput
+}
+
+func (Hl7StoreIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*Hl7StoreIamPolicy)(nil)).Elem()
+}
+
+func (i Hl7StoreIamPolicy) ToHl7StoreIamPolicyOutput() Hl7StoreIamPolicyOutput {
+	return i.ToHl7StoreIamPolicyOutputWithContext(context.Background())
+}
+
+func (i Hl7StoreIamPolicy) ToHl7StoreIamPolicyOutputWithContext(ctx context.Context) Hl7StoreIamPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Hl7StoreIamPolicyOutput)
+}
+
+type Hl7StoreIamPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (Hl7StoreIamPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*Hl7StoreIamPolicyOutput)(nil)).Elem()
+}
+
+func (o Hl7StoreIamPolicyOutput) ToHl7StoreIamPolicyOutput() Hl7StoreIamPolicyOutput {
+	return o
+}
+
+func (o Hl7StoreIamPolicyOutput) ToHl7StoreIamPolicyOutputWithContext(ctx context.Context) Hl7StoreIamPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(Hl7StoreIamPolicyOutput{})
 }

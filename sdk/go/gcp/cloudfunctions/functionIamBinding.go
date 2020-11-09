@@ -4,6 +4,7 @@
 package cloudfunctions
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -160,4 +161,43 @@ type FunctionIamBindingArgs struct {
 
 func (FunctionIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*functionIamBindingArgs)(nil)).Elem()
+}
+
+type FunctionIamBindingInput interface {
+	pulumi.Input
+
+	ToFunctionIamBindingOutput() FunctionIamBindingOutput
+	ToFunctionIamBindingOutputWithContext(ctx context.Context) FunctionIamBindingOutput
+}
+
+func (FunctionIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*FunctionIamBinding)(nil)).Elem()
+}
+
+func (i FunctionIamBinding) ToFunctionIamBindingOutput() FunctionIamBindingOutput {
+	return i.ToFunctionIamBindingOutputWithContext(context.Background())
+}
+
+func (i FunctionIamBinding) ToFunctionIamBindingOutputWithContext(ctx context.Context) FunctionIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FunctionIamBindingOutput)
+}
+
+type FunctionIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (FunctionIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FunctionIamBindingOutput)(nil)).Elem()
+}
+
+func (o FunctionIamBindingOutput) ToFunctionIamBindingOutput() FunctionIamBindingOutput {
+	return o
+}
+
+func (o FunctionIamBindingOutput) ToFunctionIamBindingOutputWithContext(ctx context.Context) FunctionIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(FunctionIamBindingOutput{})
 }

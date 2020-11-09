@@ -4,6 +4,7 @@
 package storage
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -157,4 +158,43 @@ type TransferJobArgs struct {
 
 func (TransferJobArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*transferJobArgs)(nil)).Elem()
+}
+
+type TransferJobInput interface {
+	pulumi.Input
+
+	ToTransferJobOutput() TransferJobOutput
+	ToTransferJobOutputWithContext(ctx context.Context) TransferJobOutput
+}
+
+func (TransferJob) ElementType() reflect.Type {
+	return reflect.TypeOf((*TransferJob)(nil)).Elem()
+}
+
+func (i TransferJob) ToTransferJobOutput() TransferJobOutput {
+	return i.ToTransferJobOutputWithContext(context.Background())
+}
+
+func (i TransferJob) ToTransferJobOutputWithContext(ctx context.Context) TransferJobOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TransferJobOutput)
+}
+
+type TransferJobOutput struct {
+	*pulumi.OutputState
+}
+
+func (TransferJobOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TransferJobOutput)(nil)).Elem()
+}
+
+func (o TransferJobOutput) ToTransferJobOutput() TransferJobOutput {
+	return o
+}
+
+func (o TransferJobOutput) ToTransferJobOutputWithContext(ctx context.Context) TransferJobOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TransferJobOutput{})
 }

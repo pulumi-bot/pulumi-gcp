@@ -4,6 +4,7 @@
 package identityplatform
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -149,4 +150,43 @@ type OauthIdpConfigArgs struct {
 
 func (OauthIdpConfigArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*oauthIdpConfigArgs)(nil)).Elem()
+}
+
+type OauthIdpConfigInput interface {
+	pulumi.Input
+
+	ToOauthIdpConfigOutput() OauthIdpConfigOutput
+	ToOauthIdpConfigOutputWithContext(ctx context.Context) OauthIdpConfigOutput
+}
+
+func (OauthIdpConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*OauthIdpConfig)(nil)).Elem()
+}
+
+func (i OauthIdpConfig) ToOauthIdpConfigOutput() OauthIdpConfigOutput {
+	return i.ToOauthIdpConfigOutputWithContext(context.Background())
+}
+
+func (i OauthIdpConfig) ToOauthIdpConfigOutputWithContext(ctx context.Context) OauthIdpConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OauthIdpConfigOutput)
+}
+
+type OauthIdpConfigOutput struct {
+	*pulumi.OutputState
+}
+
+func (OauthIdpConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*OauthIdpConfigOutput)(nil)).Elem()
+}
+
+func (o OauthIdpConfigOutput) ToOauthIdpConfigOutput() OauthIdpConfigOutput {
+	return o
+}
+
+func (o OauthIdpConfigOutput) ToOauthIdpConfigOutputWithContext(ctx context.Context) OauthIdpConfigOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(OauthIdpConfigOutput{})
 }

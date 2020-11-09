@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -306,4 +307,43 @@ type InstanceGroupManagerArgs struct {
 
 func (InstanceGroupManagerArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*instanceGroupManagerArgs)(nil)).Elem()
+}
+
+type InstanceGroupManagerInput interface {
+	pulumi.Input
+
+	ToInstanceGroupManagerOutput() InstanceGroupManagerOutput
+	ToInstanceGroupManagerOutputWithContext(ctx context.Context) InstanceGroupManagerOutput
+}
+
+func (InstanceGroupManager) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceGroupManager)(nil)).Elem()
+}
+
+func (i InstanceGroupManager) ToInstanceGroupManagerOutput() InstanceGroupManagerOutput {
+	return i.ToInstanceGroupManagerOutputWithContext(context.Background())
+}
+
+func (i InstanceGroupManager) ToInstanceGroupManagerOutputWithContext(ctx context.Context) InstanceGroupManagerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceGroupManagerOutput)
+}
+
+type InstanceGroupManagerOutput struct {
+	*pulumi.OutputState
+}
+
+func (InstanceGroupManagerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceGroupManagerOutput)(nil)).Elem()
+}
+
+func (o InstanceGroupManagerOutput) ToInstanceGroupManagerOutput() InstanceGroupManagerOutput {
+	return o
+}
+
+func (o InstanceGroupManagerOutput) ToInstanceGroupManagerOutputWithContext(ctx context.Context) InstanceGroupManagerOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(InstanceGroupManagerOutput{})
 }

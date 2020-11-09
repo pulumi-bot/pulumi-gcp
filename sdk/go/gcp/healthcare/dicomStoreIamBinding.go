@@ -4,6 +4,7 @@
 package healthcare
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -140,4 +141,43 @@ type DicomStoreIamBindingArgs struct {
 
 func (DicomStoreIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*dicomStoreIamBindingArgs)(nil)).Elem()
+}
+
+type DicomStoreIamBindingInput interface {
+	pulumi.Input
+
+	ToDicomStoreIamBindingOutput() DicomStoreIamBindingOutput
+	ToDicomStoreIamBindingOutputWithContext(ctx context.Context) DicomStoreIamBindingOutput
+}
+
+func (DicomStoreIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*DicomStoreIamBinding)(nil)).Elem()
+}
+
+func (i DicomStoreIamBinding) ToDicomStoreIamBindingOutput() DicomStoreIamBindingOutput {
+	return i.ToDicomStoreIamBindingOutputWithContext(context.Background())
+}
+
+func (i DicomStoreIamBinding) ToDicomStoreIamBindingOutputWithContext(ctx context.Context) DicomStoreIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DicomStoreIamBindingOutput)
+}
+
+type DicomStoreIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (DicomStoreIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DicomStoreIamBindingOutput)(nil)).Elem()
+}
+
+func (o DicomStoreIamBindingOutput) ToDicomStoreIamBindingOutput() DicomStoreIamBindingOutput {
+	return o
+}
+
+func (o DicomStoreIamBindingOutput) ToDicomStoreIamBindingOutputWithContext(ctx context.Context) DicomStoreIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DicomStoreIamBindingOutput{})
 }

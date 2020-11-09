@@ -4,6 +4,7 @@
 package bigtable
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -140,4 +141,43 @@ type InstanceIamBindingArgs struct {
 
 func (InstanceIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*instanceIamBindingArgs)(nil)).Elem()
+}
+
+type InstanceIamBindingInput interface {
+	pulumi.Input
+
+	ToInstanceIamBindingOutput() InstanceIamBindingOutput
+	ToInstanceIamBindingOutputWithContext(ctx context.Context) InstanceIamBindingOutput
+}
+
+func (InstanceIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceIamBinding)(nil)).Elem()
+}
+
+func (i InstanceIamBinding) ToInstanceIamBindingOutput() InstanceIamBindingOutput {
+	return i.ToInstanceIamBindingOutputWithContext(context.Background())
+}
+
+func (i InstanceIamBinding) ToInstanceIamBindingOutputWithContext(ctx context.Context) InstanceIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceIamBindingOutput)
+}
+
+type InstanceIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (InstanceIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceIamBindingOutput)(nil)).Elem()
+}
+
+func (o InstanceIamBindingOutput) ToInstanceIamBindingOutput() InstanceIamBindingOutput {
+	return o
+}
+
+func (o InstanceIamBindingOutput) ToInstanceIamBindingOutputWithContext(ctx context.Context) InstanceIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(InstanceIamBindingOutput{})
 }

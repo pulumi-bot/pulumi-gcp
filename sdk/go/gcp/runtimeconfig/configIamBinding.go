@@ -4,6 +4,7 @@
 package runtimeconfig
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -140,4 +141,43 @@ type ConfigIamBindingArgs struct {
 
 func (ConfigIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*configIamBindingArgs)(nil)).Elem()
+}
+
+type ConfigIamBindingInput interface {
+	pulumi.Input
+
+	ToConfigIamBindingOutput() ConfigIamBindingOutput
+	ToConfigIamBindingOutputWithContext(ctx context.Context) ConfigIamBindingOutput
+}
+
+func (ConfigIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConfigIamBinding)(nil)).Elem()
+}
+
+func (i ConfigIamBinding) ToConfigIamBindingOutput() ConfigIamBindingOutput {
+	return i.ToConfigIamBindingOutputWithContext(context.Background())
+}
+
+func (i ConfigIamBinding) ToConfigIamBindingOutputWithContext(ctx context.Context) ConfigIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConfigIamBindingOutput)
+}
+
+type ConfigIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (ConfigIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConfigIamBindingOutput)(nil)).Elem()
+}
+
+func (o ConfigIamBindingOutput) ToConfigIamBindingOutput() ConfigIamBindingOutput {
+	return o
+}
+
+func (o ConfigIamBindingOutput) ToConfigIamBindingOutputWithContext(ctx context.Context) ConfigIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ConfigIamBindingOutput{})
 }
