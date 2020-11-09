@@ -4,6 +4,7 @@
 package networkmanagement
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -338,4 +339,43 @@ type ConnectivityTestArgs struct {
 
 func (ConnectivityTestArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*connectivityTestArgs)(nil)).Elem()
+}
+
+type ConnectivityTestInput interface {
+	pulumi.Input
+
+	ToConnectivityTestOutput() ConnectivityTestOutput
+	ToConnectivityTestOutputWithContext(ctx context.Context) ConnectivityTestOutput
+}
+
+func (ConnectivityTest) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConnectivityTest)(nil)).Elem()
+}
+
+func (i ConnectivityTest) ToConnectivityTestOutput() ConnectivityTestOutput {
+	return i.ToConnectivityTestOutputWithContext(context.Background())
+}
+
+func (i ConnectivityTest) ToConnectivityTestOutputWithContext(ctx context.Context) ConnectivityTestOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConnectivityTestOutput)
+}
+
+type ConnectivityTestOutput struct {
+	*pulumi.OutputState
+}
+
+func (ConnectivityTestOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConnectivityTestOutput)(nil)).Elem()
+}
+
+func (o ConnectivityTestOutput) ToConnectivityTestOutput() ConnectivityTestOutput {
+	return o
+}
+
+func (o ConnectivityTestOutput) ToConnectivityTestOutputWithContext(ctx context.Context) ConnectivityTestOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ConnectivityTestOutput{})
 }

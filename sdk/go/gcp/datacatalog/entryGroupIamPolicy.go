@@ -4,6 +4,7 @@
 package datacatalog
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -127,4 +128,43 @@ type EntryGroupIamPolicyArgs struct {
 
 func (EntryGroupIamPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*entryGroupIamPolicyArgs)(nil)).Elem()
+}
+
+type EntryGroupIamPolicyInput interface {
+	pulumi.Input
+
+	ToEntryGroupIamPolicyOutput() EntryGroupIamPolicyOutput
+	ToEntryGroupIamPolicyOutputWithContext(ctx context.Context) EntryGroupIamPolicyOutput
+}
+
+func (EntryGroupIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*EntryGroupIamPolicy)(nil)).Elem()
+}
+
+func (i EntryGroupIamPolicy) ToEntryGroupIamPolicyOutput() EntryGroupIamPolicyOutput {
+	return i.ToEntryGroupIamPolicyOutputWithContext(context.Background())
+}
+
+func (i EntryGroupIamPolicy) ToEntryGroupIamPolicyOutputWithContext(ctx context.Context) EntryGroupIamPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EntryGroupIamPolicyOutput)
+}
+
+type EntryGroupIamPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (EntryGroupIamPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EntryGroupIamPolicyOutput)(nil)).Elem()
+}
+
+func (o EntryGroupIamPolicyOutput) ToEntryGroupIamPolicyOutput() EntryGroupIamPolicyOutput {
+	return o
+}
+
+func (o EntryGroupIamPolicyOutput) ToEntryGroupIamPolicyOutputWithContext(ctx context.Context) EntryGroupIamPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(EntryGroupIamPolicyOutput{})
 }

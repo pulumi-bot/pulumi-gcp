@@ -4,6 +4,7 @@
 package storage
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -208,4 +209,43 @@ type ObjectAccessControlArgs struct {
 
 func (ObjectAccessControlArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*objectAccessControlArgs)(nil)).Elem()
+}
+
+type ObjectAccessControlInput interface {
+	pulumi.Input
+
+	ToObjectAccessControlOutput() ObjectAccessControlOutput
+	ToObjectAccessControlOutputWithContext(ctx context.Context) ObjectAccessControlOutput
+}
+
+func (ObjectAccessControl) ElementType() reflect.Type {
+	return reflect.TypeOf((*ObjectAccessControl)(nil)).Elem()
+}
+
+func (i ObjectAccessControl) ToObjectAccessControlOutput() ObjectAccessControlOutput {
+	return i.ToObjectAccessControlOutputWithContext(context.Background())
+}
+
+func (i ObjectAccessControl) ToObjectAccessControlOutputWithContext(ctx context.Context) ObjectAccessControlOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObjectAccessControlOutput)
+}
+
+type ObjectAccessControlOutput struct {
+	*pulumi.OutputState
+}
+
+func (ObjectAccessControlOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ObjectAccessControlOutput)(nil)).Elem()
+}
+
+func (o ObjectAccessControlOutput) ToObjectAccessControlOutput() ObjectAccessControlOutput {
+	return o
+}
+
+func (o ObjectAccessControlOutput) ToObjectAccessControlOutputWithContext(ctx context.Context) ObjectAccessControlOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ObjectAccessControlOutput{})
 }

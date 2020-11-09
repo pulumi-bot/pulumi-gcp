@@ -4,6 +4,7 @@
 package healthcare
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -140,4 +141,43 @@ type Hl7StoreIamBindingArgs struct {
 
 func (Hl7StoreIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*hl7StoreIamBindingArgs)(nil)).Elem()
+}
+
+type Hl7StoreIamBindingInput interface {
+	pulumi.Input
+
+	ToHl7StoreIamBindingOutput() Hl7StoreIamBindingOutput
+	ToHl7StoreIamBindingOutputWithContext(ctx context.Context) Hl7StoreIamBindingOutput
+}
+
+func (Hl7StoreIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*Hl7StoreIamBinding)(nil)).Elem()
+}
+
+func (i Hl7StoreIamBinding) ToHl7StoreIamBindingOutput() Hl7StoreIamBindingOutput {
+	return i.ToHl7StoreIamBindingOutputWithContext(context.Background())
+}
+
+func (i Hl7StoreIamBinding) ToHl7StoreIamBindingOutputWithContext(ctx context.Context) Hl7StoreIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Hl7StoreIamBindingOutput)
+}
+
+type Hl7StoreIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (Hl7StoreIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*Hl7StoreIamBindingOutput)(nil)).Elem()
+}
+
+func (o Hl7StoreIamBindingOutput) ToHl7StoreIamBindingOutput() Hl7StoreIamBindingOutput {
+	return o
+}
+
+func (o Hl7StoreIamBindingOutput) ToHl7StoreIamBindingOutputWithContext(ctx context.Context) Hl7StoreIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(Hl7StoreIamBindingOutput{})
 }

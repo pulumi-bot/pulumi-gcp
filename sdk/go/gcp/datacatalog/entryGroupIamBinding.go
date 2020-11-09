@@ -4,6 +4,7 @@
 package datacatalog
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -145,4 +146,43 @@ type EntryGroupIamBindingArgs struct {
 
 func (EntryGroupIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*entryGroupIamBindingArgs)(nil)).Elem()
+}
+
+type EntryGroupIamBindingInput interface {
+	pulumi.Input
+
+	ToEntryGroupIamBindingOutput() EntryGroupIamBindingOutput
+	ToEntryGroupIamBindingOutputWithContext(ctx context.Context) EntryGroupIamBindingOutput
+}
+
+func (EntryGroupIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*EntryGroupIamBinding)(nil)).Elem()
+}
+
+func (i EntryGroupIamBinding) ToEntryGroupIamBindingOutput() EntryGroupIamBindingOutput {
+	return i.ToEntryGroupIamBindingOutputWithContext(context.Background())
+}
+
+func (i EntryGroupIamBinding) ToEntryGroupIamBindingOutputWithContext(ctx context.Context) EntryGroupIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EntryGroupIamBindingOutput)
+}
+
+type EntryGroupIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (EntryGroupIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EntryGroupIamBindingOutput)(nil)).Elem()
+}
+
+func (o EntryGroupIamBindingOutput) ToEntryGroupIamBindingOutput() EntryGroupIamBindingOutput {
+	return o
+}
+
+func (o EntryGroupIamBindingOutput) ToEntryGroupIamBindingOutputWithContext(ctx context.Context) EntryGroupIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(EntryGroupIamBindingOutput{})
 }

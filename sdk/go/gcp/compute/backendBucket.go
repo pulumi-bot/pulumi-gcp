@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -196,4 +197,43 @@ type BackendBucketArgs struct {
 
 func (BackendBucketArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*backendBucketArgs)(nil)).Elem()
+}
+
+type BackendBucketInput interface {
+	pulumi.Input
+
+	ToBackendBucketOutput() BackendBucketOutput
+	ToBackendBucketOutputWithContext(ctx context.Context) BackendBucketOutput
+}
+
+func (BackendBucket) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackendBucket)(nil)).Elem()
+}
+
+func (i BackendBucket) ToBackendBucketOutput() BackendBucketOutput {
+	return i.ToBackendBucketOutputWithContext(context.Background())
+}
+
+func (i BackendBucket) ToBackendBucketOutputWithContext(ctx context.Context) BackendBucketOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackendBucketOutput)
+}
+
+type BackendBucketOutput struct {
+	*pulumi.OutputState
+}
+
+func (BackendBucketOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackendBucketOutput)(nil)).Elem()
+}
+
+func (o BackendBucketOutput) ToBackendBucketOutput() BackendBucketOutput {
+	return o
+}
+
+func (o BackendBucketOutput) ToBackendBucketOutputWithContext(ctx context.Context) BackendBucketOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(BackendBucketOutput{})
 }

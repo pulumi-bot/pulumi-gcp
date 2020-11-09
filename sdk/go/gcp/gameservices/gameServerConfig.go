@@ -4,6 +4,7 @@
 package gameservices
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -185,4 +186,43 @@ type GameServerConfigArgs struct {
 
 func (GameServerConfigArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*gameServerConfigArgs)(nil)).Elem()
+}
+
+type GameServerConfigInput interface {
+	pulumi.Input
+
+	ToGameServerConfigOutput() GameServerConfigOutput
+	ToGameServerConfigOutputWithContext(ctx context.Context) GameServerConfigOutput
+}
+
+func (GameServerConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*GameServerConfig)(nil)).Elem()
+}
+
+func (i GameServerConfig) ToGameServerConfigOutput() GameServerConfigOutput {
+	return i.ToGameServerConfigOutputWithContext(context.Background())
+}
+
+func (i GameServerConfig) ToGameServerConfigOutputWithContext(ctx context.Context) GameServerConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GameServerConfigOutput)
+}
+
+type GameServerConfigOutput struct {
+	*pulumi.OutputState
+}
+
+func (GameServerConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GameServerConfigOutput)(nil)).Elem()
+}
+
+func (o GameServerConfigOutput) ToGameServerConfigOutput() GameServerConfigOutput {
+	return o
+}
+
+func (o GameServerConfigOutput) ToGameServerConfigOutputWithContext(ctx context.Context) GameServerConfigOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(GameServerConfigOutput{})
 }

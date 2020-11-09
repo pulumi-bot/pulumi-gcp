@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -208,4 +209,43 @@ type AutoscalerArgs struct {
 
 func (AutoscalerArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*autoscalerArgs)(nil)).Elem()
+}
+
+type AutoscalerInput interface {
+	pulumi.Input
+
+	ToAutoscalerOutput() AutoscalerOutput
+	ToAutoscalerOutputWithContext(ctx context.Context) AutoscalerOutput
+}
+
+func (Autoscaler) ElementType() reflect.Type {
+	return reflect.TypeOf((*Autoscaler)(nil)).Elem()
+}
+
+func (i Autoscaler) ToAutoscalerOutput() AutoscalerOutput {
+	return i.ToAutoscalerOutputWithContext(context.Background())
+}
+
+func (i Autoscaler) ToAutoscalerOutputWithContext(ctx context.Context) AutoscalerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscalerOutput)
+}
+
+type AutoscalerOutput struct {
+	*pulumi.OutputState
+}
+
+func (AutoscalerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AutoscalerOutput)(nil)).Elem()
+}
+
+func (o AutoscalerOutput) ToAutoscalerOutput() AutoscalerOutput {
+	return o
+}
+
+func (o AutoscalerOutput) ToAutoscalerOutputWithContext(ctx context.Context) AutoscalerOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AutoscalerOutput{})
 }

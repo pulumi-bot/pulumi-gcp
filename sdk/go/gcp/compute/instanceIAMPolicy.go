@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -142,4 +143,43 @@ type InstanceIAMPolicyArgs struct {
 
 func (InstanceIAMPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*instanceIAMPolicyArgs)(nil)).Elem()
+}
+
+type InstanceIAMPolicyInput interface {
+	pulumi.Input
+
+	ToInstanceIAMPolicyOutput() InstanceIAMPolicyOutput
+	ToInstanceIAMPolicyOutputWithContext(ctx context.Context) InstanceIAMPolicyOutput
+}
+
+func (InstanceIAMPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceIAMPolicy)(nil)).Elem()
+}
+
+func (i InstanceIAMPolicy) ToInstanceIAMPolicyOutput() InstanceIAMPolicyOutput {
+	return i.ToInstanceIAMPolicyOutputWithContext(context.Background())
+}
+
+func (i InstanceIAMPolicy) ToInstanceIAMPolicyOutputWithContext(ctx context.Context) InstanceIAMPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceIAMPolicyOutput)
+}
+
+type InstanceIAMPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (InstanceIAMPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceIAMPolicyOutput)(nil)).Elem()
+}
+
+func (o InstanceIAMPolicyOutput) ToInstanceIAMPolicyOutput() InstanceIAMPolicyOutput {
+	return o
+}
+
+func (o InstanceIAMPolicyOutput) ToInstanceIAMPolicyOutputWithContext(ctx context.Context) InstanceIAMPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(InstanceIAMPolicyOutput{})
 }

@@ -4,6 +4,7 @@
 package logging
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -253,4 +254,43 @@ type MetricArgs struct {
 
 func (MetricArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*metricArgs)(nil)).Elem()
+}
+
+type MetricInput interface {
+	pulumi.Input
+
+	ToMetricOutput() MetricOutput
+	ToMetricOutputWithContext(ctx context.Context) MetricOutput
+}
+
+func (Metric) ElementType() reflect.Type {
+	return reflect.TypeOf((*Metric)(nil)).Elem()
+}
+
+func (i Metric) ToMetricOutput() MetricOutput {
+	return i.ToMetricOutputWithContext(context.Background())
+}
+
+func (i Metric) ToMetricOutputWithContext(ctx context.Context) MetricOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MetricOutput)
+}
+
+type MetricOutput struct {
+	*pulumi.OutputState
+}
+
+func (MetricOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MetricOutput)(nil)).Elem()
+}
+
+func (o MetricOutput) ToMetricOutput() MetricOutput {
+	return o
+}
+
+func (o MetricOutput) ToMetricOutputWithContext(ctx context.Context) MetricOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(MetricOutput{})
 }

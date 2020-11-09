@@ -4,6 +4,7 @@
 package kms
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -151,4 +152,43 @@ type CryptoKeyIAMBindingArgs struct {
 
 func (CryptoKeyIAMBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*cryptoKeyIAMBindingArgs)(nil)).Elem()
+}
+
+type CryptoKeyIAMBindingInput interface {
+	pulumi.Input
+
+	ToCryptoKeyIAMBindingOutput() CryptoKeyIAMBindingOutput
+	ToCryptoKeyIAMBindingOutputWithContext(ctx context.Context) CryptoKeyIAMBindingOutput
+}
+
+func (CryptoKeyIAMBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*CryptoKeyIAMBinding)(nil)).Elem()
+}
+
+func (i CryptoKeyIAMBinding) ToCryptoKeyIAMBindingOutput() CryptoKeyIAMBindingOutput {
+	return i.ToCryptoKeyIAMBindingOutputWithContext(context.Background())
+}
+
+func (i CryptoKeyIAMBinding) ToCryptoKeyIAMBindingOutputWithContext(ctx context.Context) CryptoKeyIAMBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CryptoKeyIAMBindingOutput)
+}
+
+type CryptoKeyIAMBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (CryptoKeyIAMBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CryptoKeyIAMBindingOutput)(nil)).Elem()
+}
+
+func (o CryptoKeyIAMBindingOutput) ToCryptoKeyIAMBindingOutput() CryptoKeyIAMBindingOutput {
+	return o
+}
+
+func (o CryptoKeyIAMBindingOutput) ToCryptoKeyIAMBindingOutputWithContext(ctx context.Context) CryptoKeyIAMBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(CryptoKeyIAMBindingOutput{})
 }

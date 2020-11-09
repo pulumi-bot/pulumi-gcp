@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -228,4 +229,43 @@ type RegionPerInstanceConfigArgs struct {
 
 func (RegionPerInstanceConfigArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*regionPerInstanceConfigArgs)(nil)).Elem()
+}
+
+type RegionPerInstanceConfigInput interface {
+	pulumi.Input
+
+	ToRegionPerInstanceConfigOutput() RegionPerInstanceConfigOutput
+	ToRegionPerInstanceConfigOutputWithContext(ctx context.Context) RegionPerInstanceConfigOutput
+}
+
+func (RegionPerInstanceConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionPerInstanceConfig)(nil)).Elem()
+}
+
+func (i RegionPerInstanceConfig) ToRegionPerInstanceConfigOutput() RegionPerInstanceConfigOutput {
+	return i.ToRegionPerInstanceConfigOutputWithContext(context.Background())
+}
+
+func (i RegionPerInstanceConfig) ToRegionPerInstanceConfigOutputWithContext(ctx context.Context) RegionPerInstanceConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegionPerInstanceConfigOutput)
+}
+
+type RegionPerInstanceConfigOutput struct {
+	*pulumi.OutputState
+}
+
+func (RegionPerInstanceConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionPerInstanceConfigOutput)(nil)).Elem()
+}
+
+func (o RegionPerInstanceConfigOutput) ToRegionPerInstanceConfigOutput() RegionPerInstanceConfigOutput {
+	return o
+}
+
+func (o RegionPerInstanceConfigOutput) ToRegionPerInstanceConfigOutputWithContext(ctx context.Context) RegionPerInstanceConfigOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RegionPerInstanceConfigOutput{})
 }

@@ -4,6 +4,7 @@
 package logging
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -138,4 +139,43 @@ type OrganizationExclusionArgs struct {
 
 func (OrganizationExclusionArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*organizationExclusionArgs)(nil)).Elem()
+}
+
+type OrganizationExclusionInput interface {
+	pulumi.Input
+
+	ToOrganizationExclusionOutput() OrganizationExclusionOutput
+	ToOrganizationExclusionOutputWithContext(ctx context.Context) OrganizationExclusionOutput
+}
+
+func (OrganizationExclusion) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationExclusion)(nil)).Elem()
+}
+
+func (i OrganizationExclusion) ToOrganizationExclusionOutput() OrganizationExclusionOutput {
+	return i.ToOrganizationExclusionOutputWithContext(context.Background())
+}
+
+func (i OrganizationExclusion) ToOrganizationExclusionOutputWithContext(ctx context.Context) OrganizationExclusionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationExclusionOutput)
+}
+
+type OrganizationExclusionOutput struct {
+	*pulumi.OutputState
+}
+
+func (OrganizationExclusionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationExclusionOutput)(nil)).Elem()
+}
+
+func (o OrganizationExclusionOutput) ToOrganizationExclusionOutput() OrganizationExclusionOutput {
+	return o
+}
+
+func (o OrganizationExclusionOutput) ToOrganizationExclusionOutputWithContext(ctx context.Context) OrganizationExclusionOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(OrganizationExclusionOutput{})
 }

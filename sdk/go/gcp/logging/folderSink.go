@@ -4,6 +4,7 @@
 package logging
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -202,4 +203,43 @@ type FolderSinkArgs struct {
 
 func (FolderSinkArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*folderSinkArgs)(nil)).Elem()
+}
+
+type FolderSinkInput interface {
+	pulumi.Input
+
+	ToFolderSinkOutput() FolderSinkOutput
+	ToFolderSinkOutputWithContext(ctx context.Context) FolderSinkOutput
+}
+
+func (FolderSink) ElementType() reflect.Type {
+	return reflect.TypeOf((*FolderSink)(nil)).Elem()
+}
+
+func (i FolderSink) ToFolderSinkOutput() FolderSinkOutput {
+	return i.ToFolderSinkOutputWithContext(context.Background())
+}
+
+func (i FolderSink) ToFolderSinkOutputWithContext(ctx context.Context) FolderSinkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FolderSinkOutput)
+}
+
+type FolderSinkOutput struct {
+	*pulumi.OutputState
+}
+
+func (FolderSinkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FolderSinkOutput)(nil)).Elem()
+}
+
+func (o FolderSinkOutput) ToFolderSinkOutput() FolderSinkOutput {
+	return o
+}
+
+func (o FolderSinkOutput) ToFolderSinkOutputWithContext(ctx context.Context) FolderSinkOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(FolderSinkOutput{})
 }
