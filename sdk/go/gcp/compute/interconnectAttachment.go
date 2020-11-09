@@ -4,6 +4,8 @@
 package compute
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -99,11 +101,11 @@ type InterconnectAttachment struct {
 // NewInterconnectAttachment registers a new resource with the given unique name, arguments, and options.
 func NewInterconnectAttachment(ctx *pulumi.Context,
 	name string, args *InterconnectAttachmentArgs, opts ...pulumi.ResourceOption) (*InterconnectAttachment, error) {
-	if args == nil || args.Router == nil {
-		return nil, errors.New("missing required argument 'Router'")
-	}
 	if args == nil {
-		args = &InterconnectAttachmentArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Router == nil {
+		return nil, errors.New("invalid value for required argument 'Router'")
 	}
 	var resource InterconnectAttachment
 	err := ctx.RegisterResource("gcp:compute/interconnectAttachment:InterconnectAttachment", name, args, &resource, opts...)
@@ -409,4 +411,43 @@ type InterconnectAttachmentArgs struct {
 
 func (InterconnectAttachmentArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*interconnectAttachmentArgs)(nil)).Elem()
+}
+
+type InterconnectAttachmentInput interface {
+	pulumi.Input
+
+	ToInterconnectAttachmentOutput() InterconnectAttachmentOutput
+	ToInterconnectAttachmentOutputWithContext(ctx context.Context) InterconnectAttachmentOutput
+}
+
+func (InterconnectAttachment) ElementType() reflect.Type {
+	return reflect.TypeOf((*InterconnectAttachment)(nil)).Elem()
+}
+
+func (i InterconnectAttachment) ToInterconnectAttachmentOutput() InterconnectAttachmentOutput {
+	return i.ToInterconnectAttachmentOutputWithContext(context.Background())
+}
+
+func (i InterconnectAttachment) ToInterconnectAttachmentOutputWithContext(ctx context.Context) InterconnectAttachmentOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InterconnectAttachmentOutput)
+}
+
+type InterconnectAttachmentOutput struct {
+	*pulumi.OutputState
+}
+
+func (InterconnectAttachmentOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InterconnectAttachmentOutput)(nil)).Elem()
+}
+
+func (o InterconnectAttachmentOutput) ToInterconnectAttachmentOutput() InterconnectAttachmentOutput {
+	return o
+}
+
+func (o InterconnectAttachmentOutput) ToInterconnectAttachmentOutputWithContext(ctx context.Context) InterconnectAttachmentOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(InterconnectAttachmentOutput{})
 }

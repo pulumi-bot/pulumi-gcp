@@ -4,6 +4,8 @@
 package healthcare
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -37,14 +39,14 @@ type DicomStoreIamPolicy struct {
 // NewDicomStoreIamPolicy registers a new resource with the given unique name, arguments, and options.
 func NewDicomStoreIamPolicy(ctx *pulumi.Context,
 	name string, args *DicomStoreIamPolicyArgs, opts ...pulumi.ResourceOption) (*DicomStoreIamPolicy, error) {
-	if args == nil || args.DicomStoreId == nil {
-		return nil, errors.New("missing required argument 'DicomStoreId'")
-	}
-	if args == nil || args.PolicyData == nil {
-		return nil, errors.New("missing required argument 'PolicyData'")
-	}
 	if args == nil {
-		args = &DicomStoreIamPolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.DicomStoreId == nil {
+		return nil, errors.New("invalid value for required argument 'DicomStoreId'")
+	}
+	if args.PolicyData == nil {
+		return nil, errors.New("invalid value for required argument 'PolicyData'")
 	}
 	var resource DicomStoreIamPolicy
 	err := ctx.RegisterResource("gcp:healthcare/dicomStoreIamPolicy:DicomStoreIamPolicy", name, args, &resource, opts...)
@@ -122,4 +124,43 @@ type DicomStoreIamPolicyArgs struct {
 
 func (DicomStoreIamPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*dicomStoreIamPolicyArgs)(nil)).Elem()
+}
+
+type DicomStoreIamPolicyInput interface {
+	pulumi.Input
+
+	ToDicomStoreIamPolicyOutput() DicomStoreIamPolicyOutput
+	ToDicomStoreIamPolicyOutputWithContext(ctx context.Context) DicomStoreIamPolicyOutput
+}
+
+func (DicomStoreIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*DicomStoreIamPolicy)(nil)).Elem()
+}
+
+func (i DicomStoreIamPolicy) ToDicomStoreIamPolicyOutput() DicomStoreIamPolicyOutput {
+	return i.ToDicomStoreIamPolicyOutputWithContext(context.Background())
+}
+
+func (i DicomStoreIamPolicy) ToDicomStoreIamPolicyOutputWithContext(ctx context.Context) DicomStoreIamPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DicomStoreIamPolicyOutput)
+}
+
+type DicomStoreIamPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (DicomStoreIamPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DicomStoreIamPolicyOutput)(nil)).Elem()
+}
+
+func (o DicomStoreIamPolicyOutput) ToDicomStoreIamPolicyOutput() DicomStoreIamPolicyOutput {
+	return o
+}
+
+func (o DicomStoreIamPolicyOutput) ToDicomStoreIamPolicyOutputWithContext(ctx context.Context) DicomStoreIamPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DicomStoreIamPolicyOutput{})
 }

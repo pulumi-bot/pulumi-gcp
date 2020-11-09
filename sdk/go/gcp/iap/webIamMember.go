@@ -4,6 +4,8 @@
 package iap
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -40,14 +42,14 @@ type WebIamMember struct {
 // NewWebIamMember registers a new resource with the given unique name, arguments, and options.
 func NewWebIamMember(ctx *pulumi.Context,
 	name string, args *WebIamMemberArgs, opts ...pulumi.ResourceOption) (*WebIamMember, error) {
-	if args == nil || args.Member == nil {
-		return nil, errors.New("missing required argument 'Member'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &WebIamMemberArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Member == nil {
+		return nil, errors.New("invalid value for required argument 'Member'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource WebIamMember
 	err := ctx.RegisterResource("gcp:iap/webIamMember:WebIamMember", name, args, &resource, opts...)
@@ -137,4 +139,43 @@ type WebIamMemberArgs struct {
 
 func (WebIamMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*webIamMemberArgs)(nil)).Elem()
+}
+
+type WebIamMemberInput interface {
+	pulumi.Input
+
+	ToWebIamMemberOutput() WebIamMemberOutput
+	ToWebIamMemberOutputWithContext(ctx context.Context) WebIamMemberOutput
+}
+
+func (WebIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebIamMember)(nil)).Elem()
+}
+
+func (i WebIamMember) ToWebIamMemberOutput() WebIamMemberOutput {
+	return i.ToWebIamMemberOutputWithContext(context.Background())
+}
+
+func (i WebIamMember) ToWebIamMemberOutputWithContext(ctx context.Context) WebIamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebIamMemberOutput)
+}
+
+type WebIamMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (WebIamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebIamMemberOutput)(nil)).Elem()
+}
+
+func (o WebIamMemberOutput) ToWebIamMemberOutput() WebIamMemberOutput {
+	return o
+}
+
+func (o WebIamMemberOutput) ToWebIamMemberOutputWithContext(ctx context.Context) WebIamMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(WebIamMemberOutput{})
 }

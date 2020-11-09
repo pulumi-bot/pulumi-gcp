@@ -4,6 +4,8 @@
 package pubsub
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -40,17 +42,17 @@ type SubscriptionIAMBinding struct {
 // NewSubscriptionIAMBinding registers a new resource with the given unique name, arguments, and options.
 func NewSubscriptionIAMBinding(ctx *pulumi.Context,
 	name string, args *SubscriptionIAMBindingArgs, opts ...pulumi.ResourceOption) (*SubscriptionIAMBinding, error) {
-	if args == nil || args.Members == nil {
-		return nil, errors.New("missing required argument 'Members'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
-	if args == nil || args.Subscription == nil {
-		return nil, errors.New("missing required argument 'Subscription'")
-	}
 	if args == nil {
-		args = &SubscriptionIAMBindingArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Members == nil {
+		return nil, errors.New("invalid value for required argument 'Members'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
+	}
+	if args.Subscription == nil {
+		return nil, errors.New("invalid value for required argument 'Subscription'")
 	}
 	var resource SubscriptionIAMBinding
 	err := ctx.RegisterResource("gcp:pubsub/subscriptionIAMBinding:SubscriptionIAMBinding", name, args, &resource, opts...)
@@ -140,4 +142,43 @@ type SubscriptionIAMBindingArgs struct {
 
 func (SubscriptionIAMBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*subscriptionIAMBindingArgs)(nil)).Elem()
+}
+
+type SubscriptionIAMBindingInput interface {
+	pulumi.Input
+
+	ToSubscriptionIAMBindingOutput() SubscriptionIAMBindingOutput
+	ToSubscriptionIAMBindingOutputWithContext(ctx context.Context) SubscriptionIAMBindingOutput
+}
+
+func (SubscriptionIAMBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*SubscriptionIAMBinding)(nil)).Elem()
+}
+
+func (i SubscriptionIAMBinding) ToSubscriptionIAMBindingOutput() SubscriptionIAMBindingOutput {
+	return i.ToSubscriptionIAMBindingOutputWithContext(context.Background())
+}
+
+func (i SubscriptionIAMBinding) ToSubscriptionIAMBindingOutputWithContext(ctx context.Context) SubscriptionIAMBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SubscriptionIAMBindingOutput)
+}
+
+type SubscriptionIAMBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (SubscriptionIAMBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SubscriptionIAMBindingOutput)(nil)).Elem()
+}
+
+func (o SubscriptionIAMBindingOutput) ToSubscriptionIAMBindingOutput() SubscriptionIAMBindingOutput {
+	return o
+}
+
+func (o SubscriptionIAMBindingOutput) ToSubscriptionIAMBindingOutputWithContext(ctx context.Context) SubscriptionIAMBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SubscriptionIAMBindingOutput{})
 }

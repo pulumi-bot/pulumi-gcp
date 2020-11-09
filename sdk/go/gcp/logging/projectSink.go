@@ -4,6 +4,8 @@
 package logging
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -64,11 +66,11 @@ type ProjectSink struct {
 // NewProjectSink registers a new resource with the given unique name, arguments, and options.
 func NewProjectSink(ctx *pulumi.Context,
 	name string, args *ProjectSinkArgs, opts ...pulumi.ResourceOption) (*ProjectSink, error) {
-	if args == nil || args.Destination == nil {
-		return nil, errors.New("missing required argument 'Destination'")
-	}
 	if args == nil {
-		args = &ProjectSinkArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Destination == nil {
+		return nil, errors.New("invalid value for required argument 'Destination'")
 	}
 	var resource ProjectSink
 	err := ctx.RegisterResource("gcp:logging/projectSink:ProjectSink", name, args, &resource, opts...)
@@ -252,4 +254,43 @@ type ProjectSinkArgs struct {
 
 func (ProjectSinkArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*projectSinkArgs)(nil)).Elem()
+}
+
+type ProjectSinkInput interface {
+	pulumi.Input
+
+	ToProjectSinkOutput() ProjectSinkOutput
+	ToProjectSinkOutputWithContext(ctx context.Context) ProjectSinkOutput
+}
+
+func (ProjectSink) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProjectSink)(nil)).Elem()
+}
+
+func (i ProjectSink) ToProjectSinkOutput() ProjectSinkOutput {
+	return i.ToProjectSinkOutputWithContext(context.Background())
+}
+
+func (i ProjectSink) ToProjectSinkOutputWithContext(ctx context.Context) ProjectSinkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProjectSinkOutput)
+}
+
+type ProjectSinkOutput struct {
+	*pulumi.OutputState
+}
+
+func (ProjectSinkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProjectSinkOutput)(nil)).Elem()
+}
+
+func (o ProjectSinkOutput) ToProjectSinkOutput() ProjectSinkOutput {
+	return o
+}
+
+func (o ProjectSinkOutput) ToProjectSinkOutputWithContext(ctx context.Context) ProjectSinkOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ProjectSinkOutput{})
 }

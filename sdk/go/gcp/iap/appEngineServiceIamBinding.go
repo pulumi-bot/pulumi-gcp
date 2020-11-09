@@ -4,6 +4,8 @@
 package iap
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -44,20 +46,20 @@ type AppEngineServiceIamBinding struct {
 // NewAppEngineServiceIamBinding registers a new resource with the given unique name, arguments, and options.
 func NewAppEngineServiceIamBinding(ctx *pulumi.Context,
 	name string, args *AppEngineServiceIamBindingArgs, opts ...pulumi.ResourceOption) (*AppEngineServiceIamBinding, error) {
-	if args == nil || args.AppId == nil {
-		return nil, errors.New("missing required argument 'AppId'")
-	}
-	if args == nil || args.Members == nil {
-		return nil, errors.New("missing required argument 'Members'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
-	if args == nil || args.Service == nil {
-		return nil, errors.New("missing required argument 'Service'")
-	}
 	if args == nil {
-		args = &AppEngineServiceIamBindingArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.AppId == nil {
+		return nil, errors.New("invalid value for required argument 'AppId'")
+	}
+	if args.Members == nil {
+		return nil, errors.New("invalid value for required argument 'Members'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
+	}
+	if args.Service == nil {
+		return nil, errors.New("invalid value for required argument 'Service'")
 	}
 	var resource AppEngineServiceIamBinding
 	err := ctx.RegisterResource("gcp:iap/appEngineServiceIamBinding:AppEngineServiceIamBinding", name, args, &resource, opts...)
@@ -163,4 +165,43 @@ type AppEngineServiceIamBindingArgs struct {
 
 func (AppEngineServiceIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*appEngineServiceIamBindingArgs)(nil)).Elem()
+}
+
+type AppEngineServiceIamBindingInput interface {
+	pulumi.Input
+
+	ToAppEngineServiceIamBindingOutput() AppEngineServiceIamBindingOutput
+	ToAppEngineServiceIamBindingOutputWithContext(ctx context.Context) AppEngineServiceIamBindingOutput
+}
+
+func (AppEngineServiceIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*AppEngineServiceIamBinding)(nil)).Elem()
+}
+
+func (i AppEngineServiceIamBinding) ToAppEngineServiceIamBindingOutput() AppEngineServiceIamBindingOutput {
+	return i.ToAppEngineServiceIamBindingOutputWithContext(context.Background())
+}
+
+func (i AppEngineServiceIamBinding) ToAppEngineServiceIamBindingOutputWithContext(ctx context.Context) AppEngineServiceIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AppEngineServiceIamBindingOutput)
+}
+
+type AppEngineServiceIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (AppEngineServiceIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AppEngineServiceIamBindingOutput)(nil)).Elem()
+}
+
+func (o AppEngineServiceIamBindingOutput) ToAppEngineServiceIamBindingOutput() AppEngineServiceIamBindingOutput {
+	return o
+}
+
+func (o AppEngineServiceIamBindingOutput) ToAppEngineServiceIamBindingOutputWithContext(ctx context.Context) AppEngineServiceIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AppEngineServiceIamBindingOutput{})
 }

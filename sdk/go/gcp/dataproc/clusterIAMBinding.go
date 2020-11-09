@@ -4,6 +4,8 @@
 package dataproc
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -43,17 +45,17 @@ type ClusterIAMBinding struct {
 // NewClusterIAMBinding registers a new resource with the given unique name, arguments, and options.
 func NewClusterIAMBinding(ctx *pulumi.Context,
 	name string, args *ClusterIAMBindingArgs, opts ...pulumi.ResourceOption) (*ClusterIAMBinding, error) {
-	if args == nil || args.Cluster == nil {
-		return nil, errors.New("missing required argument 'Cluster'")
-	}
-	if args == nil || args.Members == nil {
-		return nil, errors.New("missing required argument 'Members'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &ClusterIAMBindingArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Cluster == nil {
+		return nil, errors.New("invalid value for required argument 'Cluster'")
+	}
+	if args.Members == nil {
+		return nil, errors.New("invalid value for required argument 'Members'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource ClusterIAMBinding
 	err := ctx.RegisterResource("gcp:dataproc/clusterIAMBinding:ClusterIAMBinding", name, args, &resource, opts...)
@@ -155,4 +157,43 @@ type ClusterIAMBindingArgs struct {
 
 func (ClusterIAMBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*clusterIAMBindingArgs)(nil)).Elem()
+}
+
+type ClusterIAMBindingInput interface {
+	pulumi.Input
+
+	ToClusterIAMBindingOutput() ClusterIAMBindingOutput
+	ToClusterIAMBindingOutputWithContext(ctx context.Context) ClusterIAMBindingOutput
+}
+
+func (ClusterIAMBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterIAMBinding)(nil)).Elem()
+}
+
+func (i ClusterIAMBinding) ToClusterIAMBindingOutput() ClusterIAMBindingOutput {
+	return i.ToClusterIAMBindingOutputWithContext(context.Background())
+}
+
+func (i ClusterIAMBinding) ToClusterIAMBindingOutputWithContext(ctx context.Context) ClusterIAMBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterIAMBindingOutput)
+}
+
+type ClusterIAMBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (ClusterIAMBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterIAMBindingOutput)(nil)).Elem()
+}
+
+func (o ClusterIAMBindingOutput) ToClusterIAMBindingOutput() ClusterIAMBindingOutput {
+	return o
+}
+
+func (o ClusterIAMBindingOutput) ToClusterIAMBindingOutputWithContext(ctx context.Context) ClusterIAMBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ClusterIAMBindingOutput{})
 }

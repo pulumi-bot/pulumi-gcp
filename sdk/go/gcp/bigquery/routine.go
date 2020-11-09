@@ -4,6 +4,8 @@
 package bigquery
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -68,17 +70,17 @@ type Routine struct {
 // NewRoutine registers a new resource with the given unique name, arguments, and options.
 func NewRoutine(ctx *pulumi.Context,
 	name string, args *RoutineArgs, opts ...pulumi.ResourceOption) (*Routine, error) {
-	if args == nil || args.DatasetId == nil {
-		return nil, errors.New("missing required argument 'DatasetId'")
-	}
-	if args == nil || args.DefinitionBody == nil {
-		return nil, errors.New("missing required argument 'DefinitionBody'")
-	}
-	if args == nil || args.RoutineId == nil {
-		return nil, errors.New("missing required argument 'RoutineId'")
-	}
 	if args == nil {
-		args = &RoutineArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.DatasetId == nil {
+		return nil, errors.New("invalid value for required argument 'DatasetId'")
+	}
+	if args.DefinitionBody == nil {
+		return nil, errors.New("invalid value for required argument 'DefinitionBody'")
+	}
+	if args.RoutineId == nil {
+		return nil, errors.New("invalid value for required argument 'RoutineId'")
 	}
 	var resource Routine
 	err := ctx.RegisterResource("gcp:bigquery/routine:Routine", name, args, &resource, opts...)
@@ -276,4 +278,43 @@ type RoutineArgs struct {
 
 func (RoutineArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*routineArgs)(nil)).Elem()
+}
+
+type RoutineInput interface {
+	pulumi.Input
+
+	ToRoutineOutput() RoutineOutput
+	ToRoutineOutputWithContext(ctx context.Context) RoutineOutput
+}
+
+func (Routine) ElementType() reflect.Type {
+	return reflect.TypeOf((*Routine)(nil)).Elem()
+}
+
+func (i Routine) ToRoutineOutput() RoutineOutput {
+	return i.ToRoutineOutputWithContext(context.Background())
+}
+
+func (i Routine) ToRoutineOutputWithContext(ctx context.Context) RoutineOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RoutineOutput)
+}
+
+type RoutineOutput struct {
+	*pulumi.OutputState
+}
+
+func (RoutineOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RoutineOutput)(nil)).Elem()
+}
+
+func (o RoutineOutput) ToRoutineOutput() RoutineOutput {
+	return o
+}
+
+func (o RoutineOutput) ToRoutineOutputWithContext(ctx context.Context) RoutineOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RoutineOutput{})
 }

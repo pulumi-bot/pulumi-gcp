@@ -4,6 +4,8 @@
 package logging
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -37,17 +39,17 @@ type OrganizationBucketConfig struct {
 // NewOrganizationBucketConfig registers a new resource with the given unique name, arguments, and options.
 func NewOrganizationBucketConfig(ctx *pulumi.Context,
 	name string, args *OrganizationBucketConfigArgs, opts ...pulumi.ResourceOption) (*OrganizationBucketConfig, error) {
-	if args == nil || args.BucketId == nil {
-		return nil, errors.New("missing required argument 'BucketId'")
-	}
-	if args == nil || args.Location == nil {
-		return nil, errors.New("missing required argument 'Location'")
-	}
-	if args == nil || args.Organization == nil {
-		return nil, errors.New("missing required argument 'Organization'")
-	}
 	if args == nil {
-		args = &OrganizationBucketConfigArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.BucketId == nil {
+		return nil, errors.New("invalid value for required argument 'BucketId'")
+	}
+	if args.Location == nil {
+		return nil, errors.New("invalid value for required argument 'Location'")
+	}
+	if args.Organization == nil {
+		return nil, errors.New("invalid value for required argument 'Organization'")
 	}
 	var resource OrganizationBucketConfig
 	err := ctx.RegisterResource("gcp:logging/organizationBucketConfig:OrganizationBucketConfig", name, args, &resource, opts...)
@@ -137,4 +139,43 @@ type OrganizationBucketConfigArgs struct {
 
 func (OrganizationBucketConfigArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*organizationBucketConfigArgs)(nil)).Elem()
+}
+
+type OrganizationBucketConfigInput interface {
+	pulumi.Input
+
+	ToOrganizationBucketConfigOutput() OrganizationBucketConfigOutput
+	ToOrganizationBucketConfigOutputWithContext(ctx context.Context) OrganizationBucketConfigOutput
+}
+
+func (OrganizationBucketConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationBucketConfig)(nil)).Elem()
+}
+
+func (i OrganizationBucketConfig) ToOrganizationBucketConfigOutput() OrganizationBucketConfigOutput {
+	return i.ToOrganizationBucketConfigOutputWithContext(context.Background())
+}
+
+func (i OrganizationBucketConfig) ToOrganizationBucketConfigOutputWithContext(ctx context.Context) OrganizationBucketConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationBucketConfigOutput)
+}
+
+type OrganizationBucketConfigOutput struct {
+	*pulumi.OutputState
+}
+
+func (OrganizationBucketConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationBucketConfigOutput)(nil)).Elem()
+}
+
+func (o OrganizationBucketConfigOutput) ToOrganizationBucketConfigOutput() OrganizationBucketConfigOutput {
+	return o
+}
+
+func (o OrganizationBucketConfigOutput) ToOrganizationBucketConfigOutputWithContext(ctx context.Context) OrganizationBucketConfigOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(OrganizationBucketConfigOutput{})
 }

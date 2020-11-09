@@ -4,6 +4,8 @@
 package compute
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -41,14 +43,14 @@ type InstanceIAMPolicy struct {
 // NewInstanceIAMPolicy registers a new resource with the given unique name, arguments, and options.
 func NewInstanceIAMPolicy(ctx *pulumi.Context,
 	name string, args *InstanceIAMPolicyArgs, opts ...pulumi.ResourceOption) (*InstanceIAMPolicy, error) {
-	if args == nil || args.InstanceName == nil {
-		return nil, errors.New("missing required argument 'InstanceName'")
-	}
-	if args == nil || args.PolicyData == nil {
-		return nil, errors.New("missing required argument 'PolicyData'")
-	}
 	if args == nil {
-		args = &InstanceIAMPolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.InstanceName == nil {
+		return nil, errors.New("invalid value for required argument 'InstanceName'")
+	}
+	if args.PolicyData == nil {
+		return nil, errors.New("invalid value for required argument 'PolicyData'")
 	}
 	var resource InstanceIAMPolicy
 	err := ctx.RegisterResource("gcp:compute/instanceIAMPolicy:InstanceIAMPolicy", name, args, &resource, opts...)
@@ -142,4 +144,43 @@ type InstanceIAMPolicyArgs struct {
 
 func (InstanceIAMPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*instanceIAMPolicyArgs)(nil)).Elem()
+}
+
+type InstanceIAMPolicyInput interface {
+	pulumi.Input
+
+	ToInstanceIAMPolicyOutput() InstanceIAMPolicyOutput
+	ToInstanceIAMPolicyOutputWithContext(ctx context.Context) InstanceIAMPolicyOutput
+}
+
+func (InstanceIAMPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceIAMPolicy)(nil)).Elem()
+}
+
+func (i InstanceIAMPolicy) ToInstanceIAMPolicyOutput() InstanceIAMPolicyOutput {
+	return i.ToInstanceIAMPolicyOutputWithContext(context.Background())
+}
+
+func (i InstanceIAMPolicy) ToInstanceIAMPolicyOutputWithContext(ctx context.Context) InstanceIAMPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceIAMPolicyOutput)
+}
+
+type InstanceIAMPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (InstanceIAMPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceIAMPolicyOutput)(nil)).Elem()
+}
+
+func (o InstanceIAMPolicyOutput) ToInstanceIAMPolicyOutput() InstanceIAMPolicyOutput {
+	return o
+}
+
+func (o InstanceIAMPolicyOutput) ToInstanceIAMPolicyOutputWithContext(ctx context.Context) InstanceIAMPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(InstanceIAMPolicyOutput{})
 }

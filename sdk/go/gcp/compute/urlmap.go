@@ -4,6 +4,8 @@
 package compute
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
@@ -287,4 +289,43 @@ type URLMapArgs struct {
 
 func (URLMapArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*urlmapArgs)(nil)).Elem()
+}
+
+type URLMapInput interface {
+	pulumi.Input
+
+	ToURLMapOutput() URLMapOutput
+	ToURLMapOutputWithContext(ctx context.Context) URLMapOutput
+}
+
+func (URLMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*URLMap)(nil)).Elem()
+}
+
+func (i URLMap) ToURLMapOutput() URLMapOutput {
+	return i.ToURLMapOutputWithContext(context.Background())
+}
+
+func (i URLMap) ToURLMapOutputWithContext(ctx context.Context) URLMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapOutput)
+}
+
+type URLMapOutput struct {
+	*pulumi.OutputState
+}
+
+func (URLMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*URLMapOutput)(nil)).Elem()
+}
+
+func (o URLMapOutput) ToURLMapOutput() URLMapOutput {
+	return o
+}
+
+func (o URLMapOutput) ToURLMapOutputWithContext(ctx context.Context) URLMapOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(URLMapOutput{})
 }

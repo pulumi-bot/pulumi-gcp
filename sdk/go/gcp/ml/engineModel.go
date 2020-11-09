@@ -4,6 +4,8 @@
 package ml
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
@@ -166,4 +168,43 @@ type EngineModelArgs struct {
 
 func (EngineModelArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*engineModelArgs)(nil)).Elem()
+}
+
+type EngineModelInput interface {
+	pulumi.Input
+
+	ToEngineModelOutput() EngineModelOutput
+	ToEngineModelOutputWithContext(ctx context.Context) EngineModelOutput
+}
+
+func (EngineModel) ElementType() reflect.Type {
+	return reflect.TypeOf((*EngineModel)(nil)).Elem()
+}
+
+func (i EngineModel) ToEngineModelOutput() EngineModelOutput {
+	return i.ToEngineModelOutputWithContext(context.Background())
+}
+
+func (i EngineModel) ToEngineModelOutputWithContext(ctx context.Context) EngineModelOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EngineModelOutput)
+}
+
+type EngineModelOutput struct {
+	*pulumi.OutputState
+}
+
+func (EngineModelOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EngineModelOutput)(nil)).Elem()
+}
+
+func (o EngineModelOutput) ToEngineModelOutput() EngineModelOutput {
+	return o
+}
+
+func (o EngineModelOutput) ToEngineModelOutputWithContext(ctx context.Context) EngineModelOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(EngineModelOutput{})
 }

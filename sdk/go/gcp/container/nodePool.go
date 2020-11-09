@@ -4,6 +4,8 @@
 package container
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -80,11 +82,11 @@ type NodePool struct {
 // NewNodePool registers a new resource with the given unique name, arguments, and options.
 func NewNodePool(ctx *pulumi.Context,
 	name string, args *NodePoolArgs, opts ...pulumi.ResourceOption) (*NodePool, error) {
-	if args == nil || args.Cluster == nil {
-		return nil, errors.New("missing required argument 'Cluster'")
-	}
 	if args == nil {
-		args = &NodePoolArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Cluster == nil {
+		return nil, errors.New("invalid value for required argument 'Cluster'")
 	}
 	var resource NodePool
 	err := ctx.RegisterResource("gcp:container/nodePool:NodePool", name, args, &resource, opts...)
@@ -350,4 +352,43 @@ type NodePoolArgs struct {
 
 func (NodePoolArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*nodePoolArgs)(nil)).Elem()
+}
+
+type NodePoolInput interface {
+	pulumi.Input
+
+	ToNodePoolOutput() NodePoolOutput
+	ToNodePoolOutputWithContext(ctx context.Context) NodePoolOutput
+}
+
+func (NodePool) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodePool)(nil)).Elem()
+}
+
+func (i NodePool) ToNodePoolOutput() NodePoolOutput {
+	return i.ToNodePoolOutputWithContext(context.Background())
+}
+
+func (i NodePool) ToNodePoolOutputWithContext(ctx context.Context) NodePoolOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolOutput)
+}
+
+type NodePoolOutput struct {
+	*pulumi.OutputState
+}
+
+func (NodePoolOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodePoolOutput)(nil)).Elem()
+}
+
+func (o NodePoolOutput) ToNodePoolOutput() NodePoolOutput {
+	return o
+}
+
+func (o NodePoolOutput) ToNodePoolOutputWithContext(ctx context.Context) NodePoolOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(NodePoolOutput{})
 }

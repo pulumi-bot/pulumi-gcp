@@ -4,6 +4,8 @@
 package storage
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -36,11 +38,11 @@ type BucketACL struct {
 // NewBucketACL registers a new resource with the given unique name, arguments, and options.
 func NewBucketACL(ctx *pulumi.Context,
 	name string, args *BucketACLArgs, opts ...pulumi.ResourceOption) (*BucketACL, error) {
-	if args == nil || args.Bucket == nil {
-		return nil, errors.New("missing required argument 'Bucket'")
-	}
 	if args == nil {
-		args = &BucketACLArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Bucket == nil {
+		return nil, errors.New("invalid value for required argument 'Bucket'")
 	}
 	var resource BucketACL
 	err := ctx.RegisterResource("gcp:storage/bucketACL:BucketACL", name, args, &resource, opts...)
@@ -114,4 +116,43 @@ type BucketACLArgs struct {
 
 func (BucketACLArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*bucketACLArgs)(nil)).Elem()
+}
+
+type BucketACLInput interface {
+	pulumi.Input
+
+	ToBucketACLOutput() BucketACLOutput
+	ToBucketACLOutputWithContext(ctx context.Context) BucketACLOutput
+}
+
+func (BucketACL) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketACL)(nil)).Elem()
+}
+
+func (i BucketACL) ToBucketACLOutput() BucketACLOutput {
+	return i.ToBucketACLOutputWithContext(context.Background())
+}
+
+func (i BucketACL) ToBucketACLOutputWithContext(ctx context.Context) BucketACLOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketACLOutput)
+}
+
+type BucketACLOutput struct {
+	*pulumi.OutputState
+}
+
+func (BucketACLOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketACLOutput)(nil)).Elem()
+}
+
+func (o BucketACLOutput) ToBucketACLOutput() BucketACLOutput {
+	return o
+}
+
+func (o BucketACLOutput) ToBucketACLOutputWithContext(ctx context.Context) BucketACLOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(BucketACLOutput{})
 }

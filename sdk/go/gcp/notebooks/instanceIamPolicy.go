@@ -4,6 +4,8 @@
 package notebooks
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -30,14 +32,14 @@ type InstanceIamPolicy struct {
 // NewInstanceIamPolicy registers a new resource with the given unique name, arguments, and options.
 func NewInstanceIamPolicy(ctx *pulumi.Context,
 	name string, args *InstanceIamPolicyArgs, opts ...pulumi.ResourceOption) (*InstanceIamPolicy, error) {
-	if args == nil || args.InstanceName == nil {
-		return nil, errors.New("missing required argument 'InstanceName'")
-	}
-	if args == nil || args.PolicyData == nil {
-		return nil, errors.New("missing required argument 'PolicyData'")
-	}
 	if args == nil {
-		args = &InstanceIamPolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.InstanceName == nil {
+		return nil, errors.New("invalid value for required argument 'InstanceName'")
+	}
+	if args.PolicyData == nil {
+		return nil, errors.New("invalid value for required argument 'PolicyData'")
 	}
 	var resource InstanceIamPolicy
 	err := ctx.RegisterResource("gcp:notebooks/instanceIamPolicy:InstanceIamPolicy", name, args, &resource, opts...)
@@ -123,4 +125,43 @@ type InstanceIamPolicyArgs struct {
 
 func (InstanceIamPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*instanceIamPolicyArgs)(nil)).Elem()
+}
+
+type InstanceIamPolicyInput interface {
+	pulumi.Input
+
+	ToInstanceIamPolicyOutput() InstanceIamPolicyOutput
+	ToInstanceIamPolicyOutputWithContext(ctx context.Context) InstanceIamPolicyOutput
+}
+
+func (InstanceIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceIamPolicy)(nil)).Elem()
+}
+
+func (i InstanceIamPolicy) ToInstanceIamPolicyOutput() InstanceIamPolicyOutput {
+	return i.ToInstanceIamPolicyOutputWithContext(context.Background())
+}
+
+func (i InstanceIamPolicy) ToInstanceIamPolicyOutputWithContext(ctx context.Context) InstanceIamPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceIamPolicyOutput)
+}
+
+type InstanceIamPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (InstanceIamPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceIamPolicyOutput)(nil)).Elem()
+}
+
+func (o InstanceIamPolicyOutput) ToInstanceIamPolicyOutput() InstanceIamPolicyOutput {
+	return o
+}
+
+func (o InstanceIamPolicyOutput) ToInstanceIamPolicyOutputWithContext(ctx context.Context) InstanceIamPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(InstanceIamPolicyOutput{})
 }

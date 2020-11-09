@@ -4,6 +4,8 @@
 package datacatalog
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -52,14 +54,14 @@ type Tag struct {
 // NewTag registers a new resource with the given unique name, arguments, and options.
 func NewTag(ctx *pulumi.Context,
 	name string, args *TagArgs, opts ...pulumi.ResourceOption) (*Tag, error) {
-	if args == nil || args.Fields == nil {
-		return nil, errors.New("missing required argument 'Fields'")
-	}
-	if args == nil || args.Template == nil {
-		return nil, errors.New("missing required argument 'Template'")
-	}
 	if args == nil {
-		args = &TagArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Fields == nil {
+		return nil, errors.New("invalid value for required argument 'Fields'")
+	}
+	if args.Template == nil {
+		return nil, errors.New("invalid value for required argument 'Template'")
 	}
 	var resource Tag
 	err := ctx.RegisterResource("gcp:datacatalog/tag:Tag", name, args, &resource, opts...)
@@ -179,4 +181,43 @@ type TagArgs struct {
 
 func (TagArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*tagArgs)(nil)).Elem()
+}
+
+type TagInput interface {
+	pulumi.Input
+
+	ToTagOutput() TagOutput
+	ToTagOutputWithContext(ctx context.Context) TagOutput
+}
+
+func (Tag) ElementType() reflect.Type {
+	return reflect.TypeOf((*Tag)(nil)).Elem()
+}
+
+func (i Tag) ToTagOutput() TagOutput {
+	return i.ToTagOutputWithContext(context.Background())
+}
+
+func (i Tag) ToTagOutputWithContext(ctx context.Context) TagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TagOutput)
+}
+
+type TagOutput struct {
+	*pulumi.OutputState
+}
+
+func (TagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TagOutput)(nil)).Elem()
+}
+
+func (o TagOutput) ToTagOutput() TagOutput {
+	return o
+}
+
+func (o TagOutput) ToTagOutputWithContext(ctx context.Context) TagOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TagOutput{})
 }

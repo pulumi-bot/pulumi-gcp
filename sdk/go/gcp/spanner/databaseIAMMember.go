@@ -4,6 +4,8 @@
 package spanner
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -45,20 +47,20 @@ type DatabaseIAMMember struct {
 // NewDatabaseIAMMember registers a new resource with the given unique name, arguments, and options.
 func NewDatabaseIAMMember(ctx *pulumi.Context,
 	name string, args *DatabaseIAMMemberArgs, opts ...pulumi.ResourceOption) (*DatabaseIAMMember, error) {
-	if args == nil || args.Database == nil {
-		return nil, errors.New("missing required argument 'Database'")
-	}
-	if args == nil || args.Instance == nil {
-		return nil, errors.New("missing required argument 'Instance'")
-	}
-	if args == nil || args.Member == nil {
-		return nil, errors.New("missing required argument 'Member'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &DatabaseIAMMemberArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Database == nil {
+		return nil, errors.New("invalid value for required argument 'Database'")
+	}
+	if args.Instance == nil {
+		return nil, errors.New("invalid value for required argument 'Instance'")
+	}
+	if args.Member == nil {
+		return nil, errors.New("invalid value for required argument 'Member'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource DatabaseIAMMember
 	err := ctx.RegisterResource("gcp:spanner/databaseIAMMember:DatabaseIAMMember", name, args, &resource, opts...)
@@ -156,4 +158,43 @@ type DatabaseIAMMemberArgs struct {
 
 func (DatabaseIAMMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*databaseIAMMemberArgs)(nil)).Elem()
+}
+
+type DatabaseIAMMemberInput interface {
+	pulumi.Input
+
+	ToDatabaseIAMMemberOutput() DatabaseIAMMemberOutput
+	ToDatabaseIAMMemberOutputWithContext(ctx context.Context) DatabaseIAMMemberOutput
+}
+
+func (DatabaseIAMMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatabaseIAMMember)(nil)).Elem()
+}
+
+func (i DatabaseIAMMember) ToDatabaseIAMMemberOutput() DatabaseIAMMemberOutput {
+	return i.ToDatabaseIAMMemberOutputWithContext(context.Background())
+}
+
+func (i DatabaseIAMMember) ToDatabaseIAMMemberOutputWithContext(ctx context.Context) DatabaseIAMMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatabaseIAMMemberOutput)
+}
+
+type DatabaseIAMMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (DatabaseIAMMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatabaseIAMMemberOutput)(nil)).Elem()
+}
+
+func (o DatabaseIAMMemberOutput) ToDatabaseIAMMemberOutput() DatabaseIAMMemberOutput {
+	return o
+}
+
+func (o DatabaseIAMMemberOutput) ToDatabaseIAMMemberOutputWithContext(ctx context.Context) DatabaseIAMMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DatabaseIAMMemberOutput{})
 }

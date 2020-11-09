@@ -4,6 +4,8 @@
 package osconfig
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -74,14 +76,14 @@ type GuestPolicies struct {
 // NewGuestPolicies registers a new resource with the given unique name, arguments, and options.
 func NewGuestPolicies(ctx *pulumi.Context,
 	name string, args *GuestPoliciesArgs, opts ...pulumi.ResourceOption) (*GuestPolicies, error) {
-	if args == nil || args.Assignment == nil {
-		return nil, errors.New("missing required argument 'Assignment'")
-	}
-	if args == nil || args.GuestPolicyId == nil {
-		return nil, errors.New("missing required argument 'GuestPolicyId'")
-	}
 	if args == nil {
-		args = &GuestPoliciesArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Assignment == nil {
+		return nil, errors.New("invalid value for required argument 'Assignment'")
+	}
+	if args.GuestPolicyId == nil {
+		return nil, errors.New("invalid value for required argument 'GuestPolicyId'")
 	}
 	var resource GuestPolicies
 	err := ctx.RegisterResource("gcp:osconfig/guestPolicies:GuestPolicies", name, args, &resource, opts...)
@@ -281,4 +283,43 @@ type GuestPoliciesArgs struct {
 
 func (GuestPoliciesArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*guestPoliciesArgs)(nil)).Elem()
+}
+
+type GuestPoliciesInput interface {
+	pulumi.Input
+
+	ToGuestPoliciesOutput() GuestPoliciesOutput
+	ToGuestPoliciesOutputWithContext(ctx context.Context) GuestPoliciesOutput
+}
+
+func (GuestPolicies) ElementType() reflect.Type {
+	return reflect.TypeOf((*GuestPolicies)(nil)).Elem()
+}
+
+func (i GuestPolicies) ToGuestPoliciesOutput() GuestPoliciesOutput {
+	return i.ToGuestPoliciesOutputWithContext(context.Background())
+}
+
+func (i GuestPolicies) ToGuestPoliciesOutputWithContext(ctx context.Context) GuestPoliciesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesOutput)
+}
+
+type GuestPoliciesOutput struct {
+	*pulumi.OutputState
+}
+
+func (GuestPoliciesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GuestPoliciesOutput)(nil)).Elem()
+}
+
+func (o GuestPoliciesOutput) ToGuestPoliciesOutput() GuestPoliciesOutput {
+	return o
+}
+
+func (o GuestPoliciesOutput) ToGuestPoliciesOutputWithContext(ctx context.Context) GuestPoliciesOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(GuestPoliciesOutput{})
 }

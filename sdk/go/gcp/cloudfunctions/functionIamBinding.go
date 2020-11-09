@@ -4,6 +4,8 @@
 package cloudfunctions
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -44,17 +46,17 @@ type FunctionIamBinding struct {
 // NewFunctionIamBinding registers a new resource with the given unique name, arguments, and options.
 func NewFunctionIamBinding(ctx *pulumi.Context,
 	name string, args *FunctionIamBindingArgs, opts ...pulumi.ResourceOption) (*FunctionIamBinding, error) {
-	if args == nil || args.CloudFunction == nil {
-		return nil, errors.New("missing required argument 'CloudFunction'")
-	}
-	if args == nil || args.Members == nil {
-		return nil, errors.New("missing required argument 'Members'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &FunctionIamBindingArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.CloudFunction == nil {
+		return nil, errors.New("invalid value for required argument 'CloudFunction'")
+	}
+	if args.Members == nil {
+		return nil, errors.New("invalid value for required argument 'Members'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource FunctionIamBinding
 	err := ctx.RegisterResource("gcp:cloudfunctions/functionIamBinding:FunctionIamBinding", name, args, &resource, opts...)
@@ -160,4 +162,43 @@ type FunctionIamBindingArgs struct {
 
 func (FunctionIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*functionIamBindingArgs)(nil)).Elem()
+}
+
+type FunctionIamBindingInput interface {
+	pulumi.Input
+
+	ToFunctionIamBindingOutput() FunctionIamBindingOutput
+	ToFunctionIamBindingOutputWithContext(ctx context.Context) FunctionIamBindingOutput
+}
+
+func (FunctionIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*FunctionIamBinding)(nil)).Elem()
+}
+
+func (i FunctionIamBinding) ToFunctionIamBindingOutput() FunctionIamBindingOutput {
+	return i.ToFunctionIamBindingOutputWithContext(context.Background())
+}
+
+func (i FunctionIamBinding) ToFunctionIamBindingOutputWithContext(ctx context.Context) FunctionIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FunctionIamBindingOutput)
+}
+
+type FunctionIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (FunctionIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FunctionIamBindingOutput)(nil)).Elem()
+}
+
+func (o FunctionIamBindingOutput) ToFunctionIamBindingOutput() FunctionIamBindingOutput {
+	return o
+}
+
+func (o FunctionIamBindingOutput) ToFunctionIamBindingOutputWithContext(ctx context.Context) FunctionIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(FunctionIamBindingOutput{})
 }

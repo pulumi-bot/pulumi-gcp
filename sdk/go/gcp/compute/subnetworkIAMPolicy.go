@@ -4,6 +4,8 @@
 package compute
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -42,14 +44,14 @@ type SubnetworkIAMPolicy struct {
 // NewSubnetworkIAMPolicy registers a new resource with the given unique name, arguments, and options.
 func NewSubnetworkIAMPolicy(ctx *pulumi.Context,
 	name string, args *SubnetworkIAMPolicyArgs, opts ...pulumi.ResourceOption) (*SubnetworkIAMPolicy, error) {
-	if args == nil || args.PolicyData == nil {
-		return nil, errors.New("missing required argument 'PolicyData'")
-	}
-	if args == nil || args.Subnetwork == nil {
-		return nil, errors.New("missing required argument 'Subnetwork'")
-	}
 	if args == nil {
-		args = &SubnetworkIAMPolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.PolicyData == nil {
+		return nil, errors.New("invalid value for required argument 'PolicyData'")
+	}
+	if args.Subnetwork == nil {
+		return nil, errors.New("invalid value for required argument 'Subnetwork'")
 	}
 	var resource SubnetworkIAMPolicy
 	err := ctx.RegisterResource("gcp:compute/subnetworkIAMPolicy:SubnetworkIAMPolicy", name, args, &resource, opts...)
@@ -147,4 +149,43 @@ type SubnetworkIAMPolicyArgs struct {
 
 func (SubnetworkIAMPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*subnetworkIAMPolicyArgs)(nil)).Elem()
+}
+
+type SubnetworkIAMPolicyInput interface {
+	pulumi.Input
+
+	ToSubnetworkIAMPolicyOutput() SubnetworkIAMPolicyOutput
+	ToSubnetworkIAMPolicyOutputWithContext(ctx context.Context) SubnetworkIAMPolicyOutput
+}
+
+func (SubnetworkIAMPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*SubnetworkIAMPolicy)(nil)).Elem()
+}
+
+func (i SubnetworkIAMPolicy) ToSubnetworkIAMPolicyOutput() SubnetworkIAMPolicyOutput {
+	return i.ToSubnetworkIAMPolicyOutputWithContext(context.Background())
+}
+
+func (i SubnetworkIAMPolicy) ToSubnetworkIAMPolicyOutputWithContext(ctx context.Context) SubnetworkIAMPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SubnetworkIAMPolicyOutput)
+}
+
+type SubnetworkIAMPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (SubnetworkIAMPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SubnetworkIAMPolicyOutput)(nil)).Elem()
+}
+
+func (o SubnetworkIAMPolicyOutput) ToSubnetworkIAMPolicyOutput() SubnetworkIAMPolicyOutput {
+	return o
+}
+
+func (o SubnetworkIAMPolicyOutput) ToSubnetworkIAMPolicyOutputWithContext(ctx context.Context) SubnetworkIAMPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SubnetworkIAMPolicyOutput{})
 }

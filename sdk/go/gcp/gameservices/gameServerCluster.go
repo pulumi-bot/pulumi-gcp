@@ -4,6 +4,8 @@
 package gameservices
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -49,17 +51,17 @@ type GameServerCluster struct {
 // NewGameServerCluster registers a new resource with the given unique name, arguments, and options.
 func NewGameServerCluster(ctx *pulumi.Context,
 	name string, args *GameServerClusterArgs, opts ...pulumi.ResourceOption) (*GameServerCluster, error) {
-	if args == nil || args.ClusterId == nil {
-		return nil, errors.New("missing required argument 'ClusterId'")
-	}
-	if args == nil || args.ConnectionInfo == nil {
-		return nil, errors.New("missing required argument 'ConnectionInfo'")
-	}
-	if args == nil || args.RealmId == nil {
-		return nil, errors.New("missing required argument 'RealmId'")
-	}
 	if args == nil {
-		args = &GameServerClusterArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.ClusterId == nil {
+		return nil, errors.New("invalid value for required argument 'ClusterId'")
+	}
+	if args.ConnectionInfo == nil {
+		return nil, errors.New("invalid value for required argument 'ConnectionInfo'")
+	}
+	if args.RealmId == nil {
+		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	var resource GameServerCluster
 	err := ctx.RegisterResource("gcp:gameservices/gameServerCluster:GameServerCluster", name, args, &resource, opts...)
@@ -181,4 +183,43 @@ type GameServerClusterArgs struct {
 
 func (GameServerClusterArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*gameServerClusterArgs)(nil)).Elem()
+}
+
+type GameServerClusterInput interface {
+	pulumi.Input
+
+	ToGameServerClusterOutput() GameServerClusterOutput
+	ToGameServerClusterOutputWithContext(ctx context.Context) GameServerClusterOutput
+}
+
+func (GameServerCluster) ElementType() reflect.Type {
+	return reflect.TypeOf((*GameServerCluster)(nil)).Elem()
+}
+
+func (i GameServerCluster) ToGameServerClusterOutput() GameServerClusterOutput {
+	return i.ToGameServerClusterOutputWithContext(context.Background())
+}
+
+func (i GameServerCluster) ToGameServerClusterOutputWithContext(ctx context.Context) GameServerClusterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GameServerClusterOutput)
+}
+
+type GameServerClusterOutput struct {
+	*pulumi.OutputState
+}
+
+func (GameServerClusterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GameServerClusterOutput)(nil)).Elem()
+}
+
+func (o GameServerClusterOutput) ToGameServerClusterOutput() GameServerClusterOutput {
+	return o
+}
+
+func (o GameServerClusterOutput) ToGameServerClusterOutputWithContext(ctx context.Context) GameServerClusterOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(GameServerClusterOutput{})
 }

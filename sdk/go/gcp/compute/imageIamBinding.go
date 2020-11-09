@@ -4,6 +4,8 @@
 package compute
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -42,17 +44,17 @@ type ImageIamBinding struct {
 // NewImageIamBinding registers a new resource with the given unique name, arguments, and options.
 func NewImageIamBinding(ctx *pulumi.Context,
 	name string, args *ImageIamBindingArgs, opts ...pulumi.ResourceOption) (*ImageIamBinding, error) {
-	if args == nil || args.Image == nil {
-		return nil, errors.New("missing required argument 'Image'")
-	}
-	if args == nil || args.Members == nil {
-		return nil, errors.New("missing required argument 'Members'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &ImageIamBindingArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Image == nil {
+		return nil, errors.New("invalid value for required argument 'Image'")
+	}
+	if args.Members == nil {
+		return nil, errors.New("invalid value for required argument 'Members'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource ImageIamBinding
 	err := ctx.RegisterResource("gcp:compute/imageIamBinding:ImageIamBinding", name, args, &resource, opts...)
@@ -150,4 +152,43 @@ type ImageIamBindingArgs struct {
 
 func (ImageIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*imageIamBindingArgs)(nil)).Elem()
+}
+
+type ImageIamBindingInput interface {
+	pulumi.Input
+
+	ToImageIamBindingOutput() ImageIamBindingOutput
+	ToImageIamBindingOutputWithContext(ctx context.Context) ImageIamBindingOutput
+}
+
+func (ImageIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*ImageIamBinding)(nil)).Elem()
+}
+
+func (i ImageIamBinding) ToImageIamBindingOutput() ImageIamBindingOutput {
+	return i.ToImageIamBindingOutputWithContext(context.Background())
+}
+
+func (i ImageIamBinding) ToImageIamBindingOutputWithContext(ctx context.Context) ImageIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ImageIamBindingOutput)
+}
+
+type ImageIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (ImageIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ImageIamBindingOutput)(nil)).Elem()
+}
+
+func (o ImageIamBindingOutput) ToImageIamBindingOutput() ImageIamBindingOutput {
+	return o
+}
+
+func (o ImageIamBindingOutput) ToImageIamBindingOutputWithContext(ctx context.Context) ImageIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ImageIamBindingOutput{})
 }

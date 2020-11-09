@@ -4,6 +4,8 @@
 package compute
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
@@ -273,4 +275,43 @@ type HttpsHealthCheckArgs struct {
 
 func (HttpsHealthCheckArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*httpsHealthCheckArgs)(nil)).Elem()
+}
+
+type HttpsHealthCheckInput interface {
+	pulumi.Input
+
+	ToHttpsHealthCheckOutput() HttpsHealthCheckOutput
+	ToHttpsHealthCheckOutputWithContext(ctx context.Context) HttpsHealthCheckOutput
+}
+
+func (HttpsHealthCheck) ElementType() reflect.Type {
+	return reflect.TypeOf((*HttpsHealthCheck)(nil)).Elem()
+}
+
+func (i HttpsHealthCheck) ToHttpsHealthCheckOutput() HttpsHealthCheckOutput {
+	return i.ToHttpsHealthCheckOutputWithContext(context.Background())
+}
+
+func (i HttpsHealthCheck) ToHttpsHealthCheckOutputWithContext(ctx context.Context) HttpsHealthCheckOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HttpsHealthCheckOutput)
+}
+
+type HttpsHealthCheckOutput struct {
+	*pulumi.OutputState
+}
+
+func (HttpsHealthCheckOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*HttpsHealthCheckOutput)(nil)).Elem()
+}
+
+func (o HttpsHealthCheckOutput) ToHttpsHealthCheckOutput() HttpsHealthCheckOutput {
+	return o
+}
+
+func (o HttpsHealthCheckOutput) ToHttpsHealthCheckOutputWithContext(ctx context.Context) HttpsHealthCheckOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(HttpsHealthCheckOutput{})
 }

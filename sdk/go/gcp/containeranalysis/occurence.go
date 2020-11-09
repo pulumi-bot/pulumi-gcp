@@ -4,6 +4,8 @@
 package containeranalysis
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -60,17 +62,17 @@ type Occurence struct {
 // NewOccurence registers a new resource with the given unique name, arguments, and options.
 func NewOccurence(ctx *pulumi.Context,
 	name string, args *OccurenceArgs, opts ...pulumi.ResourceOption) (*Occurence, error) {
-	if args == nil || args.Attestation == nil {
-		return nil, errors.New("missing required argument 'Attestation'")
-	}
-	if args == nil || args.NoteName == nil {
-		return nil, errors.New("missing required argument 'NoteName'")
-	}
-	if args == nil || args.ResourceUri == nil {
-		return nil, errors.New("missing required argument 'ResourceUri'")
-	}
 	if args == nil {
-		args = &OccurenceArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Attestation == nil {
+		return nil, errors.New("invalid value for required argument 'Attestation'")
+	}
+	if args.NoteName == nil {
+		return nil, errors.New("invalid value for required argument 'NoteName'")
+	}
+	if args.ResourceUri == nil {
+		return nil, errors.New("invalid value for required argument 'ResourceUri'")
 	}
 	var resource Occurence
 	err := ctx.RegisterResource("gcp:containeranalysis/occurence:Occurence", name, args, &resource, opts...)
@@ -222,4 +224,43 @@ type OccurenceArgs struct {
 
 func (OccurenceArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*occurenceArgs)(nil)).Elem()
+}
+
+type OccurenceInput interface {
+	pulumi.Input
+
+	ToOccurenceOutput() OccurenceOutput
+	ToOccurenceOutputWithContext(ctx context.Context) OccurenceOutput
+}
+
+func (Occurence) ElementType() reflect.Type {
+	return reflect.TypeOf((*Occurence)(nil)).Elem()
+}
+
+func (i Occurence) ToOccurenceOutput() OccurenceOutput {
+	return i.ToOccurenceOutputWithContext(context.Background())
+}
+
+func (i Occurence) ToOccurenceOutputWithContext(ctx context.Context) OccurenceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OccurenceOutput)
+}
+
+type OccurenceOutput struct {
+	*pulumi.OutputState
+}
+
+func (OccurenceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*OccurenceOutput)(nil)).Elem()
+}
+
+func (o OccurenceOutput) ToOccurenceOutput() OccurenceOutput {
+	return o
+}
+
+func (o OccurenceOutput) ToOccurenceOutputWithContext(ctx context.Context) OccurenceOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(OccurenceOutput{})
 }

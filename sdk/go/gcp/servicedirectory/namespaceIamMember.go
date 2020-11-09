@@ -4,6 +4,8 @@
 package servicedirectory
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -37,14 +39,14 @@ type NamespaceIamMember struct {
 // NewNamespaceIamMember registers a new resource with the given unique name, arguments, and options.
 func NewNamespaceIamMember(ctx *pulumi.Context,
 	name string, args *NamespaceIamMemberArgs, opts ...pulumi.ResourceOption) (*NamespaceIamMember, error) {
-	if args == nil || args.Member == nil {
-		return nil, errors.New("missing required argument 'Member'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &NamespaceIamMemberArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Member == nil {
+		return nil, errors.New("invalid value for required argument 'Member'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource NamespaceIamMember
 	err := ctx.RegisterResource("gcp:servicedirectory/namespaceIamMember:NamespaceIamMember", name, args, &resource, opts...)
@@ -122,4 +124,43 @@ type NamespaceIamMemberArgs struct {
 
 func (NamespaceIamMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*namespaceIamMemberArgs)(nil)).Elem()
+}
+
+type NamespaceIamMemberInput interface {
+	pulumi.Input
+
+	ToNamespaceIamMemberOutput() NamespaceIamMemberOutput
+	ToNamespaceIamMemberOutputWithContext(ctx context.Context) NamespaceIamMemberOutput
+}
+
+func (NamespaceIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*NamespaceIamMember)(nil)).Elem()
+}
+
+func (i NamespaceIamMember) ToNamespaceIamMemberOutput() NamespaceIamMemberOutput {
+	return i.ToNamespaceIamMemberOutputWithContext(context.Background())
+}
+
+func (i NamespaceIamMember) ToNamespaceIamMemberOutputWithContext(ctx context.Context) NamespaceIamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NamespaceIamMemberOutput)
+}
+
+type NamespaceIamMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (NamespaceIamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NamespaceIamMemberOutput)(nil)).Elem()
+}
+
+func (o NamespaceIamMemberOutput) ToNamespaceIamMemberOutput() NamespaceIamMemberOutput {
+	return o
+}
+
+func (o NamespaceIamMemberOutput) ToNamespaceIamMemberOutputWithContext(ctx context.Context) NamespaceIamMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(NamespaceIamMemberOutput{})
 }

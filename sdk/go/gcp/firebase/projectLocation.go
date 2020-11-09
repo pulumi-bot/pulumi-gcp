@@ -4,6 +4,8 @@
 package firebase
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -42,11 +44,11 @@ type ProjectLocation struct {
 // NewProjectLocation registers a new resource with the given unique name, arguments, and options.
 func NewProjectLocation(ctx *pulumi.Context,
 	name string, args *ProjectLocationArgs, opts ...pulumi.ResourceOption) (*ProjectLocation, error) {
-	if args == nil || args.LocationId == nil {
-		return nil, errors.New("missing required argument 'LocationId'")
-	}
 	if args == nil {
-		args = &ProjectLocationArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.LocationId == nil {
+		return nil, errors.New("invalid value for required argument 'LocationId'")
 	}
 	var resource ProjectLocation
 	err := ctx.RegisterResource("gcp:firebase/projectLocation:ProjectLocation", name, args, &resource, opts...)
@@ -112,4 +114,43 @@ type ProjectLocationArgs struct {
 
 func (ProjectLocationArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*projectLocationArgs)(nil)).Elem()
+}
+
+type ProjectLocationInput interface {
+	pulumi.Input
+
+	ToProjectLocationOutput() ProjectLocationOutput
+	ToProjectLocationOutputWithContext(ctx context.Context) ProjectLocationOutput
+}
+
+func (ProjectLocation) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProjectLocation)(nil)).Elem()
+}
+
+func (i ProjectLocation) ToProjectLocationOutput() ProjectLocationOutput {
+	return i.ToProjectLocationOutputWithContext(context.Background())
+}
+
+func (i ProjectLocation) ToProjectLocationOutputWithContext(ctx context.Context) ProjectLocationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProjectLocationOutput)
+}
+
+type ProjectLocationOutput struct {
+	*pulumi.OutputState
+}
+
+func (ProjectLocationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProjectLocationOutput)(nil)).Elem()
+}
+
+func (o ProjectLocationOutput) ToProjectLocationOutput() ProjectLocationOutput {
+	return o
+}
+
+func (o ProjectLocationOutput) ToProjectLocationOutputWithContext(ctx context.Context) ProjectLocationOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ProjectLocationOutput{})
 }

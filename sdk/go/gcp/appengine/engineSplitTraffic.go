@@ -4,6 +4,8 @@
 package appengine
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -35,14 +37,14 @@ type EngineSplitTraffic struct {
 // NewEngineSplitTraffic registers a new resource with the given unique name, arguments, and options.
 func NewEngineSplitTraffic(ctx *pulumi.Context,
 	name string, args *EngineSplitTrafficArgs, opts ...pulumi.ResourceOption) (*EngineSplitTraffic, error) {
-	if args == nil || args.Service == nil {
-		return nil, errors.New("missing required argument 'Service'")
-	}
-	if args == nil || args.Split == nil {
-		return nil, errors.New("missing required argument 'Split'")
-	}
 	if args == nil {
-		args = &EngineSplitTrafficArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Service == nil {
+		return nil, errors.New("invalid value for required argument 'Service'")
+	}
+	if args.Split == nil {
+		return nil, errors.New("invalid value for required argument 'Split'")
 	}
 	var resource EngineSplitTraffic
 	err := ctx.RegisterResource("gcp:appengine/engineSplitTraffic:EngineSplitTraffic", name, args, &resource, opts...)
@@ -124,4 +126,43 @@ type EngineSplitTrafficArgs struct {
 
 func (EngineSplitTrafficArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*engineSplitTrafficArgs)(nil)).Elem()
+}
+
+type EngineSplitTrafficInput interface {
+	pulumi.Input
+
+	ToEngineSplitTrafficOutput() EngineSplitTrafficOutput
+	ToEngineSplitTrafficOutputWithContext(ctx context.Context) EngineSplitTrafficOutput
+}
+
+func (EngineSplitTraffic) ElementType() reflect.Type {
+	return reflect.TypeOf((*EngineSplitTraffic)(nil)).Elem()
+}
+
+func (i EngineSplitTraffic) ToEngineSplitTrafficOutput() EngineSplitTrafficOutput {
+	return i.ToEngineSplitTrafficOutputWithContext(context.Background())
+}
+
+func (i EngineSplitTraffic) ToEngineSplitTrafficOutputWithContext(ctx context.Context) EngineSplitTrafficOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EngineSplitTrafficOutput)
+}
+
+type EngineSplitTrafficOutput struct {
+	*pulumi.OutputState
+}
+
+func (EngineSplitTrafficOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EngineSplitTrafficOutput)(nil)).Elem()
+}
+
+func (o EngineSplitTrafficOutput) ToEngineSplitTrafficOutput() EngineSplitTrafficOutput {
+	return o
+}
+
+func (o EngineSplitTrafficOutput) ToEngineSplitTrafficOutputWithContext(ctx context.Context) EngineSplitTrafficOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(EngineSplitTrafficOutput{})
 }

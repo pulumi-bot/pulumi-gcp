@@ -4,6 +4,8 @@
 package storage
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -39,17 +41,17 @@ type BucketIAMMember struct {
 // NewBucketIAMMember registers a new resource with the given unique name, arguments, and options.
 func NewBucketIAMMember(ctx *pulumi.Context,
 	name string, args *BucketIAMMemberArgs, opts ...pulumi.ResourceOption) (*BucketIAMMember, error) {
-	if args == nil || args.Bucket == nil {
-		return nil, errors.New("missing required argument 'Bucket'")
-	}
-	if args == nil || args.Member == nil {
-		return nil, errors.New("missing required argument 'Member'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &BucketIAMMemberArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Bucket == nil {
+		return nil, errors.New("invalid value for required argument 'Bucket'")
+	}
+	if args.Member == nil {
+		return nil, errors.New("invalid value for required argument 'Member'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource BucketIAMMember
 	err := ctx.RegisterResource("gcp:storage/bucketIAMMember:BucketIAMMember", name, args, &resource, opts...)
@@ -135,4 +137,43 @@ type BucketIAMMemberArgs struct {
 
 func (BucketIAMMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*bucketIAMMemberArgs)(nil)).Elem()
+}
+
+type BucketIAMMemberInput interface {
+	pulumi.Input
+
+	ToBucketIAMMemberOutput() BucketIAMMemberOutput
+	ToBucketIAMMemberOutputWithContext(ctx context.Context) BucketIAMMemberOutput
+}
+
+func (BucketIAMMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketIAMMember)(nil)).Elem()
+}
+
+func (i BucketIAMMember) ToBucketIAMMemberOutput() BucketIAMMemberOutput {
+	return i.ToBucketIAMMemberOutputWithContext(context.Background())
+}
+
+func (i BucketIAMMember) ToBucketIAMMemberOutputWithContext(ctx context.Context) BucketIAMMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketIAMMemberOutput)
+}
+
+type BucketIAMMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (BucketIAMMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketIAMMemberOutput)(nil)).Elem()
+}
+
+func (o BucketIAMMemberOutput) ToBucketIAMMemberOutput() BucketIAMMemberOutput {
+	return o
+}
+
+func (o BucketIAMMemberOutput) ToBucketIAMMemberOutputWithContext(ctx context.Context) BucketIAMMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(BucketIAMMemberOutput{})
 }

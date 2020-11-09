@@ -4,6 +4,8 @@
 package iap
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -39,17 +41,17 @@ type AppEngineServiceIamPolicy struct {
 // NewAppEngineServiceIamPolicy registers a new resource with the given unique name, arguments, and options.
 func NewAppEngineServiceIamPolicy(ctx *pulumi.Context,
 	name string, args *AppEngineServiceIamPolicyArgs, opts ...pulumi.ResourceOption) (*AppEngineServiceIamPolicy, error) {
-	if args == nil || args.AppId == nil {
-		return nil, errors.New("missing required argument 'AppId'")
-	}
-	if args == nil || args.PolicyData == nil {
-		return nil, errors.New("missing required argument 'PolicyData'")
-	}
-	if args == nil || args.Service == nil {
-		return nil, errors.New("missing required argument 'Service'")
-	}
 	if args == nil {
-		args = &AppEngineServiceIamPolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.AppId == nil {
+		return nil, errors.New("invalid value for required argument 'AppId'")
+	}
+	if args.PolicyData == nil {
+		return nil, errors.New("invalid value for required argument 'PolicyData'")
+	}
+	if args.Service == nil {
+		return nil, errors.New("invalid value for required argument 'Service'")
 	}
 	var resource AppEngineServiceIamPolicy
 	err := ctx.RegisterResource("gcp:iap/appEngineServiceIamPolicy:AppEngineServiceIamPolicy", name, args, &resource, opts...)
@@ -135,4 +137,43 @@ type AppEngineServiceIamPolicyArgs struct {
 
 func (AppEngineServiceIamPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*appEngineServiceIamPolicyArgs)(nil)).Elem()
+}
+
+type AppEngineServiceIamPolicyInput interface {
+	pulumi.Input
+
+	ToAppEngineServiceIamPolicyOutput() AppEngineServiceIamPolicyOutput
+	ToAppEngineServiceIamPolicyOutputWithContext(ctx context.Context) AppEngineServiceIamPolicyOutput
+}
+
+func (AppEngineServiceIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*AppEngineServiceIamPolicy)(nil)).Elem()
+}
+
+func (i AppEngineServiceIamPolicy) ToAppEngineServiceIamPolicyOutput() AppEngineServiceIamPolicyOutput {
+	return i.ToAppEngineServiceIamPolicyOutputWithContext(context.Background())
+}
+
+func (i AppEngineServiceIamPolicy) ToAppEngineServiceIamPolicyOutputWithContext(ctx context.Context) AppEngineServiceIamPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AppEngineServiceIamPolicyOutput)
+}
+
+type AppEngineServiceIamPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (AppEngineServiceIamPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AppEngineServiceIamPolicyOutput)(nil)).Elem()
+}
+
+func (o AppEngineServiceIamPolicyOutput) ToAppEngineServiceIamPolicyOutput() AppEngineServiceIamPolicyOutput {
+	return o
+}
+
+func (o AppEngineServiceIamPolicyOutput) ToAppEngineServiceIamPolicyOutputWithContext(ctx context.Context) AppEngineServiceIamPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AppEngineServiceIamPolicyOutput{})
 }

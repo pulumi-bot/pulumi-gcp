@@ -4,6 +4,8 @@
 package dataproc
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -42,17 +44,17 @@ type JobIAMBinding struct {
 // NewJobIAMBinding registers a new resource with the given unique name, arguments, and options.
 func NewJobIAMBinding(ctx *pulumi.Context,
 	name string, args *JobIAMBindingArgs, opts ...pulumi.ResourceOption) (*JobIAMBinding, error) {
-	if args == nil || args.JobId == nil {
-		return nil, errors.New("missing required argument 'JobId'")
-	}
-	if args == nil || args.Members == nil {
-		return nil, errors.New("missing required argument 'Members'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &JobIAMBindingArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.JobId == nil {
+		return nil, errors.New("invalid value for required argument 'JobId'")
+	}
+	if args.Members == nil {
+		return nil, errors.New("invalid value for required argument 'Members'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource JobIAMBinding
 	err := ctx.RegisterResource("gcp:dataproc/jobIAMBinding:JobIAMBinding", name, args, &resource, opts...)
@@ -150,4 +152,43 @@ type JobIAMBindingArgs struct {
 
 func (JobIAMBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*jobIAMBindingArgs)(nil)).Elem()
+}
+
+type JobIAMBindingInput interface {
+	pulumi.Input
+
+	ToJobIAMBindingOutput() JobIAMBindingOutput
+	ToJobIAMBindingOutputWithContext(ctx context.Context) JobIAMBindingOutput
+}
+
+func (JobIAMBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*JobIAMBinding)(nil)).Elem()
+}
+
+func (i JobIAMBinding) ToJobIAMBindingOutput() JobIAMBindingOutput {
+	return i.ToJobIAMBindingOutputWithContext(context.Background())
+}
+
+func (i JobIAMBinding) ToJobIAMBindingOutputWithContext(ctx context.Context) JobIAMBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(JobIAMBindingOutput)
+}
+
+type JobIAMBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (JobIAMBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*JobIAMBindingOutput)(nil)).Elem()
+}
+
+func (o JobIAMBindingOutput) ToJobIAMBindingOutput() JobIAMBindingOutput {
+	return o
+}
+
+func (o JobIAMBindingOutput) ToJobIAMBindingOutputWithContext(ctx context.Context) JobIAMBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(JobIAMBindingOutput{})
 }

@@ -4,6 +4,8 @@
 package sourcerepo
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -39,17 +41,17 @@ type RepositoryIamBinding struct {
 // NewRepositoryIamBinding registers a new resource with the given unique name, arguments, and options.
 func NewRepositoryIamBinding(ctx *pulumi.Context,
 	name string, args *RepositoryIamBindingArgs, opts ...pulumi.ResourceOption) (*RepositoryIamBinding, error) {
-	if args == nil || args.Members == nil {
-		return nil, errors.New("missing required argument 'Members'")
-	}
-	if args == nil || args.Repository == nil {
-		return nil, errors.New("missing required argument 'Repository'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &RepositoryIamBindingArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Members == nil {
+		return nil, errors.New("invalid value for required argument 'Members'")
+	}
+	if args.Repository == nil {
+		return nil, errors.New("invalid value for required argument 'Repository'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource RepositoryIamBinding
 	err := ctx.RegisterResource("gcp:sourcerepo/repositoryIamBinding:RepositoryIamBinding", name, args, &resource, opts...)
@@ -135,4 +137,43 @@ type RepositoryIamBindingArgs struct {
 
 func (RepositoryIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*repositoryIamBindingArgs)(nil)).Elem()
+}
+
+type RepositoryIamBindingInput interface {
+	pulumi.Input
+
+	ToRepositoryIamBindingOutput() RepositoryIamBindingOutput
+	ToRepositoryIamBindingOutputWithContext(ctx context.Context) RepositoryIamBindingOutput
+}
+
+func (RepositoryIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*RepositoryIamBinding)(nil)).Elem()
+}
+
+func (i RepositoryIamBinding) ToRepositoryIamBindingOutput() RepositoryIamBindingOutput {
+	return i.ToRepositoryIamBindingOutputWithContext(context.Background())
+}
+
+func (i RepositoryIamBinding) ToRepositoryIamBindingOutputWithContext(ctx context.Context) RepositoryIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RepositoryIamBindingOutput)
+}
+
+type RepositoryIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (RepositoryIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RepositoryIamBindingOutput)(nil)).Elem()
+}
+
+func (o RepositoryIamBindingOutput) ToRepositoryIamBindingOutput() RepositoryIamBindingOutput {
+	return o
+}
+
+func (o RepositoryIamBindingOutput) ToRepositoryIamBindingOutputWithContext(ctx context.Context) RepositoryIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RepositoryIamBindingOutput{})
 }

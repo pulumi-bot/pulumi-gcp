@@ -4,6 +4,8 @@
 package iap
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -26,11 +28,11 @@ type TunnelIamPolicy struct {
 // NewTunnelIamPolicy registers a new resource with the given unique name, arguments, and options.
 func NewTunnelIamPolicy(ctx *pulumi.Context,
 	name string, args *TunnelIamPolicyArgs, opts ...pulumi.ResourceOption) (*TunnelIamPolicy, error) {
-	if args == nil || args.PolicyData == nil {
-		return nil, errors.New("missing required argument 'PolicyData'")
-	}
 	if args == nil {
-		args = &TunnelIamPolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.PolicyData == nil {
+		return nil, errors.New("invalid value for required argument 'PolicyData'")
 	}
 	var resource TunnelIamPolicy
 	err := ctx.RegisterResource("gcp:iap/tunnelIamPolicy:TunnelIamPolicy", name, args, &resource, opts...)
@@ -100,4 +102,43 @@ type TunnelIamPolicyArgs struct {
 
 func (TunnelIamPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*tunnelIamPolicyArgs)(nil)).Elem()
+}
+
+type TunnelIamPolicyInput interface {
+	pulumi.Input
+
+	ToTunnelIamPolicyOutput() TunnelIamPolicyOutput
+	ToTunnelIamPolicyOutputWithContext(ctx context.Context) TunnelIamPolicyOutput
+}
+
+func (TunnelIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*TunnelIamPolicy)(nil)).Elem()
+}
+
+func (i TunnelIamPolicy) ToTunnelIamPolicyOutput() TunnelIamPolicyOutput {
+	return i.ToTunnelIamPolicyOutputWithContext(context.Background())
+}
+
+func (i TunnelIamPolicy) ToTunnelIamPolicyOutputWithContext(ctx context.Context) TunnelIamPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TunnelIamPolicyOutput)
+}
+
+type TunnelIamPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (TunnelIamPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TunnelIamPolicyOutput)(nil)).Elem()
+}
+
+func (o TunnelIamPolicyOutput) ToTunnelIamPolicyOutput() TunnelIamPolicyOutput {
+	return o
+}
+
+func (o TunnelIamPolicyOutput) ToTunnelIamPolicyOutputWithContext(ctx context.Context) TunnelIamPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TunnelIamPolicyOutput{})
 }

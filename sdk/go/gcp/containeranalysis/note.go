@@ -4,6 +4,8 @@
 package containeranalysis
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -62,11 +64,11 @@ type Note struct {
 // NewNote registers a new resource with the given unique name, arguments, and options.
 func NewNote(ctx *pulumi.Context,
 	name string, args *NoteArgs, opts ...pulumi.ResourceOption) (*Note, error) {
-	if args == nil || args.AttestationAuthority == nil {
-		return nil, errors.New("missing required argument 'AttestationAuthority'")
-	}
 	if args == nil {
-		args = &NoteArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.AttestationAuthority == nil {
+		return nil, errors.New("invalid value for required argument 'AttestationAuthority'")
 	}
 	var resource Note
 	err := ctx.RegisterResource("gcp:containeranalysis/note:Note", name, args, &resource, opts...)
@@ -228,4 +230,43 @@ type NoteArgs struct {
 
 func (NoteArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*noteArgs)(nil)).Elem()
+}
+
+type NoteInput interface {
+	pulumi.Input
+
+	ToNoteOutput() NoteOutput
+	ToNoteOutputWithContext(ctx context.Context) NoteOutput
+}
+
+func (Note) ElementType() reflect.Type {
+	return reflect.TypeOf((*Note)(nil)).Elem()
+}
+
+func (i Note) ToNoteOutput() NoteOutput {
+	return i.ToNoteOutputWithContext(context.Background())
+}
+
+func (i Note) ToNoteOutputWithContext(ctx context.Context) NoteOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NoteOutput)
+}
+
+type NoteOutput struct {
+	*pulumi.OutputState
+}
+
+func (NoteOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NoteOutput)(nil)).Elem()
+}
+
+func (o NoteOutput) ToNoteOutput() NoteOutput {
+	return o
+}
+
+func (o NoteOutput) ToNoteOutputWithContext(ctx context.Context) NoteOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(NoteOutput{})
 }

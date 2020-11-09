@@ -4,6 +4,8 @@
 package compute
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -41,20 +43,20 @@ type NetworkPeeringRoutesConfig struct {
 // NewNetworkPeeringRoutesConfig registers a new resource with the given unique name, arguments, and options.
 func NewNetworkPeeringRoutesConfig(ctx *pulumi.Context,
 	name string, args *NetworkPeeringRoutesConfigArgs, opts ...pulumi.ResourceOption) (*NetworkPeeringRoutesConfig, error) {
-	if args == nil || args.ExportCustomRoutes == nil {
-		return nil, errors.New("missing required argument 'ExportCustomRoutes'")
-	}
-	if args == nil || args.ImportCustomRoutes == nil {
-		return nil, errors.New("missing required argument 'ImportCustomRoutes'")
-	}
-	if args == nil || args.Network == nil {
-		return nil, errors.New("missing required argument 'Network'")
-	}
-	if args == nil || args.Peering == nil {
-		return nil, errors.New("missing required argument 'Peering'")
-	}
 	if args == nil {
-		args = &NetworkPeeringRoutesConfigArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.ExportCustomRoutes == nil {
+		return nil, errors.New("invalid value for required argument 'ExportCustomRoutes'")
+	}
+	if args.ImportCustomRoutes == nil {
+		return nil, errors.New("invalid value for required argument 'ImportCustomRoutes'")
+	}
+	if args.Network == nil {
+		return nil, errors.New("invalid value for required argument 'Network'")
+	}
+	if args.Peering == nil {
+		return nil, errors.New("invalid value for required argument 'Peering'")
 	}
 	var resource NetworkPeeringRoutesConfig
 	err := ctx.RegisterResource("gcp:compute/networkPeeringRoutesConfig:NetworkPeeringRoutesConfig", name, args, &resource, opts...)
@@ -140,4 +142,43 @@ type NetworkPeeringRoutesConfigArgs struct {
 
 func (NetworkPeeringRoutesConfigArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*networkPeeringRoutesConfigArgs)(nil)).Elem()
+}
+
+type NetworkPeeringRoutesConfigInput interface {
+	pulumi.Input
+
+	ToNetworkPeeringRoutesConfigOutput() NetworkPeeringRoutesConfigOutput
+	ToNetworkPeeringRoutesConfigOutputWithContext(ctx context.Context) NetworkPeeringRoutesConfigOutput
+}
+
+func (NetworkPeeringRoutesConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetworkPeeringRoutesConfig)(nil)).Elem()
+}
+
+func (i NetworkPeeringRoutesConfig) ToNetworkPeeringRoutesConfigOutput() NetworkPeeringRoutesConfigOutput {
+	return i.ToNetworkPeeringRoutesConfigOutputWithContext(context.Background())
+}
+
+func (i NetworkPeeringRoutesConfig) ToNetworkPeeringRoutesConfigOutputWithContext(ctx context.Context) NetworkPeeringRoutesConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NetworkPeeringRoutesConfigOutput)
+}
+
+type NetworkPeeringRoutesConfigOutput struct {
+	*pulumi.OutputState
+}
+
+func (NetworkPeeringRoutesConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetworkPeeringRoutesConfigOutput)(nil)).Elem()
+}
+
+func (o NetworkPeeringRoutesConfigOutput) ToNetworkPeeringRoutesConfigOutput() NetworkPeeringRoutesConfigOutput {
+	return o
+}
+
+func (o NetworkPeeringRoutesConfigOutput) ToNetworkPeeringRoutesConfigOutputWithContext(ctx context.Context) NetworkPeeringRoutesConfigOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(NetworkPeeringRoutesConfigOutput{})
 }

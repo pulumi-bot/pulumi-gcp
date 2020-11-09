@@ -4,6 +4,8 @@
 package kms
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -46,14 +48,14 @@ type SecretCiphertext struct {
 // NewSecretCiphertext registers a new resource with the given unique name, arguments, and options.
 func NewSecretCiphertext(ctx *pulumi.Context,
 	name string, args *SecretCiphertextArgs, opts ...pulumi.ResourceOption) (*SecretCiphertext, error) {
-	if args == nil || args.CryptoKey == nil {
-		return nil, errors.New("missing required argument 'CryptoKey'")
-	}
-	if args == nil || args.Plaintext == nil {
-		return nil, errors.New("missing required argument 'Plaintext'")
-	}
 	if args == nil {
-		args = &SecretCiphertextArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.CryptoKey == nil {
+		return nil, errors.New("invalid value for required argument 'CryptoKey'")
+	}
+	if args.Plaintext == nil {
+		return nil, errors.New("invalid value for required argument 'Plaintext'")
 	}
 	var resource SecretCiphertext
 	err := ctx.RegisterResource("gcp:kms/secretCiphertext:SecretCiphertext", name, args, &resource, opts...)
@@ -135,4 +137,43 @@ type SecretCiphertextArgs struct {
 
 func (SecretCiphertextArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretCiphertextArgs)(nil)).Elem()
+}
+
+type SecretCiphertextInput interface {
+	pulumi.Input
+
+	ToSecretCiphertextOutput() SecretCiphertextOutput
+	ToSecretCiphertextOutputWithContext(ctx context.Context) SecretCiphertextOutput
+}
+
+func (SecretCiphertext) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretCiphertext)(nil)).Elem()
+}
+
+func (i SecretCiphertext) ToSecretCiphertextOutput() SecretCiphertextOutput {
+	return i.ToSecretCiphertextOutputWithContext(context.Background())
+}
+
+func (i SecretCiphertext) ToSecretCiphertextOutputWithContext(ctx context.Context) SecretCiphertextOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretCiphertextOutput)
+}
+
+type SecretCiphertextOutput struct {
+	*pulumi.OutputState
+}
+
+func (SecretCiphertextOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretCiphertextOutput)(nil)).Elem()
+}
+
+func (o SecretCiphertextOutput) ToSecretCiphertextOutput() SecretCiphertextOutput {
+	return o
+}
+
+func (o SecretCiphertextOutput) ToSecretCiphertextOutputWithContext(ctx context.Context) SecretCiphertextOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SecretCiphertextOutput{})
 }

@@ -4,6 +4,8 @@
 package iap
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -50,14 +52,14 @@ type Brand struct {
 // NewBrand registers a new resource with the given unique name, arguments, and options.
 func NewBrand(ctx *pulumi.Context,
 	name string, args *BrandArgs, opts ...pulumi.ResourceOption) (*Brand, error) {
-	if args == nil || args.ApplicationTitle == nil {
-		return nil, errors.New("missing required argument 'ApplicationTitle'")
-	}
-	if args == nil || args.SupportEmail == nil {
-		return nil, errors.New("missing required argument 'SupportEmail'")
-	}
 	if args == nil {
-		args = &BrandArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.ApplicationTitle == nil {
+		return nil, errors.New("invalid value for required argument 'ApplicationTitle'")
+	}
+	if args.SupportEmail == nil {
+		return nil, errors.New("invalid value for required argument 'SupportEmail'")
 	}
 	var resource Brand
 	err := ctx.RegisterResource("gcp:iap/brand:Brand", name, args, &resource, opts...)
@@ -153,4 +155,43 @@ type BrandArgs struct {
 
 func (BrandArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*brandArgs)(nil)).Elem()
+}
+
+type BrandInput interface {
+	pulumi.Input
+
+	ToBrandOutput() BrandOutput
+	ToBrandOutputWithContext(ctx context.Context) BrandOutput
+}
+
+func (Brand) ElementType() reflect.Type {
+	return reflect.TypeOf((*Brand)(nil)).Elem()
+}
+
+func (i Brand) ToBrandOutput() BrandOutput {
+	return i.ToBrandOutputWithContext(context.Background())
+}
+
+func (i Brand) ToBrandOutputWithContext(ctx context.Context) BrandOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BrandOutput)
+}
+
+type BrandOutput struct {
+	*pulumi.OutputState
+}
+
+func (BrandOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BrandOutput)(nil)).Elem()
+}
+
+func (o BrandOutput) ToBrandOutput() BrandOutput {
+	return o
+}
+
+func (o BrandOutput) ToBrandOutputWithContext(ctx context.Context) BrandOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(BrandOutput{})
 }

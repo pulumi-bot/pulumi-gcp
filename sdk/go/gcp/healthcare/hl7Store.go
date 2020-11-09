@@ -4,6 +4,8 @@
 package healthcare
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -60,11 +62,11 @@ type Hl7Store struct {
 // NewHl7Store registers a new resource with the given unique name, arguments, and options.
 func NewHl7Store(ctx *pulumi.Context,
 	name string, args *Hl7StoreArgs, opts ...pulumi.ResourceOption) (*Hl7Store, error) {
-	if args == nil || args.Dataset == nil {
-		return nil, errors.New("missing required argument 'Dataset'")
-	}
 	if args == nil {
-		args = &Hl7StoreArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Dataset == nil {
+		return nil, errors.New("invalid value for required argument 'Dataset'")
 	}
 	var resource Hl7Store
 	err := ctx.RegisterResource("gcp:healthcare/hl7Store:Hl7Store", name, args, &resource, opts...)
@@ -230,4 +232,43 @@ type Hl7StoreArgs struct {
 
 func (Hl7StoreArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*hl7StoreArgs)(nil)).Elem()
+}
+
+type Hl7StoreInput interface {
+	pulumi.Input
+
+	ToHl7StoreOutput() Hl7StoreOutput
+	ToHl7StoreOutputWithContext(ctx context.Context) Hl7StoreOutput
+}
+
+func (Hl7Store) ElementType() reflect.Type {
+	return reflect.TypeOf((*Hl7Store)(nil)).Elem()
+}
+
+func (i Hl7Store) ToHl7StoreOutput() Hl7StoreOutput {
+	return i.ToHl7StoreOutputWithContext(context.Background())
+}
+
+func (i Hl7Store) ToHl7StoreOutputWithContext(ctx context.Context) Hl7StoreOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Hl7StoreOutput)
+}
+
+type Hl7StoreOutput struct {
+	*pulumi.OutputState
+}
+
+func (Hl7StoreOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*Hl7StoreOutput)(nil)).Elem()
+}
+
+func (o Hl7StoreOutput) ToHl7StoreOutput() Hl7StoreOutput {
+	return o
+}
+
+func (o Hl7StoreOutput) ToHl7StoreOutputWithContext(ctx context.Context) Hl7StoreOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(Hl7StoreOutput{})
 }

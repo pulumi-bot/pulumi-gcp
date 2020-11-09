@@ -4,6 +4,8 @@
 package folder
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -39,14 +41,14 @@ type OrganizationPolicy struct {
 // NewOrganizationPolicy registers a new resource with the given unique name, arguments, and options.
 func NewOrganizationPolicy(ctx *pulumi.Context,
 	name string, args *OrganizationPolicyArgs, opts ...pulumi.ResourceOption) (*OrganizationPolicy, error) {
-	if args == nil || args.Constraint == nil {
-		return nil, errors.New("missing required argument 'Constraint'")
-	}
-	if args == nil || args.Folder == nil {
-		return nil, errors.New("missing required argument 'Folder'")
-	}
 	if args == nil {
-		args = &OrganizationPolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Constraint == nil {
+		return nil, errors.New("invalid value for required argument 'Constraint'")
+	}
+	if args.Folder == nil {
+		return nil, errors.New("invalid value for required argument 'Folder'")
 	}
 	var resource OrganizationPolicy
 	err := ctx.RegisterResource("gcp:folder/organizationPolicy:OrganizationPolicy", name, args, &resource, opts...)
@@ -148,4 +150,43 @@ type OrganizationPolicyArgs struct {
 
 func (OrganizationPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*organizationPolicyArgs)(nil)).Elem()
+}
+
+type OrganizationPolicyInput interface {
+	pulumi.Input
+
+	ToOrganizationPolicyOutput() OrganizationPolicyOutput
+	ToOrganizationPolicyOutputWithContext(ctx context.Context) OrganizationPolicyOutput
+}
+
+func (OrganizationPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationPolicy)(nil)).Elem()
+}
+
+func (i OrganizationPolicy) ToOrganizationPolicyOutput() OrganizationPolicyOutput {
+	return i.ToOrganizationPolicyOutputWithContext(context.Background())
+}
+
+func (i OrganizationPolicy) ToOrganizationPolicyOutputWithContext(ctx context.Context) OrganizationPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationPolicyOutput)
+}
+
+type OrganizationPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (OrganizationPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationPolicyOutput)(nil)).Elem()
+}
+
+func (o OrganizationPolicyOutput) ToOrganizationPolicyOutput() OrganizationPolicyOutput {
+	return o
+}
+
+func (o OrganizationPolicyOutput) ToOrganizationPolicyOutputWithContext(ctx context.Context) OrganizationPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(OrganizationPolicyOutput{})
 }

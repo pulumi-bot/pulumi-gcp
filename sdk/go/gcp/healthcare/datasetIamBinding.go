@@ -4,6 +4,8 @@
 package healthcare
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -40,17 +42,17 @@ type DatasetIamBinding struct {
 // NewDatasetIamBinding registers a new resource with the given unique name, arguments, and options.
 func NewDatasetIamBinding(ctx *pulumi.Context,
 	name string, args *DatasetIamBindingArgs, opts ...pulumi.ResourceOption) (*DatasetIamBinding, error) {
-	if args == nil || args.DatasetId == nil {
-		return nil, errors.New("missing required argument 'DatasetId'")
-	}
-	if args == nil || args.Members == nil {
-		return nil, errors.New("missing required argument 'Members'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &DatasetIamBindingArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.DatasetId == nil {
+		return nil, errors.New("invalid value for required argument 'DatasetId'")
+	}
+	if args.Members == nil {
+		return nil, errors.New("invalid value for required argument 'Members'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource DatasetIamBinding
 	err := ctx.RegisterResource("gcp:healthcare/datasetIamBinding:DatasetIamBinding", name, args, &resource, opts...)
@@ -140,4 +142,43 @@ type DatasetIamBindingArgs struct {
 
 func (DatasetIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*datasetIamBindingArgs)(nil)).Elem()
+}
+
+type DatasetIamBindingInput interface {
+	pulumi.Input
+
+	ToDatasetIamBindingOutput() DatasetIamBindingOutput
+	ToDatasetIamBindingOutputWithContext(ctx context.Context) DatasetIamBindingOutput
+}
+
+func (DatasetIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatasetIamBinding)(nil)).Elem()
+}
+
+func (i DatasetIamBinding) ToDatasetIamBindingOutput() DatasetIamBindingOutput {
+	return i.ToDatasetIamBindingOutputWithContext(context.Background())
+}
+
+func (i DatasetIamBinding) ToDatasetIamBindingOutputWithContext(ctx context.Context) DatasetIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetIamBindingOutput)
+}
+
+type DatasetIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (DatasetIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatasetIamBindingOutput)(nil)).Elem()
+}
+
+func (o DatasetIamBindingOutput) ToDatasetIamBindingOutput() DatasetIamBindingOutput {
+	return o
+}
+
+func (o DatasetIamBindingOutput) ToDatasetIamBindingOutputWithContext(ctx context.Context) DatasetIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DatasetIamBindingOutput{})
 }

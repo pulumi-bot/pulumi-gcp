@@ -4,6 +4,8 @@
 package compute
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -50,11 +52,11 @@ type Router struct {
 // NewRouter registers a new resource with the given unique name, arguments, and options.
 func NewRouter(ctx *pulumi.Context,
 	name string, args *RouterArgs, opts ...pulumi.ResourceOption) (*Router, error) {
-	if args == nil || args.Network == nil {
-		return nil, errors.New("missing required argument 'Network'")
-	}
 	if args == nil {
-		args = &RouterArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Network == nil {
+		return nil, errors.New("invalid value for required argument 'Network'")
 	}
 	var resource Router
 	err := ctx.RegisterResource("gcp:compute/router:Router", name, args, &resource, opts...)
@@ -180,4 +182,43 @@ type RouterArgs struct {
 
 func (RouterArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*routerArgs)(nil)).Elem()
+}
+
+type RouterInput interface {
+	pulumi.Input
+
+	ToRouterOutput() RouterOutput
+	ToRouterOutputWithContext(ctx context.Context) RouterOutput
+}
+
+func (Router) ElementType() reflect.Type {
+	return reflect.TypeOf((*Router)(nil)).Elem()
+}
+
+func (i Router) ToRouterOutput() RouterOutput {
+	return i.ToRouterOutputWithContext(context.Background())
+}
+
+func (i Router) ToRouterOutputWithContext(ctx context.Context) RouterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RouterOutput)
+}
+
+type RouterOutput struct {
+	*pulumi.OutputState
+}
+
+func (RouterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RouterOutput)(nil)).Elem()
+}
+
+func (o RouterOutput) ToRouterOutput() RouterOutput {
+	return o
+}
+
+func (o RouterOutput) ToRouterOutputWithContext(ctx context.Context) RouterOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RouterOutput{})
 }

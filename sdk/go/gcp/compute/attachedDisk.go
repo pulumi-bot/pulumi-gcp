@@ -4,6 +4,8 @@
 package compute
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -54,14 +56,14 @@ type AttachedDisk struct {
 // NewAttachedDisk registers a new resource with the given unique name, arguments, and options.
 func NewAttachedDisk(ctx *pulumi.Context,
 	name string, args *AttachedDiskArgs, opts ...pulumi.ResourceOption) (*AttachedDisk, error) {
-	if args == nil || args.Disk == nil {
-		return nil, errors.New("missing required argument 'Disk'")
-	}
-	if args == nil || args.Instance == nil {
-		return nil, errors.New("missing required argument 'Instance'")
-	}
 	if args == nil {
-		args = &AttachedDiskArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Disk == nil {
+		return nil, errors.New("invalid value for required argument 'Disk'")
+	}
+	if args.Instance == nil {
+		return nil, errors.New("invalid value for required argument 'Instance'")
 	}
 	var resource AttachedDisk
 	err := ctx.RegisterResource("gcp:compute/attachedDisk:AttachedDisk", name, args, &resource, opts...)
@@ -195,4 +197,43 @@ type AttachedDiskArgs struct {
 
 func (AttachedDiskArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*attachedDiskArgs)(nil)).Elem()
+}
+
+type AttachedDiskInput interface {
+	pulumi.Input
+
+	ToAttachedDiskOutput() AttachedDiskOutput
+	ToAttachedDiskOutputWithContext(ctx context.Context) AttachedDiskOutput
+}
+
+func (AttachedDisk) ElementType() reflect.Type {
+	return reflect.TypeOf((*AttachedDisk)(nil)).Elem()
+}
+
+func (i AttachedDisk) ToAttachedDiskOutput() AttachedDiskOutput {
+	return i.ToAttachedDiskOutputWithContext(context.Background())
+}
+
+func (i AttachedDisk) ToAttachedDiskOutputWithContext(ctx context.Context) AttachedDiskOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AttachedDiskOutput)
+}
+
+type AttachedDiskOutput struct {
+	*pulumi.OutputState
+}
+
+func (AttachedDiskOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AttachedDiskOutput)(nil)).Elem()
+}
+
+func (o AttachedDiskOutput) ToAttachedDiskOutput() AttachedDiskOutput {
+	return o
+}
+
+func (o AttachedDiskOutput) ToAttachedDiskOutputWithContext(ctx context.Context) AttachedDiskOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AttachedDiskOutput{})
 }

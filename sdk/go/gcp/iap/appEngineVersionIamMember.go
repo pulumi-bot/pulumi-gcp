@@ -4,6 +4,8 @@
 package iap
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -46,23 +48,23 @@ type AppEngineVersionIamMember struct {
 // NewAppEngineVersionIamMember registers a new resource with the given unique name, arguments, and options.
 func NewAppEngineVersionIamMember(ctx *pulumi.Context,
 	name string, args *AppEngineVersionIamMemberArgs, opts ...pulumi.ResourceOption) (*AppEngineVersionIamMember, error) {
-	if args == nil || args.AppId == nil {
-		return nil, errors.New("missing required argument 'AppId'")
-	}
-	if args == nil || args.Member == nil {
-		return nil, errors.New("missing required argument 'Member'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
-	if args == nil || args.Service == nil {
-		return nil, errors.New("missing required argument 'Service'")
-	}
-	if args == nil || args.VersionId == nil {
-		return nil, errors.New("missing required argument 'VersionId'")
-	}
 	if args == nil {
-		args = &AppEngineVersionIamMemberArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.AppId == nil {
+		return nil, errors.New("invalid value for required argument 'AppId'")
+	}
+	if args.Member == nil {
+		return nil, errors.New("invalid value for required argument 'Member'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
+	}
+	if args.Service == nil {
+		return nil, errors.New("invalid value for required argument 'Service'")
+	}
+	if args.VersionId == nil {
+		return nil, errors.New("invalid value for required argument 'VersionId'")
 	}
 	var resource AppEngineVersionIamMember
 	err := ctx.RegisterResource("gcp:iap/appEngineVersionIamMember:AppEngineVersionIamMember", name, args, &resource, opts...)
@@ -176,4 +178,43 @@ type AppEngineVersionIamMemberArgs struct {
 
 func (AppEngineVersionIamMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*appEngineVersionIamMemberArgs)(nil)).Elem()
+}
+
+type AppEngineVersionIamMemberInput interface {
+	pulumi.Input
+
+	ToAppEngineVersionIamMemberOutput() AppEngineVersionIamMemberOutput
+	ToAppEngineVersionIamMemberOutputWithContext(ctx context.Context) AppEngineVersionIamMemberOutput
+}
+
+func (AppEngineVersionIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*AppEngineVersionIamMember)(nil)).Elem()
+}
+
+func (i AppEngineVersionIamMember) ToAppEngineVersionIamMemberOutput() AppEngineVersionIamMemberOutput {
+	return i.ToAppEngineVersionIamMemberOutputWithContext(context.Background())
+}
+
+func (i AppEngineVersionIamMember) ToAppEngineVersionIamMemberOutputWithContext(ctx context.Context) AppEngineVersionIamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AppEngineVersionIamMemberOutput)
+}
+
+type AppEngineVersionIamMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (AppEngineVersionIamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AppEngineVersionIamMemberOutput)(nil)).Elem()
+}
+
+func (o AppEngineVersionIamMemberOutput) ToAppEngineVersionIamMemberOutput() AppEngineVersionIamMemberOutput {
+	return o
+}
+
+func (o AppEngineVersionIamMemberOutput) ToAppEngineVersionIamMemberOutputWithContext(ctx context.Context) AppEngineVersionIamMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AppEngineVersionIamMemberOutput{})
 }

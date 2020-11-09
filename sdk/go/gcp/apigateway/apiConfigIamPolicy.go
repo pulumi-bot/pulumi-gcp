@@ -4,6 +4,8 @@
 package apigateway
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -30,17 +32,17 @@ type ApiConfigIamPolicy struct {
 // NewApiConfigIamPolicy registers a new resource with the given unique name, arguments, and options.
 func NewApiConfigIamPolicy(ctx *pulumi.Context,
 	name string, args *ApiConfigIamPolicyArgs, opts ...pulumi.ResourceOption) (*ApiConfigIamPolicy, error) {
-	if args == nil || args.Api == nil {
-		return nil, errors.New("missing required argument 'Api'")
-	}
-	if args == nil || args.ApiConfig == nil {
-		return nil, errors.New("missing required argument 'ApiConfig'")
-	}
-	if args == nil || args.PolicyData == nil {
-		return nil, errors.New("missing required argument 'PolicyData'")
-	}
 	if args == nil {
-		args = &ApiConfigIamPolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Api == nil {
+		return nil, errors.New("invalid value for required argument 'Api'")
+	}
+	if args.ApiConfig == nil {
+		return nil, errors.New("invalid value for required argument 'ApiConfig'")
+	}
+	if args.PolicyData == nil {
+		return nil, errors.New("invalid value for required argument 'PolicyData'")
 	}
 	var resource ApiConfigIamPolicy
 	err := ctx.RegisterResource("gcp:apigateway/apiConfigIamPolicy:ApiConfigIamPolicy", name, args, &resource, opts...)
@@ -126,4 +128,43 @@ type ApiConfigIamPolicyArgs struct {
 
 func (ApiConfigIamPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*apiConfigIamPolicyArgs)(nil)).Elem()
+}
+
+type ApiConfigIamPolicyInput interface {
+	pulumi.Input
+
+	ToApiConfigIamPolicyOutput() ApiConfigIamPolicyOutput
+	ToApiConfigIamPolicyOutputWithContext(ctx context.Context) ApiConfigIamPolicyOutput
+}
+
+func (ApiConfigIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*ApiConfigIamPolicy)(nil)).Elem()
+}
+
+func (i ApiConfigIamPolicy) ToApiConfigIamPolicyOutput() ApiConfigIamPolicyOutput {
+	return i.ToApiConfigIamPolicyOutputWithContext(context.Background())
+}
+
+func (i ApiConfigIamPolicy) ToApiConfigIamPolicyOutputWithContext(ctx context.Context) ApiConfigIamPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApiConfigIamPolicyOutput)
+}
+
+type ApiConfigIamPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (ApiConfigIamPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ApiConfigIamPolicyOutput)(nil)).Elem()
+}
+
+func (o ApiConfigIamPolicyOutput) ToApiConfigIamPolicyOutput() ApiConfigIamPolicyOutput {
+	return o
+}
+
+func (o ApiConfigIamPolicyOutput) ToApiConfigIamPolicyOutputWithContext(ctx context.Context) ApiConfigIamPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ApiConfigIamPolicyOutput{})
 }

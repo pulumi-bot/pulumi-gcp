@@ -4,6 +4,8 @@
 package healthcare
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -88,11 +90,11 @@ type FhirStore struct {
 // NewFhirStore registers a new resource with the given unique name, arguments, and options.
 func NewFhirStore(ctx *pulumi.Context,
 	name string, args *FhirStoreArgs, opts ...pulumi.ResourceOption) (*FhirStore, error) {
-	if args == nil || args.Dataset == nil {
-		return nil, errors.New("missing required argument 'Dataset'")
-	}
 	if args == nil {
-		args = &FhirStoreArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Dataset == nil {
+		return nil, errors.New("invalid value for required argument 'Dataset'")
 	}
 	var resource FhirStore
 	err := ctx.RegisterResource("gcp:healthcare/fhirStore:FhirStore", name, args, &resource, opts...)
@@ -370,4 +372,43 @@ type FhirStoreArgs struct {
 
 func (FhirStoreArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*fhirStoreArgs)(nil)).Elem()
+}
+
+type FhirStoreInput interface {
+	pulumi.Input
+
+	ToFhirStoreOutput() FhirStoreOutput
+	ToFhirStoreOutputWithContext(ctx context.Context) FhirStoreOutput
+}
+
+func (FhirStore) ElementType() reflect.Type {
+	return reflect.TypeOf((*FhirStore)(nil)).Elem()
+}
+
+func (i FhirStore) ToFhirStoreOutput() FhirStoreOutput {
+	return i.ToFhirStoreOutputWithContext(context.Background())
+}
+
+func (i FhirStore) ToFhirStoreOutputWithContext(ctx context.Context) FhirStoreOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FhirStoreOutput)
+}
+
+type FhirStoreOutput struct {
+	*pulumi.OutputState
+}
+
+func (FhirStoreOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FhirStoreOutput)(nil)).Elem()
+}
+
+func (o FhirStoreOutput) ToFhirStoreOutput() FhirStoreOutput {
+	return o
+}
+
+func (o FhirStoreOutput) ToFhirStoreOutputWithContext(ctx context.Context) FhirStoreOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(FhirStoreOutput{})
 }

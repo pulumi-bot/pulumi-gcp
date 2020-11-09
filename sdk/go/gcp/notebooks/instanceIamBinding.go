@@ -4,6 +4,8 @@
 package notebooks
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -33,17 +35,17 @@ type InstanceIamBinding struct {
 // NewInstanceIamBinding registers a new resource with the given unique name, arguments, and options.
 func NewInstanceIamBinding(ctx *pulumi.Context,
 	name string, args *InstanceIamBindingArgs, opts ...pulumi.ResourceOption) (*InstanceIamBinding, error) {
-	if args == nil || args.InstanceName == nil {
-		return nil, errors.New("missing required argument 'InstanceName'")
-	}
-	if args == nil || args.Members == nil {
-		return nil, errors.New("missing required argument 'Members'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &InstanceIamBindingArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.InstanceName == nil {
+		return nil, errors.New("invalid value for required argument 'InstanceName'")
+	}
+	if args.Members == nil {
+		return nil, errors.New("invalid value for required argument 'Members'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource InstanceIamBinding
 	err := ctx.RegisterResource("gcp:notebooks/instanceIamBinding:InstanceIamBinding", name, args, &resource, opts...)
@@ -141,4 +143,43 @@ type InstanceIamBindingArgs struct {
 
 func (InstanceIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*instanceIamBindingArgs)(nil)).Elem()
+}
+
+type InstanceIamBindingInput interface {
+	pulumi.Input
+
+	ToInstanceIamBindingOutput() InstanceIamBindingOutput
+	ToInstanceIamBindingOutputWithContext(ctx context.Context) InstanceIamBindingOutput
+}
+
+func (InstanceIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceIamBinding)(nil)).Elem()
+}
+
+func (i InstanceIamBinding) ToInstanceIamBindingOutput() InstanceIamBindingOutput {
+	return i.ToInstanceIamBindingOutputWithContext(context.Background())
+}
+
+func (i InstanceIamBinding) ToInstanceIamBindingOutputWithContext(ctx context.Context) InstanceIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceIamBindingOutput)
+}
+
+type InstanceIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (InstanceIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceIamBindingOutput)(nil)).Elem()
+}
+
+func (o InstanceIamBindingOutput) ToInstanceIamBindingOutput() InstanceIamBindingOutput {
+	return o
+}
+
+func (o InstanceIamBindingOutput) ToInstanceIamBindingOutputWithContext(ctx context.Context) InstanceIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(InstanceIamBindingOutput{})
 }

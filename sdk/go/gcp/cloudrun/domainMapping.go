@@ -4,6 +4,8 @@
 package cloudrun
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -42,17 +44,17 @@ type DomainMapping struct {
 // NewDomainMapping registers a new resource with the given unique name, arguments, and options.
 func NewDomainMapping(ctx *pulumi.Context,
 	name string, args *DomainMappingArgs, opts ...pulumi.ResourceOption) (*DomainMapping, error) {
-	if args == nil || args.Location == nil {
-		return nil, errors.New("missing required argument 'Location'")
-	}
-	if args == nil || args.Metadata == nil {
-		return nil, errors.New("missing required argument 'Metadata'")
-	}
-	if args == nil || args.Spec == nil {
-		return nil, errors.New("missing required argument 'Spec'")
-	}
 	if args == nil {
-		args = &DomainMappingArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Location == nil {
+		return nil, errors.New("invalid value for required argument 'Location'")
+	}
+	if args.Metadata == nil {
+		return nil, errors.New("invalid value for required argument 'Metadata'")
+	}
+	if args.Spec == nil {
+		return nil, errors.New("invalid value for required argument 'Spec'")
 	}
 	var resource DomainMapping
 	err := ctx.RegisterResource("gcp:cloudrun/domainMapping:DomainMapping", name, args, &resource, opts...)
@@ -150,4 +152,43 @@ type DomainMappingArgs struct {
 
 func (DomainMappingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*domainMappingArgs)(nil)).Elem()
+}
+
+type DomainMappingInput interface {
+	pulumi.Input
+
+	ToDomainMappingOutput() DomainMappingOutput
+	ToDomainMappingOutputWithContext(ctx context.Context) DomainMappingOutput
+}
+
+func (DomainMapping) ElementType() reflect.Type {
+	return reflect.TypeOf((*DomainMapping)(nil)).Elem()
+}
+
+func (i DomainMapping) ToDomainMappingOutput() DomainMappingOutput {
+	return i.ToDomainMappingOutputWithContext(context.Background())
+}
+
+func (i DomainMapping) ToDomainMappingOutputWithContext(ctx context.Context) DomainMappingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DomainMappingOutput)
+}
+
+type DomainMappingOutput struct {
+	*pulumi.OutputState
+}
+
+func (DomainMappingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DomainMappingOutput)(nil)).Elem()
+}
+
+func (o DomainMappingOutput) ToDomainMappingOutput() DomainMappingOutput {
+	return o
+}
+
+func (o DomainMappingOutput) ToDomainMappingOutputWithContext(ctx context.Context) DomainMappingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DomainMappingOutput{})
 }

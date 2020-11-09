@@ -4,6 +4,8 @@
 package iap
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -44,14 +46,14 @@ type Client struct {
 // NewClient registers a new resource with the given unique name, arguments, and options.
 func NewClient(ctx *pulumi.Context,
 	name string, args *ClientArgs, opts ...pulumi.ResourceOption) (*Client, error) {
-	if args == nil || args.Brand == nil {
-		return nil, errors.New("missing required argument 'Brand'")
-	}
-	if args == nil || args.DisplayName == nil {
-		return nil, errors.New("missing required argument 'DisplayName'")
-	}
 	if args == nil {
-		args = &ClientArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Brand == nil {
+		return nil, errors.New("invalid value for required argument 'Brand'")
+	}
+	if args.DisplayName == nil {
+		return nil, errors.New("invalid value for required argument 'DisplayName'")
 	}
 	var resource Client
 	err := ctx.RegisterResource("gcp:iap/client:Client", name, args, &resource, opts...)
@@ -125,4 +127,43 @@ type ClientArgs struct {
 
 func (ClientArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*clientArgs)(nil)).Elem()
+}
+
+type ClientInput interface {
+	pulumi.Input
+
+	ToClientOutput() ClientOutput
+	ToClientOutputWithContext(ctx context.Context) ClientOutput
+}
+
+func (Client) ElementType() reflect.Type {
+	return reflect.TypeOf((*Client)(nil)).Elem()
+}
+
+func (i Client) ToClientOutput() ClientOutput {
+	return i.ToClientOutputWithContext(context.Background())
+}
+
+func (i Client) ToClientOutputWithContext(ctx context.Context) ClientOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClientOutput)
+}
+
+type ClientOutput struct {
+	*pulumi.OutputState
+}
+
+func (ClientOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClientOutput)(nil)).Elem()
+}
+
+func (o ClientOutput) ToClientOutput() ClientOutput {
+	return o
+}
+
+func (o ClientOutput) ToClientOutputWithContext(ctx context.Context) ClientOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ClientOutput{})
 }

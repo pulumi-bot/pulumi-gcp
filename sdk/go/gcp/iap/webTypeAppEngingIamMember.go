@@ -4,6 +4,8 @@
 package iap
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -42,17 +44,17 @@ type WebTypeAppEngingIamMember struct {
 // NewWebTypeAppEngingIamMember registers a new resource with the given unique name, arguments, and options.
 func NewWebTypeAppEngingIamMember(ctx *pulumi.Context,
 	name string, args *WebTypeAppEngingIamMemberArgs, opts ...pulumi.ResourceOption) (*WebTypeAppEngingIamMember, error) {
-	if args == nil || args.AppId == nil {
-		return nil, errors.New("missing required argument 'AppId'")
-	}
-	if args == nil || args.Member == nil {
-		return nil, errors.New("missing required argument 'Member'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &WebTypeAppEngingIamMemberArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.AppId == nil {
+		return nil, errors.New("invalid value for required argument 'AppId'")
+	}
+	if args.Member == nil {
+		return nil, errors.New("invalid value for required argument 'Member'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource WebTypeAppEngingIamMember
 	err := ctx.RegisterResource("gcp:iap/webTypeAppEngingIamMember:WebTypeAppEngingIamMember", name, args, &resource, opts...)
@@ -150,4 +152,43 @@ type WebTypeAppEngingIamMemberArgs struct {
 
 func (WebTypeAppEngingIamMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*webTypeAppEngingIamMemberArgs)(nil)).Elem()
+}
+
+type WebTypeAppEngingIamMemberInput interface {
+	pulumi.Input
+
+	ToWebTypeAppEngingIamMemberOutput() WebTypeAppEngingIamMemberOutput
+	ToWebTypeAppEngingIamMemberOutputWithContext(ctx context.Context) WebTypeAppEngingIamMemberOutput
+}
+
+func (WebTypeAppEngingIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebTypeAppEngingIamMember)(nil)).Elem()
+}
+
+func (i WebTypeAppEngingIamMember) ToWebTypeAppEngingIamMemberOutput() WebTypeAppEngingIamMemberOutput {
+	return i.ToWebTypeAppEngingIamMemberOutputWithContext(context.Background())
+}
+
+func (i WebTypeAppEngingIamMember) ToWebTypeAppEngingIamMemberOutputWithContext(ctx context.Context) WebTypeAppEngingIamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebTypeAppEngingIamMemberOutput)
+}
+
+type WebTypeAppEngingIamMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (WebTypeAppEngingIamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebTypeAppEngingIamMemberOutput)(nil)).Elem()
+}
+
+func (o WebTypeAppEngingIamMemberOutput) ToWebTypeAppEngingIamMemberOutput() WebTypeAppEngingIamMemberOutput {
+	return o
+}
+
+func (o WebTypeAppEngingIamMemberOutput) ToWebTypeAppEngingIamMemberOutputWithContext(ctx context.Context) WebTypeAppEngingIamMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(WebTypeAppEngingIamMemberOutput{})
 }

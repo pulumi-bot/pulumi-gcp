@@ -4,6 +4,8 @@
 package identityplatform
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -50,20 +52,20 @@ type TenantDefaultSupportedIdpConfig struct {
 // NewTenantDefaultSupportedIdpConfig registers a new resource with the given unique name, arguments, and options.
 func NewTenantDefaultSupportedIdpConfig(ctx *pulumi.Context,
 	name string, args *TenantDefaultSupportedIdpConfigArgs, opts ...pulumi.ResourceOption) (*TenantDefaultSupportedIdpConfig, error) {
-	if args == nil || args.ClientId == nil {
-		return nil, errors.New("missing required argument 'ClientId'")
-	}
-	if args == nil || args.ClientSecret == nil {
-		return nil, errors.New("missing required argument 'ClientSecret'")
-	}
-	if args == nil || args.IdpId == nil {
-		return nil, errors.New("missing required argument 'IdpId'")
-	}
-	if args == nil || args.Tenant == nil {
-		return nil, errors.New("missing required argument 'Tenant'")
-	}
 	if args == nil {
-		args = &TenantDefaultSupportedIdpConfigArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.ClientId == nil {
+		return nil, errors.New("invalid value for required argument 'ClientId'")
+	}
+	if args.ClientSecret == nil {
+		return nil, errors.New("invalid value for required argument 'ClientSecret'")
+	}
+	if args.IdpId == nil {
+		return nil, errors.New("invalid value for required argument 'IdpId'")
+	}
+	if args.Tenant == nil {
+		return nil, errors.New("invalid value for required argument 'Tenant'")
 	}
 	var resource TenantDefaultSupportedIdpConfig
 	err := ctx.RegisterResource("gcp:identityplatform/tenantDefaultSupportedIdpConfig:TenantDefaultSupportedIdpConfig", name, args, &resource, opts...)
@@ -201,4 +203,43 @@ type TenantDefaultSupportedIdpConfigArgs struct {
 
 func (TenantDefaultSupportedIdpConfigArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*tenantDefaultSupportedIdpConfigArgs)(nil)).Elem()
+}
+
+type TenantDefaultSupportedIdpConfigInput interface {
+	pulumi.Input
+
+	ToTenantDefaultSupportedIdpConfigOutput() TenantDefaultSupportedIdpConfigOutput
+	ToTenantDefaultSupportedIdpConfigOutputWithContext(ctx context.Context) TenantDefaultSupportedIdpConfigOutput
+}
+
+func (TenantDefaultSupportedIdpConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*TenantDefaultSupportedIdpConfig)(nil)).Elem()
+}
+
+func (i TenantDefaultSupportedIdpConfig) ToTenantDefaultSupportedIdpConfigOutput() TenantDefaultSupportedIdpConfigOutput {
+	return i.ToTenantDefaultSupportedIdpConfigOutputWithContext(context.Background())
+}
+
+func (i TenantDefaultSupportedIdpConfig) ToTenantDefaultSupportedIdpConfigOutputWithContext(ctx context.Context) TenantDefaultSupportedIdpConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TenantDefaultSupportedIdpConfigOutput)
+}
+
+type TenantDefaultSupportedIdpConfigOutput struct {
+	*pulumi.OutputState
+}
+
+func (TenantDefaultSupportedIdpConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TenantDefaultSupportedIdpConfigOutput)(nil)).Elem()
+}
+
+func (o TenantDefaultSupportedIdpConfigOutput) ToTenantDefaultSupportedIdpConfigOutput() TenantDefaultSupportedIdpConfigOutput {
+	return o
+}
+
+func (o TenantDefaultSupportedIdpConfigOutput) ToTenantDefaultSupportedIdpConfigOutputWithContext(ctx context.Context) TenantDefaultSupportedIdpConfigOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TenantDefaultSupportedIdpConfigOutput{})
 }

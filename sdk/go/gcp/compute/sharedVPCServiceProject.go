@@ -4,6 +4,8 @@
 package compute
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -30,14 +32,14 @@ type SharedVPCServiceProject struct {
 // NewSharedVPCServiceProject registers a new resource with the given unique name, arguments, and options.
 func NewSharedVPCServiceProject(ctx *pulumi.Context,
 	name string, args *SharedVPCServiceProjectArgs, opts ...pulumi.ResourceOption) (*SharedVPCServiceProject, error) {
-	if args == nil || args.HostProject == nil {
-		return nil, errors.New("missing required argument 'HostProject'")
-	}
-	if args == nil || args.ServiceProject == nil {
-		return nil, errors.New("missing required argument 'ServiceProject'")
-	}
 	if args == nil {
-		args = &SharedVPCServiceProjectArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.HostProject == nil {
+		return nil, errors.New("invalid value for required argument 'HostProject'")
+	}
+	if args.ServiceProject == nil {
+		return nil, errors.New("invalid value for required argument 'ServiceProject'")
 	}
 	var resource SharedVPCServiceProject
 	err := ctx.RegisterResource("gcp:compute/sharedVPCServiceProject:SharedVPCServiceProject", name, args, &resource, opts...)
@@ -95,4 +97,43 @@ type SharedVPCServiceProjectArgs struct {
 
 func (SharedVPCServiceProjectArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*sharedVPCServiceProjectArgs)(nil)).Elem()
+}
+
+type SharedVPCServiceProjectInput interface {
+	pulumi.Input
+
+	ToSharedVPCServiceProjectOutput() SharedVPCServiceProjectOutput
+	ToSharedVPCServiceProjectOutputWithContext(ctx context.Context) SharedVPCServiceProjectOutput
+}
+
+func (SharedVPCServiceProject) ElementType() reflect.Type {
+	return reflect.TypeOf((*SharedVPCServiceProject)(nil)).Elem()
+}
+
+func (i SharedVPCServiceProject) ToSharedVPCServiceProjectOutput() SharedVPCServiceProjectOutput {
+	return i.ToSharedVPCServiceProjectOutputWithContext(context.Background())
+}
+
+func (i SharedVPCServiceProject) ToSharedVPCServiceProjectOutputWithContext(ctx context.Context) SharedVPCServiceProjectOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SharedVPCServiceProjectOutput)
+}
+
+type SharedVPCServiceProjectOutput struct {
+	*pulumi.OutputState
+}
+
+func (SharedVPCServiceProjectOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SharedVPCServiceProjectOutput)(nil)).Elem()
+}
+
+func (o SharedVPCServiceProjectOutput) ToSharedVPCServiceProjectOutput() SharedVPCServiceProjectOutput {
+	return o
+}
+
+func (o SharedVPCServiceProjectOutput) ToSharedVPCServiceProjectOutputWithContext(ctx context.Context) SharedVPCServiceProjectOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SharedVPCServiceProjectOutput{})
 }

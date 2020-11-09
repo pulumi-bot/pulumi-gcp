@@ -4,6 +4,8 @@
 package accesscontextmanager
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -46,14 +48,14 @@ type ServicePerimeterResource struct {
 // NewServicePerimeterResource registers a new resource with the given unique name, arguments, and options.
 func NewServicePerimeterResource(ctx *pulumi.Context,
 	name string, args *ServicePerimeterResourceArgs, opts ...pulumi.ResourceOption) (*ServicePerimeterResource, error) {
-	if args == nil || args.PerimeterName == nil {
-		return nil, errors.New("missing required argument 'PerimeterName'")
-	}
-	if args == nil || args.Resource == nil {
-		return nil, errors.New("missing required argument 'Resource'")
-	}
 	if args == nil {
-		args = &ServicePerimeterResourceArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.PerimeterName == nil {
+		return nil, errors.New("invalid value for required argument 'PerimeterName'")
+	}
+	if args.Resource == nil {
+		return nil, errors.New("invalid value for required argument 'Resource'")
 	}
 	var resource ServicePerimeterResource
 	err := ctx.RegisterResource("gcp:accesscontextmanager/servicePerimeterResource:ServicePerimeterResource", name, args, &resource, opts...)
@@ -119,4 +121,43 @@ type ServicePerimeterResourceArgs struct {
 
 func (ServicePerimeterResourceArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*servicePerimeterResourceArgs)(nil)).Elem()
+}
+
+type ServicePerimeterResourceInput interface {
+	pulumi.Input
+
+	ToServicePerimeterResourceOutput() ServicePerimeterResourceOutput
+	ToServicePerimeterResourceOutputWithContext(ctx context.Context) ServicePerimeterResourceOutput
+}
+
+func (ServicePerimeterResource) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServicePerimeterResource)(nil)).Elem()
+}
+
+func (i ServicePerimeterResource) ToServicePerimeterResourceOutput() ServicePerimeterResourceOutput {
+	return i.ToServicePerimeterResourceOutputWithContext(context.Background())
+}
+
+func (i ServicePerimeterResource) ToServicePerimeterResourceOutputWithContext(ctx context.Context) ServicePerimeterResourceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServicePerimeterResourceOutput)
+}
+
+type ServicePerimeterResourceOutput struct {
+	*pulumi.OutputState
+}
+
+func (ServicePerimeterResourceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServicePerimeterResourceOutput)(nil)).Elem()
+}
+
+func (o ServicePerimeterResourceOutput) ToServicePerimeterResourceOutput() ServicePerimeterResourceOutput {
+	return o
+}
+
+func (o ServicePerimeterResourceOutput) ToServicePerimeterResourceOutputWithContext(ctx context.Context) ServicePerimeterResourceOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ServicePerimeterResourceOutput{})
 }

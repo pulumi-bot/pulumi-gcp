@@ -4,6 +4,8 @@
 package compute
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -65,11 +67,11 @@ type TargetInstance struct {
 // NewTargetInstance registers a new resource with the given unique name, arguments, and options.
 func NewTargetInstance(ctx *pulumi.Context,
 	name string, args *TargetInstanceArgs, opts ...pulumi.ResourceOption) (*TargetInstance, error) {
-	if args == nil || args.Instance == nil {
-		return nil, errors.New("missing required argument 'Instance'")
-	}
 	if args == nil {
-		args = &TargetInstanceArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Instance == nil {
+		return nil, errors.New("invalid value for required argument 'Instance'")
 	}
 	var resource TargetInstance
 	err := ctx.RegisterResource("gcp:compute/targetInstance:TargetInstance", name, args, &resource, opts...)
@@ -235,4 +237,43 @@ type TargetInstanceArgs struct {
 
 func (TargetInstanceArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*targetInstanceArgs)(nil)).Elem()
+}
+
+type TargetInstanceInput interface {
+	pulumi.Input
+
+	ToTargetInstanceOutput() TargetInstanceOutput
+	ToTargetInstanceOutputWithContext(ctx context.Context) TargetInstanceOutput
+}
+
+func (TargetInstance) ElementType() reflect.Type {
+	return reflect.TypeOf((*TargetInstance)(nil)).Elem()
+}
+
+func (i TargetInstance) ToTargetInstanceOutput() TargetInstanceOutput {
+	return i.ToTargetInstanceOutputWithContext(context.Background())
+}
+
+func (i TargetInstance) ToTargetInstanceOutputWithContext(ctx context.Context) TargetInstanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TargetInstanceOutput)
+}
+
+type TargetInstanceOutput struct {
+	*pulumi.OutputState
+}
+
+func (TargetInstanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TargetInstanceOutput)(nil)).Elem()
+}
+
+func (o TargetInstanceOutput) ToTargetInstanceOutput() TargetInstanceOutput {
+	return o
+}
+
+func (o TargetInstanceOutput) ToTargetInstanceOutputWithContext(ctx context.Context) TargetInstanceOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TargetInstanceOutput{})
 }

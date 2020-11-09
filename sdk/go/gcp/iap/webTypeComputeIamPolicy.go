@@ -4,6 +4,8 @@
 package iap
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -35,11 +37,11 @@ type WebTypeComputeIamPolicy struct {
 // NewWebTypeComputeIamPolicy registers a new resource with the given unique name, arguments, and options.
 func NewWebTypeComputeIamPolicy(ctx *pulumi.Context,
 	name string, args *WebTypeComputeIamPolicyArgs, opts ...pulumi.ResourceOption) (*WebTypeComputeIamPolicy, error) {
-	if args == nil || args.PolicyData == nil {
-		return nil, errors.New("missing required argument 'PolicyData'")
-	}
 	if args == nil {
-		args = &WebTypeComputeIamPolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.PolicyData == nil {
+		return nil, errors.New("invalid value for required argument 'PolicyData'")
 	}
 	var resource WebTypeComputeIamPolicy
 	err := ctx.RegisterResource("gcp:iap/webTypeComputeIamPolicy:WebTypeComputeIamPolicy", name, args, &resource, opts...)
@@ -109,4 +111,43 @@ type WebTypeComputeIamPolicyArgs struct {
 
 func (WebTypeComputeIamPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*webTypeComputeIamPolicyArgs)(nil)).Elem()
+}
+
+type WebTypeComputeIamPolicyInput interface {
+	pulumi.Input
+
+	ToWebTypeComputeIamPolicyOutput() WebTypeComputeIamPolicyOutput
+	ToWebTypeComputeIamPolicyOutputWithContext(ctx context.Context) WebTypeComputeIamPolicyOutput
+}
+
+func (WebTypeComputeIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebTypeComputeIamPolicy)(nil)).Elem()
+}
+
+func (i WebTypeComputeIamPolicy) ToWebTypeComputeIamPolicyOutput() WebTypeComputeIamPolicyOutput {
+	return i.ToWebTypeComputeIamPolicyOutputWithContext(context.Background())
+}
+
+func (i WebTypeComputeIamPolicy) ToWebTypeComputeIamPolicyOutputWithContext(ctx context.Context) WebTypeComputeIamPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebTypeComputeIamPolicyOutput)
+}
+
+type WebTypeComputeIamPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (WebTypeComputeIamPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebTypeComputeIamPolicyOutput)(nil)).Elem()
+}
+
+func (o WebTypeComputeIamPolicyOutput) ToWebTypeComputeIamPolicyOutput() WebTypeComputeIamPolicyOutput {
+	return o
+}
+
+func (o WebTypeComputeIamPolicyOutput) ToWebTypeComputeIamPolicyOutputWithContext(ctx context.Context) WebTypeComputeIamPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(WebTypeComputeIamPolicyOutput{})
 }

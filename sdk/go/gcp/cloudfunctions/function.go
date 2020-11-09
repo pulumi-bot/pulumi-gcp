@@ -4,6 +4,8 @@
 package cloudfunctions
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -76,11 +78,11 @@ type Function struct {
 // NewFunction registers a new resource with the given unique name, arguments, and options.
 func NewFunction(ctx *pulumi.Context,
 	name string, args *FunctionArgs, opts ...pulumi.ResourceOption) (*Function, error) {
-	if args == nil || args.Runtime == nil {
-		return nil, errors.New("missing required argument 'Runtime'")
-	}
 	if args == nil {
-		args = &FunctionArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Runtime == nil {
+		return nil, errors.New("invalid value for required argument 'Runtime'")
 	}
 	var resource Function
 	err := ctx.RegisterResource("gcp:cloudfunctions/function:Function", name, args, &resource, opts...)
@@ -306,4 +308,43 @@ type FunctionArgs struct {
 
 func (FunctionArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*functionArgs)(nil)).Elem()
+}
+
+type FunctionInput interface {
+	pulumi.Input
+
+	ToFunctionOutput() FunctionOutput
+	ToFunctionOutputWithContext(ctx context.Context) FunctionOutput
+}
+
+func (Function) ElementType() reflect.Type {
+	return reflect.TypeOf((*Function)(nil)).Elem()
+}
+
+func (i Function) ToFunctionOutput() FunctionOutput {
+	return i.ToFunctionOutputWithContext(context.Background())
+}
+
+func (i Function) ToFunctionOutputWithContext(ctx context.Context) FunctionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FunctionOutput)
+}
+
+type FunctionOutput struct {
+	*pulumi.OutputState
+}
+
+func (FunctionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FunctionOutput)(nil)).Elem()
+}
+
+func (o FunctionOutput) ToFunctionOutput() FunctionOutput {
+	return o
+}
+
+func (o FunctionOutput) ToFunctionOutputWithContext(ctx context.Context) FunctionOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(FunctionOutput{})
 }

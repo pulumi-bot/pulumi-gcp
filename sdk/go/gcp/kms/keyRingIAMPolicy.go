@@ -4,6 +4,8 @@
 package kms
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -37,14 +39,14 @@ type KeyRingIAMPolicy struct {
 // NewKeyRingIAMPolicy registers a new resource with the given unique name, arguments, and options.
 func NewKeyRingIAMPolicy(ctx *pulumi.Context,
 	name string, args *KeyRingIAMPolicyArgs, opts ...pulumi.ResourceOption) (*KeyRingIAMPolicy, error) {
-	if args == nil || args.KeyRingId == nil {
-		return nil, errors.New("missing required argument 'KeyRingId'")
-	}
-	if args == nil || args.PolicyData == nil {
-		return nil, errors.New("missing required argument 'PolicyData'")
-	}
 	if args == nil {
-		args = &KeyRingIAMPolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.KeyRingId == nil {
+		return nil, errors.New("invalid value for required argument 'KeyRingId'")
+	}
+	if args.PolicyData == nil {
+		return nil, errors.New("invalid value for required argument 'PolicyData'")
 	}
 	var resource KeyRingIAMPolicy
 	err := ctx.RegisterResource("gcp:kms/keyRingIAMPolicy:KeyRingIAMPolicy", name, args, &resource, opts...)
@@ -122,4 +124,43 @@ type KeyRingIAMPolicyArgs struct {
 
 func (KeyRingIAMPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*keyRingIAMPolicyArgs)(nil)).Elem()
+}
+
+type KeyRingIAMPolicyInput interface {
+	pulumi.Input
+
+	ToKeyRingIAMPolicyOutput() KeyRingIAMPolicyOutput
+	ToKeyRingIAMPolicyOutputWithContext(ctx context.Context) KeyRingIAMPolicyOutput
+}
+
+func (KeyRingIAMPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*KeyRingIAMPolicy)(nil)).Elem()
+}
+
+func (i KeyRingIAMPolicy) ToKeyRingIAMPolicyOutput() KeyRingIAMPolicyOutput {
+	return i.ToKeyRingIAMPolicyOutputWithContext(context.Background())
+}
+
+func (i KeyRingIAMPolicy) ToKeyRingIAMPolicyOutputWithContext(ctx context.Context) KeyRingIAMPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KeyRingIAMPolicyOutput)
+}
+
+type KeyRingIAMPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (KeyRingIAMPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*KeyRingIAMPolicyOutput)(nil)).Elem()
+}
+
+func (o KeyRingIAMPolicyOutput) ToKeyRingIAMPolicyOutput() KeyRingIAMPolicyOutput {
+	return o
+}
+
+func (o KeyRingIAMPolicyOutput) ToKeyRingIAMPolicyOutputWithContext(ctx context.Context) KeyRingIAMPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(KeyRingIAMPolicyOutput{})
 }

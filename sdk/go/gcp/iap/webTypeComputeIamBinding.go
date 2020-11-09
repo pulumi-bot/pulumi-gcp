@@ -4,6 +4,8 @@
 package iap
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -40,14 +42,14 @@ type WebTypeComputeIamBinding struct {
 // NewWebTypeComputeIamBinding registers a new resource with the given unique name, arguments, and options.
 func NewWebTypeComputeIamBinding(ctx *pulumi.Context,
 	name string, args *WebTypeComputeIamBindingArgs, opts ...pulumi.ResourceOption) (*WebTypeComputeIamBinding, error) {
-	if args == nil || args.Members == nil {
-		return nil, errors.New("missing required argument 'Members'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &WebTypeComputeIamBindingArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Members == nil {
+		return nil, errors.New("invalid value for required argument 'Members'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource WebTypeComputeIamBinding
 	err := ctx.RegisterResource("gcp:iap/webTypeComputeIamBinding:WebTypeComputeIamBinding", name, args, &resource, opts...)
@@ -137,4 +139,43 @@ type WebTypeComputeIamBindingArgs struct {
 
 func (WebTypeComputeIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*webTypeComputeIamBindingArgs)(nil)).Elem()
+}
+
+type WebTypeComputeIamBindingInput interface {
+	pulumi.Input
+
+	ToWebTypeComputeIamBindingOutput() WebTypeComputeIamBindingOutput
+	ToWebTypeComputeIamBindingOutputWithContext(ctx context.Context) WebTypeComputeIamBindingOutput
+}
+
+func (WebTypeComputeIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebTypeComputeIamBinding)(nil)).Elem()
+}
+
+func (i WebTypeComputeIamBinding) ToWebTypeComputeIamBindingOutput() WebTypeComputeIamBindingOutput {
+	return i.ToWebTypeComputeIamBindingOutputWithContext(context.Background())
+}
+
+func (i WebTypeComputeIamBinding) ToWebTypeComputeIamBindingOutputWithContext(ctx context.Context) WebTypeComputeIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebTypeComputeIamBindingOutput)
+}
+
+type WebTypeComputeIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (WebTypeComputeIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebTypeComputeIamBindingOutput)(nil)).Elem()
+}
+
+func (o WebTypeComputeIamBindingOutput) ToWebTypeComputeIamBindingOutput() WebTypeComputeIamBindingOutput {
+	return o
+}
+
+func (o WebTypeComputeIamBindingOutput) ToWebTypeComputeIamBindingOutputWithContext(ctx context.Context) WebTypeComputeIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(WebTypeComputeIamBindingOutput{})
 }

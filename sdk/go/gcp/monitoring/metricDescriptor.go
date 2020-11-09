@@ -4,6 +4,8 @@
 package monitoring
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -77,23 +79,23 @@ type MetricDescriptor struct {
 // NewMetricDescriptor registers a new resource with the given unique name, arguments, and options.
 func NewMetricDescriptor(ctx *pulumi.Context,
 	name string, args *MetricDescriptorArgs, opts ...pulumi.ResourceOption) (*MetricDescriptor, error) {
-	if args == nil || args.Description == nil {
-		return nil, errors.New("missing required argument 'Description'")
-	}
-	if args == nil || args.DisplayName == nil {
-		return nil, errors.New("missing required argument 'DisplayName'")
-	}
-	if args == nil || args.MetricKind == nil {
-		return nil, errors.New("missing required argument 'MetricKind'")
-	}
-	if args == nil || args.Type == nil {
-		return nil, errors.New("missing required argument 'Type'")
-	}
-	if args == nil || args.ValueType == nil {
-		return nil, errors.New("missing required argument 'ValueType'")
-	}
 	if args == nil {
-		args = &MetricDescriptorArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Description == nil {
+		return nil, errors.New("invalid value for required argument 'Description'")
+	}
+	if args.DisplayName == nil {
+		return nil, errors.New("invalid value for required argument 'DisplayName'")
+	}
+	if args.MetricKind == nil {
+		return nil, errors.New("invalid value for required argument 'MetricKind'")
+	}
+	if args.Type == nil {
+		return nil, errors.New("invalid value for required argument 'Type'")
+	}
+	if args.ValueType == nil {
+		return nil, errors.New("invalid value for required argument 'ValueType'")
 	}
 	var resource MetricDescriptor
 	err := ctx.RegisterResource("gcp:monitoring/metricDescriptor:MetricDescriptor", name, args, &resource, opts...)
@@ -321,4 +323,43 @@ type MetricDescriptorArgs struct {
 
 func (MetricDescriptorArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*metricDescriptorArgs)(nil)).Elem()
+}
+
+type MetricDescriptorInput interface {
+	pulumi.Input
+
+	ToMetricDescriptorOutput() MetricDescriptorOutput
+	ToMetricDescriptorOutputWithContext(ctx context.Context) MetricDescriptorOutput
+}
+
+func (MetricDescriptor) ElementType() reflect.Type {
+	return reflect.TypeOf((*MetricDescriptor)(nil)).Elem()
+}
+
+func (i MetricDescriptor) ToMetricDescriptorOutput() MetricDescriptorOutput {
+	return i.ToMetricDescriptorOutputWithContext(context.Background())
+}
+
+func (i MetricDescriptor) ToMetricDescriptorOutputWithContext(ctx context.Context) MetricDescriptorOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MetricDescriptorOutput)
+}
+
+type MetricDescriptorOutput struct {
+	*pulumi.OutputState
+}
+
+func (MetricDescriptorOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MetricDescriptorOutput)(nil)).Elem()
+}
+
+func (o MetricDescriptorOutput) ToMetricDescriptorOutput() MetricDescriptorOutput {
+	return o
+}
+
+func (o MetricDescriptorOutput) ToMetricDescriptorOutputWithContext(ctx context.Context) MetricDescriptorOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(MetricDescriptorOutput{})
 }

@@ -4,6 +4,8 @@
 package compute
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -66,14 +68,14 @@ type TargetHttpsProxy struct {
 // NewTargetHttpsProxy registers a new resource with the given unique name, arguments, and options.
 func NewTargetHttpsProxy(ctx *pulumi.Context,
 	name string, args *TargetHttpsProxyArgs, opts ...pulumi.ResourceOption) (*TargetHttpsProxy, error) {
-	if args == nil || args.SslCertificates == nil {
-		return nil, errors.New("missing required argument 'SslCertificates'")
-	}
-	if args == nil || args.UrlMap == nil {
-		return nil, errors.New("missing required argument 'UrlMap'")
-	}
 	if args == nil {
-		args = &TargetHttpsProxyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.SslCertificates == nil {
+		return nil, errors.New("invalid value for required argument 'SslCertificates'")
+	}
+	if args.UrlMap == nil {
+		return nil, errors.New("invalid value for required argument 'UrlMap'")
 	}
 	var resource TargetHttpsProxy
 	err := ctx.RegisterResource("gcp:compute/targetHttpsProxy:TargetHttpsProxy", name, args, &resource, opts...)
@@ -255,4 +257,43 @@ type TargetHttpsProxyArgs struct {
 
 func (TargetHttpsProxyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*targetHttpsProxyArgs)(nil)).Elem()
+}
+
+type TargetHttpsProxyInput interface {
+	pulumi.Input
+
+	ToTargetHttpsProxyOutput() TargetHttpsProxyOutput
+	ToTargetHttpsProxyOutputWithContext(ctx context.Context) TargetHttpsProxyOutput
+}
+
+func (TargetHttpsProxy) ElementType() reflect.Type {
+	return reflect.TypeOf((*TargetHttpsProxy)(nil)).Elem()
+}
+
+func (i TargetHttpsProxy) ToTargetHttpsProxyOutput() TargetHttpsProxyOutput {
+	return i.ToTargetHttpsProxyOutputWithContext(context.Background())
+}
+
+func (i TargetHttpsProxy) ToTargetHttpsProxyOutputWithContext(ctx context.Context) TargetHttpsProxyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TargetHttpsProxyOutput)
+}
+
+type TargetHttpsProxyOutput struct {
+	*pulumi.OutputState
+}
+
+func (TargetHttpsProxyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TargetHttpsProxyOutput)(nil)).Elem()
+}
+
+func (o TargetHttpsProxyOutput) ToTargetHttpsProxyOutput() TargetHttpsProxyOutput {
+	return o
+}
+
+func (o TargetHttpsProxyOutput) ToTargetHttpsProxyOutputWithContext(ctx context.Context) TargetHttpsProxyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TargetHttpsProxyOutput{})
 }

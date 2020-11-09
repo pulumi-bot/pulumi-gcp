@@ -4,6 +4,8 @@
 package dataproc
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -38,14 +40,14 @@ type JobIAMPolicy struct {
 // NewJobIAMPolicy registers a new resource with the given unique name, arguments, and options.
 func NewJobIAMPolicy(ctx *pulumi.Context,
 	name string, args *JobIAMPolicyArgs, opts ...pulumi.ResourceOption) (*JobIAMPolicy, error) {
-	if args == nil || args.JobId == nil {
-		return nil, errors.New("missing required argument 'JobId'")
-	}
-	if args == nil || args.PolicyData == nil {
-		return nil, errors.New("missing required argument 'PolicyData'")
-	}
 	if args == nil {
-		args = &JobIAMPolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.JobId == nil {
+		return nil, errors.New("invalid value for required argument 'JobId'")
+	}
+	if args.PolicyData == nil {
+		return nil, errors.New("invalid value for required argument 'PolicyData'")
 	}
 	var resource JobIAMPolicy
 	err := ctx.RegisterResource("gcp:dataproc/jobIAMPolicy:JobIAMPolicy", name, args, &resource, opts...)
@@ -127,4 +129,43 @@ type JobIAMPolicyArgs struct {
 
 func (JobIAMPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*jobIAMPolicyArgs)(nil)).Elem()
+}
+
+type JobIAMPolicyInput interface {
+	pulumi.Input
+
+	ToJobIAMPolicyOutput() JobIAMPolicyOutput
+	ToJobIAMPolicyOutputWithContext(ctx context.Context) JobIAMPolicyOutput
+}
+
+func (JobIAMPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*JobIAMPolicy)(nil)).Elem()
+}
+
+func (i JobIAMPolicy) ToJobIAMPolicyOutput() JobIAMPolicyOutput {
+	return i.ToJobIAMPolicyOutputWithContext(context.Background())
+}
+
+func (i JobIAMPolicy) ToJobIAMPolicyOutputWithContext(ctx context.Context) JobIAMPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(JobIAMPolicyOutput)
+}
+
+type JobIAMPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (JobIAMPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*JobIAMPolicyOutput)(nil)).Elem()
+}
+
+func (o JobIAMPolicyOutput) ToJobIAMPolicyOutput() JobIAMPolicyOutput {
+	return o
+}
+
+func (o JobIAMPolicyOutput) ToJobIAMPolicyOutputWithContext(ctx context.Context) JobIAMPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(JobIAMPolicyOutput{})
 }

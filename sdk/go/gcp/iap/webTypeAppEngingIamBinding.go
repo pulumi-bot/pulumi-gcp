@@ -4,6 +4,8 @@
 package iap
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -42,17 +44,17 @@ type WebTypeAppEngingIamBinding struct {
 // NewWebTypeAppEngingIamBinding registers a new resource with the given unique name, arguments, and options.
 func NewWebTypeAppEngingIamBinding(ctx *pulumi.Context,
 	name string, args *WebTypeAppEngingIamBindingArgs, opts ...pulumi.ResourceOption) (*WebTypeAppEngingIamBinding, error) {
-	if args == nil || args.AppId == nil {
-		return nil, errors.New("missing required argument 'AppId'")
-	}
-	if args == nil || args.Members == nil {
-		return nil, errors.New("missing required argument 'Members'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &WebTypeAppEngingIamBindingArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.AppId == nil {
+		return nil, errors.New("invalid value for required argument 'AppId'")
+	}
+	if args.Members == nil {
+		return nil, errors.New("invalid value for required argument 'Members'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource WebTypeAppEngingIamBinding
 	err := ctx.RegisterResource("gcp:iap/webTypeAppEngingIamBinding:WebTypeAppEngingIamBinding", name, args, &resource, opts...)
@@ -150,4 +152,43 @@ type WebTypeAppEngingIamBindingArgs struct {
 
 func (WebTypeAppEngingIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*webTypeAppEngingIamBindingArgs)(nil)).Elem()
+}
+
+type WebTypeAppEngingIamBindingInput interface {
+	pulumi.Input
+
+	ToWebTypeAppEngingIamBindingOutput() WebTypeAppEngingIamBindingOutput
+	ToWebTypeAppEngingIamBindingOutputWithContext(ctx context.Context) WebTypeAppEngingIamBindingOutput
+}
+
+func (WebTypeAppEngingIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebTypeAppEngingIamBinding)(nil)).Elem()
+}
+
+func (i WebTypeAppEngingIamBinding) ToWebTypeAppEngingIamBindingOutput() WebTypeAppEngingIamBindingOutput {
+	return i.ToWebTypeAppEngingIamBindingOutputWithContext(context.Background())
+}
+
+func (i WebTypeAppEngingIamBinding) ToWebTypeAppEngingIamBindingOutputWithContext(ctx context.Context) WebTypeAppEngingIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebTypeAppEngingIamBindingOutput)
+}
+
+type WebTypeAppEngingIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (WebTypeAppEngingIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebTypeAppEngingIamBindingOutput)(nil)).Elem()
+}
+
+func (o WebTypeAppEngingIamBindingOutput) ToWebTypeAppEngingIamBindingOutput() WebTypeAppEngingIamBindingOutput {
+	return o
+}
+
+func (o WebTypeAppEngingIamBindingOutput) ToWebTypeAppEngingIamBindingOutputWithContext(ctx context.Context) WebTypeAppEngingIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(WebTypeAppEngingIamBindingOutput{})
 }

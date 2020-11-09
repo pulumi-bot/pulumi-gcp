@@ -4,6 +4,8 @@
 package healthcare
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -37,14 +39,14 @@ type FhirStoreIamPolicy struct {
 // NewFhirStoreIamPolicy registers a new resource with the given unique name, arguments, and options.
 func NewFhirStoreIamPolicy(ctx *pulumi.Context,
 	name string, args *FhirStoreIamPolicyArgs, opts ...pulumi.ResourceOption) (*FhirStoreIamPolicy, error) {
-	if args == nil || args.FhirStoreId == nil {
-		return nil, errors.New("missing required argument 'FhirStoreId'")
-	}
-	if args == nil || args.PolicyData == nil {
-		return nil, errors.New("missing required argument 'PolicyData'")
-	}
 	if args == nil {
-		args = &FhirStoreIamPolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.FhirStoreId == nil {
+		return nil, errors.New("invalid value for required argument 'FhirStoreId'")
+	}
+	if args.PolicyData == nil {
+		return nil, errors.New("invalid value for required argument 'PolicyData'")
 	}
 	var resource FhirStoreIamPolicy
 	err := ctx.RegisterResource("gcp:healthcare/fhirStoreIamPolicy:FhirStoreIamPolicy", name, args, &resource, opts...)
@@ -122,4 +124,43 @@ type FhirStoreIamPolicyArgs struct {
 
 func (FhirStoreIamPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*fhirStoreIamPolicyArgs)(nil)).Elem()
+}
+
+type FhirStoreIamPolicyInput interface {
+	pulumi.Input
+
+	ToFhirStoreIamPolicyOutput() FhirStoreIamPolicyOutput
+	ToFhirStoreIamPolicyOutputWithContext(ctx context.Context) FhirStoreIamPolicyOutput
+}
+
+func (FhirStoreIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*FhirStoreIamPolicy)(nil)).Elem()
+}
+
+func (i FhirStoreIamPolicy) ToFhirStoreIamPolicyOutput() FhirStoreIamPolicyOutput {
+	return i.ToFhirStoreIamPolicyOutputWithContext(context.Background())
+}
+
+func (i FhirStoreIamPolicy) ToFhirStoreIamPolicyOutputWithContext(ctx context.Context) FhirStoreIamPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FhirStoreIamPolicyOutput)
+}
+
+type FhirStoreIamPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (FhirStoreIamPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FhirStoreIamPolicyOutput)(nil)).Elem()
+}
+
+func (o FhirStoreIamPolicyOutput) ToFhirStoreIamPolicyOutput() FhirStoreIamPolicyOutput {
+	return o
+}
+
+func (o FhirStoreIamPolicyOutput) ToFhirStoreIamPolicyOutputWithContext(ctx context.Context) FhirStoreIamPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(FhirStoreIamPolicyOutput{})
 }

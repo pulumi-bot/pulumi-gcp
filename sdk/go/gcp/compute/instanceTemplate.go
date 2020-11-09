@@ -4,6 +4,8 @@
 package compute
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -94,14 +96,14 @@ type InstanceTemplate struct {
 // NewInstanceTemplate registers a new resource with the given unique name, arguments, and options.
 func NewInstanceTemplate(ctx *pulumi.Context,
 	name string, args *InstanceTemplateArgs, opts ...pulumi.ResourceOption) (*InstanceTemplate, error) {
-	if args == nil || args.Disks == nil {
-		return nil, errors.New("missing required argument 'Disks'")
-	}
-	if args == nil || args.MachineType == nil {
-		return nil, errors.New("missing required argument 'MachineType'")
-	}
 	if args == nil {
-		args = &InstanceTemplateArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Disks == nil {
+		return nil, errors.New("invalid value for required argument 'Disks'")
+	}
+	if args.MachineType == nil {
+		return nil, errors.New("invalid value for required argument 'MachineType'")
 	}
 	var resource InstanceTemplate
 	err := ctx.RegisterResource("gcp:compute/instanceTemplate:InstanceTemplate", name, args, &resource, opts...)
@@ -419,4 +421,43 @@ type InstanceTemplateArgs struct {
 
 func (InstanceTemplateArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*instanceTemplateArgs)(nil)).Elem()
+}
+
+type InstanceTemplateInput interface {
+	pulumi.Input
+
+	ToInstanceTemplateOutput() InstanceTemplateOutput
+	ToInstanceTemplateOutputWithContext(ctx context.Context) InstanceTemplateOutput
+}
+
+func (InstanceTemplate) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceTemplate)(nil)).Elem()
+}
+
+func (i InstanceTemplate) ToInstanceTemplateOutput() InstanceTemplateOutput {
+	return i.ToInstanceTemplateOutputWithContext(context.Background())
+}
+
+func (i InstanceTemplate) ToInstanceTemplateOutputWithContext(ctx context.Context) InstanceTemplateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceTemplateOutput)
+}
+
+type InstanceTemplateOutput struct {
+	*pulumi.OutputState
+}
+
+func (InstanceTemplateOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceTemplateOutput)(nil)).Elem()
+}
+
+func (o InstanceTemplateOutput) ToInstanceTemplateOutput() InstanceTemplateOutput {
+	return o
+}
+
+func (o InstanceTemplateOutput) ToInstanceTemplateOutputWithContext(ctx context.Context) InstanceTemplateOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(InstanceTemplateOutput{})
 }

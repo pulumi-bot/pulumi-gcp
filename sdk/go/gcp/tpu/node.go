@@ -4,6 +4,8 @@
 package tpu
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -70,17 +72,17 @@ type Node struct {
 // NewNode registers a new resource with the given unique name, arguments, and options.
 func NewNode(ctx *pulumi.Context,
 	name string, args *NodeArgs, opts ...pulumi.ResourceOption) (*Node, error) {
-	if args == nil || args.AcceleratorType == nil {
-		return nil, errors.New("missing required argument 'AcceleratorType'")
-	}
-	if args == nil || args.TensorflowVersion == nil {
-		return nil, errors.New("missing required argument 'TensorflowVersion'")
-	}
-	if args == nil || args.Zone == nil {
-		return nil, errors.New("missing required argument 'Zone'")
-	}
 	if args == nil {
-		args = &NodeArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.AcceleratorType == nil {
+		return nil, errors.New("invalid value for required argument 'AcceleratorType'")
+	}
+	if args.TensorflowVersion == nil {
+		return nil, errors.New("invalid value for required argument 'TensorflowVersion'")
+	}
+	if args.Zone == nil {
+		return nil, errors.New("invalid value for required argument 'Zone'")
 	}
 	var resource Node
 	err := ctx.RegisterResource("gcp:tpu/node:Node", name, args, &resource, opts...)
@@ -282,4 +284,43 @@ type NodeArgs struct {
 
 func (NodeArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*nodeArgs)(nil)).Elem()
+}
+
+type NodeInput interface {
+	pulumi.Input
+
+	ToNodeOutput() NodeOutput
+	ToNodeOutputWithContext(ctx context.Context) NodeOutput
+}
+
+func (Node) ElementType() reflect.Type {
+	return reflect.TypeOf((*Node)(nil)).Elem()
+}
+
+func (i Node) ToNodeOutput() NodeOutput {
+	return i.ToNodeOutputWithContext(context.Background())
+}
+
+func (i Node) ToNodeOutputWithContext(ctx context.Context) NodeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodeOutput)
+}
+
+type NodeOutput struct {
+	*pulumi.OutputState
+}
+
+func (NodeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodeOutput)(nil)).Elem()
+}
+
+func (o NodeOutput) ToNodeOutput() NodeOutput {
+	return o
+}
+
+func (o NodeOutput) ToNodeOutputWithContext(ctx context.Context) NodeOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(NodeOutput{})
 }

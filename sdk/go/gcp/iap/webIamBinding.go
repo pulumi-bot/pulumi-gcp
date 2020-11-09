@@ -4,6 +4,8 @@
 package iap
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -40,14 +42,14 @@ type WebIamBinding struct {
 // NewWebIamBinding registers a new resource with the given unique name, arguments, and options.
 func NewWebIamBinding(ctx *pulumi.Context,
 	name string, args *WebIamBindingArgs, opts ...pulumi.ResourceOption) (*WebIamBinding, error) {
-	if args == nil || args.Members == nil {
-		return nil, errors.New("missing required argument 'Members'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &WebIamBindingArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Members == nil {
+		return nil, errors.New("invalid value for required argument 'Members'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource WebIamBinding
 	err := ctx.RegisterResource("gcp:iap/webIamBinding:WebIamBinding", name, args, &resource, opts...)
@@ -137,4 +139,43 @@ type WebIamBindingArgs struct {
 
 func (WebIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*webIamBindingArgs)(nil)).Elem()
+}
+
+type WebIamBindingInput interface {
+	pulumi.Input
+
+	ToWebIamBindingOutput() WebIamBindingOutput
+	ToWebIamBindingOutputWithContext(ctx context.Context) WebIamBindingOutput
+}
+
+func (WebIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebIamBinding)(nil)).Elem()
+}
+
+func (i WebIamBinding) ToWebIamBindingOutput() WebIamBindingOutput {
+	return i.ToWebIamBindingOutputWithContext(context.Background())
+}
+
+func (i WebIamBinding) ToWebIamBindingOutputWithContext(ctx context.Context) WebIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebIamBindingOutput)
+}
+
+type WebIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (WebIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebIamBindingOutput)(nil)).Elem()
+}
+
+func (o WebIamBindingOutput) ToWebIamBindingOutput() WebIamBindingOutput {
+	return o
+}
+
+func (o WebIamBindingOutput) ToWebIamBindingOutputWithContext(ctx context.Context) WebIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(WebIamBindingOutput{})
 }

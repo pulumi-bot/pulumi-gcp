@@ -4,6 +4,8 @@
 package datacatalog
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -32,17 +34,17 @@ type TaxonomyIamBinding struct {
 // NewTaxonomyIamBinding registers a new resource with the given unique name, arguments, and options.
 func NewTaxonomyIamBinding(ctx *pulumi.Context,
 	name string, args *TaxonomyIamBindingArgs, opts ...pulumi.ResourceOption) (*TaxonomyIamBinding, error) {
-	if args == nil || args.Members == nil {
-		return nil, errors.New("missing required argument 'Members'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
-	if args == nil || args.Taxonomy == nil {
-		return nil, errors.New("missing required argument 'Taxonomy'")
-	}
 	if args == nil {
-		args = &TaxonomyIamBindingArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Members == nil {
+		return nil, errors.New("invalid value for required argument 'Members'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
+	}
+	if args.Taxonomy == nil {
+		return nil, errors.New("invalid value for required argument 'Taxonomy'")
 	}
 	var resource TaxonomyIamBinding
 	err := ctx.RegisterResource("gcp:datacatalog/taxonomyIamBinding:TaxonomyIamBinding", name, args, &resource, opts...)
@@ -136,4 +138,43 @@ type TaxonomyIamBindingArgs struct {
 
 func (TaxonomyIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*taxonomyIamBindingArgs)(nil)).Elem()
+}
+
+type TaxonomyIamBindingInput interface {
+	pulumi.Input
+
+	ToTaxonomyIamBindingOutput() TaxonomyIamBindingOutput
+	ToTaxonomyIamBindingOutputWithContext(ctx context.Context) TaxonomyIamBindingOutput
+}
+
+func (TaxonomyIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*TaxonomyIamBinding)(nil)).Elem()
+}
+
+func (i TaxonomyIamBinding) ToTaxonomyIamBindingOutput() TaxonomyIamBindingOutput {
+	return i.ToTaxonomyIamBindingOutputWithContext(context.Background())
+}
+
+func (i TaxonomyIamBinding) ToTaxonomyIamBindingOutputWithContext(ctx context.Context) TaxonomyIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TaxonomyIamBindingOutput)
+}
+
+type TaxonomyIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (TaxonomyIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TaxonomyIamBindingOutput)(nil)).Elem()
+}
+
+func (o TaxonomyIamBindingOutput) ToTaxonomyIamBindingOutput() TaxonomyIamBindingOutput {
+	return o
+}
+
+func (o TaxonomyIamBindingOutput) ToTaxonomyIamBindingOutputWithContext(ctx context.Context) TaxonomyIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TaxonomyIamBindingOutput{})
 }

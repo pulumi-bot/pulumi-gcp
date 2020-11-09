@@ -4,6 +4,8 @@
 package iap
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -42,17 +44,17 @@ type WebBackendServiceIamMember struct {
 // NewWebBackendServiceIamMember registers a new resource with the given unique name, arguments, and options.
 func NewWebBackendServiceIamMember(ctx *pulumi.Context,
 	name string, args *WebBackendServiceIamMemberArgs, opts ...pulumi.ResourceOption) (*WebBackendServiceIamMember, error) {
-	if args == nil || args.Member == nil {
-		return nil, errors.New("missing required argument 'Member'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
-	if args == nil || args.WebBackendService == nil {
-		return nil, errors.New("missing required argument 'WebBackendService'")
-	}
 	if args == nil {
-		args = &WebBackendServiceIamMemberArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Member == nil {
+		return nil, errors.New("invalid value for required argument 'Member'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
+	}
+	if args.WebBackendService == nil {
+		return nil, errors.New("invalid value for required argument 'WebBackendService'")
 	}
 	var resource WebBackendServiceIamMember
 	err := ctx.RegisterResource("gcp:iap/webBackendServiceIamMember:WebBackendServiceIamMember", name, args, &resource, opts...)
@@ -150,4 +152,43 @@ type WebBackendServiceIamMemberArgs struct {
 
 func (WebBackendServiceIamMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*webBackendServiceIamMemberArgs)(nil)).Elem()
+}
+
+type WebBackendServiceIamMemberInput interface {
+	pulumi.Input
+
+	ToWebBackendServiceIamMemberOutput() WebBackendServiceIamMemberOutput
+	ToWebBackendServiceIamMemberOutputWithContext(ctx context.Context) WebBackendServiceIamMemberOutput
+}
+
+func (WebBackendServiceIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebBackendServiceIamMember)(nil)).Elem()
+}
+
+func (i WebBackendServiceIamMember) ToWebBackendServiceIamMemberOutput() WebBackendServiceIamMemberOutput {
+	return i.ToWebBackendServiceIamMemberOutputWithContext(context.Background())
+}
+
+func (i WebBackendServiceIamMember) ToWebBackendServiceIamMemberOutputWithContext(ctx context.Context) WebBackendServiceIamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebBackendServiceIamMemberOutput)
+}
+
+type WebBackendServiceIamMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (WebBackendServiceIamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebBackendServiceIamMemberOutput)(nil)).Elem()
+}
+
+func (o WebBackendServiceIamMemberOutput) ToWebBackendServiceIamMemberOutput() WebBackendServiceIamMemberOutput {
+	return o
+}
+
+func (o WebBackendServiceIamMemberOutput) ToWebBackendServiceIamMemberOutputWithContext(ctx context.Context) WebBackendServiceIamMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(WebBackendServiceIamMemberOutput{})
 }

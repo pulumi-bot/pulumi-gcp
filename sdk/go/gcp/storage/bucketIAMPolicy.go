@@ -4,6 +4,8 @@
 package storage
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -34,14 +36,14 @@ type BucketIAMPolicy struct {
 // NewBucketIAMPolicy registers a new resource with the given unique name, arguments, and options.
 func NewBucketIAMPolicy(ctx *pulumi.Context,
 	name string, args *BucketIAMPolicyArgs, opts ...pulumi.ResourceOption) (*BucketIAMPolicy, error) {
-	if args == nil || args.Bucket == nil {
-		return nil, errors.New("missing required argument 'Bucket'")
-	}
-	if args == nil || args.PolicyData == nil {
-		return nil, errors.New("missing required argument 'PolicyData'")
-	}
 	if args == nil {
-		args = &BucketIAMPolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Bucket == nil {
+		return nil, errors.New("invalid value for required argument 'Bucket'")
+	}
+	if args.PolicyData == nil {
+		return nil, errors.New("invalid value for required argument 'PolicyData'")
 	}
 	var resource BucketIAMPolicy
 	err := ctx.RegisterResource("gcp:storage/bucketIAMPolicy:BucketIAMPolicy", name, args, &resource, opts...)
@@ -107,4 +109,43 @@ type BucketIAMPolicyArgs struct {
 
 func (BucketIAMPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*bucketIAMPolicyArgs)(nil)).Elem()
+}
+
+type BucketIAMPolicyInput interface {
+	pulumi.Input
+
+	ToBucketIAMPolicyOutput() BucketIAMPolicyOutput
+	ToBucketIAMPolicyOutputWithContext(ctx context.Context) BucketIAMPolicyOutput
+}
+
+func (BucketIAMPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketIAMPolicy)(nil)).Elem()
+}
+
+func (i BucketIAMPolicy) ToBucketIAMPolicyOutput() BucketIAMPolicyOutput {
+	return i.ToBucketIAMPolicyOutputWithContext(context.Background())
+}
+
+func (i BucketIAMPolicy) ToBucketIAMPolicyOutputWithContext(ctx context.Context) BucketIAMPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketIAMPolicyOutput)
+}
+
+type BucketIAMPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (BucketIAMPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketIAMPolicyOutput)(nil)).Elem()
+}
+
+func (o BucketIAMPolicyOutput) ToBucketIAMPolicyOutput() BucketIAMPolicyOutput {
+	return o
+}
+
+func (o BucketIAMPolicyOutput) ToBucketIAMPolicyOutputWithContext(ctx context.Context) BucketIAMPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(BucketIAMPolicyOutput{})
 }

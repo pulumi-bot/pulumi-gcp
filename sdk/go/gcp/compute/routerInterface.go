@@ -4,6 +4,8 @@
 package compute
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -47,11 +49,11 @@ type RouterInterface struct {
 // NewRouterInterface registers a new resource with the given unique name, arguments, and options.
 func NewRouterInterface(ctx *pulumi.Context,
 	name string, args *RouterInterfaceArgs, opts ...pulumi.ResourceOption) (*RouterInterface, error) {
-	if args == nil || args.Router == nil {
-		return nil, errors.New("missing required argument 'Router'")
-	}
 	if args == nil {
-		args = &RouterInterfaceArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Router == nil {
+		return nil, errors.New("invalid value for required argument 'Router'")
 	}
 	var resource RouterInterface
 	err := ctx.RegisterResource("gcp:compute/routerInterface:RouterInterface", name, args, &resource, opts...)
@@ -193,4 +195,43 @@ type RouterInterfaceArgs struct {
 
 func (RouterInterfaceArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*routerInterfaceArgs)(nil)).Elem()
+}
+
+type RouterInterfaceInput interface {
+	pulumi.Input
+
+	ToRouterInterfaceOutput() RouterInterfaceOutput
+	ToRouterInterfaceOutputWithContext(ctx context.Context) RouterInterfaceOutput
+}
+
+func (RouterInterface) ElementType() reflect.Type {
+	return reflect.TypeOf((*RouterInterface)(nil)).Elem()
+}
+
+func (i RouterInterface) ToRouterInterfaceOutput() RouterInterfaceOutput {
+	return i.ToRouterInterfaceOutputWithContext(context.Background())
+}
+
+func (i RouterInterface) ToRouterInterfaceOutputWithContext(ctx context.Context) RouterInterfaceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RouterInterfaceOutput)
+}
+
+type RouterInterfaceOutput struct {
+	*pulumi.OutputState
+}
+
+func (RouterInterfaceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RouterInterfaceOutput)(nil)).Elem()
+}
+
+func (o RouterInterfaceOutput) ToRouterInterfaceOutput() RouterInterfaceOutput {
+	return o
+}
+
+func (o RouterInterfaceOutput) ToRouterInterfaceOutputWithContext(ctx context.Context) RouterInterfaceOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RouterInterfaceOutput{})
 }

@@ -4,6 +4,8 @@
 package compute
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -46,17 +48,17 @@ type InstanceIAMBinding struct {
 // NewInstanceIAMBinding registers a new resource with the given unique name, arguments, and options.
 func NewInstanceIAMBinding(ctx *pulumi.Context,
 	name string, args *InstanceIAMBindingArgs, opts ...pulumi.ResourceOption) (*InstanceIAMBinding, error) {
-	if args == nil || args.InstanceName == nil {
-		return nil, errors.New("missing required argument 'InstanceName'")
-	}
-	if args == nil || args.Members == nil {
-		return nil, errors.New("missing required argument 'Members'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &InstanceIAMBindingArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.InstanceName == nil {
+		return nil, errors.New("invalid value for required argument 'InstanceName'")
+	}
+	if args.Members == nil {
+		return nil, errors.New("invalid value for required argument 'Members'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource InstanceIAMBinding
 	err := ctx.RegisterResource("gcp:compute/instanceIAMBinding:InstanceIAMBinding", name, args, &resource, opts...)
@@ -170,4 +172,43 @@ type InstanceIAMBindingArgs struct {
 
 func (InstanceIAMBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*instanceIAMBindingArgs)(nil)).Elem()
+}
+
+type InstanceIAMBindingInput interface {
+	pulumi.Input
+
+	ToInstanceIAMBindingOutput() InstanceIAMBindingOutput
+	ToInstanceIAMBindingOutputWithContext(ctx context.Context) InstanceIAMBindingOutput
+}
+
+func (InstanceIAMBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceIAMBinding)(nil)).Elem()
+}
+
+func (i InstanceIAMBinding) ToInstanceIAMBindingOutput() InstanceIAMBindingOutput {
+	return i.ToInstanceIAMBindingOutputWithContext(context.Background())
+}
+
+func (i InstanceIAMBinding) ToInstanceIAMBindingOutputWithContext(ctx context.Context) InstanceIAMBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceIAMBindingOutput)
+}
+
+type InstanceIAMBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (InstanceIAMBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceIAMBindingOutput)(nil)).Elem()
+}
+
+func (o InstanceIAMBindingOutput) ToInstanceIAMBindingOutput() InstanceIAMBindingOutput {
+	return o
+}
+
+func (o InstanceIAMBindingOutput) ToInstanceIAMBindingOutputWithContext(ctx context.Context) InstanceIAMBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(InstanceIAMBindingOutput{})
 }

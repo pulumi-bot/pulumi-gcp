@@ -4,6 +4,8 @@
 package storage
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -62,11 +64,11 @@ type BucketObject struct {
 // NewBucketObject registers a new resource with the given unique name, arguments, and options.
 func NewBucketObject(ctx *pulumi.Context,
 	name string, args *BucketObjectArgs, opts ...pulumi.ResourceOption) (*BucketObject, error) {
-	if args == nil || args.Bucket == nil {
-		return nil, errors.New("missing required argument 'Bucket'")
-	}
 	if args == nil {
-		args = &BucketObjectArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Bucket == nil {
+		return nil, errors.New("invalid value for required argument 'Bucket'")
 	}
 	var resource BucketObject
 	err := ctx.RegisterResource("gcp:storage/bucketObject:BucketObject", name, args, &resource, opts...)
@@ -238,4 +240,43 @@ type BucketObjectArgs struct {
 
 func (BucketObjectArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*bucketObjectArgs)(nil)).Elem()
+}
+
+type BucketObjectInput interface {
+	pulumi.Input
+
+	ToBucketObjectOutput() BucketObjectOutput
+	ToBucketObjectOutputWithContext(ctx context.Context) BucketObjectOutput
+}
+
+func (BucketObject) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketObject)(nil)).Elem()
+}
+
+func (i BucketObject) ToBucketObjectOutput() BucketObjectOutput {
+	return i.ToBucketObjectOutputWithContext(context.Background())
+}
+
+func (i BucketObject) ToBucketObjectOutputWithContext(ctx context.Context) BucketObjectOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketObjectOutput)
+}
+
+type BucketObjectOutput struct {
+	*pulumi.OutputState
+}
+
+func (BucketObjectOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketObjectOutput)(nil)).Elem()
+}
+
+func (o BucketObjectOutput) ToBucketObjectOutput() BucketObjectOutput {
+	return o
+}
+
+func (o BucketObjectOutput) ToBucketObjectOutputWithContext(ctx context.Context) BucketObjectOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(BucketObjectOutput{})
 }

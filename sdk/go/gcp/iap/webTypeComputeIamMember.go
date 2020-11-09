@@ -4,6 +4,8 @@
 package iap
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -40,14 +42,14 @@ type WebTypeComputeIamMember struct {
 // NewWebTypeComputeIamMember registers a new resource with the given unique name, arguments, and options.
 func NewWebTypeComputeIamMember(ctx *pulumi.Context,
 	name string, args *WebTypeComputeIamMemberArgs, opts ...pulumi.ResourceOption) (*WebTypeComputeIamMember, error) {
-	if args == nil || args.Member == nil {
-		return nil, errors.New("missing required argument 'Member'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &WebTypeComputeIamMemberArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Member == nil {
+		return nil, errors.New("invalid value for required argument 'Member'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource WebTypeComputeIamMember
 	err := ctx.RegisterResource("gcp:iap/webTypeComputeIamMember:WebTypeComputeIamMember", name, args, &resource, opts...)
@@ -137,4 +139,43 @@ type WebTypeComputeIamMemberArgs struct {
 
 func (WebTypeComputeIamMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*webTypeComputeIamMemberArgs)(nil)).Elem()
+}
+
+type WebTypeComputeIamMemberInput interface {
+	pulumi.Input
+
+	ToWebTypeComputeIamMemberOutput() WebTypeComputeIamMemberOutput
+	ToWebTypeComputeIamMemberOutputWithContext(ctx context.Context) WebTypeComputeIamMemberOutput
+}
+
+func (WebTypeComputeIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebTypeComputeIamMember)(nil)).Elem()
+}
+
+func (i WebTypeComputeIamMember) ToWebTypeComputeIamMemberOutput() WebTypeComputeIamMemberOutput {
+	return i.ToWebTypeComputeIamMemberOutputWithContext(context.Background())
+}
+
+func (i WebTypeComputeIamMember) ToWebTypeComputeIamMemberOutputWithContext(ctx context.Context) WebTypeComputeIamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebTypeComputeIamMemberOutput)
+}
+
+type WebTypeComputeIamMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (WebTypeComputeIamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebTypeComputeIamMemberOutput)(nil)).Elem()
+}
+
+func (o WebTypeComputeIamMemberOutput) ToWebTypeComputeIamMemberOutput() WebTypeComputeIamMemberOutput {
+	return o
+}
+
+func (o WebTypeComputeIamMemberOutput) ToWebTypeComputeIamMemberOutputWithContext(ctx context.Context) WebTypeComputeIamMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(WebTypeComputeIamMemberOutput{})
 }

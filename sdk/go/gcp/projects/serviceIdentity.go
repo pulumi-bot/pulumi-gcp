@@ -4,6 +4,8 @@
 package projects
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -35,11 +37,11 @@ type ServiceIdentity struct {
 // NewServiceIdentity registers a new resource with the given unique name, arguments, and options.
 func NewServiceIdentity(ctx *pulumi.Context,
 	name string, args *ServiceIdentityArgs, opts ...pulumi.ResourceOption) (*ServiceIdentity, error) {
-	if args == nil || args.Service == nil {
-		return nil, errors.New("missing required argument 'Service'")
-	}
 	if args == nil {
-		args = &ServiceIdentityArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Service == nil {
+		return nil, errors.New("invalid value for required argument 'Service'")
 	}
 	var resource ServiceIdentity
 	err := ctx.RegisterResource("gcp:projects/serviceIdentity:ServiceIdentity", name, args, &resource, opts...)
@@ -105,4 +107,43 @@ type ServiceIdentityArgs struct {
 
 func (ServiceIdentityArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*serviceIdentityArgs)(nil)).Elem()
+}
+
+type ServiceIdentityInput interface {
+	pulumi.Input
+
+	ToServiceIdentityOutput() ServiceIdentityOutput
+	ToServiceIdentityOutputWithContext(ctx context.Context) ServiceIdentityOutput
+}
+
+func (ServiceIdentity) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceIdentity)(nil)).Elem()
+}
+
+func (i ServiceIdentity) ToServiceIdentityOutput() ServiceIdentityOutput {
+	return i.ToServiceIdentityOutputWithContext(context.Background())
+}
+
+func (i ServiceIdentity) ToServiceIdentityOutputWithContext(ctx context.Context) ServiceIdentityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceIdentityOutput)
+}
+
+type ServiceIdentityOutput struct {
+	*pulumi.OutputState
+}
+
+func (ServiceIdentityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceIdentityOutput)(nil)).Elem()
+}
+
+func (o ServiceIdentityOutput) ToServiceIdentityOutput() ServiceIdentityOutput {
+	return o
+}
+
+func (o ServiceIdentityOutput) ToServiceIdentityOutputWithContext(ctx context.Context) ServiceIdentityOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ServiceIdentityOutput{})
 }

@@ -4,6 +4,8 @@
 package iap
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -37,14 +39,14 @@ type WebTypeAppEngingIamPolicy struct {
 // NewWebTypeAppEngingIamPolicy registers a new resource with the given unique name, arguments, and options.
 func NewWebTypeAppEngingIamPolicy(ctx *pulumi.Context,
 	name string, args *WebTypeAppEngingIamPolicyArgs, opts ...pulumi.ResourceOption) (*WebTypeAppEngingIamPolicy, error) {
-	if args == nil || args.AppId == nil {
-		return nil, errors.New("missing required argument 'AppId'")
-	}
-	if args == nil || args.PolicyData == nil {
-		return nil, errors.New("missing required argument 'PolicyData'")
-	}
 	if args == nil {
-		args = &WebTypeAppEngingIamPolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.AppId == nil {
+		return nil, errors.New("invalid value for required argument 'AppId'")
+	}
+	if args.PolicyData == nil {
+		return nil, errors.New("invalid value for required argument 'PolicyData'")
 	}
 	var resource WebTypeAppEngingIamPolicy
 	err := ctx.RegisterResource("gcp:iap/webTypeAppEngingIamPolicy:WebTypeAppEngingIamPolicy", name, args, &resource, opts...)
@@ -122,4 +124,43 @@ type WebTypeAppEngingIamPolicyArgs struct {
 
 func (WebTypeAppEngingIamPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*webTypeAppEngingIamPolicyArgs)(nil)).Elem()
+}
+
+type WebTypeAppEngingIamPolicyInput interface {
+	pulumi.Input
+
+	ToWebTypeAppEngingIamPolicyOutput() WebTypeAppEngingIamPolicyOutput
+	ToWebTypeAppEngingIamPolicyOutputWithContext(ctx context.Context) WebTypeAppEngingIamPolicyOutput
+}
+
+func (WebTypeAppEngingIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebTypeAppEngingIamPolicy)(nil)).Elem()
+}
+
+func (i WebTypeAppEngingIamPolicy) ToWebTypeAppEngingIamPolicyOutput() WebTypeAppEngingIamPolicyOutput {
+	return i.ToWebTypeAppEngingIamPolicyOutputWithContext(context.Background())
+}
+
+func (i WebTypeAppEngingIamPolicy) ToWebTypeAppEngingIamPolicyOutputWithContext(ctx context.Context) WebTypeAppEngingIamPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebTypeAppEngingIamPolicyOutput)
+}
+
+type WebTypeAppEngingIamPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (WebTypeAppEngingIamPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebTypeAppEngingIamPolicyOutput)(nil)).Elem()
+}
+
+func (o WebTypeAppEngingIamPolicyOutput) ToWebTypeAppEngingIamPolicyOutput() WebTypeAppEngingIamPolicyOutput {
+	return o
+}
+
+func (o WebTypeAppEngingIamPolicyOutput) ToWebTypeAppEngingIamPolicyOutputWithContext(ctx context.Context) WebTypeAppEngingIamPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(WebTypeAppEngingIamPolicyOutput{})
 }
