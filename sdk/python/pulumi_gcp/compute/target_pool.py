@@ -34,6 +34,26 @@ class TargetPool(pulumi.CustomResource):
         documentation](https://cloud.google.com/compute/docs/load-balancing/network/target-pools)
         and [API](https://cloud.google.com/compute/docs/reference/latest/targetPools).
 
+        ## Import
+
+        Target pools can be imported using any of the following formats
+
+        ```sh
+         $ pulumi import gcp:compute/targetPool:TargetPool default projects/{{project}}/regions/{{region}}/targetPools/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/targetPool:TargetPool default {{project}}/{{region}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/targetPool:TargetPool default {{region}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/targetPool:TargetPool default {{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backup_pool: URL to the backup target pool. Must also set

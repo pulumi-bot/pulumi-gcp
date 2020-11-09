@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
+import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
@@ -16,6 +15,22 @@ import * as utilities from "../utilities";
  *     * [Datasets Intro](https://cloud.google.com/bigquery/docs/datasets-intro)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Dataset can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import gcp:bigquery/dataset:Dataset default projects/{{project}}/datasets/{{dataset_id}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:bigquery/dataset:Dataset default {{project}}/{{dataset_id}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:bigquery/dataset:Dataset default {{dataset_id}}
+ * ```
  */
 export class Dataset extends pulumi.CustomResource {
     /**

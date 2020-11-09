@@ -10,6 +10,25 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// ## Import
+//
+// Gateway can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:apigateway/gateway:Gateway default projects/{{project}}/locations/{{region}}/gateways/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:apigateway/gateway:Gateway default {{project}}/{{region}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:apigateway/gateway:Gateway default {{region}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:apigateway/gateway:Gateway default {{name}}
+// ```
 type Gateway struct {
 	pulumi.CustomResourceState
 

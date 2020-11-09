@@ -35,6 +35,26 @@ class RegionUrlMap(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        RegionUrlMap can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:compute/regionUrlMap:RegionUrlMap default projects/{{project}}/regions/{{region}}/urlMaps/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/regionUrlMap:RegionUrlMap default {{project}}/{{region}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/regionUrlMap:RegionUrlMap default {{region}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/regionUrlMap:RegionUrlMap default {{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] default_service: A reference to a RegionBackendService resource. This will be used if

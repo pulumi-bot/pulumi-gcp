@@ -14,6 +14,30 @@ namespace Pulumi.Gcp.Sql
     /// Google's cloud.
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Database can be imported using any of these accepted formats
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:sql/database:Database default projects/{{project}}/instances/{{instance}}/databases/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:sql/database:Database default instances/{{instance}}/databases/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:sql/database:Database default {{project}}/{{instance}}/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:sql/database:Database default {{instance}}/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:sql/database:Database default {{name}}
+    /// ```
     /// </summary>
     public partial class Database : Pulumi.CustomResource
     {

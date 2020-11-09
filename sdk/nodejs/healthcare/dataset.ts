@@ -14,6 +14,22 @@ import * as utilities from "../utilities";
  *     * [Creating a dataset](https://cloud.google.com/healthcare/docs/how-tos/datasets)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Dataset can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import gcp:healthcare/dataset:Dataset default projects/{{project}}/locations/{{location}}/datasets/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:healthcare/dataset:Dataset default {{project}}/{{location}}/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:healthcare/dataset:Dataset default {{location}}/{{name}}
+ * ```
  */
 export class Dataset extends pulumi.CustomResource {
     /**

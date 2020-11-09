@@ -35,6 +35,18 @@ class Folder(pulumi.CustomResource):
         [Access Control for Folders Using IAM](https://cloud.google.com/resource-manager/docs/access-control-folders)
         doc for more information.
 
+        ## Import
+
+        Folders can be imported using the folder's id, e.g. # Both syntaxes are valid
+
+        ```sh
+         $ pulumi import gcp:organizations/folder:Folder department1 1234567
+        ```
+
+        ```sh
+         $ pulumi import gcp:organizations/folder:Folder department1 folders/1234567
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] display_name: The folder’s display name.

@@ -25,6 +25,22 @@ import (
 // `preview=false`).
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Deployment can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:deploymentmanager/deployment:Deployment default projects/{{project}}/deployments/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:deploymentmanager/deployment:Deployment default {{project}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:deploymentmanager/deployment:Deployment default {{name}}
+// ```
 type Deployment struct {
 	pulumi.CustomResourceState
 

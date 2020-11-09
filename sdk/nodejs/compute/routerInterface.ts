@@ -9,6 +9,14 @@ import * as utilities from "../utilities";
  * [the official documentation](https://cloud.google.com/compute/docs/cloudrouter)
  * and
  * [API](https://cloud.google.com/compute/docs/reference/latest/routers).
+ *
+ * ## Import
+ *
+ * Router interfaces can be imported using the `region`, `router`, and `name`, e.g.
+ *
+ * ```sh
+ *  $ pulumi import gcp:compute/routerInterface:RouterInterface foobar us-central1/router-1/interface-1
+ * ```
  */
 export class RouterInterface extends pulumi.CustomResource {
     /**

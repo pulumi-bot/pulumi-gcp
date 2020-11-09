@@ -19,6 +19,14 @@ import (
 // > **Note:** You must have [granted the "Logs Configuration Writer"](https://cloud.google.com/logging/docs/access-control) IAM role (`roles/logging.configWriter`) to the credentials used with this provider.
 //
 // > **Note** You must [enable the Cloud Resource Manager API](https://console.cloud.google.com/apis/library/cloudresourcemanager.googleapis.com)
+//
+// ## Import
+//
+// Project-level logging sinks can be imported using their URI, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:logging/projectSink:ProjectSink my_sink projects/my-project/sinks/my-sink
+// ```
 type ProjectSink struct {
 	pulumi.CustomResourceState
 

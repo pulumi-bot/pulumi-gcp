@@ -29,6 +29,14 @@ import (
 // `billingProject` you defined.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// AccessPolicy can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:accesscontextmanager/accessPolicy:AccessPolicy default {{name}}
+// ```
 type AccessPolicy struct {
 	pulumi.CustomResourceState
 

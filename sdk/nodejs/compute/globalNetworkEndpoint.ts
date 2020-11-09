@@ -16,6 +16,22 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/load-balancing/docs/negs/)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * GlobalNetworkEndpoint can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import gcp:compute/globalNetworkEndpoint:GlobalNetworkEndpoint default projects/{{project}}/global/networkEndpointGroups/{{global_network_endpoint_group}}/{{ip_address}}/{{fqdn}}/{{port}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:compute/globalNetworkEndpoint:GlobalNetworkEndpoint default {{project}}/{{global_network_endpoint_group}}/{{ip_address}}/{{fqdn}}/{{port}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:compute/globalNetworkEndpoint:GlobalNetworkEndpoint default {{global_network_endpoint_group}}/{{ip_address}}/{{fqdn}}/{{port}}
+ * ```
  */
 export class GlobalNetworkEndpoint extends pulumi.CustomResource {
     /**

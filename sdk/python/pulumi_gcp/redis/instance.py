@@ -44,6 +44,26 @@ class Instance(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        Instance can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:redis/instance:Instance default projects/{{project}}/locations/{{region}}/instances/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:redis/instance:Instance default {{project}}/{{region}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:redis/instance:Instance default {{region}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:redis/instance:Instance default {{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] alternative_location_id: Only applicable to STANDARD_HA tier which protects the instance

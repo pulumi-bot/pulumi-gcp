@@ -17,6 +17,10 @@ import (
 // whole cluster!
 //
 // ## Example Usage
+//
+// ## Import
+//
+// This resource does not support import.
 type Cluster struct {
 	pulumi.CustomResourceState
 

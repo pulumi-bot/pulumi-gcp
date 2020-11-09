@@ -41,6 +41,26 @@ class Autoscaler(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        Autoscaler can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:compute/autoscaler:Autoscaler default projects/{{project}}/zones/{{zone}}/autoscalers/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/autoscaler:Autoscaler default {{project}}/{{zone}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/autoscaler:Autoscaler default {{zone}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/autoscaler:Autoscaler default {{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['AutoscalerAutoscalingPolicyArgs']] autoscaling_policy: The configuration parameters for the autoscaling algorithm. You can

@@ -33,6 +33,22 @@ class SourceRepresentationInstance(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        SourceRepresentationInstance can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:sql/sourceRepresentationInstance:SourceRepresentationInstance default projects/{{project}}/instances/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:sql/sourceRepresentationInstance:SourceRepresentationInstance default {{project}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:sql/sourceRepresentationInstance:SourceRepresentationInstance default {{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] database_version: The MySQL version running on your source database server.

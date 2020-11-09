@@ -19,6 +19,18 @@ import (
 //     * [Official Documentation](https://cloud.google.com/dlp/docs/concepts-templates)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// DeidentifyTemplate can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:dataloss/preventionDeidentifyTemplate:PreventionDeidentifyTemplate default {{parent}}/deidentifyTemplates/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:dataloss/preventionDeidentifyTemplate:PreventionDeidentifyTemplate default {{parent}}/{{name}}
+// ```
 type PreventionDeidentifyTemplate struct {
 	pulumi.CustomResourceState
 

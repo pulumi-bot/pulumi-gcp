@@ -35,6 +35,20 @@ class RecordSet(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        DNS record sets can be imported using either of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:dns/recordSet:RecordSet frontend {{project}}/{{zone}}/{{name}}/{{type}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:dns/recordSet:RecordSet frontend {{zone}}/{{name}}/{{type}}
+        ```
+
+         NoteThe record name must include the trailing dot at the end.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] managed_zone: The name of the zone in which this record set will

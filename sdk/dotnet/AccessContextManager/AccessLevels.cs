@@ -21,6 +21,18 @@ namespace Pulumi.Gcp.AccessContextManager
     ///     * [Access Policy Quickstart](https://cloud.google.com/access-context-manager/docs/quickstart)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// AccessLevels can be imported using any of these accepted formats
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:accesscontextmanager/accessLevels:AccessLevels default {{parent}}/accessLevels
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:accesscontextmanager/accessLevels:AccessLevels default {{parent}}
+    /// ```
     /// </summary>
     public partial class AccessLevels : Pulumi.CustomResource
     {

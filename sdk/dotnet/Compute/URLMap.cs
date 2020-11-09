@@ -18,6 +18,22 @@ namespace Pulumi.Gcp.Compute
     /// * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/urlMaps)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// UrlMap can be imported using any of these accepted formats
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/uRLMap:URLMap default projects/{{project}}/global/urlMaps/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/uRLMap:URLMap default {{project}}/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/uRLMap:URLMap default {{name}}
+    /// ```
     /// </summary>
     public partial class URLMap : Pulumi.CustomResource
     {

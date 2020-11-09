@@ -22,6 +22,14 @@ import (
 // state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
 //
 // ## Example Usage
+//
+// ## Import
+//
+// UptimeCheckConfig can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:monitoring/uptimeCheckConfig:UptimeCheckConfig default {{name}}
+// ```
 type UptimeCheckConfig struct {
 	pulumi.CustomResourceState
 

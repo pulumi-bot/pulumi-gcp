@@ -10,6 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// ## Import
+//
+// Taxonomy can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:datacatalog/taxonomy:Taxonomy default {{name}}
+// ```
 type Taxonomy struct {
 	pulumi.CustomResourceState
 
