@@ -11,6 +11,26 @@ import * as utilities from "../utilities";
  * > **Note:** This resource does not support zonal disks (`gcp.compute.Disk`). For zonal disks, please refer to the `gcp.compute.DiskResourcePolicyAttachment` resource.
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * RegionDiskResourcePolicyAttachment can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import gcp:compute/regionDiskResourcePolicyAttachment:RegionDiskResourcePolicyAttachment default projects/{{project}}/regions/{{region}}/disks/{{disk}}/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:compute/regionDiskResourcePolicyAttachment:RegionDiskResourcePolicyAttachment default {{project}}/{{region}}/{{disk}}/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:compute/regionDiskResourcePolicyAttachment:RegionDiskResourcePolicyAttachment default {{region}}/{{disk}}/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:compute/regionDiskResourcePolicyAttachment:RegionDiskResourcePolicyAttachment default {{disk}}/{{name}}
+ * ```
  */
 export class RegionDiskResourcePolicyAttachment extends pulumi.CustomResource {
     /**

@@ -19,6 +19,14 @@ import (
 //     * [Official Documentation](https://firebase.google.com/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// WebApp can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:firebase/webApp:WebApp default {{name}}
+// ```
 type WebApp struct {
 	pulumi.CustomResourceState
 

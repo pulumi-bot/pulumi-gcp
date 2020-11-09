@@ -17,6 +17,10 @@ import * as utilities from "../utilities";
  * state as plain-text.
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * This resource does not support import.
  */
 export class BackendServiceSignedUrlKey extends pulumi.CustomResource {
     /**

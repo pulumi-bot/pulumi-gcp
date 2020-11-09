@@ -36,6 +36,26 @@ import (
 // state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
 //
 // ## Example Usage
+//
+// ## Import
+//
+// RegionDisk can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:compute/regionDisk:RegionDisk default projects/{{project}}/regions/{{region}}/disks/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/regionDisk:RegionDisk default {{project}}/{{region}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/regionDisk:RegionDisk default {{region}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/regionDisk:RegionDisk default {{name}}
+// ```
 type RegionDisk struct {
 	pulumi.CustomResourceState
 

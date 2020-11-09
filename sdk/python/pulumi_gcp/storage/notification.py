@@ -42,6 +42,14 @@ class Notification(pulumi.CustomResource):
         > **NOTE**: This resource can affect your storage IAM policy. If you are using this in the same config as your storage IAM policy resources, consider
         making this resource dependent on those IAM resources via `depends_on`. This will safeguard against errors due to IAM race conditions.
 
+        ## Import
+
+        Storage notifications can be imported using the notification `id` in the format `<bucket_name>/notificationConfigs/<id>` e.g.
+
+        ```sh
+         $ pulumi import gcp:storage/notification:Notification notification default_bucket/notificationConfigs/102
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] bucket: The name of the bucket.

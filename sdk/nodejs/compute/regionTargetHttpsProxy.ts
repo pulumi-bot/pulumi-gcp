@@ -15,6 +15,26 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/compute/docs/load-balancing/http/target-proxies)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * RegionTargetHttpsProxy can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import gcp:compute/regionTargetHttpsProxy:RegionTargetHttpsProxy default projects/{{project}}/regions/{{region}}/targetHttpsProxies/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:compute/regionTargetHttpsProxy:RegionTargetHttpsProxy default {{project}}/{{region}}/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:compute/regionTargetHttpsProxy:RegionTargetHttpsProxy default {{region}}/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:compute/regionTargetHttpsProxy:RegionTargetHttpsProxy default {{name}}
+ * ```
  */
 export class RegionTargetHttpsProxy extends pulumi.CustomResource {
     /**

@@ -20,6 +20,26 @@ namespace Pulumi.Gcp.Compute
     ///     * [Internal TCP/UDP Load Balancing](https://cloud.google.com/compute/docs/load-balancing/internal/)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// RegionBackendService can be imported using any of these accepted formats
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/regionBackendService:RegionBackendService default projects/{{project}}/regions/{{region}}/backendServices/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/regionBackendService:RegionBackendService default {{project}}/{{region}}/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/regionBackendService:RegionBackendService default {{region}}/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/regionBackendService:RegionBackendService default {{name}}
+    /// ```
     /// </summary>
     public partial class RegionBackendService : Pulumi.CustomResource
     {

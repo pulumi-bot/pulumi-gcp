@@ -31,6 +31,14 @@ class ApplicationUrlDispatchRules(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        ApplicationUrlDispatchRules can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:appengine/applicationUrlDispatchRules:ApplicationUrlDispatchRules default {{project}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ApplicationUrlDispatchRulesDispatchRuleArgs']]]] dispatch_rules: Rules to match an HTTP request and dispatch that request to a service.

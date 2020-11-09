@@ -20,6 +20,20 @@ namespace Pulumi.Gcp.Folder
     /// &gt; **Note:** On create, this resource will overwrite members of any existing roles.
     ///     Use `pulumi import` and inspect the output to ensure
     ///     your existing members are preserved.
+    /// 
+    /// ## Import
+    /// 
+    /// IAM binding imports use space-delimited identifiers; first the resource in question and then the role.
+    /// 
+    /// These bindings can be imported using the `folder` and role, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:folder/iAMBinding:IAMBinding viewer "folder-name roles/viewer"
+    /// ```
+    /// 
+    ///  -&gt; **Custom Roles**If you're importing a IAM binding with a custom role, make sure to use the
+    /// 
+    /// full name of the custom role, e.g. `[projects/my-project|organizations/my-org]/roles/my-custom-role`.
     /// </summary>
     public partial class IAMBinding : Pulumi.CustomResource
     {

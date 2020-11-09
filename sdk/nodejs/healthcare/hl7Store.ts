@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
+import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
@@ -17,6 +16,18 @@ import * as utilities from "../utilities";
  *     * [Creating a HL7v2 Store](https://cloud.google.com/healthcare/docs/how-tos/hl7v2)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Hl7V2Store can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import gcp:healthcare/hl7Store:Hl7Store default {{dataset}}/hl7V2Stores/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:healthcare/hl7Store:Hl7Store default {{dataset}}/{{name}}
+ * ```
  */
 export class Hl7Store extends pulumi.CustomResource {
     /**

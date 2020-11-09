@@ -19,6 +19,22 @@ namespace Pulumi.Gcp.PubSub
     ///     * [Managing Topics](https://cloud.google.com/pubsub/docs/admin#managing_topics)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Topic can be imported using any of these accepted formats
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:pubsub/topic:Topic default projects/{{project}}/topics/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:pubsub/topic:Topic default {{project}}/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:pubsub/topic:Topic default {{name}}
+    /// ```
     /// </summary>
     public partial class Topic : Pulumi.CustomResource
     {

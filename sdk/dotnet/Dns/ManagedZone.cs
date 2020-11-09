@@ -21,6 +21,22 @@ namespace Pulumi.Gcp.Dns
     ///     * [Managing Zones](https://cloud.google.com/dns/zones/)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// ManagedZone can be imported using any of these accepted formats
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:dns/managedZone:ManagedZone default projects/{{project}}/managedZones/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:dns/managedZone:ManagedZone default {{project}}/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:dns/managedZone:ManagedZone default {{name}}
+    /// ```
     /// </summary>
     public partial class ManagedZone : Pulumi.CustomResource
     {

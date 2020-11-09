@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
+import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
@@ -26,6 +25,22 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/load-balancing/docs/health-checks)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * HealthCheck can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import gcp:compute/healthCheck:HealthCheck default projects/{{project}}/global/healthChecks/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:compute/healthCheck:HealthCheck default {{project}}/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:compute/healthCheck:HealthCheck default {{name}}
+ * ```
  */
 export class HealthCheck extends pulumi.CustomResource {
     /**

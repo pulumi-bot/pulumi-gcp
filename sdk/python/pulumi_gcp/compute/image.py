@@ -58,6 +58,22 @@ class Image(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        Image can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:compute/image:Image default projects/{{project}}/global/images/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/image:Image default {{project}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/image:Image default {{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: An optional description of this resource. Provide this property when

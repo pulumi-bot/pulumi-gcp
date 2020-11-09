@@ -21,6 +21,14 @@ import (
 //     * [Official Documentation](https://cloud.google.com/data-catalog/docs)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Tag can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:datacatalog/tag:Tag default {{name}}
+// ```
 type Tag struct {
 	pulumi.CustomResourceState
 

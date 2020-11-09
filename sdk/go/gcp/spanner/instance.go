@@ -20,6 +20,22 @@ import (
 //     * [Official Documentation](https://cloud.google.com/spanner/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Instance can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:spanner/instance:Instance default projects/{{project}}/instances/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:spanner/instance:Instance default {{project}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:spanner/instance:Instance default {{name}}
+// ```
 type Instance struct {
 	pulumi.CustomResourceState
 

@@ -34,6 +34,22 @@ class InstanceGroup(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        Instance group can be imported using the `zone` and `name` with an optional `project`, e.g.
+
+        ```sh
+         $ pulumi import gcp:compute/instanceGroup:InstanceGroup webservers us-central1-a/terraform-webservers
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/instanceGroup:InstanceGroup webservers big-project/us-central1-a/terraform-webservers
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/instanceGroup:InstanceGroup webservers projects/big-project/zones/us-central1-a/instanceGroups/terraform-webservers
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: An optional textual description of the instance

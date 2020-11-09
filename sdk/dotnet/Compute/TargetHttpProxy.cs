@@ -20,6 +20,22 @@ namespace Pulumi.Gcp.Compute
     ///     * [Official Documentation](https://cloud.google.com/compute/docs/load-balancing/http/target-proxies)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// TargetHttpProxy can be imported using any of these accepted formats
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/targetHttpProxy:TargetHttpProxy default projects/{{project}}/global/targetHttpProxies/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/targetHttpProxy:TargetHttpProxy default {{project}}/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/targetHttpProxy:TargetHttpProxy default {{name}}
+    /// ```
     /// </summary>
     public partial class TargetHttpProxy : Pulumi.CustomResource
     {

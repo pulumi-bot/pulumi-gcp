@@ -35,6 +35,14 @@ namespace Pulumi.Gcp.Monitoring
     ///     * [Monitoring API Documentation](https://cloud.google.com/monitoring/api/v3/)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// NotificationChannel can be imported using any of these accepted formats
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:monitoring/notificationChannel:NotificationChannel default {{name}}
+    /// ```
     /// </summary>
     public partial class NotificationChannel : Pulumi.CustomResource
     {

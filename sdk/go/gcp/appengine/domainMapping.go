@@ -19,6 +19,22 @@ import (
 //     * [Official Documentation](https://cloud.google.com/appengine/docs/standard/python/mapping-custom-domains)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// DomainMapping can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:appengine/domainMapping:DomainMapping default apps/{{project}}/domainMappings/{{domain_name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:appengine/domainMapping:DomainMapping default {{project}}/{{domain_name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:appengine/domainMapping:DomainMapping default {{domain_name}}
+// ```
 type DomainMapping struct {
 	pulumi.CustomResourceState
 

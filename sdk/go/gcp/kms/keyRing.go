@@ -23,6 +23,22 @@ import (
 //     * [Creating a key ring](https://cloud.google.com/kms/docs/creating-keys#create_a_key_ring)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// KeyRing can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:kms/keyRing:KeyRing default projects/{{project}}/locations/{{location}}/keyRings/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:kms/keyRing:KeyRing default {{project}}/{{location}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:kms/keyRing:KeyRing default {{location}}/{{name}}
+// ```
 type KeyRing struct {
 	pulumi.CustomResourceState
 

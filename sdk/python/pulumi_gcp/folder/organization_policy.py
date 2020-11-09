@@ -32,6 +32,18 @@ class OrganizationPolicy(pulumi.CustomResource):
         documentation](https://cloud.google.com/resource-manager/docs/organization-policy/overview) and
         [API](https://cloud.google.com/resource-manager/reference/rest/v1/folders/setOrgPolicy).
 
+        ## Import
+
+        Folder organization policies can be imported using any of the follow formats
+
+        ```sh
+         $ pulumi import gcp:folder/organizationPolicy:OrganizationPolicy policy folders/folder-1234/constraints/serviceuser.services
+        ```
+
+        ```sh
+         $ pulumi import gcp:folder/organizationPolicy:OrganizationPolicy policy folder-1234/serviceuser.services
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['OrganizationPolicyBooleanPolicyArgs']] boolean_policy: A boolean policy is a constraint that is either enforced or not. Structure is documented below.

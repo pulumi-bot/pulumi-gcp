@@ -22,6 +22,14 @@ namespace Pulumi.Gcp.BigQuery
     /// state as plain-text. [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Connection can be imported using any of these accepted formats
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:bigquery/connection:Connection default {{name}}
+    /// ```
     /// </summary>
     public partial class Connection : Pulumi.CustomResource
     {

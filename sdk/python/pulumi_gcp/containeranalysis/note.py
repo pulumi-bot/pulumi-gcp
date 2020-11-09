@@ -41,6 +41,22 @@ class Note(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        Note can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:containeranalysis/note:Note default projects/{{project}}/notes/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:containeranalysis/note:Note default {{project}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:containeranalysis/note:Note default {{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['NoteAttestationAuthorityArgs']] attestation_authority: Note kind that represents a logical attestation "role" or "authority".

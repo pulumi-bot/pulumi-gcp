@@ -22,6 +22,10 @@ namespace Pulumi.Gcp.Compute
     /// state as plain-text.
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// This resource does not support import.
     /// </summary>
     public partial class BackendBucketSignedUrlKey : Pulumi.CustomResource
     {

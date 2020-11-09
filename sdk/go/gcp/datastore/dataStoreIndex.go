@@ -19,6 +19,22 @@ import (
 //     * [Official Documentation](https://cloud.google.com/datastore/docs/concepts/indexes)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Index can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:datastore/dataStoreIndex:DataStoreIndex default projects/{{project}}/indexes/{{index_id}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:datastore/dataStoreIndex:DataStoreIndex default {{project}}/{{index_id}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:datastore/dataStoreIndex:DataStoreIndex default {{index_id}}
+// ```
 type DataStoreIndex struct {
 	pulumi.CustomResourceState
 

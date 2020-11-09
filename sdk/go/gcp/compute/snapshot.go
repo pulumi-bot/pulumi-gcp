@@ -33,6 +33,22 @@ import (
 // state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Snapshot can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:compute/snapshot:Snapshot default projects/{{project}}/global/snapshots/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/snapshot:Snapshot default {{project}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/snapshot:Snapshot default {{name}}
+// ```
 type Snapshot struct {
 	pulumi.CustomResourceState
 

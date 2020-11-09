@@ -21,6 +21,26 @@ import (
 // see the [Classic VPN partial deprecation page](https://cloud.google.com/network-connectivity/docs/vpn/deprecations/classic-vpn-deprecation).
 //
 // ## Example Usage
+//
+// ## Import
+//
+// VpnGateway can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:compute/vPNGateway:VPNGateway default projects/{{project}}/regions/{{region}}/targetVpnGateways/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/vPNGateway:VPNGateway default {{project}}/{{region}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/vPNGateway:VPNGateway default {{region}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/vPNGateway:VPNGateway default {{name}}
+// ```
 type VPNGateway struct {
 	pulumi.CustomResourceState
 

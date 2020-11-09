@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
+import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
@@ -19,6 +18,22 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/appengine/docs/standard)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * StandardAppVersion can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import gcp:appengine/standardAppVersion:StandardAppVersion default apps/{{project}}/services/{{service}}/versions/{{version_id}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:appengine/standardAppVersion:StandardAppVersion default {{project}}/{{service}}/{{version_id}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:appengine/standardAppVersion:StandardAppVersion default {{service}}/{{version_id}}
+ * ```
  */
 export class StandardAppVersion extends pulumi.CustomResource {
     /**

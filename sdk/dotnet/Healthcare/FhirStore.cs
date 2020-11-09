@@ -20,6 +20,18 @@ namespace Pulumi.Gcp.Healthcare
     ///     * [Creating a FHIR store](https://cloud.google.com/healthcare/docs/how-tos/fhir)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// FhirStore can be imported using any of these accepted formats
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:healthcare/fhirStore:FhirStore default {{dataset}}/fhirStores/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:healthcare/fhirStore:FhirStore default {{dataset}}/{{name}}
+    /// ```
     /// </summary>
     public partial class FhirStore : Pulumi.CustomResource
     {

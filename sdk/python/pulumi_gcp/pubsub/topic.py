@@ -36,6 +36,22 @@ class Topic(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        Topic can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:pubsub/topic:Topic default projects/{{project}}/topics/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:pubsub/topic:Topic default {{project}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:pubsub/topic:Topic default {{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] kms_key_name: The resource name of the Cloud KMS CryptoKey to be used to protect access
