@@ -16,6 +16,14 @@ import (
 // state as plain-text.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// SecretVersion can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:secretmanager/secretVersion:SecretVersion default {{name}}/{{name}}
+// ```
 type SecretVersion struct {
 	pulumi.CustomResourceState
 

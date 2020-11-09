@@ -38,6 +38,10 @@ class BucketObject(pulumi.CustomResource):
         and
         [API](https://cloud.google.com/storage/docs/json_api/v1/objects).
 
+        ## Import
+
+        This resource does not support import.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] bucket: The name of the containing bucket.

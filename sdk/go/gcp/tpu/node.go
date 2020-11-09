@@ -19,6 +19,26 @@ import (
 //     * [Official Documentation](https://cloud.google.com/tpu/docs/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Node can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:tpu/node:Node default projects/{{project}}/locations/{{zone}}/nodes/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:tpu/node:Node default {{project}}/{{zone}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:tpu/node:Node default {{zone}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:tpu/node:Node default {{name}}
+// ```
 type Node struct {
 	pulumi.CustomResourceState
 

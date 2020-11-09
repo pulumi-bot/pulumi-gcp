@@ -21,6 +21,26 @@ namespace Pulumi.Gcp.Compute
     ///     * [Using Packet Mirroring](https://cloud.google.com/vpc/docs/using-packet-mirroring#creating)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// PacketMirroring can be imported using any of these accepted formats
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/packetMirroring:PacketMirroring default projects/{{project}}/regions/{{region}}/packetMirrorings/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/packetMirroring:PacketMirroring default {{project}}/{{region}}/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/packetMirroring:PacketMirroring default {{region}}/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/packetMirroring:PacketMirroring default {{name}}
+    /// ```
     /// </summary>
     public partial class PacketMirroring : Pulumi.CustomResource
     {

@@ -16,6 +16,14 @@ namespace Pulumi.Gcp.Logging
     /// 
     /// Note that you must have the "Logs Configuration Writer" IAM role (`roles/logging.configWriter`)
     /// granted to the credentials used with this provider.
+    /// 
+    /// ## Import
+    /// 
+    /// Folder-level logging exclusions can be imported using their URI, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:logging/folderExclusion:FolderExclusion my_exclusion folders/my-folder/exclusions/my-exclusion
+    /// ```
     /// </summary>
     public partial class FolderExclusion : Pulumi.CustomResource
     {

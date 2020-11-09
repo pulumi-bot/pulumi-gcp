@@ -20,6 +20,18 @@ import (
 //     * [Creating a DICOM store](https://cloud.google.com/healthcare/docs/how-tos/dicom)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// DicomStore can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:healthcare/dicomStore:DicomStore default {{dataset}}/dicomStores/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:healthcare/dicomStore:DicomStore default {{dataset}}/{{name}}
+// ```
 type DicomStore struct {
 	pulumi.CustomResourceState
 

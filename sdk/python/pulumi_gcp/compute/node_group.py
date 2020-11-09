@@ -44,6 +44,26 @@ class NodeGroup(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        NodeGroup can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:compute/nodeGroup:NodeGroup default projects/{{project}}/zones/{{zone}}/nodeGroups/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/nodeGroup:NodeGroup default {{project}}/{{zone}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/nodeGroup:NodeGroup default {{zone}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/nodeGroup:NodeGroup default {{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['NodeGroupAutoscalingPolicyArgs']] autoscaling_policy: If you use sole-tenant nodes for your workloads, you can use the node

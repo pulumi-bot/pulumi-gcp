@@ -38,6 +38,26 @@ class InterconnectAttachment(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        InterconnectAttachment can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:compute/interconnectAttachment:InterconnectAttachment default projects/{{project}}/regions/{{region}}/interconnectAttachments/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/interconnectAttachment:InterconnectAttachment default {{project}}/{{region}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/interconnectAttachment:InterconnectAttachment default {{region}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/interconnectAttachment:InterconnectAttachment default {{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] admin_enabled: Whether the VLAN attachment is enabled or disabled.  When using

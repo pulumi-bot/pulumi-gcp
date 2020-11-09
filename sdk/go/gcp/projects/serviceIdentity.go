@@ -20,6 +20,10 @@ import (
 // * [API documentation](https://cloud.google.com/service-usage/docs/reference/rest/v1beta1/services/generateServiceIdentity)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// This resource does not support import.
 type ServiceIdentity struct {
 	pulumi.CustomResourceState
 

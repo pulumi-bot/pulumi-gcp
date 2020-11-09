@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
+import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
@@ -15,6 +14,14 @@ import * as utilities from "../utilities";
  * > **Note:** Use [gcp.compute.InstanceGroupManager](https://www.terraform.io/docs/providers/google/r/compute_instance_group_manager.html) to create a single-zone instance group manager.
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Instance group managers can be imported using the `name`, e.g.
+ *
+ * ```sh
+ *  $ pulumi import gcp:compute/regionInstanceGroupManager:RegionInstanceGroupManager appserver appserver-igm
+ * ```
  */
 export class RegionInstanceGroupManager extends pulumi.CustomResource {
     /**

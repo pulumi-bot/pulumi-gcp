@@ -14,6 +14,10 @@ namespace Pulumi.Gcp.Dataproc
     /// [the official dataproc documentation](https://cloud.google.com/dataproc/).
     /// 
     /// !&gt; **Note:** This resource does not support 'update' and changing any attributes will cause the resource to be recreated.
+    /// 
+    /// ## Import
+    /// 
+    /// This resource does not support import.
     /// </summary>
     public partial class Job : Pulumi.CustomResource
     {

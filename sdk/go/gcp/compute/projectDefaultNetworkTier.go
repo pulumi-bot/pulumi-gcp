@@ -16,6 +16,14 @@ import (
 //
 // For more information, see,
 // [the Project API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/projects/setDefaultNetworkTier).
+//
+// ## Import
+//
+// This resource can be imported using the project ID
+//
+// ```sh
+//  $ pulumi import gcp:compute/projectDefaultNetworkTier:ProjectDefaultNetworkTier default project-id`
+// ```
 type ProjectDefaultNetworkTier struct {
 	pulumi.CustomResourceState
 

@@ -36,6 +36,16 @@ class AccountIamBinding(pulumi.CustomResource):
             Use `pulumi import` and inspect the output to ensure
             your existing members are preserved.
 
+        ## Import
+
+        IAM binding imports use space-delimited identifiers; first the resource in question and then the role.
+
+        These bindings can be imported using the `billing_account_id` and role, e.g.
+
+        ```sh
+         $ pulumi import gcp:billing/accountIamBinding:AccountIamBinding binding "your-billing-account-id roles/viewer"
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] billing_account_id: The billing account id.

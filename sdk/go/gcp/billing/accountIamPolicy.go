@@ -21,6 +21,12 @@ import (
 // > **Note:** This resource __must not__ be used in conjunction with
 //    `billing.AccountIamMember` or `billing.AccountIamBinding`
 //    or they will fight over what your policy should be.
+//
+// ## Import
+//
+// ```sh
+//  $ pulumi import gcp:billing/accountIamPolicy:AccountIamPolicy policy billing-account-id
+// ```
 type AccountIamPolicy struct {
 	pulumi.CustomResourceState
 

@@ -19,6 +19,22 @@ import (
 //     * [Configuring a service](https://cloud.google.com/service-directory/docs/configuring-service-directory#configuring_a_service)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Service can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:servicedirectory/service:Service default projects/{{project}}/locations/{{location}}/namespaces/{{namespace_id}}/services/{{service_id}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:servicedirectory/service:Service default {{project}}/{{location}}/{{namespace_id}}/{{service_id}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:servicedirectory/service:Service default {{location}}/{{namespace_id}}/{{service_id}}
+// ```
 type Service struct {
 	pulumi.CustomResourceState
 

@@ -41,6 +41,26 @@ import (
 //     * [Cloud Networking](https://cloud.google.com/vpc/docs/using-vpc)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Subnetwork can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:compute/subnetwork:Subnetwork default projects/{{project}}/regions/{{region}}/subnetworks/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/subnetwork:Subnetwork default {{project}}/{{region}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/subnetwork:Subnetwork default {{region}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/subnetwork:Subnetwork default {{name}}
+// ```
 type Subnetwork struct {
 	pulumi.CustomResourceState
 

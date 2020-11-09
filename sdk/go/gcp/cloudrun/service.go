@@ -31,6 +31,22 @@ import (
 //     * [Official Documentation](https://cloud.google.com/run/docs/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Service can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:cloudrun/service:Service default locations/{{location}}/namespaces/{{project}}/services/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:cloudrun/service:Service default {{location}}/{{project}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:cloudrun/service:Service default {{location}}/{{name}}
+// ```
 type Service struct {
 	pulumi.CustomResourceState
 

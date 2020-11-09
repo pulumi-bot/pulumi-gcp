@@ -26,6 +26,26 @@ import (
 //     * [Reserving zonal resources](https://cloud.google.com/compute/docs/instances/reserving-zonal-resources)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Reservation can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:compute/reservation:Reservation default projects/{{project}}/zones/{{zone}}/reservations/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/reservation:Reservation default {{project}}/{{zone}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/reservation:Reservation default {{zone}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/reservation:Reservation default {{name}}
+// ```
 type Reservation struct {
 	pulumi.CustomResourceState
 

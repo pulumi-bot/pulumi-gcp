@@ -24,6 +24,26 @@ import (
 // the provider to delete and recreate the node group.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// NodeGroup can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:compute/nodeGroup:NodeGroup default projects/{{project}}/zones/{{zone}}/nodeGroups/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/nodeGroup:NodeGroup default {{project}}/{{zone}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/nodeGroup:NodeGroup default {{zone}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/nodeGroup:NodeGroup default {{name}}
+// ```
 type NodeGroup struct {
 	pulumi.CustomResourceState
 

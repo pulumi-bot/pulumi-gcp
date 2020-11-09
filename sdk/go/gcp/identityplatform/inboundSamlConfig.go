@@ -17,6 +17,22 @@ import (
 // the marketplace prior to using this resource.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// InboundSamlConfig can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:identityplatform/inboundSamlConfig:InboundSamlConfig default projects/{{project}}/inboundSamlConfigs/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:identityplatform/inboundSamlConfig:InboundSamlConfig default {{project}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:identityplatform/inboundSamlConfig:InboundSamlConfig default {{name}}
+// ```
 type InboundSamlConfig struct {
 	pulumi.CustomResourceState
 

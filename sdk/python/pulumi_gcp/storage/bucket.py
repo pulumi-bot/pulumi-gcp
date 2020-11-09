@@ -53,6 +53,22 @@ class Bucket(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        Storage buckets can be imported using the `name` or
+
+        `project/name`. If the project is not passed to the import command it will be inferred from the provider block or environment variables. If it cannot be inferred it will be queried from the Compute API (this will fail if the API is not enabled). e.g.
+
+        ```sh
+         $ pulumi import gcp:storage/bucket:Bucket image-store image-store-bucket
+        ```
+
+        ```sh
+         $ pulumi import gcp:storage/bucket:Bucket image-store tf-test-project/image-store-bucket
+        ```
+
+         ~> **Note:** Terraform will import this resource with `force_destroy` set to `false` in state. If you've set it to `true` in config, run `terraform apply` to update the value set in state. If you delete this resource before updating the value, objects in the bucket will not be destroyed.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] bucket_policy_only: Enables [Bucket Policy Only](https://cloud.google.com/storage/docs/bucket-policy-only) access to a bucket. This field will be removed in the next major release of the provider.
@@ -93,7 +109,7 @@ class Bucket(pulumi.CustomResource):
             __props__ = dict()
 
             if bucket_policy_only is not None:
-                warnings.warn("Please use the uniform_bucket_level_access as this field has been renamed by Google.", DeprecationWarning)
+                warnings.warn("""Please use the uniform_bucket_level_access as this field has been renamed by Google.""", DeprecationWarning)
                 pulumi.log.warn("bucket_policy_only is deprecated: Please use the uniform_bucket_level_access as this field has been renamed by Google.")
             __props__['bucket_policy_only'] = bucket_policy_only
             __props__['cors'] = cors

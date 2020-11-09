@@ -16,6 +16,26 @@ import (
 // > **Note:** This resource does not support regional disks (`compute.RegionDisk`). For regional disks, please refer to the `compute.RegionDiskResourcePolicyAttachment` resource.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// DiskResourcePolicyAttachment can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:compute/diskResourcePolicyAttachment:DiskResourcePolicyAttachment default projects/{{project}}/zones/{{zone}}/disks/{{disk}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/diskResourcePolicyAttachment:DiskResourcePolicyAttachment default {{project}}/{{zone}}/{{disk}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/diskResourcePolicyAttachment:DiskResourcePolicyAttachment default {{zone}}/{{disk}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/diskResourcePolicyAttachment:DiskResourcePolicyAttachment default {{disk}}/{{name}}
+// ```
 type DiskResourcePolicyAttachment struct {
 	pulumi.CustomResourceState
 

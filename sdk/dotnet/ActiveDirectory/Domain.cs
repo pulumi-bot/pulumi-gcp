@@ -19,6 +19,14 @@ namespace Pulumi.Gcp.ActiveDirectory
     ///     * [Managed Microsoft Active Directory Quickstart](https://cloud.google.com/managed-microsoft-ad/docs/quickstarts)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Domain can be imported using any of these accepted formats
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:activedirectory/domain:Domain default {{name}}
+    /// ```
     /// </summary>
     public partial class Domain : Pulumi.CustomResource
     {

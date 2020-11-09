@@ -20,6 +20,22 @@ import (
 //     * [Configuring a namespace](https://cloud.google.com/service-directory/docs/configuring-service-directory#configuring_a_namespace)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Namespace can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:servicedirectory/namespace:Namespace default projects/{{project}}/locations/{{location}}/namespaces/{{namespace_id}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:servicedirectory/namespace:Namespace default {{project}}/{{location}}/{{namespace_id}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:servicedirectory/namespace:Namespace default {{location}}/{{namespace_id}}
+// ```
 type Namespace struct {
 	pulumi.CustomResourceState
 

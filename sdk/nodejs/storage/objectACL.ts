@@ -16,6 +16,10 @@ import * as utilities from "../utilities";
  *
  * > Want fine-grained control over object ACLs? Use `gcp.storage.ObjectAccessControl` to control individual
  * role entity pairs.
+ *
+ * ## Import
+ *
+ * This resource does not support import.
  */
 export class ObjectACL extends pulumi.CustomResource {
     /**
