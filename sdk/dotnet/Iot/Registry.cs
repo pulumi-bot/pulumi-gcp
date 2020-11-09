@@ -19,6 +19,26 @@ namespace Pulumi.Gcp.Iot
     ///     * [Official Documentation](https://cloud.google.com/iot/docs/)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// DeviceRegistry can be imported using any of these accepted formats
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:iot/registry:Registry default {{project}}/locations/{{region}}/registries/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:iot/registry:Registry default {{project}}/{{region}}/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:iot/registry:Registry default {{region}}/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:iot/registry:Registry default {{name}}
+    /// ```
     /// </summary>
     public partial class Registry : Pulumi.CustomResource
     {

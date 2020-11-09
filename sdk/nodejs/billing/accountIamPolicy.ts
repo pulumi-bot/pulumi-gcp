@@ -16,6 +16,12 @@ import * as utilities from "../utilities";
  * > **Note:** This resource __must not__ be used in conjunction with
  *    `gcp.billing.AccountIamMember` or `gcp.billing.AccountIamBinding`
  *    or they will fight over what your policy should be.
+ *
+ * ## Import
+ *
+ * ```sh
+ *  $ pulumi import gcp:billing/accountIamPolicy:AccountIamPolicy policy billing-account-id
+ * ```
  */
 export class AccountIamPolicy extends pulumi.CustomResource {
     /**

@@ -26,6 +26,14 @@ import (
 //     * [Importing a key](https://cloud.google.com/kms/docs/importing-a-key)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// KeyRingImportJob can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:kms/keyRingImportJob:KeyRingImportJob default {{name}}
+// ```
 type KeyRingImportJob struct {
 	pulumi.CustomResourceState
 

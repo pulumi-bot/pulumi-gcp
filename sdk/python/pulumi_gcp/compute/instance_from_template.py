@@ -57,6 +57,10 @@ class InstanceFromTemplate(pulumi.CustomResource):
         `source_instance_template`. To create an instance without a template, use the
         `compute.Instance` resource.
 
+        ## Import
+
+        This resource does not support import.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] allow_stopping_for_update: If true, allows Terraform to stop the instance to update its properties. If you try to update a property that requires

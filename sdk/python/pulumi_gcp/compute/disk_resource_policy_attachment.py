@@ -30,6 +30,26 @@ class DiskResourcePolicyAttachment(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        DiskResourcePolicyAttachment can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:compute/diskResourcePolicyAttachment:DiskResourcePolicyAttachment default projects/{{project}}/zones/{{zone}}/disks/{{disk}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/diskResourcePolicyAttachment:DiskResourcePolicyAttachment default {{project}}/{{zone}}/{{disk}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/diskResourcePolicyAttachment:DiskResourcePolicyAttachment default {{zone}}/{{disk}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/diskResourcePolicyAttachment:DiskResourcePolicyAttachment default {{disk}}/{{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] disk: The name of the disk in which the resource policies are attached to.

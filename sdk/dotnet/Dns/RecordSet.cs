@@ -19,6 +19,20 @@ namespace Pulumi.Gcp.Dns
     /// will not actually remove NS records during destroy but will report that it did.
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// DNS record sets can be imported using either of these accepted formats
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:dns/recordSet:RecordSet frontend {{project}}/{{zone}}/{{name}}/{{type}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:dns/recordSet:RecordSet frontend {{zone}}/{{name}}/{{type}}
+    /// ```
+    /// 
+    ///  NoteThe record name must include the trailing dot at the end.
     /// </summary>
     public partial class RecordSet : Pulumi.CustomResource
     {

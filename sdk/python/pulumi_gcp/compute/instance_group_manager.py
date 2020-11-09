@@ -43,6 +43,26 @@ class InstanceGroupManager(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        Instance group managers can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:compute/instanceGroupManager:InstanceGroupManager appserver projects/{{project}}/zones/{{zone}}/instanceGroupManagers/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/instanceGroupManager:InstanceGroupManager appserver {{project}}/{{zone}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/instanceGroupManager:InstanceGroupManager appserver {{project}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/instanceGroupManager:InstanceGroupManager appserver {{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['InstanceGroupManagerAutoHealingPoliciesArgs']] auto_healing_policies: The autohealing policies for this managed instance

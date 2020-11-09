@@ -19,6 +19,22 @@ import (
 //     * [Datasets Intro](https://cloud.google.com/bigquery/docs/datasets-intro)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Dataset can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:bigquery/dataset:Dataset default projects/{{project}}/datasets/{{dataset_id}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:bigquery/dataset:Dataset default {{project}}/{{dataset_id}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:bigquery/dataset:Dataset default {{dataset_id}}
+// ```
 type Dataset struct {
 	pulumi.CustomResourceState
 

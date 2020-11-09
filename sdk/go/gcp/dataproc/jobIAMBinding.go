@@ -19,6 +19,26 @@ import (
 // > **Note:** `dataproc.JobIAMPolicy` **cannot** be used in conjunction with `dataproc.JobIAMBinding` and `dataproc.JobIAMMember` or they will fight over what your policy should be. In addition, be careful not to accidentally unset ownership of the job as `dataproc.JobIAMPolicy` replaces the entire policy.
 //
 // > **Note:** `dataproc.JobIAMBinding` resources **can be** used in conjunction with `dataproc.JobIAMMember` resources **only if** they do not grant privilege to the same role.
+//
+// ## Import
+//
+// Job IAM resources can be imported using the project, region, job id, role and/or member.
+//
+// ```sh
+//  $ pulumi import gcp:dataproc/jobIAMBinding:JobIAMBinding editor "projects/{project}/regions/{region}/jobs/{job_id}"
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:dataproc/jobIAMBinding:JobIAMBinding editor "projects/{project}/regions/{region}/jobs/{job_id} roles/editor"
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:dataproc/jobIAMBinding:JobIAMBinding editor "projects/{project}/regions/{region}/jobs/{job_id} roles/editor user:jane@example.com"
+// ```
+//
+//  -> **Custom Roles**If you're importing a IAM resource with a custom role, make sure to use the
+//
+// full name of the custom role, e.g. `[projects/my-project|organizations/my-org]/roles/my-custom-role`.
 type JobIAMBinding struct {
 	pulumi.CustomResourceState
 

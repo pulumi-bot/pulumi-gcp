@@ -16,6 +16,22 @@ import * as utilities from "../utilities";
  *     * [Setting Up SSL proxy for Google Cloud Load Balancing](https://cloud.google.com/compute/docs/load-balancing/tcp-ssl/)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * TargetSslProxy can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import gcp:compute/targetSSLProxy:TargetSSLProxy default projects/{{project}}/global/targetSslProxies/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:compute/targetSSLProxy:TargetSSLProxy default {{project}}/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:compute/targetSSLProxy:TargetSSLProxy default {{name}}
+ * ```
  */
 export class TargetSSLProxy extends pulumi.CustomResource {
     /**

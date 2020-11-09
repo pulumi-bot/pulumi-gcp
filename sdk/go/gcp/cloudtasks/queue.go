@@ -13,6 +13,22 @@ import (
 // A named resource to which messages are sent by publishers.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Queue can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:cloudtasks/queue:Queue default projects/{{project}}/locations/{{location}}/queues/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:cloudtasks/queue:Queue default {{project}}/{{location}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:cloudtasks/queue:Queue default {{location}}/{{name}}
+// ```
 type Queue struct {
 	pulumi.CustomResourceState
 

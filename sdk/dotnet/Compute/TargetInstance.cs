@@ -24,6 +24,26 @@ namespace Pulumi.Gcp.Compute
     ///     * [Using Protocol Forwarding](https://cloud.google.com/compute/docs/protocol-forwarding)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// TargetInstance can be imported using any of these accepted formats
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/targetInstance:TargetInstance default projects/{{project}}/zones/{{zone}}/targetInstances/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/targetInstance:TargetInstance default {{project}}/{{zone}}/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/targetInstance:TargetInstance default {{zone}}/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/targetInstance:TargetInstance default {{name}}
+    /// ```
     /// </summary>
     public partial class TargetInstance : Pulumi.CustomResource
     {

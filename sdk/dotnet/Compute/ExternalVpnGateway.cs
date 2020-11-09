@@ -17,6 +17,22 @@ namespace Pulumi.Gcp.Compute
     /// * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/externalVpnGateways)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// ExternalVpnGateway can be imported using any of these accepted formats
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/externalVpnGateway:ExternalVpnGateway default projects/{{project}}/global/externalVpnGateways/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/externalVpnGateway:ExternalVpnGateway default {{project}}/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/externalVpnGateway:ExternalVpnGateway default {{name}}
+    /// ```
     /// </summary>
     public partial class ExternalVpnGateway : Pulumi.CustomResource
     {

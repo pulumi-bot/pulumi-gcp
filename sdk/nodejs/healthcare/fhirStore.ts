@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
+import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
@@ -17,6 +16,18 @@ import * as utilities from "../utilities";
  *     * [Creating a FHIR store](https://cloud.google.com/healthcare/docs/how-tos/fhir)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * FhirStore can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import gcp:healthcare/fhirStore:FhirStore default {{dataset}}/fhirStores/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:healthcare/fhirStore:FhirStore default {{dataset}}/{{name}}
+ * ```
  */
 export class FhirStore extends pulumi.CustomResource {
     /**

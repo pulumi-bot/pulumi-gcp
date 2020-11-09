@@ -18,6 +18,14 @@ namespace Pulumi.Gcp.Storage
     /// * [API documentation](https://cloud.google.com/storage-transfer/docs/reference/rest/v1/transferJobs#TransferJob)
     /// * How-to Guides
     ///     * [Configuring Access to Data Sources and Sinks](https://cloud.google.com/storage-transfer/docs/configure-access)
+    /// 
+    /// ## Import
+    /// 
+    /// Storage buckets can be imported using the Transfer Job's `project` and `name` without the `transferJob/` prefix, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:storage/transferJob:TransferJob nightly-backup-transfer-job my-project-1asd32/8422144862922355674
+    /// ```
     /// </summary>
     public partial class TransferJob : Pulumi.CustomResource
     {

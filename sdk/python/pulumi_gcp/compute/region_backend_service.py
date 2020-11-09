@@ -52,6 +52,26 @@ class RegionBackendService(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        RegionBackendService can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:compute/regionBackendService:RegionBackendService default projects/{{project}}/regions/{{region}}/backendServices/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/regionBackendService:RegionBackendService default {{project}}/{{region}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/regionBackendService:RegionBackendService default {{region}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/regionBackendService:RegionBackendService default {{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] affinity_cookie_ttl_sec: Lifetime of cookies in seconds if session_affinity is

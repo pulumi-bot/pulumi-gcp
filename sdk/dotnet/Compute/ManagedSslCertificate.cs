@@ -37,6 +37,22 @@ namespace Pulumi.Gcp.Compute
     /// In conclusion: Be extremely cautious.
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// ManagedSslCertificate can be imported using any of these accepted formats
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/managedSslCertificate:ManagedSslCertificate default projects/{{project}}/global/sslCertificates/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/managedSslCertificate:ManagedSslCertificate default {{project}}/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/managedSslCertificate:ManagedSslCertificate default {{name}}
+    /// ```
     /// </summary>
     public partial class ManagedSslCertificate : Pulumi.CustomResource
     {

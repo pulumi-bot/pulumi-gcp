@@ -18,6 +18,14 @@ import (
 // > **Note:** Use [compute.InstanceGroupManager](https://www.terraform.io/docs/providers/google/r/compute_instance_group_manager.html) to create a single-zone instance group manager.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Instance group managers can be imported using the `name`, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:compute/regionInstanceGroupManager:RegionInstanceGroupManager appserver appserver-igm
+// ```
 type RegionInstanceGroupManager struct {
 	pulumi.CustomResourceState
 

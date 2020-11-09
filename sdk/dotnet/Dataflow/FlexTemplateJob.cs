@@ -36,6 +36,10 @@ namespace Pulumi.Gcp.Dataflow
     /// is "cancelled", but if a user sets `on_delete` to `"drain"` in the
     /// configuration, you may experience a long wait for your `pulumi destroy` to
     /// complete.
+    /// 
+    /// ## Import
+    /// 
+    /// This resource does not support import.
     /// </summary>
     public partial class FlexTemplateJob : Pulumi.CustomResource
     {

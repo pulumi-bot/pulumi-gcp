@@ -16,6 +16,14 @@ import (
 //
 // Note that you must have the "Logs Configuration Writer" IAM role (`roles/logging.configWriter`)
 // granted to the credentials used with this provider.
+//
+// ## Import
+//
+// Organization-level logging sinks can be imported using this format
+//
+// ```sh
+//  $ pulumi import gcp:logging/organizationSink:OrganizationSink my_sink organizations/{{organization_id}}/sinks/{{sink_id}}
+// ```
 type OrganizationSink struct {
 	pulumi.CustomResourceState
 

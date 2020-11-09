@@ -15,6 +15,22 @@ import (
 // ready to receive prediction requests. The model itself is just a container.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Model can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:ml/engineModel:EngineModel default projects/{{project}}/models/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:ml/engineModel:EngineModel default {{project}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:ml/engineModel:EngineModel default {{name}}
+// ```
 type EngineModel struct {
 	pulumi.CustomResourceState
 
