@@ -16,6 +16,14 @@ import (
 //
 // Note that you must have the "Logs Configuration Writer" IAM role (`roles/logging.configWriter`)
 // granted to the credentials used with the provider.
+//
+// ## Import
+//
+// Billing account logging exclusions can be imported using their URI, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:logging/billingAccountExclusion:BillingAccountExclusion my_exclusion billingAccounts/my-billing_account/exclusions/my-exclusion
+// ```
 type BillingAccountExclusion struct {
 	pulumi.CustomResourceState
 

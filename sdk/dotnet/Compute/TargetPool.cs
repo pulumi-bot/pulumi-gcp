@@ -15,6 +15,26 @@ namespace Pulumi.Gcp.Compute
     /// [the official
     /// documentation](https://cloud.google.com/compute/docs/load-balancing/network/target-pools)
     /// and [API](https://cloud.google.com/compute/docs/reference/latest/targetPools).
+    /// 
+    /// ## Import
+    /// 
+    /// Target pools can be imported using any of the following formats
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/targetPool:TargetPool default projects/{{project}}/regions/{{region}}/targetPools/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/targetPool:TargetPool default {{project}}/{{region}}/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/targetPool:TargetPool default {{region}}/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/targetPool:TargetPool default {{name}}
+    /// ```
     /// </summary>
     public partial class TargetPool : Pulumi.CustomResource
     {

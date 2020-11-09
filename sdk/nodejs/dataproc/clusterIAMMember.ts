@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
+import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
@@ -16,6 +15,26 @@ import * as utilities from "../utilities";
  * > **Note:** `gcp.dataproc.ClusterIAMPolicy` **cannot** be used in conjunction with `gcp.dataproc.ClusterIAMBinding` and `gcp.dataproc.ClusterIAMMember` or they will fight over what your policy should be. In addition, be careful not to accidentally unset ownership of the cluster as `gcp.dataproc.ClusterIAMPolicy` replaces the entire policy.
  *
  * > **Note:** `gcp.dataproc.ClusterIAMBinding` resources **can be** used in conjunction with `gcp.dataproc.ClusterIAMMember` resources **only if** they do not grant privilege to the same role.
+ *
+ * ## Import
+ *
+ * Cluster IAM resources can be imported using the project, region, cluster name, role and/or member.
+ *
+ * ```sh
+ *  $ pulumi import gcp:dataproc/clusterIAMMember:ClusterIAMMember editor "projects/{project}/regions/{region}/clusters/{cluster}"
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:dataproc/clusterIAMMember:ClusterIAMMember editor "projects/{project}/regions/{region}/clusters/{cluster} roles/editor"
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:dataproc/clusterIAMMember:ClusterIAMMember editor "projects/{project}/regions/{region}/clusters/{cluster} roles/editor user:jane@example.com"
+ * ```
+ *
+ *  -> **Custom Roles**If you're importing a IAM resource with a custom role, make sure to use the
+ *
+ * full name of the custom role, e.g. `[projects/my-project|organizations/my-org]/roles/my-custom-role`.
  */
 export class ClusterIAMMember extends pulumi.CustomResource {
     /**

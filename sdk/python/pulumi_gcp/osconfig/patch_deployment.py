@@ -41,6 +41,22 @@ class PatchDeployment(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        PatchDeployment can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:osconfig/patchDeployment:PatchDeployment default projects/{{project}}/patchDeployments/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:osconfig/patchDeployment:PatchDeployment default {{project}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:osconfig/patchDeployment:PatchDeployment default {{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: Description of the patch deployment. Length of the description is limited to 1024 characters.

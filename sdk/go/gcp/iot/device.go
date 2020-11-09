@@ -19,6 +19,14 @@ import (
 //     * [Official Documentation](https://cloud.google.com/iot/docs/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Device can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:iot/device:Device default {{registry}}/devices/{{name}}
+// ```
 type Device struct {
 	pulumi.CustomResourceState
 

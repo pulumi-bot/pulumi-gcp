@@ -25,6 +25,10 @@ import (
 //     * [Controlling access to datasets](https://cloud.google.com/bigquery/docs/dataset-access-controls)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// This resource does not support import.
 type DatasetAccess struct {
 	pulumi.CustomResourceState
 

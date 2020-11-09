@@ -21,6 +21,22 @@ namespace Pulumi.Gcp.Compute
     ///     * [Setting Up TCP proxy for Google Cloud Load Balancing](https://cloud.google.com/compute/docs/load-balancing/tcp-ssl/tcp-proxy)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// TargetTcpProxy can be imported using any of these accepted formats
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/targetTCPProxy:TargetTCPProxy default projects/{{project}}/global/targetTcpProxies/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/targetTCPProxy:TargetTCPProxy default {{project}}/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/targetTCPProxy:TargetTCPProxy default {{name}}
+    /// ```
     /// </summary>
     public partial class TargetTCPProxy : Pulumi.CustomResource
     {

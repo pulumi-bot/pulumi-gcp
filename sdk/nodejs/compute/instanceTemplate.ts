@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
+import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
@@ -11,6 +10,24 @@ import * as utilities from "../utilities";
  * [the official documentation](https://cloud.google.com/compute/docs/instance-templates)
  * and
  * [API](https://cloud.google.com/compute/docs/reference/latest/instanceTemplates).
+ *
+ * ## Import
+ *
+ * Instance templates can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import gcp:compute/instanceTemplate:InstanceTemplate default projects/{{project}}/global/instanceTemplates/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:compute/instanceTemplate:InstanceTemplate default {{project}}/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:compute/instanceTemplate:InstanceTemplate default {{name}}
+ * ```
+ *
+ *  [custom-vm-types]https://cloud.google.com/dataproc/docs/concepts/compute/custom-machine-types [network-tier]https://cloud.google.com/network-tiers/docs/overview
  */
 export class InstanceTemplate extends pulumi.CustomResource {
     /**

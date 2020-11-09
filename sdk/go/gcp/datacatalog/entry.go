@@ -24,6 +24,14 @@ import (
 //     * [Official Documentation](https://cloud.google.com/data-catalog/docs)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Entry can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:datacatalog/entry:Entry default {{name}}
+// ```
 type Entry struct {
 	pulumi.CustomResourceState
 

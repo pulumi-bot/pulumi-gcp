@@ -42,6 +42,26 @@ class PacketMirroring(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        PacketMirroring can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:compute/packetMirroring:PacketMirroring default projects/{{project}}/regions/{{region}}/packetMirrorings/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/packetMirroring:PacketMirroring default {{project}}/{{region}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/packetMirroring:PacketMirroring default {{region}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/packetMirroring:PacketMirroring default {{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['PacketMirroringCollectorIlbArgs']] collector_ilb: The Forwarding Rule resource (of type load_balancing_scheme=INTERNAL)

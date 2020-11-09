@@ -21,6 +21,10 @@ namespace Pulumi.Gcp.Storage
     /// 
     /// &gt; Want fine-grained control over object ACLs? Use `gcp.storage.ObjectAccessControl` to control individual
     /// role entity pairs.
+    /// 
+    /// ## Import
+    /// 
+    /// This resource does not support import.
     /// </summary>
     public partial class ObjectACL : Pulumi.CustomResource
     {

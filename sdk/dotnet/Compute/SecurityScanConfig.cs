@@ -22,6 +22,22 @@ namespace Pulumi.Gcp.Compute
     /// state as plain-text.[Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// ScanConfig can be imported using any of these accepted formats
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/securityScanConfig:SecurityScanConfig default projects/{{project}}/scanConfigs/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/securityScanConfig:SecurityScanConfig default {{project}}/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/securityScanConfig:SecurityScanConfig default {{name}}
+    /// ```
     /// </summary>
     public partial class SecurityScanConfig : Pulumi.CustomResource
     {

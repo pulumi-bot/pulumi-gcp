@@ -62,6 +62,22 @@ class Instance(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        Instance can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:notebooks/instance:Instance default projects/{{project}}/locations/{{location}}/instances/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:notebooks/instance:Instance default {{project}}/{{location}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:notebooks/instance:Instance default {{location}}/{{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['InstanceAcceleratorConfigArgs']] accelerator_config: The hardware accelerator used on this instance. If you use accelerators,

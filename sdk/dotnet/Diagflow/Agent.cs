@@ -22,6 +22,14 @@ namespace Pulumi.Gcp.Diagflow
     ///     * [Official Documentation](https://cloud.google.com/dialogflow/docs/)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Agent can be imported using any of these accepted formats
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:diagflow/agent:Agent default {{project}}
+    /// ```
     /// </summary>
     public partial class Agent : Pulumi.CustomResource
     {

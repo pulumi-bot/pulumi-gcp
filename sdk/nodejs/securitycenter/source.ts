@@ -17,6 +17,18 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/binary-authorization/)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Source can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import gcp:securitycenter/source:Source default organizations/{{organization}}/sources/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:securitycenter/source:Source default {{organization}}/{{name}}
+ * ```
  */
 export class Source extends pulumi.CustomResource {
     /**

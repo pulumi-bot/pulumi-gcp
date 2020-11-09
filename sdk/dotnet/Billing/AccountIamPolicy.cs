@@ -21,6 +21,12 @@ namespace Pulumi.Gcp.Billing
     /// &gt; **Note:** This resource __must not__ be used in conjunction with
     ///    `gcp.billing.AccountIamMember` or `gcp.billing.AccountIamBinding`
     ///    or they will fight over what your policy should be.
+    /// 
+    /// ## Import
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:billing/accountIamPolicy:AccountIamPolicy policy billing-account-id
+    /// ```
     /// </summary>
     public partial class AccountIamPolicy : Pulumi.CustomResource
     {

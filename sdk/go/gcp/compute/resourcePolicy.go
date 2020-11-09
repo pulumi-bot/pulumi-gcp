@@ -12,6 +12,26 @@ import (
 // A policy that can be attached to a resource to specify or schedule actions on that resource.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// ResourcePolicy can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:compute/resourcePolicy:ResourcePolicy default projects/{{project}}/regions/{{region}}/resourcePolicies/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/resourcePolicy:ResourcePolicy default {{project}}/{{region}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/resourcePolicy:ResourcePolicy default {{region}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/resourcePolicy:ResourcePolicy default {{name}}
+// ```
 type ResourcePolicy struct {
 	pulumi.CustomResourceState
 

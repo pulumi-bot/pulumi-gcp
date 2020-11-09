@@ -35,6 +35,26 @@ import (
 // state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Disk can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:compute/disk:Disk default projects/{{project}}/zones/{{zone}}/disks/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/disk:Disk default {{project}}/{{zone}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/disk:Disk default {{zone}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/disk:Disk default {{name}}
+// ```
 type Disk struct {
 	pulumi.CustomResourceState
 

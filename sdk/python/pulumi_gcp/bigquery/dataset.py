@@ -42,6 +42,22 @@ class Dataset(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        Dataset can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:bigquery/dataset:Dataset default projects/{{project}}/datasets/{{dataset_id}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:bigquery/dataset:Dataset default {{project}}/{{dataset_id}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:bigquery/dataset:Dataset default {{dataset_id}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatasetAccessArgs']]]] accesses: An array of objects that define dataset access for one or more entities.

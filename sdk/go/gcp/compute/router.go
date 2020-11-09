@@ -19,6 +19,26 @@ import (
 //     * [Google Cloud Router](https://cloud.google.com/router/docs/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Router can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:compute/router:Router default projects/{{project}}/regions/{{region}}/routers/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/router:Router default {{project}}/{{region}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/router:Router default {{region}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/router:Router default {{name}}
+// ```
 type Router struct {
 	pulumi.CustomResourceState
 

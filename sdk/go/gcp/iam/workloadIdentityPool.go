@@ -10,6 +10,21 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// ## Import
+//
+// WorkloadIdentityPool can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:iam/workloadIdentityPool:WorkloadIdentityPool default projects/{{project}}/locations/global/workloadIdentityPools/{{workload_identity_pool_id}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:iam/workloadIdentityPool:WorkloadIdentityPool default {{project}}/{{workload_identity_pool_id}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:iam/workloadIdentityPool:WorkloadIdentityPool default {{workload_identity_pool_id}}
+// ```
 type WorkloadIdentityPool struct {
 	pulumi.CustomResourceState
 

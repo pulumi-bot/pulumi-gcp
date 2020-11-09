@@ -34,6 +34,22 @@ class Endpoint(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        Endpoint can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:servicedirectory/endpoint:Endpoint default projects/{{project}}/locations/{{location}}/namespaces/{{namespace_id}}/services/{{service_id}}/endpoints/{{endpoint_id}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:servicedirectory/endpoint:Endpoint default {{project}}/{{location}}/{{namespace_id}}/{{service_id}}/{{endpoint_id}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:servicedirectory/endpoint:Endpoint default {{location}}/{{namespace_id}}/{{service_id}}/{{endpoint_id}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] address: IPv4 or IPv6 address of the endpoint.

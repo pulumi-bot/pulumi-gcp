@@ -41,6 +41,18 @@ class Metric(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        Metric can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:logging/metric:Metric default {{project}} {{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:logging/metric:Metric default {{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['MetricBucketOptionsArgs']] bucket_options: The bucketOptions are required when the logs-based metric is using a DISTRIBUTION value type and it

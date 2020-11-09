@@ -11,6 +11,14 @@ namespace Pulumi.Gcp.Organizations
 {
     /// <summary>
     /// Allows management of audit logging config for a given service for a Google Cloud Platform Organization.
+    /// 
+    /// ## Import
+    /// 
+    /// IAM audit config imports use the identifier of the resource in question and the service, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:organizations/iamAuditConfig:IamAuditConfig config "your-organization-id foo.googleapis.com"
+    /// ```
     /// </summary>
     public partial class IamAuditConfig : Pulumi.CustomResource
     {

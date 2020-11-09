@@ -17,6 +17,22 @@ import (
 // the marketplace prior to using this resource.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// TenantOauthIdpConfig can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:identityplatform/tenantOauthIdpConfig:TenantOauthIdpConfig default projects/{{project}}/tenants/{{tenant}}/oauthIdpConfigs/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:identityplatform/tenantOauthIdpConfig:TenantOauthIdpConfig default {{project}}/{{tenant}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:identityplatform/tenantOauthIdpConfig:TenantOauthIdpConfig default {{tenant}}/{{name}}
+// ```
 type TenantOauthIdpConfig struct {
 	pulumi.CustomResourceState
 

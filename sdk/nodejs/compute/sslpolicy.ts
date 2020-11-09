@@ -15,6 +15,22 @@ import * as utilities from "../utilities";
  *     * [Using SSL Policies](https://cloud.google.com/compute/docs/load-balancing/ssl-policies)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * SslPolicy can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import gcp:compute/sSLPolicy:SSLPolicy default projects/{{project}}/global/sslPolicies/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:compute/sSLPolicy:SSLPolicy default {{project}}/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:compute/sSLPolicy:SSLPolicy default {{name}}
+ * ```
  */
 export class SSLPolicy extends pulumi.CustomResource {
     /**

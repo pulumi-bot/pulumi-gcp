@@ -2,14 +2,21 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
+import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
  * Creates a table resource in a dataset for Google BigQuery. For more information see
  * [the official documentation](https://cloud.google.com/bigquery/docs/) and
  * [API](https://cloud.google.com/bigquery/docs/reference/rest/v2/tables).
+ *
+ * ## Import
+ *
+ * BigQuery tables can be imported using the `project`, `dataset_id`, and `table_id`, e.g.
+ *
+ * ```sh
+ *  $ pulumi import gcp:bigquery/table:Table default gcp-project/foo/bar
+ * ```
  */
 export class Table extends pulumi.CustomResource {
     /**
