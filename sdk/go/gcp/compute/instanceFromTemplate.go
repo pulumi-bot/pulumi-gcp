@@ -18,6 +18,10 @@ import (
 // This resource is specifically to create a compute instance from a given
 // `sourceInstanceTemplate`. To create an instance without a template, use the
 // `compute.Instance` resource.
+//
+// ## Import
+//
+// This resource does not support import.
 type InstanceFromTemplate struct {
 	pulumi.CustomResourceState
 

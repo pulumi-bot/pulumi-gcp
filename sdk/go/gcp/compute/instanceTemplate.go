@@ -14,6 +14,24 @@ import (
 // [the official documentation](https://cloud.google.com/compute/docs/instance-templates)
 // and
 // [API](https://cloud.google.com/compute/docs/reference/latest/instanceTemplates).
+//
+// ## Import
+//
+// Instance templates can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:compute/instanceTemplate:InstanceTemplate default projects/{{project}}/global/instanceTemplates/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/instanceTemplate:InstanceTemplate default {{project}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/instanceTemplate:InstanceTemplate default {{name}}
+// ```
+//
+//  [custom-vm-types]https://cloud.google.com/dataproc/docs/concepts/compute/custom-machine-types [network-tier]https://cloud.google.com/network-tiers/docs/overview
 type InstanceTemplate struct {
 	pulumi.CustomResourceState
 

@@ -14,6 +14,10 @@ import (
 // [the official dataproc documentation](https://cloud.google.com/dataproc/).
 //
 // !> **Note:** This resource does not support 'update' and changing any attributes will cause the resource to be recreated.
+//
+// ## Import
+//
+// This resource does not support import.
 type Job struct {
 	pulumi.CustomResourceState
 

@@ -18,6 +18,14 @@ import (
 // [granted on the billing account](https://cloud.google.com/billing/reference/rest/v1/billingAccounts/getIamPolicy) to
 // the credentials used with this provider. [IAM roles granted on a billing account](https://cloud.google.com/billing/docs/how-to/billing-access) are separate from the
 // typical IAM roles granted on a project.
+//
+// ## Import
+//
+// Billing account logging sinks can be imported using this format
+//
+// ```sh
+//  $ pulumi import gcp:logging/billingAccountSink:BillingAccountSink my_sink billingAccounts/{{billing_account_id}}/sinks/{{sink_id}}
+// ```
 type BillingAccountSink struct {
 	pulumi.CustomResourceState
 

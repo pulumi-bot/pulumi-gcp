@@ -42,6 +42,22 @@ class Routine(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        Routine can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:bigquery/routine:Routine default projects/{{project}}/datasets/{{dataset_id}}/routines/{{routine_id}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:bigquery/routine:Routine default {{project}}/{{dataset_id}}/{{routine_id}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:bigquery/routine:Routine default {{dataset_id}}/{{routine_id}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RoutineArgumentArgs']]]] arguments: Input/output argument of a function or a stored procedure.

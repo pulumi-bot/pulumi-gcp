@@ -47,6 +47,26 @@ class Job(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        Job can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:cloudscheduler/job:Job default projects/{{project}}/locations/{{region}}/jobs/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:cloudscheduler/job:Job default {{project}}/{{region}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:cloudscheduler/job:Job default {{region}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:cloudscheduler/job:Job default {{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['JobAppEngineHttpTargetArgs']] app_engine_http_target: App Engine HTTP target.

@@ -23,6 +23,26 @@ import (
 //     * [Autoscaling Groups of Instances](https://cloud.google.com/compute/docs/autoscaler/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Autoscaler can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:compute/autoscaler:Autoscaler default projects/{{project}}/zones/{{zone}}/autoscalers/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/autoscaler:Autoscaler default {{project}}/{{zone}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/autoscaler:Autoscaler default {{zone}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/autoscaler:Autoscaler default {{name}}
+// ```
 type Autoscaler struct {
 	pulumi.CustomResourceState
 

@@ -10,6 +10,21 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// ## Import
+//
+// ApiConfig can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:apigateway/apiConfig:ApiConfig default projects/{{project}}/locations/global/apis/{{api}}/configs/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:apigateway/apiConfig:ApiConfig default {{project}}/{{api}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:apigateway/apiConfig:ApiConfig default {{api}}/{{name}}
+// ```
 type ApiConfig struct {
 	pulumi.CustomResourceState
 

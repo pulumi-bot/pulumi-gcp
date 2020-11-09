@@ -22,6 +22,10 @@ import (
 // state as plain-text.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// This resource does not support import.
 type BackendServiceSignedUrlKey struct {
 	pulumi.CustomResourceState
 

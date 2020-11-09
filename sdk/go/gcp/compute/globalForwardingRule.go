@@ -19,6 +19,22 @@ import (
 // https://cloud.google.com/compute/docs/load-balancing/http/
 //
 // ## Example Usage
+//
+// ## Import
+//
+// GlobalForwardingRule can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:compute/globalForwardingRule:GlobalForwardingRule default projects/{{project}}/global/forwardingRules/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/globalForwardingRule:GlobalForwardingRule default {{project}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/globalForwardingRule:GlobalForwardingRule default {{name}}
+// ```
 type GlobalForwardingRule struct {
 	pulumi.CustomResourceState
 

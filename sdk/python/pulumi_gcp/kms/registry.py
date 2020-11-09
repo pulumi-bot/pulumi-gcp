@@ -12,11 +12,11 @@ from ._inputs import *
 
 __all__ = ['Registry']
 
-warnings.warn("gcp.kms.Registry has been deprecated in favor of gcp.iot.Registry", DeprecationWarning)
+warnings.warn("""gcp.kms.Registry has been deprecated in favor of gcp.iot.Registry""", DeprecationWarning)
 
 
 class Registry(pulumi.CustomResource):
-    warnings.warn("gcp.kms.Registry has been deprecated in favor of gcp.iot.Registry", DeprecationWarning)
+    warnings.warn("""gcp.kms.Registry has been deprecated in favor of gcp.iot.Registry""", DeprecationWarning)
 
     def __init__(__self__,
                  resource_name: str,
@@ -43,6 +43,26 @@ class Registry(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/iot/docs/)
 
         ## Example Usage
+
+        ## Import
+
+        DeviceRegistry can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:kms/registry:Registry default {{project}}/locations/{{region}}/registries/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:kms/registry:Registry default {{project}}/{{region}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:kms/registry:Registry default {{region}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:kms/registry:Registry default {{name}}
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

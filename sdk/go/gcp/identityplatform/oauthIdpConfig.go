@@ -17,6 +17,22 @@ import (
 // the marketplace prior to using this resource.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// OauthIdpConfig can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:identityplatform/oauthIdpConfig:OauthIdpConfig default projects/{{project}}/oauthIdpConfigs/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:identityplatform/oauthIdpConfig:OauthIdpConfig default {{project}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:identityplatform/oauthIdpConfig:OauthIdpConfig default {{name}}
+// ```
 type OauthIdpConfig struct {
 	pulumi.CustomResourceState
 

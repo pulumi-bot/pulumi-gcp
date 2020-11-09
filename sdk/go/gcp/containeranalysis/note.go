@@ -21,6 +21,22 @@ import (
 //     * [Creating Attestations (Occurrences)](https://cloud.google.com/binary-authorization/docs/making-attestations)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Note can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:containeranalysis/note:Note default projects/{{project}}/notes/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:containeranalysis/note:Note default {{project}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:containeranalysis/note:Note default {{name}}
+// ```
 type Note struct {
 	pulumi.CustomResourceState
 

@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
+import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
@@ -19,6 +18,18 @@ import * as utilities from "../utilities";
  * for Cloud Functions.
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Functions can be imported using the `name` or `{{project}}/{{region}}/name`, e.g.
+ *
+ * ```sh
+ *  $ pulumi import gcp:cloudfunctions/function:Function default function-test
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:cloudfunctions/function:Function default {{project}}/{{region}}/function-test
+ * ```
  */
 export class Function extends pulumi.CustomResource {
     /**

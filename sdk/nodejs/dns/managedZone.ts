@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
+import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
@@ -18,6 +17,22 @@ import * as utilities from "../utilities";
  *     * [Managing Zones](https://cloud.google.com/dns/zones/)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * ManagedZone can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import gcp:dns/managedZone:ManagedZone default projects/{{project}}/managedZones/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:dns/managedZone:ManagedZone default {{project}}/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:dns/managedZone:ManagedZone default {{name}}
+ * ```
  */
 export class ManagedZone extends pulumi.CustomResource {
     /**

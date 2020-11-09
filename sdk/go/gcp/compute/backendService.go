@@ -23,6 +23,22 @@ import (
 //     * [Official Documentation](https://cloud.google.com/compute/docs/load-balancing/http/backend-service)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// BackendService can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:compute/backendService:BackendService default projects/{{project}}/global/backendServices/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/backendService:BackendService default {{project}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/backendService:BackendService default {{name}}
+// ```
 type BackendService struct {
 	pulumi.CustomResourceState
 

@@ -18,6 +18,18 @@ import (
 //     * [Official Documentation](https://cloud.google.com/source-repositories/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Repository can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:sourcerepo/repository:Repository default projects/{{project}}/repos/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:sourcerepo/repository:Repository default {{name}}
+// ```
 type Repository struct {
 	pulumi.CustomResourceState
 

@@ -33,6 +33,14 @@ import (
 // `billingProject` you defined.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// ServicePerimeter can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:accesscontextmanager/servicePerimeter:ServicePerimeter default {{name}}
+// ```
 type ServicePerimeter struct {
 	pulumi.CustomResourceState
 

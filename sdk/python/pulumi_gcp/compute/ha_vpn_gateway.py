@@ -39,6 +39,26 @@ class HaVpnGateway(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        HaVpnGateway can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:compute/haVpnGateway:HaVpnGateway default projects/{{project}}/regions/{{region}}/vpnGateways/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/haVpnGateway:HaVpnGateway default {{project}}/{{region}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/haVpnGateway:HaVpnGateway default {{region}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/haVpnGateway:HaVpnGateway default {{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: An optional description of this resource.

@@ -14,6 +14,26 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/memorystore/docs/redis/)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Instance can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import gcp:redis/instance:Instance default projects/{{project}}/locations/{{region}}/instances/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:redis/instance:Instance default {{project}}/{{region}}/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:redis/instance:Instance default {{region}}/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:redis/instance:Instance default {{name}}
+ * ```
  */
 export class Instance extends pulumi.CustomResource {
     /**

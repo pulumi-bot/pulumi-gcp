@@ -14,6 +14,22 @@ import (
 // [the official
 // documentation](https://cloud.google.com/resource-manager/docs/organization-policy/overview) and
 // [API](https://cloud.google.com/resource-manager/reference/rest/v1/projects/setOrgPolicy).
+//
+// ## Import
+//
+// Project organization policies can be imported using any of the follow formats
+//
+// ```sh
+//  $ pulumi import gcp:projects/organizationPolicy:OrganizationPolicy policy projects/test-project:constraints/serviceuser.services
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:projects/organizationPolicy:OrganizationPolicy policy test-project:constraints/serviceuser.services
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:projects/organizationPolicy:OrganizationPolicy policy test-project:serviceuser.services
+// ```
 type OrganizationPolicy struct {
 	pulumi.CustomResourceState
 

@@ -21,6 +21,26 @@ import (
 //     * [Copying Data In/Out](https://cloud.google.com/filestore/docs/copying-data)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Instance can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:filestore/instance:Instance default projects/{{project}}/locations/{{zone}}/instances/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:filestore/instance:Instance default {{project}}/{{zone}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:filestore/instance:Instance default {{zone}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:filestore/instance:Instance default {{name}}
+// ```
 type Instance struct {
 	pulumi.CustomResourceState
 

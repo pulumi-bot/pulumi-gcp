@@ -24,6 +24,26 @@ import (
 //
 // ## Example Usage
 //
+// ## Import
+//
+// Autoscaler can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:compute/autoscalar:Autoscalar default projects/{{project}}/zones/{{zone}}/autoscalers/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/autoscalar:Autoscalar default {{project}}/{{zone}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/autoscalar:Autoscalar default {{zone}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/autoscalar:Autoscalar default {{name}}
+// ```
+//
 // Deprecated: gcp.compute.Autoscalar has been deprecated in favor of gcp.compute.Autoscaler
 type Autoscalar struct {
 	pulumi.CustomResourceState

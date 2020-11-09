@@ -35,6 +35,18 @@ class ServicePerimeters(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        ServicePerimeters can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:accesscontextmanager/servicePerimeters:ServicePerimeters default {{parent}}/servicePerimeters
+        ```
+
+        ```sh
+         $ pulumi import gcp:accesscontextmanager/servicePerimeters:ServicePerimeters default {{parent}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] parent: The AccessPolicy this ServicePerimeter lives in.

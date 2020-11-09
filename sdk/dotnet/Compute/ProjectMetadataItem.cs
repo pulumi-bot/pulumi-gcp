@@ -14,6 +14,14 @@ namespace Pulumi.Gcp.Compute
     /// a project in GCE. Using `gcp.compute.ProjectMetadataItem` lets you
     /// manage a single key/value setting in the provider rather than the entire
     /// project metadata map.
+    /// 
+    /// ## Import
+    /// 
+    /// Project metadata items can be imported using the `key`, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/projectMetadataItem:ProjectMetadataItem default my_metadata
+    /// ```
     /// </summary>
     public partial class ProjectMetadataItem : Pulumi.CustomResource
     {

@@ -19,6 +19,14 @@ import (
 // `billingProject` you defined.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Group can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:cloudidentity/group:Group default {{name}}
+// ```
 type Group struct {
 	pulumi.CustomResourceState
 

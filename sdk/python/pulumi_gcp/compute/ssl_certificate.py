@@ -40,6 +40,22 @@ class SSLCertificate(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        SslCertificate can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:compute/sSLCertificate:SSLCertificate default projects/{{project}}/global/sslCertificates/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/sSLCertificate:SSLCertificate default {{project}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/sSLCertificate:SSLCertificate default {{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] certificate: The certificate in PEM format.
