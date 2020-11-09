@@ -4,6 +4,8 @@
 package bigquery
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -88,20 +90,20 @@ type DataTransferConfig struct {
 // NewDataTransferConfig registers a new resource with the given unique name, arguments, and options.
 func NewDataTransferConfig(ctx *pulumi.Context,
 	name string, args *DataTransferConfigArgs, opts ...pulumi.ResourceOption) (*DataTransferConfig, error) {
-	if args == nil || args.DataSourceId == nil {
-		return nil, errors.New("missing required argument 'DataSourceId'")
-	}
-	if args == nil || args.DestinationDatasetId == nil {
-		return nil, errors.New("missing required argument 'DestinationDatasetId'")
-	}
-	if args == nil || args.DisplayName == nil {
-		return nil, errors.New("missing required argument 'DisplayName'")
-	}
-	if args == nil || args.Params == nil {
-		return nil, errors.New("missing required argument 'Params'")
-	}
 	if args == nil {
-		args = &DataTransferConfigArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.DataSourceId == nil {
+		return nil, errors.New("invalid value for required argument 'DataSourceId'")
+	}
+	if args.DestinationDatasetId == nil {
+		return nil, errors.New("invalid value for required argument 'DestinationDatasetId'")
+	}
+	if args.DisplayName == nil {
+		return nil, errors.New("invalid value for required argument 'DisplayName'")
+	}
+	if args.Params == nil {
+		return nil, errors.New("invalid value for required argument 'Params'")
 	}
 	var resource DataTransferConfig
 	err := ctx.RegisterResource("gcp:bigquery/dataTransferConfig:DataTransferConfig", name, args, &resource, opts...)
@@ -363,4 +365,43 @@ type DataTransferConfigArgs struct {
 
 func (DataTransferConfigArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*dataTransferConfigArgs)(nil)).Elem()
+}
+
+type DataTransferConfigInput interface {
+	pulumi.Input
+
+	ToDataTransferConfigOutput() DataTransferConfigOutput
+	ToDataTransferConfigOutputWithContext(ctx context.Context) DataTransferConfigOutput
+}
+
+func (DataTransferConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*DataTransferConfig)(nil)).Elem()
+}
+
+func (i DataTransferConfig) ToDataTransferConfigOutput() DataTransferConfigOutput {
+	return i.ToDataTransferConfigOutputWithContext(context.Background())
+}
+
+func (i DataTransferConfig) ToDataTransferConfigOutputWithContext(ctx context.Context) DataTransferConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DataTransferConfigOutput)
+}
+
+type DataTransferConfigOutput struct {
+	*pulumi.OutputState
+}
+
+func (DataTransferConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DataTransferConfigOutput)(nil)).Elem()
+}
+
+func (o DataTransferConfigOutput) ToDataTransferConfigOutput() DataTransferConfigOutput {
+	return o
+}
+
+func (o DataTransferConfigOutput) ToDataTransferConfigOutputWithContext(ctx context.Context) DataTransferConfigOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DataTransferConfigOutput{})
 }

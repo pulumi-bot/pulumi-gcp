@@ -4,6 +4,8 @@
 package datastore
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -41,11 +43,11 @@ type DataStoreIndex struct {
 // NewDataStoreIndex registers a new resource with the given unique name, arguments, and options.
 func NewDataStoreIndex(ctx *pulumi.Context,
 	name string, args *DataStoreIndexArgs, opts ...pulumi.ResourceOption) (*DataStoreIndex, error) {
-	if args == nil || args.Kind == nil {
-		return nil, errors.New("missing required argument 'Kind'")
-	}
 	if args == nil {
-		args = &DataStoreIndexArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Kind == nil {
+		return nil, errors.New("invalid value for required argument 'Kind'")
 	}
 	var resource DataStoreIndex
 	err := ctx.RegisterResource("gcp:datastore/dataStoreIndex:DataStoreIndex", name, args, &resource, opts...)
@@ -139,4 +141,43 @@ type DataStoreIndexArgs struct {
 
 func (DataStoreIndexArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*dataStoreIndexArgs)(nil)).Elem()
+}
+
+type DataStoreIndexInput interface {
+	pulumi.Input
+
+	ToDataStoreIndexOutput() DataStoreIndexOutput
+	ToDataStoreIndexOutputWithContext(ctx context.Context) DataStoreIndexOutput
+}
+
+func (DataStoreIndex) ElementType() reflect.Type {
+	return reflect.TypeOf((*DataStoreIndex)(nil)).Elem()
+}
+
+func (i DataStoreIndex) ToDataStoreIndexOutput() DataStoreIndexOutput {
+	return i.ToDataStoreIndexOutputWithContext(context.Background())
+}
+
+func (i DataStoreIndex) ToDataStoreIndexOutputWithContext(ctx context.Context) DataStoreIndexOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DataStoreIndexOutput)
+}
+
+type DataStoreIndexOutput struct {
+	*pulumi.OutputState
+}
+
+func (DataStoreIndexOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DataStoreIndexOutput)(nil)).Elem()
+}
+
+func (o DataStoreIndexOutput) ToDataStoreIndexOutput() DataStoreIndexOutput {
+	return o
+}
+
+func (o DataStoreIndexOutput) ToDataStoreIndexOutputWithContext(ctx context.Context) DataStoreIndexOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DataStoreIndexOutput{})
 }

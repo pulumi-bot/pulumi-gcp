@@ -4,6 +4,8 @@
 package bigtable
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -36,17 +38,17 @@ type TableIamPolicy struct {
 // NewTableIamPolicy registers a new resource with the given unique name, arguments, and options.
 func NewTableIamPolicy(ctx *pulumi.Context,
 	name string, args *TableIamPolicyArgs, opts ...pulumi.ResourceOption) (*TableIamPolicy, error) {
-	if args == nil || args.Instance == nil {
-		return nil, errors.New("missing required argument 'Instance'")
-	}
-	if args == nil || args.PolicyData == nil {
-		return nil, errors.New("missing required argument 'PolicyData'")
-	}
-	if args == nil || args.Table == nil {
-		return nil, errors.New("missing required argument 'Table'")
-	}
 	if args == nil {
-		args = &TableIamPolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Instance == nil {
+		return nil, errors.New("invalid value for required argument 'Instance'")
+	}
+	if args.PolicyData == nil {
+		return nil, errors.New("invalid value for required argument 'PolicyData'")
+	}
+	if args.Table == nil {
+		return nil, errors.New("invalid value for required argument 'Table'")
 	}
 	var resource TableIamPolicy
 	err := ctx.RegisterResource("gcp:bigtable/tableIamPolicy:TableIamPolicy", name, args, &resource, opts...)
@@ -120,4 +122,43 @@ type TableIamPolicyArgs struct {
 
 func (TableIamPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*tableIamPolicyArgs)(nil)).Elem()
+}
+
+type TableIamPolicyInput interface {
+	pulumi.Input
+
+	ToTableIamPolicyOutput() TableIamPolicyOutput
+	ToTableIamPolicyOutputWithContext(ctx context.Context) TableIamPolicyOutput
+}
+
+func (TableIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*TableIamPolicy)(nil)).Elem()
+}
+
+func (i TableIamPolicy) ToTableIamPolicyOutput() TableIamPolicyOutput {
+	return i.ToTableIamPolicyOutputWithContext(context.Background())
+}
+
+func (i TableIamPolicy) ToTableIamPolicyOutputWithContext(ctx context.Context) TableIamPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TableIamPolicyOutput)
+}
+
+type TableIamPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (TableIamPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TableIamPolicyOutput)(nil)).Elem()
+}
+
+func (o TableIamPolicyOutput) ToTableIamPolicyOutput() TableIamPolicyOutput {
+	return o
+}
+
+func (o TableIamPolicyOutput) ToTableIamPolicyOutputWithContext(ctx context.Context) TableIamPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TableIamPolicyOutput{})
 }

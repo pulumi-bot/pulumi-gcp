@@ -4,6 +4,8 @@
 package monitoring
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -33,11 +35,11 @@ type Dashboard struct {
 // NewDashboard registers a new resource with the given unique name, arguments, and options.
 func NewDashboard(ctx *pulumi.Context,
 	name string, args *DashboardArgs, opts ...pulumi.ResourceOption) (*Dashboard, error) {
-	if args == nil || args.DashboardJson == nil {
-		return nil, errors.New("missing required argument 'DashboardJson'")
-	}
 	if args == nil {
-		args = &DashboardArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.DashboardJson == nil {
+		return nil, errors.New("invalid value for required argument 'DashboardJson'")
 	}
 	var resource Dashboard
 	err := ctx.RegisterResource("gcp:monitoring/dashboard:Dashboard", name, args, &resource, opts...)
@@ -103,4 +105,43 @@ type DashboardArgs struct {
 
 func (DashboardArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*dashboardArgs)(nil)).Elem()
+}
+
+type DashboardInput interface {
+	pulumi.Input
+
+	ToDashboardOutput() DashboardOutput
+	ToDashboardOutputWithContext(ctx context.Context) DashboardOutput
+}
+
+func (Dashboard) ElementType() reflect.Type {
+	return reflect.TypeOf((*Dashboard)(nil)).Elem()
+}
+
+func (i Dashboard) ToDashboardOutput() DashboardOutput {
+	return i.ToDashboardOutputWithContext(context.Background())
+}
+
+func (i Dashboard) ToDashboardOutputWithContext(ctx context.Context) DashboardOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DashboardOutput)
+}
+
+type DashboardOutput struct {
+	*pulumi.OutputState
+}
+
+func (DashboardOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DashboardOutput)(nil)).Elem()
+}
+
+func (o DashboardOutput) ToDashboardOutput() DashboardOutput {
+	return o
+}
+
+func (o DashboardOutput) ToDashboardOutputWithContext(ctx context.Context) DashboardOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DashboardOutput{})
 }

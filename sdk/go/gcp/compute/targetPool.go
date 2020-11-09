@@ -4,6 +4,8 @@
 package compute
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
@@ -221,4 +223,43 @@ type TargetPoolArgs struct {
 
 func (TargetPoolArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*targetPoolArgs)(nil)).Elem()
+}
+
+type TargetPoolInput interface {
+	pulumi.Input
+
+	ToTargetPoolOutput() TargetPoolOutput
+	ToTargetPoolOutputWithContext(ctx context.Context) TargetPoolOutput
+}
+
+func (TargetPool) ElementType() reflect.Type {
+	return reflect.TypeOf((*TargetPool)(nil)).Elem()
+}
+
+func (i TargetPool) ToTargetPoolOutput() TargetPoolOutput {
+	return i.ToTargetPoolOutputWithContext(context.Background())
+}
+
+func (i TargetPool) ToTargetPoolOutputWithContext(ctx context.Context) TargetPoolOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TargetPoolOutput)
+}
+
+type TargetPoolOutput struct {
+	*pulumi.OutputState
+}
+
+func (TargetPoolOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TargetPoolOutput)(nil)).Elem()
+}
+
+func (o TargetPoolOutput) ToTargetPoolOutput() TargetPoolOutput {
+	return o
+}
+
+func (o TargetPoolOutput) ToTargetPoolOutputWithContext(ctx context.Context) TargetPoolOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TargetPoolOutput{})
 }

@@ -4,6 +4,8 @@
 package datacatalog
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -28,17 +30,17 @@ type PolicyTagIamMember struct {
 // NewPolicyTagIamMember registers a new resource with the given unique name, arguments, and options.
 func NewPolicyTagIamMember(ctx *pulumi.Context,
 	name string, args *PolicyTagIamMemberArgs, opts ...pulumi.ResourceOption) (*PolicyTagIamMember, error) {
-	if args == nil || args.Member == nil {
-		return nil, errors.New("missing required argument 'Member'")
-	}
-	if args == nil || args.PolicyTag == nil {
-		return nil, errors.New("missing required argument 'PolicyTag'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &PolicyTagIamMemberArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Member == nil {
+		return nil, errors.New("invalid value for required argument 'Member'")
+	}
+	if args.PolicyTag == nil {
+		return nil, errors.New("invalid value for required argument 'PolicyTag'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource PolicyTagIamMember
 	err := ctx.RegisterResource("gcp:datacatalog/policyTagIamMember:PolicyTagIamMember", name, args, &resource, opts...)
@@ -116,4 +118,43 @@ type PolicyTagIamMemberArgs struct {
 
 func (PolicyTagIamMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*policyTagIamMemberArgs)(nil)).Elem()
+}
+
+type PolicyTagIamMemberInput interface {
+	pulumi.Input
+
+	ToPolicyTagIamMemberOutput() PolicyTagIamMemberOutput
+	ToPolicyTagIamMemberOutputWithContext(ctx context.Context) PolicyTagIamMemberOutput
+}
+
+func (PolicyTagIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*PolicyTagIamMember)(nil)).Elem()
+}
+
+func (i PolicyTagIamMember) ToPolicyTagIamMemberOutput() PolicyTagIamMemberOutput {
+	return i.ToPolicyTagIamMemberOutputWithContext(context.Background())
+}
+
+func (i PolicyTagIamMember) ToPolicyTagIamMemberOutputWithContext(ctx context.Context) PolicyTagIamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PolicyTagIamMemberOutput)
+}
+
+type PolicyTagIamMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (PolicyTagIamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PolicyTagIamMemberOutput)(nil)).Elem()
+}
+
+func (o PolicyTagIamMemberOutput) ToPolicyTagIamMemberOutput() PolicyTagIamMemberOutput {
+	return o
+}
+
+func (o PolicyTagIamMemberOutput) ToPolicyTagIamMemberOutputWithContext(ctx context.Context) PolicyTagIamMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(PolicyTagIamMemberOutput{})
 }

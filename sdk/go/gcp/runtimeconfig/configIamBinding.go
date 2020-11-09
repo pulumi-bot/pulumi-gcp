@@ -4,6 +4,8 @@
 package runtimeconfig
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -40,17 +42,17 @@ type ConfigIamBinding struct {
 // NewConfigIamBinding registers a new resource with the given unique name, arguments, and options.
 func NewConfigIamBinding(ctx *pulumi.Context,
 	name string, args *ConfigIamBindingArgs, opts ...pulumi.ResourceOption) (*ConfigIamBinding, error) {
-	if args == nil || args.Config == nil {
-		return nil, errors.New("missing required argument 'Config'")
-	}
-	if args == nil || args.Members == nil {
-		return nil, errors.New("missing required argument 'Members'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &ConfigIamBindingArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Config == nil {
+		return nil, errors.New("invalid value for required argument 'Config'")
+	}
+	if args.Members == nil {
+		return nil, errors.New("invalid value for required argument 'Members'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource ConfigIamBinding
 	err := ctx.RegisterResource("gcp:runtimeconfig/configIamBinding:ConfigIamBinding", name, args, &resource, opts...)
@@ -140,4 +142,43 @@ type ConfigIamBindingArgs struct {
 
 func (ConfigIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*configIamBindingArgs)(nil)).Elem()
+}
+
+type ConfigIamBindingInput interface {
+	pulumi.Input
+
+	ToConfigIamBindingOutput() ConfigIamBindingOutput
+	ToConfigIamBindingOutputWithContext(ctx context.Context) ConfigIamBindingOutput
+}
+
+func (ConfigIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConfigIamBinding)(nil)).Elem()
+}
+
+func (i ConfigIamBinding) ToConfigIamBindingOutput() ConfigIamBindingOutput {
+	return i.ToConfigIamBindingOutputWithContext(context.Background())
+}
+
+func (i ConfigIamBinding) ToConfigIamBindingOutputWithContext(ctx context.Context) ConfigIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConfigIamBindingOutput)
+}
+
+type ConfigIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (ConfigIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConfigIamBindingOutput)(nil)).Elem()
+}
+
+func (o ConfigIamBindingOutput) ToConfigIamBindingOutput() ConfigIamBindingOutput {
+	return o
+}
+
+func (o ConfigIamBindingOutput) ToConfigIamBindingOutputWithContext(ctx context.Context) ConfigIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ConfigIamBindingOutput{})
 }

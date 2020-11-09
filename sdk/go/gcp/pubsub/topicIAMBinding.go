@@ -4,6 +4,8 @@
 package pubsub
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -40,17 +42,17 @@ type TopicIAMBinding struct {
 // NewTopicIAMBinding registers a new resource with the given unique name, arguments, and options.
 func NewTopicIAMBinding(ctx *pulumi.Context,
 	name string, args *TopicIAMBindingArgs, opts ...pulumi.ResourceOption) (*TopicIAMBinding, error) {
-	if args == nil || args.Members == nil {
-		return nil, errors.New("missing required argument 'Members'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
-	if args == nil || args.Topic == nil {
-		return nil, errors.New("missing required argument 'Topic'")
-	}
 	if args == nil {
-		args = &TopicIAMBindingArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Members == nil {
+		return nil, errors.New("invalid value for required argument 'Members'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
+	}
+	if args.Topic == nil {
+		return nil, errors.New("invalid value for required argument 'Topic'")
 	}
 	var resource TopicIAMBinding
 	err := ctx.RegisterResource("gcp:pubsub/topicIAMBinding:TopicIAMBinding", name, args, &resource, opts...)
@@ -140,4 +142,43 @@ type TopicIAMBindingArgs struct {
 
 func (TopicIAMBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*topicIAMBindingArgs)(nil)).Elem()
+}
+
+type TopicIAMBindingInput interface {
+	pulumi.Input
+
+	ToTopicIAMBindingOutput() TopicIAMBindingOutput
+	ToTopicIAMBindingOutputWithContext(ctx context.Context) TopicIAMBindingOutput
+}
+
+func (TopicIAMBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*TopicIAMBinding)(nil)).Elem()
+}
+
+func (i TopicIAMBinding) ToTopicIAMBindingOutput() TopicIAMBindingOutput {
+	return i.ToTopicIAMBindingOutputWithContext(context.Background())
+}
+
+func (i TopicIAMBinding) ToTopicIAMBindingOutputWithContext(ctx context.Context) TopicIAMBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TopicIAMBindingOutput)
+}
+
+type TopicIAMBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (TopicIAMBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TopicIAMBindingOutput)(nil)).Elem()
+}
+
+func (o TopicIAMBindingOutput) ToTopicIAMBindingOutput() TopicIAMBindingOutput {
+	return o
+}
+
+func (o TopicIAMBindingOutput) ToTopicIAMBindingOutputWithContext(ctx context.Context) TopicIAMBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TopicIAMBindingOutput{})
 }

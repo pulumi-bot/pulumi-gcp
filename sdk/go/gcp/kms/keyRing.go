@@ -4,6 +4,8 @@
 package kms
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -40,11 +42,11 @@ type KeyRing struct {
 // NewKeyRing registers a new resource with the given unique name, arguments, and options.
 func NewKeyRing(ctx *pulumi.Context,
 	name string, args *KeyRingArgs, opts ...pulumi.ResourceOption) (*KeyRing, error) {
-	if args == nil || args.Location == nil {
-		return nil, errors.New("missing required argument 'Location'")
-	}
 	if args == nil {
-		args = &KeyRingArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Location == nil {
+		return nil, errors.New("invalid value for required argument 'Location'")
 	}
 	var resource KeyRing
 	err := ctx.RegisterResource("gcp:kms/keyRing:KeyRing", name, args, &resource, opts...)
@@ -120,4 +122,43 @@ type KeyRingArgs struct {
 
 func (KeyRingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*keyRingArgs)(nil)).Elem()
+}
+
+type KeyRingInput interface {
+	pulumi.Input
+
+	ToKeyRingOutput() KeyRingOutput
+	ToKeyRingOutputWithContext(ctx context.Context) KeyRingOutput
+}
+
+func (KeyRing) ElementType() reflect.Type {
+	return reflect.TypeOf((*KeyRing)(nil)).Elem()
+}
+
+func (i KeyRing) ToKeyRingOutput() KeyRingOutput {
+	return i.ToKeyRingOutputWithContext(context.Background())
+}
+
+func (i KeyRing) ToKeyRingOutputWithContext(ctx context.Context) KeyRingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KeyRingOutput)
+}
+
+type KeyRingOutput struct {
+	*pulumi.OutputState
+}
+
+func (KeyRingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*KeyRingOutput)(nil)).Elem()
+}
+
+func (o KeyRingOutput) ToKeyRingOutput() KeyRingOutput {
+	return o
+}
+
+func (o KeyRingOutput) ToKeyRingOutputWithContext(ctx context.Context) KeyRingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(KeyRingOutput{})
 }

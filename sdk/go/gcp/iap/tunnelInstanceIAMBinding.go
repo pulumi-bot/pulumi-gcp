@@ -4,6 +4,8 @@
 package iap
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -43,17 +45,17 @@ type TunnelInstanceIAMBinding struct {
 // NewTunnelInstanceIAMBinding registers a new resource with the given unique name, arguments, and options.
 func NewTunnelInstanceIAMBinding(ctx *pulumi.Context,
 	name string, args *TunnelInstanceIAMBindingArgs, opts ...pulumi.ResourceOption) (*TunnelInstanceIAMBinding, error) {
-	if args == nil || args.Instance == nil {
-		return nil, errors.New("missing required argument 'Instance'")
-	}
-	if args == nil || args.Members == nil {
-		return nil, errors.New("missing required argument 'Members'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &TunnelInstanceIAMBindingArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Instance == nil {
+		return nil, errors.New("invalid value for required argument 'Instance'")
+	}
+	if args.Members == nil {
+		return nil, errors.New("invalid value for required argument 'Members'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource TunnelInstanceIAMBinding
 	err := ctx.RegisterResource("gcp:iap/tunnelInstanceIAMBinding:TunnelInstanceIAMBinding", name, args, &resource, opts...)
@@ -155,4 +157,43 @@ type TunnelInstanceIAMBindingArgs struct {
 
 func (TunnelInstanceIAMBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*tunnelInstanceIAMBindingArgs)(nil)).Elem()
+}
+
+type TunnelInstanceIAMBindingInput interface {
+	pulumi.Input
+
+	ToTunnelInstanceIAMBindingOutput() TunnelInstanceIAMBindingOutput
+	ToTunnelInstanceIAMBindingOutputWithContext(ctx context.Context) TunnelInstanceIAMBindingOutput
+}
+
+func (TunnelInstanceIAMBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*TunnelInstanceIAMBinding)(nil)).Elem()
+}
+
+func (i TunnelInstanceIAMBinding) ToTunnelInstanceIAMBindingOutput() TunnelInstanceIAMBindingOutput {
+	return i.ToTunnelInstanceIAMBindingOutputWithContext(context.Background())
+}
+
+func (i TunnelInstanceIAMBinding) ToTunnelInstanceIAMBindingOutputWithContext(ctx context.Context) TunnelInstanceIAMBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TunnelInstanceIAMBindingOutput)
+}
+
+type TunnelInstanceIAMBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (TunnelInstanceIAMBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TunnelInstanceIAMBindingOutput)(nil)).Elem()
+}
+
+func (o TunnelInstanceIAMBindingOutput) ToTunnelInstanceIAMBindingOutput() TunnelInstanceIAMBindingOutput {
+	return o
+}
+
+func (o TunnelInstanceIAMBindingOutput) ToTunnelInstanceIAMBindingOutputWithContext(ctx context.Context) TunnelInstanceIAMBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TunnelInstanceIAMBindingOutput{})
 }

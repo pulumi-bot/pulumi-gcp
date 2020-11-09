@@ -4,6 +4,8 @@
 package storage
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -53,11 +55,11 @@ type HmacKey struct {
 // NewHmacKey registers a new resource with the given unique name, arguments, and options.
 func NewHmacKey(ctx *pulumi.Context,
 	name string, args *HmacKeyArgs, opts ...pulumi.ResourceOption) (*HmacKey, error) {
-	if args == nil || args.ServiceAccountEmail == nil {
-		return nil, errors.New("missing required argument 'ServiceAccountEmail'")
-	}
 	if args == nil {
-		args = &HmacKeyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.ServiceAccountEmail == nil {
+		return nil, errors.New("invalid value for required argument 'ServiceAccountEmail'")
 	}
 	var resource HmacKey
 	err := ctx.RegisterResource("gcp:storage/hmacKey:HmacKey", name, args, &resource, opts...)
@@ -151,4 +153,43 @@ type HmacKeyArgs struct {
 
 func (HmacKeyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*hmacKeyArgs)(nil)).Elem()
+}
+
+type HmacKeyInput interface {
+	pulumi.Input
+
+	ToHmacKeyOutput() HmacKeyOutput
+	ToHmacKeyOutputWithContext(ctx context.Context) HmacKeyOutput
+}
+
+func (HmacKey) ElementType() reflect.Type {
+	return reflect.TypeOf((*HmacKey)(nil)).Elem()
+}
+
+func (i HmacKey) ToHmacKeyOutput() HmacKeyOutput {
+	return i.ToHmacKeyOutputWithContext(context.Background())
+}
+
+func (i HmacKey) ToHmacKeyOutputWithContext(ctx context.Context) HmacKeyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HmacKeyOutput)
+}
+
+type HmacKeyOutput struct {
+	*pulumi.OutputState
+}
+
+func (HmacKeyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*HmacKeyOutput)(nil)).Elem()
+}
+
+func (o HmacKeyOutput) ToHmacKeyOutput() HmacKeyOutput {
+	return o
+}
+
+func (o HmacKeyOutput) ToHmacKeyOutputWithContext(ctx context.Context) HmacKeyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(HmacKeyOutput{})
 }

@@ -4,6 +4,8 @@
 package datacatalog
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -45,14 +47,14 @@ type TagTemplate struct {
 // NewTagTemplate registers a new resource with the given unique name, arguments, and options.
 func NewTagTemplate(ctx *pulumi.Context,
 	name string, args *TagTemplateArgs, opts ...pulumi.ResourceOption) (*TagTemplate, error) {
-	if args == nil || args.Fields == nil {
-		return nil, errors.New("missing required argument 'Fields'")
-	}
-	if args == nil || args.TagTemplateId == nil {
-		return nil, errors.New("missing required argument 'TagTemplateId'")
-	}
 	if args == nil {
-		args = &TagTemplateArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Fields == nil {
+		return nil, errors.New("invalid value for required argument 'Fields'")
+	}
+	if args.TagTemplateId == nil {
+		return nil, errors.New("invalid value for required argument 'TagTemplateId'")
 	}
 	var resource TagTemplate
 	err := ctx.RegisterResource("gcp:datacatalog/tagTemplate:TagTemplate", name, args, &resource, opts...)
@@ -156,4 +158,43 @@ type TagTemplateArgs struct {
 
 func (TagTemplateArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*tagTemplateArgs)(nil)).Elem()
+}
+
+type TagTemplateInput interface {
+	pulumi.Input
+
+	ToTagTemplateOutput() TagTemplateOutput
+	ToTagTemplateOutputWithContext(ctx context.Context) TagTemplateOutput
+}
+
+func (TagTemplate) ElementType() reflect.Type {
+	return reflect.TypeOf((*TagTemplate)(nil)).Elem()
+}
+
+func (i TagTemplate) ToTagTemplateOutput() TagTemplateOutput {
+	return i.ToTagTemplateOutputWithContext(context.Background())
+}
+
+func (i TagTemplate) ToTagTemplateOutputWithContext(ctx context.Context) TagTemplateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TagTemplateOutput)
+}
+
+type TagTemplateOutput struct {
+	*pulumi.OutputState
+}
+
+func (TagTemplateOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TagTemplateOutput)(nil)).Elem()
+}
+
+func (o TagTemplateOutput) ToTagTemplateOutput() TagTemplateOutput {
+	return o
+}
+
+func (o TagTemplateOutput) ToTagTemplateOutputWithContext(ctx context.Context) TagTemplateOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TagTemplateOutput{})
 }

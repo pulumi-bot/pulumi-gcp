@@ -4,6 +4,8 @@
 package logging
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -37,14 +39,14 @@ type OrganizationExclusion struct {
 // NewOrganizationExclusion registers a new resource with the given unique name, arguments, and options.
 func NewOrganizationExclusion(ctx *pulumi.Context,
 	name string, args *OrganizationExclusionArgs, opts ...pulumi.ResourceOption) (*OrganizationExclusion, error) {
-	if args == nil || args.Filter == nil {
-		return nil, errors.New("missing required argument 'Filter'")
-	}
-	if args == nil || args.OrgId == nil {
-		return nil, errors.New("missing required argument 'OrgId'")
-	}
 	if args == nil {
-		args = &OrganizationExclusionArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Filter == nil {
+		return nil, errors.New("invalid value for required argument 'Filter'")
+	}
+	if args.OrgId == nil {
+		return nil, errors.New("invalid value for required argument 'OrgId'")
 	}
 	var resource OrganizationExclusion
 	err := ctx.RegisterResource("gcp:logging/organizationExclusion:OrganizationExclusion", name, args, &resource, opts...)
@@ -138,4 +140,43 @@ type OrganizationExclusionArgs struct {
 
 func (OrganizationExclusionArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*organizationExclusionArgs)(nil)).Elem()
+}
+
+type OrganizationExclusionInput interface {
+	pulumi.Input
+
+	ToOrganizationExclusionOutput() OrganizationExclusionOutput
+	ToOrganizationExclusionOutputWithContext(ctx context.Context) OrganizationExclusionOutput
+}
+
+func (OrganizationExclusion) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationExclusion)(nil)).Elem()
+}
+
+func (i OrganizationExclusion) ToOrganizationExclusionOutput() OrganizationExclusionOutput {
+	return i.ToOrganizationExclusionOutputWithContext(context.Background())
+}
+
+func (i OrganizationExclusion) ToOrganizationExclusionOutputWithContext(ctx context.Context) OrganizationExclusionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationExclusionOutput)
+}
+
+type OrganizationExclusionOutput struct {
+	*pulumi.OutputState
+}
+
+func (OrganizationExclusionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationExclusionOutput)(nil)).Elem()
+}
+
+func (o OrganizationExclusionOutput) ToOrganizationExclusionOutput() OrganizationExclusionOutput {
+	return o
+}
+
+func (o OrganizationExclusionOutput) ToOrganizationExclusionOutputWithContext(ctx context.Context) OrganizationExclusionOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(OrganizationExclusionOutput{})
 }

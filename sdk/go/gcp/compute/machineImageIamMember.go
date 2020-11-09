@@ -4,6 +4,8 @@
 package compute
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -33,17 +35,17 @@ type MachineImageIamMember struct {
 // NewMachineImageIamMember registers a new resource with the given unique name, arguments, and options.
 func NewMachineImageIamMember(ctx *pulumi.Context,
 	name string, args *MachineImageIamMemberArgs, opts ...pulumi.ResourceOption) (*MachineImageIamMember, error) {
-	if args == nil || args.MachineImage == nil {
-		return nil, errors.New("missing required argument 'MachineImage'")
-	}
-	if args == nil || args.Member == nil {
-		return nil, errors.New("missing required argument 'Member'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &MachineImageIamMemberArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.MachineImage == nil {
+		return nil, errors.New("invalid value for required argument 'MachineImage'")
+	}
+	if args.Member == nil {
+		return nil, errors.New("invalid value for required argument 'Member'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource MachineImageIamMember
 	err := ctx.RegisterResource("gcp:compute/machineImageIamMember:MachineImageIamMember", name, args, &resource, opts...)
@@ -141,4 +143,43 @@ type MachineImageIamMemberArgs struct {
 
 func (MachineImageIamMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*machineImageIamMemberArgs)(nil)).Elem()
+}
+
+type MachineImageIamMemberInput interface {
+	pulumi.Input
+
+	ToMachineImageIamMemberOutput() MachineImageIamMemberOutput
+	ToMachineImageIamMemberOutputWithContext(ctx context.Context) MachineImageIamMemberOutput
+}
+
+func (MachineImageIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*MachineImageIamMember)(nil)).Elem()
+}
+
+func (i MachineImageIamMember) ToMachineImageIamMemberOutput() MachineImageIamMemberOutput {
+	return i.ToMachineImageIamMemberOutputWithContext(context.Background())
+}
+
+func (i MachineImageIamMember) ToMachineImageIamMemberOutputWithContext(ctx context.Context) MachineImageIamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MachineImageIamMemberOutput)
+}
+
+type MachineImageIamMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (MachineImageIamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MachineImageIamMemberOutput)(nil)).Elem()
+}
+
+func (o MachineImageIamMemberOutput) ToMachineImageIamMemberOutput() MachineImageIamMemberOutput {
+	return o
+}
+
+func (o MachineImageIamMemberOutput) ToMachineImageIamMemberOutputWithContext(ctx context.Context) MachineImageIamMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(MachineImageIamMemberOutput{})
 }

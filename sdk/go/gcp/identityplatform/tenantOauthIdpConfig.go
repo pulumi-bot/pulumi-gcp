@@ -4,6 +4,8 @@
 package identityplatform
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -42,20 +44,20 @@ type TenantOauthIdpConfig struct {
 // NewTenantOauthIdpConfig registers a new resource with the given unique name, arguments, and options.
 func NewTenantOauthIdpConfig(ctx *pulumi.Context,
 	name string, args *TenantOauthIdpConfigArgs, opts ...pulumi.ResourceOption) (*TenantOauthIdpConfig, error) {
-	if args == nil || args.ClientId == nil {
-		return nil, errors.New("missing required argument 'ClientId'")
-	}
-	if args == nil || args.DisplayName == nil {
-		return nil, errors.New("missing required argument 'DisplayName'")
-	}
-	if args == nil || args.Issuer == nil {
-		return nil, errors.New("missing required argument 'Issuer'")
-	}
-	if args == nil || args.Tenant == nil {
-		return nil, errors.New("missing required argument 'Tenant'")
-	}
 	if args == nil {
-		args = &TenantOauthIdpConfigArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.ClientId == nil {
+		return nil, errors.New("invalid value for required argument 'ClientId'")
+	}
+	if args.DisplayName == nil {
+		return nil, errors.New("invalid value for required argument 'DisplayName'")
+	}
+	if args.Issuer == nil {
+		return nil, errors.New("invalid value for required argument 'Issuer'")
+	}
+	if args.Tenant == nil {
+		return nil, errors.New("invalid value for required argument 'Tenant'")
 	}
 	var resource TenantOauthIdpConfig
 	err := ctx.RegisterResource("gcp:identityplatform/tenantOauthIdpConfig:TenantOauthIdpConfig", name, args, &resource, opts...)
@@ -165,4 +167,43 @@ type TenantOauthIdpConfigArgs struct {
 
 func (TenantOauthIdpConfigArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*tenantOauthIdpConfigArgs)(nil)).Elem()
+}
+
+type TenantOauthIdpConfigInput interface {
+	pulumi.Input
+
+	ToTenantOauthIdpConfigOutput() TenantOauthIdpConfigOutput
+	ToTenantOauthIdpConfigOutputWithContext(ctx context.Context) TenantOauthIdpConfigOutput
+}
+
+func (TenantOauthIdpConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*TenantOauthIdpConfig)(nil)).Elem()
+}
+
+func (i TenantOauthIdpConfig) ToTenantOauthIdpConfigOutput() TenantOauthIdpConfigOutput {
+	return i.ToTenantOauthIdpConfigOutputWithContext(context.Background())
+}
+
+func (i TenantOauthIdpConfig) ToTenantOauthIdpConfigOutputWithContext(ctx context.Context) TenantOauthIdpConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TenantOauthIdpConfigOutput)
+}
+
+type TenantOauthIdpConfigOutput struct {
+	*pulumi.OutputState
+}
+
+func (TenantOauthIdpConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TenantOauthIdpConfigOutput)(nil)).Elem()
+}
+
+func (o TenantOauthIdpConfigOutput) ToTenantOauthIdpConfigOutput() TenantOauthIdpConfigOutput {
+	return o
+}
+
+func (o TenantOauthIdpConfigOutput) ToTenantOauthIdpConfigOutputWithContext(ctx context.Context) TenantOauthIdpConfigOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TenantOauthIdpConfigOutput{})
 }

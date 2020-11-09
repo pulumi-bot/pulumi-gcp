@@ -4,6 +4,8 @@
 package compute
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -33,17 +35,17 @@ type MachineImageIamBinding struct {
 // NewMachineImageIamBinding registers a new resource with the given unique name, arguments, and options.
 func NewMachineImageIamBinding(ctx *pulumi.Context,
 	name string, args *MachineImageIamBindingArgs, opts ...pulumi.ResourceOption) (*MachineImageIamBinding, error) {
-	if args == nil || args.MachineImage == nil {
-		return nil, errors.New("missing required argument 'MachineImage'")
-	}
-	if args == nil || args.Members == nil {
-		return nil, errors.New("missing required argument 'Members'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &MachineImageIamBindingArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.MachineImage == nil {
+		return nil, errors.New("invalid value for required argument 'MachineImage'")
+	}
+	if args.Members == nil {
+		return nil, errors.New("invalid value for required argument 'Members'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource MachineImageIamBinding
 	err := ctx.RegisterResource("gcp:compute/machineImageIamBinding:MachineImageIamBinding", name, args, &resource, opts...)
@@ -141,4 +143,43 @@ type MachineImageIamBindingArgs struct {
 
 func (MachineImageIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*machineImageIamBindingArgs)(nil)).Elem()
+}
+
+type MachineImageIamBindingInput interface {
+	pulumi.Input
+
+	ToMachineImageIamBindingOutput() MachineImageIamBindingOutput
+	ToMachineImageIamBindingOutputWithContext(ctx context.Context) MachineImageIamBindingOutput
+}
+
+func (MachineImageIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*MachineImageIamBinding)(nil)).Elem()
+}
+
+func (i MachineImageIamBinding) ToMachineImageIamBindingOutput() MachineImageIamBindingOutput {
+	return i.ToMachineImageIamBindingOutputWithContext(context.Background())
+}
+
+func (i MachineImageIamBinding) ToMachineImageIamBindingOutputWithContext(ctx context.Context) MachineImageIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MachineImageIamBindingOutput)
+}
+
+type MachineImageIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (MachineImageIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MachineImageIamBindingOutput)(nil)).Elem()
+}
+
+func (o MachineImageIamBindingOutput) ToMachineImageIamBindingOutput() MachineImageIamBindingOutput {
+	return o
+}
+
+func (o MachineImageIamBindingOutput) ToMachineImageIamBindingOutputWithContext(ctx context.Context) MachineImageIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(MachineImageIamBindingOutput{})
 }

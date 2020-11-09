@@ -4,6 +4,8 @@
 package logging
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -51,14 +53,14 @@ type FolderSink struct {
 // NewFolderSink registers a new resource with the given unique name, arguments, and options.
 func NewFolderSink(ctx *pulumi.Context,
 	name string, args *FolderSinkArgs, opts ...pulumi.ResourceOption) (*FolderSink, error) {
-	if args == nil || args.Destination == nil {
-		return nil, errors.New("missing required argument 'Destination'")
-	}
-	if args == nil || args.Folder == nil {
-		return nil, errors.New("missing required argument 'Folder'")
-	}
 	if args == nil {
-		args = &FolderSinkArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Destination == nil {
+		return nil, errors.New("invalid value for required argument 'Destination'")
+	}
+	if args.Folder == nil {
+		return nil, errors.New("invalid value for required argument 'Folder'")
 	}
 	var resource FolderSink
 	err := ctx.RegisterResource("gcp:logging/folderSink:FolderSink", name, args, &resource, opts...)
@@ -202,4 +204,43 @@ type FolderSinkArgs struct {
 
 func (FolderSinkArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*folderSinkArgs)(nil)).Elem()
+}
+
+type FolderSinkInput interface {
+	pulumi.Input
+
+	ToFolderSinkOutput() FolderSinkOutput
+	ToFolderSinkOutputWithContext(ctx context.Context) FolderSinkOutput
+}
+
+func (FolderSink) ElementType() reflect.Type {
+	return reflect.TypeOf((*FolderSink)(nil)).Elem()
+}
+
+func (i FolderSink) ToFolderSinkOutput() FolderSinkOutput {
+	return i.ToFolderSinkOutputWithContext(context.Background())
+}
+
+func (i FolderSink) ToFolderSinkOutputWithContext(ctx context.Context) FolderSinkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FolderSinkOutput)
+}
+
+type FolderSinkOutput struct {
+	*pulumi.OutputState
+}
+
+func (FolderSinkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FolderSinkOutput)(nil)).Elem()
+}
+
+func (o FolderSinkOutput) ToFolderSinkOutput() FolderSinkOutput {
+	return o
+}
+
+func (o FolderSinkOutput) ToFolderSinkOutputWithContext(ctx context.Context) FolderSinkOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(FolderSinkOutput{})
 }

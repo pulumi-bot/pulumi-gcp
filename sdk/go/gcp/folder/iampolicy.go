@@ -4,6 +4,8 @@
 package folder
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -21,14 +23,14 @@ type IAMPolicy struct {
 // NewIAMPolicy registers a new resource with the given unique name, arguments, and options.
 func NewIAMPolicy(ctx *pulumi.Context,
 	name string, args *IAMPolicyArgs, opts ...pulumi.ResourceOption) (*IAMPolicy, error) {
-	if args == nil || args.Folder == nil {
-		return nil, errors.New("missing required argument 'Folder'")
-	}
-	if args == nil || args.PolicyData == nil {
-		return nil, errors.New("missing required argument 'PolicyData'")
-	}
 	if args == nil {
-		args = &IAMPolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Folder == nil {
+		return nil, errors.New("invalid value for required argument 'Folder'")
+	}
+	if args.PolicyData == nil {
+		return nil, errors.New("invalid value for required argument 'PolicyData'")
 	}
 	var resource IAMPolicy
 	err := ctx.RegisterResource("gcp:folder/iAMPolicy:IAMPolicy", name, args, &resource, opts...)
@@ -80,4 +82,43 @@ type IAMPolicyArgs struct {
 
 func (IAMPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*iampolicyArgs)(nil)).Elem()
+}
+
+type IAMPolicyInput interface {
+	pulumi.Input
+
+	ToIAMPolicyOutput() IAMPolicyOutput
+	ToIAMPolicyOutputWithContext(ctx context.Context) IAMPolicyOutput
+}
+
+func (IAMPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*IAMPolicy)(nil)).Elem()
+}
+
+func (i IAMPolicy) ToIAMPolicyOutput() IAMPolicyOutput {
+	return i.ToIAMPolicyOutputWithContext(context.Background())
+}
+
+func (i IAMPolicy) ToIAMPolicyOutputWithContext(ctx context.Context) IAMPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IAMPolicyOutput)
+}
+
+type IAMPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (IAMPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IAMPolicyOutput)(nil)).Elem()
+}
+
+func (o IAMPolicyOutput) ToIAMPolicyOutput() IAMPolicyOutput {
+	return o
+}
+
+func (o IAMPolicyOutput) ToIAMPolicyOutputWithContext(ctx context.Context) IAMPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(IAMPolicyOutput{})
 }

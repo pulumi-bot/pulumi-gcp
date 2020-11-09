@@ -4,6 +4,8 @@
 package compute
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
@@ -298,4 +300,43 @@ type GlobalAddressArgs struct {
 
 func (GlobalAddressArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*globalAddressArgs)(nil)).Elem()
+}
+
+type GlobalAddressInput interface {
+	pulumi.Input
+
+	ToGlobalAddressOutput() GlobalAddressOutput
+	ToGlobalAddressOutputWithContext(ctx context.Context) GlobalAddressOutput
+}
+
+func (GlobalAddress) ElementType() reflect.Type {
+	return reflect.TypeOf((*GlobalAddress)(nil)).Elem()
+}
+
+func (i GlobalAddress) ToGlobalAddressOutput() GlobalAddressOutput {
+	return i.ToGlobalAddressOutputWithContext(context.Background())
+}
+
+func (i GlobalAddress) ToGlobalAddressOutputWithContext(ctx context.Context) GlobalAddressOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalAddressOutput)
+}
+
+type GlobalAddressOutput struct {
+	*pulumi.OutputState
+}
+
+func (GlobalAddressOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GlobalAddressOutput)(nil)).Elem()
+}
+
+func (o GlobalAddressOutput) ToGlobalAddressOutput() GlobalAddressOutput {
+	return o
+}
+
+func (o GlobalAddressOutput) ToGlobalAddressOutputWithContext(ctx context.Context) GlobalAddressOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(GlobalAddressOutput{})
 }

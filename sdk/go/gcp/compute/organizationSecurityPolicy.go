@@ -4,6 +4,8 @@
 package compute
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -44,14 +46,14 @@ type OrganizationSecurityPolicy struct {
 // NewOrganizationSecurityPolicy registers a new resource with the given unique name, arguments, and options.
 func NewOrganizationSecurityPolicy(ctx *pulumi.Context,
 	name string, args *OrganizationSecurityPolicyArgs, opts ...pulumi.ResourceOption) (*OrganizationSecurityPolicy, error) {
-	if args == nil || args.DisplayName == nil {
-		return nil, errors.New("missing required argument 'DisplayName'")
-	}
-	if args == nil || args.Parent == nil {
-		return nil, errors.New("missing required argument 'Parent'")
-	}
 	if args == nil {
-		args = &OrganizationSecurityPolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.DisplayName == nil {
+		return nil, errors.New("invalid value for required argument 'DisplayName'")
+	}
+	if args.Parent == nil {
+		return nil, errors.New("invalid value for required argument 'Parent'")
 	}
 	var resource OrganizationSecurityPolicy
 	err := ctx.RegisterResource("gcp:compute/organizationSecurityPolicy:OrganizationSecurityPolicy", name, args, &resource, opts...)
@@ -153,4 +155,43 @@ type OrganizationSecurityPolicyArgs struct {
 
 func (OrganizationSecurityPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*organizationSecurityPolicyArgs)(nil)).Elem()
+}
+
+type OrganizationSecurityPolicyInput interface {
+	pulumi.Input
+
+	ToOrganizationSecurityPolicyOutput() OrganizationSecurityPolicyOutput
+	ToOrganizationSecurityPolicyOutputWithContext(ctx context.Context) OrganizationSecurityPolicyOutput
+}
+
+func (OrganizationSecurityPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationSecurityPolicy)(nil)).Elem()
+}
+
+func (i OrganizationSecurityPolicy) ToOrganizationSecurityPolicyOutput() OrganizationSecurityPolicyOutput {
+	return i.ToOrganizationSecurityPolicyOutputWithContext(context.Background())
+}
+
+func (i OrganizationSecurityPolicy) ToOrganizationSecurityPolicyOutputWithContext(ctx context.Context) OrganizationSecurityPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationSecurityPolicyOutput)
+}
+
+type OrganizationSecurityPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (OrganizationSecurityPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationSecurityPolicyOutput)(nil)).Elem()
+}
+
+func (o OrganizationSecurityPolicyOutput) ToOrganizationSecurityPolicyOutput() OrganizationSecurityPolicyOutput {
+	return o
+}
+
+func (o OrganizationSecurityPolicyOutput) ToOrganizationSecurityPolicyOutputWithContext(ctx context.Context) OrganizationSecurityPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(OrganizationSecurityPolicyOutput{})
 }

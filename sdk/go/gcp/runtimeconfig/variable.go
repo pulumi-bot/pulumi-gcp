@@ -4,6 +4,8 @@
 package runtimeconfig
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -41,11 +43,11 @@ type Variable struct {
 // NewVariable registers a new resource with the given unique name, arguments, and options.
 func NewVariable(ctx *pulumi.Context,
 	name string, args *VariableArgs, opts ...pulumi.ResourceOption) (*Variable, error) {
-	if args == nil || args.Parent == nil {
-		return nil, errors.New("missing required argument 'Parent'")
-	}
 	if args == nil {
-		args = &VariableArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Parent == nil {
+		return nil, errors.New("invalid value for required argument 'Parent'")
 	}
 	var resource Variable
 	err := ctx.RegisterResource("gcp:runtimeconfig/variable:Variable", name, args, &resource, opts...)
@@ -155,4 +157,43 @@ type VariableArgs struct {
 
 func (VariableArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*variableArgs)(nil)).Elem()
+}
+
+type VariableInput interface {
+	pulumi.Input
+
+	ToVariableOutput() VariableOutput
+	ToVariableOutputWithContext(ctx context.Context) VariableOutput
+}
+
+func (Variable) ElementType() reflect.Type {
+	return reflect.TypeOf((*Variable)(nil)).Elem()
+}
+
+func (i Variable) ToVariableOutput() VariableOutput {
+	return i.ToVariableOutputWithContext(context.Background())
+}
+
+func (i Variable) ToVariableOutputWithContext(ctx context.Context) VariableOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VariableOutput)
+}
+
+type VariableOutput struct {
+	*pulumi.OutputState
+}
+
+func (VariableOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VariableOutput)(nil)).Elem()
+}
+
+func (o VariableOutput) ToVariableOutput() VariableOutput {
+	return o
+}
+
+func (o VariableOutput) ToVariableOutputWithContext(ctx context.Context) VariableOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(VariableOutput{})
 }

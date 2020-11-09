@@ -4,6 +4,8 @@
 package compute
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -75,14 +77,14 @@ type InstanceGroupManager struct {
 // NewInstanceGroupManager registers a new resource with the given unique name, arguments, and options.
 func NewInstanceGroupManager(ctx *pulumi.Context,
 	name string, args *InstanceGroupManagerArgs, opts ...pulumi.ResourceOption) (*InstanceGroupManager, error) {
-	if args == nil || args.BaseInstanceName == nil {
-		return nil, errors.New("missing required argument 'BaseInstanceName'")
-	}
-	if args == nil || args.Versions == nil {
-		return nil, errors.New("missing required argument 'Versions'")
-	}
 	if args == nil {
-		args = &InstanceGroupManagerArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.BaseInstanceName == nil {
+		return nil, errors.New("invalid value for required argument 'BaseInstanceName'")
+	}
+	if args.Versions == nil {
+		return nil, errors.New("invalid value for required argument 'Versions'")
 	}
 	var resource InstanceGroupManager
 	err := ctx.RegisterResource("gcp:compute/instanceGroupManager:InstanceGroupManager", name, args, &resource, opts...)
@@ -306,4 +308,43 @@ type InstanceGroupManagerArgs struct {
 
 func (InstanceGroupManagerArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*instanceGroupManagerArgs)(nil)).Elem()
+}
+
+type InstanceGroupManagerInput interface {
+	pulumi.Input
+
+	ToInstanceGroupManagerOutput() InstanceGroupManagerOutput
+	ToInstanceGroupManagerOutputWithContext(ctx context.Context) InstanceGroupManagerOutput
+}
+
+func (InstanceGroupManager) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceGroupManager)(nil)).Elem()
+}
+
+func (i InstanceGroupManager) ToInstanceGroupManagerOutput() InstanceGroupManagerOutput {
+	return i.ToInstanceGroupManagerOutputWithContext(context.Background())
+}
+
+func (i InstanceGroupManager) ToInstanceGroupManagerOutputWithContext(ctx context.Context) InstanceGroupManagerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceGroupManagerOutput)
+}
+
+type InstanceGroupManagerOutput struct {
+	*pulumi.OutputState
+}
+
+func (InstanceGroupManagerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceGroupManagerOutput)(nil)).Elem()
+}
+
+func (o InstanceGroupManagerOutput) ToInstanceGroupManagerOutput() InstanceGroupManagerOutput {
+	return o
+}
+
+func (o InstanceGroupManagerOutput) ToInstanceGroupManagerOutputWithContext(ctx context.Context) InstanceGroupManagerOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(InstanceGroupManagerOutput{})
 }

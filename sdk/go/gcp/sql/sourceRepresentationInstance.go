@@ -4,6 +4,8 @@
 package sql
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -41,14 +43,14 @@ type SourceRepresentationInstance struct {
 // NewSourceRepresentationInstance registers a new resource with the given unique name, arguments, and options.
 func NewSourceRepresentationInstance(ctx *pulumi.Context,
 	name string, args *SourceRepresentationInstanceArgs, opts ...pulumi.ResourceOption) (*SourceRepresentationInstance, error) {
-	if args == nil || args.DatabaseVersion == nil {
-		return nil, errors.New("missing required argument 'DatabaseVersion'")
-	}
-	if args == nil || args.Host == nil {
-		return nil, errors.New("missing required argument 'Host'")
-	}
 	if args == nil {
-		args = &SourceRepresentationInstanceArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.DatabaseVersion == nil {
+		return nil, errors.New("invalid value for required argument 'DatabaseVersion'")
+	}
+	if args.Host == nil {
+		return nil, errors.New("invalid value for required argument 'Host'")
 	}
 	var resource SourceRepresentationInstance
 	err := ctx.RegisterResource("gcp:sql/sourceRepresentationInstance:SourceRepresentationInstance", name, args, &resource, opts...)
@@ -154,4 +156,43 @@ type SourceRepresentationInstanceArgs struct {
 
 func (SourceRepresentationInstanceArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*sourceRepresentationInstanceArgs)(nil)).Elem()
+}
+
+type SourceRepresentationInstanceInput interface {
+	pulumi.Input
+
+	ToSourceRepresentationInstanceOutput() SourceRepresentationInstanceOutput
+	ToSourceRepresentationInstanceOutputWithContext(ctx context.Context) SourceRepresentationInstanceOutput
+}
+
+func (SourceRepresentationInstance) ElementType() reflect.Type {
+	return reflect.TypeOf((*SourceRepresentationInstance)(nil)).Elem()
+}
+
+func (i SourceRepresentationInstance) ToSourceRepresentationInstanceOutput() SourceRepresentationInstanceOutput {
+	return i.ToSourceRepresentationInstanceOutputWithContext(context.Background())
+}
+
+func (i SourceRepresentationInstance) ToSourceRepresentationInstanceOutputWithContext(ctx context.Context) SourceRepresentationInstanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceRepresentationInstanceOutput)
+}
+
+type SourceRepresentationInstanceOutput struct {
+	*pulumi.OutputState
+}
+
+func (SourceRepresentationInstanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SourceRepresentationInstanceOutput)(nil)).Elem()
+}
+
+func (o SourceRepresentationInstanceOutput) ToSourceRepresentationInstanceOutput() SourceRepresentationInstanceOutput {
+	return o
+}
+
+func (o SourceRepresentationInstanceOutput) ToSourceRepresentationInstanceOutputWithContext(ctx context.Context) SourceRepresentationInstanceOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SourceRepresentationInstanceOutput{})
 }

@@ -4,6 +4,8 @@
 package identityplatform
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -40,14 +42,14 @@ type OauthIdpConfig struct {
 // NewOauthIdpConfig registers a new resource with the given unique name, arguments, and options.
 func NewOauthIdpConfig(ctx *pulumi.Context,
 	name string, args *OauthIdpConfigArgs, opts ...pulumi.ResourceOption) (*OauthIdpConfig, error) {
-	if args == nil || args.ClientId == nil {
-		return nil, errors.New("missing required argument 'ClientId'")
-	}
-	if args == nil || args.Issuer == nil {
-		return nil, errors.New("missing required argument 'Issuer'")
-	}
 	if args == nil {
-		args = &OauthIdpConfigArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.ClientId == nil {
+		return nil, errors.New("invalid value for required argument 'ClientId'")
+	}
+	if args.Issuer == nil {
+		return nil, errors.New("invalid value for required argument 'Issuer'")
 	}
 	var resource OauthIdpConfig
 	err := ctx.RegisterResource("gcp:identityplatform/oauthIdpConfig:OauthIdpConfig", name, args, &resource, opts...)
@@ -149,4 +151,43 @@ type OauthIdpConfigArgs struct {
 
 func (OauthIdpConfigArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*oauthIdpConfigArgs)(nil)).Elem()
+}
+
+type OauthIdpConfigInput interface {
+	pulumi.Input
+
+	ToOauthIdpConfigOutput() OauthIdpConfigOutput
+	ToOauthIdpConfigOutputWithContext(ctx context.Context) OauthIdpConfigOutput
+}
+
+func (OauthIdpConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*OauthIdpConfig)(nil)).Elem()
+}
+
+func (i OauthIdpConfig) ToOauthIdpConfigOutput() OauthIdpConfigOutput {
+	return i.ToOauthIdpConfigOutputWithContext(context.Background())
+}
+
+func (i OauthIdpConfig) ToOauthIdpConfigOutputWithContext(ctx context.Context) OauthIdpConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OauthIdpConfigOutput)
+}
+
+type OauthIdpConfigOutput struct {
+	*pulumi.OutputState
+}
+
+func (OauthIdpConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*OauthIdpConfigOutput)(nil)).Elem()
+}
+
+func (o OauthIdpConfigOutput) ToOauthIdpConfigOutput() OauthIdpConfigOutput {
+	return o
+}
+
+func (o OauthIdpConfigOutput) ToOauthIdpConfigOutputWithContext(ctx context.Context) OauthIdpConfigOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(OauthIdpConfigOutput{})
 }

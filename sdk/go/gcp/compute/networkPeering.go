@@ -4,6 +4,8 @@
 package compute
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -47,14 +49,14 @@ type NetworkPeering struct {
 // NewNetworkPeering registers a new resource with the given unique name, arguments, and options.
 func NewNetworkPeering(ctx *pulumi.Context,
 	name string, args *NetworkPeeringArgs, opts ...pulumi.ResourceOption) (*NetworkPeering, error) {
-	if args == nil || args.Network == nil {
-		return nil, errors.New("missing required argument 'Network'")
-	}
-	if args == nil || args.PeerNetwork == nil {
-		return nil, errors.New("missing required argument 'PeerNetwork'")
-	}
 	if args == nil {
-		args = &NetworkPeeringArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Network == nil {
+		return nil, errors.New("invalid value for required argument 'Network'")
+	}
+	if args.PeerNetwork == nil {
+		return nil, errors.New("invalid value for required argument 'PeerNetwork'")
 	}
 	var resource NetworkPeering
 	err := ctx.RegisterResource("gcp:compute/networkPeering:NetworkPeering", name, args, &resource, opts...)
@@ -166,4 +168,43 @@ type NetworkPeeringArgs struct {
 
 func (NetworkPeeringArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*networkPeeringArgs)(nil)).Elem()
+}
+
+type NetworkPeeringInput interface {
+	pulumi.Input
+
+	ToNetworkPeeringOutput() NetworkPeeringOutput
+	ToNetworkPeeringOutputWithContext(ctx context.Context) NetworkPeeringOutput
+}
+
+func (NetworkPeering) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetworkPeering)(nil)).Elem()
+}
+
+func (i NetworkPeering) ToNetworkPeeringOutput() NetworkPeeringOutput {
+	return i.ToNetworkPeeringOutputWithContext(context.Background())
+}
+
+func (i NetworkPeering) ToNetworkPeeringOutputWithContext(ctx context.Context) NetworkPeeringOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NetworkPeeringOutput)
+}
+
+type NetworkPeeringOutput struct {
+	*pulumi.OutputState
+}
+
+func (NetworkPeeringOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetworkPeeringOutput)(nil)).Elem()
+}
+
+func (o NetworkPeeringOutput) ToNetworkPeeringOutput() NetworkPeeringOutput {
+	return o
+}
+
+func (o NetworkPeeringOutput) ToNetworkPeeringOutputWithContext(ctx context.Context) NetworkPeeringOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(NetworkPeeringOutput{})
 }

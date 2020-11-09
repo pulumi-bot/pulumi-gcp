@@ -4,6 +4,8 @@
 package datacatalog
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -81,14 +83,14 @@ type Entry struct {
 // NewEntry registers a new resource with the given unique name, arguments, and options.
 func NewEntry(ctx *pulumi.Context,
 	name string, args *EntryArgs, opts ...pulumi.ResourceOption) (*Entry, error) {
-	if args == nil || args.EntryGroup == nil {
-		return nil, errors.New("missing required argument 'EntryGroup'")
-	}
-	if args == nil || args.EntryId == nil {
-		return nil, errors.New("missing required argument 'EntryId'")
-	}
 	if args == nil {
-		args = &EntryArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.EntryGroup == nil {
+		return nil, errors.New("invalid value for required argument 'EntryGroup'")
+	}
+	if args.EntryId == nil {
+		return nil, errors.New("invalid value for required argument 'EntryId'")
 	}
 	var resource Entry
 	err := ctx.RegisterResource("gcp:datacatalog/entry:Entry", name, args, &resource, opts...)
@@ -304,4 +306,43 @@ type EntryArgs struct {
 
 func (EntryArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*entryArgs)(nil)).Elem()
+}
+
+type EntryInput interface {
+	pulumi.Input
+
+	ToEntryOutput() EntryOutput
+	ToEntryOutputWithContext(ctx context.Context) EntryOutput
+}
+
+func (Entry) ElementType() reflect.Type {
+	return reflect.TypeOf((*Entry)(nil)).Elem()
+}
+
+func (i Entry) ToEntryOutput() EntryOutput {
+	return i.ToEntryOutputWithContext(context.Background())
+}
+
+func (i Entry) ToEntryOutputWithContext(ctx context.Context) EntryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EntryOutput)
+}
+
+type EntryOutput struct {
+	*pulumi.OutputState
+}
+
+func (EntryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EntryOutput)(nil)).Elem()
+}
+
+func (o EntryOutput) ToEntryOutput() EntryOutput {
+	return o
+}
+
+func (o EntryOutput) ToEntryOutputWithContext(ctx context.Context) EntryOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(EntryOutput{})
 }

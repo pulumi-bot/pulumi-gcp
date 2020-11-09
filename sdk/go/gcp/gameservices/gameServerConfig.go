@@ -4,6 +4,8 @@
 package gameservices
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -49,17 +51,17 @@ type GameServerConfig struct {
 // NewGameServerConfig registers a new resource with the given unique name, arguments, and options.
 func NewGameServerConfig(ctx *pulumi.Context,
 	name string, args *GameServerConfigArgs, opts ...pulumi.ResourceOption) (*GameServerConfig, error) {
-	if args == nil || args.ConfigId == nil {
-		return nil, errors.New("missing required argument 'ConfigId'")
-	}
-	if args == nil || args.DeploymentId == nil {
-		return nil, errors.New("missing required argument 'DeploymentId'")
-	}
-	if args == nil || args.FleetConfigs == nil {
-		return nil, errors.New("missing required argument 'FleetConfigs'")
-	}
 	if args == nil {
-		args = &GameServerConfigArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.ConfigId == nil {
+		return nil, errors.New("invalid value for required argument 'ConfigId'")
+	}
+	if args.DeploymentId == nil {
+		return nil, errors.New("invalid value for required argument 'DeploymentId'")
+	}
+	if args.FleetConfigs == nil {
+		return nil, errors.New("invalid value for required argument 'FleetConfigs'")
 	}
 	var resource GameServerConfig
 	err := ctx.RegisterResource("gcp:gameservices/gameServerConfig:GameServerConfig", name, args, &resource, opts...)
@@ -185,4 +187,43 @@ type GameServerConfigArgs struct {
 
 func (GameServerConfigArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*gameServerConfigArgs)(nil)).Elem()
+}
+
+type GameServerConfigInput interface {
+	pulumi.Input
+
+	ToGameServerConfigOutput() GameServerConfigOutput
+	ToGameServerConfigOutputWithContext(ctx context.Context) GameServerConfigOutput
+}
+
+func (GameServerConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*GameServerConfig)(nil)).Elem()
+}
+
+func (i GameServerConfig) ToGameServerConfigOutput() GameServerConfigOutput {
+	return i.ToGameServerConfigOutputWithContext(context.Background())
+}
+
+func (i GameServerConfig) ToGameServerConfigOutputWithContext(ctx context.Context) GameServerConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GameServerConfigOutput)
+}
+
+type GameServerConfigOutput struct {
+	*pulumi.OutputState
+}
+
+func (GameServerConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GameServerConfigOutput)(nil)).Elem()
+}
+
+func (o GameServerConfigOutput) ToGameServerConfigOutput() GameServerConfigOutput {
+	return o
+}
+
+func (o GameServerConfigOutput) ToGameServerConfigOutputWithContext(ctx context.Context) GameServerConfigOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(GameServerConfigOutput{})
 }

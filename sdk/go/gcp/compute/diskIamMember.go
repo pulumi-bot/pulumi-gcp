@@ -4,6 +4,8 @@
 package compute
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -44,14 +46,14 @@ type DiskIamMember struct {
 // NewDiskIamMember registers a new resource with the given unique name, arguments, and options.
 func NewDiskIamMember(ctx *pulumi.Context,
 	name string, args *DiskIamMemberArgs, opts ...pulumi.ResourceOption) (*DiskIamMember, error) {
-	if args == nil || args.Member == nil {
-		return nil, errors.New("missing required argument 'Member'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &DiskIamMemberArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Member == nil {
+		return nil, errors.New("invalid value for required argument 'Member'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource DiskIamMember
 	err := ctx.RegisterResource("gcp:compute/diskIamMember:DiskIamMember", name, args, &resource, opts...)
@@ -157,4 +159,43 @@ type DiskIamMemberArgs struct {
 
 func (DiskIamMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*diskIamMemberArgs)(nil)).Elem()
+}
+
+type DiskIamMemberInput interface {
+	pulumi.Input
+
+	ToDiskIamMemberOutput() DiskIamMemberOutput
+	ToDiskIamMemberOutputWithContext(ctx context.Context) DiskIamMemberOutput
+}
+
+func (DiskIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*DiskIamMember)(nil)).Elem()
+}
+
+func (i DiskIamMember) ToDiskIamMemberOutput() DiskIamMemberOutput {
+	return i.ToDiskIamMemberOutputWithContext(context.Background())
+}
+
+func (i DiskIamMember) ToDiskIamMemberOutputWithContext(ctx context.Context) DiskIamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DiskIamMemberOutput)
+}
+
+type DiskIamMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (DiskIamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DiskIamMemberOutput)(nil)).Elem()
+}
+
+func (o DiskIamMemberOutput) ToDiskIamMemberOutput() DiskIamMemberOutput {
+	return o
+}
+
+func (o DiskIamMemberOutput) ToDiskIamMemberOutputWithContext(ctx context.Context) DiskIamMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DiskIamMemberOutput{})
 }

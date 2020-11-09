@@ -4,6 +4,8 @@
 package compute
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -41,14 +43,14 @@ type GlobalNetworkEndpoint struct {
 // NewGlobalNetworkEndpoint registers a new resource with the given unique name, arguments, and options.
 func NewGlobalNetworkEndpoint(ctx *pulumi.Context,
 	name string, args *GlobalNetworkEndpointArgs, opts ...pulumi.ResourceOption) (*GlobalNetworkEndpoint, error) {
-	if args == nil || args.GlobalNetworkEndpointGroup == nil {
-		return nil, errors.New("missing required argument 'GlobalNetworkEndpointGroup'")
-	}
-	if args == nil || args.Port == nil {
-		return nil, errors.New("missing required argument 'Port'")
-	}
 	if args == nil {
-		args = &GlobalNetworkEndpointArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.GlobalNetworkEndpointGroup == nil {
+		return nil, errors.New("invalid value for required argument 'GlobalNetworkEndpointGroup'")
+	}
+	if args.Port == nil {
+		return nil, errors.New("invalid value for required argument 'Port'")
 	}
 	var resource GlobalNetworkEndpoint
 	err := ctx.RegisterResource("gcp:compute/globalNetworkEndpoint:GlobalNetworkEndpoint", name, args, &resource, opts...)
@@ -138,4 +140,43 @@ type GlobalNetworkEndpointArgs struct {
 
 func (GlobalNetworkEndpointArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*globalNetworkEndpointArgs)(nil)).Elem()
+}
+
+type GlobalNetworkEndpointInput interface {
+	pulumi.Input
+
+	ToGlobalNetworkEndpointOutput() GlobalNetworkEndpointOutput
+	ToGlobalNetworkEndpointOutputWithContext(ctx context.Context) GlobalNetworkEndpointOutput
+}
+
+func (GlobalNetworkEndpoint) ElementType() reflect.Type {
+	return reflect.TypeOf((*GlobalNetworkEndpoint)(nil)).Elem()
+}
+
+func (i GlobalNetworkEndpoint) ToGlobalNetworkEndpointOutput() GlobalNetworkEndpointOutput {
+	return i.ToGlobalNetworkEndpointOutputWithContext(context.Background())
+}
+
+func (i GlobalNetworkEndpoint) ToGlobalNetworkEndpointOutputWithContext(ctx context.Context) GlobalNetworkEndpointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalNetworkEndpointOutput)
+}
+
+type GlobalNetworkEndpointOutput struct {
+	*pulumi.OutputState
+}
+
+func (GlobalNetworkEndpointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GlobalNetworkEndpointOutput)(nil)).Elem()
+}
+
+func (o GlobalNetworkEndpointOutput) ToGlobalNetworkEndpointOutput() GlobalNetworkEndpointOutput {
+	return o
+}
+
+func (o GlobalNetworkEndpointOutput) ToGlobalNetworkEndpointOutputWithContext(ctx context.Context) GlobalNetworkEndpointOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(GlobalNetworkEndpointOutput{})
 }

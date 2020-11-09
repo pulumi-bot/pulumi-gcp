@@ -4,6 +4,8 @@
 package dataproc
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -42,17 +44,17 @@ type JobIAMMember struct {
 // NewJobIAMMember registers a new resource with the given unique name, arguments, and options.
 func NewJobIAMMember(ctx *pulumi.Context,
 	name string, args *JobIAMMemberArgs, opts ...pulumi.ResourceOption) (*JobIAMMember, error) {
-	if args == nil || args.JobId == nil {
-		return nil, errors.New("missing required argument 'JobId'")
-	}
-	if args == nil || args.Member == nil {
-		return nil, errors.New("missing required argument 'Member'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &JobIAMMemberArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.JobId == nil {
+		return nil, errors.New("invalid value for required argument 'JobId'")
+	}
+	if args.Member == nil {
+		return nil, errors.New("invalid value for required argument 'Member'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource JobIAMMember
 	err := ctx.RegisterResource("gcp:dataproc/jobIAMMember:JobIAMMember", name, args, &resource, opts...)
@@ -150,4 +152,43 @@ type JobIAMMemberArgs struct {
 
 func (JobIAMMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*jobIAMMemberArgs)(nil)).Elem()
+}
+
+type JobIAMMemberInput interface {
+	pulumi.Input
+
+	ToJobIAMMemberOutput() JobIAMMemberOutput
+	ToJobIAMMemberOutputWithContext(ctx context.Context) JobIAMMemberOutput
+}
+
+func (JobIAMMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*JobIAMMember)(nil)).Elem()
+}
+
+func (i JobIAMMember) ToJobIAMMemberOutput() JobIAMMemberOutput {
+	return i.ToJobIAMMemberOutputWithContext(context.Background())
+}
+
+func (i JobIAMMember) ToJobIAMMemberOutputWithContext(ctx context.Context) JobIAMMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(JobIAMMemberOutput)
+}
+
+type JobIAMMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (JobIAMMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*JobIAMMemberOutput)(nil)).Elem()
+}
+
+func (o JobIAMMemberOutput) ToJobIAMMemberOutput() JobIAMMemberOutput {
+	return o
+}
+
+func (o JobIAMMemberOutput) ToJobIAMMemberOutputWithContext(ctx context.Context) JobIAMMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(JobIAMMemberOutput{})
 }

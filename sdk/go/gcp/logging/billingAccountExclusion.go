@@ -4,6 +4,8 @@
 package logging
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -37,14 +39,14 @@ type BillingAccountExclusion struct {
 // NewBillingAccountExclusion registers a new resource with the given unique name, arguments, and options.
 func NewBillingAccountExclusion(ctx *pulumi.Context,
 	name string, args *BillingAccountExclusionArgs, opts ...pulumi.ResourceOption) (*BillingAccountExclusion, error) {
-	if args == nil || args.BillingAccount == nil {
-		return nil, errors.New("missing required argument 'BillingAccount'")
-	}
-	if args == nil || args.Filter == nil {
-		return nil, errors.New("missing required argument 'Filter'")
-	}
 	if args == nil {
-		args = &BillingAccountExclusionArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.BillingAccount == nil {
+		return nil, errors.New("invalid value for required argument 'BillingAccount'")
+	}
+	if args.Filter == nil {
+		return nil, errors.New("invalid value for required argument 'Filter'")
 	}
 	var resource BillingAccountExclusion
 	err := ctx.RegisterResource("gcp:logging/billingAccountExclusion:BillingAccountExclusion", name, args, &resource, opts...)
@@ -138,4 +140,43 @@ type BillingAccountExclusionArgs struct {
 
 func (BillingAccountExclusionArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*billingAccountExclusionArgs)(nil)).Elem()
+}
+
+type BillingAccountExclusionInput interface {
+	pulumi.Input
+
+	ToBillingAccountExclusionOutput() BillingAccountExclusionOutput
+	ToBillingAccountExclusionOutputWithContext(ctx context.Context) BillingAccountExclusionOutput
+}
+
+func (BillingAccountExclusion) ElementType() reflect.Type {
+	return reflect.TypeOf((*BillingAccountExclusion)(nil)).Elem()
+}
+
+func (i BillingAccountExclusion) ToBillingAccountExclusionOutput() BillingAccountExclusionOutput {
+	return i.ToBillingAccountExclusionOutputWithContext(context.Background())
+}
+
+func (i BillingAccountExclusion) ToBillingAccountExclusionOutputWithContext(ctx context.Context) BillingAccountExclusionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BillingAccountExclusionOutput)
+}
+
+type BillingAccountExclusionOutput struct {
+	*pulumi.OutputState
+}
+
+func (BillingAccountExclusionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BillingAccountExclusionOutput)(nil)).Elem()
+}
+
+func (o BillingAccountExclusionOutput) ToBillingAccountExclusionOutput() BillingAccountExclusionOutput {
+	return o
+}
+
+func (o BillingAccountExclusionOutput) ToBillingAccountExclusionOutputWithContext(ctx context.Context) BillingAccountExclusionOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(BillingAccountExclusionOutput{})
 }

@@ -4,6 +4,8 @@
 package compute
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -72,11 +74,11 @@ type NetworkEndpointGroup struct {
 // NewNetworkEndpointGroup registers a new resource with the given unique name, arguments, and options.
 func NewNetworkEndpointGroup(ctx *pulumi.Context,
 	name string, args *NetworkEndpointGroupArgs, opts ...pulumi.ResourceOption) (*NetworkEndpointGroup, error) {
-	if args == nil || args.Network == nil {
-		return nil, errors.New("missing required argument 'Network'")
-	}
 	if args == nil {
-		args = &NetworkEndpointGroupArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Network == nil {
+		return nil, errors.New("invalid value for required argument 'Network'")
 	}
 	var resource NetworkEndpointGroup
 	err := ctx.RegisterResource("gcp:compute/networkEndpointGroup:NetworkEndpointGroup", name, args, &resource, opts...)
@@ -238,4 +240,43 @@ type NetworkEndpointGroupArgs struct {
 
 func (NetworkEndpointGroupArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*networkEndpointGroupArgs)(nil)).Elem()
+}
+
+type NetworkEndpointGroupInput interface {
+	pulumi.Input
+
+	ToNetworkEndpointGroupOutput() NetworkEndpointGroupOutput
+	ToNetworkEndpointGroupOutputWithContext(ctx context.Context) NetworkEndpointGroupOutput
+}
+
+func (NetworkEndpointGroup) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetworkEndpointGroup)(nil)).Elem()
+}
+
+func (i NetworkEndpointGroup) ToNetworkEndpointGroupOutput() NetworkEndpointGroupOutput {
+	return i.ToNetworkEndpointGroupOutputWithContext(context.Background())
+}
+
+func (i NetworkEndpointGroup) ToNetworkEndpointGroupOutputWithContext(ctx context.Context) NetworkEndpointGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NetworkEndpointGroupOutput)
+}
+
+type NetworkEndpointGroupOutput struct {
+	*pulumi.OutputState
+}
+
+func (NetworkEndpointGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetworkEndpointGroupOutput)(nil)).Elem()
+}
+
+func (o NetworkEndpointGroupOutput) ToNetworkEndpointGroupOutput() NetworkEndpointGroupOutput {
+	return o
+}
+
+func (o NetworkEndpointGroupOutput) ToNetworkEndpointGroupOutputWithContext(ctx context.Context) NetworkEndpointGroupOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(NetworkEndpointGroupOutput{})
 }

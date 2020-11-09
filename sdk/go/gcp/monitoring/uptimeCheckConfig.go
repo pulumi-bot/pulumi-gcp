@@ -4,6 +4,8 @@
 package monitoring
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -61,14 +63,14 @@ type UptimeCheckConfig struct {
 // NewUptimeCheckConfig registers a new resource with the given unique name, arguments, and options.
 func NewUptimeCheckConfig(ctx *pulumi.Context,
 	name string, args *UptimeCheckConfigArgs, opts ...pulumi.ResourceOption) (*UptimeCheckConfig, error) {
-	if args == nil || args.DisplayName == nil {
-		return nil, errors.New("missing required argument 'DisplayName'")
-	}
-	if args == nil || args.Timeout == nil {
-		return nil, errors.New("missing required argument 'Timeout'")
-	}
 	if args == nil {
-		args = &UptimeCheckConfigArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.DisplayName == nil {
+		return nil, errors.New("invalid value for required argument 'DisplayName'")
+	}
+	if args.Timeout == nil {
+		return nil, errors.New("invalid value for required argument 'Timeout'")
 	}
 	var resource UptimeCheckConfig
 	err := ctx.RegisterResource("gcp:monitoring/uptimeCheckConfig:UptimeCheckConfig", name, args, &resource, opts...)
@@ -224,4 +226,43 @@ type UptimeCheckConfigArgs struct {
 
 func (UptimeCheckConfigArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*uptimeCheckConfigArgs)(nil)).Elem()
+}
+
+type UptimeCheckConfigInput interface {
+	pulumi.Input
+
+	ToUptimeCheckConfigOutput() UptimeCheckConfigOutput
+	ToUptimeCheckConfigOutputWithContext(ctx context.Context) UptimeCheckConfigOutput
+}
+
+func (UptimeCheckConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*UptimeCheckConfig)(nil)).Elem()
+}
+
+func (i UptimeCheckConfig) ToUptimeCheckConfigOutput() UptimeCheckConfigOutput {
+	return i.ToUptimeCheckConfigOutputWithContext(context.Background())
+}
+
+func (i UptimeCheckConfig) ToUptimeCheckConfigOutputWithContext(ctx context.Context) UptimeCheckConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UptimeCheckConfigOutput)
+}
+
+type UptimeCheckConfigOutput struct {
+	*pulumi.OutputState
+}
+
+func (UptimeCheckConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UptimeCheckConfigOutput)(nil)).Elem()
+}
+
+func (o UptimeCheckConfigOutput) ToUptimeCheckConfigOutput() UptimeCheckConfigOutput {
+	return o
+}
+
+func (o UptimeCheckConfigOutput) ToUptimeCheckConfigOutputWithContext(ctx context.Context) UptimeCheckConfigOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(UptimeCheckConfigOutput{})
 }

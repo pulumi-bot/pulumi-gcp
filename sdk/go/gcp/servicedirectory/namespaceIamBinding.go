@@ -4,6 +4,8 @@
 package servicedirectory
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -37,14 +39,14 @@ type NamespaceIamBinding struct {
 // NewNamespaceIamBinding registers a new resource with the given unique name, arguments, and options.
 func NewNamespaceIamBinding(ctx *pulumi.Context,
 	name string, args *NamespaceIamBindingArgs, opts ...pulumi.ResourceOption) (*NamespaceIamBinding, error) {
-	if args == nil || args.Members == nil {
-		return nil, errors.New("missing required argument 'Members'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &NamespaceIamBindingArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Members == nil {
+		return nil, errors.New("invalid value for required argument 'Members'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource NamespaceIamBinding
 	err := ctx.RegisterResource("gcp:servicedirectory/namespaceIamBinding:NamespaceIamBinding", name, args, &resource, opts...)
@@ -122,4 +124,43 @@ type NamespaceIamBindingArgs struct {
 
 func (NamespaceIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*namespaceIamBindingArgs)(nil)).Elem()
+}
+
+type NamespaceIamBindingInput interface {
+	pulumi.Input
+
+	ToNamespaceIamBindingOutput() NamespaceIamBindingOutput
+	ToNamespaceIamBindingOutputWithContext(ctx context.Context) NamespaceIamBindingOutput
+}
+
+func (NamespaceIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*NamespaceIamBinding)(nil)).Elem()
+}
+
+func (i NamespaceIamBinding) ToNamespaceIamBindingOutput() NamespaceIamBindingOutput {
+	return i.ToNamespaceIamBindingOutputWithContext(context.Background())
+}
+
+func (i NamespaceIamBinding) ToNamespaceIamBindingOutputWithContext(ctx context.Context) NamespaceIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NamespaceIamBindingOutput)
+}
+
+type NamespaceIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (NamespaceIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NamespaceIamBindingOutput)(nil)).Elem()
+}
+
+func (o NamespaceIamBindingOutput) ToNamespaceIamBindingOutput() NamespaceIamBindingOutput {
+	return o
+}
+
+func (o NamespaceIamBindingOutput) ToNamespaceIamBindingOutputWithContext(ctx context.Context) NamespaceIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(NamespaceIamBindingOutput{})
 }

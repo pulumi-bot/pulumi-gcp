@@ -4,6 +4,8 @@
 package kms
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -47,17 +49,17 @@ type CryptoKeyIAMMember struct {
 // NewCryptoKeyIAMMember registers a new resource with the given unique name, arguments, and options.
 func NewCryptoKeyIAMMember(ctx *pulumi.Context,
 	name string, args *CryptoKeyIAMMemberArgs, opts ...pulumi.ResourceOption) (*CryptoKeyIAMMember, error) {
-	if args == nil || args.CryptoKeyId == nil {
-		return nil, errors.New("missing required argument 'CryptoKeyId'")
-	}
-	if args == nil || args.Member == nil {
-		return nil, errors.New("missing required argument 'Member'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &CryptoKeyIAMMemberArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.CryptoKeyId == nil {
+		return nil, errors.New("invalid value for required argument 'CryptoKeyId'")
+	}
+	if args.Member == nil {
+		return nil, errors.New("invalid value for required argument 'Member'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource CryptoKeyIAMMember
 	err := ctx.RegisterResource("gcp:kms/cryptoKeyIAMMember:CryptoKeyIAMMember", name, args, &resource, opts...)
@@ -151,4 +153,43 @@ type CryptoKeyIAMMemberArgs struct {
 
 func (CryptoKeyIAMMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*cryptoKeyIAMMemberArgs)(nil)).Elem()
+}
+
+type CryptoKeyIAMMemberInput interface {
+	pulumi.Input
+
+	ToCryptoKeyIAMMemberOutput() CryptoKeyIAMMemberOutput
+	ToCryptoKeyIAMMemberOutputWithContext(ctx context.Context) CryptoKeyIAMMemberOutput
+}
+
+func (CryptoKeyIAMMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*CryptoKeyIAMMember)(nil)).Elem()
+}
+
+func (i CryptoKeyIAMMember) ToCryptoKeyIAMMemberOutput() CryptoKeyIAMMemberOutput {
+	return i.ToCryptoKeyIAMMemberOutputWithContext(context.Background())
+}
+
+func (i CryptoKeyIAMMember) ToCryptoKeyIAMMemberOutputWithContext(ctx context.Context) CryptoKeyIAMMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CryptoKeyIAMMemberOutput)
+}
+
+type CryptoKeyIAMMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (CryptoKeyIAMMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CryptoKeyIAMMemberOutput)(nil)).Elem()
+}
+
+func (o CryptoKeyIAMMemberOutput) ToCryptoKeyIAMMemberOutput() CryptoKeyIAMMemberOutput {
+	return o
+}
+
+func (o CryptoKeyIAMMemberOutput) ToCryptoKeyIAMMemberOutputWithContext(ctx context.Context) CryptoKeyIAMMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(CryptoKeyIAMMemberOutput{})
 }

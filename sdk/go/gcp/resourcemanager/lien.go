@@ -4,6 +4,8 @@
 package resourcemanager
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -43,20 +45,20 @@ type Lien struct {
 // NewLien registers a new resource with the given unique name, arguments, and options.
 func NewLien(ctx *pulumi.Context,
 	name string, args *LienArgs, opts ...pulumi.ResourceOption) (*Lien, error) {
-	if args == nil || args.Origin == nil {
-		return nil, errors.New("missing required argument 'Origin'")
-	}
-	if args == nil || args.Parent == nil {
-		return nil, errors.New("missing required argument 'Parent'")
-	}
-	if args == nil || args.Reason == nil {
-		return nil, errors.New("missing required argument 'Reason'")
-	}
-	if args == nil || args.Restrictions == nil {
-		return nil, errors.New("missing required argument 'Restrictions'")
-	}
 	if args == nil {
-		args = &LienArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Origin == nil {
+		return nil, errors.New("invalid value for required argument 'Origin'")
+	}
+	if args.Parent == nil {
+		return nil, errors.New("invalid value for required argument 'Parent'")
+	}
+	if args.Reason == nil {
+		return nil, errors.New("invalid value for required argument 'Reason'")
+	}
+	if args.Restrictions == nil {
+		return nil, errors.New("invalid value for required argument 'Restrictions'")
 	}
 	var resource Lien
 	err := ctx.RegisterResource("gcp:resourcemanager/lien:Lien", name, args, &resource, opts...)
@@ -178,4 +180,43 @@ type LienArgs struct {
 
 func (LienArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*lienArgs)(nil)).Elem()
+}
+
+type LienInput interface {
+	pulumi.Input
+
+	ToLienOutput() LienOutput
+	ToLienOutputWithContext(ctx context.Context) LienOutput
+}
+
+func (Lien) ElementType() reflect.Type {
+	return reflect.TypeOf((*Lien)(nil)).Elem()
+}
+
+func (i Lien) ToLienOutput() LienOutput {
+	return i.ToLienOutputWithContext(context.Background())
+}
+
+func (i Lien) ToLienOutputWithContext(ctx context.Context) LienOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LienOutput)
+}
+
+type LienOutput struct {
+	*pulumi.OutputState
+}
+
+func (LienOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LienOutput)(nil)).Elem()
+}
+
+func (o LienOutput) ToLienOutput() LienOutput {
+	return o
+}
+
+func (o LienOutput) ToLienOutputWithContext(ctx context.Context) LienOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(LienOutput{})
 }

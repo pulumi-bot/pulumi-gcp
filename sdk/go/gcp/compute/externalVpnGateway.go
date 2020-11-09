@@ -4,6 +4,8 @@
 package compute
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
@@ -168,4 +170,43 @@ type ExternalVpnGatewayArgs struct {
 
 func (ExternalVpnGatewayArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*externalVpnGatewayArgs)(nil)).Elem()
+}
+
+type ExternalVpnGatewayInput interface {
+	pulumi.Input
+
+	ToExternalVpnGatewayOutput() ExternalVpnGatewayOutput
+	ToExternalVpnGatewayOutputWithContext(ctx context.Context) ExternalVpnGatewayOutput
+}
+
+func (ExternalVpnGateway) ElementType() reflect.Type {
+	return reflect.TypeOf((*ExternalVpnGateway)(nil)).Elem()
+}
+
+func (i ExternalVpnGateway) ToExternalVpnGatewayOutput() ExternalVpnGatewayOutput {
+	return i.ToExternalVpnGatewayOutputWithContext(context.Background())
+}
+
+func (i ExternalVpnGateway) ToExternalVpnGatewayOutputWithContext(ctx context.Context) ExternalVpnGatewayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExternalVpnGatewayOutput)
+}
+
+type ExternalVpnGatewayOutput struct {
+	*pulumi.OutputState
+}
+
+func (ExternalVpnGatewayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ExternalVpnGatewayOutput)(nil)).Elem()
+}
+
+func (o ExternalVpnGatewayOutput) ToExternalVpnGatewayOutput() ExternalVpnGatewayOutput {
+	return o
+}
+
+func (o ExternalVpnGatewayOutput) ToExternalVpnGatewayOutputWithContext(ctx context.Context) ExternalVpnGatewayOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ExternalVpnGatewayOutput{})
 }

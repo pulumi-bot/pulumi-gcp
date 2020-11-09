@@ -4,6 +4,8 @@
 package compute
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -65,14 +67,14 @@ type RegionSslCertificate struct {
 // NewRegionSslCertificate registers a new resource with the given unique name, arguments, and options.
 func NewRegionSslCertificate(ctx *pulumi.Context,
 	name string, args *RegionSslCertificateArgs, opts ...pulumi.ResourceOption) (*RegionSslCertificate, error) {
-	if args == nil || args.Certificate == nil {
-		return nil, errors.New("missing required argument 'Certificate'")
-	}
-	if args == nil || args.PrivateKey == nil {
-		return nil, errors.New("missing required argument 'PrivateKey'")
-	}
 	if args == nil {
-		args = &RegionSslCertificateArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Certificate == nil {
+		return nil, errors.New("invalid value for required argument 'Certificate'")
+	}
+	if args.PrivateKey == nil {
+		return nil, errors.New("invalid value for required argument 'PrivateKey'")
 	}
 	var resource RegionSslCertificate
 	err := ctx.RegisterResource("gcp:compute/regionSslCertificate:RegionSslCertificate", name, args, &resource, opts...)
@@ -234,4 +236,43 @@ type RegionSslCertificateArgs struct {
 
 func (RegionSslCertificateArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*regionSslCertificateArgs)(nil)).Elem()
+}
+
+type RegionSslCertificateInput interface {
+	pulumi.Input
+
+	ToRegionSslCertificateOutput() RegionSslCertificateOutput
+	ToRegionSslCertificateOutputWithContext(ctx context.Context) RegionSslCertificateOutput
+}
+
+func (RegionSslCertificate) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionSslCertificate)(nil)).Elem()
+}
+
+func (i RegionSslCertificate) ToRegionSslCertificateOutput() RegionSslCertificateOutput {
+	return i.ToRegionSslCertificateOutputWithContext(context.Background())
+}
+
+func (i RegionSslCertificate) ToRegionSslCertificateOutputWithContext(ctx context.Context) RegionSslCertificateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegionSslCertificateOutput)
+}
+
+type RegionSslCertificateOutput struct {
+	*pulumi.OutputState
+}
+
+func (RegionSslCertificateOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionSslCertificateOutput)(nil)).Elem()
+}
+
+func (o RegionSslCertificateOutput) ToRegionSslCertificateOutput() RegionSslCertificateOutput {
+	return o
+}
+
+func (o RegionSslCertificateOutput) ToRegionSslCertificateOutputWithContext(ctx context.Context) RegionSslCertificateOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RegionSslCertificateOutput{})
 }

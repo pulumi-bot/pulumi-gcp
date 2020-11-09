@@ -4,6 +4,8 @@
 package bigquery
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -68,11 +70,11 @@ type DatasetAccess struct {
 // NewDatasetAccess registers a new resource with the given unique name, arguments, and options.
 func NewDatasetAccess(ctx *pulumi.Context,
 	name string, args *DatasetAccessArgs, opts ...pulumi.ResourceOption) (*DatasetAccess, error) {
-	if args == nil || args.DatasetId == nil {
-		return nil, errors.New("missing required argument 'DatasetId'")
-	}
 	if args == nil {
-		args = &DatasetAccessArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.DatasetId == nil {
+		return nil, errors.New("invalid value for required argument 'DatasetId'")
 	}
 	var resource DatasetAccess
 	err := ctx.RegisterResource("gcp:bigquery/datasetAccess:DatasetAccess", name, args, &resource, opts...)
@@ -248,4 +250,43 @@ type DatasetAccessArgs struct {
 
 func (DatasetAccessArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*datasetAccessArgs)(nil)).Elem()
+}
+
+type DatasetAccessInput interface {
+	pulumi.Input
+
+	ToDatasetAccessOutput() DatasetAccessOutput
+	ToDatasetAccessOutputWithContext(ctx context.Context) DatasetAccessOutput
+}
+
+func (DatasetAccess) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatasetAccess)(nil)).Elem()
+}
+
+func (i DatasetAccess) ToDatasetAccessOutput() DatasetAccessOutput {
+	return i.ToDatasetAccessOutputWithContext(context.Background())
+}
+
+func (i DatasetAccess) ToDatasetAccessOutputWithContext(ctx context.Context) DatasetAccessOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetAccessOutput)
+}
+
+type DatasetAccessOutput struct {
+	*pulumi.OutputState
+}
+
+func (DatasetAccessOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatasetAccessOutput)(nil)).Elem()
+}
+
+func (o DatasetAccessOutput) ToDatasetAccessOutput() DatasetAccessOutput {
+	return o
+}
+
+func (o DatasetAccessOutput) ToDatasetAccessOutputWithContext(ctx context.Context) DatasetAccessOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DatasetAccessOutput{})
 }

@@ -4,6 +4,8 @@
 package compute
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -32,11 +34,11 @@ type ProjectMetadata struct {
 // NewProjectMetadata registers a new resource with the given unique name, arguments, and options.
 func NewProjectMetadata(ctx *pulumi.Context,
 	name string, args *ProjectMetadataArgs, opts ...pulumi.ResourceOption) (*ProjectMetadata, error) {
-	if args == nil || args.Metadata == nil {
-		return nil, errors.New("missing required argument 'Metadata'")
-	}
 	if args == nil {
-		args = &ProjectMetadataArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Metadata == nil {
+		return nil, errors.New("invalid value for required argument 'Metadata'")
 	}
 	var resource ProjectMetadata
 	err := ctx.RegisterResource("gcp:compute/projectMetadata:ProjectMetadata", name, args, &resource, opts...)
@@ -98,4 +100,43 @@ type ProjectMetadataArgs struct {
 
 func (ProjectMetadataArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*projectMetadataArgs)(nil)).Elem()
+}
+
+type ProjectMetadataInput interface {
+	pulumi.Input
+
+	ToProjectMetadataOutput() ProjectMetadataOutput
+	ToProjectMetadataOutputWithContext(ctx context.Context) ProjectMetadataOutput
+}
+
+func (ProjectMetadata) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProjectMetadata)(nil)).Elem()
+}
+
+func (i ProjectMetadata) ToProjectMetadataOutput() ProjectMetadataOutput {
+	return i.ToProjectMetadataOutputWithContext(context.Background())
+}
+
+func (i ProjectMetadata) ToProjectMetadataOutputWithContext(ctx context.Context) ProjectMetadataOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProjectMetadataOutput)
+}
+
+type ProjectMetadataOutput struct {
+	*pulumi.OutputState
+}
+
+func (ProjectMetadataOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProjectMetadataOutput)(nil)).Elem()
+}
+
+func (o ProjectMetadataOutput) ToProjectMetadataOutput() ProjectMetadataOutput {
+	return o
+}
+
+func (o ProjectMetadataOutput) ToProjectMetadataOutputWithContext(ctx context.Context) ProjectMetadataOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ProjectMetadataOutput{})
 }

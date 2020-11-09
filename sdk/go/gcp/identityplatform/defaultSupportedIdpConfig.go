@@ -4,6 +4,8 @@
 package identityplatform
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -48,17 +50,17 @@ type DefaultSupportedIdpConfig struct {
 // NewDefaultSupportedIdpConfig registers a new resource with the given unique name, arguments, and options.
 func NewDefaultSupportedIdpConfig(ctx *pulumi.Context,
 	name string, args *DefaultSupportedIdpConfigArgs, opts ...pulumi.ResourceOption) (*DefaultSupportedIdpConfig, error) {
-	if args == nil || args.ClientId == nil {
-		return nil, errors.New("missing required argument 'ClientId'")
-	}
-	if args == nil || args.ClientSecret == nil {
-		return nil, errors.New("missing required argument 'ClientSecret'")
-	}
-	if args == nil || args.IdpId == nil {
-		return nil, errors.New("missing required argument 'IdpId'")
-	}
 	if args == nil {
-		args = &DefaultSupportedIdpConfigArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.ClientId == nil {
+		return nil, errors.New("invalid value for required argument 'ClientId'")
+	}
+	if args.ClientSecret == nil {
+		return nil, errors.New("invalid value for required argument 'ClientSecret'")
+	}
+	if args.IdpId == nil {
+		return nil, errors.New("invalid value for required argument 'IdpId'")
 	}
 	var resource DefaultSupportedIdpConfig
 	err := ctx.RegisterResource("gcp:identityplatform/defaultSupportedIdpConfig:DefaultSupportedIdpConfig", name, args, &resource, opts...)
@@ -188,4 +190,43 @@ type DefaultSupportedIdpConfigArgs struct {
 
 func (DefaultSupportedIdpConfigArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*defaultSupportedIdpConfigArgs)(nil)).Elem()
+}
+
+type DefaultSupportedIdpConfigInput interface {
+	pulumi.Input
+
+	ToDefaultSupportedIdpConfigOutput() DefaultSupportedIdpConfigOutput
+	ToDefaultSupportedIdpConfigOutputWithContext(ctx context.Context) DefaultSupportedIdpConfigOutput
+}
+
+func (DefaultSupportedIdpConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultSupportedIdpConfig)(nil)).Elem()
+}
+
+func (i DefaultSupportedIdpConfig) ToDefaultSupportedIdpConfigOutput() DefaultSupportedIdpConfigOutput {
+	return i.ToDefaultSupportedIdpConfigOutputWithContext(context.Background())
+}
+
+func (i DefaultSupportedIdpConfig) ToDefaultSupportedIdpConfigOutputWithContext(ctx context.Context) DefaultSupportedIdpConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultSupportedIdpConfigOutput)
+}
+
+type DefaultSupportedIdpConfigOutput struct {
+	*pulumi.OutputState
+}
+
+func (DefaultSupportedIdpConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultSupportedIdpConfigOutput)(nil)).Elem()
+}
+
+func (o DefaultSupportedIdpConfigOutput) ToDefaultSupportedIdpConfigOutput() DefaultSupportedIdpConfigOutput {
+	return o
+}
+
+func (o DefaultSupportedIdpConfigOutput) ToDefaultSupportedIdpConfigOutputWithContext(ctx context.Context) DefaultSupportedIdpConfigOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DefaultSupportedIdpConfigOutput{})
 }

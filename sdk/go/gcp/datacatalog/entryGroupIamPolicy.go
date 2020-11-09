@@ -4,6 +4,8 @@
 package datacatalog
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -38,14 +40,14 @@ type EntryGroupIamPolicy struct {
 // NewEntryGroupIamPolicy registers a new resource with the given unique name, arguments, and options.
 func NewEntryGroupIamPolicy(ctx *pulumi.Context,
 	name string, args *EntryGroupIamPolicyArgs, opts ...pulumi.ResourceOption) (*EntryGroupIamPolicy, error) {
-	if args == nil || args.EntryGroup == nil {
-		return nil, errors.New("missing required argument 'EntryGroup'")
-	}
-	if args == nil || args.PolicyData == nil {
-		return nil, errors.New("missing required argument 'PolicyData'")
-	}
 	if args == nil {
-		args = &EntryGroupIamPolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.EntryGroup == nil {
+		return nil, errors.New("invalid value for required argument 'EntryGroup'")
+	}
+	if args.PolicyData == nil {
+		return nil, errors.New("invalid value for required argument 'PolicyData'")
 	}
 	var resource EntryGroupIamPolicy
 	err := ctx.RegisterResource("gcp:datacatalog/entryGroupIamPolicy:EntryGroupIamPolicy", name, args, &resource, opts...)
@@ -127,4 +129,43 @@ type EntryGroupIamPolicyArgs struct {
 
 func (EntryGroupIamPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*entryGroupIamPolicyArgs)(nil)).Elem()
+}
+
+type EntryGroupIamPolicyInput interface {
+	pulumi.Input
+
+	ToEntryGroupIamPolicyOutput() EntryGroupIamPolicyOutput
+	ToEntryGroupIamPolicyOutputWithContext(ctx context.Context) EntryGroupIamPolicyOutput
+}
+
+func (EntryGroupIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*EntryGroupIamPolicy)(nil)).Elem()
+}
+
+func (i EntryGroupIamPolicy) ToEntryGroupIamPolicyOutput() EntryGroupIamPolicyOutput {
+	return i.ToEntryGroupIamPolicyOutputWithContext(context.Background())
+}
+
+func (i EntryGroupIamPolicy) ToEntryGroupIamPolicyOutputWithContext(ctx context.Context) EntryGroupIamPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EntryGroupIamPolicyOutput)
+}
+
+type EntryGroupIamPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (EntryGroupIamPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EntryGroupIamPolicyOutput)(nil)).Elem()
+}
+
+func (o EntryGroupIamPolicyOutput) ToEntryGroupIamPolicyOutput() EntryGroupIamPolicyOutput {
+	return o
+}
+
+func (o EntryGroupIamPolicyOutput) ToEntryGroupIamPolicyOutputWithContext(ctx context.Context) EntryGroupIamPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(EntryGroupIamPolicyOutput{})
 }

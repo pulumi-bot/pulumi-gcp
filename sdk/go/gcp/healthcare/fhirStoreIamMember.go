@@ -4,6 +4,8 @@
 package healthcare
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -40,17 +42,17 @@ type FhirStoreIamMember struct {
 // NewFhirStoreIamMember registers a new resource with the given unique name, arguments, and options.
 func NewFhirStoreIamMember(ctx *pulumi.Context,
 	name string, args *FhirStoreIamMemberArgs, opts ...pulumi.ResourceOption) (*FhirStoreIamMember, error) {
-	if args == nil || args.FhirStoreId == nil {
-		return nil, errors.New("missing required argument 'FhirStoreId'")
-	}
-	if args == nil || args.Member == nil {
-		return nil, errors.New("missing required argument 'Member'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &FhirStoreIamMemberArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.FhirStoreId == nil {
+		return nil, errors.New("invalid value for required argument 'FhirStoreId'")
+	}
+	if args.Member == nil {
+		return nil, errors.New("invalid value for required argument 'Member'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource FhirStoreIamMember
 	err := ctx.RegisterResource("gcp:healthcare/fhirStoreIamMember:FhirStoreIamMember", name, args, &resource, opts...)
@@ -140,4 +142,43 @@ type FhirStoreIamMemberArgs struct {
 
 func (FhirStoreIamMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*fhirStoreIamMemberArgs)(nil)).Elem()
+}
+
+type FhirStoreIamMemberInput interface {
+	pulumi.Input
+
+	ToFhirStoreIamMemberOutput() FhirStoreIamMemberOutput
+	ToFhirStoreIamMemberOutputWithContext(ctx context.Context) FhirStoreIamMemberOutput
+}
+
+func (FhirStoreIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*FhirStoreIamMember)(nil)).Elem()
+}
+
+func (i FhirStoreIamMember) ToFhirStoreIamMemberOutput() FhirStoreIamMemberOutput {
+	return i.ToFhirStoreIamMemberOutputWithContext(context.Background())
+}
+
+func (i FhirStoreIamMember) ToFhirStoreIamMemberOutputWithContext(ctx context.Context) FhirStoreIamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FhirStoreIamMemberOutput)
+}
+
+type FhirStoreIamMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (FhirStoreIamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FhirStoreIamMemberOutput)(nil)).Elem()
+}
+
+func (o FhirStoreIamMemberOutput) ToFhirStoreIamMemberOutput() FhirStoreIamMemberOutput {
+	return o
+}
+
+func (o FhirStoreIamMemberOutput) ToFhirStoreIamMemberOutputWithContext(ctx context.Context) FhirStoreIamMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(FhirStoreIamMemberOutput{})
 }

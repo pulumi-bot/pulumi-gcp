@@ -4,6 +4,8 @@
 package bigtable
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -40,20 +42,20 @@ type TableIamBinding struct {
 // NewTableIamBinding registers a new resource with the given unique name, arguments, and options.
 func NewTableIamBinding(ctx *pulumi.Context,
 	name string, args *TableIamBindingArgs, opts ...pulumi.ResourceOption) (*TableIamBinding, error) {
-	if args == nil || args.Instance == nil {
-		return nil, errors.New("missing required argument 'Instance'")
-	}
-	if args == nil || args.Members == nil {
-		return nil, errors.New("missing required argument 'Members'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
-	if args == nil || args.Table == nil {
-		return nil, errors.New("missing required argument 'Table'")
-	}
 	if args == nil {
-		args = &TableIamBindingArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Instance == nil {
+		return nil, errors.New("invalid value for required argument 'Instance'")
+	}
+	if args.Members == nil {
+		return nil, errors.New("invalid value for required argument 'Members'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
+	}
+	if args.Table == nil {
+		return nil, errors.New("invalid value for required argument 'Table'")
 	}
 	var resource TableIamBinding
 	err := ctx.RegisterResource("gcp:bigtable/tableIamBinding:TableIamBinding", name, args, &resource, opts...)
@@ -143,4 +145,43 @@ type TableIamBindingArgs struct {
 
 func (TableIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*tableIamBindingArgs)(nil)).Elem()
+}
+
+type TableIamBindingInput interface {
+	pulumi.Input
+
+	ToTableIamBindingOutput() TableIamBindingOutput
+	ToTableIamBindingOutputWithContext(ctx context.Context) TableIamBindingOutput
+}
+
+func (TableIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*TableIamBinding)(nil)).Elem()
+}
+
+func (i TableIamBinding) ToTableIamBindingOutput() TableIamBindingOutput {
+	return i.ToTableIamBindingOutputWithContext(context.Background())
+}
+
+func (i TableIamBinding) ToTableIamBindingOutputWithContext(ctx context.Context) TableIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TableIamBindingOutput)
+}
+
+type TableIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (TableIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TableIamBindingOutput)(nil)).Elem()
+}
+
+func (o TableIamBindingOutput) ToTableIamBindingOutput() TableIamBindingOutput {
+	return o
+}
+
+func (o TableIamBindingOutput) ToTableIamBindingOutputWithContext(ctx context.Context) TableIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TableIamBindingOutput{})
 }

@@ -4,6 +4,8 @@
 package diagflow
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -46,14 +48,14 @@ type EntityType struct {
 // NewEntityType registers a new resource with the given unique name, arguments, and options.
 func NewEntityType(ctx *pulumi.Context,
 	name string, args *EntityTypeArgs, opts ...pulumi.ResourceOption) (*EntityType, error) {
-	if args == nil || args.DisplayName == nil {
-		return nil, errors.New("missing required argument 'DisplayName'")
-	}
-	if args == nil || args.Kind == nil {
-		return nil, errors.New("missing required argument 'Kind'")
-	}
 	if args == nil {
-		args = &EntityTypeArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.DisplayName == nil {
+		return nil, errors.New("invalid value for required argument 'DisplayName'")
+	}
+	if args.Kind == nil {
+		return nil, errors.New("invalid value for required argument 'Kind'")
 	}
 	var resource EntityType
 	err := ctx.RegisterResource("gcp:diagflow/entityType:EntityType", name, args, &resource, opts...)
@@ -167,4 +169,43 @@ type EntityTypeArgs struct {
 
 func (EntityTypeArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*entityTypeArgs)(nil)).Elem()
+}
+
+type EntityTypeInput interface {
+	pulumi.Input
+
+	ToEntityTypeOutput() EntityTypeOutput
+	ToEntityTypeOutputWithContext(ctx context.Context) EntityTypeOutput
+}
+
+func (EntityType) ElementType() reflect.Type {
+	return reflect.TypeOf((*EntityType)(nil)).Elem()
+}
+
+func (i EntityType) ToEntityTypeOutput() EntityTypeOutput {
+	return i.ToEntityTypeOutputWithContext(context.Background())
+}
+
+func (i EntityType) ToEntityTypeOutputWithContext(ctx context.Context) EntityTypeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EntityTypeOutput)
+}
+
+type EntityTypeOutput struct {
+	*pulumi.OutputState
+}
+
+func (EntityTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EntityTypeOutput)(nil)).Elem()
+}
+
+func (o EntityTypeOutput) ToEntityTypeOutput() EntityTypeOutput {
+	return o
+}
+
+func (o EntityTypeOutput) ToEntityTypeOutputWithContext(ctx context.Context) EntityTypeOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(EntityTypeOutput{})
 }

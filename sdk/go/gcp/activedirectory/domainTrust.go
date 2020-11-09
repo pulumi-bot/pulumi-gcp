@@ -4,6 +4,8 @@
 package activedirectory
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -51,26 +53,26 @@ type DomainTrust struct {
 // NewDomainTrust registers a new resource with the given unique name, arguments, and options.
 func NewDomainTrust(ctx *pulumi.Context,
 	name string, args *DomainTrustArgs, opts ...pulumi.ResourceOption) (*DomainTrust, error) {
-	if args == nil || args.Domain == nil {
-		return nil, errors.New("missing required argument 'Domain'")
-	}
-	if args == nil || args.TargetDnsIpAddresses == nil {
-		return nil, errors.New("missing required argument 'TargetDnsIpAddresses'")
-	}
-	if args == nil || args.TargetDomainName == nil {
-		return nil, errors.New("missing required argument 'TargetDomainName'")
-	}
-	if args == nil || args.TrustDirection == nil {
-		return nil, errors.New("missing required argument 'TrustDirection'")
-	}
-	if args == nil || args.TrustHandshakeSecret == nil {
-		return nil, errors.New("missing required argument 'TrustHandshakeSecret'")
-	}
-	if args == nil || args.TrustType == nil {
-		return nil, errors.New("missing required argument 'TrustType'")
-	}
 	if args == nil {
-		args = &DomainTrustArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Domain == nil {
+		return nil, errors.New("invalid value for required argument 'Domain'")
+	}
+	if args.TargetDnsIpAddresses == nil {
+		return nil, errors.New("invalid value for required argument 'TargetDnsIpAddresses'")
+	}
+	if args.TargetDomainName == nil {
+		return nil, errors.New("invalid value for required argument 'TargetDomainName'")
+	}
+	if args.TrustDirection == nil {
+		return nil, errors.New("invalid value for required argument 'TrustDirection'")
+	}
+	if args.TrustHandshakeSecret == nil {
+		return nil, errors.New("invalid value for required argument 'TrustHandshakeSecret'")
+	}
+	if args.TrustType == nil {
+		return nil, errors.New("invalid value for required argument 'TrustType'")
 	}
 	var resource DomainTrust
 	err := ctx.RegisterResource("gcp:activedirectory/domainTrust:DomainTrust", name, args, &resource, opts...)
@@ -196,4 +198,43 @@ type DomainTrustArgs struct {
 
 func (DomainTrustArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*domainTrustArgs)(nil)).Elem()
+}
+
+type DomainTrustInput interface {
+	pulumi.Input
+
+	ToDomainTrustOutput() DomainTrustOutput
+	ToDomainTrustOutputWithContext(ctx context.Context) DomainTrustOutput
+}
+
+func (DomainTrust) ElementType() reflect.Type {
+	return reflect.TypeOf((*DomainTrust)(nil)).Elem()
+}
+
+func (i DomainTrust) ToDomainTrustOutput() DomainTrustOutput {
+	return i.ToDomainTrustOutputWithContext(context.Background())
+}
+
+func (i DomainTrust) ToDomainTrustOutputWithContext(ctx context.Context) DomainTrustOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DomainTrustOutput)
+}
+
+type DomainTrustOutput struct {
+	*pulumi.OutputState
+}
+
+func (DomainTrustOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DomainTrustOutput)(nil)).Elem()
+}
+
+func (o DomainTrustOutput) ToDomainTrustOutput() DomainTrustOutput {
+	return o
+}
+
+func (o DomainTrustOutput) ToDomainTrustOutputWithContext(ctx context.Context) DomainTrustOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DomainTrustOutput{})
 }

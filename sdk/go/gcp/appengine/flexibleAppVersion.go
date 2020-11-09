@@ -4,6 +4,8 @@
 package appengine
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -114,20 +116,20 @@ type FlexibleAppVersion struct {
 // NewFlexibleAppVersion registers a new resource with the given unique name, arguments, and options.
 func NewFlexibleAppVersion(ctx *pulumi.Context,
 	name string, args *FlexibleAppVersionArgs, opts ...pulumi.ResourceOption) (*FlexibleAppVersion, error) {
-	if args == nil || args.LivenessCheck == nil {
-		return nil, errors.New("missing required argument 'LivenessCheck'")
-	}
-	if args == nil || args.ReadinessCheck == nil {
-		return nil, errors.New("missing required argument 'ReadinessCheck'")
-	}
-	if args == nil || args.Runtime == nil {
-		return nil, errors.New("missing required argument 'Runtime'")
-	}
-	if args == nil || args.Service == nil {
-		return nil, errors.New("missing required argument 'Service'")
-	}
 	if args == nil {
-		args = &FlexibleAppVersionArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.LivenessCheck == nil {
+		return nil, errors.New("invalid value for required argument 'LivenessCheck'")
+	}
+	if args.ReadinessCheck == nil {
+		return nil, errors.New("invalid value for required argument 'ReadinessCheck'")
+	}
+	if args.Runtime == nil {
+		return nil, errors.New("invalid value for required argument 'Runtime'")
+	}
+	if args.Service == nil {
+		return nil, errors.New("invalid value for required argument 'Service'")
 	}
 	var resource FlexibleAppVersion
 	err := ctx.RegisterResource("gcp:appengine/flexibleAppVersion:FlexibleAppVersion", name, args, &resource, opts...)
@@ -489,4 +491,43 @@ type FlexibleAppVersionArgs struct {
 
 func (FlexibleAppVersionArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*flexibleAppVersionArgs)(nil)).Elem()
+}
+
+type FlexibleAppVersionInput interface {
+	pulumi.Input
+
+	ToFlexibleAppVersionOutput() FlexibleAppVersionOutput
+	ToFlexibleAppVersionOutputWithContext(ctx context.Context) FlexibleAppVersionOutput
+}
+
+func (FlexibleAppVersion) ElementType() reflect.Type {
+	return reflect.TypeOf((*FlexibleAppVersion)(nil)).Elem()
+}
+
+func (i FlexibleAppVersion) ToFlexibleAppVersionOutput() FlexibleAppVersionOutput {
+	return i.ToFlexibleAppVersionOutputWithContext(context.Background())
+}
+
+func (i FlexibleAppVersion) ToFlexibleAppVersionOutputWithContext(ctx context.Context) FlexibleAppVersionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionOutput)
+}
+
+type FlexibleAppVersionOutput struct {
+	*pulumi.OutputState
+}
+
+func (FlexibleAppVersionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FlexibleAppVersionOutput)(nil)).Elem()
+}
+
+func (o FlexibleAppVersionOutput) ToFlexibleAppVersionOutput() FlexibleAppVersionOutput {
+	return o
+}
+
+func (o FlexibleAppVersionOutput) ToFlexibleAppVersionOutputWithContext(ctx context.Context) FlexibleAppVersionOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(FlexibleAppVersionOutput{})
 }

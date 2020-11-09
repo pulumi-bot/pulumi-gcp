@@ -4,6 +4,8 @@
 package healthcare
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -40,17 +42,17 @@ type Hl7StoreIamBinding struct {
 // NewHl7StoreIamBinding registers a new resource with the given unique name, arguments, and options.
 func NewHl7StoreIamBinding(ctx *pulumi.Context,
 	name string, args *Hl7StoreIamBindingArgs, opts ...pulumi.ResourceOption) (*Hl7StoreIamBinding, error) {
-	if args == nil || args.Hl7V2StoreId == nil {
-		return nil, errors.New("missing required argument 'Hl7V2StoreId'")
-	}
-	if args == nil || args.Members == nil {
-		return nil, errors.New("missing required argument 'Members'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &Hl7StoreIamBindingArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Hl7V2StoreId == nil {
+		return nil, errors.New("invalid value for required argument 'Hl7V2StoreId'")
+	}
+	if args.Members == nil {
+		return nil, errors.New("invalid value for required argument 'Members'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource Hl7StoreIamBinding
 	err := ctx.RegisterResource("gcp:healthcare/hl7StoreIamBinding:Hl7StoreIamBinding", name, args, &resource, opts...)
@@ -140,4 +142,43 @@ type Hl7StoreIamBindingArgs struct {
 
 func (Hl7StoreIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*hl7StoreIamBindingArgs)(nil)).Elem()
+}
+
+type Hl7StoreIamBindingInput interface {
+	pulumi.Input
+
+	ToHl7StoreIamBindingOutput() Hl7StoreIamBindingOutput
+	ToHl7StoreIamBindingOutputWithContext(ctx context.Context) Hl7StoreIamBindingOutput
+}
+
+func (Hl7StoreIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*Hl7StoreIamBinding)(nil)).Elem()
+}
+
+func (i Hl7StoreIamBinding) ToHl7StoreIamBindingOutput() Hl7StoreIamBindingOutput {
+	return i.ToHl7StoreIamBindingOutputWithContext(context.Background())
+}
+
+func (i Hl7StoreIamBinding) ToHl7StoreIamBindingOutputWithContext(ctx context.Context) Hl7StoreIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Hl7StoreIamBindingOutput)
+}
+
+type Hl7StoreIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (Hl7StoreIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*Hl7StoreIamBindingOutput)(nil)).Elem()
+}
+
+func (o Hl7StoreIamBindingOutput) ToHl7StoreIamBindingOutput() Hl7StoreIamBindingOutput {
+	return o
+}
+
+func (o Hl7StoreIamBindingOutput) ToHl7StoreIamBindingOutputWithContext(ctx context.Context) Hl7StoreIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(Hl7StoreIamBindingOutput{})
 }

@@ -4,6 +4,8 @@
 package accesscontextmanager
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -52,14 +54,14 @@ type AccessLevel struct {
 // NewAccessLevel registers a new resource with the given unique name, arguments, and options.
 func NewAccessLevel(ctx *pulumi.Context,
 	name string, args *AccessLevelArgs, opts ...pulumi.ResourceOption) (*AccessLevel, error) {
-	if args == nil || args.Parent == nil {
-		return nil, errors.New("missing required argument 'Parent'")
-	}
-	if args == nil || args.Title == nil {
-		return nil, errors.New("missing required argument 'Title'")
-	}
 	if args == nil {
-		args = &AccessLevelArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Parent == nil {
+		return nil, errors.New("invalid value for required argument 'Parent'")
+	}
+	if args.Title == nil {
+		return nil, errors.New("invalid value for required argument 'Title'")
 	}
 	var resource AccessLevel
 	err := ctx.RegisterResource("gcp:accesscontextmanager/accessLevel:AccessLevel", name, args, &resource, opts...)
@@ -173,4 +175,43 @@ type AccessLevelArgs struct {
 
 func (AccessLevelArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*accessLevelArgs)(nil)).Elem()
+}
+
+type AccessLevelInput interface {
+	pulumi.Input
+
+	ToAccessLevelOutput() AccessLevelOutput
+	ToAccessLevelOutputWithContext(ctx context.Context) AccessLevelOutput
+}
+
+func (AccessLevel) ElementType() reflect.Type {
+	return reflect.TypeOf((*AccessLevel)(nil)).Elem()
+}
+
+func (i AccessLevel) ToAccessLevelOutput() AccessLevelOutput {
+	return i.ToAccessLevelOutputWithContext(context.Background())
+}
+
+func (i AccessLevel) ToAccessLevelOutputWithContext(ctx context.Context) AccessLevelOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AccessLevelOutput)
+}
+
+type AccessLevelOutput struct {
+	*pulumi.OutputState
+}
+
+func (AccessLevelOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AccessLevelOutput)(nil)).Elem()
+}
+
+func (o AccessLevelOutput) ToAccessLevelOutput() AccessLevelOutput {
+	return o
+}
+
+func (o AccessLevelOutput) ToAccessLevelOutputWithContext(ctx context.Context) AccessLevelOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AccessLevelOutput{})
 }

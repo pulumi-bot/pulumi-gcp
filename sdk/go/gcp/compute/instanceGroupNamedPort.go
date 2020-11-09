@@ -4,6 +4,8 @@
 package compute
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -42,14 +44,14 @@ type InstanceGroupNamedPort struct {
 // NewInstanceGroupNamedPort registers a new resource with the given unique name, arguments, and options.
 func NewInstanceGroupNamedPort(ctx *pulumi.Context,
 	name string, args *InstanceGroupNamedPortArgs, opts ...pulumi.ResourceOption) (*InstanceGroupNamedPort, error) {
-	if args == nil || args.Group == nil {
-		return nil, errors.New("missing required argument 'Group'")
-	}
-	if args == nil || args.Port == nil {
-		return nil, errors.New("missing required argument 'Port'")
-	}
 	if args == nil {
-		args = &InstanceGroupNamedPortArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Group == nil {
+		return nil, errors.New("invalid value for required argument 'Group'")
+	}
+	if args.Port == nil {
+		return nil, errors.New("invalid value for required argument 'Port'")
 	}
 	var resource InstanceGroupNamedPort
 	err := ctx.RegisterResource("gcp:compute/instanceGroupNamedPort:InstanceGroupNamedPort", name, args, &resource, opts...)
@@ -139,4 +141,43 @@ type InstanceGroupNamedPortArgs struct {
 
 func (InstanceGroupNamedPortArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*instanceGroupNamedPortArgs)(nil)).Elem()
+}
+
+type InstanceGroupNamedPortInput interface {
+	pulumi.Input
+
+	ToInstanceGroupNamedPortOutput() InstanceGroupNamedPortOutput
+	ToInstanceGroupNamedPortOutputWithContext(ctx context.Context) InstanceGroupNamedPortOutput
+}
+
+func (InstanceGroupNamedPort) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceGroupNamedPort)(nil)).Elem()
+}
+
+func (i InstanceGroupNamedPort) ToInstanceGroupNamedPortOutput() InstanceGroupNamedPortOutput {
+	return i.ToInstanceGroupNamedPortOutputWithContext(context.Background())
+}
+
+func (i InstanceGroupNamedPort) ToInstanceGroupNamedPortOutputWithContext(ctx context.Context) InstanceGroupNamedPortOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceGroupNamedPortOutput)
+}
+
+type InstanceGroupNamedPortOutput struct {
+	*pulumi.OutputState
+}
+
+func (InstanceGroupNamedPortOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceGroupNamedPortOutput)(nil)).Elem()
+}
+
+func (o InstanceGroupNamedPortOutput) ToInstanceGroupNamedPortOutput() InstanceGroupNamedPortOutput {
+	return o
+}
+
+func (o InstanceGroupNamedPortOutput) ToInstanceGroupNamedPortOutputWithContext(ctx context.Context) InstanceGroupNamedPortOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(InstanceGroupNamedPortOutput{})
 }

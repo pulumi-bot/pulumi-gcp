@@ -4,6 +4,8 @@
 package servicedirectory
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -34,11 +36,11 @@ type NamespaceIamPolicy struct {
 // NewNamespaceIamPolicy registers a new resource with the given unique name, arguments, and options.
 func NewNamespaceIamPolicy(ctx *pulumi.Context,
 	name string, args *NamespaceIamPolicyArgs, opts ...pulumi.ResourceOption) (*NamespaceIamPolicy, error) {
-	if args == nil || args.PolicyData == nil {
-		return nil, errors.New("missing required argument 'PolicyData'")
-	}
 	if args == nil {
-		args = &NamespaceIamPolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.PolicyData == nil {
+		return nil, errors.New("invalid value for required argument 'PolicyData'")
 	}
 	var resource NamespaceIamPolicy
 	err := ctx.RegisterResource("gcp:servicedirectory/namespaceIamPolicy:NamespaceIamPolicy", name, args, &resource, opts...)
@@ -104,4 +106,43 @@ type NamespaceIamPolicyArgs struct {
 
 func (NamespaceIamPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*namespaceIamPolicyArgs)(nil)).Elem()
+}
+
+type NamespaceIamPolicyInput interface {
+	pulumi.Input
+
+	ToNamespaceIamPolicyOutput() NamespaceIamPolicyOutput
+	ToNamespaceIamPolicyOutputWithContext(ctx context.Context) NamespaceIamPolicyOutput
+}
+
+func (NamespaceIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*NamespaceIamPolicy)(nil)).Elem()
+}
+
+func (i NamespaceIamPolicy) ToNamespaceIamPolicyOutput() NamespaceIamPolicyOutput {
+	return i.ToNamespaceIamPolicyOutputWithContext(context.Background())
+}
+
+func (i NamespaceIamPolicy) ToNamespaceIamPolicyOutputWithContext(ctx context.Context) NamespaceIamPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NamespaceIamPolicyOutput)
+}
+
+type NamespaceIamPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (NamespaceIamPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NamespaceIamPolicyOutput)(nil)).Elem()
+}
+
+func (o NamespaceIamPolicyOutput) ToNamespaceIamPolicyOutput() NamespaceIamPolicyOutput {
+	return o
+}
+
+func (o NamespaceIamPolicyOutput) ToNamespaceIamPolicyOutputWithContext(ctx context.Context) NamespaceIamPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(NamespaceIamPolicyOutput{})
 }

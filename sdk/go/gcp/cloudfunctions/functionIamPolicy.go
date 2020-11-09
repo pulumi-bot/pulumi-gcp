@@ -4,6 +4,8 @@
 package cloudfunctions
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -41,14 +43,14 @@ type FunctionIamPolicy struct {
 // NewFunctionIamPolicy registers a new resource with the given unique name, arguments, and options.
 func NewFunctionIamPolicy(ctx *pulumi.Context,
 	name string, args *FunctionIamPolicyArgs, opts ...pulumi.ResourceOption) (*FunctionIamPolicy, error) {
-	if args == nil || args.CloudFunction == nil {
-		return nil, errors.New("missing required argument 'CloudFunction'")
-	}
-	if args == nil || args.PolicyData == nil {
-		return nil, errors.New("missing required argument 'PolicyData'")
-	}
 	if args == nil {
-		args = &FunctionIamPolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.CloudFunction == nil {
+		return nil, errors.New("invalid value for required argument 'CloudFunction'")
+	}
+	if args.PolicyData == nil {
+		return nil, errors.New("invalid value for required argument 'PolicyData'")
 	}
 	var resource FunctionIamPolicy
 	err := ctx.RegisterResource("gcp:cloudfunctions/functionIamPolicy:FunctionIamPolicy", name, args, &resource, opts...)
@@ -142,4 +144,43 @@ type FunctionIamPolicyArgs struct {
 
 func (FunctionIamPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*functionIamPolicyArgs)(nil)).Elem()
+}
+
+type FunctionIamPolicyInput interface {
+	pulumi.Input
+
+	ToFunctionIamPolicyOutput() FunctionIamPolicyOutput
+	ToFunctionIamPolicyOutputWithContext(ctx context.Context) FunctionIamPolicyOutput
+}
+
+func (FunctionIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*FunctionIamPolicy)(nil)).Elem()
+}
+
+func (i FunctionIamPolicy) ToFunctionIamPolicyOutput() FunctionIamPolicyOutput {
+	return i.ToFunctionIamPolicyOutputWithContext(context.Background())
+}
+
+func (i FunctionIamPolicy) ToFunctionIamPolicyOutputWithContext(ctx context.Context) FunctionIamPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FunctionIamPolicyOutput)
+}
+
+type FunctionIamPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (FunctionIamPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FunctionIamPolicyOutput)(nil)).Elem()
+}
+
+func (o FunctionIamPolicyOutput) ToFunctionIamPolicyOutput() FunctionIamPolicyOutput {
+	return o
+}
+
+func (o FunctionIamPolicyOutput) ToFunctionIamPolicyOutputWithContext(ctx context.Context) FunctionIamPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(FunctionIamPolicyOutput{})
 }

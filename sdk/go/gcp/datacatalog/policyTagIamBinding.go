@@ -4,6 +4,8 @@
 package datacatalog
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -28,17 +30,17 @@ type PolicyTagIamBinding struct {
 // NewPolicyTagIamBinding registers a new resource with the given unique name, arguments, and options.
 func NewPolicyTagIamBinding(ctx *pulumi.Context,
 	name string, args *PolicyTagIamBindingArgs, opts ...pulumi.ResourceOption) (*PolicyTagIamBinding, error) {
-	if args == nil || args.Members == nil {
-		return nil, errors.New("missing required argument 'Members'")
-	}
-	if args == nil || args.PolicyTag == nil {
-		return nil, errors.New("missing required argument 'PolicyTag'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &PolicyTagIamBindingArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Members == nil {
+		return nil, errors.New("invalid value for required argument 'Members'")
+	}
+	if args.PolicyTag == nil {
+		return nil, errors.New("invalid value for required argument 'PolicyTag'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource PolicyTagIamBinding
 	err := ctx.RegisterResource("gcp:datacatalog/policyTagIamBinding:PolicyTagIamBinding", name, args, &resource, opts...)
@@ -116,4 +118,43 @@ type PolicyTagIamBindingArgs struct {
 
 func (PolicyTagIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*policyTagIamBindingArgs)(nil)).Elem()
+}
+
+type PolicyTagIamBindingInput interface {
+	pulumi.Input
+
+	ToPolicyTagIamBindingOutput() PolicyTagIamBindingOutput
+	ToPolicyTagIamBindingOutputWithContext(ctx context.Context) PolicyTagIamBindingOutput
+}
+
+func (PolicyTagIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*PolicyTagIamBinding)(nil)).Elem()
+}
+
+func (i PolicyTagIamBinding) ToPolicyTagIamBindingOutput() PolicyTagIamBindingOutput {
+	return i.ToPolicyTagIamBindingOutputWithContext(context.Background())
+}
+
+func (i PolicyTagIamBinding) ToPolicyTagIamBindingOutputWithContext(ctx context.Context) PolicyTagIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PolicyTagIamBindingOutput)
+}
+
+type PolicyTagIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (PolicyTagIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PolicyTagIamBindingOutput)(nil)).Elem()
+}
+
+func (o PolicyTagIamBindingOutput) ToPolicyTagIamBindingOutput() PolicyTagIamBindingOutput {
+	return o
+}
+
+func (o PolicyTagIamBindingOutput) ToPolicyTagIamBindingOutputWithContext(ctx context.Context) PolicyTagIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(PolicyTagIamBindingOutput{})
 }

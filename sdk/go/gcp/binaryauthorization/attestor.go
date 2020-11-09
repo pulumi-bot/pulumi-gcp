@@ -4,6 +4,8 @@
 package binaryauthorization
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -38,11 +40,11 @@ type Attestor struct {
 // NewAttestor registers a new resource with the given unique name, arguments, and options.
 func NewAttestor(ctx *pulumi.Context,
 	name string, args *AttestorArgs, opts ...pulumi.ResourceOption) (*Attestor, error) {
-	if args == nil || args.AttestationAuthorityNote == nil {
-		return nil, errors.New("missing required argument 'AttestationAuthorityNote'")
-	}
 	if args == nil {
-		args = &AttestorArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.AttestationAuthorityNote == nil {
+		return nil, errors.New("invalid value for required argument 'AttestationAuthorityNote'")
 	}
 	var resource Attestor
 	err := ctx.RegisterResource("gcp:binaryauthorization/attestor:Attestor", name, args, &resource, opts...)
@@ -128,4 +130,43 @@ type AttestorArgs struct {
 
 func (AttestorArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*attestorArgs)(nil)).Elem()
+}
+
+type AttestorInput interface {
+	pulumi.Input
+
+	ToAttestorOutput() AttestorOutput
+	ToAttestorOutputWithContext(ctx context.Context) AttestorOutput
+}
+
+func (Attestor) ElementType() reflect.Type {
+	return reflect.TypeOf((*Attestor)(nil)).Elem()
+}
+
+func (i Attestor) ToAttestorOutput() AttestorOutput {
+	return i.ToAttestorOutputWithContext(context.Background())
+}
+
+func (i Attestor) ToAttestorOutputWithContext(ctx context.Context) AttestorOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AttestorOutput)
+}
+
+type AttestorOutput struct {
+	*pulumi.OutputState
+}
+
+func (AttestorOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AttestorOutput)(nil)).Elem()
+}
+
+func (o AttestorOutput) ToAttestorOutput() AttestorOutput {
+	return o
+}
+
+func (o AttestorOutput) ToAttestorOutputWithContext(ctx context.Context) AttestorOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AttestorOutput{})
 }

@@ -4,6 +4,8 @@
 package binaryauthorization
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -40,17 +42,17 @@ type AttestorIamBinding struct {
 // NewAttestorIamBinding registers a new resource with the given unique name, arguments, and options.
 func NewAttestorIamBinding(ctx *pulumi.Context,
 	name string, args *AttestorIamBindingArgs, opts ...pulumi.ResourceOption) (*AttestorIamBinding, error) {
-	if args == nil || args.Attestor == nil {
-		return nil, errors.New("missing required argument 'Attestor'")
-	}
-	if args == nil || args.Members == nil {
-		return nil, errors.New("missing required argument 'Members'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &AttestorIamBindingArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+	if args.Attestor == nil {
+		return nil, errors.New("invalid value for required argument 'Attestor'")
+	}
+	if args.Members == nil {
+		return nil, errors.New("invalid value for required argument 'Members'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource AttestorIamBinding
 	err := ctx.RegisterResource("gcp:binaryauthorization/attestorIamBinding:AttestorIamBinding", name, args, &resource, opts...)
@@ -140,4 +142,43 @@ type AttestorIamBindingArgs struct {
 
 func (AttestorIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*attestorIamBindingArgs)(nil)).Elem()
+}
+
+type AttestorIamBindingInput interface {
+	pulumi.Input
+
+	ToAttestorIamBindingOutput() AttestorIamBindingOutput
+	ToAttestorIamBindingOutputWithContext(ctx context.Context) AttestorIamBindingOutput
+}
+
+func (AttestorIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*AttestorIamBinding)(nil)).Elem()
+}
+
+func (i AttestorIamBinding) ToAttestorIamBindingOutput() AttestorIamBindingOutput {
+	return i.ToAttestorIamBindingOutputWithContext(context.Background())
+}
+
+func (i AttestorIamBinding) ToAttestorIamBindingOutputWithContext(ctx context.Context) AttestorIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AttestorIamBindingOutput)
+}
+
+type AttestorIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (AttestorIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AttestorIamBindingOutput)(nil)).Elem()
+}
+
+func (o AttestorIamBindingOutput) ToAttestorIamBindingOutput() AttestorIamBindingOutput {
+	return o
+}
+
+func (o AttestorIamBindingOutput) ToAttestorIamBindingOutputWithContext(ctx context.Context) AttestorIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AttestorIamBindingOutput{})
 }

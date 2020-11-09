@@ -4,6 +4,8 @@
 package cloudbuild
 
 import (
+	"context"
+	"fmt"
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
@@ -326,4 +328,43 @@ type TriggerArgs struct {
 
 func (TriggerArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*triggerArgs)(nil)).Elem()
+}
+
+type TriggerInput interface {
+	pulumi.Input
+
+	ToTriggerOutput() TriggerOutput
+	ToTriggerOutputWithContext(ctx context.Context) TriggerOutput
+}
+
+func (Trigger) ElementType() reflect.Type {
+	return reflect.TypeOf((*Trigger)(nil)).Elem()
+}
+
+func (i Trigger) ToTriggerOutput() TriggerOutput {
+	return i.ToTriggerOutputWithContext(context.Background())
+}
+
+func (i Trigger) ToTriggerOutputWithContext(ctx context.Context) TriggerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TriggerOutput)
+}
+
+type TriggerOutput struct {
+	*pulumi.OutputState
+}
+
+func (TriggerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TriggerOutput)(nil)).Elem()
+}
+
+func (o TriggerOutput) ToTriggerOutput() TriggerOutput {
+	return o
+}
+
+func (o TriggerOutput) ToTriggerOutputWithContext(ctx context.Context) TriggerOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TriggerOutput{})
 }
