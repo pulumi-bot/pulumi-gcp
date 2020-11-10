@@ -4,6 +4,7 @@
 package datastore
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -139,4 +140,43 @@ type DataStoreIndexArgs struct {
 
 func (DataStoreIndexArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*dataStoreIndexArgs)(nil)).Elem()
+}
+
+type DataStoreIndexInput interface {
+	pulumi.Input
+
+	ToDataStoreIndexOutput() DataStoreIndexOutput
+	ToDataStoreIndexOutputWithContext(ctx context.Context) DataStoreIndexOutput
+}
+
+func (DataStoreIndex) ElementType() reflect.Type {
+	return reflect.TypeOf((*DataStoreIndex)(nil)).Elem()
+}
+
+func (i DataStoreIndex) ToDataStoreIndexOutput() DataStoreIndexOutput {
+	return i.ToDataStoreIndexOutputWithContext(context.Background())
+}
+
+func (i DataStoreIndex) ToDataStoreIndexOutputWithContext(ctx context.Context) DataStoreIndexOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DataStoreIndexOutput)
+}
+
+type DataStoreIndexOutput struct {
+	*pulumi.OutputState
+}
+
+func (DataStoreIndexOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DataStoreIndexOutput)(nil)).Elem()
+}
+
+func (o DataStoreIndexOutput) ToDataStoreIndexOutput() DataStoreIndexOutput {
+	return o
+}
+
+func (o DataStoreIndexOutput) ToDataStoreIndexOutputWithContext(ctx context.Context) DataStoreIndexOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DataStoreIndexOutput{})
 }

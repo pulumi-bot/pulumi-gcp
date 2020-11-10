@@ -4,6 +4,7 @@
 package bigtable
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -120,4 +121,43 @@ type TableIamPolicyArgs struct {
 
 func (TableIamPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*tableIamPolicyArgs)(nil)).Elem()
+}
+
+type TableIamPolicyInput interface {
+	pulumi.Input
+
+	ToTableIamPolicyOutput() TableIamPolicyOutput
+	ToTableIamPolicyOutputWithContext(ctx context.Context) TableIamPolicyOutput
+}
+
+func (TableIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*TableIamPolicy)(nil)).Elem()
+}
+
+func (i TableIamPolicy) ToTableIamPolicyOutput() TableIamPolicyOutput {
+	return i.ToTableIamPolicyOutputWithContext(context.Background())
+}
+
+func (i TableIamPolicy) ToTableIamPolicyOutputWithContext(ctx context.Context) TableIamPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TableIamPolicyOutput)
+}
+
+type TableIamPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (TableIamPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TableIamPolicyOutput)(nil)).Elem()
+}
+
+func (o TableIamPolicyOutput) ToTableIamPolicyOutput() TableIamPolicyOutput {
+	return o
+}
+
+func (o TableIamPolicyOutput) ToTableIamPolicyOutputWithContext(ctx context.Context) TableIamPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TableIamPolicyOutput{})
 }

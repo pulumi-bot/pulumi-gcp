@@ -4,6 +4,7 @@
 package firestore
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -182,4 +183,43 @@ type IndexArgs struct {
 
 func (IndexArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*indexArgs)(nil)).Elem()
+}
+
+type IndexInput interface {
+	pulumi.Input
+
+	ToIndexOutput() IndexOutput
+	ToIndexOutputWithContext(ctx context.Context) IndexOutput
+}
+
+func (Index) ElementType() reflect.Type {
+	return reflect.TypeOf((*Index)(nil)).Elem()
+}
+
+func (i Index) ToIndexOutput() IndexOutput {
+	return i.ToIndexOutputWithContext(context.Background())
+}
+
+func (i Index) ToIndexOutputWithContext(ctx context.Context) IndexOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IndexOutput)
+}
+
+type IndexOutput struct {
+	*pulumi.OutputState
+}
+
+func (IndexOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IndexOutput)(nil)).Elem()
+}
+
+func (o IndexOutput) ToIndexOutput() IndexOutput {
+	return o
+}
+
+func (o IndexOutput) ToIndexOutputWithContext(ctx context.Context) IndexOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(IndexOutput{})
 }

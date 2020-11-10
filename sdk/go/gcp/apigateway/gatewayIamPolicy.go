@@ -4,6 +4,7 @@
 package apigateway
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -133,4 +134,43 @@ type GatewayIamPolicyArgs struct {
 
 func (GatewayIamPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*gatewayIamPolicyArgs)(nil)).Elem()
+}
+
+type GatewayIamPolicyInput interface {
+	pulumi.Input
+
+	ToGatewayIamPolicyOutput() GatewayIamPolicyOutput
+	ToGatewayIamPolicyOutputWithContext(ctx context.Context) GatewayIamPolicyOutput
+}
+
+func (GatewayIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*GatewayIamPolicy)(nil)).Elem()
+}
+
+func (i GatewayIamPolicy) ToGatewayIamPolicyOutput() GatewayIamPolicyOutput {
+	return i.ToGatewayIamPolicyOutputWithContext(context.Background())
+}
+
+func (i GatewayIamPolicy) ToGatewayIamPolicyOutputWithContext(ctx context.Context) GatewayIamPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GatewayIamPolicyOutput)
+}
+
+type GatewayIamPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (GatewayIamPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GatewayIamPolicyOutput)(nil)).Elem()
+}
+
+func (o GatewayIamPolicyOutput) ToGatewayIamPolicyOutput() GatewayIamPolicyOutput {
+	return o
+}
+
+func (o GatewayIamPolicyOutput) ToGatewayIamPolicyOutputWithContext(ctx context.Context) GatewayIamPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(GatewayIamPolicyOutput{})
 }

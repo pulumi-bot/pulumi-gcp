@@ -4,6 +4,7 @@
 package iap
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -150,4 +151,43 @@ type WebTypeAppEngingIamBindingArgs struct {
 
 func (WebTypeAppEngingIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*webTypeAppEngingIamBindingArgs)(nil)).Elem()
+}
+
+type WebTypeAppEngingIamBindingInput interface {
+	pulumi.Input
+
+	ToWebTypeAppEngingIamBindingOutput() WebTypeAppEngingIamBindingOutput
+	ToWebTypeAppEngingIamBindingOutputWithContext(ctx context.Context) WebTypeAppEngingIamBindingOutput
+}
+
+func (WebTypeAppEngingIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebTypeAppEngingIamBinding)(nil)).Elem()
+}
+
+func (i WebTypeAppEngingIamBinding) ToWebTypeAppEngingIamBindingOutput() WebTypeAppEngingIamBindingOutput {
+	return i.ToWebTypeAppEngingIamBindingOutputWithContext(context.Background())
+}
+
+func (i WebTypeAppEngingIamBinding) ToWebTypeAppEngingIamBindingOutputWithContext(ctx context.Context) WebTypeAppEngingIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebTypeAppEngingIamBindingOutput)
+}
+
+type WebTypeAppEngingIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (WebTypeAppEngingIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebTypeAppEngingIamBindingOutput)(nil)).Elem()
+}
+
+func (o WebTypeAppEngingIamBindingOutput) ToWebTypeAppEngingIamBindingOutput() WebTypeAppEngingIamBindingOutput {
+	return o
+}
+
+func (o WebTypeAppEngingIamBindingOutput) ToWebTypeAppEngingIamBindingOutputWithContext(ctx context.Context) WebTypeAppEngingIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(WebTypeAppEngingIamBindingOutput{})
 }

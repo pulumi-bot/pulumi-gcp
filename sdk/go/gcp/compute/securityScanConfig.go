@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -240,4 +241,43 @@ type SecurityScanConfigArgs struct {
 
 func (SecurityScanConfigArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*securityScanConfigArgs)(nil)).Elem()
+}
+
+type SecurityScanConfigInput interface {
+	pulumi.Input
+
+	ToSecurityScanConfigOutput() SecurityScanConfigOutput
+	ToSecurityScanConfigOutputWithContext(ctx context.Context) SecurityScanConfigOutput
+}
+
+func (SecurityScanConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecurityScanConfig)(nil)).Elem()
+}
+
+func (i SecurityScanConfig) ToSecurityScanConfigOutput() SecurityScanConfigOutput {
+	return i.ToSecurityScanConfigOutputWithContext(context.Background())
+}
+
+func (i SecurityScanConfig) ToSecurityScanConfigOutputWithContext(ctx context.Context) SecurityScanConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityScanConfigOutput)
+}
+
+type SecurityScanConfigOutput struct {
+	*pulumi.OutputState
+}
+
+func (SecurityScanConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecurityScanConfigOutput)(nil)).Elem()
+}
+
+func (o SecurityScanConfigOutput) ToSecurityScanConfigOutput() SecurityScanConfigOutput {
+	return o
+}
+
+func (o SecurityScanConfigOutput) ToSecurityScanConfigOutputWithContext(ctx context.Context) SecurityScanConfigOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SecurityScanConfigOutput{})
 }

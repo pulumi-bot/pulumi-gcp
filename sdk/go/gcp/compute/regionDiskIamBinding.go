@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -142,4 +143,43 @@ type RegionDiskIamBindingArgs struct {
 
 func (RegionDiskIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*regionDiskIamBindingArgs)(nil)).Elem()
+}
+
+type RegionDiskIamBindingInput interface {
+	pulumi.Input
+
+	ToRegionDiskIamBindingOutput() RegionDiskIamBindingOutput
+	ToRegionDiskIamBindingOutputWithContext(ctx context.Context) RegionDiskIamBindingOutput
+}
+
+func (RegionDiskIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionDiskIamBinding)(nil)).Elem()
+}
+
+func (i RegionDiskIamBinding) ToRegionDiskIamBindingOutput() RegionDiskIamBindingOutput {
+	return i.ToRegionDiskIamBindingOutputWithContext(context.Background())
+}
+
+func (i RegionDiskIamBinding) ToRegionDiskIamBindingOutputWithContext(ctx context.Context) RegionDiskIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegionDiskIamBindingOutput)
+}
+
+type RegionDiskIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (RegionDiskIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionDiskIamBindingOutput)(nil)).Elem()
+}
+
+func (o RegionDiskIamBindingOutput) ToRegionDiskIamBindingOutput() RegionDiskIamBindingOutput {
+	return o
+}
+
+func (o RegionDiskIamBindingOutput) ToRegionDiskIamBindingOutputWithContext(ctx context.Context) RegionDiskIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RegionDiskIamBindingOutput{})
 }

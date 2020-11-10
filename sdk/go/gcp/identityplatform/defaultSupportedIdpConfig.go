@@ -4,6 +4,7 @@
 package identityplatform
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -188,4 +189,43 @@ type DefaultSupportedIdpConfigArgs struct {
 
 func (DefaultSupportedIdpConfigArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*defaultSupportedIdpConfigArgs)(nil)).Elem()
+}
+
+type DefaultSupportedIdpConfigInput interface {
+	pulumi.Input
+
+	ToDefaultSupportedIdpConfigOutput() DefaultSupportedIdpConfigOutput
+	ToDefaultSupportedIdpConfigOutputWithContext(ctx context.Context) DefaultSupportedIdpConfigOutput
+}
+
+func (DefaultSupportedIdpConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultSupportedIdpConfig)(nil)).Elem()
+}
+
+func (i DefaultSupportedIdpConfig) ToDefaultSupportedIdpConfigOutput() DefaultSupportedIdpConfigOutput {
+	return i.ToDefaultSupportedIdpConfigOutputWithContext(context.Background())
+}
+
+func (i DefaultSupportedIdpConfig) ToDefaultSupportedIdpConfigOutputWithContext(ctx context.Context) DefaultSupportedIdpConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultSupportedIdpConfigOutput)
+}
+
+type DefaultSupportedIdpConfigOutput struct {
+	*pulumi.OutputState
+}
+
+func (DefaultSupportedIdpConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultSupportedIdpConfigOutput)(nil)).Elem()
+}
+
+func (o DefaultSupportedIdpConfigOutput) ToDefaultSupportedIdpConfigOutput() DefaultSupportedIdpConfigOutput {
+	return o
+}
+
+func (o DefaultSupportedIdpConfigOutput) ToDefaultSupportedIdpConfigOutputWithContext(ctx context.Context) DefaultSupportedIdpConfigOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DefaultSupportedIdpConfigOutput{})
 }

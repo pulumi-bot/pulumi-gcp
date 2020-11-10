@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -166,4 +167,43 @@ type NetworkPeeringArgs struct {
 
 func (NetworkPeeringArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*networkPeeringArgs)(nil)).Elem()
+}
+
+type NetworkPeeringInput interface {
+	pulumi.Input
+
+	ToNetworkPeeringOutput() NetworkPeeringOutput
+	ToNetworkPeeringOutputWithContext(ctx context.Context) NetworkPeeringOutput
+}
+
+func (NetworkPeering) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetworkPeering)(nil)).Elem()
+}
+
+func (i NetworkPeering) ToNetworkPeeringOutput() NetworkPeeringOutput {
+	return i.ToNetworkPeeringOutputWithContext(context.Background())
+}
+
+func (i NetworkPeering) ToNetworkPeeringOutputWithContext(ctx context.Context) NetworkPeeringOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NetworkPeeringOutput)
+}
+
+type NetworkPeeringOutput struct {
+	*pulumi.OutputState
+}
+
+func (NetworkPeeringOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetworkPeeringOutput)(nil)).Elem()
+}
+
+func (o NetworkPeeringOutput) ToNetworkPeeringOutput() NetworkPeeringOutput {
+	return o
+}
+
+func (o NetworkPeeringOutput) ToNetworkPeeringOutputWithContext(ctx context.Context) NetworkPeeringOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(NetworkPeeringOutput{})
 }

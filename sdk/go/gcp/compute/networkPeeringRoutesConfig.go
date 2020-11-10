@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -140,4 +141,43 @@ type NetworkPeeringRoutesConfigArgs struct {
 
 func (NetworkPeeringRoutesConfigArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*networkPeeringRoutesConfigArgs)(nil)).Elem()
+}
+
+type NetworkPeeringRoutesConfigInput interface {
+	pulumi.Input
+
+	ToNetworkPeeringRoutesConfigOutput() NetworkPeeringRoutesConfigOutput
+	ToNetworkPeeringRoutesConfigOutputWithContext(ctx context.Context) NetworkPeeringRoutesConfigOutput
+}
+
+func (NetworkPeeringRoutesConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetworkPeeringRoutesConfig)(nil)).Elem()
+}
+
+func (i NetworkPeeringRoutesConfig) ToNetworkPeeringRoutesConfigOutput() NetworkPeeringRoutesConfigOutput {
+	return i.ToNetworkPeeringRoutesConfigOutputWithContext(context.Background())
+}
+
+func (i NetworkPeeringRoutesConfig) ToNetworkPeeringRoutesConfigOutputWithContext(ctx context.Context) NetworkPeeringRoutesConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NetworkPeeringRoutesConfigOutput)
+}
+
+type NetworkPeeringRoutesConfigOutput struct {
+	*pulumi.OutputState
+}
+
+func (NetworkPeeringRoutesConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetworkPeeringRoutesConfigOutput)(nil)).Elem()
+}
+
+func (o NetworkPeeringRoutesConfigOutput) ToNetworkPeeringRoutesConfigOutput() NetworkPeeringRoutesConfigOutput {
+	return o
+}
+
+func (o NetworkPeeringRoutesConfigOutput) ToNetworkPeeringRoutesConfigOutputWithContext(ctx context.Context) NetworkPeeringRoutesConfigOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(NetworkPeeringRoutesConfigOutput{})
 }

@@ -4,6 +4,7 @@
 package runtimeconfig
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
@@ -104,4 +105,43 @@ type ConfigArgs struct {
 
 func (ConfigArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*configArgs)(nil)).Elem()
+}
+
+type ConfigInput interface {
+	pulumi.Input
+
+	ToConfigOutput() ConfigOutput
+	ToConfigOutputWithContext(ctx context.Context) ConfigOutput
+}
+
+func (Config) ElementType() reflect.Type {
+	return reflect.TypeOf((*Config)(nil)).Elem()
+}
+
+func (i Config) ToConfigOutput() ConfigOutput {
+	return i.ToConfigOutputWithContext(context.Background())
+}
+
+func (i Config) ToConfigOutputWithContext(ctx context.Context) ConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConfigOutput)
+}
+
+type ConfigOutput struct {
+	*pulumi.OutputState
+}
+
+func (ConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConfigOutput)(nil)).Elem()
+}
+
+func (o ConfigOutput) ToConfigOutput() ConfigOutput {
+	return o
+}
+
+func (o ConfigOutput) ToConfigOutputWithContext(ctx context.Context) ConfigOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ConfigOutput{})
 }
