@@ -4,6 +4,7 @@
 package monitoring
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
@@ -134,4 +135,43 @@ type CustomServiceArgs struct {
 
 func (CustomServiceArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*customServiceArgs)(nil)).Elem()
+}
+
+type CustomServiceInput interface {
+	pulumi.Input
+
+	ToCustomServiceOutput() CustomServiceOutput
+	ToCustomServiceOutputWithContext(ctx context.Context) CustomServiceOutput
+}
+
+func (CustomService) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomService)(nil)).Elem()
+}
+
+func (i CustomService) ToCustomServiceOutput() CustomServiceOutput {
+	return i.ToCustomServiceOutputWithContext(context.Background())
+}
+
+func (i CustomService) ToCustomServiceOutputWithContext(ctx context.Context) CustomServiceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomServiceOutput)
+}
+
+type CustomServiceOutput struct {
+	*pulumi.OutputState
+}
+
+func (CustomServiceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomServiceOutput)(nil)).Elem()
+}
+
+func (o CustomServiceOutput) ToCustomServiceOutput() CustomServiceOutput {
+	return o
+}
+
+func (o CustomServiceOutput) ToCustomServiceOutputWithContext(ctx context.Context) CustomServiceOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(CustomServiceOutput{})
 }

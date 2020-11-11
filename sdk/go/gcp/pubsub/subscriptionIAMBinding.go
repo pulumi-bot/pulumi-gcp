@@ -4,6 +4,7 @@
 package pubsub
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -140,4 +141,43 @@ type SubscriptionIAMBindingArgs struct {
 
 func (SubscriptionIAMBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*subscriptionIAMBindingArgs)(nil)).Elem()
+}
+
+type SubscriptionIAMBindingInput interface {
+	pulumi.Input
+
+	ToSubscriptionIAMBindingOutput() SubscriptionIAMBindingOutput
+	ToSubscriptionIAMBindingOutputWithContext(ctx context.Context) SubscriptionIAMBindingOutput
+}
+
+func (SubscriptionIAMBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*SubscriptionIAMBinding)(nil)).Elem()
+}
+
+func (i SubscriptionIAMBinding) ToSubscriptionIAMBindingOutput() SubscriptionIAMBindingOutput {
+	return i.ToSubscriptionIAMBindingOutputWithContext(context.Background())
+}
+
+func (i SubscriptionIAMBinding) ToSubscriptionIAMBindingOutputWithContext(ctx context.Context) SubscriptionIAMBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SubscriptionIAMBindingOutput)
+}
+
+type SubscriptionIAMBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (SubscriptionIAMBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SubscriptionIAMBindingOutput)(nil)).Elem()
+}
+
+func (o SubscriptionIAMBindingOutput) ToSubscriptionIAMBindingOutput() SubscriptionIAMBindingOutput {
+	return o
+}
+
+func (o SubscriptionIAMBindingOutput) ToSubscriptionIAMBindingOutputWithContext(ctx context.Context) SubscriptionIAMBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SubscriptionIAMBindingOutput{})
 }

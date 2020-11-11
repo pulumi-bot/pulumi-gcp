@@ -4,6 +4,7 @@
 package iap
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -128,4 +129,43 @@ type TunnelIamBindingArgs struct {
 
 func (TunnelIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*tunnelIamBindingArgs)(nil)).Elem()
+}
+
+type TunnelIamBindingInput interface {
+	pulumi.Input
+
+	ToTunnelIamBindingOutput() TunnelIamBindingOutput
+	ToTunnelIamBindingOutputWithContext(ctx context.Context) TunnelIamBindingOutput
+}
+
+func (TunnelIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*TunnelIamBinding)(nil)).Elem()
+}
+
+func (i TunnelIamBinding) ToTunnelIamBindingOutput() TunnelIamBindingOutput {
+	return i.ToTunnelIamBindingOutputWithContext(context.Background())
+}
+
+func (i TunnelIamBinding) ToTunnelIamBindingOutputWithContext(ctx context.Context) TunnelIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TunnelIamBindingOutput)
+}
+
+type TunnelIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (TunnelIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TunnelIamBindingOutput)(nil)).Elem()
+}
+
+func (o TunnelIamBindingOutput) ToTunnelIamBindingOutput() TunnelIamBindingOutput {
+	return o
+}
+
+func (o TunnelIamBindingOutput) ToTunnelIamBindingOutputWithContext(ctx context.Context) TunnelIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TunnelIamBindingOutput{})
 }

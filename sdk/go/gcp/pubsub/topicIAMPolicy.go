@@ -4,6 +4,7 @@
 package pubsub
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -122,4 +123,43 @@ type TopicIAMPolicyArgs struct {
 
 func (TopicIAMPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*topicIAMPolicyArgs)(nil)).Elem()
+}
+
+type TopicIAMPolicyInput interface {
+	pulumi.Input
+
+	ToTopicIAMPolicyOutput() TopicIAMPolicyOutput
+	ToTopicIAMPolicyOutputWithContext(ctx context.Context) TopicIAMPolicyOutput
+}
+
+func (TopicIAMPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*TopicIAMPolicy)(nil)).Elem()
+}
+
+func (i TopicIAMPolicy) ToTopicIAMPolicyOutput() TopicIAMPolicyOutput {
+	return i.ToTopicIAMPolicyOutputWithContext(context.Background())
+}
+
+func (i TopicIAMPolicy) ToTopicIAMPolicyOutputWithContext(ctx context.Context) TopicIAMPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TopicIAMPolicyOutput)
+}
+
+type TopicIAMPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (TopicIAMPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TopicIAMPolicyOutput)(nil)).Elem()
+}
+
+func (o TopicIAMPolicyOutput) ToTopicIAMPolicyOutput() TopicIAMPolicyOutput {
+	return o
+}
+
+func (o TopicIAMPolicyOutput) ToTopicIAMPolicyOutputWithContext(ctx context.Context) TopicIAMPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TopicIAMPolicyOutput{})
 }

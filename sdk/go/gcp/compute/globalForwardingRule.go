@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -550,4 +551,43 @@ type GlobalForwardingRuleArgs struct {
 
 func (GlobalForwardingRuleArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*globalForwardingRuleArgs)(nil)).Elem()
+}
+
+type GlobalForwardingRuleInput interface {
+	pulumi.Input
+
+	ToGlobalForwardingRuleOutput() GlobalForwardingRuleOutput
+	ToGlobalForwardingRuleOutputWithContext(ctx context.Context) GlobalForwardingRuleOutput
+}
+
+func (GlobalForwardingRule) ElementType() reflect.Type {
+	return reflect.TypeOf((*GlobalForwardingRule)(nil)).Elem()
+}
+
+func (i GlobalForwardingRule) ToGlobalForwardingRuleOutput() GlobalForwardingRuleOutput {
+	return i.ToGlobalForwardingRuleOutputWithContext(context.Background())
+}
+
+func (i GlobalForwardingRule) ToGlobalForwardingRuleOutputWithContext(ctx context.Context) GlobalForwardingRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalForwardingRuleOutput)
+}
+
+type GlobalForwardingRuleOutput struct {
+	*pulumi.OutputState
+}
+
+func (GlobalForwardingRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GlobalForwardingRuleOutput)(nil)).Elem()
+}
+
+func (o GlobalForwardingRuleOutput) ToGlobalForwardingRuleOutput() GlobalForwardingRuleOutput {
+	return o
+}
+
+func (o GlobalForwardingRuleOutput) ToGlobalForwardingRuleOutputWithContext(ctx context.Context) GlobalForwardingRuleOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(GlobalForwardingRuleOutput{})
 }

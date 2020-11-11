@@ -4,6 +4,7 @@
 package healthcare
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -122,4 +123,43 @@ type DicomStoreIamPolicyArgs struct {
 
 func (DicomStoreIamPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*dicomStoreIamPolicyArgs)(nil)).Elem()
+}
+
+type DicomStoreIamPolicyInput interface {
+	pulumi.Input
+
+	ToDicomStoreIamPolicyOutput() DicomStoreIamPolicyOutput
+	ToDicomStoreIamPolicyOutputWithContext(ctx context.Context) DicomStoreIamPolicyOutput
+}
+
+func (DicomStoreIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*DicomStoreIamPolicy)(nil)).Elem()
+}
+
+func (i DicomStoreIamPolicy) ToDicomStoreIamPolicyOutput() DicomStoreIamPolicyOutput {
+	return i.ToDicomStoreIamPolicyOutputWithContext(context.Background())
+}
+
+func (i DicomStoreIamPolicy) ToDicomStoreIamPolicyOutputWithContext(ctx context.Context) DicomStoreIamPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DicomStoreIamPolicyOutput)
+}
+
+type DicomStoreIamPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (DicomStoreIamPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DicomStoreIamPolicyOutput)(nil)).Elem()
+}
+
+func (o DicomStoreIamPolicyOutput) ToDicomStoreIamPolicyOutput() DicomStoreIamPolicyOutput {
+	return o
+}
+
+func (o DicomStoreIamPolicyOutput) ToDicomStoreIamPolicyOutputWithContext(ctx context.Context) DicomStoreIamPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DicomStoreIamPolicyOutput{})
 }

@@ -4,6 +4,7 @@
 package apigateway
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -126,4 +127,43 @@ type ApiIamBindingArgs struct {
 
 func (ApiIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*apiIamBindingArgs)(nil)).Elem()
+}
+
+type ApiIamBindingInput interface {
+	pulumi.Input
+
+	ToApiIamBindingOutput() ApiIamBindingOutput
+	ToApiIamBindingOutputWithContext(ctx context.Context) ApiIamBindingOutput
+}
+
+func (ApiIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*ApiIamBinding)(nil)).Elem()
+}
+
+func (i ApiIamBinding) ToApiIamBindingOutput() ApiIamBindingOutput {
+	return i.ToApiIamBindingOutputWithContext(context.Background())
+}
+
+func (i ApiIamBinding) ToApiIamBindingOutputWithContext(ctx context.Context) ApiIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApiIamBindingOutput)
+}
+
+type ApiIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (ApiIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ApiIamBindingOutput)(nil)).Elem()
+}
+
+func (o ApiIamBindingOutput) ToApiIamBindingOutput() ApiIamBindingOutput {
+	return o
+}
+
+func (o ApiIamBindingOutput) ToApiIamBindingOutputWithContext(ctx context.Context) ApiIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ApiIamBindingOutput{})
 }

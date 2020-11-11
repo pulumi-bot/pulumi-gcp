@@ -4,6 +4,7 @@
 package iap
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -155,4 +156,43 @@ type TunnelInstanceIAMBindingArgs struct {
 
 func (TunnelInstanceIAMBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*tunnelInstanceIAMBindingArgs)(nil)).Elem()
+}
+
+type TunnelInstanceIAMBindingInput interface {
+	pulumi.Input
+
+	ToTunnelInstanceIAMBindingOutput() TunnelInstanceIAMBindingOutput
+	ToTunnelInstanceIAMBindingOutputWithContext(ctx context.Context) TunnelInstanceIAMBindingOutput
+}
+
+func (TunnelInstanceIAMBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*TunnelInstanceIAMBinding)(nil)).Elem()
+}
+
+func (i TunnelInstanceIAMBinding) ToTunnelInstanceIAMBindingOutput() TunnelInstanceIAMBindingOutput {
+	return i.ToTunnelInstanceIAMBindingOutputWithContext(context.Background())
+}
+
+func (i TunnelInstanceIAMBinding) ToTunnelInstanceIAMBindingOutputWithContext(ctx context.Context) TunnelInstanceIAMBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TunnelInstanceIAMBindingOutput)
+}
+
+type TunnelInstanceIAMBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (TunnelInstanceIAMBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TunnelInstanceIAMBindingOutput)(nil)).Elem()
+}
+
+func (o TunnelInstanceIAMBindingOutput) ToTunnelInstanceIAMBindingOutput() TunnelInstanceIAMBindingOutput {
+	return o
+}
+
+func (o TunnelInstanceIAMBindingOutput) ToTunnelInstanceIAMBindingOutputWithContext(ctx context.Context) TunnelInstanceIAMBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TunnelInstanceIAMBindingOutput{})
 }
