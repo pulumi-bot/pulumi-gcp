@@ -4,6 +4,7 @@
 package appengine
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -101,4 +102,43 @@ type ApplicationUrlDispatchRulesArgs struct {
 
 func (ApplicationUrlDispatchRulesArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*applicationUrlDispatchRulesArgs)(nil)).Elem()
+}
+
+type ApplicationUrlDispatchRulesInput interface {
+	pulumi.Input
+
+	ToApplicationUrlDispatchRulesOutput() ApplicationUrlDispatchRulesOutput
+	ToApplicationUrlDispatchRulesOutputWithContext(ctx context.Context) ApplicationUrlDispatchRulesOutput
+}
+
+func (ApplicationUrlDispatchRules) ElementType() reflect.Type {
+	return reflect.TypeOf((*ApplicationUrlDispatchRules)(nil)).Elem()
+}
+
+func (i ApplicationUrlDispatchRules) ToApplicationUrlDispatchRulesOutput() ApplicationUrlDispatchRulesOutput {
+	return i.ToApplicationUrlDispatchRulesOutputWithContext(context.Background())
+}
+
+func (i ApplicationUrlDispatchRules) ToApplicationUrlDispatchRulesOutputWithContext(ctx context.Context) ApplicationUrlDispatchRulesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApplicationUrlDispatchRulesOutput)
+}
+
+type ApplicationUrlDispatchRulesOutput struct {
+	*pulumi.OutputState
+}
+
+func (ApplicationUrlDispatchRulesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ApplicationUrlDispatchRulesOutput)(nil)).Elem()
+}
+
+func (o ApplicationUrlDispatchRulesOutput) ToApplicationUrlDispatchRulesOutput() ApplicationUrlDispatchRulesOutput {
+	return o
+}
+
+func (o ApplicationUrlDispatchRulesOutput) ToApplicationUrlDispatchRulesOutputWithContext(ctx context.Context) ApplicationUrlDispatchRulesOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ApplicationUrlDispatchRulesOutput{})
 }

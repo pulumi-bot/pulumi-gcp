@@ -4,6 +4,7 @@
 package healthcare
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -230,4 +231,43 @@ type Hl7StoreArgs struct {
 
 func (Hl7StoreArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*hl7StoreArgs)(nil)).Elem()
+}
+
+type Hl7StoreInput interface {
+	pulumi.Input
+
+	ToHl7StoreOutput() Hl7StoreOutput
+	ToHl7StoreOutputWithContext(ctx context.Context) Hl7StoreOutput
+}
+
+func (Hl7Store) ElementType() reflect.Type {
+	return reflect.TypeOf((*Hl7Store)(nil)).Elem()
+}
+
+func (i Hl7Store) ToHl7StoreOutput() Hl7StoreOutput {
+	return i.ToHl7StoreOutputWithContext(context.Background())
+}
+
+func (i Hl7Store) ToHl7StoreOutputWithContext(ctx context.Context) Hl7StoreOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Hl7StoreOutput)
+}
+
+type Hl7StoreOutput struct {
+	*pulumi.OutputState
+}
+
+func (Hl7StoreOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*Hl7StoreOutput)(nil)).Elem()
+}
+
+func (o Hl7StoreOutput) ToHl7StoreOutput() Hl7StoreOutput {
+	return o
+}
+
+func (o Hl7StoreOutput) ToHl7StoreOutputWithContext(ctx context.Context) Hl7StoreOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(Hl7StoreOutput{})
 }

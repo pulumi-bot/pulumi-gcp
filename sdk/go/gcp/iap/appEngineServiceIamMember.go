@@ -4,6 +4,7 @@
 package iap
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -163,4 +164,43 @@ type AppEngineServiceIamMemberArgs struct {
 
 func (AppEngineServiceIamMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*appEngineServiceIamMemberArgs)(nil)).Elem()
+}
+
+type AppEngineServiceIamMemberInput interface {
+	pulumi.Input
+
+	ToAppEngineServiceIamMemberOutput() AppEngineServiceIamMemberOutput
+	ToAppEngineServiceIamMemberOutputWithContext(ctx context.Context) AppEngineServiceIamMemberOutput
+}
+
+func (AppEngineServiceIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*AppEngineServiceIamMember)(nil)).Elem()
+}
+
+func (i AppEngineServiceIamMember) ToAppEngineServiceIamMemberOutput() AppEngineServiceIamMemberOutput {
+	return i.ToAppEngineServiceIamMemberOutputWithContext(context.Background())
+}
+
+func (i AppEngineServiceIamMember) ToAppEngineServiceIamMemberOutputWithContext(ctx context.Context) AppEngineServiceIamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AppEngineServiceIamMemberOutput)
+}
+
+type AppEngineServiceIamMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (AppEngineServiceIamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AppEngineServiceIamMemberOutput)(nil)).Elem()
+}
+
+func (o AppEngineServiceIamMemberOutput) ToAppEngineServiceIamMemberOutput() AppEngineServiceIamMemberOutput {
+	return o
+}
+
+func (o AppEngineServiceIamMemberOutput) ToAppEngineServiceIamMemberOutputWithContext(ctx context.Context) AppEngineServiceIamMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AppEngineServiceIamMemberOutput{})
 }

@@ -4,6 +4,7 @@
 package iap
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -150,4 +151,43 @@ type WebTypeAppEngingIamMemberArgs struct {
 
 func (WebTypeAppEngingIamMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*webTypeAppEngingIamMemberArgs)(nil)).Elem()
+}
+
+type WebTypeAppEngingIamMemberInput interface {
+	pulumi.Input
+
+	ToWebTypeAppEngingIamMemberOutput() WebTypeAppEngingIamMemberOutput
+	ToWebTypeAppEngingIamMemberOutputWithContext(ctx context.Context) WebTypeAppEngingIamMemberOutput
+}
+
+func (WebTypeAppEngingIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebTypeAppEngingIamMember)(nil)).Elem()
+}
+
+func (i WebTypeAppEngingIamMember) ToWebTypeAppEngingIamMemberOutput() WebTypeAppEngingIamMemberOutput {
+	return i.ToWebTypeAppEngingIamMemberOutputWithContext(context.Background())
+}
+
+func (i WebTypeAppEngingIamMember) ToWebTypeAppEngingIamMemberOutputWithContext(ctx context.Context) WebTypeAppEngingIamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebTypeAppEngingIamMemberOutput)
+}
+
+type WebTypeAppEngingIamMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (WebTypeAppEngingIamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebTypeAppEngingIamMemberOutput)(nil)).Elem()
+}
+
+func (o WebTypeAppEngingIamMemberOutput) ToWebTypeAppEngingIamMemberOutput() WebTypeAppEngingIamMemberOutput {
+	return o
+}
+
+func (o WebTypeAppEngingIamMemberOutput) ToWebTypeAppEngingIamMemberOutputWithContext(ctx context.Context) WebTypeAppEngingIamMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(WebTypeAppEngingIamMemberOutput{})
 }

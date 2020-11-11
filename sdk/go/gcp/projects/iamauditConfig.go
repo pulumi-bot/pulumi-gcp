@@ -4,6 +4,7 @@
 package projects
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -125,4 +126,43 @@ type IAMAuditConfigArgs struct {
 
 func (IAMAuditConfigArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*iamauditConfigArgs)(nil)).Elem()
+}
+
+type IAMAuditConfigInput interface {
+	pulumi.Input
+
+	ToIAMAuditConfigOutput() IAMAuditConfigOutput
+	ToIAMAuditConfigOutputWithContext(ctx context.Context) IAMAuditConfigOutput
+}
+
+func (IAMAuditConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*IAMAuditConfig)(nil)).Elem()
+}
+
+func (i IAMAuditConfig) ToIAMAuditConfigOutput() IAMAuditConfigOutput {
+	return i.ToIAMAuditConfigOutputWithContext(context.Background())
+}
+
+func (i IAMAuditConfig) ToIAMAuditConfigOutputWithContext(ctx context.Context) IAMAuditConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IAMAuditConfigOutput)
+}
+
+type IAMAuditConfigOutput struct {
+	*pulumi.OutputState
+}
+
+func (IAMAuditConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IAMAuditConfigOutput)(nil)).Elem()
+}
+
+func (o IAMAuditConfigOutput) ToIAMAuditConfigOutput() IAMAuditConfigOutput {
+	return o
+}
+
+func (o IAMAuditConfigOutput) ToIAMAuditConfigOutputWithContext(ctx context.Context) IAMAuditConfigOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(IAMAuditConfigOutput{})
 }

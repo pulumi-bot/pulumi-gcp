@@ -4,6 +4,7 @@
 package healthcare
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -170,4 +171,43 @@ type DicomStoreArgs struct {
 
 func (DicomStoreArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*dicomStoreArgs)(nil)).Elem()
+}
+
+type DicomStoreInput interface {
+	pulumi.Input
+
+	ToDicomStoreOutput() DicomStoreOutput
+	ToDicomStoreOutputWithContext(ctx context.Context) DicomStoreOutput
+}
+
+func (DicomStore) ElementType() reflect.Type {
+	return reflect.TypeOf((*DicomStore)(nil)).Elem()
+}
+
+func (i DicomStore) ToDicomStoreOutput() DicomStoreOutput {
+	return i.ToDicomStoreOutputWithContext(context.Background())
+}
+
+func (i DicomStore) ToDicomStoreOutputWithContext(ctx context.Context) DicomStoreOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DicomStoreOutput)
+}
+
+type DicomStoreOutput struct {
+	*pulumi.OutputState
+}
+
+func (DicomStoreOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DicomStoreOutput)(nil)).Elem()
+}
+
+func (o DicomStoreOutput) ToDicomStoreOutput() DicomStoreOutput {
+	return o
+}
+
+func (o DicomStoreOutput) ToDicomStoreOutputWithContext(ctx context.Context) DicomStoreOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DicomStoreOutput{})
 }

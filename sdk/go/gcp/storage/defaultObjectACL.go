@@ -4,6 +4,7 @@
 package storage
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -107,4 +108,43 @@ type DefaultObjectACLArgs struct {
 
 func (DefaultObjectACLArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*defaultObjectACLArgs)(nil)).Elem()
+}
+
+type DefaultObjectACLInput interface {
+	pulumi.Input
+
+	ToDefaultObjectACLOutput() DefaultObjectACLOutput
+	ToDefaultObjectACLOutputWithContext(ctx context.Context) DefaultObjectACLOutput
+}
+
+func (DefaultObjectACL) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultObjectACL)(nil)).Elem()
+}
+
+func (i DefaultObjectACL) ToDefaultObjectACLOutput() DefaultObjectACLOutput {
+	return i.ToDefaultObjectACLOutputWithContext(context.Background())
+}
+
+func (i DefaultObjectACL) ToDefaultObjectACLOutputWithContext(ctx context.Context) DefaultObjectACLOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultObjectACLOutput)
+}
+
+type DefaultObjectACLOutput struct {
+	*pulumi.OutputState
+}
+
+func (DefaultObjectACLOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultObjectACLOutput)(nil)).Elem()
+}
+
+func (o DefaultObjectACLOutput) ToDefaultObjectACLOutput() DefaultObjectACLOutput {
+	return o
+}
+
+func (o DefaultObjectACLOutput) ToDefaultObjectACLOutputWithContext(ctx context.Context) DefaultObjectACLOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DefaultObjectACLOutput{})
 }
