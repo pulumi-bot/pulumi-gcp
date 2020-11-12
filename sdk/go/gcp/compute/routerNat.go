@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -334,4 +335,43 @@ type RouterNatArgs struct {
 
 func (RouterNatArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*routerNatArgs)(nil)).Elem()
+}
+
+type RouterNatInput interface {
+	pulumi.Input
+
+	ToRouterNatOutput() RouterNatOutput
+	ToRouterNatOutputWithContext(ctx context.Context) RouterNatOutput
+}
+
+func (RouterNat) ElementType() reflect.Type {
+	return reflect.TypeOf((*RouterNat)(nil)).Elem()
+}
+
+func (i RouterNat) ToRouterNatOutput() RouterNatOutput {
+	return i.ToRouterNatOutputWithContext(context.Background())
+}
+
+func (i RouterNat) ToRouterNatOutputWithContext(ctx context.Context) RouterNatOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RouterNatOutput)
+}
+
+type RouterNatOutput struct {
+	*pulumi.OutputState
+}
+
+func (RouterNatOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RouterNatOutput)(nil)).Elem()
+}
+
+func (o RouterNatOutput) ToRouterNatOutput() RouterNatOutput {
+	return o
+}
+
+func (o RouterNatOutput) ToRouterNatOutputWithContext(ctx context.Context) RouterNatOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RouterNatOutput{})
 }

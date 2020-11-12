@@ -4,6 +4,7 @@
 package servicedirectory
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -122,4 +123,43 @@ type NamespaceIamBindingArgs struct {
 
 func (NamespaceIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*namespaceIamBindingArgs)(nil)).Elem()
+}
+
+type NamespaceIamBindingInput interface {
+	pulumi.Input
+
+	ToNamespaceIamBindingOutput() NamespaceIamBindingOutput
+	ToNamespaceIamBindingOutputWithContext(ctx context.Context) NamespaceIamBindingOutput
+}
+
+func (NamespaceIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*NamespaceIamBinding)(nil)).Elem()
+}
+
+func (i NamespaceIamBinding) ToNamespaceIamBindingOutput() NamespaceIamBindingOutput {
+	return i.ToNamespaceIamBindingOutputWithContext(context.Background())
+}
+
+func (i NamespaceIamBinding) ToNamespaceIamBindingOutputWithContext(ctx context.Context) NamespaceIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NamespaceIamBindingOutput)
+}
+
+type NamespaceIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (NamespaceIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NamespaceIamBindingOutput)(nil)).Elem()
+}
+
+func (o NamespaceIamBindingOutput) ToNamespaceIamBindingOutput() NamespaceIamBindingOutput {
+	return o
+}
+
+func (o NamespaceIamBindingOutput) ToNamespaceIamBindingOutputWithContext(ctx context.Context) NamespaceIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(NamespaceIamBindingOutput{})
 }

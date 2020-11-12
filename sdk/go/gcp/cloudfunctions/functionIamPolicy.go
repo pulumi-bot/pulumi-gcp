@@ -4,6 +4,7 @@
 package cloudfunctions
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -142,4 +143,43 @@ type FunctionIamPolicyArgs struct {
 
 func (FunctionIamPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*functionIamPolicyArgs)(nil)).Elem()
+}
+
+type FunctionIamPolicyInput interface {
+	pulumi.Input
+
+	ToFunctionIamPolicyOutput() FunctionIamPolicyOutput
+	ToFunctionIamPolicyOutputWithContext(ctx context.Context) FunctionIamPolicyOutput
+}
+
+func (FunctionIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*FunctionIamPolicy)(nil)).Elem()
+}
+
+func (i FunctionIamPolicy) ToFunctionIamPolicyOutput() FunctionIamPolicyOutput {
+	return i.ToFunctionIamPolicyOutputWithContext(context.Background())
+}
+
+func (i FunctionIamPolicy) ToFunctionIamPolicyOutputWithContext(ctx context.Context) FunctionIamPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FunctionIamPolicyOutput)
+}
+
+type FunctionIamPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (FunctionIamPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FunctionIamPolicyOutput)(nil)).Elem()
+}
+
+func (o FunctionIamPolicyOutput) ToFunctionIamPolicyOutput() FunctionIamPolicyOutput {
+	return o
+}
+
+func (o FunctionIamPolicyOutput) ToFunctionIamPolicyOutputWithContext(ctx context.Context) FunctionIamPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(FunctionIamPolicyOutput{})
 }

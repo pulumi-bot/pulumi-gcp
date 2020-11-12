@@ -4,6 +4,7 @@
 package iap
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -128,4 +129,43 @@ type TunnelIamMemberArgs struct {
 
 func (TunnelIamMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*tunnelIamMemberArgs)(nil)).Elem()
+}
+
+type TunnelIamMemberInput interface {
+	pulumi.Input
+
+	ToTunnelIamMemberOutput() TunnelIamMemberOutput
+	ToTunnelIamMemberOutputWithContext(ctx context.Context) TunnelIamMemberOutput
+}
+
+func (TunnelIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*TunnelIamMember)(nil)).Elem()
+}
+
+func (i TunnelIamMember) ToTunnelIamMemberOutput() TunnelIamMemberOutput {
+	return i.ToTunnelIamMemberOutputWithContext(context.Background())
+}
+
+func (i TunnelIamMember) ToTunnelIamMemberOutputWithContext(ctx context.Context) TunnelIamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TunnelIamMemberOutput)
+}
+
+type TunnelIamMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (TunnelIamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TunnelIamMemberOutput)(nil)).Elem()
+}
+
+func (o TunnelIamMemberOutput) ToTunnelIamMemberOutput() TunnelIamMemberOutput {
+	return o
+}
+
+func (o TunnelIamMemberOutput) ToTunnelIamMemberOutputWithContext(ctx context.Context) TunnelIamMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TunnelIamMemberOutput{})
 }

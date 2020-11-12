@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -120,4 +121,43 @@ type RegionDiskResourcePolicyAttachmentArgs struct {
 
 func (RegionDiskResourcePolicyAttachmentArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*regionDiskResourcePolicyAttachmentArgs)(nil)).Elem()
+}
+
+type RegionDiskResourcePolicyAttachmentInput interface {
+	pulumi.Input
+
+	ToRegionDiskResourcePolicyAttachmentOutput() RegionDiskResourcePolicyAttachmentOutput
+	ToRegionDiskResourcePolicyAttachmentOutputWithContext(ctx context.Context) RegionDiskResourcePolicyAttachmentOutput
+}
+
+func (RegionDiskResourcePolicyAttachment) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionDiskResourcePolicyAttachment)(nil)).Elem()
+}
+
+func (i RegionDiskResourcePolicyAttachment) ToRegionDiskResourcePolicyAttachmentOutput() RegionDiskResourcePolicyAttachmentOutput {
+	return i.ToRegionDiskResourcePolicyAttachmentOutputWithContext(context.Background())
+}
+
+func (i RegionDiskResourcePolicyAttachment) ToRegionDiskResourcePolicyAttachmentOutputWithContext(ctx context.Context) RegionDiskResourcePolicyAttachmentOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegionDiskResourcePolicyAttachmentOutput)
+}
+
+type RegionDiskResourcePolicyAttachmentOutput struct {
+	*pulumi.OutputState
+}
+
+func (RegionDiskResourcePolicyAttachmentOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionDiskResourcePolicyAttachmentOutput)(nil)).Elem()
+}
+
+func (o RegionDiskResourcePolicyAttachmentOutput) ToRegionDiskResourcePolicyAttachmentOutput() RegionDiskResourcePolicyAttachmentOutput {
+	return o
+}
+
+func (o RegionDiskResourcePolicyAttachmentOutput) ToRegionDiskResourcePolicyAttachmentOutputWithContext(ctx context.Context) RegionDiskResourcePolicyAttachmentOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RegionDiskResourcePolicyAttachmentOutput{})
 }

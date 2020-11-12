@@ -4,6 +4,7 @@
 package iap
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -176,4 +177,43 @@ type AppEngineVersionIamMemberArgs struct {
 
 func (AppEngineVersionIamMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*appEngineVersionIamMemberArgs)(nil)).Elem()
+}
+
+type AppEngineVersionIamMemberInput interface {
+	pulumi.Input
+
+	ToAppEngineVersionIamMemberOutput() AppEngineVersionIamMemberOutput
+	ToAppEngineVersionIamMemberOutputWithContext(ctx context.Context) AppEngineVersionIamMemberOutput
+}
+
+func (AppEngineVersionIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*AppEngineVersionIamMember)(nil)).Elem()
+}
+
+func (i AppEngineVersionIamMember) ToAppEngineVersionIamMemberOutput() AppEngineVersionIamMemberOutput {
+	return i.ToAppEngineVersionIamMemberOutputWithContext(context.Background())
+}
+
+func (i AppEngineVersionIamMember) ToAppEngineVersionIamMemberOutputWithContext(ctx context.Context) AppEngineVersionIamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AppEngineVersionIamMemberOutput)
+}
+
+type AppEngineVersionIamMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (AppEngineVersionIamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AppEngineVersionIamMemberOutput)(nil)).Elem()
+}
+
+func (o AppEngineVersionIamMemberOutput) ToAppEngineVersionIamMemberOutput() AppEngineVersionIamMemberOutput {
+	return o
+}
+
+func (o AppEngineVersionIamMemberOutput) ToAppEngineVersionIamMemberOutputWithContext(ctx context.Context) AppEngineVersionIamMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AppEngineVersionIamMemberOutput{})
 }

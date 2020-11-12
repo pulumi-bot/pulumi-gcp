@@ -4,6 +4,7 @@
 package servicedirectory
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -104,4 +105,43 @@ type NamespaceIamPolicyArgs struct {
 
 func (NamespaceIamPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*namespaceIamPolicyArgs)(nil)).Elem()
+}
+
+type NamespaceIamPolicyInput interface {
+	pulumi.Input
+
+	ToNamespaceIamPolicyOutput() NamespaceIamPolicyOutput
+	ToNamespaceIamPolicyOutputWithContext(ctx context.Context) NamespaceIamPolicyOutput
+}
+
+func (NamespaceIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*NamespaceIamPolicy)(nil)).Elem()
+}
+
+func (i NamespaceIamPolicy) ToNamespaceIamPolicyOutput() NamespaceIamPolicyOutput {
+	return i.ToNamespaceIamPolicyOutputWithContext(context.Background())
+}
+
+func (i NamespaceIamPolicy) ToNamespaceIamPolicyOutputWithContext(ctx context.Context) NamespaceIamPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NamespaceIamPolicyOutput)
+}
+
+type NamespaceIamPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (NamespaceIamPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NamespaceIamPolicyOutput)(nil)).Elem()
+}
+
+func (o NamespaceIamPolicyOutput) ToNamespaceIamPolicyOutput() NamespaceIamPolicyOutput {
+	return o
+}
+
+func (o NamespaceIamPolicyOutput) ToNamespaceIamPolicyOutputWithContext(ctx context.Context) NamespaceIamPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(NamespaceIamPolicyOutput{})
 }

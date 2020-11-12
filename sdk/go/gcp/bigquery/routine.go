@@ -4,6 +4,7 @@
 package bigquery
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -276,4 +277,43 @@ type RoutineArgs struct {
 
 func (RoutineArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*routineArgs)(nil)).Elem()
+}
+
+type RoutineInput interface {
+	pulumi.Input
+
+	ToRoutineOutput() RoutineOutput
+	ToRoutineOutputWithContext(ctx context.Context) RoutineOutput
+}
+
+func (Routine) ElementType() reflect.Type {
+	return reflect.TypeOf((*Routine)(nil)).Elem()
+}
+
+func (i Routine) ToRoutineOutput() RoutineOutput {
+	return i.ToRoutineOutputWithContext(context.Background())
+}
+
+func (i Routine) ToRoutineOutputWithContext(ctx context.Context) RoutineOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RoutineOutput)
+}
+
+type RoutineOutput struct {
+	*pulumi.OutputState
+}
+
+func (RoutineOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RoutineOutput)(nil)).Elem()
+}
+
+func (o RoutineOutput) ToRoutineOutput() RoutineOutput {
+	return o
+}
+
+func (o RoutineOutput) ToRoutineOutputWithContext(ctx context.Context) RoutineOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RoutineOutput{})
 }

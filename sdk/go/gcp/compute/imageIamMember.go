@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -150,4 +151,43 @@ type ImageIamMemberArgs struct {
 
 func (ImageIamMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*imageIamMemberArgs)(nil)).Elem()
+}
+
+type ImageIamMemberInput interface {
+	pulumi.Input
+
+	ToImageIamMemberOutput() ImageIamMemberOutput
+	ToImageIamMemberOutputWithContext(ctx context.Context) ImageIamMemberOutput
+}
+
+func (ImageIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*ImageIamMember)(nil)).Elem()
+}
+
+func (i ImageIamMember) ToImageIamMemberOutput() ImageIamMemberOutput {
+	return i.ToImageIamMemberOutputWithContext(context.Background())
+}
+
+func (i ImageIamMember) ToImageIamMemberOutputWithContext(ctx context.Context) ImageIamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ImageIamMemberOutput)
+}
+
+type ImageIamMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (ImageIamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ImageIamMemberOutput)(nil)).Elem()
+}
+
+func (o ImageIamMemberOutput) ToImageIamMemberOutput() ImageIamMemberOutput {
+	return o
+}
+
+func (o ImageIamMemberOutput) ToImageIamMemberOutputWithContext(ctx context.Context) ImageIamMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ImageIamMemberOutput{})
 }

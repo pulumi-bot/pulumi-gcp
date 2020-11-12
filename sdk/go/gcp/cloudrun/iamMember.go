@@ -4,6 +4,7 @@
 package cloudrun
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -150,4 +151,43 @@ type IamMemberArgs struct {
 
 func (IamMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*iamMemberArgs)(nil)).Elem()
+}
+
+type IamMemberInput interface {
+	pulumi.Input
+
+	ToIamMemberOutput() IamMemberOutput
+	ToIamMemberOutputWithContext(ctx context.Context) IamMemberOutput
+}
+
+func (IamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*IamMember)(nil)).Elem()
+}
+
+func (i IamMember) ToIamMemberOutput() IamMemberOutput {
+	return i.ToIamMemberOutputWithContext(context.Background())
+}
+
+func (i IamMember) ToIamMemberOutputWithContext(ctx context.Context) IamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IamMemberOutput)
+}
+
+type IamMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (IamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IamMemberOutput)(nil)).Elem()
+}
+
+func (o IamMemberOutput) ToIamMemberOutput() IamMemberOutput {
+	return o
+}
+
+func (o IamMemberOutput) ToIamMemberOutputWithContext(ctx context.Context) IamMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(IamMemberOutput{})
 }

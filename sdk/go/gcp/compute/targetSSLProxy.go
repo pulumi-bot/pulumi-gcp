@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -236,4 +237,43 @@ type TargetSSLProxyArgs struct {
 
 func (TargetSSLProxyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*targetSSLProxyArgs)(nil)).Elem()
+}
+
+type TargetSSLProxyInput interface {
+	pulumi.Input
+
+	ToTargetSSLProxyOutput() TargetSSLProxyOutput
+	ToTargetSSLProxyOutputWithContext(ctx context.Context) TargetSSLProxyOutput
+}
+
+func (TargetSSLProxy) ElementType() reflect.Type {
+	return reflect.TypeOf((*TargetSSLProxy)(nil)).Elem()
+}
+
+func (i TargetSSLProxy) ToTargetSSLProxyOutput() TargetSSLProxyOutput {
+	return i.ToTargetSSLProxyOutputWithContext(context.Background())
+}
+
+func (i TargetSSLProxy) ToTargetSSLProxyOutputWithContext(ctx context.Context) TargetSSLProxyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TargetSSLProxyOutput)
+}
+
+type TargetSSLProxyOutput struct {
+	*pulumi.OutputState
+}
+
+func (TargetSSLProxyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TargetSSLProxyOutput)(nil)).Elem()
+}
+
+func (o TargetSSLProxyOutput) ToTargetSSLProxyOutput() TargetSSLProxyOutput {
+	return o
+}
+
+func (o TargetSSLProxyOutput) ToTargetSSLProxyOutputWithContext(ctx context.Context) TargetSSLProxyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TargetSSLProxyOutput{})
 }

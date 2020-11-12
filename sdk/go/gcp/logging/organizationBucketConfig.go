@@ -4,6 +4,7 @@
 package logging
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -137,4 +138,43 @@ type OrganizationBucketConfigArgs struct {
 
 func (OrganizationBucketConfigArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*organizationBucketConfigArgs)(nil)).Elem()
+}
+
+type OrganizationBucketConfigInput interface {
+	pulumi.Input
+
+	ToOrganizationBucketConfigOutput() OrganizationBucketConfigOutput
+	ToOrganizationBucketConfigOutputWithContext(ctx context.Context) OrganizationBucketConfigOutput
+}
+
+func (OrganizationBucketConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationBucketConfig)(nil)).Elem()
+}
+
+func (i OrganizationBucketConfig) ToOrganizationBucketConfigOutput() OrganizationBucketConfigOutput {
+	return i.ToOrganizationBucketConfigOutputWithContext(context.Background())
+}
+
+func (i OrganizationBucketConfig) ToOrganizationBucketConfigOutputWithContext(ctx context.Context) OrganizationBucketConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationBucketConfigOutput)
+}
+
+type OrganizationBucketConfigOutput struct {
+	*pulumi.OutputState
+}
+
+func (OrganizationBucketConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationBucketConfigOutput)(nil)).Elem()
+}
+
+func (o OrganizationBucketConfigOutput) ToOrganizationBucketConfigOutput() OrganizationBucketConfigOutput {
+	return o
+}
+
+func (o OrganizationBucketConfigOutput) ToOrganizationBucketConfigOutputWithContext(ctx context.Context) OrganizationBucketConfigOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(OrganizationBucketConfigOutput{})
 }
