@@ -4,6 +4,7 @@
 package dataloss
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -19,6 +20,18 @@ import (
 //     * [Official Documentation](https://cloud.google.com/dlp/docs/creating-stored-infotypes)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// StoredInfoType can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:dataloss/preventionStoredInfoType:PreventionStoredInfoType default {{parent}}/storedInfoTypes/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:dataloss/preventionStoredInfoType:PreventionStoredInfoType default {{parent}}/{{name}}
+// ```
 type PreventionStoredInfoType struct {
 	pulumi.CustomResourceState
 
@@ -174,4 +187,43 @@ type PreventionStoredInfoTypeArgs struct {
 
 func (PreventionStoredInfoTypeArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*preventionStoredInfoTypeArgs)(nil)).Elem()
+}
+
+type PreventionStoredInfoTypeInput interface {
+	pulumi.Input
+
+	ToPreventionStoredInfoTypeOutput() PreventionStoredInfoTypeOutput
+	ToPreventionStoredInfoTypeOutputWithContext(ctx context.Context) PreventionStoredInfoTypeOutput
+}
+
+func (PreventionStoredInfoType) ElementType() reflect.Type {
+	return reflect.TypeOf((*PreventionStoredInfoType)(nil)).Elem()
+}
+
+func (i PreventionStoredInfoType) ToPreventionStoredInfoTypeOutput() PreventionStoredInfoTypeOutput {
+	return i.ToPreventionStoredInfoTypeOutputWithContext(context.Background())
+}
+
+func (i PreventionStoredInfoType) ToPreventionStoredInfoTypeOutputWithContext(ctx context.Context) PreventionStoredInfoTypeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PreventionStoredInfoTypeOutput)
+}
+
+type PreventionStoredInfoTypeOutput struct {
+	*pulumi.OutputState
+}
+
+func (PreventionStoredInfoTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PreventionStoredInfoTypeOutput)(nil)).Elem()
+}
+
+func (o PreventionStoredInfoTypeOutput) ToPreventionStoredInfoTypeOutput() PreventionStoredInfoTypeOutput {
+	return o
+}
+
+func (o PreventionStoredInfoTypeOutput) ToPreventionStoredInfoTypeOutputWithContext(ctx context.Context) PreventionStoredInfoTypeOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(PreventionStoredInfoTypeOutput{})
 }

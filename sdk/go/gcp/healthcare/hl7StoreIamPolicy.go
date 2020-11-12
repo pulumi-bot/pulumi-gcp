@@ -4,6 +4,7 @@
 package healthcare
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -19,6 +20,32 @@ import (
 // > **Note:** `healthcare.Hl7StoreIamPolicy` **cannot** be used in conjunction with `healthcare.Hl7StoreIamBinding` and `healthcare.Hl7StoreIamMember` or they will fight over what your policy should be.
 //
 // > **Note:** `healthcare.Hl7StoreIamBinding` resources **can be** used in conjunction with `healthcare.Hl7StoreIamMember` resources **only if** they do not grant privilege to the same role.
+//
+// ## Import
+//
+// IAM member imports use space-delimited identifiers; the resource in question, the role, and the account.
+//
+// This member resource can be imported using the `hl7_v2_store_id`, role, and account e.g.
+//
+// ```sh
+//  $ pulumi import gcp:healthcare/hl7StoreIamPolicy:Hl7StoreIamPolicy hl7_v2_store_iam "your-project-id/location-name/dataset-name/hl7-v2-store-name roles/viewer user:foo@example.com"
+// ```
+//
+//  IAM binding imports use space-delimited identifiers; the resource in question and the role.
+//
+// This binding resource can be imported using the `hl7_v2_store_id` and role, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:healthcare/hl7StoreIamPolicy:Hl7StoreIamPolicy hl7_v2_store_iam "your-project-id/location-name/dataset-name/hl7-v2-store-name roles/viewer"
+// ```
+//
+//  IAM policy imports use the identifier of the resource in question.
+//
+// This policy resource can be imported using the `hl7_v2_store_id`, role, and account e.g.
+//
+// ```sh
+//  $ pulumi import gcp:healthcare/hl7StoreIamPolicy:Hl7StoreIamPolicy hl7_v2_store_iam your-project-id/location-name/dataset-name/hl7-v2-store-name
+// ```
 type Hl7StoreIamPolicy struct {
 	pulumi.CustomResourceState
 
@@ -122,4 +149,43 @@ type Hl7StoreIamPolicyArgs struct {
 
 func (Hl7StoreIamPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*hl7StoreIamPolicyArgs)(nil)).Elem()
+}
+
+type Hl7StoreIamPolicyInput interface {
+	pulumi.Input
+
+	ToHl7StoreIamPolicyOutput() Hl7StoreIamPolicyOutput
+	ToHl7StoreIamPolicyOutputWithContext(ctx context.Context) Hl7StoreIamPolicyOutput
+}
+
+func (Hl7StoreIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*Hl7StoreIamPolicy)(nil)).Elem()
+}
+
+func (i Hl7StoreIamPolicy) ToHl7StoreIamPolicyOutput() Hl7StoreIamPolicyOutput {
+	return i.ToHl7StoreIamPolicyOutputWithContext(context.Background())
+}
+
+func (i Hl7StoreIamPolicy) ToHl7StoreIamPolicyOutputWithContext(ctx context.Context) Hl7StoreIamPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Hl7StoreIamPolicyOutput)
+}
+
+type Hl7StoreIamPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (Hl7StoreIamPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*Hl7StoreIamPolicyOutput)(nil)).Elem()
+}
+
+func (o Hl7StoreIamPolicyOutput) ToHl7StoreIamPolicyOutput() Hl7StoreIamPolicyOutput {
+	return o
+}
+
+func (o Hl7StoreIamPolicyOutput) ToHl7StoreIamPolicyOutputWithContext(ctx context.Context) Hl7StoreIamPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(Hl7StoreIamPolicyOutput{})
 }

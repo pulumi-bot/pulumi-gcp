@@ -4,6 +4,7 @@
 package kms
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -19,6 +20,32 @@ import (
 // > **Note:** `kms.KeyRingIAMPolicy` **cannot** be used in conjunction with `kms.KeyRingIAMBinding` and `kms.KeyRingIAMMember` or they will fight over what your policy should be.
 //
 // > **Note:** `kms.KeyRingIAMBinding` resources **can be** used in conjunction with `kms.KeyRingIAMMember` resources **only if** they do not grant privilege to the same role.
+//
+// ## Import
+//
+// IAM member imports use space-delimited identifiers; the resource in question, the role, and the account.
+//
+// This member resource can be imported using the `key_ring_id`, role, and account e.g.
+//
+// ```sh
+//  $ pulumi import gcp:kms/keyRingIAMBinding:KeyRingIAMBinding key_ring_iam "your-project-id/location-name/key-ring-name roles/viewer user:foo@example.com"
+// ```
+//
+//  IAM binding imports use space-delimited identifiers; the resource in question and the role.
+//
+// This binding resource can be imported using the `key_ring_id` and role, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:kms/keyRingIAMBinding:KeyRingIAMBinding key_ring_iam "your-project-id/location-name/key-ring-name roles/viewer"
+// ```
+//
+//  IAM policy imports use the identifier of the resource in question.
+//
+// This policy resource can be imported using the `key_ring_id`, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:kms/keyRingIAMBinding:KeyRingIAMBinding key_ring_iam your-project-id/location-name/key-ring-name
+// ```
 type KeyRingIAMBinding struct {
 	pulumi.CustomResourceState
 
@@ -150,4 +177,43 @@ type KeyRingIAMBindingArgs struct {
 
 func (KeyRingIAMBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*keyRingIAMBindingArgs)(nil)).Elem()
+}
+
+type KeyRingIAMBindingInput interface {
+	pulumi.Input
+
+	ToKeyRingIAMBindingOutput() KeyRingIAMBindingOutput
+	ToKeyRingIAMBindingOutputWithContext(ctx context.Context) KeyRingIAMBindingOutput
+}
+
+func (KeyRingIAMBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*KeyRingIAMBinding)(nil)).Elem()
+}
+
+func (i KeyRingIAMBinding) ToKeyRingIAMBindingOutput() KeyRingIAMBindingOutput {
+	return i.ToKeyRingIAMBindingOutputWithContext(context.Background())
+}
+
+func (i KeyRingIAMBinding) ToKeyRingIAMBindingOutputWithContext(ctx context.Context) KeyRingIAMBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KeyRingIAMBindingOutput)
+}
+
+type KeyRingIAMBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (KeyRingIAMBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*KeyRingIAMBindingOutput)(nil)).Elem()
+}
+
+func (o KeyRingIAMBindingOutput) ToKeyRingIAMBindingOutput() KeyRingIAMBindingOutput {
+	return o
+}
+
+func (o KeyRingIAMBindingOutput) ToKeyRingIAMBindingOutputWithContext(ctx context.Context) KeyRingIAMBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(KeyRingIAMBindingOutput{})
 }

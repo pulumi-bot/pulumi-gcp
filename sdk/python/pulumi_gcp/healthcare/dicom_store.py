@@ -36,6 +36,18 @@ class DicomStore(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        DicomStore can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:healthcare/dicomStore:DicomStore default {{dataset}}/dicomStores/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:healthcare/dicomStore:DicomStore default {{dataset}}/{{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dataset: Identifies the dataset addressed by this request. Must be in the format

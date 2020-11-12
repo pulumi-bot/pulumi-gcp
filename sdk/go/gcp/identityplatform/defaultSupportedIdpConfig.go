@@ -4,6 +4,7 @@
 package identityplatform
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -17,6 +18,22 @@ import (
 // the marketplace prior to using this resource.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// DefaultSupportedIdpConfig can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:identityplatform/defaultSupportedIdpConfig:DefaultSupportedIdpConfig default projects/{{project}}/defaultSupportedIdpConfigs/{{idp_id}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:identityplatform/defaultSupportedIdpConfig:DefaultSupportedIdpConfig default {{project}}/{{idp_id}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:identityplatform/defaultSupportedIdpConfig:DefaultSupportedIdpConfig default {{idp_id}}
+// ```
 type DefaultSupportedIdpConfig struct {
 	pulumi.CustomResourceState
 
@@ -188,4 +205,43 @@ type DefaultSupportedIdpConfigArgs struct {
 
 func (DefaultSupportedIdpConfigArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*defaultSupportedIdpConfigArgs)(nil)).Elem()
+}
+
+type DefaultSupportedIdpConfigInput interface {
+	pulumi.Input
+
+	ToDefaultSupportedIdpConfigOutput() DefaultSupportedIdpConfigOutput
+	ToDefaultSupportedIdpConfigOutputWithContext(ctx context.Context) DefaultSupportedIdpConfigOutput
+}
+
+func (DefaultSupportedIdpConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultSupportedIdpConfig)(nil)).Elem()
+}
+
+func (i DefaultSupportedIdpConfig) ToDefaultSupportedIdpConfigOutput() DefaultSupportedIdpConfigOutput {
+	return i.ToDefaultSupportedIdpConfigOutputWithContext(context.Background())
+}
+
+func (i DefaultSupportedIdpConfig) ToDefaultSupportedIdpConfigOutputWithContext(ctx context.Context) DefaultSupportedIdpConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultSupportedIdpConfigOutput)
+}
+
+type DefaultSupportedIdpConfigOutput struct {
+	*pulumi.OutputState
+}
+
+func (DefaultSupportedIdpConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultSupportedIdpConfigOutput)(nil)).Elem()
+}
+
+func (o DefaultSupportedIdpConfigOutput) ToDefaultSupportedIdpConfigOutput() DefaultSupportedIdpConfigOutput {
+	return o
+}
+
+func (o DefaultSupportedIdpConfigOutput) ToDefaultSupportedIdpConfigOutputWithContext(ctx context.Context) DefaultSupportedIdpConfigOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DefaultSupportedIdpConfigOutput{})
 }

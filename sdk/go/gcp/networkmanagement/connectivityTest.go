@@ -4,6 +4,7 @@
 package networkmanagement
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -21,6 +22,22 @@ import (
 //     * [Official Documentation](https://cloud.google.com/network-intelligence-center/docs)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// ConnectivityTest can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:networkmanagement/connectivityTest:ConnectivityTest default projects/{{project}}/locations/global/connectivityTests/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:networkmanagement/connectivityTest:ConnectivityTest default {{project}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:networkmanagement/connectivityTest:ConnectivityTest default {{name}}
+// ```
 type ConnectivityTest struct {
 	pulumi.CustomResourceState
 
@@ -338,4 +355,43 @@ type ConnectivityTestArgs struct {
 
 func (ConnectivityTestArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*connectivityTestArgs)(nil)).Elem()
+}
+
+type ConnectivityTestInput interface {
+	pulumi.Input
+
+	ToConnectivityTestOutput() ConnectivityTestOutput
+	ToConnectivityTestOutputWithContext(ctx context.Context) ConnectivityTestOutput
+}
+
+func (ConnectivityTest) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConnectivityTest)(nil)).Elem()
+}
+
+func (i ConnectivityTest) ToConnectivityTestOutput() ConnectivityTestOutput {
+	return i.ToConnectivityTestOutputWithContext(context.Background())
+}
+
+func (i ConnectivityTest) ToConnectivityTestOutputWithContext(ctx context.Context) ConnectivityTestOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConnectivityTestOutput)
+}
+
+type ConnectivityTestOutput struct {
+	*pulumi.OutputState
+}
+
+func (ConnectivityTestOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConnectivityTestOutput)(nil)).Elem()
+}
+
+func (o ConnectivityTestOutput) ToConnectivityTestOutput() ConnectivityTestOutput {
+	return o
+}
+
+func (o ConnectivityTestOutput) ToConnectivityTestOutputWithContext(ctx context.Context) ConnectivityTestOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ConnectivityTestOutput{})
 }

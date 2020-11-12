@@ -4,6 +4,7 @@
 package appengine
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -22,6 +23,22 @@ import (
 //     * [Official Documentation](https://cloud.google.com/appengine/docs/standard)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// StandardAppVersion can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:appengine/standardAppVersion:StandardAppVersion default apps/{{project}}/services/{{service}}/versions/{{version_id}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:appengine/standardAppVersion:StandardAppVersion default {{project}}/{{service}}/{{version_id}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:appengine/standardAppVersion:StandardAppVersion default {{service}}/{{version_id}}
+// ```
 type StandardAppVersion struct {
 	pulumi.CustomResourceState
 
@@ -353,4 +370,43 @@ type StandardAppVersionArgs struct {
 
 func (StandardAppVersionArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*standardAppVersionArgs)(nil)).Elem()
+}
+
+type StandardAppVersionInput interface {
+	pulumi.Input
+
+	ToStandardAppVersionOutput() StandardAppVersionOutput
+	ToStandardAppVersionOutputWithContext(ctx context.Context) StandardAppVersionOutput
+}
+
+func (StandardAppVersion) ElementType() reflect.Type {
+	return reflect.TypeOf((*StandardAppVersion)(nil)).Elem()
+}
+
+func (i StandardAppVersion) ToStandardAppVersionOutput() StandardAppVersionOutput {
+	return i.ToStandardAppVersionOutputWithContext(context.Background())
+}
+
+func (i StandardAppVersion) ToStandardAppVersionOutputWithContext(ctx context.Context) StandardAppVersionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StandardAppVersionOutput)
+}
+
+type StandardAppVersionOutput struct {
+	*pulumi.OutputState
+}
+
+func (StandardAppVersionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StandardAppVersionOutput)(nil)).Elem()
+}
+
+func (o StandardAppVersionOutput) ToStandardAppVersionOutput() StandardAppVersionOutput {
+	return o
+}
+
+func (o StandardAppVersionOutput) ToStandardAppVersionOutputWithContext(ctx context.Context) StandardAppVersionOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(StandardAppVersionOutput{})
 }

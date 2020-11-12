@@ -33,6 +33,22 @@ class Dataset(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        Dataset can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:healthcare/dataset:Dataset default projects/{{project}}/locations/{{location}}/datasets/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:healthcare/dataset:Dataset default {{project}}/{{location}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:healthcare/dataset:Dataset default {{location}}/{{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] location: The location for the Dataset.

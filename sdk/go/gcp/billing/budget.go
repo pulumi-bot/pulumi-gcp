@@ -4,6 +4,7 @@
 package billing
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -19,6 +20,14 @@ import (
 //     * [Creating a budget](https://cloud.google.com/billing/docs/how-to/budgets)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Budget can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:billing/budget:Budget default {{name}}
+// ```
 type Budget struct {
 	pulumi.CustomResourceState
 
@@ -193,4 +202,43 @@ type BudgetArgs struct {
 
 func (BudgetArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*budgetArgs)(nil)).Elem()
+}
+
+type BudgetInput interface {
+	pulumi.Input
+
+	ToBudgetOutput() BudgetOutput
+	ToBudgetOutputWithContext(ctx context.Context) BudgetOutput
+}
+
+func (Budget) ElementType() reflect.Type {
+	return reflect.TypeOf((*Budget)(nil)).Elem()
+}
+
+func (i Budget) ToBudgetOutput() BudgetOutput {
+	return i.ToBudgetOutputWithContext(context.Background())
+}
+
+func (i Budget) ToBudgetOutputWithContext(ctx context.Context) BudgetOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BudgetOutput)
+}
+
+type BudgetOutput struct {
+	*pulumi.OutputState
+}
+
+func (BudgetOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BudgetOutput)(nil)).Elem()
+}
+
+func (o BudgetOutput) ToBudgetOutput() BudgetOutput {
+	return o
+}
+
+func (o BudgetOutput) ToBudgetOutputWithContext(ctx context.Context) BudgetOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(BudgetOutput{})
 }

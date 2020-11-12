@@ -14,6 +14,26 @@ namespace Pulumi.Gcp.Compute
     /// that you define for the host and path of an incoming URL.
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// RegionUrlMap can be imported using any of these accepted formats
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/regionUrlMap:RegionUrlMap default projects/{{project}}/regions/{{region}}/urlMaps/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/regionUrlMap:RegionUrlMap default {{project}}/{{region}}/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/regionUrlMap:RegionUrlMap default {{region}}/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/regionUrlMap:RegionUrlMap default {{name}}
+    /// ```
     /// </summary>
     public partial class RegionUrlMap : Pulumi.CustomResource
     {

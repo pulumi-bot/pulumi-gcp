@@ -4,6 +4,7 @@
 package dataloss
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -19,6 +20,18 @@ import (
 //     * [Official Documentation](https://cloud.google.com/dlp/docs/concepts-templates)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// DeidentifyTemplate can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:dataloss/preventionDeidentifyTemplate:PreventionDeidentifyTemplate default {{parent}}/deidentifyTemplates/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:dataloss/preventionDeidentifyTemplate:PreventionDeidentifyTemplate default {{parent}}/{{name}}
+// ```
 type PreventionDeidentifyTemplate struct {
 	pulumi.CustomResourceState
 
@@ -147,4 +160,43 @@ type PreventionDeidentifyTemplateArgs struct {
 
 func (PreventionDeidentifyTemplateArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*preventionDeidentifyTemplateArgs)(nil)).Elem()
+}
+
+type PreventionDeidentifyTemplateInput interface {
+	pulumi.Input
+
+	ToPreventionDeidentifyTemplateOutput() PreventionDeidentifyTemplateOutput
+	ToPreventionDeidentifyTemplateOutputWithContext(ctx context.Context) PreventionDeidentifyTemplateOutput
+}
+
+func (PreventionDeidentifyTemplate) ElementType() reflect.Type {
+	return reflect.TypeOf((*PreventionDeidentifyTemplate)(nil)).Elem()
+}
+
+func (i PreventionDeidentifyTemplate) ToPreventionDeidentifyTemplateOutput() PreventionDeidentifyTemplateOutput {
+	return i.ToPreventionDeidentifyTemplateOutputWithContext(context.Background())
+}
+
+func (i PreventionDeidentifyTemplate) ToPreventionDeidentifyTemplateOutputWithContext(ctx context.Context) PreventionDeidentifyTemplateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PreventionDeidentifyTemplateOutput)
+}
+
+type PreventionDeidentifyTemplateOutput struct {
+	*pulumi.OutputState
+}
+
+func (PreventionDeidentifyTemplateOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PreventionDeidentifyTemplateOutput)(nil)).Elem()
+}
+
+func (o PreventionDeidentifyTemplateOutput) ToPreventionDeidentifyTemplateOutput() PreventionDeidentifyTemplateOutput {
+	return o
+}
+
+func (o PreventionDeidentifyTemplateOutput) ToPreventionDeidentifyTemplateOutputWithContext(ctx context.Context) PreventionDeidentifyTemplateOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(PreventionDeidentifyTemplateOutput{})
 }

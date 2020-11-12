@@ -4,6 +4,7 @@
 package logging
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -15,6 +16,14 @@ import (
 // [Storing Logs](https://cloud.google.com/logging/docs/storage).
 //
 // > **Note:** Logging buckets are automatically created for a given folder, project, organization, billingAccount and cannot be deleted. Creating a resource of this type will acquire and update the resource that already exists at the desired location. These buckets cannot be removed so deleting this resource will remove the bucket config from your state but will leave the logging bucket unchanged. The buckets that are currently automatically created are "_Default" and "_Required".
+//
+// ## Import
+//
+// This resource can be imported using the following format
+//
+// ```sh
+//  $ pulumi import gcp:logging/organizationBucketConfig:OrganizationBucketConfig default organizations/{{organization}}/locations/{{location}}/buckets/{{bucket_id}}
+// ```
 type OrganizationBucketConfig struct {
 	pulumi.CustomResourceState
 
@@ -137,4 +146,43 @@ type OrganizationBucketConfigArgs struct {
 
 func (OrganizationBucketConfigArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*organizationBucketConfigArgs)(nil)).Elem()
+}
+
+type OrganizationBucketConfigInput interface {
+	pulumi.Input
+
+	ToOrganizationBucketConfigOutput() OrganizationBucketConfigOutput
+	ToOrganizationBucketConfigOutputWithContext(ctx context.Context) OrganizationBucketConfigOutput
+}
+
+func (OrganizationBucketConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationBucketConfig)(nil)).Elem()
+}
+
+func (i OrganizationBucketConfig) ToOrganizationBucketConfigOutput() OrganizationBucketConfigOutput {
+	return i.ToOrganizationBucketConfigOutputWithContext(context.Background())
+}
+
+func (i OrganizationBucketConfig) ToOrganizationBucketConfigOutputWithContext(ctx context.Context) OrganizationBucketConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationBucketConfigOutput)
+}
+
+type OrganizationBucketConfigOutput struct {
+	*pulumi.OutputState
+}
+
+func (OrganizationBucketConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationBucketConfigOutput)(nil)).Elem()
+}
+
+func (o OrganizationBucketConfigOutput) ToOrganizationBucketConfigOutput() OrganizationBucketConfigOutput {
+	return o
+}
+
+func (o OrganizationBucketConfigOutput) ToOrganizationBucketConfigOutputWithContext(ctx context.Context) OrganizationBucketConfigOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(OrganizationBucketConfigOutput{})
 }

@@ -4,6 +4,7 @@
 package bigquery
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -13,6 +14,22 @@ import (
 // App profile is a configuration object describing how Cloud Bigtable should treat traffic from a particular end user application.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// AppProfile can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:bigquery/appProfile:AppProfile default projects/{{project}}/instances/{{instance}}/appProfiles/{{app_profile_id}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:bigquery/appProfile:AppProfile default {{project}}/{{instance}}/{{app_profile_id}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:bigquery/appProfile:AppProfile default {{instance}}/{{app_profile_id}}
+// ```
 type AppProfile struct {
 	pulumi.CustomResourceState
 
@@ -166,4 +183,43 @@ type AppProfileArgs struct {
 
 func (AppProfileArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*appProfileArgs)(nil)).Elem()
+}
+
+type AppProfileInput interface {
+	pulumi.Input
+
+	ToAppProfileOutput() AppProfileOutput
+	ToAppProfileOutputWithContext(ctx context.Context) AppProfileOutput
+}
+
+func (AppProfile) ElementType() reflect.Type {
+	return reflect.TypeOf((*AppProfile)(nil)).Elem()
+}
+
+func (i AppProfile) ToAppProfileOutput() AppProfileOutput {
+	return i.ToAppProfileOutputWithContext(context.Background())
+}
+
+func (i AppProfile) ToAppProfileOutputWithContext(ctx context.Context) AppProfileOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AppProfileOutput)
+}
+
+type AppProfileOutput struct {
+	*pulumi.OutputState
+}
+
+func (AppProfileOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AppProfileOutput)(nil)).Elem()
+}
+
+func (o AppProfileOutput) ToAppProfileOutput() AppProfileOutput {
+	return o
+}
+
+func (o AppProfileOutput) ToAppProfileOutputWithContext(ctx context.Context) AppProfileOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AppProfileOutput{})
 }

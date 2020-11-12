@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
+import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
@@ -19,6 +18,14 @@ import * as utilities from "../utilities";
  * state as plain-text. [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Connection can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import gcp:bigquery/connection:Connection default {{name}}
+ * ```
  */
 export class Connection extends pulumi.CustomResource {
     /**

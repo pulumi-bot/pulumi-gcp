@@ -39,6 +39,22 @@ class GameServerConfig(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        GameServerConfig can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:gameservices/gameServerConfig:GameServerConfig default projects/{{project}}/locations/{{location}}/gameServerDeployments/{{deployment_id}}/configs/{{config_id}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:gameservices/gameServerConfig:GameServerConfig default {{project}}/{{location}}/{{deployment_id}}/{{config_id}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:gameservices/gameServerConfig:GameServerConfig default {{location}}/{{deployment_id}}/{{config_id}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] config_id: A unique id for the deployment config.

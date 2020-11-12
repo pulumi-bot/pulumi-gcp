@@ -9,6 +9,20 @@ import * as utilities from "../utilities";
  * [official documentation](https://cloud.google.com/deployment-manager/runtime-configurator/),
  * or the
  * [JSON API](https://cloud.google.com/deployment-manager/runtime-configurator/reference/rest/).
+ *
+ * ## Import
+ *
+ * Runtime Configs can be imported using the `name` or full config name, e.g.
+ *
+ * ```sh
+ *  $ pulumi import gcp:runtimeconfig/config:Config myconfig myconfig
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:runtimeconfig/config:Config myconfig projects/my-gcp-project/configs/myconfig
+ * ```
+ *
+ *  When importing using only the name, the provider project must be set.
  */
 export class Config extends pulumi.CustomResource {
     /**

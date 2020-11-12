@@ -4,6 +4,7 @@
 package servicedirectory
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -20,6 +21,22 @@ import (
 //     * [Configuring a namespace](https://cloud.google.com/service-directory/docs/configuring-service-directory#configuring_a_namespace)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Namespace can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:servicedirectory/namespace:Namespace default projects/{{project}}/locations/{{location}}/namespaces/{{namespace_id}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:servicedirectory/namespace:Namespace default {{project}}/{{location}}/{{namespace_id}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:servicedirectory/namespace:Namespace default {{location}}/{{namespace_id}}
+// ```
 type Namespace struct {
 	pulumi.CustomResourceState
 
@@ -153,4 +170,43 @@ type NamespaceArgs struct {
 
 func (NamespaceArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*namespaceArgs)(nil)).Elem()
+}
+
+type NamespaceInput interface {
+	pulumi.Input
+
+	ToNamespaceOutput() NamespaceOutput
+	ToNamespaceOutputWithContext(ctx context.Context) NamespaceOutput
+}
+
+func (Namespace) ElementType() reflect.Type {
+	return reflect.TypeOf((*Namespace)(nil)).Elem()
+}
+
+func (i Namespace) ToNamespaceOutput() NamespaceOutput {
+	return i.ToNamespaceOutputWithContext(context.Background())
+}
+
+func (i Namespace) ToNamespaceOutputWithContext(ctx context.Context) NamespaceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NamespaceOutput)
+}
+
+type NamespaceOutput struct {
+	*pulumi.OutputState
+}
+
+func (NamespaceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NamespaceOutput)(nil)).Elem()
+}
+
+func (o NamespaceOutput) ToNamespaceOutput() NamespaceOutput {
+	return o
+}
+
+func (o NamespaceOutput) ToNamespaceOutputWithContext(ctx context.Context) NamespaceOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(NamespaceOutput{})
 }

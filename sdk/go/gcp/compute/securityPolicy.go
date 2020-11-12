@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
@@ -12,6 +13,22 @@ import (
 // A Security Policy defines an IP blacklist or whitelist that protects load balanced Google Cloud services by denying or permitting traffic from specified IP ranges. For more information
 // see the [official documentation](https://cloud.google.com/armor/docs/configure-security-policies)
 // and the [API](https://cloud.google.com/compute/docs/reference/rest/beta/securityPolicies).
+//
+// ## Import
+//
+// Security policies can be imported using any of the following formats
+//
+// ```sh
+//  $ pulumi import gcp:compute/securityPolicy:SecurityPolicy policy projects/{{project}}/global/securityPolicies/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/securityPolicy:SecurityPolicy policy {{project}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/securityPolicy:SecurityPolicy policy {{name}}
+// ```
 type SecurityPolicy struct {
 	pulumi.CustomResourceState
 
@@ -130,4 +147,43 @@ type SecurityPolicyArgs struct {
 
 func (SecurityPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*securityPolicyArgs)(nil)).Elem()
+}
+
+type SecurityPolicyInput interface {
+	pulumi.Input
+
+	ToSecurityPolicyOutput() SecurityPolicyOutput
+	ToSecurityPolicyOutputWithContext(ctx context.Context) SecurityPolicyOutput
+}
+
+func (SecurityPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecurityPolicy)(nil)).Elem()
+}
+
+func (i SecurityPolicy) ToSecurityPolicyOutput() SecurityPolicyOutput {
+	return i.ToSecurityPolicyOutputWithContext(context.Background())
+}
+
+func (i SecurityPolicy) ToSecurityPolicyOutputWithContext(ctx context.Context) SecurityPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityPolicyOutput)
+}
+
+type SecurityPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (SecurityPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecurityPolicyOutput)(nil)).Elem()
+}
+
+func (o SecurityPolicyOutput) ToSecurityPolicyOutput() SecurityPolicyOutput {
+	return o
+}
+
+func (o SecurityPolicyOutput) ToSecurityPolicyOutputWithContext(ctx context.Context) SecurityPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SecurityPolicyOutput{})
 }

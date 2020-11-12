@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
@@ -25,6 +26,22 @@ import (
 //     * [Adding Health Checks](https://cloud.google.com/compute/docs/load-balancing/health-checks#legacy_health_checks)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// HttpHealthCheck can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:compute/httpHealthCheck:HttpHealthCheck default projects/{{project}}/global/httpHealthChecks/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/httpHealthCheck:HttpHealthCheck default {{project}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/httpHealthCheck:HttpHealthCheck default {{name}}
+// ```
 type HttpHealthCheck struct {
 	pulumi.CustomResourceState
 
@@ -273,4 +290,43 @@ type HttpHealthCheckArgs struct {
 
 func (HttpHealthCheckArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*httpHealthCheckArgs)(nil)).Elem()
+}
+
+type HttpHealthCheckInput interface {
+	pulumi.Input
+
+	ToHttpHealthCheckOutput() HttpHealthCheckOutput
+	ToHttpHealthCheckOutputWithContext(ctx context.Context) HttpHealthCheckOutput
+}
+
+func (HttpHealthCheck) ElementType() reflect.Type {
+	return reflect.TypeOf((*HttpHealthCheck)(nil)).Elem()
+}
+
+func (i HttpHealthCheck) ToHttpHealthCheckOutput() HttpHealthCheckOutput {
+	return i.ToHttpHealthCheckOutputWithContext(context.Background())
+}
+
+func (i HttpHealthCheck) ToHttpHealthCheckOutputWithContext(ctx context.Context) HttpHealthCheckOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HttpHealthCheckOutput)
+}
+
+type HttpHealthCheckOutput struct {
+	*pulumi.OutputState
+}
+
+func (HttpHealthCheckOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*HttpHealthCheckOutput)(nil)).Elem()
+}
+
+func (o HttpHealthCheckOutput) ToHttpHealthCheckOutput() HttpHealthCheckOutput {
+	return o
+}
+
+func (o HttpHealthCheckOutput) ToHttpHealthCheckOutputWithContext(ctx context.Context) HttpHealthCheckOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(HttpHealthCheckOutput{})
 }

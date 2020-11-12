@@ -4,6 +4,7 @@
 package binaryauthorization
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -19,6 +20,30 @@ import (
 // > **Note:** `binaryauthorization.AttestorIamPolicy` **cannot** be used in conjunction with `binaryauthorization.AttestorIamBinding` and `binaryauthorization.AttestorIamMember` or they will fight over what your policy should be.
 //
 // > **Note:** `binaryauthorization.AttestorIamBinding` resources **can be** used in conjunction with `binaryauthorization.AttestorIamMember` resources **only if** they do not grant privilege to the same role.
+//
+// ## Import
+//
+// For all import syntaxes, the "resource in question" can take any of the following forms* projects/{{project}}/attestors/{{name}} * {{project}}/{{name}} * {{name}} Any variables not passed in the import command will be taken from the provider configuration. Binary Authorization attestor IAM resources can be imported using the resource identifiers, role, and member. IAM member imports use space-delimited identifiersthe resource in question, the role, and the member identity, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:binaryauthorization/attestorIamBinding:AttestorIamBinding editor "projects/{{project}}/attestors/{{attestor}} roles/viewer user:jane@example.com"
+// ```
+//
+//  IAM binding imports use space-delimited identifiersthe resource in question and the role, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:binaryauthorization/attestorIamBinding:AttestorIamBinding editor "projects/{{project}}/attestors/{{attestor}} roles/viewer"
+// ```
+//
+//  IAM policy imports use the identifier of the resource in question, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:binaryauthorization/attestorIamBinding:AttestorIamBinding editor projects/{{project}}/attestors/{{attestor}}
+// ```
+//
+//  -> **Custom Roles**If you're importing a IAM resource with a custom role, make sure to use the
+//
+// full name of the custom role, e.g. `[projects/my-project|organizations/my-org]/roles/my-custom-role`.
 type AttestorIamBinding struct {
 	pulumi.CustomResourceState
 
@@ -140,4 +165,43 @@ type AttestorIamBindingArgs struct {
 
 func (AttestorIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*attestorIamBindingArgs)(nil)).Elem()
+}
+
+type AttestorIamBindingInput interface {
+	pulumi.Input
+
+	ToAttestorIamBindingOutput() AttestorIamBindingOutput
+	ToAttestorIamBindingOutputWithContext(ctx context.Context) AttestorIamBindingOutput
+}
+
+func (AttestorIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*AttestorIamBinding)(nil)).Elem()
+}
+
+func (i AttestorIamBinding) ToAttestorIamBindingOutput() AttestorIamBindingOutput {
+	return i.ToAttestorIamBindingOutputWithContext(context.Background())
+}
+
+func (i AttestorIamBinding) ToAttestorIamBindingOutputWithContext(ctx context.Context) AttestorIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AttestorIamBindingOutput)
+}
+
+type AttestorIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (AttestorIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AttestorIamBindingOutput)(nil)).Elem()
+}
+
+func (o AttestorIamBindingOutput) ToAttestorIamBindingOutput() AttestorIamBindingOutput {
+	return o
+}
+
+func (o AttestorIamBindingOutput) ToAttestorIamBindingOutputWithContext(ctx context.Context) AttestorIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AttestorIamBindingOutput{})
 }

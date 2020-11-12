@@ -4,6 +4,7 @@
 package iap
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -19,6 +20,30 @@ import (
 // > **Note:** `iap.WebTypeAppEngingIamPolicy` **cannot** be used in conjunction with `iap.WebTypeAppEngingIamBinding` and `iap.WebTypeAppEngingIamMember` or they will fight over what your policy should be.
 //
 // > **Note:** `iap.WebTypeAppEngingIamBinding` resources **can be** used in conjunction with `iap.WebTypeAppEngingIamMember` resources **only if** they do not grant privilege to the same role.
+//
+// ## Import
+//
+// For all import syntaxes, the "resource in question" can take any of the following forms* projects/{{project}}/iap_web/appengine-{{appId}} * {{project}}/{{appId}} * {{appId}} Any variables not passed in the import command will be taken from the provider configuration. Identity-Aware Proxy webtypeappengine IAM resources can be imported using the resource identifiers, role, and member. IAM member imports use space-delimited identifiersthe resource in question, the role, and the member identity, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:iap/webTypeAppEngingIamMember:WebTypeAppEngingIamMember editor "projects/{{project}}/iap_web/appengine-{{appId}} roles/iap.httpsResourceAccessor user:jane@example.com"
+// ```
+//
+//  IAM binding imports use space-delimited identifiersthe resource in question and the role, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:iap/webTypeAppEngingIamMember:WebTypeAppEngingIamMember editor "projects/{{project}}/iap_web/appengine-{{appId}} roles/iap.httpsResourceAccessor"
+// ```
+//
+//  IAM policy imports use the identifier of the resource in question, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:iap/webTypeAppEngingIamMember:WebTypeAppEngingIamMember editor projects/{{project}}/iap_web/appengine-{{appId}}
+// ```
+//
+//  -> **Custom Roles**If you're importing a IAM resource with a custom role, make sure to use the
+//
+// full name of the custom role, e.g. `[projects/my-project|organizations/my-org]/roles/my-custom-role`.
 type WebTypeAppEngingIamMember struct {
 	pulumi.CustomResourceState
 
@@ -150,4 +175,43 @@ type WebTypeAppEngingIamMemberArgs struct {
 
 func (WebTypeAppEngingIamMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*webTypeAppEngingIamMemberArgs)(nil)).Elem()
+}
+
+type WebTypeAppEngingIamMemberInput interface {
+	pulumi.Input
+
+	ToWebTypeAppEngingIamMemberOutput() WebTypeAppEngingIamMemberOutput
+	ToWebTypeAppEngingIamMemberOutputWithContext(ctx context.Context) WebTypeAppEngingIamMemberOutput
+}
+
+func (WebTypeAppEngingIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebTypeAppEngingIamMember)(nil)).Elem()
+}
+
+func (i WebTypeAppEngingIamMember) ToWebTypeAppEngingIamMemberOutput() WebTypeAppEngingIamMemberOutput {
+	return i.ToWebTypeAppEngingIamMemberOutputWithContext(context.Background())
+}
+
+func (i WebTypeAppEngingIamMember) ToWebTypeAppEngingIamMemberOutputWithContext(ctx context.Context) WebTypeAppEngingIamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebTypeAppEngingIamMemberOutput)
+}
+
+type WebTypeAppEngingIamMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (WebTypeAppEngingIamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebTypeAppEngingIamMemberOutput)(nil)).Elem()
+}
+
+func (o WebTypeAppEngingIamMemberOutput) ToWebTypeAppEngingIamMemberOutput() WebTypeAppEngingIamMemberOutput {
+	return o
+}
+
+func (o WebTypeAppEngingIamMemberOutput) ToWebTypeAppEngingIamMemberOutputWithContext(ctx context.Context) WebTypeAppEngingIamMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(WebTypeAppEngingIamMemberOutput{})
 }

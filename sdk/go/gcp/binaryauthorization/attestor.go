@@ -4,6 +4,7 @@
 package binaryauthorization
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -19,6 +20,22 @@ import (
 //     * [Official Documentation](https://cloud.google.com/binary-authorization/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Attestor can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:binaryauthorization/attestor:Attestor default projects/{{project}}/attestors/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:binaryauthorization/attestor:Attestor default {{project}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:binaryauthorization/attestor:Attestor default {{name}}
+// ```
 type Attestor struct {
 	pulumi.CustomResourceState
 
@@ -128,4 +145,43 @@ type AttestorArgs struct {
 
 func (AttestorArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*attestorArgs)(nil)).Elem()
+}
+
+type AttestorInput interface {
+	pulumi.Input
+
+	ToAttestorOutput() AttestorOutput
+	ToAttestorOutputWithContext(ctx context.Context) AttestorOutput
+}
+
+func (Attestor) ElementType() reflect.Type {
+	return reflect.TypeOf((*Attestor)(nil)).Elem()
+}
+
+func (i Attestor) ToAttestorOutput() AttestorOutput {
+	return i.ToAttestorOutputWithContext(context.Background())
+}
+
+func (i Attestor) ToAttestorOutputWithContext(ctx context.Context) AttestorOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AttestorOutput)
+}
+
+type AttestorOutput struct {
+	*pulumi.OutputState
+}
+
+func (AttestorOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AttestorOutput)(nil)).Elem()
+}
+
+func (o AttestorOutput) ToAttestorOutput() AttestorOutput {
+	return o
+}
+
+func (o AttestorOutput) ToAttestorOutputWithContext(ctx context.Context) AttestorOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AttestorOutput{})
 }

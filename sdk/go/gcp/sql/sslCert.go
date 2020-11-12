@@ -4,6 +4,7 @@
 package sql
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -11,6 +12,10 @@ import (
 )
 
 // Creates a new Google SQL SSL Cert on a Google SQL Instance. For more information, see the [official documentation](https://cloud.google.com/sql/), or the [JSON API](https://cloud.google.com/sql/docs/mysql/admin-api/v1beta4/sslCerts).
+//
+// ## Import
+//
+// Since the contents of the certificate cannot be accessed after its creation, this resource cannot be imported.
 type SslCert struct {
 	pulumi.CustomResourceState
 
@@ -161,4 +166,43 @@ type SslCertArgs struct {
 
 func (SslCertArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*sslCertArgs)(nil)).Elem()
+}
+
+type SslCertInput interface {
+	pulumi.Input
+
+	ToSslCertOutput() SslCertOutput
+	ToSslCertOutputWithContext(ctx context.Context) SslCertOutput
+}
+
+func (SslCert) ElementType() reflect.Type {
+	return reflect.TypeOf((*SslCert)(nil)).Elem()
+}
+
+func (i SslCert) ToSslCertOutput() SslCertOutput {
+	return i.ToSslCertOutputWithContext(context.Background())
+}
+
+func (i SslCert) ToSslCertOutputWithContext(ctx context.Context) SslCertOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SslCertOutput)
+}
+
+type SslCertOutput struct {
+	*pulumi.OutputState
+}
+
+func (SslCertOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SslCertOutput)(nil)).Elem()
+}
+
+func (o SslCertOutput) ToSslCertOutput() SslCertOutput {
+	return o
+}
+
+func (o SslCertOutput) ToSslCertOutputWithContext(ctx context.Context) SslCertOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SslCertOutput{})
 }

@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
@@ -19,6 +20,22 @@ import (
 //     * [Using SSL Policies](https://cloud.google.com/compute/docs/load-balancing/ssl-policies)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// SslPolicy can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:compute/sSLPolicy:SSLPolicy default projects/{{project}}/global/sslPolicies/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/sSLPolicy:SSLPolicy default {{project}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/sSLPolicy:SSLPolicy default {{name}}
+// ```
 type SSLPolicy struct {
 	pulumi.CustomResourceState
 
@@ -284,4 +301,43 @@ type SSLPolicyArgs struct {
 
 func (SSLPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*sslpolicyArgs)(nil)).Elem()
+}
+
+type SSLPolicyInput interface {
+	pulumi.Input
+
+	ToSSLPolicyOutput() SSLPolicyOutput
+	ToSSLPolicyOutputWithContext(ctx context.Context) SSLPolicyOutput
+}
+
+func (SSLPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*SSLPolicy)(nil)).Elem()
+}
+
+func (i SSLPolicy) ToSSLPolicyOutput() SSLPolicyOutput {
+	return i.ToSSLPolicyOutputWithContext(context.Background())
+}
+
+func (i SSLPolicy) ToSSLPolicyOutputWithContext(ctx context.Context) SSLPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SSLPolicyOutput)
+}
+
+type SSLPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (SSLPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SSLPolicyOutput)(nil)).Elem()
+}
+
+func (o SSLPolicyOutput) ToSSLPolicyOutput() SSLPolicyOutput {
+	return o
+}
+
+func (o SSLPolicyOutput) ToSSLPolicyOutputWithContext(ctx context.Context) SSLPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SSLPolicyOutput{})
 }

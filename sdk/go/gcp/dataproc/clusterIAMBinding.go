@@ -4,6 +4,7 @@
 package dataproc
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -19,6 +20,26 @@ import (
 // > **Note:** `dataproc.ClusterIAMPolicy` **cannot** be used in conjunction with `dataproc.ClusterIAMBinding` and `dataproc.ClusterIAMMember` or they will fight over what your policy should be. In addition, be careful not to accidentally unset ownership of the cluster as `dataproc.ClusterIAMPolicy` replaces the entire policy.
 //
 // > **Note:** `dataproc.ClusterIAMBinding` resources **can be** used in conjunction with `dataproc.ClusterIAMMember` resources **only if** they do not grant privilege to the same role.
+//
+// ## Import
+//
+// Cluster IAM resources can be imported using the project, region, cluster name, role and/or member.
+//
+// ```sh
+//  $ pulumi import gcp:dataproc/clusterIAMBinding:ClusterIAMBinding editor "projects/{project}/regions/{region}/clusters/{cluster}"
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:dataproc/clusterIAMBinding:ClusterIAMBinding editor "projects/{project}/regions/{region}/clusters/{cluster} roles/editor"
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:dataproc/clusterIAMBinding:ClusterIAMBinding editor "projects/{project}/regions/{region}/clusters/{cluster} roles/editor user:jane@example.com"
+// ```
+//
+//  -> **Custom Roles**If you're importing a IAM resource with a custom role, make sure to use the
+//
+// full name of the custom role, e.g. `[projects/my-project|organizations/my-org]/roles/my-custom-role`.
 type ClusterIAMBinding struct {
 	pulumi.CustomResourceState
 
@@ -155,4 +176,43 @@ type ClusterIAMBindingArgs struct {
 
 func (ClusterIAMBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*clusterIAMBindingArgs)(nil)).Elem()
+}
+
+type ClusterIAMBindingInput interface {
+	pulumi.Input
+
+	ToClusterIAMBindingOutput() ClusterIAMBindingOutput
+	ToClusterIAMBindingOutputWithContext(ctx context.Context) ClusterIAMBindingOutput
+}
+
+func (ClusterIAMBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterIAMBinding)(nil)).Elem()
+}
+
+func (i ClusterIAMBinding) ToClusterIAMBindingOutput() ClusterIAMBindingOutput {
+	return i.ToClusterIAMBindingOutputWithContext(context.Background())
+}
+
+func (i ClusterIAMBinding) ToClusterIAMBindingOutputWithContext(ctx context.Context) ClusterIAMBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterIAMBindingOutput)
+}
+
+type ClusterIAMBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (ClusterIAMBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterIAMBindingOutput)(nil)).Elem()
+}
+
+func (o ClusterIAMBindingOutput) ToClusterIAMBindingOutput() ClusterIAMBindingOutput {
+	return o
+}
+
+func (o ClusterIAMBindingOutput) ToClusterIAMBindingOutputWithContext(ctx context.Context) ClusterIAMBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ClusterIAMBindingOutput{})
 }

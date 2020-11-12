@@ -12,11 +12,11 @@ from ._inputs import *
 
 __all__ = ['Autoscalar']
 
-warnings.warn("gcp.compute.Autoscalar has been deprecated in favor of gcp.compute.Autoscaler", DeprecationWarning)
+warnings.warn("""gcp.compute.Autoscalar has been deprecated in favor of gcp.compute.Autoscaler""", DeprecationWarning)
 
 
 class Autoscalar(pulumi.CustomResource):
-    warnings.warn("gcp.compute.Autoscalar has been deprecated in favor of gcp.compute.Autoscaler", DeprecationWarning)
+    warnings.warn("""gcp.compute.Autoscalar has been deprecated in favor of gcp.compute.Autoscaler""", DeprecationWarning)
 
     def __init__(__self__,
                  resource_name: str,
@@ -44,6 +44,26 @@ class Autoscalar(pulumi.CustomResource):
             * [Autoscaling Groups of Instances](https://cloud.google.com/compute/docs/autoscaler/)
 
         ## Example Usage
+
+        ## Import
+
+        Autoscaler can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:compute/autoscalar:Autoscalar default projects/{{project}}/zones/{{zone}}/autoscalers/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/autoscalar:Autoscalar default {{project}}/{{zone}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/autoscalar:Autoscalar default {{zone}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/autoscalar:Autoscalar default {{name}}
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

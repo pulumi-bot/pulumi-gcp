@@ -4,6 +4,7 @@
 package identityplatform
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -20,6 +21,22 @@ import (
 // the Cloud Console prior to creating tenants.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Tenant can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:identityplatform/tenant:Tenant default projects/{{project}}/tenants/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:identityplatform/tenant:Tenant default {{project}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:identityplatform/tenant:Tenant default {{name}}
+// ```
 type Tenant struct {
 	pulumi.CustomResourceState
 
@@ -145,4 +162,43 @@ type TenantArgs struct {
 
 func (TenantArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*tenantArgs)(nil)).Elem()
+}
+
+type TenantInput interface {
+	pulumi.Input
+
+	ToTenantOutput() TenantOutput
+	ToTenantOutputWithContext(ctx context.Context) TenantOutput
+}
+
+func (Tenant) ElementType() reflect.Type {
+	return reflect.TypeOf((*Tenant)(nil)).Elem()
+}
+
+func (i Tenant) ToTenantOutput() TenantOutput {
+	return i.ToTenantOutputWithContext(context.Background())
+}
+
+func (i Tenant) ToTenantOutputWithContext(ctx context.Context) TenantOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TenantOutput)
+}
+
+type TenantOutput struct {
+	*pulumi.OutputState
+}
+
+func (TenantOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TenantOutput)(nil)).Elem()
+}
+
+func (o TenantOutput) ToTenantOutput() TenantOutput {
+	return o
+}
+
+func (o TenantOutput) ToTenantOutputWithContext(ctx context.Context) TenantOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TenantOutput{})
 }

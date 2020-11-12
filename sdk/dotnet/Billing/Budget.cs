@@ -19,6 +19,14 @@ namespace Pulumi.Gcp.Billing
     ///     * [Creating a budget](https://cloud.google.com/billing/docs/how-to/budgets)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Budget can be imported using any of these accepted formats
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:billing/budget:Budget default {{name}}
+    /// ```
     /// </summary>
     public partial class Budget : Pulumi.CustomResource
     {

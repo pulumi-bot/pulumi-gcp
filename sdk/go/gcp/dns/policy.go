@@ -4,6 +4,7 @@
 package dns
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
@@ -19,6 +20,22 @@ import (
 //     * [Using DNS server policies](https://cloud.google.com/dns/zones/#using-dns-server-policies)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Policy can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:dns/policy:Policy default projects/{{project}}/policies/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:dns/policy:Policy default {{project}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:dns/policy:Policy default {{name}}
+// ```
 type Policy struct {
 	pulumi.CustomResourceState
 
@@ -185,4 +202,43 @@ type PolicyArgs struct {
 
 func (PolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*policyArgs)(nil)).Elem()
+}
+
+type PolicyInput interface {
+	pulumi.Input
+
+	ToPolicyOutput() PolicyOutput
+	ToPolicyOutputWithContext(ctx context.Context) PolicyOutput
+}
+
+func (Policy) ElementType() reflect.Type {
+	return reflect.TypeOf((*Policy)(nil)).Elem()
+}
+
+func (i Policy) ToPolicyOutput() PolicyOutput {
+	return i.ToPolicyOutputWithContext(context.Background())
+}
+
+func (i Policy) ToPolicyOutputWithContext(ctx context.Context) PolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PolicyOutput)
+}
+
+type PolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (PolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PolicyOutput)(nil)).Elem()
+}
+
+func (o PolicyOutput) ToPolicyOutput() PolicyOutput {
+	return o
+}
+
+func (o PolicyOutput) ToPolicyOutputWithContext(ctx context.Context) PolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(PolicyOutput{})
 }

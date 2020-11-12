@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -23,6 +24,26 @@ import (
 // state as plain-text.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// VpnTunnel can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:compute/vPNTunnel:VPNTunnel default projects/{{project}}/regions/{{region}}/vpnTunnels/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/vPNTunnel:VPNTunnel default {{project}}/{{region}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/vPNTunnel:VPNTunnel default {{region}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/vPNTunnel:VPNTunnel default {{name}}
+// ```
 type VPNTunnel struct {
 	pulumi.CustomResourceState
 
@@ -398,4 +419,43 @@ type VPNTunnelArgs struct {
 
 func (VPNTunnelArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*vpntunnelArgs)(nil)).Elem()
+}
+
+type VPNTunnelInput interface {
+	pulumi.Input
+
+	ToVPNTunnelOutput() VPNTunnelOutput
+	ToVPNTunnelOutputWithContext(ctx context.Context) VPNTunnelOutput
+}
+
+func (VPNTunnel) ElementType() reflect.Type {
+	return reflect.TypeOf((*VPNTunnel)(nil)).Elem()
+}
+
+func (i VPNTunnel) ToVPNTunnelOutput() VPNTunnelOutput {
+	return i.ToVPNTunnelOutputWithContext(context.Background())
+}
+
+func (i VPNTunnel) ToVPNTunnelOutputWithContext(ctx context.Context) VPNTunnelOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VPNTunnelOutput)
+}
+
+type VPNTunnelOutput struct {
+	*pulumi.OutputState
+}
+
+func (VPNTunnelOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VPNTunnelOutput)(nil)).Elem()
+}
+
+func (o VPNTunnelOutput) ToVPNTunnelOutput() VPNTunnelOutput {
+	return o
+}
+
+func (o VPNTunnelOutput) ToVPNTunnelOutputWithContext(ctx context.Context) VPNTunnelOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(VPNTunnelOutput{})
 }

@@ -4,6 +4,7 @@
 package storage
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -18,6 +19,14 @@ import (
 // * [API documentation](https://cloud.google.com/storage-transfer/docs/reference/rest/v1/transferJobs#TransferJob)
 // * How-to Guides
 //     * [Configuring Access to Data Sources and Sinks](https://cloud.google.com/storage-transfer/docs/configure-access)
+//
+// ## Import
+//
+// Storage buckets can be imported using the Transfer Job's `project` and `name` without the `transferJob/` prefix, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:storage/transferJob:TransferJob nightly-backup-transfer-job my-project-1asd32/8422144862922355674
+// ```
 type TransferJob struct {
 	pulumi.CustomResourceState
 
@@ -157,4 +166,43 @@ type TransferJobArgs struct {
 
 func (TransferJobArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*transferJobArgs)(nil)).Elem()
+}
+
+type TransferJobInput interface {
+	pulumi.Input
+
+	ToTransferJobOutput() TransferJobOutput
+	ToTransferJobOutputWithContext(ctx context.Context) TransferJobOutput
+}
+
+func (TransferJob) ElementType() reflect.Type {
+	return reflect.TypeOf((*TransferJob)(nil)).Elem()
+}
+
+func (i TransferJob) ToTransferJobOutput() TransferJobOutput {
+	return i.ToTransferJobOutputWithContext(context.Background())
+}
+
+func (i TransferJob) ToTransferJobOutputWithContext(ctx context.Context) TransferJobOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TransferJobOutput)
+}
+
+type TransferJobOutput struct {
+	*pulumi.OutputState
+}
+
+func (TransferJobOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TransferJobOutput)(nil)).Elem()
+}
+
+func (o TransferJobOutput) ToTransferJobOutput() TransferJobOutput {
+	return o
+}
+
+func (o TransferJobOutput) ToTransferJobOutputWithContext(ctx context.Context) TransferJobOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TransferJobOutput{})
 }

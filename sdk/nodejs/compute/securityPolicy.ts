@@ -2,14 +2,29 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
+import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
  * A Security Policy defines an IP blacklist or whitelist that protects load balanced Google Cloud services by denying or permitting traffic from specified IP ranges. For more information
  * see the [official documentation](https://cloud.google.com/armor/docs/configure-security-policies)
  * and the [API](https://cloud.google.com/compute/docs/reference/rest/beta/securityPolicies).
+ *
+ * ## Import
+ *
+ * Security policies can be imported using any of the following formats
+ *
+ * ```sh
+ *  $ pulumi import gcp:compute/securityPolicy:SecurityPolicy policy projects/{{project}}/global/securityPolicies/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:compute/securityPolicy:SecurityPolicy policy {{project}}/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:compute/securityPolicy:SecurityPolicy policy {{name}}
+ * ```
  */
 export class SecurityPolicy extends pulumi.CustomResource {
     /**

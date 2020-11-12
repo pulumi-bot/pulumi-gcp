@@ -4,6 +4,7 @@
 package storage
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -21,6 +22,10 @@ import (
 //
 // > Want fine-grained control over object ACLs? Use `storage.ObjectAccessControl` to control individual
 // role entity pairs.
+//
+// ## Import
+//
+// This resource does not support import.
 type ObjectACL struct {
 	pulumi.CustomResourceState
 
@@ -123,4 +128,43 @@ type ObjectACLArgs struct {
 
 func (ObjectACLArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*objectACLArgs)(nil)).Elem()
+}
+
+type ObjectACLInput interface {
+	pulumi.Input
+
+	ToObjectACLOutput() ObjectACLOutput
+	ToObjectACLOutputWithContext(ctx context.Context) ObjectACLOutput
+}
+
+func (ObjectACL) ElementType() reflect.Type {
+	return reflect.TypeOf((*ObjectACL)(nil)).Elem()
+}
+
+func (i ObjectACL) ToObjectACLOutput() ObjectACLOutput {
+	return i.ToObjectACLOutputWithContext(context.Background())
+}
+
+func (i ObjectACL) ToObjectACLOutputWithContext(ctx context.Context) ObjectACLOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObjectACLOutput)
+}
+
+type ObjectACLOutput struct {
+	*pulumi.OutputState
+}
+
+func (ObjectACLOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ObjectACLOutput)(nil)).Elem()
+}
+
+func (o ObjectACLOutput) ToObjectACLOutput() ObjectACLOutput {
+	return o
+}
+
+func (o ObjectACLOutput) ToObjectACLOutputWithContext(ctx context.Context) ObjectACLOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ObjectACLOutput{})
 }

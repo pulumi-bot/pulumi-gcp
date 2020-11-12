@@ -4,6 +4,7 @@
 package iap
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -19,6 +20,30 @@ import (
 // > **Note:** `iap.WebBackendServiceIamPolicy` **cannot** be used in conjunction with `iap.WebBackendServiceIamBinding` and `iap.WebBackendServiceIamMember` or they will fight over what your policy should be.
 //
 // > **Note:** `iap.WebBackendServiceIamBinding` resources **can be** used in conjunction with `iap.WebBackendServiceIamMember` resources **only if** they do not grant privilege to the same role.
+//
+// ## Import
+//
+// For all import syntaxes, the "resource in question" can take any of the following forms* projects/{{project}}/iap_web/compute/services/{{name}} * {{project}}/{{name}} * {{name}} Any variables not passed in the import command will be taken from the provider configuration. Identity-Aware Proxy webbackendservice IAM resources can be imported using the resource identifiers, role, and member. IAM member imports use space-delimited identifiersthe resource in question, the role, and the member identity, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:iap/webBackendServiceIamPolicy:WebBackendServiceIamPolicy editor "projects/{{project}}/iap_web/compute/services/{{web_backend_service}} roles/iap.httpsResourceAccessor user:jane@example.com"
+// ```
+//
+//  IAM binding imports use space-delimited identifiersthe resource in question and the role, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:iap/webBackendServiceIamPolicy:WebBackendServiceIamPolicy editor "projects/{{project}}/iap_web/compute/services/{{web_backend_service}} roles/iap.httpsResourceAccessor"
+// ```
+//
+//  IAM policy imports use the identifier of the resource in question, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:iap/webBackendServiceIamPolicy:WebBackendServiceIamPolicy editor projects/{{project}}/iap_web/compute/services/{{web_backend_service}}
+// ```
+//
+//  -> **Custom Roles**If you're importing a IAM resource with a custom role, make sure to use the
+//
+// full name of the custom role, e.g. `[projects/my-project|organizations/my-org]/roles/my-custom-role`.
 type WebBackendServiceIamPolicy struct {
 	pulumi.CustomResourceState
 
@@ -122,4 +147,43 @@ type WebBackendServiceIamPolicyArgs struct {
 
 func (WebBackendServiceIamPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*webBackendServiceIamPolicyArgs)(nil)).Elem()
+}
+
+type WebBackendServiceIamPolicyInput interface {
+	pulumi.Input
+
+	ToWebBackendServiceIamPolicyOutput() WebBackendServiceIamPolicyOutput
+	ToWebBackendServiceIamPolicyOutputWithContext(ctx context.Context) WebBackendServiceIamPolicyOutput
+}
+
+func (WebBackendServiceIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebBackendServiceIamPolicy)(nil)).Elem()
+}
+
+func (i WebBackendServiceIamPolicy) ToWebBackendServiceIamPolicyOutput() WebBackendServiceIamPolicyOutput {
+	return i.ToWebBackendServiceIamPolicyOutputWithContext(context.Background())
+}
+
+func (i WebBackendServiceIamPolicy) ToWebBackendServiceIamPolicyOutputWithContext(ctx context.Context) WebBackendServiceIamPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebBackendServiceIamPolicyOutput)
+}
+
+type WebBackendServiceIamPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (WebBackendServiceIamPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebBackendServiceIamPolicyOutput)(nil)).Elem()
+}
+
+func (o WebBackendServiceIamPolicyOutput) ToWebBackendServiceIamPolicyOutput() WebBackendServiceIamPolicyOutput {
+	return o
+}
+
+func (o WebBackendServiceIamPolicyOutput) ToWebBackendServiceIamPolicyOutputWithContext(ctx context.Context) WebBackendServiceIamPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(WebBackendServiceIamPolicyOutput{})
 }

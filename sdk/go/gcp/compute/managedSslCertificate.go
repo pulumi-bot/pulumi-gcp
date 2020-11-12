@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
@@ -36,6 +37,22 @@ import (
 // In conclusion: Be extremely cautious.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// ManagedSslCertificate can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:compute/managedSslCertificate:ManagedSslCertificate default projects/{{project}}/global/sslCertificates/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/managedSslCertificate:ManagedSslCertificate default {{project}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/managedSslCertificate:ManagedSslCertificate default {{name}}
+// ```
 type ManagedSslCertificate struct {
 	pulumi.CustomResourceState
 
@@ -237,4 +254,43 @@ type ManagedSslCertificateArgs struct {
 
 func (ManagedSslCertificateArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*managedSslCertificateArgs)(nil)).Elem()
+}
+
+type ManagedSslCertificateInput interface {
+	pulumi.Input
+
+	ToManagedSslCertificateOutput() ManagedSslCertificateOutput
+	ToManagedSslCertificateOutputWithContext(ctx context.Context) ManagedSslCertificateOutput
+}
+
+func (ManagedSslCertificate) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedSslCertificate)(nil)).Elem()
+}
+
+func (i ManagedSslCertificate) ToManagedSslCertificateOutput() ManagedSslCertificateOutput {
+	return i.ToManagedSslCertificateOutputWithContext(context.Background())
+}
+
+func (i ManagedSslCertificate) ToManagedSslCertificateOutputWithContext(ctx context.Context) ManagedSslCertificateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedSslCertificateOutput)
+}
+
+type ManagedSslCertificateOutput struct {
+	*pulumi.OutputState
+}
+
+func (ManagedSslCertificateOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedSslCertificateOutput)(nil)).Elem()
+}
+
+func (o ManagedSslCertificateOutput) ToManagedSslCertificateOutput() ManagedSslCertificateOutput {
+	return o
+}
+
+func (o ManagedSslCertificateOutput) ToManagedSslCertificateOutputWithContext(ctx context.Context) ManagedSslCertificateOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ManagedSslCertificateOutput{})
 }

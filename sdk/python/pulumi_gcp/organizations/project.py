@@ -37,6 +37,14 @@ class Project(pulumi.CustomResource):
         [Access Control for Organizations Using IAM](https://cloud.google.com/resource-manager/docs/access-control-org)
         doc for more information.
 
+        ## Import
+
+        Projects can be imported using the `project_id`, e.g.
+
+        ```sh
+         $ pulumi import gcp:organizations/project:Project my_project your-project-id
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] auto_create_network: Create the 'default' network automatically.  Default `true`.

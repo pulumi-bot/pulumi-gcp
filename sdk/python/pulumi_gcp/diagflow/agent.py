@@ -44,6 +44,14 @@ class Agent(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        Agent can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:diagflow/agent:Agent default {{project}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] api_version: API version displayed in Dialogflow console. If not specified, V2 API is assumed. Clients are free to query

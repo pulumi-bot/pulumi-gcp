@@ -4,6 +4,7 @@
 package kms
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
@@ -18,6 +19,26 @@ import (
 //     * [Official Documentation](https://cloud.google.com/iot/docs/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// DeviceRegistry can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:kms/registry:Registry default {{project}}/locations/{{region}}/registries/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:kms/registry:Registry default {{project}}/{{region}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:kms/registry:Registry default {{region}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:kms/registry:Registry default {{name}}
+// ```
 //
 // Deprecated: gcp.kms.Registry has been deprecated in favor of gcp.iot.Registry
 type Registry struct {
@@ -231,4 +252,43 @@ type RegistryArgs struct {
 
 func (RegistryArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*registryArgs)(nil)).Elem()
+}
+
+type RegistryInput interface {
+	pulumi.Input
+
+	ToRegistryOutput() RegistryOutput
+	ToRegistryOutputWithContext(ctx context.Context) RegistryOutput
+}
+
+func (Registry) ElementType() reflect.Type {
+	return reflect.TypeOf((*Registry)(nil)).Elem()
+}
+
+func (i Registry) ToRegistryOutput() RegistryOutput {
+	return i.ToRegistryOutputWithContext(context.Background())
+}
+
+func (i Registry) ToRegistryOutputWithContext(ctx context.Context) RegistryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegistryOutput)
+}
+
+type RegistryOutput struct {
+	*pulumi.OutputState
+}
+
+func (RegistryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegistryOutput)(nil)).Elem()
+}
+
+func (o RegistryOutput) ToRegistryOutput() RegistryOutput {
+	return o
+}
+
+func (o RegistryOutput) ToRegistryOutputWithContext(ctx context.Context) RegistryOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RegistryOutput{})
 }
