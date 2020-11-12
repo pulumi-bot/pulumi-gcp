@@ -35,6 +35,10 @@ class DefaultObjectACL(pulumi.CustomResource):
         > Want fine-grained control over default object ACLs? Use `storage.DefaultObjectAccessControl`
         to control individual role entity pairs.
 
+        ## Import
+
+        This resource does not support import.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] bucket: The name of the bucket it applies to.

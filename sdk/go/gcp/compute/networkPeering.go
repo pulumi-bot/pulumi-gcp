@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -19,6 +20,14 @@ import (
 // to be functional.
 //
 // > Subnets IP ranges across peered VPC networks cannot overlap.
+//
+// ## Import
+//
+// VPC network peerings can be imported using the name and project of the primary network the peering exists in and the name of the network peering
+//
+// ```sh
+//  $ pulumi import gcp:compute/networkPeering:NetworkPeering peering_network project-name/network-name/peering-name
+// ```
 type NetworkPeering struct {
 	pulumi.CustomResourceState
 
@@ -166,4 +175,43 @@ type NetworkPeeringArgs struct {
 
 func (NetworkPeeringArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*networkPeeringArgs)(nil)).Elem()
+}
+
+type NetworkPeeringInput interface {
+	pulumi.Input
+
+	ToNetworkPeeringOutput() NetworkPeeringOutput
+	ToNetworkPeeringOutputWithContext(ctx context.Context) NetworkPeeringOutput
+}
+
+func (NetworkPeering) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetworkPeering)(nil)).Elem()
+}
+
+func (i NetworkPeering) ToNetworkPeeringOutput() NetworkPeeringOutput {
+	return i.ToNetworkPeeringOutputWithContext(context.Background())
+}
+
+func (i NetworkPeering) ToNetworkPeeringOutputWithContext(ctx context.Context) NetworkPeeringOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NetworkPeeringOutput)
+}
+
+type NetworkPeeringOutput struct {
+	*pulumi.OutputState
+}
+
+func (NetworkPeeringOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetworkPeeringOutput)(nil)).Elem()
+}
+
+func (o NetworkPeeringOutput) ToNetworkPeeringOutput() NetworkPeeringOutput {
+	return o
+}
+
+func (o NetworkPeeringOutput) ToNetworkPeeringOutputWithContext(ctx context.Context) NetworkPeeringOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(NetworkPeeringOutput{})
 }

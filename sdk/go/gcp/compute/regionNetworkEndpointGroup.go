@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -19,6 +20,26 @@ import (
 //     * [Official Documentation](https://cloud.google.com/load-balancing/docs/negs/serverless-neg-concepts)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// RegionNetworkEndpointGroup can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:compute/regionNetworkEndpointGroup:RegionNetworkEndpointGroup default projects/{{project}}/regions/{{region}}/networkEndpointGroups/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/regionNetworkEndpointGroup:RegionNetworkEndpointGroup default {{project}}/{{region}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/regionNetworkEndpointGroup:RegionNetworkEndpointGroup default {{region}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/regionNetworkEndpointGroup:RegionNetworkEndpointGroup default {{name}}
+// ```
 type RegionNetworkEndpointGroup struct {
 	pulumi.CustomResourceState
 
@@ -239,4 +260,43 @@ type RegionNetworkEndpointGroupArgs struct {
 
 func (RegionNetworkEndpointGroupArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*regionNetworkEndpointGroupArgs)(nil)).Elem()
+}
+
+type RegionNetworkEndpointGroupInput interface {
+	pulumi.Input
+
+	ToRegionNetworkEndpointGroupOutput() RegionNetworkEndpointGroupOutput
+	ToRegionNetworkEndpointGroupOutputWithContext(ctx context.Context) RegionNetworkEndpointGroupOutput
+}
+
+func (RegionNetworkEndpointGroup) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionNetworkEndpointGroup)(nil)).Elem()
+}
+
+func (i RegionNetworkEndpointGroup) ToRegionNetworkEndpointGroupOutput() RegionNetworkEndpointGroupOutput {
+	return i.ToRegionNetworkEndpointGroupOutputWithContext(context.Background())
+}
+
+func (i RegionNetworkEndpointGroup) ToRegionNetworkEndpointGroupOutputWithContext(ctx context.Context) RegionNetworkEndpointGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegionNetworkEndpointGroupOutput)
+}
+
+type RegionNetworkEndpointGroupOutput struct {
+	*pulumi.OutputState
+}
+
+func (RegionNetworkEndpointGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionNetworkEndpointGroupOutput)(nil)).Elem()
+}
+
+func (o RegionNetworkEndpointGroupOutput) ToRegionNetworkEndpointGroupOutput() RegionNetworkEndpointGroupOutput {
+	return o
+}
+
+func (o RegionNetworkEndpointGroupOutput) ToRegionNetworkEndpointGroupOutputWithContext(ctx context.Context) RegionNetworkEndpointGroupOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RegionNetworkEndpointGroupOutput{})
 }

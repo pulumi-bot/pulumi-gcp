@@ -4,6 +4,7 @@
 package storage
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
@@ -23,6 +24,22 @@ import (
 // determined which will require enabling the compute api.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Storage buckets can be imported using the `name` or
+//
+// `project/name`. If the project is not passed to the import command it will be inferred from the provider block or environment variables. If it cannot be inferred it will be queried from the Compute API (this will fail if the API is not enabled). e.g.
+//
+// ```sh
+//  $ pulumi import gcp:storage/bucket:Bucket image-store image-store-bucket
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:storage/bucket:Bucket image-store tf-test-project/image-store-bucket
+// ```
+//
+//  `false` in state. If you've set it to `true` in config, run `terraform apply` to update the value set in state. If you delete this resource before updating the value, objects in the bucket will not be destroyed.
 type Bucket struct {
 	pulumi.CustomResourceState
 
@@ -276,4 +293,43 @@ type BucketArgs struct {
 
 func (BucketArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*bucketArgs)(nil)).Elem()
+}
+
+type BucketInput interface {
+	pulumi.Input
+
+	ToBucketOutput() BucketOutput
+	ToBucketOutputWithContext(ctx context.Context) BucketOutput
+}
+
+func (Bucket) ElementType() reflect.Type {
+	return reflect.TypeOf((*Bucket)(nil)).Elem()
+}
+
+func (i Bucket) ToBucketOutput() BucketOutput {
+	return i.ToBucketOutputWithContext(context.Background())
+}
+
+func (i Bucket) ToBucketOutputWithContext(ctx context.Context) BucketOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketOutput)
+}
+
+type BucketOutput struct {
+	*pulumi.OutputState
+}
+
+func (BucketOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketOutput)(nil)).Elem()
+}
+
+func (o BucketOutput) ToBucketOutput() BucketOutput {
+	return o
+}
+
+func (o BucketOutput) ToBucketOutputWithContext(ctx context.Context) BucketOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(BucketOutput{})
 }

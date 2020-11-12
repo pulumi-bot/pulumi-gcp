@@ -4,6 +4,7 @@
 package healthcare
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -19,6 +20,36 @@ import (
 // > **Note:** `healthcare.DatasetIamPolicy` **cannot** be used in conjunction with `healthcare.DatasetIamBinding` and `healthcare.DatasetIamMember` or they will fight over what your policy should be.
 //
 // > **Note:** `healthcare.DatasetIamBinding` resources **can be** used in conjunction with `healthcare.DatasetIamMember` resources **only if** they do not grant privilege to the same role.
+//
+// ## Import
+//
+// IAM member imports use space-delimited identifiers; the resource in question, the role, and the account.
+//
+// This member resource can be imported using the `dataset_id`, role, and account e.g.
+//
+// ```sh
+//  $ pulumi import gcp:healthcare/datasetIamBinding:DatasetIamBinding dataset_iam "your-project-id/location-name/dataset-name roles/viewer user:foo@example.com"
+// ```
+//
+//  IAM binding imports use space-delimited identifiers; the resource in question and the role.
+//
+// This binding resource can be imported using the `dataset_id` and role, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:healthcare/datasetIamBinding:DatasetIamBinding dataset_iam "your-project-id/location-name/dataset-name roles/viewer"
+// ```
+//
+//  IAM policy imports use the identifier of the resource in question.
+//
+// This policy resource can be imported using the `dataset_id`, role, and account e.g.
+//
+// ```sh
+//  $ pulumi import gcp:healthcare/datasetIamBinding:DatasetIamBinding dataset_iam your-project-id/location-name/dataset-name
+// ```
+//
+//  -> **Custom Roles**If you're importing a IAM resource with a custom role, make sure to use the
+//
+// full name of the custom role, e.g. `[projects/my-project|organizations/my-org]/roles/my-custom-role`.
 type DatasetIamBinding struct {
 	pulumi.CustomResourceState
 
@@ -140,4 +171,43 @@ type DatasetIamBindingArgs struct {
 
 func (DatasetIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*datasetIamBindingArgs)(nil)).Elem()
+}
+
+type DatasetIamBindingInput interface {
+	pulumi.Input
+
+	ToDatasetIamBindingOutput() DatasetIamBindingOutput
+	ToDatasetIamBindingOutputWithContext(ctx context.Context) DatasetIamBindingOutput
+}
+
+func (DatasetIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatasetIamBinding)(nil)).Elem()
+}
+
+func (i DatasetIamBinding) ToDatasetIamBindingOutput() DatasetIamBindingOutput {
+	return i.ToDatasetIamBindingOutputWithContext(context.Background())
+}
+
+func (i DatasetIamBinding) ToDatasetIamBindingOutputWithContext(ctx context.Context) DatasetIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetIamBindingOutput)
+}
+
+type DatasetIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (DatasetIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatasetIamBindingOutput)(nil)).Elem()
+}
+
+func (o DatasetIamBindingOutput) ToDatasetIamBindingOutput() DatasetIamBindingOutput {
+	return o
+}
+
+func (o DatasetIamBindingOutput) ToDatasetIamBindingOutputWithContext(ctx context.Context) DatasetIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DatasetIamBindingOutput{})
 }

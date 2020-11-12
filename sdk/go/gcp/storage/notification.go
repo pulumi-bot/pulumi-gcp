@@ -4,6 +4,7 @@
 package storage
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -26,6 +27,14 @@ import (
 //
 // > **NOTE**: This resource can affect your storage IAM policy. If you are using this in the same config as your storage IAM policy resources, consider
 // making this resource dependent on those IAM resources via `dependsOn`. This will safeguard against errors due to IAM race conditions.
+//
+// ## Import
+//
+// Storage notifications can be imported using the notification `id` in the format `<bucket_name>/notificationConfigs/<id>` e.g.
+//
+// ```sh
+//  $ pulumi import gcp:storage/notification:Notification notification default_bucket/notificationConfigs/102
+// ```
 type Notification struct {
 	pulumi.CustomResourceState
 
@@ -173,4 +182,43 @@ type NotificationArgs struct {
 
 func (NotificationArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*notificationArgs)(nil)).Elem()
+}
+
+type NotificationInput interface {
+	pulumi.Input
+
+	ToNotificationOutput() NotificationOutput
+	ToNotificationOutputWithContext(ctx context.Context) NotificationOutput
+}
+
+func (Notification) ElementType() reflect.Type {
+	return reflect.TypeOf((*Notification)(nil)).Elem()
+}
+
+func (i Notification) ToNotificationOutput() NotificationOutput {
+	return i.ToNotificationOutputWithContext(context.Background())
+}
+
+func (i Notification) ToNotificationOutputWithContext(ctx context.Context) NotificationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationOutput)
+}
+
+type NotificationOutput struct {
+	*pulumi.OutputState
+}
+
+func (NotificationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationOutput)(nil)).Elem()
+}
+
+func (o NotificationOutput) ToNotificationOutput() NotificationOutput {
+	return o
+}
+
+func (o NotificationOutput) ToNotificationOutputWithContext(ctx context.Context) NotificationOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(NotificationOutput{})
 }

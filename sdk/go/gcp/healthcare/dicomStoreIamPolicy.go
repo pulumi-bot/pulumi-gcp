@@ -4,6 +4,7 @@
 package healthcare
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -19,6 +20,32 @@ import (
 // > **Note:** `healthcare.DicomStoreIamPolicy` **cannot** be used in conjunction with `healthcare.DicomStoreIamBinding` and `healthcare.DicomStoreIamMember` or they will fight over what your policy should be.
 //
 // > **Note:** `healthcare.DicomStoreIamBinding` resources **can be** used in conjunction with `healthcare.DicomStoreIamMember` resources **only if** they do not grant privilege to the same role.
+//
+// ## Import
+//
+// IAM member imports use space-delimited identifiers; the resource in question, the role, and the account.
+//
+// This member resource can be imported using the `dicom_store_id`, role, and account e.g.
+//
+// ```sh
+//  $ pulumi import gcp:healthcare/dicomStoreIamPolicy:DicomStoreIamPolicy dicom_store_iam "your-project-id/location-name/dataset-name/dicom-store-name roles/viewer user:foo@example.com"
+// ```
+//
+//  IAM binding imports use space-delimited identifiers; the resource in question and the role.
+//
+// This binding resource can be imported using the `dicom_store_id` and role, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:healthcare/dicomStoreIamPolicy:DicomStoreIamPolicy dicom_store_iam "your-project-id/location-name/dataset-name/dicom-store-name roles/viewer"
+// ```
+//
+//  IAM policy imports use the identifier of the resource in question.
+//
+// This policy resource can be imported using the `dicom_store_id`, role, and account e.g.
+//
+// ```sh
+//  $ pulumi import gcp:healthcare/dicomStoreIamPolicy:DicomStoreIamPolicy dicom_store_iam your-project-id/location-name/dataset-name/dicom-store-name
+// ```
 type DicomStoreIamPolicy struct {
 	pulumi.CustomResourceState
 
@@ -122,4 +149,43 @@ type DicomStoreIamPolicyArgs struct {
 
 func (DicomStoreIamPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*dicomStoreIamPolicyArgs)(nil)).Elem()
+}
+
+type DicomStoreIamPolicyInput interface {
+	pulumi.Input
+
+	ToDicomStoreIamPolicyOutput() DicomStoreIamPolicyOutput
+	ToDicomStoreIamPolicyOutputWithContext(ctx context.Context) DicomStoreIamPolicyOutput
+}
+
+func (DicomStoreIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*DicomStoreIamPolicy)(nil)).Elem()
+}
+
+func (i DicomStoreIamPolicy) ToDicomStoreIamPolicyOutput() DicomStoreIamPolicyOutput {
+	return i.ToDicomStoreIamPolicyOutputWithContext(context.Background())
+}
+
+func (i DicomStoreIamPolicy) ToDicomStoreIamPolicyOutputWithContext(ctx context.Context) DicomStoreIamPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DicomStoreIamPolicyOutput)
+}
+
+type DicomStoreIamPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (DicomStoreIamPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DicomStoreIamPolicyOutput)(nil)).Elem()
+}
+
+func (o DicomStoreIamPolicyOutput) ToDicomStoreIamPolicyOutput() DicomStoreIamPolicyOutput {
+	return o
+}
+
+func (o DicomStoreIamPolicyOutput) ToDicomStoreIamPolicyOutputWithContext(ctx context.Context) DicomStoreIamPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DicomStoreIamPolicyOutput{})
 }

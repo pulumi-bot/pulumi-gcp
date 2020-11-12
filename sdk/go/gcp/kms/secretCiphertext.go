@@ -4,6 +4,7 @@
 package kms
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -27,6 +28,10 @@ import (
 // state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
 //
 // ## Example Usage
+//
+// ## Import
+//
+// This resource does not support import.
 type SecretCiphertext struct {
 	pulumi.CustomResourceState
 
@@ -135,4 +140,43 @@ type SecretCiphertextArgs struct {
 
 func (SecretCiphertextArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretCiphertextArgs)(nil)).Elem()
+}
+
+type SecretCiphertextInput interface {
+	pulumi.Input
+
+	ToSecretCiphertextOutput() SecretCiphertextOutput
+	ToSecretCiphertextOutputWithContext(ctx context.Context) SecretCiphertextOutput
+}
+
+func (SecretCiphertext) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretCiphertext)(nil)).Elem()
+}
+
+func (i SecretCiphertext) ToSecretCiphertextOutput() SecretCiphertextOutput {
+	return i.ToSecretCiphertextOutputWithContext(context.Background())
+}
+
+func (i SecretCiphertext) ToSecretCiphertextOutputWithContext(ctx context.Context) SecretCiphertextOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretCiphertextOutput)
+}
+
+type SecretCiphertextOutput struct {
+	*pulumi.OutputState
+}
+
+func (SecretCiphertextOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretCiphertextOutput)(nil)).Elem()
+}
+
+func (o SecretCiphertextOutput) ToSecretCiphertextOutput() SecretCiphertextOutput {
+	return o
+}
+
+func (o SecretCiphertextOutput) ToSecretCiphertextOutputWithContext(ctx context.Context) SecretCiphertextOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SecretCiphertextOutput{})
 }

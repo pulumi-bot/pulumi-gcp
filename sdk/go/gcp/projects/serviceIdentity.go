@@ -4,6 +4,7 @@
 package projects
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -20,6 +21,10 @@ import (
 // * [API documentation](https://cloud.google.com/service-usage/docs/reference/rest/v1beta1/services/generateServiceIdentity)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// This resource does not support import.
 type ServiceIdentity struct {
 	pulumi.CustomResourceState
 
@@ -105,4 +110,43 @@ type ServiceIdentityArgs struct {
 
 func (ServiceIdentityArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*serviceIdentityArgs)(nil)).Elem()
+}
+
+type ServiceIdentityInput interface {
+	pulumi.Input
+
+	ToServiceIdentityOutput() ServiceIdentityOutput
+	ToServiceIdentityOutputWithContext(ctx context.Context) ServiceIdentityOutput
+}
+
+func (ServiceIdentity) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceIdentity)(nil)).Elem()
+}
+
+func (i ServiceIdentity) ToServiceIdentityOutput() ServiceIdentityOutput {
+	return i.ToServiceIdentityOutputWithContext(context.Background())
+}
+
+func (i ServiceIdentity) ToServiceIdentityOutputWithContext(ctx context.Context) ServiceIdentityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceIdentityOutput)
+}
+
+type ServiceIdentityOutput struct {
+	*pulumi.OutputState
+}
+
+func (ServiceIdentityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceIdentityOutput)(nil)).Elem()
+}
+
+func (o ServiceIdentityOutput) ToServiceIdentityOutput() ServiceIdentityOutput {
+	return o
+}
+
+func (o ServiceIdentityOutput) ToServiceIdentityOutputWithContext(ctx context.Context) ServiceIdentityOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ServiceIdentityOutput{})
 }

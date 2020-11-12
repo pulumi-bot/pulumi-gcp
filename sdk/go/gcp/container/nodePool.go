@@ -4,6 +4,7 @@
 package container
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -15,6 +16,18 @@ import (
 // and [the API reference](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1beta1/projects.locations.clusters.nodePools).
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Node pools can be imported using the `project`, `zone`, `cluster` and `name`. If the project is omitted, the default provider value will be used. Examples
+//
+// ```sh
+//  $ pulumi import gcp:container/nodePool:NodePool mainpool my-gcp-project/us-east1-a/my-cluster/main-pool
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:container/nodePool:NodePool mainpool us-east1-a/my-cluster/main-pool
+// ```
 type NodePool struct {
 	pulumi.CustomResourceState
 
@@ -350,4 +363,43 @@ type NodePoolArgs struct {
 
 func (NodePoolArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*nodePoolArgs)(nil)).Elem()
+}
+
+type NodePoolInput interface {
+	pulumi.Input
+
+	ToNodePoolOutput() NodePoolOutput
+	ToNodePoolOutputWithContext(ctx context.Context) NodePoolOutput
+}
+
+func (NodePool) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodePool)(nil)).Elem()
+}
+
+func (i NodePool) ToNodePoolOutput() NodePoolOutput {
+	return i.ToNodePoolOutputWithContext(context.Background())
+}
+
+func (i NodePool) ToNodePoolOutputWithContext(ctx context.Context) NodePoolOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolOutput)
+}
+
+type NodePoolOutput struct {
+	*pulumi.OutputState
+}
+
+func (NodePoolOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodePoolOutput)(nil)).Elem()
+}
+
+func (o NodePoolOutput) ToNodePoolOutput() NodePoolOutput {
+	return o
+}
+
+func (o NodePoolOutput) ToNodePoolOutputWithContext(ctx context.Context) NodePoolOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(NodePoolOutput{})
 }

@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
+import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
@@ -16,6 +15,18 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/dlp/docs/creating-job-triggers)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * JobTrigger can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import gcp:dataloss/preventionJobTrigger:PreventionJobTrigger default {{parent}}/jobTriggers/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:dataloss/preventionJobTrigger:PreventionJobTrigger default {{parent}}/{{name}}
+ * ```
  */
 export class PreventionJobTrigger extends pulumi.CustomResource {
     /**

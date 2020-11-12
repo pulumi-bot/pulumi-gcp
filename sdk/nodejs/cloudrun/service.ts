@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
+import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
@@ -28,6 +27,22 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/run/docs/)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Service can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import gcp:cloudrun/service:Service default locations/{{location}}/namespaces/{{project}}/services/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:cloudrun/service:Service default {{location}}/{{project}}/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:cloudrun/service:Service default {{location}}/{{name}}
+ * ```
  */
 export class Service extends pulumi.CustomResource {
     /**

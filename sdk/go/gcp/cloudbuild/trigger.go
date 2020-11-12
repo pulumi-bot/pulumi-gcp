@@ -4,6 +4,7 @@
 package cloudbuild
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
@@ -18,6 +19,22 @@ import (
 //     * [Automating builds using build triggers](https://cloud.google.com/cloud-build/docs/running-builds/automate-builds)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Trigger can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:cloudbuild/trigger:Trigger default projects/{{project}}/triggers/{{trigger_id}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:cloudbuild/trigger:Trigger default {{project}}/{{trigger_id}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:cloudbuild/trigger:Trigger default {{trigger_id}}
+// ```
 type Trigger struct {
 	pulumi.CustomResourceState
 
@@ -326,4 +343,43 @@ type TriggerArgs struct {
 
 func (TriggerArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*triggerArgs)(nil)).Elem()
+}
+
+type TriggerInput interface {
+	pulumi.Input
+
+	ToTriggerOutput() TriggerOutput
+	ToTriggerOutputWithContext(ctx context.Context) TriggerOutput
+}
+
+func (Trigger) ElementType() reflect.Type {
+	return reflect.TypeOf((*Trigger)(nil)).Elem()
+}
+
+func (i Trigger) ToTriggerOutput() TriggerOutput {
+	return i.ToTriggerOutputWithContext(context.Background())
+}
+
+func (i Trigger) ToTriggerOutputWithContext(ctx context.Context) TriggerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TriggerOutput)
+}
+
+type TriggerOutput struct {
+	*pulumi.OutputState
+}
+
+func (TriggerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TriggerOutput)(nil)).Elem()
+}
+
+func (o TriggerOutput) ToTriggerOutput() TriggerOutput {
+	return o
+}
+
+func (o TriggerOutput) ToTriggerOutputWithContext(ctx context.Context) TriggerOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TriggerOutput{})
 }

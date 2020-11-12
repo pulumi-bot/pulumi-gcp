@@ -34,6 +34,10 @@ class BucketACL(pulumi.CustomResource):
 
         **NOTE** This resource will not remove the `project-owners-<project_id>` entity from the `OWNER` role.
 
+        ## Import
+
+        This resource does not support import.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] bucket: The name of the bucket it applies to.

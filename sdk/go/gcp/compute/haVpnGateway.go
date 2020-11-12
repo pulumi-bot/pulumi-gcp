@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -22,6 +23,26 @@ import (
 //     * [Cloud VPN Overview](https://cloud.google.com/vpn/docs/concepts/overview)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// HaVpnGateway can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:compute/haVpnGateway:HaVpnGateway default projects/{{project}}/regions/{{region}}/vpnGateways/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/haVpnGateway:HaVpnGateway default {{project}}/{{region}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/haVpnGateway:HaVpnGateway default {{region}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/haVpnGateway:HaVpnGateway default {{name}}
+// ```
 type HaVpnGateway struct {
 	pulumi.CustomResourceState
 
@@ -173,4 +194,43 @@ type HaVpnGatewayArgs struct {
 
 func (HaVpnGatewayArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*haVpnGatewayArgs)(nil)).Elem()
+}
+
+type HaVpnGatewayInput interface {
+	pulumi.Input
+
+	ToHaVpnGatewayOutput() HaVpnGatewayOutput
+	ToHaVpnGatewayOutputWithContext(ctx context.Context) HaVpnGatewayOutput
+}
+
+func (HaVpnGateway) ElementType() reflect.Type {
+	return reflect.TypeOf((*HaVpnGateway)(nil)).Elem()
+}
+
+func (i HaVpnGateway) ToHaVpnGatewayOutput() HaVpnGatewayOutput {
+	return i.ToHaVpnGatewayOutputWithContext(context.Background())
+}
+
+func (i HaVpnGateway) ToHaVpnGatewayOutputWithContext(ctx context.Context) HaVpnGatewayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HaVpnGatewayOutput)
+}
+
+type HaVpnGatewayOutput struct {
+	*pulumi.OutputState
+}
+
+func (HaVpnGatewayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*HaVpnGatewayOutput)(nil)).Elem()
+}
+
+func (o HaVpnGatewayOutput) ToHaVpnGatewayOutput() HaVpnGatewayOutput {
+	return o
+}
+
+func (o HaVpnGatewayOutput) ToHaVpnGatewayOutputWithContext(ctx context.Context) HaVpnGatewayOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(HaVpnGatewayOutput{})
 }

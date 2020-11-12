@@ -4,6 +4,7 @@
 package appengine
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -19,6 +20,22 @@ import (
 //     * [Official Documentation](https://cloud.google.com/appengine/docs/standard/python/mapping-custom-domains)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// DomainMapping can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:appengine/domainMapping:DomainMapping default apps/{{project}}/domainMappings/{{domain_name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:appengine/domainMapping:DomainMapping default {{project}}/{{domain_name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:appengine/domainMapping:DomainMapping default {{domain_name}}
+// ```
 type DomainMapping struct {
 	pulumi.CustomResourceState
 
@@ -153,4 +170,43 @@ type DomainMappingArgs struct {
 
 func (DomainMappingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*domainMappingArgs)(nil)).Elem()
+}
+
+type DomainMappingInput interface {
+	pulumi.Input
+
+	ToDomainMappingOutput() DomainMappingOutput
+	ToDomainMappingOutputWithContext(ctx context.Context) DomainMappingOutput
+}
+
+func (DomainMapping) ElementType() reflect.Type {
+	return reflect.TypeOf((*DomainMapping)(nil)).Elem()
+}
+
+func (i DomainMapping) ToDomainMappingOutput() DomainMappingOutput {
+	return i.ToDomainMappingOutputWithContext(context.Background())
+}
+
+func (i DomainMapping) ToDomainMappingOutputWithContext(ctx context.Context) DomainMappingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DomainMappingOutput)
+}
+
+type DomainMappingOutput struct {
+	*pulumi.OutputState
+}
+
+func (DomainMappingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DomainMappingOutput)(nil)).Elem()
+}
+
+func (o DomainMappingOutput) ToDomainMappingOutput() DomainMappingOutput {
+	return o
+}
+
+func (o DomainMappingOutput) ToDomainMappingOutputWithContext(ctx context.Context) DomainMappingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DomainMappingOutput{})
 }

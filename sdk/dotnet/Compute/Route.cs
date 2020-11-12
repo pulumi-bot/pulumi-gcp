@@ -40,6 +40,22 @@ namespace Pulumi.Gcp.Compute
     ///     * [Using Routes](https://cloud.google.com/vpc/docs/using-routes)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Route can be imported using any of these accepted formats
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/route:Route default projects/{{project}}/global/routes/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/route:Route default {{project}}/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/route:Route default {{name}}
+    /// ```
     /// </summary>
     public partial class Route : Pulumi.CustomResource
     {

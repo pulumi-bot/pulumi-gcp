@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -24,6 +25,22 @@ import (
 //     * [Official Documentation](https://cloud.google.com/load-balancing/docs/negs/internet-neg-concepts)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// GlobalNetworkEndpointGroup can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:compute/globalNetworkEndpointGroup:GlobalNetworkEndpointGroup default projects/{{project}}/global/networkEndpointGroups/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/globalNetworkEndpointGroup:GlobalNetworkEndpointGroup default {{project}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/globalNetworkEndpointGroup:GlobalNetworkEndpointGroup default {{name}}
+// ```
 type GlobalNetworkEndpointGroup struct {
 	pulumi.CustomResourceState
 
@@ -184,4 +201,43 @@ type GlobalNetworkEndpointGroupArgs struct {
 
 func (GlobalNetworkEndpointGroupArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*globalNetworkEndpointGroupArgs)(nil)).Elem()
+}
+
+type GlobalNetworkEndpointGroupInput interface {
+	pulumi.Input
+
+	ToGlobalNetworkEndpointGroupOutput() GlobalNetworkEndpointGroupOutput
+	ToGlobalNetworkEndpointGroupOutputWithContext(ctx context.Context) GlobalNetworkEndpointGroupOutput
+}
+
+func (GlobalNetworkEndpointGroup) ElementType() reflect.Type {
+	return reflect.TypeOf((*GlobalNetworkEndpointGroup)(nil)).Elem()
+}
+
+func (i GlobalNetworkEndpointGroup) ToGlobalNetworkEndpointGroupOutput() GlobalNetworkEndpointGroupOutput {
+	return i.ToGlobalNetworkEndpointGroupOutputWithContext(context.Background())
+}
+
+func (i GlobalNetworkEndpointGroup) ToGlobalNetworkEndpointGroupOutputWithContext(ctx context.Context) GlobalNetworkEndpointGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalNetworkEndpointGroupOutput)
+}
+
+type GlobalNetworkEndpointGroupOutput struct {
+	*pulumi.OutputState
+}
+
+func (GlobalNetworkEndpointGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GlobalNetworkEndpointGroupOutput)(nil)).Elem()
+}
+
+func (o GlobalNetworkEndpointGroupOutput) ToGlobalNetworkEndpointGroupOutput() GlobalNetworkEndpointGroupOutput {
+	return o
+}
+
+func (o GlobalNetworkEndpointGroupOutput) ToGlobalNetworkEndpointGroupOutputWithContext(ctx context.Context) GlobalNetworkEndpointGroupOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(GlobalNetworkEndpointGroupOutput{})
 }

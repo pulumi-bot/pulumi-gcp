@@ -4,6 +4,7 @@
 package activedirectory
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -22,6 +23,22 @@ import (
 // state as plain-text. [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
 //
 // ## Example Usage
+//
+// ## Import
+//
+// DomainTrust can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:activedirectory/domainTrust:DomainTrust default projects/{{project}}/locations/global/domains/{{domain}}/{{target_domain_name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:activedirectory/domainTrust:DomainTrust default {{project}}/{{domain}}/{{target_domain_name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:activedirectory/domainTrust:DomainTrust default {{domain}}/{{target_domain_name}}
+// ```
 type DomainTrust struct {
 	pulumi.CustomResourceState
 
@@ -196,4 +213,43 @@ type DomainTrustArgs struct {
 
 func (DomainTrustArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*domainTrustArgs)(nil)).Elem()
+}
+
+type DomainTrustInput interface {
+	pulumi.Input
+
+	ToDomainTrustOutput() DomainTrustOutput
+	ToDomainTrustOutputWithContext(ctx context.Context) DomainTrustOutput
+}
+
+func (DomainTrust) ElementType() reflect.Type {
+	return reflect.TypeOf((*DomainTrust)(nil)).Elem()
+}
+
+func (i DomainTrust) ToDomainTrustOutput() DomainTrustOutput {
+	return i.ToDomainTrustOutputWithContext(context.Background())
+}
+
+func (i DomainTrust) ToDomainTrustOutputWithContext(ctx context.Context) DomainTrustOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DomainTrustOutput)
+}
+
+type DomainTrustOutput struct {
+	*pulumi.OutputState
+}
+
+func (DomainTrustOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DomainTrustOutput)(nil)).Elem()
+}
+
+func (o DomainTrustOutput) ToDomainTrustOutput() DomainTrustOutput {
+	return o
+}
+
+func (o DomainTrustOutput) ToDomainTrustOutputWithContext(ctx context.Context) DomainTrustOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DomainTrustOutput{})
 }

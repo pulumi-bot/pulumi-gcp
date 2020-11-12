@@ -4,6 +4,7 @@
 package projects
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -14,6 +15,22 @@ import (
 // [the official
 // documentation](https://cloud.google.com/resource-manager/docs/organization-policy/overview) and
 // [API](https://cloud.google.com/resource-manager/reference/rest/v1/projects/setOrgPolicy).
+//
+// ## Import
+//
+// Project organization policies can be imported using any of the follow formats
+//
+// ```sh
+//  $ pulumi import gcp:projects/organizationPolicy:OrganizationPolicy policy projects/test-project:constraints/serviceuser.services
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:projects/organizationPolicy:OrganizationPolicy policy test-project:constraints/serviceuser.services
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:projects/organizationPolicy:OrganizationPolicy policy test-project:serviceuser.services
+// ```
 type OrganizationPolicy struct {
 	pulumi.CustomResourceState
 
@@ -143,4 +160,43 @@ type OrganizationPolicyArgs struct {
 
 func (OrganizationPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*organizationPolicyArgs)(nil)).Elem()
+}
+
+type OrganizationPolicyInput interface {
+	pulumi.Input
+
+	ToOrganizationPolicyOutput() OrganizationPolicyOutput
+	ToOrganizationPolicyOutputWithContext(ctx context.Context) OrganizationPolicyOutput
+}
+
+func (OrganizationPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationPolicy)(nil)).Elem()
+}
+
+func (i OrganizationPolicy) ToOrganizationPolicyOutput() OrganizationPolicyOutput {
+	return i.ToOrganizationPolicyOutputWithContext(context.Background())
+}
+
+func (i OrganizationPolicy) ToOrganizationPolicyOutputWithContext(ctx context.Context) OrganizationPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationPolicyOutput)
+}
+
+type OrganizationPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (OrganizationPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationPolicyOutput)(nil)).Elem()
+}
+
+func (o OrganizationPolicyOutput) ToOrganizationPolicyOutput() OrganizationPolicyOutput {
+	return o
+}
+
+func (o OrganizationPolicyOutput) ToOrganizationPolicyOutputWithContext(ctx context.Context) OrganizationPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(OrganizationPolicyOutput{})
 }

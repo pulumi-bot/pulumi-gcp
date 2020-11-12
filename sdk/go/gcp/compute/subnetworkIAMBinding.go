@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -19,6 +20,30 @@ import (
 // > **Note:** `compute.SubnetworkIAMPolicy` **cannot** be used in conjunction with `compute.SubnetworkIAMBinding` and `compute.SubnetworkIAMMember` or they will fight over what your policy should be.
 //
 // > **Note:** `compute.SubnetworkIAMBinding` resources **can be** used in conjunction with `compute.SubnetworkIAMMember` resources **only if** they do not grant privilege to the same role.
+//
+// ## Import
+//
+// For all import syntaxes, the "resource in question" can take any of the following forms* projects/{{project}}/regions/{{region}}/subnetworks/{{name}} * {{project}}/{{region}}/{{name}} * {{region}}/{{name}} * {{name}} Any variables not passed in the import command will be taken from the provider configuration. Compute Engine subnetwork IAM resources can be imported using the resource identifiers, role, and member. IAM member imports use space-delimited identifiersthe resource in question, the role, and the member identity, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:compute/subnetworkIAMBinding:SubnetworkIAMBinding editor "projects/{{project}}/regions/{{region}}/subnetworks/{{subnetwork}} roles/compute.networkUser user:jane@example.com"
+// ```
+//
+//  IAM binding imports use space-delimited identifiersthe resource in question and the role, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:compute/subnetworkIAMBinding:SubnetworkIAMBinding editor "projects/{{project}}/regions/{{region}}/subnetworks/{{subnetwork}} roles/compute.networkUser"
+// ```
+//
+//  IAM policy imports use the identifier of the resource in question, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:compute/subnetworkIAMBinding:SubnetworkIAMBinding editor projects/{{project}}/regions/{{region}}/subnetworks/{{subnetwork}}
+// ```
+//
+//  -> **Custom Roles**If you're importing a IAM resource with a custom role, make sure to use the
+//
+// full name of the custom role, e.g. `[projects/my-project|organizations/my-org]/roles/my-custom-role`.
 type SubnetworkIAMBinding struct {
 	pulumi.CustomResourceState
 
@@ -175,4 +200,43 @@ type SubnetworkIAMBindingArgs struct {
 
 func (SubnetworkIAMBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*subnetworkIAMBindingArgs)(nil)).Elem()
+}
+
+type SubnetworkIAMBindingInput interface {
+	pulumi.Input
+
+	ToSubnetworkIAMBindingOutput() SubnetworkIAMBindingOutput
+	ToSubnetworkIAMBindingOutputWithContext(ctx context.Context) SubnetworkIAMBindingOutput
+}
+
+func (SubnetworkIAMBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*SubnetworkIAMBinding)(nil)).Elem()
+}
+
+func (i SubnetworkIAMBinding) ToSubnetworkIAMBindingOutput() SubnetworkIAMBindingOutput {
+	return i.ToSubnetworkIAMBindingOutputWithContext(context.Background())
+}
+
+func (i SubnetworkIAMBinding) ToSubnetworkIAMBindingOutputWithContext(ctx context.Context) SubnetworkIAMBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SubnetworkIAMBindingOutput)
+}
+
+type SubnetworkIAMBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (SubnetworkIAMBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SubnetworkIAMBindingOutput)(nil)).Elem()
+}
+
+func (o SubnetworkIAMBindingOutput) ToSubnetworkIAMBindingOutput() SubnetworkIAMBindingOutput {
+	return o
+}
+
+func (o SubnetworkIAMBindingOutput) ToSubnetworkIAMBindingOutputWithContext(ctx context.Context) SubnetworkIAMBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SubnetworkIAMBindingOutput{})
 }

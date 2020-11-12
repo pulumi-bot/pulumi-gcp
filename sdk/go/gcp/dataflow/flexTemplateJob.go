@@ -4,6 +4,7 @@
 package dataflow
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -36,6 +37,10 @@ import (
 // is "cancelled", but if a user sets `onDelete` to `"drain"` in the
 // configuration, you may experience a long wait for your `pulumi destroy` to
 // complete.
+//
+// ## Import
+//
+// This resource does not support import.
 type FlexTemplateJob struct {
 	pulumi.CustomResourceState
 
@@ -192,4 +197,43 @@ type FlexTemplateJobArgs struct {
 
 func (FlexTemplateJobArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*flexTemplateJobArgs)(nil)).Elem()
+}
+
+type FlexTemplateJobInput interface {
+	pulumi.Input
+
+	ToFlexTemplateJobOutput() FlexTemplateJobOutput
+	ToFlexTemplateJobOutputWithContext(ctx context.Context) FlexTemplateJobOutput
+}
+
+func (FlexTemplateJob) ElementType() reflect.Type {
+	return reflect.TypeOf((*FlexTemplateJob)(nil)).Elem()
+}
+
+func (i FlexTemplateJob) ToFlexTemplateJobOutput() FlexTemplateJobOutput {
+	return i.ToFlexTemplateJobOutputWithContext(context.Background())
+}
+
+func (i FlexTemplateJob) ToFlexTemplateJobOutputWithContext(ctx context.Context) FlexTemplateJobOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FlexTemplateJobOutput)
+}
+
+type FlexTemplateJobOutput struct {
+	*pulumi.OutputState
+}
+
+func (FlexTemplateJobOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FlexTemplateJobOutput)(nil)).Elem()
+}
+
+func (o FlexTemplateJobOutput) ToFlexTemplateJobOutput() FlexTemplateJobOutput {
+	return o
+}
+
+func (o FlexTemplateJobOutput) ToFlexTemplateJobOutputWithContext(ctx context.Context) FlexTemplateJobOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(FlexTemplateJobOutput{})
 }

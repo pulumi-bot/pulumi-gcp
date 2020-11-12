@@ -14,6 +14,14 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/data-catalog/docs)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * EntryGroup can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import gcp:datacatalog/entryGroup:EntryGroup default {{name}}
+ * ```
  */
 export class EntryGroup extends pulumi.CustomResource {
     /**

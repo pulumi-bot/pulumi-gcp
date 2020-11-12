@@ -4,6 +4,7 @@
 package serviceaccount
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -13,6 +14,10 @@ import (
 // Creates and manages service account key-pairs, which allow the user to establish identity of a service account outside of GCP. For more information, see [the official documentation](https://cloud.google.com/iam/docs/creating-managing-service-account-keys) and [API](https://cloud.google.com/iam/reference/rest/v1/projects.serviceAccounts.keys).
 //
 // ## Example Usage
+//
+// ## Import
+//
+// This resource does not support import.
 type Key struct {
 	pulumi.CustomResourceState
 
@@ -178,4 +183,43 @@ type KeyArgs struct {
 
 func (KeyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*keyArgs)(nil)).Elem()
+}
+
+type KeyInput interface {
+	pulumi.Input
+
+	ToKeyOutput() KeyOutput
+	ToKeyOutputWithContext(ctx context.Context) KeyOutput
+}
+
+func (Key) ElementType() reflect.Type {
+	return reflect.TypeOf((*Key)(nil)).Elem()
+}
+
+func (i Key) ToKeyOutput() KeyOutput {
+	return i.ToKeyOutputWithContext(context.Background())
+}
+
+func (i Key) ToKeyOutputWithContext(ctx context.Context) KeyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KeyOutput)
+}
+
+type KeyOutput struct {
+	*pulumi.OutputState
+}
+
+func (KeyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*KeyOutput)(nil)).Elem()
+}
+
+func (o KeyOutput) ToKeyOutput() KeyOutput {
+	return o
+}
+
+func (o KeyOutput) ToKeyOutputWithContext(ctx context.Context) KeyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(KeyOutput{})
 }

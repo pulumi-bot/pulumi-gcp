@@ -36,6 +36,22 @@ class Instance(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        Instance can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:spanner/instance:Instance default projects/{{project}}/instances/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:spanner/instance:Instance default {{project}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:spanner/instance:Instance default {{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] config: The name of the instance's configuration (similar but not

@@ -37,6 +37,14 @@ class Group(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        Group can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:monitoring/group:Group default {{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] display_name: A user-assigned name for this group, used only for display

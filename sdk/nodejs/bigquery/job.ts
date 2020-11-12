@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
+import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
@@ -17,6 +16,34 @@ import * as utilities from "../utilities";
  *     * [BigQuery Jobs Intro](https://cloud.google.com/bigquery/docs/jobs-overview)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Job can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import gcp:bigquery/job:Job default projects/{{project}}/jobs/{{job_id}}/location/{{location}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:bigquery/job:Job default projects/{{project}}/jobs/{{job_id}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:bigquery/job:Job default {{project}}/{{job_id}}/{{location}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:bigquery/job:Job default {{job_id}}/{{location}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:bigquery/job:Job default {{project}}/{{job_id}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:bigquery/job:Job default {{job_id}}
+ * ```
  */
 export class Job extends pulumi.CustomResource {
     /**

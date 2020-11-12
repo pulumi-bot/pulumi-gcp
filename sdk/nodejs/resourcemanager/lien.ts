@@ -8,6 +8,14 @@ import * as utilities from "../utilities";
  * A Lien represents an encumbrance on the actions that can be performed on a resource.
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Lien can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import gcp:resourcemanager/lien:Lien default {{parent}}/{{name}}
+ * ```
  */
 export class Lien extends pulumi.CustomResource {
     /**

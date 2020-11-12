@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
@@ -19,6 +20,26 @@ import (
 //     * [Internal TCP/UDP Load Balancing](https://cloud.google.com/compute/docs/load-balancing/internal/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// RegionBackendService can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:compute/regionBackendService:RegionBackendService default projects/{{project}}/regions/{{region}}/backendServices/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/regionBackendService:RegionBackendService default {{project}}/{{region}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/regionBackendService:RegionBackendService default {{region}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/regionBackendService:RegionBackendService default {{name}}
+// ```
 type RegionBackendService struct {
 	pulumi.CustomResourceState
 
@@ -623,4 +644,43 @@ type RegionBackendServiceArgs struct {
 
 func (RegionBackendServiceArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*regionBackendServiceArgs)(nil)).Elem()
+}
+
+type RegionBackendServiceInput interface {
+	pulumi.Input
+
+	ToRegionBackendServiceOutput() RegionBackendServiceOutput
+	ToRegionBackendServiceOutputWithContext(ctx context.Context) RegionBackendServiceOutput
+}
+
+func (RegionBackendService) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionBackendService)(nil)).Elem()
+}
+
+func (i RegionBackendService) ToRegionBackendServiceOutput() RegionBackendServiceOutput {
+	return i.ToRegionBackendServiceOutputWithContext(context.Background())
+}
+
+func (i RegionBackendService) ToRegionBackendServiceOutputWithContext(ctx context.Context) RegionBackendServiceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceOutput)
+}
+
+type RegionBackendServiceOutput struct {
+	*pulumi.OutputState
+}
+
+func (RegionBackendServiceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionBackendServiceOutput)(nil)).Elem()
+}
+
+func (o RegionBackendServiceOutput) ToRegionBackendServiceOutput() RegionBackendServiceOutput {
+	return o
+}
+
+func (o RegionBackendServiceOutput) ToRegionBackendServiceOutputWithContext(ctx context.Context) RegionBackendServiceOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RegionBackendServiceOutput{})
 }

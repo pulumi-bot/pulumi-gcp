@@ -4,6 +4,7 @@
 package accesscontextmanager
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -21,6 +22,18 @@ import (
 //     * [Access Policy Quickstart](https://cloud.google.com/access-context-manager/docs/quickstart)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// AccessLevels can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:accesscontextmanager/accessLevels:AccessLevels default {{parent}}/accessLevels
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:accesscontextmanager/accessLevels:AccessLevels default {{parent}}
+// ```
 type AccessLevels struct {
 	pulumi.CustomResourceState
 
@@ -105,4 +118,43 @@ type AccessLevelsArgs struct {
 
 func (AccessLevelsArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*accessLevelsArgs)(nil)).Elem()
+}
+
+type AccessLevelsInput interface {
+	pulumi.Input
+
+	ToAccessLevelsOutput() AccessLevelsOutput
+	ToAccessLevelsOutputWithContext(ctx context.Context) AccessLevelsOutput
+}
+
+func (AccessLevels) ElementType() reflect.Type {
+	return reflect.TypeOf((*AccessLevels)(nil)).Elem()
+}
+
+func (i AccessLevels) ToAccessLevelsOutput() AccessLevelsOutput {
+	return i.ToAccessLevelsOutputWithContext(context.Background())
+}
+
+func (i AccessLevels) ToAccessLevelsOutputWithContext(ctx context.Context) AccessLevelsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AccessLevelsOutput)
+}
+
+type AccessLevelsOutput struct {
+	*pulumi.OutputState
+}
+
+func (AccessLevelsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AccessLevelsOutput)(nil)).Elem()
+}
+
+func (o AccessLevelsOutput) ToAccessLevelsOutput() AccessLevelsOutput {
+	return o
+}
+
+func (o AccessLevelsOutput) ToAccessLevelsOutputWithContext(ctx context.Context) AccessLevelsOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AccessLevelsOutput{})
 }

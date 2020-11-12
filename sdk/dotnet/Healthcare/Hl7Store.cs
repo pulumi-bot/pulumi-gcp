@@ -20,6 +20,18 @@ namespace Pulumi.Gcp.Healthcare
     ///     * [Creating a HL7v2 Store](https://cloud.google.com/healthcare/docs/how-tos/hl7v2)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Hl7V2Store can be imported using any of these accepted formats
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:healthcare/hl7Store:Hl7Store default {{dataset}}/hl7V2Stores/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:healthcare/hl7Store:Hl7Store default {{dataset}}/{{name}}
+    /// ```
     /// </summary>
     public partial class Hl7Store : Pulumi.CustomResource
     {

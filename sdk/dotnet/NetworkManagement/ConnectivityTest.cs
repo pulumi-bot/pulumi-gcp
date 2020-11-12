@@ -21,6 +21,22 @@ namespace Pulumi.Gcp.NetworkManagement
     ///     * [Official Documentation](https://cloud.google.com/network-intelligence-center/docs)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// ConnectivityTest can be imported using any of these accepted formats
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:networkmanagement/connectivityTest:ConnectivityTest default projects/{{project}}/locations/global/connectivityTests/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:networkmanagement/connectivityTest:ConnectivityTest default {{project}}/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:networkmanagement/connectivityTest:ConnectivityTest default {{name}}
+    /// ```
     /// </summary>
     public partial class ConnectivityTest : Pulumi.CustomResource
     {

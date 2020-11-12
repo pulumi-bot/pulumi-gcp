@@ -29,6 +29,26 @@ namespace Pulumi.Gcp.Compute
     ///     * [Official Documentation](https://cloud.google.com/load-balancing/docs/health-checks)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// RegionHealthCheck can be imported using any of these accepted formats
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/regionHealthCheck:RegionHealthCheck default projects/{{project}}/regions/{{region}}/healthChecks/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/regionHealthCheck:RegionHealthCheck default {{project}}/{{region}}/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/regionHealthCheck:RegionHealthCheck default {{region}}/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/regionHealthCheck:RegionHealthCheck default {{name}}
+    /// ```
     /// </summary>
     public partial class RegionHealthCheck : Pulumi.CustomResource
     {

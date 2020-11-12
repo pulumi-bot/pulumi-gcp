@@ -19,6 +19,22 @@ namespace Pulumi.Gcp.GameServices
     ///     * [Official Documentation](https://cloud.google.com/game-servers/docs)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// GameServerConfig can be imported using any of these accepted formats
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:gameservices/gameServerConfig:GameServerConfig default projects/{{project}}/locations/{{location}}/gameServerDeployments/{{deployment_id}}/configs/{{config_id}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:gameservices/gameServerConfig:GameServerConfig default {{project}}/{{location}}/{{deployment_id}}/{{config_id}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:gameservices/gameServerConfig:GameServerConfig default {{location}}/{{deployment_id}}/{{config_id}}
+    /// ```
     /// </summary>
     public partial class GameServerConfig : Pulumi.CustomResource
     {
