@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -98,4 +99,43 @@ type ProjectMetadataArgs struct {
 
 func (ProjectMetadataArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*projectMetadataArgs)(nil)).Elem()
+}
+
+type ProjectMetadataInput interface {
+	pulumi.Input
+
+	ToProjectMetadataOutput() ProjectMetadataOutput
+	ToProjectMetadataOutputWithContext(ctx context.Context) ProjectMetadataOutput
+}
+
+func (ProjectMetadata) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProjectMetadata)(nil)).Elem()
+}
+
+func (i ProjectMetadata) ToProjectMetadataOutput() ProjectMetadataOutput {
+	return i.ToProjectMetadataOutputWithContext(context.Background())
+}
+
+func (i ProjectMetadata) ToProjectMetadataOutputWithContext(ctx context.Context) ProjectMetadataOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProjectMetadataOutput)
+}
+
+type ProjectMetadataOutput struct {
+	*pulumi.OutputState
+}
+
+func (ProjectMetadataOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProjectMetadataOutput)(nil)).Elem()
+}
+
+func (o ProjectMetadataOutput) ToProjectMetadataOutput() ProjectMetadataOutput {
+	return o
+}
+
+func (o ProjectMetadataOutput) ToProjectMetadataOutputWithContext(ctx context.Context) ProjectMetadataOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ProjectMetadataOutput{})
 }

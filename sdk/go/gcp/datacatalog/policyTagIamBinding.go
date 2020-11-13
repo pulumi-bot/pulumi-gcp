@@ -4,6 +4,7 @@
 package datacatalog
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -116,4 +117,43 @@ type PolicyTagIamBindingArgs struct {
 
 func (PolicyTagIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*policyTagIamBindingArgs)(nil)).Elem()
+}
+
+type PolicyTagIamBindingInput interface {
+	pulumi.Input
+
+	ToPolicyTagIamBindingOutput() PolicyTagIamBindingOutput
+	ToPolicyTagIamBindingOutputWithContext(ctx context.Context) PolicyTagIamBindingOutput
+}
+
+func (PolicyTagIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*PolicyTagIamBinding)(nil)).Elem()
+}
+
+func (i PolicyTagIamBinding) ToPolicyTagIamBindingOutput() PolicyTagIamBindingOutput {
+	return i.ToPolicyTagIamBindingOutputWithContext(context.Background())
+}
+
+func (i PolicyTagIamBinding) ToPolicyTagIamBindingOutputWithContext(ctx context.Context) PolicyTagIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PolicyTagIamBindingOutput)
+}
+
+type PolicyTagIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (PolicyTagIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PolicyTagIamBindingOutput)(nil)).Elem()
+}
+
+func (o PolicyTagIamBindingOutput) ToPolicyTagIamBindingOutput() PolicyTagIamBindingOutput {
+	return o
+}
+
+func (o PolicyTagIamBindingOutput) ToPolicyTagIamBindingOutputWithContext(ctx context.Context) PolicyTagIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(PolicyTagIamBindingOutput{})
 }

@@ -4,6 +4,7 @@
 package storage
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -114,4 +115,43 @@ type BucketACLArgs struct {
 
 func (BucketACLArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*bucketACLArgs)(nil)).Elem()
+}
+
+type BucketACLInput interface {
+	pulumi.Input
+
+	ToBucketACLOutput() BucketACLOutput
+	ToBucketACLOutputWithContext(ctx context.Context) BucketACLOutput
+}
+
+func (BucketACL) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketACL)(nil)).Elem()
+}
+
+func (i BucketACL) ToBucketACLOutput() BucketACLOutput {
+	return i.ToBucketACLOutputWithContext(context.Background())
+}
+
+func (i BucketACL) ToBucketACLOutputWithContext(ctx context.Context) BucketACLOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketACLOutput)
+}
+
+type BucketACLOutput struct {
+	*pulumi.OutputState
+}
+
+func (BucketACLOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketACLOutput)(nil)).Elem()
+}
+
+func (o BucketACLOutput) ToBucketACLOutput() BucketACLOutput {
+	return o
+}
+
+func (o BucketACLOutput) ToBucketACLOutputWithContext(ctx context.Context) BucketACLOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(BucketACLOutput{})
 }

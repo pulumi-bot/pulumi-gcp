@@ -4,6 +4,7 @@
 package kms
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -128,4 +129,43 @@ type CryptoKeyIAMPolicyArgs struct {
 
 func (CryptoKeyIAMPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*cryptoKeyIAMPolicyArgs)(nil)).Elem()
+}
+
+type CryptoKeyIAMPolicyInput interface {
+	pulumi.Input
+
+	ToCryptoKeyIAMPolicyOutput() CryptoKeyIAMPolicyOutput
+	ToCryptoKeyIAMPolicyOutputWithContext(ctx context.Context) CryptoKeyIAMPolicyOutput
+}
+
+func (CryptoKeyIAMPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*CryptoKeyIAMPolicy)(nil)).Elem()
+}
+
+func (i CryptoKeyIAMPolicy) ToCryptoKeyIAMPolicyOutput() CryptoKeyIAMPolicyOutput {
+	return i.ToCryptoKeyIAMPolicyOutputWithContext(context.Background())
+}
+
+func (i CryptoKeyIAMPolicy) ToCryptoKeyIAMPolicyOutputWithContext(ctx context.Context) CryptoKeyIAMPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CryptoKeyIAMPolicyOutput)
+}
+
+type CryptoKeyIAMPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (CryptoKeyIAMPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CryptoKeyIAMPolicyOutput)(nil)).Elem()
+}
+
+func (o CryptoKeyIAMPolicyOutput) ToCryptoKeyIAMPolicyOutput() CryptoKeyIAMPolicyOutput {
+	return o
+}
+
+func (o CryptoKeyIAMPolicyOutput) ToCryptoKeyIAMPolicyOutputWithContext(ctx context.Context) CryptoKeyIAMPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(CryptoKeyIAMPolicyOutput{})
 }

@@ -4,6 +4,7 @@
 package iap
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -109,4 +110,43 @@ type WebIamPolicyArgs struct {
 
 func (WebIamPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*webIamPolicyArgs)(nil)).Elem()
+}
+
+type WebIamPolicyInput interface {
+	pulumi.Input
+
+	ToWebIamPolicyOutput() WebIamPolicyOutput
+	ToWebIamPolicyOutputWithContext(ctx context.Context) WebIamPolicyOutput
+}
+
+func (WebIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebIamPolicy)(nil)).Elem()
+}
+
+func (i WebIamPolicy) ToWebIamPolicyOutput() WebIamPolicyOutput {
+	return i.ToWebIamPolicyOutputWithContext(context.Background())
+}
+
+func (i WebIamPolicy) ToWebIamPolicyOutputWithContext(ctx context.Context) WebIamPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebIamPolicyOutput)
+}
+
+type WebIamPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (WebIamPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebIamPolicyOutput)(nil)).Elem()
+}
+
+func (o WebIamPolicyOutput) ToWebIamPolicyOutput() WebIamPolicyOutput {
+	return o
+}
+
+func (o WebIamPolicyOutput) ToWebIamPolicyOutputWithContext(ctx context.Context) WebIamPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(WebIamPolicyOutput{})
 }

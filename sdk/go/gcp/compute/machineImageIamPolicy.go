@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -113,4 +114,43 @@ type MachineImageIamPolicyArgs struct {
 
 func (MachineImageIamPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*machineImageIamPolicyArgs)(nil)).Elem()
+}
+
+type MachineImageIamPolicyInput interface {
+	pulumi.Input
+
+	ToMachineImageIamPolicyOutput() MachineImageIamPolicyOutput
+	ToMachineImageIamPolicyOutputWithContext(ctx context.Context) MachineImageIamPolicyOutput
+}
+
+func (MachineImageIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*MachineImageIamPolicy)(nil)).Elem()
+}
+
+func (i MachineImageIamPolicy) ToMachineImageIamPolicyOutput() MachineImageIamPolicyOutput {
+	return i.ToMachineImageIamPolicyOutputWithContext(context.Background())
+}
+
+func (i MachineImageIamPolicy) ToMachineImageIamPolicyOutputWithContext(ctx context.Context) MachineImageIamPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MachineImageIamPolicyOutput)
+}
+
+type MachineImageIamPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (MachineImageIamPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MachineImageIamPolicyOutput)(nil)).Elem()
+}
+
+func (o MachineImageIamPolicyOutput) ToMachineImageIamPolicyOutput() MachineImageIamPolicyOutput {
+	return o
+}
+
+func (o MachineImageIamPolicyOutput) ToMachineImageIamPolicyOutputWithContext(ctx context.Context) MachineImageIamPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(MachineImageIamPolicyOutput{})
 }

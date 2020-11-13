@@ -4,6 +4,7 @@
 package serviceaccount
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -137,4 +138,43 @@ type IAMBindingArgs struct {
 
 func (IAMBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*iambindingArgs)(nil)).Elem()
+}
+
+type IAMBindingInput interface {
+	pulumi.Input
+
+	ToIAMBindingOutput() IAMBindingOutput
+	ToIAMBindingOutputWithContext(ctx context.Context) IAMBindingOutput
+}
+
+func (IAMBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*IAMBinding)(nil)).Elem()
+}
+
+func (i IAMBinding) ToIAMBindingOutput() IAMBindingOutput {
+	return i.ToIAMBindingOutputWithContext(context.Background())
+}
+
+func (i IAMBinding) ToIAMBindingOutputWithContext(ctx context.Context) IAMBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IAMBindingOutput)
+}
+
+type IAMBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (IAMBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IAMBindingOutput)(nil)).Elem()
+}
+
+func (o IAMBindingOutput) ToIAMBindingOutput() IAMBindingOutput {
+	return o
+}
+
+func (o IAMBindingOutput) ToIAMBindingOutputWithContext(ctx context.Context) IAMBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(IAMBindingOutput{})
 }

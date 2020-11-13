@@ -4,6 +4,7 @@
 package spanner
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -143,4 +144,43 @@ type InstanceIAMBindingArgs struct {
 
 func (InstanceIAMBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*instanceIAMBindingArgs)(nil)).Elem()
+}
+
+type InstanceIAMBindingInput interface {
+	pulumi.Input
+
+	ToInstanceIAMBindingOutput() InstanceIAMBindingOutput
+	ToInstanceIAMBindingOutputWithContext(ctx context.Context) InstanceIAMBindingOutput
+}
+
+func (InstanceIAMBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceIAMBinding)(nil)).Elem()
+}
+
+func (i InstanceIAMBinding) ToInstanceIAMBindingOutput() InstanceIAMBindingOutput {
+	return i.ToInstanceIAMBindingOutputWithContext(context.Background())
+}
+
+func (i InstanceIAMBinding) ToInstanceIAMBindingOutputWithContext(ctx context.Context) InstanceIAMBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceIAMBindingOutput)
+}
+
+type InstanceIAMBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (InstanceIAMBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceIAMBindingOutput)(nil)).Elem()
+}
+
+func (o InstanceIAMBindingOutput) ToInstanceIAMBindingOutput() InstanceIAMBindingOutput {
+	return o
+}
+
+func (o InstanceIAMBindingOutput) ToInstanceIAMBindingOutputWithContext(ctx context.Context) InstanceIAMBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(InstanceIAMBindingOutput{})
 }

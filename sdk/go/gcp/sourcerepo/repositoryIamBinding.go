@@ -4,6 +4,7 @@
 package sourcerepo
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -135,4 +136,43 @@ type RepositoryIamBindingArgs struct {
 
 func (RepositoryIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*repositoryIamBindingArgs)(nil)).Elem()
+}
+
+type RepositoryIamBindingInput interface {
+	pulumi.Input
+
+	ToRepositoryIamBindingOutput() RepositoryIamBindingOutput
+	ToRepositoryIamBindingOutputWithContext(ctx context.Context) RepositoryIamBindingOutput
+}
+
+func (RepositoryIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*RepositoryIamBinding)(nil)).Elem()
+}
+
+func (i RepositoryIamBinding) ToRepositoryIamBindingOutput() RepositoryIamBindingOutput {
+	return i.ToRepositoryIamBindingOutputWithContext(context.Background())
+}
+
+func (i RepositoryIamBinding) ToRepositoryIamBindingOutputWithContext(ctx context.Context) RepositoryIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RepositoryIamBindingOutput)
+}
+
+type RepositoryIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (RepositoryIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RepositoryIamBindingOutput)(nil)).Elem()
+}
+
+func (o RepositoryIamBindingOutput) ToRepositoryIamBindingOutput() RepositoryIamBindingOutput {
+	return o
+}
+
+func (o RepositoryIamBindingOutput) ToRepositoryIamBindingOutputWithContext(ctx context.Context) RepositoryIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RepositoryIamBindingOutput{})
 }

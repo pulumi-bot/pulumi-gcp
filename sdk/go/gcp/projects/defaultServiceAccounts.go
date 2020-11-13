@@ -4,6 +4,7 @@
 package projects
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -109,4 +110,43 @@ type DefaultServiceAccountsArgs struct {
 
 func (DefaultServiceAccountsArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*defaultServiceAccountsArgs)(nil)).Elem()
+}
+
+type DefaultServiceAccountsInput interface {
+	pulumi.Input
+
+	ToDefaultServiceAccountsOutput() DefaultServiceAccountsOutput
+	ToDefaultServiceAccountsOutputWithContext(ctx context.Context) DefaultServiceAccountsOutput
+}
+
+func (DefaultServiceAccounts) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultServiceAccounts)(nil)).Elem()
+}
+
+func (i DefaultServiceAccounts) ToDefaultServiceAccountsOutput() DefaultServiceAccountsOutput {
+	return i.ToDefaultServiceAccountsOutputWithContext(context.Background())
+}
+
+func (i DefaultServiceAccounts) ToDefaultServiceAccountsOutputWithContext(ctx context.Context) DefaultServiceAccountsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultServiceAccountsOutput)
+}
+
+type DefaultServiceAccountsOutput struct {
+	*pulumi.OutputState
+}
+
+func (DefaultServiceAccountsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultServiceAccountsOutput)(nil)).Elem()
+}
+
+func (o DefaultServiceAccountsOutput) ToDefaultServiceAccountsOutput() DefaultServiceAccountsOutput {
+	return o
+}
+
+func (o DefaultServiceAccountsOutput) ToDefaultServiceAccountsOutputWithContext(ctx context.Context) DefaultServiceAccountsOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DefaultServiceAccountsOutput{})
 }
