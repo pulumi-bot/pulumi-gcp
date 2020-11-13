@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -236,4 +237,43 @@ type PacketMirroringArgs struct {
 
 func (PacketMirroringArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*packetMirroringArgs)(nil)).Elem()
+}
+
+type PacketMirroringInput interface {
+	pulumi.Input
+
+	ToPacketMirroringOutput() PacketMirroringOutput
+	ToPacketMirroringOutputWithContext(ctx context.Context) PacketMirroringOutput
+}
+
+func (PacketMirroring) ElementType() reflect.Type {
+	return reflect.TypeOf((*PacketMirroring)(nil)).Elem()
+}
+
+func (i PacketMirroring) ToPacketMirroringOutput() PacketMirroringOutput {
+	return i.ToPacketMirroringOutputWithContext(context.Background())
+}
+
+func (i PacketMirroring) ToPacketMirroringOutputWithContext(ctx context.Context) PacketMirroringOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PacketMirroringOutput)
+}
+
+type PacketMirroringOutput struct {
+	*pulumi.OutputState
+}
+
+func (PacketMirroringOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PacketMirroringOutput)(nil)).Elem()
+}
+
+func (o PacketMirroringOutput) ToPacketMirroringOutput() PacketMirroringOutput {
+	return o
+}
+
+func (o PacketMirroringOutput) ToPacketMirroringOutputWithContext(ctx context.Context) PacketMirroringOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(PacketMirroringOutput{})
 }

@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -419,4 +420,43 @@ type InstanceTemplateArgs struct {
 
 func (InstanceTemplateArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*instanceTemplateArgs)(nil)).Elem()
+}
+
+type InstanceTemplateInput interface {
+	pulumi.Input
+
+	ToInstanceTemplateOutput() InstanceTemplateOutput
+	ToInstanceTemplateOutputWithContext(ctx context.Context) InstanceTemplateOutput
+}
+
+func (InstanceTemplate) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceTemplate)(nil)).Elem()
+}
+
+func (i InstanceTemplate) ToInstanceTemplateOutput() InstanceTemplateOutput {
+	return i.ToInstanceTemplateOutputWithContext(context.Background())
+}
+
+func (i InstanceTemplate) ToInstanceTemplateOutputWithContext(ctx context.Context) InstanceTemplateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceTemplateOutput)
+}
+
+type InstanceTemplateOutput struct {
+	*pulumi.OutputState
+}
+
+func (InstanceTemplateOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceTemplateOutput)(nil)).Elem()
+}
+
+func (o InstanceTemplateOutput) ToInstanceTemplateOutput() InstanceTemplateOutput {
+	return o
+}
+
+func (o InstanceTemplateOutput) ToInstanceTemplateOutputWithContext(ctx context.Context) InstanceTemplateOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(InstanceTemplateOutput{})
 }

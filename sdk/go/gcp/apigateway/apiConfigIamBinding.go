@@ -4,6 +4,7 @@
 package apigateway
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -144,4 +145,43 @@ type ApiConfigIamBindingArgs struct {
 
 func (ApiConfigIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*apiConfigIamBindingArgs)(nil)).Elem()
+}
+
+type ApiConfigIamBindingInput interface {
+	pulumi.Input
+
+	ToApiConfigIamBindingOutput() ApiConfigIamBindingOutput
+	ToApiConfigIamBindingOutputWithContext(ctx context.Context) ApiConfigIamBindingOutput
+}
+
+func (ApiConfigIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*ApiConfigIamBinding)(nil)).Elem()
+}
+
+func (i ApiConfigIamBinding) ToApiConfigIamBindingOutput() ApiConfigIamBindingOutput {
+	return i.ToApiConfigIamBindingOutputWithContext(context.Background())
+}
+
+func (i ApiConfigIamBinding) ToApiConfigIamBindingOutputWithContext(ctx context.Context) ApiConfigIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApiConfigIamBindingOutput)
+}
+
+type ApiConfigIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (ApiConfigIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ApiConfigIamBindingOutput)(nil)).Elem()
+}
+
+func (o ApiConfigIamBindingOutput) ToApiConfigIamBindingOutput() ApiConfigIamBindingOutput {
+	return o
+}
+
+func (o ApiConfigIamBindingOutput) ToApiConfigIamBindingOutputWithContext(ctx context.Context) ApiConfigIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ApiConfigIamBindingOutput{})
 }

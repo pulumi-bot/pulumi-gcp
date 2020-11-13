@@ -4,6 +4,7 @@
 package logging
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -177,4 +178,43 @@ type OrganizationSinkArgs struct {
 
 func (OrganizationSinkArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*organizationSinkArgs)(nil)).Elem()
+}
+
+type OrganizationSinkInput interface {
+	pulumi.Input
+
+	ToOrganizationSinkOutput() OrganizationSinkOutput
+	ToOrganizationSinkOutputWithContext(ctx context.Context) OrganizationSinkOutput
+}
+
+func (OrganizationSink) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationSink)(nil)).Elem()
+}
+
+func (i OrganizationSink) ToOrganizationSinkOutput() OrganizationSinkOutput {
+	return i.ToOrganizationSinkOutputWithContext(context.Background())
+}
+
+func (i OrganizationSink) ToOrganizationSinkOutputWithContext(ctx context.Context) OrganizationSinkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationSinkOutput)
+}
+
+type OrganizationSinkOutput struct {
+	*pulumi.OutputState
+}
+
+func (OrganizationSinkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationSinkOutput)(nil)).Elem()
+}
+
+func (o OrganizationSinkOutput) ToOrganizationSinkOutput() OrganizationSinkOutput {
+	return o
+}
+
+func (o OrganizationSinkOutput) ToOrganizationSinkOutputWithContext(ctx context.Context) OrganizationSinkOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(OrganizationSinkOutput{})
 }

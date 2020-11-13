@@ -4,6 +4,7 @@
 package binaryauthorization
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -140,4 +141,43 @@ type AttestorIamMemberArgs struct {
 
 func (AttestorIamMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*attestorIamMemberArgs)(nil)).Elem()
+}
+
+type AttestorIamMemberInput interface {
+	pulumi.Input
+
+	ToAttestorIamMemberOutput() AttestorIamMemberOutput
+	ToAttestorIamMemberOutputWithContext(ctx context.Context) AttestorIamMemberOutput
+}
+
+func (AttestorIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*AttestorIamMember)(nil)).Elem()
+}
+
+func (i AttestorIamMember) ToAttestorIamMemberOutput() AttestorIamMemberOutput {
+	return i.ToAttestorIamMemberOutputWithContext(context.Background())
+}
+
+func (i AttestorIamMember) ToAttestorIamMemberOutputWithContext(ctx context.Context) AttestorIamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AttestorIamMemberOutput)
+}
+
+type AttestorIamMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (AttestorIamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AttestorIamMemberOutput)(nil)).Elem()
+}
+
+func (o AttestorIamMemberOutput) ToAttestorIamMemberOutput() AttestorIamMemberOutput {
+	return o
+}
+
+func (o AttestorIamMemberOutput) ToAttestorIamMemberOutputWithContext(ctx context.Context) AttestorIamMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AttestorIamMemberOutput{})
 }

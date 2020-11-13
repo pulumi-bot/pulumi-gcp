@@ -4,6 +4,7 @@
 package sql
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -322,4 +323,43 @@ type DatabaseInstanceArgs struct {
 
 func (DatabaseInstanceArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*databaseInstanceArgs)(nil)).Elem()
+}
+
+type DatabaseInstanceInput interface {
+	pulumi.Input
+
+	ToDatabaseInstanceOutput() DatabaseInstanceOutput
+	ToDatabaseInstanceOutputWithContext(ctx context.Context) DatabaseInstanceOutput
+}
+
+func (DatabaseInstance) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatabaseInstance)(nil)).Elem()
+}
+
+func (i DatabaseInstance) ToDatabaseInstanceOutput() DatabaseInstanceOutput {
+	return i.ToDatabaseInstanceOutputWithContext(context.Background())
+}
+
+func (i DatabaseInstance) ToDatabaseInstanceOutputWithContext(ctx context.Context) DatabaseInstanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatabaseInstanceOutput)
+}
+
+type DatabaseInstanceOutput struct {
+	*pulumi.OutputState
+}
+
+func (DatabaseInstanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatabaseInstanceOutput)(nil)).Elem()
+}
+
+func (o DatabaseInstanceOutput) ToDatabaseInstanceOutput() DatabaseInstanceOutput {
+	return o
+}
+
+func (o DatabaseInstanceOutput) ToDatabaseInstanceOutputWithContext(ctx context.Context) DatabaseInstanceOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DatabaseInstanceOutput{})
 }

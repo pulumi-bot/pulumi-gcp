@@ -4,6 +4,7 @@
 package spanner
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -156,4 +157,43 @@ type DatabaseIAMBindingArgs struct {
 
 func (DatabaseIAMBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*databaseIAMBindingArgs)(nil)).Elem()
+}
+
+type DatabaseIAMBindingInput interface {
+	pulumi.Input
+
+	ToDatabaseIAMBindingOutput() DatabaseIAMBindingOutput
+	ToDatabaseIAMBindingOutputWithContext(ctx context.Context) DatabaseIAMBindingOutput
+}
+
+func (DatabaseIAMBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatabaseIAMBinding)(nil)).Elem()
+}
+
+func (i DatabaseIAMBinding) ToDatabaseIAMBindingOutput() DatabaseIAMBindingOutput {
+	return i.ToDatabaseIAMBindingOutputWithContext(context.Background())
+}
+
+func (i DatabaseIAMBinding) ToDatabaseIAMBindingOutputWithContext(ctx context.Context) DatabaseIAMBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatabaseIAMBindingOutput)
+}
+
+type DatabaseIAMBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (DatabaseIAMBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatabaseIAMBindingOutput)(nil)).Elem()
+}
+
+func (o DatabaseIAMBindingOutput) ToDatabaseIAMBindingOutput() DatabaseIAMBindingOutput {
+	return o
+}
+
+func (o DatabaseIAMBindingOutput) ToDatabaseIAMBindingOutputWithContext(ctx context.Context) DatabaseIAMBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DatabaseIAMBindingOutput{})
 }

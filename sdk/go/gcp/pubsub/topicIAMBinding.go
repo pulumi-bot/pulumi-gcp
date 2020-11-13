@@ -4,6 +4,7 @@
 package pubsub
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -140,4 +141,43 @@ type TopicIAMBindingArgs struct {
 
 func (TopicIAMBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*topicIAMBindingArgs)(nil)).Elem()
+}
+
+type TopicIAMBindingInput interface {
+	pulumi.Input
+
+	ToTopicIAMBindingOutput() TopicIAMBindingOutput
+	ToTopicIAMBindingOutputWithContext(ctx context.Context) TopicIAMBindingOutput
+}
+
+func (TopicIAMBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*TopicIAMBinding)(nil)).Elem()
+}
+
+func (i TopicIAMBinding) ToTopicIAMBindingOutput() TopicIAMBindingOutput {
+	return i.ToTopicIAMBindingOutputWithContext(context.Background())
+}
+
+func (i TopicIAMBinding) ToTopicIAMBindingOutputWithContext(ctx context.Context) TopicIAMBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TopicIAMBindingOutput)
+}
+
+type TopicIAMBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (TopicIAMBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TopicIAMBindingOutput)(nil)).Elem()
+}
+
+func (o TopicIAMBindingOutput) ToTopicIAMBindingOutput() TopicIAMBindingOutput {
+	return o
+}
+
+func (o TopicIAMBindingOutput) ToTopicIAMBindingOutputWithContext(ctx context.Context) TopicIAMBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TopicIAMBindingOutput{})
 }

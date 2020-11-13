@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -172,4 +173,43 @@ type TargetHttpProxyArgs struct {
 
 func (TargetHttpProxyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*targetHttpProxyArgs)(nil)).Elem()
+}
+
+type TargetHttpProxyInput interface {
+	pulumi.Input
+
+	ToTargetHttpProxyOutput() TargetHttpProxyOutput
+	ToTargetHttpProxyOutputWithContext(ctx context.Context) TargetHttpProxyOutput
+}
+
+func (TargetHttpProxy) ElementType() reflect.Type {
+	return reflect.TypeOf((*TargetHttpProxy)(nil)).Elem()
+}
+
+func (i TargetHttpProxy) ToTargetHttpProxyOutput() TargetHttpProxyOutput {
+	return i.ToTargetHttpProxyOutputWithContext(context.Background())
+}
+
+func (i TargetHttpProxy) ToTargetHttpProxyOutputWithContext(ctx context.Context) TargetHttpProxyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TargetHttpProxyOutput)
+}
+
+type TargetHttpProxyOutput struct {
+	*pulumi.OutputState
+}
+
+func (TargetHttpProxyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TargetHttpProxyOutput)(nil)).Elem()
+}
+
+func (o TargetHttpProxyOutput) ToTargetHttpProxyOutput() TargetHttpProxyOutput {
+	return o
+}
+
+func (o TargetHttpProxyOutput) ToTargetHttpProxyOutputWithContext(ctx context.Context) TargetHttpProxyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TargetHttpProxyOutput{})
 }

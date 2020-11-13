@@ -4,6 +4,7 @@
 package secretmanager
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -135,4 +136,43 @@ type SecretIamMemberArgs struct {
 
 func (SecretIamMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretIamMemberArgs)(nil)).Elem()
+}
+
+type SecretIamMemberInput interface {
+	pulumi.Input
+
+	ToSecretIamMemberOutput() SecretIamMemberOutput
+	ToSecretIamMemberOutputWithContext(ctx context.Context) SecretIamMemberOutput
+}
+
+func (SecretIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretIamMember)(nil)).Elem()
+}
+
+func (i SecretIamMember) ToSecretIamMemberOutput() SecretIamMemberOutput {
+	return i.ToSecretIamMemberOutputWithContext(context.Background())
+}
+
+func (i SecretIamMember) ToSecretIamMemberOutputWithContext(ctx context.Context) SecretIamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretIamMemberOutput)
+}
+
+type SecretIamMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (SecretIamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretIamMemberOutput)(nil)).Elem()
+}
+
+func (o SecretIamMemberOutput) ToSecretIamMemberOutput() SecretIamMemberOutput {
+	return o
+}
+
+func (o SecretIamMemberOutput) ToSecretIamMemberOutputWithContext(ctx context.Context) SecretIamMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SecretIamMemberOutput{})
 }

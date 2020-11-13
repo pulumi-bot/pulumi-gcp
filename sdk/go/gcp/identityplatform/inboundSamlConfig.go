@@ -4,6 +4,7 @@
 package identityplatform
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -167,4 +168,43 @@ type InboundSamlConfigArgs struct {
 
 func (InboundSamlConfigArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*inboundSamlConfigArgs)(nil)).Elem()
+}
+
+type InboundSamlConfigInput interface {
+	pulumi.Input
+
+	ToInboundSamlConfigOutput() InboundSamlConfigOutput
+	ToInboundSamlConfigOutputWithContext(ctx context.Context) InboundSamlConfigOutput
+}
+
+func (InboundSamlConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*InboundSamlConfig)(nil)).Elem()
+}
+
+func (i InboundSamlConfig) ToInboundSamlConfigOutput() InboundSamlConfigOutput {
+	return i.ToInboundSamlConfigOutputWithContext(context.Background())
+}
+
+func (i InboundSamlConfig) ToInboundSamlConfigOutputWithContext(ctx context.Context) InboundSamlConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InboundSamlConfigOutput)
+}
+
+type InboundSamlConfigOutput struct {
+	*pulumi.OutputState
+}
+
+func (InboundSamlConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InboundSamlConfigOutput)(nil)).Elem()
+}
+
+func (o InboundSamlConfigOutput) ToInboundSamlConfigOutput() InboundSamlConfigOutput {
+	return o
+}
+
+func (o InboundSamlConfigOutput) ToInboundSamlConfigOutputWithContext(ctx context.Context) InboundSamlConfigOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(InboundSamlConfigOutput{})
 }

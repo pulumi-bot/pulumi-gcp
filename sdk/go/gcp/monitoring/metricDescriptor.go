@@ -4,6 +4,7 @@
 package monitoring
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -321,4 +322,43 @@ type MetricDescriptorArgs struct {
 
 func (MetricDescriptorArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*metricDescriptorArgs)(nil)).Elem()
+}
+
+type MetricDescriptorInput interface {
+	pulumi.Input
+
+	ToMetricDescriptorOutput() MetricDescriptorOutput
+	ToMetricDescriptorOutputWithContext(ctx context.Context) MetricDescriptorOutput
+}
+
+func (MetricDescriptor) ElementType() reflect.Type {
+	return reflect.TypeOf((*MetricDescriptor)(nil)).Elem()
+}
+
+func (i MetricDescriptor) ToMetricDescriptorOutput() MetricDescriptorOutput {
+	return i.ToMetricDescriptorOutputWithContext(context.Background())
+}
+
+func (i MetricDescriptor) ToMetricDescriptorOutputWithContext(ctx context.Context) MetricDescriptorOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MetricDescriptorOutput)
+}
+
+type MetricDescriptorOutput struct {
+	*pulumi.OutputState
+}
+
+func (MetricDescriptorOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MetricDescriptorOutput)(nil)).Elem()
+}
+
+func (o MetricDescriptorOutput) ToMetricDescriptorOutput() MetricDescriptorOutput {
+	return o
+}
+
+func (o MetricDescriptorOutput) ToMetricDescriptorOutputWithContext(ctx context.Context) MetricDescriptorOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(MetricDescriptorOutput{})
 }

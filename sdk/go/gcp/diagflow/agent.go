@@ -4,6 +4,7 @@
 package diagflow
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -336,4 +337,43 @@ type AgentArgs struct {
 
 func (AgentArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*agentArgs)(nil)).Elem()
+}
+
+type AgentInput interface {
+	pulumi.Input
+
+	ToAgentOutput() AgentOutput
+	ToAgentOutputWithContext(ctx context.Context) AgentOutput
+}
+
+func (Agent) ElementType() reflect.Type {
+	return reflect.TypeOf((*Agent)(nil)).Elem()
+}
+
+func (i Agent) ToAgentOutput() AgentOutput {
+	return i.ToAgentOutputWithContext(context.Background())
+}
+
+func (i Agent) ToAgentOutputWithContext(ctx context.Context) AgentOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AgentOutput)
+}
+
+type AgentOutput struct {
+	*pulumi.OutputState
+}
+
+func (AgentOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AgentOutput)(nil)).Elem()
+}
+
+func (o AgentOutput) ToAgentOutput() AgentOutput {
+	return o
+}
+
+func (o AgentOutput) ToAgentOutputWithContext(ctx context.Context) AgentOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AgentOutput{})
 }

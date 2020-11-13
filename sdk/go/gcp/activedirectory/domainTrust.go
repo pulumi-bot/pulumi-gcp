@@ -4,6 +4,7 @@
 package activedirectory
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -196,4 +197,43 @@ type DomainTrustArgs struct {
 
 func (DomainTrustArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*domainTrustArgs)(nil)).Elem()
+}
+
+type DomainTrustInput interface {
+	pulumi.Input
+
+	ToDomainTrustOutput() DomainTrustOutput
+	ToDomainTrustOutputWithContext(ctx context.Context) DomainTrustOutput
+}
+
+func (DomainTrust) ElementType() reflect.Type {
+	return reflect.TypeOf((*DomainTrust)(nil)).Elem()
+}
+
+func (i DomainTrust) ToDomainTrustOutput() DomainTrustOutput {
+	return i.ToDomainTrustOutputWithContext(context.Background())
+}
+
+func (i DomainTrust) ToDomainTrustOutputWithContext(ctx context.Context) DomainTrustOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DomainTrustOutput)
+}
+
+type DomainTrustOutput struct {
+	*pulumi.OutputState
+}
+
+func (DomainTrustOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DomainTrustOutput)(nil)).Elem()
+}
+
+func (o DomainTrustOutput) ToDomainTrustOutput() DomainTrustOutput {
+	return o
+}
+
+func (o DomainTrustOutput) ToDomainTrustOutputWithContext(ctx context.Context) DomainTrustOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DomainTrustOutput{})
 }

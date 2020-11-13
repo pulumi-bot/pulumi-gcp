@@ -4,6 +4,7 @@
 package kms
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -122,4 +123,43 @@ type KeyRingIAMPolicyArgs struct {
 
 func (KeyRingIAMPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*keyRingIAMPolicyArgs)(nil)).Elem()
+}
+
+type KeyRingIAMPolicyInput interface {
+	pulumi.Input
+
+	ToKeyRingIAMPolicyOutput() KeyRingIAMPolicyOutput
+	ToKeyRingIAMPolicyOutputWithContext(ctx context.Context) KeyRingIAMPolicyOutput
+}
+
+func (KeyRingIAMPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*KeyRingIAMPolicy)(nil)).Elem()
+}
+
+func (i KeyRingIAMPolicy) ToKeyRingIAMPolicyOutput() KeyRingIAMPolicyOutput {
+	return i.ToKeyRingIAMPolicyOutputWithContext(context.Background())
+}
+
+func (i KeyRingIAMPolicy) ToKeyRingIAMPolicyOutputWithContext(ctx context.Context) KeyRingIAMPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KeyRingIAMPolicyOutput)
+}
+
+type KeyRingIAMPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (KeyRingIAMPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*KeyRingIAMPolicyOutput)(nil)).Elem()
+}
+
+func (o KeyRingIAMPolicyOutput) ToKeyRingIAMPolicyOutput() KeyRingIAMPolicyOutput {
+	return o
+}
+
+func (o KeyRingIAMPolicyOutput) ToKeyRingIAMPolicyOutputWithContext(ctx context.Context) KeyRingIAMPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(KeyRingIAMPolicyOutput{})
 }

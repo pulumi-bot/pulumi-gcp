@@ -12,11 +12,11 @@ from ._inputs import *
 
 __all__ = ['Autoscalar']
 
-warnings.warn("gcp.compute.Autoscalar has been deprecated in favor of gcp.compute.Autoscaler", DeprecationWarning)
+warnings.warn("""gcp.compute.Autoscalar has been deprecated in favor of gcp.compute.Autoscaler""", DeprecationWarning)
 
 
 class Autoscalar(pulumi.CustomResource):
-    warnings.warn("gcp.compute.Autoscalar has been deprecated in favor of gcp.compute.Autoscaler", DeprecationWarning)
+    warnings.warn("""gcp.compute.Autoscalar has been deprecated in favor of gcp.compute.Autoscaler""", DeprecationWarning)
 
     def __init__(__self__,
                  resource_name: str,

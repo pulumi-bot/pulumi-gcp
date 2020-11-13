@@ -4,6 +4,7 @@
 package cloudfunctions
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -160,4 +161,43 @@ type FunctionIamMemberArgs struct {
 
 func (FunctionIamMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*functionIamMemberArgs)(nil)).Elem()
+}
+
+type FunctionIamMemberInput interface {
+	pulumi.Input
+
+	ToFunctionIamMemberOutput() FunctionIamMemberOutput
+	ToFunctionIamMemberOutputWithContext(ctx context.Context) FunctionIamMemberOutput
+}
+
+func (FunctionIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*FunctionIamMember)(nil)).Elem()
+}
+
+func (i FunctionIamMember) ToFunctionIamMemberOutput() FunctionIamMemberOutput {
+	return i.ToFunctionIamMemberOutputWithContext(context.Background())
+}
+
+func (i FunctionIamMember) ToFunctionIamMemberOutputWithContext(ctx context.Context) FunctionIamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FunctionIamMemberOutput)
+}
+
+type FunctionIamMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (FunctionIamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FunctionIamMemberOutput)(nil)).Elem()
+}
+
+func (o FunctionIamMemberOutput) ToFunctionIamMemberOutput() FunctionIamMemberOutput {
+	return o
+}
+
+func (o FunctionIamMemberOutput) ToFunctionIamMemberOutputWithContext(ctx context.Context) FunctionIamMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(FunctionIamMemberOutput{})
 }
