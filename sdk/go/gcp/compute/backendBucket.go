@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -58,11 +59,12 @@ type BackendBucket struct {
 // NewBackendBucket registers a new resource with the given unique name, arguments, and options.
 func NewBackendBucket(ctx *pulumi.Context,
 	name string, args *BackendBucketArgs, opts ...pulumi.ResourceOption) (*BackendBucket, error) {
-	if args == nil || args.BucketName == nil {
-		return nil, errors.New("missing required argument 'BucketName'")
-	}
 	if args == nil {
-		args = &BackendBucketArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.BucketName == nil {
+		return nil, errors.New("invalid value for required argument 'BucketName'")
 	}
 	var resource BackendBucket
 	err := ctx.RegisterResource("gcp:compute/backendBucket:BackendBucket", name, args, &resource, opts...)
@@ -196,4 +198,43 @@ type BackendBucketArgs struct {
 
 func (BackendBucketArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*backendBucketArgs)(nil)).Elem()
+}
+
+type BackendBucketInput interface {
+	pulumi.Input
+
+	ToBackendBucketOutput() BackendBucketOutput
+	ToBackendBucketOutputWithContext(ctx context.Context) BackendBucketOutput
+}
+
+func (BackendBucket) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackendBucket)(nil)).Elem()
+}
+
+func (i BackendBucket) ToBackendBucketOutput() BackendBucketOutput {
+	return i.ToBackendBucketOutputWithContext(context.Background())
+}
+
+func (i BackendBucket) ToBackendBucketOutputWithContext(ctx context.Context) BackendBucketOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackendBucketOutput)
+}
+
+type BackendBucketOutput struct {
+	*pulumi.OutputState
+}
+
+func (BackendBucketOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackendBucketOutput)(nil)).Elem()
+}
+
+func (o BackendBucketOutput) ToBackendBucketOutput() BackendBucketOutput {
+	return o
+}
+
+func (o BackendBucketOutput) ToBackendBucketOutputWithContext(ctx context.Context) BackendBucketOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(BackendBucketOutput{})
 }

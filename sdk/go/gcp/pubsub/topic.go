@@ -4,6 +4,7 @@
 package pubsub
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
@@ -47,6 +48,7 @@ func NewTopic(ctx *pulumi.Context,
 	if args == nil {
 		args = &TopicArgs{}
 	}
+
 	var resource Topic
 	err := ctx.RegisterResource("gcp:pubsub/topic:Topic", name, args, &resource, opts...)
 	if err != nil {
@@ -159,4 +161,43 @@ type TopicArgs struct {
 
 func (TopicArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*topicArgs)(nil)).Elem()
+}
+
+type TopicInput interface {
+	pulumi.Input
+
+	ToTopicOutput() TopicOutput
+	ToTopicOutputWithContext(ctx context.Context) TopicOutput
+}
+
+func (Topic) ElementType() reflect.Type {
+	return reflect.TypeOf((*Topic)(nil)).Elem()
+}
+
+func (i Topic) ToTopicOutput() TopicOutput {
+	return i.ToTopicOutputWithContext(context.Background())
+}
+
+func (i Topic) ToTopicOutputWithContext(ctx context.Context) TopicOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TopicOutput)
+}
+
+type TopicOutput struct {
+	*pulumi.OutputState
+}
+
+func (TopicOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TopicOutput)(nil)).Elem()
+}
+
+func (o TopicOutput) ToTopicOutput() TopicOutput {
+	return o
+}
+
+func (o TopicOutput) ToTopicOutputWithContext(ctx context.Context) TopicOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TopicOutput{})
 }

@@ -4,6 +4,7 @@
 package appengine
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -31,11 +32,12 @@ type ApplicationUrlDispatchRules struct {
 // NewApplicationUrlDispatchRules registers a new resource with the given unique name, arguments, and options.
 func NewApplicationUrlDispatchRules(ctx *pulumi.Context,
 	name string, args *ApplicationUrlDispatchRulesArgs, opts ...pulumi.ResourceOption) (*ApplicationUrlDispatchRules, error) {
-	if args == nil || args.DispatchRules == nil {
-		return nil, errors.New("missing required argument 'DispatchRules'")
-	}
 	if args == nil {
-		args = &ApplicationUrlDispatchRulesArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.DispatchRules == nil {
+		return nil, errors.New("invalid value for required argument 'DispatchRules'")
 	}
 	var resource ApplicationUrlDispatchRules
 	err := ctx.RegisterResource("gcp:appengine/applicationUrlDispatchRules:ApplicationUrlDispatchRules", name, args, &resource, opts...)
@@ -101,4 +103,43 @@ type ApplicationUrlDispatchRulesArgs struct {
 
 func (ApplicationUrlDispatchRulesArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*applicationUrlDispatchRulesArgs)(nil)).Elem()
+}
+
+type ApplicationUrlDispatchRulesInput interface {
+	pulumi.Input
+
+	ToApplicationUrlDispatchRulesOutput() ApplicationUrlDispatchRulesOutput
+	ToApplicationUrlDispatchRulesOutputWithContext(ctx context.Context) ApplicationUrlDispatchRulesOutput
+}
+
+func (ApplicationUrlDispatchRules) ElementType() reflect.Type {
+	return reflect.TypeOf((*ApplicationUrlDispatchRules)(nil)).Elem()
+}
+
+func (i ApplicationUrlDispatchRules) ToApplicationUrlDispatchRulesOutput() ApplicationUrlDispatchRulesOutput {
+	return i.ToApplicationUrlDispatchRulesOutputWithContext(context.Background())
+}
+
+func (i ApplicationUrlDispatchRules) ToApplicationUrlDispatchRulesOutputWithContext(ctx context.Context) ApplicationUrlDispatchRulesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApplicationUrlDispatchRulesOutput)
+}
+
+type ApplicationUrlDispatchRulesOutput struct {
+	*pulumi.OutputState
+}
+
+func (ApplicationUrlDispatchRulesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ApplicationUrlDispatchRulesOutput)(nil)).Elem()
+}
+
+func (o ApplicationUrlDispatchRulesOutput) ToApplicationUrlDispatchRulesOutput() ApplicationUrlDispatchRulesOutput {
+	return o
+}
+
+func (o ApplicationUrlDispatchRulesOutput) ToApplicationUrlDispatchRulesOutputWithContext(ctx context.Context) ApplicationUrlDispatchRulesOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ApplicationUrlDispatchRulesOutput{})
 }

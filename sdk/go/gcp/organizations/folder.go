@@ -4,6 +4,7 @@
 package organizations
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -46,14 +47,15 @@ type Folder struct {
 // NewFolder registers a new resource with the given unique name, arguments, and options.
 func NewFolder(ctx *pulumi.Context,
 	name string, args *FolderArgs, opts ...pulumi.ResourceOption) (*Folder, error) {
-	if args == nil || args.DisplayName == nil {
-		return nil, errors.New("missing required argument 'DisplayName'")
-	}
-	if args == nil || args.Parent == nil {
-		return nil, errors.New("missing required argument 'Parent'")
-	}
 	if args == nil {
-		args = &FolderArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.DisplayName == nil {
+		return nil, errors.New("invalid value for required argument 'DisplayName'")
+	}
+	if args.Parent == nil {
+		return nil, errors.New("invalid value for required argument 'Parent'")
 	}
 	var resource Folder
 	err := ctx.RegisterResource("gcp:organizations/folder:Folder", name, args, &resource, opts...)
@@ -137,4 +139,43 @@ type FolderArgs struct {
 
 func (FolderArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*folderArgs)(nil)).Elem()
+}
+
+type FolderInput interface {
+	pulumi.Input
+
+	ToFolderOutput() FolderOutput
+	ToFolderOutputWithContext(ctx context.Context) FolderOutput
+}
+
+func (Folder) ElementType() reflect.Type {
+	return reflect.TypeOf((*Folder)(nil)).Elem()
+}
+
+func (i Folder) ToFolderOutput() FolderOutput {
+	return i.ToFolderOutputWithContext(context.Background())
+}
+
+func (i Folder) ToFolderOutputWithContext(ctx context.Context) FolderOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FolderOutput)
+}
+
+type FolderOutput struct {
+	*pulumi.OutputState
+}
+
+func (FolderOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FolderOutput)(nil)).Elem()
+}
+
+func (o FolderOutput) ToFolderOutput() FolderOutput {
+	return o
+}
+
+func (o FolderOutput) ToFolderOutputWithContext(ctx context.Context) FolderOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(FolderOutput{})
 }

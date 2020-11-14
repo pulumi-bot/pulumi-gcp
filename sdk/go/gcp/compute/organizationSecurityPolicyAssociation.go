@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -35,14 +36,15 @@ type OrganizationSecurityPolicyAssociation struct {
 // NewOrganizationSecurityPolicyAssociation registers a new resource with the given unique name, arguments, and options.
 func NewOrganizationSecurityPolicyAssociation(ctx *pulumi.Context,
 	name string, args *OrganizationSecurityPolicyAssociationArgs, opts ...pulumi.ResourceOption) (*OrganizationSecurityPolicyAssociation, error) {
-	if args == nil || args.AttachmentId == nil {
-		return nil, errors.New("missing required argument 'AttachmentId'")
-	}
-	if args == nil || args.PolicyId == nil {
-		return nil, errors.New("missing required argument 'PolicyId'")
-	}
 	if args == nil {
-		args = &OrganizationSecurityPolicyAssociationArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.AttachmentId == nil {
+		return nil, errors.New("invalid value for required argument 'AttachmentId'")
+	}
+	if args.PolicyId == nil {
+		return nil, errors.New("invalid value for required argument 'PolicyId'")
 	}
 	var resource OrganizationSecurityPolicyAssociation
 	err := ctx.RegisterResource("gcp:compute/organizationSecurityPolicyAssociation:OrganizationSecurityPolicyAssociation", name, args, &resource, opts...)
@@ -112,4 +114,43 @@ type OrganizationSecurityPolicyAssociationArgs struct {
 
 func (OrganizationSecurityPolicyAssociationArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*organizationSecurityPolicyAssociationArgs)(nil)).Elem()
+}
+
+type OrganizationSecurityPolicyAssociationInput interface {
+	pulumi.Input
+
+	ToOrganizationSecurityPolicyAssociationOutput() OrganizationSecurityPolicyAssociationOutput
+	ToOrganizationSecurityPolicyAssociationOutputWithContext(ctx context.Context) OrganizationSecurityPolicyAssociationOutput
+}
+
+func (OrganizationSecurityPolicyAssociation) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationSecurityPolicyAssociation)(nil)).Elem()
+}
+
+func (i OrganizationSecurityPolicyAssociation) ToOrganizationSecurityPolicyAssociationOutput() OrganizationSecurityPolicyAssociationOutput {
+	return i.ToOrganizationSecurityPolicyAssociationOutputWithContext(context.Background())
+}
+
+func (i OrganizationSecurityPolicyAssociation) ToOrganizationSecurityPolicyAssociationOutputWithContext(ctx context.Context) OrganizationSecurityPolicyAssociationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationSecurityPolicyAssociationOutput)
+}
+
+type OrganizationSecurityPolicyAssociationOutput struct {
+	*pulumi.OutputState
+}
+
+func (OrganizationSecurityPolicyAssociationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationSecurityPolicyAssociationOutput)(nil)).Elem()
+}
+
+func (o OrganizationSecurityPolicyAssociationOutput) ToOrganizationSecurityPolicyAssociationOutput() OrganizationSecurityPolicyAssociationOutput {
+	return o
+}
+
+func (o OrganizationSecurityPolicyAssociationOutput) ToOrganizationSecurityPolicyAssociationOutputWithContext(ctx context.Context) OrganizationSecurityPolicyAssociationOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(OrganizationSecurityPolicyAssociationOutput{})
 }

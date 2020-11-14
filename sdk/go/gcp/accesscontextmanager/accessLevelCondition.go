@@ -4,6 +4,7 @@
 package accesscontextmanager
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -80,11 +81,12 @@ type AccessLevelCondition struct {
 // NewAccessLevelCondition registers a new resource with the given unique name, arguments, and options.
 func NewAccessLevelCondition(ctx *pulumi.Context,
 	name string, args *AccessLevelConditionArgs, opts ...pulumi.ResourceOption) (*AccessLevelCondition, error) {
-	if args == nil || args.AccessLevel == nil {
-		return nil, errors.New("missing required argument 'AccessLevel'")
-	}
 	if args == nil {
-		args = &AccessLevelConditionArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.AccessLevel == nil {
+		return nil, errors.New("invalid value for required argument 'AccessLevel'")
 	}
 	var resource AccessLevelCondition
 	err := ctx.RegisterResource("gcp:accesscontextmanager/accessLevelCondition:AccessLevelCondition", name, args, &resource, opts...)
@@ -286,4 +288,43 @@ type AccessLevelConditionArgs struct {
 
 func (AccessLevelConditionArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*accessLevelConditionArgs)(nil)).Elem()
+}
+
+type AccessLevelConditionInput interface {
+	pulumi.Input
+
+	ToAccessLevelConditionOutput() AccessLevelConditionOutput
+	ToAccessLevelConditionOutputWithContext(ctx context.Context) AccessLevelConditionOutput
+}
+
+func (AccessLevelCondition) ElementType() reflect.Type {
+	return reflect.TypeOf((*AccessLevelCondition)(nil)).Elem()
+}
+
+func (i AccessLevelCondition) ToAccessLevelConditionOutput() AccessLevelConditionOutput {
+	return i.ToAccessLevelConditionOutputWithContext(context.Background())
+}
+
+func (i AccessLevelCondition) ToAccessLevelConditionOutputWithContext(ctx context.Context) AccessLevelConditionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AccessLevelConditionOutput)
+}
+
+type AccessLevelConditionOutput struct {
+	*pulumi.OutputState
+}
+
+func (AccessLevelConditionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AccessLevelConditionOutput)(nil)).Elem()
+}
+
+func (o AccessLevelConditionOutput) ToAccessLevelConditionOutput() AccessLevelConditionOutput {
+	return o
+}
+
+func (o AccessLevelConditionOutput) ToAccessLevelConditionOutputWithContext(ctx context.Context) AccessLevelConditionOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AccessLevelConditionOutput{})
 }

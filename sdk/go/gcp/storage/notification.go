@@ -4,6 +4,7 @@
 package storage
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -53,17 +54,18 @@ type Notification struct {
 // NewNotification registers a new resource with the given unique name, arguments, and options.
 func NewNotification(ctx *pulumi.Context,
 	name string, args *NotificationArgs, opts ...pulumi.ResourceOption) (*Notification, error) {
-	if args == nil || args.Bucket == nil {
-		return nil, errors.New("missing required argument 'Bucket'")
-	}
-	if args == nil || args.PayloadFormat == nil {
-		return nil, errors.New("missing required argument 'PayloadFormat'")
-	}
-	if args == nil || args.Topic == nil {
-		return nil, errors.New("missing required argument 'Topic'")
-	}
 	if args == nil {
-		args = &NotificationArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Bucket == nil {
+		return nil, errors.New("invalid value for required argument 'Bucket'")
+	}
+	if args.PayloadFormat == nil {
+		return nil, errors.New("invalid value for required argument 'PayloadFormat'")
+	}
+	if args.Topic == nil {
+		return nil, errors.New("invalid value for required argument 'Topic'")
 	}
 	var resource Notification
 	err := ctx.RegisterResource("gcp:storage/notification:Notification", name, args, &resource, opts...)
@@ -173,4 +175,43 @@ type NotificationArgs struct {
 
 func (NotificationArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*notificationArgs)(nil)).Elem()
+}
+
+type NotificationInput interface {
+	pulumi.Input
+
+	ToNotificationOutput() NotificationOutput
+	ToNotificationOutputWithContext(ctx context.Context) NotificationOutput
+}
+
+func (Notification) ElementType() reflect.Type {
+	return reflect.TypeOf((*Notification)(nil)).Elem()
+}
+
+func (i Notification) ToNotificationOutput() NotificationOutput {
+	return i.ToNotificationOutputWithContext(context.Background())
+}
+
+func (i Notification) ToNotificationOutputWithContext(ctx context.Context) NotificationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationOutput)
+}
+
+type NotificationOutput struct {
+	*pulumi.OutputState
+}
+
+func (NotificationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationOutput)(nil)).Elem()
+}
+
+func (o NotificationOutput) ToNotificationOutput() NotificationOutput {
+	return o
+}
+
+func (o NotificationOutput) ToNotificationOutputWithContext(ctx context.Context) NotificationOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(NotificationOutput{})
 }

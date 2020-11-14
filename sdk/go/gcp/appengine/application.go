@@ -4,6 +4,7 @@
 package appengine
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -61,11 +62,12 @@ type Application struct {
 // NewApplication registers a new resource with the given unique name, arguments, and options.
 func NewApplication(ctx *pulumi.Context,
 	name string, args *ApplicationArgs, opts ...pulumi.ResourceOption) (*Application, error) {
-	if args == nil || args.LocationId == nil {
-		return nil, errors.New("missing required argument 'LocationId'")
-	}
 	if args == nil {
-		args = &ApplicationArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.LocationId == nil {
+		return nil, errors.New("invalid value for required argument 'LocationId'")
 	}
 	var resource Application
 	err := ctx.RegisterResource("gcp:appengine/application:Application", name, args, &resource, opts...)
@@ -215,4 +217,43 @@ type ApplicationArgs struct {
 
 func (ApplicationArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*applicationArgs)(nil)).Elem()
+}
+
+type ApplicationInput interface {
+	pulumi.Input
+
+	ToApplicationOutput() ApplicationOutput
+	ToApplicationOutputWithContext(ctx context.Context) ApplicationOutput
+}
+
+func (Application) ElementType() reflect.Type {
+	return reflect.TypeOf((*Application)(nil)).Elem()
+}
+
+func (i Application) ToApplicationOutput() ApplicationOutput {
+	return i.ToApplicationOutputWithContext(context.Background())
+}
+
+func (i Application) ToApplicationOutputWithContext(ctx context.Context) ApplicationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApplicationOutput)
+}
+
+type ApplicationOutput struct {
+	*pulumi.OutputState
+}
+
+func (ApplicationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ApplicationOutput)(nil)).Elem()
+}
+
+func (o ApplicationOutput) ToApplicationOutput() ApplicationOutput {
+	return o
+}
+
+func (o ApplicationOutput) ToApplicationOutputWithContext(ctx context.Context) ApplicationOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ApplicationOutput{})
 }

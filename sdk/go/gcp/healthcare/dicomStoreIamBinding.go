@@ -4,6 +4,7 @@
 package healthcare
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -40,17 +41,18 @@ type DicomStoreIamBinding struct {
 // NewDicomStoreIamBinding registers a new resource with the given unique name, arguments, and options.
 func NewDicomStoreIamBinding(ctx *pulumi.Context,
 	name string, args *DicomStoreIamBindingArgs, opts ...pulumi.ResourceOption) (*DicomStoreIamBinding, error) {
-	if args == nil || args.DicomStoreId == nil {
-		return nil, errors.New("missing required argument 'DicomStoreId'")
-	}
-	if args == nil || args.Members == nil {
-		return nil, errors.New("missing required argument 'Members'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &DicomStoreIamBindingArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.DicomStoreId == nil {
+		return nil, errors.New("invalid value for required argument 'DicomStoreId'")
+	}
+	if args.Members == nil {
+		return nil, errors.New("invalid value for required argument 'Members'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource DicomStoreIamBinding
 	err := ctx.RegisterResource("gcp:healthcare/dicomStoreIamBinding:DicomStoreIamBinding", name, args, &resource, opts...)
@@ -140,4 +142,43 @@ type DicomStoreIamBindingArgs struct {
 
 func (DicomStoreIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*dicomStoreIamBindingArgs)(nil)).Elem()
+}
+
+type DicomStoreIamBindingInput interface {
+	pulumi.Input
+
+	ToDicomStoreIamBindingOutput() DicomStoreIamBindingOutput
+	ToDicomStoreIamBindingOutputWithContext(ctx context.Context) DicomStoreIamBindingOutput
+}
+
+func (DicomStoreIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*DicomStoreIamBinding)(nil)).Elem()
+}
+
+func (i DicomStoreIamBinding) ToDicomStoreIamBindingOutput() DicomStoreIamBindingOutput {
+	return i.ToDicomStoreIamBindingOutputWithContext(context.Background())
+}
+
+func (i DicomStoreIamBinding) ToDicomStoreIamBindingOutputWithContext(ctx context.Context) DicomStoreIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DicomStoreIamBindingOutput)
+}
+
+type DicomStoreIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (DicomStoreIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DicomStoreIamBindingOutput)(nil)).Elem()
+}
+
+func (o DicomStoreIamBindingOutput) ToDicomStoreIamBindingOutput() DicomStoreIamBindingOutput {
+	return o
+}
+
+func (o DicomStoreIamBindingOutput) ToDicomStoreIamBindingOutputWithContext(ctx context.Context) DicomStoreIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DicomStoreIamBindingOutput{})
 }

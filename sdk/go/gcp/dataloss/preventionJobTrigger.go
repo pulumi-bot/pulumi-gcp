@@ -4,6 +4,7 @@
 package dataloss
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -48,14 +49,15 @@ type PreventionJobTrigger struct {
 // NewPreventionJobTrigger registers a new resource with the given unique name, arguments, and options.
 func NewPreventionJobTrigger(ctx *pulumi.Context,
 	name string, args *PreventionJobTriggerArgs, opts ...pulumi.ResourceOption) (*PreventionJobTrigger, error) {
-	if args == nil || args.Parent == nil {
-		return nil, errors.New("missing required argument 'Parent'")
-	}
-	if args == nil || args.Triggers == nil {
-		return nil, errors.New("missing required argument 'Triggers'")
-	}
 	if args == nil {
-		args = &PreventionJobTriggerArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Parent == nil {
+		return nil, errors.New("invalid value for required argument 'Parent'")
+	}
+	if args.Triggers == nil {
+		return nil, errors.New("invalid value for required argument 'Triggers'")
 	}
 	var resource PreventionJobTrigger
 	err := ctx.RegisterResource("gcp:dataloss/preventionJobTrigger:PreventionJobTrigger", name, args, &resource, opts...)
@@ -173,4 +175,43 @@ type PreventionJobTriggerArgs struct {
 
 func (PreventionJobTriggerArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*preventionJobTriggerArgs)(nil)).Elem()
+}
+
+type PreventionJobTriggerInput interface {
+	pulumi.Input
+
+	ToPreventionJobTriggerOutput() PreventionJobTriggerOutput
+	ToPreventionJobTriggerOutputWithContext(ctx context.Context) PreventionJobTriggerOutput
+}
+
+func (PreventionJobTrigger) ElementType() reflect.Type {
+	return reflect.TypeOf((*PreventionJobTrigger)(nil)).Elem()
+}
+
+func (i PreventionJobTrigger) ToPreventionJobTriggerOutput() PreventionJobTriggerOutput {
+	return i.ToPreventionJobTriggerOutputWithContext(context.Background())
+}
+
+func (i PreventionJobTrigger) ToPreventionJobTriggerOutputWithContext(ctx context.Context) PreventionJobTriggerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PreventionJobTriggerOutput)
+}
+
+type PreventionJobTriggerOutput struct {
+	*pulumi.OutputState
+}
+
+func (PreventionJobTriggerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PreventionJobTriggerOutput)(nil)).Elem()
+}
+
+func (o PreventionJobTriggerOutput) ToPreventionJobTriggerOutput() PreventionJobTriggerOutput {
+	return o
+}
+
+func (o PreventionJobTriggerOutput) ToPreventionJobTriggerOutputWithContext(ctx context.Context) PreventionJobTriggerOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(PreventionJobTriggerOutput{})
 }

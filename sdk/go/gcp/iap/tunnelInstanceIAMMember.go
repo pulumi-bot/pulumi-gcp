@@ -4,6 +4,7 @@
 package iap
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -43,17 +44,18 @@ type TunnelInstanceIAMMember struct {
 // NewTunnelInstanceIAMMember registers a new resource with the given unique name, arguments, and options.
 func NewTunnelInstanceIAMMember(ctx *pulumi.Context,
 	name string, args *TunnelInstanceIAMMemberArgs, opts ...pulumi.ResourceOption) (*TunnelInstanceIAMMember, error) {
-	if args == nil || args.Instance == nil {
-		return nil, errors.New("missing required argument 'Instance'")
-	}
-	if args == nil || args.Member == nil {
-		return nil, errors.New("missing required argument 'Member'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &TunnelInstanceIAMMemberArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Instance == nil {
+		return nil, errors.New("invalid value for required argument 'Instance'")
+	}
+	if args.Member == nil {
+		return nil, errors.New("invalid value for required argument 'Member'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource TunnelInstanceIAMMember
 	err := ctx.RegisterResource("gcp:iap/tunnelInstanceIAMMember:TunnelInstanceIAMMember", name, args, &resource, opts...)
@@ -155,4 +157,43 @@ type TunnelInstanceIAMMemberArgs struct {
 
 func (TunnelInstanceIAMMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*tunnelInstanceIAMMemberArgs)(nil)).Elem()
+}
+
+type TunnelInstanceIAMMemberInput interface {
+	pulumi.Input
+
+	ToTunnelInstanceIAMMemberOutput() TunnelInstanceIAMMemberOutput
+	ToTunnelInstanceIAMMemberOutputWithContext(ctx context.Context) TunnelInstanceIAMMemberOutput
+}
+
+func (TunnelInstanceIAMMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*TunnelInstanceIAMMember)(nil)).Elem()
+}
+
+func (i TunnelInstanceIAMMember) ToTunnelInstanceIAMMemberOutput() TunnelInstanceIAMMemberOutput {
+	return i.ToTunnelInstanceIAMMemberOutputWithContext(context.Background())
+}
+
+func (i TunnelInstanceIAMMember) ToTunnelInstanceIAMMemberOutputWithContext(ctx context.Context) TunnelInstanceIAMMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TunnelInstanceIAMMemberOutput)
+}
+
+type TunnelInstanceIAMMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (TunnelInstanceIAMMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TunnelInstanceIAMMemberOutput)(nil)).Elem()
+}
+
+func (o TunnelInstanceIAMMemberOutput) ToTunnelInstanceIAMMemberOutput() TunnelInstanceIAMMemberOutput {
+	return o
+}
+
+func (o TunnelInstanceIAMMemberOutput) ToTunnelInstanceIAMMemberOutputWithContext(ctx context.Context) TunnelInstanceIAMMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TunnelInstanceIAMMemberOutput{})
 }

@@ -4,6 +4,7 @@
 package billing
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -23,17 +24,18 @@ type AccountIamBinding struct {
 // NewAccountIamBinding registers a new resource with the given unique name, arguments, and options.
 func NewAccountIamBinding(ctx *pulumi.Context,
 	name string, args *AccountIamBindingArgs, opts ...pulumi.ResourceOption) (*AccountIamBinding, error) {
-	if args == nil || args.BillingAccountId == nil {
-		return nil, errors.New("missing required argument 'BillingAccountId'")
-	}
-	if args == nil || args.Members == nil {
-		return nil, errors.New("missing required argument 'Members'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &AccountIamBindingArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.BillingAccountId == nil {
+		return nil, errors.New("invalid value for required argument 'BillingAccountId'")
+	}
+	if args.Members == nil {
+		return nil, errors.New("invalid value for required argument 'Members'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource AccountIamBinding
 	err := ctx.RegisterResource("gcp:billing/accountIamBinding:AccountIamBinding", name, args, &resource, opts...)
@@ -93,4 +95,43 @@ type AccountIamBindingArgs struct {
 
 func (AccountIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*accountIamBindingArgs)(nil)).Elem()
+}
+
+type AccountIamBindingInput interface {
+	pulumi.Input
+
+	ToAccountIamBindingOutput() AccountIamBindingOutput
+	ToAccountIamBindingOutputWithContext(ctx context.Context) AccountIamBindingOutput
+}
+
+func (AccountIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*AccountIamBinding)(nil)).Elem()
+}
+
+func (i AccountIamBinding) ToAccountIamBindingOutput() AccountIamBindingOutput {
+	return i.ToAccountIamBindingOutputWithContext(context.Background())
+}
+
+func (i AccountIamBinding) ToAccountIamBindingOutputWithContext(ctx context.Context) AccountIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AccountIamBindingOutput)
+}
+
+type AccountIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (AccountIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AccountIamBindingOutput)(nil)).Elem()
+}
+
+func (o AccountIamBindingOutput) ToAccountIamBindingOutput() AccountIamBindingOutput {
+	return o
+}
+
+func (o AccountIamBindingOutput) ToAccountIamBindingOutputWithContext(ctx context.Context) AccountIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AccountIamBindingOutput{})
 }

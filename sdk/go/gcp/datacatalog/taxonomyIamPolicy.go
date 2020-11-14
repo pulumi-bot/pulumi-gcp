@@ -4,6 +4,7 @@
 package datacatalog
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -29,14 +30,15 @@ type TaxonomyIamPolicy struct {
 // NewTaxonomyIamPolicy registers a new resource with the given unique name, arguments, and options.
 func NewTaxonomyIamPolicy(ctx *pulumi.Context,
 	name string, args *TaxonomyIamPolicyArgs, opts ...pulumi.ResourceOption) (*TaxonomyIamPolicy, error) {
-	if args == nil || args.PolicyData == nil {
-		return nil, errors.New("missing required argument 'PolicyData'")
-	}
-	if args == nil || args.Taxonomy == nil {
-		return nil, errors.New("missing required argument 'Taxonomy'")
-	}
 	if args == nil {
-		args = &TaxonomyIamPolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.PolicyData == nil {
+		return nil, errors.New("invalid value for required argument 'PolicyData'")
+	}
+	if args.Taxonomy == nil {
+		return nil, errors.New("invalid value for required argument 'Taxonomy'")
 	}
 	var resource TaxonomyIamPolicy
 	err := ctx.RegisterResource("gcp:datacatalog/taxonomyIamPolicy:TaxonomyIamPolicy", name, args, &resource, opts...)
@@ -118,4 +120,43 @@ type TaxonomyIamPolicyArgs struct {
 
 func (TaxonomyIamPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*taxonomyIamPolicyArgs)(nil)).Elem()
+}
+
+type TaxonomyIamPolicyInput interface {
+	pulumi.Input
+
+	ToTaxonomyIamPolicyOutput() TaxonomyIamPolicyOutput
+	ToTaxonomyIamPolicyOutputWithContext(ctx context.Context) TaxonomyIamPolicyOutput
+}
+
+func (TaxonomyIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*TaxonomyIamPolicy)(nil)).Elem()
+}
+
+func (i TaxonomyIamPolicy) ToTaxonomyIamPolicyOutput() TaxonomyIamPolicyOutput {
+	return i.ToTaxonomyIamPolicyOutputWithContext(context.Background())
+}
+
+func (i TaxonomyIamPolicy) ToTaxonomyIamPolicyOutputWithContext(ctx context.Context) TaxonomyIamPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TaxonomyIamPolicyOutput)
+}
+
+type TaxonomyIamPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (TaxonomyIamPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TaxonomyIamPolicyOutput)(nil)).Elem()
+}
+
+func (o TaxonomyIamPolicyOutput) ToTaxonomyIamPolicyOutput() TaxonomyIamPolicyOutput {
+	return o
+}
+
+func (o TaxonomyIamPolicyOutput) ToTaxonomyIamPolicyOutputWithContext(ctx context.Context) TaxonomyIamPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TaxonomyIamPolicyOutput{})
 }

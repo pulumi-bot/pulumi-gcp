@@ -4,6 +4,7 @@
 package runtimeconfig
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -37,14 +38,15 @@ type ConfigIamPolicy struct {
 // NewConfigIamPolicy registers a new resource with the given unique name, arguments, and options.
 func NewConfigIamPolicy(ctx *pulumi.Context,
 	name string, args *ConfigIamPolicyArgs, opts ...pulumi.ResourceOption) (*ConfigIamPolicy, error) {
-	if args == nil || args.Config == nil {
-		return nil, errors.New("missing required argument 'Config'")
-	}
-	if args == nil || args.PolicyData == nil {
-		return nil, errors.New("missing required argument 'PolicyData'")
-	}
 	if args == nil {
-		args = &ConfigIamPolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Config == nil {
+		return nil, errors.New("invalid value for required argument 'Config'")
+	}
+	if args.PolicyData == nil {
+		return nil, errors.New("invalid value for required argument 'PolicyData'")
 	}
 	var resource ConfigIamPolicy
 	err := ctx.RegisterResource("gcp:runtimeconfig/configIamPolicy:ConfigIamPolicy", name, args, &resource, opts...)
@@ -122,4 +124,43 @@ type ConfigIamPolicyArgs struct {
 
 func (ConfigIamPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*configIamPolicyArgs)(nil)).Elem()
+}
+
+type ConfigIamPolicyInput interface {
+	pulumi.Input
+
+	ToConfigIamPolicyOutput() ConfigIamPolicyOutput
+	ToConfigIamPolicyOutputWithContext(ctx context.Context) ConfigIamPolicyOutput
+}
+
+func (ConfigIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConfigIamPolicy)(nil)).Elem()
+}
+
+func (i ConfigIamPolicy) ToConfigIamPolicyOutput() ConfigIamPolicyOutput {
+	return i.ToConfigIamPolicyOutputWithContext(context.Background())
+}
+
+func (i ConfigIamPolicy) ToConfigIamPolicyOutputWithContext(ctx context.Context) ConfigIamPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConfigIamPolicyOutput)
+}
+
+type ConfigIamPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (ConfigIamPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConfigIamPolicyOutput)(nil)).Elem()
+}
+
+func (o ConfigIamPolicyOutput) ToConfigIamPolicyOutput() ConfigIamPolicyOutput {
+	return o
+}
+
+func (o ConfigIamPolicyOutput) ToConfigIamPolicyOutputWithContext(ctx context.Context) ConfigIamPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ConfigIamPolicyOutput{})
 }

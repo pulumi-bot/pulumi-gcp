@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -27,11 +28,12 @@ type SharedVPCHostProject struct {
 // NewSharedVPCHostProject registers a new resource with the given unique name, arguments, and options.
 func NewSharedVPCHostProject(ctx *pulumi.Context,
 	name string, args *SharedVPCHostProjectArgs, opts ...pulumi.ResourceOption) (*SharedVPCHostProject, error) {
-	if args == nil || args.Project == nil {
-		return nil, errors.New("missing required argument 'Project'")
-	}
 	if args == nil {
-		args = &SharedVPCHostProjectArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Project == nil {
+		return nil, errors.New("invalid value for required argument 'Project'")
 	}
 	var resource SharedVPCHostProject
 	err := ctx.RegisterResource("gcp:compute/sharedVPCHostProject:SharedVPCHostProject", name, args, &resource, opts...)
@@ -81,4 +83,43 @@ type SharedVPCHostProjectArgs struct {
 
 func (SharedVPCHostProjectArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*sharedVPCHostProjectArgs)(nil)).Elem()
+}
+
+type SharedVPCHostProjectInput interface {
+	pulumi.Input
+
+	ToSharedVPCHostProjectOutput() SharedVPCHostProjectOutput
+	ToSharedVPCHostProjectOutputWithContext(ctx context.Context) SharedVPCHostProjectOutput
+}
+
+func (SharedVPCHostProject) ElementType() reflect.Type {
+	return reflect.TypeOf((*SharedVPCHostProject)(nil)).Elem()
+}
+
+func (i SharedVPCHostProject) ToSharedVPCHostProjectOutput() SharedVPCHostProjectOutput {
+	return i.ToSharedVPCHostProjectOutputWithContext(context.Background())
+}
+
+func (i SharedVPCHostProject) ToSharedVPCHostProjectOutputWithContext(ctx context.Context) SharedVPCHostProjectOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SharedVPCHostProjectOutput)
+}
+
+type SharedVPCHostProjectOutput struct {
+	*pulumi.OutputState
+}
+
+func (SharedVPCHostProjectOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SharedVPCHostProjectOutput)(nil)).Elem()
+}
+
+func (o SharedVPCHostProjectOutput) ToSharedVPCHostProjectOutput() SharedVPCHostProjectOutput {
+	return o
+}
+
+func (o SharedVPCHostProjectOutput) ToSharedVPCHostProjectOutputWithContext(ctx context.Context) SharedVPCHostProjectOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SharedVPCHostProjectOutput{})
 }

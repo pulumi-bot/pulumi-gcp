@@ -4,6 +4,7 @@
 package networkmanagement
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -81,14 +82,15 @@ type ConnectivityTest struct {
 // NewConnectivityTest registers a new resource with the given unique name, arguments, and options.
 func NewConnectivityTest(ctx *pulumi.Context,
 	name string, args *ConnectivityTestArgs, opts ...pulumi.ResourceOption) (*ConnectivityTest, error) {
-	if args == nil || args.Destination == nil {
-		return nil, errors.New("missing required argument 'Destination'")
-	}
-	if args == nil || args.Source == nil {
-		return nil, errors.New("missing required argument 'Source'")
-	}
 	if args == nil {
-		args = &ConnectivityTestArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Destination == nil {
+		return nil, errors.New("invalid value for required argument 'Destination'")
+	}
+	if args.Source == nil {
+		return nil, errors.New("invalid value for required argument 'Source'")
 	}
 	var resource ConnectivityTest
 	err := ctx.RegisterResource("gcp:networkmanagement/connectivityTest:ConnectivityTest", name, args, &resource, opts...)
@@ -338,4 +340,43 @@ type ConnectivityTestArgs struct {
 
 func (ConnectivityTestArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*connectivityTestArgs)(nil)).Elem()
+}
+
+type ConnectivityTestInput interface {
+	pulumi.Input
+
+	ToConnectivityTestOutput() ConnectivityTestOutput
+	ToConnectivityTestOutputWithContext(ctx context.Context) ConnectivityTestOutput
+}
+
+func (ConnectivityTest) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConnectivityTest)(nil)).Elem()
+}
+
+func (i ConnectivityTest) ToConnectivityTestOutput() ConnectivityTestOutput {
+	return i.ToConnectivityTestOutputWithContext(context.Background())
+}
+
+func (i ConnectivityTest) ToConnectivityTestOutputWithContext(ctx context.Context) ConnectivityTestOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConnectivityTestOutput)
+}
+
+type ConnectivityTestOutput struct {
+	*pulumi.OutputState
+}
+
+func (ConnectivityTestOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConnectivityTestOutput)(nil)).Elem()
+}
+
+func (o ConnectivityTestOutput) ToConnectivityTestOutput() ConnectivityTestOutput {
+	return o
+}
+
+func (o ConnectivityTestOutput) ToConnectivityTestOutputWithContext(ctx context.Context) ConnectivityTestOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ConnectivityTestOutput{})
 }

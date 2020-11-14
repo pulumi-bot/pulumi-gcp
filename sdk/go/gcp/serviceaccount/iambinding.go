@@ -4,6 +4,7 @@
 package serviceaccount
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -41,17 +42,18 @@ type IAMBinding struct {
 // NewIAMBinding registers a new resource with the given unique name, arguments, and options.
 func NewIAMBinding(ctx *pulumi.Context,
 	name string, args *IAMBindingArgs, opts ...pulumi.ResourceOption) (*IAMBinding, error) {
-	if args == nil || args.Members == nil {
-		return nil, errors.New("missing required argument 'Members'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
-	if args == nil || args.ServiceAccountId == nil {
-		return nil, errors.New("missing required argument 'ServiceAccountId'")
-	}
 	if args == nil {
-		args = &IAMBindingArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Members == nil {
+		return nil, errors.New("invalid value for required argument 'Members'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
+	}
+	if args.ServiceAccountId == nil {
+		return nil, errors.New("invalid value for required argument 'ServiceAccountId'")
 	}
 	var resource IAMBinding
 	err := ctx.RegisterResource("gcp:serviceAccount/iAMBinding:IAMBinding", name, args, &resource, opts...)
@@ -137,4 +139,43 @@ type IAMBindingArgs struct {
 
 func (IAMBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*iambindingArgs)(nil)).Elem()
+}
+
+type IAMBindingInput interface {
+	pulumi.Input
+
+	ToIAMBindingOutput() IAMBindingOutput
+	ToIAMBindingOutputWithContext(ctx context.Context) IAMBindingOutput
+}
+
+func (IAMBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*IAMBinding)(nil)).Elem()
+}
+
+func (i IAMBinding) ToIAMBindingOutput() IAMBindingOutput {
+	return i.ToIAMBindingOutputWithContext(context.Background())
+}
+
+func (i IAMBinding) ToIAMBindingOutputWithContext(ctx context.Context) IAMBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IAMBindingOutput)
+}
+
+type IAMBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (IAMBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IAMBindingOutput)(nil)).Elem()
+}
+
+func (o IAMBindingOutput) ToIAMBindingOutput() IAMBindingOutput {
+	return o
+}
+
+func (o IAMBindingOutput) ToIAMBindingOutputWithContext(ctx context.Context) IAMBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(IAMBindingOutput{})
 }

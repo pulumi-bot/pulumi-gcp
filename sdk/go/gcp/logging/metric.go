@@ -4,6 +4,7 @@
 package logging
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -64,14 +65,15 @@ type Metric struct {
 // NewMetric registers a new resource with the given unique name, arguments, and options.
 func NewMetric(ctx *pulumi.Context,
 	name string, args *MetricArgs, opts ...pulumi.ResourceOption) (*Metric, error) {
-	if args == nil || args.Filter == nil {
-		return nil, errors.New("missing required argument 'Filter'")
-	}
-	if args == nil || args.MetricDescriptor == nil {
-		return nil, errors.New("missing required argument 'MetricDescriptor'")
-	}
 	if args == nil {
-		args = &MetricArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Filter == nil {
+		return nil, errors.New("invalid value for required argument 'Filter'")
+	}
+	if args.MetricDescriptor == nil {
+		return nil, errors.New("invalid value for required argument 'MetricDescriptor'")
 	}
 	var resource Metric
 	err := ctx.RegisterResource("gcp:logging/metric:Metric", name, args, &resource, opts...)
@@ -253,4 +255,43 @@ type MetricArgs struct {
 
 func (MetricArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*metricArgs)(nil)).Elem()
+}
+
+type MetricInput interface {
+	pulumi.Input
+
+	ToMetricOutput() MetricOutput
+	ToMetricOutputWithContext(ctx context.Context) MetricOutput
+}
+
+func (Metric) ElementType() reflect.Type {
+	return reflect.TypeOf((*Metric)(nil)).Elem()
+}
+
+func (i Metric) ToMetricOutput() MetricOutput {
+	return i.ToMetricOutputWithContext(context.Background())
+}
+
+func (i Metric) ToMetricOutputWithContext(ctx context.Context) MetricOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MetricOutput)
+}
+
+type MetricOutput struct {
+	*pulumi.OutputState
+}
+
+func (MetricOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MetricOutput)(nil)).Elem()
+}
+
+func (o MetricOutput) ToMetricOutput() MetricOutput {
+	return o
+}
+
+func (o MetricOutput) ToMetricOutputWithContext(ctx context.Context) MetricOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(MetricOutput{})
 }

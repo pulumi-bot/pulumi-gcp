@@ -4,6 +4,7 @@
 package gameservices
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -46,14 +47,15 @@ type GameServerDeploymentRollout struct {
 // NewGameServerDeploymentRollout registers a new resource with the given unique name, arguments, and options.
 func NewGameServerDeploymentRollout(ctx *pulumi.Context,
 	name string, args *GameServerDeploymentRolloutArgs, opts ...pulumi.ResourceOption) (*GameServerDeploymentRollout, error) {
-	if args == nil || args.DefaultGameServerConfig == nil {
-		return nil, errors.New("missing required argument 'DefaultGameServerConfig'")
-	}
-	if args == nil || args.DeploymentId == nil {
-		return nil, errors.New("missing required argument 'DeploymentId'")
-	}
 	if args == nil {
-		args = &GameServerDeploymentRolloutArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.DefaultGameServerConfig == nil {
+		return nil, errors.New("invalid value for required argument 'DefaultGameServerConfig'")
+	}
+	if args.DeploymentId == nil {
+		return nil, errors.New("invalid value for required argument 'DeploymentId'")
 	}
 	var resource GameServerDeploymentRollout
 	err := ctx.RegisterResource("gcp:gameservices/gameServerDeploymentRollout:GameServerDeploymentRollout", name, args, &resource, opts...)
@@ -161,4 +163,43 @@ type GameServerDeploymentRolloutArgs struct {
 
 func (GameServerDeploymentRolloutArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*gameServerDeploymentRolloutArgs)(nil)).Elem()
+}
+
+type GameServerDeploymentRolloutInput interface {
+	pulumi.Input
+
+	ToGameServerDeploymentRolloutOutput() GameServerDeploymentRolloutOutput
+	ToGameServerDeploymentRolloutOutputWithContext(ctx context.Context) GameServerDeploymentRolloutOutput
+}
+
+func (GameServerDeploymentRollout) ElementType() reflect.Type {
+	return reflect.TypeOf((*GameServerDeploymentRollout)(nil)).Elem()
+}
+
+func (i GameServerDeploymentRollout) ToGameServerDeploymentRolloutOutput() GameServerDeploymentRolloutOutput {
+	return i.ToGameServerDeploymentRolloutOutputWithContext(context.Background())
+}
+
+func (i GameServerDeploymentRollout) ToGameServerDeploymentRolloutOutputWithContext(ctx context.Context) GameServerDeploymentRolloutOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GameServerDeploymentRolloutOutput)
+}
+
+type GameServerDeploymentRolloutOutput struct {
+	*pulumi.OutputState
+}
+
+func (GameServerDeploymentRolloutOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GameServerDeploymentRolloutOutput)(nil)).Elem()
+}
+
+func (o GameServerDeploymentRolloutOutput) ToGameServerDeploymentRolloutOutput() GameServerDeploymentRolloutOutput {
+	return o
+}
+
+func (o GameServerDeploymentRolloutOutput) ToGameServerDeploymentRolloutOutputWithContext(ctx context.Context) GameServerDeploymentRolloutOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(GameServerDeploymentRolloutOutput{})
 }
