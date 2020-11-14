@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -63,14 +64,15 @@ type TargetSSLProxy struct {
 // NewTargetSSLProxy registers a new resource with the given unique name, arguments, and options.
 func NewTargetSSLProxy(ctx *pulumi.Context,
 	name string, args *TargetSSLProxyArgs, opts ...pulumi.ResourceOption) (*TargetSSLProxy, error) {
-	if args == nil || args.BackendService == nil {
-		return nil, errors.New("missing required argument 'BackendService'")
-	}
-	if args == nil || args.SslCertificates == nil {
-		return nil, errors.New("missing required argument 'SslCertificates'")
-	}
 	if args == nil {
-		args = &TargetSSLProxyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.BackendService == nil {
+		return nil, errors.New("invalid value for required argument 'BackendService'")
+	}
+	if args.SslCertificates == nil {
+		return nil, errors.New("invalid value for required argument 'SslCertificates'")
 	}
 	var resource TargetSSLProxy
 	err := ctx.RegisterResource("gcp:compute/targetSSLProxy:TargetSSLProxy", name, args, &resource, opts...)
@@ -236,4 +238,43 @@ type TargetSSLProxyArgs struct {
 
 func (TargetSSLProxyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*targetSSLProxyArgs)(nil)).Elem()
+}
+
+type TargetSSLProxyInput interface {
+	pulumi.Input
+
+	ToTargetSSLProxyOutput() TargetSSLProxyOutput
+	ToTargetSSLProxyOutputWithContext(ctx context.Context) TargetSSLProxyOutput
+}
+
+func (TargetSSLProxy) ElementType() reflect.Type {
+	return reflect.TypeOf((*TargetSSLProxy)(nil)).Elem()
+}
+
+func (i TargetSSLProxy) ToTargetSSLProxyOutput() TargetSSLProxyOutput {
+	return i.ToTargetSSLProxyOutputWithContext(context.Background())
+}
+
+func (i TargetSSLProxy) ToTargetSSLProxyOutputWithContext(ctx context.Context) TargetSSLProxyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TargetSSLProxyOutput)
+}
+
+type TargetSSLProxyOutput struct {
+	*pulumi.OutputState
+}
+
+func (TargetSSLProxyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TargetSSLProxyOutput)(nil)).Elem()
+}
+
+func (o TargetSSLProxyOutput) ToTargetSSLProxyOutput() TargetSSLProxyOutput {
+	return o
+}
+
+func (o TargetSSLProxyOutput) ToTargetSSLProxyOutputWithContext(ctx context.Context) TargetSSLProxyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TargetSSLProxyOutput{})
 }

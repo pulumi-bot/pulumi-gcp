@@ -4,6 +4,7 @@
 package healthcare
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -40,17 +41,18 @@ type FhirStoreIamBinding struct {
 // NewFhirStoreIamBinding registers a new resource with the given unique name, arguments, and options.
 func NewFhirStoreIamBinding(ctx *pulumi.Context,
 	name string, args *FhirStoreIamBindingArgs, opts ...pulumi.ResourceOption) (*FhirStoreIamBinding, error) {
-	if args == nil || args.FhirStoreId == nil {
-		return nil, errors.New("missing required argument 'FhirStoreId'")
-	}
-	if args == nil || args.Members == nil {
-		return nil, errors.New("missing required argument 'Members'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &FhirStoreIamBindingArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.FhirStoreId == nil {
+		return nil, errors.New("invalid value for required argument 'FhirStoreId'")
+	}
+	if args.Members == nil {
+		return nil, errors.New("invalid value for required argument 'Members'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource FhirStoreIamBinding
 	err := ctx.RegisterResource("gcp:healthcare/fhirStoreIamBinding:FhirStoreIamBinding", name, args, &resource, opts...)
@@ -140,4 +142,43 @@ type FhirStoreIamBindingArgs struct {
 
 func (FhirStoreIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*fhirStoreIamBindingArgs)(nil)).Elem()
+}
+
+type FhirStoreIamBindingInput interface {
+	pulumi.Input
+
+	ToFhirStoreIamBindingOutput() FhirStoreIamBindingOutput
+	ToFhirStoreIamBindingOutputWithContext(ctx context.Context) FhirStoreIamBindingOutput
+}
+
+func (FhirStoreIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*FhirStoreIamBinding)(nil)).Elem()
+}
+
+func (i FhirStoreIamBinding) ToFhirStoreIamBindingOutput() FhirStoreIamBindingOutput {
+	return i.ToFhirStoreIamBindingOutputWithContext(context.Background())
+}
+
+func (i FhirStoreIamBinding) ToFhirStoreIamBindingOutputWithContext(ctx context.Context) FhirStoreIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FhirStoreIamBindingOutput)
+}
+
+type FhirStoreIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (FhirStoreIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FhirStoreIamBindingOutput)(nil)).Elem()
+}
+
+func (o FhirStoreIamBindingOutput) ToFhirStoreIamBindingOutput() FhirStoreIamBindingOutput {
+	return o
+}
+
+func (o FhirStoreIamBindingOutput) ToFhirStoreIamBindingOutputWithContext(ctx context.Context) FhirStoreIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(FhirStoreIamBindingOutput{})
 }

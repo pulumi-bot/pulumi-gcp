@@ -4,6 +4,7 @@
 package secretmanager
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -39,17 +40,18 @@ type SecretIamBinding struct {
 // NewSecretIamBinding registers a new resource with the given unique name, arguments, and options.
 func NewSecretIamBinding(ctx *pulumi.Context,
 	name string, args *SecretIamBindingArgs, opts ...pulumi.ResourceOption) (*SecretIamBinding, error) {
-	if args == nil || args.Members == nil {
-		return nil, errors.New("missing required argument 'Members'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
-	if args == nil || args.SecretId == nil {
-		return nil, errors.New("missing required argument 'SecretId'")
-	}
 	if args == nil {
-		args = &SecretIamBindingArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Members == nil {
+		return nil, errors.New("invalid value for required argument 'Members'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
+	}
+	if args.SecretId == nil {
+		return nil, errors.New("invalid value for required argument 'SecretId'")
 	}
 	var resource SecretIamBinding
 	err := ctx.RegisterResource("gcp:secretmanager/secretIamBinding:SecretIamBinding", name, args, &resource, opts...)
@@ -135,4 +137,43 @@ type SecretIamBindingArgs struct {
 
 func (SecretIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretIamBindingArgs)(nil)).Elem()
+}
+
+type SecretIamBindingInput interface {
+	pulumi.Input
+
+	ToSecretIamBindingOutput() SecretIamBindingOutput
+	ToSecretIamBindingOutputWithContext(ctx context.Context) SecretIamBindingOutput
+}
+
+func (SecretIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretIamBinding)(nil)).Elem()
+}
+
+func (i SecretIamBinding) ToSecretIamBindingOutput() SecretIamBindingOutput {
+	return i.ToSecretIamBindingOutputWithContext(context.Background())
+}
+
+func (i SecretIamBinding) ToSecretIamBindingOutputWithContext(ctx context.Context) SecretIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretIamBindingOutput)
+}
+
+type SecretIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (SecretIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretIamBindingOutput)(nil)).Elem()
+}
+
+func (o SecretIamBindingOutput) ToSecretIamBindingOutput() SecretIamBindingOutput {
+	return o
+}
+
+func (o SecretIamBindingOutput) ToSecretIamBindingOutputWithContext(ctx context.Context) SecretIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SecretIamBindingOutput{})
 }

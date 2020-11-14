@@ -4,6 +4,7 @@
 package iam
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -42,11 +43,12 @@ type WorkloadIdentityPool struct {
 // NewWorkloadIdentityPool registers a new resource with the given unique name, arguments, and options.
 func NewWorkloadIdentityPool(ctx *pulumi.Context,
 	name string, args *WorkloadIdentityPoolArgs, opts ...pulumi.ResourceOption) (*WorkloadIdentityPool, error) {
-	if args == nil || args.WorkloadIdentityPoolId == nil {
-		return nil, errors.New("missing required argument 'WorkloadIdentityPoolId'")
-	}
 	if args == nil {
-		args = &WorkloadIdentityPoolArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.WorkloadIdentityPoolId == nil {
+		return nil, errors.New("invalid value for required argument 'WorkloadIdentityPoolId'")
 	}
 	var resource WorkloadIdentityPool
 	err := ctx.RegisterResource("gcp:iam/workloadIdentityPool:WorkloadIdentityPool", name, args, &resource, opts...)
@@ -166,4 +168,43 @@ type WorkloadIdentityPoolArgs struct {
 
 func (WorkloadIdentityPoolArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*workloadIdentityPoolArgs)(nil)).Elem()
+}
+
+type WorkloadIdentityPoolInput interface {
+	pulumi.Input
+
+	ToWorkloadIdentityPoolOutput() WorkloadIdentityPoolOutput
+	ToWorkloadIdentityPoolOutputWithContext(ctx context.Context) WorkloadIdentityPoolOutput
+}
+
+func (WorkloadIdentityPool) ElementType() reflect.Type {
+	return reflect.TypeOf((*WorkloadIdentityPool)(nil)).Elem()
+}
+
+func (i WorkloadIdentityPool) ToWorkloadIdentityPoolOutput() WorkloadIdentityPoolOutput {
+	return i.ToWorkloadIdentityPoolOutputWithContext(context.Background())
+}
+
+func (i WorkloadIdentityPool) ToWorkloadIdentityPoolOutputWithContext(ctx context.Context) WorkloadIdentityPoolOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WorkloadIdentityPoolOutput)
+}
+
+type WorkloadIdentityPoolOutput struct {
+	*pulumi.OutputState
+}
+
+func (WorkloadIdentityPoolOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WorkloadIdentityPoolOutput)(nil)).Elem()
+}
+
+func (o WorkloadIdentityPoolOutput) ToWorkloadIdentityPoolOutput() WorkloadIdentityPoolOutput {
+	return o
+}
+
+func (o WorkloadIdentityPoolOutput) ToWorkloadIdentityPoolOutputWithContext(ctx context.Context) WorkloadIdentityPoolOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(WorkloadIdentityPoolOutput{})
 }

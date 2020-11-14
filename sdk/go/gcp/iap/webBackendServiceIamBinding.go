@@ -4,6 +4,7 @@
 package iap
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -42,17 +43,18 @@ type WebBackendServiceIamBinding struct {
 // NewWebBackendServiceIamBinding registers a new resource with the given unique name, arguments, and options.
 func NewWebBackendServiceIamBinding(ctx *pulumi.Context,
 	name string, args *WebBackendServiceIamBindingArgs, opts ...pulumi.ResourceOption) (*WebBackendServiceIamBinding, error) {
-	if args == nil || args.Members == nil {
-		return nil, errors.New("missing required argument 'Members'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
-	if args == nil || args.WebBackendService == nil {
-		return nil, errors.New("missing required argument 'WebBackendService'")
-	}
 	if args == nil {
-		args = &WebBackendServiceIamBindingArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Members == nil {
+		return nil, errors.New("invalid value for required argument 'Members'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
+	}
+	if args.WebBackendService == nil {
+		return nil, errors.New("invalid value for required argument 'WebBackendService'")
 	}
 	var resource WebBackendServiceIamBinding
 	err := ctx.RegisterResource("gcp:iap/webBackendServiceIamBinding:WebBackendServiceIamBinding", name, args, &resource, opts...)
@@ -150,4 +152,43 @@ type WebBackendServiceIamBindingArgs struct {
 
 func (WebBackendServiceIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*webBackendServiceIamBindingArgs)(nil)).Elem()
+}
+
+type WebBackendServiceIamBindingInput interface {
+	pulumi.Input
+
+	ToWebBackendServiceIamBindingOutput() WebBackendServiceIamBindingOutput
+	ToWebBackendServiceIamBindingOutputWithContext(ctx context.Context) WebBackendServiceIamBindingOutput
+}
+
+func (WebBackendServiceIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebBackendServiceIamBinding)(nil)).Elem()
+}
+
+func (i WebBackendServiceIamBinding) ToWebBackendServiceIamBindingOutput() WebBackendServiceIamBindingOutput {
+	return i.ToWebBackendServiceIamBindingOutputWithContext(context.Background())
+}
+
+func (i WebBackendServiceIamBinding) ToWebBackendServiceIamBindingOutputWithContext(ctx context.Context) WebBackendServiceIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebBackendServiceIamBindingOutput)
+}
+
+type WebBackendServiceIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (WebBackendServiceIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebBackendServiceIamBindingOutput)(nil)).Elem()
+}
+
+func (o WebBackendServiceIamBindingOutput) ToWebBackendServiceIamBindingOutput() WebBackendServiceIamBindingOutput {
+	return o
+}
+
+func (o WebBackendServiceIamBindingOutput) ToWebBackendServiceIamBindingOutputWithContext(ctx context.Context) WebBackendServiceIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(WebBackendServiceIamBindingOutput{})
 }

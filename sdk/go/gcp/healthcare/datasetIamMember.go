@@ -4,6 +4,7 @@
 package healthcare
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -40,17 +41,18 @@ type DatasetIamMember struct {
 // NewDatasetIamMember registers a new resource with the given unique name, arguments, and options.
 func NewDatasetIamMember(ctx *pulumi.Context,
 	name string, args *DatasetIamMemberArgs, opts ...pulumi.ResourceOption) (*DatasetIamMember, error) {
-	if args == nil || args.DatasetId == nil {
-		return nil, errors.New("missing required argument 'DatasetId'")
-	}
-	if args == nil || args.Member == nil {
-		return nil, errors.New("missing required argument 'Member'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &DatasetIamMemberArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.DatasetId == nil {
+		return nil, errors.New("invalid value for required argument 'DatasetId'")
+	}
+	if args.Member == nil {
+		return nil, errors.New("invalid value for required argument 'Member'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource DatasetIamMember
 	err := ctx.RegisterResource("gcp:healthcare/datasetIamMember:DatasetIamMember", name, args, &resource, opts...)
@@ -140,4 +142,43 @@ type DatasetIamMemberArgs struct {
 
 func (DatasetIamMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*datasetIamMemberArgs)(nil)).Elem()
+}
+
+type DatasetIamMemberInput interface {
+	pulumi.Input
+
+	ToDatasetIamMemberOutput() DatasetIamMemberOutput
+	ToDatasetIamMemberOutputWithContext(ctx context.Context) DatasetIamMemberOutput
+}
+
+func (DatasetIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatasetIamMember)(nil)).Elem()
+}
+
+func (i DatasetIamMember) ToDatasetIamMemberOutput() DatasetIamMemberOutput {
+	return i.ToDatasetIamMemberOutputWithContext(context.Background())
+}
+
+func (i DatasetIamMember) ToDatasetIamMemberOutputWithContext(ctx context.Context) DatasetIamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetIamMemberOutput)
+}
+
+type DatasetIamMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (DatasetIamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatasetIamMemberOutput)(nil)).Elem()
+}
+
+func (o DatasetIamMemberOutput) ToDatasetIamMemberOutput() DatasetIamMemberOutput {
+	return o
+}
+
+func (o DatasetIamMemberOutput) ToDatasetIamMemberOutputWithContext(ctx context.Context) DatasetIamMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DatasetIamMemberOutput{})
 }

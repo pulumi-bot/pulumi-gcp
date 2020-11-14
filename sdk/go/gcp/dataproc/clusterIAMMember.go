@@ -4,6 +4,7 @@
 package dataproc
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -43,17 +44,18 @@ type ClusterIAMMember struct {
 // NewClusterIAMMember registers a new resource with the given unique name, arguments, and options.
 func NewClusterIAMMember(ctx *pulumi.Context,
 	name string, args *ClusterIAMMemberArgs, opts ...pulumi.ResourceOption) (*ClusterIAMMember, error) {
-	if args == nil || args.Cluster == nil {
-		return nil, errors.New("missing required argument 'Cluster'")
-	}
-	if args == nil || args.Member == nil {
-		return nil, errors.New("missing required argument 'Member'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &ClusterIAMMemberArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Cluster == nil {
+		return nil, errors.New("invalid value for required argument 'Cluster'")
+	}
+	if args.Member == nil {
+		return nil, errors.New("invalid value for required argument 'Member'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource ClusterIAMMember
 	err := ctx.RegisterResource("gcp:dataproc/clusterIAMMember:ClusterIAMMember", name, args, &resource, opts...)
@@ -155,4 +157,43 @@ type ClusterIAMMemberArgs struct {
 
 func (ClusterIAMMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*clusterIAMMemberArgs)(nil)).Elem()
+}
+
+type ClusterIAMMemberInput interface {
+	pulumi.Input
+
+	ToClusterIAMMemberOutput() ClusterIAMMemberOutput
+	ToClusterIAMMemberOutputWithContext(ctx context.Context) ClusterIAMMemberOutput
+}
+
+func (ClusterIAMMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterIAMMember)(nil)).Elem()
+}
+
+func (i ClusterIAMMember) ToClusterIAMMemberOutput() ClusterIAMMemberOutput {
+	return i.ToClusterIAMMemberOutputWithContext(context.Background())
+}
+
+func (i ClusterIAMMember) ToClusterIAMMemberOutputWithContext(ctx context.Context) ClusterIAMMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterIAMMemberOutput)
+}
+
+type ClusterIAMMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (ClusterIAMMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterIAMMemberOutput)(nil)).Elem()
+}
+
+func (o ClusterIAMMemberOutput) ToClusterIAMMemberOutput() ClusterIAMMemberOutput {
+	return o
+}
+
+func (o ClusterIAMMemberOutput) ToClusterIAMMemberOutputWithContext(ctx context.Context) ClusterIAMMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ClusterIAMMemberOutput{})
 }

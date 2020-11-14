@@ -87,7 +87,7 @@ class FlexTemplateJob(pulumi.CustomResource):
                 raise TypeError("Missing required property 'container_spec_gcs_path'")
             __props__['container_spec_gcs_path'] = container_spec_gcs_path
             if labels is not None:
-                warnings.warn("Deprecated until the API supports this field", DeprecationWarning)
+                warnings.warn("""Deprecated until the API supports this field""", DeprecationWarning)
                 pulumi.log.warn("labels is deprecated: Deprecated until the API supports this field")
             __props__['labels'] = labels
             __props__['name'] = name

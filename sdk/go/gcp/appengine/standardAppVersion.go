@@ -4,6 +4,7 @@
 package appengine
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -85,17 +86,18 @@ type StandardAppVersion struct {
 // NewStandardAppVersion registers a new resource with the given unique name, arguments, and options.
 func NewStandardAppVersion(ctx *pulumi.Context,
 	name string, args *StandardAppVersionArgs, opts ...pulumi.ResourceOption) (*StandardAppVersion, error) {
-	if args == nil || args.Deployment == nil {
-		return nil, errors.New("missing required argument 'Deployment'")
-	}
-	if args == nil || args.Runtime == nil {
-		return nil, errors.New("missing required argument 'Runtime'")
-	}
-	if args == nil || args.Service == nil {
-		return nil, errors.New("missing required argument 'Service'")
-	}
 	if args == nil {
-		args = &StandardAppVersionArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Deployment == nil {
+		return nil, errors.New("invalid value for required argument 'Deployment'")
+	}
+	if args.Runtime == nil {
+		return nil, errors.New("invalid value for required argument 'Runtime'")
+	}
+	if args.Service == nil {
+		return nil, errors.New("invalid value for required argument 'Service'")
 	}
 	var resource StandardAppVersion
 	err := ctx.RegisterResource("gcp:appengine/standardAppVersion:StandardAppVersion", name, args, &resource, opts...)
@@ -353,4 +355,43 @@ type StandardAppVersionArgs struct {
 
 func (StandardAppVersionArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*standardAppVersionArgs)(nil)).Elem()
+}
+
+type StandardAppVersionInput interface {
+	pulumi.Input
+
+	ToStandardAppVersionOutput() StandardAppVersionOutput
+	ToStandardAppVersionOutputWithContext(ctx context.Context) StandardAppVersionOutput
+}
+
+func (StandardAppVersion) ElementType() reflect.Type {
+	return reflect.TypeOf((*StandardAppVersion)(nil)).Elem()
+}
+
+func (i StandardAppVersion) ToStandardAppVersionOutput() StandardAppVersionOutput {
+	return i.ToStandardAppVersionOutputWithContext(context.Background())
+}
+
+func (i StandardAppVersion) ToStandardAppVersionOutputWithContext(ctx context.Context) StandardAppVersionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StandardAppVersionOutput)
+}
+
+type StandardAppVersionOutput struct {
+	*pulumi.OutputState
+}
+
+func (StandardAppVersionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StandardAppVersionOutput)(nil)).Elem()
+}
+
+func (o StandardAppVersionOutput) ToStandardAppVersionOutput() StandardAppVersionOutput {
+	return o
+}
+
+func (o StandardAppVersionOutput) ToStandardAppVersionOutputWithContext(ctx context.Context) StandardAppVersionOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(StandardAppVersionOutput{})
 }

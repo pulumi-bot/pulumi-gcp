@@ -4,6 +4,7 @@
 package identityplatform
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -43,11 +44,12 @@ type Tenant struct {
 // NewTenant registers a new resource with the given unique name, arguments, and options.
 func NewTenant(ctx *pulumi.Context,
 	name string, args *TenantArgs, opts ...pulumi.ResourceOption) (*Tenant, error) {
-	if args == nil || args.DisplayName == nil {
-		return nil, errors.New("missing required argument 'DisplayName'")
-	}
 	if args == nil {
-		args = &TenantArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.DisplayName == nil {
+		return nil, errors.New("invalid value for required argument 'DisplayName'")
 	}
 	var resource Tenant
 	err := ctx.RegisterResource("gcp:identityplatform/tenant:Tenant", name, args, &resource, opts...)
@@ -145,4 +147,43 @@ type TenantArgs struct {
 
 func (TenantArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*tenantArgs)(nil)).Elem()
+}
+
+type TenantInput interface {
+	pulumi.Input
+
+	ToTenantOutput() TenantOutput
+	ToTenantOutputWithContext(ctx context.Context) TenantOutput
+}
+
+func (Tenant) ElementType() reflect.Type {
+	return reflect.TypeOf((*Tenant)(nil)).Elem()
+}
+
+func (i Tenant) ToTenantOutput() TenantOutput {
+	return i.ToTenantOutputWithContext(context.Background())
+}
+
+func (i Tenant) ToTenantOutputWithContext(ctx context.Context) TenantOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TenantOutput)
+}
+
+type TenantOutput struct {
+	*pulumi.OutputState
+}
+
+func (TenantOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TenantOutput)(nil)).Elem()
+}
+
+func (o TenantOutput) ToTenantOutput() TenantOutput {
+	return o
+}
+
+func (o TenantOutput) ToTenantOutputWithContext(ctx context.Context) TenantOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TenantOutput{})
 }

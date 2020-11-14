@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -62,14 +63,15 @@ type SSLCertificate struct {
 // NewSSLCertificate registers a new resource with the given unique name, arguments, and options.
 func NewSSLCertificate(ctx *pulumi.Context,
 	name string, args *SSLCertificateArgs, opts ...pulumi.ResourceOption) (*SSLCertificate, error) {
-	if args == nil || args.Certificate == nil {
-		return nil, errors.New("missing required argument 'Certificate'")
-	}
-	if args == nil || args.PrivateKey == nil {
-		return nil, errors.New("missing required argument 'PrivateKey'")
-	}
 	if args == nil {
-		args = &SSLCertificateArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Certificate == nil {
+		return nil, errors.New("invalid value for required argument 'Certificate'")
+	}
+	if args.PrivateKey == nil {
+		return nil, errors.New("invalid value for required argument 'PrivateKey'")
 	}
 	var resource SSLCertificate
 	err := ctx.RegisterResource("gcp:compute/sSLCertificate:SSLCertificate", name, args, &resource, opts...)
@@ -219,4 +221,43 @@ type SSLCertificateArgs struct {
 
 func (SSLCertificateArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*sslcertificateArgs)(nil)).Elem()
+}
+
+type SSLCertificateInput interface {
+	pulumi.Input
+
+	ToSSLCertificateOutput() SSLCertificateOutput
+	ToSSLCertificateOutputWithContext(ctx context.Context) SSLCertificateOutput
+}
+
+func (SSLCertificate) ElementType() reflect.Type {
+	return reflect.TypeOf((*SSLCertificate)(nil)).Elem()
+}
+
+func (i SSLCertificate) ToSSLCertificateOutput() SSLCertificateOutput {
+	return i.ToSSLCertificateOutputWithContext(context.Background())
+}
+
+func (i SSLCertificate) ToSSLCertificateOutputWithContext(ctx context.Context) SSLCertificateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SSLCertificateOutput)
+}
+
+type SSLCertificateOutput struct {
+	*pulumi.OutputState
+}
+
+func (SSLCertificateOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SSLCertificateOutput)(nil)).Elem()
+}
+
+func (o SSLCertificateOutput) ToSSLCertificateOutput() SSLCertificateOutput {
+	return o
+}
+
+func (o SSLCertificateOutput) ToSSLCertificateOutputWithContext(ctx context.Context) SSLCertificateOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SSLCertificateOutput{})
 }

@@ -4,6 +4,7 @@
 package pubsub
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -37,14 +38,15 @@ type TopicIAMPolicy struct {
 // NewTopicIAMPolicy registers a new resource with the given unique name, arguments, and options.
 func NewTopicIAMPolicy(ctx *pulumi.Context,
 	name string, args *TopicIAMPolicyArgs, opts ...pulumi.ResourceOption) (*TopicIAMPolicy, error) {
-	if args == nil || args.PolicyData == nil {
-		return nil, errors.New("missing required argument 'PolicyData'")
-	}
-	if args == nil || args.Topic == nil {
-		return nil, errors.New("missing required argument 'Topic'")
-	}
 	if args == nil {
-		args = &TopicIAMPolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.PolicyData == nil {
+		return nil, errors.New("invalid value for required argument 'PolicyData'")
+	}
+	if args.Topic == nil {
+		return nil, errors.New("invalid value for required argument 'Topic'")
 	}
 	var resource TopicIAMPolicy
 	err := ctx.RegisterResource("gcp:pubsub/topicIAMPolicy:TopicIAMPolicy", name, args, &resource, opts...)
@@ -122,4 +124,43 @@ type TopicIAMPolicyArgs struct {
 
 func (TopicIAMPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*topicIAMPolicyArgs)(nil)).Elem()
+}
+
+type TopicIAMPolicyInput interface {
+	pulumi.Input
+
+	ToTopicIAMPolicyOutput() TopicIAMPolicyOutput
+	ToTopicIAMPolicyOutputWithContext(ctx context.Context) TopicIAMPolicyOutput
+}
+
+func (TopicIAMPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*TopicIAMPolicy)(nil)).Elem()
+}
+
+func (i TopicIAMPolicy) ToTopicIAMPolicyOutput() TopicIAMPolicyOutput {
+	return i.ToTopicIAMPolicyOutputWithContext(context.Background())
+}
+
+func (i TopicIAMPolicy) ToTopicIAMPolicyOutputWithContext(ctx context.Context) TopicIAMPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TopicIAMPolicyOutput)
+}
+
+type TopicIAMPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (TopicIAMPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TopicIAMPolicyOutput)(nil)).Elem()
+}
+
+func (o TopicIAMPolicyOutput) ToTopicIAMPolicyOutput() TopicIAMPolicyOutput {
+	return o
+}
+
+func (o TopicIAMPolicyOutput) ToTopicIAMPolicyOutputWithContext(ctx context.Context) TopicIAMPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TopicIAMPolicyOutput{})
 }

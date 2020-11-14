@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -95,11 +96,12 @@ type InstanceFromMachineImage struct {
 // NewInstanceFromMachineImage registers a new resource with the given unique name, arguments, and options.
 func NewInstanceFromMachineImage(ctx *pulumi.Context,
 	name string, args *InstanceFromMachineImageArgs, opts ...pulumi.ResourceOption) (*InstanceFromMachineImage, error) {
-	if args == nil || args.SourceMachineImage == nil {
-		return nil, errors.New("missing required argument 'SourceMachineImage'")
-	}
 	if args == nil {
-		args = &InstanceFromMachineImageArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.SourceMachineImage == nil {
+		return nil, errors.New("invalid value for required argument 'SourceMachineImage'")
 	}
 	var resource InstanceFromMachineImage
 	err := ctx.RegisterResource("gcp:compute/instanceFromMachineImage:InstanceFromMachineImage", name, args, &resource, opts...)
@@ -409,4 +411,43 @@ type InstanceFromMachineImageArgs struct {
 
 func (InstanceFromMachineImageArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*instanceFromMachineImageArgs)(nil)).Elem()
+}
+
+type InstanceFromMachineImageInput interface {
+	pulumi.Input
+
+	ToInstanceFromMachineImageOutput() InstanceFromMachineImageOutput
+	ToInstanceFromMachineImageOutputWithContext(ctx context.Context) InstanceFromMachineImageOutput
+}
+
+func (InstanceFromMachineImage) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceFromMachineImage)(nil)).Elem()
+}
+
+func (i InstanceFromMachineImage) ToInstanceFromMachineImageOutput() InstanceFromMachineImageOutput {
+	return i.ToInstanceFromMachineImageOutputWithContext(context.Background())
+}
+
+func (i InstanceFromMachineImage) ToInstanceFromMachineImageOutputWithContext(ctx context.Context) InstanceFromMachineImageOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromMachineImageOutput)
+}
+
+type InstanceFromMachineImageOutput struct {
+	*pulumi.OutputState
+}
+
+func (InstanceFromMachineImageOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceFromMachineImageOutput)(nil)).Elem()
+}
+
+func (o InstanceFromMachineImageOutput) ToInstanceFromMachineImageOutput() InstanceFromMachineImageOutput {
+	return o
+}
+
+func (o InstanceFromMachineImageOutput) ToInstanceFromMachineImageOutputWithContext(ctx context.Context) InstanceFromMachineImageOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(InstanceFromMachineImageOutput{})
 }

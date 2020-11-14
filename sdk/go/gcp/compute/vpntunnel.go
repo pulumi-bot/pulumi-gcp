@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -100,11 +101,12 @@ type VPNTunnel struct {
 // NewVPNTunnel registers a new resource with the given unique name, arguments, and options.
 func NewVPNTunnel(ctx *pulumi.Context,
 	name string, args *VPNTunnelArgs, opts ...pulumi.ResourceOption) (*VPNTunnel, error) {
-	if args == nil || args.SharedSecret == nil {
-		return nil, errors.New("missing required argument 'SharedSecret'")
-	}
 	if args == nil {
-		args = &VPNTunnelArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.SharedSecret == nil {
+		return nil, errors.New("invalid value for required argument 'SharedSecret'")
 	}
 	var resource VPNTunnel
 	err := ctx.RegisterResource("gcp:compute/vPNTunnel:VPNTunnel", name, args, &resource, opts...)
@@ -398,4 +400,43 @@ type VPNTunnelArgs struct {
 
 func (VPNTunnelArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*vpntunnelArgs)(nil)).Elem()
+}
+
+type VPNTunnelInput interface {
+	pulumi.Input
+
+	ToVPNTunnelOutput() VPNTunnelOutput
+	ToVPNTunnelOutputWithContext(ctx context.Context) VPNTunnelOutput
+}
+
+func (VPNTunnel) ElementType() reflect.Type {
+	return reflect.TypeOf((*VPNTunnel)(nil)).Elem()
+}
+
+func (i VPNTunnel) ToVPNTunnelOutput() VPNTunnelOutput {
+	return i.ToVPNTunnelOutputWithContext(context.Background())
+}
+
+func (i VPNTunnel) ToVPNTunnelOutputWithContext(ctx context.Context) VPNTunnelOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VPNTunnelOutput)
+}
+
+type VPNTunnelOutput struct {
+	*pulumi.OutputState
+}
+
+func (VPNTunnelOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VPNTunnelOutput)(nil)).Elem()
+}
+
+func (o VPNTunnelOutput) ToVPNTunnelOutput() VPNTunnelOutput {
+	return o
+}
+
+func (o VPNTunnelOutput) ToVPNTunnelOutputWithContext(ctx context.Context) VPNTunnelOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(VPNTunnelOutput{})
 }
