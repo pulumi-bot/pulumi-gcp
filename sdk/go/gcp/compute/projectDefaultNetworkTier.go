@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -16,6 +17,14 @@ import (
 //
 // For more information, see,
 // [the Project API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/projects/setDefaultNetworkTier).
+//
+// ## Import
+//
+// This resource can be imported using the project ID
+//
+// ```sh
+//  $ pulumi import gcp:compute/projectDefaultNetworkTier:ProjectDefaultNetworkTier default project-id`
+// ```
 type ProjectDefaultNetworkTier struct {
 	pulumi.CustomResourceState
 
@@ -100,4 +109,43 @@ type ProjectDefaultNetworkTierArgs struct {
 
 func (ProjectDefaultNetworkTierArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*projectDefaultNetworkTierArgs)(nil)).Elem()
+}
+
+type ProjectDefaultNetworkTierInput interface {
+	pulumi.Input
+
+	ToProjectDefaultNetworkTierOutput() ProjectDefaultNetworkTierOutput
+	ToProjectDefaultNetworkTierOutputWithContext(ctx context.Context) ProjectDefaultNetworkTierOutput
+}
+
+func (ProjectDefaultNetworkTier) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProjectDefaultNetworkTier)(nil)).Elem()
+}
+
+func (i ProjectDefaultNetworkTier) ToProjectDefaultNetworkTierOutput() ProjectDefaultNetworkTierOutput {
+	return i.ToProjectDefaultNetworkTierOutputWithContext(context.Background())
+}
+
+func (i ProjectDefaultNetworkTier) ToProjectDefaultNetworkTierOutputWithContext(ctx context.Context) ProjectDefaultNetworkTierOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProjectDefaultNetworkTierOutput)
+}
+
+type ProjectDefaultNetworkTierOutput struct {
+	*pulumi.OutputState
+}
+
+func (ProjectDefaultNetworkTierOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProjectDefaultNetworkTierOutput)(nil)).Elem()
+}
+
+func (o ProjectDefaultNetworkTierOutput) ToProjectDefaultNetworkTierOutput() ProjectDefaultNetworkTierOutput {
+	return o
+}
+
+func (o ProjectDefaultNetworkTierOutput) ToProjectDefaultNetworkTierOutputWithContext(ctx context.Context) ProjectDefaultNetworkTierOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ProjectDefaultNetworkTierOutput{})
 }

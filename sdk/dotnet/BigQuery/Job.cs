@@ -20,6 +20,34 @@ namespace Pulumi.Gcp.BigQuery
     ///     * [BigQuery Jobs Intro](https://cloud.google.com/bigquery/docs/jobs-overview)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Job can be imported using any of these accepted formats
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:bigquery/job:Job default projects/{{project}}/jobs/{{job_id}}/location/{{location}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:bigquery/job:Job default projects/{{project}}/jobs/{{job_id}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:bigquery/job:Job default {{project}}/{{job_id}}/{{location}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:bigquery/job:Job default {{job_id}}/{{location}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:bigquery/job:Job default {{project}}/{{job_id}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:bigquery/job:Job default {{job_id}}
+    /// ```
     /// </summary>
     public partial class Job : Pulumi.CustomResource
     {

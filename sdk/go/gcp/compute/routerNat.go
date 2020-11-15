@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -19,6 +20,26 @@ import (
 //     * [Google Cloud Router](https://cloud.google.com/router/docs/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// RouterNat can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:compute/routerNat:RouterNat default projects/{{project}}/regions/{{region}}/routers/{{router}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/routerNat:RouterNat default {{project}}/{{region}}/{{router}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/routerNat:RouterNat default {{region}}/{{router}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/routerNat:RouterNat default {{router}}/{{name}}
+// ```
 type RouterNat struct {
 	pulumi.CustomResourceState
 
@@ -334,4 +355,43 @@ type RouterNatArgs struct {
 
 func (RouterNatArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*routerNatArgs)(nil)).Elem()
+}
+
+type RouterNatInput interface {
+	pulumi.Input
+
+	ToRouterNatOutput() RouterNatOutput
+	ToRouterNatOutputWithContext(ctx context.Context) RouterNatOutput
+}
+
+func (RouterNat) ElementType() reflect.Type {
+	return reflect.TypeOf((*RouterNat)(nil)).Elem()
+}
+
+func (i RouterNat) ToRouterNatOutput() RouterNatOutput {
+	return i.ToRouterNatOutputWithContext(context.Background())
+}
+
+func (i RouterNat) ToRouterNatOutputWithContext(ctx context.Context) RouterNatOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RouterNatOutput)
+}
+
+type RouterNatOutput struct {
+	*pulumi.OutputState
+}
+
+func (RouterNatOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RouterNatOutput)(nil)).Elem()
+}
+
+func (o RouterNatOutput) ToRouterNatOutput() RouterNatOutput {
+	return o
+}
+
+func (o RouterNatOutput) ToRouterNatOutputWithContext(ctx context.Context) RouterNatOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RouterNatOutput{})
 }

@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
+import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
@@ -17,6 +16,22 @@ import * as utilities from "../utilities";
  *     * [Managing Subscriptions](https://cloud.google.com/pubsub/docs/admin#managing_subscriptions)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Subscription can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import gcp:pubsub/subscription:Subscription default projects/{{project}}/subscriptions/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:pubsub/subscription:Subscription default {{project}}/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:pubsub/subscription:Subscription default {{name}}
+ * ```
  */
 export class Subscription extends pulumi.CustomResource {
     /**

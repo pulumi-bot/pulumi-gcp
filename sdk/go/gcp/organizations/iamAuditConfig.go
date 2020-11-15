@@ -4,6 +4,7 @@
 package organizations
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -11,6 +12,14 @@ import (
 )
 
 // Allows management of audit logging config for a given service for a Google Cloud Platform Organization.
+//
+// ## Import
+//
+// IAM audit config imports use the identifier of the resource in question and the service, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:organizations/iamAuditConfig:IamAuditConfig config "your-organization-id foo.googleapis.com"
+// ```
 type IamAuditConfig struct {
 	pulumi.CustomResourceState
 
@@ -107,4 +116,43 @@ type IamAuditConfigArgs struct {
 
 func (IamAuditConfigArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*iamAuditConfigArgs)(nil)).Elem()
+}
+
+type IamAuditConfigInput interface {
+	pulumi.Input
+
+	ToIamAuditConfigOutput() IamAuditConfigOutput
+	ToIamAuditConfigOutputWithContext(ctx context.Context) IamAuditConfigOutput
+}
+
+func (IamAuditConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*IamAuditConfig)(nil)).Elem()
+}
+
+func (i IamAuditConfig) ToIamAuditConfigOutput() IamAuditConfigOutput {
+	return i.ToIamAuditConfigOutputWithContext(context.Background())
+}
+
+func (i IamAuditConfig) ToIamAuditConfigOutputWithContext(ctx context.Context) IamAuditConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IamAuditConfigOutput)
+}
+
+type IamAuditConfigOutput struct {
+	*pulumi.OutputState
+}
+
+func (IamAuditConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IamAuditConfigOutput)(nil)).Elem()
+}
+
+func (o IamAuditConfigOutput) ToIamAuditConfigOutput() IamAuditConfigOutput {
+	return o
+}
+
+func (o IamAuditConfigOutput) ToIamAuditConfigOutputWithContext(ctx context.Context) IamAuditConfigOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(IamAuditConfigOutput{})
 }

@@ -4,6 +4,7 @@
 package healthcare
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -19,6 +20,32 @@ import (
 // > **Note:** `healthcare.Hl7StoreIamPolicy` **cannot** be used in conjunction with `healthcare.Hl7StoreIamBinding` and `healthcare.Hl7StoreIamMember` or they will fight over what your policy should be.
 //
 // > **Note:** `healthcare.Hl7StoreIamBinding` resources **can be** used in conjunction with `healthcare.Hl7StoreIamMember` resources **only if** they do not grant privilege to the same role.
+//
+// ## Import
+//
+// IAM member imports use space-delimited identifiers; the resource in question, the role, and the account.
+//
+// This member resource can be imported using the `hl7_v2_store_id`, role, and account e.g.
+//
+// ```sh
+//  $ pulumi import gcp:healthcare/hl7StoreIamBinding:Hl7StoreIamBinding hl7_v2_store_iam "your-project-id/location-name/dataset-name/hl7-v2-store-name roles/viewer user:foo@example.com"
+// ```
+//
+//  IAM binding imports use space-delimited identifiers; the resource in question and the role.
+//
+// This binding resource can be imported using the `hl7_v2_store_id` and role, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:healthcare/hl7StoreIamBinding:Hl7StoreIamBinding hl7_v2_store_iam "your-project-id/location-name/dataset-name/hl7-v2-store-name roles/viewer"
+// ```
+//
+//  IAM policy imports use the identifier of the resource in question.
+//
+// This policy resource can be imported using the `hl7_v2_store_id`, role, and account e.g.
+//
+// ```sh
+//  $ pulumi import gcp:healthcare/hl7StoreIamBinding:Hl7StoreIamBinding hl7_v2_store_iam your-project-id/location-name/dataset-name/hl7-v2-store-name
+// ```
 type Hl7StoreIamBinding struct {
 	pulumi.CustomResourceState
 
@@ -140,4 +167,43 @@ type Hl7StoreIamBindingArgs struct {
 
 func (Hl7StoreIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*hl7StoreIamBindingArgs)(nil)).Elem()
+}
+
+type Hl7StoreIamBindingInput interface {
+	pulumi.Input
+
+	ToHl7StoreIamBindingOutput() Hl7StoreIamBindingOutput
+	ToHl7StoreIamBindingOutputWithContext(ctx context.Context) Hl7StoreIamBindingOutput
+}
+
+func (Hl7StoreIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*Hl7StoreIamBinding)(nil)).Elem()
+}
+
+func (i Hl7StoreIamBinding) ToHl7StoreIamBindingOutput() Hl7StoreIamBindingOutput {
+	return i.ToHl7StoreIamBindingOutputWithContext(context.Background())
+}
+
+func (i Hl7StoreIamBinding) ToHl7StoreIamBindingOutputWithContext(ctx context.Context) Hl7StoreIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Hl7StoreIamBindingOutput)
+}
+
+type Hl7StoreIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (Hl7StoreIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*Hl7StoreIamBindingOutput)(nil)).Elem()
+}
+
+func (o Hl7StoreIamBindingOutput) ToHl7StoreIamBindingOutput() Hl7StoreIamBindingOutput {
+	return o
+}
+
+func (o Hl7StoreIamBindingOutput) ToHl7StoreIamBindingOutputWithContext(ctx context.Context) Hl7StoreIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(Hl7StoreIamBindingOutput{})
 }

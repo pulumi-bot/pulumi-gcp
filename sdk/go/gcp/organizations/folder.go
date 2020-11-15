@@ -4,6 +4,7 @@
 package organizations
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -23,6 +24,18 @@ import (
 // resource must have `roles/resourcemanager.folderCreator`. See the
 // [Access Control for Folders Using IAM](https://cloud.google.com/resource-manager/docs/access-control-folders)
 // doc for more information.
+//
+// ## Import
+//
+// Folders can be imported using the folder's id, e.g. # Both syntaxes are valid
+//
+// ```sh
+//  $ pulumi import gcp:organizations/folder:Folder department1 1234567
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:organizations/folder:Folder department1 folders/1234567
+// ```
 type Folder struct {
 	pulumi.CustomResourceState
 
@@ -137,4 +150,43 @@ type FolderArgs struct {
 
 func (FolderArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*folderArgs)(nil)).Elem()
+}
+
+type FolderInput interface {
+	pulumi.Input
+
+	ToFolderOutput() FolderOutput
+	ToFolderOutputWithContext(ctx context.Context) FolderOutput
+}
+
+func (Folder) ElementType() reflect.Type {
+	return reflect.TypeOf((*Folder)(nil)).Elem()
+}
+
+func (i Folder) ToFolderOutput() FolderOutput {
+	return i.ToFolderOutputWithContext(context.Background())
+}
+
+func (i Folder) ToFolderOutputWithContext(ctx context.Context) FolderOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FolderOutput)
+}
+
+type FolderOutput struct {
+	*pulumi.OutputState
+}
+
+func (FolderOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FolderOutput)(nil)).Elem()
+}
+
+func (o FolderOutput) ToFolderOutput() FolderOutput {
+	return o
+}
+
+func (o FolderOutput) ToFolderOutputWithContext(ctx context.Context) FolderOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(FolderOutput{})
 }

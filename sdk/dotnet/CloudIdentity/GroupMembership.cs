@@ -19,6 +19,14 @@ namespace Pulumi.Gcp.CloudIdentity
     /// `billing_project` you defined.
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// GroupMembership can be imported using any of these accepted formats
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:cloudidentity/groupMembership:GroupMembership default {{name}}
+    /// ```
     /// </summary>
     public partial class GroupMembership : Pulumi.CustomResource
     {

@@ -6,6 +6,10 @@ import * as utilities from "../utilities";
 
 /**
  * Creates a new Google SQL SSL Cert on a Google SQL Instance. For more information, see the [official documentation](https://cloud.google.com/sql/), or the [JSON API](https://cloud.google.com/sql/docs/mysql/admin-api/v1beta4/sslCerts).
+ *
+ * ## Import
+ *
+ * Since the contents of the certificate cannot be accessed after its creation, this resource cannot be imported.
  */
 export class SslCert extends pulumi.CustomResource {
     /**

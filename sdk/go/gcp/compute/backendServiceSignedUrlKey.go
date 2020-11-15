@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -22,6 +23,10 @@ import (
 // state as plain-text.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// This resource does not support import.
 type BackendServiceSignedUrlKey struct {
 	pulumi.CustomResourceState
 
@@ -134,4 +139,43 @@ type BackendServiceSignedUrlKeyArgs struct {
 
 func (BackendServiceSignedUrlKeyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*backendServiceSignedUrlKeyArgs)(nil)).Elem()
+}
+
+type BackendServiceSignedUrlKeyInput interface {
+	pulumi.Input
+
+	ToBackendServiceSignedUrlKeyOutput() BackendServiceSignedUrlKeyOutput
+	ToBackendServiceSignedUrlKeyOutputWithContext(ctx context.Context) BackendServiceSignedUrlKeyOutput
+}
+
+func (BackendServiceSignedUrlKey) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackendServiceSignedUrlKey)(nil)).Elem()
+}
+
+func (i BackendServiceSignedUrlKey) ToBackendServiceSignedUrlKeyOutput() BackendServiceSignedUrlKeyOutput {
+	return i.ToBackendServiceSignedUrlKeyOutputWithContext(context.Background())
+}
+
+func (i BackendServiceSignedUrlKey) ToBackendServiceSignedUrlKeyOutputWithContext(ctx context.Context) BackendServiceSignedUrlKeyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceSignedUrlKeyOutput)
+}
+
+type BackendServiceSignedUrlKeyOutput struct {
+	*pulumi.OutputState
+}
+
+func (BackendServiceSignedUrlKeyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackendServiceSignedUrlKeyOutput)(nil)).Elem()
+}
+
+func (o BackendServiceSignedUrlKeyOutput) ToBackendServiceSignedUrlKeyOutput() BackendServiceSignedUrlKeyOutput {
+	return o
+}
+
+func (o BackendServiceSignedUrlKeyOutput) ToBackendServiceSignedUrlKeyOutputWithContext(ctx context.Context) BackendServiceSignedUrlKeyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(BackendServiceSignedUrlKeyOutput{})
 }

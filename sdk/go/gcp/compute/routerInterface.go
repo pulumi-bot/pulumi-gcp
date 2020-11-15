@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -14,6 +15,14 @@ import (
 // [the official documentation](https://cloud.google.com/compute/docs/cloudrouter)
 // and
 // [API](https://cloud.google.com/compute/docs/reference/latest/routers).
+//
+// ## Import
+//
+// Router interfaces can be imported using the `region`, `router`, and `name`, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:compute/routerInterface:RouterInterface foobar us-central1/router-1/interface-1
+// ```
 type RouterInterface struct {
 	pulumi.CustomResourceState
 
@@ -193,4 +202,43 @@ type RouterInterfaceArgs struct {
 
 func (RouterInterfaceArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*routerInterfaceArgs)(nil)).Elem()
+}
+
+type RouterInterfaceInput interface {
+	pulumi.Input
+
+	ToRouterInterfaceOutput() RouterInterfaceOutput
+	ToRouterInterfaceOutputWithContext(ctx context.Context) RouterInterfaceOutput
+}
+
+func (RouterInterface) ElementType() reflect.Type {
+	return reflect.TypeOf((*RouterInterface)(nil)).Elem()
+}
+
+func (i RouterInterface) ToRouterInterfaceOutput() RouterInterfaceOutput {
+	return i.ToRouterInterfaceOutputWithContext(context.Background())
+}
+
+func (i RouterInterface) ToRouterInterfaceOutputWithContext(ctx context.Context) RouterInterfaceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RouterInterfaceOutput)
+}
+
+type RouterInterfaceOutput struct {
+	*pulumi.OutputState
+}
+
+func (RouterInterfaceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RouterInterfaceOutput)(nil)).Elem()
+}
+
+func (o RouterInterfaceOutput) ToRouterInterfaceOutput() RouterInterfaceOutput {
+	return o
+}
+
+func (o RouterInterfaceOutput) ToRouterInterfaceOutputWithContext(ctx context.Context) RouterInterfaceOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RouterInterfaceOutput{})
 }

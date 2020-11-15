@@ -36,6 +36,22 @@ class Network(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        Network can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:compute/network:Network default projects/{{project}}/global/networks/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/network:Network default {{project}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/network:Network default {{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] auto_create_subnetworks: When set to `true`, the network is created in "auto subnet mode" and

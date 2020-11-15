@@ -27,6 +27,10 @@ namespace Pulumi.Gcp.Kms
     /// state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// This resource does not support import.
     /// </summary>
     public partial class SecretCiphertext : Pulumi.CustomResource
     {

@@ -46,6 +46,14 @@ class Entry(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        Entry can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:datacatalog/entry:Entry default {{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: Entry description, which can consist of several sentences or paragraphs that describe entry contents.

@@ -4,6 +4,7 @@
 package iap
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -19,6 +20,30 @@ import (
 // > **Note:** `iap.WebIamPolicy` **cannot** be used in conjunction with `iap.WebIamBinding` and `iap.WebIamMember` or they will fight over what your policy should be.
 //
 // > **Note:** `iap.WebIamBinding` resources **can be** used in conjunction with `iap.WebIamMember` resources **only if** they do not grant privilege to the same role.
+//
+// ## Import
+//
+// For all import syntaxes, the "resource in question" can take any of the following forms* projects/{{project}}/iap_web * {{project}} Any variables not passed in the import command will be taken from the provider configuration. Identity-Aware Proxy web IAM resources can be imported using the resource identifiers, role, and member. IAM member imports use space-delimited identifiersthe resource in question, the role, and the member identity, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:iap/webIamPolicy:WebIamPolicy editor "projects/{{project}}/iap_web roles/iap.httpsResourceAccessor user:jane@example.com"
+// ```
+//
+//  IAM binding imports use space-delimited identifiersthe resource in question and the role, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:iap/webIamPolicy:WebIamPolicy editor "projects/{{project}}/iap_web roles/iap.httpsResourceAccessor"
+// ```
+//
+//  IAM policy imports use the identifier of the resource in question, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:iap/webIamPolicy:WebIamPolicy editor projects/{{project}}/iap_web
+// ```
+//
+//  -> **Custom Roles**If you're importing a IAM resource with a custom role, make sure to use the
+//
+// full name of the custom role, e.g. `[projects/my-project|organizations/my-org]/roles/my-custom-role`.
 type WebIamPolicy struct {
 	pulumi.CustomResourceState
 
@@ -109,4 +134,43 @@ type WebIamPolicyArgs struct {
 
 func (WebIamPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*webIamPolicyArgs)(nil)).Elem()
+}
+
+type WebIamPolicyInput interface {
+	pulumi.Input
+
+	ToWebIamPolicyOutput() WebIamPolicyOutput
+	ToWebIamPolicyOutputWithContext(ctx context.Context) WebIamPolicyOutput
+}
+
+func (WebIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebIamPolicy)(nil)).Elem()
+}
+
+func (i WebIamPolicy) ToWebIamPolicyOutput() WebIamPolicyOutput {
+	return i.ToWebIamPolicyOutputWithContext(context.Background())
+}
+
+func (i WebIamPolicy) ToWebIamPolicyOutputWithContext(ctx context.Context) WebIamPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebIamPolicyOutput)
+}
+
+type WebIamPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (WebIamPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebIamPolicyOutput)(nil)).Elem()
+}
+
+func (o WebIamPolicyOutput) ToWebIamPolicyOutput() WebIamPolicyOutput {
+	return o
+}
+
+func (o WebIamPolicyOutput) ToWebIamPolicyOutputWithContext(ctx context.Context) WebIamPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(WebIamPolicyOutput{})
 }

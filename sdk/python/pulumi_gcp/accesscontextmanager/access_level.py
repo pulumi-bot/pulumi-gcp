@@ -44,6 +44,14 @@ class AccessLevel(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        AccessLevel can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:accesscontextmanager/accessLevel:AccessLevel default {{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['AccessLevelBasicArgs']] basic: A set of predefined conditions for the access level and a combining function.

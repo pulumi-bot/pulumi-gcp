@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -14,6 +15,24 @@ import (
 // [the official documentation](https://cloud.google.com/compute/docs/instance-templates)
 // and
 // [API](https://cloud.google.com/compute/docs/reference/latest/instanceTemplates).
+//
+// ## Import
+//
+// Instance templates can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:compute/instanceTemplate:InstanceTemplate default projects/{{project}}/global/instanceTemplates/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/instanceTemplate:InstanceTemplate default {{project}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/instanceTemplate:InstanceTemplate default {{name}}
+// ```
+//
+//  [custom-vm-types]https://cloud.google.com/dataproc/docs/concepts/compute/custom-machine-types [network-tier]https://cloud.google.com/network-tiers/docs/overview
 type InstanceTemplate struct {
 	pulumi.CustomResourceState
 
@@ -419,4 +438,43 @@ type InstanceTemplateArgs struct {
 
 func (InstanceTemplateArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*instanceTemplateArgs)(nil)).Elem()
+}
+
+type InstanceTemplateInput interface {
+	pulumi.Input
+
+	ToInstanceTemplateOutput() InstanceTemplateOutput
+	ToInstanceTemplateOutputWithContext(ctx context.Context) InstanceTemplateOutput
+}
+
+func (InstanceTemplate) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceTemplate)(nil)).Elem()
+}
+
+func (i InstanceTemplate) ToInstanceTemplateOutput() InstanceTemplateOutput {
+	return i.ToInstanceTemplateOutputWithContext(context.Background())
+}
+
+func (i InstanceTemplate) ToInstanceTemplateOutputWithContext(ctx context.Context) InstanceTemplateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceTemplateOutput)
+}
+
+type InstanceTemplateOutput struct {
+	*pulumi.OutputState
+}
+
+func (InstanceTemplateOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceTemplateOutput)(nil)).Elem()
+}
+
+func (o InstanceTemplateOutput) ToInstanceTemplateOutput() InstanceTemplateOutput {
+	return o
+}
+
+func (o InstanceTemplateOutput) ToInstanceTemplateOutputWithContext(ctx context.Context) InstanceTemplateOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(InstanceTemplateOutput{})
 }

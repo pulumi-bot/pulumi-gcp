@@ -4,6 +4,7 @@
 package bigquery
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -19,6 +20,22 @@ import (
 //     * [Introduction to Reservations](https://cloud.google.com/bigquery/docs/reservations-intro)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Reservation can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:bigquery/reservation:Reservation default projects/{{project}}/locations/{{location}}/reservations/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:bigquery/reservation:Reservation default {{project}}/{{location}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:bigquery/reservation:Reservation default {{location}}/{{name}}
+// ```
 type Reservation struct {
 	pulumi.CustomResourceState
 
@@ -148,4 +165,43 @@ type ReservationArgs struct {
 
 func (ReservationArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*reservationArgs)(nil)).Elem()
+}
+
+type ReservationInput interface {
+	pulumi.Input
+
+	ToReservationOutput() ReservationOutput
+	ToReservationOutputWithContext(ctx context.Context) ReservationOutput
+}
+
+func (Reservation) ElementType() reflect.Type {
+	return reflect.TypeOf((*Reservation)(nil)).Elem()
+}
+
+func (i Reservation) ToReservationOutput() ReservationOutput {
+	return i.ToReservationOutputWithContext(context.Background())
+}
+
+func (i Reservation) ToReservationOutputWithContext(ctx context.Context) ReservationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ReservationOutput)
+}
+
+type ReservationOutput struct {
+	*pulumi.OutputState
+}
+
+func (ReservationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ReservationOutput)(nil)).Elem()
+}
+
+func (o ReservationOutput) ToReservationOutput() ReservationOutput {
+	return o
+}
+
+func (o ReservationOutput) ToReservationOutputWithContext(ctx context.Context) ReservationOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ReservationOutput{})
 }

@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
@@ -20,6 +21,26 @@ import (
 //     * [Sole-Tenant Nodes](https://cloud.google.com/compute/docs/nodes/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// NodeTemplate can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:compute/nodeTemplate:NodeTemplate default projects/{{project}}/regions/{{region}}/nodeTemplates/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/nodeTemplate:NodeTemplate default {{project}}/{{region}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/nodeTemplate:NodeTemplate default {{region}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/nodeTemplate:NodeTemplate default {{name}}
+// ```
 type NodeTemplate struct {
 	pulumi.CustomResourceState
 
@@ -233,4 +254,43 @@ type NodeTemplateArgs struct {
 
 func (NodeTemplateArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*nodeTemplateArgs)(nil)).Elem()
+}
+
+type NodeTemplateInput interface {
+	pulumi.Input
+
+	ToNodeTemplateOutput() NodeTemplateOutput
+	ToNodeTemplateOutputWithContext(ctx context.Context) NodeTemplateOutput
+}
+
+func (NodeTemplate) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodeTemplate)(nil)).Elem()
+}
+
+func (i NodeTemplate) ToNodeTemplateOutput() NodeTemplateOutput {
+	return i.ToNodeTemplateOutputWithContext(context.Background())
+}
+
+func (i NodeTemplate) ToNodeTemplateOutputWithContext(ctx context.Context) NodeTemplateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodeTemplateOutput)
+}
+
+type NodeTemplateOutput struct {
+	*pulumi.OutputState
+}
+
+func (NodeTemplateOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodeTemplateOutput)(nil)).Elem()
+}
+
+func (o NodeTemplateOutput) ToNodeTemplateOutput() NodeTemplateOutput {
+	return o
+}
+
+func (o NodeTemplateOutput) ToNodeTemplateOutputWithContext(ctx context.Context) NodeTemplateOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(NodeTemplateOutput{})
 }

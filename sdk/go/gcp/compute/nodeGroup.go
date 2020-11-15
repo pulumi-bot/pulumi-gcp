@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -24,6 +25,26 @@ import (
 // the provider to delete and recreate the node group.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// NodeGroup can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:compute/nodeGroup:NodeGroup default projects/{{project}}/zones/{{zone}}/nodeGroups/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/nodeGroup:NodeGroup default {{project}}/{{zone}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/nodeGroup:NodeGroup default {{zone}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/nodeGroup:NodeGroup default {{name}}
+// ```
 type NodeGroup struct {
 	pulumi.CustomResourceState
 
@@ -188,4 +209,43 @@ type NodeGroupArgs struct {
 
 func (NodeGroupArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*nodeGroupArgs)(nil)).Elem()
+}
+
+type NodeGroupInput interface {
+	pulumi.Input
+
+	ToNodeGroupOutput() NodeGroupOutput
+	ToNodeGroupOutputWithContext(ctx context.Context) NodeGroupOutput
+}
+
+func (NodeGroup) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodeGroup)(nil)).Elem()
+}
+
+func (i NodeGroup) ToNodeGroupOutput() NodeGroupOutput {
+	return i.ToNodeGroupOutputWithContext(context.Background())
+}
+
+func (i NodeGroup) ToNodeGroupOutputWithContext(ctx context.Context) NodeGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodeGroupOutput)
+}
+
+type NodeGroupOutput struct {
+	*pulumi.OutputState
+}
+
+func (NodeGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodeGroupOutput)(nil)).Elem()
+}
+
+func (o NodeGroupOutput) ToNodeGroupOutput() NodeGroupOutput {
+	return o
+}
+
+func (o NodeGroupOutput) ToNodeGroupOutputWithContext(ctx context.Context) NodeGroupOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(NodeGroupOutput{})
 }

@@ -4,6 +4,7 @@
 package servicedirectory
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -19,6 +20,30 @@ import (
 // > **Note:** `servicedirectory.ServiceIamPolicy` **cannot** be used in conjunction with `servicedirectory.ServiceIamBinding` and `servicedirectory.ServiceIamMember` or they will fight over what your policy should be.
 //
 // > **Note:** `servicedirectory.ServiceIamBinding` resources **can be** used in conjunction with `servicedirectory.ServiceIamMember` resources **only if** they do not grant privilege to the same role.
+//
+// ## Import
+//
+// For all import syntaxes, the "resource in question" can take any of the following forms* projects/{{project}}/locations/{{location}}/namespaces/{{namespace_id}}/services/{{service_id}} * {{project}}/{{location}}/{{namespace_id}}/{{service_id}} * {{location}}/{{namespace_id}}/{{service_id}} Any variables not passed in the import command will be taken from the provider configuration. Service Directory service IAM resources can be imported using the resource identifiers, role, and member. IAM member imports use space-delimited identifiersthe resource in question, the role, and the member identity, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:servicedirectory/serviceIamMember:ServiceIamMember editor "projects/{{project}}/locations/{{location}}/namespaces/{{namespace_id}}/services/{{service_id}} roles/viewer user:jane@example.com"
+// ```
+//
+//  IAM binding imports use space-delimited identifiersthe resource in question and the role, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:servicedirectory/serviceIamMember:ServiceIamMember editor "projects/{{project}}/locations/{{location}}/namespaces/{{namespace_id}}/services/{{service_id}} roles/viewer"
+// ```
+//
+//  IAM policy imports use the identifier of the resource in question, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:servicedirectory/serviceIamMember:ServiceIamMember editor projects/{{project}}/locations/{{location}}/namespaces/{{namespace_id}}/services/{{service_id}}
+// ```
+//
+//  -> **Custom Roles**If you're importing a IAM resource with a custom role, make sure to use the
+//
+// full name of the custom role, e.g. `[projects/my-project|organizations/my-org]/roles/my-custom-role`.
 type ServiceIamMember struct {
 	pulumi.CustomResourceState
 
@@ -122,4 +147,43 @@ type ServiceIamMemberArgs struct {
 
 func (ServiceIamMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*serviceIamMemberArgs)(nil)).Elem()
+}
+
+type ServiceIamMemberInput interface {
+	pulumi.Input
+
+	ToServiceIamMemberOutput() ServiceIamMemberOutput
+	ToServiceIamMemberOutputWithContext(ctx context.Context) ServiceIamMemberOutput
+}
+
+func (ServiceIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceIamMember)(nil)).Elem()
+}
+
+func (i ServiceIamMember) ToServiceIamMemberOutput() ServiceIamMemberOutput {
+	return i.ToServiceIamMemberOutputWithContext(context.Background())
+}
+
+func (i ServiceIamMember) ToServiceIamMemberOutputWithContext(ctx context.Context) ServiceIamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceIamMemberOutput)
+}
+
+type ServiceIamMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (ServiceIamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceIamMemberOutput)(nil)).Elem()
+}
+
+func (o ServiceIamMemberOutput) ToServiceIamMemberOutput() ServiceIamMemberOutput {
+	return o
+}
+
+func (o ServiceIamMemberOutput) ToServiceIamMemberOutputWithContext(ctx context.Context) ServiceIamMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ServiceIamMemberOutput{})
 }

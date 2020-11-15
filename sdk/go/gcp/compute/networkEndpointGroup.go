@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -32,6 +33,26 @@ import (
 //     * [Official Documentation](https://cloud.google.com/load-balancing/docs/negs/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// NetworkEndpointGroup can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:compute/networkEndpointGroup:NetworkEndpointGroup default projects/{{project}}/zones/{{zone}}/networkEndpointGroups/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/networkEndpointGroup:NetworkEndpointGroup default {{project}}/{{zone}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/networkEndpointGroup:NetworkEndpointGroup default {{zone}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/networkEndpointGroup:NetworkEndpointGroup default {{name}}
+// ```
 type NetworkEndpointGroup struct {
 	pulumi.CustomResourceState
 
@@ -238,4 +259,43 @@ type NetworkEndpointGroupArgs struct {
 
 func (NetworkEndpointGroupArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*networkEndpointGroupArgs)(nil)).Elem()
+}
+
+type NetworkEndpointGroupInput interface {
+	pulumi.Input
+
+	ToNetworkEndpointGroupOutput() NetworkEndpointGroupOutput
+	ToNetworkEndpointGroupOutputWithContext(ctx context.Context) NetworkEndpointGroupOutput
+}
+
+func (NetworkEndpointGroup) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetworkEndpointGroup)(nil)).Elem()
+}
+
+func (i NetworkEndpointGroup) ToNetworkEndpointGroupOutput() NetworkEndpointGroupOutput {
+	return i.ToNetworkEndpointGroupOutputWithContext(context.Background())
+}
+
+func (i NetworkEndpointGroup) ToNetworkEndpointGroupOutputWithContext(ctx context.Context) NetworkEndpointGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NetworkEndpointGroupOutput)
+}
+
+type NetworkEndpointGroupOutput struct {
+	*pulumi.OutputState
+}
+
+func (NetworkEndpointGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetworkEndpointGroupOutput)(nil)).Elem()
+}
+
+func (o NetworkEndpointGroupOutput) ToNetworkEndpointGroupOutput() NetworkEndpointGroupOutput {
+	return o
+}
+
+func (o NetworkEndpointGroupOutput) ToNetworkEndpointGroupOutputWithContext(ctx context.Context) NetworkEndpointGroupOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(NetworkEndpointGroupOutput{})
 }

@@ -4,6 +4,7 @@
 package pubsub
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -19,6 +20,30 @@ import (
 // > **Note:** `pubsub.TopicIAMPolicy` **cannot** be used in conjunction with `pubsub.TopicIAMBinding` and `pubsub.TopicIAMMember` or they will fight over what your policy should be.
 //
 // > **Note:** `pubsub.TopicIAMBinding` resources **can be** used in conjunction with `pubsub.TopicIAMMember` resources **only if** they do not grant privilege to the same role.
+//
+// ## Import
+//
+// For all import syntaxes, the "resource in question" can take any of the following forms* projects/{{project}}/topics/{{name}} * {{project}}/{{name}} * {{name}} Any variables not passed in the import command will be taken from the provider configuration. Cloud Pub/Sub topic IAM resources can be imported using the resource identifiers, role, and member. IAM member imports use space-delimited identifiersthe resource in question, the role, and the member identity, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:pubsub/topicIAMPolicy:TopicIAMPolicy editor "projects/{{project}}/topics/{{topic}} roles/viewer user:jane@example.com"
+// ```
+//
+//  IAM binding imports use space-delimited identifiersthe resource in question and the role, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:pubsub/topicIAMPolicy:TopicIAMPolicy editor "projects/{{project}}/topics/{{topic}} roles/viewer"
+// ```
+//
+//  IAM policy imports use the identifier of the resource in question, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:pubsub/topicIAMPolicy:TopicIAMPolicy editor projects/{{project}}/topics/{{topic}}
+// ```
+//
+//  -> **Custom Roles**If you're importing a IAM resource with a custom role, make sure to use the
+//
+// full name of the custom role, e.g. `[projects/my-project|organizations/my-org]/roles/my-custom-role`.
 type TopicIAMPolicy struct {
 	pulumi.CustomResourceState
 
@@ -122,4 +147,43 @@ type TopicIAMPolicyArgs struct {
 
 func (TopicIAMPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*topicIAMPolicyArgs)(nil)).Elem()
+}
+
+type TopicIAMPolicyInput interface {
+	pulumi.Input
+
+	ToTopicIAMPolicyOutput() TopicIAMPolicyOutput
+	ToTopicIAMPolicyOutputWithContext(ctx context.Context) TopicIAMPolicyOutput
+}
+
+func (TopicIAMPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*TopicIAMPolicy)(nil)).Elem()
+}
+
+func (i TopicIAMPolicy) ToTopicIAMPolicyOutput() TopicIAMPolicyOutput {
+	return i.ToTopicIAMPolicyOutputWithContext(context.Background())
+}
+
+func (i TopicIAMPolicy) ToTopicIAMPolicyOutputWithContext(ctx context.Context) TopicIAMPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TopicIAMPolicyOutput)
+}
+
+type TopicIAMPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (TopicIAMPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TopicIAMPolicyOutput)(nil)).Elem()
+}
+
+func (o TopicIAMPolicyOutput) ToTopicIAMPolicyOutput() TopicIAMPolicyOutput {
+	return o
+}
+
+func (o TopicIAMPolicyOutput) ToTopicIAMPolicyOutputWithContext(ctx context.Context) TopicIAMPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TopicIAMPolicyOutput{})
 }

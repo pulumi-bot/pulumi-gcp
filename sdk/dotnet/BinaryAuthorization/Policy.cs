@@ -19,6 +19,18 @@ namespace Pulumi.Gcp.BinaryAuthorization
     ///     * [Official Documentation](https://cloud.google.com/binary-authorization/)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Policy can be imported using any of these accepted formats
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:binaryauthorization/policy:Policy default projects/{{project}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:binaryauthorization/policy:Policy default {{project}}
+    /// ```
     /// </summary>
     public partial class Policy : Pulumi.CustomResource
     {

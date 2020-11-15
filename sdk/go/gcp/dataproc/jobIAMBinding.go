@@ -4,6 +4,7 @@
 package dataproc
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -19,6 +20,26 @@ import (
 // > **Note:** `dataproc.JobIAMPolicy` **cannot** be used in conjunction with `dataproc.JobIAMBinding` and `dataproc.JobIAMMember` or they will fight over what your policy should be. In addition, be careful not to accidentally unset ownership of the job as `dataproc.JobIAMPolicy` replaces the entire policy.
 //
 // > **Note:** `dataproc.JobIAMBinding` resources **can be** used in conjunction with `dataproc.JobIAMMember` resources **only if** they do not grant privilege to the same role.
+//
+// ## Import
+//
+// Job IAM resources can be imported using the project, region, job id, role and/or member.
+//
+// ```sh
+//  $ pulumi import gcp:dataproc/jobIAMBinding:JobIAMBinding editor "projects/{project}/regions/{region}/jobs/{job_id}"
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:dataproc/jobIAMBinding:JobIAMBinding editor "projects/{project}/regions/{region}/jobs/{job_id} roles/editor"
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:dataproc/jobIAMBinding:JobIAMBinding editor "projects/{project}/regions/{region}/jobs/{job_id} roles/editor user:jane@example.com"
+// ```
+//
+//  -> **Custom Roles**If you're importing a IAM resource with a custom role, make sure to use the
+//
+// full name of the custom role, e.g. `[projects/my-project|organizations/my-org]/roles/my-custom-role`.
 type JobIAMBinding struct {
 	pulumi.CustomResourceState
 
@@ -150,4 +171,43 @@ type JobIAMBindingArgs struct {
 
 func (JobIAMBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*jobIAMBindingArgs)(nil)).Elem()
+}
+
+type JobIAMBindingInput interface {
+	pulumi.Input
+
+	ToJobIAMBindingOutput() JobIAMBindingOutput
+	ToJobIAMBindingOutputWithContext(ctx context.Context) JobIAMBindingOutput
+}
+
+func (JobIAMBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*JobIAMBinding)(nil)).Elem()
+}
+
+func (i JobIAMBinding) ToJobIAMBindingOutput() JobIAMBindingOutput {
+	return i.ToJobIAMBindingOutputWithContext(context.Background())
+}
+
+func (i JobIAMBinding) ToJobIAMBindingOutputWithContext(ctx context.Context) JobIAMBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(JobIAMBindingOutput)
+}
+
+type JobIAMBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (JobIAMBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*JobIAMBindingOutput)(nil)).Elem()
+}
+
+func (o JobIAMBindingOutput) ToJobIAMBindingOutput() JobIAMBindingOutput {
+	return o
+}
+
+func (o JobIAMBindingOutput) ToJobIAMBindingOutputWithContext(ctx context.Context) JobIAMBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(JobIAMBindingOutput{})
 }

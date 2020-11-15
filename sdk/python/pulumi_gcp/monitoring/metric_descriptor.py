@@ -41,6 +41,14 @@ class MetricDescriptor(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        MetricDescriptor can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:monitoring/metricDescriptor:MetricDescriptor default {{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: A human-readable description for the label.

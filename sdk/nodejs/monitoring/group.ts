@@ -17,6 +17,14 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/monitoring/groups/)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Group can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import gcp:monitoring/group:Group default {{name}}
+ * ```
  */
 export class Group extends pulumi.CustomResource {
     /**

@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -17,6 +18,14 @@ import (
 // For more information, see,
 // [the Project API documentation](https://cloud.google.com/compute/docs/reference/latest/projects),
 // where the Shared VPC feature is referred to by its former name "XPN".
+//
+// ## Import
+//
+// Google Compute Engine Shared VPC host project feature can be imported using the `project`, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:compute/sharedVPCHostProject:SharedVPCHostProject host host-project-id
+// ```
 type SharedVPCHostProject struct {
 	pulumi.CustomResourceState
 
@@ -81,4 +90,43 @@ type SharedVPCHostProjectArgs struct {
 
 func (SharedVPCHostProjectArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*sharedVPCHostProjectArgs)(nil)).Elem()
+}
+
+type SharedVPCHostProjectInput interface {
+	pulumi.Input
+
+	ToSharedVPCHostProjectOutput() SharedVPCHostProjectOutput
+	ToSharedVPCHostProjectOutputWithContext(ctx context.Context) SharedVPCHostProjectOutput
+}
+
+func (SharedVPCHostProject) ElementType() reflect.Type {
+	return reflect.TypeOf((*SharedVPCHostProject)(nil)).Elem()
+}
+
+func (i SharedVPCHostProject) ToSharedVPCHostProjectOutput() SharedVPCHostProjectOutput {
+	return i.ToSharedVPCHostProjectOutputWithContext(context.Background())
+}
+
+func (i SharedVPCHostProject) ToSharedVPCHostProjectOutputWithContext(ctx context.Context) SharedVPCHostProjectOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SharedVPCHostProjectOutput)
+}
+
+type SharedVPCHostProjectOutput struct {
+	*pulumi.OutputState
+}
+
+func (SharedVPCHostProjectOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SharedVPCHostProjectOutput)(nil)).Elem()
+}
+
+func (o SharedVPCHostProjectOutput) ToSharedVPCHostProjectOutput() SharedVPCHostProjectOutput {
+	return o
+}
+
+func (o SharedVPCHostProjectOutput) ToSharedVPCHostProjectOutputWithContext(ctx context.Context) SharedVPCHostProjectOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SharedVPCHostProjectOutput{})
 }
