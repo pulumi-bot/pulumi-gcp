@@ -2,12 +2,19 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
+import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
  * Allows management of audit logging config for a given service for a Google Cloud Platform Organization.
+ *
+ * ## Import
+ *
+ * IAM audit config imports use the identifier of the resource in question and the service, e.g.
+ *
+ * ```sh
+ *  $ pulumi import gcp:organizations/iamAuditConfig:IamAuditConfig config "your-organization-id foo.googleapis.com"
+ * ```
  */
 export class IamAuditConfig extends pulumi.CustomResource {
     /**

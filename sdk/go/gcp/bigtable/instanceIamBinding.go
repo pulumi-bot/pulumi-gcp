@@ -4,6 +4,7 @@
 package bigtable
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -19,6 +20,26 @@ import (
 // > **Note:** `bigtable.InstanceIamPolicy` **cannot** be used in conjunction with `bigtable.InstanceIamBinding` and `bigtable.InstanceIamMember` or they will fight over what your policy should be. In addition, be careful not to accidentally unset ownership of the instance as `bigtable.InstanceIamPolicy` replaces the entire policy.
 //
 // > **Note:** `bigtable.InstanceIamBinding` resources **can be** used in conjunction with `bigtable.InstanceIamMember` resources **only if** they do not grant privilege to the same role.
+//
+// ## Import
+//
+// Instance IAM resources can be imported using the project, instance name, role and/or member.
+//
+// ```sh
+//  $ pulumi import gcp:bigtable/instanceIamBinding:InstanceIamBinding editor "projects/{project}/instances/{instance}"
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:bigtable/instanceIamBinding:InstanceIamBinding editor "projects/{project}/instances/{instance} roles/editor"
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:bigtable/instanceIamBinding:InstanceIamBinding editor "projects/{project}/instances/{instance} roles/editor user:jane@example.com"
+// ```
+//
+//  -> **Custom Roles**If you're importing a IAM resource with a custom role, make sure to use the
+//
+// full name of the custom role, e.g. `[projects/my-project|organizations/my-org]/roles/my-custom-role`.
 type InstanceIamBinding struct {
 	pulumi.CustomResourceState
 
@@ -140,4 +161,43 @@ type InstanceIamBindingArgs struct {
 
 func (InstanceIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*instanceIamBindingArgs)(nil)).Elem()
+}
+
+type InstanceIamBindingInput interface {
+	pulumi.Input
+
+	ToInstanceIamBindingOutput() InstanceIamBindingOutput
+	ToInstanceIamBindingOutputWithContext(ctx context.Context) InstanceIamBindingOutput
+}
+
+func (InstanceIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceIamBinding)(nil)).Elem()
+}
+
+func (i InstanceIamBinding) ToInstanceIamBindingOutput() InstanceIamBindingOutput {
+	return i.ToInstanceIamBindingOutputWithContext(context.Background())
+}
+
+func (i InstanceIamBinding) ToInstanceIamBindingOutputWithContext(ctx context.Context) InstanceIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceIamBindingOutput)
+}
+
+type InstanceIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (InstanceIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceIamBindingOutput)(nil)).Elem()
+}
+
+func (o InstanceIamBindingOutput) ToInstanceIamBindingOutput() InstanceIamBindingOutput {
+	return o
+}
+
+func (o InstanceIamBindingOutput) ToInstanceIamBindingOutputWithContext(ctx context.Context) InstanceIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(InstanceIamBindingOutput{})
 }

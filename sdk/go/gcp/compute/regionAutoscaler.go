@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -23,6 +24,26 @@ import (
 //     * [Autoscaling Groups of Instances](https://cloud.google.com/compute/docs/autoscaler/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// RegionAutoscaler can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:compute/regionAutoscaler:RegionAutoscaler default projects/{{project}}/regions/{{region}}/autoscalers/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/regionAutoscaler:RegionAutoscaler default {{project}}/{{region}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/regionAutoscaler:RegionAutoscaler default {{region}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/regionAutoscaler:RegionAutoscaler default {{name}}
+// ```
 type RegionAutoscaler struct {
 	pulumi.CustomResourceState
 
@@ -202,4 +223,43 @@ type RegionAutoscalerArgs struct {
 
 func (RegionAutoscalerArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*regionAutoscalerArgs)(nil)).Elem()
+}
+
+type RegionAutoscalerInput interface {
+	pulumi.Input
+
+	ToRegionAutoscalerOutput() RegionAutoscalerOutput
+	ToRegionAutoscalerOutputWithContext(ctx context.Context) RegionAutoscalerOutput
+}
+
+func (RegionAutoscaler) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionAutoscaler)(nil)).Elem()
+}
+
+func (i RegionAutoscaler) ToRegionAutoscalerOutput() RegionAutoscalerOutput {
+	return i.ToRegionAutoscalerOutputWithContext(context.Background())
+}
+
+func (i RegionAutoscaler) ToRegionAutoscalerOutputWithContext(ctx context.Context) RegionAutoscalerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegionAutoscalerOutput)
+}
+
+type RegionAutoscalerOutput struct {
+	*pulumi.OutputState
+}
+
+func (RegionAutoscalerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionAutoscalerOutput)(nil)).Elem()
+}
+
+func (o RegionAutoscalerOutput) ToRegionAutoscalerOutput() RegionAutoscalerOutput {
+	return o
+}
+
+func (o RegionAutoscalerOutput) ToRegionAutoscalerOutputWithContext(ctx context.Context) RegionAutoscalerOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RegionAutoscalerOutput{})
 }

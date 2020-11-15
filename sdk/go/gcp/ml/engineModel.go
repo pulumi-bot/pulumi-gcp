@@ -4,6 +4,7 @@
 package ml
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
@@ -15,6 +16,22 @@ import (
 // ready to receive prediction requests. The model itself is just a container.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Model can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:ml/engineModel:EngineModel default projects/{{project}}/models/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:ml/engineModel:EngineModel default {{project}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:ml/engineModel:EngineModel default {{name}}
+// ```
 type EngineModel struct {
 	pulumi.CustomResourceState
 
@@ -166,4 +183,43 @@ type EngineModelArgs struct {
 
 func (EngineModelArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*engineModelArgs)(nil)).Elem()
+}
+
+type EngineModelInput interface {
+	pulumi.Input
+
+	ToEngineModelOutput() EngineModelOutput
+	ToEngineModelOutputWithContext(ctx context.Context) EngineModelOutput
+}
+
+func (EngineModel) ElementType() reflect.Type {
+	return reflect.TypeOf((*EngineModel)(nil)).Elem()
+}
+
+func (i EngineModel) ToEngineModelOutput() EngineModelOutput {
+	return i.ToEngineModelOutputWithContext(context.Background())
+}
+
+func (i EngineModel) ToEngineModelOutputWithContext(ctx context.Context) EngineModelOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EngineModelOutput)
+}
+
+type EngineModelOutput struct {
+	*pulumi.OutputState
+}
+
+func (EngineModelOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EngineModelOutput)(nil)).Elem()
+}
+
+func (o EngineModelOutput) ToEngineModelOutput() EngineModelOutput {
+	return o
+}
+
+func (o EngineModelOutput) ToEngineModelOutputWithContext(ctx context.Context) EngineModelOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(EngineModelOutput{})
 }

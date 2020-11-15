@@ -40,6 +40,14 @@ class Connection(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        Connection can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:bigquery/connection:Connection default {{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['ConnectionCloudSqlArgs']] cloud_sql: Cloud SQL properties.

@@ -4,6 +4,7 @@
 package cloudscheduler
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
@@ -23,6 +24,26 @@ import (
 //     * [Official Documentation](https://cloud.google.com/scheduler/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Job can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:cloudscheduler/job:Job default projects/{{project}}/locations/{{region}}/jobs/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:cloudscheduler/job:Job default {{project}}/{{region}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:cloudscheduler/job:Job default {{region}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:cloudscheduler/job:Job default {{name}}
+// ```
 type Job struct {
 	pulumi.CustomResourceState
 
@@ -294,4 +315,43 @@ type JobArgs struct {
 
 func (JobArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*jobArgs)(nil)).Elem()
+}
+
+type JobInput interface {
+	pulumi.Input
+
+	ToJobOutput() JobOutput
+	ToJobOutputWithContext(ctx context.Context) JobOutput
+}
+
+func (Job) ElementType() reflect.Type {
+	return reflect.TypeOf((*Job)(nil)).Elem()
+}
+
+func (i Job) ToJobOutput() JobOutput {
+	return i.ToJobOutputWithContext(context.Background())
+}
+
+func (i Job) ToJobOutputWithContext(ctx context.Context) JobOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(JobOutput)
+}
+
+type JobOutput struct {
+	*pulumi.OutputState
+}
+
+func (JobOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*JobOutput)(nil)).Elem()
+}
+
+func (o JobOutput) ToJobOutput() JobOutput {
+	return o
+}
+
+func (o JobOutput) ToJobOutputWithContext(ctx context.Context) JobOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(JobOutput{})
 }

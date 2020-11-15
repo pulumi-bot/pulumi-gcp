@@ -4,6 +4,7 @@
 package kms
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -23,6 +24,22 @@ import (
 //     * [Creating a key ring](https://cloud.google.com/kms/docs/creating-keys#create_a_key_ring)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// KeyRing can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:kms/keyRing:KeyRing default projects/{{project}}/locations/{{location}}/keyRings/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:kms/keyRing:KeyRing default {{project}}/{{location}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:kms/keyRing:KeyRing default {{location}}/{{name}}
+// ```
 type KeyRing struct {
 	pulumi.CustomResourceState
 
@@ -120,4 +137,43 @@ type KeyRingArgs struct {
 
 func (KeyRingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*keyRingArgs)(nil)).Elem()
+}
+
+type KeyRingInput interface {
+	pulumi.Input
+
+	ToKeyRingOutput() KeyRingOutput
+	ToKeyRingOutputWithContext(ctx context.Context) KeyRingOutput
+}
+
+func (KeyRing) ElementType() reflect.Type {
+	return reflect.TypeOf((*KeyRing)(nil)).Elem()
+}
+
+func (i KeyRing) ToKeyRingOutput() KeyRingOutput {
+	return i.ToKeyRingOutputWithContext(context.Background())
+}
+
+func (i KeyRing) ToKeyRingOutputWithContext(ctx context.Context) KeyRingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KeyRingOutput)
+}
+
+type KeyRingOutput struct {
+	*pulumi.OutputState
+}
+
+func (KeyRingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*KeyRingOutput)(nil)).Elem()
+}
+
+func (o KeyRingOutput) ToKeyRingOutput() KeyRingOutput {
+	return o
+}
+
+func (o KeyRingOutput) ToKeyRingOutputWithContext(ctx context.Context) KeyRingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(KeyRingOutput{})
 }

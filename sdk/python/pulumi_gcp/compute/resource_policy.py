@@ -30,6 +30,26 @@ class ResourcePolicy(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        ResourcePolicy can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:compute/resourcePolicy:ResourcePolicy default projects/{{project}}/regions/{{region}}/resourcePolicies/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/resourcePolicy:ResourcePolicy default {{project}}/{{region}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/resourcePolicy:ResourcePolicy default {{region}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/resourcePolicy:ResourcePolicy default {{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['ResourcePolicyGroupPlacementPolicyArgs']] group_placement_policy: Policy for creating snapshots of persistent disks.

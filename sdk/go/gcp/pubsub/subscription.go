@@ -4,6 +4,7 @@
 package pubsub
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -20,6 +21,22 @@ import (
 //     * [Managing Subscriptions](https://cloud.google.com/pubsub/docs/admin#managing_subscriptions)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Subscription can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:pubsub/subscription:Subscription default projects/{{project}}/subscriptions/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:pubsub/subscription:Subscription default {{project}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:pubsub/subscription:Subscription default {{name}}
+// ```
 type Subscription struct {
 	pulumi.CustomResourceState
 
@@ -457,4 +474,43 @@ type SubscriptionArgs struct {
 
 func (SubscriptionArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*subscriptionArgs)(nil)).Elem()
+}
+
+type SubscriptionInput interface {
+	pulumi.Input
+
+	ToSubscriptionOutput() SubscriptionOutput
+	ToSubscriptionOutputWithContext(ctx context.Context) SubscriptionOutput
+}
+
+func (Subscription) ElementType() reflect.Type {
+	return reflect.TypeOf((*Subscription)(nil)).Elem()
+}
+
+func (i Subscription) ToSubscriptionOutput() SubscriptionOutput {
+	return i.ToSubscriptionOutputWithContext(context.Background())
+}
+
+func (i Subscription) ToSubscriptionOutputWithContext(ctx context.Context) SubscriptionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SubscriptionOutput)
+}
+
+type SubscriptionOutput struct {
+	*pulumi.OutputState
+}
+
+func (SubscriptionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SubscriptionOutput)(nil)).Elem()
+}
+
+func (o SubscriptionOutput) ToSubscriptionOutput() SubscriptionOutput {
+	return o
+}
+
+func (o SubscriptionOutput) ToSubscriptionOutputWithContext(ctx context.Context) SubscriptionOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SubscriptionOutput{})
 }

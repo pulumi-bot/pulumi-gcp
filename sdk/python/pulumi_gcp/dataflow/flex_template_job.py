@@ -53,6 +53,10 @@ class FlexTemplateJob(pulumi.CustomResource):
         configuration, you may experience a long wait for your `pulumi destroy` to
         complete.
 
+        ## Import
+
+        This resource does not support import.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] container_spec_gcs_path: The GCS path to the Dataflow job Flex
@@ -87,7 +91,7 @@ class FlexTemplateJob(pulumi.CustomResource):
                 raise TypeError("Missing required property 'container_spec_gcs_path'")
             __props__['container_spec_gcs_path'] = container_spec_gcs_path
             if labels is not None:
-                warnings.warn("Deprecated until the API supports this field", DeprecationWarning)
+                warnings.warn("""Deprecated until the API supports this field""", DeprecationWarning)
                 pulumi.log.warn("labels is deprecated: Deprecated until the API supports this field")
             __props__['labels'] = labels
             __props__['name'] = name

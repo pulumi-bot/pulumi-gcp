@@ -4,6 +4,7 @@
 package pubsub
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -19,6 +20,26 @@ import (
 // > **Note:** `pubsub.SubscriptionIAMPolicy` **cannot** be used in conjunction with `pubsub.SubscriptionIAMBinding` and `pubsub.SubscriptionIAMMember` or they will fight over what your policy should be.
 //
 // > **Note:** `pubsub.SubscriptionIAMBinding` resources **can be** used in conjunction with `pubsub.SubscriptionIAMMember` resources **only if** they do not grant privilege to the same role.
+//
+// ## Import
+//
+// Pubsub subscription IAM resources can be imported using the project, subscription name, role and member.
+//
+// ```sh
+//  $ pulumi import gcp:pubsub/subscriptionIAMBinding:SubscriptionIAMBinding editor projects/{your-project-id}/subscriptions/{your-subscription-name}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:pubsub/subscriptionIAMBinding:SubscriptionIAMBinding editor "projects/{your-project-id}/subscriptions/{your-subscription-name} roles/editor"
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:pubsub/subscriptionIAMBinding:SubscriptionIAMBinding editor "projects/{your-project-id}/subscriptions/{your-subscription-name} roles/editor jane@example.com"
+// ```
+//
+//  -> **Custom Roles**If you're importing a IAM resource with a custom role, make sure to use the
+//
+// full name of the custom role, e.g. `[projects/my-project|organizations/my-org]/roles/my-custom-role`.
 type SubscriptionIAMBinding struct {
 	pulumi.CustomResourceState
 
@@ -140,4 +161,43 @@ type SubscriptionIAMBindingArgs struct {
 
 func (SubscriptionIAMBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*subscriptionIAMBindingArgs)(nil)).Elem()
+}
+
+type SubscriptionIAMBindingInput interface {
+	pulumi.Input
+
+	ToSubscriptionIAMBindingOutput() SubscriptionIAMBindingOutput
+	ToSubscriptionIAMBindingOutputWithContext(ctx context.Context) SubscriptionIAMBindingOutput
+}
+
+func (SubscriptionIAMBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*SubscriptionIAMBinding)(nil)).Elem()
+}
+
+func (i SubscriptionIAMBinding) ToSubscriptionIAMBindingOutput() SubscriptionIAMBindingOutput {
+	return i.ToSubscriptionIAMBindingOutputWithContext(context.Background())
+}
+
+func (i SubscriptionIAMBinding) ToSubscriptionIAMBindingOutputWithContext(ctx context.Context) SubscriptionIAMBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SubscriptionIAMBindingOutput)
+}
+
+type SubscriptionIAMBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (SubscriptionIAMBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SubscriptionIAMBindingOutput)(nil)).Elem()
+}
+
+func (o SubscriptionIAMBindingOutput) ToSubscriptionIAMBindingOutput() SubscriptionIAMBindingOutput {
+	return o
+}
+
+func (o SubscriptionIAMBindingOutput) ToSubscriptionIAMBindingOutputWithContext(ctx context.Context) SubscriptionIAMBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SubscriptionIAMBindingOutput{})
 }

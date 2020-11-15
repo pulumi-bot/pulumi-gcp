@@ -16,6 +16,26 @@ import * as utilities from "../utilities";
  * > **Warning:** It is strongly recommended to set `lifecycle { preventDestroy = true }` on databases in order to prevent accidental data loss.
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Database can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import gcp:spanner/database:Database default projects/{{project}}/instances/{{instance}}/databases/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:spanner/database:Database default instances/{{instance}}/databases/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:spanner/database:Database default {{project}}/{{instance}}/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:spanner/database:Database default {{instance}}/{{name}}
+ * ```
  */
 export class Database extends pulumi.CustomResource {
     /**

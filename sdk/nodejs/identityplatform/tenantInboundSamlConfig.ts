@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
+import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
@@ -14,6 +13,22 @@ import * as utilities from "../utilities";
  * the marketplace prior to using this resource.
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * TenantInboundSamlConfig can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import gcp:identityplatform/tenantInboundSamlConfig:TenantInboundSamlConfig default projects/{{project}}/tenants/{{tenant}}/inboundSamlConfigs/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:identityplatform/tenantInboundSamlConfig:TenantInboundSamlConfig default {{project}}/{{tenant}}/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:identityplatform/tenantInboundSamlConfig:TenantInboundSamlConfig default {{tenant}}/{{name}}
+ * ```
  */
 export class TenantInboundSamlConfig extends pulumi.CustomResource {
     /**

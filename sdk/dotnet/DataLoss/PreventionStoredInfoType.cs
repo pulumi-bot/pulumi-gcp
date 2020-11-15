@@ -19,6 +19,18 @@ namespace Pulumi.Gcp.DataLoss
     ///     * [Official Documentation](https://cloud.google.com/dlp/docs/creating-stored-infotypes)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// StoredInfoType can be imported using any of these accepted formats
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:dataloss/preventionStoredInfoType:PreventionStoredInfoType default {{parent}}/storedInfoTypes/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:dataloss/preventionStoredInfoType:PreventionStoredInfoType default {{parent}}/{{name}}
+    /// ```
     /// </summary>
     public partial class PreventionStoredInfoType : Pulumi.CustomResource
     {

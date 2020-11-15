@@ -52,6 +52,24 @@ class Instance(pulumi.CustomResource):
         and
         [API](https://cloud.google.com/compute/docs/reference/latest/instances).
 
+        ## Import
+
+        Instances can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:compute/instance:Instance default projects/{{project}}/zones/{{zone}}/instances/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/instance:Instance default {{project}}/{{zone}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/instance:Instance default {{name}}
+        ```
+
+         [custom-vm-types]https://cloud.google.com/dataproc/docs/concepts/compute/custom-machine-types [network-tier]https://cloud.google.com/network-tiers/docs/overview [extended-custom-vm-type]https://cloud.google.com/compute/docs/instances/creating-instance-with-custom-machine-type#extendedmemory
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] allow_stopping_for_update: If true, allows this prvider to stop the instance to update its properties.

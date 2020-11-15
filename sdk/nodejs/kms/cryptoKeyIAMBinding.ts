@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
+import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
@@ -22,6 +21,32 @@ import * as utilities from "../utilities";
  * With IAM Conditions:
  *
  * With IAM Conditions:
+ *
+ * ## Import
+ *
+ * IAM member imports use space-delimited identifiers; the resource in question, the role, and the account.
+ *
+ * This member resource can be imported using the `crypto_key_id`, role, and member identity e.g.
+ *
+ * ```sh
+ *  $ pulumi import gcp:kms/cryptoKeyIAMBinding:CryptoKeyIAMBinding crypto_key "your-project-id/location-name/key-ring-name/key-name roles/viewer user:foo@example.com"
+ * ```
+ *
+ *  IAM binding imports use space-delimited identifiers; first the resource in question and then the role.
+ *
+ * These bindings can be imported using the `crypto_key_id` and role, e.g.
+ *
+ * ```sh
+ *  $ pulumi import gcp:kms/cryptoKeyIAMBinding:CryptoKeyIAMBinding crypto_key "your-project-id/location-name/key-ring-name/key-name roles/editor"
+ * ```
+ *
+ *  IAM policy imports use the identifier of the resource in question.
+ *
+ * This policy resource can be imported using the `crypto_key_id`, e.g.
+ *
+ * ```sh
+ *  $ pulumi import gcp:kms/cryptoKeyIAMBinding:CryptoKeyIAMBinding crypto_key your-project-id/location-name/key-ring-name/key-name
+ * ```
  */
 export class CryptoKeyIAMBinding extends pulumi.CustomResource {
     /**

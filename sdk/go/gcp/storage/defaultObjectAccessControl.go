@@ -4,6 +4,7 @@
 package storage
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -31,6 +32,14 @@ import (
 //     * [Official Documentation](https://cloud.google.com/storage/docs/access-control/create-manage-lists)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// DefaultObjectAccessControl can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:storage/defaultObjectAccessControl:DefaultObjectAccessControl default {{bucket}}/{{entity}}
+// ```
 type DefaultObjectAccessControl struct {
 	pulumi.CustomResourceState
 
@@ -206,4 +215,43 @@ type DefaultObjectAccessControlArgs struct {
 
 func (DefaultObjectAccessControlArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*defaultObjectAccessControlArgs)(nil)).Elem()
+}
+
+type DefaultObjectAccessControlInput interface {
+	pulumi.Input
+
+	ToDefaultObjectAccessControlOutput() DefaultObjectAccessControlOutput
+	ToDefaultObjectAccessControlOutputWithContext(ctx context.Context) DefaultObjectAccessControlOutput
+}
+
+func (DefaultObjectAccessControl) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultObjectAccessControl)(nil)).Elem()
+}
+
+func (i DefaultObjectAccessControl) ToDefaultObjectAccessControlOutput() DefaultObjectAccessControlOutput {
+	return i.ToDefaultObjectAccessControlOutputWithContext(context.Background())
+}
+
+func (i DefaultObjectAccessControl) ToDefaultObjectAccessControlOutputWithContext(ctx context.Context) DefaultObjectAccessControlOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultObjectAccessControlOutput)
+}
+
+type DefaultObjectAccessControlOutput struct {
+	*pulumi.OutputState
+}
+
+func (DefaultObjectAccessControlOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultObjectAccessControlOutput)(nil)).Elem()
+}
+
+func (o DefaultObjectAccessControlOutput) ToDefaultObjectAccessControlOutput() DefaultObjectAccessControlOutput {
+	return o
+}
+
+func (o DefaultObjectAccessControlOutput) ToDefaultObjectAccessControlOutputWithContext(ctx context.Context) DefaultObjectAccessControlOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DefaultObjectAccessControlOutput{})
 }

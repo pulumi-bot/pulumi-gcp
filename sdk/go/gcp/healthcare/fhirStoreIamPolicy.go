@@ -4,6 +4,7 @@
 package healthcare
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -19,6 +20,32 @@ import (
 // > **Note:** `healthcare.FhirStoreIamPolicy` **cannot** be used in conjunction with `healthcare.FhirStoreIamBinding` and `healthcare.FhirStoreIamMember` or they will fight over what your policy should be.
 //
 // > **Note:** `healthcare.FhirStoreIamBinding` resources **can be** used in conjunction with `healthcare.FhirStoreIamMember` resources **only if** they do not grant privilege to the same role.
+//
+// ## Import
+//
+// IAM member imports use space-delimited identifiers; the resource in question, the role, and the account.
+//
+// This member resource can be imported using the `fhir_store_id`, role, and account e.g.
+//
+// ```sh
+//  $ pulumi import gcp:healthcare/fhirStoreIamPolicy:FhirStoreIamPolicy fhir_store_iam "your-project-id/location-name/dataset-name/fhir-store-name roles/viewer user:foo@example.com"
+// ```
+//
+//  IAM binding imports use space-delimited identifiers; the resource in question and the role.
+//
+// This binding resource can be imported using the `fhir_store_id` and role, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:healthcare/fhirStoreIamPolicy:FhirStoreIamPolicy fhir_store_iam "your-project-id/location-name/dataset-name/fhir-store-name roles/viewer"
+// ```
+//
+//  IAM policy imports use the identifier of the resource in question.
+//
+// This policy resource can be imported using the `fhir_store_id`, role, and account e.g.
+//
+// ```sh
+//  $ pulumi import gcp:healthcare/fhirStoreIamPolicy:FhirStoreIamPolicy fhir_store_iam your-project-id/location-name/dataset-name/fhir-store-name
+// ```
 type FhirStoreIamPolicy struct {
 	pulumi.CustomResourceState
 
@@ -122,4 +149,43 @@ type FhirStoreIamPolicyArgs struct {
 
 func (FhirStoreIamPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*fhirStoreIamPolicyArgs)(nil)).Elem()
+}
+
+type FhirStoreIamPolicyInput interface {
+	pulumi.Input
+
+	ToFhirStoreIamPolicyOutput() FhirStoreIamPolicyOutput
+	ToFhirStoreIamPolicyOutputWithContext(ctx context.Context) FhirStoreIamPolicyOutput
+}
+
+func (FhirStoreIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*FhirStoreIamPolicy)(nil)).Elem()
+}
+
+func (i FhirStoreIamPolicy) ToFhirStoreIamPolicyOutput() FhirStoreIamPolicyOutput {
+	return i.ToFhirStoreIamPolicyOutputWithContext(context.Background())
+}
+
+func (i FhirStoreIamPolicy) ToFhirStoreIamPolicyOutputWithContext(ctx context.Context) FhirStoreIamPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FhirStoreIamPolicyOutput)
+}
+
+type FhirStoreIamPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (FhirStoreIamPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FhirStoreIamPolicyOutput)(nil)).Elem()
+}
+
+func (o FhirStoreIamPolicyOutput) ToFhirStoreIamPolicyOutput() FhirStoreIamPolicyOutput {
+	return o
+}
+
+func (o FhirStoreIamPolicyOutput) ToFhirStoreIamPolicyOutputWithContext(ctx context.Context) FhirStoreIamPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(FhirStoreIamPolicyOutput{})
 }

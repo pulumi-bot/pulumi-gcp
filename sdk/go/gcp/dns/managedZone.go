@@ -4,6 +4,7 @@
 package dns
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -21,6 +22,22 @@ import (
 //     * [Managing Zones](https://cloud.google.com/dns/zones/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// ManagedZone can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:dns/managedZone:ManagedZone default projects/{{project}}/managedZones/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:dns/managedZone:ManagedZone default {{project}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:dns/managedZone:ManagedZone default {{name}}
+// ```
 type ManagedZone struct {
 	pulumi.CustomResourceState
 
@@ -289,4 +306,43 @@ type ManagedZoneArgs struct {
 
 func (ManagedZoneArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*managedZoneArgs)(nil)).Elem()
+}
+
+type ManagedZoneInput interface {
+	pulumi.Input
+
+	ToManagedZoneOutput() ManagedZoneOutput
+	ToManagedZoneOutputWithContext(ctx context.Context) ManagedZoneOutput
+}
+
+func (ManagedZone) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedZone)(nil)).Elem()
+}
+
+func (i ManagedZone) ToManagedZoneOutput() ManagedZoneOutput {
+	return i.ToManagedZoneOutputWithContext(context.Background())
+}
+
+func (i ManagedZone) ToManagedZoneOutputWithContext(ctx context.Context) ManagedZoneOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedZoneOutput)
+}
+
+type ManagedZoneOutput struct {
+	*pulumi.OutputState
+}
+
+func (ManagedZoneOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedZoneOutput)(nil)).Elem()
+}
+
+func (o ManagedZoneOutput) ToManagedZoneOutput() ManagedZoneOutput {
+	return o
+}
+
+func (o ManagedZoneOutput) ToManagedZoneOutputWithContext(ctx context.Context) ManagedZoneOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ManagedZoneOutput{})
 }

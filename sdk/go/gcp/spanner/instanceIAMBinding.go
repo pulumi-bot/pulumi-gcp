@@ -4,6 +4,7 @@
 package spanner
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -22,6 +23,30 @@ import (
 // > **Note:** `spanner.InstanceIAMPolicy` **cannot** be used in conjunction with `spanner.InstanceIAMBinding` and `spanner.InstanceIAMMember` or they will fight over what your policy should be.
 //
 // > **Note:** `spanner.InstanceIAMBinding` resources **can be** used in conjunction with `spanner.InstanceIAMMember` resources **only if** they do not grant privilege to the same role.
+//
+// ## Import
+//
+// For all import syntaxes, the "resource in question" can take any of the following forms* {{project}}/{{name}} * {{name}} (project is taken from provider project) IAM member imports use space-delimited identifiers; the resource in question, the role, and the account, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:spanner/instanceIAMBinding:InstanceIAMBinding instance "project-name/instance-name roles/viewer user:foo@example.com"
+// ```
+//
+//  IAM binding imports use space-delimited identifiers; the resource in question and the role, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:spanner/instanceIAMBinding:InstanceIAMBinding instance "project-name/instance-name roles/viewer"
+// ```
+//
+//  IAM policy imports use the identifier of the resource in question, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:spanner/instanceIAMBinding:InstanceIAMBinding instance project-name/instance-name
+// ```
+//
+//  -> **Custom Roles**If you're importing a IAM resource with a custom role, make sure to use the
+//
+// full name of the custom role, e.g. `[projects/my-project|organizations/my-org]/roles/my-custom-role`.
 type InstanceIAMBinding struct {
 	pulumi.CustomResourceState
 
@@ -143,4 +168,43 @@ type InstanceIAMBindingArgs struct {
 
 func (InstanceIAMBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*instanceIAMBindingArgs)(nil)).Elem()
+}
+
+type InstanceIAMBindingInput interface {
+	pulumi.Input
+
+	ToInstanceIAMBindingOutput() InstanceIAMBindingOutput
+	ToInstanceIAMBindingOutputWithContext(ctx context.Context) InstanceIAMBindingOutput
+}
+
+func (InstanceIAMBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceIAMBinding)(nil)).Elem()
+}
+
+func (i InstanceIAMBinding) ToInstanceIAMBindingOutput() InstanceIAMBindingOutput {
+	return i.ToInstanceIAMBindingOutputWithContext(context.Background())
+}
+
+func (i InstanceIAMBinding) ToInstanceIAMBindingOutputWithContext(ctx context.Context) InstanceIAMBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceIAMBindingOutput)
+}
+
+type InstanceIAMBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (InstanceIAMBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceIAMBindingOutput)(nil)).Elem()
+}
+
+func (o InstanceIAMBindingOutput) ToInstanceIAMBindingOutput() InstanceIAMBindingOutput {
+	return o
+}
+
+func (o InstanceIAMBindingOutput) ToInstanceIAMBindingOutputWithContext(ctx context.Context) InstanceIAMBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(InstanceIAMBindingOutput{})
 }

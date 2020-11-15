@@ -2,14 +2,29 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
+import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
  * App profile is a configuration object describing how Cloud Bigtable should treat traffic from a particular end user application.
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * AppProfile can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import gcp:bigquery/appProfile:AppProfile default projects/{{project}}/instances/{{instance}}/appProfiles/{{app_profile_id}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:bigquery/appProfile:AppProfile default {{project}}/{{instance}}/{{app_profile_id}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:bigquery/appProfile:AppProfile default {{instance}}/{{app_profile_id}}
+ * ```
  */
 export class AppProfile extends pulumi.CustomResource {
     /**

@@ -35,6 +35,22 @@ class Tenant(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        Tenant can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:identityplatform/tenant:Tenant default projects/{{project}}/tenants/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:identityplatform/tenant:Tenant default {{project}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:identityplatform/tenant:Tenant default {{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] allow_password_signup: Whether to allow email/password user authentication.

@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
+import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
@@ -21,6 +20,22 @@ import * as utilities from "../utilities";
  * determined which will require enabling the compute api.
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Storage buckets can be imported using the `name` or
+ *
+ * `project/name`. If the project is not passed to the import command it will be inferred from the provider block or environment variables. If it cannot be inferred it will be queried from the Compute API (this will fail if the API is not enabled). e.g.
+ *
+ * ```sh
+ *  $ pulumi import gcp:storage/bucket:Bucket image-store image-store-bucket
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:storage/bucket:Bucket image-store tf-test-project/image-store-bucket
+ * ```
+ *
+ *  `false` in state. If you've set it to `true` in config, run `terraform apply` to update the value set in state. If you delete this resource before updating the value, objects in the bucket will not be destroyed.
  */
 export class Bucket extends pulumi.CustomResource {
     /**

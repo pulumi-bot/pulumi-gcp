@@ -4,6 +4,7 @@
 package cloudfunctions
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -19,6 +20,30 @@ import (
 // > **Note:** `cloudfunctions.FunctionIamPolicy` **cannot** be used in conjunction with `cloudfunctions.FunctionIamBinding` and `cloudfunctions.FunctionIamMember` or they will fight over what your policy should be.
 //
 // > **Note:** `cloudfunctions.FunctionIamBinding` resources **can be** used in conjunction with `cloudfunctions.FunctionIamMember` resources **only if** they do not grant privilege to the same role.
+//
+// ## Import
+//
+// For all import syntaxes, the "resource in question" can take any of the following forms* projects/{{project}}/locations/{{region}}/functions/{{cloud_function}} * {{project}}/{{region}}/{{cloud_function}} * {{region}}/{{cloud_function}} * {{cloud_function}} Any variables not passed in the import command will be taken from the provider configuration. Cloud Functions cloudfunction IAM resources can be imported using the resource identifiers, role, and member. IAM member imports use space-delimited identifiersthe resource in question, the role, and the member identity, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:cloudfunctions/functionIamMember:FunctionIamMember editor "projects/{{project}}/locations/{{region}}/functions/{{cloud_function}} roles/viewer user:jane@example.com"
+// ```
+//
+//  IAM binding imports use space-delimited identifiersthe resource in question and the role, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:cloudfunctions/functionIamMember:FunctionIamMember editor "projects/{{project}}/locations/{{region}}/functions/{{cloud_function}} roles/viewer"
+// ```
+//
+//  IAM policy imports use the identifier of the resource in question, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:cloudfunctions/functionIamMember:FunctionIamMember editor projects/{{project}}/locations/{{region}}/functions/{{cloud_function}}
+// ```
+//
+//  -> **Custom Roles**If you're importing a IAM resource with a custom role, make sure to use the
+//
+// full name of the custom role, e.g. `[projects/my-project|organizations/my-org]/roles/my-custom-role`.
 type FunctionIamMember struct {
 	pulumi.CustomResourceState
 
@@ -160,4 +185,43 @@ type FunctionIamMemberArgs struct {
 
 func (FunctionIamMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*functionIamMemberArgs)(nil)).Elem()
+}
+
+type FunctionIamMemberInput interface {
+	pulumi.Input
+
+	ToFunctionIamMemberOutput() FunctionIamMemberOutput
+	ToFunctionIamMemberOutputWithContext(ctx context.Context) FunctionIamMemberOutput
+}
+
+func (FunctionIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*FunctionIamMember)(nil)).Elem()
+}
+
+func (i FunctionIamMember) ToFunctionIamMemberOutput() FunctionIamMemberOutput {
+	return i.ToFunctionIamMemberOutputWithContext(context.Background())
+}
+
+func (i FunctionIamMember) ToFunctionIamMemberOutputWithContext(ctx context.Context) FunctionIamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FunctionIamMemberOutput)
+}
+
+type FunctionIamMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (FunctionIamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FunctionIamMemberOutput)(nil)).Elem()
+}
+
+func (o FunctionIamMemberOutput) ToFunctionIamMemberOutput() FunctionIamMemberOutput {
+	return o
+}
+
+func (o FunctionIamMemberOutput) ToFunctionIamMemberOutputWithContext(ctx context.Context) FunctionIamMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(FunctionIamMemberOutput{})
 }

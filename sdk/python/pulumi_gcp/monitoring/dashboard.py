@@ -31,6 +31,18 @@ class Dashboard(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        Dashboard can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:monitoring/dashboard:Dashboard default project/{{project}}/dashboards/{{dashboard_id}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:monitoring/dashboard:Dashboard default {{dashboard_id}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dashboard_json: The JSON representation of a dashboard, following the format at https://cloud.google.com/monitoring/api/ref_v3/rest/v1/projects.dashboards.

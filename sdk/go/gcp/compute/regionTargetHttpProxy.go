@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -20,6 +21,26 @@ import (
 //     * [Official Documentation](https://cloud.google.com/compute/docs/load-balancing/http/target-proxies)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// RegionTargetHttpProxy can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:compute/regionTargetHttpProxy:RegionTargetHttpProxy default projects/{{project}}/regions/{{region}}/targetHttpProxies/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/regionTargetHttpProxy:RegionTargetHttpProxy default {{project}}/{{region}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/regionTargetHttpProxy:RegionTargetHttpProxy default {{region}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/regionTargetHttpProxy:RegionTargetHttpProxy default {{name}}
+// ```
 type RegionTargetHttpProxy struct {
 	pulumi.CustomResourceState
 
@@ -187,4 +208,43 @@ type RegionTargetHttpProxyArgs struct {
 
 func (RegionTargetHttpProxyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*regionTargetHttpProxyArgs)(nil)).Elem()
+}
+
+type RegionTargetHttpProxyInput interface {
+	pulumi.Input
+
+	ToRegionTargetHttpProxyOutput() RegionTargetHttpProxyOutput
+	ToRegionTargetHttpProxyOutputWithContext(ctx context.Context) RegionTargetHttpProxyOutput
+}
+
+func (RegionTargetHttpProxy) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionTargetHttpProxy)(nil)).Elem()
+}
+
+func (i RegionTargetHttpProxy) ToRegionTargetHttpProxyOutput() RegionTargetHttpProxyOutput {
+	return i.ToRegionTargetHttpProxyOutputWithContext(context.Background())
+}
+
+func (i RegionTargetHttpProxy) ToRegionTargetHttpProxyOutputWithContext(ctx context.Context) RegionTargetHttpProxyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegionTargetHttpProxyOutput)
+}
+
+type RegionTargetHttpProxyOutput struct {
+	*pulumi.OutputState
+}
+
+func (RegionTargetHttpProxyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionTargetHttpProxyOutput)(nil)).Elem()
+}
+
+func (o RegionTargetHttpProxyOutput) ToRegionTargetHttpProxyOutput() RegionTargetHttpProxyOutput {
+	return o
+}
+
+func (o RegionTargetHttpProxyOutput) ToRegionTargetHttpProxyOutputWithContext(ctx context.Context) RegionTargetHttpProxyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RegionTargetHttpProxyOutput{})
 }

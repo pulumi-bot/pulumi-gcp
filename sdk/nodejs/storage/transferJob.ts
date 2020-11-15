@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
+import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
@@ -15,6 +14,14 @@ import * as utilities from "../utilities";
  * * [API documentation](https://cloud.google.com/storage-transfer/docs/reference/rest/v1/transferJobs#TransferJob)
  * * How-to Guides
  *     * [Configuring Access to Data Sources and Sinks](https://cloud.google.com/storage-transfer/docs/configure-access)
+ *
+ * ## Import
+ *
+ * Storage buckets can be imported using the Transfer Job's `project` and `name` without the `transferJob/` prefix, e.g.
+ *
+ * ```sh
+ *  $ pulumi import gcp:storage/transferJob:TransferJob nightly-backup-transfer-job my-project-1asd32/8422144862922355674
+ * ```
  */
 export class TransferJob extends pulumi.CustomResource {
     /**

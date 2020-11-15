@@ -18,6 +18,10 @@ import * as utilities from "../utilities";
  *
  * > Want fine-grained control over default object ACLs? Use `gcp.storage.DefaultObjectAccessControl`
  * to control individual role entity pairs.
+ *
+ * ## Import
+ *
+ * This resource does not support import.
  */
 export class DefaultObjectACL extends pulumi.CustomResource {
     /**

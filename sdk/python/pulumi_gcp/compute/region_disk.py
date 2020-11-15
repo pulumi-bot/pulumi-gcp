@@ -60,6 +60,26 @@ class RegionDisk(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        RegionDisk can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:compute/regionDisk:RegionDisk default projects/{{project}}/regions/{{region}}/disks/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/regionDisk:RegionDisk default {{project}}/{{region}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/regionDisk:RegionDisk default {{region}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/regionDisk:RegionDisk default {{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: An optional description of this resource. Provide this property when

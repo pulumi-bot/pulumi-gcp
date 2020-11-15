@@ -53,6 +53,22 @@ class StandardAppVersion(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        StandardAppVersion can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:appengine/standardAppVersion:StandardAppVersion default apps/{{project}}/services/{{service}}/versions/{{version_id}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:appengine/standardAppVersion:StandardAppVersion default {{project}}/{{service}}/{{version_id}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:appengine/standardAppVersion:StandardAppVersion default {{service}}/{{version_id}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['StandardAppVersionAutomaticScalingArgs']] automatic_scaling: Automatic scaling is based on request rate, response latencies, and other application metrics.

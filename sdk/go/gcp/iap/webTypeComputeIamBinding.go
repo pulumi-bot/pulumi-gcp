@@ -4,6 +4,7 @@
 package iap
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -19,6 +20,30 @@ import (
 // > **Note:** `iap.WebTypeComputeIamPolicy` **cannot** be used in conjunction with `iap.WebTypeComputeIamBinding` and `iap.WebTypeComputeIamMember` or they will fight over what your policy should be.
 //
 // > **Note:** `iap.WebTypeComputeIamBinding` resources **can be** used in conjunction with `iap.WebTypeComputeIamMember` resources **only if** they do not grant privilege to the same role.
+//
+// ## Import
+//
+// For all import syntaxes, the "resource in question" can take any of the following forms* projects/{{project}}/iap_web/compute * {{project}} Any variables not passed in the import command will be taken from the provider configuration. Identity-Aware Proxy webtypecompute IAM resources can be imported using the resource identifiers, role, and member. IAM member imports use space-delimited identifiersthe resource in question, the role, and the member identity, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:iap/webTypeComputeIamBinding:WebTypeComputeIamBinding editor "projects/{{project}}/iap_web/compute roles/iap.httpsResourceAccessor user:jane@example.com"
+// ```
+//
+//  IAM binding imports use space-delimited identifiersthe resource in question and the role, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:iap/webTypeComputeIamBinding:WebTypeComputeIamBinding editor "projects/{{project}}/iap_web/compute roles/iap.httpsResourceAccessor"
+// ```
+//
+//  IAM policy imports use the identifier of the resource in question, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:iap/webTypeComputeIamBinding:WebTypeComputeIamBinding editor projects/{{project}}/iap_web/compute
+// ```
+//
+//  -> **Custom Roles**If you're importing a IAM resource with a custom role, make sure to use the
+//
+// full name of the custom role, e.g. `[projects/my-project|organizations/my-org]/roles/my-custom-role`.
 type WebTypeComputeIamBinding struct {
 	pulumi.CustomResourceState
 
@@ -137,4 +162,43 @@ type WebTypeComputeIamBindingArgs struct {
 
 func (WebTypeComputeIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*webTypeComputeIamBindingArgs)(nil)).Elem()
+}
+
+type WebTypeComputeIamBindingInput interface {
+	pulumi.Input
+
+	ToWebTypeComputeIamBindingOutput() WebTypeComputeIamBindingOutput
+	ToWebTypeComputeIamBindingOutputWithContext(ctx context.Context) WebTypeComputeIamBindingOutput
+}
+
+func (WebTypeComputeIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebTypeComputeIamBinding)(nil)).Elem()
+}
+
+func (i WebTypeComputeIamBinding) ToWebTypeComputeIamBindingOutput() WebTypeComputeIamBindingOutput {
+	return i.ToWebTypeComputeIamBindingOutputWithContext(context.Background())
+}
+
+func (i WebTypeComputeIamBinding) ToWebTypeComputeIamBindingOutputWithContext(ctx context.Context) WebTypeComputeIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebTypeComputeIamBindingOutput)
+}
+
+type WebTypeComputeIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (WebTypeComputeIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebTypeComputeIamBindingOutput)(nil)).Elem()
+}
+
+func (o WebTypeComputeIamBindingOutput) ToWebTypeComputeIamBindingOutput() WebTypeComputeIamBindingOutput {
+	return o
+}
+
+func (o WebTypeComputeIamBindingOutput) ToWebTypeComputeIamBindingOutputWithContext(ctx context.Context) WebTypeComputeIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(WebTypeComputeIamBindingOutput{})
 }

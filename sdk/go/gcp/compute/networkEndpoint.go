@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -23,6 +24,26 @@ import (
 //     * [Official Documentation](https://cloud.google.com/load-balancing/docs/negs/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// NetworkEndpoint can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:compute/networkEndpoint:NetworkEndpoint default projects/{{project}}/zones/{{zone}}/networkEndpointGroups/{{network_endpoint_group}}/{{instance}}/{{ip_address}}/{{port}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/networkEndpoint:NetworkEndpoint default {{project}}/{{zone}}/{{network_endpoint_group}}/{{instance}}/{{ip_address}}/{{port}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/networkEndpoint:NetworkEndpoint default {{zone}}/{{network_endpoint_group}}/{{instance}}/{{ip_address}}/{{port}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/networkEndpoint:NetworkEndpoint default {{network_endpoint_group}}/{{instance}}/{{ip_address}}/{{port}}
+// ```
 type NetworkEndpoint struct {
 	pulumi.CustomResourceState
 
@@ -171,4 +192,43 @@ type NetworkEndpointArgs struct {
 
 func (NetworkEndpointArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*networkEndpointArgs)(nil)).Elem()
+}
+
+type NetworkEndpointInput interface {
+	pulumi.Input
+
+	ToNetworkEndpointOutput() NetworkEndpointOutput
+	ToNetworkEndpointOutputWithContext(ctx context.Context) NetworkEndpointOutput
+}
+
+func (NetworkEndpoint) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetworkEndpoint)(nil)).Elem()
+}
+
+func (i NetworkEndpoint) ToNetworkEndpointOutput() NetworkEndpointOutput {
+	return i.ToNetworkEndpointOutputWithContext(context.Background())
+}
+
+func (i NetworkEndpoint) ToNetworkEndpointOutputWithContext(ctx context.Context) NetworkEndpointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NetworkEndpointOutput)
+}
+
+type NetworkEndpointOutput struct {
+	*pulumi.OutputState
+}
+
+func (NetworkEndpointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetworkEndpointOutput)(nil)).Elem()
+}
+
+func (o NetworkEndpointOutput) ToNetworkEndpointOutput() NetworkEndpointOutput {
+	return o
+}
+
+func (o NetworkEndpointOutput) ToNetworkEndpointOutputWithContext(ctx context.Context) NetworkEndpointOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(NetworkEndpointOutput{})
 }

@@ -4,6 +4,7 @@
 package kms
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -19,6 +20,32 @@ import (
 // > **Note:** `kms.KeyRingIAMPolicy` **cannot** be used in conjunction with `kms.KeyRingIAMBinding` and `kms.KeyRingIAMMember` or they will fight over what your policy should be.
 //
 // > **Note:** `kms.KeyRingIAMBinding` resources **can be** used in conjunction with `kms.KeyRingIAMMember` resources **only if** they do not grant privilege to the same role.
+//
+// ## Import
+//
+// IAM member imports use space-delimited identifiers; the resource in question, the role, and the account.
+//
+// This member resource can be imported using the `key_ring_id`, role, and account e.g.
+//
+// ```sh
+//  $ pulumi import gcp:kms/keyRingIAMMember:KeyRingIAMMember key_ring_iam "your-project-id/location-name/key-ring-name roles/viewer user:foo@example.com"
+// ```
+//
+//  IAM binding imports use space-delimited identifiers; the resource in question and the role.
+//
+// This binding resource can be imported using the `key_ring_id` and role, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:kms/keyRingIAMMember:KeyRingIAMMember key_ring_iam "your-project-id/location-name/key-ring-name roles/viewer"
+// ```
+//
+//  IAM policy imports use the identifier of the resource in question.
+//
+// This policy resource can be imported using the `key_ring_id`, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:kms/keyRingIAMMember:KeyRingIAMMember key_ring_iam your-project-id/location-name/key-ring-name
+// ```
 type KeyRingIAMMember struct {
 	pulumi.CustomResourceState
 
@@ -150,4 +177,43 @@ type KeyRingIAMMemberArgs struct {
 
 func (KeyRingIAMMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*keyRingIAMMemberArgs)(nil)).Elem()
+}
+
+type KeyRingIAMMemberInput interface {
+	pulumi.Input
+
+	ToKeyRingIAMMemberOutput() KeyRingIAMMemberOutput
+	ToKeyRingIAMMemberOutputWithContext(ctx context.Context) KeyRingIAMMemberOutput
+}
+
+func (KeyRingIAMMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*KeyRingIAMMember)(nil)).Elem()
+}
+
+func (i KeyRingIAMMember) ToKeyRingIAMMemberOutput() KeyRingIAMMemberOutput {
+	return i.ToKeyRingIAMMemberOutputWithContext(context.Background())
+}
+
+func (i KeyRingIAMMember) ToKeyRingIAMMemberOutputWithContext(ctx context.Context) KeyRingIAMMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KeyRingIAMMemberOutput)
+}
+
+type KeyRingIAMMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (KeyRingIAMMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*KeyRingIAMMemberOutput)(nil)).Elem()
+}
+
+func (o KeyRingIAMMemberOutput) ToKeyRingIAMMemberOutput() KeyRingIAMMemberOutput {
+	return o
+}
+
+func (o KeyRingIAMMemberOutput) ToKeyRingIAMMemberOutputWithContext(ctx context.Context) KeyRingIAMMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(KeyRingIAMMemberOutput{})
 }

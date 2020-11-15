@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -23,6 +24,26 @@ import (
 //     * [Autoscaling Groups of Instances](https://cloud.google.com/compute/docs/autoscaler/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Autoscaler can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:compute/autoscalar:Autoscalar default projects/{{project}}/zones/{{zone}}/autoscalers/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/autoscalar:Autoscalar default {{project}}/{{zone}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/autoscalar:Autoscalar default {{zone}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/autoscalar:Autoscalar default {{name}}
+// ```
 //
 // Deprecated: gcp.compute.Autoscalar has been deprecated in favor of gcp.compute.Autoscaler
 type Autoscalar struct {
@@ -204,4 +225,43 @@ type AutoscalarArgs struct {
 
 func (AutoscalarArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*autoscalarArgs)(nil)).Elem()
+}
+
+type AutoscalarInput interface {
+	pulumi.Input
+
+	ToAutoscalarOutput() AutoscalarOutput
+	ToAutoscalarOutputWithContext(ctx context.Context) AutoscalarOutput
+}
+
+func (Autoscalar) ElementType() reflect.Type {
+	return reflect.TypeOf((*Autoscalar)(nil)).Elem()
+}
+
+func (i Autoscalar) ToAutoscalarOutput() AutoscalarOutput {
+	return i.ToAutoscalarOutputWithContext(context.Background())
+}
+
+func (i Autoscalar) ToAutoscalarOutputWithContext(ctx context.Context) AutoscalarOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscalarOutput)
+}
+
+type AutoscalarOutput struct {
+	*pulumi.OutputState
+}
+
+func (AutoscalarOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AutoscalarOutput)(nil)).Elem()
+}
+
+func (o AutoscalarOutput) ToAutoscalarOutput() AutoscalarOutput {
+	return o
+}
+
+func (o AutoscalarOutput) ToAutoscalarOutputWithContext(ctx context.Context) AutoscalarOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AutoscalarOutput{})
 }

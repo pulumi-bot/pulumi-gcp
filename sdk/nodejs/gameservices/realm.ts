@@ -14,6 +14,22 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/game-servers/docs)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Realm can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import gcp:gameservices/realm:Realm default projects/{{project}}/locations/{{location}}/realms/{{realm_id}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:gameservices/realm:Realm default {{project}}/{{location}}/{{realm_id}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:gameservices/realm:Realm default {{location}}/{{realm_id}}
+ * ```
  */
 export class Realm extends pulumi.CustomResource {
     /**

@@ -22,6 +22,26 @@ namespace Pulumi.Gcp.Compute
     ///     * [Cloud VPN Overview](https://cloud.google.com/vpn/docs/concepts/overview)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// HaVpnGateway can be imported using any of these accepted formats
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/haVpnGateway:HaVpnGateway default projects/{{project}}/regions/{{region}}/vpnGateways/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/haVpnGateway:HaVpnGateway default {{project}}/{{region}}/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/haVpnGateway:HaVpnGateway default {{region}}/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/haVpnGateway:HaVpnGateway default {{name}}
+    /// ```
     /// </summary>
     public partial class HaVpnGateway : Pulumi.CustomResource
     {

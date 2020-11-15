@@ -16,6 +16,10 @@ namespace Pulumi.Gcp.Projects
     /// this is not recommended for production environments as per [Google's documentation](https://cloud.google.com/iam/docs/service-accounts#default).
     /// See the [Organization documentation](https://cloud.google.com/resource-manager/docs/quickstarts) for more details.
     /// &gt; This resource works on a best-effort basis, as no API formally describes the default service accounts. If the default service accounts change their name or additional service accounts are added, this resource will need to be updated.
+    /// 
+    /// ## Import
+    /// 
+    /// This resource does not support import
     /// </summary>
     public partial class DefaultServiceAccounts : Pulumi.CustomResource
     {

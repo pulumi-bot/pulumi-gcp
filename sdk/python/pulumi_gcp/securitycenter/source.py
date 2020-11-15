@@ -35,6 +35,18 @@ class Source(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        Source can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:securitycenter/source:Source default organizations/{{organization}}/sources/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:securitycenter/source:Source default {{organization}}/{{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: The description of the source (max of 1024 characters).

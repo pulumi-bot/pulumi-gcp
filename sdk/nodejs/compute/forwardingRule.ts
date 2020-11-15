@@ -16,6 +16,26 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/compute/docs/load-balancing/network/forwarding-rules)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * ForwardingRule can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import gcp:compute/forwardingRule:ForwardingRule default projects/{{project}}/regions/{{region}}/forwardingRules/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:compute/forwardingRule:ForwardingRule default {{project}}/{{region}}/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:compute/forwardingRule:ForwardingRule default {{region}}/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:compute/forwardingRule:ForwardingRule default {{name}}
+ * ```
  */
 export class ForwardingRule extends pulumi.CustomResource {
     /**
