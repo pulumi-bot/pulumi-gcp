@@ -4,6 +4,7 @@
 package accesscontextmanager
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -352,4 +353,43 @@ type ServicePerimeterArgs struct {
 
 func (ServicePerimeterArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*servicePerimeterArgs)(nil)).Elem()
+}
+
+type ServicePerimeterInput interface {
+	pulumi.Input
+
+	ToServicePerimeterOutput() ServicePerimeterOutput
+	ToServicePerimeterOutputWithContext(ctx context.Context) ServicePerimeterOutput
+}
+
+func (ServicePerimeter) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServicePerimeter)(nil)).Elem()
+}
+
+func (i ServicePerimeter) ToServicePerimeterOutput() ServicePerimeterOutput {
+	return i.ToServicePerimeterOutputWithContext(context.Background())
+}
+
+func (i ServicePerimeter) ToServicePerimeterOutputWithContext(ctx context.Context) ServicePerimeterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServicePerimeterOutput)
+}
+
+type ServicePerimeterOutput struct {
+	*pulumi.OutputState
+}
+
+func (ServicePerimeterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServicePerimeterOutput)(nil)).Elem()
+}
+
+func (o ServicePerimeterOutput) ToServicePerimeterOutput() ServicePerimeterOutput {
+	return o
+}
+
+func (o ServicePerimeterOutput) ToServicePerimeterOutputWithContext(ctx context.Context) ServicePerimeterOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ServicePerimeterOutput{})
 }

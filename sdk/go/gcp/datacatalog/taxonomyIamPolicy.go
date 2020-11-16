@@ -4,6 +4,7 @@
 package datacatalog
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -118,4 +119,43 @@ type TaxonomyIamPolicyArgs struct {
 
 func (TaxonomyIamPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*taxonomyIamPolicyArgs)(nil)).Elem()
+}
+
+type TaxonomyIamPolicyInput interface {
+	pulumi.Input
+
+	ToTaxonomyIamPolicyOutput() TaxonomyIamPolicyOutput
+	ToTaxonomyIamPolicyOutputWithContext(ctx context.Context) TaxonomyIamPolicyOutput
+}
+
+func (TaxonomyIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*TaxonomyIamPolicy)(nil)).Elem()
+}
+
+func (i TaxonomyIamPolicy) ToTaxonomyIamPolicyOutput() TaxonomyIamPolicyOutput {
+	return i.ToTaxonomyIamPolicyOutputWithContext(context.Background())
+}
+
+func (i TaxonomyIamPolicy) ToTaxonomyIamPolicyOutputWithContext(ctx context.Context) TaxonomyIamPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TaxonomyIamPolicyOutput)
+}
+
+type TaxonomyIamPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (TaxonomyIamPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TaxonomyIamPolicyOutput)(nil)).Elem()
+}
+
+func (o TaxonomyIamPolicyOutput) ToTaxonomyIamPolicyOutput() TaxonomyIamPolicyOutput {
+	return o
+}
+
+func (o TaxonomyIamPolicyOutput) ToTaxonomyIamPolicyOutputWithContext(ctx context.Context) TaxonomyIamPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TaxonomyIamPolicyOutput{})
 }

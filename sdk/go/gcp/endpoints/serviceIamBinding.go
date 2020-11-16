@@ -4,6 +4,7 @@
 package endpoints
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -125,4 +126,43 @@ type ServiceIamBindingArgs struct {
 
 func (ServiceIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*serviceIamBindingArgs)(nil)).Elem()
+}
+
+type ServiceIamBindingInput interface {
+	pulumi.Input
+
+	ToServiceIamBindingOutput() ServiceIamBindingOutput
+	ToServiceIamBindingOutputWithContext(ctx context.Context) ServiceIamBindingOutput
+}
+
+func (ServiceIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceIamBinding)(nil)).Elem()
+}
+
+func (i ServiceIamBinding) ToServiceIamBindingOutput() ServiceIamBindingOutput {
+	return i.ToServiceIamBindingOutputWithContext(context.Background())
+}
+
+func (i ServiceIamBinding) ToServiceIamBindingOutputWithContext(ctx context.Context) ServiceIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceIamBindingOutput)
+}
+
+type ServiceIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (ServiceIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceIamBindingOutput)(nil)).Elem()
+}
+
+func (o ServiceIamBindingOutput) ToServiceIamBindingOutput() ServiceIamBindingOutput {
+	return o
+}
+
+func (o ServiceIamBindingOutput) ToServiceIamBindingOutputWithContext(ctx context.Context) ServiceIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ServiceIamBindingOutput{})
 }

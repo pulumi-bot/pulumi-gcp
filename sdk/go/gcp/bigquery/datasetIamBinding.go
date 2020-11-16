@@ -4,6 +4,7 @@
 package bigquery
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -138,4 +139,43 @@ type DatasetIamBindingArgs struct {
 
 func (DatasetIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*datasetIamBindingArgs)(nil)).Elem()
+}
+
+type DatasetIamBindingInput interface {
+	pulumi.Input
+
+	ToDatasetIamBindingOutput() DatasetIamBindingOutput
+	ToDatasetIamBindingOutputWithContext(ctx context.Context) DatasetIamBindingOutput
+}
+
+func (DatasetIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatasetIamBinding)(nil)).Elem()
+}
+
+func (i DatasetIamBinding) ToDatasetIamBindingOutput() DatasetIamBindingOutput {
+	return i.ToDatasetIamBindingOutputWithContext(context.Background())
+}
+
+func (i DatasetIamBinding) ToDatasetIamBindingOutputWithContext(ctx context.Context) DatasetIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetIamBindingOutput)
+}
+
+type DatasetIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (DatasetIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatasetIamBindingOutput)(nil)).Elem()
+}
+
+func (o DatasetIamBindingOutput) ToDatasetIamBindingOutput() DatasetIamBindingOutput {
+	return o
+}
+
+func (o DatasetIamBindingOutput) ToDatasetIamBindingOutputWithContext(ctx context.Context) DatasetIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DatasetIamBindingOutput{})
 }

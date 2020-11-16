@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
@@ -245,4 +246,43 @@ type TargetGrpcProxyArgs struct {
 
 func (TargetGrpcProxyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*targetGrpcProxyArgs)(nil)).Elem()
+}
+
+type TargetGrpcProxyInput interface {
+	pulumi.Input
+
+	ToTargetGrpcProxyOutput() TargetGrpcProxyOutput
+	ToTargetGrpcProxyOutputWithContext(ctx context.Context) TargetGrpcProxyOutput
+}
+
+func (TargetGrpcProxy) ElementType() reflect.Type {
+	return reflect.TypeOf((*TargetGrpcProxy)(nil)).Elem()
+}
+
+func (i TargetGrpcProxy) ToTargetGrpcProxyOutput() TargetGrpcProxyOutput {
+	return i.ToTargetGrpcProxyOutputWithContext(context.Background())
+}
+
+func (i TargetGrpcProxy) ToTargetGrpcProxyOutputWithContext(ctx context.Context) TargetGrpcProxyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TargetGrpcProxyOutput)
+}
+
+type TargetGrpcProxyOutput struct {
+	*pulumi.OutputState
+}
+
+func (TargetGrpcProxyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TargetGrpcProxyOutput)(nil)).Elem()
+}
+
+func (o TargetGrpcProxyOutput) ToTargetGrpcProxyOutput() TargetGrpcProxyOutput {
+	return o
+}
+
+func (o TargetGrpcProxyOutput) ToTargetGrpcProxyOutputWithContext(ctx context.Context) TargetGrpcProxyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TargetGrpcProxyOutput{})
 }

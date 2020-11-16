@@ -4,6 +4,7 @@
 package cloudrun
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -150,4 +151,43 @@ type IamBindingArgs struct {
 
 func (IamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*iamBindingArgs)(nil)).Elem()
+}
+
+type IamBindingInput interface {
+	pulumi.Input
+
+	ToIamBindingOutput() IamBindingOutput
+	ToIamBindingOutputWithContext(ctx context.Context) IamBindingOutput
+}
+
+func (IamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*IamBinding)(nil)).Elem()
+}
+
+func (i IamBinding) ToIamBindingOutput() IamBindingOutput {
+	return i.ToIamBindingOutputWithContext(context.Background())
+}
+
+func (i IamBinding) ToIamBindingOutputWithContext(ctx context.Context) IamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IamBindingOutput)
+}
+
+type IamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (IamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IamBindingOutput)(nil)).Elem()
+}
+
+func (o IamBindingOutput) ToIamBindingOutput() IamBindingOutput {
+	return o
+}
+
+func (o IamBindingOutput) ToIamBindingOutputWithContext(ctx context.Context) IamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(IamBindingOutput{})
 }

@@ -4,6 +4,7 @@
 package datacatalog
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -136,4 +137,43 @@ type TaxonomyIamBindingArgs struct {
 
 func (TaxonomyIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*taxonomyIamBindingArgs)(nil)).Elem()
+}
+
+type TaxonomyIamBindingInput interface {
+	pulumi.Input
+
+	ToTaxonomyIamBindingOutput() TaxonomyIamBindingOutput
+	ToTaxonomyIamBindingOutputWithContext(ctx context.Context) TaxonomyIamBindingOutput
+}
+
+func (TaxonomyIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*TaxonomyIamBinding)(nil)).Elem()
+}
+
+func (i TaxonomyIamBinding) ToTaxonomyIamBindingOutput() TaxonomyIamBindingOutput {
+	return i.ToTaxonomyIamBindingOutputWithContext(context.Background())
+}
+
+func (i TaxonomyIamBinding) ToTaxonomyIamBindingOutputWithContext(ctx context.Context) TaxonomyIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TaxonomyIamBindingOutput)
+}
+
+type TaxonomyIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (TaxonomyIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TaxonomyIamBindingOutput)(nil)).Elem()
+}
+
+func (o TaxonomyIamBindingOutput) ToTaxonomyIamBindingOutput() TaxonomyIamBindingOutput {
+	return o
+}
+
+func (o TaxonomyIamBindingOutput) ToTaxonomyIamBindingOutputWithContext(ctx context.Context) TaxonomyIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TaxonomyIamBindingOutput{})
 }

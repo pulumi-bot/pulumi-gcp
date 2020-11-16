@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -141,4 +142,43 @@ type MachineImageIamBindingArgs struct {
 
 func (MachineImageIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*machineImageIamBindingArgs)(nil)).Elem()
+}
+
+type MachineImageIamBindingInput interface {
+	pulumi.Input
+
+	ToMachineImageIamBindingOutput() MachineImageIamBindingOutput
+	ToMachineImageIamBindingOutputWithContext(ctx context.Context) MachineImageIamBindingOutput
+}
+
+func (MachineImageIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*MachineImageIamBinding)(nil)).Elem()
+}
+
+func (i MachineImageIamBinding) ToMachineImageIamBindingOutput() MachineImageIamBindingOutput {
+	return i.ToMachineImageIamBindingOutputWithContext(context.Background())
+}
+
+func (i MachineImageIamBinding) ToMachineImageIamBindingOutputWithContext(ctx context.Context) MachineImageIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MachineImageIamBindingOutput)
+}
+
+type MachineImageIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (MachineImageIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MachineImageIamBindingOutput)(nil)).Elem()
+}
+
+func (o MachineImageIamBindingOutput) ToMachineImageIamBindingOutput() MachineImageIamBindingOutput {
+	return o
+}
+
+func (o MachineImageIamBindingOutput) ToMachineImageIamBindingOutputWithContext(ctx context.Context) MachineImageIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(MachineImageIamBindingOutput{})
 }

@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -234,4 +235,43 @@ type RegionSslCertificateArgs struct {
 
 func (RegionSslCertificateArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*regionSslCertificateArgs)(nil)).Elem()
+}
+
+type RegionSslCertificateInput interface {
+	pulumi.Input
+
+	ToRegionSslCertificateOutput() RegionSslCertificateOutput
+	ToRegionSslCertificateOutputWithContext(ctx context.Context) RegionSslCertificateOutput
+}
+
+func (RegionSslCertificate) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionSslCertificate)(nil)).Elem()
+}
+
+func (i RegionSslCertificate) ToRegionSslCertificateOutput() RegionSslCertificateOutput {
+	return i.ToRegionSslCertificateOutputWithContext(context.Background())
+}
+
+func (i RegionSslCertificate) ToRegionSslCertificateOutputWithContext(ctx context.Context) RegionSslCertificateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegionSslCertificateOutput)
+}
+
+type RegionSslCertificateOutput struct {
+	*pulumi.OutputState
+}
+
+func (RegionSslCertificateOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionSslCertificateOutput)(nil)).Elem()
+}
+
+func (o RegionSslCertificateOutput) ToRegionSslCertificateOutput() RegionSslCertificateOutput {
+	return o
+}
+
+func (o RegionSslCertificateOutput) ToRegionSslCertificateOutputWithContext(ctx context.Context) RegionSslCertificateOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RegionSslCertificateOutput{})
 }

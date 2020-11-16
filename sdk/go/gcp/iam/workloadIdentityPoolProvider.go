@@ -4,6 +4,7 @@
 package iam
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -661,4 +662,43 @@ type WorkloadIdentityPoolProviderArgs struct {
 
 func (WorkloadIdentityPoolProviderArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*workloadIdentityPoolProviderArgs)(nil)).Elem()
+}
+
+type WorkloadIdentityPoolProviderInput interface {
+	pulumi.Input
+
+	ToWorkloadIdentityPoolProviderOutput() WorkloadIdentityPoolProviderOutput
+	ToWorkloadIdentityPoolProviderOutputWithContext(ctx context.Context) WorkloadIdentityPoolProviderOutput
+}
+
+func (WorkloadIdentityPoolProvider) ElementType() reflect.Type {
+	return reflect.TypeOf((*WorkloadIdentityPoolProvider)(nil)).Elem()
+}
+
+func (i WorkloadIdentityPoolProvider) ToWorkloadIdentityPoolProviderOutput() WorkloadIdentityPoolProviderOutput {
+	return i.ToWorkloadIdentityPoolProviderOutputWithContext(context.Background())
+}
+
+func (i WorkloadIdentityPoolProvider) ToWorkloadIdentityPoolProviderOutputWithContext(ctx context.Context) WorkloadIdentityPoolProviderOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WorkloadIdentityPoolProviderOutput)
+}
+
+type WorkloadIdentityPoolProviderOutput struct {
+	*pulumi.OutputState
+}
+
+func (WorkloadIdentityPoolProviderOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WorkloadIdentityPoolProviderOutput)(nil)).Elem()
+}
+
+func (o WorkloadIdentityPoolProviderOutput) ToWorkloadIdentityPoolProviderOutput() WorkloadIdentityPoolProviderOutput {
+	return o
+}
+
+func (o WorkloadIdentityPoolProviderOutput) ToWorkloadIdentityPoolProviderOutputWithContext(ctx context.Context) WorkloadIdentityPoolProviderOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(WorkloadIdentityPoolProviderOutput{})
 }
