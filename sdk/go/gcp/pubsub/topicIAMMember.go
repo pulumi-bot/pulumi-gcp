@@ -4,6 +4,7 @@
 package pubsub
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -140,4 +141,43 @@ type TopicIAMMemberArgs struct {
 
 func (TopicIAMMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*topicIAMMemberArgs)(nil)).Elem()
+}
+
+type TopicIAMMemberInput interface {
+	pulumi.Input
+
+	ToTopicIAMMemberOutput() TopicIAMMemberOutput
+	ToTopicIAMMemberOutputWithContext(ctx context.Context) TopicIAMMemberOutput
+}
+
+func (TopicIAMMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*TopicIAMMember)(nil)).Elem()
+}
+
+func (i TopicIAMMember) ToTopicIAMMemberOutput() TopicIAMMemberOutput {
+	return i.ToTopicIAMMemberOutputWithContext(context.Background())
+}
+
+func (i TopicIAMMember) ToTopicIAMMemberOutputWithContext(ctx context.Context) TopicIAMMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TopicIAMMemberOutput)
+}
+
+type TopicIAMMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (TopicIAMMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TopicIAMMemberOutput)(nil)).Elem()
+}
+
+func (o TopicIAMMemberOutput) ToTopicIAMMemberOutput() TopicIAMMemberOutput {
+	return o
+}
+
+func (o TopicIAMMemberOutput) ToTopicIAMMemberOutputWithContext(ctx context.Context) TopicIAMMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TopicIAMMemberOutput{})
 }

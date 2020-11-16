@@ -4,6 +4,7 @@
 package iap
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -155,4 +156,43 @@ type TunnelInstanceIAMMemberArgs struct {
 
 func (TunnelInstanceIAMMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*tunnelInstanceIAMMemberArgs)(nil)).Elem()
+}
+
+type TunnelInstanceIAMMemberInput interface {
+	pulumi.Input
+
+	ToTunnelInstanceIAMMemberOutput() TunnelInstanceIAMMemberOutput
+	ToTunnelInstanceIAMMemberOutputWithContext(ctx context.Context) TunnelInstanceIAMMemberOutput
+}
+
+func (TunnelInstanceIAMMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*TunnelInstanceIAMMember)(nil)).Elem()
+}
+
+func (i TunnelInstanceIAMMember) ToTunnelInstanceIAMMemberOutput() TunnelInstanceIAMMemberOutput {
+	return i.ToTunnelInstanceIAMMemberOutputWithContext(context.Background())
+}
+
+func (i TunnelInstanceIAMMember) ToTunnelInstanceIAMMemberOutputWithContext(ctx context.Context) TunnelInstanceIAMMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TunnelInstanceIAMMemberOutput)
+}
+
+type TunnelInstanceIAMMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (TunnelInstanceIAMMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TunnelInstanceIAMMemberOutput)(nil)).Elem()
+}
+
+func (o TunnelInstanceIAMMemberOutput) ToTunnelInstanceIAMMemberOutput() TunnelInstanceIAMMemberOutput {
+	return o
+}
+
+func (o TunnelInstanceIAMMemberOutput) ToTunnelInstanceIAMMemberOutputWithContext(ctx context.Context) TunnelInstanceIAMMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TunnelInstanceIAMMemberOutput{})
 }

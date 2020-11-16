@@ -4,6 +4,7 @@
 package datacatalog
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -136,4 +137,43 @@ type TaxonomyIamMemberArgs struct {
 
 func (TaxonomyIamMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*taxonomyIamMemberArgs)(nil)).Elem()
+}
+
+type TaxonomyIamMemberInput interface {
+	pulumi.Input
+
+	ToTaxonomyIamMemberOutput() TaxonomyIamMemberOutput
+	ToTaxonomyIamMemberOutputWithContext(ctx context.Context) TaxonomyIamMemberOutput
+}
+
+func (TaxonomyIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*TaxonomyIamMember)(nil)).Elem()
+}
+
+func (i TaxonomyIamMember) ToTaxonomyIamMemberOutput() TaxonomyIamMemberOutput {
+	return i.ToTaxonomyIamMemberOutputWithContext(context.Background())
+}
+
+func (i TaxonomyIamMember) ToTaxonomyIamMemberOutputWithContext(ctx context.Context) TaxonomyIamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TaxonomyIamMemberOutput)
+}
+
+type TaxonomyIamMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (TaxonomyIamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TaxonomyIamMemberOutput)(nil)).Elem()
+}
+
+func (o TaxonomyIamMemberOutput) ToTaxonomyIamMemberOutput() TaxonomyIamMemberOutput {
+	return o
+}
+
+func (o TaxonomyIamMemberOutput) ToTaxonomyIamMemberOutputWithContext(ctx context.Context) TaxonomyIamMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TaxonomyIamMemberOutput{})
 }

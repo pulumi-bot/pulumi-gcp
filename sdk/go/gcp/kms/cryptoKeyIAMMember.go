@@ -4,6 +4,7 @@
 package kms
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -151,4 +152,43 @@ type CryptoKeyIAMMemberArgs struct {
 
 func (CryptoKeyIAMMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*cryptoKeyIAMMemberArgs)(nil)).Elem()
+}
+
+type CryptoKeyIAMMemberInput interface {
+	pulumi.Input
+
+	ToCryptoKeyIAMMemberOutput() CryptoKeyIAMMemberOutput
+	ToCryptoKeyIAMMemberOutputWithContext(ctx context.Context) CryptoKeyIAMMemberOutput
+}
+
+func (CryptoKeyIAMMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*CryptoKeyIAMMember)(nil)).Elem()
+}
+
+func (i CryptoKeyIAMMember) ToCryptoKeyIAMMemberOutput() CryptoKeyIAMMemberOutput {
+	return i.ToCryptoKeyIAMMemberOutputWithContext(context.Background())
+}
+
+func (i CryptoKeyIAMMember) ToCryptoKeyIAMMemberOutputWithContext(ctx context.Context) CryptoKeyIAMMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CryptoKeyIAMMemberOutput)
+}
+
+type CryptoKeyIAMMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (CryptoKeyIAMMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CryptoKeyIAMMemberOutput)(nil)).Elem()
+}
+
+func (o CryptoKeyIAMMemberOutput) ToCryptoKeyIAMMemberOutput() CryptoKeyIAMMemberOutput {
+	return o
+}
+
+func (o CryptoKeyIAMMemberOutput) ToCryptoKeyIAMMemberOutputWithContext(ctx context.Context) CryptoKeyIAMMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(CryptoKeyIAMMemberOutput{})
 }

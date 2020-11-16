@@ -4,6 +4,7 @@
 package securitycenter
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -140,4 +141,43 @@ type SourceArgs struct {
 
 func (SourceArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*sourceArgs)(nil)).Elem()
+}
+
+type SourceInput interface {
+	pulumi.Input
+
+	ToSourceOutput() SourceOutput
+	ToSourceOutputWithContext(ctx context.Context) SourceOutput
+}
+
+func (Source) ElementType() reflect.Type {
+	return reflect.TypeOf((*Source)(nil)).Elem()
+}
+
+func (i Source) ToSourceOutput() SourceOutput {
+	return i.ToSourceOutputWithContext(context.Background())
+}
+
+func (i Source) ToSourceOutputWithContext(ctx context.Context) SourceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceOutput)
+}
+
+type SourceOutput struct {
+	*pulumi.OutputState
+}
+
+func (SourceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SourceOutput)(nil)).Elem()
+}
+
+func (o SourceOutput) ToSourceOutput() SourceOutput {
+	return o
+}
+
+func (o SourceOutput) ToSourceOutputWithContext(ctx context.Context) SourceOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SourceOutput{})
 }

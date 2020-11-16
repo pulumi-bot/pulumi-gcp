@@ -4,6 +4,7 @@
 package organizations
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -137,4 +138,43 @@ type FolderArgs struct {
 
 func (FolderArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*folderArgs)(nil)).Elem()
+}
+
+type FolderInput interface {
+	pulumi.Input
+
+	ToFolderOutput() FolderOutput
+	ToFolderOutputWithContext(ctx context.Context) FolderOutput
+}
+
+func (Folder) ElementType() reflect.Type {
+	return reflect.TypeOf((*Folder)(nil)).Elem()
+}
+
+func (i Folder) ToFolderOutput() FolderOutput {
+	return i.ToFolderOutputWithContext(context.Background())
+}
+
+func (i Folder) ToFolderOutputWithContext(ctx context.Context) FolderOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FolderOutput)
+}
+
+type FolderOutput struct {
+	*pulumi.OutputState
+}
+
+func (FolderOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FolderOutput)(nil)).Elem()
+}
+
+func (o FolderOutput) ToFolderOutput() FolderOutput {
+	return o
+}
+
+func (o FolderOutput) ToFolderOutputWithContext(ctx context.Context) FolderOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(FolderOutput{})
 }

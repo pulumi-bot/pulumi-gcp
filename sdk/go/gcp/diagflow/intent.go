@@ -4,6 +4,7 @@
 package diagflow
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -303,4 +304,43 @@ type IntentArgs struct {
 
 func (IntentArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*intentArgs)(nil)).Elem()
+}
+
+type IntentInput interface {
+	pulumi.Input
+
+	ToIntentOutput() IntentOutput
+	ToIntentOutputWithContext(ctx context.Context) IntentOutput
+}
+
+func (Intent) ElementType() reflect.Type {
+	return reflect.TypeOf((*Intent)(nil)).Elem()
+}
+
+func (i Intent) ToIntentOutput() IntentOutput {
+	return i.ToIntentOutputWithContext(context.Background())
+}
+
+func (i Intent) ToIntentOutputWithContext(ctx context.Context) IntentOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntentOutput)
+}
+
+type IntentOutput struct {
+	*pulumi.OutputState
+}
+
+func (IntentOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntentOutput)(nil)).Elem()
+}
+
+func (o IntentOutput) ToIntentOutput() IntentOutput {
+	return o
+}
+
+func (o IntentOutput) ToIntentOutputWithContext(ctx context.Context) IntentOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(IntentOutput{})
 }

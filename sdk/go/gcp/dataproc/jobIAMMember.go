@@ -4,6 +4,7 @@
 package dataproc
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -150,4 +151,43 @@ type JobIAMMemberArgs struct {
 
 func (JobIAMMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*jobIAMMemberArgs)(nil)).Elem()
+}
+
+type JobIAMMemberInput interface {
+	pulumi.Input
+
+	ToJobIAMMemberOutput() JobIAMMemberOutput
+	ToJobIAMMemberOutputWithContext(ctx context.Context) JobIAMMemberOutput
+}
+
+func (JobIAMMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*JobIAMMember)(nil)).Elem()
+}
+
+func (i JobIAMMember) ToJobIAMMemberOutput() JobIAMMemberOutput {
+	return i.ToJobIAMMemberOutputWithContext(context.Background())
+}
+
+func (i JobIAMMember) ToJobIAMMemberOutputWithContext(ctx context.Context) JobIAMMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(JobIAMMemberOutput)
+}
+
+type JobIAMMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (JobIAMMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*JobIAMMemberOutput)(nil)).Elem()
+}
+
+func (o JobIAMMemberOutput) ToJobIAMMemberOutput() JobIAMMemberOutput {
+	return o
+}
+
+func (o JobIAMMemberOutput) ToJobIAMMemberOutputWithContext(ctx context.Context) JobIAMMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(JobIAMMemberOutput{})
 }
