@@ -4,6 +4,7 @@
 package dataloss
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -147,4 +148,43 @@ type PreventionInspectTemplateArgs struct {
 
 func (PreventionInspectTemplateArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*preventionInspectTemplateArgs)(nil)).Elem()
+}
+
+type PreventionInspectTemplateInput interface {
+	pulumi.Input
+
+	ToPreventionInspectTemplateOutput() PreventionInspectTemplateOutput
+	ToPreventionInspectTemplateOutputWithContext(ctx context.Context) PreventionInspectTemplateOutput
+}
+
+func (PreventionInspectTemplate) ElementType() reflect.Type {
+	return reflect.TypeOf((*PreventionInspectTemplate)(nil)).Elem()
+}
+
+func (i PreventionInspectTemplate) ToPreventionInspectTemplateOutput() PreventionInspectTemplateOutput {
+	return i.ToPreventionInspectTemplateOutputWithContext(context.Background())
+}
+
+func (i PreventionInspectTemplate) ToPreventionInspectTemplateOutputWithContext(ctx context.Context) PreventionInspectTemplateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PreventionInspectTemplateOutput)
+}
+
+type PreventionInspectTemplateOutput struct {
+	*pulumi.OutputState
+}
+
+func (PreventionInspectTemplateOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PreventionInspectTemplateOutput)(nil)).Elem()
+}
+
+func (o PreventionInspectTemplateOutput) ToPreventionInspectTemplateOutput() PreventionInspectTemplateOutput {
+	return o
+}
+
+func (o PreventionInspectTemplateOutput) ToPreventionInspectTemplateOutputWithContext(ctx context.Context) PreventionInspectTemplateOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(PreventionInspectTemplateOutput{})
 }

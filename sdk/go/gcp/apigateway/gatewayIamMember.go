@@ -4,6 +4,7 @@
 package apigateway
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -151,4 +152,43 @@ type GatewayIamMemberArgs struct {
 
 func (GatewayIamMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*gatewayIamMemberArgs)(nil)).Elem()
+}
+
+type GatewayIamMemberInput interface {
+	pulumi.Input
+
+	ToGatewayIamMemberOutput() GatewayIamMemberOutput
+	ToGatewayIamMemberOutputWithContext(ctx context.Context) GatewayIamMemberOutput
+}
+
+func (GatewayIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*GatewayIamMember)(nil)).Elem()
+}
+
+func (i GatewayIamMember) ToGatewayIamMemberOutput() GatewayIamMemberOutput {
+	return i.ToGatewayIamMemberOutputWithContext(context.Background())
+}
+
+func (i GatewayIamMember) ToGatewayIamMemberOutputWithContext(ctx context.Context) GatewayIamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GatewayIamMemberOutput)
+}
+
+type GatewayIamMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (GatewayIamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GatewayIamMemberOutput)(nil)).Elem()
+}
+
+func (o GatewayIamMemberOutput) ToGatewayIamMemberOutput() GatewayIamMemberOutput {
+	return o
+}
+
+func (o GatewayIamMemberOutput) ToGatewayIamMemberOutputWithContext(ctx context.Context) GatewayIamMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(GatewayIamMemberOutput{})
 }

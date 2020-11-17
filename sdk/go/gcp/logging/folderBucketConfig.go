@@ -4,6 +4,7 @@
 package logging
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -137,4 +138,43 @@ type FolderBucketConfigArgs struct {
 
 func (FolderBucketConfigArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*folderBucketConfigArgs)(nil)).Elem()
+}
+
+type FolderBucketConfigInput interface {
+	pulumi.Input
+
+	ToFolderBucketConfigOutput() FolderBucketConfigOutput
+	ToFolderBucketConfigOutputWithContext(ctx context.Context) FolderBucketConfigOutput
+}
+
+func (FolderBucketConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*FolderBucketConfig)(nil)).Elem()
+}
+
+func (i FolderBucketConfig) ToFolderBucketConfigOutput() FolderBucketConfigOutput {
+	return i.ToFolderBucketConfigOutputWithContext(context.Background())
+}
+
+func (i FolderBucketConfig) ToFolderBucketConfigOutputWithContext(ctx context.Context) FolderBucketConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FolderBucketConfigOutput)
+}
+
+type FolderBucketConfigOutput struct {
+	*pulumi.OutputState
+}
+
+func (FolderBucketConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FolderBucketConfigOutput)(nil)).Elem()
+}
+
+func (o FolderBucketConfigOutput) ToFolderBucketConfigOutput() FolderBucketConfigOutput {
+	return o
+}
+
+func (o FolderBucketConfigOutput) ToFolderBucketConfigOutputWithContext(ctx context.Context) FolderBucketConfigOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(FolderBucketConfigOutput{})
 }

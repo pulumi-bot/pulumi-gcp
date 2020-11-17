@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -141,4 +142,43 @@ type MachineImageIamMemberArgs struct {
 
 func (MachineImageIamMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*machineImageIamMemberArgs)(nil)).Elem()
+}
+
+type MachineImageIamMemberInput interface {
+	pulumi.Input
+
+	ToMachineImageIamMemberOutput() MachineImageIamMemberOutput
+	ToMachineImageIamMemberOutputWithContext(ctx context.Context) MachineImageIamMemberOutput
+}
+
+func (MachineImageIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*MachineImageIamMember)(nil)).Elem()
+}
+
+func (i MachineImageIamMember) ToMachineImageIamMemberOutput() MachineImageIamMemberOutput {
+	return i.ToMachineImageIamMemberOutputWithContext(context.Background())
+}
+
+func (i MachineImageIamMember) ToMachineImageIamMemberOutputWithContext(ctx context.Context) MachineImageIamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MachineImageIamMemberOutput)
+}
+
+type MachineImageIamMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (MachineImageIamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MachineImageIamMemberOutput)(nil)).Elem()
+}
+
+func (o MachineImageIamMemberOutput) ToMachineImageIamMemberOutput() MachineImageIamMemberOutput {
+	return o
+}
+
+func (o MachineImageIamMemberOutput) ToMachineImageIamMemberOutputWithContext(ctx context.Context) MachineImageIamMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(MachineImageIamMemberOutput{})
 }

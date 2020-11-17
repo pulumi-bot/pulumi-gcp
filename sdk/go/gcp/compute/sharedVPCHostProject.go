@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -81,4 +82,43 @@ type SharedVPCHostProjectArgs struct {
 
 func (SharedVPCHostProjectArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*sharedVPCHostProjectArgs)(nil)).Elem()
+}
+
+type SharedVPCHostProjectInput interface {
+	pulumi.Input
+
+	ToSharedVPCHostProjectOutput() SharedVPCHostProjectOutput
+	ToSharedVPCHostProjectOutputWithContext(ctx context.Context) SharedVPCHostProjectOutput
+}
+
+func (SharedVPCHostProject) ElementType() reflect.Type {
+	return reflect.TypeOf((*SharedVPCHostProject)(nil)).Elem()
+}
+
+func (i SharedVPCHostProject) ToSharedVPCHostProjectOutput() SharedVPCHostProjectOutput {
+	return i.ToSharedVPCHostProjectOutputWithContext(context.Background())
+}
+
+func (i SharedVPCHostProject) ToSharedVPCHostProjectOutputWithContext(ctx context.Context) SharedVPCHostProjectOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SharedVPCHostProjectOutput)
+}
+
+type SharedVPCHostProjectOutput struct {
+	*pulumi.OutputState
+}
+
+func (SharedVPCHostProjectOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SharedVPCHostProjectOutput)(nil)).Elem()
+}
+
+func (o SharedVPCHostProjectOutput) ToSharedVPCHostProjectOutput() SharedVPCHostProjectOutput {
+	return o
+}
+
+func (o SharedVPCHostProjectOutput) ToSharedVPCHostProjectOutputWithContext(ctx context.Context) SharedVPCHostProjectOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SharedVPCHostProjectOutput{})
 }

@@ -4,6 +4,7 @@
 package sql
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -154,4 +155,43 @@ type SourceRepresentationInstanceArgs struct {
 
 func (SourceRepresentationInstanceArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*sourceRepresentationInstanceArgs)(nil)).Elem()
+}
+
+type SourceRepresentationInstanceInput interface {
+	pulumi.Input
+
+	ToSourceRepresentationInstanceOutput() SourceRepresentationInstanceOutput
+	ToSourceRepresentationInstanceOutputWithContext(ctx context.Context) SourceRepresentationInstanceOutput
+}
+
+func (SourceRepresentationInstance) ElementType() reflect.Type {
+	return reflect.TypeOf((*SourceRepresentationInstance)(nil)).Elem()
+}
+
+func (i SourceRepresentationInstance) ToSourceRepresentationInstanceOutput() SourceRepresentationInstanceOutput {
+	return i.ToSourceRepresentationInstanceOutputWithContext(context.Background())
+}
+
+func (i SourceRepresentationInstance) ToSourceRepresentationInstanceOutputWithContext(ctx context.Context) SourceRepresentationInstanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceRepresentationInstanceOutput)
+}
+
+type SourceRepresentationInstanceOutput struct {
+	*pulumi.OutputState
+}
+
+func (SourceRepresentationInstanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SourceRepresentationInstanceOutput)(nil)).Elem()
+}
+
+func (o SourceRepresentationInstanceOutput) ToSourceRepresentationInstanceOutput() SourceRepresentationInstanceOutput {
+	return o
+}
+
+func (o SourceRepresentationInstanceOutput) ToSourceRepresentationInstanceOutputWithContext(ctx context.Context) SourceRepresentationInstanceOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SourceRepresentationInstanceOutput{})
 }

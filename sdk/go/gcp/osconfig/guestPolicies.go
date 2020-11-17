@@ -4,6 +4,7 @@
 package osconfig
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -281,4 +282,43 @@ type GuestPoliciesArgs struct {
 
 func (GuestPoliciesArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*guestPoliciesArgs)(nil)).Elem()
+}
+
+type GuestPoliciesInput interface {
+	pulumi.Input
+
+	ToGuestPoliciesOutput() GuestPoliciesOutput
+	ToGuestPoliciesOutputWithContext(ctx context.Context) GuestPoliciesOutput
+}
+
+func (GuestPolicies) ElementType() reflect.Type {
+	return reflect.TypeOf((*GuestPolicies)(nil)).Elem()
+}
+
+func (i GuestPolicies) ToGuestPoliciesOutput() GuestPoliciesOutput {
+	return i.ToGuestPoliciesOutputWithContext(context.Background())
+}
+
+func (i GuestPolicies) ToGuestPoliciesOutputWithContext(ctx context.Context) GuestPoliciesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesOutput)
+}
+
+type GuestPoliciesOutput struct {
+	*pulumi.OutputState
+}
+
+func (GuestPoliciesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GuestPoliciesOutput)(nil)).Elem()
+}
+
+func (o GuestPoliciesOutput) ToGuestPoliciesOutput() GuestPoliciesOutput {
+	return o
+}
+
+func (o GuestPoliciesOutput) ToGuestPoliciesOutputWithContext(ctx context.Context) GuestPoliciesOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(GuestPoliciesOutput{})
 }

@@ -4,6 +4,7 @@
 package endpoints
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -125,4 +126,43 @@ type ServiceIamMemberArgs struct {
 
 func (ServiceIamMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*serviceIamMemberArgs)(nil)).Elem()
+}
+
+type ServiceIamMemberInput interface {
+	pulumi.Input
+
+	ToServiceIamMemberOutput() ServiceIamMemberOutput
+	ToServiceIamMemberOutputWithContext(ctx context.Context) ServiceIamMemberOutput
+}
+
+func (ServiceIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceIamMember)(nil)).Elem()
+}
+
+func (i ServiceIamMember) ToServiceIamMemberOutput() ServiceIamMemberOutput {
+	return i.ToServiceIamMemberOutputWithContext(context.Background())
+}
+
+func (i ServiceIamMember) ToServiceIamMemberOutputWithContext(ctx context.Context) ServiceIamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceIamMemberOutput)
+}
+
+type ServiceIamMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (ServiceIamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceIamMemberOutput)(nil)).Elem()
+}
+
+func (o ServiceIamMemberOutput) ToServiceIamMemberOutput() ServiceIamMemberOutput {
+	return o
+}
+
+func (o ServiceIamMemberOutput) ToServiceIamMemberOutputWithContext(ctx context.Context) ServiceIamMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ServiceIamMemberOutput{})
 }

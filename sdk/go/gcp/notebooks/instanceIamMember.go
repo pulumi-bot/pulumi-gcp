@@ -4,6 +4,7 @@
 package notebooks
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -141,4 +142,43 @@ type InstanceIamMemberArgs struct {
 
 func (InstanceIamMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*instanceIamMemberArgs)(nil)).Elem()
+}
+
+type InstanceIamMemberInput interface {
+	pulumi.Input
+
+	ToInstanceIamMemberOutput() InstanceIamMemberOutput
+	ToInstanceIamMemberOutputWithContext(ctx context.Context) InstanceIamMemberOutput
+}
+
+func (InstanceIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceIamMember)(nil)).Elem()
+}
+
+func (i InstanceIamMember) ToInstanceIamMemberOutput() InstanceIamMemberOutput {
+	return i.ToInstanceIamMemberOutputWithContext(context.Background())
+}
+
+func (i InstanceIamMember) ToInstanceIamMemberOutputWithContext(ctx context.Context) InstanceIamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceIamMemberOutput)
+}
+
+type InstanceIamMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (InstanceIamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceIamMemberOutput)(nil)).Elem()
+}
+
+func (o InstanceIamMemberOutput) ToInstanceIamMemberOutput() InstanceIamMemberOutput {
+	return o
+}
+
+func (o InstanceIamMemberOutput) ToInstanceIamMemberOutputWithContext(ctx context.Context) InstanceIamMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(InstanceIamMemberOutput{})
 }
