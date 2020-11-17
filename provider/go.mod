@@ -14,3 +14,5 @@ replace (
 	github.com/hashicorp/terraform-provider-google-beta => github.com/pulumi/terraform-provider-google-beta v0.0.0-20201110002435-929b1aea84a5
 	github.com/hashicorp/vault => github.com/hashicorp/vault v1.2.0
 )
+
+replace github.com/pulumi/tf2pulumi => ../../tf2pulumi
