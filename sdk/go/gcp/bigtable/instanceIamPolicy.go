@@ -4,6 +4,7 @@
 package bigtable
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -19,6 +20,26 @@ import (
 // > **Note:** `bigtable.InstanceIamPolicy` **cannot** be used in conjunction with `bigtable.InstanceIamBinding` and `bigtable.InstanceIamMember` or they will fight over what your policy should be. In addition, be careful not to accidentally unset ownership of the instance as `bigtable.InstanceIamPolicy` replaces the entire policy.
 //
 // > **Note:** `bigtable.InstanceIamBinding` resources **can be** used in conjunction with `bigtable.InstanceIamMember` resources **only if** they do not grant privilege to the same role.
+//
+// ## Import
+//
+// Instance IAM resources can be imported using the project, instance name, role and/or member.
+//
+// ```sh
+//  $ pulumi import gcp:bigtable/instanceIamPolicy:InstanceIamPolicy editor "projects/{project}/instances/{instance}"
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:bigtable/instanceIamPolicy:InstanceIamPolicy editor "projects/{project}/instances/{instance} roles/editor"
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:bigtable/instanceIamPolicy:InstanceIamPolicy editor "projects/{project}/instances/{instance} roles/editor user:jane@example.com"
+// ```
+//
+//  -> **Custom Roles**If you're importing a IAM resource with a custom role, make sure to use the
+//
+// full name of the custom role, e.g. `[projects/my-project|organizations/my-org]/roles/my-custom-role`.
 type InstanceIamPolicy struct {
 	pulumi.CustomResourceState
 
@@ -117,4 +138,43 @@ type InstanceIamPolicyArgs struct {
 
 func (InstanceIamPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*instanceIamPolicyArgs)(nil)).Elem()
+}
+
+type InstanceIamPolicyInput interface {
+	pulumi.Input
+
+	ToInstanceIamPolicyOutput() InstanceIamPolicyOutput
+	ToInstanceIamPolicyOutputWithContext(ctx context.Context) InstanceIamPolicyOutput
+}
+
+func (InstanceIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceIamPolicy)(nil)).Elem()
+}
+
+func (i InstanceIamPolicy) ToInstanceIamPolicyOutput() InstanceIamPolicyOutput {
+	return i.ToInstanceIamPolicyOutputWithContext(context.Background())
+}
+
+func (i InstanceIamPolicy) ToInstanceIamPolicyOutputWithContext(ctx context.Context) InstanceIamPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceIamPolicyOutput)
+}
+
+type InstanceIamPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (InstanceIamPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceIamPolicyOutput)(nil)).Elem()
+}
+
+func (o InstanceIamPolicyOutput) ToInstanceIamPolicyOutput() InstanceIamPolicyOutput {
+	return o
+}
+
+func (o InstanceIamPolicyOutput) ToInstanceIamPolicyOutputWithContext(ctx context.Context) InstanceIamPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(InstanceIamPolicyOutput{})
 }

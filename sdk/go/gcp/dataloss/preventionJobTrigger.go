@@ -4,6 +4,7 @@
 package dataloss
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -19,6 +20,18 @@ import (
 //     * [Official Documentation](https://cloud.google.com/dlp/docs/creating-job-triggers)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// JobTrigger can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:dataloss/preventionJobTrigger:PreventionJobTrigger default {{parent}}/jobTriggers/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:dataloss/preventionJobTrigger:PreventionJobTrigger default {{parent}}/{{name}}
+// ```
 type PreventionJobTrigger struct {
 	pulumi.CustomResourceState
 
@@ -173,4 +186,43 @@ type PreventionJobTriggerArgs struct {
 
 func (PreventionJobTriggerArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*preventionJobTriggerArgs)(nil)).Elem()
+}
+
+type PreventionJobTriggerInput interface {
+	pulumi.Input
+
+	ToPreventionJobTriggerOutput() PreventionJobTriggerOutput
+	ToPreventionJobTriggerOutputWithContext(ctx context.Context) PreventionJobTriggerOutput
+}
+
+func (PreventionJobTrigger) ElementType() reflect.Type {
+	return reflect.TypeOf((*PreventionJobTrigger)(nil)).Elem()
+}
+
+func (i PreventionJobTrigger) ToPreventionJobTriggerOutput() PreventionJobTriggerOutput {
+	return i.ToPreventionJobTriggerOutputWithContext(context.Background())
+}
+
+func (i PreventionJobTrigger) ToPreventionJobTriggerOutputWithContext(ctx context.Context) PreventionJobTriggerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PreventionJobTriggerOutput)
+}
+
+type PreventionJobTriggerOutput struct {
+	*pulumi.OutputState
+}
+
+func (PreventionJobTriggerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PreventionJobTriggerOutput)(nil)).Elem()
+}
+
+func (o PreventionJobTriggerOutput) ToPreventionJobTriggerOutput() PreventionJobTriggerOutput {
+	return o
+}
+
+func (o PreventionJobTriggerOutput) ToPreventionJobTriggerOutputWithContext(ctx context.Context) PreventionJobTriggerOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(PreventionJobTriggerOutput{})
 }

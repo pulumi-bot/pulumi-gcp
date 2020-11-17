@@ -4,6 +4,7 @@
 package runtimeconfig
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -19,6 +20,30 @@ import (
 // > **Note:** `runtimeconfig.ConfigIamPolicy` **cannot** be used in conjunction with `runtimeconfig.ConfigIamBinding` and `runtimeconfig.ConfigIamMember` or they will fight over what your policy should be.
 //
 // > **Note:** `runtimeconfig.ConfigIamBinding` resources **can be** used in conjunction with `runtimeconfig.ConfigIamMember` resources **only if** they do not grant privilege to the same role.
+//
+// ## Import
+//
+// For all import syntaxes, the "resource in question" can take any of the following forms* projects/{{project}}/configs/{{config}} * {{project}}/{{config}} * {{config}} Any variables not passed in the import command will be taken from the provider configuration. Runtime Configurator config IAM resources can be imported using the resource identifiers, role, and member. IAM member imports use space-delimited identifiersthe resource in question, the role, and the member identity, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:runtimeconfig/configIamMember:ConfigIamMember editor "projects/{{project}}/configs/{{config}} roles/viewer user:jane@example.com"
+// ```
+//
+//  IAM binding imports use space-delimited identifiersthe resource in question and the role, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:runtimeconfig/configIamMember:ConfigIamMember editor "projects/{{project}}/configs/{{config}} roles/viewer"
+// ```
+//
+//  IAM policy imports use the identifier of the resource in question, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:runtimeconfig/configIamMember:ConfigIamMember editor projects/{{project}}/configs/{{config}}
+// ```
+//
+//  -> **Custom Roles**If you're importing a IAM resource with a custom role, make sure to use the
+//
+// full name of the custom role, e.g. `[projects/my-project|organizations/my-org]/roles/my-custom-role`.
 type ConfigIamMember struct {
 	pulumi.CustomResourceState
 
@@ -140,4 +165,43 @@ type ConfigIamMemberArgs struct {
 
 func (ConfigIamMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*configIamMemberArgs)(nil)).Elem()
+}
+
+type ConfigIamMemberInput interface {
+	pulumi.Input
+
+	ToConfigIamMemberOutput() ConfigIamMemberOutput
+	ToConfigIamMemberOutputWithContext(ctx context.Context) ConfigIamMemberOutput
+}
+
+func (ConfigIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConfigIamMember)(nil)).Elem()
+}
+
+func (i ConfigIamMember) ToConfigIamMemberOutput() ConfigIamMemberOutput {
+	return i.ToConfigIamMemberOutputWithContext(context.Background())
+}
+
+func (i ConfigIamMember) ToConfigIamMemberOutputWithContext(ctx context.Context) ConfigIamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConfigIamMemberOutput)
+}
+
+type ConfigIamMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (ConfigIamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConfigIamMemberOutput)(nil)).Elem()
+}
+
+func (o ConfigIamMemberOutput) ToConfigIamMemberOutput() ConfigIamMemberOutput {
+	return o
+}
+
+func (o ConfigIamMemberOutput) ToConfigIamMemberOutputWithContext(ctx context.Context) ConfigIamMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ConfigIamMemberOutput{})
 }

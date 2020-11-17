@@ -4,6 +4,7 @@
 package serviceaccount
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -21,6 +22,32 @@ import (
 // > **Note:** `serviceAccount.IAMPolicy` **cannot** be used in conjunction with `serviceAccount.IAMBinding` and `serviceAccount.IAMMember` or they will fight over what your policy should be.
 //
 // > **Note:** `serviceAccount.IAMBinding` resources **can be** used in conjunction with `serviceAccount.IAMMember` resources **only if** they do not grant privilege to the same role.
+//
+// ## Import
+//
+// Service account IAM resources can be imported using the project, service account email, role, member identity, and condition (beta).
+//
+// ```sh
+//  $ pulumi import gcp:serviceAccount/iAMBinding:IAMBinding admin-account-iam projects/{your-project-id}/serviceAccounts/{your-service-account-email}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:serviceAccount/iAMBinding:IAMBinding admin-account-iam "projects/{your-project-id}/serviceAccounts/{your-service-account-email} iam.serviceAccountUser"
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:serviceAccount/iAMBinding:IAMBinding admin-account-iam "projects/{your-project-id}/serviceAccounts/{your-service-account-email} roles/editor user:foo@example.com"
+// ```
+//
+//  -> **Custom Roles**If you're importing a IAM resource with a custom role, make sure to use the full name of the custom role, e.g. `[projects/my-project|organizations/my-org]/roles/my-custom-role`. With conditions
+//
+// ```sh
+//  $ pulumi import gcp:serviceAccount/iAMBinding:IAMBinding admin-account-iam "projects/{your-project-id}/serviceAccounts/{your-service-account-email} iam.serviceAccountUser expires_after_2019_12_31"
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:serviceAccount/iAMBinding:IAMBinding admin-account-iam "projects/{your-project-id}/serviceAccounts/{your-service-account-email} iam.serviceAccountUser user:foo@example.com expires_after_2019_12_31"
+// ```
 type IAMBinding struct {
 	pulumi.CustomResourceState
 
@@ -137,4 +164,43 @@ type IAMBindingArgs struct {
 
 func (IAMBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*iambindingArgs)(nil)).Elem()
+}
+
+type IAMBindingInput interface {
+	pulumi.Input
+
+	ToIAMBindingOutput() IAMBindingOutput
+	ToIAMBindingOutputWithContext(ctx context.Context) IAMBindingOutput
+}
+
+func (IAMBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*IAMBinding)(nil)).Elem()
+}
+
+func (i IAMBinding) ToIAMBindingOutput() IAMBindingOutput {
+	return i.ToIAMBindingOutputWithContext(context.Background())
+}
+
+func (i IAMBinding) ToIAMBindingOutputWithContext(ctx context.Context) IAMBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IAMBindingOutput)
+}
+
+type IAMBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (IAMBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IAMBindingOutput)(nil)).Elem()
+}
+
+func (o IAMBindingOutput) ToIAMBindingOutput() IAMBindingOutput {
+	return o
+}
+
+func (o IAMBindingOutput) ToIAMBindingOutputWithContext(ctx context.Context) IAMBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(IAMBindingOutput{})
 }

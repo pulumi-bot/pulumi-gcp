@@ -59,6 +59,22 @@ class Firewall(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        Firewall can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:compute/firewall:Firewall default projects/{{project}}/global/firewalls/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/firewall:Firewall default {{project}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/firewall:Firewall default {{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAllowArgs']]]] allows: The list of ALLOW rules specified by this firewall. Each rule
@@ -166,7 +182,7 @@ class Firewall(pulumi.CustomResource):
             __props__['direction'] = direction
             __props__['disabled'] = disabled
             if enable_logging is not None:
-                warnings.warn("Deprecated in favor of log_config", DeprecationWarning)
+                warnings.warn("""Deprecated in favor of log_config""", DeprecationWarning)
                 pulumi.log.warn("enable_logging is deprecated: Deprecated in favor of log_config")
             __props__['enable_logging'] = enable_logging
             __props__['log_config'] = log_config

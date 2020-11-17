@@ -11,6 +11,14 @@ import * as utilities from "../utilities";
  *
  * Note that you must have the "Logs Configuration Writer" IAM role (`roles/logging.configWriter`)
  * granted to the credentials used with this provider.
+ *
+ * ## Import
+ *
+ * Project-level logging exclusions can be imported using their URI, e.g.
+ *
+ * ```sh
+ *  $ pulumi import gcp:logging/projectExclusion:ProjectExclusion my_exclusion projects/my-project/exclusions/my-exclusion
+ * ```
  */
 export class ProjectExclusion extends pulumi.CustomResource {
     /**

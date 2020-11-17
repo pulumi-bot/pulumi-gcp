@@ -41,6 +41,14 @@ class AccessPolicy(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        AccessPolicy can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:accesscontextmanager/accessPolicy:AccessPolicy default {{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] parent: The parent of this AccessPolicy in the Cloud Resource Hierarchy.

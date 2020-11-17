@@ -4,6 +4,7 @@
 package diagflow
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -19,6 +20,14 @@ import (
 //     * [Official Documentation](https://cloud.google.com/dialogflow/docs/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// EntityType can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:diagflow/entityType:EntityType default {{name}}
+// ```
 type EntityType struct {
 	pulumi.CustomResourceState
 
@@ -167,4 +176,43 @@ type EntityTypeArgs struct {
 
 func (EntityTypeArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*entityTypeArgs)(nil)).Elem()
+}
+
+type EntityTypeInput interface {
+	pulumi.Input
+
+	ToEntityTypeOutput() EntityTypeOutput
+	ToEntityTypeOutputWithContext(ctx context.Context) EntityTypeOutput
+}
+
+func (EntityType) ElementType() reflect.Type {
+	return reflect.TypeOf((*EntityType)(nil)).Elem()
+}
+
+func (i EntityType) ToEntityTypeOutput() EntityTypeOutput {
+	return i.ToEntityTypeOutputWithContext(context.Background())
+}
+
+func (i EntityType) ToEntityTypeOutputWithContext(ctx context.Context) EntityTypeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EntityTypeOutput)
+}
+
+type EntityTypeOutput struct {
+	*pulumi.OutputState
+}
+
+func (EntityTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EntityTypeOutput)(nil)).Elem()
+}
+
+func (o EntityTypeOutput) ToEntityTypeOutput() EntityTypeOutput {
+	return o
+}
+
+func (o EntityTypeOutput) ToEntityTypeOutputWithContext(ctx context.Context) EntityTypeOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(EntityTypeOutput{})
 }

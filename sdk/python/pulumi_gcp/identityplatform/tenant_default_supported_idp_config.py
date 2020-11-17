@@ -33,6 +33,22 @@ class TenantDefaultSupportedIdpConfig(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        TenantDefaultSupportedIdpConfig can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:identityplatform/tenantDefaultSupportedIdpConfig:TenantDefaultSupportedIdpConfig default projects/{{project}}/tenants/{{tenant}}/defaultSupportedIdpConfigs/{{idp_id}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:identityplatform/tenantDefaultSupportedIdpConfig:TenantDefaultSupportedIdpConfig default {{project}}/{{tenant}}/{{idp_id}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:identityplatform/tenantDefaultSupportedIdpConfig:TenantDefaultSupportedIdpConfig default {{tenant}}/{{idp_id}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] client_id: OAuth client ID

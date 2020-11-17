@@ -4,6 +4,7 @@
 package appengine
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -17,6 +18,14 @@ import (
 // * [API documentation](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps#UrlDispatchRule)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// ApplicationUrlDispatchRules can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:appengine/applicationUrlDispatchRules:ApplicationUrlDispatchRules default {{project}}
+// ```
 type ApplicationUrlDispatchRules struct {
 	pulumi.CustomResourceState
 
@@ -101,4 +110,43 @@ type ApplicationUrlDispatchRulesArgs struct {
 
 func (ApplicationUrlDispatchRulesArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*applicationUrlDispatchRulesArgs)(nil)).Elem()
+}
+
+type ApplicationUrlDispatchRulesInput interface {
+	pulumi.Input
+
+	ToApplicationUrlDispatchRulesOutput() ApplicationUrlDispatchRulesOutput
+	ToApplicationUrlDispatchRulesOutputWithContext(ctx context.Context) ApplicationUrlDispatchRulesOutput
+}
+
+func (ApplicationUrlDispatchRules) ElementType() reflect.Type {
+	return reflect.TypeOf((*ApplicationUrlDispatchRules)(nil)).Elem()
+}
+
+func (i ApplicationUrlDispatchRules) ToApplicationUrlDispatchRulesOutput() ApplicationUrlDispatchRulesOutput {
+	return i.ToApplicationUrlDispatchRulesOutputWithContext(context.Background())
+}
+
+func (i ApplicationUrlDispatchRules) ToApplicationUrlDispatchRulesOutputWithContext(ctx context.Context) ApplicationUrlDispatchRulesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApplicationUrlDispatchRulesOutput)
+}
+
+type ApplicationUrlDispatchRulesOutput struct {
+	*pulumi.OutputState
+}
+
+func (ApplicationUrlDispatchRulesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ApplicationUrlDispatchRulesOutput)(nil)).Elem()
+}
+
+func (o ApplicationUrlDispatchRulesOutput) ToApplicationUrlDispatchRulesOutput() ApplicationUrlDispatchRulesOutput {
+	return o
+}
+
+func (o ApplicationUrlDispatchRulesOutput) ToApplicationUrlDispatchRulesOutputWithContext(ctx context.Context) ApplicationUrlDispatchRulesOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ApplicationUrlDispatchRulesOutput{})
 }

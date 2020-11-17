@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
+import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
@@ -16,6 +15,32 @@ import * as utilities from "../utilities";
  * > **Note:** `gcp.healthcare.Hl7StoreIamPolicy` **cannot** be used in conjunction with `gcp.healthcare.Hl7StoreIamBinding` and `gcp.healthcare.Hl7StoreIamMember` or they will fight over what your policy should be.
  *
  * > **Note:** `gcp.healthcare.Hl7StoreIamBinding` resources **can be** used in conjunction with `gcp.healthcare.Hl7StoreIamMember` resources **only if** they do not grant privilege to the same role.
+ *
+ * ## Import
+ *
+ * IAM member imports use space-delimited identifiers; the resource in question, the role, and the account.
+ *
+ * This member resource can be imported using the `hl7_v2_store_id`, role, and account e.g.
+ *
+ * ```sh
+ *  $ pulumi import gcp:healthcare/hl7StoreIamBinding:Hl7StoreIamBinding hl7_v2_store_iam "your-project-id/location-name/dataset-name/hl7-v2-store-name roles/viewer user:foo@example.com"
+ * ```
+ *
+ *  IAM binding imports use space-delimited identifiers; the resource in question and the role.
+ *
+ * This binding resource can be imported using the `hl7_v2_store_id` and role, e.g.
+ *
+ * ```sh
+ *  $ pulumi import gcp:healthcare/hl7StoreIamBinding:Hl7StoreIamBinding hl7_v2_store_iam "your-project-id/location-name/dataset-name/hl7-v2-store-name roles/viewer"
+ * ```
+ *
+ *  IAM policy imports use the identifier of the resource in question.
+ *
+ * This policy resource can be imported using the `hl7_v2_store_id`, role, and account e.g.
+ *
+ * ```sh
+ *  $ pulumi import gcp:healthcare/hl7StoreIamBinding:Hl7StoreIamBinding hl7_v2_store_iam your-project-id/location-name/dataset-name/hl7-v2-store-name
+ * ```
  */
 export class Hl7StoreIamBinding extends pulumi.CustomResource {
     /**

@@ -23,6 +23,26 @@ namespace Pulumi.Gcp.Compute
     ///     * [Autoscaling Groups of Instances](https://cloud.google.com/compute/docs/autoscaler/)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// RegionAutoscaler can be imported using any of these accepted formats
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/regionAutoscaler:RegionAutoscaler default projects/{{project}}/regions/{{region}}/autoscalers/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/regionAutoscaler:RegionAutoscaler default {{project}}/{{region}}/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/regionAutoscaler:RegionAutoscaler default {{region}}/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:compute/regionAutoscaler:RegionAutoscaler default {{name}}
+    /// ```
     /// </summary>
     public partial class RegionAutoscaler : Pulumi.CustomResource
     {

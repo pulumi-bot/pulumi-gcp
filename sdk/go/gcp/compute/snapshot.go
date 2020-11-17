@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -33,6 +34,22 @@ import (
 // state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Snapshot can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:compute/snapshot:Snapshot default projects/{{project}}/global/snapshots/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/snapshot:Snapshot default {{project}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/snapshot:Snapshot default {{name}}
+// ```
 type Snapshot struct {
 	pulumi.CustomResourceState
 
@@ -291,4 +308,43 @@ type SnapshotArgs struct {
 
 func (SnapshotArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*snapshotArgs)(nil)).Elem()
+}
+
+type SnapshotInput interface {
+	pulumi.Input
+
+	ToSnapshotOutput() SnapshotOutput
+	ToSnapshotOutputWithContext(ctx context.Context) SnapshotOutput
+}
+
+func (Snapshot) ElementType() reflect.Type {
+	return reflect.TypeOf((*Snapshot)(nil)).Elem()
+}
+
+func (i Snapshot) ToSnapshotOutput() SnapshotOutput {
+	return i.ToSnapshotOutputWithContext(context.Background())
+}
+
+func (i Snapshot) ToSnapshotOutputWithContext(ctx context.Context) SnapshotOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SnapshotOutput)
+}
+
+type SnapshotOutput struct {
+	*pulumi.OutputState
+}
+
+func (SnapshotOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SnapshotOutput)(nil)).Elem()
+}
+
+func (o SnapshotOutput) ToSnapshotOutput() SnapshotOutput {
+	return o
+}
+
+func (o SnapshotOutput) ToSnapshotOutputWithContext(ctx context.Context) SnapshotOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SnapshotOutput{})
 }

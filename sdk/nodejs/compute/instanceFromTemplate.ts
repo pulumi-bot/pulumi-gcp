@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
+import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
@@ -15,6 +14,10 @@ import * as utilities from "../utilities";
  * This resource is specifically to create a compute instance from a given
  * `sourceInstanceTemplate`. To create an instance without a template, use the
  * `gcp.compute.Instance` resource.
+ *
+ * ## Import
+ *
+ * This resource does not support import.
  */
 export class InstanceFromTemplate extends pulumi.CustomResource {
     /**

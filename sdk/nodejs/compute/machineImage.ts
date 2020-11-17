@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
+import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
@@ -18,6 +17,22 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/compute/docs/machine-images)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * MachineImage can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import gcp:compute/machineImage:MachineImage default projects/{{project}}/global/machineImages/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:compute/machineImage:MachineImage default {{project}}/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:compute/machineImage:MachineImage default {{name}}
+ * ```
  */
 export class MachineImage extends pulumi.CustomResource {
     /**

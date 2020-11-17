@@ -41,6 +41,26 @@ class RegionSslCertificate(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        RegionSslCertificate can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:compute/regionSslCertificate:RegionSslCertificate default projects/{{project}}/regions/{{region}}/sslCertificates/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/regionSslCertificate:RegionSslCertificate default {{project}}/{{region}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/regionSslCertificate:RegionSslCertificate default {{region}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/regionSslCertificate:RegionSslCertificate default {{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] certificate: The certificate in PEM format.

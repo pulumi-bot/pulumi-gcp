@@ -4,6 +4,7 @@
 package accesscontextmanager
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -32,6 +33,14 @@ import (
 // `billingProject` you defined.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// ServicePerimeterResource can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:accesscontextmanager/servicePerimeterResource:ServicePerimeterResource default {{perimeter_name}}/{{resource}}
+// ```
 type ServicePerimeterResource struct {
 	pulumi.CustomResourceState
 
@@ -119,4 +128,43 @@ type ServicePerimeterResourceArgs struct {
 
 func (ServicePerimeterResourceArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*servicePerimeterResourceArgs)(nil)).Elem()
+}
+
+type ServicePerimeterResourceInput interface {
+	pulumi.Input
+
+	ToServicePerimeterResourceOutput() ServicePerimeterResourceOutput
+	ToServicePerimeterResourceOutputWithContext(ctx context.Context) ServicePerimeterResourceOutput
+}
+
+func (ServicePerimeterResource) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServicePerimeterResource)(nil)).Elem()
+}
+
+func (i ServicePerimeterResource) ToServicePerimeterResourceOutput() ServicePerimeterResourceOutput {
+	return i.ToServicePerimeterResourceOutputWithContext(context.Background())
+}
+
+func (i ServicePerimeterResource) ToServicePerimeterResourceOutputWithContext(ctx context.Context) ServicePerimeterResourceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServicePerimeterResourceOutput)
+}
+
+type ServicePerimeterResourceOutput struct {
+	*pulumi.OutputState
+}
+
+func (ServicePerimeterResourceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServicePerimeterResourceOutput)(nil)).Elem()
+}
+
+func (o ServicePerimeterResourceOutput) ToServicePerimeterResourceOutput() ServicePerimeterResourceOutput {
+	return o
+}
+
+func (o ServicePerimeterResourceOutput) ToServicePerimeterResourceOutputWithContext(ctx context.Context) ServicePerimeterResourceOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ServicePerimeterResourceOutput{})
 }

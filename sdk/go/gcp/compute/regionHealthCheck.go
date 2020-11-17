@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
@@ -28,6 +29,26 @@ import (
 //     * [Official Documentation](https://cloud.google.com/load-balancing/docs/health-checks)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// RegionHealthCheck can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:compute/regionHealthCheck:RegionHealthCheck default projects/{{project}}/regions/{{region}}/healthChecks/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/regionHealthCheck:RegionHealthCheck default {{project}}/{{region}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/regionHealthCheck:RegionHealthCheck default {{region}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/regionHealthCheck:RegionHealthCheck default {{name}}
+// ```
 type RegionHealthCheck struct {
 	pulumi.CustomResourceState
 
@@ -347,4 +368,43 @@ type RegionHealthCheckArgs struct {
 
 func (RegionHealthCheckArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*regionHealthCheckArgs)(nil)).Elem()
+}
+
+type RegionHealthCheckInput interface {
+	pulumi.Input
+
+	ToRegionHealthCheckOutput() RegionHealthCheckOutput
+	ToRegionHealthCheckOutputWithContext(ctx context.Context) RegionHealthCheckOutput
+}
+
+func (RegionHealthCheck) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionHealthCheck)(nil)).Elem()
+}
+
+func (i RegionHealthCheck) ToRegionHealthCheckOutput() RegionHealthCheckOutput {
+	return i.ToRegionHealthCheckOutputWithContext(context.Background())
+}
+
+func (i RegionHealthCheck) ToRegionHealthCheckOutputWithContext(ctx context.Context) RegionHealthCheckOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegionHealthCheckOutput)
+}
+
+type RegionHealthCheckOutput struct {
+	*pulumi.OutputState
+}
+
+func (RegionHealthCheckOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionHealthCheckOutput)(nil)).Elem()
+}
+
+func (o RegionHealthCheckOutput) ToRegionHealthCheckOutput() RegionHealthCheckOutput {
+	return o
+}
+
+func (o RegionHealthCheckOutput) ToRegionHealthCheckOutputWithContext(ctx context.Context) RegionHealthCheckOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RegionHealthCheckOutput{})
 }

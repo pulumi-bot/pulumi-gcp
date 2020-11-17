@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
@@ -35,6 +36,26 @@ import (
 // state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Disk can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:compute/disk:Disk default projects/{{project}}/zones/{{zone}}/disks/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/disk:Disk default {{project}}/{{zone}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/disk:Disk default {{zone}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/disk:Disk default {{name}}
+// ```
 type Disk struct {
 	pulumi.CustomResourceState
 
@@ -566,4 +587,43 @@ type DiskArgs struct {
 
 func (DiskArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*diskArgs)(nil)).Elem()
+}
+
+type DiskInput interface {
+	pulumi.Input
+
+	ToDiskOutput() DiskOutput
+	ToDiskOutputWithContext(ctx context.Context) DiskOutput
+}
+
+func (Disk) ElementType() reflect.Type {
+	return reflect.TypeOf((*Disk)(nil)).Elem()
+}
+
+func (i Disk) ToDiskOutput() DiskOutput {
+	return i.ToDiskOutputWithContext(context.Background())
+}
+
+func (i Disk) ToDiskOutputWithContext(ctx context.Context) DiskOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DiskOutput)
+}
+
+type DiskOutput struct {
+	*pulumi.OutputState
+}
+
+func (DiskOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DiskOutput)(nil)).Elem()
+}
+
+func (o DiskOutput) ToDiskOutput() DiskOutput {
+	return o
+}
+
+func (o DiskOutput) ToDiskOutputWithContext(ctx context.Context) DiskOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DiskOutput{})
 }

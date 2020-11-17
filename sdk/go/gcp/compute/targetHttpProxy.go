@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -20,6 +21,22 @@ import (
 //     * [Official Documentation](https://cloud.google.com/compute/docs/load-balancing/http/target-proxies)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// TargetHttpProxy can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:compute/targetHttpProxy:TargetHttpProxy default projects/{{project}}/global/targetHttpProxies/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/targetHttpProxy:TargetHttpProxy default {{project}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/targetHttpProxy:TargetHttpProxy default {{name}}
+// ```
 type TargetHttpProxy struct {
 	pulumi.CustomResourceState
 
@@ -172,4 +189,43 @@ type TargetHttpProxyArgs struct {
 
 func (TargetHttpProxyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*targetHttpProxyArgs)(nil)).Elem()
+}
+
+type TargetHttpProxyInput interface {
+	pulumi.Input
+
+	ToTargetHttpProxyOutput() TargetHttpProxyOutput
+	ToTargetHttpProxyOutputWithContext(ctx context.Context) TargetHttpProxyOutput
+}
+
+func (TargetHttpProxy) ElementType() reflect.Type {
+	return reflect.TypeOf((*TargetHttpProxy)(nil)).Elem()
+}
+
+func (i TargetHttpProxy) ToTargetHttpProxyOutput() TargetHttpProxyOutput {
+	return i.ToTargetHttpProxyOutputWithContext(context.Background())
+}
+
+func (i TargetHttpProxy) ToTargetHttpProxyOutputWithContext(ctx context.Context) TargetHttpProxyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TargetHttpProxyOutput)
+}
+
+type TargetHttpProxyOutput struct {
+	*pulumi.OutputState
+}
+
+func (TargetHttpProxyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TargetHttpProxyOutput)(nil)).Elem()
+}
+
+func (o TargetHttpProxyOutput) ToTargetHttpProxyOutput() TargetHttpProxyOutput {
+	return o
+}
+
+func (o TargetHttpProxyOutput) ToTargetHttpProxyOutputWithContext(ctx context.Context) TargetHttpProxyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TargetHttpProxyOutput{})
 }

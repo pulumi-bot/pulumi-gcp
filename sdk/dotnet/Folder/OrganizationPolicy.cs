@@ -14,6 +14,18 @@ namespace Pulumi.Gcp.Folder
     /// [the official
     /// documentation](https://cloud.google.com/resource-manager/docs/organization-policy/overview) and
     /// [API](https://cloud.google.com/resource-manager/reference/rest/v1/folders/setOrgPolicy).
+    /// 
+    /// ## Import
+    /// 
+    /// Folder organization policies can be imported using any of the follow formats
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:folder/organizationPolicy:OrganizationPolicy policy folders/folder-1234/constraints/serviceuser.services
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:folder/organizationPolicy:OrganizationPolicy policy folder-1234/serviceuser.services
+    /// ```
     /// </summary>
     public partial class OrganizationPolicy : Pulumi.CustomResource
     {

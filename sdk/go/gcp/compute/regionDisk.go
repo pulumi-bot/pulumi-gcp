@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -36,6 +37,26 @@ import (
 // state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
 //
 // ## Example Usage
+//
+// ## Import
+//
+// RegionDisk can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:compute/regionDisk:RegionDisk default projects/{{project}}/regions/{{region}}/disks/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/regionDisk:RegionDisk default {{project}}/{{region}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/regionDisk:RegionDisk default {{region}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/regionDisk:RegionDisk default {{name}}
+// ```
 type RegionDisk struct {
 	pulumi.CustomResourceState
 
@@ -443,4 +464,43 @@ type RegionDiskArgs struct {
 
 func (RegionDiskArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*regionDiskArgs)(nil)).Elem()
+}
+
+type RegionDiskInput interface {
+	pulumi.Input
+
+	ToRegionDiskOutput() RegionDiskOutput
+	ToRegionDiskOutputWithContext(ctx context.Context) RegionDiskOutput
+}
+
+func (RegionDisk) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionDisk)(nil)).Elem()
+}
+
+func (i RegionDisk) ToRegionDiskOutput() RegionDiskOutput {
+	return i.ToRegionDiskOutputWithContext(context.Background())
+}
+
+func (i RegionDisk) ToRegionDiskOutputWithContext(ctx context.Context) RegionDiskOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegionDiskOutput)
+}
+
+type RegionDiskOutput struct {
+	*pulumi.OutputState
+}
+
+func (RegionDiskOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionDiskOutput)(nil)).Elem()
+}
+
+func (o RegionDiskOutput) ToRegionDiskOutput() RegionDiskOutput {
+	return o
+}
+
+func (o RegionDiskOutput) ToRegionDiskOutputWithContext(ctx context.Context) RegionDiskOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RegionDiskOutput{})
 }

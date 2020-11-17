@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
@@ -33,6 +34,22 @@ import (
 //     * [Official Documentation](https://cloud.google.com/compute/docs/images)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Image can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:compute/image:Image default projects/{{project}}/global/images/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/image:Image default {{project}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/image:Image default {{name}}
+// ```
 type Image struct {
 	pulumi.CustomResourceState
 
@@ -368,4 +385,43 @@ type ImageArgs struct {
 
 func (ImageArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*imageArgs)(nil)).Elem()
+}
+
+type ImageInput interface {
+	pulumi.Input
+
+	ToImageOutput() ImageOutput
+	ToImageOutputWithContext(ctx context.Context) ImageOutput
+}
+
+func (Image) ElementType() reflect.Type {
+	return reflect.TypeOf((*Image)(nil)).Elem()
+}
+
+func (i Image) ToImageOutput() ImageOutput {
+	return i.ToImageOutputWithContext(context.Background())
+}
+
+func (i Image) ToImageOutputWithContext(ctx context.Context) ImageOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ImageOutput)
+}
+
+type ImageOutput struct {
+	*pulumi.OutputState
+}
+
+func (ImageOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ImageOutput)(nil)).Elem()
+}
+
+func (o ImageOutput) ToImageOutput() ImageOutput {
+	return o
+}
+
+func (o ImageOutput) ToImageOutputWithContext(ctx context.Context) ImageOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ImageOutput{})
 }

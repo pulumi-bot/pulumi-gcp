@@ -4,6 +4,7 @@
 package osconfig
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -20,6 +21,22 @@ import (
 //     * [Official Documentation](https://cloud.google.com/compute/docs/os-patch-management)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// PatchDeployment can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:osconfig/patchDeployment:PatchDeployment default projects/{{project}}/patchDeployments/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:osconfig/patchDeployment:PatchDeployment default {{project}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:osconfig/patchDeployment:PatchDeployment default {{name}}
+// ```
 type PatchDeployment struct {
 	pulumi.CustomResourceState
 
@@ -266,4 +283,43 @@ type PatchDeploymentArgs struct {
 
 func (PatchDeploymentArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*patchDeploymentArgs)(nil)).Elem()
+}
+
+type PatchDeploymentInput interface {
+	pulumi.Input
+
+	ToPatchDeploymentOutput() PatchDeploymentOutput
+	ToPatchDeploymentOutputWithContext(ctx context.Context) PatchDeploymentOutput
+}
+
+func (PatchDeployment) ElementType() reflect.Type {
+	return reflect.TypeOf((*PatchDeployment)(nil)).Elem()
+}
+
+func (i PatchDeployment) ToPatchDeploymentOutput() PatchDeploymentOutput {
+	return i.ToPatchDeploymentOutputWithContext(context.Background())
+}
+
+func (i PatchDeployment) ToPatchDeploymentOutputWithContext(ctx context.Context) PatchDeploymentOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentOutput)
+}
+
+type PatchDeploymentOutput struct {
+	*pulumi.OutputState
+}
+
+func (PatchDeploymentOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PatchDeploymentOutput)(nil)).Elem()
+}
+
+func (o PatchDeploymentOutput) ToPatchDeploymentOutput() PatchDeploymentOutput {
+	return o
+}
+
+func (o PatchDeploymentOutput) ToPatchDeploymentOutputWithContext(ctx context.Context) PatchDeploymentOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(PatchDeploymentOutput{})
 }

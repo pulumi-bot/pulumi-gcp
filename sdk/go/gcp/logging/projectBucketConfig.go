@@ -4,6 +4,7 @@
 package logging
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -15,6 +16,14 @@ import (
 // [Storing Logs](https://cloud.google.com/logging/docs/storage).
 //
 // > **Note:** Logging buckets are automatically created for a given folder, project, organization, billingAccount and cannot be deleted. Creating a resource of this type will acquire and update the resource that already exists at the desired location. These buckets cannot be removed so deleting this resource will remove the bucket config from your state but will leave the logging bucket unchanged. The buckets that are currently automatically created are "_Default" and "_Required".
+//
+// ## Import
+//
+// This resource can be imported using the following format
+//
+// ```sh
+//  $ pulumi import gcp:logging/projectBucketConfig:ProjectBucketConfig default projects/{{project}}/locations/{{location}}/buckets/{{bucket_id}}
+// ```
 type ProjectBucketConfig struct {
 	pulumi.CustomResourceState
 
@@ -137,4 +146,43 @@ type ProjectBucketConfigArgs struct {
 
 func (ProjectBucketConfigArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*projectBucketConfigArgs)(nil)).Elem()
+}
+
+type ProjectBucketConfigInput interface {
+	pulumi.Input
+
+	ToProjectBucketConfigOutput() ProjectBucketConfigOutput
+	ToProjectBucketConfigOutputWithContext(ctx context.Context) ProjectBucketConfigOutput
+}
+
+func (ProjectBucketConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProjectBucketConfig)(nil)).Elem()
+}
+
+func (i ProjectBucketConfig) ToProjectBucketConfigOutput() ProjectBucketConfigOutput {
+	return i.ToProjectBucketConfigOutputWithContext(context.Background())
+}
+
+func (i ProjectBucketConfig) ToProjectBucketConfigOutputWithContext(ctx context.Context) ProjectBucketConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProjectBucketConfigOutput)
+}
+
+type ProjectBucketConfigOutput struct {
+	*pulumi.OutputState
+}
+
+func (ProjectBucketConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProjectBucketConfigOutput)(nil)).Elem()
+}
+
+func (o ProjectBucketConfigOutput) ToProjectBucketConfigOutput() ProjectBucketConfigOutput {
+	return o
+}
+
+func (o ProjectBucketConfigOutput) ToProjectBucketConfigOutputWithContext(ctx context.Context) ProjectBucketConfigOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ProjectBucketConfigOutput{})
 }

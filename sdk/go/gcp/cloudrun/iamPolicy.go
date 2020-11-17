@@ -4,6 +4,7 @@
 package cloudrun
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -19,6 +20,30 @@ import (
 // > **Note:** `cloudrun.IamPolicy` **cannot** be used in conjunction with `cloudrun.IamBinding` and `cloudrun.IamMember` or they will fight over what your policy should be.
 //
 // > **Note:** `cloudrun.IamBinding` resources **can be** used in conjunction with `cloudrun.IamMember` resources **only if** they do not grant privilege to the same role.
+//
+// ## Import
+//
+// For all import syntaxes, the "resource in question" can take any of the following forms* projects/{{project}}/locations/{{location}}/services/{{service}} * {{project}}/{{location}}/{{service}} * {{location}}/{{service}} * {{service}} Any variables not passed in the import command will be taken from the provider configuration. Cloud Run service IAM resources can be imported using the resource identifiers, role, and member. IAM member imports use space-delimited identifiersthe resource in question, the role, and the member identity, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:cloudrun/iamPolicy:IamPolicy editor "projects/{{project}}/locations/{{location}}/services/{{service}} roles/viewer user:jane@example.com"
+// ```
+//
+//  IAM binding imports use space-delimited identifiersthe resource in question and the role, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:cloudrun/iamPolicy:IamPolicy editor "projects/{{project}}/locations/{{location}}/services/{{service}} roles/viewer"
+// ```
+//
+//  IAM policy imports use the identifier of the resource in question, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:cloudrun/iamPolicy:IamPolicy editor projects/{{project}}/locations/{{location}}/services/{{service}}
+// ```
+//
+//  -> **Custom Roles**If you're importing a IAM resource with a custom role, make sure to use the
+//
+// full name of the custom role, e.g. `[projects/my-project|organizations/my-org]/roles/my-custom-role`.
 type IamPolicy struct {
 	pulumi.CustomResourceState
 
@@ -132,4 +157,43 @@ type IamPolicyArgs struct {
 
 func (IamPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*iamPolicyArgs)(nil)).Elem()
+}
+
+type IamPolicyInput interface {
+	pulumi.Input
+
+	ToIamPolicyOutput() IamPolicyOutput
+	ToIamPolicyOutputWithContext(ctx context.Context) IamPolicyOutput
+}
+
+func (IamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*IamPolicy)(nil)).Elem()
+}
+
+func (i IamPolicy) ToIamPolicyOutput() IamPolicyOutput {
+	return i.ToIamPolicyOutputWithContext(context.Background())
+}
+
+func (i IamPolicy) ToIamPolicyOutputWithContext(ctx context.Context) IamPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IamPolicyOutput)
+}
+
+type IamPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (IamPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IamPolicyOutput)(nil)).Elem()
+}
+
+func (o IamPolicyOutput) ToIamPolicyOutput() IamPolicyOutput {
+	return o
+}
+
+func (o IamPolicyOutput) ToIamPolicyOutputWithContext(ctx context.Context) IamPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(IamPolicyOutput{})
 }

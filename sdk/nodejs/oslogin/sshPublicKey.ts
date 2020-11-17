@@ -14,6 +14,18 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/compute/docs/oslogin)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * SSHPublicKey can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import gcp:oslogin/sshPublicKey:SshPublicKey default users/{{user}}/sshPublicKeys/{{fingerprint}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:oslogin/sshPublicKey:SshPublicKey default {{user}}/{{fingerprint}}
+ * ```
  */
 export class SshPublicKey extends pulumi.CustomResource {
     /**

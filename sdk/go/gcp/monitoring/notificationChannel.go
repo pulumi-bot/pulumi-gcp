@@ -4,6 +4,7 @@
 package monitoring
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -35,6 +36,14 @@ import (
 //     * [Monitoring API Documentation](https://cloud.google.com/monitoring/api/v3/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// NotificationChannel can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:monitoring/notificationChannel:NotificationChannel default {{name}}
+// ```
 type NotificationChannel struct {
 	pulumi.CustomResourceState
 
@@ -262,4 +271,43 @@ type NotificationChannelArgs struct {
 
 func (NotificationChannelArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*notificationChannelArgs)(nil)).Elem()
+}
+
+type NotificationChannelInput interface {
+	pulumi.Input
+
+	ToNotificationChannelOutput() NotificationChannelOutput
+	ToNotificationChannelOutputWithContext(ctx context.Context) NotificationChannelOutput
+}
+
+func (NotificationChannel) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationChannel)(nil)).Elem()
+}
+
+func (i NotificationChannel) ToNotificationChannelOutput() NotificationChannelOutput {
+	return i.ToNotificationChannelOutputWithContext(context.Background())
+}
+
+func (i NotificationChannel) ToNotificationChannelOutputWithContext(ctx context.Context) NotificationChannelOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationChannelOutput)
+}
+
+type NotificationChannelOutput struct {
+	*pulumi.OutputState
+}
+
+func (NotificationChannelOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationChannelOutput)(nil)).Elem()
+}
+
+func (o NotificationChannelOutput) ToNotificationChannelOutput() NotificationChannelOutput {
+	return o
+}
+
+func (o NotificationChannelOutput) ToNotificationChannelOutputWithContext(ctx context.Context) NotificationChannelOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(NotificationChannelOutput{})
 }

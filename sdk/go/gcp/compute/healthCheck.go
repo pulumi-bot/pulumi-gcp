@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
@@ -28,6 +29,22 @@ import (
 //     * [Official Documentation](https://cloud.google.com/load-balancing/docs/health-checks)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// HealthCheck can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:compute/healthCheck:HealthCheck default projects/{{project}}/global/healthChecks/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/healthCheck:HealthCheck default {{project}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/healthCheck:HealthCheck default {{name}}
+// ```
 type HealthCheck struct {
 	pulumi.CustomResourceState
 
@@ -332,4 +349,43 @@ type HealthCheckArgs struct {
 
 func (HealthCheckArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*healthCheckArgs)(nil)).Elem()
+}
+
+type HealthCheckInput interface {
+	pulumi.Input
+
+	ToHealthCheckOutput() HealthCheckOutput
+	ToHealthCheckOutputWithContext(ctx context.Context) HealthCheckOutput
+}
+
+func (HealthCheck) ElementType() reflect.Type {
+	return reflect.TypeOf((*HealthCheck)(nil)).Elem()
+}
+
+func (i HealthCheck) ToHealthCheckOutput() HealthCheckOutput {
+	return i.ToHealthCheckOutputWithContext(context.Background())
+}
+
+func (i HealthCheck) ToHealthCheckOutputWithContext(ctx context.Context) HealthCheckOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HealthCheckOutput)
+}
+
+type HealthCheckOutput struct {
+	*pulumi.OutputState
+}
+
+func (HealthCheckOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*HealthCheckOutput)(nil)).Elem()
+}
+
+func (o HealthCheckOutput) ToHealthCheckOutput() HealthCheckOutput {
+	return o
+}
+
+func (o HealthCheckOutput) ToHealthCheckOutputWithContext(ctx context.Context) HealthCheckOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(HealthCheckOutput{})
 }

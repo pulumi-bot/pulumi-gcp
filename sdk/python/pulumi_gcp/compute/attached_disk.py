@@ -39,6 +39,18 @@ class AttachedDisk(pulumi.CustomResource):
 
         **Note:** When using `compute.AttachedDisk` you **must** use `lifecycle.ignore_changes = ["attached_disk"]` on the `compute.Instance` resource that has the disks attached. Otherwise the two resources will fight for control of the attached disk block.
 
+        ## Import
+
+        Attached Disk can be imported the following ways
+
+        ```sh
+         $ pulumi import gcp:compute/attachedDisk:AttachedDisk default projects/{{project}}/zones/{{zone}}/instances/{{instance.name}}/{{disk.name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/attachedDisk:AttachedDisk default {{project}}/{{zone}}/{{instance.name}}/{{disk.name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] device_name: Specifies a unique device name of your choice that is

@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
@@ -31,6 +32,26 @@ import (
 //     * [Reserving a Static Internal IP Address](https://cloud.google.com/compute/docs/ip-addresses/reserve-static-internal-ip-address)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Address can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:compute/address:Address default projects/{{project}}/regions/{{region}}/addresses/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/address:Address default {{project}}/{{region}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/address:Address default {{region}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/address:Address default {{name}}
+// ```
 type Address struct {
 	pulumi.CustomResourceState
 
@@ -311,4 +332,43 @@ type AddressArgs struct {
 
 func (AddressArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*addressArgs)(nil)).Elem()
+}
+
+type AddressInput interface {
+	pulumi.Input
+
+	ToAddressOutput() AddressOutput
+	ToAddressOutputWithContext(ctx context.Context) AddressOutput
+}
+
+func (Address) ElementType() reflect.Type {
+	return reflect.TypeOf((*Address)(nil)).Elem()
+}
+
+func (i Address) ToAddressOutput() AddressOutput {
+	return i.ToAddressOutputWithContext(context.Background())
+}
+
+func (i Address) ToAddressOutputWithContext(ctx context.Context) AddressOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AddressOutput)
+}
+
+type AddressOutput struct {
+	*pulumi.OutputState
+}
+
+func (AddressOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AddressOutput)(nil)).Elem()
+}
+
+func (o AddressOutput) ToAddressOutput() AddressOutput {
+	return o
+}
+
+func (o AddressOutput) ToAddressOutputWithContext(ctx context.Context) AddressOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AddressOutput{})
 }

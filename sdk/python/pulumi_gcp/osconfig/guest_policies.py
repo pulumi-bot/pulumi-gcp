@@ -41,6 +41,22 @@ class GuestPolicies(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        GuestPolicies can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:osconfig/guestPolicies:GuestPolicies default projects/{{project}}/guestPolicies/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:osconfig/guestPolicies:GuestPolicies default {{project}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:osconfig/guestPolicies:GuestPolicies default {{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['GuestPoliciesAssignmentArgs']] assignment: Specifies the VM instances that are assigned to this policy. This allows you to target sets

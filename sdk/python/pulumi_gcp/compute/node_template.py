@@ -42,6 +42,26 @@ class NodeTemplate(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        NodeTemplate can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:compute/nodeTemplate:NodeTemplate default projects/{{project}}/regions/{{region}}/nodeTemplates/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/nodeTemplate:NodeTemplate default {{project}}/{{region}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/nodeTemplate:NodeTemplate default {{region}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/nodeTemplate:NodeTemplate default {{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] cpu_overcommit_type: CPU overcommit.

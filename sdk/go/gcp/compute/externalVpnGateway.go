@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
@@ -16,6 +17,22 @@ import (
 // * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/externalVpnGateways)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// ExternalVpnGateway can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:compute/externalVpnGateway:ExternalVpnGateway default projects/{{project}}/global/externalVpnGateways/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/externalVpnGateway:ExternalVpnGateway default {{project}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/externalVpnGateway:ExternalVpnGateway default {{name}}
+// ```
 type ExternalVpnGateway struct {
 	pulumi.CustomResourceState
 
@@ -168,4 +185,43 @@ type ExternalVpnGatewayArgs struct {
 
 func (ExternalVpnGatewayArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*externalVpnGatewayArgs)(nil)).Elem()
+}
+
+type ExternalVpnGatewayInput interface {
+	pulumi.Input
+
+	ToExternalVpnGatewayOutput() ExternalVpnGatewayOutput
+	ToExternalVpnGatewayOutputWithContext(ctx context.Context) ExternalVpnGatewayOutput
+}
+
+func (ExternalVpnGateway) ElementType() reflect.Type {
+	return reflect.TypeOf((*ExternalVpnGateway)(nil)).Elem()
+}
+
+func (i ExternalVpnGateway) ToExternalVpnGatewayOutput() ExternalVpnGatewayOutput {
+	return i.ToExternalVpnGatewayOutputWithContext(context.Background())
+}
+
+func (i ExternalVpnGateway) ToExternalVpnGatewayOutputWithContext(ctx context.Context) ExternalVpnGatewayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExternalVpnGatewayOutput)
+}
+
+type ExternalVpnGatewayOutput struct {
+	*pulumi.OutputState
+}
+
+func (ExternalVpnGatewayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ExternalVpnGatewayOutput)(nil)).Elem()
+}
+
+func (o ExternalVpnGatewayOutput) ToExternalVpnGatewayOutput() ExternalVpnGatewayOutput {
+	return o
+}
+
+func (o ExternalVpnGatewayOutput) ToExternalVpnGatewayOutputWithContext(ctx context.Context) ExternalVpnGatewayOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ExternalVpnGatewayOutput{})
 }

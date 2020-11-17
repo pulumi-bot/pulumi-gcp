@@ -4,6 +4,7 @@
 package organizations
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -20,6 +21,20 @@ import (
 // > **Note:** On create, this resource will overwrite members of any existing roles.
 //     Use `pulumi import` and inspect the `output to ensure
 //     your existing members are preserved.
+//
+// ## Import
+//
+// IAM binding imports use space-delimited identifiers; first the resource in question and then the role.
+//
+// These bindings can be imported using the `org_id` and role, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:organizations/iAMBinding:IAMBinding my_org "your-org-id roles/viewer"
+// ```
+//
+//  -> **Custom Roles**If you're importing a IAM resource with a custom role, make sure to use the
+//
+// full name of the custom role, e.g. `[projects/my-project|organizations/my-org]/roles/my-custom-role`.
 type IAMBinding struct {
 	pulumi.CustomResourceState
 
@@ -131,4 +146,43 @@ type IAMBindingArgs struct {
 
 func (IAMBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*iambindingArgs)(nil)).Elem()
+}
+
+type IAMBindingInput interface {
+	pulumi.Input
+
+	ToIAMBindingOutput() IAMBindingOutput
+	ToIAMBindingOutputWithContext(ctx context.Context) IAMBindingOutput
+}
+
+func (IAMBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*IAMBinding)(nil)).Elem()
+}
+
+func (i IAMBinding) ToIAMBindingOutput() IAMBindingOutput {
+	return i.ToIAMBindingOutputWithContext(context.Background())
+}
+
+func (i IAMBinding) ToIAMBindingOutputWithContext(ctx context.Context) IAMBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IAMBindingOutput)
+}
+
+type IAMBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (IAMBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IAMBindingOutput)(nil)).Elem()
+}
+
+func (o IAMBindingOutput) ToIAMBindingOutput() IAMBindingOutput {
+	return o
+}
+
+func (o IAMBindingOutput) ToIAMBindingOutputWithContext(ctx context.Context) IAMBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(IAMBindingOutput{})
 }

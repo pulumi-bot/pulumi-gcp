@@ -12,6 +12,22 @@ import * as utilities from "../utilities";
  * affect billing. You cannot update the source representation instance.
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * SourceRepresentationInstance can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import gcp:sql/sourceRepresentationInstance:SourceRepresentationInstance default projects/{{project}}/instances/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:sql/sourceRepresentationInstance:SourceRepresentationInstance default {{project}}/{{name}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:sql/sourceRepresentationInstance:SourceRepresentationInstance default {{name}}
+ * ```
  */
 export class SourceRepresentationInstance extends pulumi.CustomResource {
     /**
