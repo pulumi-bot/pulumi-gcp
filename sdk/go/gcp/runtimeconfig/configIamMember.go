@@ -4,6 +4,7 @@
 package runtimeconfig
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -140,4 +141,43 @@ type ConfigIamMemberArgs struct {
 
 func (ConfigIamMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*configIamMemberArgs)(nil)).Elem()
+}
+
+type ConfigIamMemberInput interface {
+	pulumi.Input
+
+	ToConfigIamMemberOutput() ConfigIamMemberOutput
+	ToConfigIamMemberOutputWithContext(ctx context.Context) ConfigIamMemberOutput
+}
+
+func (ConfigIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConfigIamMember)(nil)).Elem()
+}
+
+func (i ConfigIamMember) ToConfigIamMemberOutput() ConfigIamMemberOutput {
+	return i.ToConfigIamMemberOutputWithContext(context.Background())
+}
+
+func (i ConfigIamMember) ToConfigIamMemberOutputWithContext(ctx context.Context) ConfigIamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConfigIamMemberOutput)
+}
+
+type ConfigIamMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (ConfigIamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConfigIamMemberOutput)(nil)).Elem()
+}
+
+func (o ConfigIamMemberOutput) ToConfigIamMemberOutput() ConfigIamMemberOutput {
+	return o
+}
+
+func (o ConfigIamMemberOutput) ToConfigIamMemberOutputWithContext(ctx context.Context) ConfigIamMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ConfigIamMemberOutput{})
 }

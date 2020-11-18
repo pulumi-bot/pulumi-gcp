@@ -4,6 +4,7 @@
 package datacatalog
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -116,4 +117,43 @@ type PolicyTagIamMemberArgs struct {
 
 func (PolicyTagIamMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*policyTagIamMemberArgs)(nil)).Elem()
+}
+
+type PolicyTagIamMemberInput interface {
+	pulumi.Input
+
+	ToPolicyTagIamMemberOutput() PolicyTagIamMemberOutput
+	ToPolicyTagIamMemberOutputWithContext(ctx context.Context) PolicyTagIamMemberOutput
+}
+
+func (PolicyTagIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*PolicyTagIamMember)(nil)).Elem()
+}
+
+func (i PolicyTagIamMember) ToPolicyTagIamMemberOutput() PolicyTagIamMemberOutput {
+	return i.ToPolicyTagIamMemberOutputWithContext(context.Background())
+}
+
+func (i PolicyTagIamMember) ToPolicyTagIamMemberOutputWithContext(ctx context.Context) PolicyTagIamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PolicyTagIamMemberOutput)
+}
+
+type PolicyTagIamMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (PolicyTagIamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PolicyTagIamMemberOutput)(nil)).Elem()
+}
+
+func (o PolicyTagIamMemberOutput) ToPolicyTagIamMemberOutput() PolicyTagIamMemberOutput {
+	return o
+}
+
+func (o PolicyTagIamMemberOutput) ToPolicyTagIamMemberOutputWithContext(ctx context.Context) PolicyTagIamMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(PolicyTagIamMemberOutput{})
 }

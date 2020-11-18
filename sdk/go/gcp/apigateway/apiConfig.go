@@ -4,6 +4,7 @@
 package apigateway
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -172,4 +173,43 @@ type ApiConfigArgs struct {
 
 func (ApiConfigArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*apiConfigArgs)(nil)).Elem()
+}
+
+type ApiConfigInput interface {
+	pulumi.Input
+
+	ToApiConfigOutput() ApiConfigOutput
+	ToApiConfigOutputWithContext(ctx context.Context) ApiConfigOutput
+}
+
+func (ApiConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*ApiConfig)(nil)).Elem()
+}
+
+func (i ApiConfig) ToApiConfigOutput() ApiConfigOutput {
+	return i.ToApiConfigOutputWithContext(context.Background())
+}
+
+func (i ApiConfig) ToApiConfigOutputWithContext(ctx context.Context) ApiConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApiConfigOutput)
+}
+
+type ApiConfigOutput struct {
+	*pulumi.OutputState
+}
+
+func (ApiConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ApiConfigOutput)(nil)).Elem()
+}
+
+func (o ApiConfigOutput) ToApiConfigOutput() ApiConfigOutput {
+	return o
+}
+
+func (o ApiConfigOutput) ToApiConfigOutputWithContext(ctx context.Context) ApiConfigOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ApiConfigOutput{})
 }

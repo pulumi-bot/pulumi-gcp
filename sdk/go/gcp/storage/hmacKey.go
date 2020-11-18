@@ -4,6 +4,7 @@
 package storage
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -151,4 +152,43 @@ type HmacKeyArgs struct {
 
 func (HmacKeyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*hmacKeyArgs)(nil)).Elem()
+}
+
+type HmacKeyInput interface {
+	pulumi.Input
+
+	ToHmacKeyOutput() HmacKeyOutput
+	ToHmacKeyOutputWithContext(ctx context.Context) HmacKeyOutput
+}
+
+func (HmacKey) ElementType() reflect.Type {
+	return reflect.TypeOf((*HmacKey)(nil)).Elem()
+}
+
+func (i HmacKey) ToHmacKeyOutput() HmacKeyOutput {
+	return i.ToHmacKeyOutputWithContext(context.Background())
+}
+
+func (i HmacKey) ToHmacKeyOutputWithContext(ctx context.Context) HmacKeyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HmacKeyOutput)
+}
+
+type HmacKeyOutput struct {
+	*pulumi.OutputState
+}
+
+func (HmacKeyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*HmacKeyOutput)(nil)).Elem()
+}
+
+func (o HmacKeyOutput) ToHmacKeyOutput() HmacKeyOutput {
+	return o
+}
+
+func (o HmacKeyOutput) ToHmacKeyOutputWithContext(ctx context.Context) HmacKeyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(HmacKeyOutput{})
 }

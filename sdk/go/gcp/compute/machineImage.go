@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -177,4 +178,43 @@ type MachineImageArgs struct {
 
 func (MachineImageArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*machineImageArgs)(nil)).Elem()
+}
+
+type MachineImageInput interface {
+	pulumi.Input
+
+	ToMachineImageOutput() MachineImageOutput
+	ToMachineImageOutputWithContext(ctx context.Context) MachineImageOutput
+}
+
+func (MachineImage) ElementType() reflect.Type {
+	return reflect.TypeOf((*MachineImage)(nil)).Elem()
+}
+
+func (i MachineImage) ToMachineImageOutput() MachineImageOutput {
+	return i.ToMachineImageOutputWithContext(context.Background())
+}
+
+func (i MachineImage) ToMachineImageOutputWithContext(ctx context.Context) MachineImageOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MachineImageOutput)
+}
+
+type MachineImageOutput struct {
+	*pulumi.OutputState
+}
+
+func (MachineImageOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MachineImageOutput)(nil)).Elem()
+}
+
+func (o MachineImageOutput) ToMachineImageOutput() MachineImageOutput {
+	return o
+}
+
+func (o MachineImageOutput) ToMachineImageOutputWithContext(ctx context.Context) MachineImageOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(MachineImageOutput{})
 }

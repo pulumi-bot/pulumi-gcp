@@ -4,6 +4,7 @@
 package artifactregistry
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -155,4 +156,43 @@ type RepositoryIamMemberArgs struct {
 
 func (RepositoryIamMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*repositoryIamMemberArgs)(nil)).Elem()
+}
+
+type RepositoryIamMemberInput interface {
+	pulumi.Input
+
+	ToRepositoryIamMemberOutput() RepositoryIamMemberOutput
+	ToRepositoryIamMemberOutputWithContext(ctx context.Context) RepositoryIamMemberOutput
+}
+
+func (RepositoryIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*RepositoryIamMember)(nil)).Elem()
+}
+
+func (i RepositoryIamMember) ToRepositoryIamMemberOutput() RepositoryIamMemberOutput {
+	return i.ToRepositoryIamMemberOutputWithContext(context.Background())
+}
+
+func (i RepositoryIamMember) ToRepositoryIamMemberOutputWithContext(ctx context.Context) RepositoryIamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RepositoryIamMemberOutput)
+}
+
+type RepositoryIamMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (RepositoryIamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RepositoryIamMemberOutput)(nil)).Elem()
+}
+
+func (o RepositoryIamMemberOutput) ToRepositoryIamMemberOutput() RepositoryIamMemberOutput {
+	return o
+}
+
+func (o RepositoryIamMemberOutput) ToRepositoryIamMemberOutputWithContext(ctx context.Context) RepositoryIamMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RepositoryIamMemberOutput{})
 }

@@ -4,6 +4,7 @@
 package identityplatform
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -165,4 +166,43 @@ type TenantOauthIdpConfigArgs struct {
 
 func (TenantOauthIdpConfigArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*tenantOauthIdpConfigArgs)(nil)).Elem()
+}
+
+type TenantOauthIdpConfigInput interface {
+	pulumi.Input
+
+	ToTenantOauthIdpConfigOutput() TenantOauthIdpConfigOutput
+	ToTenantOauthIdpConfigOutputWithContext(ctx context.Context) TenantOauthIdpConfigOutput
+}
+
+func (TenantOauthIdpConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*TenantOauthIdpConfig)(nil)).Elem()
+}
+
+func (i TenantOauthIdpConfig) ToTenantOauthIdpConfigOutput() TenantOauthIdpConfigOutput {
+	return i.ToTenantOauthIdpConfigOutputWithContext(context.Background())
+}
+
+func (i TenantOauthIdpConfig) ToTenantOauthIdpConfigOutputWithContext(ctx context.Context) TenantOauthIdpConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TenantOauthIdpConfigOutput)
+}
+
+type TenantOauthIdpConfigOutput struct {
+	*pulumi.OutputState
+}
+
+func (TenantOauthIdpConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TenantOauthIdpConfigOutput)(nil)).Elem()
+}
+
+func (o TenantOauthIdpConfigOutput) ToTenantOauthIdpConfigOutput() TenantOauthIdpConfigOutput {
+	return o
+}
+
+func (o TenantOauthIdpConfigOutput) ToTenantOauthIdpConfigOutputWithContext(ctx context.Context) TenantOauthIdpConfigOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TenantOauthIdpConfigOutput{})
 }

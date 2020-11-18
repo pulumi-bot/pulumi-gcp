@@ -4,6 +4,7 @@
 package monitoring
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -224,4 +225,43 @@ type UptimeCheckConfigArgs struct {
 
 func (UptimeCheckConfigArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*uptimeCheckConfigArgs)(nil)).Elem()
+}
+
+type UptimeCheckConfigInput interface {
+	pulumi.Input
+
+	ToUptimeCheckConfigOutput() UptimeCheckConfigOutput
+	ToUptimeCheckConfigOutputWithContext(ctx context.Context) UptimeCheckConfigOutput
+}
+
+func (UptimeCheckConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*UptimeCheckConfig)(nil)).Elem()
+}
+
+func (i UptimeCheckConfig) ToUptimeCheckConfigOutput() UptimeCheckConfigOutput {
+	return i.ToUptimeCheckConfigOutputWithContext(context.Background())
+}
+
+func (i UptimeCheckConfig) ToUptimeCheckConfigOutputWithContext(ctx context.Context) UptimeCheckConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UptimeCheckConfigOutput)
+}
+
+type UptimeCheckConfigOutput struct {
+	*pulumi.OutputState
+}
+
+func (UptimeCheckConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UptimeCheckConfigOutput)(nil)).Elem()
+}
+
+func (o UptimeCheckConfigOutput) ToUptimeCheckConfigOutput() UptimeCheckConfigOutput {
+	return o
+}
+
+func (o UptimeCheckConfigOutput) ToUptimeCheckConfigOutputWithContext(ctx context.Context) UptimeCheckConfigOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(UptimeCheckConfigOutput{})
 }

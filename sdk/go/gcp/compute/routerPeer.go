@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -331,4 +332,43 @@ type RouterPeerArgs struct {
 
 func (RouterPeerArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*routerPeerArgs)(nil)).Elem()
+}
+
+type RouterPeerInput interface {
+	pulumi.Input
+
+	ToRouterPeerOutput() RouterPeerOutput
+	ToRouterPeerOutputWithContext(ctx context.Context) RouterPeerOutput
+}
+
+func (RouterPeer) ElementType() reflect.Type {
+	return reflect.TypeOf((*RouterPeer)(nil)).Elem()
+}
+
+func (i RouterPeer) ToRouterPeerOutput() RouterPeerOutput {
+	return i.ToRouterPeerOutputWithContext(context.Background())
+}
+
+func (i RouterPeer) ToRouterPeerOutputWithContext(ctx context.Context) RouterPeerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RouterPeerOutput)
+}
+
+type RouterPeerOutput struct {
+	*pulumi.OutputState
+}
+
+func (RouterPeerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RouterPeerOutput)(nil)).Elem()
+}
+
+func (o RouterPeerOutput) ToRouterPeerOutput() RouterPeerOutput {
+	return o
+}
+
+func (o RouterPeerOutput) ToRouterPeerOutputWithContext(ctx context.Context) RouterPeerOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RouterPeerOutput{})
 }

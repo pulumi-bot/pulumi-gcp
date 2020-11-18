@@ -4,6 +4,7 @@
 package iap
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -150,4 +151,43 @@ type WebBackendServiceIamMemberArgs struct {
 
 func (WebBackendServiceIamMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*webBackendServiceIamMemberArgs)(nil)).Elem()
+}
+
+type WebBackendServiceIamMemberInput interface {
+	pulumi.Input
+
+	ToWebBackendServiceIamMemberOutput() WebBackendServiceIamMemberOutput
+	ToWebBackendServiceIamMemberOutputWithContext(ctx context.Context) WebBackendServiceIamMemberOutput
+}
+
+func (WebBackendServiceIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebBackendServiceIamMember)(nil)).Elem()
+}
+
+func (i WebBackendServiceIamMember) ToWebBackendServiceIamMemberOutput() WebBackendServiceIamMemberOutput {
+	return i.ToWebBackendServiceIamMemberOutputWithContext(context.Background())
+}
+
+func (i WebBackendServiceIamMember) ToWebBackendServiceIamMemberOutputWithContext(ctx context.Context) WebBackendServiceIamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebBackendServiceIamMemberOutput)
+}
+
+type WebBackendServiceIamMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (WebBackendServiceIamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebBackendServiceIamMemberOutput)(nil)).Elem()
+}
+
+func (o WebBackendServiceIamMemberOutput) ToWebBackendServiceIamMemberOutput() WebBackendServiceIamMemberOutput {
+	return o
+}
+
+func (o WebBackendServiceIamMemberOutput) ToWebBackendServiceIamMemberOutputWithContext(ctx context.Context) WebBackendServiceIamMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(WebBackendServiceIamMemberOutput{})
 }

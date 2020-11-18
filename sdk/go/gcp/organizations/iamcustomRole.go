@@ -4,6 +4,7 @@
 package organizations
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -166,4 +167,43 @@ type IAMCustomRoleArgs struct {
 
 func (IAMCustomRoleArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*iamcustomRoleArgs)(nil)).Elem()
+}
+
+type IAMCustomRoleInput interface {
+	pulumi.Input
+
+	ToIAMCustomRoleOutput() IAMCustomRoleOutput
+	ToIAMCustomRoleOutputWithContext(ctx context.Context) IAMCustomRoleOutput
+}
+
+func (IAMCustomRole) ElementType() reflect.Type {
+	return reflect.TypeOf((*IAMCustomRole)(nil)).Elem()
+}
+
+func (i IAMCustomRole) ToIAMCustomRoleOutput() IAMCustomRoleOutput {
+	return i.ToIAMCustomRoleOutputWithContext(context.Background())
+}
+
+func (i IAMCustomRole) ToIAMCustomRoleOutputWithContext(ctx context.Context) IAMCustomRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IAMCustomRoleOutput)
+}
+
+type IAMCustomRoleOutput struct {
+	*pulumi.OutputState
+}
+
+func (IAMCustomRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IAMCustomRoleOutput)(nil)).Elem()
+}
+
+func (o IAMCustomRoleOutput) ToIAMCustomRoleOutput() IAMCustomRoleOutput {
+	return o
+}
+
+func (o IAMCustomRoleOutput) ToIAMCustomRoleOutputWithContext(ctx context.Context) IAMCustomRoleOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(IAMCustomRoleOutput{})
 }

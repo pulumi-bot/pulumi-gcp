@@ -4,6 +4,7 @@
 package iap
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -137,4 +138,43 @@ type WebIamBindingArgs struct {
 
 func (WebIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*webIamBindingArgs)(nil)).Elem()
+}
+
+type WebIamBindingInput interface {
+	pulumi.Input
+
+	ToWebIamBindingOutput() WebIamBindingOutput
+	ToWebIamBindingOutputWithContext(ctx context.Context) WebIamBindingOutput
+}
+
+func (WebIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebIamBinding)(nil)).Elem()
+}
+
+func (i WebIamBinding) ToWebIamBindingOutput() WebIamBindingOutput {
+	return i.ToWebIamBindingOutputWithContext(context.Background())
+}
+
+func (i WebIamBinding) ToWebIamBindingOutputWithContext(ctx context.Context) WebIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebIamBindingOutput)
+}
+
+type WebIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (WebIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebIamBindingOutput)(nil)).Elem()
+}
+
+func (o WebIamBindingOutput) ToWebIamBindingOutput() WebIamBindingOutput {
+	return o
+}
+
+func (o WebIamBindingOutput) ToWebIamBindingOutputWithContext(ctx context.Context) WebIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(WebIamBindingOutput{})
 }
