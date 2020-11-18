@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -48,20 +49,21 @@ type NetworkEndpoint struct {
 // NewNetworkEndpoint registers a new resource with the given unique name, arguments, and options.
 func NewNetworkEndpoint(ctx *pulumi.Context,
 	name string, args *NetworkEndpointArgs, opts ...pulumi.ResourceOption) (*NetworkEndpoint, error) {
-	if args == nil || args.Instance == nil {
-		return nil, errors.New("missing required argument 'Instance'")
-	}
-	if args == nil || args.IpAddress == nil {
-		return nil, errors.New("missing required argument 'IpAddress'")
-	}
-	if args == nil || args.NetworkEndpointGroup == nil {
-		return nil, errors.New("missing required argument 'NetworkEndpointGroup'")
-	}
-	if args == nil || args.Port == nil {
-		return nil, errors.New("missing required argument 'Port'")
-	}
 	if args == nil {
-		args = &NetworkEndpointArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Instance == nil {
+		return nil, errors.New("invalid value for required argument 'Instance'")
+	}
+	if args.IpAddress == nil {
+		return nil, errors.New("invalid value for required argument 'IpAddress'")
+	}
+	if args.NetworkEndpointGroup == nil {
+		return nil, errors.New("invalid value for required argument 'NetworkEndpointGroup'")
+	}
+	if args.Port == nil {
+		return nil, errors.New("invalid value for required argument 'Port'")
 	}
 	var resource NetworkEndpoint
 	err := ctx.RegisterResource("gcp:compute/networkEndpoint:NetworkEndpoint", name, args, &resource, opts...)
@@ -171,4 +173,43 @@ type NetworkEndpointArgs struct {
 
 func (NetworkEndpointArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*networkEndpointArgs)(nil)).Elem()
+}
+
+type NetworkEndpointInput interface {
+	pulumi.Input
+
+	ToNetworkEndpointOutput() NetworkEndpointOutput
+	ToNetworkEndpointOutputWithContext(ctx context.Context) NetworkEndpointOutput
+}
+
+func (NetworkEndpoint) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetworkEndpoint)(nil)).Elem()
+}
+
+func (i NetworkEndpoint) ToNetworkEndpointOutput() NetworkEndpointOutput {
+	return i.ToNetworkEndpointOutputWithContext(context.Background())
+}
+
+func (i NetworkEndpoint) ToNetworkEndpointOutputWithContext(ctx context.Context) NetworkEndpointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NetworkEndpointOutput)
+}
+
+type NetworkEndpointOutput struct {
+	*pulumi.OutputState
+}
+
+func (NetworkEndpointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetworkEndpointOutput)(nil)).Elem()
+}
+
+func (o NetworkEndpointOutput) ToNetworkEndpointOutput() NetworkEndpointOutput {
+	return o
+}
+
+func (o NetworkEndpointOutput) ToNetworkEndpointOutputWithContext(ctx context.Context) NetworkEndpointOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(NetworkEndpointOutput{})
 }

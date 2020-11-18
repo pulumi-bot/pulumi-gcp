@@ -4,6 +4,7 @@
 package logging
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -38,11 +39,12 @@ type ProjectExclusion struct {
 // NewProjectExclusion registers a new resource with the given unique name, arguments, and options.
 func NewProjectExclusion(ctx *pulumi.Context,
 	name string, args *ProjectExclusionArgs, opts ...pulumi.ResourceOption) (*ProjectExclusion, error) {
-	if args == nil || args.Filter == nil {
-		return nil, errors.New("missing required argument 'Filter'")
-	}
 	if args == nil {
-		args = &ProjectExclusionArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Filter == nil {
+		return nil, errors.New("invalid value for required argument 'Filter'")
 	}
 	var resource ProjectExclusion
 	err := ctx.RegisterResource("gcp:logging/projectExclusion:ProjectExclusion", name, args, &resource, opts...)
@@ -140,4 +142,43 @@ type ProjectExclusionArgs struct {
 
 func (ProjectExclusionArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*projectExclusionArgs)(nil)).Elem()
+}
+
+type ProjectExclusionInput interface {
+	pulumi.Input
+
+	ToProjectExclusionOutput() ProjectExclusionOutput
+	ToProjectExclusionOutputWithContext(ctx context.Context) ProjectExclusionOutput
+}
+
+func (ProjectExclusion) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProjectExclusion)(nil)).Elem()
+}
+
+func (i ProjectExclusion) ToProjectExclusionOutput() ProjectExclusionOutput {
+	return i.ToProjectExclusionOutputWithContext(context.Background())
+}
+
+func (i ProjectExclusion) ToProjectExclusionOutputWithContext(ctx context.Context) ProjectExclusionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProjectExclusionOutput)
+}
+
+type ProjectExclusionOutput struct {
+	*pulumi.OutputState
+}
+
+func (ProjectExclusionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProjectExclusionOutput)(nil)).Elem()
+}
+
+func (o ProjectExclusionOutput) ToProjectExclusionOutput() ProjectExclusionOutput {
+	return o
+}
+
+func (o ProjectExclusionOutput) ToProjectExclusionOutputWithContext(ctx context.Context) ProjectExclusionOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ProjectExclusionOutput{})
 }

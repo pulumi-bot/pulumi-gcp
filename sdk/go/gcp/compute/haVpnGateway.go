@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -51,11 +52,12 @@ type HaVpnGateway struct {
 // NewHaVpnGateway registers a new resource with the given unique name, arguments, and options.
 func NewHaVpnGateway(ctx *pulumi.Context,
 	name string, args *HaVpnGatewayArgs, opts ...pulumi.ResourceOption) (*HaVpnGateway, error) {
-	if args == nil || args.Network == nil {
-		return nil, errors.New("missing required argument 'Network'")
-	}
 	if args == nil {
-		args = &HaVpnGatewayArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Network == nil {
+		return nil, errors.New("invalid value for required argument 'Network'")
 	}
 	var resource HaVpnGateway
 	err := ctx.RegisterResource("gcp:compute/haVpnGateway:HaVpnGateway", name, args, &resource, opts...)
@@ -173,4 +175,43 @@ type HaVpnGatewayArgs struct {
 
 func (HaVpnGatewayArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*haVpnGatewayArgs)(nil)).Elem()
+}
+
+type HaVpnGatewayInput interface {
+	pulumi.Input
+
+	ToHaVpnGatewayOutput() HaVpnGatewayOutput
+	ToHaVpnGatewayOutputWithContext(ctx context.Context) HaVpnGatewayOutput
+}
+
+func (HaVpnGateway) ElementType() reflect.Type {
+	return reflect.TypeOf((*HaVpnGateway)(nil)).Elem()
+}
+
+func (i HaVpnGateway) ToHaVpnGatewayOutput() HaVpnGatewayOutput {
+	return i.ToHaVpnGatewayOutputWithContext(context.Background())
+}
+
+func (i HaVpnGateway) ToHaVpnGatewayOutputWithContext(ctx context.Context) HaVpnGatewayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HaVpnGatewayOutput)
+}
+
+type HaVpnGatewayOutput struct {
+	*pulumi.OutputState
+}
+
+func (HaVpnGatewayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*HaVpnGatewayOutput)(nil)).Elem()
+}
+
+func (o HaVpnGatewayOutput) ToHaVpnGatewayOutput() HaVpnGatewayOutput {
+	return o
+}
+
+func (o HaVpnGatewayOutput) ToHaVpnGatewayOutputWithContext(ctx context.Context) HaVpnGatewayOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(HaVpnGatewayOutput{})
 }

@@ -4,6 +4,7 @@
 package binaryauthorization
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -40,17 +41,18 @@ type AttestorIamMember struct {
 // NewAttestorIamMember registers a new resource with the given unique name, arguments, and options.
 func NewAttestorIamMember(ctx *pulumi.Context,
 	name string, args *AttestorIamMemberArgs, opts ...pulumi.ResourceOption) (*AttestorIamMember, error) {
-	if args == nil || args.Attestor == nil {
-		return nil, errors.New("missing required argument 'Attestor'")
-	}
-	if args == nil || args.Member == nil {
-		return nil, errors.New("missing required argument 'Member'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &AttestorIamMemberArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Attestor == nil {
+		return nil, errors.New("invalid value for required argument 'Attestor'")
+	}
+	if args.Member == nil {
+		return nil, errors.New("invalid value for required argument 'Member'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource AttestorIamMember
 	err := ctx.RegisterResource("gcp:binaryauthorization/attestorIamMember:AttestorIamMember", name, args, &resource, opts...)
@@ -140,4 +142,43 @@ type AttestorIamMemberArgs struct {
 
 func (AttestorIamMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*attestorIamMemberArgs)(nil)).Elem()
+}
+
+type AttestorIamMemberInput interface {
+	pulumi.Input
+
+	ToAttestorIamMemberOutput() AttestorIamMemberOutput
+	ToAttestorIamMemberOutputWithContext(ctx context.Context) AttestorIamMemberOutput
+}
+
+func (AttestorIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*AttestorIamMember)(nil)).Elem()
+}
+
+func (i AttestorIamMember) ToAttestorIamMemberOutput() AttestorIamMemberOutput {
+	return i.ToAttestorIamMemberOutputWithContext(context.Background())
+}
+
+func (i AttestorIamMember) ToAttestorIamMemberOutputWithContext(ctx context.Context) AttestorIamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AttestorIamMemberOutput)
+}
+
+type AttestorIamMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (AttestorIamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AttestorIamMemberOutput)(nil)).Elem()
+}
+
+func (o AttestorIamMemberOutput) ToAttestorIamMemberOutput() AttestorIamMemberOutput {
+	return o
+}
+
+func (o AttestorIamMemberOutput) ToAttestorIamMemberOutputWithContext(ctx context.Context) AttestorIamMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AttestorIamMemberOutput{})
 }

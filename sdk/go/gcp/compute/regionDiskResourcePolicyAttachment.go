@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -34,11 +35,12 @@ type RegionDiskResourcePolicyAttachment struct {
 // NewRegionDiskResourcePolicyAttachment registers a new resource with the given unique name, arguments, and options.
 func NewRegionDiskResourcePolicyAttachment(ctx *pulumi.Context,
 	name string, args *RegionDiskResourcePolicyAttachmentArgs, opts ...pulumi.ResourceOption) (*RegionDiskResourcePolicyAttachment, error) {
-	if args == nil || args.Disk == nil {
-		return nil, errors.New("missing required argument 'Disk'")
-	}
 	if args == nil {
-		args = &RegionDiskResourcePolicyAttachmentArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Disk == nil {
+		return nil, errors.New("invalid value for required argument 'Disk'")
 	}
 	var resource RegionDiskResourcePolicyAttachment
 	err := ctx.RegisterResource("gcp:compute/regionDiskResourcePolicyAttachment:RegionDiskResourcePolicyAttachment", name, args, &resource, opts...)
@@ -120,4 +122,43 @@ type RegionDiskResourcePolicyAttachmentArgs struct {
 
 func (RegionDiskResourcePolicyAttachmentArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*regionDiskResourcePolicyAttachmentArgs)(nil)).Elem()
+}
+
+type RegionDiskResourcePolicyAttachmentInput interface {
+	pulumi.Input
+
+	ToRegionDiskResourcePolicyAttachmentOutput() RegionDiskResourcePolicyAttachmentOutput
+	ToRegionDiskResourcePolicyAttachmentOutputWithContext(ctx context.Context) RegionDiskResourcePolicyAttachmentOutput
+}
+
+func (RegionDiskResourcePolicyAttachment) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionDiskResourcePolicyAttachment)(nil)).Elem()
+}
+
+func (i RegionDiskResourcePolicyAttachment) ToRegionDiskResourcePolicyAttachmentOutput() RegionDiskResourcePolicyAttachmentOutput {
+	return i.ToRegionDiskResourcePolicyAttachmentOutputWithContext(context.Background())
+}
+
+func (i RegionDiskResourcePolicyAttachment) ToRegionDiskResourcePolicyAttachmentOutputWithContext(ctx context.Context) RegionDiskResourcePolicyAttachmentOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegionDiskResourcePolicyAttachmentOutput)
+}
+
+type RegionDiskResourcePolicyAttachmentOutput struct {
+	*pulumi.OutputState
+}
+
+func (RegionDiskResourcePolicyAttachmentOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionDiskResourcePolicyAttachmentOutput)(nil)).Elem()
+}
+
+func (o RegionDiskResourcePolicyAttachmentOutput) ToRegionDiskResourcePolicyAttachmentOutput() RegionDiskResourcePolicyAttachmentOutput {
+	return o
+}
+
+func (o RegionDiskResourcePolicyAttachmentOutput) ToRegionDiskResourcePolicyAttachmentOutputWithContext(ctx context.Context) RegionDiskResourcePolicyAttachmentOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RegionDiskResourcePolicyAttachmentOutput{})
 }

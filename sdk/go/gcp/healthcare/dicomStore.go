@@ -4,6 +4,7 @@
 package healthcare
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -48,11 +49,12 @@ type DicomStore struct {
 // NewDicomStore registers a new resource with the given unique name, arguments, and options.
 func NewDicomStore(ctx *pulumi.Context,
 	name string, args *DicomStoreArgs, opts ...pulumi.ResourceOption) (*DicomStore, error) {
-	if args == nil || args.Dataset == nil {
-		return nil, errors.New("missing required argument 'Dataset'")
-	}
 	if args == nil {
-		args = &DicomStoreArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Dataset == nil {
+		return nil, errors.New("invalid value for required argument 'Dataset'")
 	}
 	var resource DicomStore
 	err := ctx.RegisterResource("gcp:healthcare/dicomStore:DicomStore", name, args, &resource, opts...)
@@ -170,4 +172,43 @@ type DicomStoreArgs struct {
 
 func (DicomStoreArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*dicomStoreArgs)(nil)).Elem()
+}
+
+type DicomStoreInput interface {
+	pulumi.Input
+
+	ToDicomStoreOutput() DicomStoreOutput
+	ToDicomStoreOutputWithContext(ctx context.Context) DicomStoreOutput
+}
+
+func (DicomStore) ElementType() reflect.Type {
+	return reflect.TypeOf((*DicomStore)(nil)).Elem()
+}
+
+func (i DicomStore) ToDicomStoreOutput() DicomStoreOutput {
+	return i.ToDicomStoreOutputWithContext(context.Background())
+}
+
+func (i DicomStore) ToDicomStoreOutputWithContext(ctx context.Context) DicomStoreOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DicomStoreOutput)
+}
+
+type DicomStoreOutput struct {
+	*pulumi.OutputState
+}
+
+func (DicomStoreOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DicomStoreOutput)(nil)).Elem()
+}
+
+func (o DicomStoreOutput) ToDicomStoreOutput() DicomStoreOutput {
+	return o
+}
+
+func (o DicomStoreOutput) ToDicomStoreOutputWithContext(ctx context.Context) DicomStoreOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DicomStoreOutput{})
 }

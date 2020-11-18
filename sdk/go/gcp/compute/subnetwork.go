@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -114,14 +115,15 @@ type Subnetwork struct {
 // NewSubnetwork registers a new resource with the given unique name, arguments, and options.
 func NewSubnetwork(ctx *pulumi.Context,
 	name string, args *SubnetworkArgs, opts ...pulumi.ResourceOption) (*Subnetwork, error) {
-	if args == nil || args.IpCidrRange == nil {
-		return nil, errors.New("missing required argument 'IpCidrRange'")
-	}
-	if args == nil || args.Network == nil {
-		return nil, errors.New("missing required argument 'Network'")
-	}
 	if args == nil {
-		args = &SubnetworkArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.IpCidrRange == nil {
+		return nil, errors.New("invalid value for required argument 'IpCidrRange'")
+	}
+	if args.Network == nil {
+		return nil, errors.New("invalid value for required argument 'Network'")
 	}
 	var resource Subnetwork
 	err := ctx.RegisterResource("gcp:compute/subnetwork:Subnetwork", name, args, &resource, opts...)
@@ -403,4 +405,43 @@ type SubnetworkArgs struct {
 
 func (SubnetworkArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*subnetworkArgs)(nil)).Elem()
+}
+
+type SubnetworkInput interface {
+	pulumi.Input
+
+	ToSubnetworkOutput() SubnetworkOutput
+	ToSubnetworkOutputWithContext(ctx context.Context) SubnetworkOutput
+}
+
+func (Subnetwork) ElementType() reflect.Type {
+	return reflect.TypeOf((*Subnetwork)(nil)).Elem()
+}
+
+func (i Subnetwork) ToSubnetworkOutput() SubnetworkOutput {
+	return i.ToSubnetworkOutputWithContext(context.Background())
+}
+
+func (i Subnetwork) ToSubnetworkOutputWithContext(ctx context.Context) SubnetworkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SubnetworkOutput)
+}
+
+type SubnetworkOutput struct {
+	*pulumi.OutputState
+}
+
+func (SubnetworkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SubnetworkOutput)(nil)).Elem()
+}
+
+func (o SubnetworkOutput) ToSubnetworkOutput() SubnetworkOutput {
+	return o
+}
+
+func (o SubnetworkOutput) ToSubnetworkOutputWithContext(ctx context.Context) SubnetworkOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SubnetworkOutput{})
 }

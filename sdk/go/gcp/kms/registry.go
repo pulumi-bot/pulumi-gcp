@@ -4,6 +4,7 @@
 package kms
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
@@ -63,6 +64,7 @@ func NewRegistry(ctx *pulumi.Context,
 	if args == nil {
 		args = &RegistryArgs{}
 	}
+
 	var resource Registry
 	err := ctx.RegisterResource("gcp:kms/registry:Registry", name, args, &resource, opts...)
 	if err != nil {
@@ -231,4 +233,43 @@ type RegistryArgs struct {
 
 func (RegistryArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*registryArgs)(nil)).Elem()
+}
+
+type RegistryInput interface {
+	pulumi.Input
+
+	ToRegistryOutput() RegistryOutput
+	ToRegistryOutputWithContext(ctx context.Context) RegistryOutput
+}
+
+func (Registry) ElementType() reflect.Type {
+	return reflect.TypeOf((*Registry)(nil)).Elem()
+}
+
+func (i Registry) ToRegistryOutput() RegistryOutput {
+	return i.ToRegistryOutputWithContext(context.Background())
+}
+
+func (i Registry) ToRegistryOutputWithContext(ctx context.Context) RegistryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegistryOutput)
+}
+
+type RegistryOutput struct {
+	*pulumi.OutputState
+}
+
+func (RegistryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegistryOutput)(nil)).Elem()
+}
+
+func (o RegistryOutput) ToRegistryOutput() RegistryOutput {
+	return o
+}
+
+func (o RegistryOutput) ToRegistryOutputWithContext(ctx context.Context) RegistryOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RegistryOutput{})
 }

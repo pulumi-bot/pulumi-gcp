@@ -4,6 +4,7 @@
 package kms
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -60,11 +61,12 @@ type CryptoKey struct {
 // NewCryptoKey registers a new resource with the given unique name, arguments, and options.
 func NewCryptoKey(ctx *pulumi.Context,
 	name string, args *CryptoKeyArgs, opts ...pulumi.ResourceOption) (*CryptoKey, error) {
-	if args == nil || args.KeyRing == nil {
-		return nil, errors.New("missing required argument 'KeyRing'")
-	}
 	if args == nil {
-		args = &CryptoKeyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.KeyRing == nil {
+		return nil, errors.New("invalid value for required argument 'KeyRing'")
 	}
 	var resource CryptoKey
 	err := ctx.RegisterResource("gcp:kms/cryptoKey:CryptoKey", name, args, &resource, opts...)
@@ -204,4 +206,43 @@ type CryptoKeyArgs struct {
 
 func (CryptoKeyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*cryptoKeyArgs)(nil)).Elem()
+}
+
+type CryptoKeyInput interface {
+	pulumi.Input
+
+	ToCryptoKeyOutput() CryptoKeyOutput
+	ToCryptoKeyOutputWithContext(ctx context.Context) CryptoKeyOutput
+}
+
+func (CryptoKey) ElementType() reflect.Type {
+	return reflect.TypeOf((*CryptoKey)(nil)).Elem()
+}
+
+func (i CryptoKey) ToCryptoKeyOutput() CryptoKeyOutput {
+	return i.ToCryptoKeyOutputWithContext(context.Background())
+}
+
+func (i CryptoKey) ToCryptoKeyOutputWithContext(ctx context.Context) CryptoKeyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CryptoKeyOutput)
+}
+
+type CryptoKeyOutput struct {
+	*pulumi.OutputState
+}
+
+func (CryptoKeyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CryptoKeyOutput)(nil)).Elem()
+}
+
+func (o CryptoKeyOutput) ToCryptoKeyOutput() CryptoKeyOutput {
+	return o
+}
+
+func (o CryptoKeyOutput) ToCryptoKeyOutputWithContext(ctx context.Context) CryptoKeyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(CryptoKeyOutput{})
 }

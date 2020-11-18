@@ -4,6 +4,7 @@
 package sourcerepo
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -36,14 +37,15 @@ type RepositoryIamPolicy struct {
 // NewRepositoryIamPolicy registers a new resource with the given unique name, arguments, and options.
 func NewRepositoryIamPolicy(ctx *pulumi.Context,
 	name string, args *RepositoryIamPolicyArgs, opts ...pulumi.ResourceOption) (*RepositoryIamPolicy, error) {
-	if args == nil || args.PolicyData == nil {
-		return nil, errors.New("missing required argument 'PolicyData'")
-	}
-	if args == nil || args.Repository == nil {
-		return nil, errors.New("missing required argument 'Repository'")
-	}
 	if args == nil {
-		args = &RepositoryIamPolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.PolicyData == nil {
+		return nil, errors.New("invalid value for required argument 'PolicyData'")
+	}
+	if args.Repository == nil {
+		return nil, errors.New("invalid value for required argument 'Repository'")
 	}
 	var resource RepositoryIamPolicy
 	err := ctx.RegisterResource("gcp:sourcerepo/repositoryIamPolicy:RepositoryIamPolicy", name, args, &resource, opts...)
@@ -117,4 +119,43 @@ type RepositoryIamPolicyArgs struct {
 
 func (RepositoryIamPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*repositoryIamPolicyArgs)(nil)).Elem()
+}
+
+type RepositoryIamPolicyInput interface {
+	pulumi.Input
+
+	ToRepositoryIamPolicyOutput() RepositoryIamPolicyOutput
+	ToRepositoryIamPolicyOutputWithContext(ctx context.Context) RepositoryIamPolicyOutput
+}
+
+func (RepositoryIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*RepositoryIamPolicy)(nil)).Elem()
+}
+
+func (i RepositoryIamPolicy) ToRepositoryIamPolicyOutput() RepositoryIamPolicyOutput {
+	return i.ToRepositoryIamPolicyOutputWithContext(context.Background())
+}
+
+func (i RepositoryIamPolicy) ToRepositoryIamPolicyOutputWithContext(ctx context.Context) RepositoryIamPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RepositoryIamPolicyOutput)
+}
+
+type RepositoryIamPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (RepositoryIamPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RepositoryIamPolicyOutput)(nil)).Elem()
+}
+
+func (o RepositoryIamPolicyOutput) ToRepositoryIamPolicyOutput() RepositoryIamPolicyOutput {
+	return o
+}
+
+func (o RepositoryIamPolicyOutput) ToRepositoryIamPolicyOutputWithContext(ctx context.Context) RepositoryIamPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RepositoryIamPolicyOutput{})
 }

@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
@@ -45,6 +46,7 @@ func NewMangedSslCertificate(ctx *pulumi.Context,
 	if args == nil {
 		args = &MangedSslCertificateArgs{}
 	}
+
 	var resource MangedSslCertificate
 	err := ctx.RegisterResource("gcp:compute/mangedSslCertificate:MangedSslCertificate", name, args, &resource, opts...)
 	if err != nil {
@@ -167,4 +169,43 @@ type MangedSslCertificateArgs struct {
 
 func (MangedSslCertificateArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*mangedSslCertificateArgs)(nil)).Elem()
+}
+
+type MangedSslCertificateInput interface {
+	pulumi.Input
+
+	ToMangedSslCertificateOutput() MangedSslCertificateOutput
+	ToMangedSslCertificateOutputWithContext(ctx context.Context) MangedSslCertificateOutput
+}
+
+func (MangedSslCertificate) ElementType() reflect.Type {
+	return reflect.TypeOf((*MangedSslCertificate)(nil)).Elem()
+}
+
+func (i MangedSslCertificate) ToMangedSslCertificateOutput() MangedSslCertificateOutput {
+	return i.ToMangedSslCertificateOutputWithContext(context.Background())
+}
+
+func (i MangedSslCertificate) ToMangedSslCertificateOutputWithContext(ctx context.Context) MangedSslCertificateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MangedSslCertificateOutput)
+}
+
+type MangedSslCertificateOutput struct {
+	*pulumi.OutputState
+}
+
+func (MangedSslCertificateOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MangedSslCertificateOutput)(nil)).Elem()
+}
+
+func (o MangedSslCertificateOutput) ToMangedSslCertificateOutput() MangedSslCertificateOutput {
+	return o
+}
+
+func (o MangedSslCertificateOutput) ToMangedSslCertificateOutputWithContext(ctx context.Context) MangedSslCertificateOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(MangedSslCertificateOutput{})
 }

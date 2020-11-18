@@ -4,6 +4,7 @@
 package datacatalog
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -42,11 +43,12 @@ type EntryGroup struct {
 // NewEntryGroup registers a new resource with the given unique name, arguments, and options.
 func NewEntryGroup(ctx *pulumi.Context,
 	name string, args *EntryGroupArgs, opts ...pulumi.ResourceOption) (*EntryGroup, error) {
-	if args == nil || args.EntryGroupId == nil {
-		return nil, errors.New("missing required argument 'EntryGroupId'")
-	}
 	if args == nil {
-		args = &EntryGroupArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.EntryGroupId == nil {
+		return nil, errors.New("invalid value for required argument 'EntryGroupId'")
 	}
 	var resource EntryGroup
 	err := ctx.RegisterResource("gcp:datacatalog/entryGroup:EntryGroup", name, args, &resource, opts...)
@@ -142,4 +144,43 @@ type EntryGroupArgs struct {
 
 func (EntryGroupArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*entryGroupArgs)(nil)).Elem()
+}
+
+type EntryGroupInput interface {
+	pulumi.Input
+
+	ToEntryGroupOutput() EntryGroupOutput
+	ToEntryGroupOutputWithContext(ctx context.Context) EntryGroupOutput
+}
+
+func (EntryGroup) ElementType() reflect.Type {
+	return reflect.TypeOf((*EntryGroup)(nil)).Elem()
+}
+
+func (i EntryGroup) ToEntryGroupOutput() EntryGroupOutput {
+	return i.ToEntryGroupOutputWithContext(context.Background())
+}
+
+func (i EntryGroup) ToEntryGroupOutputWithContext(ctx context.Context) EntryGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EntryGroupOutput)
+}
+
+type EntryGroupOutput struct {
+	*pulumi.OutputState
+}
+
+func (EntryGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EntryGroupOutput)(nil)).Elem()
+}
+
+func (o EntryGroupOutput) ToEntryGroupOutput() EntryGroupOutput {
+	return o
+}
+
+func (o EntryGroupOutput) ToEntryGroupOutputWithContext(ctx context.Context) EntryGroupOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(EntryGroupOutput{})
 }

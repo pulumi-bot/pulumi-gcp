@@ -4,6 +4,7 @@
 package billing
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -21,14 +22,15 @@ type AccountIamPolicy struct {
 // NewAccountIamPolicy registers a new resource with the given unique name, arguments, and options.
 func NewAccountIamPolicy(ctx *pulumi.Context,
 	name string, args *AccountIamPolicyArgs, opts ...pulumi.ResourceOption) (*AccountIamPolicy, error) {
-	if args == nil || args.BillingAccountId == nil {
-		return nil, errors.New("missing required argument 'BillingAccountId'")
-	}
-	if args == nil || args.PolicyData == nil {
-		return nil, errors.New("missing required argument 'PolicyData'")
-	}
 	if args == nil {
-		args = &AccountIamPolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.BillingAccountId == nil {
+		return nil, errors.New("invalid value for required argument 'BillingAccountId'")
+	}
+	if args.PolicyData == nil {
+		return nil, errors.New("invalid value for required argument 'PolicyData'")
 	}
 	var resource AccountIamPolicy
 	err := ctx.RegisterResource("gcp:billing/accountIamPolicy:AccountIamPolicy", name, args, &resource, opts...)
@@ -80,4 +82,43 @@ type AccountIamPolicyArgs struct {
 
 func (AccountIamPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*accountIamPolicyArgs)(nil)).Elem()
+}
+
+type AccountIamPolicyInput interface {
+	pulumi.Input
+
+	ToAccountIamPolicyOutput() AccountIamPolicyOutput
+	ToAccountIamPolicyOutputWithContext(ctx context.Context) AccountIamPolicyOutput
+}
+
+func (AccountIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*AccountIamPolicy)(nil)).Elem()
+}
+
+func (i AccountIamPolicy) ToAccountIamPolicyOutput() AccountIamPolicyOutput {
+	return i.ToAccountIamPolicyOutputWithContext(context.Background())
+}
+
+func (i AccountIamPolicy) ToAccountIamPolicyOutputWithContext(ctx context.Context) AccountIamPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AccountIamPolicyOutput)
+}
+
+type AccountIamPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (AccountIamPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AccountIamPolicyOutput)(nil)).Elem()
+}
+
+func (o AccountIamPolicyOutput) ToAccountIamPolicyOutput() AccountIamPolicyOutput {
+	return o
+}
+
+func (o AccountIamPolicyOutput) ToAccountIamPolicyOutputWithContext(ctx context.Context) AccountIamPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AccountIamPolicyOutput{})
 }

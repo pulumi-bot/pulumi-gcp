@@ -4,6 +4,7 @@
 package storage
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -67,14 +68,15 @@ type BucketAccessControl struct {
 // NewBucketAccessControl registers a new resource with the given unique name, arguments, and options.
 func NewBucketAccessControl(ctx *pulumi.Context,
 	name string, args *BucketAccessControlArgs, opts ...pulumi.ResourceOption) (*BucketAccessControl, error) {
-	if args == nil || args.Bucket == nil {
-		return nil, errors.New("missing required argument 'Bucket'")
-	}
-	if args == nil || args.Entity == nil {
-		return nil, errors.New("missing required argument 'Entity'")
-	}
 	if args == nil {
-		args = &BucketAccessControlArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Bucket == nil {
+		return nil, errors.New("invalid value for required argument 'Bucket'")
+	}
+	if args.Entity == nil {
+		return nil, errors.New("invalid value for required argument 'Entity'")
 	}
 	var resource BucketAccessControl
 	err := ctx.RegisterResource("gcp:storage/bucketAccessControl:BucketAccessControl", name, args, &resource, opts...)
@@ -208,4 +210,43 @@ type BucketAccessControlArgs struct {
 
 func (BucketAccessControlArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*bucketAccessControlArgs)(nil)).Elem()
+}
+
+type BucketAccessControlInput interface {
+	pulumi.Input
+
+	ToBucketAccessControlOutput() BucketAccessControlOutput
+	ToBucketAccessControlOutputWithContext(ctx context.Context) BucketAccessControlOutput
+}
+
+func (BucketAccessControl) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketAccessControl)(nil)).Elem()
+}
+
+func (i BucketAccessControl) ToBucketAccessControlOutput() BucketAccessControlOutput {
+	return i.ToBucketAccessControlOutputWithContext(context.Background())
+}
+
+func (i BucketAccessControl) ToBucketAccessControlOutputWithContext(ctx context.Context) BucketAccessControlOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketAccessControlOutput)
+}
+
+type BucketAccessControlOutput struct {
+	*pulumi.OutputState
+}
+
+func (BucketAccessControlOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketAccessControlOutput)(nil)).Elem()
+}
+
+func (o BucketAccessControlOutput) ToBucketAccessControlOutput() BucketAccessControlOutput {
+	return o
+}
+
+func (o BucketAccessControlOutput) ToBucketAccessControlOutputWithContext(ctx context.Context) BucketAccessControlOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(BucketAccessControlOutput{})
 }

@@ -4,6 +4,7 @@
 package kms
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -43,14 +44,15 @@ type CryptoKeyIAMPolicy struct {
 // NewCryptoKeyIAMPolicy registers a new resource with the given unique name, arguments, and options.
 func NewCryptoKeyIAMPolicy(ctx *pulumi.Context,
 	name string, args *CryptoKeyIAMPolicyArgs, opts ...pulumi.ResourceOption) (*CryptoKeyIAMPolicy, error) {
-	if args == nil || args.CryptoKeyId == nil {
-		return nil, errors.New("missing required argument 'CryptoKeyId'")
-	}
-	if args == nil || args.PolicyData == nil {
-		return nil, errors.New("missing required argument 'PolicyData'")
-	}
 	if args == nil {
-		args = &CryptoKeyIAMPolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.CryptoKeyId == nil {
+		return nil, errors.New("invalid value for required argument 'CryptoKeyId'")
+	}
+	if args.PolicyData == nil {
+		return nil, errors.New("invalid value for required argument 'PolicyData'")
 	}
 	var resource CryptoKeyIAMPolicy
 	err := ctx.RegisterResource("gcp:kms/cryptoKeyIAMPolicy:CryptoKeyIAMPolicy", name, args, &resource, opts...)
@@ -128,4 +130,43 @@ type CryptoKeyIAMPolicyArgs struct {
 
 func (CryptoKeyIAMPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*cryptoKeyIAMPolicyArgs)(nil)).Elem()
+}
+
+type CryptoKeyIAMPolicyInput interface {
+	pulumi.Input
+
+	ToCryptoKeyIAMPolicyOutput() CryptoKeyIAMPolicyOutput
+	ToCryptoKeyIAMPolicyOutputWithContext(ctx context.Context) CryptoKeyIAMPolicyOutput
+}
+
+func (CryptoKeyIAMPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*CryptoKeyIAMPolicy)(nil)).Elem()
+}
+
+func (i CryptoKeyIAMPolicy) ToCryptoKeyIAMPolicyOutput() CryptoKeyIAMPolicyOutput {
+	return i.ToCryptoKeyIAMPolicyOutputWithContext(context.Background())
+}
+
+func (i CryptoKeyIAMPolicy) ToCryptoKeyIAMPolicyOutputWithContext(ctx context.Context) CryptoKeyIAMPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CryptoKeyIAMPolicyOutput)
+}
+
+type CryptoKeyIAMPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (CryptoKeyIAMPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CryptoKeyIAMPolicyOutput)(nil)).Elem()
+}
+
+func (o CryptoKeyIAMPolicyOutput) ToCryptoKeyIAMPolicyOutput() CryptoKeyIAMPolicyOutput {
+	return o
+}
+
+func (o CryptoKeyIAMPolicyOutput) ToCryptoKeyIAMPolicyOutputWithContext(ctx context.Context) CryptoKeyIAMPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(CryptoKeyIAMPolicyOutput{})
 }

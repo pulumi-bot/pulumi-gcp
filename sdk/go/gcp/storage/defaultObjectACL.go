@@ -4,6 +4,7 @@
 package storage
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -37,11 +38,12 @@ type DefaultObjectACL struct {
 // NewDefaultObjectACL registers a new resource with the given unique name, arguments, and options.
 func NewDefaultObjectACL(ctx *pulumi.Context,
 	name string, args *DefaultObjectACLArgs, opts ...pulumi.ResourceOption) (*DefaultObjectACL, error) {
-	if args == nil || args.Bucket == nil {
-		return nil, errors.New("missing required argument 'Bucket'")
-	}
 	if args == nil {
-		args = &DefaultObjectACLArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Bucket == nil {
+		return nil, errors.New("invalid value for required argument 'Bucket'")
 	}
 	var resource DefaultObjectACL
 	err := ctx.RegisterResource("gcp:storage/defaultObjectACL:DefaultObjectACL", name, args, &resource, opts...)
@@ -107,4 +109,43 @@ type DefaultObjectACLArgs struct {
 
 func (DefaultObjectACLArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*defaultObjectACLArgs)(nil)).Elem()
+}
+
+type DefaultObjectACLInput interface {
+	pulumi.Input
+
+	ToDefaultObjectACLOutput() DefaultObjectACLOutput
+	ToDefaultObjectACLOutputWithContext(ctx context.Context) DefaultObjectACLOutput
+}
+
+func (DefaultObjectACL) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultObjectACL)(nil)).Elem()
+}
+
+func (i DefaultObjectACL) ToDefaultObjectACLOutput() DefaultObjectACLOutput {
+	return i.ToDefaultObjectACLOutputWithContext(context.Background())
+}
+
+func (i DefaultObjectACL) ToDefaultObjectACLOutputWithContext(ctx context.Context) DefaultObjectACLOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultObjectACLOutput)
+}
+
+type DefaultObjectACLOutput struct {
+	*pulumi.OutputState
+}
+
+func (DefaultObjectACLOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultObjectACLOutput)(nil)).Elem()
+}
+
+func (o DefaultObjectACLOutput) ToDefaultObjectACLOutput() DefaultObjectACLOutput {
+	return o
+}
+
+func (o DefaultObjectACLOutput) ToDefaultObjectACLOutputWithContext(ctx context.Context) DefaultObjectACLOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DefaultObjectACLOutput{})
 }

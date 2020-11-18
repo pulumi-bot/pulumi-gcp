@@ -4,6 +4,7 @@
 package accesscontextmanager
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -35,11 +36,12 @@ type AccessLevels struct {
 // NewAccessLevels registers a new resource with the given unique name, arguments, and options.
 func NewAccessLevels(ctx *pulumi.Context,
 	name string, args *AccessLevelsArgs, opts ...pulumi.ResourceOption) (*AccessLevels, error) {
-	if args == nil || args.Parent == nil {
-		return nil, errors.New("missing required argument 'Parent'")
-	}
 	if args == nil {
-		args = &AccessLevelsArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Parent == nil {
+		return nil, errors.New("invalid value for required argument 'Parent'")
 	}
 	var resource AccessLevels
 	err := ctx.RegisterResource("gcp:accesscontextmanager/accessLevels:AccessLevels", name, args, &resource, opts...)
@@ -105,4 +107,43 @@ type AccessLevelsArgs struct {
 
 func (AccessLevelsArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*accessLevelsArgs)(nil)).Elem()
+}
+
+type AccessLevelsInput interface {
+	pulumi.Input
+
+	ToAccessLevelsOutput() AccessLevelsOutput
+	ToAccessLevelsOutputWithContext(ctx context.Context) AccessLevelsOutput
+}
+
+func (AccessLevels) ElementType() reflect.Type {
+	return reflect.TypeOf((*AccessLevels)(nil)).Elem()
+}
+
+func (i AccessLevels) ToAccessLevelsOutput() AccessLevelsOutput {
+	return i.ToAccessLevelsOutputWithContext(context.Background())
+}
+
+func (i AccessLevels) ToAccessLevelsOutputWithContext(ctx context.Context) AccessLevelsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AccessLevelsOutput)
+}
+
+type AccessLevelsOutput struct {
+	*pulumi.OutputState
+}
+
+func (AccessLevelsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AccessLevelsOutput)(nil)).Elem()
+}
+
+func (o AccessLevelsOutput) ToAccessLevelsOutput() AccessLevelsOutput {
+	return o
+}
+
+func (o AccessLevelsOutput) ToAccessLevelsOutputWithContext(ctx context.Context) AccessLevelsOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AccessLevelsOutput{})
 }

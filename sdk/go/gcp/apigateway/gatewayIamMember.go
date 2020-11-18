@@ -4,6 +4,7 @@
 package apigateway
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -35,17 +36,18 @@ type GatewayIamMember struct {
 // NewGatewayIamMember registers a new resource with the given unique name, arguments, and options.
 func NewGatewayIamMember(ctx *pulumi.Context,
 	name string, args *GatewayIamMemberArgs, opts ...pulumi.ResourceOption) (*GatewayIamMember, error) {
-	if args == nil || args.Gateway == nil {
-		return nil, errors.New("missing required argument 'Gateway'")
-	}
-	if args == nil || args.Member == nil {
-		return nil, errors.New("missing required argument 'Member'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &GatewayIamMemberArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Gateway == nil {
+		return nil, errors.New("invalid value for required argument 'Gateway'")
+	}
+	if args.Member == nil {
+		return nil, errors.New("invalid value for required argument 'Member'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource GatewayIamMember
 	err := ctx.RegisterResource("gcp:apigateway/gatewayIamMember:GatewayIamMember", name, args, &resource, opts...)
@@ -151,4 +153,43 @@ type GatewayIamMemberArgs struct {
 
 func (GatewayIamMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*gatewayIamMemberArgs)(nil)).Elem()
+}
+
+type GatewayIamMemberInput interface {
+	pulumi.Input
+
+	ToGatewayIamMemberOutput() GatewayIamMemberOutput
+	ToGatewayIamMemberOutputWithContext(ctx context.Context) GatewayIamMemberOutput
+}
+
+func (GatewayIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*GatewayIamMember)(nil)).Elem()
+}
+
+func (i GatewayIamMember) ToGatewayIamMemberOutput() GatewayIamMemberOutput {
+	return i.ToGatewayIamMemberOutputWithContext(context.Background())
+}
+
+func (i GatewayIamMember) ToGatewayIamMemberOutputWithContext(ctx context.Context) GatewayIamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GatewayIamMemberOutput)
+}
+
+type GatewayIamMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (GatewayIamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GatewayIamMemberOutput)(nil)).Elem()
+}
+
+func (o GatewayIamMemberOutput) ToGatewayIamMemberOutput() GatewayIamMemberOutput {
+	return o
+}
+
+func (o GatewayIamMemberOutput) ToGatewayIamMemberOutputWithContext(ctx context.Context) GatewayIamMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(GatewayIamMemberOutput{})
 }

@@ -4,6 +4,7 @@
 package sql
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -76,11 +77,12 @@ type DatabaseInstance struct {
 // NewDatabaseInstance registers a new resource with the given unique name, arguments, and options.
 func NewDatabaseInstance(ctx *pulumi.Context,
 	name string, args *DatabaseInstanceArgs, opts ...pulumi.ResourceOption) (*DatabaseInstance, error) {
-	if args == nil || args.Settings == nil {
-		return nil, errors.New("missing required argument 'Settings'")
-	}
 	if args == nil {
-		args = &DatabaseInstanceArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Settings == nil {
+		return nil, errors.New("invalid value for required argument 'Settings'")
 	}
 	var resource DatabaseInstance
 	err := ctx.RegisterResource("gcp:sql/databaseInstance:DatabaseInstance", name, args, &resource, opts...)
@@ -322,4 +324,43 @@ type DatabaseInstanceArgs struct {
 
 func (DatabaseInstanceArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*databaseInstanceArgs)(nil)).Elem()
+}
+
+type DatabaseInstanceInput interface {
+	pulumi.Input
+
+	ToDatabaseInstanceOutput() DatabaseInstanceOutput
+	ToDatabaseInstanceOutputWithContext(ctx context.Context) DatabaseInstanceOutput
+}
+
+func (DatabaseInstance) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatabaseInstance)(nil)).Elem()
+}
+
+func (i DatabaseInstance) ToDatabaseInstanceOutput() DatabaseInstanceOutput {
+	return i.ToDatabaseInstanceOutputWithContext(context.Background())
+}
+
+func (i DatabaseInstance) ToDatabaseInstanceOutputWithContext(ctx context.Context) DatabaseInstanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatabaseInstanceOutput)
+}
+
+type DatabaseInstanceOutput struct {
+	*pulumi.OutputState
+}
+
+func (DatabaseInstanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatabaseInstanceOutput)(nil)).Elem()
+}
+
+func (o DatabaseInstanceOutput) ToDatabaseInstanceOutput() DatabaseInstanceOutput {
+	return o
+}
+
+func (o DatabaseInstanceOutput) ToDatabaseInstanceOutputWithContext(ctx context.Context) DatabaseInstanceOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DatabaseInstanceOutput{})
 }

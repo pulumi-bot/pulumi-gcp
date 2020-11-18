@@ -4,6 +4,7 @@
 package iap
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -31,14 +32,15 @@ type TunnelIamBinding struct {
 // NewTunnelIamBinding registers a new resource with the given unique name, arguments, and options.
 func NewTunnelIamBinding(ctx *pulumi.Context,
 	name string, args *TunnelIamBindingArgs, opts ...pulumi.ResourceOption) (*TunnelIamBinding, error) {
-	if args == nil || args.Members == nil {
-		return nil, errors.New("missing required argument 'Members'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &TunnelIamBindingArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Members == nil {
+		return nil, errors.New("invalid value for required argument 'Members'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource TunnelIamBinding
 	err := ctx.RegisterResource("gcp:iap/tunnelIamBinding:TunnelIamBinding", name, args, &resource, opts...)
@@ -128,4 +130,43 @@ type TunnelIamBindingArgs struct {
 
 func (TunnelIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*tunnelIamBindingArgs)(nil)).Elem()
+}
+
+type TunnelIamBindingInput interface {
+	pulumi.Input
+
+	ToTunnelIamBindingOutput() TunnelIamBindingOutput
+	ToTunnelIamBindingOutputWithContext(ctx context.Context) TunnelIamBindingOutput
+}
+
+func (TunnelIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*TunnelIamBinding)(nil)).Elem()
+}
+
+func (i TunnelIamBinding) ToTunnelIamBindingOutput() TunnelIamBindingOutput {
+	return i.ToTunnelIamBindingOutputWithContext(context.Background())
+}
+
+func (i TunnelIamBinding) ToTunnelIamBindingOutputWithContext(ctx context.Context) TunnelIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TunnelIamBindingOutput)
+}
+
+type TunnelIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (TunnelIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TunnelIamBindingOutput)(nil)).Elem()
+}
+
+func (o TunnelIamBindingOutput) ToTunnelIamBindingOutput() TunnelIamBindingOutput {
+	return o
+}
+
+func (o TunnelIamBindingOutput) ToTunnelIamBindingOutputWithContext(ctx context.Context) TunnelIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TunnelIamBindingOutput{})
 }

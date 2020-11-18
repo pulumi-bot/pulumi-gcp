@@ -4,6 +4,7 @@
 package bigquery
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -59,11 +60,12 @@ type Dataset struct {
 // NewDataset registers a new resource with the given unique name, arguments, and options.
 func NewDataset(ctx *pulumi.Context,
 	name string, args *DatasetArgs, opts ...pulumi.ResourceOption) (*Dataset, error) {
-	if args == nil || args.DatasetId == nil {
-		return nil, errors.New("missing required argument 'DatasetId'")
-	}
 	if args == nil {
-		args = &DatasetArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.DatasetId == nil {
+		return nil, errors.New("invalid value for required argument 'DatasetId'")
 	}
 	var resource Dataset
 	err := ctx.RegisterResource("gcp:bigquery/dataset:Dataset", name, args, &resource, opts...)
@@ -253,4 +255,43 @@ type DatasetArgs struct {
 
 func (DatasetArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*datasetArgs)(nil)).Elem()
+}
+
+type DatasetInput interface {
+	pulumi.Input
+
+	ToDatasetOutput() DatasetOutput
+	ToDatasetOutputWithContext(ctx context.Context) DatasetOutput
+}
+
+func (Dataset) ElementType() reflect.Type {
+	return reflect.TypeOf((*Dataset)(nil)).Elem()
+}
+
+func (i Dataset) ToDatasetOutput() DatasetOutput {
+	return i.ToDatasetOutputWithContext(context.Background())
+}
+
+func (i Dataset) ToDatasetOutputWithContext(ctx context.Context) DatasetOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetOutput)
+}
+
+type DatasetOutput struct {
+	*pulumi.OutputState
+}
+
+func (DatasetOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatasetOutput)(nil)).Elem()
+}
+
+func (o DatasetOutput) ToDatasetOutput() DatasetOutput {
+	return o
+}
+
+func (o DatasetOutput) ToDatasetOutputWithContext(ctx context.Context) DatasetOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DatasetOutput{})
 }

@@ -4,6 +4,7 @@
 package apigateway
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -32,14 +33,15 @@ type GatewayIamPolicy struct {
 // NewGatewayIamPolicy registers a new resource with the given unique name, arguments, and options.
 func NewGatewayIamPolicy(ctx *pulumi.Context,
 	name string, args *GatewayIamPolicyArgs, opts ...pulumi.ResourceOption) (*GatewayIamPolicy, error) {
-	if args == nil || args.Gateway == nil {
-		return nil, errors.New("missing required argument 'Gateway'")
-	}
-	if args == nil || args.PolicyData == nil {
-		return nil, errors.New("missing required argument 'PolicyData'")
-	}
 	if args == nil {
-		args = &GatewayIamPolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Gateway == nil {
+		return nil, errors.New("invalid value for required argument 'Gateway'")
+	}
+	if args.PolicyData == nil {
+		return nil, errors.New("invalid value for required argument 'PolicyData'")
 	}
 	var resource GatewayIamPolicy
 	err := ctx.RegisterResource("gcp:apigateway/gatewayIamPolicy:GatewayIamPolicy", name, args, &resource, opts...)
@@ -133,4 +135,43 @@ type GatewayIamPolicyArgs struct {
 
 func (GatewayIamPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*gatewayIamPolicyArgs)(nil)).Elem()
+}
+
+type GatewayIamPolicyInput interface {
+	pulumi.Input
+
+	ToGatewayIamPolicyOutput() GatewayIamPolicyOutput
+	ToGatewayIamPolicyOutputWithContext(ctx context.Context) GatewayIamPolicyOutput
+}
+
+func (GatewayIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*GatewayIamPolicy)(nil)).Elem()
+}
+
+func (i GatewayIamPolicy) ToGatewayIamPolicyOutput() GatewayIamPolicyOutput {
+	return i.ToGatewayIamPolicyOutputWithContext(context.Background())
+}
+
+func (i GatewayIamPolicy) ToGatewayIamPolicyOutputWithContext(ctx context.Context) GatewayIamPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GatewayIamPolicyOutput)
+}
+
+type GatewayIamPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (GatewayIamPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GatewayIamPolicyOutput)(nil)).Elem()
+}
+
+func (o GatewayIamPolicyOutput) ToGatewayIamPolicyOutput() GatewayIamPolicyOutput {
+	return o
+}
+
+func (o GatewayIamPolicyOutput) ToGatewayIamPolicyOutputWithContext(ctx context.Context) GatewayIamPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(GatewayIamPolicyOutput{})
 }

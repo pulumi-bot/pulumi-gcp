@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -28,14 +29,15 @@ type MachineImageIamPolicy struct {
 // NewMachineImageIamPolicy registers a new resource with the given unique name, arguments, and options.
 func NewMachineImageIamPolicy(ctx *pulumi.Context,
 	name string, args *MachineImageIamPolicyArgs, opts ...pulumi.ResourceOption) (*MachineImageIamPolicy, error) {
-	if args == nil || args.MachineImage == nil {
-		return nil, errors.New("missing required argument 'MachineImage'")
-	}
-	if args == nil || args.PolicyData == nil {
-		return nil, errors.New("missing required argument 'PolicyData'")
-	}
 	if args == nil {
-		args = &MachineImageIamPolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.MachineImage == nil {
+		return nil, errors.New("invalid value for required argument 'MachineImage'")
+	}
+	if args.PolicyData == nil {
+		return nil, errors.New("invalid value for required argument 'PolicyData'")
 	}
 	var resource MachineImageIamPolicy
 	err := ctx.RegisterResource("gcp:compute/machineImageIamPolicy:MachineImageIamPolicy", name, args, &resource, opts...)
@@ -113,4 +115,43 @@ type MachineImageIamPolicyArgs struct {
 
 func (MachineImageIamPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*machineImageIamPolicyArgs)(nil)).Elem()
+}
+
+type MachineImageIamPolicyInput interface {
+	pulumi.Input
+
+	ToMachineImageIamPolicyOutput() MachineImageIamPolicyOutput
+	ToMachineImageIamPolicyOutputWithContext(ctx context.Context) MachineImageIamPolicyOutput
+}
+
+func (MachineImageIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*MachineImageIamPolicy)(nil)).Elem()
+}
+
+func (i MachineImageIamPolicy) ToMachineImageIamPolicyOutput() MachineImageIamPolicyOutput {
+	return i.ToMachineImageIamPolicyOutputWithContext(context.Background())
+}
+
+func (i MachineImageIamPolicy) ToMachineImageIamPolicyOutputWithContext(ctx context.Context) MachineImageIamPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MachineImageIamPolicyOutput)
+}
+
+type MachineImageIamPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (MachineImageIamPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MachineImageIamPolicyOutput)(nil)).Elem()
+}
+
+func (o MachineImageIamPolicyOutput) ToMachineImageIamPolicyOutput() MachineImageIamPolicyOutput {
+	return o
+}
+
+func (o MachineImageIamPolicyOutput) ToMachineImageIamPolicyOutputWithContext(ctx context.Context) MachineImageIamPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(MachineImageIamPolicyOutput{})
 }

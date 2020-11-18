@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -38,11 +39,12 @@ type RegionDiskIamPolicy struct {
 // NewRegionDiskIamPolicy registers a new resource with the given unique name, arguments, and options.
 func NewRegionDiskIamPolicy(ctx *pulumi.Context,
 	name string, args *RegionDiskIamPolicyArgs, opts ...pulumi.ResourceOption) (*RegionDiskIamPolicy, error) {
-	if args == nil || args.PolicyData == nil {
-		return nil, errors.New("missing required argument 'PolicyData'")
-	}
 	if args == nil {
-		args = &RegionDiskIamPolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.PolicyData == nil {
+		return nil, errors.New("invalid value for required argument 'PolicyData'")
 	}
 	var resource RegionDiskIamPolicy
 	err := ctx.RegisterResource("gcp:compute/regionDiskIamPolicy:RegionDiskIamPolicy", name, args, &resource, opts...)
@@ -124,4 +126,43 @@ type RegionDiskIamPolicyArgs struct {
 
 func (RegionDiskIamPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*regionDiskIamPolicyArgs)(nil)).Elem()
+}
+
+type RegionDiskIamPolicyInput interface {
+	pulumi.Input
+
+	ToRegionDiskIamPolicyOutput() RegionDiskIamPolicyOutput
+	ToRegionDiskIamPolicyOutputWithContext(ctx context.Context) RegionDiskIamPolicyOutput
+}
+
+func (RegionDiskIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionDiskIamPolicy)(nil)).Elem()
+}
+
+func (i RegionDiskIamPolicy) ToRegionDiskIamPolicyOutput() RegionDiskIamPolicyOutput {
+	return i.ToRegionDiskIamPolicyOutputWithContext(context.Background())
+}
+
+func (i RegionDiskIamPolicy) ToRegionDiskIamPolicyOutputWithContext(ctx context.Context) RegionDiskIamPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegionDiskIamPolicyOutput)
+}
+
+type RegionDiskIamPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (RegionDiskIamPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionDiskIamPolicyOutput)(nil)).Elem()
+}
+
+func (o RegionDiskIamPolicyOutput) ToRegionDiskIamPolicyOutput() RegionDiskIamPolicyOutput {
+	return o
+}
+
+func (o RegionDiskIamPolicyOutput) ToRegionDiskIamPolicyOutputWithContext(ctx context.Context) RegionDiskIamPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RegionDiskIamPolicyOutput{})
 }
