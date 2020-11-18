@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
@@ -38,6 +39,7 @@ func NewSecurityPolicy(ctx *pulumi.Context,
 	if args == nil {
 		args = &SecurityPolicyArgs{}
 	}
+
 	var resource SecurityPolicy
 	err := ctx.RegisterResource("gcp:compute/securityPolicy:SecurityPolicy", name, args, &resource, opts...)
 	if err != nil {
@@ -130,4 +132,43 @@ type SecurityPolicyArgs struct {
 
 func (SecurityPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*securityPolicyArgs)(nil)).Elem()
+}
+
+type SecurityPolicyInput interface {
+	pulumi.Input
+
+	ToSecurityPolicyOutput() SecurityPolicyOutput
+	ToSecurityPolicyOutputWithContext(ctx context.Context) SecurityPolicyOutput
+}
+
+func (SecurityPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecurityPolicy)(nil)).Elem()
+}
+
+func (i SecurityPolicy) ToSecurityPolicyOutput() SecurityPolicyOutput {
+	return i.ToSecurityPolicyOutputWithContext(context.Background())
+}
+
+func (i SecurityPolicy) ToSecurityPolicyOutputWithContext(ctx context.Context) SecurityPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityPolicyOutput)
+}
+
+type SecurityPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (SecurityPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecurityPolicyOutput)(nil)).Elem()
+}
+
+func (o SecurityPolicyOutput) ToSecurityPolicyOutput() SecurityPolicyOutput {
+	return o
+}
+
+func (o SecurityPolicyOutput) ToSecurityPolicyOutputWithContext(ctx context.Context) SecurityPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SecurityPolicyOutput{})
 }

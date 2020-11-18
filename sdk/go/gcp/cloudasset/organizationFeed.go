@@ -4,6 +4,7 @@
 package cloudasset
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -61,20 +62,21 @@ type OrganizationFeed struct {
 // NewOrganizationFeed registers a new resource with the given unique name, arguments, and options.
 func NewOrganizationFeed(ctx *pulumi.Context,
 	name string, args *OrganizationFeedArgs, opts ...pulumi.ResourceOption) (*OrganizationFeed, error) {
-	if args == nil || args.BillingProject == nil {
-		return nil, errors.New("missing required argument 'BillingProject'")
-	}
-	if args == nil || args.FeedId == nil {
-		return nil, errors.New("missing required argument 'FeedId'")
-	}
-	if args == nil || args.FeedOutputConfig == nil {
-		return nil, errors.New("missing required argument 'FeedOutputConfig'")
-	}
-	if args == nil || args.OrgId == nil {
-		return nil, errors.New("missing required argument 'OrgId'")
-	}
 	if args == nil {
-		args = &OrganizationFeedArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.BillingProject == nil {
+		return nil, errors.New("invalid value for required argument 'BillingProject'")
+	}
+	if args.FeedId == nil {
+		return nil, errors.New("invalid value for required argument 'FeedId'")
+	}
+	if args.FeedOutputConfig == nil {
+		return nil, errors.New("invalid value for required argument 'FeedOutputConfig'")
+	}
+	if args.OrgId == nil {
+		return nil, errors.New("invalid value for required argument 'OrgId'")
 	}
 	var resource OrganizationFeed
 	err := ctx.RegisterResource("gcp:cloudasset/organizationFeed:OrganizationFeed", name, args, &resource, opts...)
@@ -248,4 +250,43 @@ type OrganizationFeedArgs struct {
 
 func (OrganizationFeedArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*organizationFeedArgs)(nil)).Elem()
+}
+
+type OrganizationFeedInput interface {
+	pulumi.Input
+
+	ToOrganizationFeedOutput() OrganizationFeedOutput
+	ToOrganizationFeedOutputWithContext(ctx context.Context) OrganizationFeedOutput
+}
+
+func (OrganizationFeed) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationFeed)(nil)).Elem()
+}
+
+func (i OrganizationFeed) ToOrganizationFeedOutput() OrganizationFeedOutput {
+	return i.ToOrganizationFeedOutputWithContext(context.Background())
+}
+
+func (i OrganizationFeed) ToOrganizationFeedOutputWithContext(ctx context.Context) OrganizationFeedOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationFeedOutput)
+}
+
+type OrganizationFeedOutput struct {
+	*pulumi.OutputState
+}
+
+func (OrganizationFeedOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationFeedOutput)(nil)).Elem()
+}
+
+func (o OrganizationFeedOutput) ToOrganizationFeedOutput() OrganizationFeedOutput {
+	return o
+}
+
+func (o OrganizationFeedOutput) ToOrganizationFeedOutputWithContext(ctx context.Context) OrganizationFeedOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(OrganizationFeedOutput{})
 }

@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -53,11 +54,12 @@ type RegionTargetHttpProxy struct {
 // NewRegionTargetHttpProxy registers a new resource with the given unique name, arguments, and options.
 func NewRegionTargetHttpProxy(ctx *pulumi.Context,
 	name string, args *RegionTargetHttpProxyArgs, opts ...pulumi.ResourceOption) (*RegionTargetHttpProxy, error) {
-	if args == nil || args.UrlMap == nil {
-		return nil, errors.New("missing required argument 'UrlMap'")
-	}
 	if args == nil {
-		args = &RegionTargetHttpProxyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.UrlMap == nil {
+		return nil, errors.New("invalid value for required argument 'UrlMap'")
 	}
 	var resource RegionTargetHttpProxy
 	err := ctx.RegisterResource("gcp:compute/regionTargetHttpProxy:RegionTargetHttpProxy", name, args, &resource, opts...)
@@ -187,4 +189,43 @@ type RegionTargetHttpProxyArgs struct {
 
 func (RegionTargetHttpProxyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*regionTargetHttpProxyArgs)(nil)).Elem()
+}
+
+type RegionTargetHttpProxyInput interface {
+	pulumi.Input
+
+	ToRegionTargetHttpProxyOutput() RegionTargetHttpProxyOutput
+	ToRegionTargetHttpProxyOutputWithContext(ctx context.Context) RegionTargetHttpProxyOutput
+}
+
+func (RegionTargetHttpProxy) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionTargetHttpProxy)(nil)).Elem()
+}
+
+func (i RegionTargetHttpProxy) ToRegionTargetHttpProxyOutput() RegionTargetHttpProxyOutput {
+	return i.ToRegionTargetHttpProxyOutputWithContext(context.Background())
+}
+
+func (i RegionTargetHttpProxy) ToRegionTargetHttpProxyOutputWithContext(ctx context.Context) RegionTargetHttpProxyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegionTargetHttpProxyOutput)
+}
+
+type RegionTargetHttpProxyOutput struct {
+	*pulumi.OutputState
+}
+
+func (RegionTargetHttpProxyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionTargetHttpProxyOutput)(nil)).Elem()
+}
+
+func (o RegionTargetHttpProxyOutput) ToRegionTargetHttpProxyOutput() RegionTargetHttpProxyOutput {
+	return o
+}
+
+func (o RegionTargetHttpProxyOutput) ToRegionTargetHttpProxyOutputWithContext(ctx context.Context) RegionTargetHttpProxyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RegionTargetHttpProxyOutput{})
 }

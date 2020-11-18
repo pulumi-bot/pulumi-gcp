@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -55,11 +56,12 @@ type TargetTCPProxy struct {
 // NewTargetTCPProxy registers a new resource with the given unique name, arguments, and options.
 func NewTargetTCPProxy(ctx *pulumi.Context,
 	name string, args *TargetTCPProxyArgs, opts ...pulumi.ResourceOption) (*TargetTCPProxy, error) {
-	if args == nil || args.BackendService == nil {
-		return nil, errors.New("missing required argument 'BackendService'")
-	}
 	if args == nil {
-		args = &TargetTCPProxyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.BackendService == nil {
+		return nil, errors.New("invalid value for required argument 'BackendService'")
 	}
 	var resource TargetTCPProxy
 	err := ctx.RegisterResource("gcp:compute/targetTCPProxy:TargetTCPProxy", name, args, &resource, opts...)
@@ -193,4 +195,43 @@ type TargetTCPProxyArgs struct {
 
 func (TargetTCPProxyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*targetTCPProxyArgs)(nil)).Elem()
+}
+
+type TargetTCPProxyInput interface {
+	pulumi.Input
+
+	ToTargetTCPProxyOutput() TargetTCPProxyOutput
+	ToTargetTCPProxyOutputWithContext(ctx context.Context) TargetTCPProxyOutput
+}
+
+func (TargetTCPProxy) ElementType() reflect.Type {
+	return reflect.TypeOf((*TargetTCPProxy)(nil)).Elem()
+}
+
+func (i TargetTCPProxy) ToTargetTCPProxyOutput() TargetTCPProxyOutput {
+	return i.ToTargetTCPProxyOutputWithContext(context.Background())
+}
+
+func (i TargetTCPProxy) ToTargetTCPProxyOutputWithContext(ctx context.Context) TargetTCPProxyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TargetTCPProxyOutput)
+}
+
+type TargetTCPProxyOutput struct {
+	*pulumi.OutputState
+}
+
+func (TargetTCPProxyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TargetTCPProxyOutput)(nil)).Elem()
+}
+
+func (o TargetTCPProxyOutput) ToTargetTCPProxyOutput() TargetTCPProxyOutput {
+	return o
+}
+
+func (o TargetTCPProxyOutput) ToTargetTCPProxyOutputWithContext(ctx context.Context) TargetTCPProxyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TargetTCPProxyOutput{})
 }

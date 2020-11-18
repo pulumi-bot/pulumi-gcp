@@ -4,6 +4,7 @@
 package bigtable
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -35,17 +36,18 @@ type GCPolicy struct {
 // NewGCPolicy registers a new resource with the given unique name, arguments, and options.
 func NewGCPolicy(ctx *pulumi.Context,
 	name string, args *GCPolicyArgs, opts ...pulumi.ResourceOption) (*GCPolicy, error) {
-	if args == nil || args.ColumnFamily == nil {
-		return nil, errors.New("missing required argument 'ColumnFamily'")
-	}
-	if args == nil || args.InstanceName == nil {
-		return nil, errors.New("missing required argument 'InstanceName'")
-	}
-	if args == nil || args.Table == nil {
-		return nil, errors.New("missing required argument 'Table'")
-	}
 	if args == nil {
-		args = &GCPolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.ColumnFamily == nil {
+		return nil, errors.New("invalid value for required argument 'ColumnFamily'")
+	}
+	if args.InstanceName == nil {
+		return nil, errors.New("invalid value for required argument 'InstanceName'")
+	}
+	if args.Table == nil {
+		return nil, errors.New("invalid value for required argument 'Table'")
 	}
 	var resource GCPolicy
 	err := ctx.RegisterResource("gcp:bigtable/gCPolicy:GCPolicy", name, args, &resource, opts...)
@@ -143,4 +145,43 @@ type GCPolicyArgs struct {
 
 func (GCPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*gcpolicyArgs)(nil)).Elem()
+}
+
+type GCPolicyInput interface {
+	pulumi.Input
+
+	ToGCPolicyOutput() GCPolicyOutput
+	ToGCPolicyOutputWithContext(ctx context.Context) GCPolicyOutput
+}
+
+func (GCPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*GCPolicy)(nil)).Elem()
+}
+
+func (i GCPolicy) ToGCPolicyOutput() GCPolicyOutput {
+	return i.ToGCPolicyOutputWithContext(context.Background())
+}
+
+func (i GCPolicy) ToGCPolicyOutputWithContext(ctx context.Context) GCPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GCPolicyOutput)
+}
+
+type GCPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (GCPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GCPolicyOutput)(nil)).Elem()
+}
+
+func (o GCPolicyOutput) ToGCPolicyOutput() GCPolicyOutput {
+	return o
+}
+
+func (o GCPolicyOutput) ToGCPolicyOutputWithContext(ctx context.Context) GCPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(GCPolicyOutput{})
 }

@@ -4,6 +4,7 @@
 package monitoring
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -81,17 +82,18 @@ type AlertPolicy struct {
 // NewAlertPolicy registers a new resource with the given unique name, arguments, and options.
 func NewAlertPolicy(ctx *pulumi.Context,
 	name string, args *AlertPolicyArgs, opts ...pulumi.ResourceOption) (*AlertPolicy, error) {
-	if args == nil || args.Combiner == nil {
-		return nil, errors.New("missing required argument 'Combiner'")
-	}
-	if args == nil || args.Conditions == nil {
-		return nil, errors.New("missing required argument 'Conditions'")
-	}
-	if args == nil || args.DisplayName == nil {
-		return nil, errors.New("missing required argument 'DisplayName'")
-	}
 	if args == nil {
-		args = &AlertPolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Combiner == nil {
+		return nil, errors.New("invalid value for required argument 'Combiner'")
+	}
+	if args.Conditions == nil {
+		return nil, errors.New("invalid value for required argument 'Conditions'")
+	}
+	if args.DisplayName == nil {
+		return nil, errors.New("invalid value for required argument 'DisplayName'")
 	}
 	var resource AlertPolicy
 	err := ctx.RegisterResource("gcp:monitoring/alertPolicy:AlertPolicy", name, args, &resource, opts...)
@@ -319,4 +321,43 @@ type AlertPolicyArgs struct {
 
 func (AlertPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*alertPolicyArgs)(nil)).Elem()
+}
+
+type AlertPolicyInput interface {
+	pulumi.Input
+
+	ToAlertPolicyOutput() AlertPolicyOutput
+	ToAlertPolicyOutputWithContext(ctx context.Context) AlertPolicyOutput
+}
+
+func (AlertPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertPolicy)(nil)).Elem()
+}
+
+func (i AlertPolicy) ToAlertPolicyOutput() AlertPolicyOutput {
+	return i.ToAlertPolicyOutputWithContext(context.Background())
+}
+
+func (i AlertPolicy) ToAlertPolicyOutputWithContext(ctx context.Context) AlertPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertPolicyOutput)
+}
+
+type AlertPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (AlertPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertPolicyOutput)(nil)).Elem()
+}
+
+func (o AlertPolicyOutput) ToAlertPolicyOutput() AlertPolicyOutput {
+	return o
+}
+
+func (o AlertPolicyOutput) ToAlertPolicyOutputWithContext(ctx context.Context) AlertPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AlertPolicyOutput{})
 }

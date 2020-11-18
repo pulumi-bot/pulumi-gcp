@@ -4,6 +4,7 @@
 package bigquery
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -42,20 +43,21 @@ type IamBinding struct {
 // NewIamBinding registers a new resource with the given unique name, arguments, and options.
 func NewIamBinding(ctx *pulumi.Context,
 	name string, args *IamBindingArgs, opts ...pulumi.ResourceOption) (*IamBinding, error) {
-	if args == nil || args.DatasetId == nil {
-		return nil, errors.New("missing required argument 'DatasetId'")
-	}
-	if args == nil || args.Members == nil {
-		return nil, errors.New("missing required argument 'Members'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
-	if args == nil || args.TableId == nil {
-		return nil, errors.New("missing required argument 'TableId'")
-	}
 	if args == nil {
-		args = &IamBindingArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.DatasetId == nil {
+		return nil, errors.New("invalid value for required argument 'DatasetId'")
+	}
+	if args.Members == nil {
+		return nil, errors.New("invalid value for required argument 'Members'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
+	}
+	if args.TableId == nil {
+		return nil, errors.New("invalid value for required argument 'TableId'")
 	}
 	var resource IamBinding
 	err := ctx.RegisterResource("gcp:bigquery/iamBinding:IamBinding", name, args, &resource, opts...)
@@ -153,4 +155,43 @@ type IamBindingArgs struct {
 
 func (IamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*iamBindingArgs)(nil)).Elem()
+}
+
+type IamBindingInput interface {
+	pulumi.Input
+
+	ToIamBindingOutput() IamBindingOutput
+	ToIamBindingOutputWithContext(ctx context.Context) IamBindingOutput
+}
+
+func (IamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*IamBinding)(nil)).Elem()
+}
+
+func (i IamBinding) ToIamBindingOutput() IamBindingOutput {
+	return i.ToIamBindingOutputWithContext(context.Background())
+}
+
+func (i IamBinding) ToIamBindingOutputWithContext(ctx context.Context) IamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IamBindingOutput)
+}
+
+type IamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (IamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IamBindingOutput)(nil)).Elem()
+}
+
+func (o IamBindingOutput) ToIamBindingOutput() IamBindingOutput {
+	return o
+}
+
+func (o IamBindingOutput) ToIamBindingOutputWithContext(ctx context.Context) IamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(IamBindingOutput{})
 }

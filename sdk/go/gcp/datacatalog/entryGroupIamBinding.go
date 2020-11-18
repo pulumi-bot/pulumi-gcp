@@ -4,6 +4,7 @@
 package datacatalog
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -41,17 +42,18 @@ type EntryGroupIamBinding struct {
 // NewEntryGroupIamBinding registers a new resource with the given unique name, arguments, and options.
 func NewEntryGroupIamBinding(ctx *pulumi.Context,
 	name string, args *EntryGroupIamBindingArgs, opts ...pulumi.ResourceOption) (*EntryGroupIamBinding, error) {
-	if args == nil || args.EntryGroup == nil {
-		return nil, errors.New("missing required argument 'EntryGroup'")
-	}
-	if args == nil || args.Members == nil {
-		return nil, errors.New("missing required argument 'Members'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &EntryGroupIamBindingArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.EntryGroup == nil {
+		return nil, errors.New("invalid value for required argument 'EntryGroup'")
+	}
+	if args.Members == nil {
+		return nil, errors.New("invalid value for required argument 'Members'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource EntryGroupIamBinding
 	err := ctx.RegisterResource("gcp:datacatalog/entryGroupIamBinding:EntryGroupIamBinding", name, args, &resource, opts...)
@@ -145,4 +147,43 @@ type EntryGroupIamBindingArgs struct {
 
 func (EntryGroupIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*entryGroupIamBindingArgs)(nil)).Elem()
+}
+
+type EntryGroupIamBindingInput interface {
+	pulumi.Input
+
+	ToEntryGroupIamBindingOutput() EntryGroupIamBindingOutput
+	ToEntryGroupIamBindingOutputWithContext(ctx context.Context) EntryGroupIamBindingOutput
+}
+
+func (EntryGroupIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*EntryGroupIamBinding)(nil)).Elem()
+}
+
+func (i EntryGroupIamBinding) ToEntryGroupIamBindingOutput() EntryGroupIamBindingOutput {
+	return i.ToEntryGroupIamBindingOutputWithContext(context.Background())
+}
+
+func (i EntryGroupIamBinding) ToEntryGroupIamBindingOutputWithContext(ctx context.Context) EntryGroupIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EntryGroupIamBindingOutput)
+}
+
+type EntryGroupIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (EntryGroupIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EntryGroupIamBindingOutput)(nil)).Elem()
+}
+
+func (o EntryGroupIamBindingOutput) ToEntryGroupIamBindingOutput() EntryGroupIamBindingOutput {
+	return o
+}
+
+func (o EntryGroupIamBindingOutput) ToEntryGroupIamBindingOutputWithContext(ctx context.Context) EntryGroupIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(EntryGroupIamBindingOutput{})
 }

@@ -4,6 +4,7 @@
 package folder
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -25,17 +26,18 @@ type IamAuditConfig struct {
 // NewIamAuditConfig registers a new resource with the given unique name, arguments, and options.
 func NewIamAuditConfig(ctx *pulumi.Context,
 	name string, args *IamAuditConfigArgs, opts ...pulumi.ResourceOption) (*IamAuditConfig, error) {
-	if args == nil || args.AuditLogConfigs == nil {
-		return nil, errors.New("missing required argument 'AuditLogConfigs'")
-	}
-	if args == nil || args.Folder == nil {
-		return nil, errors.New("missing required argument 'Folder'")
-	}
-	if args == nil || args.Service == nil {
-		return nil, errors.New("missing required argument 'Service'")
-	}
 	if args == nil {
-		args = &IamAuditConfigArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.AuditLogConfigs == nil {
+		return nil, errors.New("invalid value for required argument 'AuditLogConfigs'")
+	}
+	if args.Folder == nil {
+		return nil, errors.New("invalid value for required argument 'Folder'")
+	}
+	if args.Service == nil {
+		return nil, errors.New("invalid value for required argument 'Service'")
 	}
 	var resource IamAuditConfig
 	err := ctx.RegisterResource("gcp:folder/iamAuditConfig:IamAuditConfig", name, args, &resource, opts...)
@@ -101,4 +103,43 @@ type IamAuditConfigArgs struct {
 
 func (IamAuditConfigArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*iamAuditConfigArgs)(nil)).Elem()
+}
+
+type IamAuditConfigInput interface {
+	pulumi.Input
+
+	ToIamAuditConfigOutput() IamAuditConfigOutput
+	ToIamAuditConfigOutputWithContext(ctx context.Context) IamAuditConfigOutput
+}
+
+func (IamAuditConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*IamAuditConfig)(nil)).Elem()
+}
+
+func (i IamAuditConfig) ToIamAuditConfigOutput() IamAuditConfigOutput {
+	return i.ToIamAuditConfigOutputWithContext(context.Background())
+}
+
+func (i IamAuditConfig) ToIamAuditConfigOutputWithContext(ctx context.Context) IamAuditConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IamAuditConfigOutput)
+}
+
+type IamAuditConfigOutput struct {
+	*pulumi.OutputState
+}
+
+func (IamAuditConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IamAuditConfigOutput)(nil)).Elem()
+}
+
+func (o IamAuditConfigOutput) ToIamAuditConfigOutput() IamAuditConfigOutput {
+	return o
+}
+
+func (o IamAuditConfigOutput) ToIamAuditConfigOutputWithContext(ctx context.Context) IamAuditConfigOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(IamAuditConfigOutput{})
 }

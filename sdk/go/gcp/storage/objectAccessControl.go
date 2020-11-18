@@ -4,6 +4,7 @@
 package storage
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -65,20 +66,21 @@ type ObjectAccessControl struct {
 // NewObjectAccessControl registers a new resource with the given unique name, arguments, and options.
 func NewObjectAccessControl(ctx *pulumi.Context,
 	name string, args *ObjectAccessControlArgs, opts ...pulumi.ResourceOption) (*ObjectAccessControl, error) {
-	if args == nil || args.Bucket == nil {
-		return nil, errors.New("missing required argument 'Bucket'")
-	}
-	if args == nil || args.Entity == nil {
-		return nil, errors.New("missing required argument 'Entity'")
-	}
-	if args == nil || args.Object == nil {
-		return nil, errors.New("missing required argument 'Object'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &ObjectAccessControlArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Bucket == nil {
+		return nil, errors.New("invalid value for required argument 'Bucket'")
+	}
+	if args.Entity == nil {
+		return nil, errors.New("invalid value for required argument 'Entity'")
+	}
+	if args.Object == nil {
+		return nil, errors.New("invalid value for required argument 'Object'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource ObjectAccessControl
 	err := ctx.RegisterResource("gcp:storage/objectAccessControl:ObjectAccessControl", name, args, &resource, opts...)
@@ -208,4 +210,43 @@ type ObjectAccessControlArgs struct {
 
 func (ObjectAccessControlArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*objectAccessControlArgs)(nil)).Elem()
+}
+
+type ObjectAccessControlInput interface {
+	pulumi.Input
+
+	ToObjectAccessControlOutput() ObjectAccessControlOutput
+	ToObjectAccessControlOutputWithContext(ctx context.Context) ObjectAccessControlOutput
+}
+
+func (ObjectAccessControl) ElementType() reflect.Type {
+	return reflect.TypeOf((*ObjectAccessControl)(nil)).Elem()
+}
+
+func (i ObjectAccessControl) ToObjectAccessControlOutput() ObjectAccessControlOutput {
+	return i.ToObjectAccessControlOutputWithContext(context.Background())
+}
+
+func (i ObjectAccessControl) ToObjectAccessControlOutputWithContext(ctx context.Context) ObjectAccessControlOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObjectAccessControlOutput)
+}
+
+type ObjectAccessControlOutput struct {
+	*pulumi.OutputState
+}
+
+func (ObjectAccessControlOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ObjectAccessControlOutput)(nil)).Elem()
+}
+
+func (o ObjectAccessControlOutput) ToObjectAccessControlOutput() ObjectAccessControlOutput {
+	return o
+}
+
+func (o ObjectAccessControlOutput) ToObjectAccessControlOutputWithContext(ctx context.Context) ObjectAccessControlOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ObjectAccessControlOutput{})
 }

@@ -4,6 +4,7 @@
 package logging
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -37,17 +38,18 @@ type ProjectBucketConfig struct {
 // NewProjectBucketConfig registers a new resource with the given unique name, arguments, and options.
 func NewProjectBucketConfig(ctx *pulumi.Context,
 	name string, args *ProjectBucketConfigArgs, opts ...pulumi.ResourceOption) (*ProjectBucketConfig, error) {
-	if args == nil || args.BucketId == nil {
-		return nil, errors.New("missing required argument 'BucketId'")
-	}
-	if args == nil || args.Location == nil {
-		return nil, errors.New("missing required argument 'Location'")
-	}
-	if args == nil || args.Project == nil {
-		return nil, errors.New("missing required argument 'Project'")
-	}
 	if args == nil {
-		args = &ProjectBucketConfigArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.BucketId == nil {
+		return nil, errors.New("invalid value for required argument 'BucketId'")
+	}
+	if args.Location == nil {
+		return nil, errors.New("invalid value for required argument 'Location'")
+	}
+	if args.Project == nil {
+		return nil, errors.New("invalid value for required argument 'Project'")
 	}
 	var resource ProjectBucketConfig
 	err := ctx.RegisterResource("gcp:logging/projectBucketConfig:ProjectBucketConfig", name, args, &resource, opts...)
@@ -137,4 +139,43 @@ type ProjectBucketConfigArgs struct {
 
 func (ProjectBucketConfigArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*projectBucketConfigArgs)(nil)).Elem()
+}
+
+type ProjectBucketConfigInput interface {
+	pulumi.Input
+
+	ToProjectBucketConfigOutput() ProjectBucketConfigOutput
+	ToProjectBucketConfigOutputWithContext(ctx context.Context) ProjectBucketConfigOutput
+}
+
+func (ProjectBucketConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProjectBucketConfig)(nil)).Elem()
+}
+
+func (i ProjectBucketConfig) ToProjectBucketConfigOutput() ProjectBucketConfigOutput {
+	return i.ToProjectBucketConfigOutputWithContext(context.Background())
+}
+
+func (i ProjectBucketConfig) ToProjectBucketConfigOutputWithContext(ctx context.Context) ProjectBucketConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProjectBucketConfigOutput)
+}
+
+type ProjectBucketConfigOutput struct {
+	*pulumi.OutputState
+}
+
+func (ProjectBucketConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProjectBucketConfigOutput)(nil)).Elem()
+}
+
+func (o ProjectBucketConfigOutput) ToProjectBucketConfigOutput() ProjectBucketConfigOutput {
+	return o
+}
+
+func (o ProjectBucketConfigOutput) ToProjectBucketConfigOutputWithContext(ctx context.Context) ProjectBucketConfigOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ProjectBucketConfigOutput{})
 }

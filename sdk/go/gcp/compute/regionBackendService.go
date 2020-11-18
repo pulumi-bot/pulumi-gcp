@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
@@ -143,6 +144,7 @@ func NewRegionBackendService(ctx *pulumi.Context,
 	if args == nil {
 		args = &RegionBackendServiceArgs{}
 	}
+
 	var resource RegionBackendService
 	err := ctx.RegisterResource("gcp:compute/regionBackendService:RegionBackendService", name, args, &resource, opts...)
 	if err != nil {
@@ -623,4 +625,43 @@ type RegionBackendServiceArgs struct {
 
 func (RegionBackendServiceArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*regionBackendServiceArgs)(nil)).Elem()
+}
+
+type RegionBackendServiceInput interface {
+	pulumi.Input
+
+	ToRegionBackendServiceOutput() RegionBackendServiceOutput
+	ToRegionBackendServiceOutputWithContext(ctx context.Context) RegionBackendServiceOutput
+}
+
+func (RegionBackendService) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionBackendService)(nil)).Elem()
+}
+
+func (i RegionBackendService) ToRegionBackendServiceOutput() RegionBackendServiceOutput {
+	return i.ToRegionBackendServiceOutputWithContext(context.Background())
+}
+
+func (i RegionBackendService) ToRegionBackendServiceOutputWithContext(ctx context.Context) RegionBackendServiceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceOutput)
+}
+
+type RegionBackendServiceOutput struct {
+	*pulumi.OutputState
+}
+
+func (RegionBackendServiceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionBackendServiceOutput)(nil)).Elem()
+}
+
+func (o RegionBackendServiceOutput) ToRegionBackendServiceOutput() RegionBackendServiceOutput {
+	return o
+}
+
+func (o RegionBackendServiceOutput) ToRegionBackendServiceOutputWithContext(ctx context.Context) RegionBackendServiceOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RegionBackendServiceOutput{})
 }

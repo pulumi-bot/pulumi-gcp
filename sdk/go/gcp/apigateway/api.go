@@ -4,6 +4,7 @@
 package apigateway
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -34,11 +35,12 @@ type Api struct {
 // NewApi registers a new resource with the given unique name, arguments, and options.
 func NewApi(ctx *pulumi.Context,
 	name string, args *ApiArgs, opts ...pulumi.ResourceOption) (*Api, error) {
-	if args == nil || args.ApiId == nil {
-		return nil, errors.New("missing required argument 'ApiId'")
-	}
 	if args == nil {
-		args = &ApiArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.ApiId == nil {
+		return nil, errors.New("invalid value for required argument 'ApiId'")
 	}
 	var resource Api
 	err := ctx.RegisterResource("gcp:apigateway/api:Api", name, args, &resource, opts...)
@@ -136,4 +138,43 @@ type ApiArgs struct {
 
 func (ApiArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*apiArgs)(nil)).Elem()
+}
+
+type ApiInput interface {
+	pulumi.Input
+
+	ToApiOutput() ApiOutput
+	ToApiOutputWithContext(ctx context.Context) ApiOutput
+}
+
+func (Api) ElementType() reflect.Type {
+	return reflect.TypeOf((*Api)(nil)).Elem()
+}
+
+func (i Api) ToApiOutput() ApiOutput {
+	return i.ToApiOutputWithContext(context.Background())
+}
+
+func (i Api) ToApiOutputWithContext(ctx context.Context) ApiOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApiOutput)
+}
+
+type ApiOutput struct {
+	*pulumi.OutputState
+}
+
+func (ApiOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ApiOutput)(nil)).Elem()
+}
+
+func (o ApiOutput) ToApiOutput() ApiOutput {
+	return o
+}
+
+func (o ApiOutput) ToApiOutputWithContext(ctx context.Context) ApiOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ApiOutput{})
 }

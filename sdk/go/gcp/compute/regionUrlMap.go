@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
@@ -62,6 +63,7 @@ func NewRegionUrlMap(ctx *pulumi.Context,
 	if args == nil {
 		args = &RegionUrlMapArgs{}
 	}
+
 	var resource RegionUrlMap
 	err := ctx.RegisterResource("gcp:compute/regionUrlMap:RegionUrlMap", name, args, &resource, opts...)
 	if err != nil {
@@ -238,4 +240,43 @@ type RegionUrlMapArgs struct {
 
 func (RegionUrlMapArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*regionUrlMapArgs)(nil)).Elem()
+}
+
+type RegionUrlMapInput interface {
+	pulumi.Input
+
+	ToRegionUrlMapOutput() RegionUrlMapOutput
+	ToRegionUrlMapOutputWithContext(ctx context.Context) RegionUrlMapOutput
+}
+
+func (RegionUrlMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionUrlMap)(nil)).Elem()
+}
+
+func (i RegionUrlMap) ToRegionUrlMapOutput() RegionUrlMapOutput {
+	return i.ToRegionUrlMapOutputWithContext(context.Background())
+}
+
+func (i RegionUrlMap) ToRegionUrlMapOutputWithContext(ctx context.Context) RegionUrlMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapOutput)
+}
+
+type RegionUrlMapOutput struct {
+	*pulumi.OutputState
+}
+
+func (RegionUrlMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionUrlMapOutput)(nil)).Elem()
+}
+
+func (o RegionUrlMapOutput) ToRegionUrlMapOutput() RegionUrlMapOutput {
+	return o
+}
+
+func (o RegionUrlMapOutput) ToRegionUrlMapOutputWithContext(ctx context.Context) RegionUrlMapOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RegionUrlMapOutput{})
 }

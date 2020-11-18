@@ -4,6 +4,7 @@
 package securitycenter
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -43,14 +44,15 @@ type Source struct {
 // NewSource registers a new resource with the given unique name, arguments, and options.
 func NewSource(ctx *pulumi.Context,
 	name string, args *SourceArgs, opts ...pulumi.ResourceOption) (*Source, error) {
-	if args == nil || args.DisplayName == nil {
-		return nil, errors.New("missing required argument 'DisplayName'")
-	}
-	if args == nil || args.Organization == nil {
-		return nil, errors.New("missing required argument 'Organization'")
-	}
 	if args == nil {
-		args = &SourceArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.DisplayName == nil {
+		return nil, errors.New("invalid value for required argument 'DisplayName'")
+	}
+	if args.Organization == nil {
+		return nil, errors.New("invalid value for required argument 'Organization'")
 	}
 	var resource Source
 	err := ctx.RegisterResource("gcp:securitycenter/source:Source", name, args, &resource, opts...)
@@ -140,4 +142,43 @@ type SourceArgs struct {
 
 func (SourceArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*sourceArgs)(nil)).Elem()
+}
+
+type SourceInput interface {
+	pulumi.Input
+
+	ToSourceOutput() SourceOutput
+	ToSourceOutputWithContext(ctx context.Context) SourceOutput
+}
+
+func (Source) ElementType() reflect.Type {
+	return reflect.TypeOf((*Source)(nil)).Elem()
+}
+
+func (i Source) ToSourceOutput() SourceOutput {
+	return i.ToSourceOutputWithContext(context.Background())
+}
+
+func (i Source) ToSourceOutputWithContext(ctx context.Context) SourceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceOutput)
+}
+
+type SourceOutput struct {
+	*pulumi.OutputState
+}
+
+func (SourceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SourceOutput)(nil)).Elem()
+}
+
+func (o SourceOutput) ToSourceOutput() SourceOutput {
+	return o
+}
+
+func (o SourceOutput) ToSourceOutputWithContext(ctx context.Context) SourceOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SourceOutput{})
 }

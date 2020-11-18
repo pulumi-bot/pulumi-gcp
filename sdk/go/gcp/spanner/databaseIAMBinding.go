@@ -4,6 +4,7 @@
 package spanner
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -45,20 +46,21 @@ type DatabaseIAMBinding struct {
 // NewDatabaseIAMBinding registers a new resource with the given unique name, arguments, and options.
 func NewDatabaseIAMBinding(ctx *pulumi.Context,
 	name string, args *DatabaseIAMBindingArgs, opts ...pulumi.ResourceOption) (*DatabaseIAMBinding, error) {
-	if args == nil || args.Database == nil {
-		return nil, errors.New("missing required argument 'Database'")
-	}
-	if args == nil || args.Instance == nil {
-		return nil, errors.New("missing required argument 'Instance'")
-	}
-	if args == nil || args.Members == nil {
-		return nil, errors.New("missing required argument 'Members'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &DatabaseIAMBindingArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Database == nil {
+		return nil, errors.New("invalid value for required argument 'Database'")
+	}
+	if args.Instance == nil {
+		return nil, errors.New("invalid value for required argument 'Instance'")
+	}
+	if args.Members == nil {
+		return nil, errors.New("invalid value for required argument 'Members'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource DatabaseIAMBinding
 	err := ctx.RegisterResource("gcp:spanner/databaseIAMBinding:DatabaseIAMBinding", name, args, &resource, opts...)
@@ -156,4 +158,43 @@ type DatabaseIAMBindingArgs struct {
 
 func (DatabaseIAMBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*databaseIAMBindingArgs)(nil)).Elem()
+}
+
+type DatabaseIAMBindingInput interface {
+	pulumi.Input
+
+	ToDatabaseIAMBindingOutput() DatabaseIAMBindingOutput
+	ToDatabaseIAMBindingOutputWithContext(ctx context.Context) DatabaseIAMBindingOutput
+}
+
+func (DatabaseIAMBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatabaseIAMBinding)(nil)).Elem()
+}
+
+func (i DatabaseIAMBinding) ToDatabaseIAMBindingOutput() DatabaseIAMBindingOutput {
+	return i.ToDatabaseIAMBindingOutputWithContext(context.Background())
+}
+
+func (i DatabaseIAMBinding) ToDatabaseIAMBindingOutputWithContext(ctx context.Context) DatabaseIAMBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatabaseIAMBindingOutput)
+}
+
+type DatabaseIAMBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (DatabaseIAMBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatabaseIAMBindingOutput)(nil)).Elem()
+}
+
+func (o DatabaseIAMBindingOutput) ToDatabaseIAMBindingOutput() DatabaseIAMBindingOutput {
+	return o
+}
+
+func (o DatabaseIAMBindingOutput) ToDatabaseIAMBindingOutputWithContext(ctx context.Context) DatabaseIAMBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DatabaseIAMBindingOutput{})
 }

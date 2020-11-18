@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
@@ -95,6 +96,7 @@ func NewRegionHealthCheck(ctx *pulumi.Context,
 	if args == nil {
 		args = &RegionHealthCheckArgs{}
 	}
+
 	var resource RegionHealthCheck
 	err := ctx.RegisterResource("gcp:compute/regionHealthCheck:RegionHealthCheck", name, args, &resource, opts...)
 	if err != nil {
@@ -347,4 +349,43 @@ type RegionHealthCheckArgs struct {
 
 func (RegionHealthCheckArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*regionHealthCheckArgs)(nil)).Elem()
+}
+
+type RegionHealthCheckInput interface {
+	pulumi.Input
+
+	ToRegionHealthCheckOutput() RegionHealthCheckOutput
+	ToRegionHealthCheckOutputWithContext(ctx context.Context) RegionHealthCheckOutput
+}
+
+func (RegionHealthCheck) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionHealthCheck)(nil)).Elem()
+}
+
+func (i RegionHealthCheck) ToRegionHealthCheckOutput() RegionHealthCheckOutput {
+	return i.ToRegionHealthCheckOutputWithContext(context.Background())
+}
+
+func (i RegionHealthCheck) ToRegionHealthCheckOutputWithContext(ctx context.Context) RegionHealthCheckOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegionHealthCheckOutput)
+}
+
+type RegionHealthCheckOutput struct {
+	*pulumi.OutputState
+}
+
+func (RegionHealthCheckOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionHealthCheckOutput)(nil)).Elem()
+}
+
+func (o RegionHealthCheckOutput) ToRegionHealthCheckOutput() RegionHealthCheckOutput {
+	return o
+}
+
+func (o RegionHealthCheckOutput) ToRegionHealthCheckOutputWithContext(ctx context.Context) RegionHealthCheckOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RegionHealthCheckOutput{})
 }

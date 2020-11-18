@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
@@ -149,6 +150,7 @@ func NewBackendService(ctx *pulumi.Context,
 	if args == nil {
 		args = &BackendServiceArgs{}
 	}
+
 	var resource BackendService
 	err := ctx.RegisterResource("gcp:compute/backendService:BackendService", name, args, &resource, opts...)
 	if err != nil {
@@ -637,4 +639,43 @@ type BackendServiceArgs struct {
 
 func (BackendServiceArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*backendServiceArgs)(nil)).Elem()
+}
+
+type BackendServiceInput interface {
+	pulumi.Input
+
+	ToBackendServiceOutput() BackendServiceOutput
+	ToBackendServiceOutputWithContext(ctx context.Context) BackendServiceOutput
+}
+
+func (BackendService) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackendService)(nil)).Elem()
+}
+
+func (i BackendService) ToBackendServiceOutput() BackendServiceOutput {
+	return i.ToBackendServiceOutputWithContext(context.Background())
+}
+
+func (i BackendService) ToBackendServiceOutputWithContext(ctx context.Context) BackendServiceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceOutput)
+}
+
+type BackendServiceOutput struct {
+	*pulumi.OutputState
+}
+
+func (BackendServiceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackendServiceOutput)(nil)).Elem()
+}
+
+func (o BackendServiceOutput) ToBackendServiceOutput() BackendServiceOutput {
+	return o
+}
+
+func (o BackendServiceOutput) ToBackendServiceOutputWithContext(ctx context.Context) BackendServiceOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(BackendServiceOutput{})
 }

@@ -4,6 +4,7 @@
 package servicedirectory
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -37,14 +38,15 @@ type ServiceIamBinding struct {
 // NewServiceIamBinding registers a new resource with the given unique name, arguments, and options.
 func NewServiceIamBinding(ctx *pulumi.Context,
 	name string, args *ServiceIamBindingArgs, opts ...pulumi.ResourceOption) (*ServiceIamBinding, error) {
-	if args == nil || args.Members == nil {
-		return nil, errors.New("missing required argument 'Members'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &ServiceIamBindingArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Members == nil {
+		return nil, errors.New("invalid value for required argument 'Members'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource ServiceIamBinding
 	err := ctx.RegisterResource("gcp:servicedirectory/serviceIamBinding:ServiceIamBinding", name, args, &resource, opts...)
@@ -122,4 +124,43 @@ type ServiceIamBindingArgs struct {
 
 func (ServiceIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*serviceIamBindingArgs)(nil)).Elem()
+}
+
+type ServiceIamBindingInput interface {
+	pulumi.Input
+
+	ToServiceIamBindingOutput() ServiceIamBindingOutput
+	ToServiceIamBindingOutputWithContext(ctx context.Context) ServiceIamBindingOutput
+}
+
+func (ServiceIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceIamBinding)(nil)).Elem()
+}
+
+func (i ServiceIamBinding) ToServiceIamBindingOutput() ServiceIamBindingOutput {
+	return i.ToServiceIamBindingOutputWithContext(context.Background())
+}
+
+func (i ServiceIamBinding) ToServiceIamBindingOutputWithContext(ctx context.Context) ServiceIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceIamBindingOutput)
+}
+
+type ServiceIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (ServiceIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceIamBindingOutput)(nil)).Elem()
+}
+
+func (o ServiceIamBindingOutput) ToServiceIamBindingOutput() ServiceIamBindingOutput {
+	return o
+}
+
+func (o ServiceIamBindingOutput) ToServiceIamBindingOutputWithContext(ctx context.Context) ServiceIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ServiceIamBindingOutput{})
 }

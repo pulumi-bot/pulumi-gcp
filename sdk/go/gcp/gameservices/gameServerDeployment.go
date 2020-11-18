@@ -4,6 +4,7 @@
 package gameservices
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -43,11 +44,12 @@ type GameServerDeployment struct {
 // NewGameServerDeployment registers a new resource with the given unique name, arguments, and options.
 func NewGameServerDeployment(ctx *pulumi.Context,
 	name string, args *GameServerDeploymentArgs, opts ...pulumi.ResourceOption) (*GameServerDeployment, error) {
-	if args == nil || args.DeploymentId == nil {
-		return nil, errors.New("missing required argument 'DeploymentId'")
-	}
 	if args == nil {
-		args = &GameServerDeploymentArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.DeploymentId == nil {
+		return nil, errors.New("invalid value for required argument 'DeploymentId'")
 	}
 	var resource GameServerDeployment
 	err := ctx.RegisterResource("gcp:gameservices/gameServerDeployment:GameServerDeployment", name, args, &resource, opts...)
@@ -145,4 +147,43 @@ type GameServerDeploymentArgs struct {
 
 func (GameServerDeploymentArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*gameServerDeploymentArgs)(nil)).Elem()
+}
+
+type GameServerDeploymentInput interface {
+	pulumi.Input
+
+	ToGameServerDeploymentOutput() GameServerDeploymentOutput
+	ToGameServerDeploymentOutputWithContext(ctx context.Context) GameServerDeploymentOutput
+}
+
+func (GameServerDeployment) ElementType() reflect.Type {
+	return reflect.TypeOf((*GameServerDeployment)(nil)).Elem()
+}
+
+func (i GameServerDeployment) ToGameServerDeploymentOutput() GameServerDeploymentOutput {
+	return i.ToGameServerDeploymentOutputWithContext(context.Background())
+}
+
+func (i GameServerDeployment) ToGameServerDeploymentOutputWithContext(ctx context.Context) GameServerDeploymentOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GameServerDeploymentOutput)
+}
+
+type GameServerDeploymentOutput struct {
+	*pulumi.OutputState
+}
+
+func (GameServerDeploymentOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GameServerDeploymentOutput)(nil)).Elem()
+}
+
+func (o GameServerDeploymentOutput) ToGameServerDeploymentOutput() GameServerDeploymentOutput {
+	return o
+}
+
+func (o GameServerDeploymentOutput) ToGameServerDeploymentOutputWithContext(ctx context.Context) GameServerDeploymentOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(GameServerDeploymentOutput{})
 }

@@ -4,6 +4,7 @@
 package iap
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -44,20 +45,21 @@ type AppEngineServiceIamMember struct {
 // NewAppEngineServiceIamMember registers a new resource with the given unique name, arguments, and options.
 func NewAppEngineServiceIamMember(ctx *pulumi.Context,
 	name string, args *AppEngineServiceIamMemberArgs, opts ...pulumi.ResourceOption) (*AppEngineServiceIamMember, error) {
-	if args == nil || args.AppId == nil {
-		return nil, errors.New("missing required argument 'AppId'")
-	}
-	if args == nil || args.Member == nil {
-		return nil, errors.New("missing required argument 'Member'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
-	if args == nil || args.Service == nil {
-		return nil, errors.New("missing required argument 'Service'")
-	}
 	if args == nil {
-		args = &AppEngineServiceIamMemberArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.AppId == nil {
+		return nil, errors.New("invalid value for required argument 'AppId'")
+	}
+	if args.Member == nil {
+		return nil, errors.New("invalid value for required argument 'Member'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
+	}
+	if args.Service == nil {
+		return nil, errors.New("invalid value for required argument 'Service'")
 	}
 	var resource AppEngineServiceIamMember
 	err := ctx.RegisterResource("gcp:iap/appEngineServiceIamMember:AppEngineServiceIamMember", name, args, &resource, opts...)
@@ -163,4 +165,43 @@ type AppEngineServiceIamMemberArgs struct {
 
 func (AppEngineServiceIamMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*appEngineServiceIamMemberArgs)(nil)).Elem()
+}
+
+type AppEngineServiceIamMemberInput interface {
+	pulumi.Input
+
+	ToAppEngineServiceIamMemberOutput() AppEngineServiceIamMemberOutput
+	ToAppEngineServiceIamMemberOutputWithContext(ctx context.Context) AppEngineServiceIamMemberOutput
+}
+
+func (AppEngineServiceIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*AppEngineServiceIamMember)(nil)).Elem()
+}
+
+func (i AppEngineServiceIamMember) ToAppEngineServiceIamMemberOutput() AppEngineServiceIamMemberOutput {
+	return i.ToAppEngineServiceIamMemberOutputWithContext(context.Background())
+}
+
+func (i AppEngineServiceIamMember) ToAppEngineServiceIamMemberOutputWithContext(ctx context.Context) AppEngineServiceIamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AppEngineServiceIamMemberOutput)
+}
+
+type AppEngineServiceIamMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (AppEngineServiceIamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AppEngineServiceIamMemberOutput)(nil)).Elem()
+}
+
+func (o AppEngineServiceIamMemberOutput) ToAppEngineServiceIamMemberOutput() AppEngineServiceIamMemberOutput {
+	return o
+}
+
+func (o AppEngineServiceIamMemberOutput) ToAppEngineServiceIamMemberOutputWithContext(ctx context.Context) AppEngineServiceIamMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AppEngineServiceIamMemberOutput{})
 }

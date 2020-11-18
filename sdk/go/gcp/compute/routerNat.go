@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -78,17 +79,18 @@ type RouterNat struct {
 // NewRouterNat registers a new resource with the given unique name, arguments, and options.
 func NewRouterNat(ctx *pulumi.Context,
 	name string, args *RouterNatArgs, opts ...pulumi.ResourceOption) (*RouterNat, error) {
-	if args == nil || args.NatIpAllocateOption == nil {
-		return nil, errors.New("missing required argument 'NatIpAllocateOption'")
-	}
-	if args == nil || args.Router == nil {
-		return nil, errors.New("missing required argument 'Router'")
-	}
-	if args == nil || args.SourceSubnetworkIpRangesToNat == nil {
-		return nil, errors.New("missing required argument 'SourceSubnetworkIpRangesToNat'")
-	}
 	if args == nil {
-		args = &RouterNatArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.NatIpAllocateOption == nil {
+		return nil, errors.New("invalid value for required argument 'NatIpAllocateOption'")
+	}
+	if args.Router == nil {
+		return nil, errors.New("invalid value for required argument 'Router'")
+	}
+	if args.SourceSubnetworkIpRangesToNat == nil {
+		return nil, errors.New("invalid value for required argument 'SourceSubnetworkIpRangesToNat'")
 	}
 	var resource RouterNat
 	err := ctx.RegisterResource("gcp:compute/routerNat:RouterNat", name, args, &resource, opts...)
@@ -334,4 +336,43 @@ type RouterNatArgs struct {
 
 func (RouterNatArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*routerNatArgs)(nil)).Elem()
+}
+
+type RouterNatInput interface {
+	pulumi.Input
+
+	ToRouterNatOutput() RouterNatOutput
+	ToRouterNatOutputWithContext(ctx context.Context) RouterNatOutput
+}
+
+func (RouterNat) ElementType() reflect.Type {
+	return reflect.TypeOf((*RouterNat)(nil)).Elem()
+}
+
+func (i RouterNat) ToRouterNatOutput() RouterNatOutput {
+	return i.ToRouterNatOutputWithContext(context.Background())
+}
+
+func (i RouterNat) ToRouterNatOutputWithContext(ctx context.Context) RouterNatOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RouterNatOutput)
+}
+
+type RouterNatOutput struct {
+	*pulumi.OutputState
+}
+
+func (RouterNatOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RouterNatOutput)(nil)).Elem()
+}
+
+func (o RouterNatOutput) ToRouterNatOutput() RouterNatOutput {
+	return o
+}
+
+func (o RouterNatOutput) ToRouterNatOutputWithContext(ctx context.Context) RouterNatOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RouterNatOutput{})
 }

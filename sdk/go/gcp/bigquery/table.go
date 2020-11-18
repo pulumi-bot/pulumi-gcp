@@ -4,6 +4,7 @@
 package bigquery
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -97,14 +98,15 @@ type Table struct {
 // NewTable registers a new resource with the given unique name, arguments, and options.
 func NewTable(ctx *pulumi.Context,
 	name string, args *TableArgs, opts ...pulumi.ResourceOption) (*Table, error) {
-	if args == nil || args.DatasetId == nil {
-		return nil, errors.New("missing required argument 'DatasetId'")
-	}
-	if args == nil || args.TableId == nil {
-		return nil, errors.New("missing required argument 'TableId'")
-	}
 	if args == nil {
-		args = &TableArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.DatasetId == nil {
+		return nil, errors.New("invalid value for required argument 'DatasetId'")
+	}
+	if args.TableId == nil {
+		return nil, errors.New("invalid value for required argument 'TableId'")
 	}
 	var resource Table
 	err := ctx.RegisterResource("gcp:bigquery/table:Table", name, args, &resource, opts...)
@@ -412,4 +414,43 @@ type TableArgs struct {
 
 func (TableArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*tableArgs)(nil)).Elem()
+}
+
+type TableInput interface {
+	pulumi.Input
+
+	ToTableOutput() TableOutput
+	ToTableOutputWithContext(ctx context.Context) TableOutput
+}
+
+func (Table) ElementType() reflect.Type {
+	return reflect.TypeOf((*Table)(nil)).Elem()
+}
+
+func (i Table) ToTableOutput() TableOutput {
+	return i.ToTableOutputWithContext(context.Background())
+}
+
+func (i Table) ToTableOutputWithContext(ctx context.Context) TableOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TableOutput)
+}
+
+type TableOutput struct {
+	*pulumi.OutputState
+}
+
+func (TableOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TableOutput)(nil)).Elem()
+}
+
+func (o TableOutput) ToTableOutput() TableOutput {
+	return o
+}
+
+func (o TableOutput) ToTableOutputWithContext(ctx context.Context) TableOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TableOutput{})
 }

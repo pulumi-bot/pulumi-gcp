@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -89,11 +90,12 @@ type Snapshot struct {
 // NewSnapshot registers a new resource with the given unique name, arguments, and options.
 func NewSnapshot(ctx *pulumi.Context,
 	name string, args *SnapshotArgs, opts ...pulumi.ResourceOption) (*Snapshot, error) {
-	if args == nil || args.SourceDisk == nil {
-		return nil, errors.New("missing required argument 'SourceDisk'")
-	}
 	if args == nil {
-		args = &SnapshotArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.SourceDisk == nil {
+		return nil, errors.New("invalid value for required argument 'SourceDisk'")
 	}
 	var resource Snapshot
 	err := ctx.RegisterResource("gcp:compute/snapshot:Snapshot", name, args, &resource, opts...)
@@ -291,4 +293,43 @@ type SnapshotArgs struct {
 
 func (SnapshotArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*snapshotArgs)(nil)).Elem()
+}
+
+type SnapshotInput interface {
+	pulumi.Input
+
+	ToSnapshotOutput() SnapshotOutput
+	ToSnapshotOutputWithContext(ctx context.Context) SnapshotOutput
+}
+
+func (Snapshot) ElementType() reflect.Type {
+	return reflect.TypeOf((*Snapshot)(nil)).Elem()
+}
+
+func (i Snapshot) ToSnapshotOutput() SnapshotOutput {
+	return i.ToSnapshotOutputWithContext(context.Background())
+}
+
+func (i Snapshot) ToSnapshotOutputWithContext(ctx context.Context) SnapshotOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SnapshotOutput)
+}
+
+type SnapshotOutput struct {
+	*pulumi.OutputState
+}
+
+func (SnapshotOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SnapshotOutput)(nil)).Elem()
+}
+
+func (o SnapshotOutput) ToSnapshotOutput() SnapshotOutput {
+	return o
+}
+
+func (o SnapshotOutput) ToSnapshotOutputWithContext(ctx context.Context) SnapshotOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SnapshotOutput{})
 }
