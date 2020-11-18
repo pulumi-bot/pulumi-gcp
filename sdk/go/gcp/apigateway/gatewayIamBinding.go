@@ -4,6 +4,7 @@
 package apigateway
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -35,17 +36,18 @@ type GatewayIamBinding struct {
 // NewGatewayIamBinding registers a new resource with the given unique name, arguments, and options.
 func NewGatewayIamBinding(ctx *pulumi.Context,
 	name string, args *GatewayIamBindingArgs, opts ...pulumi.ResourceOption) (*GatewayIamBinding, error) {
-	if args == nil || args.Gateway == nil {
-		return nil, errors.New("missing required argument 'Gateway'")
-	}
-	if args == nil || args.Members == nil {
-		return nil, errors.New("missing required argument 'Members'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &GatewayIamBindingArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Gateway == nil {
+		return nil, errors.New("invalid value for required argument 'Gateway'")
+	}
+	if args.Members == nil {
+		return nil, errors.New("invalid value for required argument 'Members'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource GatewayIamBinding
 	err := ctx.RegisterResource("gcp:apigateway/gatewayIamBinding:GatewayIamBinding", name, args, &resource, opts...)
@@ -151,4 +153,43 @@ type GatewayIamBindingArgs struct {
 
 func (GatewayIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*gatewayIamBindingArgs)(nil)).Elem()
+}
+
+type GatewayIamBindingInput interface {
+	pulumi.Input
+
+	ToGatewayIamBindingOutput() GatewayIamBindingOutput
+	ToGatewayIamBindingOutputWithContext(ctx context.Context) GatewayIamBindingOutput
+}
+
+func (GatewayIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*GatewayIamBinding)(nil)).Elem()
+}
+
+func (i GatewayIamBinding) ToGatewayIamBindingOutput() GatewayIamBindingOutput {
+	return i.ToGatewayIamBindingOutputWithContext(context.Background())
+}
+
+func (i GatewayIamBinding) ToGatewayIamBindingOutputWithContext(ctx context.Context) GatewayIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GatewayIamBindingOutput)
+}
+
+type GatewayIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (GatewayIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GatewayIamBindingOutput)(nil)).Elem()
+}
+
+func (o GatewayIamBindingOutput) ToGatewayIamBindingOutput() GatewayIamBindingOutput {
+	return o
+}
+
+func (o GatewayIamBindingOutput) ToGatewayIamBindingOutputWithContext(ctx context.Context) GatewayIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(GatewayIamBindingOutput{})
 }

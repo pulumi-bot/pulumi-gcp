@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -121,11 +122,12 @@ type RegionDisk struct {
 // NewRegionDisk registers a new resource with the given unique name, arguments, and options.
 func NewRegionDisk(ctx *pulumi.Context,
 	name string, args *RegionDiskArgs, opts ...pulumi.ResourceOption) (*RegionDisk, error) {
-	if args == nil || args.ReplicaZones == nil {
-		return nil, errors.New("missing required argument 'ReplicaZones'")
-	}
 	if args == nil {
-		args = &RegionDiskArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.ReplicaZones == nil {
+		return nil, errors.New("invalid value for required argument 'ReplicaZones'")
 	}
 	var resource RegionDisk
 	err := ctx.RegisterResource("gcp:compute/regionDisk:RegionDisk", name, args, &resource, opts...)
@@ -443,4 +445,43 @@ type RegionDiskArgs struct {
 
 func (RegionDiskArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*regionDiskArgs)(nil)).Elem()
+}
+
+type RegionDiskInput interface {
+	pulumi.Input
+
+	ToRegionDiskOutput() RegionDiskOutput
+	ToRegionDiskOutputWithContext(ctx context.Context) RegionDiskOutput
+}
+
+func (RegionDisk) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionDisk)(nil)).Elem()
+}
+
+func (i RegionDisk) ToRegionDiskOutput() RegionDiskOutput {
+	return i.ToRegionDiskOutputWithContext(context.Background())
+}
+
+func (i RegionDisk) ToRegionDiskOutputWithContext(ctx context.Context) RegionDiskOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegionDiskOutput)
+}
+
+type RegionDiskOutput struct {
+	*pulumi.OutputState
+}
+
+func (RegionDiskOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionDiskOutput)(nil)).Elem()
+}
+
+func (o RegionDiskOutput) ToRegionDiskOutput() RegionDiskOutput {
+	return o
+}
+
+func (o RegionDiskOutput) ToRegionDiskOutputWithContext(ctx context.Context) RegionDiskOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RegionDiskOutput{})
 }

@@ -4,6 +4,7 @@
 package pubsub
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -40,17 +41,18 @@ type SubscriptionIAMMember struct {
 // NewSubscriptionIAMMember registers a new resource with the given unique name, arguments, and options.
 func NewSubscriptionIAMMember(ctx *pulumi.Context,
 	name string, args *SubscriptionIAMMemberArgs, opts ...pulumi.ResourceOption) (*SubscriptionIAMMember, error) {
-	if args == nil || args.Member == nil {
-		return nil, errors.New("missing required argument 'Member'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
-	if args == nil || args.Subscription == nil {
-		return nil, errors.New("missing required argument 'Subscription'")
-	}
 	if args == nil {
-		args = &SubscriptionIAMMemberArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Member == nil {
+		return nil, errors.New("invalid value for required argument 'Member'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
+	}
+	if args.Subscription == nil {
+		return nil, errors.New("invalid value for required argument 'Subscription'")
 	}
 	var resource SubscriptionIAMMember
 	err := ctx.RegisterResource("gcp:pubsub/subscriptionIAMMember:SubscriptionIAMMember", name, args, &resource, opts...)
@@ -140,4 +142,43 @@ type SubscriptionIAMMemberArgs struct {
 
 func (SubscriptionIAMMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*subscriptionIAMMemberArgs)(nil)).Elem()
+}
+
+type SubscriptionIAMMemberInput interface {
+	pulumi.Input
+
+	ToSubscriptionIAMMemberOutput() SubscriptionIAMMemberOutput
+	ToSubscriptionIAMMemberOutputWithContext(ctx context.Context) SubscriptionIAMMemberOutput
+}
+
+func (SubscriptionIAMMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*SubscriptionIAMMember)(nil)).Elem()
+}
+
+func (i SubscriptionIAMMember) ToSubscriptionIAMMemberOutput() SubscriptionIAMMemberOutput {
+	return i.ToSubscriptionIAMMemberOutputWithContext(context.Background())
+}
+
+func (i SubscriptionIAMMember) ToSubscriptionIAMMemberOutputWithContext(ctx context.Context) SubscriptionIAMMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SubscriptionIAMMemberOutput)
+}
+
+type SubscriptionIAMMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (SubscriptionIAMMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SubscriptionIAMMemberOutput)(nil)).Elem()
+}
+
+func (o SubscriptionIAMMemberOutput) ToSubscriptionIAMMemberOutput() SubscriptionIAMMemberOutput {
+	return o
+}
+
+func (o SubscriptionIAMMemberOutput) ToSubscriptionIAMMemberOutputWithContext(ctx context.Context) SubscriptionIAMMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SubscriptionIAMMemberOutput{})
 }

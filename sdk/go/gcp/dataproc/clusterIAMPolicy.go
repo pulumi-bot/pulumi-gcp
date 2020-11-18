@@ -4,6 +4,7 @@
 package dataproc
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -39,14 +40,15 @@ type ClusterIAMPolicy struct {
 // NewClusterIAMPolicy registers a new resource with the given unique name, arguments, and options.
 func NewClusterIAMPolicy(ctx *pulumi.Context,
 	name string, args *ClusterIAMPolicyArgs, opts ...pulumi.ResourceOption) (*ClusterIAMPolicy, error) {
-	if args == nil || args.Cluster == nil {
-		return nil, errors.New("missing required argument 'Cluster'")
-	}
-	if args == nil || args.PolicyData == nil {
-		return nil, errors.New("missing required argument 'PolicyData'")
-	}
 	if args == nil {
-		args = &ClusterIAMPolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Cluster == nil {
+		return nil, errors.New("invalid value for required argument 'Cluster'")
+	}
+	if args.PolicyData == nil {
+		return nil, errors.New("invalid value for required argument 'PolicyData'")
 	}
 	var resource ClusterIAMPolicy
 	err := ctx.RegisterResource("gcp:dataproc/clusterIAMPolicy:ClusterIAMPolicy", name, args, &resource, opts...)
@@ -132,4 +134,43 @@ type ClusterIAMPolicyArgs struct {
 
 func (ClusterIAMPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*clusterIAMPolicyArgs)(nil)).Elem()
+}
+
+type ClusterIAMPolicyInput interface {
+	pulumi.Input
+
+	ToClusterIAMPolicyOutput() ClusterIAMPolicyOutput
+	ToClusterIAMPolicyOutputWithContext(ctx context.Context) ClusterIAMPolicyOutput
+}
+
+func (ClusterIAMPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterIAMPolicy)(nil)).Elem()
+}
+
+func (i ClusterIAMPolicy) ToClusterIAMPolicyOutput() ClusterIAMPolicyOutput {
+	return i.ToClusterIAMPolicyOutputWithContext(context.Background())
+}
+
+func (i ClusterIAMPolicy) ToClusterIAMPolicyOutputWithContext(ctx context.Context) ClusterIAMPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterIAMPolicyOutput)
+}
+
+type ClusterIAMPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (ClusterIAMPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterIAMPolicyOutput)(nil)).Elem()
+}
+
+func (o ClusterIAMPolicyOutput) ToClusterIAMPolicyOutput() ClusterIAMPolicyOutput {
+	return o
+}
+
+func (o ClusterIAMPolicyOutput) ToClusterIAMPolicyOutputWithContext(ctx context.Context) ClusterIAMPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ClusterIAMPolicyOutput{})
 }

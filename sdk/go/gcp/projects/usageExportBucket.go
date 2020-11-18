@@ -4,6 +4,7 @@
 package projects
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -33,11 +34,12 @@ type UsageExportBucket struct {
 // NewUsageExportBucket registers a new resource with the given unique name, arguments, and options.
 func NewUsageExportBucket(ctx *pulumi.Context,
 	name string, args *UsageExportBucketArgs, opts ...pulumi.ResourceOption) (*UsageExportBucket, error) {
-	if args == nil || args.BucketName == nil {
-		return nil, errors.New("missing required argument 'BucketName'")
-	}
 	if args == nil {
-		args = &UsageExportBucketArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.BucketName == nil {
+		return nil, errors.New("invalid value for required argument 'BucketName'")
 	}
 	var resource UsageExportBucket
 	err := ctx.RegisterResource("gcp:projects/usageExportBucket:UsageExportBucket", name, args, &resource, opts...)
@@ -103,4 +105,43 @@ type UsageExportBucketArgs struct {
 
 func (UsageExportBucketArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*usageExportBucketArgs)(nil)).Elem()
+}
+
+type UsageExportBucketInput interface {
+	pulumi.Input
+
+	ToUsageExportBucketOutput() UsageExportBucketOutput
+	ToUsageExportBucketOutputWithContext(ctx context.Context) UsageExportBucketOutput
+}
+
+func (UsageExportBucket) ElementType() reflect.Type {
+	return reflect.TypeOf((*UsageExportBucket)(nil)).Elem()
+}
+
+func (i UsageExportBucket) ToUsageExportBucketOutput() UsageExportBucketOutput {
+	return i.ToUsageExportBucketOutputWithContext(context.Background())
+}
+
+func (i UsageExportBucket) ToUsageExportBucketOutputWithContext(ctx context.Context) UsageExportBucketOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UsageExportBucketOutput)
+}
+
+type UsageExportBucketOutput struct {
+	*pulumi.OutputState
+}
+
+func (UsageExportBucketOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UsageExportBucketOutput)(nil)).Elem()
+}
+
+func (o UsageExportBucketOutput) ToUsageExportBucketOutput() UsageExportBucketOutput {
+	return o
+}
+
+func (o UsageExportBucketOutput) ToUsageExportBucketOutputWithContext(ctx context.Context) UsageExportBucketOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(UsageExportBucketOutput{})
 }

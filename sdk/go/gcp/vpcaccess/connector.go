@@ -4,6 +4,7 @@
 package vpcaccess
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -46,17 +47,18 @@ type Connector struct {
 // NewConnector registers a new resource with the given unique name, arguments, and options.
 func NewConnector(ctx *pulumi.Context,
 	name string, args *ConnectorArgs, opts ...pulumi.ResourceOption) (*Connector, error) {
-	if args == nil || args.IpCidrRange == nil {
-		return nil, errors.New("missing required argument 'IpCidrRange'")
-	}
-	if args == nil || args.Network == nil {
-		return nil, errors.New("missing required argument 'Network'")
-	}
-	if args == nil || args.Region == nil {
-		return nil, errors.New("missing required argument 'Region'")
-	}
 	if args == nil {
-		args = &ConnectorArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.IpCidrRange == nil {
+		return nil, errors.New("invalid value for required argument 'IpCidrRange'")
+	}
+	if args.Network == nil {
+		return nil, errors.New("invalid value for required argument 'Network'")
+	}
+	if args.Region == nil {
+		return nil, errors.New("invalid value for required argument 'Region'")
 	}
 	var resource Connector
 	err := ctx.RegisterResource("gcp:vpcaccess/connector:Connector", name, args, &resource, opts...)
@@ -166,4 +168,43 @@ type ConnectorArgs struct {
 
 func (ConnectorArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*connectorArgs)(nil)).Elem()
+}
+
+type ConnectorInput interface {
+	pulumi.Input
+
+	ToConnectorOutput() ConnectorOutput
+	ToConnectorOutputWithContext(ctx context.Context) ConnectorOutput
+}
+
+func (Connector) ElementType() reflect.Type {
+	return reflect.TypeOf((*Connector)(nil)).Elem()
+}
+
+func (i Connector) ToConnectorOutput() ConnectorOutput {
+	return i.ToConnectorOutputWithContext(context.Background())
+}
+
+func (i Connector) ToConnectorOutputWithContext(ctx context.Context) ConnectorOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConnectorOutput)
+}
+
+type ConnectorOutput struct {
+	*pulumi.OutputState
+}
+
+func (ConnectorOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConnectorOutput)(nil)).Elem()
+}
+
+func (o ConnectorOutput) ToConnectorOutput() ConnectorOutput {
+	return o
+}
+
+func (o ConnectorOutput) ToConnectorOutputWithContext(ctx context.Context) ConnectorOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ConnectorOutput{})
 }

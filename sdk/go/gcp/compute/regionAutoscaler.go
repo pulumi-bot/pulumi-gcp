@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -57,14 +58,15 @@ type RegionAutoscaler struct {
 // NewRegionAutoscaler registers a new resource with the given unique name, arguments, and options.
 func NewRegionAutoscaler(ctx *pulumi.Context,
 	name string, args *RegionAutoscalerArgs, opts ...pulumi.ResourceOption) (*RegionAutoscaler, error) {
-	if args == nil || args.AutoscalingPolicy == nil {
-		return nil, errors.New("missing required argument 'AutoscalingPolicy'")
-	}
-	if args == nil || args.Target == nil {
-		return nil, errors.New("missing required argument 'Target'")
-	}
 	if args == nil {
-		args = &RegionAutoscalerArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.AutoscalingPolicy == nil {
+		return nil, errors.New("invalid value for required argument 'AutoscalingPolicy'")
+	}
+	if args.Target == nil {
+		return nil, errors.New("invalid value for required argument 'Target'")
 	}
 	var resource RegionAutoscaler
 	err := ctx.RegisterResource("gcp:compute/regionAutoscaler:RegionAutoscaler", name, args, &resource, opts...)
@@ -202,4 +204,43 @@ type RegionAutoscalerArgs struct {
 
 func (RegionAutoscalerArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*regionAutoscalerArgs)(nil)).Elem()
+}
+
+type RegionAutoscalerInput interface {
+	pulumi.Input
+
+	ToRegionAutoscalerOutput() RegionAutoscalerOutput
+	ToRegionAutoscalerOutputWithContext(ctx context.Context) RegionAutoscalerOutput
+}
+
+func (RegionAutoscaler) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionAutoscaler)(nil)).Elem()
+}
+
+func (i RegionAutoscaler) ToRegionAutoscalerOutput() RegionAutoscalerOutput {
+	return i.ToRegionAutoscalerOutputWithContext(context.Background())
+}
+
+func (i RegionAutoscaler) ToRegionAutoscalerOutputWithContext(ctx context.Context) RegionAutoscalerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegionAutoscalerOutput)
+}
+
+type RegionAutoscalerOutput struct {
+	*pulumi.OutputState
+}
+
+func (RegionAutoscalerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionAutoscalerOutput)(nil)).Elem()
+}
+
+func (o RegionAutoscalerOutput) ToRegionAutoscalerOutput() RegionAutoscalerOutput {
+	return o
+}
+
+func (o RegionAutoscalerOutput) ToRegionAutoscalerOutputWithContext(ctx context.Context) RegionAutoscalerOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RegionAutoscalerOutput{})
 }

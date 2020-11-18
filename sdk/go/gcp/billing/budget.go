@@ -4,6 +4,7 @@
 package billing
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -51,17 +52,18 @@ type Budget struct {
 // NewBudget registers a new resource with the given unique name, arguments, and options.
 func NewBudget(ctx *pulumi.Context,
 	name string, args *BudgetArgs, opts ...pulumi.ResourceOption) (*Budget, error) {
-	if args == nil || args.Amount == nil {
-		return nil, errors.New("missing required argument 'Amount'")
-	}
-	if args == nil || args.BillingAccount == nil {
-		return nil, errors.New("missing required argument 'BillingAccount'")
-	}
-	if args == nil || args.ThresholdRules == nil {
-		return nil, errors.New("missing required argument 'ThresholdRules'")
-	}
 	if args == nil {
-		args = &BudgetArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Amount == nil {
+		return nil, errors.New("invalid value for required argument 'Amount'")
+	}
+	if args.BillingAccount == nil {
+		return nil, errors.New("invalid value for required argument 'BillingAccount'")
+	}
+	if args.ThresholdRules == nil {
+		return nil, errors.New("invalid value for required argument 'ThresholdRules'")
 	}
 	var resource Budget
 	err := ctx.RegisterResource("gcp:billing/budget:Budget", name, args, &resource, opts...)
@@ -193,4 +195,43 @@ type BudgetArgs struct {
 
 func (BudgetArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*budgetArgs)(nil)).Elem()
+}
+
+type BudgetInput interface {
+	pulumi.Input
+
+	ToBudgetOutput() BudgetOutput
+	ToBudgetOutputWithContext(ctx context.Context) BudgetOutput
+}
+
+func (Budget) ElementType() reflect.Type {
+	return reflect.TypeOf((*Budget)(nil)).Elem()
+}
+
+func (i Budget) ToBudgetOutput() BudgetOutput {
+	return i.ToBudgetOutputWithContext(context.Background())
+}
+
+func (i Budget) ToBudgetOutputWithContext(ctx context.Context) BudgetOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BudgetOutput)
+}
+
+type BudgetOutput struct {
+	*pulumi.OutputState
+}
+
+func (BudgetOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BudgetOutput)(nil)).Elem()
+}
+
+func (o BudgetOutput) ToBudgetOutput() BudgetOutput {
+	return o
+}
+
+func (o BudgetOutput) ToBudgetOutputWithContext(ctx context.Context) BudgetOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(BudgetOutput{})
 }

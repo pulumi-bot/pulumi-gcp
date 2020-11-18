@@ -4,6 +4,7 @@
 package logging
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -37,17 +38,18 @@ type BillingAccountBucketConfig struct {
 // NewBillingAccountBucketConfig registers a new resource with the given unique name, arguments, and options.
 func NewBillingAccountBucketConfig(ctx *pulumi.Context,
 	name string, args *BillingAccountBucketConfigArgs, opts ...pulumi.ResourceOption) (*BillingAccountBucketConfig, error) {
-	if args == nil || args.BillingAccount == nil {
-		return nil, errors.New("missing required argument 'BillingAccount'")
-	}
-	if args == nil || args.BucketId == nil {
-		return nil, errors.New("missing required argument 'BucketId'")
-	}
-	if args == nil || args.Location == nil {
-		return nil, errors.New("missing required argument 'Location'")
-	}
 	if args == nil {
-		args = &BillingAccountBucketConfigArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.BillingAccount == nil {
+		return nil, errors.New("invalid value for required argument 'BillingAccount'")
+	}
+	if args.BucketId == nil {
+		return nil, errors.New("invalid value for required argument 'BucketId'")
+	}
+	if args.Location == nil {
+		return nil, errors.New("invalid value for required argument 'Location'")
 	}
 	var resource BillingAccountBucketConfig
 	err := ctx.RegisterResource("gcp:logging/billingAccountBucketConfig:BillingAccountBucketConfig", name, args, &resource, opts...)
@@ -137,4 +139,43 @@ type BillingAccountBucketConfigArgs struct {
 
 func (BillingAccountBucketConfigArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*billingAccountBucketConfigArgs)(nil)).Elem()
+}
+
+type BillingAccountBucketConfigInput interface {
+	pulumi.Input
+
+	ToBillingAccountBucketConfigOutput() BillingAccountBucketConfigOutput
+	ToBillingAccountBucketConfigOutputWithContext(ctx context.Context) BillingAccountBucketConfigOutput
+}
+
+func (BillingAccountBucketConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*BillingAccountBucketConfig)(nil)).Elem()
+}
+
+func (i BillingAccountBucketConfig) ToBillingAccountBucketConfigOutput() BillingAccountBucketConfigOutput {
+	return i.ToBillingAccountBucketConfigOutputWithContext(context.Background())
+}
+
+func (i BillingAccountBucketConfig) ToBillingAccountBucketConfigOutputWithContext(ctx context.Context) BillingAccountBucketConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BillingAccountBucketConfigOutput)
+}
+
+type BillingAccountBucketConfigOutput struct {
+	*pulumi.OutputState
+}
+
+func (BillingAccountBucketConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BillingAccountBucketConfigOutput)(nil)).Elem()
+}
+
+func (o BillingAccountBucketConfigOutput) ToBillingAccountBucketConfigOutput() BillingAccountBucketConfigOutput {
+	return o
+}
+
+func (o BillingAccountBucketConfigOutput) ToBillingAccountBucketConfigOutputWithContext(ctx context.Context) BillingAccountBucketConfigOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(BillingAccountBucketConfigOutput{})
 }

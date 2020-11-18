@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -47,17 +48,18 @@ type SubnetworkIAMBinding struct {
 // NewSubnetworkIAMBinding registers a new resource with the given unique name, arguments, and options.
 func NewSubnetworkIAMBinding(ctx *pulumi.Context,
 	name string, args *SubnetworkIAMBindingArgs, opts ...pulumi.ResourceOption) (*SubnetworkIAMBinding, error) {
-	if args == nil || args.Members == nil {
-		return nil, errors.New("missing required argument 'Members'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
-	if args == nil || args.Subnetwork == nil {
-		return nil, errors.New("missing required argument 'Subnetwork'")
-	}
 	if args == nil {
-		args = &SubnetworkIAMBindingArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Members == nil {
+		return nil, errors.New("invalid value for required argument 'Members'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
+	}
+	if args.Subnetwork == nil {
+		return nil, errors.New("invalid value for required argument 'Subnetwork'")
 	}
 	var resource SubnetworkIAMBinding
 	err := ctx.RegisterResource("gcp:compute/subnetworkIAMBinding:SubnetworkIAMBinding", name, args, &resource, opts...)
@@ -175,4 +177,43 @@ type SubnetworkIAMBindingArgs struct {
 
 func (SubnetworkIAMBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*subnetworkIAMBindingArgs)(nil)).Elem()
+}
+
+type SubnetworkIAMBindingInput interface {
+	pulumi.Input
+
+	ToSubnetworkIAMBindingOutput() SubnetworkIAMBindingOutput
+	ToSubnetworkIAMBindingOutputWithContext(ctx context.Context) SubnetworkIAMBindingOutput
+}
+
+func (SubnetworkIAMBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*SubnetworkIAMBinding)(nil)).Elem()
+}
+
+func (i SubnetworkIAMBinding) ToSubnetworkIAMBindingOutput() SubnetworkIAMBindingOutput {
+	return i.ToSubnetworkIAMBindingOutputWithContext(context.Background())
+}
+
+func (i SubnetworkIAMBinding) ToSubnetworkIAMBindingOutputWithContext(ctx context.Context) SubnetworkIAMBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SubnetworkIAMBindingOutput)
+}
+
+type SubnetworkIAMBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (SubnetworkIAMBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SubnetworkIAMBindingOutput)(nil)).Elem()
+}
+
+func (o SubnetworkIAMBindingOutput) ToSubnetworkIAMBindingOutput() SubnetworkIAMBindingOutput {
+	return o
+}
+
+func (o SubnetworkIAMBindingOutput) ToSubnetworkIAMBindingOutputWithContext(ctx context.Context) SubnetworkIAMBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SubnetworkIAMBindingOutput{})
 }

@@ -4,6 +4,7 @@
 package billing
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -23,17 +24,18 @@ type AccountIamMember struct {
 // NewAccountIamMember registers a new resource with the given unique name, arguments, and options.
 func NewAccountIamMember(ctx *pulumi.Context,
 	name string, args *AccountIamMemberArgs, opts ...pulumi.ResourceOption) (*AccountIamMember, error) {
-	if args == nil || args.BillingAccountId == nil {
-		return nil, errors.New("missing required argument 'BillingAccountId'")
-	}
-	if args == nil || args.Member == nil {
-		return nil, errors.New("missing required argument 'Member'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &AccountIamMemberArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.BillingAccountId == nil {
+		return nil, errors.New("invalid value for required argument 'BillingAccountId'")
+	}
+	if args.Member == nil {
+		return nil, errors.New("invalid value for required argument 'Member'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource AccountIamMember
 	err := ctx.RegisterResource("gcp:billing/accountIamMember:AccountIamMember", name, args, &resource, opts...)
@@ -93,4 +95,43 @@ type AccountIamMemberArgs struct {
 
 func (AccountIamMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*accountIamMemberArgs)(nil)).Elem()
+}
+
+type AccountIamMemberInput interface {
+	pulumi.Input
+
+	ToAccountIamMemberOutput() AccountIamMemberOutput
+	ToAccountIamMemberOutputWithContext(ctx context.Context) AccountIamMemberOutput
+}
+
+func (AccountIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*AccountIamMember)(nil)).Elem()
+}
+
+func (i AccountIamMember) ToAccountIamMemberOutput() AccountIamMemberOutput {
+	return i.ToAccountIamMemberOutputWithContext(context.Background())
+}
+
+func (i AccountIamMember) ToAccountIamMemberOutputWithContext(ctx context.Context) AccountIamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AccountIamMemberOutput)
+}
+
+type AccountIamMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (AccountIamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AccountIamMemberOutput)(nil)).Elem()
+}
+
+func (o AccountIamMemberOutput) ToAccountIamMemberOutput() AccountIamMemberOutput {
+	return o
+}
+
+func (o AccountIamMemberOutput) ToAccountIamMemberOutputWithContext(ctx context.Context) AccountIamMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AccountIamMemberOutput{})
 }

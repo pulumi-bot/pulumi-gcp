@@ -4,6 +4,7 @@
 package sql
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -44,14 +45,15 @@ type SslCert struct {
 // NewSslCert registers a new resource with the given unique name, arguments, and options.
 func NewSslCert(ctx *pulumi.Context,
 	name string, args *SslCertArgs, opts ...pulumi.ResourceOption) (*SslCert, error) {
-	if args == nil || args.CommonName == nil {
-		return nil, errors.New("missing required argument 'CommonName'")
-	}
-	if args == nil || args.Instance == nil {
-		return nil, errors.New("missing required argument 'Instance'")
-	}
 	if args == nil {
-		args = &SslCertArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.CommonName == nil {
+		return nil, errors.New("invalid value for required argument 'CommonName'")
+	}
+	if args.Instance == nil {
+		return nil, errors.New("invalid value for required argument 'Instance'")
 	}
 	var resource SslCert
 	err := ctx.RegisterResource("gcp:sql/sslCert:SslCert", name, args, &resource, opts...)
@@ -161,4 +163,43 @@ type SslCertArgs struct {
 
 func (SslCertArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*sslCertArgs)(nil)).Elem()
+}
+
+type SslCertInput interface {
+	pulumi.Input
+
+	ToSslCertOutput() SslCertOutput
+	ToSslCertOutputWithContext(ctx context.Context) SslCertOutput
+}
+
+func (SslCert) ElementType() reflect.Type {
+	return reflect.TypeOf((*SslCert)(nil)).Elem()
+}
+
+func (i SslCert) ToSslCertOutput() SslCertOutput {
+	return i.ToSslCertOutputWithContext(context.Background())
+}
+
+func (i SslCert) ToSslCertOutputWithContext(ctx context.Context) SslCertOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SslCertOutput)
+}
+
+type SslCertOutput struct {
+	*pulumi.OutputState
+}
+
+func (SslCertOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SslCertOutput)(nil)).Elem()
+}
+
+func (o SslCertOutput) ToSslCertOutput() SslCertOutput {
+	return o
+}
+
+func (o SslCertOutput) ToSslCertOutputWithContext(ctx context.Context) SslCertOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SslCertOutput{})
 }

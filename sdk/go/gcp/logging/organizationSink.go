@@ -4,6 +4,7 @@
 package logging
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -60,14 +61,15 @@ type OrganizationSink struct {
 // NewOrganizationSink registers a new resource with the given unique name, arguments, and options.
 func NewOrganizationSink(ctx *pulumi.Context,
 	name string, args *OrganizationSinkArgs, opts ...pulumi.ResourceOption) (*OrganizationSink, error) {
-	if args == nil || args.Destination == nil {
-		return nil, errors.New("missing required argument 'Destination'")
-	}
-	if args == nil || args.OrgId == nil {
-		return nil, errors.New("missing required argument 'OrgId'")
-	}
 	if args == nil {
-		args = &OrganizationSinkArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Destination == nil {
+		return nil, errors.New("invalid value for required argument 'Destination'")
+	}
+	if args.OrgId == nil {
+		return nil, errors.New("invalid value for required argument 'OrgId'")
 	}
 	var resource OrganizationSink
 	err := ctx.RegisterResource("gcp:logging/organizationSink:OrganizationSink", name, args, &resource, opts...)
@@ -247,4 +249,43 @@ type OrganizationSinkArgs struct {
 
 func (OrganizationSinkArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*organizationSinkArgs)(nil)).Elem()
+}
+
+type OrganizationSinkInput interface {
+	pulumi.Input
+
+	ToOrganizationSinkOutput() OrganizationSinkOutput
+	ToOrganizationSinkOutputWithContext(ctx context.Context) OrganizationSinkOutput
+}
+
+func (OrganizationSink) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationSink)(nil)).Elem()
+}
+
+func (i OrganizationSink) ToOrganizationSinkOutput() OrganizationSinkOutput {
+	return i.ToOrganizationSinkOutputWithContext(context.Background())
+}
+
+func (i OrganizationSink) ToOrganizationSinkOutputWithContext(ctx context.Context) OrganizationSinkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationSinkOutput)
+}
+
+type OrganizationSinkOutput struct {
+	*pulumi.OutputState
+}
+
+func (OrganizationSinkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationSinkOutput)(nil)).Elem()
+}
+
+func (o OrganizationSinkOutput) ToOrganizationSinkOutput() OrganizationSinkOutput {
+	return o
+}
+
+func (o OrganizationSinkOutput) ToOrganizationSinkOutputWithContext(ctx context.Context) OrganizationSinkOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(OrganizationSinkOutput{})
 }

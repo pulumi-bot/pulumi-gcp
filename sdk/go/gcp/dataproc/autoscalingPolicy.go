@@ -4,6 +4,7 @@
 package dataproc
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -42,11 +43,12 @@ type AutoscalingPolicy struct {
 // NewAutoscalingPolicy registers a new resource with the given unique name, arguments, and options.
 func NewAutoscalingPolicy(ctx *pulumi.Context,
 	name string, args *AutoscalingPolicyArgs, opts ...pulumi.ResourceOption) (*AutoscalingPolicy, error) {
-	if args == nil || args.PolicyId == nil {
-		return nil, errors.New("missing required argument 'PolicyId'")
-	}
 	if args == nil {
-		args = &AutoscalingPolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.PolicyId == nil {
+		return nil, errors.New("invalid value for required argument 'PolicyId'")
 	}
 	var resource AutoscalingPolicy
 	err := ctx.RegisterResource("gcp:dataproc/autoscalingPolicy:AutoscalingPolicy", name, args, &resource, opts...)
@@ -168,4 +170,43 @@ type AutoscalingPolicyArgs struct {
 
 func (AutoscalingPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*autoscalingPolicyArgs)(nil)).Elem()
+}
+
+type AutoscalingPolicyInput interface {
+	pulumi.Input
+
+	ToAutoscalingPolicyOutput() AutoscalingPolicyOutput
+	ToAutoscalingPolicyOutputWithContext(ctx context.Context) AutoscalingPolicyOutput
+}
+
+func (AutoscalingPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*AutoscalingPolicy)(nil)).Elem()
+}
+
+func (i AutoscalingPolicy) ToAutoscalingPolicyOutput() AutoscalingPolicyOutput {
+	return i.ToAutoscalingPolicyOutputWithContext(context.Background())
+}
+
+func (i AutoscalingPolicy) ToAutoscalingPolicyOutputWithContext(ctx context.Context) AutoscalingPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscalingPolicyOutput)
+}
+
+type AutoscalingPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (AutoscalingPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AutoscalingPolicyOutput)(nil)).Elem()
+}
+
+func (o AutoscalingPolicyOutput) ToAutoscalingPolicyOutput() AutoscalingPolicyOutput {
+	return o
+}
+
+func (o AutoscalingPolicyOutput) ToAutoscalingPolicyOutputWithContext(ctx context.Context) AutoscalingPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AutoscalingPolicyOutput{})
 }

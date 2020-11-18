@@ -4,6 +4,7 @@
 package diagflow
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -77,11 +78,12 @@ type Intent struct {
 // NewIntent registers a new resource with the given unique name, arguments, and options.
 func NewIntent(ctx *pulumi.Context,
 	name string, args *IntentArgs, opts ...pulumi.ResourceOption) (*Intent, error) {
-	if args == nil || args.DisplayName == nil {
-		return nil, errors.New("missing required argument 'DisplayName'")
-	}
 	if args == nil {
-		args = &IntentArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.DisplayName == nil {
+		return nil, errors.New("invalid value for required argument 'DisplayName'")
 	}
 	var resource Intent
 	err := ctx.RegisterResource("gcp:diagflow/intent:Intent", name, args, &resource, opts...)
@@ -303,4 +305,43 @@ type IntentArgs struct {
 
 func (IntentArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*intentArgs)(nil)).Elem()
+}
+
+type IntentInput interface {
+	pulumi.Input
+
+	ToIntentOutput() IntentOutput
+	ToIntentOutputWithContext(ctx context.Context) IntentOutput
+}
+
+func (Intent) ElementType() reflect.Type {
+	return reflect.TypeOf((*Intent)(nil)).Elem()
+}
+
+func (i Intent) ToIntentOutput() IntentOutput {
+	return i.ToIntentOutputWithContext(context.Background())
+}
+
+func (i Intent) ToIntentOutputWithContext(ctx context.Context) IntentOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntentOutput)
+}
+
+type IntentOutput struct {
+	*pulumi.OutputState
+}
+
+func (IntentOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntentOutput)(nil)).Elem()
+}
+
+func (o IntentOutput) ToIntentOutput() IntentOutput {
+	return o
+}
+
+func (o IntentOutput) ToIntentOutputWithContext(ctx context.Context) IntentOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(IntentOutput{})
 }

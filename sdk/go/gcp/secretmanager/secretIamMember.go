@@ -4,6 +4,7 @@
 package secretmanager
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -39,17 +40,18 @@ type SecretIamMember struct {
 // NewSecretIamMember registers a new resource with the given unique name, arguments, and options.
 func NewSecretIamMember(ctx *pulumi.Context,
 	name string, args *SecretIamMemberArgs, opts ...pulumi.ResourceOption) (*SecretIamMember, error) {
-	if args == nil || args.Member == nil {
-		return nil, errors.New("missing required argument 'Member'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
-	if args == nil || args.SecretId == nil {
-		return nil, errors.New("missing required argument 'SecretId'")
-	}
 	if args == nil {
-		args = &SecretIamMemberArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Member == nil {
+		return nil, errors.New("invalid value for required argument 'Member'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
+	}
+	if args.SecretId == nil {
+		return nil, errors.New("invalid value for required argument 'SecretId'")
 	}
 	var resource SecretIamMember
 	err := ctx.RegisterResource("gcp:secretmanager/secretIamMember:SecretIamMember", name, args, &resource, opts...)
@@ -135,4 +137,43 @@ type SecretIamMemberArgs struct {
 
 func (SecretIamMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretIamMemberArgs)(nil)).Elem()
+}
+
+type SecretIamMemberInput interface {
+	pulumi.Input
+
+	ToSecretIamMemberOutput() SecretIamMemberOutput
+	ToSecretIamMemberOutputWithContext(ctx context.Context) SecretIamMemberOutput
+}
+
+func (SecretIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretIamMember)(nil)).Elem()
+}
+
+func (i SecretIamMember) ToSecretIamMemberOutput() SecretIamMemberOutput {
+	return i.ToSecretIamMemberOutputWithContext(context.Background())
+}
+
+func (i SecretIamMember) ToSecretIamMemberOutputWithContext(ctx context.Context) SecretIamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretIamMemberOutput)
+}
+
+type SecretIamMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (SecretIamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretIamMemberOutput)(nil)).Elem()
+}
+
+func (o SecretIamMemberOutput) ToSecretIamMemberOutput() SecretIamMemberOutput {
+	return o
+}
+
+func (o SecretIamMemberOutput) ToSecretIamMemberOutputWithContext(ctx context.Context) SecretIamMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SecretIamMemberOutput{})
 }
