@@ -4,6 +4,7 @@
 package datacatalog
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -25,14 +26,15 @@ type PolicyTagIamPolicy struct {
 // NewPolicyTagIamPolicy registers a new resource with the given unique name, arguments, and options.
 func NewPolicyTagIamPolicy(ctx *pulumi.Context,
 	name string, args *PolicyTagIamPolicyArgs, opts ...pulumi.ResourceOption) (*PolicyTagIamPolicy, error) {
-	if args == nil || args.PolicyData == nil {
-		return nil, errors.New("missing required argument 'PolicyData'")
-	}
-	if args == nil || args.PolicyTag == nil {
-		return nil, errors.New("missing required argument 'PolicyTag'")
-	}
 	if args == nil {
-		args = &PolicyTagIamPolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.PolicyData == nil {
+		return nil, errors.New("invalid value for required argument 'PolicyData'")
+	}
+	if args.PolicyTag == nil {
+		return nil, errors.New("invalid value for required argument 'PolicyTag'")
 	}
 	var resource PolicyTagIamPolicy
 	err := ctx.RegisterResource("gcp:datacatalog/policyTagIamPolicy:PolicyTagIamPolicy", name, args, &resource, opts...)
@@ -98,4 +100,43 @@ type PolicyTagIamPolicyArgs struct {
 
 func (PolicyTagIamPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*policyTagIamPolicyArgs)(nil)).Elem()
+}
+
+type PolicyTagIamPolicyInput interface {
+	pulumi.Input
+
+	ToPolicyTagIamPolicyOutput() PolicyTagIamPolicyOutput
+	ToPolicyTagIamPolicyOutputWithContext(ctx context.Context) PolicyTagIamPolicyOutput
+}
+
+func (PolicyTagIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*PolicyTagIamPolicy)(nil)).Elem()
+}
+
+func (i PolicyTagIamPolicy) ToPolicyTagIamPolicyOutput() PolicyTagIamPolicyOutput {
+	return i.ToPolicyTagIamPolicyOutputWithContext(context.Background())
+}
+
+func (i PolicyTagIamPolicy) ToPolicyTagIamPolicyOutputWithContext(ctx context.Context) PolicyTagIamPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PolicyTagIamPolicyOutput)
+}
+
+type PolicyTagIamPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (PolicyTagIamPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PolicyTagIamPolicyOutput)(nil)).Elem()
+}
+
+func (o PolicyTagIamPolicyOutput) ToPolicyTagIamPolicyOutput() PolicyTagIamPolicyOutput {
+	return o
+}
+
+func (o PolicyTagIamPolicyOutput) ToPolicyTagIamPolicyOutputWithContext(ctx context.Context) PolicyTagIamPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(PolicyTagIamPolicyOutput{})
 }

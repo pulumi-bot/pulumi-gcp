@@ -4,6 +4,7 @@
 package cloudasset
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -63,14 +64,15 @@ type ProjectFeed struct {
 // NewProjectFeed registers a new resource with the given unique name, arguments, and options.
 func NewProjectFeed(ctx *pulumi.Context,
 	name string, args *ProjectFeedArgs, opts ...pulumi.ResourceOption) (*ProjectFeed, error) {
-	if args == nil || args.FeedId == nil {
-		return nil, errors.New("missing required argument 'FeedId'")
-	}
-	if args == nil || args.FeedOutputConfig == nil {
-		return nil, errors.New("missing required argument 'FeedOutputConfig'")
-	}
 	if args == nil {
-		args = &ProjectFeedArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.FeedId == nil {
+		return nil, errors.New("invalid value for required argument 'FeedId'")
+	}
+	if args.FeedOutputConfig == nil {
+		return nil, errors.New("invalid value for required argument 'FeedOutputConfig'")
 	}
 	var resource ProjectFeed
 	err := ctx.RegisterResource("gcp:cloudasset/projectFeed:ProjectFeed", name, args, &resource, opts...)
@@ -252,4 +254,43 @@ type ProjectFeedArgs struct {
 
 func (ProjectFeedArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*projectFeedArgs)(nil)).Elem()
+}
+
+type ProjectFeedInput interface {
+	pulumi.Input
+
+	ToProjectFeedOutput() ProjectFeedOutput
+	ToProjectFeedOutputWithContext(ctx context.Context) ProjectFeedOutput
+}
+
+func (ProjectFeed) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProjectFeed)(nil)).Elem()
+}
+
+func (i ProjectFeed) ToProjectFeedOutput() ProjectFeedOutput {
+	return i.ToProjectFeedOutputWithContext(context.Background())
+}
+
+func (i ProjectFeed) ToProjectFeedOutputWithContext(ctx context.Context) ProjectFeedOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProjectFeedOutput)
+}
+
+type ProjectFeedOutput struct {
+	*pulumi.OutputState
+}
+
+func (ProjectFeedOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProjectFeedOutput)(nil)).Elem()
+}
+
+func (o ProjectFeedOutput) ToProjectFeedOutput() ProjectFeedOutput {
+	return o
+}
+
+func (o ProjectFeedOutput) ToProjectFeedOutputWithContext(ctx context.Context) ProjectFeedOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ProjectFeedOutput{})
 }

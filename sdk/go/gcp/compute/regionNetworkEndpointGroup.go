@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -61,11 +62,12 @@ type RegionNetworkEndpointGroup struct {
 // NewRegionNetworkEndpointGroup registers a new resource with the given unique name, arguments, and options.
 func NewRegionNetworkEndpointGroup(ctx *pulumi.Context,
 	name string, args *RegionNetworkEndpointGroupArgs, opts ...pulumi.ResourceOption) (*RegionNetworkEndpointGroup, error) {
-	if args == nil || args.Region == nil {
-		return nil, errors.New("missing required argument 'Region'")
-	}
 	if args == nil {
-		args = &RegionNetworkEndpointGroupArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Region == nil {
+		return nil, errors.New("invalid value for required argument 'Region'")
 	}
 	var resource RegionNetworkEndpointGroup
 	err := ctx.RegisterResource("gcp:compute/regionNetworkEndpointGroup:RegionNetworkEndpointGroup", name, args, &resource, opts...)
@@ -239,4 +241,43 @@ type RegionNetworkEndpointGroupArgs struct {
 
 func (RegionNetworkEndpointGroupArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*regionNetworkEndpointGroupArgs)(nil)).Elem()
+}
+
+type RegionNetworkEndpointGroupInput interface {
+	pulumi.Input
+
+	ToRegionNetworkEndpointGroupOutput() RegionNetworkEndpointGroupOutput
+	ToRegionNetworkEndpointGroupOutputWithContext(ctx context.Context) RegionNetworkEndpointGroupOutput
+}
+
+func (RegionNetworkEndpointGroup) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionNetworkEndpointGroup)(nil)).Elem()
+}
+
+func (i RegionNetworkEndpointGroup) ToRegionNetworkEndpointGroupOutput() RegionNetworkEndpointGroupOutput {
+	return i.ToRegionNetworkEndpointGroupOutputWithContext(context.Background())
+}
+
+func (i RegionNetworkEndpointGroup) ToRegionNetworkEndpointGroupOutputWithContext(ctx context.Context) RegionNetworkEndpointGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegionNetworkEndpointGroupOutput)
+}
+
+type RegionNetworkEndpointGroupOutput struct {
+	*pulumi.OutputState
+}
+
+func (RegionNetworkEndpointGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionNetworkEndpointGroupOutput)(nil)).Elem()
+}
+
+func (o RegionNetworkEndpointGroupOutput) ToRegionNetworkEndpointGroupOutput() RegionNetworkEndpointGroupOutput {
+	return o
+}
+
+func (o RegionNetworkEndpointGroupOutput) ToRegionNetworkEndpointGroupOutputWithContext(ctx context.Context) RegionNetworkEndpointGroupOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RegionNetworkEndpointGroupOutput{})
 }

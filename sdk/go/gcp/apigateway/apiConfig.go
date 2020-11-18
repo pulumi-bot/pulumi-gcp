@@ -4,6 +4,7 @@
 package apigateway
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -40,17 +41,18 @@ type ApiConfig struct {
 // NewApiConfig registers a new resource with the given unique name, arguments, and options.
 func NewApiConfig(ctx *pulumi.Context,
 	name string, args *ApiConfigArgs, opts ...pulumi.ResourceOption) (*ApiConfig, error) {
-	if args == nil || args.Api == nil {
-		return nil, errors.New("missing required argument 'Api'")
-	}
-	if args == nil || args.ApiConfigId == nil {
-		return nil, errors.New("missing required argument 'ApiConfigId'")
-	}
-	if args == nil || args.OpenapiDocuments == nil {
-		return nil, errors.New("missing required argument 'OpenapiDocuments'")
-	}
 	if args == nil {
-		args = &ApiConfigArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Api == nil {
+		return nil, errors.New("invalid value for required argument 'Api'")
+	}
+	if args.ApiConfigId == nil {
+		return nil, errors.New("invalid value for required argument 'ApiConfigId'")
+	}
+	if args.OpenapiDocuments == nil {
+		return nil, errors.New("invalid value for required argument 'OpenapiDocuments'")
 	}
 	var resource ApiConfig
 	err := ctx.RegisterResource("gcp:apigateway/apiConfig:ApiConfig", name, args, &resource, opts...)
@@ -172,4 +174,43 @@ type ApiConfigArgs struct {
 
 func (ApiConfigArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*apiConfigArgs)(nil)).Elem()
+}
+
+type ApiConfigInput interface {
+	pulumi.Input
+
+	ToApiConfigOutput() ApiConfigOutput
+	ToApiConfigOutputWithContext(ctx context.Context) ApiConfigOutput
+}
+
+func (ApiConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*ApiConfig)(nil)).Elem()
+}
+
+func (i ApiConfig) ToApiConfigOutput() ApiConfigOutput {
+	return i.ToApiConfigOutputWithContext(context.Background())
+}
+
+func (i ApiConfig) ToApiConfigOutputWithContext(ctx context.Context) ApiConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApiConfigOutput)
+}
+
+type ApiConfigOutput struct {
+	*pulumi.OutputState
+}
+
+func (ApiConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ApiConfigOutput)(nil)).Elem()
+}
+
+func (o ApiConfigOutput) ToApiConfigOutput() ApiConfigOutput {
+	return o
+}
+
+func (o ApiConfigOutput) ToApiConfigOutputWithContext(ctx context.Context) ApiConfigOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ApiConfigOutput{})
 }

@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -51,11 +52,12 @@ type MachineImage struct {
 // NewMachineImage registers a new resource with the given unique name, arguments, and options.
 func NewMachineImage(ctx *pulumi.Context,
 	name string, args *MachineImageArgs, opts ...pulumi.ResourceOption) (*MachineImage, error) {
-	if args == nil || args.SourceInstance == nil {
-		return nil, errors.New("missing required argument 'SourceInstance'")
-	}
 	if args == nil {
-		args = &MachineImageArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.SourceInstance == nil {
+		return nil, errors.New("invalid value for required argument 'SourceInstance'")
 	}
 	var resource MachineImage
 	err := ctx.RegisterResource("gcp:compute/machineImage:MachineImage", name, args, &resource, opts...)
@@ -177,4 +179,43 @@ type MachineImageArgs struct {
 
 func (MachineImageArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*machineImageArgs)(nil)).Elem()
+}
+
+type MachineImageInput interface {
+	pulumi.Input
+
+	ToMachineImageOutput() MachineImageOutput
+	ToMachineImageOutputWithContext(ctx context.Context) MachineImageOutput
+}
+
+func (MachineImage) ElementType() reflect.Type {
+	return reflect.TypeOf((*MachineImage)(nil)).Elem()
+}
+
+func (i MachineImage) ToMachineImageOutput() MachineImageOutput {
+	return i.ToMachineImageOutputWithContext(context.Background())
+}
+
+func (i MachineImage) ToMachineImageOutputWithContext(ctx context.Context) MachineImageOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MachineImageOutput)
+}
+
+type MachineImageOutput struct {
+	*pulumi.OutputState
+}
+
+func (MachineImageOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MachineImageOutput)(nil)).Elem()
+}
+
+func (o MachineImageOutput) ToMachineImageOutput() MachineImageOutput {
+	return o
+}
+
+func (o MachineImageOutput) ToMachineImageOutputWithContext(ctx context.Context) MachineImageOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(MachineImageOutput{})
 }

@@ -4,6 +4,7 @@
 package datacatalog
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -41,17 +42,18 @@ type EntryGroupIamMember struct {
 // NewEntryGroupIamMember registers a new resource with the given unique name, arguments, and options.
 func NewEntryGroupIamMember(ctx *pulumi.Context,
 	name string, args *EntryGroupIamMemberArgs, opts ...pulumi.ResourceOption) (*EntryGroupIamMember, error) {
-	if args == nil || args.EntryGroup == nil {
-		return nil, errors.New("missing required argument 'EntryGroup'")
-	}
-	if args == nil || args.Member == nil {
-		return nil, errors.New("missing required argument 'Member'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &EntryGroupIamMemberArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.EntryGroup == nil {
+		return nil, errors.New("invalid value for required argument 'EntryGroup'")
+	}
+	if args.Member == nil {
+		return nil, errors.New("invalid value for required argument 'Member'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource EntryGroupIamMember
 	err := ctx.RegisterResource("gcp:datacatalog/entryGroupIamMember:EntryGroupIamMember", name, args, &resource, opts...)
@@ -145,4 +147,43 @@ type EntryGroupIamMemberArgs struct {
 
 func (EntryGroupIamMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*entryGroupIamMemberArgs)(nil)).Elem()
+}
+
+type EntryGroupIamMemberInput interface {
+	pulumi.Input
+
+	ToEntryGroupIamMemberOutput() EntryGroupIamMemberOutput
+	ToEntryGroupIamMemberOutputWithContext(ctx context.Context) EntryGroupIamMemberOutput
+}
+
+func (EntryGroupIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*EntryGroupIamMember)(nil)).Elem()
+}
+
+func (i EntryGroupIamMember) ToEntryGroupIamMemberOutput() EntryGroupIamMemberOutput {
+	return i.ToEntryGroupIamMemberOutputWithContext(context.Background())
+}
+
+func (i EntryGroupIamMember) ToEntryGroupIamMemberOutputWithContext(ctx context.Context) EntryGroupIamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EntryGroupIamMemberOutput)
+}
+
+type EntryGroupIamMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (EntryGroupIamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EntryGroupIamMemberOutput)(nil)).Elem()
+}
+
+func (o EntryGroupIamMemberOutput) ToEntryGroupIamMemberOutput() EntryGroupIamMemberOutput {
+	return o
+}
+
+func (o EntryGroupIamMemberOutput) ToEntryGroupIamMemberOutputWithContext(ctx context.Context) EntryGroupIamMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(EntryGroupIamMemberOutput{})
 }

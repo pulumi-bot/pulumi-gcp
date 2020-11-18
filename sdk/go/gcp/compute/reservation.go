@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -64,14 +65,15 @@ type Reservation struct {
 // NewReservation registers a new resource with the given unique name, arguments, and options.
 func NewReservation(ctx *pulumi.Context,
 	name string, args *ReservationArgs, opts ...pulumi.ResourceOption) (*Reservation, error) {
-	if args == nil || args.SpecificReservation == nil {
-		return nil, errors.New("missing required argument 'SpecificReservation'")
-	}
-	if args == nil || args.Zone == nil {
-		return nil, errors.New("missing required argument 'Zone'")
-	}
 	if args == nil {
-		args = &ReservationArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.SpecificReservation == nil {
+		return nil, errors.New("invalid value for required argument 'SpecificReservation'")
+	}
+	if args.Zone == nil {
+		return nil, errors.New("invalid value for required argument 'Zone'")
 	}
 	var resource Reservation
 	err := ctx.RegisterResource("gcp:compute/reservation:Reservation", name, args, &resource, opts...)
@@ -217,4 +219,43 @@ type ReservationArgs struct {
 
 func (ReservationArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*reservationArgs)(nil)).Elem()
+}
+
+type ReservationInput interface {
+	pulumi.Input
+
+	ToReservationOutput() ReservationOutput
+	ToReservationOutputWithContext(ctx context.Context) ReservationOutput
+}
+
+func (Reservation) ElementType() reflect.Type {
+	return reflect.TypeOf((*Reservation)(nil)).Elem()
+}
+
+func (i Reservation) ToReservationOutput() ReservationOutput {
+	return i.ToReservationOutputWithContext(context.Background())
+}
+
+func (i Reservation) ToReservationOutputWithContext(ctx context.Context) ReservationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ReservationOutput)
+}
+
+type ReservationOutput struct {
+	*pulumi.OutputState
+}
+
+func (ReservationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ReservationOutput)(nil)).Elem()
+}
+
+func (o ReservationOutput) ToReservationOutput() ReservationOutput {
+	return o
+}
+
+func (o ReservationOutput) ToReservationOutputWithContext(ctx context.Context) ReservationOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ReservationOutput{})
 }

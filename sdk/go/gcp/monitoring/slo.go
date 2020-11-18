@@ -4,6 +4,7 @@
 package monitoring
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -83,14 +84,15 @@ type Slo struct {
 // NewSlo registers a new resource with the given unique name, arguments, and options.
 func NewSlo(ctx *pulumi.Context,
 	name string, args *SloArgs, opts ...pulumi.ResourceOption) (*Slo, error) {
-	if args == nil || args.Goal == nil {
-		return nil, errors.New("missing required argument 'Goal'")
-	}
-	if args == nil || args.Service == nil {
-		return nil, errors.New("missing required argument 'Service'")
-	}
 	if args == nil {
-		args = &SloArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Goal == nil {
+		return nil, errors.New("invalid value for required argument 'Goal'")
+	}
+	if args.Service == nil {
+		return nil, errors.New("invalid value for required argument 'Service'")
 	}
 	var resource Slo
 	err := ctx.RegisterResource("gcp:monitoring/slo:Slo", name, args, &resource, opts...)
@@ -322,4 +324,43 @@ type SloArgs struct {
 
 func (SloArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*sloArgs)(nil)).Elem()
+}
+
+type SloInput interface {
+	pulumi.Input
+
+	ToSloOutput() SloOutput
+	ToSloOutputWithContext(ctx context.Context) SloOutput
+}
+
+func (Slo) ElementType() reflect.Type {
+	return reflect.TypeOf((*Slo)(nil)).Elem()
+}
+
+func (i Slo) ToSloOutput() SloOutput {
+	return i.ToSloOutputWithContext(context.Background())
+}
+
+func (i Slo) ToSloOutputWithContext(ctx context.Context) SloOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SloOutput)
+}
+
+type SloOutput struct {
+	*pulumi.OutputState
+}
+
+func (SloOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SloOutput)(nil)).Elem()
+}
+
+func (o SloOutput) ToSloOutput() SloOutput {
+	return o
+}
+
+func (o SloOutput) ToSloOutputWithContext(ctx context.Context) SloOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SloOutput{})
 }

@@ -4,6 +4,7 @@
 package identityplatform
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -43,17 +44,18 @@ type InboundSamlConfig struct {
 // NewInboundSamlConfig registers a new resource with the given unique name, arguments, and options.
 func NewInboundSamlConfig(ctx *pulumi.Context,
 	name string, args *InboundSamlConfigArgs, opts ...pulumi.ResourceOption) (*InboundSamlConfig, error) {
-	if args == nil || args.DisplayName == nil {
-		return nil, errors.New("missing required argument 'DisplayName'")
-	}
-	if args == nil || args.IdpConfig == nil {
-		return nil, errors.New("missing required argument 'IdpConfig'")
-	}
-	if args == nil || args.SpConfig == nil {
-		return nil, errors.New("missing required argument 'SpConfig'")
-	}
 	if args == nil {
-		args = &InboundSamlConfigArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.DisplayName == nil {
+		return nil, errors.New("invalid value for required argument 'DisplayName'")
+	}
+	if args.IdpConfig == nil {
+		return nil, errors.New("invalid value for required argument 'IdpConfig'")
+	}
+	if args.SpConfig == nil {
+		return nil, errors.New("invalid value for required argument 'SpConfig'")
 	}
 	var resource InboundSamlConfig
 	err := ctx.RegisterResource("gcp:identityplatform/inboundSamlConfig:InboundSamlConfig", name, args, &resource, opts...)
@@ -167,4 +169,43 @@ type InboundSamlConfigArgs struct {
 
 func (InboundSamlConfigArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*inboundSamlConfigArgs)(nil)).Elem()
+}
+
+type InboundSamlConfigInput interface {
+	pulumi.Input
+
+	ToInboundSamlConfigOutput() InboundSamlConfigOutput
+	ToInboundSamlConfigOutputWithContext(ctx context.Context) InboundSamlConfigOutput
+}
+
+func (InboundSamlConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*InboundSamlConfig)(nil)).Elem()
+}
+
+func (i InboundSamlConfig) ToInboundSamlConfigOutput() InboundSamlConfigOutput {
+	return i.ToInboundSamlConfigOutputWithContext(context.Background())
+}
+
+func (i InboundSamlConfig) ToInboundSamlConfigOutputWithContext(ctx context.Context) InboundSamlConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InboundSamlConfigOutput)
+}
+
+type InboundSamlConfigOutput struct {
+	*pulumi.OutputState
+}
+
+func (InboundSamlConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InboundSamlConfigOutput)(nil)).Elem()
+}
+
+func (o InboundSamlConfigOutput) ToInboundSamlConfigOutput() InboundSamlConfigOutput {
+	return o
+}
+
+func (o InboundSamlConfigOutput) ToInboundSamlConfigOutputWithContext(ctx context.Context) InboundSamlConfigOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(InboundSamlConfigOutput{})
 }

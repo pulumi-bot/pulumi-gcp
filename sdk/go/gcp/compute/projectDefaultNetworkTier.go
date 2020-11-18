@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -30,11 +31,12 @@ type ProjectDefaultNetworkTier struct {
 // NewProjectDefaultNetworkTier registers a new resource with the given unique name, arguments, and options.
 func NewProjectDefaultNetworkTier(ctx *pulumi.Context,
 	name string, args *ProjectDefaultNetworkTierArgs, opts ...pulumi.ResourceOption) (*ProjectDefaultNetworkTier, error) {
-	if args == nil || args.NetworkTier == nil {
-		return nil, errors.New("missing required argument 'NetworkTier'")
-	}
 	if args == nil {
-		args = &ProjectDefaultNetworkTierArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.NetworkTier == nil {
+		return nil, errors.New("invalid value for required argument 'NetworkTier'")
 	}
 	var resource ProjectDefaultNetworkTier
 	err := ctx.RegisterResource("gcp:compute/projectDefaultNetworkTier:ProjectDefaultNetworkTier", name, args, &resource, opts...)
@@ -100,4 +102,43 @@ type ProjectDefaultNetworkTierArgs struct {
 
 func (ProjectDefaultNetworkTierArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*projectDefaultNetworkTierArgs)(nil)).Elem()
+}
+
+type ProjectDefaultNetworkTierInput interface {
+	pulumi.Input
+
+	ToProjectDefaultNetworkTierOutput() ProjectDefaultNetworkTierOutput
+	ToProjectDefaultNetworkTierOutputWithContext(ctx context.Context) ProjectDefaultNetworkTierOutput
+}
+
+func (ProjectDefaultNetworkTier) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProjectDefaultNetworkTier)(nil)).Elem()
+}
+
+func (i ProjectDefaultNetworkTier) ToProjectDefaultNetworkTierOutput() ProjectDefaultNetworkTierOutput {
+	return i.ToProjectDefaultNetworkTierOutputWithContext(context.Background())
+}
+
+func (i ProjectDefaultNetworkTier) ToProjectDefaultNetworkTierOutputWithContext(ctx context.Context) ProjectDefaultNetworkTierOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProjectDefaultNetworkTierOutput)
+}
+
+type ProjectDefaultNetworkTierOutput struct {
+	*pulumi.OutputState
+}
+
+func (ProjectDefaultNetworkTierOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProjectDefaultNetworkTierOutput)(nil)).Elem()
+}
+
+func (o ProjectDefaultNetworkTierOutput) ToProjectDefaultNetworkTierOutput() ProjectDefaultNetworkTierOutput {
+	return o
+}
+
+func (o ProjectDefaultNetworkTierOutput) ToProjectDefaultNetworkTierOutputWithContext(ctx context.Context) ProjectDefaultNetworkTierOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ProjectDefaultNetworkTierOutput{})
 }

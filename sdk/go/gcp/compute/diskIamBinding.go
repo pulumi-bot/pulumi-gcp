@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -44,14 +45,15 @@ type DiskIamBinding struct {
 // NewDiskIamBinding registers a new resource with the given unique name, arguments, and options.
 func NewDiskIamBinding(ctx *pulumi.Context,
 	name string, args *DiskIamBindingArgs, opts ...pulumi.ResourceOption) (*DiskIamBinding, error) {
-	if args == nil || args.Members == nil {
-		return nil, errors.New("missing required argument 'Members'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &DiskIamBindingArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Members == nil {
+		return nil, errors.New("invalid value for required argument 'Members'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource DiskIamBinding
 	err := ctx.RegisterResource("gcp:compute/diskIamBinding:DiskIamBinding", name, args, &resource, opts...)
@@ -157,4 +159,43 @@ type DiskIamBindingArgs struct {
 
 func (DiskIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*diskIamBindingArgs)(nil)).Elem()
+}
+
+type DiskIamBindingInput interface {
+	pulumi.Input
+
+	ToDiskIamBindingOutput() DiskIamBindingOutput
+	ToDiskIamBindingOutputWithContext(ctx context.Context) DiskIamBindingOutput
+}
+
+func (DiskIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*DiskIamBinding)(nil)).Elem()
+}
+
+func (i DiskIamBinding) ToDiskIamBindingOutput() DiskIamBindingOutput {
+	return i.ToDiskIamBindingOutputWithContext(context.Background())
+}
+
+func (i DiskIamBinding) ToDiskIamBindingOutputWithContext(ctx context.Context) DiskIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DiskIamBindingOutput)
+}
+
+type DiskIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (DiskIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DiskIamBindingOutput)(nil)).Elem()
+}
+
+func (o DiskIamBindingOutput) ToDiskIamBindingOutput() DiskIamBindingOutput {
+	return o
+}
+
+func (o DiskIamBindingOutput) ToDiskIamBindingOutputWithContext(ctx context.Context) DiskIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DiskIamBindingOutput{})
 }

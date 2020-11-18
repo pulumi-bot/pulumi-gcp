@@ -4,6 +4,7 @@
 package oslogin
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -37,14 +38,15 @@ type SshPublicKey struct {
 // NewSshPublicKey registers a new resource with the given unique name, arguments, and options.
 func NewSshPublicKey(ctx *pulumi.Context,
 	name string, args *SshPublicKeyArgs, opts ...pulumi.ResourceOption) (*SshPublicKey, error) {
-	if args == nil || args.Key == nil {
-		return nil, errors.New("missing required argument 'Key'")
-	}
-	if args == nil || args.User == nil {
-		return nil, errors.New("missing required argument 'User'")
-	}
 	if args == nil {
-		args = &SshPublicKeyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Key == nil {
+		return nil, errors.New("invalid value for required argument 'Key'")
+	}
+	if args.User == nil {
+		return nil, errors.New("invalid value for required argument 'User'")
 	}
 	var resource SshPublicKey
 	err := ctx.RegisterResource("gcp:oslogin/sshPublicKey:SshPublicKey", name, args, &resource, opts...)
@@ -122,4 +124,43 @@ type SshPublicKeyArgs struct {
 
 func (SshPublicKeyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*sshPublicKeyArgs)(nil)).Elem()
+}
+
+type SshPublicKeyInput interface {
+	pulumi.Input
+
+	ToSshPublicKeyOutput() SshPublicKeyOutput
+	ToSshPublicKeyOutputWithContext(ctx context.Context) SshPublicKeyOutput
+}
+
+func (SshPublicKey) ElementType() reflect.Type {
+	return reflect.TypeOf((*SshPublicKey)(nil)).Elem()
+}
+
+func (i SshPublicKey) ToSshPublicKeyOutput() SshPublicKeyOutput {
+	return i.ToSshPublicKeyOutputWithContext(context.Background())
+}
+
+func (i SshPublicKey) ToSshPublicKeyOutputWithContext(ctx context.Context) SshPublicKeyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SshPublicKeyOutput)
+}
+
+type SshPublicKeyOutput struct {
+	*pulumi.OutputState
+}
+
+func (SshPublicKeyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SshPublicKeyOutput)(nil)).Elem()
+}
+
+func (o SshPublicKeyOutput) ToSshPublicKeyOutput() SshPublicKeyOutput {
+	return o
+}
+
+func (o SshPublicKeyOutput) ToSshPublicKeyOutputWithContext(ctx context.Context) SshPublicKeyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SshPublicKeyOutput{})
 }

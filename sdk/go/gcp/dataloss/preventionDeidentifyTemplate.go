@@ -4,6 +4,7 @@
 package dataloss
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -42,14 +43,15 @@ type PreventionDeidentifyTemplate struct {
 // NewPreventionDeidentifyTemplate registers a new resource with the given unique name, arguments, and options.
 func NewPreventionDeidentifyTemplate(ctx *pulumi.Context,
 	name string, args *PreventionDeidentifyTemplateArgs, opts ...pulumi.ResourceOption) (*PreventionDeidentifyTemplate, error) {
-	if args == nil || args.DeidentifyConfig == nil {
-		return nil, errors.New("missing required argument 'DeidentifyConfig'")
-	}
-	if args == nil || args.Parent == nil {
-		return nil, errors.New("missing required argument 'Parent'")
-	}
 	if args == nil {
-		args = &PreventionDeidentifyTemplateArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.DeidentifyConfig == nil {
+		return nil, errors.New("invalid value for required argument 'DeidentifyConfig'")
+	}
+	if args.Parent == nil {
+		return nil, errors.New("invalid value for required argument 'Parent'")
 	}
 	var resource PreventionDeidentifyTemplate
 	err := ctx.RegisterResource("gcp:dataloss/preventionDeidentifyTemplate:PreventionDeidentifyTemplate", name, args, &resource, opts...)
@@ -147,4 +149,43 @@ type PreventionDeidentifyTemplateArgs struct {
 
 func (PreventionDeidentifyTemplateArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*preventionDeidentifyTemplateArgs)(nil)).Elem()
+}
+
+type PreventionDeidentifyTemplateInput interface {
+	pulumi.Input
+
+	ToPreventionDeidentifyTemplateOutput() PreventionDeidentifyTemplateOutput
+	ToPreventionDeidentifyTemplateOutputWithContext(ctx context.Context) PreventionDeidentifyTemplateOutput
+}
+
+func (PreventionDeidentifyTemplate) ElementType() reflect.Type {
+	return reflect.TypeOf((*PreventionDeidentifyTemplate)(nil)).Elem()
+}
+
+func (i PreventionDeidentifyTemplate) ToPreventionDeidentifyTemplateOutput() PreventionDeidentifyTemplateOutput {
+	return i.ToPreventionDeidentifyTemplateOutputWithContext(context.Background())
+}
+
+func (i PreventionDeidentifyTemplate) ToPreventionDeidentifyTemplateOutputWithContext(ctx context.Context) PreventionDeidentifyTemplateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PreventionDeidentifyTemplateOutput)
+}
+
+type PreventionDeidentifyTemplateOutput struct {
+	*pulumi.OutputState
+}
+
+func (PreventionDeidentifyTemplateOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PreventionDeidentifyTemplateOutput)(nil)).Elem()
+}
+
+func (o PreventionDeidentifyTemplateOutput) ToPreventionDeidentifyTemplateOutput() PreventionDeidentifyTemplateOutput {
+	return o
+}
+
+func (o PreventionDeidentifyTemplateOutput) ToPreventionDeidentifyTemplateOutputWithContext(ctx context.Context) PreventionDeidentifyTemplateOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(PreventionDeidentifyTemplateOutput{})
 }

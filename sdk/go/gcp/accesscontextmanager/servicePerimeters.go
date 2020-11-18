@@ -4,6 +4,7 @@
 package accesscontextmanager
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -35,11 +36,12 @@ type ServicePerimeters struct {
 // NewServicePerimeters registers a new resource with the given unique name, arguments, and options.
 func NewServicePerimeters(ctx *pulumi.Context,
 	name string, args *ServicePerimetersArgs, opts ...pulumi.ResourceOption) (*ServicePerimeters, error) {
-	if args == nil || args.Parent == nil {
-		return nil, errors.New("missing required argument 'Parent'")
-	}
 	if args == nil {
-		args = &ServicePerimetersArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Parent == nil {
+		return nil, errors.New("invalid value for required argument 'Parent'")
 	}
 	var resource ServicePerimeters
 	err := ctx.RegisterResource("gcp:accesscontextmanager/servicePerimeters:ServicePerimeters", name, args, &resource, opts...)
@@ -105,4 +107,43 @@ type ServicePerimetersArgs struct {
 
 func (ServicePerimetersArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*servicePerimetersArgs)(nil)).Elem()
+}
+
+type ServicePerimetersInput interface {
+	pulumi.Input
+
+	ToServicePerimetersOutput() ServicePerimetersOutput
+	ToServicePerimetersOutputWithContext(ctx context.Context) ServicePerimetersOutput
+}
+
+func (ServicePerimeters) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServicePerimeters)(nil)).Elem()
+}
+
+func (i ServicePerimeters) ToServicePerimetersOutput() ServicePerimetersOutput {
+	return i.ToServicePerimetersOutputWithContext(context.Background())
+}
+
+func (i ServicePerimeters) ToServicePerimetersOutputWithContext(ctx context.Context) ServicePerimetersOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServicePerimetersOutput)
+}
+
+type ServicePerimetersOutput struct {
+	*pulumi.OutputState
+}
+
+func (ServicePerimetersOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServicePerimetersOutput)(nil)).Elem()
+}
+
+func (o ServicePerimetersOutput) ToServicePerimetersOutput() ServicePerimetersOutput {
+	return o
+}
+
+func (o ServicePerimetersOutput) ToServicePerimetersOutputWithContext(ctx context.Context) ServicePerimetersOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ServicePerimetersOutput{})
 }

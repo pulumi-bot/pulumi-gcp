@@ -4,6 +4,7 @@
 package iap
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -31,14 +32,15 @@ type TunnelIamMember struct {
 // NewTunnelIamMember registers a new resource with the given unique name, arguments, and options.
 func NewTunnelIamMember(ctx *pulumi.Context,
 	name string, args *TunnelIamMemberArgs, opts ...pulumi.ResourceOption) (*TunnelIamMember, error) {
-	if args == nil || args.Member == nil {
-		return nil, errors.New("missing required argument 'Member'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &TunnelIamMemberArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Member == nil {
+		return nil, errors.New("invalid value for required argument 'Member'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource TunnelIamMember
 	err := ctx.RegisterResource("gcp:iap/tunnelIamMember:TunnelIamMember", name, args, &resource, opts...)
@@ -128,4 +130,43 @@ type TunnelIamMemberArgs struct {
 
 func (TunnelIamMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*tunnelIamMemberArgs)(nil)).Elem()
+}
+
+type TunnelIamMemberInput interface {
+	pulumi.Input
+
+	ToTunnelIamMemberOutput() TunnelIamMemberOutput
+	ToTunnelIamMemberOutputWithContext(ctx context.Context) TunnelIamMemberOutput
+}
+
+func (TunnelIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*TunnelIamMember)(nil)).Elem()
+}
+
+func (i TunnelIamMember) ToTunnelIamMemberOutput() TunnelIamMemberOutput {
+	return i.ToTunnelIamMemberOutputWithContext(context.Background())
+}
+
+func (i TunnelIamMember) ToTunnelIamMemberOutputWithContext(ctx context.Context) TunnelIamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TunnelIamMemberOutput)
+}
+
+type TunnelIamMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (TunnelIamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TunnelIamMemberOutput)(nil)).Elem()
+}
+
+func (o TunnelIamMemberOutput) ToTunnelIamMemberOutput() TunnelIamMemberOutput {
+	return o
+}
+
+func (o TunnelIamMemberOutput) ToTunnelIamMemberOutputWithContext(ctx context.Context) TunnelIamMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TunnelIamMemberOutput{})
 }

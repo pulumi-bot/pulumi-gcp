@@ -4,6 +4,7 @@
 package projects
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -32,14 +33,15 @@ type DefaultServiceAccounts struct {
 // NewDefaultServiceAccounts registers a new resource with the given unique name, arguments, and options.
 func NewDefaultServiceAccounts(ctx *pulumi.Context,
 	name string, args *DefaultServiceAccountsArgs, opts ...pulumi.ResourceOption) (*DefaultServiceAccounts, error) {
-	if args == nil || args.Action == nil {
-		return nil, errors.New("missing required argument 'Action'")
-	}
-	if args == nil || args.Project == nil {
-		return nil, errors.New("missing required argument 'Project'")
-	}
 	if args == nil {
-		args = &DefaultServiceAccountsArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Action == nil {
+		return nil, errors.New("invalid value for required argument 'Action'")
+	}
+	if args.Project == nil {
+		return nil, errors.New("invalid value for required argument 'Project'")
 	}
 	var resource DefaultServiceAccounts
 	err := ctx.RegisterResource("gcp:projects/defaultServiceAccounts:DefaultServiceAccounts", name, args, &resource, opts...)
@@ -109,4 +111,43 @@ type DefaultServiceAccountsArgs struct {
 
 func (DefaultServiceAccountsArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*defaultServiceAccountsArgs)(nil)).Elem()
+}
+
+type DefaultServiceAccountsInput interface {
+	pulumi.Input
+
+	ToDefaultServiceAccountsOutput() DefaultServiceAccountsOutput
+	ToDefaultServiceAccountsOutputWithContext(ctx context.Context) DefaultServiceAccountsOutput
+}
+
+func (DefaultServiceAccounts) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultServiceAccounts)(nil)).Elem()
+}
+
+func (i DefaultServiceAccounts) ToDefaultServiceAccountsOutput() DefaultServiceAccountsOutput {
+	return i.ToDefaultServiceAccountsOutputWithContext(context.Background())
+}
+
+func (i DefaultServiceAccounts) ToDefaultServiceAccountsOutputWithContext(ctx context.Context) DefaultServiceAccountsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultServiceAccountsOutput)
+}
+
+type DefaultServiceAccountsOutput struct {
+	*pulumi.OutputState
+}
+
+func (DefaultServiceAccountsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultServiceAccountsOutput)(nil)).Elem()
+}
+
+func (o DefaultServiceAccountsOutput) ToDefaultServiceAccountsOutput() DefaultServiceAccountsOutput {
+	return o
+}
+
+func (o DefaultServiceAccountsOutput) ToDefaultServiceAccountsOutputWithContext(ctx context.Context) DefaultServiceAccountsOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DefaultServiceAccountsOutput{})
 }

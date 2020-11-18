@@ -4,6 +4,7 @@
 package bigquery
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -43,14 +44,15 @@ type DatasetIamPolicy struct {
 // NewDatasetIamPolicy registers a new resource with the given unique name, arguments, and options.
 func NewDatasetIamPolicy(ctx *pulumi.Context,
 	name string, args *DatasetIamPolicyArgs, opts ...pulumi.ResourceOption) (*DatasetIamPolicy, error) {
-	if args == nil || args.DatasetId == nil {
-		return nil, errors.New("missing required argument 'DatasetId'")
-	}
-	if args == nil || args.PolicyData == nil {
-		return nil, errors.New("missing required argument 'PolicyData'")
-	}
 	if args == nil {
-		args = &DatasetIamPolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.DatasetId == nil {
+		return nil, errors.New("invalid value for required argument 'DatasetId'")
+	}
+	if args.PolicyData == nil {
+		return nil, errors.New("invalid value for required argument 'PolicyData'")
 	}
 	var resource DatasetIamPolicy
 	err := ctx.RegisterResource("gcp:bigquery/datasetIamPolicy:DatasetIamPolicy", name, args, &resource, opts...)
@@ -120,4 +122,43 @@ type DatasetIamPolicyArgs struct {
 
 func (DatasetIamPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*datasetIamPolicyArgs)(nil)).Elem()
+}
+
+type DatasetIamPolicyInput interface {
+	pulumi.Input
+
+	ToDatasetIamPolicyOutput() DatasetIamPolicyOutput
+	ToDatasetIamPolicyOutputWithContext(ctx context.Context) DatasetIamPolicyOutput
+}
+
+func (DatasetIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatasetIamPolicy)(nil)).Elem()
+}
+
+func (i DatasetIamPolicy) ToDatasetIamPolicyOutput() DatasetIamPolicyOutput {
+	return i.ToDatasetIamPolicyOutputWithContext(context.Background())
+}
+
+func (i DatasetIamPolicy) ToDatasetIamPolicyOutputWithContext(ctx context.Context) DatasetIamPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetIamPolicyOutput)
+}
+
+type DatasetIamPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (DatasetIamPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatasetIamPolicyOutput)(nil)).Elem()
+}
+
+func (o DatasetIamPolicyOutput) ToDatasetIamPolicyOutput() DatasetIamPolicyOutput {
+	return o
+}
+
+func (o DatasetIamPolicyOutput) ToDatasetIamPolicyOutputWithContext(ctx context.Context) DatasetIamPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DatasetIamPolicyOutput{})
 }

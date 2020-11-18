@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -124,11 +125,12 @@ type GlobalForwardingRule struct {
 // NewGlobalForwardingRule registers a new resource with the given unique name, arguments, and options.
 func NewGlobalForwardingRule(ctx *pulumi.Context,
 	name string, args *GlobalForwardingRuleArgs, opts ...pulumi.ResourceOption) (*GlobalForwardingRule, error) {
-	if args == nil || args.Target == nil {
-		return nil, errors.New("missing required argument 'Target'")
-	}
 	if args == nil {
-		args = &GlobalForwardingRuleArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Target == nil {
+		return nil, errors.New("invalid value for required argument 'Target'")
 	}
 	var resource GlobalForwardingRule
 	err := ctx.RegisterResource("gcp:compute/globalForwardingRule:GlobalForwardingRule", name, args, &resource, opts...)
@@ -550,4 +552,43 @@ type GlobalForwardingRuleArgs struct {
 
 func (GlobalForwardingRuleArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*globalForwardingRuleArgs)(nil)).Elem()
+}
+
+type GlobalForwardingRuleInput interface {
+	pulumi.Input
+
+	ToGlobalForwardingRuleOutput() GlobalForwardingRuleOutput
+	ToGlobalForwardingRuleOutputWithContext(ctx context.Context) GlobalForwardingRuleOutput
+}
+
+func (GlobalForwardingRule) ElementType() reflect.Type {
+	return reflect.TypeOf((*GlobalForwardingRule)(nil)).Elem()
+}
+
+func (i GlobalForwardingRule) ToGlobalForwardingRuleOutput() GlobalForwardingRuleOutput {
+	return i.ToGlobalForwardingRuleOutputWithContext(context.Background())
+}
+
+func (i GlobalForwardingRule) ToGlobalForwardingRuleOutputWithContext(ctx context.Context) GlobalForwardingRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalForwardingRuleOutput)
+}
+
+type GlobalForwardingRuleOutput struct {
+	*pulumi.OutputState
+}
+
+func (GlobalForwardingRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GlobalForwardingRuleOutput)(nil)).Elem()
+}
+
+func (o GlobalForwardingRuleOutput) ToGlobalForwardingRuleOutput() GlobalForwardingRuleOutput {
+	return o
+}
+
+func (o GlobalForwardingRuleOutput) ToGlobalForwardingRuleOutputWithContext(ctx context.Context) GlobalForwardingRuleOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(GlobalForwardingRuleOutput{})
 }

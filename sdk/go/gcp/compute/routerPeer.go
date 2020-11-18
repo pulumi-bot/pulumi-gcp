@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -82,20 +83,21 @@ type RouterPeer struct {
 // NewRouterPeer registers a new resource with the given unique name, arguments, and options.
 func NewRouterPeer(ctx *pulumi.Context,
 	name string, args *RouterPeerArgs, opts ...pulumi.ResourceOption) (*RouterPeer, error) {
-	if args == nil || args.Interface == nil {
-		return nil, errors.New("missing required argument 'Interface'")
-	}
-	if args == nil || args.PeerAsn == nil {
-		return nil, errors.New("missing required argument 'PeerAsn'")
-	}
-	if args == nil || args.PeerIpAddress == nil {
-		return nil, errors.New("missing required argument 'PeerIpAddress'")
-	}
-	if args == nil || args.Router == nil {
-		return nil, errors.New("missing required argument 'Router'")
-	}
 	if args == nil {
-		args = &RouterPeerArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Interface == nil {
+		return nil, errors.New("invalid value for required argument 'Interface'")
+	}
+	if args.PeerAsn == nil {
+		return nil, errors.New("invalid value for required argument 'PeerAsn'")
+	}
+	if args.PeerIpAddress == nil {
+		return nil, errors.New("invalid value for required argument 'PeerIpAddress'")
+	}
+	if args.Router == nil {
+		return nil, errors.New("invalid value for required argument 'Router'")
 	}
 	var resource RouterPeer
 	err := ctx.RegisterResource("gcp:compute/routerPeer:RouterPeer", name, args, &resource, opts...)
@@ -331,4 +333,43 @@ type RouterPeerArgs struct {
 
 func (RouterPeerArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*routerPeerArgs)(nil)).Elem()
+}
+
+type RouterPeerInput interface {
+	pulumi.Input
+
+	ToRouterPeerOutput() RouterPeerOutput
+	ToRouterPeerOutputWithContext(ctx context.Context) RouterPeerOutput
+}
+
+func (RouterPeer) ElementType() reflect.Type {
+	return reflect.TypeOf((*RouterPeer)(nil)).Elem()
+}
+
+func (i RouterPeer) ToRouterPeerOutput() RouterPeerOutput {
+	return i.ToRouterPeerOutputWithContext(context.Background())
+}
+
+func (i RouterPeer) ToRouterPeerOutputWithContext(ctx context.Context) RouterPeerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RouterPeerOutput)
+}
+
+type RouterPeerOutput struct {
+	*pulumi.OutputState
+}
+
+func (RouterPeerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RouterPeerOutput)(nil)).Elem()
+}
+
+func (o RouterPeerOutput) ToRouterPeerOutput() RouterPeerOutput {
+	return o
+}
+
+func (o RouterPeerOutput) ToRouterPeerOutputWithContext(ctx context.Context) RouterPeerOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RouterPeerOutput{})
 }

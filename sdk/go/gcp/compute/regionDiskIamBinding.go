@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -41,14 +42,15 @@ type RegionDiskIamBinding struct {
 // NewRegionDiskIamBinding registers a new resource with the given unique name, arguments, and options.
 func NewRegionDiskIamBinding(ctx *pulumi.Context,
 	name string, args *RegionDiskIamBindingArgs, opts ...pulumi.ResourceOption) (*RegionDiskIamBinding, error) {
-	if args == nil || args.Members == nil {
-		return nil, errors.New("missing required argument 'Members'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &RegionDiskIamBindingArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Members == nil {
+		return nil, errors.New("invalid value for required argument 'Members'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource RegionDiskIamBinding
 	err := ctx.RegisterResource("gcp:compute/regionDiskIamBinding:RegionDiskIamBinding", name, args, &resource, opts...)
@@ -142,4 +144,43 @@ type RegionDiskIamBindingArgs struct {
 
 func (RegionDiskIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*regionDiskIamBindingArgs)(nil)).Elem()
+}
+
+type RegionDiskIamBindingInput interface {
+	pulumi.Input
+
+	ToRegionDiskIamBindingOutput() RegionDiskIamBindingOutput
+	ToRegionDiskIamBindingOutputWithContext(ctx context.Context) RegionDiskIamBindingOutput
+}
+
+func (RegionDiskIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionDiskIamBinding)(nil)).Elem()
+}
+
+func (i RegionDiskIamBinding) ToRegionDiskIamBindingOutput() RegionDiskIamBindingOutput {
+	return i.ToRegionDiskIamBindingOutputWithContext(context.Background())
+}
+
+func (i RegionDiskIamBinding) ToRegionDiskIamBindingOutputWithContext(ctx context.Context) RegionDiskIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegionDiskIamBindingOutput)
+}
+
+type RegionDiskIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (RegionDiskIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionDiskIamBindingOutput)(nil)).Elem()
+}
+
+func (o RegionDiskIamBindingOutput) ToRegionDiskIamBindingOutput() RegionDiskIamBindingOutput {
+	return o
+}
+
+func (o RegionDiskIamBindingOutput) ToRegionDiskIamBindingOutputWithContext(ctx context.Context) RegionDiskIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RegionDiskIamBindingOutput{})
 }
