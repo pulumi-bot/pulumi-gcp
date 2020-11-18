@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -37,14 +38,15 @@ type ImageIamPolicy struct {
 // NewImageIamPolicy registers a new resource with the given unique name, arguments, and options.
 func NewImageIamPolicy(ctx *pulumi.Context,
 	name string, args *ImageIamPolicyArgs, opts ...pulumi.ResourceOption) (*ImageIamPolicy, error) {
-	if args == nil || args.Image == nil {
-		return nil, errors.New("missing required argument 'Image'")
-	}
-	if args == nil || args.PolicyData == nil {
-		return nil, errors.New("missing required argument 'PolicyData'")
-	}
 	if args == nil {
-		args = &ImageIamPolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Image == nil {
+		return nil, errors.New("invalid value for required argument 'Image'")
+	}
+	if args.PolicyData == nil {
+		return nil, errors.New("invalid value for required argument 'PolicyData'")
 	}
 	var resource ImageIamPolicy
 	err := ctx.RegisterResource("gcp:compute/imageIamPolicy:ImageIamPolicy", name, args, &resource, opts...)
@@ -122,4 +124,43 @@ type ImageIamPolicyArgs struct {
 
 func (ImageIamPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*imageIamPolicyArgs)(nil)).Elem()
+}
+
+type ImageIamPolicyInput interface {
+	pulumi.Input
+
+	ToImageIamPolicyOutput() ImageIamPolicyOutput
+	ToImageIamPolicyOutputWithContext(ctx context.Context) ImageIamPolicyOutput
+}
+
+func (ImageIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*ImageIamPolicy)(nil)).Elem()
+}
+
+func (i ImageIamPolicy) ToImageIamPolicyOutput() ImageIamPolicyOutput {
+	return i.ToImageIamPolicyOutputWithContext(context.Background())
+}
+
+func (i ImageIamPolicy) ToImageIamPolicyOutputWithContext(ctx context.Context) ImageIamPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ImageIamPolicyOutput)
+}
+
+type ImageIamPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (ImageIamPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ImageIamPolicyOutput)(nil)).Elem()
+}
+
+func (o ImageIamPolicyOutput) ToImageIamPolicyOutput() ImageIamPolicyOutput {
+	return o
+}
+
+func (o ImageIamPolicyOutput) ToImageIamPolicyOutputWithContext(ctx context.Context) ImageIamPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ImageIamPolicyOutput{})
 }

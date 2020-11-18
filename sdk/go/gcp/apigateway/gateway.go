@@ -4,6 +4,7 @@
 package apigateway
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -35,14 +36,15 @@ type Gateway struct {
 // NewGateway registers a new resource with the given unique name, arguments, and options.
 func NewGateway(ctx *pulumi.Context,
 	name string, args *GatewayArgs, opts ...pulumi.ResourceOption) (*Gateway, error) {
-	if args == nil || args.ApiConfig == nil {
-		return nil, errors.New("missing required argument 'ApiConfig'")
-	}
-	if args == nil || args.GatewayId == nil {
-		return nil, errors.New("missing required argument 'GatewayId'")
-	}
 	if args == nil {
-		args = &GatewayArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.ApiConfig == nil {
+		return nil, errors.New("invalid value for required argument 'ApiConfig'")
+	}
+	if args.GatewayId == nil {
+		return nil, errors.New("invalid value for required argument 'GatewayId'")
 	}
 	var resource Gateway
 	err := ctx.RegisterResource("gcp:apigateway/gateway:Gateway", name, args, &resource, opts...)
@@ -144,4 +146,43 @@ type GatewayArgs struct {
 
 func (GatewayArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*gatewayArgs)(nil)).Elem()
+}
+
+type GatewayInput interface {
+	pulumi.Input
+
+	ToGatewayOutput() GatewayOutput
+	ToGatewayOutputWithContext(ctx context.Context) GatewayOutput
+}
+
+func (Gateway) ElementType() reflect.Type {
+	return reflect.TypeOf((*Gateway)(nil)).Elem()
+}
+
+func (i Gateway) ToGatewayOutput() GatewayOutput {
+	return i.ToGatewayOutputWithContext(context.Background())
+}
+
+func (i Gateway) ToGatewayOutputWithContext(ctx context.Context) GatewayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GatewayOutput)
+}
+
+type GatewayOutput struct {
+	*pulumi.OutputState
+}
+
+func (GatewayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GatewayOutput)(nil)).Elem()
+}
+
+func (o GatewayOutput) ToGatewayOutput() GatewayOutput {
+	return o
+}
+
+func (o GatewayOutput) ToGatewayOutputWithContext(ctx context.Context) GatewayOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(GatewayOutput{})
 }

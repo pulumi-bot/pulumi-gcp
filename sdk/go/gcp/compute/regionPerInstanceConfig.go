@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -59,14 +60,15 @@ type RegionPerInstanceConfig struct {
 // NewRegionPerInstanceConfig registers a new resource with the given unique name, arguments, and options.
 func NewRegionPerInstanceConfig(ctx *pulumi.Context,
 	name string, args *RegionPerInstanceConfigArgs, opts ...pulumi.ResourceOption) (*RegionPerInstanceConfig, error) {
-	if args == nil || args.Region == nil {
-		return nil, errors.New("missing required argument 'Region'")
-	}
-	if args == nil || args.RegionInstanceGroupManager == nil {
-		return nil, errors.New("missing required argument 'RegionInstanceGroupManager'")
-	}
 	if args == nil {
-		args = &RegionPerInstanceConfigArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Region == nil {
+		return nil, errors.New("invalid value for required argument 'Region'")
+	}
+	if args.RegionInstanceGroupManager == nil {
+		return nil, errors.New("invalid value for required argument 'RegionInstanceGroupManager'")
 	}
 	var resource RegionPerInstanceConfig
 	err := ctx.RegisterResource("gcp:compute/regionPerInstanceConfig:RegionPerInstanceConfig", name, args, &resource, opts...)
@@ -228,4 +230,43 @@ type RegionPerInstanceConfigArgs struct {
 
 func (RegionPerInstanceConfigArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*regionPerInstanceConfigArgs)(nil)).Elem()
+}
+
+type RegionPerInstanceConfigInput interface {
+	pulumi.Input
+
+	ToRegionPerInstanceConfigOutput() RegionPerInstanceConfigOutput
+	ToRegionPerInstanceConfigOutputWithContext(ctx context.Context) RegionPerInstanceConfigOutput
+}
+
+func (RegionPerInstanceConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionPerInstanceConfig)(nil)).Elem()
+}
+
+func (i RegionPerInstanceConfig) ToRegionPerInstanceConfigOutput() RegionPerInstanceConfigOutput {
+	return i.ToRegionPerInstanceConfigOutputWithContext(context.Background())
+}
+
+func (i RegionPerInstanceConfig) ToRegionPerInstanceConfigOutputWithContext(ctx context.Context) RegionPerInstanceConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegionPerInstanceConfigOutput)
+}
+
+type RegionPerInstanceConfigOutput struct {
+	*pulumi.OutputState
+}
+
+func (RegionPerInstanceConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionPerInstanceConfigOutput)(nil)).Elem()
+}
+
+func (o RegionPerInstanceConfigOutput) ToRegionPerInstanceConfigOutput() RegionPerInstanceConfigOutput {
+	return o
+}
+
+func (o RegionPerInstanceConfigOutput) ToRegionPerInstanceConfigOutputWithContext(ctx context.Context) RegionPerInstanceConfigOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RegionPerInstanceConfigOutput{})
 }

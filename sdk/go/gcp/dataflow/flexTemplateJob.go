@@ -4,6 +4,7 @@
 package dataflow
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -66,11 +67,12 @@ type FlexTemplateJob struct {
 // NewFlexTemplateJob registers a new resource with the given unique name, arguments, and options.
 func NewFlexTemplateJob(ctx *pulumi.Context,
 	name string, args *FlexTemplateJobArgs, opts ...pulumi.ResourceOption) (*FlexTemplateJob, error) {
-	if args == nil || args.ContainerSpecGcsPath == nil {
-		return nil, errors.New("missing required argument 'ContainerSpecGcsPath'")
-	}
 	if args == nil {
-		args = &FlexTemplateJobArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.ContainerSpecGcsPath == nil {
+		return nil, errors.New("invalid value for required argument 'ContainerSpecGcsPath'")
 	}
 	var resource FlexTemplateJob
 	err := ctx.RegisterResource("gcp:dataflow/flexTemplateJob:FlexTemplateJob", name, args, &resource, opts...)
@@ -192,4 +194,43 @@ type FlexTemplateJobArgs struct {
 
 func (FlexTemplateJobArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*flexTemplateJobArgs)(nil)).Elem()
+}
+
+type FlexTemplateJobInput interface {
+	pulumi.Input
+
+	ToFlexTemplateJobOutput() FlexTemplateJobOutput
+	ToFlexTemplateJobOutputWithContext(ctx context.Context) FlexTemplateJobOutput
+}
+
+func (FlexTemplateJob) ElementType() reflect.Type {
+	return reflect.TypeOf((*FlexTemplateJob)(nil)).Elem()
+}
+
+func (i FlexTemplateJob) ToFlexTemplateJobOutput() FlexTemplateJobOutput {
+	return i.ToFlexTemplateJobOutputWithContext(context.Background())
+}
+
+func (i FlexTemplateJob) ToFlexTemplateJobOutputWithContext(ctx context.Context) FlexTemplateJobOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FlexTemplateJobOutput)
+}
+
+type FlexTemplateJobOutput struct {
+	*pulumi.OutputState
+}
+
+func (FlexTemplateJobOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FlexTemplateJobOutput)(nil)).Elem()
+}
+
+func (o FlexTemplateJobOutput) ToFlexTemplateJobOutput() FlexTemplateJobOutput {
+	return o
+}
+
+func (o FlexTemplateJobOutput) ToFlexTemplateJobOutputWithContext(ctx context.Context) FlexTemplateJobOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(FlexTemplateJobOutput{})
 }

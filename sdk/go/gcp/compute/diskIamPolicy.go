@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -41,11 +42,12 @@ type DiskIamPolicy struct {
 // NewDiskIamPolicy registers a new resource with the given unique name, arguments, and options.
 func NewDiskIamPolicy(ctx *pulumi.Context,
 	name string, args *DiskIamPolicyArgs, opts ...pulumi.ResourceOption) (*DiskIamPolicy, error) {
-	if args == nil || args.PolicyData == nil {
-		return nil, errors.New("missing required argument 'PolicyData'")
-	}
 	if args == nil {
-		args = &DiskIamPolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.PolicyData == nil {
+		return nil, errors.New("invalid value for required argument 'PolicyData'")
 	}
 	var resource DiskIamPolicy
 	err := ctx.RegisterResource("gcp:compute/diskIamPolicy:DiskIamPolicy", name, args, &resource, opts...)
@@ -139,4 +141,43 @@ type DiskIamPolicyArgs struct {
 
 func (DiskIamPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*diskIamPolicyArgs)(nil)).Elem()
+}
+
+type DiskIamPolicyInput interface {
+	pulumi.Input
+
+	ToDiskIamPolicyOutput() DiskIamPolicyOutput
+	ToDiskIamPolicyOutputWithContext(ctx context.Context) DiskIamPolicyOutput
+}
+
+func (DiskIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*DiskIamPolicy)(nil)).Elem()
+}
+
+func (i DiskIamPolicy) ToDiskIamPolicyOutput() DiskIamPolicyOutput {
+	return i.ToDiskIamPolicyOutputWithContext(context.Background())
+}
+
+func (i DiskIamPolicy) ToDiskIamPolicyOutputWithContext(ctx context.Context) DiskIamPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DiskIamPolicyOutput)
+}
+
+type DiskIamPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (DiskIamPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DiskIamPolicyOutput)(nil)).Elem()
+}
+
+func (o DiskIamPolicyOutput) ToDiskIamPolicyOutput() DiskIamPolicyOutput {
+	return o
+}
+
+func (o DiskIamPolicyOutput) ToDiskIamPolicyOutputWithContext(ctx context.Context) DiskIamPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DiskIamPolicyOutput{})
 }

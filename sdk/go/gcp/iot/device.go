@@ -4,6 +4,7 @@
 package iot
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -65,11 +66,12 @@ type Device struct {
 // NewDevice registers a new resource with the given unique name, arguments, and options.
 func NewDevice(ctx *pulumi.Context,
 	name string, args *DeviceArgs, opts ...pulumi.ResourceOption) (*Device, error) {
-	if args == nil || args.Registry == nil {
-		return nil, errors.New("missing required argument 'Registry'")
-	}
 	if args == nil {
-		args = &DeviceArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Registry == nil {
+		return nil, errors.New("invalid value for required argument 'Registry'")
 	}
 	var resource Device
 	err := ctx.RegisterResource("gcp:iot/device:Device", name, args, &resource, opts...)
@@ -221,4 +223,43 @@ type DeviceArgs struct {
 
 func (DeviceArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*deviceArgs)(nil)).Elem()
+}
+
+type DeviceInput interface {
+	pulumi.Input
+
+	ToDeviceOutput() DeviceOutput
+	ToDeviceOutputWithContext(ctx context.Context) DeviceOutput
+}
+
+func (Device) ElementType() reflect.Type {
+	return reflect.TypeOf((*Device)(nil)).Elem()
+}
+
+func (i Device) ToDeviceOutput() DeviceOutput {
+	return i.ToDeviceOutputWithContext(context.Background())
+}
+
+func (i Device) ToDeviceOutputWithContext(ctx context.Context) DeviceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeviceOutput)
+}
+
+type DeviceOutput struct {
+	*pulumi.OutputState
+}
+
+func (DeviceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeviceOutput)(nil)).Elem()
+}
+
+func (o DeviceOutput) ToDeviceOutput() DeviceOutput {
+	return o
+}
+
+func (o DeviceOutput) ToDeviceOutputWithContext(ctx context.Context) DeviceOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DeviceOutput{})
 }

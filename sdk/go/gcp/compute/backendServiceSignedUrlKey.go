@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -41,14 +42,15 @@ type BackendServiceSignedUrlKey struct {
 // NewBackendServiceSignedUrlKey registers a new resource with the given unique name, arguments, and options.
 func NewBackendServiceSignedUrlKey(ctx *pulumi.Context,
 	name string, args *BackendServiceSignedUrlKeyArgs, opts ...pulumi.ResourceOption) (*BackendServiceSignedUrlKey, error) {
-	if args == nil || args.BackendService == nil {
-		return nil, errors.New("missing required argument 'BackendService'")
-	}
-	if args == nil || args.KeyValue == nil {
-		return nil, errors.New("missing required argument 'KeyValue'")
-	}
 	if args == nil {
-		args = &BackendServiceSignedUrlKeyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.BackendService == nil {
+		return nil, errors.New("invalid value for required argument 'BackendService'")
+	}
+	if args.KeyValue == nil {
+		return nil, errors.New("invalid value for required argument 'KeyValue'")
 	}
 	var resource BackendServiceSignedUrlKey
 	err := ctx.RegisterResource("gcp:compute/backendServiceSignedUrlKey:BackendServiceSignedUrlKey", name, args, &resource, opts...)
@@ -134,4 +136,43 @@ type BackendServiceSignedUrlKeyArgs struct {
 
 func (BackendServiceSignedUrlKeyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*backendServiceSignedUrlKeyArgs)(nil)).Elem()
+}
+
+type BackendServiceSignedUrlKeyInput interface {
+	pulumi.Input
+
+	ToBackendServiceSignedUrlKeyOutput() BackendServiceSignedUrlKeyOutput
+	ToBackendServiceSignedUrlKeyOutputWithContext(ctx context.Context) BackendServiceSignedUrlKeyOutput
+}
+
+func (BackendServiceSignedUrlKey) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackendServiceSignedUrlKey)(nil)).Elem()
+}
+
+func (i BackendServiceSignedUrlKey) ToBackendServiceSignedUrlKeyOutput() BackendServiceSignedUrlKeyOutput {
+	return i.ToBackendServiceSignedUrlKeyOutputWithContext(context.Background())
+}
+
+func (i BackendServiceSignedUrlKey) ToBackendServiceSignedUrlKeyOutputWithContext(ctx context.Context) BackendServiceSignedUrlKeyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceSignedUrlKeyOutput)
+}
+
+type BackendServiceSignedUrlKeyOutput struct {
+	*pulumi.OutputState
+}
+
+func (BackendServiceSignedUrlKeyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackendServiceSignedUrlKeyOutput)(nil)).Elem()
+}
+
+func (o BackendServiceSignedUrlKeyOutput) ToBackendServiceSignedUrlKeyOutput() BackendServiceSignedUrlKeyOutput {
+	return o
+}
+
+func (o BackendServiceSignedUrlKeyOutput) ToBackendServiceSignedUrlKeyOutputWithContext(ctx context.Context) BackendServiceSignedUrlKeyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(BackendServiceSignedUrlKeyOutput{})
 }

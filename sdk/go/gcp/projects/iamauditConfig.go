@@ -4,6 +4,7 @@
 package projects
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -40,14 +41,15 @@ type IAMAuditConfig struct {
 // NewIAMAuditConfig registers a new resource with the given unique name, arguments, and options.
 func NewIAMAuditConfig(ctx *pulumi.Context,
 	name string, args *IAMAuditConfigArgs, opts ...pulumi.ResourceOption) (*IAMAuditConfig, error) {
-	if args == nil || args.AuditLogConfigs == nil {
-		return nil, errors.New("missing required argument 'AuditLogConfigs'")
-	}
-	if args == nil || args.Service == nil {
-		return nil, errors.New("missing required argument 'Service'")
-	}
 	if args == nil {
-		args = &IAMAuditConfigArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.AuditLogConfigs == nil {
+		return nil, errors.New("invalid value for required argument 'AuditLogConfigs'")
+	}
+	if args.Service == nil {
+		return nil, errors.New("invalid value for required argument 'Service'")
 	}
 	var resource IAMAuditConfig
 	err := ctx.RegisterResource("gcp:projects/iAMAuditConfig:IAMAuditConfig", name, args, &resource, opts...)
@@ -125,4 +127,43 @@ type IAMAuditConfigArgs struct {
 
 func (IAMAuditConfigArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*iamauditConfigArgs)(nil)).Elem()
+}
+
+type IAMAuditConfigInput interface {
+	pulumi.Input
+
+	ToIAMAuditConfigOutput() IAMAuditConfigOutput
+	ToIAMAuditConfigOutputWithContext(ctx context.Context) IAMAuditConfigOutput
+}
+
+func (IAMAuditConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*IAMAuditConfig)(nil)).Elem()
+}
+
+func (i IAMAuditConfig) ToIAMAuditConfigOutput() IAMAuditConfigOutput {
+	return i.ToIAMAuditConfigOutputWithContext(context.Background())
+}
+
+func (i IAMAuditConfig) ToIAMAuditConfigOutputWithContext(ctx context.Context) IAMAuditConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IAMAuditConfigOutput)
+}
+
+type IAMAuditConfigOutput struct {
+	*pulumi.OutputState
+}
+
+func (IAMAuditConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IAMAuditConfigOutput)(nil)).Elem()
+}
+
+func (o IAMAuditConfigOutput) ToIAMAuditConfigOutput() IAMAuditConfigOutput {
+	return o
+}
+
+func (o IAMAuditConfigOutput) ToIAMAuditConfigOutputWithContext(ctx context.Context) IAMAuditConfigOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(IAMAuditConfigOutput{})
 }

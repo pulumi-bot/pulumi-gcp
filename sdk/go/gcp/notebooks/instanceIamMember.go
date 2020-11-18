@@ -4,6 +4,7 @@
 package notebooks
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -33,17 +34,18 @@ type InstanceIamMember struct {
 // NewInstanceIamMember registers a new resource with the given unique name, arguments, and options.
 func NewInstanceIamMember(ctx *pulumi.Context,
 	name string, args *InstanceIamMemberArgs, opts ...pulumi.ResourceOption) (*InstanceIamMember, error) {
-	if args == nil || args.InstanceName == nil {
-		return nil, errors.New("missing required argument 'InstanceName'")
-	}
-	if args == nil || args.Member == nil {
-		return nil, errors.New("missing required argument 'Member'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &InstanceIamMemberArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.InstanceName == nil {
+		return nil, errors.New("invalid value for required argument 'InstanceName'")
+	}
+	if args.Member == nil {
+		return nil, errors.New("invalid value for required argument 'Member'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource InstanceIamMember
 	err := ctx.RegisterResource("gcp:notebooks/instanceIamMember:InstanceIamMember", name, args, &resource, opts...)
@@ -141,4 +143,43 @@ type InstanceIamMemberArgs struct {
 
 func (InstanceIamMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*instanceIamMemberArgs)(nil)).Elem()
+}
+
+type InstanceIamMemberInput interface {
+	pulumi.Input
+
+	ToInstanceIamMemberOutput() InstanceIamMemberOutput
+	ToInstanceIamMemberOutputWithContext(ctx context.Context) InstanceIamMemberOutput
+}
+
+func (InstanceIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceIamMember)(nil)).Elem()
+}
+
+func (i InstanceIamMember) ToInstanceIamMemberOutput() InstanceIamMemberOutput {
+	return i.ToInstanceIamMemberOutputWithContext(context.Background())
+}
+
+func (i InstanceIamMember) ToInstanceIamMemberOutputWithContext(ctx context.Context) InstanceIamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceIamMemberOutput)
+}
+
+type InstanceIamMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (InstanceIamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceIamMemberOutput)(nil)).Elem()
+}
+
+func (o InstanceIamMemberOutput) ToInstanceIamMemberOutput() InstanceIamMemberOutput {
+	return o
+}
+
+func (o InstanceIamMemberOutput) ToInstanceIamMemberOutputWithContext(ctx context.Context) InstanceIamMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(InstanceIamMemberOutput{})
 }

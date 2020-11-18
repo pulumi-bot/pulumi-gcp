@@ -4,6 +4,7 @@
 package storage
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -39,17 +40,18 @@ type BucketIAMBinding struct {
 // NewBucketIAMBinding registers a new resource with the given unique name, arguments, and options.
 func NewBucketIAMBinding(ctx *pulumi.Context,
 	name string, args *BucketIAMBindingArgs, opts ...pulumi.ResourceOption) (*BucketIAMBinding, error) {
-	if args == nil || args.Bucket == nil {
-		return nil, errors.New("missing required argument 'Bucket'")
-	}
-	if args == nil || args.Members == nil {
-		return nil, errors.New("missing required argument 'Members'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &BucketIAMBindingArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Bucket == nil {
+		return nil, errors.New("invalid value for required argument 'Bucket'")
+	}
+	if args.Members == nil {
+		return nil, errors.New("invalid value for required argument 'Members'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource BucketIAMBinding
 	err := ctx.RegisterResource("gcp:storage/bucketIAMBinding:BucketIAMBinding", name, args, &resource, opts...)
@@ -135,4 +137,43 @@ type BucketIAMBindingArgs struct {
 
 func (BucketIAMBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*bucketIAMBindingArgs)(nil)).Elem()
+}
+
+type BucketIAMBindingInput interface {
+	pulumi.Input
+
+	ToBucketIAMBindingOutput() BucketIAMBindingOutput
+	ToBucketIAMBindingOutputWithContext(ctx context.Context) BucketIAMBindingOutput
+}
+
+func (BucketIAMBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketIAMBinding)(nil)).Elem()
+}
+
+func (i BucketIAMBinding) ToBucketIAMBindingOutput() BucketIAMBindingOutput {
+	return i.ToBucketIAMBindingOutputWithContext(context.Background())
+}
+
+func (i BucketIAMBinding) ToBucketIAMBindingOutputWithContext(ctx context.Context) BucketIAMBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketIAMBindingOutput)
+}
+
+type BucketIAMBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (BucketIAMBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketIAMBindingOutput)(nil)).Elem()
+}
+
+func (o BucketIAMBindingOutput) ToBucketIAMBindingOutput() BucketIAMBindingOutput {
+	return o
+}
+
+func (o BucketIAMBindingOutput) ToBucketIAMBindingOutputWithContext(ctx context.Context) BucketIAMBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(BucketIAMBindingOutput{})
 }

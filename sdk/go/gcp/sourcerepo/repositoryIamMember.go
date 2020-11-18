@@ -4,6 +4,7 @@
 package sourcerepo
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -39,17 +40,18 @@ type RepositoryIamMember struct {
 // NewRepositoryIamMember registers a new resource with the given unique name, arguments, and options.
 func NewRepositoryIamMember(ctx *pulumi.Context,
 	name string, args *RepositoryIamMemberArgs, opts ...pulumi.ResourceOption) (*RepositoryIamMember, error) {
-	if args == nil || args.Member == nil {
-		return nil, errors.New("missing required argument 'Member'")
-	}
-	if args == nil || args.Repository == nil {
-		return nil, errors.New("missing required argument 'Repository'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &RepositoryIamMemberArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Member == nil {
+		return nil, errors.New("invalid value for required argument 'Member'")
+	}
+	if args.Repository == nil {
+		return nil, errors.New("invalid value for required argument 'Repository'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource RepositoryIamMember
 	err := ctx.RegisterResource("gcp:sourcerepo/repositoryIamMember:RepositoryIamMember", name, args, &resource, opts...)
@@ -135,4 +137,43 @@ type RepositoryIamMemberArgs struct {
 
 func (RepositoryIamMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*repositoryIamMemberArgs)(nil)).Elem()
+}
+
+type RepositoryIamMemberInput interface {
+	pulumi.Input
+
+	ToRepositoryIamMemberOutput() RepositoryIamMemberOutput
+	ToRepositoryIamMemberOutputWithContext(ctx context.Context) RepositoryIamMemberOutput
+}
+
+func (RepositoryIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*RepositoryIamMember)(nil)).Elem()
+}
+
+func (i RepositoryIamMember) ToRepositoryIamMemberOutput() RepositoryIamMemberOutput {
+	return i.ToRepositoryIamMemberOutputWithContext(context.Background())
+}
+
+func (i RepositoryIamMember) ToRepositoryIamMemberOutputWithContext(ctx context.Context) RepositoryIamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RepositoryIamMemberOutput)
+}
+
+type RepositoryIamMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (RepositoryIamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RepositoryIamMemberOutput)(nil)).Elem()
+}
+
+func (o RepositoryIamMemberOutput) ToRepositoryIamMemberOutput() RepositoryIamMemberOutput {
+	return o
+}
+
+func (o RepositoryIamMemberOutput) ToRepositoryIamMemberOutputWithContext(ctx context.Context) RepositoryIamMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RepositoryIamMemberOutput{})
 }

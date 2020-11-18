@@ -4,6 +4,7 @@
 package datacatalog
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -38,11 +39,12 @@ type Taxonomy struct {
 // NewTaxonomy registers a new resource with the given unique name, arguments, and options.
 func NewTaxonomy(ctx *pulumi.Context,
 	name string, args *TaxonomyArgs, opts ...pulumi.ResourceOption) (*Taxonomy, error) {
-	if args == nil || args.DisplayName == nil {
-		return nil, errors.New("missing required argument 'DisplayName'")
-	}
 	if args == nil {
-		args = &TaxonomyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.DisplayName == nil {
+		return nil, errors.New("invalid value for required argument 'DisplayName'")
 	}
 	var resource Taxonomy
 	err := ctx.RegisterResource("gcp:datacatalog/taxonomy:Taxonomy", name, args, &resource, opts...)
@@ -160,4 +162,43 @@ type TaxonomyArgs struct {
 
 func (TaxonomyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*taxonomyArgs)(nil)).Elem()
+}
+
+type TaxonomyInput interface {
+	pulumi.Input
+
+	ToTaxonomyOutput() TaxonomyOutput
+	ToTaxonomyOutputWithContext(ctx context.Context) TaxonomyOutput
+}
+
+func (Taxonomy) ElementType() reflect.Type {
+	return reflect.TypeOf((*Taxonomy)(nil)).Elem()
+}
+
+func (i Taxonomy) ToTaxonomyOutput() TaxonomyOutput {
+	return i.ToTaxonomyOutputWithContext(context.Background())
+}
+
+func (i Taxonomy) ToTaxonomyOutputWithContext(ctx context.Context) TaxonomyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TaxonomyOutput)
+}
+
+type TaxonomyOutput struct {
+	*pulumi.OutputState
+}
+
+func (TaxonomyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TaxonomyOutput)(nil)).Elem()
+}
+
+func (o TaxonomyOutput) ToTaxonomyOutput() TaxonomyOutput {
+	return o
+}
+
+func (o TaxonomyOutput) ToTaxonomyOutputWithContext(ctx context.Context) TaxonomyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TaxonomyOutput{})
 }

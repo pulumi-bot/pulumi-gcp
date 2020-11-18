@@ -4,6 +4,7 @@
 package gameservices
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -47,14 +48,15 @@ type Realm struct {
 // NewRealm registers a new resource with the given unique name, arguments, and options.
 func NewRealm(ctx *pulumi.Context,
 	name string, args *RealmArgs, opts ...pulumi.ResourceOption) (*Realm, error) {
-	if args == nil || args.RealmId == nil {
-		return nil, errors.New("missing required argument 'RealmId'")
-	}
-	if args == nil || args.TimeZone == nil {
-		return nil, errors.New("missing required argument 'TimeZone'")
-	}
 	if args == nil {
-		args = &RealmArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.RealmId == nil {
+		return nil, errors.New("invalid value for required argument 'RealmId'")
+	}
+	if args.TimeZone == nil {
+		return nil, errors.New("invalid value for required argument 'TimeZone'")
 	}
 	var resource Realm
 	err := ctx.RegisterResource("gcp:gameservices/realm:Realm", name, args, &resource, opts...)
@@ -166,4 +168,43 @@ type RealmArgs struct {
 
 func (RealmArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*realmArgs)(nil)).Elem()
+}
+
+type RealmInput interface {
+	pulumi.Input
+
+	ToRealmOutput() RealmOutput
+	ToRealmOutputWithContext(ctx context.Context) RealmOutput
+}
+
+func (Realm) ElementType() reflect.Type {
+	return reflect.TypeOf((*Realm)(nil)).Elem()
+}
+
+func (i Realm) ToRealmOutput() RealmOutput {
+	return i.ToRealmOutputWithContext(context.Background())
+}
+
+func (i Realm) ToRealmOutputWithContext(ctx context.Context) RealmOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RealmOutput)
+}
+
+type RealmOutput struct {
+	*pulumi.OutputState
+}
+
+func (RealmOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RealmOutput)(nil)).Elem()
+}
+
+func (o RealmOutput) ToRealmOutput() RealmOutput {
+	return o
+}
+
+func (o RealmOutput) ToRealmOutputWithContext(ctx context.Context) RealmOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RealmOutput{})
 }

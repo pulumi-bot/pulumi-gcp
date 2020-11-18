@@ -4,6 +4,7 @@
 package kms
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -42,17 +43,18 @@ type KeyRingIAMBinding struct {
 // NewKeyRingIAMBinding registers a new resource with the given unique name, arguments, and options.
 func NewKeyRingIAMBinding(ctx *pulumi.Context,
 	name string, args *KeyRingIAMBindingArgs, opts ...pulumi.ResourceOption) (*KeyRingIAMBinding, error) {
-	if args == nil || args.KeyRingId == nil {
-		return nil, errors.New("missing required argument 'KeyRingId'")
-	}
-	if args == nil || args.Members == nil {
-		return nil, errors.New("missing required argument 'Members'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &KeyRingIAMBindingArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.KeyRingId == nil {
+		return nil, errors.New("invalid value for required argument 'KeyRingId'")
+	}
+	if args.Members == nil {
+		return nil, errors.New("invalid value for required argument 'Members'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource KeyRingIAMBinding
 	err := ctx.RegisterResource("gcp:kms/keyRingIAMBinding:KeyRingIAMBinding", name, args, &resource, opts...)
@@ -150,4 +152,43 @@ type KeyRingIAMBindingArgs struct {
 
 func (KeyRingIAMBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*keyRingIAMBindingArgs)(nil)).Elem()
+}
+
+type KeyRingIAMBindingInput interface {
+	pulumi.Input
+
+	ToKeyRingIAMBindingOutput() KeyRingIAMBindingOutput
+	ToKeyRingIAMBindingOutputWithContext(ctx context.Context) KeyRingIAMBindingOutput
+}
+
+func (KeyRingIAMBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*KeyRingIAMBinding)(nil)).Elem()
+}
+
+func (i KeyRingIAMBinding) ToKeyRingIAMBindingOutput() KeyRingIAMBindingOutput {
+	return i.ToKeyRingIAMBindingOutputWithContext(context.Background())
+}
+
+func (i KeyRingIAMBinding) ToKeyRingIAMBindingOutputWithContext(ctx context.Context) KeyRingIAMBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KeyRingIAMBindingOutput)
+}
+
+type KeyRingIAMBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (KeyRingIAMBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*KeyRingIAMBindingOutput)(nil)).Elem()
+}
+
+func (o KeyRingIAMBindingOutput) ToKeyRingIAMBindingOutput() KeyRingIAMBindingOutput {
+	return o
+}
+
+func (o KeyRingIAMBindingOutput) ToKeyRingIAMBindingOutputWithContext(ctx context.Context) KeyRingIAMBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(KeyRingIAMBindingOutput{})
 }

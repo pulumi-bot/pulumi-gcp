@@ -4,6 +4,7 @@
 package iap
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -38,14 +39,15 @@ type TunnelInstanceIAMPolicy struct {
 // NewTunnelInstanceIAMPolicy registers a new resource with the given unique name, arguments, and options.
 func NewTunnelInstanceIAMPolicy(ctx *pulumi.Context,
 	name string, args *TunnelInstanceIAMPolicyArgs, opts ...pulumi.ResourceOption) (*TunnelInstanceIAMPolicy, error) {
-	if args == nil || args.Instance == nil {
-		return nil, errors.New("missing required argument 'Instance'")
-	}
-	if args == nil || args.PolicyData == nil {
-		return nil, errors.New("missing required argument 'PolicyData'")
-	}
 	if args == nil {
-		args = &TunnelInstanceIAMPolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Instance == nil {
+		return nil, errors.New("invalid value for required argument 'Instance'")
+	}
+	if args.PolicyData == nil {
+		return nil, errors.New("invalid value for required argument 'PolicyData'")
 	}
 	var resource TunnelInstanceIAMPolicy
 	err := ctx.RegisterResource("gcp:iap/tunnelInstanceIAMPolicy:TunnelInstanceIAMPolicy", name, args, &resource, opts...)
@@ -127,4 +129,43 @@ type TunnelInstanceIAMPolicyArgs struct {
 
 func (TunnelInstanceIAMPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*tunnelInstanceIAMPolicyArgs)(nil)).Elem()
+}
+
+type TunnelInstanceIAMPolicyInput interface {
+	pulumi.Input
+
+	ToTunnelInstanceIAMPolicyOutput() TunnelInstanceIAMPolicyOutput
+	ToTunnelInstanceIAMPolicyOutputWithContext(ctx context.Context) TunnelInstanceIAMPolicyOutput
+}
+
+func (TunnelInstanceIAMPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*TunnelInstanceIAMPolicy)(nil)).Elem()
+}
+
+func (i TunnelInstanceIAMPolicy) ToTunnelInstanceIAMPolicyOutput() TunnelInstanceIAMPolicyOutput {
+	return i.ToTunnelInstanceIAMPolicyOutputWithContext(context.Background())
+}
+
+func (i TunnelInstanceIAMPolicy) ToTunnelInstanceIAMPolicyOutputWithContext(ctx context.Context) TunnelInstanceIAMPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TunnelInstanceIAMPolicyOutput)
+}
+
+type TunnelInstanceIAMPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (TunnelInstanceIAMPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TunnelInstanceIAMPolicyOutput)(nil)).Elem()
+}
+
+func (o TunnelInstanceIAMPolicyOutput) ToTunnelInstanceIAMPolicyOutput() TunnelInstanceIAMPolicyOutput {
+	return o
+}
+
+func (o TunnelInstanceIAMPolicyOutput) ToTunnelInstanceIAMPolicyOutputWithContext(ctx context.Context) TunnelInstanceIAMPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TunnelInstanceIAMPolicyOutput{})
 }

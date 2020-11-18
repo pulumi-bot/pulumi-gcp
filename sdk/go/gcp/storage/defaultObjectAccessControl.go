@@ -4,6 +4,7 @@
 package storage
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -66,17 +67,18 @@ type DefaultObjectAccessControl struct {
 // NewDefaultObjectAccessControl registers a new resource with the given unique name, arguments, and options.
 func NewDefaultObjectAccessControl(ctx *pulumi.Context,
 	name string, args *DefaultObjectAccessControlArgs, opts ...pulumi.ResourceOption) (*DefaultObjectAccessControl, error) {
-	if args == nil || args.Bucket == nil {
-		return nil, errors.New("missing required argument 'Bucket'")
-	}
-	if args == nil || args.Entity == nil {
-		return nil, errors.New("missing required argument 'Entity'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &DefaultObjectAccessControlArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Bucket == nil {
+		return nil, errors.New("invalid value for required argument 'Bucket'")
+	}
+	if args.Entity == nil {
+		return nil, errors.New("invalid value for required argument 'Entity'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource DefaultObjectAccessControl
 	err := ctx.RegisterResource("gcp:storage/defaultObjectAccessControl:DefaultObjectAccessControl", name, args, &resource, opts...)
@@ -206,4 +208,43 @@ type DefaultObjectAccessControlArgs struct {
 
 func (DefaultObjectAccessControlArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*defaultObjectAccessControlArgs)(nil)).Elem()
+}
+
+type DefaultObjectAccessControlInput interface {
+	pulumi.Input
+
+	ToDefaultObjectAccessControlOutput() DefaultObjectAccessControlOutput
+	ToDefaultObjectAccessControlOutputWithContext(ctx context.Context) DefaultObjectAccessControlOutput
+}
+
+func (DefaultObjectAccessControl) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultObjectAccessControl)(nil)).Elem()
+}
+
+func (i DefaultObjectAccessControl) ToDefaultObjectAccessControlOutput() DefaultObjectAccessControlOutput {
+	return i.ToDefaultObjectAccessControlOutputWithContext(context.Background())
+}
+
+func (i DefaultObjectAccessControl) ToDefaultObjectAccessControlOutputWithContext(ctx context.Context) DefaultObjectAccessControlOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultObjectAccessControlOutput)
+}
+
+type DefaultObjectAccessControlOutput struct {
+	*pulumi.OutputState
+}
+
+func (DefaultObjectAccessControlOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultObjectAccessControlOutput)(nil)).Elem()
+}
+
+func (o DefaultObjectAccessControlOutput) ToDefaultObjectAccessControlOutput() DefaultObjectAccessControlOutput {
+	return o
+}
+
+func (o DefaultObjectAccessControlOutput) ToDefaultObjectAccessControlOutputWithContext(ctx context.Context) DefaultObjectAccessControlOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DefaultObjectAccessControlOutput{})
 }

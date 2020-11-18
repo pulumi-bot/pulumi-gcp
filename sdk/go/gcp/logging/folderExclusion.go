@@ -4,6 +4,7 @@
 package logging
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -38,14 +39,15 @@ type FolderExclusion struct {
 // NewFolderExclusion registers a new resource with the given unique name, arguments, and options.
 func NewFolderExclusion(ctx *pulumi.Context,
 	name string, args *FolderExclusionArgs, opts ...pulumi.ResourceOption) (*FolderExclusion, error) {
-	if args == nil || args.Filter == nil {
-		return nil, errors.New("missing required argument 'Filter'")
-	}
-	if args == nil || args.Folder == nil {
-		return nil, errors.New("missing required argument 'Folder'")
-	}
 	if args == nil {
-		args = &FolderExclusionArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Filter == nil {
+		return nil, errors.New("invalid value for required argument 'Filter'")
+	}
+	if args.Folder == nil {
+		return nil, errors.New("invalid value for required argument 'Folder'")
 	}
 	var resource FolderExclusion
 	err := ctx.RegisterResource("gcp:logging/folderExclusion:FolderExclusion", name, args, &resource, opts...)
@@ -143,4 +145,43 @@ type FolderExclusionArgs struct {
 
 func (FolderExclusionArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*folderExclusionArgs)(nil)).Elem()
+}
+
+type FolderExclusionInput interface {
+	pulumi.Input
+
+	ToFolderExclusionOutput() FolderExclusionOutput
+	ToFolderExclusionOutputWithContext(ctx context.Context) FolderExclusionOutput
+}
+
+func (FolderExclusion) ElementType() reflect.Type {
+	return reflect.TypeOf((*FolderExclusion)(nil)).Elem()
+}
+
+func (i FolderExclusion) ToFolderExclusionOutput() FolderExclusionOutput {
+	return i.ToFolderExclusionOutputWithContext(context.Background())
+}
+
+func (i FolderExclusion) ToFolderExclusionOutputWithContext(ctx context.Context) FolderExclusionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FolderExclusionOutput)
+}
+
+type FolderExclusionOutput struct {
+	*pulumi.OutputState
+}
+
+func (FolderExclusionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FolderExclusionOutput)(nil)).Elem()
+}
+
+func (o FolderExclusionOutput) ToFolderExclusionOutput() FolderExclusionOutput {
+	return o
+}
+
+func (o FolderExclusionOutput) ToFolderExclusionOutputWithContext(ctx context.Context) FolderExclusionOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(FolderExclusionOutput{})
 }

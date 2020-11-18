@@ -4,6 +4,7 @@
 package spanner
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -42,17 +43,18 @@ type DatabaseIAMPolicy struct {
 // NewDatabaseIAMPolicy registers a new resource with the given unique name, arguments, and options.
 func NewDatabaseIAMPolicy(ctx *pulumi.Context,
 	name string, args *DatabaseIAMPolicyArgs, opts ...pulumi.ResourceOption) (*DatabaseIAMPolicy, error) {
-	if args == nil || args.Database == nil {
-		return nil, errors.New("missing required argument 'Database'")
-	}
-	if args == nil || args.Instance == nil {
-		return nil, errors.New("missing required argument 'Instance'")
-	}
-	if args == nil || args.PolicyData == nil {
-		return nil, errors.New("missing required argument 'PolicyData'")
-	}
 	if args == nil {
-		args = &DatabaseIAMPolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Database == nil {
+		return nil, errors.New("invalid value for required argument 'Database'")
+	}
+	if args.Instance == nil {
+		return nil, errors.New("invalid value for required argument 'Instance'")
+	}
+	if args.PolicyData == nil {
+		return nil, errors.New("invalid value for required argument 'PolicyData'")
 	}
 	var resource DatabaseIAMPolicy
 	err := ctx.RegisterResource("gcp:spanner/databaseIAMPolicy:DatabaseIAMPolicy", name, args, &resource, opts...)
@@ -138,4 +140,43 @@ type DatabaseIAMPolicyArgs struct {
 
 func (DatabaseIAMPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*databaseIAMPolicyArgs)(nil)).Elem()
+}
+
+type DatabaseIAMPolicyInput interface {
+	pulumi.Input
+
+	ToDatabaseIAMPolicyOutput() DatabaseIAMPolicyOutput
+	ToDatabaseIAMPolicyOutputWithContext(ctx context.Context) DatabaseIAMPolicyOutput
+}
+
+func (DatabaseIAMPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatabaseIAMPolicy)(nil)).Elem()
+}
+
+func (i DatabaseIAMPolicy) ToDatabaseIAMPolicyOutput() DatabaseIAMPolicyOutput {
+	return i.ToDatabaseIAMPolicyOutputWithContext(context.Background())
+}
+
+func (i DatabaseIAMPolicy) ToDatabaseIAMPolicyOutputWithContext(ctx context.Context) DatabaseIAMPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatabaseIAMPolicyOutput)
+}
+
+type DatabaseIAMPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (DatabaseIAMPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatabaseIAMPolicyOutput)(nil)).Elem()
+}
+
+func (o DatabaseIAMPolicyOutput) ToDatabaseIAMPolicyOutput() DatabaseIAMPolicyOutput {
+	return o
+}
+
+func (o DatabaseIAMPolicyOutput) ToDatabaseIAMPolicyOutputWithContext(ctx context.Context) DatabaseIAMPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DatabaseIAMPolicyOutput{})
 }

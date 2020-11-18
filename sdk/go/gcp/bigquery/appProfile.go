@@ -4,6 +4,7 @@
 package bigquery
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -42,11 +43,12 @@ type AppProfile struct {
 // NewAppProfile registers a new resource with the given unique name, arguments, and options.
 func NewAppProfile(ctx *pulumi.Context,
 	name string, args *AppProfileArgs, opts ...pulumi.ResourceOption) (*AppProfile, error) {
-	if args == nil || args.AppProfileId == nil {
-		return nil, errors.New("missing required argument 'AppProfileId'")
-	}
 	if args == nil {
-		args = &AppProfileArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.AppProfileId == nil {
+		return nil, errors.New("invalid value for required argument 'AppProfileId'")
 	}
 	var resource AppProfile
 	err := ctx.RegisterResource("gcp:bigquery/appProfile:AppProfile", name, args, &resource, opts...)
@@ -166,4 +168,43 @@ type AppProfileArgs struct {
 
 func (AppProfileArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*appProfileArgs)(nil)).Elem()
+}
+
+type AppProfileInput interface {
+	pulumi.Input
+
+	ToAppProfileOutput() AppProfileOutput
+	ToAppProfileOutputWithContext(ctx context.Context) AppProfileOutput
+}
+
+func (AppProfile) ElementType() reflect.Type {
+	return reflect.TypeOf((*AppProfile)(nil)).Elem()
+}
+
+func (i AppProfile) ToAppProfileOutput() AppProfileOutput {
+	return i.ToAppProfileOutputWithContext(context.Background())
+}
+
+func (i AppProfile) ToAppProfileOutputWithContext(ctx context.Context) AppProfileOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AppProfileOutput)
+}
+
+type AppProfileOutput struct {
+	*pulumi.OutputState
+}
+
+func (AppProfileOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AppProfileOutput)(nil)).Elem()
+}
+
+func (o AppProfileOutput) ToAppProfileOutput() AppProfileOutput {
+	return o
+}
+
+func (o AppProfileOutput) ToAppProfileOutputWithContext(ctx context.Context) AppProfileOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AppProfileOutput{})
 }

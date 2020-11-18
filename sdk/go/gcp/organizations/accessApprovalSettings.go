@@ -4,6 +4,7 @@
 package organizations
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -33,14 +34,15 @@ type AccessApprovalSettings struct {
 // NewAccessApprovalSettings registers a new resource with the given unique name, arguments, and options.
 func NewAccessApprovalSettings(ctx *pulumi.Context,
 	name string, args *AccessApprovalSettingsArgs, opts ...pulumi.ResourceOption) (*AccessApprovalSettings, error) {
-	if args == nil || args.EnrolledServices == nil {
-		return nil, errors.New("missing required argument 'EnrolledServices'")
-	}
-	if args == nil || args.OrganizationId == nil {
-		return nil, errors.New("missing required argument 'OrganizationId'")
-	}
 	if args == nil {
-		args = &AccessApprovalSettingsArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.EnrolledServices == nil {
+		return nil, errors.New("invalid value for required argument 'EnrolledServices'")
+	}
+	if args.OrganizationId == nil {
+		return nil, errors.New("invalid value for required argument 'OrganizationId'")
 	}
 	var resource AccessApprovalSettings
 	err := ctx.RegisterResource("gcp:organizations/accessApprovalSettings:AccessApprovalSettings", name, args, &resource, opts...)
@@ -134,4 +136,43 @@ type AccessApprovalSettingsArgs struct {
 
 func (AccessApprovalSettingsArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*accessApprovalSettingsArgs)(nil)).Elem()
+}
+
+type AccessApprovalSettingsInput interface {
+	pulumi.Input
+
+	ToAccessApprovalSettingsOutput() AccessApprovalSettingsOutput
+	ToAccessApprovalSettingsOutputWithContext(ctx context.Context) AccessApprovalSettingsOutput
+}
+
+func (AccessApprovalSettings) ElementType() reflect.Type {
+	return reflect.TypeOf((*AccessApprovalSettings)(nil)).Elem()
+}
+
+func (i AccessApprovalSettings) ToAccessApprovalSettingsOutput() AccessApprovalSettingsOutput {
+	return i.ToAccessApprovalSettingsOutputWithContext(context.Background())
+}
+
+func (i AccessApprovalSettings) ToAccessApprovalSettingsOutputWithContext(ctx context.Context) AccessApprovalSettingsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AccessApprovalSettingsOutput)
+}
+
+type AccessApprovalSettingsOutput struct {
+	*pulumi.OutputState
+}
+
+func (AccessApprovalSettingsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AccessApprovalSettingsOutput)(nil)).Elem()
+}
+
+func (o AccessApprovalSettingsOutput) ToAccessApprovalSettingsOutput() AccessApprovalSettingsOutput {
+	return o
+}
+
+func (o AccessApprovalSettingsOutput) ToAccessApprovalSettingsOutputWithContext(ctx context.Context) AccessApprovalSettingsOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AccessApprovalSettingsOutput{})
 }

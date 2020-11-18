@@ -4,6 +4,7 @@
 package spanner
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -43,17 +44,18 @@ type InstanceIAMMember struct {
 // NewInstanceIAMMember registers a new resource with the given unique name, arguments, and options.
 func NewInstanceIAMMember(ctx *pulumi.Context,
 	name string, args *InstanceIAMMemberArgs, opts ...pulumi.ResourceOption) (*InstanceIAMMember, error) {
-	if args == nil || args.Instance == nil {
-		return nil, errors.New("missing required argument 'Instance'")
-	}
-	if args == nil || args.Member == nil {
-		return nil, errors.New("missing required argument 'Member'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &InstanceIAMMemberArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Instance == nil {
+		return nil, errors.New("invalid value for required argument 'Instance'")
+	}
+	if args.Member == nil {
+		return nil, errors.New("invalid value for required argument 'Member'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource InstanceIAMMember
 	err := ctx.RegisterResource("gcp:spanner/instanceIAMMember:InstanceIAMMember", name, args, &resource, opts...)
@@ -143,4 +145,43 @@ type InstanceIAMMemberArgs struct {
 
 func (InstanceIAMMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*instanceIAMMemberArgs)(nil)).Elem()
+}
+
+type InstanceIAMMemberInput interface {
+	pulumi.Input
+
+	ToInstanceIAMMemberOutput() InstanceIAMMemberOutput
+	ToInstanceIAMMemberOutputWithContext(ctx context.Context) InstanceIAMMemberOutput
+}
+
+func (InstanceIAMMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceIAMMember)(nil)).Elem()
+}
+
+func (i InstanceIAMMember) ToInstanceIAMMemberOutput() InstanceIAMMemberOutput {
+	return i.ToInstanceIAMMemberOutputWithContext(context.Background())
+}
+
+func (i InstanceIAMMember) ToInstanceIAMMemberOutputWithContext(ctx context.Context) InstanceIAMMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceIAMMemberOutput)
+}
+
+type InstanceIAMMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (InstanceIAMMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceIAMMemberOutput)(nil)).Elem()
+}
+
+func (o InstanceIAMMemberOutput) ToInstanceIAMMemberOutput() InstanceIAMMemberOutput {
+	return o
+}
+
+func (o InstanceIAMMemberOutput) ToInstanceIAMMemberOutputWithContext(ctx context.Context) InstanceIAMMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(InstanceIAMMemberOutput{})
 }

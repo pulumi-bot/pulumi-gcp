@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -59,14 +60,15 @@ type Autoscalar struct {
 // NewAutoscalar registers a new resource with the given unique name, arguments, and options.
 func NewAutoscalar(ctx *pulumi.Context,
 	name string, args *AutoscalarArgs, opts ...pulumi.ResourceOption) (*Autoscalar, error) {
-	if args == nil || args.AutoscalingPolicy == nil {
-		return nil, errors.New("missing required argument 'AutoscalingPolicy'")
-	}
-	if args == nil || args.Target == nil {
-		return nil, errors.New("missing required argument 'Target'")
-	}
 	if args == nil {
-		args = &AutoscalarArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.AutoscalingPolicy == nil {
+		return nil, errors.New("invalid value for required argument 'AutoscalingPolicy'")
+	}
+	if args.Target == nil {
+		return nil, errors.New("invalid value for required argument 'Target'")
 	}
 	var resource Autoscalar
 	err := ctx.RegisterResource("gcp:compute/autoscalar:Autoscalar", name, args, &resource, opts...)
@@ -204,4 +206,43 @@ type AutoscalarArgs struct {
 
 func (AutoscalarArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*autoscalarArgs)(nil)).Elem()
+}
+
+type AutoscalarInput interface {
+	pulumi.Input
+
+	ToAutoscalarOutput() AutoscalarOutput
+	ToAutoscalarOutputWithContext(ctx context.Context) AutoscalarOutput
+}
+
+func (Autoscalar) ElementType() reflect.Type {
+	return reflect.TypeOf((*Autoscalar)(nil)).Elem()
+}
+
+func (i Autoscalar) ToAutoscalarOutput() AutoscalarOutput {
+	return i.ToAutoscalarOutputWithContext(context.Background())
+}
+
+func (i Autoscalar) ToAutoscalarOutputWithContext(ctx context.Context) AutoscalarOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscalarOutput)
+}
+
+type AutoscalarOutput struct {
+	*pulumi.OutputState
+}
+
+func (AutoscalarOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AutoscalarOutput)(nil)).Elem()
+}
+
+func (o AutoscalarOutput) ToAutoscalarOutput() AutoscalarOutput {
+	return o
+}
+
+func (o AutoscalarOutput) ToAutoscalarOutputWithContext(ctx context.Context) AutoscalarOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AutoscalarOutput{})
 }
