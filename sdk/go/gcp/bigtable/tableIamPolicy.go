@@ -4,6 +4,7 @@
 package bigtable
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -19,6 +20,26 @@ import (
 // > **Note:** `bigtable.TableIamPolicy` **cannot** be used in conjunction with `bigtable.TableIamBinding` and `bigtable.TableIamMember` or they will fight over what your policy should be. In addition, be careful not to accidentally unset ownership of the table as `bigtable.TableIamPolicy` replaces the entire policy.
 //
 // > **Note:** `bigtable.TableIamBinding` resources **can be** used in conjunction with `bigtable.TableIamMember` resources **only if** they do not grant privilege to the same role.
+//
+// ## Import
+//
+// Instance IAM resources can be imported using the project, table name, role and/or member.
+//
+// ```sh
+//  $ pulumi import gcp:bigtable/tableIamPolicy:TableIamPolicy editor "projects/{project}/tables/{table}"
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:bigtable/tableIamPolicy:TableIamPolicy editor "projects/{project}/tables/{table} roles/editor"
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:bigtable/tableIamPolicy:TableIamPolicy editor "projects/{project}/tables/{table} roles/editor user:jane@example.com"
+// ```
+//
+//  -> **Custom Roles**If you're importing a IAM resource with a custom role, make sure to use the
+//
+// full name of the custom role, e.g. `[projects/my-project|organizations/my-org]/roles/my-custom-role`.
 type TableIamPolicy struct {
 	pulumi.CustomResourceState
 
@@ -120,4 +141,43 @@ type TableIamPolicyArgs struct {
 
 func (TableIamPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*tableIamPolicyArgs)(nil)).Elem()
+}
+
+type TableIamPolicyInput interface {
+	pulumi.Input
+
+	ToTableIamPolicyOutput() TableIamPolicyOutput
+	ToTableIamPolicyOutputWithContext(ctx context.Context) TableIamPolicyOutput
+}
+
+func (TableIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*TableIamPolicy)(nil)).Elem()
+}
+
+func (i TableIamPolicy) ToTableIamPolicyOutput() TableIamPolicyOutput {
+	return i.ToTableIamPolicyOutputWithContext(context.Background())
+}
+
+func (i TableIamPolicy) ToTableIamPolicyOutputWithContext(ctx context.Context) TableIamPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TableIamPolicyOutput)
+}
+
+type TableIamPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (TableIamPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TableIamPolicyOutput)(nil)).Elem()
+}
+
+func (o TableIamPolicyOutput) ToTableIamPolicyOutput() TableIamPolicyOutput {
+	return o
+}
+
+func (o TableIamPolicyOutput) ToTableIamPolicyOutputWithContext(ctx context.Context) TableIamPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TableIamPolicyOutput{})
 }

@@ -4,6 +4,7 @@
 package datacatalog
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -20,6 +21,14 @@ import (
 //     * [Official Documentation](https://cloud.google.com/data-catalog/docs)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// TagTemplate can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:datacatalog/tagTemplate:TagTemplate default {{name}}
+// ```
 type TagTemplate struct {
 	pulumi.CustomResourceState
 
@@ -156,4 +165,43 @@ type TagTemplateArgs struct {
 
 func (TagTemplateArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*tagTemplateArgs)(nil)).Elem()
+}
+
+type TagTemplateInput interface {
+	pulumi.Input
+
+	ToTagTemplateOutput() TagTemplateOutput
+	ToTagTemplateOutputWithContext(ctx context.Context) TagTemplateOutput
+}
+
+func (TagTemplate) ElementType() reflect.Type {
+	return reflect.TypeOf((*TagTemplate)(nil)).Elem()
+}
+
+func (i TagTemplate) ToTagTemplateOutput() TagTemplateOutput {
+	return i.ToTagTemplateOutputWithContext(context.Background())
+}
+
+func (i TagTemplate) ToTagTemplateOutputWithContext(ctx context.Context) TagTemplateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TagTemplateOutput)
+}
+
+type TagTemplateOutput struct {
+	*pulumi.OutputState
+}
+
+func (TagTemplateOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TagTemplateOutput)(nil)).Elem()
+}
+
+func (o TagTemplateOutput) ToTagTemplateOutput() TagTemplateOutput {
+	return o
+}
+
+func (o TagTemplateOutput) ToTagTemplateOutputWithContext(ctx context.Context) TagTemplateOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TagTemplateOutput{})
 }

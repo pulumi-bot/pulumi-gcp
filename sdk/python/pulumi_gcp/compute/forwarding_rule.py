@@ -50,6 +50,26 @@ class ForwardingRule(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        ForwardingRule can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:compute/forwardingRule:ForwardingRule default projects/{{project}}/regions/{{region}}/forwardingRules/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/forwardingRule:ForwardingRule default {{project}}/{{region}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/forwardingRule:ForwardingRule default {{region}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/forwardingRule:ForwardingRule default {{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] all_ports: For internal TCP/UDP load balancing (i.e. load balancing scheme is

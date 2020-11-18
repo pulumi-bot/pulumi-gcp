@@ -4,6 +4,7 @@
 package kms
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -25,6 +26,32 @@ import (
 // With IAM Conditions:
 //
 // With IAM Conditions:
+//
+// ## Import
+//
+// IAM member imports use space-delimited identifiers; the resource in question, the role, and the account.
+//
+// This member resource can be imported using the `crypto_key_id`, role, and member identity e.g.
+//
+// ```sh
+//  $ pulumi import gcp:kms/cryptoKeyIAMBinding:CryptoKeyIAMBinding crypto_key "your-project-id/location-name/key-ring-name/key-name roles/viewer user:foo@example.com"
+// ```
+//
+//  IAM binding imports use space-delimited identifiers; first the resource in question and then the role.
+//
+// These bindings can be imported using the `crypto_key_id` and role, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:kms/cryptoKeyIAMBinding:CryptoKeyIAMBinding crypto_key "your-project-id/location-name/key-ring-name/key-name roles/editor"
+// ```
+//
+//  IAM policy imports use the identifier of the resource in question.
+//
+// This policy resource can be imported using the `crypto_key_id`, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:kms/cryptoKeyIAMBinding:CryptoKeyIAMBinding crypto_key your-project-id/location-name/key-ring-name/key-name
+// ```
 type CryptoKeyIAMBinding struct {
 	pulumi.CustomResourceState
 
@@ -151,4 +178,43 @@ type CryptoKeyIAMBindingArgs struct {
 
 func (CryptoKeyIAMBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*cryptoKeyIAMBindingArgs)(nil)).Elem()
+}
+
+type CryptoKeyIAMBindingInput interface {
+	pulumi.Input
+
+	ToCryptoKeyIAMBindingOutput() CryptoKeyIAMBindingOutput
+	ToCryptoKeyIAMBindingOutputWithContext(ctx context.Context) CryptoKeyIAMBindingOutput
+}
+
+func (CryptoKeyIAMBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*CryptoKeyIAMBinding)(nil)).Elem()
+}
+
+func (i CryptoKeyIAMBinding) ToCryptoKeyIAMBindingOutput() CryptoKeyIAMBindingOutput {
+	return i.ToCryptoKeyIAMBindingOutputWithContext(context.Background())
+}
+
+func (i CryptoKeyIAMBinding) ToCryptoKeyIAMBindingOutputWithContext(ctx context.Context) CryptoKeyIAMBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CryptoKeyIAMBindingOutput)
+}
+
+type CryptoKeyIAMBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (CryptoKeyIAMBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CryptoKeyIAMBindingOutput)(nil)).Elem()
+}
+
+func (o CryptoKeyIAMBindingOutput) ToCryptoKeyIAMBindingOutput() CryptoKeyIAMBindingOutput {
+	return o
+}
+
+func (o CryptoKeyIAMBindingOutput) ToCryptoKeyIAMBindingOutputWithContext(ctx context.Context) CryptoKeyIAMBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(CryptoKeyIAMBindingOutput{})
 }

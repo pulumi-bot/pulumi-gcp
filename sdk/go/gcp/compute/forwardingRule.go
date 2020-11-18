@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
@@ -20,6 +21,26 @@ import (
 //     * [Official Documentation](https://cloud.google.com/compute/docs/load-balancing/network/forwarding-rules)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// ForwardingRule can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:compute/forwardingRule:ForwardingRule default projects/{{project}}/regions/{{region}}/forwardingRules/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/forwardingRule:ForwardingRule default {{project}}/{{region}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/forwardingRule:ForwardingRule default {{region}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/forwardingRule:ForwardingRule default {{name}}
+// ```
 type ForwardingRule struct {
 	pulumi.CustomResourceState
 
@@ -745,4 +766,43 @@ type ForwardingRuleArgs struct {
 
 func (ForwardingRuleArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*forwardingRuleArgs)(nil)).Elem()
+}
+
+type ForwardingRuleInput interface {
+	pulumi.Input
+
+	ToForwardingRuleOutput() ForwardingRuleOutput
+	ToForwardingRuleOutputWithContext(ctx context.Context) ForwardingRuleOutput
+}
+
+func (ForwardingRule) ElementType() reflect.Type {
+	return reflect.TypeOf((*ForwardingRule)(nil)).Elem()
+}
+
+func (i ForwardingRule) ToForwardingRuleOutput() ForwardingRuleOutput {
+	return i.ToForwardingRuleOutputWithContext(context.Background())
+}
+
+func (i ForwardingRule) ToForwardingRuleOutputWithContext(ctx context.Context) ForwardingRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ForwardingRuleOutput)
+}
+
+type ForwardingRuleOutput struct {
+	*pulumi.OutputState
+}
+
+func (ForwardingRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ForwardingRuleOutput)(nil)).Elem()
+}
+
+func (o ForwardingRuleOutput) ToForwardingRuleOutput() ForwardingRuleOutput {
+	return o
+}
+
+func (o ForwardingRuleOutput) ToForwardingRuleOutputWithContext(ctx context.Context) ForwardingRuleOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ForwardingRuleOutput{})
 }

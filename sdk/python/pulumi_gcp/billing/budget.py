@@ -37,6 +37,14 @@ class Budget(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        Budget can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:billing/budget:Budget default {{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['BudgetAllUpdatesRuleArgs']] all_updates_rule: Defines notifications that are sent on every update to the

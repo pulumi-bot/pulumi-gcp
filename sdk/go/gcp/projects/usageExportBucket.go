@@ -4,6 +4,7 @@
 package projects
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -19,6 +20,14 @@ import (
 // resource must have `roles/resourcemanager.projectCreator`. See the
 // [Access Control for Organizations Using IAM](https://cloud.google.com/resource-manager/docs/access-control-org)
 // doc for more information.
+//
+// ## Import
+//
+// Projects can be imported using the `project_id`, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:projects/usageExportBucket:UsageExportBucket my_project your-project-id
+// ```
 type UsageExportBucket struct {
 	pulumi.CustomResourceState
 
@@ -103,4 +112,43 @@ type UsageExportBucketArgs struct {
 
 func (UsageExportBucketArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*usageExportBucketArgs)(nil)).Elem()
+}
+
+type UsageExportBucketInput interface {
+	pulumi.Input
+
+	ToUsageExportBucketOutput() UsageExportBucketOutput
+	ToUsageExportBucketOutputWithContext(ctx context.Context) UsageExportBucketOutput
+}
+
+func (UsageExportBucket) ElementType() reflect.Type {
+	return reflect.TypeOf((*UsageExportBucket)(nil)).Elem()
+}
+
+func (i UsageExportBucket) ToUsageExportBucketOutput() UsageExportBucketOutput {
+	return i.ToUsageExportBucketOutputWithContext(context.Background())
+}
+
+func (i UsageExportBucket) ToUsageExportBucketOutputWithContext(ctx context.Context) UsageExportBucketOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UsageExportBucketOutput)
+}
+
+type UsageExportBucketOutput struct {
+	*pulumi.OutputState
+}
+
+func (UsageExportBucketOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UsageExportBucketOutput)(nil)).Elem()
+}
+
+func (o UsageExportBucketOutput) ToUsageExportBucketOutput() UsageExportBucketOutput {
+	return o
+}
+
+func (o UsageExportBucketOutput) ToUsageExportBucketOutputWithContext(ctx context.Context) UsageExportBucketOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(UsageExportBucketOutput{})
 }

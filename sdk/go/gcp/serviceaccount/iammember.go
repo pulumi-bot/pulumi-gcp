@@ -4,6 +4,7 @@
 package serviceaccount
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -21,6 +22,32 @@ import (
 // > **Note:** `serviceAccount.IAMPolicy` **cannot** be used in conjunction with `serviceAccount.IAMBinding` and `serviceAccount.IAMMember` or they will fight over what your policy should be.
 //
 // > **Note:** `serviceAccount.IAMBinding` resources **can be** used in conjunction with `serviceAccount.IAMMember` resources **only if** they do not grant privilege to the same role.
+//
+// ## Import
+//
+// Service account IAM resources can be imported using the project, service account email, role, member identity, and condition (beta).
+//
+// ```sh
+//  $ pulumi import gcp:serviceAccount/iAMMember:IAMMember admin-account-iam projects/{your-project-id}/serviceAccounts/{your-service-account-email}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:serviceAccount/iAMMember:IAMMember admin-account-iam "projects/{your-project-id}/serviceAccounts/{your-service-account-email} iam.serviceAccountUser"
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:serviceAccount/iAMMember:IAMMember admin-account-iam "projects/{your-project-id}/serviceAccounts/{your-service-account-email} roles/editor user:foo@example.com"
+// ```
+//
+//  -> **Custom Roles**If you're importing a IAM resource with a custom role, make sure to use the full name of the custom role, e.g. `[projects/my-project|organizations/my-org]/roles/my-custom-role`. With conditions
+//
+// ```sh
+//  $ pulumi import gcp:serviceAccount/iAMMember:IAMMember admin-account-iam "projects/{your-project-id}/serviceAccounts/{your-service-account-email} iam.serviceAccountUser expires_after_2019_12_31"
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:serviceAccount/iAMMember:IAMMember admin-account-iam "projects/{your-project-id}/serviceAccounts/{your-service-account-email} iam.serviceAccountUser user:foo@example.com expires_after_2019_12_31"
+// ```
 type IAMMember struct {
 	pulumi.CustomResourceState
 
@@ -137,4 +164,43 @@ type IAMMemberArgs struct {
 
 func (IAMMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*iammemberArgs)(nil)).Elem()
+}
+
+type IAMMemberInput interface {
+	pulumi.Input
+
+	ToIAMMemberOutput() IAMMemberOutput
+	ToIAMMemberOutputWithContext(ctx context.Context) IAMMemberOutput
+}
+
+func (IAMMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*IAMMember)(nil)).Elem()
+}
+
+func (i IAMMember) ToIAMMemberOutput() IAMMemberOutput {
+	return i.ToIAMMemberOutputWithContext(context.Background())
+}
+
+func (i IAMMember) ToIAMMemberOutputWithContext(ctx context.Context) IAMMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IAMMemberOutput)
+}
+
+type IAMMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (IAMMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IAMMemberOutput)(nil)).Elem()
+}
+
+func (o IAMMemberOutput) ToIAMMemberOutput() IAMMemberOutput {
+	return o
+}
+
+func (o IAMMemberOutput) ToIAMMemberOutputWithContext(ctx context.Context) IAMMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(IAMMemberOutput{})
 }

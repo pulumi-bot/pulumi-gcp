@@ -4,6 +4,7 @@
 package securitycenter
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -22,6 +23,18 @@ import (
 //     * [Official Documentation](https://cloud.google.com/binary-authorization/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Source can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:securitycenter/source:Source default organizations/{{organization}}/sources/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:securitycenter/source:Source default {{organization}}/{{name}}
+// ```
 type Source struct {
 	pulumi.CustomResourceState
 
@@ -140,4 +153,43 @@ type SourceArgs struct {
 
 func (SourceArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*sourceArgs)(nil)).Elem()
+}
+
+type SourceInput interface {
+	pulumi.Input
+
+	ToSourceOutput() SourceOutput
+	ToSourceOutputWithContext(ctx context.Context) SourceOutput
+}
+
+func (Source) ElementType() reflect.Type {
+	return reflect.TypeOf((*Source)(nil)).Elem()
+}
+
+func (i Source) ToSourceOutput() SourceOutput {
+	return i.ToSourceOutputWithContext(context.Background())
+}
+
+func (i Source) ToSourceOutputWithContext(ctx context.Context) SourceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceOutput)
+}
+
+type SourceOutput struct {
+	*pulumi.OutputState
+}
+
+func (SourceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SourceOutput)(nil)).Elem()
+}
+
+func (o SourceOutput) ToSourceOutput() SourceOutput {
+	return o
+}
+
+func (o SourceOutput) ToSourceOutputWithContext(ctx context.Context) SourceOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SourceOutput{})
 }

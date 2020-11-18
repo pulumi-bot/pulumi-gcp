@@ -17,6 +17,14 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/dialogflow/docs/)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Agent can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import gcp:diagflow/agent:Agent default {{project}}
+ * ```
  */
 export class Agent extends pulumi.CustomResource {
     /**

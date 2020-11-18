@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -23,6 +24,18 @@ import (
 //     * [Adding a persistent disk](https://cloud.google.com/compute/docs/disks/add-persistent-disk)
 //
 // **Note:** When using `compute.AttachedDisk` you **must** use `lifecycle.ignore_changes = ["attachedDisk"]` on the `compute.Instance` resource that has the disks attached. Otherwise the two resources will fight for control of the attached disk block.
+//
+// ## Import
+//
+// Attached Disk can be imported the following ways
+//
+// ```sh
+//  $ pulumi import gcp:compute/attachedDisk:AttachedDisk default projects/{{project}}/zones/{{zone}}/instances/{{instance.name}}/{{disk.name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/attachedDisk:AttachedDisk default {{project}}/{{zone}}/{{instance.name}}/{{disk.name}}
+// ```
 type AttachedDisk struct {
 	pulumi.CustomResourceState
 
@@ -195,4 +208,43 @@ type AttachedDiskArgs struct {
 
 func (AttachedDiskArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*attachedDiskArgs)(nil)).Elem()
+}
+
+type AttachedDiskInput interface {
+	pulumi.Input
+
+	ToAttachedDiskOutput() AttachedDiskOutput
+	ToAttachedDiskOutputWithContext(ctx context.Context) AttachedDiskOutput
+}
+
+func (AttachedDisk) ElementType() reflect.Type {
+	return reflect.TypeOf((*AttachedDisk)(nil)).Elem()
+}
+
+func (i AttachedDisk) ToAttachedDiskOutput() AttachedDiskOutput {
+	return i.ToAttachedDiskOutputWithContext(context.Background())
+}
+
+func (i AttachedDisk) ToAttachedDiskOutputWithContext(ctx context.Context) AttachedDiskOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AttachedDiskOutput)
+}
+
+type AttachedDiskOutput struct {
+	*pulumi.OutputState
+}
+
+func (AttachedDiskOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AttachedDiskOutput)(nil)).Elem()
+}
+
+func (o AttachedDiskOutput) ToAttachedDiskOutput() AttachedDiskOutput {
+	return o
+}
+
+func (o AttachedDiskOutput) ToAttachedDiskOutputWithContext(ctx context.Context) AttachedDiskOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AttachedDiskOutput{})
 }

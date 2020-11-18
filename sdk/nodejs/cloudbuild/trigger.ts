@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
+import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
@@ -16,6 +15,22 @@ import * as utilities from "../utilities";
  *     * [Automating builds using build triggers](https://cloud.google.com/cloud-build/docs/running-builds/automate-builds)
  *
  * ## Example Usage
+ *
+ * ## Import
+ *
+ * Trigger can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import gcp:cloudbuild/trigger:Trigger default projects/{{project}}/triggers/{{trigger_id}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:cloudbuild/trigger:Trigger default {{project}}/{{trigger_id}}
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import gcp:cloudbuild/trigger:Trigger default {{trigger_id}}
+ * ```
  */
 export class Trigger extends pulumi.CustomResource {
     /**

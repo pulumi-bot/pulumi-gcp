@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
@@ -13,6 +14,26 @@ import (
 // that you define for the host and path of an incoming URL.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// RegionUrlMap can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:compute/regionUrlMap:RegionUrlMap default projects/{{project}}/regions/{{region}}/urlMaps/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/regionUrlMap:RegionUrlMap default {{project}}/{{region}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/regionUrlMap:RegionUrlMap default {{region}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/regionUrlMap:RegionUrlMap default {{name}}
+// ```
 type RegionUrlMap struct {
 	pulumi.CustomResourceState
 
@@ -238,4 +259,43 @@ type RegionUrlMapArgs struct {
 
 func (RegionUrlMapArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*regionUrlMapArgs)(nil)).Elem()
+}
+
+type RegionUrlMapInput interface {
+	pulumi.Input
+
+	ToRegionUrlMapOutput() RegionUrlMapOutput
+	ToRegionUrlMapOutputWithContext(ctx context.Context) RegionUrlMapOutput
+}
+
+func (RegionUrlMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionUrlMap)(nil)).Elem()
+}
+
+func (i RegionUrlMap) ToRegionUrlMapOutput() RegionUrlMapOutput {
+	return i.ToRegionUrlMapOutputWithContext(context.Background())
+}
+
+func (i RegionUrlMap) ToRegionUrlMapOutputWithContext(ctx context.Context) RegionUrlMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapOutput)
+}
+
+type RegionUrlMapOutput struct {
+	*pulumi.OutputState
+}
+
+func (RegionUrlMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionUrlMapOutput)(nil)).Elem()
+}
+
+func (o RegionUrlMapOutput) ToRegionUrlMapOutput() RegionUrlMapOutput {
+	return o
+}
+
+func (o RegionUrlMapOutput) ToRegionUrlMapOutputWithContext(ctx context.Context) RegionUrlMapOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RegionUrlMapOutput{})
 }

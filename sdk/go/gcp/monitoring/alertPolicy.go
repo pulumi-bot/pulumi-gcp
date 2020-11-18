@@ -4,6 +4,7 @@
 package monitoring
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -21,6 +22,14 @@ import (
 //     * [Official Documentation](https://cloud.google.com/monitoring/alerts/)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// AlertPolicy can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:monitoring/alertPolicy:AlertPolicy default {{name}}
+// ```
 type AlertPolicy struct {
 	pulumi.CustomResourceState
 
@@ -319,4 +328,43 @@ type AlertPolicyArgs struct {
 
 func (AlertPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*alertPolicyArgs)(nil)).Elem()
+}
+
+type AlertPolicyInput interface {
+	pulumi.Input
+
+	ToAlertPolicyOutput() AlertPolicyOutput
+	ToAlertPolicyOutputWithContext(ctx context.Context) AlertPolicyOutput
+}
+
+func (AlertPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertPolicy)(nil)).Elem()
+}
+
+func (i AlertPolicy) ToAlertPolicyOutput() AlertPolicyOutput {
+	return i.ToAlertPolicyOutputWithContext(context.Background())
+}
+
+func (i AlertPolicy) ToAlertPolicyOutputWithContext(ctx context.Context) AlertPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertPolicyOutput)
+}
+
+type AlertPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (AlertPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertPolicyOutput)(nil)).Elem()
+}
+
+func (o AlertPolicyOutput) ToAlertPolicyOutput() AlertPolicyOutput {
+	return o
+}
+
+func (o AlertPolicyOutput) ToAlertPolicyOutputWithContext(ctx context.Context) AlertPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AlertPolicyOutput{})
 }

@@ -4,6 +4,7 @@
 package iap
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -19,6 +20,30 @@ import (
 // > **Note:** `iap.AppEngineServiceIamPolicy` **cannot** be used in conjunction with `iap.AppEngineServiceIamBinding` and `iap.AppEngineServiceIamMember` or they will fight over what your policy should be.
 //
 // > **Note:** `iap.AppEngineServiceIamBinding` resources **can be** used in conjunction with `iap.AppEngineServiceIamMember` resources **only if** they do not grant privilege to the same role.
+//
+// ## Import
+//
+// For all import syntaxes, the "resource in question" can take any of the following forms* projects/{{project}}/iap_web/appengine-{{appId}}/services/{{service}} * {{project}}/{{appId}}/{{service}} * {{appId}}/{{service}} * {{service}} Any variables not passed in the import command will be taken from the provider configuration. Identity-Aware Proxy appengineservice IAM resources can be imported using the resource identifiers, role, and member. IAM member imports use space-delimited identifiersthe resource in question, the role, and the member identity, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:iap/appEngineServiceIamPolicy:AppEngineServiceIamPolicy editor "projects/{{project}}/iap_web/appengine-{{appId}}/services/{{service}} roles/iap.httpsResourceAccessor user:jane@example.com"
+// ```
+//
+//  IAM binding imports use space-delimited identifiersthe resource in question and the role, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:iap/appEngineServiceIamPolicy:AppEngineServiceIamPolicy editor "projects/{{project}}/iap_web/appengine-{{appId}}/services/{{service}} roles/iap.httpsResourceAccessor"
+// ```
+//
+//  IAM policy imports use the identifier of the resource in question, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:iap/appEngineServiceIamPolicy:AppEngineServiceIamPolicy editor projects/{{project}}/iap_web/appengine-{{appId}}/services/{{service}}
+// ```
+//
+//  -> **Custom Roles**If you're importing a IAM resource with a custom role, make sure to use the
+//
+// full name of the custom role, e.g. `[projects/my-project|organizations/my-org]/roles/my-custom-role`.
 type AppEngineServiceIamPolicy struct {
 	pulumi.CustomResourceState
 
@@ -135,4 +160,43 @@ type AppEngineServiceIamPolicyArgs struct {
 
 func (AppEngineServiceIamPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*appEngineServiceIamPolicyArgs)(nil)).Elem()
+}
+
+type AppEngineServiceIamPolicyInput interface {
+	pulumi.Input
+
+	ToAppEngineServiceIamPolicyOutput() AppEngineServiceIamPolicyOutput
+	ToAppEngineServiceIamPolicyOutputWithContext(ctx context.Context) AppEngineServiceIamPolicyOutput
+}
+
+func (AppEngineServiceIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*AppEngineServiceIamPolicy)(nil)).Elem()
+}
+
+func (i AppEngineServiceIamPolicy) ToAppEngineServiceIamPolicyOutput() AppEngineServiceIamPolicyOutput {
+	return i.ToAppEngineServiceIamPolicyOutputWithContext(context.Background())
+}
+
+func (i AppEngineServiceIamPolicy) ToAppEngineServiceIamPolicyOutputWithContext(ctx context.Context) AppEngineServiceIamPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AppEngineServiceIamPolicyOutput)
+}
+
+type AppEngineServiceIamPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (AppEngineServiceIamPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AppEngineServiceIamPolicyOutput)(nil)).Elem()
+}
+
+func (o AppEngineServiceIamPolicyOutput) ToAppEngineServiceIamPolicyOutput() AppEngineServiceIamPolicyOutput {
+	return o
+}
+
+func (o AppEngineServiceIamPolicyOutput) ToAppEngineServiceIamPolicyOutputWithContext(ctx context.Context) AppEngineServiceIamPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AppEngineServiceIamPolicyOutput{})
 }

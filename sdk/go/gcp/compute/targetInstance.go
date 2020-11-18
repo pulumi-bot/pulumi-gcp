@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -24,6 +25,26 @@ import (
 //     * [Using Protocol Forwarding](https://cloud.google.com/compute/docs/protocol-forwarding)
 //
 // ## Example Usage
+//
+// ## Import
+//
+// TargetInstance can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:compute/targetInstance:TargetInstance default projects/{{project}}/zones/{{zone}}/targetInstances/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/targetInstance:TargetInstance default {{project}}/{{zone}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/targetInstance:TargetInstance default {{zone}}/{{name}}
+// ```
+//
+// ```sh
+//  $ pulumi import gcp:compute/targetInstance:TargetInstance default {{name}}
+// ```
 type TargetInstance struct {
 	pulumi.CustomResourceState
 
@@ -235,4 +256,43 @@ type TargetInstanceArgs struct {
 
 func (TargetInstanceArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*targetInstanceArgs)(nil)).Elem()
+}
+
+type TargetInstanceInput interface {
+	pulumi.Input
+
+	ToTargetInstanceOutput() TargetInstanceOutput
+	ToTargetInstanceOutputWithContext(ctx context.Context) TargetInstanceOutput
+}
+
+func (TargetInstance) ElementType() reflect.Type {
+	return reflect.TypeOf((*TargetInstance)(nil)).Elem()
+}
+
+func (i TargetInstance) ToTargetInstanceOutput() TargetInstanceOutput {
+	return i.ToTargetInstanceOutputWithContext(context.Background())
+}
+
+func (i TargetInstance) ToTargetInstanceOutputWithContext(ctx context.Context) TargetInstanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TargetInstanceOutput)
+}
+
+type TargetInstanceOutput struct {
+	*pulumi.OutputState
+}
+
+func (TargetInstanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TargetInstanceOutput)(nil)).Elem()
+}
+
+func (o TargetInstanceOutput) ToTargetInstanceOutput() TargetInstanceOutput {
+	return o
+}
+
+func (o TargetInstanceOutput) ToTargetInstanceOutputWithContext(ctx context.Context) TargetInstanceOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TargetInstanceOutput{})
 }

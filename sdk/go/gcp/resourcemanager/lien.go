@@ -4,6 +4,7 @@
 package resourcemanager
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -13,6 +14,14 @@ import (
 // A Lien represents an encumbrance on the actions that can be performed on a resource.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// Lien can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:resourcemanager/lien:Lien default {{parent}}/{{name}}
+// ```
 type Lien struct {
 	pulumi.CustomResourceState
 
@@ -178,4 +187,43 @@ type LienArgs struct {
 
 func (LienArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*lienArgs)(nil)).Elem()
+}
+
+type LienInput interface {
+	pulumi.Input
+
+	ToLienOutput() LienOutput
+	ToLienOutputWithContext(ctx context.Context) LienOutput
+}
+
+func (Lien) ElementType() reflect.Type {
+	return reflect.TypeOf((*Lien)(nil)).Elem()
+}
+
+func (i Lien) ToLienOutput() LienOutput {
+	return i.ToLienOutputWithContext(context.Background())
+}
+
+func (i Lien) ToLienOutputWithContext(ctx context.Context) LienOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LienOutput)
+}
+
+type LienOutput struct {
+	*pulumi.OutputState
+}
+
+func (LienOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LienOutput)(nil)).Elem()
+}
+
+func (o LienOutput) ToLienOutput() LienOutput {
+	return o
+}
+
+func (o LienOutput) ToLienOutputWithContext(ctx context.Context) LienOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(LienOutput{})
 }

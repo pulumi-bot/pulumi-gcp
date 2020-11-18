@@ -36,6 +36,22 @@ class SSLPolicy(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        SslPolicy can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:compute/sSLPolicy:SSLPolicy default projects/{{project}}/global/sslPolicies/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/sSLPolicy:SSLPolicy default {{project}}/{{name}}
+        ```
+
+        ```sh
+         $ pulumi import gcp:compute/sSLPolicy:SSLPolicy default {{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] custom_features: Profile specifies the set of SSL features that can be used by the

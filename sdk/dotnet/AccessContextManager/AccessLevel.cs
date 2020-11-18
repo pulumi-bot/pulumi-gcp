@@ -26,6 +26,14 @@ namespace Pulumi.Gcp.AccessContextManager
     /// `billing_project` you defined.
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// AccessLevel can be imported using any of these accepted formats
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:accesscontextmanager/accessLevel:AccessLevel default {{name}}
+    /// ```
     /// </summary>
     public partial class AccessLevel : Pulumi.CustomResource
     {

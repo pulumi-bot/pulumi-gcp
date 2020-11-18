@@ -4,6 +4,7 @@
 package iap
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -19,6 +20,30 @@ import (
 // > **Note:** `iap.WebIamPolicy` **cannot** be used in conjunction with `iap.WebIamBinding` and `iap.WebIamMember` or they will fight over what your policy should be.
 //
 // > **Note:** `iap.WebIamBinding` resources **can be** used in conjunction with `iap.WebIamMember` resources **only if** they do not grant privilege to the same role.
+//
+// ## Import
+//
+// For all import syntaxes, the "resource in question" can take any of the following forms* projects/{{project}}/iap_web * {{project}} Any variables not passed in the import command will be taken from the provider configuration. Identity-Aware Proxy web IAM resources can be imported using the resource identifiers, role, and member. IAM member imports use space-delimited identifiersthe resource in question, the role, and the member identity, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:iap/webIamBinding:WebIamBinding editor "projects/{{project}}/iap_web roles/iap.httpsResourceAccessor user:jane@example.com"
+// ```
+//
+//  IAM binding imports use space-delimited identifiersthe resource in question and the role, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:iap/webIamBinding:WebIamBinding editor "projects/{{project}}/iap_web roles/iap.httpsResourceAccessor"
+// ```
+//
+//  IAM policy imports use the identifier of the resource in question, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:iap/webIamBinding:WebIamBinding editor projects/{{project}}/iap_web
+// ```
+//
+//  -> **Custom Roles**If you're importing a IAM resource with a custom role, make sure to use the
+//
+// full name of the custom role, e.g. `[projects/my-project|organizations/my-org]/roles/my-custom-role`.
 type WebIamBinding struct {
 	pulumi.CustomResourceState
 
@@ -137,4 +162,43 @@ type WebIamBindingArgs struct {
 
 func (WebIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*webIamBindingArgs)(nil)).Elem()
+}
+
+type WebIamBindingInput interface {
+	pulumi.Input
+
+	ToWebIamBindingOutput() WebIamBindingOutput
+	ToWebIamBindingOutputWithContext(ctx context.Context) WebIamBindingOutput
+}
+
+func (WebIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebIamBinding)(nil)).Elem()
+}
+
+func (i WebIamBinding) ToWebIamBindingOutput() WebIamBindingOutput {
+	return i.ToWebIamBindingOutputWithContext(context.Background())
+}
+
+func (i WebIamBinding) ToWebIamBindingOutputWithContext(ctx context.Context) WebIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebIamBindingOutput)
+}
+
+type WebIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (WebIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebIamBindingOutput)(nil)).Elem()
+}
+
+func (o WebIamBindingOutput) ToWebIamBindingOutput() WebIamBindingOutput {
+	return o
+}
+
+func (o WebIamBindingOutput) ToWebIamBindingOutputWithContext(ctx context.Context) WebIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(WebIamBindingOutput{})
 }

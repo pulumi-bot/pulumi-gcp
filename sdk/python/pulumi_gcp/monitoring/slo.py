@@ -48,6 +48,14 @@ class Slo(pulumi.CustomResource):
 
         ## Example Usage
 
+        ## Import
+
+        Slo can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:monitoring/slo:Slo default {{name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['SloBasicSliArgs']] basic_sli: Basic Service-Level Indicator (SLI) on a well-known service type.

@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -18,6 +19,14 @@ import (
 // For more information, see,
 // [the Project API documentation](https://cloud.google.com/compute/docs/reference/latest/projects),
 // where the Shared VPC feature is referred to by its former name "XPN".
+//
+// ## Import
+//
+// Google Compute Engine Shared VPC service project feature can be imported using the `host_project` and `service_project`, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:compute/sharedVPCServiceProject:SharedVPCServiceProject service1 host-project-id/service-project-id-1
+// ```
 type SharedVPCServiceProject struct {
 	pulumi.CustomResourceState
 
@@ -95,4 +104,43 @@ type SharedVPCServiceProjectArgs struct {
 
 func (SharedVPCServiceProjectArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*sharedVPCServiceProjectArgs)(nil)).Elem()
+}
+
+type SharedVPCServiceProjectInput interface {
+	pulumi.Input
+
+	ToSharedVPCServiceProjectOutput() SharedVPCServiceProjectOutput
+	ToSharedVPCServiceProjectOutputWithContext(ctx context.Context) SharedVPCServiceProjectOutput
+}
+
+func (SharedVPCServiceProject) ElementType() reflect.Type {
+	return reflect.TypeOf((*SharedVPCServiceProject)(nil)).Elem()
+}
+
+func (i SharedVPCServiceProject) ToSharedVPCServiceProjectOutput() SharedVPCServiceProjectOutput {
+	return i.ToSharedVPCServiceProjectOutputWithContext(context.Background())
+}
+
+func (i SharedVPCServiceProject) ToSharedVPCServiceProjectOutputWithContext(ctx context.Context) SharedVPCServiceProjectOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SharedVPCServiceProjectOutput)
+}
+
+type SharedVPCServiceProjectOutput struct {
+	*pulumi.OutputState
+}
+
+func (SharedVPCServiceProjectOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SharedVPCServiceProjectOutput)(nil)).Elem()
+}
+
+func (o SharedVPCServiceProjectOutput) ToSharedVPCServiceProjectOutput() SharedVPCServiceProjectOutput {
+	return o
+}
+
+func (o SharedVPCServiceProjectOutput) ToSharedVPCServiceProjectOutputWithContext(ctx context.Context) SharedVPCServiceProjectOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SharedVPCServiceProjectOutput{})
 }

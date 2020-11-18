@@ -19,6 +19,26 @@ namespace Pulumi.Gcp.VpcAccess
     ///     * [Configuring Serverless VPC Access](https://cloud.google.com/vpc/docs/configure-serverless-vpc-access)
     /// 
     /// ## Example Usage
+    /// 
+    /// ## Import
+    /// 
+    /// Connector can be imported using any of these accepted formats
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:vpcaccess/connector:Connector default projects/{{project}}/locations/{{region}}/connectors/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:vpcaccess/connector:Connector default {{project}}/{{region}}/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:vpcaccess/connector:Connector default {{region}}/{{name}}
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import gcp:vpcaccess/connector:Connector default {{name}}
+    /// ```
     /// </summary>
     public partial class Connector : Pulumi.CustomResource
     {

@@ -4,6 +4,7 @@
 package cloudidentity
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -19,6 +20,14 @@ import (
 // `billingProject` you defined.
 //
 // ## Example Usage
+//
+// ## Import
+//
+// GroupMembership can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import gcp:cloudidentity/groupMembership:GroupMembership default {{name}}
+// ```
 type GroupMembership struct {
 	pulumi.CustomResourceState
 
@@ -163,4 +172,43 @@ type GroupMembershipArgs struct {
 
 func (GroupMembershipArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*groupMembershipArgs)(nil)).Elem()
+}
+
+type GroupMembershipInput interface {
+	pulumi.Input
+
+	ToGroupMembershipOutput() GroupMembershipOutput
+	ToGroupMembershipOutputWithContext(ctx context.Context) GroupMembershipOutput
+}
+
+func (GroupMembership) ElementType() reflect.Type {
+	return reflect.TypeOf((*GroupMembership)(nil)).Elem()
+}
+
+func (i GroupMembership) ToGroupMembershipOutput() GroupMembershipOutput {
+	return i.ToGroupMembershipOutputWithContext(context.Background())
+}
+
+func (i GroupMembership) ToGroupMembershipOutputWithContext(ctx context.Context) GroupMembershipOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GroupMembershipOutput)
+}
+
+type GroupMembershipOutput struct {
+	*pulumi.OutputState
+}
+
+func (GroupMembershipOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GroupMembershipOutput)(nil)).Elem()
+}
+
+func (o GroupMembershipOutput) ToGroupMembershipOutput() GroupMembershipOutput {
+	return o
+}
+
+func (o GroupMembershipOutput) ToGroupMembershipOutputWithContext(ctx context.Context) GroupMembershipOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(GroupMembershipOutput{})
 }

@@ -4,6 +4,7 @@
 package compute
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -19,6 +20,30 @@ import (
 // > **Note:** `compute.DiskIamPolicy` **cannot** be used in conjunction with `compute.DiskIamBinding` and `compute.DiskIamMember` or they will fight over what your policy should be.
 //
 // > **Note:** `compute.DiskIamBinding` resources **can be** used in conjunction with `compute.DiskIamMember` resources **only if** they do not grant privilege to the same role.
+//
+// ## Import
+//
+// For all import syntaxes, the "resource in question" can take any of the following forms* projects/{{project}}/zones/{{zone}}/disks/{{name}} * {{project}}/{{zone}}/{{name}} * {{zone}}/{{name}} * {{name}} Any variables not passed in the import command will be taken from the provider configuration. Compute Engine disk IAM resources can be imported using the resource identifiers, role, and member. IAM member imports use space-delimited identifiersthe resource in question, the role, and the member identity, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:compute/diskIamBinding:DiskIamBinding editor "projects/{{project}}/zones/{{zone}}/disks/{{disk}} roles/viewer user:jane@example.com"
+// ```
+//
+//  IAM binding imports use space-delimited identifiersthe resource in question and the role, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:compute/diskIamBinding:DiskIamBinding editor "projects/{{project}}/zones/{{zone}}/disks/{{disk}} roles/viewer"
+// ```
+//
+//  IAM policy imports use the identifier of the resource in question, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:compute/diskIamBinding:DiskIamBinding editor projects/{{project}}/zones/{{zone}}/disks/{{disk}}
+// ```
+//
+//  -> **Custom Roles**If you're importing a IAM resource with a custom role, make sure to use the
+//
+// full name of the custom role, e.g. `[projects/my-project|organizations/my-org]/roles/my-custom-role`.
 type DiskIamBinding struct {
 	pulumi.CustomResourceState
 
@@ -157,4 +182,43 @@ type DiskIamBindingArgs struct {
 
 func (DiskIamBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*diskIamBindingArgs)(nil)).Elem()
+}
+
+type DiskIamBindingInput interface {
+	pulumi.Input
+
+	ToDiskIamBindingOutput() DiskIamBindingOutput
+	ToDiskIamBindingOutputWithContext(ctx context.Context) DiskIamBindingOutput
+}
+
+func (DiskIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*DiskIamBinding)(nil)).Elem()
+}
+
+func (i DiskIamBinding) ToDiskIamBindingOutput() DiskIamBindingOutput {
+	return i.ToDiskIamBindingOutputWithContext(context.Background())
+}
+
+func (i DiskIamBinding) ToDiskIamBindingOutputWithContext(ctx context.Context) DiskIamBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DiskIamBindingOutput)
+}
+
+type DiskIamBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (DiskIamBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DiskIamBindingOutput)(nil)).Elem()
+}
+
+func (o DiskIamBindingOutput) ToDiskIamBindingOutput() DiskIamBindingOutput {
+	return o
+}
+
+func (o DiskIamBindingOutput) ToDiskIamBindingOutputWithContext(ctx context.Context) DiskIamBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DiskIamBindingOutput{})
 }

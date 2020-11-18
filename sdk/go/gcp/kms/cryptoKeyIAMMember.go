@@ -4,6 +4,7 @@
 package kms
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -25,6 +26,32 @@ import (
 // With IAM Conditions:
 //
 // With IAM Conditions:
+//
+// ## Import
+//
+// IAM member imports use space-delimited identifiers; the resource in question, the role, and the account.
+//
+// This member resource can be imported using the `crypto_key_id`, role, and member identity e.g.
+//
+// ```sh
+//  $ pulumi import gcp:kms/cryptoKeyIAMMember:CryptoKeyIAMMember crypto_key "your-project-id/location-name/key-ring-name/key-name roles/viewer user:foo@example.com"
+// ```
+//
+//  IAM binding imports use space-delimited identifiers; first the resource in question and then the role.
+//
+// These bindings can be imported using the `crypto_key_id` and role, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:kms/cryptoKeyIAMMember:CryptoKeyIAMMember crypto_key "your-project-id/location-name/key-ring-name/key-name roles/editor"
+// ```
+//
+//  IAM policy imports use the identifier of the resource in question.
+//
+// This policy resource can be imported using the `crypto_key_id`, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:kms/cryptoKeyIAMMember:CryptoKeyIAMMember crypto_key your-project-id/location-name/key-ring-name/key-name
+// ```
 type CryptoKeyIAMMember struct {
 	pulumi.CustomResourceState
 
@@ -151,4 +178,43 @@ type CryptoKeyIAMMemberArgs struct {
 
 func (CryptoKeyIAMMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*cryptoKeyIAMMemberArgs)(nil)).Elem()
+}
+
+type CryptoKeyIAMMemberInput interface {
+	pulumi.Input
+
+	ToCryptoKeyIAMMemberOutput() CryptoKeyIAMMemberOutput
+	ToCryptoKeyIAMMemberOutputWithContext(ctx context.Context) CryptoKeyIAMMemberOutput
+}
+
+func (CryptoKeyIAMMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*CryptoKeyIAMMember)(nil)).Elem()
+}
+
+func (i CryptoKeyIAMMember) ToCryptoKeyIAMMemberOutput() CryptoKeyIAMMemberOutput {
+	return i.ToCryptoKeyIAMMemberOutputWithContext(context.Background())
+}
+
+func (i CryptoKeyIAMMember) ToCryptoKeyIAMMemberOutputWithContext(ctx context.Context) CryptoKeyIAMMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CryptoKeyIAMMemberOutput)
+}
+
+type CryptoKeyIAMMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (CryptoKeyIAMMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CryptoKeyIAMMemberOutput)(nil)).Elem()
+}
+
+func (o CryptoKeyIAMMemberOutput) ToCryptoKeyIAMMemberOutput() CryptoKeyIAMMemberOutput {
+	return o
+}
+
+func (o CryptoKeyIAMMemberOutput) ToCryptoKeyIAMMemberOutputWithContext(ctx context.Context) CryptoKeyIAMMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(CryptoKeyIAMMemberOutput{})
 }

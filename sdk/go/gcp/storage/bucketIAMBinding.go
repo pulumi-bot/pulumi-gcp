@@ -4,6 +4,7 @@
 package storage
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -19,6 +20,30 @@ import (
 // > **Note:** `storage.BucketIAMPolicy` **cannot** be used in conjunction with `storage.BucketIAMBinding` and `storage.BucketIAMMember` or they will fight over what your policy should be.
 //
 // > **Note:** `storage.BucketIAMBinding` resources **can be** used in conjunction with `storage.BucketIAMMember` resources **only if** they do not grant privilege to the same role.
+//
+// ## Import
+//
+// For all import syntaxes, the "resource in question" can take any of the following forms* b/{{name}} * {{name}} Any variables not passed in the import command will be taken from the provider configuration. Cloud Storage bucket IAM resources can be imported using the resource identifiers, role, and member. IAM member imports use space-delimited identifiersthe resource in question, the role, and the member identity, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:storage/bucketIAMBinding:BucketIAMBinding editor "b/{{bucket}} roles/storage.objectViewer user:jane@example.com"
+// ```
+//
+//  IAM binding imports use space-delimited identifiersthe resource in question and the role, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:storage/bucketIAMBinding:BucketIAMBinding editor "b/{{bucket}} roles/storage.objectViewer"
+// ```
+//
+//  IAM policy imports use the identifier of the resource in question, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:storage/bucketIAMBinding:BucketIAMBinding editor b/{{bucket}}
+// ```
+//
+//  -> **Custom Roles**If you're importing a IAM resource with a custom role, make sure to use the
+//
+// full name of the custom role, e.g. `[projects/my-project|organizations/my-org]/roles/my-custom-role`.
 type BucketIAMBinding struct {
 	pulumi.CustomResourceState
 
@@ -175,4 +200,43 @@ type BucketIAMBindingArgs struct {
 
 func (BucketIAMBindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*bucketIAMBindingArgs)(nil)).Elem()
+}
+
+type BucketIAMBindingInput interface {
+	pulumi.Input
+
+	ToBucketIAMBindingOutput() BucketIAMBindingOutput
+	ToBucketIAMBindingOutputWithContext(ctx context.Context) BucketIAMBindingOutput
+}
+
+func (BucketIAMBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketIAMBinding)(nil)).Elem()
+}
+
+func (i BucketIAMBinding) ToBucketIAMBindingOutput() BucketIAMBindingOutput {
+	return i.ToBucketIAMBindingOutputWithContext(context.Background())
+}
+
+func (i BucketIAMBinding) ToBucketIAMBindingOutputWithContext(ctx context.Context) BucketIAMBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketIAMBindingOutput)
+}
+
+type BucketIAMBindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (BucketIAMBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketIAMBindingOutput)(nil)).Elem()
+}
+
+func (o BucketIAMBindingOutput) ToBucketIAMBindingOutput() BucketIAMBindingOutput {
+	return o
+}
+
+func (o BucketIAMBindingOutput) ToBucketIAMBindingOutputWithContext(ctx context.Context) BucketIAMBindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(BucketIAMBindingOutput{})
 }

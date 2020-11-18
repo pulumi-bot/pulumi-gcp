@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
+import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
@@ -13,6 +12,14 @@ import * as utilities from "../utilities";
  *
  * Note that you must have the "Logs Configuration Writer" IAM role (`roles/logging.configWriter`)
  * granted to the credentials used with this provider.
+ *
+ * ## Import
+ *
+ * Organization-level logging sinks can be imported using this format
+ *
+ * ```sh
+ *  $ pulumi import gcp:logging/organizationSink:OrganizationSink my_sink organizations/{{organization_id}}/sinks/{{sink_id}}
+ * ```
  */
 export class OrganizationSink extends pulumi.CustomResource {
     /**

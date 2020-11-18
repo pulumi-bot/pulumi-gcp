@@ -4,6 +4,7 @@
 package artifactregistry
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -19,6 +20,30 @@ import (
 // > **Note:** `artifactregistry.RepositoryIamPolicy` **cannot** be used in conjunction with `artifactregistry.RepositoryIamBinding` and `artifactregistry.RepositoryIamMember` or they will fight over what your policy should be.
 //
 // > **Note:** `artifactregistry.RepositoryIamBinding` resources **can be** used in conjunction with `artifactregistry.RepositoryIamMember` resources **only if** they do not grant privilege to the same role.
+//
+// ## Import
+//
+// For all import syntaxes, the "resource in question" can take any of the following forms* projects/{{project}}/locations/{{location}}/repositories/{{repository}} * {{project}}/{{location}}/{{repository}} * {{location}}/{{repository}} * {{repository}} Any variables not passed in the import command will be taken from the provider configuration. Artifact Registry repository IAM resources can be imported using the resource identifiers, role, and member. IAM member imports use space-delimited identifiersthe resource in question, the role, and the member identity, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:artifactregistry/repositoryIamMember:RepositoryIamMember editor "projects/{{project}}/locations/{{location}}/repositories/{{repository}} roles/viewer user:jane@example.com"
+// ```
+//
+//  IAM binding imports use space-delimited identifiersthe resource in question and the role, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:artifactregistry/repositoryIamMember:RepositoryIamMember editor "projects/{{project}}/locations/{{location}}/repositories/{{repository}} roles/viewer"
+// ```
+//
+//  IAM policy imports use the identifier of the resource in question, e.g.
+//
+// ```sh
+//  $ pulumi import gcp:artifactregistry/repositoryIamMember:RepositoryIamMember editor projects/{{project}}/locations/{{location}}/repositories/{{repository}}
+// ```
+//
+//  -> **Custom Roles**If you're importing a IAM resource with a custom role, make sure to use the
+//
+// full name of the custom role, e.g. `[projects/my-project|organizations/my-org]/roles/my-custom-role`.
 type RepositoryIamMember struct {
 	pulumi.CustomResourceState
 
@@ -155,4 +180,43 @@ type RepositoryIamMemberArgs struct {
 
 func (RepositoryIamMemberArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*repositoryIamMemberArgs)(nil)).Elem()
+}
+
+type RepositoryIamMemberInput interface {
+	pulumi.Input
+
+	ToRepositoryIamMemberOutput() RepositoryIamMemberOutput
+	ToRepositoryIamMemberOutputWithContext(ctx context.Context) RepositoryIamMemberOutput
+}
+
+func (RepositoryIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*RepositoryIamMember)(nil)).Elem()
+}
+
+func (i RepositoryIamMember) ToRepositoryIamMemberOutput() RepositoryIamMemberOutput {
+	return i.ToRepositoryIamMemberOutputWithContext(context.Background())
+}
+
+func (i RepositoryIamMember) ToRepositoryIamMemberOutputWithContext(ctx context.Context) RepositoryIamMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RepositoryIamMemberOutput)
+}
+
+type RepositoryIamMemberOutput struct {
+	*pulumi.OutputState
+}
+
+func (RepositoryIamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RepositoryIamMemberOutput)(nil)).Elem()
+}
+
+func (o RepositoryIamMemberOutput) ToRepositoryIamMemberOutput() RepositoryIamMemberOutput {
+	return o
+}
+
+func (o RepositoryIamMemberOutput) ToRepositoryIamMemberOutputWithContext(ctx context.Context) RepositoryIamMemberOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RepositoryIamMemberOutput{})
 }
