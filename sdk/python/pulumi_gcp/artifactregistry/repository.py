@@ -144,14 +144,14 @@ class Repository(pulumi.CustomResource):
             __props__ = dict()
 
             __props__['description'] = description
-            if format is None:
+            if format is None and not opts.urn:
                 raise TypeError("Missing required property 'format'")
             __props__['format'] = format
             __props__['kms_key_name'] = kms_key_name
             __props__['labels'] = labels
             __props__['location'] = location
             __props__['project'] = project
-            if repository_id is None:
+            if repository_id is None and not opts.urn:
                 raise TypeError("Missing required property 'repository_id'")
             __props__['repository_id'] = repository_id
             __props__['create_time'] = None

@@ -96,7 +96,7 @@ class Reservation(pulumi.CustomResource):
             __props__['location'] = location
             __props__['name'] = name
             __props__['project'] = project
-            if slot_capacity is None:
+            if slot_capacity is None and not opts.urn:
                 raise TypeError("Missing required property 'slot_capacity'")
             __props__['slot_capacity'] = slot_capacity
         super(Reservation, __self__).__init__(

@@ -4,3 +4,19 @@
 
 # Export this package's modules as members:
 from .lien import *
+
+import pulumi
+
+class Module(pulumi.runtime.ResourceModule):
+    def version(self):
+        return None
+
+    def construct(self, name: str, typ: str, urn: str) -> pulumi.Resource:
+        if typ == "gcp:resourcemanager/lien:Lien":
+            return Lien(name, pulumi.ResourceOptions(urn=urn))
+        else:
+            raise Exception(f"unknown resource type {typ}")
+
+
+_module_instance = Module()
+pulumi.runtime.register_resource_module("gcp", "resourcemanager/lien", _module_instance)

@@ -104,17 +104,17 @@ class ConsumerQuotaOverride(pulumi.CustomResource):
 
             __props__['dimensions'] = dimensions
             __props__['force'] = force
-            if limit is None:
+            if limit is None and not opts.urn:
                 raise TypeError("Missing required property 'limit'")
             __props__['limit'] = limit
-            if metric is None:
+            if metric is None and not opts.urn:
                 raise TypeError("Missing required property 'metric'")
             __props__['metric'] = metric
-            if override_value is None:
+            if override_value is None and not opts.urn:
                 raise TypeError("Missing required property 'override_value'")
             __props__['override_value'] = override_value
             __props__['project'] = project
-            if service is None:
+            if service is None and not opts.urn:
                 raise TypeError("Missing required property 'service'")
             __props__['service'] = service
             __props__['name'] = None

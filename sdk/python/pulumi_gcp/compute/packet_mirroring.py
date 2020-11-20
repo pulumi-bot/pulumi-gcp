@@ -167,16 +167,16 @@ class PacketMirroring(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if collector_ilb is None:
+            if collector_ilb is None and not opts.urn:
                 raise TypeError("Missing required property 'collector_ilb'")
             __props__['collector_ilb'] = collector_ilb
             __props__['description'] = description
             __props__['filter'] = filter
-            if mirrored_resources is None:
+            if mirrored_resources is None and not opts.urn:
                 raise TypeError("Missing required property 'mirrored_resources'")
             __props__['mirrored_resources'] = mirrored_resources
             __props__['name'] = name
-            if network is None:
+            if network is None and not opts.urn:
                 raise TypeError("Missing required property 'network'")
             __props__['network'] = network
             __props__['priority'] = priority

@@ -11,3 +11,22 @@ from .workload_identity_pool import *
 from .workload_identity_pool_provider import *
 from ._inputs import *
 from . import outputs
+
+import pulumi
+
+class Module(pulumi.runtime.ResourceModule):
+    def version(self):
+        return None
+
+    def construct(self, name: str, typ: str, urn: str) -> pulumi.Resource:
+        if typ == "gcp:iam/workloadIdentityPool:WorkloadIdentityPool":
+            return WorkloadIdentityPool(name, pulumi.ResourceOptions(urn=urn))
+        elif typ == "gcp:iam/workloadIdentityPoolProvider:WorkloadIdentityPoolProvider":
+            return WorkloadIdentityPoolProvider(name, pulumi.ResourceOptions(urn=urn))
+        else:
+            raise Exception(f"unknown resource type {typ}")
+
+
+_module_instance = Module()
+pulumi.runtime.register_resource_module("gcp", "iam/workloadIdentityPool", _module_instance)
+pulumi.runtime.register_resource_module("gcp", "iam/workloadIdentityPoolProvider", _module_instance)

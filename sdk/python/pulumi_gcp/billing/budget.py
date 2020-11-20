@@ -196,15 +196,15 @@ class Budget(pulumi.CustomResource):
             __props__ = dict()
 
             __props__['all_updates_rule'] = all_updates_rule
-            if amount is None:
+            if amount is None and not opts.urn:
                 raise TypeError("Missing required property 'amount'")
             __props__['amount'] = amount
-            if billing_account is None:
+            if billing_account is None and not opts.urn:
                 raise TypeError("Missing required property 'billing_account'")
             __props__['billing_account'] = billing_account
             __props__['budget_filter'] = budget_filter
             __props__['display_name'] = display_name
-            if threshold_rules is None:
+            if threshold_rules is None and not opts.urn:
                 raise TypeError("Missing required property 'threshold_rules'")
             __props__['threshold_rules'] = threshold_rules
             __props__['name'] = None

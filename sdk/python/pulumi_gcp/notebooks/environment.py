@@ -104,7 +104,7 @@ class Environment(pulumi.CustomResource):
             __props__['container_image'] = container_image
             __props__['description'] = description
             __props__['display_name'] = display_name
-            if location is None:
+            if location is None and not opts.urn:
                 raise TypeError("Missing required property 'location'")
             __props__['location'] = location
             __props__['name'] = name

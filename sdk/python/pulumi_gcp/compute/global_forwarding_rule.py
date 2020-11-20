@@ -290,7 +290,7 @@ class GlobalForwardingRule(pulumi.CustomResource):
             __props__['network'] = network
             __props__['port_range'] = port_range
             __props__['project'] = project
-            if target is None:
+            if target is None and not opts.urn:
                 raise TypeError("Missing required property 'target'")
             __props__['target'] = target
             __props__['label_fingerprint'] = None

@@ -157,7 +157,7 @@ class Connection(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if cloud_sql is None:
+            if cloud_sql is None and not opts.urn:
                 raise TypeError("Missing required property 'cloud_sql'")
             __props__['cloud_sql'] = cloud_sql
             __props__['connection_id'] = connection_id

@@ -198,12 +198,12 @@ class Subnetwork(pulumi.CustomResource):
             __props__ = dict()
 
             __props__['description'] = description
-            if ip_cidr_range is None:
+            if ip_cidr_range is None and not opts.urn:
                 raise TypeError("Missing required property 'ip_cidr_range'")
             __props__['ip_cidr_range'] = ip_cidr_range
             __props__['log_config'] = log_config
             __props__['name'] = name
-            if network is None:
+            if network is None and not opts.urn:
                 raise TypeError("Missing required property 'network'")
             __props__['network'] = network
             __props__['private_ip_google_access'] = private_ip_google_access

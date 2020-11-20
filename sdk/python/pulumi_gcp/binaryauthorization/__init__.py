@@ -10,3 +10,31 @@ from .attestor_iam_policy import *
 from .policy import *
 from ._inputs import *
 from . import outputs
+
+import pulumi
+
+class Module(pulumi.runtime.ResourceModule):
+    def version(self):
+        return None
+
+    def construct(self, name: str, typ: str, urn: str) -> pulumi.Resource:
+        if typ == "gcp:binaryauthorization/attestor:Attestor":
+            return Attestor(name, pulumi.ResourceOptions(urn=urn))
+        elif typ == "gcp:binaryauthorization/attestorIamBinding:AttestorIamBinding":
+            return AttestorIamBinding(name, pulumi.ResourceOptions(urn=urn))
+        elif typ == "gcp:binaryauthorization/attestorIamMember:AttestorIamMember":
+            return AttestorIamMember(name, pulumi.ResourceOptions(urn=urn))
+        elif typ == "gcp:binaryauthorization/attestorIamPolicy:AttestorIamPolicy":
+            return AttestorIamPolicy(name, pulumi.ResourceOptions(urn=urn))
+        elif typ == "gcp:binaryauthorization/policy:Policy":
+            return Policy(name, pulumi.ResourceOptions(urn=urn))
+        else:
+            raise Exception(f"unknown resource type {typ}")
+
+
+_module_instance = Module()
+pulumi.runtime.register_resource_module("gcp", "binaryauthorization/attestor", _module_instance)
+pulumi.runtime.register_resource_module("gcp", "binaryauthorization/attestorIamBinding", _module_instance)
+pulumi.runtime.register_resource_module("gcp", "binaryauthorization/attestorIamMember", _module_instance)
+pulumi.runtime.register_resource_module("gcp", "binaryauthorization/attestorIamPolicy", _module_instance)
+pulumi.runtime.register_resource_module("gcp", "binaryauthorization/policy", _module_instance)

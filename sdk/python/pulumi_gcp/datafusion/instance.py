@@ -151,7 +151,7 @@ class Instance(pulumi.CustomResource):
             __props__['private_instance'] = private_instance
             __props__['project'] = project
             __props__['region'] = region
-            if type is None:
+            if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
             __props__['type'] = type
             __props__['version'] = version

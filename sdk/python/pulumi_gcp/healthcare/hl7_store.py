@@ -221,12 +221,12 @@ class Hl7Store(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if dataset is None:
+            if dataset is None and not opts.urn:
                 raise TypeError("Missing required property 'dataset'")
             __props__['dataset'] = dataset
             __props__['labels'] = labels
             __props__['name'] = name
-            if notification_config is not None:
+            if notification_config is not None and not opts.urn:
                 warnings.warn("""This field has been replaced by notificationConfigs""", DeprecationWarning)
                 pulumi.log.warn("notification_config is deprecated: This field has been replaced by notificationConfigs")
             __props__['notification_config'] = notification_config

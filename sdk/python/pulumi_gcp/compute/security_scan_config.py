@@ -116,14 +116,14 @@ class SecurityScanConfig(pulumi.CustomResource):
 
             __props__['authentication'] = authentication
             __props__['blacklist_patterns'] = blacklist_patterns
-            if display_name is None:
+            if display_name is None and not opts.urn:
                 raise TypeError("Missing required property 'display_name'")
             __props__['display_name'] = display_name
             __props__['export_to_security_command_center'] = export_to_security_command_center
             __props__['max_qps'] = max_qps
             __props__['project'] = project
             __props__['schedule'] = schedule
-            if starting_urls is None:
+            if starting_urls is None and not opts.urn:
                 raise TypeError("Missing required property 'starting_urls'")
             __props__['starting_urls'] = starting_urls
             __props__['target_platforms'] = target_platforms

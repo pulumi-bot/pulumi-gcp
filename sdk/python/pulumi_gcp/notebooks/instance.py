@@ -253,10 +253,10 @@ class Instance(pulumi.CustomResource):
             __props__['instance_owners'] = instance_owners
             __props__['kms_key'] = kms_key
             __props__['labels'] = labels
-            if location is None:
+            if location is None and not opts.urn:
                 raise TypeError("Missing required property 'location'")
             __props__['location'] = location
-            if machine_type is None:
+            if machine_type is None and not opts.urn:
                 raise TypeError("Missing required property 'machine_type'")
             __props__['machine_type'] = machine_type
             __props__['metadata'] = metadata

@@ -228,7 +228,7 @@ class VPNTunnel(pulumi.CustomResource):
             __props__['region'] = region
             __props__['remote_traffic_selectors'] = remote_traffic_selectors
             __props__['router'] = router
-            if shared_secret is None:
+            if shared_secret is None and not opts.urn:
                 raise TypeError("Missing required property 'shared_secret'")
             __props__['shared_secret'] = shared_secret
             __props__['target_vpn_gateway'] = target_vpn_gateway
