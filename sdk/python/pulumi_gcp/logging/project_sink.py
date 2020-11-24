@@ -84,7 +84,7 @@ class ProjectSink(pulumi.CustomResource):
             __props__ = dict()
 
             __props__['bigquery_options'] = bigquery_options
-            if destination is None:
+            if destination is None and not opts.urn:
                 raise TypeError("Missing required property 'destination'")
             __props__['destination'] = destination
             __props__['exclusions'] = exclusions

@@ -11,3 +11,34 @@ from .get_game_server_deployment_rollout import *
 from .realm import *
 from ._inputs import *
 from . import outputs
+
+def _register_module():
+    import pulumi
+
+    class Module(pulumi.runtime.ResourceModule):
+        def version(self):
+            return None
+
+        def construct(self, name: str, typ: str, urn: str) -> pulumi.Resource:
+            if typ == "gcp:gameservices/gameServerCluster:GameServerCluster":
+                return GameServerCluster(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "gcp:gameservices/gameServerConfig:GameServerConfig":
+                return GameServerConfig(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "gcp:gameservices/gameServerDeployment:GameServerDeployment":
+                return GameServerDeployment(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "gcp:gameservices/gameServerDeploymentRollout:GameServerDeploymentRollout":
+                return GameServerDeploymentRollout(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "gcp:gameservices/realm:Realm":
+                return Realm(name, pulumi.ResourceOptions(urn=urn))
+            else:
+                raise Exception(f"unknown resource type {typ}")
+
+
+    _module_instance = Module()
+    pulumi.runtime.register_resource_module("gcp", "gameservices/gameServerCluster", _module_instance)
+    pulumi.runtime.register_resource_module("gcp", "gameservices/gameServerConfig", _module_instance)
+    pulumi.runtime.register_resource_module("gcp", "gameservices/gameServerDeployment", _module_instance)
+    pulumi.runtime.register_resource_module("gcp", "gameservices/gameServerDeploymentRollout", _module_instance)
+    pulumi.runtime.register_resource_module("gcp", "gameservices/realm", _module_instance)
+
+_register_module()
