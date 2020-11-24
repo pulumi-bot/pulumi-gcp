@@ -42,7 +42,7 @@ class FlexTemplateJob(pulumi.CustomResource):
             parameters={
                 "inputSubscription": "messages",
             },
-            opts=ResourceOptions(provider=google_beta))
+            opts=pulumi.ResourceOptions(provider=google_beta))
         ```
         ## Note on "destroy" / "apply"
 

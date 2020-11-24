@@ -75,8 +75,8 @@ class Autoscalar(pulumi.CustomResource):
                     "storage-ro",
                 ],
             ),
-            opts=ResourceOptions(provider=google_beta))
-        default_target_pool = gcp.compute.TargetPool("defaultTargetPool", opts=ResourceOptions(provider=google_beta))
+            opts=pulumi.ResourceOptions(provider=google_beta))
+        default_target_pool = gcp.compute.TargetPool("defaultTargetPool", opts=pulumi.ResourceOptions(provider=google_beta))
         default_instance_group_manager = gcp.compute.InstanceGroupManager("defaultInstanceGroupManager",
             zone="us-central1-f",
             versions=[gcp.compute.InstanceGroupManagerVersionArgs(
@@ -85,7 +85,7 @@ class Autoscalar(pulumi.CustomResource):
             )],
             target_pools=[default_target_pool.id],
             base_instance_name="autoscaler-sample",
-            opts=ResourceOptions(provider=google_beta))
+            opts=pulumi.ResourceOptions(provider=google_beta))
         default_autoscaler = gcp.compute.Autoscaler("defaultAutoscaler",
             zone="us-central1-f",
             target=default_instance_group_manager.id,
@@ -99,7 +99,7 @@ class Autoscalar(pulumi.CustomResource):
                     single_instance_assignment=65535,
                 )],
             ),
-            opts=ResourceOptions(provider=google_beta))
+            opts=pulumi.ResourceOptions(provider=google_beta))
         ```
         ### Autoscaler Basic
 

@@ -40,7 +40,7 @@ class Service(pulumi.CustomResource):
         example_namespace = gcp.servicedirectory.Namespace("exampleNamespace",
             namespace_id="example-namespace",
             location="us-central1",
-            opts=ResourceOptions(provider=google_beta))
+            opts=pulumi.ResourceOptions(provider=google_beta))
         example_service = gcp.servicedirectory.Service("exampleService",
             service_id="example-service",
             namespace=example_namespace.id,
@@ -48,7 +48,7 @@ class Service(pulumi.CustomResource):
                 "stage": "prod",
                 "region": "us-central1",
             },
-            opts=ResourceOptions(provider=google_beta))
+            opts=pulumi.ResourceOptions(provider=google_beta))
         ```
 
         ## Import

@@ -152,7 +152,7 @@ class ManagedZone(pulumi.CustomResource):
         example = gcp.servicedirectory.Namespace("example",
             namespace_id="example",
             location="us-central1",
-            opts=ResourceOptions(provider=google_beta))
+            opts=pulumi.ResourceOptions(provider=google_beta))
         sd_zone = gcp.dns.ManagedZone("sd-zone",
             dns_name="services.example.com.",
             description="Example private DNS Service Directory zone",
@@ -162,9 +162,9 @@ class ManagedZone(pulumi.CustomResource):
                     namespace_url=example.id,
                 ),
             ),
-            opts=ResourceOptions(provider=google_beta))
+            opts=pulumi.ResourceOptions(provider=google_beta))
         network = gcp.compute.Network("network", auto_create_subnetworks=False,
-        opts=ResourceOptions(provider=google_beta))
+        opts=pulumi.ResourceOptions(provider=google_beta))
         ```
 
         ## Import
