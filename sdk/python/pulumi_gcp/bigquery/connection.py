@@ -53,16 +53,16 @@ class Connection(pulumi.CustomResource):
                 tier="db-f1-micro",
             ),
             deletion_protection=True,
-            opts=ResourceOptions(provider=google_beta))
+            opts=pulumi.ResourceOptions(provider=google_beta))
         db = gcp.sql.Database("db", instance=instance.name,
-        opts=ResourceOptions(provider=google_beta))
+        opts=pulumi.ResourceOptions(provider=google_beta))
         pwd = random.RandomPassword("pwd",
             length=16,
             special=False)
         user = gcp.sql.User("user",
             instance=instance.name,
             password=pwd.result,
-            opts=ResourceOptions(provider=google_beta))
+            opts=pulumi.ResourceOptions(provider=google_beta))
         connection = gcp.bigquery.Connection("connection",
             friendly_name="👋",
             description="a riveting description",
@@ -75,7 +75,7 @@ class Connection(pulumi.CustomResource):
                     password=user.password,
                 ),
             ),
-            opts=ResourceOptions(provider=google_beta))
+            opts=pulumi.ResourceOptions(provider=google_beta))
         ```
         ### Bigquery Connection Full
 
@@ -91,16 +91,16 @@ class Connection(pulumi.CustomResource):
                 tier="db-f1-micro",
             ),
             deletion_protection=True,
-            opts=ResourceOptions(provider=google_beta))
+            opts=pulumi.ResourceOptions(provider=google_beta))
         db = gcp.sql.Database("db", instance=instance.name,
-        opts=ResourceOptions(provider=google_beta))
+        opts=pulumi.ResourceOptions(provider=google_beta))
         pwd = random.RandomPassword("pwd",
             length=16,
             special=False)
         user = gcp.sql.User("user",
             instance=instance.name,
             password=pwd.result,
-            opts=ResourceOptions(provider=google_beta))
+            opts=pulumi.ResourceOptions(provider=google_beta))
         connection = gcp.bigquery.Connection("connection",
             connection_id="my-connection",
             location="US",
@@ -115,7 +115,7 @@ class Connection(pulumi.CustomResource):
                     password=user.password,
                 ),
             ),
-            opts=ResourceOptions(provider=google_beta))
+            opts=pulumi.ResourceOptions(provider=google_beta))
         ```
 
         ## Import

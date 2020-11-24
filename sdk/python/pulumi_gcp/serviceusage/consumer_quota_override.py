@@ -46,7 +46,7 @@ class ConsumerQuotaOverride(pulumi.CustomResource):
         my_project = gcp.organizations.Project("myProject",
             project_id="quota",
             org_id="123456789",
-            opts=ResourceOptions(provider=google_beta))
+            opts=pulumi.ResourceOptions(provider=google_beta))
         override = gcp.serviceusage.ConsumerQuotaOverride("override",
             project=my_project.project_id,
             service="servicemanagement.googleapis.com",
@@ -54,7 +54,7 @@ class ConsumerQuotaOverride(pulumi.CustomResource):
             limit="%2Fmin%2Fproject",
             override_value="95",
             force=True,
-            opts=ResourceOptions(provider=google_beta))
+            opts=pulumi.ResourceOptions(provider=google_beta))
         ```
 
         ## Import

@@ -104,14 +104,14 @@ class Subnetwork(pulumi.CustomResource):
         import pulumi_gcp as gcp
 
         custom_test = gcp.compute.Network("custom-test", auto_create_subnetworks=False,
-        opts=ResourceOptions(provider=google_beta))
+        opts=pulumi.ResourceOptions(provider=google_beta))
         network_for_l7lb = gcp.compute.Subnetwork("network-for-l7lb",
             ip_cidr_range="10.0.0.0/22",
             region="us-central1",
             purpose="INTERNAL_HTTPS_LOAD_BALANCER",
             role="ACTIVE",
             network=custom_test.id,
-            opts=ResourceOptions(provider=google_beta))
+            opts=pulumi.ResourceOptions(provider=google_beta))
         ```
 
         ## Import

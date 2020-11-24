@@ -43,7 +43,7 @@ class Reservation(pulumi.CustomResource):
             location="asia-northeast1",
             slot_capacity=0,
             ignore_idle_slots=False,
-            opts=ResourceOptions(provider=google_beta))
+            opts=pulumi.ResourceOptions(provider=google_beta))
         ```
 
         ## Import

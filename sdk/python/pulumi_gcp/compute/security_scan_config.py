@@ -49,12 +49,12 @@ class SecurityScanConfig(pulumi.CustomResource):
         import pulumi
         import pulumi_gcp as gcp
 
-        scanner_static_ip = gcp.compute.Address("scannerStaticIp", opts=ResourceOptions(provider=google_beta))
+        scanner_static_ip = gcp.compute.Address("scannerStaticIp", opts=pulumi.ResourceOptions(provider=google_beta))
         scan_config = gcp.compute.SecurityScanConfig("scan-config",
             display_name="scan-config",
             starting_urls=[scanner_static_ip.address.apply(lambda address: f"http://{address}")],
             target_platforms=["COMPUTE"],
-            opts=ResourceOptions(provider=google_beta))
+            opts=pulumi.ResourceOptions(provider=google_beta))
         ```
 
         ## Import

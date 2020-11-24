@@ -41,7 +41,7 @@ class ServiceIdentity(pulumi.CustomResource):
         hc_sa = gcp.projects.ServiceIdentity("hcSa",
             project=project.project_id,
             service="healthcare.googleapis.com",
-            opts=ResourceOptions(provider=google_beta))
+            opts=pulumi.ResourceOptions(provider=google_beta))
         hc_sa_bq_jobuser = gcp.projects.IAMMember("hcSaBqJobuser",
             project=project.project_id,
             role="roles/bigquery.jobUser",

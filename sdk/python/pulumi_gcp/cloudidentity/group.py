@@ -50,7 +50,7 @@ class Group(pulumi.CustomResource):
             labels={
                 "cloudidentity.googleapis.com/groups.discussion_forum": "",
             },
-            opts=ResourceOptions(provider=google_beta))
+            opts=pulumi.ResourceOptions(provider=google_beta))
         ```
 
         ## Import
