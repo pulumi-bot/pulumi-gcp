@@ -67,7 +67,7 @@ class Notification(pulumi.CustomResource):
             custom_attributes={
                 "new-attribute": "new-attribute-value",
             },
-            opts=ResourceOptions(depends_on=[binding]))
+            opts=pulumi.ResourceOptions(depends_on=[binding]))
         # Enable notifications by giving the correct IAM permission to the unique service account.
         ```
 

@@ -89,7 +89,7 @@ class Instance(pulumi.CustomResource):
                 network="default",
                 modes=["MODE_IPV4"],
             )],
-            opts=ResourceOptions(provider=google_beta))
+            opts=pulumi.ResourceOptions(provider=google_beta))
         ```
 
         ## Import

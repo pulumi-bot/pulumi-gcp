@@ -61,7 +61,7 @@ class Hl7Store(pulumi.CustomResource):
         import pulumi_gcp as gcp
 
         dataset = gcp.healthcare.Dataset("dataset", location="us-central1",
-        opts=ResourceOptions(provider=google_beta))
+        opts=pulumi.ResourceOptions(provider=google_beta))
         store = gcp.healthcare.Hl7Store("store",
             dataset=dataset.id,
             parser_config=gcp.healthcare.Hl7StoreParserConfigArgs(
@@ -147,7 +147,7 @@ class Hl7Store(pulumi.CustomResource):
         }
         \"\"\",
             ),
-            opts=ResourceOptions(provider=google_beta))
+            opts=pulumi.ResourceOptions(provider=google_beta))
         ```
         ### Healthcare Hl7 V2 Store Unschematized
 
@@ -156,7 +156,7 @@ class Hl7Store(pulumi.CustomResource):
         import pulumi_gcp as gcp
 
         dataset = gcp.healthcare.Dataset("dataset", location="us-central1",
-        opts=ResourceOptions(provider=google_beta))
+        opts=pulumi.ResourceOptions(provider=google_beta))
         store = gcp.healthcare.Hl7Store("store",
             dataset=dataset.id,
             parser_config=gcp.healthcare.Hl7StoreParserConfigArgs(
@@ -164,7 +164,7 @@ class Hl7Store(pulumi.CustomResource):
                 segment_terminator="Jw==",
                 version="V2",
             ),
-            opts=ResourceOptions(provider=google_beta))
+            opts=pulumi.ResourceOptions(provider=google_beta))
         ```
 
         ## Import

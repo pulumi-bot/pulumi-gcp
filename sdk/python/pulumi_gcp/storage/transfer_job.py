@@ -51,7 +51,7 @@ class TransferJob(pulumi.CustomResource):
             bucket=s3_backup_bucket_bucket.name,
             role="roles/storage.admin",
             member=f"serviceAccount:{default.email}",
-            opts=ResourceOptions(depends_on=[s3_backup_bucket_bucket]))
+            opts=pulumi.ResourceOptions(depends_on=[s3_backup_bucket_bucket]))
         s3_bucket_nightly_backup = gcp.storage.TransferJob("s3-bucket-nightly-backup",
             description="Nightly backup of S3 bucket",
             project=var["project"],
@@ -92,7 +92,7 @@ class TransferJob(pulumi.CustomResource):
                     nanos=0,
                 ),
             ),
-            opts=ResourceOptions(depends_on=[s3_backup_bucket_bucket_iam_member]))
+            opts=pulumi.ResourceOptions(depends_on=[s3_backup_bucket_bucket_iam_member]))
         ```
 
         ## Import

@@ -96,7 +96,7 @@ class InstanceGroupManager(pulumi.CustomResource):
                     },
                 ),
             ],
-            opts=ResourceOptions(provider=google_beta))
+            opts=pulumi.ResourceOptions(provider=google_beta))
         ```
 
         ## Import
