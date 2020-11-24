@@ -46,7 +46,7 @@ class Namespace(pulumi.CustomResource):
                 "key": "value",
                 "foo": "bar",
             },
-            opts=ResourceOptions(provider=google_beta))
+            opts=pulumi.ResourceOptions(provider=google_beta))
         ```
 
         ## Import

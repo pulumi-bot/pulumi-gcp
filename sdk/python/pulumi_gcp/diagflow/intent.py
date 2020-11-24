@@ -54,7 +54,7 @@ class Intent(pulumi.CustomResource):
             default_language_code="en",
             time_zone="America/New_York")
         basic_intent = gcp.diagflow.Intent("basicIntent", display_name="basic-intent",
-        opts=ResourceOptions(depends_on=[basic_agent]))
+        opts=pulumi.ResourceOptions(depends_on=[basic_agent]))
         ```
 
         ## Import

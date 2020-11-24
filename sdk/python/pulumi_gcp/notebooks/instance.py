@@ -74,7 +74,7 @@ class Instance(pulumi.CustomResource):
                 project="deeplearning-platform-release",
                 image_family="tf-latest-cpu",
             ),
-            opts=ResourceOptions(provider=google_beta))
+            opts=pulumi.ResourceOptions(provider=google_beta))
         ```
         ### Notebook Instance Basic Container
 
@@ -92,7 +92,7 @@ class Instance(pulumi.CustomResource):
                 repository="gcr.io/deeplearning-platform-release/base-cpu",
                 tag="latest",
             ),
-            opts=ResourceOptions(provider=google_beta))
+            opts=pulumi.ResourceOptions(provider=google_beta))
         ```
         ### Notebook Instance Basic Gpu
 
@@ -112,7 +112,7 @@ class Instance(pulumi.CustomResource):
                 project="deeplearning-platform-release",
                 image_family="tf-latest-gpu",
             ),
-            opts=ResourceOptions(provider=google_beta))
+            opts=pulumi.ResourceOptions(provider=google_beta))
         ```
         ### Notebook Instance Full
 
@@ -142,7 +142,7 @@ class Instance(pulumi.CustomResource):
             labels={
                 "k": "val",
             },
-            opts=ResourceOptions(provider=google_beta))
+            opts=pulumi.ResourceOptions(provider=google_beta))
         ```
 
         ## Import

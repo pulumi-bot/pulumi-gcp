@@ -81,11 +81,11 @@ class TargetInstance(pulumi.CustomResource):
             network_interfaces=[gcp.compute.InstanceNetworkInterfaceArgs(
                 network="default",
             )],
-            opts=ResourceOptions(provider=google_beta))
+            opts=pulumi.ResourceOptions(provider=google_beta))
         custom_network = gcp.compute.TargetInstance("customNetwork",
             instance=target_vm_instance.id,
             network=target_vm_network.self_link,
-            opts=ResourceOptions(provider=google_beta))
+            opts=pulumi.ResourceOptions(provider=google_beta))
         ```
 
         ## Import
