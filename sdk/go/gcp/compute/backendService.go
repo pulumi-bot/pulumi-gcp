@@ -333,6 +333,7 @@ func NewBackendService(ctx *pulumi.Context,
 	if args == nil {
 		args = &BackendServiceArgs{}
 	}
+
 	var resource BackendService
 	err := ctx.RegisterResource("gcp:compute/backendService:BackendService", name, args, &resource, opts...)
 	if err != nil {
