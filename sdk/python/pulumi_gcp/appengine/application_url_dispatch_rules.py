@@ -44,29 +44,29 @@ class ApplicationUrlDispatchRules(pulumi.CustomResource):
             version_id="v3",
             service="admin",
             runtime="nodejs10",
-            entrypoint=gcp.appengine.StandardAppVersionEntrypointArgs(
-                shell="node ./app.js",
-            ),
-            deployment=gcp.appengine.StandardAppVersionDeploymentArgs(
-                zip=gcp.appengine.StandardAppVersionDeploymentZipArgs(
-                    source_url=pulumi.Output.all(bucket.name, object.name).apply(lambda bucketName, objectName: f"https://storage.googleapis.com/{bucket_name}/{object_name}"),
-                ),
-            ),
+            entrypoint={
+                "shell": "node ./app.js",
+            },
+            deployment={
+                "zip": {
+                    "sourceUrl": pulumi.Output.all(bucket.name, object.name).apply(lambda bucketName, objectName: f"https://storage.googleapis.com/{bucket_name}/{object_name}"),
+                },
+            },
             env_variables={
                 "port": "8080",
             },
             noop_on_destroy=True)
         web_service = gcp.appengine.ApplicationUrlDispatchRules("webService", dispatch_rules=[
-            gcp.appengine.ApplicationUrlDispatchRulesDispatchRuleArgs(
-                domain="*",
-                path="/*",
-                service="default",
-            ),
-            gcp.appengine.ApplicationUrlDispatchRulesDispatchRuleArgs(
-                domain="*",
-                path="/admin/*",
-                service=admin_v3.service,
-            ),
+            {
+                "domain": "*",
+                "path": "/*",
+                "service": "default",
+            },
+            {
+                "domain": "*",
+                "path": "/admin/*",
+                "service": admin_v3.service,
+            },
         ])
         ```
 

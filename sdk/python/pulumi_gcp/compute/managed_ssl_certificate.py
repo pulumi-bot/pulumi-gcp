@@ -60,9 +60,9 @@ class ManagedSslCertificate(pulumi.CustomResource):
         import pulumi
         import pulumi_gcp as gcp
 
-        default_managed_ssl_certificate = gcp.compute.ManagedSslCertificate("defaultManagedSslCertificate", managed=gcp.compute.ManagedSslCertificateManagedArgs(
-            domains=["sslcert.tf-test.club."],
-        ),
+        default_managed_ssl_certificate = gcp.compute.ManagedSslCertificate("defaultManagedSslCertificate", managed={
+            "domains": ["sslcert.tf-test.club."],
+        },
         opts=ResourceOptions(provider=google_beta))
         default_http_health_check = gcp.compute.HttpHealthCheck("defaultHttpHealthCheck",
             request_path="/",
@@ -78,18 +78,18 @@ class ManagedSslCertificate(pulumi.CustomResource):
         default_url_map = gcp.compute.URLMap("defaultURLMap",
             description="a description",
             default_service=default_backend_service.id,
-            host_rules=[gcp.compute.URLMapHostRuleArgs(
-                hosts=["sslcert.tf-test.club"],
-                path_matcher="allpaths",
-            )],
-            path_matchers=[gcp.compute.URLMapPathMatcherArgs(
-                name="allpaths",
-                default_service=default_backend_service.id,
-                path_rules=[gcp.compute.URLMapPathMatcherPathRuleArgs(
-                    paths=["/*"],
-                    service=default_backend_service.id,
-                )],
-            )],
+            host_rules=[{
+                "hosts": ["sslcert.tf-test.club"],
+                "pathMatcher": "allpaths",
+            }],
+            path_matchers=[{
+                "name": "allpaths",
+                "default_service": default_backend_service.id,
+                "pathRules": [{
+                    "paths": ["/*"],
+                    "service": default_backend_service.id,
+                }],
+            }],
             opts=ResourceOptions(provider=google_beta))
         default_target_https_proxy = gcp.compute.TargetHttpsProxy("defaultTargetHttpsProxy",
             url_map=default_url_map.id,

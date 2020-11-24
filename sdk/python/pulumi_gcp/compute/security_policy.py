@@ -36,28 +36,28 @@ class SecurityPolicy(pulumi.CustomResource):
         import pulumi_gcp as gcp
 
         policy = gcp.compute.SecurityPolicy("policy", rules=[
-            gcp.compute.SecurityPolicyRuleArgs(
-                action="deny(403)",
-                description="Deny access to IPs in 9.9.9.0/24",
-                match=gcp.compute.SecurityPolicyRuleMatchArgs(
-                    config=gcp.compute.SecurityPolicyRuleMatchConfigArgs(
-                        src_ip_ranges=["9.9.9.0/24"],
-                    ),
-                    versioned_expr="SRC_IPS_V1",
-                ),
-                priority=1000,
-            ),
-            gcp.compute.SecurityPolicyRuleArgs(
-                action="allow",
-                description="default rule",
-                match=gcp.compute.SecurityPolicyRuleMatchArgs(
-                    config=gcp.compute.SecurityPolicyRuleMatchConfigArgs(
-                        src_ip_ranges=["*"],
-                    ),
-                    versioned_expr="SRC_IPS_V1",
-                ),
-                priority=2147483647,
-            ),
+            {
+                "action": "deny(403)",
+                "description": "Deny access to IPs in 9.9.9.0/24",
+                "match": {
+                    "config": {
+                        "srcIpRanges": ["9.9.9.0/24"],
+                    },
+                    "versionedExpr": "SRC_IPS_V1",
+                },
+                "priority": 1000,
+            },
+            {
+                "action": "allow",
+                "description": "default rule",
+                "match": {
+                    "config": {
+                        "srcIpRanges": ["*"],
+                    },
+                    "versionedExpr": "SRC_IPS_V1",
+                },
+                "priority": 2147483647,
+            },
         ])
         ```
 

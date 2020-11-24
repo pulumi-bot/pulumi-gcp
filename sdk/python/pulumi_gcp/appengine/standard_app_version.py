@@ -66,49 +66,49 @@ class StandardAppVersion(pulumi.CustomResource):
             version_id="v1",
             service="myapp",
             runtime="nodejs10",
-            entrypoint=gcp.appengine.StandardAppVersionEntrypointArgs(
-                shell="node ./app.js",
-            ),
-            deployment=gcp.appengine.StandardAppVersionDeploymentArgs(
-                zip=gcp.appengine.StandardAppVersionDeploymentZipArgs(
-                    source_url=pulumi.Output.all(bucket.name, object.name).apply(lambda bucketName, objectName: f"https://storage.googleapis.com/{bucket_name}/{object_name}"),
-                ),
-            ),
+            entrypoint={
+                "shell": "node ./app.js",
+            },
+            deployment={
+                "zip": {
+                    "sourceUrl": pulumi.Output.all(bucket.name, object.name).apply(lambda bucketName, objectName: f"https://storage.googleapis.com/{bucket_name}/{object_name}"),
+                },
+            },
             env_variables={
                 "port": "8080",
             },
-            automatic_scaling=gcp.appengine.StandardAppVersionAutomaticScalingArgs(
-                max_concurrent_requests=10,
-                min_idle_instances=1,
-                max_idle_instances=3,
-                min_pending_latency="1s",
-                max_pending_latency="5s",
-                standard_scheduler_settings=gcp.appengine.StandardAppVersionAutomaticScalingStandardSchedulerSettingsArgs(
-                    target_cpu_utilization=0.5,
-                    target_throughput_utilization=0.75,
-                    min_instances=2,
-                    max_instances=10,
-                ),
-            ),
+            automatic_scaling={
+                "maxConcurrentRequests": 10,
+                "minIdleInstances": 1,
+                "maxIdleInstances": 3,
+                "minPendingLatency": "1s",
+                "maxPendingLatency": "5s",
+                "standardSchedulerSettings": {
+                    "targetCpuUtilization": 0.5,
+                    "targetThroughputUtilization": 0.75,
+                    "minInstances": 2,
+                    "max_instances": 10,
+                },
+            },
             delete_service_on_destroy=True)
         myapp_v2 = gcp.appengine.StandardAppVersion("myappV2",
             version_id="v2",
             service="myapp",
             runtime="nodejs10",
-            entrypoint=gcp.appengine.StandardAppVersionEntrypointArgs(
-                shell="node ./app.js",
-            ),
-            deployment=gcp.appengine.StandardAppVersionDeploymentArgs(
-                zip=gcp.appengine.StandardAppVersionDeploymentZipArgs(
-                    source_url=pulumi.Output.all(bucket.name, object.name).apply(lambda bucketName, objectName: f"https://storage.googleapis.com/{bucket_name}/{object_name}"),
-                ),
-            ),
+            entrypoint={
+                "shell": "node ./app.js",
+            },
+            deployment={
+                "zip": {
+                    "sourceUrl": pulumi.Output.all(bucket.name, object.name).apply(lambda bucketName, objectName: f"https://storage.googleapis.com/{bucket_name}/{object_name}"),
+                },
+            },
             env_variables={
                 "port": "8080",
             },
-            basic_scaling=gcp.appengine.StandardAppVersionBasicScalingArgs(
-                max_instances=5,
-            ),
+            basic_scaling={
+                "max_instances": 5,
+            },
             noop_on_destroy=True)
         ```
 

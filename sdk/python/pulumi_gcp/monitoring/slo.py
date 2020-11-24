@@ -60,11 +60,11 @@ class Slo(pulumi.CustomResource):
             display_name="Test SLO for App Engine",
             goal=0.9,
             calendar_period="DAY",
-            basic_sli=gcp.monitoring.SloBasicSliArgs(
-                latency=gcp.monitoring.SloBasicSliLatencyArgs(
-                    threshold="1s",
-                ),
-            ))
+            basic_sli={
+                "latency": {
+                    "threshold": "1s",
+                },
+            })
         ```
         ### Monitoring Slo Request Based
 
@@ -81,14 +81,14 @@ class Slo(pulumi.CustomResource):
             display_name="Test SLO with request based SLI (good total ratio)",
             goal=0.9,
             rolling_period_days=30,
-            request_based_sli=gcp.monitoring.SloRequestBasedSliArgs(
-                distribution_cut=gcp.monitoring.SloRequestBasedSliDistributionCutArgs(
-                    distribution_filter="metric.type=\"serviceruntime.googleapis.com/api/request_latencies\" resource.type=\"api\"  ",
-                    range=gcp.monitoring.SloRequestBasedSliDistributionCutRangeArgs(
-                        max=0.5,
-                    ),
-                ),
-            ))
+            request_based_sli={
+                "distributionCut": {
+                    "distributionFilter": "metric.type=\"serviceruntime.googleapis.com/api/request_latencies\" resource.type=\"api\"  ",
+                    "range": {
+                        "max": 0.5,
+                    },
+                },
+            })
         ```
 
         ## Import

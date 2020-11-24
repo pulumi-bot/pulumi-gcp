@@ -37,10 +37,10 @@ class BucketIAMPolicy(pulumi.CustomResource):
         import pulumi
         import pulumi_gcp as gcp
 
-        admin = gcp.organizations.get_iam_policy(bindings=[gcp.organizations.GetIAMPolicyBindingArgs(
-            role="roles/storage.admin",
-            members=["user:jane@example.com"],
-        )])
+        admin = gcp.organizations.get_iam_policy(bindings=[{
+            "role": "roles/storage.admin",
+            "members": ["user:jane@example.com"],
+        }])
         policy = gcp.storage.BucketIAMPolicy("policy",
             bucket=google_storage_bucket["default"]["name"],
             policy_data=admin.policy_data)
@@ -52,15 +52,15 @@ class BucketIAMPolicy(pulumi.CustomResource):
         import pulumi
         import pulumi_gcp as gcp
 
-        admin = gcp.organizations.get_iam_policy(bindings=[gcp.organizations.GetIAMPolicyBindingArgs(
-            role="roles/storage.admin",
-            members=["user:jane@example.com"],
-            condition=gcp.organizations.GetIAMPolicyBindingConditionArgs(
-                title="expires_after_2019_12_31",
-                description="Expiring at midnight of 2019-12-31",
-                expression="request.time < timestamp(\"2020-01-01T00:00:00Z\")",
-            ),
-        )])
+        admin = gcp.organizations.get_iam_policy(bindings=[{
+            "role": "roles/storage.admin",
+            "members": ["user:jane@example.com"],
+            "condition": {
+                "title": "expires_after_2019_12_31",
+                "description": "Expiring at midnight of 2019-12-31",
+                "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
+            },
+        }])
         policy = gcp.storage.BucketIAMPolicy("policy",
             bucket=google_storage_bucket["default"]["name"],
             policy_data=admin.policy_data)
@@ -87,11 +87,11 @@ class BucketIAMPolicy(pulumi.CustomResource):
             bucket=google_storage_bucket["default"]["name"],
             role="roles/storage.admin",
             members=["user:jane@example.com"],
-            condition=gcp.storage.BucketIAMBindingConditionArgs(
-                title="expires_after_2019_12_31",
-                description="Expiring at midnight of 2019-12-31",
-                expression="request.time < timestamp(\"2020-01-01T00:00:00Z\")",
-            ))
+            condition={
+                "title": "expires_after_2019_12_31",
+                "description": "Expiring at midnight of 2019-12-31",
+                "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
+            })
         ```
         ## google\_storage\_bucket\_iam\_member
 
@@ -115,11 +115,11 @@ class BucketIAMPolicy(pulumi.CustomResource):
             bucket=google_storage_bucket["default"]["name"],
             role="roles/storage.admin",
             member="user:jane@example.com",
-            condition=gcp.storage.BucketIAMMemberConditionArgs(
-                title="expires_after_2019_12_31",
-                description="Expiring at midnight of 2019-12-31",
-                expression="request.time < timestamp(\"2020-01-01T00:00:00Z\")",
-            ))
+            condition={
+                "title": "expires_after_2019_12_31",
+                "description": "Expiring at midnight of 2019-12-31",
+                "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
+            })
         ```
 
         ## Import

@@ -43,25 +43,25 @@ class GroupMembership(pulumi.CustomResource):
         group = gcp.cloudidentity.Group("group",
             display_name="my-identity-group",
             parent="customers/A01b123xz",
-            group_key=gcp.cloudidentity.GroupGroupKeyArgs(
-                id="my-identity-group@example.com",
-            ),
+            group_key={
+                "id": "my-identity-group@example.com",
+            },
             labels={
                 "cloudidentity.googleapis.com/groups.discussion_forum": "",
             },
             opts=ResourceOptions(provider=google_beta))
         cloud_identity_group_membership_basic = gcp.cloudidentity.GroupMembership("cloudIdentityGroupMembershipBasic",
             group=group.id,
-            member_key=gcp.cloudidentity.GroupMembershipMemberKeyArgs(
-                id="cloud_identity_user@example.com",
-            ),
+            member_key={
+                "id": "cloud_identity_user@example.com",
+            },
             roles=[
-                gcp.cloudidentity.GroupMembershipRoleArgs(
-                    name="MEMBER",
-                ),
-                gcp.cloudidentity.GroupMembershipRoleArgs(
-                    name="MANAGER",
-                ),
+                {
+                    "name": "MEMBER",
+                },
+                {
+                    "name": "MANAGER",
+                },
             ],
             opts=ResourceOptions(provider=google_beta))
         ```

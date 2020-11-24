@@ -36,9 +36,9 @@ class User(pulumi.CustomResource):
         import pulumi_random as random
 
         db_name_suffix = random.RandomId("dbNameSuffix", byte_length=4)
-        master = gcp.sql.DatabaseInstance("master", settings=gcp.sql.DatabaseInstanceSettingsArgs(
-            tier="db-f1-micro",
-        ))
+        master = gcp.sql.DatabaseInstance("master", settings={
+            "tier": "db-f1-micro",
+        })
         users = gcp.sql.User("users",
             instance=master.name,
             host="me.com",

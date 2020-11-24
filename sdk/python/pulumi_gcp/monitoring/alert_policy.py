@@ -48,18 +48,18 @@ class AlertPolicy(pulumi.CustomResource):
 
         alert_policy = gcp.monitoring.AlertPolicy("alertPolicy",
             combiner="OR",
-            conditions=[gcp.monitoring.AlertPolicyConditionArgs(
-                condition_threshold=gcp.monitoring.AlertPolicyConditionConditionThresholdArgs(
-                    aggregations=[gcp.monitoring.AlertPolicyConditionConditionThresholdAggregationArgs(
-                        alignment_period="60s",
-                        per_series_aligner="ALIGN_RATE",
-                    )],
-                    comparison="COMPARISON_GT",
-                    duration="60s",
-                    filter="metric.type=\"compute.googleapis.com/instance/disk/write_bytes_count\" AND resource.type=\"gce_instance\"",
-                ),
-                display_name="test condition",
-            )],
+            conditions=[{
+                "conditionThreshold": {
+                    "aggregations": [{
+                        "alignmentPeriod": "60s",
+                        "perSeriesAligner": "ALIGN_RATE",
+                    }],
+                    "comparison": "COMPARISON_GT",
+                    "duration": "60s",
+                    "filter": "metric.type=\"compute.googleapis.com/instance/disk/write_bytes_count\" AND resource.type=\"gce_instance\"",
+                },
+                "display_name": "test condition",
+            }],
             display_name="My Alert Policy",
             user_labels={
                 "foo": "bar",

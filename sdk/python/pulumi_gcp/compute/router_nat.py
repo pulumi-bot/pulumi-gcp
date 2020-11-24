@@ -59,18 +59,18 @@ class RouterNat(pulumi.CustomResource):
         router = gcp.compute.Router("router",
             region=subnet.region,
             network=net.id,
-            bgp=gcp.compute.RouterBgpArgs(
-                asn=64514,
-            ))
+            bgp={
+                "asn": 64514,
+            })
         nat = gcp.compute.RouterNat("nat",
             router=router.name,
             region=router.region,
             nat_ip_allocate_option="AUTO_ONLY",
             source_subnetwork_ip_ranges_to_nat="ALL_SUBNETWORKS_ALL_IP_RANGES",
-            log_config=gcp.compute.RouterNatLogConfigArgs(
-                enable=True,
-                filter="ERRORS_ONLY",
-            ))
+            log_config={
+                "enable": True,
+                "filter": "ERRORS_ONLY",
+            })
         ```
         ### Router Nat Manual Ips
 
@@ -95,10 +95,10 @@ class RouterNat(pulumi.CustomResource):
             nat_ip_allocate_option="MANUAL_ONLY",
             nat_ips=[__item.self_link for __item in address],
             source_subnetwork_ip_ranges_to_nat="LIST_OF_SUBNETWORKS",
-            subnetworks=[gcp.compute.RouterNatSubnetworkArgs(
-                name=subnet.id,
-                source_ip_ranges_to_nats=["ALL_IP_RANGES"],
-            )])
+            subnetworks=[{
+                "name": subnet.id,
+                "sourceIpRangesToNats": ["ALL_IP_RANGES"],
+            }])
         ```
 
         ## Import

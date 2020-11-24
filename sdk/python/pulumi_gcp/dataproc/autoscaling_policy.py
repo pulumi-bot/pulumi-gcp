@@ -39,23 +39,23 @@ class AutoscalingPolicy(pulumi.CustomResource):
         asp = gcp.dataproc.AutoscalingPolicy("asp",
             policy_id="dataproc-policy",
             location="us-central1",
-            worker_config=gcp.dataproc.AutoscalingPolicyWorkerConfigArgs(
-                max_instances=3,
-            ),
-            basic_algorithm=gcp.dataproc.AutoscalingPolicyBasicAlgorithmArgs(
-                yarn_config=gcp.dataproc.AutoscalingPolicyBasicAlgorithmYarnConfigArgs(
-                    graceful_decommission_timeout="30s",
-                    scale_up_factor=0.5,
-                    scale_down_factor=0.5,
-                ),
-            ))
+            worker_config={
+                "max_instances": 3,
+            },
+            basic_algorithm={
+                "yarnConfig": {
+                    "graceful_decommission_timeout": "30s",
+                    "scaleUpFactor": 0.5,
+                    "scaleDownFactor": 0.5,
+                },
+            })
         basic = gcp.dataproc.Cluster("basic",
             region="us-central1",
-            cluster_config=gcp.dataproc.ClusterClusterConfigArgs(
-                autoscaling_config=gcp.dataproc.ClusterClusterConfigAutoscalingConfigArgs(
-                    policy_uri=asp.name,
-                ),
-            ))
+            cluster_config={
+                "autoscalingConfig": {
+                    "policyUri": asp.name,
+                },
+            })
         ```
 
         ## Import

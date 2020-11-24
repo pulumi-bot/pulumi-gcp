@@ -78,18 +78,18 @@ class SSLCertificate(pulumi.CustomResource):
         default_url_map = gcp.compute.URLMap("defaultURLMap",
             description="a description",
             default_service=default_backend_service.id,
-            host_rules=[gcp.compute.URLMapHostRuleArgs(
-                hosts=["mysite.com"],
-                path_matcher="allpaths",
-            )],
-            path_matchers=[gcp.compute.URLMapPathMatcherArgs(
-                name="allpaths",
-                default_service=default_backend_service.id,
-                path_rules=[gcp.compute.URLMapPathMatcherPathRuleArgs(
-                    paths=["/*"],
-                    service=default_backend_service.id,
-                )],
-            )])
+            host_rules=[{
+                "hosts": ["mysite.com"],
+                "pathMatcher": "allpaths",
+            }],
+            path_matchers=[{
+                "name": "allpaths",
+                "default_service": default_backend_service.id,
+                "pathRules": [{
+                    "paths": ["/*"],
+                    "service": default_backend_service.id,
+                }],
+            }])
         default_target_https_proxy = gcp.compute.TargetHttpsProxy("defaultTargetHttpsProxy",
             url_map=default_url_map.id,
             ssl_certificates=[default_ssl_certificate.id])

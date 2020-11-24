@@ -55,20 +55,20 @@ class Device(pulumi.CustomResource):
         registry = gcp.iot.Registry("registry")
         test_device = gcp.iot.Device("test-device",
             registry=registry.id,
-            credentials=[gcp.iot.DeviceCredentialArgs(
-                public_key={
+            credentials=[{
+                "public_key": {
                     "format": "RSA_PEM",
                     "key": (lambda path: open(path).read())("test-fixtures/rsa_public.pem"),
                 },
-            )],
+            }],
             blocked=False,
             log_level="INFO",
             metadata={
                 "test_key_1": "test_value_1",
             },
-            gateway_config=gcp.iot.DeviceGatewayConfigArgs(
-                gateway_type="NON_GATEWAY",
-            ))
+            gateway_config={
+                "gatewayType": "NON_GATEWAY",
+            })
         ```
 
         ## Import

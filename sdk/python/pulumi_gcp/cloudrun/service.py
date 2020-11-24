@@ -57,17 +57,17 @@ class Service(pulumi.CustomResource):
 
         default = gcp.cloudrun.Service("default",
             location="us-central1",
-            template=gcp.cloudrun.ServiceTemplateArgs(
-                spec=gcp.cloudrun.ServiceTemplateSpecArgs(
-                    containers=[gcp.cloudrun.ServiceTemplateSpecContainerArgs(
-                        image="gcr.io/cloudrun/hello",
-                    )],
-                ),
-            ),
-            traffics=[gcp.cloudrun.ServiceTrafficArgs(
-                latest_revision=True,
-                percent=100,
-            )])
+            template={
+                "spec": {
+                    "containers": [{
+                        "image": "gcr.io/cloudrun/hello",
+                    }],
+                },
+            },
+            traffics=[{
+                "latestRevision": True,
+                "percent": 100,
+            }])
         ```
 
         {{% /example %}}
@@ -80,26 +80,26 @@ class Service(pulumi.CustomResource):
         instance = gcp.sql.DatabaseInstance("instance",
             deletion_protection=True,
             region="us-east1",
-            settings=gcp.sql.DatabaseInstanceSettingsArgs(
-                tier="db-f1-micro",
-            ))
+            settings={
+                "tier": "db-f1-micro",
+            })
         default = gcp.cloudrun.Service("default",
             autogenerate_revision_name=True,
             location="us-central1",
-            template=gcp.cloudrun.ServiceTemplateArgs(
-                metadata=gcp.cloudrun.ServiceTemplateMetadataArgs(
-                    annotations={
+            template={
+                "metadata": {
+                    "annotations": {
                         "autoscaling.knative.dev/maxScale": "1000",
                         "run.googleapis.com/client-name": "demo",
                         "run.googleapis.com/cloudsql-instances": instance.name.apply(lambda name: f"my-project-name:us-central1:{name}"),
                     },
-                ),
-                spec=gcp.cloudrun.ServiceTemplateSpecArgs(
-                    containers=[gcp.cloudrun.ServiceTemplateSpecContainerArgs(
-                        image="gcr.io/cloudrun/hello",
-                    )],
-                ),
-            ))
+                },
+                "spec": {
+                    "containers": [{
+                        "image": "gcr.io/cloudrun/hello",
+                    }],
+                },
+            })
         ```
 
         ###Cloud Run Service Noauth
@@ -110,17 +110,17 @@ class Service(pulumi.CustomResource):
 
         default = gcp.cloudrun.Service("default",
             location="us-central1",
-            template=gcp.cloudrun.ServiceTemplateArgs(
-                spec=gcp.cloudrun.ServiceTemplateSpecArgs(
-                    containers=[gcp.cloudrun.ServiceTemplateSpecContainerArgs(
-                        image="gcr.io/cloudrun/hello",
-                    )],
-                ),
-            ))
-        noauth_iam_policy = gcp.organizations.get_iam_policy(bindings=[gcp.organizations.GetIAMPolicyBindingArgs(
-            role="roles/run.invoker",
-            members=["allUsers"],
-        )])
+            template={
+                "spec": {
+                    "containers": [{
+                        "image": "gcr.io/cloudrun/hello",
+                    }],
+                },
+            })
+        noauth_iam_policy = gcp.organizations.get_iam_policy(bindings=[{
+            "role": "roles/run.invoker",
+            "members": ["allUsers"],
+        }])
         noauth_iam_policy = gcp.cloudrun.IamPolicy("noauthIamPolicy",
             location=default.location,
             project=default.project,
@@ -136,15 +136,15 @@ class Service(pulumi.CustomResource):
         default = gcp.cloudrun.Service("default",
             autogenerate_revision_name=True,
             location="us-central1",
-            metadata=gcp.cloudrun.ServiceMetadataArgs(
-                annotations={
+            metadata={
+                "annotations": {
                     "generated-by": "magic-modules",
                 },
-            ),
-            template=gcp.cloudrun.ServiceTemplateArgs(
-                spec=gcp.cloudrun.ServiceTemplateSpecArgs(
-                    containers=[gcp.cloudrun.ServiceTemplateSpecContainerArgs(
-                        env=[
+            },
+            template={
+                "spec": {
+                    "containers": [{
+                        "env": [
                             {
                                 "name": "SOURCE",
                                 "value": "remote",
@@ -154,14 +154,14 @@ class Service(pulumi.CustomResource):
                                 "value": "home",
                             },
                         ],
-                        image="gcr.io/cloudrun/hello",
-                    )],
-                ),
-            ),
-            traffics=[gcp.cloudrun.ServiceTrafficArgs(
-                latest_revision=True,
-                percent=100,
-            )])
+                        "image": "gcr.io/cloudrun/hello",
+                    }],
+                },
+            },
+            traffics=[{
+                "latestRevision": True,
+                "percent": 100,
+            }])
         ```
         ### Cloud Run Service Traffic Split
 
@@ -171,25 +171,25 @@ class Service(pulumi.CustomResource):
 
         default = gcp.cloudrun.Service("default",
             location="us-central1",
-            template=gcp.cloudrun.ServiceTemplateArgs(
-                metadata=gcp.cloudrun.ServiceTemplateMetadataArgs(
-                    name="cloudrun-srv-green",
-                ),
-                spec=gcp.cloudrun.ServiceTemplateSpecArgs(
-                    containers=[gcp.cloudrun.ServiceTemplateSpecContainerArgs(
-                        image="gcr.io/cloudrun/hello",
-                    )],
-                ),
-            ),
+            template={
+                "metadata": {
+                    "name": "cloudrun-srv-green",
+                },
+                "spec": {
+                    "containers": [{
+                        "image": "gcr.io/cloudrun/hello",
+                    }],
+                },
+            },
             traffics=[
-                gcp.cloudrun.ServiceTrafficArgs(
-                    percent=25,
-                    revision_name="cloudrun-srv-green",
-                ),
-                gcp.cloudrun.ServiceTrafficArgs(
-                    percent=75,
-                    revision_name="cloudrun-srv-blue",
-                ),
+                {
+                    "percent": 25,
+                    "revisionName": "cloudrun-srv-green",
+                },
+                {
+                    "percent": 75,
+                    "revisionName": "cloudrun-srv-blue",
+                },
             ])
         ```
 

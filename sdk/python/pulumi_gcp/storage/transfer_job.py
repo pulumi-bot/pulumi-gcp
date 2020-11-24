@@ -55,43 +55,43 @@ class TransferJob(pulumi.CustomResource):
         s3_bucket_nightly_backup = gcp.storage.TransferJob("s3-bucket-nightly-backup",
             description="Nightly backup of S3 bucket",
             project=var["project"],
-            transfer_spec=gcp.storage.TransferJobTransferSpecArgs(
-                object_conditions=gcp.storage.TransferJobTransferSpecObjectConditionsArgs(
-                    max_time_elapsed_since_last_modification="600s",
-                    exclude_prefixes=["requests.gz"],
-                ),
-                transfer_options=gcp.storage.TransferJobTransferSpecTransferOptionsArgs(
-                    delete_objects_unique_in_sink=False,
-                ),
-                aws_s3_data_source=gcp.storage.TransferJobTransferSpecAwsS3DataSourceArgs(
-                    bucket_name=var["aws_s3_bucket"],
-                    aws_access_key=gcp.storage.TransferJobTransferSpecAwsS3DataSourceAwsAccessKeyArgs(
-                        access_key_id=var["aws_access_key"],
-                        secret_access_key=var["aws_secret_key"],
-                    ),
-                ),
-                gcs_data_sink=gcp.storage.TransferJobTransferSpecGcsDataSinkArgs(
-                    bucket_name=s3_backup_bucket_bucket.name,
-                ),
-            ),
-            schedule=gcp.storage.TransferJobScheduleArgs(
-                schedule_start_date=gcp.storage.TransferJobScheduleScheduleStartDateArgs(
-                    year=2018,
-                    month=10,
-                    day=1,
-                ),
-                schedule_end_date=gcp.storage.TransferJobScheduleScheduleEndDateArgs(
-                    year=2019,
-                    month=1,
-                    day=15,
-                ),
-                start_time_of_day=gcp.storage.TransferJobScheduleStartTimeOfDayArgs(
-                    hours=23,
-                    minutes=30,
-                    seconds=0,
-                    nanos=0,
-                ),
-            ),
+            transfer_spec={
+                "objectConditions": {
+                    "maxTimeElapsedSinceLastModification": "600s",
+                    "excludePrefixes": ["requests.gz"],
+                },
+                "transferOptions": {
+                    "deleteObjectsUniqueInSink": False,
+                },
+                "awsS3DataSource": {
+                    "bucket_name": var["aws_s3_bucket"],
+                    "awsAccessKey": {
+                        "accessKeyId": var["aws_access_key"],
+                        "secretAccessKey": var["aws_secret_key"],
+                    },
+                },
+                "gcsDataSink": {
+                    "bucket_name": s3_backup_bucket_bucket.name,
+                },
+            },
+            schedule={
+                "scheduleStartDate": {
+                    "year": 2018,
+                    "month": 10,
+                    "day": 1,
+                },
+                "scheduleEndDate": {
+                    "year": 2019,
+                    "month": 1,
+                    "day": 15,
+                },
+                "startTimeOfDay": {
+                    "hours": 23,
+                    "minutes": 30,
+                    "seconds": 0,
+                    "nanos": 0,
+                },
+            },
             opts=ResourceOptions(depends_on=[s3_backup_bucket_bucket_iam_member]))
         ```
 

@@ -51,15 +51,15 @@ class Deployment(pulumi.CustomResource):
         import pulumi_gcp as gcp
 
         deployment = gcp.deploymentmanager.Deployment("deployment",
-            target=gcp.deploymentmanager.DeploymentTargetArgs(
-                config=gcp.deploymentmanager.DeploymentTargetConfigArgs(
-                    content=(lambda path: open(path).read())("path/to/config.yml"),
-                ),
-            ),
-            labels=[gcp.deploymentmanager.DeploymentLabelArgs(
-                key="foo",
-                value="bar",
-            )])
+            target={
+                "config": {
+                    "content": (lambda path: open(path).read())("path/to/config.yml"),
+                },
+            },
+            labels=[{
+                "key": "foo",
+                "value": "bar",
+            }])
         ```
 
         ## Import

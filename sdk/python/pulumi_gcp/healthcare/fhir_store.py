@@ -56,9 +56,9 @@ class FhirStore(pulumi.CustomResource):
             disable_referential_integrity=False,
             disable_resource_versioning=False,
             enable_history_import=False,
-            notification_config=gcp.healthcare.FhirStoreNotificationConfigArgs(
-                pubsub_topic=topic.id,
-            ),
+            notification_config={
+                "pubsubTopic": topic.id,
+            },
             labels={
                 "label1": "labelvalue1",
             })
@@ -86,15 +86,15 @@ class FhirStore(pulumi.CustomResource):
             labels={
                 "label1": "labelvalue1",
             },
-            stream_configs=[gcp.healthcare.FhirStoreStreamConfigArgs(
-                resource_types=["Observation"],
-                bigquery_destination=gcp.healthcare.FhirStoreStreamConfigBigqueryDestinationArgs(
-                    dataset_uri=pulumi.Output.all(bq_dataset.project, bq_dataset.dataset_id).apply(lambda project, dataset_id: f"bq://{project}.{dataset_id}"),
-                    schema_config=gcp.healthcare.FhirStoreStreamConfigBigqueryDestinationSchemaConfigArgs(
-                        recursive_structure_depth=3,
-                    ),
-                ),
-            )])
+            stream_configs=[{
+                "resourceTypes": ["Observation"],
+                "bigqueryDestination": {
+                    "datasetUri": pulumi.Output.all(bq_dataset.project, bq_dataset.dataset_id).apply(lambda project, dataset_id: f"bq://{project}.{dataset_id}"),
+                    "schemaConfig": {
+                        "recursiveStructureDepth": 3,
+                    },
+                },
+            }])
         topic = gcp.pubsub.Topic("topic")
         ```
 

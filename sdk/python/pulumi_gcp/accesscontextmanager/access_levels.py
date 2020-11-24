@@ -45,44 +45,44 @@ class AccessLevels(pulumi.CustomResource):
             title="my policy")
         access_levels = gcp.accesscontextmanager.AccessLevels("access-levels",
             access_levels=[
-                gcp.accesscontextmanager.AccessLevelsAccessLevelArgs(
-                    basic=gcp.accesscontextmanager.AccessLevelsAccessLevelBasicArgs(
-                        conditions=[gcp.accesscontextmanager.AccessLevelsAccessLevelBasicConditionArgs(
-                            device_policy={
+                {
+                    "basic": {
+                        "conditions": [{
+                            "device_policy": {
                                 "osConstraints": [{
                                     "osType": "DESKTOP_CHROME_OS",
                                 }],
                                 "requireScreenLock": True,
                             },
-                            regions=[
+                            "regions": [
                                 "CH",
                                 "IT",
                                 "US",
                             ],
-                        )],
-                    ),
-                    name=access_policy.name.apply(lambda name: f"accessPolicies/{name}/accessLevels/chromeos_no_lock"),
-                    title="chromeos_no_lock",
-                ),
-                gcp.accesscontextmanager.AccessLevelsAccessLevelArgs(
-                    basic=gcp.accesscontextmanager.AccessLevelsAccessLevelBasicArgs(
-                        conditions=[gcp.accesscontextmanager.AccessLevelsAccessLevelBasicConditionArgs(
-                            device_policy={
+                        }],
+                    },
+                    "name": access_policy.name.apply(lambda name: f"accessPolicies/{name}/accessLevels/chromeos_no_lock"),
+                    "title": "chromeos_no_lock",
+                },
+                {
+                    "basic": {
+                        "conditions": [{
+                            "device_policy": {
                                 "osConstraints": [{
                                     "osType": "DESKTOP_MAC",
                                 }],
                                 "requireScreenLock": True,
                             },
-                            regions=[
+                            "regions": [
                                 "CH",
                                 "IT",
                                 "US",
                             ],
-                        )],
-                    ),
-                    name=access_policy.name.apply(lambda name: f"accessPolicies/{name}/accessLevels/mac_no_lock"),
-                    title="mac_no_lock",
-                ),
+                        }],
+                    },
+                    "name": access_policy.name.apply(lambda name: f"accessPolicies/{name}/accessLevels/mac_no_lock"),
+                    "title": "mac_no_lock",
+                },
             ],
             parent=access_policy.name.apply(lambda name: f"accessPolicies/{name}"))
         ```

@@ -47,36 +47,36 @@ class Metric(pulumi.CustomResource):
         import pulumi_gcp as gcp
 
         logging_metric = gcp.logging.Metric("loggingMetric",
-            bucket_options=gcp.logging.MetricBucketOptionsArgs(
-                linear_buckets=gcp.logging.MetricBucketOptionsLinearBucketsArgs(
-                    num_finite_buckets=3,
-                    offset=1,
-                    width=1,
-                ),
-            ),
+            bucket_options={
+                "linearBuckets": {
+                    "numFiniteBuckets": 3,
+                    "offset": 1,
+                    "width": 1,
+                },
+            },
             filter="resource.type=gae_app AND severity>=ERROR",
             label_extractors={
                 "mass": "EXTRACT(jsonPayload.request)",
                 "sku": "EXTRACT(jsonPayload.id)",
             },
-            metric_descriptor=gcp.logging.MetricMetricDescriptorArgs(
-                display_name="My metric",
-                labels=[
-                    gcp.logging.MetricMetricDescriptorLabelArgs(
-                        description="amount of matter",
-                        key="mass",
-                        value_type="STRING",
-                    ),
-                    gcp.logging.MetricMetricDescriptorLabelArgs(
-                        description="Identifying number for item",
-                        key="sku",
-                        value_type="INT64",
-                    ),
+            metric_descriptor={
+                "display_name": "My metric",
+                "labels": [
+                    {
+                        "description": "amount of matter",
+                        "key": "mass",
+                        "value_type": "STRING",
+                    },
+                    {
+                        "description": "Identifying number for item",
+                        "key": "sku",
+                        "value_type": "INT64",
+                    },
                 ],
-                metric_kind="DELTA",
-                unit="1",
-                value_type="DISTRIBUTION",
-            ),
+                "metric_kind": "DELTA",
+                "unit": "1",
+                "value_type": "DISTRIBUTION",
+            },
             value_extractor="EXTRACT(jsonPayload.request)")
         ```
         ### Logging Metric Counter Basic
@@ -87,10 +87,10 @@ class Metric(pulumi.CustomResource):
 
         logging_metric = gcp.logging.Metric("loggingMetric",
             filter="resource.type=gae_app AND severity>=ERROR",
-            metric_descriptor=gcp.logging.MetricMetricDescriptorArgs(
-                metric_kind="DELTA",
-                value_type="INT64",
-            ))
+            metric_descriptor={
+                "metric_kind": "DELTA",
+                "value_type": "INT64",
+            })
         ```
         ### Logging Metric Counter Labels
 
@@ -103,15 +103,15 @@ class Metric(pulumi.CustomResource):
             label_extractors={
                 "mass": "EXTRACT(jsonPayload.request)",
             },
-            metric_descriptor=gcp.logging.MetricMetricDescriptorArgs(
-                labels=[gcp.logging.MetricMetricDescriptorLabelArgs(
-                    description="amount of matter",
-                    key="mass",
-                    value_type="STRING",
-                )],
-                metric_kind="DELTA",
-                value_type="INT64",
-            ))
+            metric_descriptor={
+                "labels": [{
+                    "description": "amount of matter",
+                    "key": "mass",
+                    "value_type": "STRING",
+                }],
+                "metric_kind": "DELTA",
+                "value_type": "INT64",
+            })
         ```
 
         ## Import

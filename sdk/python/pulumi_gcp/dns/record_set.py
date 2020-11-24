@@ -43,21 +43,21 @@ class RecordSet(pulumi.CustomResource):
         frontend_instance = gcp.compute.Instance("frontendInstance",
             machine_type="g1-small",
             zone="us-central1-b",
-            boot_disk=gcp.compute.InstanceBootDiskArgs(
-                initialize_params=gcp.compute.InstanceBootDiskInitializeParamsArgs(
-                    image="debian-cloud/debian-9",
-                ),
-            ),
-            network_interfaces=[gcp.compute.InstanceNetworkInterfaceArgs(
-                network="default",
-                access_configs=[gcp.compute.InstanceNetworkInterfaceAccessConfigArgs()],
-            )])
+            boot_disk={
+                "initializeParams": {
+                    "image": "debian-cloud/debian-9",
+                },
+            },
+            network_interfaces=[{
+                "network": "default",
+                "accessConfigs": [{}],
+            }])
         prod = gcp.dns.ManagedZone("prod", dns_name="prod.mydomain.com.")
         frontend_record_set = gcp.dns.RecordSet("frontendRecordSet",
             type="A",
             ttl=300,
             managed_zone=prod.name,
-            rrdatas=[frontend_instance.network_interfaces[0].access_configs[0].nat_ip])
+            rrdatas=[frontend_instance.network_interfaces[0]["accessConfigs"][0]["natIp"]])
         ```
         ### Adding an A record
 

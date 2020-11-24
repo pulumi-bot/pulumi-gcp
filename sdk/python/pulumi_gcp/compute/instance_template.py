@@ -72,35 +72,35 @@ class InstanceTemplate(pulumi.CustomResource):
             instance_description="description assigned to instances",
             machine_type="e2-medium",
             can_ip_forward=False,
-            scheduling=gcp.compute.InstanceTemplateSchedulingArgs(
-                automatic_restart=True,
-                on_host_maintenance="MIGRATE",
-            ),
+            scheduling={
+                "automaticRestart": True,
+                "onHostMaintenance": "MIGRATE",
+            },
             disks=[
-                gcp.compute.InstanceTemplateDiskArgs(
-                    source_image="debian-cloud/debian-9",
-                    auto_delete=True,
-                    boot=True,
-                ),
-                gcp.compute.InstanceTemplateDiskArgs(
-                    source=foobar.name,
-                    auto_delete=False,
-                    boot=False,
-                ),
+                {
+                    "source_image": "debian-cloud/debian-9",
+                    "autoDelete": True,
+                    "boot": True,
+                },
+                {
+                    "source": foobar.name,
+                    "autoDelete": False,
+                    "boot": False,
+                },
             ],
-            network_interfaces=[gcp.compute.InstanceTemplateNetworkInterfaceArgs(
-                network="default",
-            )],
+            network_interfaces=[{
+                "network": "default",
+            }],
             metadata={
                 "foo": "bar",
             },
-            service_account=gcp.compute.InstanceTemplateServiceAccountArgs(
-                scopes=[
+            service_account={
+                "scopes": [
                     "userinfo-email",
                     "compute-ro",
                     "storage-ro",
                 ],
-            ))
+            })
         ```
         ## Deploying the Latest Image
 
@@ -129,9 +129,9 @@ class InstanceTemplate(pulumi.CustomResource):
             name_prefix="instance-template-",
             machine_type="e2-medium",
             region="us-central1",
-            disks=[gcp.compute.InstanceTemplateDiskArgs(
-                source_image=google_compute_image["my_image"]["self_link"],
-            )])
+            disks=[{
+                "source_image": google_compute_image["my_image"]["self_link"],
+            }])
         ```
 
         To have instances update to the latest on every scaling event or instance re-creation,
@@ -143,9 +143,9 @@ class InstanceTemplate(pulumi.CustomResource):
         import pulumi_gcp as gcp
 
         instance_template = gcp.compute.InstanceTemplate("instanceTemplate",
-            disks=[gcp.compute.InstanceTemplateDiskArgs(
-                source_image="debian-cloud/debian-9",
-            )],
+            disks=[{
+                "source_image": "debian-cloud/debian-9",
+            }],
             machine_type="e2-medium",
             name_prefix="instance-template-",
             region="us-central1")

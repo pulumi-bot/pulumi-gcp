@@ -53,26 +53,26 @@ class InstanceGroupManager(pulumi.CustomResource):
             timeout_sec=5,
             healthy_threshold=2,
             unhealthy_threshold=10,
-            http_health_check=gcp.compute.HealthCheckHttpHealthCheckArgs(
-                request_path="/healthz",
-                port=8080,
-            ))
+            http_health_check={
+                "request_path": "/healthz",
+                "port": 8080,
+            })
         appserver = gcp.compute.InstanceGroupManager("appserver",
             base_instance_name="app",
             zone="us-central1-a",
-            versions=[gcp.compute.InstanceGroupManagerVersionArgs(
-                instance_template=google_compute_instance_template["appserver"]["id"],
-            )],
+            versions=[{
+                "instanceTemplate": google_compute_instance_template["appserver"]["id"],
+            }],
             target_pools=[google_compute_target_pool["appserver"]["id"]],
             target_size=2,
-            named_ports=[gcp.compute.InstanceGroupManagerNamedPortArgs(
-                name="customHTTP",
-                port=8888,
-            )],
-            auto_healing_policies=gcp.compute.InstanceGroupManagerAutoHealingPoliciesArgs(
-                health_check=autohealing.id,
-                initial_delay_sec=300,
-            ))
+            named_ports=[{
+                "name": "customHTTP",
+                "port": 8888,
+            }],
+            auto_healing_policies={
+                "healthCheck": autohealing.id,
+                "initialDelaySec": 300,
+            })
         ```
         ### With Multiple Versions (`Google-Beta` Provider)
         ```python
@@ -84,17 +84,17 @@ class InstanceGroupManager(pulumi.CustomResource):
             zone="us-central1-a",
             target_size=5,
             versions=[
-                gcp.compute.InstanceGroupManagerVersionArgs(
-                    name="appserver",
-                    instance_template=google_compute_instance_template["appserver"]["id"],
-                ),
-                gcp.compute.InstanceGroupManagerVersionArgs(
-                    name="appserver-canary",
-                    instance_template=google_compute_instance_template["appserver-canary"]["id"],
-                    target_size={
+                {
+                    "name": "appserver",
+                    "instanceTemplate": google_compute_instance_template["appserver"]["id"],
+                },
+                {
+                    "name": "appserver-canary",
+                    "instanceTemplate": google_compute_instance_template["appserver-canary"]["id"],
+                    "target_size": {
                         "fixed": 1,
                     },
-                ),
+                },
             ],
             opts=ResourceOptions(provider=google_beta))
         ```

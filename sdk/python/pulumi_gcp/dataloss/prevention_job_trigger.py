@@ -45,32 +45,32 @@ class PreventionJobTrigger(pulumi.CustomResource):
         basic = gcp.dataloss.PreventionJobTrigger("basic",
             description="Description",
             display_name="Displayname",
-            inspect_job=gcp.dataloss.PreventionJobTriggerInspectJobArgs(
-                actions=[gcp.dataloss.PreventionJobTriggerInspectJobActionArgs(
-                    save_findings=gcp.dataloss.PreventionJobTriggerInspectJobActionSaveFindingsArgs(
-                        output_config=gcp.dataloss.PreventionJobTriggerInspectJobActionSaveFindingsOutputConfigArgs(
-                            table=gcp.dataloss.PreventionJobTriggerInspectJobActionSaveFindingsOutputConfigTableArgs(
-                                dataset_id="asdf",
-                                project_id="asdf",
-                            ),
-                        ),
-                    ),
-                )],
-                inspect_template_name="fake",
-                storage_config=gcp.dataloss.PreventionJobTriggerInspectJobStorageConfigArgs(
-                    cloud_storage_options=gcp.dataloss.PreventionJobTriggerInspectJobStorageConfigCloudStorageOptionsArgs(
-                        file_set=gcp.dataloss.PreventionJobTriggerInspectJobStorageConfigCloudStorageOptionsFileSetArgs(
-                            url="gs://mybucket/directory/",
-                        ),
-                    ),
-                ),
-            ),
+            inspect_job={
+                "actions": [{
+                    "saveFindings": {
+                        "outputConfig": {
+                            "table": {
+                                "dataset_id": "asdf",
+                                "project_id": "asdf",
+                            },
+                        },
+                    },
+                }],
+                "inspectTemplateName": "fake",
+                "storageConfig": {
+                    "cloudStorageOptions": {
+                        "fileSet": {
+                            "url": "gs://mybucket/directory/",
+                        },
+                    },
+                },
+            },
             parent="projects/my-project-name",
-            triggers=[gcp.dataloss.PreventionJobTriggerTriggerArgs(
-                schedule=gcp.dataloss.PreventionJobTriggerTriggerScheduleArgs(
-                    recurrence_period_duration="86400s",
-                ),
-            )])
+            triggers=[{
+                "schedule": {
+                    "recurrencePeriodDuration": "86400s",
+                },
+            }])
         ```
 
         ## Import

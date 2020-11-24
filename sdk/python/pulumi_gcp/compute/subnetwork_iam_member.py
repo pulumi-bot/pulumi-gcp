@@ -43,10 +43,10 @@ class SubnetworkIAMMember(pulumi.CustomResource):
         import pulumi
         import pulumi_gcp as gcp
 
-        admin = gcp.organizations.get_iam_policy(bindings=[gcp.organizations.GetIAMPolicyBindingArgs(
-            role="roles/compute.networkUser",
-            members=["user:jane@example.com"],
-        )])
+        admin = gcp.organizations.get_iam_policy(bindings=[{
+            "role": "roles/compute.networkUser",
+            "members": ["user:jane@example.com"],
+        }])
         policy = gcp.compute.SubnetworkIAMPolicy("policy",
             project=google_compute_subnetwork["network-with-private-secondary-ip-ranges"]["project"],
             region=google_compute_subnetwork["network-with-private-secondary-ip-ranges"]["region"],
@@ -60,15 +60,15 @@ class SubnetworkIAMMember(pulumi.CustomResource):
         import pulumi
         import pulumi_gcp as gcp
 
-        admin = gcp.organizations.get_iam_policy(bindings=[gcp.organizations.GetIAMPolicyBindingArgs(
-            role="roles/compute.networkUser",
-            members=["user:jane@example.com"],
-            condition=gcp.organizations.GetIAMPolicyBindingConditionArgs(
-                title="expires_after_2019_12_31",
-                description="Expiring at midnight of 2019-12-31",
-                expression="request.time < timestamp(\"2020-01-01T00:00:00Z\")",
-            ),
-        )])
+        admin = gcp.organizations.get_iam_policy(bindings=[{
+            "role": "roles/compute.networkUser",
+            "members": ["user:jane@example.com"],
+            "condition": {
+                "title": "expires_after_2019_12_31",
+                "description": "Expiring at midnight of 2019-12-31",
+                "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
+            },
+        }])
         policy = gcp.compute.SubnetworkIAMPolicy("policy",
             project=google_compute_subnetwork["network-with-private-secondary-ip-ranges"]["project"],
             region=google_compute_subnetwork["network-with-private-secondary-ip-ranges"]["region"],
@@ -101,11 +101,11 @@ class SubnetworkIAMMember(pulumi.CustomResource):
             subnetwork=google_compute_subnetwork["network-with-private-secondary-ip-ranges"]["name"],
             role="roles/compute.networkUser",
             members=["user:jane@example.com"],
-            condition=gcp.compute.SubnetworkIAMBindingConditionArgs(
-                title="expires_after_2019_12_31",
-                description="Expiring at midnight of 2019-12-31",
-                expression="request.time < timestamp(\"2020-01-01T00:00:00Z\")",
-            ))
+            condition={
+                "title": "expires_after_2019_12_31",
+                "description": "Expiring at midnight of 2019-12-31",
+                "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
+            })
         ```
         ## google\_compute\_subnetwork\_iam\_member
 
@@ -133,11 +133,11 @@ class SubnetworkIAMMember(pulumi.CustomResource):
             subnetwork=google_compute_subnetwork["network-with-private-secondary-ip-ranges"]["name"],
             role="roles/compute.networkUser",
             member="user:jane@example.com",
-            condition=gcp.compute.SubnetworkIAMMemberConditionArgs(
-                title="expires_after_2019_12_31",
-                description="Expiring at midnight of 2019-12-31",
-                expression="request.time < timestamp(\"2020-01-01T00:00:00Z\")",
-            ))
+            condition={
+                "title": "expires_after_2019_12_31",
+                "description": "Expiring at midnight of 2019-12-31",
+                "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
+            })
         ```
 
         ## Import

@@ -58,10 +58,10 @@ class Registry(pulumi.CustomResource):
         import pulumi_gcp as gcp
 
         default_telemetry = gcp.pubsub.Topic("default-telemetry")
-        test_registry = gcp.iot.Registry("test-registry", event_notification_configs=[gcp.iot.RegistryEventNotificationConfigItemArgs(
-            pubsub_topic_name=default_telemetry.id,
-            subfolder_matches="",
-        )])
+        test_registry = gcp.iot.Registry("test-registry", event_notification_configs=[{
+            "pubsubTopicName": default_telemetry.id,
+            "subfolderMatches": "",
+        }])
         ```
         ### Cloudiot Device Registry Full
 
@@ -74,14 +74,14 @@ class Registry(pulumi.CustomResource):
         additional_telemetry = gcp.pubsub.Topic("additional-telemetry")
         test_registry = gcp.iot.Registry("test-registry",
             event_notification_configs=[
-                gcp.iot.RegistryEventNotificationConfigItemArgs(
-                    pubsub_topic_name=additional_telemetry.id,
-                    subfolder_matches="test/path",
-                ),
-                gcp.iot.RegistryEventNotificationConfigItemArgs(
-                    pubsub_topic_name=default_telemetry.id,
-                    subfolder_matches="",
-                ),
+                {
+                    "pubsubTopicName": additional_telemetry.id,
+                    "subfolderMatches": "test/path",
+                },
+                {
+                    "pubsubTopicName": default_telemetry.id,
+                    "subfolderMatches": "",
+                },
             ],
             state_notification_config={
                 "pubsub_topic_name": default_devicestatus.id,
@@ -93,12 +93,12 @@ class Registry(pulumi.CustomResource):
                 "http_enabled_state": "HTTP_ENABLED",
             },
             log_level="INFO",
-            credentials=[gcp.iot.RegistryCredentialArgs(
-                public_key_certificate={
+            credentials=[{
+                "publicKeyCertificate": {
                     "format": "X509_CERTIFICATE_PEM",
                     "certificate": (lambda path: open(path).read())("test-fixtures/rsa_cert.pem"),
                 },
-            )])
+            }])
         ```
 
         ## Import

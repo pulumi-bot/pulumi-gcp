@@ -51,14 +51,14 @@ class TargetInstance(pulumi.CustomResource):
         target_vm = gcp.compute.Instance("target-vm",
             machine_type="e2-medium",
             zone="us-central1-a",
-            boot_disk=gcp.compute.InstanceBootDiskArgs(
-                initialize_params=gcp.compute.InstanceBootDiskInitializeParamsArgs(
-                    image=vmimage.self_link,
-                ),
-            ),
-            network_interfaces=[gcp.compute.InstanceNetworkInterfaceArgs(
-                network="default",
-            )])
+            boot_disk={
+                "initializeParams": {
+                    "image": vmimage.self_link,
+                },
+            },
+            network_interfaces=[{
+                "network": "default",
+            }])
         default = gcp.compute.TargetInstance("default", instance=target_vm.id)
         ```
         ### Target Instance Custom Network
@@ -73,14 +73,14 @@ class TargetInstance(pulumi.CustomResource):
         target_vm_instance = gcp.compute.Instance("target-vmInstance",
             machine_type="e2-medium",
             zone="us-central1-a",
-            boot_disk=gcp.compute.InstanceBootDiskArgs(
-                initialize_params=gcp.compute.InstanceBootDiskInitializeParamsArgs(
-                    image=vmimage.self_link,
-                ),
-            ),
-            network_interfaces=[gcp.compute.InstanceNetworkInterfaceArgs(
-                network="default",
-            )],
+            boot_disk={
+                "initializeParams": {
+                    "image": vmimage.self_link,
+                },
+            },
+            network_interfaces=[{
+                "network": "default",
+            }],
             opts=ResourceOptions(provider=google_beta))
         custom_network = gcp.compute.TargetInstance("customNetwork",
             instance=target_vm_instance.id,

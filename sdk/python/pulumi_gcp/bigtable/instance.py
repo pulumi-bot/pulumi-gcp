@@ -40,11 +40,11 @@ class Instance(pulumi.CustomResource):
         import pulumi_gcp as gcp
 
         development_instance = gcp.bigtable.Instance("development-instance",
-            clusters=[gcp.bigtable.InstanceClusterArgs(
-                cluster_id="tf-instance-cluster",
-                storage_type="HDD",
-                zone="us-central1-b",
-            )],
+            clusters=[{
+                "cluster_id": "tf-instance-cluster",
+                "storageType": "HDD",
+                "zone": "us-central1-b",
+            }],
             instance_type="DEVELOPMENT",
             labels={
                 "my-label": "dev-label",

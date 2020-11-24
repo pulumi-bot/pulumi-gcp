@@ -85,25 +85,25 @@ class Cluster(pulumi.CustomResource):
             location="us-central1",
             remove_default_node_pool=True,
             initial_node_count=1,
-            master_auth=gcp.container.ClusterMasterAuthArgs(
-                username="",
-                password="",
-                client_certificate_config=gcp.container.ClusterMasterAuthClientCertificateConfigArgs(
-                    issue_client_certificate=False,
-                ),
-            ))
+            master_auth={
+                "username": "",
+                "password": "",
+                "clientCertificateConfig": {
+                    "issueClientCertificate": False,
+                },
+            })
         primary_preemptible_nodes = gcp.container.NodePool("primaryPreemptibleNodes",
             location="us-central1",
             cluster=primary.name,
             node_count=1,
-            node_config=gcp.container.NodePoolNodeConfigArgs(
-                preemptible=True,
-                machine_type="e2-medium",
-                metadata={
+            node_config={
+                "preemptible": True,
+                "machine_type": "e2-medium",
+                "metadata": {
                     "disable-legacy-endpoints": "true",
                 },
-                oauth_scopes=["https://www.googleapis.com/auth/cloud-platform"],
-            ))
+                "oauthScopes": ["https://www.googleapis.com/auth/cloud-platform"],
+            })
         ```
         ### With The Default Node Pool
 
@@ -114,26 +114,26 @@ class Cluster(pulumi.CustomResource):
         primary = gcp.container.Cluster("primary",
             initial_node_count=3,
             location="us-central1-a",
-            master_auth=gcp.container.ClusterMasterAuthArgs(
-                client_certificate_config=gcp.container.ClusterMasterAuthClientCertificateConfigArgs(
-                    issue_client_certificate=False,
-                ),
-                password="",
-                username="",
-            ),
-            node_config=gcp.container.ClusterNodeConfigArgs(
-                labels={
+            master_auth={
+                "clientCertificateConfig": {
+                    "issueClientCertificate": False,
+                },
+                "password": "",
+                "username": "",
+            },
+            node_config={
+                "labels": {
                     "foo": "bar",
                 },
-                metadata={
+                "metadata": {
                     "disable-legacy-endpoints": "true",
                 },
-                oauth_scopes=["https://www.googleapis.com/auth/cloud-platform"],
-                tags=[
+                "oauthScopes": ["https://www.googleapis.com/auth/cloud-platform"],
+                "tags": [
                     "foo",
                     "bar",
                 ],
-            ))
+            })
         ```
 
         ## Import

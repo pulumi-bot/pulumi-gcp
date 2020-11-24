@@ -39,10 +39,10 @@ class IamPolicy(pulumi.CustomResource):
         import pulumi
         import pulumi_gcp as gcp
 
-        admin = gcp.organizations.get_iam_policy(bindings=[gcp.organizations.GetIAMPolicyBindingArgs(
-            role="roles/viewer",
-            members=["user:jane@example.com"],
-        )])
+        admin = gcp.organizations.get_iam_policy(bindings=[{
+            "role": "roles/viewer",
+            "members": ["user:jane@example.com"],
+        }])
         policy = gcp.cloudrun.IamPolicy("policy",
             location=google_cloud_run_service["default"]["location"],
             project=google_cloud_run_service["default"]["project"],

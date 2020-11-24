@@ -61,9 +61,9 @@ class Topic(pulumi.CustomResource):
         import pulumi
         import pulumi_gcp as gcp
 
-        example = gcp.pubsub.Topic("example", message_storage_policy=gcp.pubsub.TopicMessageStoragePolicyArgs(
-            allowed_persistence_regions=["europe-west3"],
-        ))
+        example = gcp.pubsub.Topic("example", message_storage_policy={
+            "allowedPersistenceRegions": ["europe-west3"],
+        })
         ```
 
         ## Import

@@ -52,10 +52,10 @@ class InstanceGroupNamedPort(pulumi.CustomResource):
             initial_node_count=1,
             network=container_network.name,
             subnetwork=container_subnetwork.name,
-            ip_allocation_policy=gcp.container.ClusterIpAllocationPolicyArgs(
-                cluster_ipv4_cidr_block="/19",
-                services_ipv4_cidr_block="/22",
-            ))
+            ip_allocation_policy={
+                "clusterIpv4CidrBlock": "/19",
+                "servicesIpv4CidrBlock": "/22",
+            })
         my_port = gcp.compute.InstanceGroupNamedPort("myPort",
             group=my_cluster.instance_group_urls[0],
             zone="us-central1-a",

@@ -41,65 +41,65 @@ class PreventionDeidentifyTemplate(pulumi.CustomResource):
         import pulumi_gcp as gcp
 
         basic = gcp.dataloss.PreventionDeidentifyTemplate("basic",
-            deidentify_config=gcp.dataloss.PreventionDeidentifyTemplateDeidentifyConfigArgs(
-                info_type_transformations=gcp.dataloss.PreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsArgs(
-                    transformations=[
-                        gcp.dataloss.PreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationArgs(
-                            info_types=[
-                                gcp.dataloss.PreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationInfoTypeArgs(
-                                    name="PHONE_NUMBER",
-                                ),
-                                gcp.dataloss.PreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationInfoTypeArgs(
-                                    name="CREDIT_CARD_NUMBER",
-                                ),
+            deidentify_config={
+                "infoTypeTransformations": {
+                    "transformations": [
+                        {
+                            "infoTypes": [
+                                {
+                                    "name": "PHONE_NUMBER",
+                                },
+                                {
+                                    "name": "CREDIT_CARD_NUMBER",
+                                },
                             ],
-                            primitive_transformation=gcp.dataloss.PreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationPrimitiveTransformationArgs(
-                                replace_config=gcp.dataloss.PreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationPrimitiveTransformationReplaceConfigArgs(
-                                    new_value=gcp.dataloss.PreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationPrimitiveTransformationReplaceConfigNewValueArgs(
-                                        integer_value=9,
-                                    ),
-                                ),
-                            ),
-                        ),
-                        gcp.dataloss.PreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationArgs(
-                            info_types=[
-                                gcp.dataloss.PreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationInfoTypeArgs(
-                                    name="EMAIL_ADDRESS",
-                                ),
-                                gcp.dataloss.PreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationInfoTypeArgs(
-                                    name="LAST_NAME",
-                                ),
+                            "primitiveTransformation": {
+                                "replaceConfig": {
+                                    "newValue": {
+                                        "integerValue": 9,
+                                    },
+                                },
+                            },
+                        },
+                        {
+                            "infoTypes": [
+                                {
+                                    "name": "EMAIL_ADDRESS",
+                                },
+                                {
+                                    "name": "LAST_NAME",
+                                },
                             ],
-                            primitive_transformation=gcp.dataloss.PreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationPrimitiveTransformationArgs(
-                                character_mask_config=gcp.dataloss.PreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationPrimitiveTransformationCharacterMaskConfigArgs(
-                                    characters_to_ignore=[{
+                            "primitiveTransformation": {
+                                "characterMaskConfig": {
+                                    "charactersToIgnore": [{
                                         "commonCharactersToIgnore": "PUNCTUATION",
                                     }],
-                                    masking_character="X",
-                                    number_to_mask=4,
-                                    reverse_order=True,
-                                ),
-                            ),
-                        ),
-                        gcp.dataloss.PreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationArgs(
-                            info_types=[gcp.dataloss.PreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationInfoTypeArgs(
-                                name="DATE_OF_BIRTH",
-                            )],
-                            primitive_transformation=gcp.dataloss.PreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationPrimitiveTransformationArgs(
-                                replace_config=gcp.dataloss.PreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationPrimitiveTransformationReplaceConfigArgs(
-                                    new_value=gcp.dataloss.PreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationPrimitiveTransformationReplaceConfigNewValueArgs(
-                                        date_value=gcp.dataloss.PreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationPrimitiveTransformationReplaceConfigNewValueDateValueArgs(
-                                            day=1,
-                                            month=1,
-                                            year=2020,
-                                        ),
-                                    ),
-                                ),
-                            ),
-                        ),
+                                    "maskingCharacter": "X",
+                                    "numberToMask": 4,
+                                    "reverseOrder": True,
+                                },
+                            },
+                        },
+                        {
+                            "infoTypes": [{
+                                "name": "DATE_OF_BIRTH",
+                            }],
+                            "primitiveTransformation": {
+                                "replaceConfig": {
+                                    "newValue": {
+                                        "dateValue": {
+                                            "day": 1,
+                                            "month": 1,
+                                            "year": 2020,
+                                        },
+                                    },
+                                },
+                            },
+                        },
                     ],
-                ),
-            ),
+                },
+            },
             description="Description",
             display_name="Displayname",
             parent="projects/my-project-name")

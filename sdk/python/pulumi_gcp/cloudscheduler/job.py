@@ -55,13 +55,13 @@ class Job(pulumi.CustomResource):
         job = gcp.cloudscheduler.Job("job",
             attempt_deadline="320s",
             description="test http job",
-            http_target=gcp.cloudscheduler.JobHttpTargetArgs(
-                http_method="POST",
-                uri="https://example.com/ping",
-            ),
-            retry_config=gcp.cloudscheduler.JobRetryConfigArgs(
-                retry_count=1,
-            ),
+            http_target={
+                "httpMethod": "POST",
+                "uri": "https://example.com/ping",
+            },
+            retry_config={
+                "retryCount": 1,
+            },
             schedule="*/8 * * * *",
             time_zone="America/New_York")
         ```
@@ -72,23 +72,23 @@ class Job(pulumi.CustomResource):
         import pulumi_gcp as gcp
 
         job = gcp.cloudscheduler.Job("job",
-            app_engine_http_target=gcp.cloudscheduler.JobAppEngineHttpTargetArgs(
-                app_engine_routing=gcp.cloudscheduler.JobAppEngineHttpTargetAppEngineRoutingArgs(
-                    instance="my-instance-001",
-                    service="web",
-                    version="prod",
-                ),
-                http_method="POST",
-                relative_uri="/ping",
-            ),
+            app_engine_http_target={
+                "appEngineRouting": {
+                    "instance": "my-instance-001",
+                    "service": "web",
+                    "version": "prod",
+                },
+                "httpMethod": "POST",
+                "relativeUri": "/ping",
+            },
             attempt_deadline="320s",
             description="test app engine job",
-            retry_config=gcp.cloudscheduler.JobRetryConfigArgs(
-                max_doublings=2,
-                max_retry_duration="10s",
-                min_backoff_duration="1s",
-                retry_count=3,
-            ),
+            retry_config={
+                "maxDoublings": 2,
+                "maxRetryDuration": "10s",
+                "minBackoffDuration": "1s",
+                "retryCount": 3,
+            },
             schedule="*/4 * * * *",
             time_zone="Europe/London")
         ```
@@ -104,13 +104,13 @@ class Job(pulumi.CustomResource):
             schedule="*/8 * * * *",
             time_zone="America/New_York",
             attempt_deadline="320s",
-            http_target=gcp.cloudscheduler.JobHttpTargetArgs(
-                http_method="GET",
-                uri="https://cloudscheduler.googleapis.com/v1/projects/my-project-name/locations/us-west1/jobs",
-                oauth_token=gcp.cloudscheduler.JobHttpTargetOauthTokenArgs(
-                    service_account_email=default.email,
-                ),
-            ))
+            http_target={
+                "httpMethod": "GET",
+                "uri": "https://cloudscheduler.googleapis.com/v1/projects/my-project-name/locations/us-west1/jobs",
+                "oauthToken": {
+                    "service_account_email": default.email,
+                },
+            })
         ```
         ### Scheduler Job Oidc
 
@@ -124,13 +124,13 @@ class Job(pulumi.CustomResource):
             schedule="*/8 * * * *",
             time_zone="America/New_York",
             attempt_deadline="320s",
-            http_target=gcp.cloudscheduler.JobHttpTargetArgs(
-                http_method="GET",
-                uri="https://example.com/ping",
-                oidc_token=gcp.cloudscheduler.JobHttpTargetOidcTokenArgs(
-                    service_account_email=default.email,
-                ),
-            ))
+            http_target={
+                "httpMethod": "GET",
+                "uri": "https://example.com/ping",
+                "oidcToken": {
+                    "service_account_email": default.email,
+                },
+            })
         ```
 
         ## Import

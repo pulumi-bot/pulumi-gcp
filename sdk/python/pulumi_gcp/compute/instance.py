@@ -59,30 +59,30 @@ class Instance(pulumi.CustomResource):
         import pulumi_gcp as gcp
 
         default = gcp.compute.Instance("default",
-            boot_disk=gcp.compute.InstanceBootDiskArgs(
-                initialize_params=gcp.compute.InstanceBootDiskInitializeParamsArgs(
-                    image="debian-cloud/debian-9",
-                ),
-            ),
+            boot_disk={
+                "initializeParams": {
+                    "image": "debian-cloud/debian-9",
+                },
+            },
             machine_type="e2-medium",
             metadata={
                 "foo": "bar",
             },
             metadata_startup_script="echo hi > /test.txt",
-            network_interfaces=[gcp.compute.InstanceNetworkInterfaceArgs(
-                access_configs=[gcp.compute.InstanceNetworkInterfaceAccessConfigArgs()],
-                network="default",
-            )],
-            scratch_disks=[gcp.compute.InstanceScratchDiskArgs(
-                interface="SCSI",
-            )],
-            service_account=gcp.compute.InstanceServiceAccountArgs(
-                scopes=[
+            network_interfaces=[{
+                "accessConfigs": [{}],
+                "network": "default",
+            }],
+            scratch_disks=[{
+                "interface": "SCSI",
+            }],
+            service_account={
+                "scopes": [
                     "userinfo-email",
                     "compute-ro",
                     "storage-ro",
                 ],
-            ),
+            },
             tags=[
                 "foo",
                 "bar",

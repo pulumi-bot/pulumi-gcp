@@ -46,14 +46,14 @@ class MachineImage(pulumi.CustomResource):
 
         vm = gcp.compute.Instance("vm",
             machine_type="e2-medium",
-            boot_disk=gcp.compute.InstanceBootDiskArgs(
-                initialize_params=gcp.compute.InstanceBootDiskInitializeParamsArgs(
-                    image="debian-cloud/debian-9",
-                ),
-            ),
-            network_interfaces=[gcp.compute.InstanceNetworkInterfaceArgs(
-                network="default",
-            )],
+            boot_disk={
+                "initializeParams": {
+                    "image": "debian-cloud/debian-9",
+                },
+            },
+            network_interfaces=[{
+                "network": "default",
+            }],
             opts=ResourceOptions(provider=google_beta))
         image = gcp.compute.MachineImage("image", source_instance=vm.self_link,
         opts=ResourceOptions(provider=google_beta))

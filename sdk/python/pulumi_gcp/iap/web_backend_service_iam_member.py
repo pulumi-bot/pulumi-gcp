@@ -42,10 +42,10 @@ class WebBackendServiceIamMember(pulumi.CustomResource):
         import pulumi
         import pulumi_gcp as gcp
 
-        admin = gcp.organizations.get_iam_policy(bindings=[gcp.organizations.GetIAMPolicyBindingArgs(
-            role="roles/iap.httpsResourceAccessor",
-            members=["user:jane@example.com"],
-        )])
+        admin = gcp.organizations.get_iam_policy(bindings=[{
+            "role": "roles/iap.httpsResourceAccessor",
+            "members": ["user:jane@example.com"],
+        }])
         policy = gcp.iap.WebBackendServiceIamPolicy("policy",
             project=google_compute_backend_service["default"]["project"],
             web_backend_service=google_compute_backend_service["default"]["name"],
@@ -58,15 +58,15 @@ class WebBackendServiceIamMember(pulumi.CustomResource):
         import pulumi
         import pulumi_gcp as gcp
 
-        admin = gcp.organizations.get_iam_policy(bindings=[gcp.organizations.GetIAMPolicyBindingArgs(
-            role="roles/iap.httpsResourceAccessor",
-            members=["user:jane@example.com"],
-            condition=gcp.organizations.GetIAMPolicyBindingConditionArgs(
-                title="expires_after_2019_12_31",
-                description="Expiring at midnight of 2019-12-31",
-                expression="request.time < timestamp(\"2020-01-01T00:00:00Z\")",
-            ),
-        )])
+        admin = gcp.organizations.get_iam_policy(bindings=[{
+            "role": "roles/iap.httpsResourceAccessor",
+            "members": ["user:jane@example.com"],
+            "condition": {
+                "title": "expires_after_2019_12_31",
+                "description": "Expiring at midnight of 2019-12-31",
+                "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
+            },
+        }])
         policy = gcp.iap.WebBackendServiceIamPolicy("policy",
             project=google_compute_backend_service["default"]["project"],
             web_backend_service=google_compute_backend_service["default"]["name"],
@@ -96,11 +96,11 @@ class WebBackendServiceIamMember(pulumi.CustomResource):
             web_backend_service=google_compute_backend_service["default"]["name"],
             role="roles/iap.httpsResourceAccessor",
             members=["user:jane@example.com"],
-            condition=gcp.iap.WebBackendServiceIamBindingConditionArgs(
-                title="expires_after_2019_12_31",
-                description="Expiring at midnight of 2019-12-31",
-                expression="request.time < timestamp(\"2020-01-01T00:00:00Z\")",
-            ))
+            condition={
+                "title": "expires_after_2019_12_31",
+                "description": "Expiring at midnight of 2019-12-31",
+                "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
+            })
         ```
         ## google\_iap\_web\_backend\_service\_iam\_member
 
@@ -126,11 +126,11 @@ class WebBackendServiceIamMember(pulumi.CustomResource):
             web_backend_service=google_compute_backend_service["default"]["name"],
             role="roles/iap.httpsResourceAccessor",
             member="user:jane@example.com",
-            condition=gcp.iap.WebBackendServiceIamMemberConditionArgs(
-                title="expires_after_2019_12_31",
-                description="Expiring at midnight of 2019-12-31",
-                expression="request.time < timestamp(\"2020-01-01T00:00:00Z\")",
-            ))
+            condition={
+                "title": "expires_after_2019_12_31",
+                "description": "Expiring at midnight of 2019-12-31",
+                "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
+            })
         ```
 
         ## Import

@@ -75,9 +75,9 @@ class RegionSslCertificate(pulumi.CustomResource):
             certificate=(lambda path: open(path).read())("path/to/certificate.crt"))
         default_region_health_check = gcp.compute.RegionHealthCheck("defaultRegionHealthCheck",
             region="us-central1",
-            http_health_check=gcp.compute.RegionHealthCheckHttpHealthCheckArgs(
-                port=80,
-            ))
+            http_health_check={
+                "port": 80,
+            })
         default_region_backend_service = gcp.compute.RegionBackendService("defaultRegionBackendService",
             region="us-central1",
             protocol="HTTP",
@@ -87,18 +87,18 @@ class RegionSslCertificate(pulumi.CustomResource):
             region="us-central1",
             description="a description",
             default_service=default_region_backend_service.id,
-            host_rules=[gcp.compute.RegionUrlMapHostRuleArgs(
-                hosts=["mysite.com"],
-                path_matcher="allpaths",
-            )],
-            path_matchers=[gcp.compute.RegionUrlMapPathMatcherArgs(
-                name="allpaths",
-                default_service=default_region_backend_service.id,
-                path_rules=[gcp.compute.RegionUrlMapPathMatcherPathRuleArgs(
-                    paths=["/*"],
-                    service=default_region_backend_service.id,
-                )],
-            )])
+            host_rules=[{
+                "hosts": ["mysite.com"],
+                "pathMatcher": "allpaths",
+            }],
+            path_matchers=[{
+                "name": "allpaths",
+                "default_service": default_region_backend_service.id,
+                "pathRules": [{
+                    "paths": ["/*"],
+                    "service": default_region_backend_service.id,
+                }],
+            }])
         default_region_target_https_proxy = gcp.compute.RegionTargetHttpsProxy("defaultRegionTargetHttpsProxy",
             region="us-central1",
             url_map=default_region_url_map.id,

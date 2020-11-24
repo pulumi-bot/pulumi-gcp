@@ -37,14 +37,14 @@ class ResourcePolicy(pulumi.CustomResource):
 
         foo = gcp.compute.ResourcePolicy("foo",
             region="us-central1",
-            snapshot_schedule_policy=gcp.compute.ResourcePolicySnapshotSchedulePolicyArgs(
-                schedule=gcp.compute.ResourcePolicySnapshotSchedulePolicyScheduleArgs(
-                    daily_schedule=gcp.compute.ResourcePolicySnapshotSchedulePolicyScheduleDailyScheduleArgs(
-                        days_in_cycle=1,
-                        start_time="04:00",
-                    ),
-                ),
-            ))
+            snapshot_schedule_policy={
+                "schedule": {
+                    "dailySchedule": {
+                        "daysInCycle": 1,
+                        "startTime": "04:00",
+                    },
+                },
+            })
         ```
         ### Resource Policy Full
 
@@ -54,25 +54,25 @@ class ResourcePolicy(pulumi.CustomResource):
 
         bar = gcp.compute.ResourcePolicy("bar",
             region="us-central1",
-            snapshot_schedule_policy=gcp.compute.ResourcePolicySnapshotSchedulePolicyArgs(
-                retention_policy={
+            snapshot_schedule_policy={
+                "retention_policy": {
                     "maxRetentionDays": 10,
                     "onSourceDiskDelete": "KEEP_AUTO_SNAPSHOTS",
                 },
-                schedule=gcp.compute.ResourcePolicySnapshotSchedulePolicyScheduleArgs(
-                    hourly_schedule=gcp.compute.ResourcePolicySnapshotSchedulePolicyScheduleHourlyScheduleArgs(
-                        hours_in_cycle=20,
-                        start_time="23:00",
-                    ),
-                ),
-                snapshot_properties=gcp.compute.ResourcePolicySnapshotSchedulePolicySnapshotPropertiesArgs(
-                    guest_flush=True,
-                    labels={
+                "schedule": {
+                    "hourlySchedule": {
+                        "hoursInCycle": 20,
+                        "startTime": "23:00",
+                    },
+                },
+                "snapshotProperties": {
+                    "guest_flush": True,
+                    "labels": {
                         "myLabel": "value",
                     },
-                    storage_locations="us",
-                ),
-            ))
+                    "storage_locations": "us",
+                },
+            })
         ```
         ### Resource Policy Placement Policy
 
@@ -81,10 +81,10 @@ class ResourcePolicy(pulumi.CustomResource):
         import pulumi_gcp as gcp
 
         baz = gcp.compute.ResourcePolicy("baz",
-            group_placement_policy=gcp.compute.ResourcePolicyGroupPlacementPolicyArgs(
-                collocation="COLLOCATED",
-                vm_count=2,
-            ),
+            group_placement_policy={
+                "collocation": "COLLOCATED",
+                "vmCount": 2,
+            },
             region="us-central1")
         ```
 

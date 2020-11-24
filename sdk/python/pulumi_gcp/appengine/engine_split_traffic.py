@@ -47,14 +47,14 @@ class EngineSplitTraffic(pulumi.CustomResource):
             service="liveapp",
             delete_service_on_destroy=True,
             runtime="nodejs10",
-            entrypoint=gcp.appengine.StandardAppVersionEntrypointArgs(
-                shell="node ./app.js",
-            ),
-            deployment=gcp.appengine.StandardAppVersionDeploymentArgs(
-                zip=gcp.appengine.StandardAppVersionDeploymentZipArgs(
-                    source_url=pulumi.Output.all(bucket.name, object.name).apply(lambda bucketName, objectName: f"https://storage.googleapis.com/{bucket_name}/{object_name}"),
-                ),
-            ),
+            entrypoint={
+                "shell": "node ./app.js",
+            },
+            deployment={
+                "zip": {
+                    "sourceUrl": pulumi.Output.all(bucket.name, object.name).apply(lambda bucketName, objectName: f"https://storage.googleapis.com/{bucket_name}/{object_name}"),
+                },
+            },
             env_variables={
                 "port": "8080",
             })
@@ -63,27 +63,27 @@ class EngineSplitTraffic(pulumi.CustomResource):
             service="liveapp",
             noop_on_destroy=True,
             runtime="nodejs10",
-            entrypoint=gcp.appengine.StandardAppVersionEntrypointArgs(
-                shell="node ./app.js",
-            ),
-            deployment=gcp.appengine.StandardAppVersionDeploymentArgs(
-                zip=gcp.appengine.StandardAppVersionDeploymentZipArgs(
-                    source_url=pulumi.Output.all(bucket.name, object.name).apply(lambda bucketName, objectName: f"https://storage.googleapis.com/{bucket_name}/{object_name}"),
-                ),
-            ),
+            entrypoint={
+                "shell": "node ./app.js",
+            },
+            deployment={
+                "zip": {
+                    "sourceUrl": pulumi.Output.all(bucket.name, object.name).apply(lambda bucketName, objectName: f"https://storage.googleapis.com/{bucket_name}/{object_name}"),
+                },
+            },
             env_variables={
                 "port": "8080",
             })
         liveapp = gcp.appengine.EngineSplitTraffic("liveapp",
             service=liveapp_v2.service,
             migrate_traffic=False,
-            split=gcp.appengine.EngineSplitTrafficSplitArgs(
-                shard_by="IP",
-                allocations=pulumi.Output.all(liveapp_v1.version_id, liveapp_v2.version_id).apply(lambda liveappV1Version_id, liveappV2Version_id: {
+            split={
+                "shardBy": "IP",
+                "allocations": pulumi.Output.all(liveapp_v1.version_id, liveapp_v2.version_id).apply(lambda liveappV1Version_id, liveappV2Version_id: {
                     liveapp_v1_version_id: 0.75,
                     liveapp_v2_version_id: 0.25,
                 }),
-            ))
+            })
         ```
 
         ## Import

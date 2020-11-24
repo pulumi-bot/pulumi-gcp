@@ -47,12 +47,12 @@ class PatchDeployment(pulumi.CustomResource):
         import pulumi_gcp as gcp
 
         patch = gcp.osconfig.PatchDeployment("patch",
-            instance_filter=gcp.osconfig.PatchDeploymentInstanceFilterArgs(
-                all=True,
-            ),
-            one_time_schedule=gcp.osconfig.PatchDeploymentOneTimeScheduleArgs(
-                execute_time="2999-10-10T10:10:10.045123456Z",
-            ),
+            instance_filter={
+                "all": True,
+            },
+            one_time_schedule={
+                "executeTime": "2999-10-10T10:10:10.045123456Z",
+            },
             patch_deployment_id="patch-deploy-inst")
         ```
         ### Os Config Patch Deployment Instance
@@ -71,43 +71,43 @@ class PatchDeployment(pulumi.CustomResource):
                 "foo",
                 "bar",
             ],
-            boot_disk=gcp.compute.InstanceBootDiskArgs(
-                initialize_params=gcp.compute.InstanceBootDiskInitializeParamsArgs(
-                    image=my_image.self_link,
-                ),
-            ),
-            network_interfaces=[gcp.compute.InstanceNetworkInterfaceArgs(
-                network="default",
-            )],
+            boot_disk={
+                "initializeParams": {
+                    "image": my_image.self_link,
+                },
+            },
+            network_interfaces=[{
+                "network": "default",
+            }],
             metadata={
                 "foo": "bar",
             })
         patch = gcp.osconfig.PatchDeployment("patch",
             patch_deployment_id="patch-deploy-inst",
-            instance_filter=gcp.osconfig.PatchDeploymentInstanceFilterArgs(
-                instances=[foobar.id],
-            ),
-            patch_config=gcp.osconfig.PatchDeploymentPatchConfigArgs(
-                yum=gcp.osconfig.PatchDeploymentPatchConfigYumArgs(
-                    security=True,
-                    minimal=True,
-                    excludes=["bash"],
-                ),
-            ),
-            recurring_schedule=gcp.osconfig.PatchDeploymentRecurringScheduleArgs(
-                time_zone={
+            instance_filter={
+                "instances": [foobar.id],
+            },
+            patch_config={
+                "yum": {
+                    "security": True,
+                    "minimal": True,
+                    "excludes": ["bash"],
+                },
+            },
+            recurring_schedule={
+                "time_zone": {
                     "id": "America/New_York",
                 },
-                time_of_day=gcp.osconfig.PatchDeploymentRecurringScheduleTimeOfDayArgs(
-                    hours=0,
-                    minutes=30,
-                    seconds=30,
-                    nanos=20,
-                ),
-                monthly=gcp.osconfig.PatchDeploymentRecurringScheduleMonthlyArgs(
-                    month_day=1,
-                ),
-            ))
+                "timeOfDay": {
+                    "hours": 0,
+                    "minutes": 30,
+                    "seconds": 30,
+                    "nanos": 20,
+                },
+                "monthly": {
+                    "monthDay": 1,
+                },
+            })
         ```
         ### Os Config Patch Deployment Full
 
@@ -117,102 +117,102 @@ class PatchDeployment(pulumi.CustomResource):
 
         patch = gcp.osconfig.PatchDeployment("patch",
             duration="10s",
-            instance_filter=gcp.osconfig.PatchDeploymentInstanceFilterArgs(
-                group_labels=[gcp.osconfig.PatchDeploymentInstanceFilterGroupLabelArgs(
-                    labels={
+            instance_filter={
+                "groupLabels": [{
+                    "labels": {
                         "app": "web",
                         "env": "dev",
                     },
-                )],
-                instance_name_prefixes=["test-"],
-                zones=[
+                }],
+                "instanceNamePrefixes": ["test-"],
+                "zones": [
                     "us-central1-a",
                     "us-central-1c",
                 ],
-            ),
-            patch_config=gcp.osconfig.PatchDeploymentPatchConfigArgs(
-                apt=gcp.osconfig.PatchDeploymentPatchConfigAptArgs(
-                    excludes=["python"],
-                    type="DIST",
-                ),
-                goo=gcp.osconfig.PatchDeploymentPatchConfigGooArgs(
-                    enabled=True,
-                ),
-                post_step=gcp.osconfig.PatchDeploymentPatchConfigPostStepArgs(
-                    linux_exec_step_config=gcp.osconfig.PatchDeploymentPatchConfigPostStepLinuxExecStepConfigArgs(
-                        gcs_object=gcp.osconfig.PatchDeploymentPatchConfigPostStepLinuxExecStepConfigGcsObjectArgs(
-                            bucket="my-patch-scripts",
-                            generation_number="1523477886880",
-                            object="linux/post_patch_script",
-                        ),
-                    ),
-                    windows_exec_step_config=gcp.osconfig.PatchDeploymentPatchConfigPostStepWindowsExecStepConfigArgs(
-                        gcs_object=gcp.osconfig.PatchDeploymentPatchConfigPostStepWindowsExecStepConfigGcsObjectArgs(
-                            bucket="my-patch-scripts",
-                            generation_number="135920493447",
-                            object="windows/post_patch_script.ps1",
-                        ),
-                        interpreter="POWERSHELL",
-                    ),
-                ),
-                pre_step=gcp.osconfig.PatchDeploymentPatchConfigPreStepArgs(
-                    linux_exec_step_config=gcp.osconfig.PatchDeploymentPatchConfigPreStepLinuxExecStepConfigArgs(
-                        allowed_success_codes=[
+            },
+            patch_config={
+                "apt": {
+                    "excludes": ["python"],
+                    "type": "DIST",
+                },
+                "goo": {
+                    "enabled": True,
+                },
+                "postStep": {
+                    "linuxExecStepConfig": {
+                        "gcsObject": {
+                            "bucket": "my-patch-scripts",
+                            "generationNumber": "1523477886880",
+                            "object": "linux/post_patch_script",
+                        },
+                    },
+                    "windowsExecStepConfig": {
+                        "gcsObject": {
+                            "bucket": "my-patch-scripts",
+                            "generationNumber": "135920493447",
+                            "object": "windows/post_patch_script.ps1",
+                        },
+                        "interpreter": "POWERSHELL",
+                    },
+                },
+                "preStep": {
+                    "linuxExecStepConfig": {
+                        "allowedSuccessCodes": [
                             0,
                             3,
                         ],
-                        local_path="/tmp/pre_patch_script.sh",
-                    ),
-                    windows_exec_step_config=gcp.osconfig.PatchDeploymentPatchConfigPreStepWindowsExecStepConfigArgs(
-                        allowed_success_codes=[
+                        "localPath": "/tmp/pre_patch_script.sh",
+                    },
+                    "windowsExecStepConfig": {
+                        "allowedSuccessCodes": [
                             0,
                             2,
                         ],
-                        interpreter="SHELL",
-                        local_path="C:\\Users\\user\\pre-patch-script.cmd",
-                    ),
-                ),
-                reboot_config="ALWAYS",
-                windows_update=gcp.osconfig.PatchDeploymentPatchConfigWindowsUpdateArgs(
-                    classifications=[
+                        "interpreter": "SHELL",
+                        "localPath": "C:\\Users\\user\\pre-patch-script.cmd",
+                    },
+                },
+                "rebootConfig": "ALWAYS",
+                "windowsUpdate": {
+                    "classifications": [
                         "CRITICAL",
                         "SECURITY",
                         "UPDATE",
                     ],
-                ),
-                yum=gcp.osconfig.PatchDeploymentPatchConfigYumArgs(
-                    excludes=["bash"],
-                    minimal=True,
-                    security=True,
-                ),
-                zypper=gcp.osconfig.PatchDeploymentPatchConfigZypperArgs(
-                    categories=["security"],
-                ),
-            ),
+                },
+                "yum": {
+                    "excludes": ["bash"],
+                    "minimal": True,
+                    "security": True,
+                },
+                "zypper": {
+                    "categories": ["security"],
+                },
+            },
             patch_deployment_id="patch-deploy-inst",
-            recurring_schedule=gcp.osconfig.PatchDeploymentRecurringScheduleArgs(
-                monthly=gcp.osconfig.PatchDeploymentRecurringScheduleMonthlyArgs(
-                    week_day_of_month=gcp.osconfig.PatchDeploymentRecurringScheduleMonthlyWeekDayOfMonthArgs(
-                        day_of_week="TUESDAY",
-                        week_ordinal=-1,
-                    ),
-                ),
-                time_of_day=gcp.osconfig.PatchDeploymentRecurringScheduleTimeOfDayArgs(
-                    hours=0,
-                    minutes=30,
-                    nanos=20,
-                    seconds=30,
-                ),
-                time_zone={
+            recurring_schedule={
+                "monthly": {
+                    "weekDayOfMonth": {
+                        "dayOfWeek": "TUESDAY",
+                        "weekOrdinal": -1,
+                    },
+                },
+                "timeOfDay": {
+                    "hours": 0,
+                    "minutes": 30,
+                    "nanos": 20,
+                    "seconds": 30,
+                },
+                "time_zone": {
                     "id": "America/New_York",
                 },
-            ),
-            rollout=gcp.osconfig.PatchDeploymentRolloutArgs(
-                disruption_budget=gcp.osconfig.PatchDeploymentRolloutDisruptionBudgetArgs(
-                    fixed=1,
-                ),
-                mode="ZONE_BY_ZONE",
-            ))
+            },
+            rollout={
+                "disruptionBudget": {
+                    "fixed": 1,
+                },
+                "mode": "ZONE_BY_ZONE",
+            })
         ```
 
         ## Import

@@ -73,16 +73,16 @@ class ManagedZone(pulumi.CustomResource):
                 "foo": "bar",
             },
             visibility="private",
-            private_visibility_config=gcp.dns.ManagedZonePrivateVisibilityConfigArgs(
-                networks=[
-                    gcp.dns.ManagedZonePrivateVisibilityConfigNetworkArgs(
-                        network_url=network_1.id,
-                    ),
-                    gcp.dns.ManagedZonePrivateVisibilityConfigNetworkArgs(
-                        network_url=network_2.id,
-                    ),
+            private_visibility_config={
+                "networks": [
+                    {
+                        "networkUrl": network_1.id,
+                    },
+                    {
+                        "networkUrl": network_2.id,
+                    },
                 ],
-            ))
+            })
         ```
         ### Dns Managed Zone Private Forwarding
 
@@ -99,26 +99,26 @@ class ManagedZone(pulumi.CustomResource):
                 "foo": "bar",
             },
             visibility="private",
-            private_visibility_config=gcp.dns.ManagedZonePrivateVisibilityConfigArgs(
-                networks=[
-                    gcp.dns.ManagedZonePrivateVisibilityConfigNetworkArgs(
-                        network_url=network_1.id,
-                    ),
-                    gcp.dns.ManagedZonePrivateVisibilityConfigNetworkArgs(
-                        network_url=network_2.id,
-                    ),
+            private_visibility_config={
+                "networks": [
+                    {
+                        "networkUrl": network_1.id,
+                    },
+                    {
+                        "networkUrl": network_2.id,
+                    },
                 ],
-            ),
-            forwarding_config=gcp.dns.ManagedZoneForwardingConfigArgs(
-                target_name_servers=[
-                    gcp.dns.ManagedZoneForwardingConfigTargetNameServerArgs(
-                        ipv4_address="172.16.1.10",
-                    ),
-                    gcp.dns.ManagedZoneForwardingConfigTargetNameServerArgs(
-                        ipv4_address="172.16.1.20",
-                    ),
+            },
+            forwarding_config={
+                "targetNameServers": [
+                    {
+                        "ipv4Address": "172.16.1.10",
+                    },
+                    {
+                        "ipv4Address": "172.16.1.20",
+                    },
                 ],
-            ))
+            })
         ```
         ### Dns Managed Zone Private Peering
 
@@ -132,16 +132,16 @@ class ManagedZone(pulumi.CustomResource):
             dns_name="peering.example.com.",
             description="Example private DNS peering zone",
             visibility="private",
-            private_visibility_config=gcp.dns.ManagedZonePrivateVisibilityConfigArgs(
-                networks=[gcp.dns.ManagedZonePrivateVisibilityConfigNetworkArgs(
-                    network_url=network_source.id,
-                )],
-            ),
-            peering_config=gcp.dns.ManagedZonePeeringConfigArgs(
-                target_network=gcp.dns.ManagedZonePeeringConfigTargetNetworkArgs(
-                    network_url=network_target.id,
-                ),
-            ))
+            private_visibility_config={
+                "networks": [{
+                    "networkUrl": network_source.id,
+                }],
+            },
+            peering_config={
+                "targetNetwork": {
+                    "networkUrl": network_target.id,
+                },
+            })
         ```
         ### Dns Managed Zone Service Directory
 
@@ -157,11 +157,11 @@ class ManagedZone(pulumi.CustomResource):
             dns_name="services.example.com.",
             description="Example private DNS Service Directory zone",
             visibility="private",
-            service_directory_config=gcp.dns.ManagedZoneServiceDirectoryConfigArgs(
-                namespace=gcp.dns.ManagedZoneServiceDirectoryConfigNamespaceArgs(
-                    namespace_url=example.id,
-                ),
-            ),
+            service_directory_config={
+                "namespace": {
+                    "namespaceUrl": example.id,
+                },
+            },
             opts=ResourceOptions(provider=google_beta))
         network = gcp.compute.Network("network", auto_create_subnetworks=False,
         opts=ResourceOptions(provider=google_beta))

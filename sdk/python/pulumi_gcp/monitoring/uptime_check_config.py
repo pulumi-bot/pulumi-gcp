@@ -50,24 +50,24 @@ class UptimeCheckConfig(pulumi.CustomResource):
         import pulumi_gcp as gcp
 
         http = gcp.monitoring.UptimeCheckConfig("http",
-            content_matchers=[gcp.monitoring.UptimeCheckConfigContentMatcherArgs(
-                content="example",
-            )],
+            content_matchers=[{
+                "content": "example",
+            }],
             display_name="http-uptime-check",
-            http_check=gcp.monitoring.UptimeCheckConfigHttpCheckArgs(
-                body="Zm9vJTI1M0RiYXI=",
-                content_type="URL_ENCODED",
-                path="/some-path",
-                port=8010,
-                request_method="POST",
-            ),
-            monitored_resource=gcp.monitoring.UptimeCheckConfigMonitoredResourceArgs(
-                labels={
+            http_check={
+                "body": "Zm9vJTI1M0RiYXI=",
+                "content_type": "URL_ENCODED",
+                "path": "/some-path",
+                "port": 8010,
+                "requestMethod": "POST",
+            },
+            monitored_resource={
+                "labels": {
                     "host": "192.168.1.1",
                     "project_id": "my-project-name",
                 },
-                type="uptime_url",
-            ),
+                "type": "uptime_url",
+            },
             timeout="60s")
         ```
         ### Uptime Check Config Https
@@ -77,23 +77,23 @@ class UptimeCheckConfig(pulumi.CustomResource):
         import pulumi_gcp as gcp
 
         https = gcp.monitoring.UptimeCheckConfig("https",
-            content_matchers=[gcp.monitoring.UptimeCheckConfigContentMatcherArgs(
-                content="example",
-            )],
+            content_matchers=[{
+                "content": "example",
+            }],
             display_name="https-uptime-check",
-            http_check=gcp.monitoring.UptimeCheckConfigHttpCheckArgs(
-                path="/some-path",
-                port=443,
-                use_ssl=True,
-                validate_ssl=True,
-            ),
-            monitored_resource=gcp.monitoring.UptimeCheckConfigMonitoredResourceArgs(
-                labels={
+            http_check={
+                "path": "/some-path",
+                "port": 443,
+                "useSsl": True,
+                "validateSsl": True,
+            },
+            monitored_resource={
+                "labels": {
                     "host": "192.168.1.1",
                     "project_id": "my-project-name",
                 },
-                type="uptime_url",
-            ),
+                "type": "uptime_url",
+            },
             timeout="60s")
         ```
         ### Uptime Check Tcp
@@ -108,13 +108,13 @@ class UptimeCheckConfig(pulumi.CustomResource):
         tcp_group = gcp.monitoring.UptimeCheckConfig("tcpGroup",
             display_name="tcp-uptime-check",
             timeout="60s",
-            tcp_check=gcp.monitoring.UptimeCheckConfigTcpCheckArgs(
-                port=888,
-            ),
-            resource_group=gcp.monitoring.UptimeCheckConfigResourceGroupArgs(
-                resource_type="INSTANCE",
-                group_id=check.name,
-            ))
+            tcp_check={
+                "port": 888,
+            },
+            resource_group={
+                "resourceType": "INSTANCE",
+                "groupId": check.name,
+            })
         ```
 
         ## Import

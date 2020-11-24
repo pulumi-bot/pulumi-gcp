@@ -53,21 +53,21 @@ class AccessLevel(pulumi.CustomResource):
             parent="organizations/123456789",
             title="my policy")
         access_level = gcp.accesscontextmanager.AccessLevel("access-level",
-            basic=gcp.accesscontextmanager.AccessLevelBasicArgs(
-                conditions=[gcp.accesscontextmanager.AccessLevelBasicConditionArgs(
-                    device_policy={
+            basic={
+                "conditions": [{
+                    "device_policy": {
                         "osConstraints": [{
                             "osType": "DESKTOP_CHROME_OS",
                         }],
                         "requireScreenLock": True,
                     },
-                    regions=[
+                    "regions": [
                         "CH",
                         "IT",
                         "US",
                     ],
-                )],
-            ),
+                }],
+            },
             parent=access_policy.name.apply(lambda name: f"accessPolicies/{name}"),
             title="chromeos_no_lock")
         ```

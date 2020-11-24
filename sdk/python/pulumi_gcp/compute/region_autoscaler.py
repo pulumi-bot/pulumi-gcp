@@ -55,42 +55,42 @@ class RegionAutoscaler(pulumi.CustomResource):
                 "foo",
                 "bar",
             ],
-            disks=[gcp.compute.InstanceTemplateDiskArgs(
-                source_image=debian9.id,
-            )],
-            network_interfaces=[gcp.compute.InstanceTemplateNetworkInterfaceArgs(
-                network="default",
-            )],
+            disks=[{
+                "source_image": debian9.id,
+            }],
+            network_interfaces=[{
+                "network": "default",
+            }],
             metadata={
                 "foo": "bar",
             },
-            service_account=gcp.compute.InstanceTemplateServiceAccountArgs(
-                scopes=[
+            service_account={
+                "scopes": [
                     "userinfo-email",
                     "compute-ro",
                     "storage-ro",
                 ],
-            ))
+            })
         foobar_target_pool = gcp.compute.TargetPool("foobarTargetPool")
         foobar_region_instance_group_manager = gcp.compute.RegionInstanceGroupManager("foobarRegionInstanceGroupManager",
             region="us-central1",
-            versions=[gcp.compute.RegionInstanceGroupManagerVersionArgs(
-                instance_template=foobar_instance_template.id,
-                name="primary",
-            )],
+            versions=[{
+                "instanceTemplate": foobar_instance_template.id,
+                "name": "primary",
+            }],
             target_pools=[foobar_target_pool.id],
             base_instance_name="foobar")
         foobar_region_autoscaler = gcp.compute.RegionAutoscaler("foobarRegionAutoscaler",
             region="us-central1",
             target=foobar_region_instance_group_manager.id,
-            autoscaling_policy=gcp.compute.RegionAutoscalerAutoscalingPolicyArgs(
-                max_replicas=5,
-                min_replicas=1,
-                cooldown_period=60,
-                cpu_utilization=gcp.compute.RegionAutoscalerAutoscalingPolicyCpuUtilizationArgs(
-                    target=0.5,
-                ),
-            ))
+            autoscaling_policy={
+                "maxReplicas": 5,
+                "minReplicas": 1,
+                "cooldownPeriod": 60,
+                "cpuUtilization": {
+                    "target": 0.5,
+                },
+            })
         ```
 
         ## Import

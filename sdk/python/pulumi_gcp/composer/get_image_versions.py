@@ -88,11 +88,11 @@ def get_image_versions(project: Optional[str] = None,
     all = gcp.composer.get_image_versions()
     test = gcp.composer.Environment("test",
         region="us-central1",
-        config=gcp.composer.EnvironmentConfigArgs(
-            software_config=gcp.composer.EnvironmentConfigSoftwareConfigArgs(
-                image_version=all.image_versions[0].image_version_id,
-            ),
-        ))
+        config={
+            "softwareConfig": {
+                "imageVersion": all.image_versions[0]["imageVersionId"],
+            },
+        })
     ```
 
 

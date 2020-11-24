@@ -48,10 +48,10 @@ class ExternalVpnGateway(pulumi.CustomResource):
         external_gateway = gcp.compute.ExternalVpnGateway("externalGateway",
             redundancy_type="SINGLE_IP_INTERNALLY_REDUNDANT",
             description="An externally managed VPN gateway",
-            interfaces=[gcp.compute.ExternalVpnGatewayInterfaceArgs(
-                id=0,
-                ip_address="8.8.8.8",
-            )])
+            interfaces=[{
+                "id": 0,
+                "ip_address": "8.8.8.8",
+            }])
         network_subnet1 = gcp.compute.Subnetwork("networkSubnet1",
             ip_cidr_range="10.0.1.0/24",
             region="us-central1",
@@ -62,9 +62,9 @@ class ExternalVpnGateway(pulumi.CustomResource):
             network=network.id)
         router1 = gcp.compute.Router("router1",
             network=network.name,
-            bgp=gcp.compute.RouterBgpArgs(
-                asn=64514,
-            ))
+            bgp={
+                "asn": 64514,
+            })
         tunnel1 = gcp.compute.VPNTunnel("tunnel1",
             region="us-central1",
             vpn_gateway=ha_gateway.id,

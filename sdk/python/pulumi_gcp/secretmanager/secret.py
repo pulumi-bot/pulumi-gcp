@@ -42,18 +42,18 @@ class Secret(pulumi.CustomResource):
             labels={
                 "label": "my-label",
             },
-            replication=gcp.secretmanager.SecretReplicationArgs(
-                user_managed=gcp.secretmanager.SecretReplicationUserManagedArgs(
-                    replicas=[
-                        gcp.secretmanager.SecretReplicationUserManagedReplicaArgs(
-                            location="us-central1",
-                        ),
-                        gcp.secretmanager.SecretReplicationUserManagedReplicaArgs(
-                            location="us-east1",
-                        ),
+            replication={
+                "userManaged": {
+                    "replicas": [
+                        {
+                            "location": "us-central1",
+                        },
+                        {
+                            "location": "us-east1",
+                        },
                     ],
-                ),
-            ),
+                },
+            },
             secret_id="secret")
         ```
 

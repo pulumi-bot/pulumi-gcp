@@ -75,10 +75,10 @@ class Subnetwork(pulumi.CustomResource):
             ip_cidr_range="10.2.0.0/16",
             region="us-central1",
             network=custom_test.id,
-            secondary_ip_ranges=[gcp.compute.SubnetworkSecondaryIpRangeArgs(
-                range_name="tf-test-secondary-range-update1",
-                ip_cidr_range="192.168.10.0/24",
-            )])
+            secondary_ip_ranges=[{
+                "rangeName": "tf-test-secondary-range-update1",
+                "ip_cidr_range": "192.168.10.0/24",
+            }])
         ```
         ### Subnetwork Logging Config
 
@@ -91,11 +91,11 @@ class Subnetwork(pulumi.CustomResource):
             ip_cidr_range="10.2.0.0/16",
             region="us-central1",
             network=custom_test.id,
-            log_config=gcp.compute.SubnetworkLogConfigArgs(
-                aggregation_interval="INTERVAL_10_MIN",
-                flow_sampling=0.5,
-                metadata="INCLUDE_ALL_METADATA",
-            ))
+            log_config={
+                "aggregationInterval": "INTERVAL_10_MIN",
+                "flowSampling": 0.5,
+                "metadata": "INCLUDE_ALL_METADATA",
+            })
         ```
         ### Subnetwork Internal L7lb
 

@@ -69,9 +69,9 @@ class Entry(pulumi.CustomResource):
             entry_group=entry_group.id,
             entry_id="my_entry",
             type="FILESET",
-            gcs_fileset_spec=gcp.datacatalog.EntryGcsFilesetSpecArgs(
-                file_patterns=["gs://fake_bucket/dir/*"],
-            ))
+            gcs_fileset_spec={
+                "filePatterns": ["gs://fake_bucket/dir/*"],
+            })
         ```
         ### Data Catalog Entry Full
 

@@ -80,16 +80,16 @@ class Environment(pulumi.CustomResource):
             member=test_account.email.apply(lambda email: f"serviceAccount:{email}"))
         test_environment = gcp.composer.Environment("testEnvironment",
             region="us-central1",
-            config=gcp.composer.EnvironmentConfigArgs(
-                node_count=4,
-                node_config={
+            config={
+                "node_count": 4,
+                "node_config": {
                     "zone": "us-central1-a",
                     "machine_type": "e2-medium",
                     "network": test_network.id,
                     "subnetwork": test_subnetwork.id,
                     "service_account": test_account.name,
                 },
-            ),
+            },
             opts=ResourceOptions(depends_on=[composer_worker]))
         ```
         ### With Software (Airflow) Config
@@ -98,20 +98,20 @@ class Environment(pulumi.CustomResource):
         import pulumi_gcp as gcp
 
         test = gcp.composer.Environment("test",
-            config=gcp.composer.EnvironmentConfigArgs(
-                software_config=gcp.composer.EnvironmentConfigSoftwareConfigArgs(
-                    airflow_config_overrides={
+            config={
+                "softwareConfig": {
+                    "airflowConfigOverrides": {
                         "core-loadExample": "True",
                     },
-                    env_variables={
+                    "env_variables": {
                         "FOO": "bar",
                     },
-                    pypi_packages={
+                    "pypiPackages": {
                         "numpy": "",
                         "scipy": "==1.1.0",
                     },
-                ),
-            ),
+                },
+            },
             region="us-central1")
         ```
 

@@ -63,9 +63,9 @@ class Image(pulumi.CustomResource):
         import pulumi
         import pulumi_gcp as gcp
 
-        example = gcp.compute.Image("example", raw_disk=gcp.compute.ImageRawDiskArgs(
-            source="https://storage.googleapis.com/bosh-cpi-artifacts/bosh-stemcell-3262.4-google-kvm-ubuntu-trusty-go_agent-raw.tar.gz",
-        ))
+        example = gcp.compute.Image("example", raw_disk={
+            "source": "https://storage.googleapis.com/bosh-cpi-artifacts/bosh-stemcell-3262.4-google-kvm-ubuntu-trusty-go_agent-raw.tar.gz",
+        })
         ```
         ### Image Guest Os
 
@@ -75,16 +75,16 @@ class Image(pulumi.CustomResource):
 
         example = gcp.compute.Image("example",
             guest_os_features=[
-                gcp.compute.ImageGuestOsFeatureArgs(
-                    type="SECURE_BOOT",
-                ),
-                gcp.compute.ImageGuestOsFeatureArgs(
-                    type="MULTI_IP_SUBNET",
-                ),
+                {
+                    "type": "SECURE_BOOT",
+                },
+                {
+                    "type": "MULTI_IP_SUBNET",
+                },
             ],
-            raw_disk=gcp.compute.ImageRawDiskArgs(
-                source="https://storage.googleapis.com/bosh-cpi-artifacts/bosh-stemcell-3262.4-google-kvm-ubuntu-trusty-go_agent-raw.tar.gz",
-            ))
+            raw_disk={
+                "source": "https://storage.googleapis.com/bosh-cpi-artifacts/bosh-stemcell-3262.4-google-kvm-ubuntu-trusty-go_agent-raw.tar.gz",
+            })
         ```
 
         ## Import

@@ -69,10 +69,10 @@ class Instance(pulumi.CustomResource):
                 "example_key": "example_value",
             },
             private_instance=True,
-            network_config=gcp.datafusion.InstanceNetworkConfigArgs(
-                network="default",
-                ip_allocation="10.89.48.0/22",
-            ),
+            network_config={
+                "network": "default",
+                "ipAllocation": "10.89.48.0/22",
+            },
             version="6.1.1",
             opts=ResourceOptions(provider=google_beta))
         ```

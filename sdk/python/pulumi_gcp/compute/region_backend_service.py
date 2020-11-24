@@ -60,9 +60,9 @@ class RegionBackendService(pulumi.CustomResource):
         default_health_check = gcp.compute.HealthCheck("defaultHealthCheck",
             check_interval_sec=1,
             timeout_sec=1,
-            tcp_health_check=gcp.compute.HealthCheckTcpHealthCheckArgs(
-                port=80,
-            ))
+            tcp_health_check={
+                "port": 80,
+            })
         default_region_backend_service = gcp.compute.RegionBackendService("defaultRegionBackendService",
             region="us-central1",
             health_checks=[default_health_check.id],
@@ -75,9 +75,9 @@ class RegionBackendService(pulumi.CustomResource):
         import pulumi
         import pulumi_gcp as gcp
 
-        health_check = gcp.compute.HealthCheck("healthCheck", http_health_check=gcp.compute.HealthCheckHttpHealthCheckArgs(
-            port=80,
-        ))
+        health_check = gcp.compute.HealthCheck("healthCheck", http_health_check={
+            "port": 80,
+        })
         default = gcp.compute.RegionBackendService("default",
             region="us-central1",
             health_checks=[health_check.id],
@@ -93,9 +93,9 @@ class RegionBackendService(pulumi.CustomResource):
 
         health_check = gcp.compute.RegionHealthCheck("healthCheck",
             region="us-central1",
-            tcp_health_check=gcp.compute.RegionHealthCheckTcpHealthCheckArgs(
-                port=80,
-            ),
+            tcp_health_check={
+                "port": 80,
+            },
             opts=ResourceOptions(provider=google_beta))
         default = gcp.compute.RegionBackendService("default",
             region="us-central1",
@@ -110,9 +110,9 @@ class RegionBackendService(pulumi.CustomResource):
         import pulumi
         import pulumi_gcp as gcp
 
-        health_check = gcp.compute.HealthCheck("healthCheck", http_health_check=gcp.compute.HealthCheckHttpHealthCheckArgs(
-            port=80,
-        ))
+        health_check = gcp.compute.HealthCheck("healthCheck", http_health_check={
+            "port": 80,
+        })
         default = gcp.compute.RegionBackendService("default",
             region="us-central1",
             health_checks=[health_check.id],
@@ -120,21 +120,21 @@ class RegionBackendService(pulumi.CustomResource):
             locality_lb_policy="RING_HASH",
             session_affinity="HTTP_COOKIE",
             protocol="HTTP",
-            circuit_breakers=gcp.compute.RegionBackendServiceCircuitBreakersArgs(
-                max_connections=10,
-            ),
-            consistent_hash=gcp.compute.RegionBackendServiceConsistentHashArgs(
-                http_cookie=gcp.compute.RegionBackendServiceConsistentHashHttpCookieArgs(
-                    ttl=gcp.compute.RegionBackendServiceConsistentHashHttpCookieTtlArgs(
-                        seconds=11,
-                        nanos=1111,
-                    ),
-                    name="mycookie",
-                ),
-            ),
-            outlier_detection=gcp.compute.RegionBackendServiceOutlierDetectionArgs(
-                consecutive_errors=2,
-            ))
+            circuit_breakers={
+                "maxConnections": 10,
+            },
+            consistent_hash={
+                "httpCookie": {
+                    "ttl": {
+                        "seconds": 11,
+                        "nanos": 1111,
+                    },
+                    "name": "mycookie",
+                },
+            },
+            outlier_detection={
+                "consecutiveErrors": 2,
+            })
         ```
         ### Region Backend Service Balancing Mode
 
@@ -153,39 +153,39 @@ class RegionBackendService(pulumi.CustomResource):
             network=default_network.id)
         instance_template = gcp.compute.InstanceTemplate("instanceTemplate",
             machine_type="e2-medium",
-            network_interfaces=[gcp.compute.InstanceTemplateNetworkInterfaceArgs(
-                network=default_network.id,
-                subnetwork=default_subnetwork.id,
-            )],
-            disks=[gcp.compute.InstanceTemplateDiskArgs(
-                source_image=debian_image.self_link,
-                auto_delete=True,
-                boot=True,
-            )],
+            network_interfaces=[{
+                "network": default_network.id,
+                "subnetwork": default_subnetwork.id,
+            }],
+            disks=[{
+                "source_image": debian_image.self_link,
+                "autoDelete": True,
+                "boot": True,
+            }],
             tags=[
                 "allow-ssh",
                 "load-balanced-backend",
             ])
         rigm = gcp.compute.RegionInstanceGroupManager("rigm",
             region="us-central1",
-            versions=[gcp.compute.RegionInstanceGroupManagerVersionArgs(
-                instance_template=instance_template.id,
-                name="primary",
-            )],
+            versions=[{
+                "instanceTemplate": instance_template.id,
+                "name": "primary",
+            }],
             base_instance_name="internal-glb",
             target_size=1)
         default_region_health_check = gcp.compute.RegionHealthCheck("defaultRegionHealthCheck",
             region="us-central1",
-            http_health_check=gcp.compute.RegionHealthCheckHttpHealthCheckArgs(
-                port_specification="USE_SERVING_PORT",
-            ))
+            http_health_check={
+                "portSpecification": "USE_SERVING_PORT",
+            })
         default_region_backend_service = gcp.compute.RegionBackendService("defaultRegionBackendService",
             load_balancing_scheme="INTERNAL_MANAGED",
-            backends=[gcp.compute.RegionBackendServiceBackendArgs(
-                group=rigm.instance_group,
-                balancing_mode="UTILIZATION",
-                capacity_scaler=1,
-            )],
+            backends=[{
+                "group": rigm.instance_group,
+                "balancingMode": "UTILIZATION",
+                "capacityScaler": 1,
+            }],
             region="us-central1",
             protocol="HTTP",
             timeout_sec=10,

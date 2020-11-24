@@ -130,14 +130,14 @@ def get_app_engine_service(module_id: Optional[str] = None,
         version_id="v1",
         service="myapp",
         runtime="nodejs10",
-        entrypoint=gcp.appengine.StandardAppVersionEntrypointArgs(
-            shell="node ./app.js",
-        ),
-        deployment=gcp.appengine.StandardAppVersionDeploymentArgs(
-            zip=gcp.appengine.StandardAppVersionDeploymentZipArgs(
-                source_url=pulumi.Output.all(bucket.name, object.name).apply(lambda bucketName, objectName: f"https://storage.googleapis.com/{bucket_name}/{object_name}"),
-            ),
-        ),
+        entrypoint={
+            "shell": "node ./app.js",
+        },
+        deployment={
+            "zip": {
+                "sourceUrl": pulumi.Output.all(bucket.name, object.name).apply(lambda bucketName, objectName: f"https://storage.googleapis.com/{bucket_name}/{object_name}"),
+            },
+        },
         env_variables={
             "port": "8080",
         },

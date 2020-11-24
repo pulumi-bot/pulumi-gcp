@@ -54,10 +54,10 @@ class Trigger(pulumi.CustomResource):
                 "_BAZ": "qux",
                 "_FOO": "bar",
             },
-            trigger_template=gcp.cloudbuild.TriggerTriggerTemplateArgs(
-                branch_name="master",
-                repo_name="my-repo",
-            ))
+            trigger_template={
+                "branchName": "master",
+                "repoName": "my-repo",
+            })
         ```
         ### Cloudbuild Trigger Build
 
@@ -66,67 +66,67 @@ class Trigger(pulumi.CustomResource):
         import pulumi_gcp as gcp
 
         build_trigger = gcp.cloudbuild.Trigger("build-trigger",
-            build=gcp.cloudbuild.TriggerBuildArgs(
-                artifacts=gcp.cloudbuild.TriggerBuildArtifactsArgs(
-                    images=["gcr.io/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA"],
-                    objects=gcp.cloudbuild.TriggerBuildArtifactsObjectsArgs(
-                        location="gs://bucket/path/to/somewhere/",
-                        paths=["path"],
-                    ),
-                ),
-                logs_bucket="gs://mybucket/logs",
-                options=gcp.cloudbuild.TriggerBuildOptionsArgs(
-                    disk_size_gb=100,
-                    dynamic_substitutions=True,
-                    env=["ekey = evalue"],
-                    log_streaming_option="STREAM_OFF",
-                    logging="LEGACY",
-                    machine_type="N1_HIGHCPU_8",
-                    requested_verify_option="VERIFIED",
-                    secret_env=["secretenv = svalue"],
-                    source_provenance_hash=["MD5"],
-                    substitution_option="ALLOW_LOOSE",
-                    volumes=[gcp.cloudbuild.TriggerBuildOptionsVolumeArgs(
-                        name="v1",
-                        path="v1",
-                    )],
-                    worker_pool="pool",
-                ),
-                queue_ttl="20s",
-                secrets=[gcp.cloudbuild.TriggerBuildSecretArgs(
-                    kms_key_name="projects/myProject/locations/global/keyRings/keyring-name/cryptoKeys/key-name",
-                    secret_env={
+            build={
+                "artifacts": {
+                    "images": ["gcr.io/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA"],
+                    "objects": {
+                        "location": "gs://bucket/path/to/somewhere/",
+                        "paths": ["path"],
+                    },
+                },
+                "logsBucket": "gs://mybucket/logs",
+                "options": {
+                    "disk_size_gb": 100,
+                    "dynamicSubstitutions": True,
+                    "env": ["ekey = evalue"],
+                    "logStreamingOption": "STREAM_OFF",
+                    "logging": "LEGACY",
+                    "machine_type": "N1_HIGHCPU_8",
+                    "requestedVerifyOption": "VERIFIED",
+                    "secretEnv": ["secretenv = svalue"],
+                    "sourceProvenanceHash": ["MD5"],
+                    "substitutionOption": "ALLOW_LOOSE",
+                    "volumes": [{
+                        "name": "v1",
+                        "path": "v1",
+                    }],
+                    "workerPool": "pool",
+                },
+                "queueTtl": "20s",
+                "secrets": [{
+                    "kms_key_name": "projects/myProject/locations/global/keyRings/keyring-name/cryptoKeys/key-name",
+                    "secretEnv": {
                         "PASSWORD": "ZW5jcnlwdGVkLXBhc3N3b3JkCg==",
                     },
-                )],
-                source=gcp.cloudbuild.TriggerBuildSourceArgs(
-                    storage_source=gcp.cloudbuild.TriggerBuildSourceStorageSourceArgs(
-                        bucket="mybucket",
-                        object="source_code.tar.gz",
-                    ),
-                ),
-                steps=[gcp.cloudbuild.TriggerBuildStepArgs(
-                    args=[
+                }],
+                "source": {
+                    "storageSource": {
+                        "bucket": "mybucket",
+                        "object": "source_code.tar.gz",
+                    },
+                },
+                "steps": [{
+                    "args": [
                         "cp",
                         "gs://mybucket/remotefile.zip",
                         "localfile.zip",
                     ],
-                    name="gcr.io/cloud-builders/gsutil",
-                    timeout="120s",
-                )],
-                substitutions={
+                    "name": "gcr.io/cloud-builders/gsutil",
+                    "timeout": "120s",
+                }],
+                "substitutions": {
                     "_BAZ": "qux",
                     "_FOO": "bar",
                 },
-                tags=[
+                "tags": [
                     "build",
                     "newFeature",
                 ],
-            ),
-            trigger_template=gcp.cloudbuild.TriggerTriggerTemplateArgs(
-                branch_name="master",
-                repo_name="my-repo",
-            ))
+            },
+            trigger_template={
+                "branchName": "master",
+                "repoName": "my-repo",
+            })
         ```
 
         ## Import

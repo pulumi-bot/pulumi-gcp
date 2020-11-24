@@ -52,9 +52,9 @@ class GameServerConfig(pulumi.CustomResource):
             config_id="tf-test-config",
             deployment_id=default_game_server_deployment.deployment_id,
             description="a config description",
-            fleet_configs=[gcp.gameservices.GameServerConfigFleetConfigArgs(
-                name="something-unique",
-                fleet_spec=json.dumps({
+            fleet_configs=[{
+                "name": "something-unique",
+                "fleetSpec": json.dumps({
                     "replicas": 1,
                     "scheduling": "Packed",
                     "template": {
@@ -79,10 +79,10 @@ class GameServerConfig(pulumi.CustomResource):
                         },
                     },
                 }),
-            )],
-            scaling_configs=[gcp.gameservices.GameServerConfigScalingConfigArgs(
-                name="scaling-config-name",
-                fleet_autoscaler_spec=json.dumps({
+            }],
+            scaling_configs=[{
+                "name": "scaling-config-name",
+                "fleetAutoscalerSpec": json.dumps({
                     "policy": {
                         "type": "Webhook",
                         "webhook": {
@@ -94,16 +94,16 @@ class GameServerConfig(pulumi.CustomResource):
                         },
                     },
                 }),
-                selectors=[gcp.gameservices.GameServerConfigScalingConfigSelectorArgs(
-                    labels={
+                "selectors": [{
+                    "labels": {
                         "one": "two",
                     },
-                )],
-                schedules=[gcp.gameservices.GameServerConfigScalingConfigScheduleArgs(
-                    cron_job_duration="3.500s",
-                    cron_spec="0 0 * * 0",
-                )],
-            )])
+                }],
+                "schedules": [{
+                    "cronJobDuration": "3.500s",
+                    "cronSpec": "0 0 * * 0",
+                }],
+            }])
         ```
 
         ## Import

@@ -66,9 +66,9 @@ class CryptoKey(pulumi.CustomResource):
         example_asymmetric_sign_key = gcp.kms.CryptoKey("example-asymmetric-sign-key",
             key_ring=keyring.id,
             purpose="ASYMMETRIC_SIGN",
-            version_template=gcp.kms.CryptoKeyVersionTemplateArgs(
-                algorithm="EC_SIGN_P384_SHA384",
-            ))
+            version_template={
+                "algorithm": "EC_SIGN_P384_SHA384",
+            })
         ```
 
         ## Import

@@ -68,17 +68,17 @@ class Firewall(pulumi.CustomResource):
         default_firewall = gcp.compute.Firewall("defaultFirewall",
             network=default_network.name,
             allows=[
-                gcp.compute.FirewallAllowArgs(
-                    protocol="icmp",
-                ),
-                gcp.compute.FirewallAllowArgs(
-                    protocol="tcp",
-                    ports=[
+                {
+                    "protocol": "icmp",
+                },
+                {
+                    "protocol": "tcp",
+                    "ports": [
                         "80",
                         "8080",
                         "1000-2000",
                     ],
-                ),
+                },
             ],
             source_tags=["web"])
         ```

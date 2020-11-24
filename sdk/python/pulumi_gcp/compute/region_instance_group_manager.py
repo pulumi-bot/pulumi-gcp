@@ -54,10 +54,10 @@ class RegionInstanceGroupManager(pulumi.CustomResource):
             timeout_sec=5,
             healthy_threshold=2,
             unhealthy_threshold=10,
-            http_health_check=gcp.compute.HealthCheckHttpHealthCheckArgs(
-                request_path="/healthz",
-                port=8080,
-            ))
+            http_health_check={
+                "request_path": "/healthz",
+                "port": 8080,
+            })
         appserver = gcp.compute.RegionInstanceGroupManager("appserver",
             base_instance_name="app",
             region="us-central1",
@@ -65,19 +65,19 @@ class RegionInstanceGroupManager(pulumi.CustomResource):
                 "us-central1-a",
                 "us-central1-f",
             ],
-            versions=[gcp.compute.RegionInstanceGroupManagerVersionArgs(
-                instance_template=google_compute_instance_template["appserver"]["id"],
-            )],
+            versions=[{
+                "instanceTemplate": google_compute_instance_template["appserver"]["id"],
+            }],
             target_pools=[google_compute_target_pool["appserver"]["id"]],
             target_size=2,
-            named_ports=[gcp.compute.RegionInstanceGroupManagerNamedPortArgs(
-                name="custom",
-                port=8888,
-            )],
-            auto_healing_policies=gcp.compute.RegionInstanceGroupManagerAutoHealingPoliciesArgs(
-                health_check=autohealing.id,
-                initial_delay_sec=300,
-            ))
+            named_ports=[{
+                "name": "custom",
+                "port": 8888,
+            }],
+            auto_healing_policies={
+                "healthCheck": autohealing.id,
+                "initialDelaySec": 300,
+            })
         ```
         ### With Multiple Versions
         ```python
@@ -89,15 +89,15 @@ class RegionInstanceGroupManager(pulumi.CustomResource):
             region="us-central1",
             target_size=5,
             versions=[
-                gcp.compute.RegionInstanceGroupManagerVersionArgs(
-                    instance_template=google_compute_instance_template["appserver"]["id"],
-                ),
-                gcp.compute.RegionInstanceGroupManagerVersionArgs(
-                    instance_template=google_compute_instance_template["appserver-canary"]["id"],
-                    target_size={
+                {
+                    "instanceTemplate": google_compute_instance_template["appserver"]["id"],
+                },
+                {
+                    "instanceTemplate": google_compute_instance_template["appserver-canary"]["id"],
+                    "target_size": {
                         "fixed": 1,
                     },
-                ),
+                },
             ])
         ```
 

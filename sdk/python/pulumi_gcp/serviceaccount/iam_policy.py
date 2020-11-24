@@ -39,10 +39,10 @@ class IAMPolicy(pulumi.CustomResource):
         import pulumi
         import pulumi_gcp as gcp
 
-        admin = gcp.organizations.get_iam_policy(bindings=[gcp.organizations.GetIAMPolicyBindingArgs(
-            role="roles/iam.serviceAccountUser",
-            members=["user:jane@example.com"],
-        )])
+        admin = gcp.organizations.get_iam_policy(bindings=[{
+            "role": "roles/iam.serviceAccountUser",
+            "members": ["user:jane@example.com"],
+        }])
         sa = gcp.service_account.Account("sa",
             account_id="my-service-account",
             display_name="A service account that only Jane can interact with")
@@ -76,11 +76,11 @@ class IAMPolicy(pulumi.CustomResource):
             account_id="my-service-account",
             display_name="A service account that only Jane can use")
         admin_account_iam = gcp.service_account.IAMBinding("admin-account-iam",
-            condition=gcp.service.account.IAMBindingConditionArgs(
-                description="Expiring at midnight of 2019-12-31",
-                expression="request.time < timestamp(\"2020-01-01T00:00:00Z\")",
-                title="expires_after_2019_12_31",
-            ),
+            condition={
+                "description": "Expiring at midnight of 2019-12-31",
+                "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
+                "title": "expires_after_2019_12_31",
+            },
             members=["user:jane@example.com"],
             role="roles/iam.serviceAccountUser",
             service_account_id=sa.name)
@@ -117,11 +117,11 @@ class IAMPolicy(pulumi.CustomResource):
             account_id="my-service-account",
             display_name="A service account that Jane can use")
         admin_account_iam = gcp.service_account.IAMMember("admin-account-iam",
-            condition=gcp.service.account.IAMMemberConditionArgs(
-                description="Expiring at midnight of 2019-12-31",
-                expression="request.time < timestamp(\"2020-01-01T00:00:00Z\")",
-                title="expires_after_2019_12_31",
-            ),
+            condition={
+                "description": "Expiring at midnight of 2019-12-31",
+                "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
+                "title": "expires_after_2019_12_31",
+            },
             member="user:jane@example.com",
             role="roles/iam.serviceAccountUser",
             service_account_id=sa.name)

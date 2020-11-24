@@ -75,9 +75,9 @@ class BackendService(pulumi.CustomResource):
         import pulumi
         import pulumi_gcp as gcp
 
-        health_check = gcp.compute.HealthCheck("healthCheck", http_health_check=gcp.compute.HealthCheckHttpHealthCheckArgs(
-            port=80,
-        ),
+        health_check = gcp.compute.HealthCheck("healthCheck", http_health_check={
+            "port": 80,
+        },
         opts=ResourceOptions(provider=google_beta))
         default = gcp.compute.BackendService("default",
             health_checks=[health_check.id],
@@ -91,30 +91,30 @@ class BackendService(pulumi.CustomResource):
         import pulumi
         import pulumi_gcp as gcp
 
-        health_check = gcp.compute.HealthCheck("healthCheck", http_health_check=gcp.compute.HealthCheckHttpHealthCheckArgs(
-            port=80,
-        ),
+        health_check = gcp.compute.HealthCheck("healthCheck", http_health_check={
+            "port": 80,
+        },
         opts=ResourceOptions(provider=google_beta))
         default = gcp.compute.BackendService("default",
             health_checks=[health_check.id],
             load_balancing_scheme="INTERNAL_SELF_MANAGED",
             locality_lb_policy="RING_HASH",
             session_affinity="HTTP_COOKIE",
-            circuit_breakers=gcp.compute.BackendServiceCircuitBreakersArgs(
-                max_connections=10,
-            ),
-            consistent_hash=gcp.compute.BackendServiceConsistentHashArgs(
-                http_cookie=gcp.compute.BackendServiceConsistentHashHttpCookieArgs(
-                    ttl=gcp.compute.BackendServiceConsistentHashHttpCookieTtlArgs(
-                        seconds=11,
-                        nanos=1111,
-                    ),
-                    name="mycookie",
-                ),
-            ),
-            outlier_detection=gcp.compute.BackendServiceOutlierDetectionArgs(
-                consecutive_errors=2,
-            ),
+            circuit_breakers={
+                "maxConnections": 10,
+            },
+            consistent_hash={
+                "httpCookie": {
+                    "ttl": {
+                        "seconds": 11,
+                        "nanos": 1111,
+                    },
+                    "name": "mycookie",
+                },
+            },
+            outlier_detection={
+                "consecutiveErrors": 2,
+            },
             opts=ResourceOptions(provider=google_beta))
         ```
         ### Backend Service Network Endpoint
@@ -135,9 +135,9 @@ class BackendService(pulumi.CustomResource):
             timeout_sec=10,
             connection_draining_timeout_sec=10,
             custom_request_headers=[proxy.fqdn.apply(lambda fqdn: f"host: {fqdn}")],
-            backends=[gcp.compute.BackendServiceBackendArgs(
-                group=external_proxy.id,
-            )])
+            backends=[{
+                "group": external_proxy.id,
+            }])
         ```
 
         ## Import

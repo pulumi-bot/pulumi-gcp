@@ -43,14 +43,14 @@ class DataStoreIndex(pulumi.CustomResource):
         default = gcp.datastore.DataStoreIndex("default",
             kind="foo",
             properties=[
-                gcp.datastore.DataStoreIndexPropertyArgs(
-                    direction="ASCENDING",
-                    name="property_a",
-                ),
-                gcp.datastore.DataStoreIndexPropertyArgs(
-                    direction="ASCENDING",
-                    name="property_b",
-                ),
+                {
+                    "direction": "ASCENDING",
+                    "name": "property_a",
+                },
+                {
+                    "direction": "ASCENDING",
+                    "name": "property_b",
+                },
             ])
         ```
 

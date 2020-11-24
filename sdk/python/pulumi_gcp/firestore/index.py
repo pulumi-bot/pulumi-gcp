@@ -46,18 +46,18 @@ class Index(pulumi.CustomResource):
         my_index = gcp.firestore.Index("my-index",
             collection="chatrooms",
             fields=[
-                gcp.firestore.IndexFieldArgs(
-                    field_path="name",
-                    order="ASCENDING",
-                ),
-                gcp.firestore.IndexFieldArgs(
-                    field_path="description",
-                    order="DESCENDING",
-                ),
-                gcp.firestore.IndexFieldArgs(
-                    field_path="__name__",
-                    order="DESCENDING",
-                ),
+                {
+                    "fieldPath": "name",
+                    "order": "ASCENDING",
+                },
+                {
+                    "fieldPath": "description",
+                    "order": "DESCENDING",
+                },
+                {
+                    "fieldPath": "__name__",
+                    "order": "DESCENDING",
+                },
             ],
             project="my-project-name")
         ```

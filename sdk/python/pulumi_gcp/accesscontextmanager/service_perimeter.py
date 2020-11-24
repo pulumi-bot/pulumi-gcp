@@ -63,26 +63,26 @@ class ServicePerimeter(pulumi.CustomResource):
             title="my policy")
         service_perimeter = gcp.accesscontextmanager.ServicePerimeter("service-perimeter",
             parent=access_policy.name.apply(lambda name: f"accessPolicies/{name}"),
-            status=gcp.accesscontextmanager.ServicePerimeterStatusArgs(
-                restricted_services=["storage.googleapis.com"],
-            ),
+            status={
+                "restrictedServices": ["storage.googleapis.com"],
+            },
             title="restrict_storage")
         access_level = gcp.accesscontextmanager.AccessLevel("access-level",
-            basic=gcp.accesscontextmanager.AccessLevelBasicArgs(
-                conditions=[gcp.accesscontextmanager.AccessLevelBasicConditionArgs(
-                    device_policy={
+            basic={
+                "conditions": [{
+                    "device_policy": {
                         "osConstraints": [{
                             "osType": "DESKTOP_CHROME_OS",
                         }],
                         "requireScreenLock": False,
                     },
-                    regions=[
+                    "regions": [
                         "CH",
                         "IT",
                         "US",
                     ],
-                )],
-            ),
+                }],
+            },
             parent=access_policy.name.apply(lambda name: f"accessPolicies/{name}"),
             title="chromeos_no_lock")
         ```
@@ -97,12 +97,12 @@ class ServicePerimeter(pulumi.CustomResource):
             title="my policy")
         service_perimeter = gcp.accesscontextmanager.ServicePerimeter("service-perimeter",
             parent=access_policy.name.apply(lambda name: f"accessPolicies/{name}"),
-            spec=gcp.accesscontextmanager.ServicePerimeterSpecArgs(
-                restricted_services=["storage.googleapis.com"],
-            ),
-            status=gcp.accesscontextmanager.ServicePerimeterStatusArgs(
-                restricted_services=["bigquery.googleapis.com"],
-            ),
+            spec={
+                "restrictedServices": ["storage.googleapis.com"],
+            },
+            status={
+                "restrictedServices": ["bigquery.googleapis.com"],
+            },
             title="restrict_bigquery_dryrun_storage",
             use_explicit_dry_run_spec=True)
         ```

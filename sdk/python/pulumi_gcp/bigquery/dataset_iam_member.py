@@ -50,10 +50,10 @@ class DatasetIamMember(pulumi.CustomResource):
         import pulumi
         import pulumi_gcp as gcp
 
-        owner = gcp.organizations.get_iam_policy(bindings=[gcp.organizations.GetIAMPolicyBindingArgs(
-            role="roles/dataOwner",
-            members=["user:jane@example.com"],
-        )])
+        owner = gcp.organizations.get_iam_policy(bindings=[{
+            "role": "roles/dataOwner",
+            "members": ["user:jane@example.com"],
+        }])
         dataset = gcp.bigquery.DatasetIamPolicy("dataset",
             dataset_id="your-dataset-id",
             policy_data=owner.policy_data)

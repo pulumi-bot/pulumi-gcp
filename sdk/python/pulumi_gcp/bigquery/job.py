@@ -59,19 +59,19 @@ class Job(pulumi.CustomResource):
             labels={
                 "example-label": "example-value",
             },
-            query=gcp.bigquery.JobQueryArgs(
-                query="SELECT state FROM [lookerdata:cdc.project_tycho_reports]",
-                destination_table=gcp.bigquery.JobQueryDestinationTableArgs(
-                    project_id=foo.project,
-                    dataset_id=foo.dataset_id,
-                    table_id=foo.table_id,
-                ),
-                allow_large_results=True,
-                flatten_results=True,
-                script_options=gcp.bigquery.JobQueryScriptOptionsArgs(
-                    key_result_statement="LAST",
-                ),
-            ))
+            query={
+                "query": "SELECT state FROM [lookerdata:cdc.project_tycho_reports]",
+                "destinationTable": {
+                    "project_id": foo.project,
+                    "dataset_id": foo.dataset_id,
+                    "table_id": foo.table_id,
+                },
+                "allowLargeResults": True,
+                "flattenResults": True,
+                "scriptOptions": {
+                    "keyResultStatement": "LAST",
+                },
+            })
         ```
         ### Bigquery Job Query Table Reference
 
@@ -92,20 +92,20 @@ class Job(pulumi.CustomResource):
             labels={
                 "example-label": "example-value",
             },
-            query=gcp.bigquery.JobQueryArgs(
-                query="SELECT state FROM [lookerdata:cdc.project_tycho_reports]",
-                destination_table=gcp.bigquery.JobQueryDestinationTableArgs(
-                    table_id=foo.id,
-                ),
-                default_dataset=gcp.bigquery.JobQueryDefaultDatasetArgs(
-                    dataset_id=bar.id,
-                ),
-                allow_large_results=True,
-                flatten_results=True,
-                script_options=gcp.bigquery.JobQueryScriptOptionsArgs(
-                    key_result_statement="LAST",
-                ),
-            ))
+            query={
+                "query": "SELECT state FROM [lookerdata:cdc.project_tycho_reports]",
+                "destinationTable": {
+                    "table_id": foo.id,
+                },
+                "defaultDataset": {
+                    "dataset_id": bar.id,
+                },
+                "allowLargeResults": True,
+                "flattenResults": True,
+                "scriptOptions": {
+                    "keyResultStatement": "LAST",
+                },
+            })
         ```
         ### Bigquery Job Load
 
@@ -126,21 +126,21 @@ class Job(pulumi.CustomResource):
             labels={
                 "my_job": "load",
             },
-            load=gcp.bigquery.JobLoadArgs(
-                source_uris=["gs://cloud-samples-data/bigquery/us-states/us-states-by-date.csv"],
-                destination_table=gcp.bigquery.JobLoadDestinationTableArgs(
-                    project_id=foo.project,
-                    dataset_id=foo.dataset_id,
-                    table_id=foo.table_id,
-                ),
-                skip_leading_rows=1,
-                schema_update_options=[
+            load={
+                "sourceUris": ["gs://cloud-samples-data/bigquery/us-states/us-states-by-date.csv"],
+                "destinationTable": {
+                    "project_id": foo.project,
+                    "dataset_id": foo.dataset_id,
+                    "table_id": foo.table_id,
+                },
+                "skipLeadingRows": 1,
+                "schemaUpdateOptions": [
                     "ALLOW_FIELD_RELAXATION",
                     "ALLOW_FIELD_ADDITION",
                 ],
-                write_disposition="WRITE_APPEND",
-                autodetect=True,
-            ))
+                "writeDisposition": "WRITE_APPEND",
+                "autodetect": True,
+            })
         ```
         ### Bigquery Job Extract
 
@@ -177,16 +177,16 @@ class Job(pulumi.CustomResource):
         dest = gcp.storage.Bucket("dest", force_destroy=True)
         job = gcp.bigquery.Job("job",
             job_id="job_extract",
-            extract=gcp.bigquery.JobExtractArgs(
-                destination_uris=[dest.url.apply(lambda url: f"{url}/extract")],
-                source_table=gcp.bigquery.JobExtractSourceTableArgs(
-                    project_id=source_one_table.project,
-                    dataset_id=source_one_table.dataset_id,
-                    table_id=source_one_table.table_id,
-                ),
-                destination_format="NEWLINE_DELIMITED_JSON",
-                compression="GZIP",
-            ))
+            extract={
+                "destinationUris": [dest.url.apply(lambda url: f"{url}/extract")],
+                "sourceTable": {
+                    "project_id": source_one_table.project,
+                    "dataset_id": source_one_table.dataset_id,
+                    "table_id": source_one_table.table_id,
+                },
+                "destinationFormat": "NEWLINE_DELIMITED_JSON",
+                "compression": "GZIP",
+            })
         ```
 
         ## Import

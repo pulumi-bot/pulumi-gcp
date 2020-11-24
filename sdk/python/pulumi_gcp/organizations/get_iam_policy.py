@@ -90,30 +90,30 @@ def get_iam_policy(audit_configs: Optional[Sequence[pulumi.InputType['GetIAMPoli
     import pulumi
     import pulumi_gcp as gcp
 
-    admin = gcp.organizations.get_iam_policy(audit_configs=[gcp.organizations.GetIAMPolicyAuditConfigArgs(
-            audit_log_configs=[
-                gcp.organizations.GetIAMPolicyAuditConfigAuditLogConfigArgs(
-                    exempted_members=["user:you@domain.com"],
-                    log_type="DATA_READ",
-                ),
-                gcp.organizations.GetIAMPolicyAuditConfigAuditLogConfigArgs(
-                    log_type="DATA_WRITE",
-                ),
-                gcp.organizations.GetIAMPolicyAuditConfigAuditLogConfigArgs(
-                    log_type="ADMIN_READ",
-                ),
+    admin = gcp.organizations.get_iam_policy(audit_configs=[{
+            "auditLogConfigs": [
+                {
+                    "exemptedMembers": ["user:you@domain.com"],
+                    "logType": "DATA_READ",
+                },
+                {
+                    "logType": "DATA_WRITE",
+                },
+                {
+                    "logType": "ADMIN_READ",
+                },
             ],
-            service="cloudkms.googleapis.com",
-        )],
+            "service": "cloudkms.googleapis.com",
+        }],
         bindings=[
-            gcp.organizations.GetIAMPolicyBindingArgs(
-                members=["serviceAccount:your-custom-sa@your-project.iam.gserviceaccount.com"],
-                role="roles/compute.instanceAdmin",
-            ),
-            gcp.organizations.GetIAMPolicyBindingArgs(
-                members=["user:alice@gmail.com"],
-                role="roles/storage.objectViewer",
-            ),
+            {
+                "members": ["serviceAccount:your-custom-sa@your-project.iam.gserviceaccount.com"],
+                "role": "roles/compute.instanceAdmin",
+            },
+            {
+                "members": ["user:alice@gmail.com"],
+                "role": "roles/storage.objectViewer",
+            },
         ])
     ```
 

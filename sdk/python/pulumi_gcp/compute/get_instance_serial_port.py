@@ -121,15 +121,15 @@ def get_instance_serial_port(instance: Optional[str] = None,
     windows = gcp.compute.Instance("windows",
         machine_type="e2-medium",
         zone="us-central1-a",
-        boot_disk=gcp.compute.InstanceBootDiskArgs(
-            initialize_params=gcp.compute.InstanceBootDiskInitializeParamsArgs(
-                image="gce-uefi-images/windows-2019",
-            ),
-        ),
-        network_interfaces=[gcp.compute.InstanceNetworkInterfaceArgs(
-            network="default",
-            access_configs=[gcp.compute.InstanceNetworkInterfaceAccessConfigArgs()],
-        )],
+        boot_disk={
+            "initializeParams": {
+                "image": "gce-uefi-images/windows-2019",
+            },
+        },
+        network_interfaces=[{
+            "network": "default",
+            "accessConfigs": [{}],
+        }],
         metadata={
             "serial-port-logging-enable": "TRUE",
             "windows-keys": json.dumps({
@@ -140,13 +140,13 @@ def get_instance_serial_port(instance: Optional[str] = None,
                 "userName": "example-user",
             }),
         },
-        service_account=gcp.compute.InstanceServiceAccountArgs(
-            scopes=[
+        service_account={
+            "scopes": [
                 "userinfo-email",
                 "compute-ro",
                 "storage-ro",
             ],
-        ))
+        })
     serial = pulumi.Output.all(windows.name, windows.zone).apply(lambda name, zone: gcp.compute.get_instance_serial_port(instance=name,
         zone=zone,
         port=4))

@@ -45,9 +45,9 @@ class DicomStore(pulumi.CustomResource):
         dataset = gcp.healthcare.Dataset("dataset", location="us-central1")
         default = gcp.healthcare.DicomStore("default",
             dataset=dataset.id,
-            notification_config=gcp.healthcare.DicomStoreNotificationConfigArgs(
-                pubsub_topic=topic.id,
-            ),
+            notification_config={
+                "pubsubTopic": topic.id,
+            },
             labels={
                 "label1": "labelvalue1",
             })

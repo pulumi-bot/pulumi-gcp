@@ -46,37 +46,37 @@ class ServicePerimeters(pulumi.CustomResource):
         service_perimeter = gcp.accesscontextmanager.ServicePerimeters("service-perimeter",
             parent=access_policy.name.apply(lambda name: f"accessPolicies/{name}"),
             service_perimeters=[
-                gcp.accesscontextmanager.ServicePerimetersServicePerimeterArgs(
-                    name=access_policy.name.apply(lambda name: f"accessPolicies/{name}/servicePerimeters/"),
-                    status=gcp.accesscontextmanager.ServicePerimetersServicePerimeterStatusArgs(
-                        restricted_services=["storage.googleapis.com"],
-                    ),
-                    title="",
-                ),
-                gcp.accesscontextmanager.ServicePerimetersServicePerimeterArgs(
-                    name=access_policy.name.apply(lambda name: f"accessPolicies/{name}/servicePerimeters/"),
-                    status=gcp.accesscontextmanager.ServicePerimetersServicePerimeterStatusArgs(
-                        restricted_services=["bigtable.googleapis.com"],
-                    ),
-                    title="",
-                ),
+                {
+                    "name": access_policy.name.apply(lambda name: f"accessPolicies/{name}/servicePerimeters/"),
+                    "status": {
+                        "restrictedServices": ["storage.googleapis.com"],
+                    },
+                    "title": "",
+                },
+                {
+                    "name": access_policy.name.apply(lambda name: f"accessPolicies/{name}/servicePerimeters/"),
+                    "status": {
+                        "restrictedServices": ["bigtable.googleapis.com"],
+                    },
+                    "title": "",
+                },
             ])
         access_level = gcp.accesscontextmanager.AccessLevel("access-level",
-            basic=gcp.accesscontextmanager.AccessLevelBasicArgs(
-                conditions=[gcp.accesscontextmanager.AccessLevelBasicConditionArgs(
-                    device_policy={
+            basic={
+                "conditions": [{
+                    "device_policy": {
                         "osConstraints": [{
                             "osType": "DESKTOP_CHROME_OS",
                         }],
                         "requireScreenLock": False,
                     },
-                    regions=[
+                    "regions": [
                         "CH",
                         "IT",
                         "US",
                     ],
-                )],
-            ),
+                }],
+            },
             parent=access_policy.name.apply(lambda name: f"accessPolicies/{name}"),
             title="chromeos_no_lock")
         ```

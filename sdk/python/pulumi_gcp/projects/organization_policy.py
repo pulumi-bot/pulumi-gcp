@@ -41,9 +41,9 @@ class OrganizationPolicy(pulumi.CustomResource):
         import pulumi_gcp as gcp
 
         serial_port_policy = gcp.projects.OrganizationPolicy("serialPortPolicy",
-            boolean_policy=gcp.projects.OrganizationPolicyBooleanPolicyArgs(
-                enforced=True,
-            ),
+            boolean_policy={
+                "enforced": True,
+            },
             constraint="compute.disableSerialPortAccess",
             project="your-project-id")
         ```
@@ -56,11 +56,11 @@ class OrganizationPolicy(pulumi.CustomResource):
 
         services_policy = gcp.projects.OrganizationPolicy("servicesPolicy",
             constraint="serviceuser.services",
-            list_policy=gcp.projects.OrganizationPolicyListPolicyArgs(
-                allow=gcp.projects.OrganizationPolicyListPolicyAllowArgs(
-                    all=True,
-                ),
-            ),
+            list_policy={
+                "allow": {
+                    "all": True,
+                },
+            },
             project="your-project-id")
         ```
 
@@ -72,12 +72,12 @@ class OrganizationPolicy(pulumi.CustomResource):
 
         services_policy = gcp.projects.OrganizationPolicy("servicesPolicy",
             constraint="serviceuser.services",
-            list_policy=gcp.projects.OrganizationPolicyListPolicyArgs(
-                deny=gcp.projects.OrganizationPolicyListPolicyDenyArgs(
-                    values=["cloudresourcemanager.googleapis.com"],
-                ),
-                suggested_value="compute.googleapis.com",
-            ),
+            list_policy={
+                "deny": {
+                    "values": ["cloudresourcemanager.googleapis.com"],
+                },
+                "suggestedValue": "compute.googleapis.com",
+            },
             project="your-project-id")
         ```
 
@@ -90,9 +90,9 @@ class OrganizationPolicy(pulumi.CustomResource):
         services_policy = gcp.projects.OrganizationPolicy("servicesPolicy",
             constraint="serviceuser.services",
             project="your-project-id",
-            restore_policy=gcp.projects.OrganizationPolicyRestorePolicyArgs(
-                default=True,
-            ))
+            restore_policy={
+                "default": True,
+            })
         ```
 
         ## Import

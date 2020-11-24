@@ -43,10 +43,10 @@ class TunnelInstanceIAMBinding(pulumi.CustomResource):
         import pulumi
         import pulumi_gcp as gcp
 
-        admin = gcp.organizations.get_iam_policy(bindings=[gcp.organizations.GetIAMPolicyBindingArgs(
-            role="roles/iap.tunnelResourceAccessor",
-            members=["user:jane@example.com"],
-        )])
+        admin = gcp.organizations.get_iam_policy(bindings=[{
+            "role": "roles/iap.tunnelResourceAccessor",
+            "members": ["user:jane@example.com"],
+        }])
         policy = gcp.iap.TunnelInstanceIAMPolicy("policy",
             project=google_compute_instance["tunnelvm"]["project"],
             zone=google_compute_instance["tunnelvm"]["zone"],
@@ -60,15 +60,15 @@ class TunnelInstanceIAMBinding(pulumi.CustomResource):
         import pulumi
         import pulumi_gcp as gcp
 
-        admin = gcp.organizations.get_iam_policy(bindings=[gcp.organizations.GetIAMPolicyBindingArgs(
-            role="roles/iap.tunnelResourceAccessor",
-            members=["user:jane@example.com"],
-            condition=gcp.organizations.GetIAMPolicyBindingConditionArgs(
-                title="expires_after_2019_12_31",
-                description="Expiring at midnight of 2019-12-31",
-                expression="request.time < timestamp(\"2020-01-01T00:00:00Z\")",
-            ),
-        )])
+        admin = gcp.organizations.get_iam_policy(bindings=[{
+            "role": "roles/iap.tunnelResourceAccessor",
+            "members": ["user:jane@example.com"],
+            "condition": {
+                "title": "expires_after_2019_12_31",
+                "description": "Expiring at midnight of 2019-12-31",
+                "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
+            },
+        }])
         policy = gcp.iap.TunnelInstanceIAMPolicy("policy",
             project=google_compute_instance["tunnelvm"]["project"],
             zone=google_compute_instance["tunnelvm"]["zone"],
@@ -101,11 +101,11 @@ class TunnelInstanceIAMBinding(pulumi.CustomResource):
             instance=google_compute_instance["tunnelvm"]["name"],
             role="roles/iap.tunnelResourceAccessor",
             members=["user:jane@example.com"],
-            condition=gcp.iap.TunnelInstanceIAMBindingConditionArgs(
-                title="expires_after_2019_12_31",
-                description="Expiring at midnight of 2019-12-31",
-                expression="request.time < timestamp(\"2020-01-01T00:00:00Z\")",
-            ))
+            condition={
+                "title": "expires_after_2019_12_31",
+                "description": "Expiring at midnight of 2019-12-31",
+                "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
+            })
         ```
         ## google\_iap\_tunnel\_instance\_iam\_member
 
@@ -133,11 +133,11 @@ class TunnelInstanceIAMBinding(pulumi.CustomResource):
             instance=google_compute_instance["tunnelvm"]["name"],
             role="roles/iap.tunnelResourceAccessor",
             member="user:jane@example.com",
-            condition=gcp.iap.TunnelInstanceIAMMemberConditionArgs(
-                title="expires_after_2019_12_31",
-                description="Expiring at midnight of 2019-12-31",
-                expression="request.time < timestamp(\"2020-01-01T00:00:00Z\")",
-            ))
+            condition={
+                "title": "expires_after_2019_12_31",
+                "description": "Expiring at midnight of 2019-12-31",
+                "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
+            })
         ```
 
         ## Import

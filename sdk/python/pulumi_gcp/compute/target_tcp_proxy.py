@@ -44,9 +44,9 @@ class TargetTCPProxy(pulumi.CustomResource):
         default_health_check = gcp.compute.HealthCheck("defaultHealthCheck",
             timeout_sec=1,
             check_interval_sec=1,
-            tcp_health_check=gcp.compute.HealthCheckTcpHealthCheckArgs(
-                port=443,
-            ))
+            tcp_health_check={
+                "port": 443,
+            })
         default_backend_service = gcp.compute.BackendService("defaultBackendService",
             protocol="TCP",
             timeout_sec=10,

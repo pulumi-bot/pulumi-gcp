@@ -49,9 +49,9 @@ class Connection(pulumi.CustomResource):
         instance = gcp.sql.DatabaseInstance("instance",
             database_version="POSTGRES_11",
             region="us-central1",
-            settings=gcp.sql.DatabaseInstanceSettingsArgs(
-                tier="db-f1-micro",
-            ),
+            settings={
+                "tier": "db-f1-micro",
+            },
             deletion_protection=True,
             opts=ResourceOptions(provider=google_beta))
         db = gcp.sql.Database("db", instance=instance.name,
@@ -66,15 +66,15 @@ class Connection(pulumi.CustomResource):
         connection = gcp.bigquery.Connection("connection",
             friendly_name="👋",
             description="a riveting description",
-            cloud_sql=gcp.bigquery.ConnectionCloudSqlArgs(
-                instance_id=instance.connection_name,
-                database=db.name,
-                type="POSTGRES",
-                credential=gcp.bigquery.ConnectionCloudSqlCredentialArgs(
-                    username=user.name,
-                    password=user.password,
-                ),
-            ),
+            cloud_sql={
+                "instance_id": instance.connection_name,
+                "database": db.name,
+                "type": "POSTGRES",
+                "credential": {
+                    "username": user.name,
+                    "password": user.password,
+                },
+            },
             opts=ResourceOptions(provider=google_beta))
         ```
         ### Bigquery Connection Full
@@ -87,9 +87,9 @@ class Connection(pulumi.CustomResource):
         instance = gcp.sql.DatabaseInstance("instance",
             database_version="POSTGRES_11",
             region="us-central1",
-            settings=gcp.sql.DatabaseInstanceSettingsArgs(
-                tier="db-f1-micro",
-            ),
+            settings={
+                "tier": "db-f1-micro",
+            },
             deletion_protection=True,
             opts=ResourceOptions(provider=google_beta))
         db = gcp.sql.Database("db", instance=instance.name,
@@ -106,15 +106,15 @@ class Connection(pulumi.CustomResource):
             location="US",
             friendly_name="👋",
             description="a riveting description",
-            cloud_sql=gcp.bigquery.ConnectionCloudSqlArgs(
-                instance_id=instance.connection_name,
-                database=db.name,
-                type="POSTGRES",
-                credential=gcp.bigquery.ConnectionCloudSqlCredentialArgs(
-                    username=user.name,
-                    password=user.password,
-                ),
-            ),
+            cloud_sql={
+                "instance_id": instance.connection_name,
+                "database": db.name,
+                "type": "POSTGRES",
+                "credential": {
+                    "username": user.name,
+                    "password": user.password,
+                },
+            },
             opts=ResourceOptions(provider=google_beta))
         ```
 

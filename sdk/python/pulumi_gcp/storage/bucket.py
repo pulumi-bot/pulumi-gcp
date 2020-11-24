@@ -59,25 +59,25 @@ class Bucket(pulumi.CustomResource):
         import pulumi_gcp as gcp
 
         static_site = gcp.storage.Bucket("static-site",
-            cors=[gcp.storage.BucketCorArgs(
-                max_age_seconds=3600,
-                methods=[
+            cors=[{
+                "maxAgeSeconds": 3600,
+                "methods": [
                     "GET",
                     "HEAD",
                     "PUT",
                     "POST",
                     "DELETE",
                 ],
-                origins=["http://image-store.com"],
-                response_headers=["*"],
-            )],
+                "origins": ["http://image-store.com"],
+                "responseHeaders": ["*"],
+            }],
             force_destroy=True,
             location="EU",
             uniform_bucket_level_access=True,
-            website=gcp.storage.BucketWebsiteArgs(
-                main_page_suffix="index.html",
-                not_found_page="404.html",
-            ))
+            website={
+                "mainPageSuffix": "index.html",
+                "notFoundPage": "404.html",
+            })
         ```
         ### Life Cycle Settings For Storage Bucket Objects
 
@@ -87,14 +87,14 @@ class Bucket(pulumi.CustomResource):
 
         auto_expire = gcp.storage.Bucket("auto-expire",
             force_destroy=True,
-            lifecycle_rules=[gcp.storage.BucketLifecycleRuleArgs(
-                action=gcp.storage.BucketLifecycleRuleActionArgs(
-                    type="Delete",
-                ),
-                condition=gcp.storage.BucketLifecycleRuleConditionArgs(
-                    age=3,
-                ),
-            )],
+            lifecycle_rules=[{
+                "action": {
+                    "type": "Delete",
+                },
+                "condition": {
+                    "age": 3,
+                },
+            }],
             location="US")
         ```
 

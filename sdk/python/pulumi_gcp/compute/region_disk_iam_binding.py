@@ -43,10 +43,10 @@ class RegionDiskIamBinding(pulumi.CustomResource):
         import pulumi
         import pulumi_gcp as gcp
 
-        admin = gcp.organizations.get_iam_policy(bindings=[gcp.organizations.GetIAMPolicyBindingArgs(
-            role="roles/viewer",
-            members=["user:jane@example.com"],
-        )])
+        admin = gcp.organizations.get_iam_policy(bindings=[{
+            "role": "roles/viewer",
+            "members": ["user:jane@example.com"],
+        }])
         policy = gcp.compute.DiskIamPolicy("policy",
             project=google_compute_disk["default"]["project"],
             zone=google_compute_disk["default"]["zone"],

@@ -41,9 +41,9 @@ class Policy(pulumi.CustomResource):
         import pulumi_gcp as gcp
 
         serial_port_policy = gcp.organizations.Policy("serialPortPolicy",
-            boolean_policy=gcp.organizations.PolicyBooleanPolicyArgs(
-                enforced=True,
-            ),
+            boolean_policy={
+                "enforced": True,
+            },
             constraint="compute.disableSerialPortAccess",
             org_id="123456789")
         ```
@@ -56,11 +56,11 @@ class Policy(pulumi.CustomResource):
 
         services_policy = gcp.organizations.Policy("servicesPolicy",
             constraint="serviceuser.services",
-            list_policy=gcp.organizations.PolicyListPolicyArgs(
-                allow=gcp.organizations.PolicyListPolicyAllowArgs(
-                    all=True,
-                ),
-            ),
+            list_policy={
+                "allow": {
+                    "all": True,
+                },
+            },
             org_id="123456789")
         ```
 
@@ -72,12 +72,12 @@ class Policy(pulumi.CustomResource):
 
         services_policy = gcp.organizations.Policy("servicesPolicy",
             constraint="serviceuser.services",
-            list_policy=gcp.organizations.PolicyListPolicyArgs(
-                deny=gcp.organizations.PolicyListPolicyDenyArgs(
-                    values=["cloudresourcemanager.googleapis.com"],
-                ),
-                suggested_value="compute.googleapis.com",
-            ),
+            list_policy={
+                "deny": {
+                    "values": ["cloudresourcemanager.googleapis.com"],
+                },
+                "suggestedValue": "compute.googleapis.com",
+            },
             org_id="123456789")
         ```
 
@@ -90,9 +90,9 @@ class Policy(pulumi.CustomResource):
         services_policy = gcp.organizations.Policy("servicesPolicy",
             constraint="serviceuser.services",
             org_id="123456789",
-            restore_policy=gcp.organizations.PolicyRestorePolicyArgs(
-                default=True,
-            ))
+            restore_policy={
+                "default": True,
+            })
         ```
 
         ## Import

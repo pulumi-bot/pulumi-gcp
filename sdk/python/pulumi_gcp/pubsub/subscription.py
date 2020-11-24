@@ -57,12 +57,12 @@ class Subscription(pulumi.CustomResource):
             labels={
                 "foo": "bar",
             },
-            push_config=gcp.pubsub.SubscriptionPushConfigArgs(
-                push_endpoint="https://example.com/push",
-                attributes={
+            push_config={
+                "pushEndpoint": "https://example.com/push",
+                "attributes": {
                     "x-goog-version": "v1",
                 },
-            ))
+            })
         ```
         ### Pubsub Subscription Pull
 
@@ -79,12 +79,12 @@ class Subscription(pulumi.CustomResource):
             message_retention_duration="1200s",
             retain_acked_messages=True,
             ack_deadline_seconds=20,
-            expiration_policy=gcp.pubsub.SubscriptionExpirationPolicyArgs(
-                ttl="300000.5s",
-            ),
-            retry_policy=gcp.pubsub.SubscriptionRetryPolicyArgs(
-                minimum_backoff="10s",
-            ),
+            expiration_policy={
+                "ttl": "300000.5s",
+            },
+            retry_policy={
+                "minimumBackoff": "10s",
+            },
             enable_message_ordering=False)
         ```
         ### Pubsub Subscription Different Project
@@ -108,10 +108,10 @@ class Subscription(pulumi.CustomResource):
         example_dead_letter = gcp.pubsub.Topic("exampleDeadLetter")
         example_subscription = gcp.pubsub.Subscription("exampleSubscription",
             topic=example_topic.name,
-            dead_letter_policy=gcp.pubsub.SubscriptionDeadLetterPolicyArgs(
-                dead_letter_topic=example_dead_letter.id,
-                max_delivery_attempts=10,
-            ))
+            dead_letter_policy={
+                "deadLetterTopic": example_dead_letter.id,
+                "maxDeliveryAttempts": 10,
+            })
         ```
 
         ## Import

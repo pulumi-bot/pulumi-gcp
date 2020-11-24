@@ -50,15 +50,15 @@ class PacketMirroring(pulumi.CustomResource):
         default_network = gcp.compute.Network("defaultNetwork", opts=ResourceOptions(provider=google_beta))
         mirror = gcp.compute.Instance("mirror",
             machine_type="e2-medium",
-            boot_disk=gcp.compute.InstanceBootDiskArgs(
-                initialize_params=gcp.compute.InstanceBootDiskInitializeParamsArgs(
-                    image="debian-cloud/debian-9",
-                ),
-            ),
-            network_interfaces=[gcp.compute.InstanceNetworkInterfaceArgs(
-                network=default_network.id,
-                access_configs=[gcp.compute.InstanceNetworkInterfaceAccessConfigArgs()],
-            )],
+            boot_disk={
+                "initializeParams": {
+                    "image": "debian-cloud/debian-9",
+                },
+            },
+            network_interfaces=[{
+                "network": default_network.id,
+                "accessConfigs": [{}],
+            }],
             opts=ResourceOptions(provider=google_beta))
         default_subnetwork = gcp.compute.Subnetwork("defaultSubnetwork",
             network=default_network.id,
@@ -67,9 +67,9 @@ class PacketMirroring(pulumi.CustomResource):
         default_health_check = gcp.compute.HealthCheck("defaultHealthCheck",
             check_interval_sec=1,
             timeout_sec=1,
-            tcp_health_check=gcp.compute.HealthCheckTcpHealthCheckArgs(
-                port=80,
-            ),
+            tcp_health_check={
+                "port": 80,
+            },
             opts=ResourceOptions(provider=google_beta))
         default_region_backend_service = gcp.compute.RegionBackendService("defaultRegionBackendService", health_checks=[default_health_check.id],
         opts=ResourceOptions(provider=google_beta))
@@ -86,22 +86,22 @@ class PacketMirroring(pulumi.CustomResource):
                 depends_on=[default_subnetwork]))
         foobar = gcp.compute.PacketMirroring("foobar",
             description="bar",
-            network=gcp.compute.PacketMirroringNetworkArgs(
-                url=default_network.id,
-            ),
-            collector_ilb=gcp.compute.PacketMirroringCollectorIlbArgs(
-                url=default_forwarding_rule.id,
-            ),
-            mirrored_resources=gcp.compute.PacketMirroringMirroredResourcesArgs(
-                tags=["foo"],
-                instances=[gcp.compute.PacketMirroringMirroredResourcesInstanceArgs(
-                    url=mirror.id,
-                )],
-            ),
-            filter=gcp.compute.PacketMirroringFilterArgs(
-                ip_protocols=["tcp"],
-                cidr_ranges=["0.0.0.0/0"],
-            ),
+            network={
+                "url": default_network.id,
+            },
+            collector_ilb={
+                "url": default_forwarding_rule.id,
+            },
+            mirrored_resources={
+                "tags": ["foo"],
+                "instances": [{
+                    "url": mirror.id,
+                }],
+            },
+            filter={
+                "ipProtocols": ["tcp"],
+                "cidrRanges": ["0.0.0.0/0"],
+            },
             opts=ResourceOptions(provider=google_beta))
         ```
 

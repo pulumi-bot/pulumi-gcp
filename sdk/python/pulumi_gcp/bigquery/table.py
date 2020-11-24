@@ -58,9 +58,9 @@ class Table(pulumi.CustomResource):
         default_table = gcp.bigquery.Table("defaultTable",
             dataset_id=default_dataset.dataset_id,
             table_id="bar",
-            time_partitioning=gcp.bigquery.TableTimePartitioningArgs(
-                type="DAY",
-            ),
+            time_partitioning={
+                "type": "DAY",
+            },
             labels={
                 "env": "default",
             },
@@ -82,14 +82,14 @@ class Table(pulumi.CustomResource):
         sheet = gcp.bigquery.Table("sheet",
             dataset_id=default_dataset.dataset_id,
             table_id="sheet",
-            external_data_configuration=gcp.bigquery.TableExternalDataConfigurationArgs(
-                autodetect=True,
-                source_format="GOOGLE_SHEETS",
-                google_sheets_options=gcp.bigquery.TableExternalDataConfigurationGoogleSheetsOptionsArgs(
-                    skip_leading_rows=1,
-                ),
-                source_uris=["https://docs.google.com/spreadsheets/d/123456789012345"],
-            ))
+            external_data_configuration={
+                "autodetect": True,
+                "sourceFormat": "GOOGLE_SHEETS",
+                "googleSheetsOptions": {
+                    "skipLeadingRows": 1,
+                },
+                "sourceUris": ["https://docs.google.com/spreadsheets/d/123456789012345"],
+            })
         ```
 
         ## Import

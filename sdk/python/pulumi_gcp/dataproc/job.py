@@ -50,37 +50,37 @@ class Job(pulumi.CustomResource):
         spark = gcp.dataproc.Job("spark",
             region=mycluster.region,
             force_delete=True,
-            placement=gcp.dataproc.JobPlacementArgs(
-                cluster_name=mycluster.name,
-            ),
-            spark_config=gcp.dataproc.JobSparkConfigArgs(
-                main_class="org.apache.spark.examples.SparkPi",
-                jar_file_uris=["file:///usr/lib/spark/examples/jars/spark-examples.jar"],
-                args=["1000"],
-                properties={
+            placement={
+                "clusterName": mycluster.name,
+            },
+            spark_config={
+                "mainClass": "org.apache.spark.examples.SparkPi",
+                "jarFileUris": ["file:///usr/lib/spark/examples/jars/spark-examples.jar"],
+                "args": ["1000"],
+                "properties": {
                     "spark.logConf": "true",
                 },
-                logging_config=gcp.dataproc.JobSparkConfigLoggingConfigArgs(
-                    driver_log_levels={
+                "loggingConfig": {
+                    "driverLogLevels": {
                         "root": "INFO",
                     },
-                ),
-            ))
+                },
+            })
         # Submit an example pyspark job to a dataproc cluster
         pyspark = gcp.dataproc.Job("pyspark",
             region=mycluster.region,
             force_delete=True,
-            placement=gcp.dataproc.JobPlacementArgs(
-                cluster_name=mycluster.name,
-            ),
-            pyspark_config=gcp.dataproc.JobPysparkConfigArgs(
-                main_python_file_uri="gs://dataproc-examples-2f10d78d114f6aaec76462e3c310f31f/src/pyspark/hello-world/hello-world.py",
-                properties={
+            placement={
+                "clusterName": mycluster.name,
+            },
+            pyspark_config={
+                "mainPythonFileUri": "gs://dataproc-examples-2f10d78d114f6aaec76462e3c310f31f/src/pyspark/hello-world/hello-world.py",
+                "properties": {
                     "spark.logConf": "true",
                 },
-            ))
-        pulumi.export("sparkStatus", spark.statuses[0].state)
-        pulumi.export("pysparkStatus", pyspark.statuses[0].state)
+            })
+        pulumi.export("sparkStatus", spark.statuses[0]["state"])
+        pulumi.export("pysparkStatus", pyspark.statuses[0]["state"])
         ```
 
         ## Import

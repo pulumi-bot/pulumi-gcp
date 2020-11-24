@@ -60,18 +60,18 @@ class GlobalForwardingRule(pulumi.CustomResource):
         default_url_map = gcp.compute.URLMap("defaultURLMap",
             description="a description",
             default_service=default_backend_service.id,
-            host_rules=[gcp.compute.URLMapHostRuleArgs(
-                hosts=["mysite.com"],
-                path_matcher="allpaths",
-            )],
-            path_matchers=[gcp.compute.URLMapPathMatcherArgs(
-                name="allpaths",
-                default_service=default_backend_service.id,
-                path_rules=[gcp.compute.URLMapPathMatcherPathRuleArgs(
-                    paths=["/*"],
-                    service=default_backend_service.id,
-                )],
-            )])
+            host_rules=[{
+                "hosts": ["mysite.com"],
+                "pathMatcher": "allpaths",
+            }],
+            path_matchers=[{
+                "name": "allpaths",
+                "default_service": default_backend_service.id,
+                "pathRules": [{
+                    "paths": ["/*"],
+                    "service": default_backend_service.id,
+                }],
+            }])
         default_target_http_proxy = gcp.compute.TargetHttpProxy("defaultTargetHttpProxy",
             description="a description",
             url_map=default_url_map.id)
@@ -89,20 +89,20 @@ class GlobalForwardingRule(pulumi.CustomResource):
             project="debian-cloud")
         instance_template = gcp.compute.InstanceTemplate("instanceTemplate",
             machine_type="e2-medium",
-            network_interfaces=[gcp.compute.InstanceTemplateNetworkInterfaceArgs(
-                network="default",
-            )],
-            disks=[gcp.compute.InstanceTemplateDiskArgs(
-                source_image=debian_image.self_link,
-                auto_delete=True,
-                boot=True,
-            )],
+            network_interfaces=[{
+                "network": "default",
+            }],
+            disks=[{
+                "source_image": debian_image.self_link,
+                "autoDelete": True,
+                "boot": True,
+            }],
             opts=ResourceOptions(provider=google_beta))
         igm = gcp.compute.InstanceGroupManager("igm",
-            versions=[gcp.compute.InstanceGroupManagerVersionArgs(
-                instance_template=instance_template.id,
-                name="primary",
-            )],
+            versions=[{
+                "instanceTemplate": instance_template.id,
+                "name": "primary",
+            }],
             base_instance_name="internal-glb",
             zone="us-central1-f",
             target_size=1,
@@ -110,38 +110,38 @@ class GlobalForwardingRule(pulumi.CustomResource):
         default_health_check = gcp.compute.HealthCheck("defaultHealthCheck",
             check_interval_sec=1,
             timeout_sec=1,
-            tcp_health_check=gcp.compute.HealthCheckTcpHealthCheckArgs(
-                port=80,
-            ),
+            tcp_health_check={
+                "port": 80,
+            },
             opts=ResourceOptions(provider=google_beta))
         default_backend_service = gcp.compute.BackendService("defaultBackendService",
             port_name="http",
             protocol="HTTP",
             timeout_sec=10,
             load_balancing_scheme="INTERNAL_SELF_MANAGED",
-            backends=[gcp.compute.BackendServiceBackendArgs(
-                group=igm.instance_group,
-                balancing_mode="RATE",
-                capacity_scaler=0.4,
-                max_rate_per_instance=50,
-            )],
+            backends=[{
+                "group": igm.instance_group,
+                "balancingMode": "RATE",
+                "capacityScaler": 0.4,
+                "maxRatePerInstance": 50,
+            }],
             health_checks=[default_health_check.id],
             opts=ResourceOptions(provider=google_beta))
         default_url_map = gcp.compute.URLMap("defaultURLMap",
             description="a description",
             default_service=default_backend_service.id,
-            host_rules=[gcp.compute.URLMapHostRuleArgs(
-                hosts=["mysite.com"],
-                path_matcher="allpaths",
-            )],
-            path_matchers=[gcp.compute.URLMapPathMatcherArgs(
-                name="allpaths",
-                default_service=default_backend_service.id,
-                path_rules=[gcp.compute.URLMapPathMatcherPathRuleArgs(
-                    paths=["/*"],
-                    service=default_backend_service.id,
-                )],
-            )],
+            host_rules=[{
+                "hosts": ["mysite.com"],
+                "pathMatcher": "allpaths",
+            }],
+            path_matchers=[{
+                "name": "allpaths",
+                "default_service": default_backend_service.id,
+                "pathRules": [{
+                    "paths": ["/*"],
+                    "service": default_backend_service.id,
+                }],
+            }],
             opts=ResourceOptions(provider=google_beta))
         default_target_http_proxy = gcp.compute.TargetHttpProxy("defaultTargetHttpProxy",
             description="a description",
@@ -152,13 +152,13 @@ class GlobalForwardingRule(pulumi.CustomResource):
             port_range="80",
             load_balancing_scheme="INTERNAL_SELF_MANAGED",
             ip_address="0.0.0.0",
-            metadata_filters=[gcp.compute.GlobalForwardingRuleMetadataFilterArgs(
-                filter_match_criteria="MATCH_ANY",
-                filter_labels=[gcp.compute.GlobalForwardingRuleMetadataFilterFilterLabelArgs(
-                    name="PLANET",
-                    value="MARS",
-                )],
-            )],
+            metadata_filters=[{
+                "filterMatchCriteria": "MATCH_ANY",
+                "filterLabels": [{
+                    "name": "PLANET",
+                    "value": "MARS",
+                }],
+            }],
             opts=ResourceOptions(provider=google_beta))
         ```
 

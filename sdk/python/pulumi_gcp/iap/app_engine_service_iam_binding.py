@@ -43,10 +43,10 @@ class AppEngineServiceIamBinding(pulumi.CustomResource):
         import pulumi
         import pulumi_gcp as gcp
 
-        admin = gcp.organizations.get_iam_policy(bindings=[gcp.organizations.GetIAMPolicyBindingArgs(
-            role="roles/iap.httpsResourceAccessor",
-            members=["user:jane@example.com"],
-        )])
+        admin = gcp.organizations.get_iam_policy(bindings=[{
+            "role": "roles/iap.httpsResourceAccessor",
+            "members": ["user:jane@example.com"],
+        }])
         policy = gcp.iap.AppEngineServiceIamPolicy("policy",
             project=google_app_engine_standard_app_version["version"]["project"],
             app_id=google_app_engine_standard_app_version["version"]["project"],
@@ -60,15 +60,15 @@ class AppEngineServiceIamBinding(pulumi.CustomResource):
         import pulumi
         import pulumi_gcp as gcp
 
-        admin = gcp.organizations.get_iam_policy(bindings=[gcp.organizations.GetIAMPolicyBindingArgs(
-            role="roles/iap.httpsResourceAccessor",
-            members=["user:jane@example.com"],
-            condition=gcp.organizations.GetIAMPolicyBindingConditionArgs(
-                title="expires_after_2019_12_31",
-                description="Expiring at midnight of 2019-12-31",
-                expression="request.time < timestamp(\"2020-01-01T00:00:00Z\")",
-            ),
-        )])
+        admin = gcp.organizations.get_iam_policy(bindings=[{
+            "role": "roles/iap.httpsResourceAccessor",
+            "members": ["user:jane@example.com"],
+            "condition": {
+                "title": "expires_after_2019_12_31",
+                "description": "Expiring at midnight of 2019-12-31",
+                "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
+            },
+        }])
         policy = gcp.iap.AppEngineServiceIamPolicy("policy",
             project=google_app_engine_standard_app_version["version"]["project"],
             app_id=google_app_engine_standard_app_version["version"]["project"],
@@ -97,11 +97,11 @@ class AppEngineServiceIamBinding(pulumi.CustomResource):
 
         binding = gcp.iap.AppEngineServiceIamBinding("binding",
             app_id=google_app_engine_standard_app_version["version"]["project"],
-            condition=gcp.iap.AppEngineServiceIamBindingConditionArgs(
-                description="Expiring at midnight of 2019-12-31",
-                expression="request.time < timestamp(\"2020-01-01T00:00:00Z\")",
-                title="expires_after_2019_12_31",
-            ),
+            condition={
+                "description": "Expiring at midnight of 2019-12-31",
+                "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
+                "title": "expires_after_2019_12_31",
+            },
             members=["user:jane@example.com"],
             project=google_app_engine_standard_app_version["version"]["project"],
             role="roles/iap.httpsResourceAccessor",
@@ -129,11 +129,11 @@ class AppEngineServiceIamBinding(pulumi.CustomResource):
 
         member = gcp.iap.AppEngineServiceIamMember("member",
             app_id=google_app_engine_standard_app_version["version"]["project"],
-            condition=gcp.iap.AppEngineServiceIamMemberConditionArgs(
-                description="Expiring at midnight of 2019-12-31",
-                expression="request.time < timestamp(\"2020-01-01T00:00:00Z\")",
-                title="expires_after_2019_12_31",
-            ),
+            condition={
+                "description": "Expiring at midnight of 2019-12-31",
+                "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
+                "title": "expires_after_2019_12_31",
+            },
             member="user:jane@example.com",
             project=google_app_engine_standard_app_version["version"]["project"],
             role="roles/iap.httpsResourceAccessor",

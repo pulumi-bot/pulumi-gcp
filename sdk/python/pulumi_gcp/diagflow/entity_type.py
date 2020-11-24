@@ -49,20 +49,20 @@ class EntityType(pulumi.CustomResource):
             display_name="",
             kind="KIND_MAP",
             entities=[
-                gcp.diagflow.EntityTypeEntityArgs(
-                    value="value1",
-                    synonyms=[
+                {
+                    "value": "value1",
+                    "synonyms": [
                         "synonym1",
                         "synonym2",
                     ],
-                ),
-                gcp.diagflow.EntityTypeEntityArgs(
-                    value="value2",
-                    synonyms=[
+                },
+                {
+                    "value": "value2",
+                    "synonyms": [
                         "synonym3",
                         "synonym4",
                     ],
-                ),
+                },
             ],
             opts=ResourceOptions(depends_on=[basic_agent]))
         ```

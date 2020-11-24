@@ -47,14 +47,14 @@ class Instance(pulumi.CustomResource):
         import pulumi_gcp as gcp
 
         instance = gcp.filestore.Instance("instance",
-            file_shares=gcp.filestore.InstanceFileSharesArgs(
-                capacity_gb=2660,
-                name="share1",
-            ),
-            networks=[gcp.filestore.InstanceNetworkArgs(
-                modes=["MODE_IPV4"],
-                network="default",
-            )],
+            file_shares={
+                "capacityGb": 2660,
+                "name": "share1",
+            },
+            networks=[{
+                "modes": ["MODE_IPV4"],
+                "network": "default",
+            }],
             tier="PREMIUM",
             zone="us-central1-b")
         ```
@@ -67,28 +67,28 @@ class Instance(pulumi.CustomResource):
         instance = gcp.filestore.Instance("instance",
             zone="us-central1-b",
             tier="BASIC_SSD",
-            file_shares=gcp.filestore.InstanceFileSharesArgs(
-                capacity_gb=2660,
-                name="share1",
-                nfs_export_options=[
-                    gcp.filestore.InstanceFileSharesNfsExportOptionArgs(
-                        ip_ranges=["10.0.0.0/24"],
-                        access_mode="READ_WRITE",
-                        squash_mode="NO_ROOT_SQUASH",
-                    ),
-                    gcp.filestore.InstanceFileSharesNfsExportOptionArgs(
-                        ip_ranges=["10.10.0.0/24"],
-                        access_mode="READ_ONLY",
-                        squash_mode="ROOT_SQUASH",
-                        anon_uid=123,
-                        anon_gid=456,
-                    ),
+            file_shares={
+                "capacityGb": 2660,
+                "name": "share1",
+                "nfsExportOptions": [
+                    {
+                        "ipRanges": ["10.0.0.0/24"],
+                        "accessMode": "READ_WRITE",
+                        "squashMode": "NO_ROOT_SQUASH",
+                    },
+                    {
+                        "ipRanges": ["10.10.0.0/24"],
+                        "accessMode": "READ_ONLY",
+                        "squashMode": "ROOT_SQUASH",
+                        "anonUid": 123,
+                        "anonGid": 456,
+                    },
                 ],
-            ),
-            networks=[gcp.filestore.InstanceNetworkArgs(
-                network="default",
-                modes=["MODE_IPV4"],
-            )],
+            },
+            networks=[{
+                "network": "default",
+                "modes": ["MODE_IPV4"],
+            }],
             opts=ResourceOptions(provider=google_beta))
         ```
 

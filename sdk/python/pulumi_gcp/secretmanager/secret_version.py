@@ -39,9 +39,9 @@ class SecretVersion(pulumi.CustomResource):
             labels={
                 "label": "my-label",
             },
-            replication=gcp.secretmanager.SecretReplicationArgs(
-                automatic=True,
-            ))
+            replication={
+                "automatic": True,
+            })
         secret_version_basic = gcp.secretmanager.SecretVersion("secret-version-basic",
             secret=secret_basic.id,
             secret_data="secret-data")

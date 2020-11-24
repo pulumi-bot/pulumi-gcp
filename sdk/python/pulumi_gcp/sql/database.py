@@ -36,9 +36,9 @@ class Database(pulumi.CustomResource):
 
         instance = gcp.sql.DatabaseInstance("instance",
             region="us-central1",
-            settings=gcp.sql.DatabaseInstanceSettingsArgs(
-                tier="db-f1-micro",
-            ),
+            settings={
+                "tier": "db-f1-micro",
+            },
             deletion_protection=True)
         database = gcp.sql.Database("database", instance=instance.name)
         ```

@@ -85,14 +85,14 @@ class HaVpnGateway(pulumi.CustomResource):
             network=network2.id)
         router1 = gcp.compute.Router("router1",
             network=network1.name,
-            bgp=gcp.compute.RouterBgpArgs(
-                asn=64514,
-            ))
+            bgp={
+                "asn": 64514,
+            })
         router2 = gcp.compute.Router("router2",
             network=network2.name,
-            bgp=gcp.compute.RouterBgpArgs(
-                asn=64515,
-            ))
+            bgp={
+                "asn": 64515,
+            })
         tunnel1 = gcp.compute.VPNTunnel("tunnel1",
             region="us-central1",
             vpn_gateway=ha_gateway1.id,

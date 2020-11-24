@@ -286,11 +286,11 @@ def get_image(family: Optional[str] = None,
     my_image = gcp.compute.get_image(family="debian-9",
         project="debian-cloud")
     # ...
-    default = gcp.compute.Instance("default", boot_disk=gcp.compute.InstanceBootDiskArgs(
-        initialize_params=gcp.compute.InstanceBootDiskInitializeParamsArgs(
-            image=my_image.self_link,
-        ),
-    ))
+    default = gcp.compute.Instance("default", boot_disk={
+        "initializeParams": {
+            "image": my_image.self_link,
+        },
+    })
     ```
 
 

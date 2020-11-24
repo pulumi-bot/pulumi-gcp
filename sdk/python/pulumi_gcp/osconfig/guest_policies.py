@@ -56,27 +56,27 @@ class GuestPolicies(pulumi.CustomResource):
                 "foo",
                 "bar",
             ],
-            boot_disk=gcp.compute.InstanceBootDiskArgs(
-                initialize_params=gcp.compute.InstanceBootDiskInitializeParamsArgs(
-                    image=my_image.self_link,
-                ),
-            ),
-            network_interfaces=[gcp.compute.InstanceNetworkInterfaceArgs(
-                network="default",
-            )],
+            boot_disk={
+                "initializeParams": {
+                    "image": my_image.self_link,
+                },
+            },
+            network_interfaces=[{
+                "network": "default",
+            }],
             metadata={
                 "foo": "bar",
             },
             opts=ResourceOptions(provider=google_beta))
         guest_policies = gcp.osconfig.GuestPolicies("guestPolicies",
             guest_policy_id="guest-policy",
-            assignment=gcp.osconfig.GuestPoliciesAssignmentArgs(
-                instances=[foobar.id],
-            ),
-            packages=[gcp.osconfig.GuestPoliciesPackageArgs(
-                name="my-package",
-                desired_state="UPDATED",
-            )],
+            assignment={
+                "instances": [foobar.id],
+            },
+            packages=[{
+                "name": "my-package",
+                "desiredState": "UPDATED",
+            }],
             opts=ResourceOptions(provider=google_beta))
         ```
         ### Os Config Guest Policies Packages
@@ -87,57 +87,57 @@ class GuestPolicies(pulumi.CustomResource):
 
         guest_policies = gcp.osconfig.GuestPolicies("guestPolicies",
             guest_policy_id="guest-policy",
-            assignment=gcp.osconfig.GuestPoliciesAssignmentArgs(
-                group_labels=[
-                    gcp.osconfig.GuestPoliciesAssignmentGroupLabelArgs(
-                        labels={
+            assignment={
+                "groupLabels": [
+                    {
+                        "labels": {
                             "color": "red",
                             "env": "test",
                         },
-                    ),
-                    gcp.osconfig.GuestPoliciesAssignmentGroupLabelArgs(
-                        labels={
+                    },
+                    {
+                        "labels": {
                             "color": "blue",
                             "env": "test",
                         },
-                    ),
+                    },
                 ],
-            ),
+            },
             packages=[
-                gcp.osconfig.GuestPoliciesPackageArgs(
-                    name="my-package",
-                    desired_state="INSTALLED",
-                ),
-                gcp.osconfig.GuestPoliciesPackageArgs(
-                    name="bad-package-1",
-                    desired_state="REMOVED",
-                ),
-                gcp.osconfig.GuestPoliciesPackageArgs(
-                    name="bad-package-2",
-                    desired_state="REMOVED",
-                    manager="APT",
-                ),
+                {
+                    "name": "my-package",
+                    "desiredState": "INSTALLED",
+                },
+                {
+                    "name": "bad-package-1",
+                    "desiredState": "REMOVED",
+                },
+                {
+                    "name": "bad-package-2",
+                    "desiredState": "REMOVED",
+                    "manager": "APT",
+                },
             ],
             package_repositories=[
-                gcp.osconfig.GuestPoliciesPackageRepositoryArgs(
-                    apt=gcp.osconfig.GuestPoliciesPackageRepositoryAptArgs(
-                        uri="https://packages.cloud.google.com/apt",
-                        archive_type="DEB",
-                        distribution="cloud-sdk-stretch",
-                        components=["main"],
-                    ),
-                ),
-                gcp.osconfig.GuestPoliciesPackageRepositoryArgs(
-                    yum=gcp.osconfig.GuestPoliciesPackageRepositoryYumArgs(
-                        id="google-cloud-sdk",
-                        display_name="Google Cloud SDK",
-                        base_url="https://packages.cloud.google.com/yum/repos/cloud-sdk-el7-x86_64",
-                        gpg_keys=[
+                {
+                    "apt": {
+                        "uri": "https://packages.cloud.google.com/apt",
+                        "archiveType": "DEB",
+                        "distribution": "cloud-sdk-stretch",
+                        "components": ["main"],
+                    },
+                },
+                {
+                    "yum": {
+                        "id": "google-cloud-sdk",
+                        "display_name": "Google Cloud SDK",
+                        "baseUrl": "https://packages.cloud.google.com/yum/repos/cloud-sdk-el7-x86_64",
+                        "gpgKeys": [
                             "https://packages.cloud.google.com/yum/doc/yum-key.gpg",
                             "https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg",
                         ],
-                    ),
-                ),
+                    },
+                },
             ],
             opts=ResourceOptions(provider=google_beta))
         ```
@@ -149,29 +149,29 @@ class GuestPolicies(pulumi.CustomResource):
 
         guest_policies = gcp.osconfig.GuestPolicies("guestPolicies",
             guest_policy_id="guest-policy",
-            assignment=gcp.osconfig.GuestPoliciesAssignmentArgs(
-                zones=[
+            assignment={
+                "zones": [
                     "us-east1-b",
                     "us-east1-d",
                 ],
-            ),
-            recipes=[gcp.osconfig.GuestPoliciesRecipeArgs(
-                name="guest-policy-recipe",
-                desired_state="INSTALLED",
-                artifacts=[gcp.osconfig.GuestPoliciesRecipeArtifactArgs(
-                    id="guest-policy-artifact-id",
-                    gcs=gcp.osconfig.GuestPoliciesRecipeArtifactGcsArgs(
-                        bucket="my-bucket",
-                        object="executable.msi",
-                        generation=1546030865175603,
-                    ),
-                )],
-                install_steps=[gcp.osconfig.GuestPoliciesRecipeInstallStepArgs(
-                    msi_installation=gcp.osconfig.GuestPoliciesRecipeInstallStepMsiInstallationArgs(
-                        artifact_id="guest-policy-artifact-id",
-                    ),
-                )],
-            )],
+            },
+            recipes=[{
+                "name": "guest-policy-recipe",
+                "desiredState": "INSTALLED",
+                "artifacts": [{
+                    "id": "guest-policy-artifact-id",
+                    "gcs": {
+                        "bucket": "my-bucket",
+                        "object": "executable.msi",
+                        "generation": 1546030865175603,
+                    },
+                }],
+                "installSteps": [{
+                    "msiInstallation": {
+                        "artifactId": "guest-policy-artifact-id",
+                    },
+                }],
+            }],
             opts=ResourceOptions(provider=google_beta))
         ```
 

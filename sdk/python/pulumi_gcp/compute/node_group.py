@@ -73,11 +73,11 @@ class NodeGroup(pulumi.CustomResource):
             maintenance_policy="RESTART_IN_PLACE",
             size=1,
             node_template=soletenant_tmpl.id,
-            autoscaling_policy=gcp.compute.NodeGroupAutoscalingPolicyArgs(
-                mode="ONLY_SCALE_OUT",
-                min_nodes=1,
-                max_nodes=10,
-            ))
+            autoscaling_policy={
+                "mode": "ONLY_SCALE_OUT",
+                "minNodes": 1,
+                "maxNodes": 10,
+            })
         ```
 
         ## Import

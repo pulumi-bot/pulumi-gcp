@@ -47,9 +47,9 @@ class Hl7Store(pulumi.CustomResource):
         dataset = gcp.healthcare.Dataset("dataset", location="us-central1")
         store = gcp.healthcare.Hl7Store("store",
             dataset=dataset.id,
-            notification_configs=[gcp.healthcare.Hl7StoreNotificationConfigsArgs(
-                pubsub_topic=topic.id,
-            )],
+            notification_configs=[{
+                "pubsubTopic": topic.id,
+            }],
             labels={
                 "label1": "labelvalue1",
             })
@@ -64,10 +64,10 @@ class Hl7Store(pulumi.CustomResource):
         opts=ResourceOptions(provider=google_beta))
         store = gcp.healthcare.Hl7Store("store",
             dataset=dataset.id,
-            parser_config=gcp.healthcare.Hl7StoreParserConfigArgs(
-                allow_null_header=False,
-                segment_terminator="Jw==",
-                schema=\"\"\"{
+            parser_config={
+                "allowNullHeader": False,
+                "segmentTerminator": "Jw==",
+                "schema": \"\"\"{
           "schemas": [{
             "messageSchemaConfigs": {
               "ADT_A01": {
@@ -146,7 +146,7 @@ class Hl7Store(pulumi.CustomResource):
           "ignoreMinOccurs": true
         }
         \"\"\",
-            ),
+            },
             opts=ResourceOptions(provider=google_beta))
         ```
         ### Healthcare Hl7 V2 Store Unschematized
@@ -159,11 +159,11 @@ class Hl7Store(pulumi.CustomResource):
         opts=ResourceOptions(provider=google_beta))
         store = gcp.healthcare.Hl7Store("store",
             dataset=dataset.id,
-            parser_config=gcp.healthcare.Hl7StoreParserConfigArgs(
-                allow_null_header=False,
-                segment_terminator="Jw==",
-                version="V2",
-            ),
+            parser_config={
+                "allowNullHeader": False,
+                "segmentTerminator": "Jw==",
+                "version": "V2",
+            },
             opts=ResourceOptions(provider=google_beta))
         ```
 

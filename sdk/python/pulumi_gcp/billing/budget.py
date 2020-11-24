@@ -46,15 +46,15 @@ class Budget(pulumi.CustomResource):
         budget = gcp.billing.Budget("budget",
             billing_account=account.id,
             display_name="Example Billing Budget",
-            amount=gcp.billing.BudgetAmountArgs(
-                specified_amount=gcp.billing.BudgetAmountSpecifiedAmountArgs(
-                    currency_code="USD",
-                    units="100000",
-                ),
-            ),
-            threshold_rules=[gcp.billing.BudgetThresholdRuleArgs(
-                threshold_percent=0.5,
-            )],
+            amount={
+                "specifiedAmount": {
+                    "currencyCode": "USD",
+                    "units": "100000",
+                },
+            },
+            threshold_rules=[{
+                "thresholdPercent": 0.5,
+            }],
             opts=ResourceOptions(provider=google_beta))
         ```
         ### Billing Budget Lastperiod
@@ -67,15 +67,15 @@ class Budget(pulumi.CustomResource):
         budget = gcp.billing.Budget("budget",
             billing_account=account.id,
             display_name="Example Billing Budget",
-            budget_filter=gcp.billing.BudgetBudgetFilterArgs(
-                projects=["projects/my-project-name"],
-            ),
-            amount=gcp.billing.BudgetAmountArgs(
-                last_period_amount=True,
-            ),
-            threshold_rules=[gcp.billing.BudgetThresholdRuleArgs(
-                threshold_percent=10,
-            )],
+            budget_filter={
+                "projects": ["projects/my-project-name"],
+            },
+            amount={
+                "lastPeriodAmount": True,
+            },
+            threshold_rules=[{
+                "thresholdPercent": 10,
+            }],
             opts=ResourceOptions(provider=google_beta))
         ```
         ### Billing Budget Filter
@@ -88,25 +88,25 @@ class Budget(pulumi.CustomResource):
         budget = gcp.billing.Budget("budget",
             billing_account=account.id,
             display_name="Example Billing Budget",
-            budget_filter=gcp.billing.BudgetBudgetFilterArgs(
-                projects=["projects/my-project-name"],
-                credit_types_treatment="EXCLUDE_ALL_CREDITS",
-                services=["services/24E6-581D-38E5"],
-            ),
-            amount=gcp.billing.BudgetAmountArgs(
-                specified_amount=gcp.billing.BudgetAmountSpecifiedAmountArgs(
-                    currency_code="USD",
-                    units="100000",
-                ),
-            ),
+            budget_filter={
+                "projects": ["projects/my-project-name"],
+                "creditTypesTreatment": "EXCLUDE_ALL_CREDITS",
+                "services": ["services/24E6-581D-38E5"],
+            },
+            amount={
+                "specifiedAmount": {
+                    "currencyCode": "USD",
+                    "units": "100000",
+                },
+            },
             threshold_rules=[
-                gcp.billing.BudgetThresholdRuleArgs(
-                    threshold_percent=0.5,
-                ),
-                gcp.billing.BudgetThresholdRuleArgs(
-                    threshold_percent=0.9,
-                    spend_basis="FORECASTED_SPEND",
-                ),
+                {
+                    "thresholdPercent": 0.5,
+                },
+                {
+                    "thresholdPercent": 0.9,
+                    "spendBasis": "FORECASTED_SPEND",
+                },
             ],
             opts=ResourceOptions(provider=google_beta))
         ```
@@ -127,28 +127,28 @@ class Budget(pulumi.CustomResource):
         budget = gcp.billing.Budget("budget",
             billing_account=account.id,
             display_name="Example Billing Budget",
-            budget_filter=gcp.billing.BudgetBudgetFilterArgs(
-                projects=["projects/my-project-name"],
-            ),
-            amount=gcp.billing.BudgetAmountArgs(
-                specified_amount=gcp.billing.BudgetAmountSpecifiedAmountArgs(
-                    currency_code="USD",
-                    units="100000",
-                ),
-            ),
+            budget_filter={
+                "projects": ["projects/my-project-name"],
+            },
+            amount={
+                "specifiedAmount": {
+                    "currencyCode": "USD",
+                    "units": "100000",
+                },
+            },
             threshold_rules=[
-                gcp.billing.BudgetThresholdRuleArgs(
-                    threshold_percent=1,
-                ),
-                gcp.billing.BudgetThresholdRuleArgs(
-                    threshold_percent=1,
-                    spend_basis="FORECASTED_SPEND",
-                ),
+                {
+                    "thresholdPercent": 1,
+                },
+                {
+                    "thresholdPercent": 1,
+                    "spendBasis": "FORECASTED_SPEND",
+                },
             ],
-            all_updates_rule=gcp.billing.BudgetAllUpdatesRuleArgs(
-                monitoring_notification_channels=[notification_channel.id],
-                disable_default_iam_recipients=True,
-            ),
+            all_updates_rule={
+                "monitoringNotificationChannels": [notification_channel.id],
+                "disableDefaultIamRecipients": True,
+            },
             opts=ResourceOptions(provider=google_beta))
         ```
 

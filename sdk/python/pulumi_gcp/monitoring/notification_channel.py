@@ -78,9 +78,9 @@ class NotificationChannel(pulumi.CustomResource):
             labels={
                 "channel_name": "#foobar",
             },
-            sensitive_labels=gcp.monitoring.NotificationChannelSensitiveLabelsArgs(
-                auth_token="one",
-            ),
+            sensitive_labels={
+                "authToken": "one",
+            },
             type="slack")
         ```
 

@@ -79,7 +79,7 @@ def get_project(filter: Optional[str] = None,
     import pulumi_gcp as gcp
 
     my_org_projects = gcp.projects.get_project(filter="parent.id:012345678910 lifecycleState:DELETE_REQUESTED")
-    deletion_candidate = gcp.organizations.get_project(project_id=my_org_projects.projects[0].project_id)
+    deletion_candidate = gcp.organizations.get_project(project_id=my_org_projects.projects[0]["project_id"])
     ```
 
 

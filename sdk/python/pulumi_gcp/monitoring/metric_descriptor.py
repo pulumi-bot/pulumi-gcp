@@ -49,16 +49,16 @@ class MetricDescriptor(pulumi.CustomResource):
         basic = gcp.monitoring.MetricDescriptor("basic",
             description="Daily sales records from all branch stores.",
             display_name="metric-descriptor",
-            labels=[gcp.monitoring.MetricDescriptorLabelArgs(
-                description="The ID of the store.",
-                key="store_id",
-                value_type="STRING",
-            )],
+            labels=[{
+                "description": "The ID of the store.",
+                "key": "store_id",
+                "value_type": "STRING",
+            }],
             launch_stage="BETA",
-            metadata=gcp.monitoring.MetricDescriptorMetadataArgs(
-                ingest_delay="30s",
-                sample_period="60s",
-            ),
+            metadata={
+                "ingestDelay": "30s",
+                "samplePeriod": "60s",
+            },
             metric_kind="GAUGE",
             type="custom.googleapis.com/stores/daily_sales",
             unit="{USD}",
@@ -79,14 +79,14 @@ class MetricDescriptor(pulumi.CustomResource):
             value_type="DOUBLE")
         alert_policy = gcp.monitoring.AlertPolicy("alertPolicy",
             combiner="OR",
-            conditions=[gcp.monitoring.AlertPolicyConditionArgs(
-                condition_threshold=gcp.monitoring.AlertPolicyConditionConditionThresholdArgs(
-                    comparison="COMPARISON_GT",
-                    duration="60s",
-                    filter=with_alert.type.apply(lambda type: f"metric.type=\"{type}\" AND resource.type=\"gce_instance\""),
-                ),
-                display_name="test condition",
-            )],
+            conditions=[{
+                "conditionThreshold": {
+                    "comparison": "COMPARISON_GT",
+                    "duration": "60s",
+                    "filter": with_alert.type.apply(lambda type: f"metric.type=\"{type}\" AND resource.type=\"gce_instance\""),
+                },
+                "display_name": "test condition",
+            }],
             display_name="metric-descriptor")
         ```
 

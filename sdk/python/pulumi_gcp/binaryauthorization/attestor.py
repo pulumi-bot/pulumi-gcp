@@ -40,14 +40,14 @@ class Attestor(pulumi.CustomResource):
         import pulumi
         import pulumi_gcp as gcp
 
-        note = gcp.containeranalysis.Note("note", attestation_authority=gcp.containeranalysis.NoteAttestationAuthorityArgs(
-            hint=gcp.containeranalysis.NoteAttestationAuthorityHintArgs(
-                human_readable_name="Attestor Note",
-            ),
-        ))
-        attestor = gcp.binaryauthorization.Attestor("attestor", attestation_authority_note=gcp.binaryauthorization.AttestorAttestationAuthorityNoteArgs(
-            note_reference=note.name,
-            public_keys=[{
+        note = gcp.containeranalysis.Note("note", attestation_authority={
+            "hint": {
+                "humanReadableName": "Attestor Note",
+            },
+        })
+        attestor = gcp.binaryauthorization.Attestor("attestor", attestation_authority_note={
+            "noteReference": note.name,
+            "public_keys": [{
                 "asciiArmoredPgpPublicKey": \"\"\"mQENBFtP0doBCADF+joTiXWKVuP8kJt3fgpBSjT9h8ezMfKA4aXZctYLx5wslWQl
         bB7Iu2ezkECNzoEeU7WxUe8a61pMCh9cisS9H5mB2K2uM4Jnf8tgFeXn3akJDVo0
         oR1IC+Dp9mXbRSK3MAvKkOwWlG99sx3uEdvmeBRHBOO+grchLx24EThXFOyP9Fk6
@@ -65,7 +65,7 @@ class Attestor(pulumi.CustomResource):
         =6Bvm
         \"\"\",
             }],
-        ))
+        })
         ```
         ### Binary Authorization Attestor Kms
 
@@ -77,25 +77,25 @@ class Attestor(pulumi.CustomResource):
         crypto_key = gcp.kms.CryptoKey("crypto-key",
             key_ring=keyring.id,
             purpose="ASYMMETRIC_SIGN",
-            version_template=gcp.kms.CryptoKeyVersionTemplateArgs(
-                algorithm="RSA_SIGN_PKCS1_4096_SHA512",
-            ))
+            version_template={
+                "algorithm": "RSA_SIGN_PKCS1_4096_SHA512",
+            })
         version = crypto_key.id.apply(lambda id: gcp.kms.get_kms_crypto_key_version(crypto_key=id))
-        note = gcp.containeranalysis.Note("note", attestation_authority=gcp.containeranalysis.NoteAttestationAuthorityArgs(
-            hint=gcp.containeranalysis.NoteAttestationAuthorityHintArgs(
-                human_readable_name="Attestor Note",
-            ),
-        ))
-        attestor = gcp.binaryauthorization.Attestor("attestor", attestation_authority_note=gcp.binaryauthorization.AttestorAttestationAuthorityNoteArgs(
-            note_reference=note.name,
-            public_keys=[{
+        note = gcp.containeranalysis.Note("note", attestation_authority={
+            "hint": {
+                "humanReadableName": "Attestor Note",
+            },
+        })
+        attestor = gcp.binaryauthorization.Attestor("attestor", attestation_authority_note={
+            "noteReference": note.name,
+            "public_keys": [{
                 "id": version.id,
                 "pkixPublicKey": {
-                    "publicKeyPem": version.public_keys[0].pem,
-                    "signatureAlgorithm": version.public_keys[0].algorithm,
+                    "publicKeyPem": version.public_keys[0]["pem"],
+                    "signatureAlgorithm": version.public_keys[0]["algorithm"],
                 },
             }],
-        ))
+        })
         ```
 
         ## Import

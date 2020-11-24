@@ -81,10 +81,10 @@ def get_lbip_ranges(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGet
     ranges = gcp.compute.get_lbip_ranges()
     lb = gcp.compute.Firewall("lb",
         network=google_compute_network["main"]["name"],
-        allows=[gcp.compute.FirewallAllowArgs(
-            protocol="tcp",
-            ports=["80"],
-        )],
+        allows=[{
+            "protocol": "tcp",
+            "ports": ["80"],
+        }],
         source_ranges=ranges.networks,
         target_tags=["InstanceBehindLoadBalancer"])
     ```

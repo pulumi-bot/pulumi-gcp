@@ -55,15 +55,15 @@ class SecretCiphertext(pulumi.CustomResource):
         instance = gcp.compute.Instance("instance",
             machine_type="e2-medium",
             zone="us-central1-a",
-            boot_disk=gcp.compute.InstanceBootDiskArgs(
-                initialize_params=gcp.compute.InstanceBootDiskInitializeParamsArgs(
-                    image="debian-cloud/debian-9",
-                ),
-            ),
-            network_interfaces=[gcp.compute.InstanceNetworkInterfaceArgs(
-                network="default",
-                access_configs=[gcp.compute.InstanceNetworkInterfaceAccessConfigArgs()],
-            )],
+            boot_disk={
+                "initializeParams": {
+                    "image": "debian-cloud/debian-9",
+                },
+            },
+            network_interfaces=[{
+                "network": "default",
+                "accessConfigs": [{}],
+            }],
             metadata={
                 "password": my_password.ciphertext,
             })

@@ -64,9 +64,9 @@ class NodeTemplate(pulumi.CustomResource):
             node_affinity_labels={
                 "foo": "baz",
             },
-            server_binding=gcp.compute.NodeTemplateServerBindingArgs(
-                type="RESTART_NODE_ON_MINIMAL_SERVERS",
-            ),
+            server_binding={
+                "type": "RESTART_NODE_ON_MINIMAL_SERVERS",
+            },
             opts=ResourceOptions(provider=google_beta))
         ```
 

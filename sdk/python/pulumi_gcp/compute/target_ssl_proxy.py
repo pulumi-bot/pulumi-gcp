@@ -49,9 +49,9 @@ class TargetSSLProxy(pulumi.CustomResource):
         default_health_check = gcp.compute.HealthCheck("defaultHealthCheck",
             check_interval_sec=1,
             timeout_sec=1,
-            tcp_health_check=gcp.compute.HealthCheckTcpHealthCheckArgs(
-                port=443,
-            ))
+            tcp_health_check={
+                "port": 443,
+            })
         default_backend_service = gcp.compute.BackendService("defaultBackendService",
             protocol="SSL",
             health_checks=[default_health_check.id])

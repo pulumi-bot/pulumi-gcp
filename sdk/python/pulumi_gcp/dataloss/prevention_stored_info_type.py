@@ -46,10 +46,10 @@ class PreventionStoredInfoType(pulumi.CustomResource):
             description="Description",
             display_name="Displayname",
             parent="projects/my-project-name",
-            regex=gcp.dataloss.PreventionStoredInfoTypeRegexArgs(
-                group_indexes=[2],
-                pattern="patient",
-            ))
+            regex={
+                "groupIndexes": [2],
+                "pattern": "patient",
+            })
         ```
         ### Dlp Stored Info Type Dictionary
 
@@ -59,14 +59,14 @@ class PreventionStoredInfoType(pulumi.CustomResource):
 
         dictionary = gcp.dataloss.PreventionStoredInfoType("dictionary",
             description="Description",
-            dictionary=gcp.dataloss.PreventionStoredInfoTypeDictionaryArgs(
-                word_list=gcp.dataloss.PreventionStoredInfoTypeDictionaryWordListArgs(
-                    words=[
+            dictionary={
+                "wordList": {
+                    "words": [
                         "word",
                         "word2",
                     ],
-                ),
-            ),
+                },
+            },
             display_name="Displayname",
             parent="projects/my-project-name")
         ```
@@ -84,14 +84,14 @@ class PreventionStoredInfoType(pulumi.CustomResource):
             parent="projects/my-project-name",
             description="Description",
             display_name="Displayname",
-            large_custom_dictionary=gcp.dataloss.PreventionStoredInfoTypeLargeCustomDictionaryArgs(
-                cloud_storage_file_set=gcp.dataloss.PreventionStoredInfoTypeLargeCustomDictionaryCloudStorageFileSetArgs(
-                    url=pulumi.Output.all(bucket.name, object.name).apply(lambda bucketName, objectName: f"gs://{bucket_name}/{object_name}"),
-                ),
-                output_path=gcp.dataloss.PreventionStoredInfoTypeLargeCustomDictionaryOutputPathArgs(
-                    path=bucket.name.apply(lambda name: f"gs://{name}/output/dictionary.txt"),
-                ),
-            ))
+            large_custom_dictionary={
+                "cloudStorageFileSet": {
+                    "url": pulumi.Output.all(bucket.name, object.name).apply(lambda bucketName, objectName: f"gs://{bucket_name}/{object_name}"),
+                },
+                "outputPath": {
+                    "path": bucket.name.apply(lambda name: f"gs://{name}/output/dictionary.txt"),
+                },
+            })
         ```
 
         ## Import

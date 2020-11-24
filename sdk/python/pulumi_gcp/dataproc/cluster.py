@@ -50,42 +50,42 @@ class Cluster(pulumi.CustomResource):
         import pulumi_gcp as gcp
 
         mycluster = gcp.dataproc.Cluster("mycluster",
-            cluster_config=gcp.dataproc.ClusterClusterConfigArgs(
-                gce_cluster_config=gcp.dataproc.ClusterClusterConfigGceClusterConfigArgs(
-                    service_account_scopes=[
+            cluster_config={
+                "gceClusterConfig": {
+                    "serviceAccountScopes": [
                         "https://www.googleapis.com/auth/monitoring",
                         "useraccounts-ro",
                         "storage-rw",
                         "logging-write",
                     ],
-                    tags=[
+                    "tags": [
                         "foo",
                         "bar",
                     ],
-                ),
-                initialization_actions=[gcp.dataproc.ClusterClusterConfigInitializationActionArgs(
-                    script="gs://dataproc-initialization-actions/stackdriver/stackdriver.sh",
-                    timeout_sec=500,
-                )],
-                master_config=gcp.dataproc.ClusterClusterConfigMasterConfigArgs(
-                    disk_config=gcp.dataproc.ClusterClusterConfigMasterConfigDiskConfigArgs(
-                        boot_disk_size_gb=15,
-                        boot_disk_type="pd-ssd",
-                    ),
-                    machine_type="e2-medium",
-                    num_instances=1,
-                ),
-                preemptible_worker_config=gcp.dataproc.ClusterClusterConfigPreemptibleWorkerConfigArgs(
-                    num_instances=0,
-                ),
-                software_config=gcp.dataproc.ClusterClusterConfigSoftwareConfigArgs(
-                    image_version="1.3.7-deb9",
-                    override_properties={
+                },
+                "initializationActions": [{
+                    "script": "gs://dataproc-initialization-actions/stackdriver/stackdriver.sh",
+                    "timeout_sec": 500,
+                }],
+                "masterConfig": {
+                    "diskConfig": {
+                        "boot_disk_size_gb": 15,
+                        "boot_disk_type": "pd-ssd",
+                    },
+                    "machine_type": "e2-medium",
+                    "numInstances": 1,
+                },
+                "preemptibleWorkerConfig": {
+                    "numInstances": 0,
+                },
+                "softwareConfig": {
+                    "imageVersion": "1.3.7-deb9",
+                    "overrideProperties": {
                         "dataproc:dataproc.allow.zero.workers": "true",
                     },
-                ),
-                staging_bucket="dataproc-staging-bucket",
-                worker_config={
+                },
+                "stagingBucket": "dataproc-staging-bucket",
+                "worker_config": {
                     "diskConfig": {
                         "boot_disk_size_gb": 15,
                         "numLocalSsds": 1,
@@ -94,7 +94,7 @@ class Cluster(pulumi.CustomResource):
                     "min_cpu_platform": "Intel Skylake",
                     "numInstances": 2,
                 },
-            ),
+            },
             graceful_decommission_timeout="120s",
             labels={
                 "foo": "bar",
@@ -108,17 +108,17 @@ class Cluster(pulumi.CustomResource):
         import pulumi_gcp as gcp
 
         accelerated_cluster = gcp.dataproc.Cluster("acceleratedCluster",
-            cluster_config=gcp.dataproc.ClusterClusterConfigArgs(
-                gce_cluster_config=gcp.dataproc.ClusterClusterConfigGceClusterConfigArgs(
-                    zone="us-central1-a",
-                ),
-                master_config=gcp.dataproc.ClusterClusterConfigMasterConfigArgs(
-                    accelerators=[gcp.dataproc.ClusterClusterConfigMasterConfigAcceleratorArgs(
-                        accelerator_count=1,
-                        accelerator_type="nvidia-tesla-k80",
-                    )],
-                ),
-            ),
+            cluster_config={
+                "gceClusterConfig": {
+                    "zone": "us-central1-a",
+                },
+                "masterConfig": {
+                    "accelerators": [{
+                        "acceleratorCount": 1,
+                        "accelerator_type": "nvidia-tesla-k80",
+                    }],
+                },
+            },
             region="us-central1")
         ```
 

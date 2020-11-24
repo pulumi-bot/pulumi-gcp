@@ -166,10 +166,10 @@ def get_engine_versions(location: Optional[str] = None,
         location="us-central1-b",
         node_version=central1b.latest_node_version,
         initial_node_count=1,
-        master_auth=gcp.container.ClusterMasterAuthArgs(
-            username="mr.yoda",
-            password="adoy.rm",
-        ))
+        master_auth={
+            "username": "mr.yoda",
+            "password": "adoy.rm",
+        })
     pulumi.export("stableChannelVersion", central1b.release_channel_default_version["STABLE"])
     ```
 

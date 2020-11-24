@@ -62,9 +62,9 @@ class HealthCheck(pulumi.CustomResource):
 
         tcp_health_check = gcp.compute.HealthCheck("tcp-health-check",
             check_interval_sec=1,
-            tcp_health_check=gcp.compute.HealthCheckTcpHealthCheckArgs(
-                port=80,
-            ),
+            tcp_health_check={
+                "port": 80,
+            },
             timeout_sec=1)
         ```
         ### Health Check Tcp Full
@@ -77,13 +77,13 @@ class HealthCheck(pulumi.CustomResource):
             check_interval_sec=1,
             description="Health check via tcp",
             healthy_threshold=4,
-            tcp_health_check=gcp.compute.HealthCheckTcpHealthCheckArgs(
-                port_name="health-check-port",
-                port_specification="USE_NAMED_PORT",
-                proxy_header="NONE",
-                request="ARE YOU HEALTHY?",
-                response="I AM HEALTHY",
-            ),
+            tcp_health_check={
+                "port_name": "health-check-port",
+                "portSpecification": "USE_NAMED_PORT",
+                "proxy_header": "NONE",
+                "request": "ARE YOU HEALTHY?",
+                "response": "I AM HEALTHY",
+            },
             timeout_sec=1,
             unhealthy_threshold=5)
         ```
@@ -95,9 +95,9 @@ class HealthCheck(pulumi.CustomResource):
 
         ssl_health_check = gcp.compute.HealthCheck("ssl-health-check",
             check_interval_sec=1,
-            ssl_health_check=gcp.compute.HealthCheckSslHealthCheckArgs(
-                port=443,
-            ),
+            ssl_health_check={
+                "port": 443,
+            },
             timeout_sec=1)
         ```
         ### Health Check Ssl Full
@@ -110,13 +110,13 @@ class HealthCheck(pulumi.CustomResource):
             check_interval_sec=1,
             description="Health check via ssl",
             healthy_threshold=4,
-            ssl_health_check=gcp.compute.HealthCheckSslHealthCheckArgs(
-                port_name="health-check-port",
-                port_specification="USE_NAMED_PORT",
-                proxy_header="NONE",
-                request="ARE YOU HEALTHY?",
-                response="I AM HEALTHY",
-            ),
+            ssl_health_check={
+                "port_name": "health-check-port",
+                "portSpecification": "USE_NAMED_PORT",
+                "proxy_header": "NONE",
+                "request": "ARE YOU HEALTHY?",
+                "response": "I AM HEALTHY",
+            },
             timeout_sec=1,
             unhealthy_threshold=5)
         ```
@@ -128,9 +128,9 @@ class HealthCheck(pulumi.CustomResource):
 
         http_health_check = gcp.compute.HealthCheck("http-health-check",
             check_interval_sec=1,
-            http_health_check=gcp.compute.HealthCheckHttpHealthCheckArgs(
-                port=80,
-            ),
+            http_health_check={
+                "port": 80,
+            },
             timeout_sec=1)
         ```
         ### Health Check Http Full
@@ -143,14 +143,14 @@ class HealthCheck(pulumi.CustomResource):
             check_interval_sec=1,
             description="Health check via http",
             healthy_threshold=4,
-            http_health_check=gcp.compute.HealthCheckHttpHealthCheckArgs(
-                host="1.2.3.4",
-                port_name="health-check-port",
-                port_specification="USE_NAMED_PORT",
-                proxy_header="NONE",
-                request_path="/mypath",
-                response="I AM HEALTHY",
-            ),
+            http_health_check={
+                "host": "1.2.3.4",
+                "port_name": "health-check-port",
+                "portSpecification": "USE_NAMED_PORT",
+                "proxy_header": "NONE",
+                "request_path": "/mypath",
+                "response": "I AM HEALTHY",
+            },
             timeout_sec=1,
             unhealthy_threshold=5)
         ```
@@ -162,9 +162,9 @@ class HealthCheck(pulumi.CustomResource):
 
         https_health_check = gcp.compute.HealthCheck("https-health-check",
             check_interval_sec=1,
-            https_health_check=gcp.compute.HealthCheckHttpsHealthCheckArgs(
-                port=443,
-            ),
+            https_health_check={
+                "port": 443,
+            },
             timeout_sec=1)
         ```
         ### Health Check Https Full
@@ -177,14 +177,14 @@ class HealthCheck(pulumi.CustomResource):
             check_interval_sec=1,
             description="Health check via https",
             healthy_threshold=4,
-            https_health_check=gcp.compute.HealthCheckHttpsHealthCheckArgs(
-                host="1.2.3.4",
-                port_name="health-check-port",
-                port_specification="USE_NAMED_PORT",
-                proxy_header="NONE",
-                request_path="/mypath",
-                response="I AM HEALTHY",
-            ),
+            https_health_check={
+                "host": "1.2.3.4",
+                "port_name": "health-check-port",
+                "portSpecification": "USE_NAMED_PORT",
+                "proxy_header": "NONE",
+                "request_path": "/mypath",
+                "response": "I AM HEALTHY",
+            },
             timeout_sec=1,
             unhealthy_threshold=5)
         ```
@@ -196,9 +196,9 @@ class HealthCheck(pulumi.CustomResource):
 
         http2_health_check = gcp.compute.HealthCheck("http2-health-check",
             check_interval_sec=1,
-            http2_health_check=gcp.compute.HealthCheckHttp2HealthCheckArgs(
-                port=443,
-            ),
+            http2_health_check={
+                "port": 443,
+            },
             timeout_sec=1)
         ```
         ### Health Check Http2 Full
@@ -211,14 +211,14 @@ class HealthCheck(pulumi.CustomResource):
             check_interval_sec=1,
             description="Health check via http2",
             healthy_threshold=4,
-            http2_health_check=gcp.compute.HealthCheckHttp2HealthCheckArgs(
-                host="1.2.3.4",
-                port_name="health-check-port",
-                port_specification="USE_NAMED_PORT",
-                proxy_header="NONE",
-                request_path="/mypath",
-                response="I AM HEALTHY",
-            ),
+            http2_health_check={
+                "host": "1.2.3.4",
+                "port_name": "health-check-port",
+                "portSpecification": "USE_NAMED_PORT",
+                "proxy_header": "NONE",
+                "request_path": "/mypath",
+                "response": "I AM HEALTHY",
+            },
             timeout_sec=1,
             unhealthy_threshold=5)
         ```
@@ -230,9 +230,9 @@ class HealthCheck(pulumi.CustomResource):
 
         grpc_health_check = gcp.compute.HealthCheck("grpc-health-check",
             check_interval_sec=1,
-            grpc_health_check=gcp.compute.HealthCheckGrpcHealthCheckArgs(
-                port=443,
-            ),
+            grpc_health_check={
+                "port": 443,
+            },
             timeout_sec=1)
         ```
         ### Health Check Grpc Full
@@ -243,11 +243,11 @@ class HealthCheck(pulumi.CustomResource):
 
         grpc_health_check = gcp.compute.HealthCheck("grpc-health-check",
             check_interval_sec=1,
-            grpc_health_check=gcp.compute.HealthCheckGrpcHealthCheckArgs(
-                grpc_service_name="testservice",
-                port_name="health-check-port",
-                port_specification="USE_NAMED_PORT",
-            ),
+            grpc_health_check={
+                "grpcServiceName": "testservice",
+                "port_name": "health-check-port",
+                "portSpecification": "USE_NAMED_PORT",
+            },
             timeout_sec=1)
         ```
         ### Health Check With Logging
@@ -259,12 +259,12 @@ class HealthCheck(pulumi.CustomResource):
         health_check_with_logging = gcp.compute.HealthCheck("health-check-with-logging",
             timeout_sec=1,
             check_interval_sec=1,
-            tcp_health_check=gcp.compute.HealthCheckTcpHealthCheckArgs(
-                port=22,
-            ),
-            log_config=gcp.compute.HealthCheckLogConfigArgs(
-                enable=True,
-            ),
+            tcp_health_check={
+                "port": 22,
+            },
+            log_config={
+                "enable": True,
+            },
             opts=ResourceOptions(provider=google_beta))
         ```
 

@@ -50,18 +50,18 @@ class TargetHttpProxy(pulumi.CustomResource):
             health_checks=[default_http_health_check.id])
         default_url_map = gcp.compute.URLMap("defaultURLMap",
             default_service=default_backend_service.id,
-            host_rules=[gcp.compute.URLMapHostRuleArgs(
-                hosts=["mysite.com"],
-                path_matcher="allpaths",
-            )],
-            path_matchers=[gcp.compute.URLMapPathMatcherArgs(
-                name="allpaths",
-                default_service=default_backend_service.id,
-                path_rules=[gcp.compute.URLMapPathMatcherPathRuleArgs(
-                    paths=["/*"],
-                    service=default_backend_service.id,
-                )],
-            )])
+            host_rules=[{
+                "hosts": ["mysite.com"],
+                "pathMatcher": "allpaths",
+            }],
+            path_matchers=[{
+                "name": "allpaths",
+                "default_service": default_backend_service.id,
+                "pathRules": [{
+                    "paths": ["/*"],
+                    "service": default_backend_service.id,
+                }],
+            }])
         default_target_http_proxy = gcp.compute.TargetHttpProxy("defaultTargetHttpProxy", url_map=default_url_map.id)
         ```
         ### Target Http Proxy Https Redirect
@@ -70,10 +70,10 @@ class TargetHttpProxy(pulumi.CustomResource):
         import pulumi
         import pulumi_gcp as gcp
 
-        default_url_map = gcp.compute.URLMap("defaultURLMap", default_url_redirect=gcp.compute.URLMapDefaultUrlRedirectArgs(
-            https_redirect=True,
-            strip_query=False,
-        ))
+        default_url_map = gcp.compute.URLMap("defaultURLMap", default_url_redirect={
+            "httpsRedirect": True,
+            "stripQuery": False,
+        })
         default_target_http_proxy = gcp.compute.TargetHttpProxy("defaultTargetHttpProxy", url_map=default_url_map.id)
         ```
 

@@ -94,39 +94,39 @@ class FlexibleAppVersion(pulumi.CustomResource):
             project=gae_api.project,
             service="default",
             runtime="nodejs",
-            entrypoint=gcp.appengine.FlexibleAppVersionEntrypointArgs(
-                shell="node ./app.js",
-            ),
-            deployment=gcp.appengine.FlexibleAppVersionDeploymentArgs(
-                zip=gcp.appengine.FlexibleAppVersionDeploymentZipArgs(
-                    source_url=pulumi.Output.all(bucket.name, object.name).apply(lambda bucketName, objectName: f"https://storage.googleapis.com/{bucket_name}/{object_name}"),
-                ),
-            ),
-            liveness_check=gcp.appengine.FlexibleAppVersionLivenessCheckArgs(
-                path="/",
-            ),
-            readiness_check=gcp.appengine.FlexibleAppVersionReadinessCheckArgs(
-                path="/",
-            ),
+            entrypoint={
+                "shell": "node ./app.js",
+            },
+            deployment={
+                "zip": {
+                    "sourceUrl": pulumi.Output.all(bucket.name, object.name).apply(lambda bucketName, objectName: f"https://storage.googleapis.com/{bucket_name}/{object_name}"),
+                },
+            },
+            liveness_check={
+                "path": "/",
+            },
+            readiness_check={
+                "path": "/",
+            },
             env_variables={
                 "port": "8080",
             },
-            handlers=[gcp.appengine.FlexibleAppVersionHandlerArgs(
-                url_regex=".*\\/my-path\\/*",
-                security_level="SECURE_ALWAYS",
-                login="LOGIN_REQUIRED",
-                auth_fail_action="AUTH_FAIL_ACTION_REDIRECT",
-                static_files=gcp.appengine.FlexibleAppVersionHandlerStaticFilesArgs(
-                    path="my-other-path",
-                    upload_path_regex=".*\\/my-path\\/*",
-                ),
-            )],
-            automatic_scaling=gcp.appengine.FlexibleAppVersionAutomaticScalingArgs(
-                cool_down_period="120s",
-                cpu_utilization=gcp.appengine.FlexibleAppVersionAutomaticScalingCpuUtilizationArgs(
-                    target_utilization=0.5,
-                ),
-            ),
+            handlers=[{
+                "urlRegex": ".*\\/my-path\\/*",
+                "securityLevel": "SECURE_ALWAYS",
+                "login": "LOGIN_REQUIRED",
+                "authFailAction": "AUTH_FAIL_ACTION_REDIRECT",
+                "staticFiles": {
+                    "path": "my-other-path",
+                    "uploadPathRegex": ".*\\/my-path\\/*",
+                },
+            }],
+            automatic_scaling={
+                "coolDownPeriod": "120s",
+                "cpuUtilization": {
+                    "targetUtilization": 0.5,
+                },
+            },
             noop_on_destroy=True)
         ```
 

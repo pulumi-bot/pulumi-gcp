@@ -43,27 +43,27 @@ class DomainMapping(pulumi.CustomResource):
 
         default_service = gcp.cloudrun.Service("defaultService",
             location="us-central1",
-            metadata=gcp.cloudrun.ServiceMetadataArgs(
-                namespace="my-project-name",
-            ),
-            template=gcp.cloudrun.ServiceTemplateArgs(
-                spec=gcp.cloudrun.ServiceTemplateSpecArgs(
-                    containers=[gcp.cloudrun.ServiceTemplateSpecContainerArgs(
-                        image="gcr.io/cloudrun/hello",
-                    )],
-                ),
-            ))
+            metadata={
+                "namespace": "my-project-name",
+            },
+            template={
+                "spec": {
+                    "containers": [{
+                        "image": "gcr.io/cloudrun/hello",
+                    }],
+                },
+            })
         default_domain_mapping = gcp.cloudrun.DomainMapping("defaultDomainMapping",
             location="us-central1",
-            metadata=gcp.cloudrun.DomainMappingMetadataArgs(
-                namespace="my-project-name",
-                annotations={
+            metadata={
+                "namespace": "my-project-name",
+                "annotations": {
                     "run.googleapis.com/launch-stage": "BETA",
                 },
-            ),
-            spec=gcp.cloudrun.DomainMappingSpecArgs(
-                route_name=default_service.name,
-            ))
+            },
+            spec={
+                "routeName": default_service.name,
+            })
         ```
 
         ## Import

@@ -49,9 +49,9 @@ class GameServerDeploymentRollout(pulumi.CustomResource):
             config_id="tf-test-config",
             deployment_id=default_game_server_deployment.deployment_id,
             description="a config description",
-            fleet_configs=[gcp.gameservices.GameServerConfigFleetConfigArgs(
-                name="some-non-guid",
-                fleet_spec=json.dumps({
+            fleet_configs=[{
+                "name": "some-non-guid",
+                "fleetSpec": json.dumps({
                     "replicas": 1,
                     "scheduling": "Packed",
                     "template": {
@@ -76,7 +76,7 @@ class GameServerDeploymentRollout(pulumi.CustomResource):
                         },
                     },
                 }),
-            )])
+            }])
         default_game_server_deployment_rollout = gcp.gameservices.GameServerDeploymentRollout("defaultGameServerDeploymentRollout",
             deployment_id=default_game_server_deployment.deployment_id,
             default_game_server_config=default_game_server_config.name)

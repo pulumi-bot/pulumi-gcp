@@ -57,14 +57,14 @@ class InstanceGroup(pulumi.CustomResource):
                 google_compute_instance["test2"]["id"],
             ],
             named_ports=[
-                gcp.compute.InstanceGroupNamedPortArgs(
-                    name="http",
-                    port=8080,
-                ),
-                gcp.compute.InstanceGroupNamedPortArgs(
-                    name="https",
-                    port=8443,
-                ),
+                {
+                    "name": "http",
+                    "port": 8080,
+                },
+                {
+                    "name": "https",
+                    "port": 8443,
+                },
             ],
             zone="us-central1-a")
         ```
@@ -82,34 +82,34 @@ class InstanceGroup(pulumi.CustomResource):
         staging_vm = gcp.compute.Instance("stagingVm",
             machine_type="e2-medium",
             zone="us-central1-c",
-            boot_disk=gcp.compute.InstanceBootDiskArgs(
-                initialize_params=gcp.compute.InstanceBootDiskInitializeParamsArgs(
-                    image=debian_image.self_link,
-                ),
-            ),
-            network_interfaces=[gcp.compute.InstanceNetworkInterfaceArgs(
-                network="default",
-            )])
+            boot_disk={
+                "initializeParams": {
+                    "image": debian_image.self_link,
+                },
+            },
+            network_interfaces=[{
+                "network": "default",
+            }])
         staging_group = gcp.compute.InstanceGroup("stagingGroup",
             zone="us-central1-c",
             instances=[staging_vm.id],
             named_ports=[
-                gcp.compute.InstanceGroupNamedPortArgs(
-                    name="http",
-                    port=8080,
-                ),
-                gcp.compute.InstanceGroupNamedPortArgs(
-                    name="https",
-                    port=8443,
-                ),
+                {
+                    "name": "http",
+                    "port": 8080,
+                },
+                {
+                    "name": "https",
+                    "port": 8443,
+                },
             ])
         staging_health = gcp.compute.HttpsHealthCheck("stagingHealth", request_path="/health_check")
         staging_service = gcp.compute.BackendService("stagingService",
             port_name="https",
             protocol="HTTPS",
-            backends=[gcp.compute.BackendServiceBackendArgs(
-                group=staging_group.id,
-            )],
+            backends=[{
+                "group": staging_group.id,
+            }],
             health_checks=[staging_health.id])
         ```
 

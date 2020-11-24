@@ -41,9 +41,9 @@ class OrganizationPolicy(pulumi.CustomResource):
         import pulumi_gcp as gcp
 
         serial_port_policy = gcp.folder.OrganizationPolicy("serialPortPolicy",
-            boolean_policy=gcp.folder.OrganizationPolicyBooleanPolicyArgs(
-                enforced=True,
-            ),
+            boolean_policy={
+                "enforced": True,
+            },
             constraint="compute.disableSerialPortAccess",
             folder="folders/123456789")
         ```
@@ -57,11 +57,11 @@ class OrganizationPolicy(pulumi.CustomResource):
         services_policy = gcp.folder.OrganizationPolicy("servicesPolicy",
             constraint="serviceuser.services",
             folder="folders/123456789",
-            list_policy=gcp.folder.OrganizationPolicyListPolicyArgs(
-                allow=gcp.folder.OrganizationPolicyListPolicyAllowArgs(
-                    all=True,
-                ),
-            ))
+            list_policy={
+                "allow": {
+                    "all": True,
+                },
+            })
         ```
 
         Or to deny some services, use the following instead:
@@ -73,12 +73,12 @@ class OrganizationPolicy(pulumi.CustomResource):
         services_policy = gcp.folder.OrganizationPolicy("servicesPolicy",
             constraint="serviceuser.services",
             folder="folders/123456789",
-            list_policy=gcp.folder.OrganizationPolicyListPolicyArgs(
-                deny=gcp.folder.OrganizationPolicyListPolicyDenyArgs(
-                    values=["cloudresourcemanager.googleapis.com"],
-                ),
-                suggested_value="compute.googleapis.com",
-            ))
+            list_policy={
+                "deny": {
+                    "values": ["cloudresourcemanager.googleapis.com"],
+                },
+                "suggestedValue": "compute.googleapis.com",
+            })
         ```
 
         To restore the default folder organization policy, use the following instead:
@@ -90,9 +90,9 @@ class OrganizationPolicy(pulumi.CustomResource):
         services_policy = gcp.folder.OrganizationPolicy("servicesPolicy",
             constraint="serviceuser.services",
             folder="folders/123456789",
-            restore_policy=gcp.folder.OrganizationPolicyRestorePolicyArgs(
-                default=True,
-            ))
+            restore_policy={
+                "default": True,
+            })
         ```
 
         ## Import

@@ -46,40 +46,40 @@ class TagTemplate(pulumi.CustomResource):
         basic_tag_template = gcp.datacatalog.TagTemplate("basicTagTemplate",
             display_name="Demo Tag Template",
             fields=[
-                gcp.datacatalog.TagTemplateFieldArgs(
-                    display_name="Source of data asset",
-                    field_id="source",
-                    is_required=True,
-                    type=gcp.datacatalog.TagTemplateFieldTypeArgs(
-                        primitive_type="STRING",
-                    ),
-                ),
-                gcp.datacatalog.TagTemplateFieldArgs(
-                    display_name="Number of rows in the data asset",
-                    field_id="num_rows",
-                    type=gcp.datacatalog.TagTemplateFieldTypeArgs(
-                        primitive_type="DOUBLE",
-                    ),
-                ),
-                gcp.datacatalog.TagTemplateFieldArgs(
-                    display_name="PII type",
-                    field_id="pii_type",
-                    type=gcp.datacatalog.TagTemplateFieldTypeArgs(
-                        enum_type=gcp.datacatalog.TagTemplateFieldTypeEnumTypeArgs(
-                            allowed_values=[
-                                gcp.datacatalog.TagTemplateFieldTypeEnumTypeAllowedValueArgs(
-                                    display_name="EMAIL",
-                                ),
-                                gcp.datacatalog.TagTemplateFieldTypeEnumTypeAllowedValueArgs(
-                                    display_name="SOCIAL SECURITY NUMBER",
-                                ),
-                                gcp.datacatalog.TagTemplateFieldTypeEnumTypeAllowedValueArgs(
-                                    display_name="NONE",
-                                ),
+                {
+                    "display_name": "Source of data asset",
+                    "fieldId": "source",
+                    "isRequired": True,
+                    "type": {
+                        "primitiveType": "STRING",
+                    },
+                },
+                {
+                    "display_name": "Number of rows in the data asset",
+                    "fieldId": "num_rows",
+                    "type": {
+                        "primitiveType": "DOUBLE",
+                    },
+                },
+                {
+                    "display_name": "PII type",
+                    "fieldId": "pii_type",
+                    "type": {
+                        "enumType": {
+                            "allowedValues": [
+                                {
+                                    "display_name": "EMAIL",
+                                },
+                                {
+                                    "display_name": "SOCIAL SECURITY NUMBER",
+                                },
+                                {
+                                    "display_name": "NONE",
+                                },
                             ],
-                        ),
-                    ),
-                ),
+                        },
+                    },
+                },
             ],
             force_delete=False,
             region="us-central1",

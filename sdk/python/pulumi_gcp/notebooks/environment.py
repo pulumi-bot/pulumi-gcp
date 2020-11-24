@@ -46,9 +46,9 @@ class Environment(pulumi.CustomResource):
 
         environment = gcp.notebooks.Environment("environment",
             location="us-west1-a",
-            container_image=gcp.notebooks.EnvironmentContainerImageArgs(
-                repository="gcr.io/deeplearning-platform-release/base-cpu",
-            ),
+            container_image={
+                "repository": "gcr.io/deeplearning-platform-release/base-cpu",
+            },
             opts=ResourceOptions(provider=google_beta))
         ```
 

@@ -43,10 +43,10 @@ class EntryGroupIamMember(pulumi.CustomResource):
         import pulumi
         import pulumi_gcp as gcp
 
-        admin = gcp.organizations.get_iam_policy(bindings=[gcp.organizations.GetIAMPolicyBindingArgs(
-            role="roles/viewer",
-            members=["user:jane@example.com"],
-        )])
+        admin = gcp.organizations.get_iam_policy(bindings=[{
+            "role": "roles/viewer",
+            "members": ["user:jane@example.com"],
+        }])
         policy = gcp.datacatalog.EntryGroupIamPolicy("policy",
             entry_group=google_data_catalog_entry_group["basic_entry_group"]["name"],
             policy_data=admin.policy_data)

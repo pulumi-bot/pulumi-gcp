@@ -51,10 +51,10 @@ class IAMAuditConfig(pulumi.CustomResource):
         import pulumi
         import pulumi_gcp as gcp
 
-        admin = gcp.organizations.get_iam_policy(bindings=[gcp.organizations.GetIAMPolicyBindingArgs(
-            role="roles/editor",
-            members=["user:jane@example.com"],
-        )])
+        admin = gcp.organizations.get_iam_policy(bindings=[{
+            "role": "roles/editor",
+            "members": ["user:jane@example.com"],
+        }])
         project = gcp.projects.IAMPolicy("project",
             project="your-project-id",
             policy_data=admin.policy_data)
@@ -66,15 +66,15 @@ class IAMAuditConfig(pulumi.CustomResource):
         import pulumi
         import pulumi_gcp as gcp
 
-        admin = gcp.organizations.get_iam_policy(bindings=[gcp.organizations.GetIAMPolicyBindingArgs(
-            condition=gcp.organizations.GetIAMPolicyBindingConditionArgs(
-                description="Expiring at midnight of 2019-12-31",
-                expression="request.time < timestamp(\"2020-01-01T00:00:00Z\")",
-                title="expires_after_2019_12_31",
-            ),
-            members=["user:jane@example.com"],
-            role="roles/editor",
-        )])
+        admin = gcp.organizations.get_iam_policy(bindings=[{
+            "condition": {
+                "description": "Expiring at midnight of 2019-12-31",
+                "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
+                "title": "expires_after_2019_12_31",
+            },
+            "members": ["user:jane@example.com"],
+            "role": "roles/editor",
+        }])
         project = gcp.projects.IAMPolicy("project",
             policy_data=admin.policy_data,
             project="your-project-id")
@@ -99,11 +99,11 @@ class IAMAuditConfig(pulumi.CustomResource):
         import pulumi_gcp as gcp
 
         project = gcp.projects.IAMBinding("project",
-            condition=gcp.projects.IAMBindingConditionArgs(
-                description="Expiring at midnight of 2019-12-31",
-                expression="request.time < timestamp(\"2020-01-01T00:00:00Z\")",
-                title="expires_after_2019_12_31",
-            ),
+            condition={
+                "description": "Expiring at midnight of 2019-12-31",
+                "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
+                "title": "expires_after_2019_12_31",
+            },
             members=["user:jane@example.com"],
             project="your-project-id",
             role="roles/editor")
@@ -128,11 +128,11 @@ class IAMAuditConfig(pulumi.CustomResource):
         import pulumi_gcp as gcp
 
         project = gcp.projects.IAMMember("project",
-            condition=gcp.projects.IAMMemberConditionArgs(
-                description="Expiring at midnight of 2019-12-31",
-                expression="request.time < timestamp(\"2020-01-01T00:00:00Z\")",
-                title="expires_after_2019_12_31",
-            ),
+            condition={
+                "description": "Expiring at midnight of 2019-12-31",
+                "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
+                "title": "expires_after_2019_12_31",
+            },
             member="user:jane@example.com",
             project="your-project-id",
             role="roles/editor")
@@ -146,13 +146,13 @@ class IAMAuditConfig(pulumi.CustomResource):
 
         project = gcp.projects.IAMAuditConfig("project",
             audit_log_configs=[
-                gcp.projects.IAMAuditConfigAuditLogConfigArgs(
-                    log_type="ADMIN_READ",
-                ),
-                gcp.projects.IAMAuditConfigAuditLogConfigArgs(
-                    exempted_members=["user:joebloggs@hashicorp.com"],
-                    log_type="DATA_READ",
-                ),
+                {
+                    "logType": "ADMIN_READ",
+                },
+                {
+                    "exemptedMembers": ["user:joebloggs@hashicorp.com"],
+                    "logType": "DATA_READ",
+                },
             ],
             project="your-project-id",
             service="allServices")

@@ -51,11 +51,11 @@ class Repository(pulumi.CustomResource):
             account_id="my-account",
             display_name="Test Service Account")
         topic = gcp.pubsub.Topic("topic")
-        my_repo = gcp.sourcerepo.Repository("my-repo", pubsub_configs=[gcp.sourcerepo.RepositoryPubsubConfigArgs(
-            topic=topic.id,
-            message_format="JSON",
-            service_account_email=test_account.email,
-        )])
+        my_repo = gcp.sourcerepo.Repository("my-repo", pubsub_configs=[{
+            "topic": topic.id,
+            "messageFormat": "JSON",
+            "service_account_email": test_account.email,
+        }])
         ```
 
         ## Import

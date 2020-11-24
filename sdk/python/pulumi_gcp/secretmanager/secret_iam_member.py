@@ -42,10 +42,10 @@ class SecretIamMember(pulumi.CustomResource):
         import pulumi
         import pulumi_gcp as gcp
 
-        admin = gcp.organizations.get_iam_policy(bindings=[gcp.organizations.GetIAMPolicyBindingArgs(
-            role="roles/secretmanager.secretAccessor",
-            members=["user:jane@example.com"],
-        )])
+        admin = gcp.organizations.get_iam_policy(bindings=[{
+            "role": "roles/secretmanager.secretAccessor",
+            "members": ["user:jane@example.com"],
+        }])
         policy = gcp.secretmanager.SecretIamPolicy("policy",
             project=google_secret_manager_secret["secret-basic"]["project"],
             secret_id=google_secret_manager_secret["secret-basic"]["secret_id"],

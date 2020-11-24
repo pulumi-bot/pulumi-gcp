@@ -57,14 +57,14 @@ class RegionDiskResourcePolicyAttachment(pulumi.CustomResource):
             region="us-central1")
         policy = gcp.compute.ResourcePolicy("policy",
             region="us-central1",
-            snapshot_schedule_policy=gcp.compute.ResourcePolicySnapshotSchedulePolicyArgs(
-                schedule=gcp.compute.ResourcePolicySnapshotSchedulePolicyScheduleArgs(
-                    daily_schedule=gcp.compute.ResourcePolicySnapshotSchedulePolicyScheduleDailyScheduleArgs(
-                        days_in_cycle=1,
-                        start_time="04:00",
-                    ),
-                ),
-            ))
+            snapshot_schedule_policy={
+                "schedule": {
+                    "dailySchedule": {
+                        "daysInCycle": 1,
+                        "startTime": "04:00",
+                    },
+                },
+            })
         my_image = gcp.compute.get_image(family="debian-9",
             project="debian-cloud")
         ```

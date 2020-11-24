@@ -45,11 +45,11 @@ class Router(pulumi.CustomResource):
         foobar_network = gcp.compute.Network("foobarNetwork", auto_create_subnetworks=False)
         foobar_router = gcp.compute.Router("foobarRouter",
             network=foobar_network.name,
-            bgp=gcp.compute.RouterBgpArgs(
-                asn=64514,
-                advertise_mode="CUSTOM",
-                advertised_groups=["ALL_SUBNETS"],
-                advertised_ip_ranges=[
+            bgp={
+                "asn": 64514,
+                "advertise_mode": "CUSTOM",
+                "advertised_groups": ["ALL_SUBNETS"],
+                "advertised_ip_ranges": [
                     {
                         "range": "1.2.3.4",
                     },
@@ -57,7 +57,7 @@ class Router(pulumi.CustomResource):
                         "range": "6.7.0.0/16",
                     },
                 ],
-            ))
+            })
         ```
 
         ## Import

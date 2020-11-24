@@ -70,10 +70,10 @@ class Instance(pulumi.CustomResource):
         instance = gcp.notebooks.Instance("instance",
             location="us-west1-a",
             machine_type="e2-medium",
-            vm_image=gcp.notebooks.InstanceVmImageArgs(
-                project="deeplearning-platform-release",
-                image_family="tf-latest-cpu",
-            ),
+            vm_image={
+                "project": "deeplearning-platform-release",
+                "imageFamily": "tf-latest-cpu",
+            },
             opts=ResourceOptions(provider=google_beta))
         ```
         ### Notebook Instance Basic Container
@@ -88,10 +88,10 @@ class Instance(pulumi.CustomResource):
             metadata={
                 "proxy-mode": "service_account",
             },
-            container_image=gcp.notebooks.InstanceContainerImageArgs(
-                repository="gcr.io/deeplearning-platform-release/base-cpu",
-                tag="latest",
-            ),
+            container_image={
+                "repository": "gcr.io/deeplearning-platform-release/base-cpu",
+                "tag": "latest",
+            },
             opts=ResourceOptions(provider=google_beta))
         ```
         ### Notebook Instance Basic Gpu
@@ -104,14 +104,14 @@ class Instance(pulumi.CustomResource):
             location="us-west1-a",
             machine_type="n1-standard-1",
             install_gpu_driver=True,
-            accelerator_config=gcp.notebooks.InstanceAcceleratorConfigArgs(
-                type="NVIDIA_TESLA_T4",
-                core_count=1,
-            ),
-            vm_image=gcp.notebooks.InstanceVmImageArgs(
-                project="deeplearning-platform-release",
-                image_family="tf-latest-gpu",
-            ),
+            accelerator_config={
+                "type": "NVIDIA_TESLA_T4",
+                "coreCount": 1,
+            },
+            vm_image={
+                "project": "deeplearning-platform-release",
+                "imageFamily": "tf-latest-gpu",
+            },
             opts=ResourceOptions(provider=google_beta))
         ```
         ### Notebook Instance Full
@@ -126,10 +126,10 @@ class Instance(pulumi.CustomResource):
         instance = gcp.notebooks.Instance("instance",
             location="us-central1-a",
             machine_type="e2-medium",
-            vm_image=gcp.notebooks.InstanceVmImageArgs(
-                project="deeplearning-platform-release",
-                image_family="tf-latest-cpu",
-            ),
+            vm_image={
+                "project": "deeplearning-platform-release",
+                "imageFamily": "tf-latest-cpu",
+            },
             instance_owners=["admin@hashicorptest.com"],
             service_account="emailAddress:my@service-account.com",
             install_gpu_driver=True,

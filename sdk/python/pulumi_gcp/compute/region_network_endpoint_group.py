@@ -61,9 +61,9 @@ class RegionNetworkEndpointGroup(pulumi.CustomResource):
         function_neg_region_network_endpoint_group = gcp.compute.RegionNetworkEndpointGroup("functionNegRegionNetworkEndpointGroup",
             network_endpoint_type="SERVERLESS",
             region="us-central1",
-            cloud_function=gcp.compute.RegionNetworkEndpointGroupCloudFunctionArgs(
-                function=function_neg_function.name,
-            ))
+            cloud_function={
+                "function": function_neg_function.name,
+            })
         ```
         ### Region Network Endpoint Group Cloudrun
 
@@ -73,24 +73,24 @@ class RegionNetworkEndpointGroup(pulumi.CustomResource):
 
         cloudrun_neg_service = gcp.cloudrun.Service("cloudrunNegService",
             location="us-central1",
-            template=gcp.cloudrun.ServiceTemplateArgs(
-                spec=gcp.cloudrun.ServiceTemplateSpecArgs(
-                    containers=[gcp.cloudrun.ServiceTemplateSpecContainerArgs(
-                        image="gcr.io/cloudrun/hello",
-                    )],
-                ),
-            ),
-            traffics=[gcp.cloudrun.ServiceTrafficArgs(
-                percent=100,
-                latest_revision=True,
-            )])
+            template={
+                "spec": {
+                    "containers": [{
+                        "image": "gcr.io/cloudrun/hello",
+                    }],
+                },
+            },
+            traffics=[{
+                "percent": 100,
+                "latestRevision": True,
+            }])
         # Cloud Run Example
         cloudrun_neg_region_network_endpoint_group = gcp.compute.RegionNetworkEndpointGroup("cloudrunNegRegionNetworkEndpointGroup",
             network_endpoint_type="SERVERLESS",
             region="us-central1",
-            cloud_run=gcp.compute.RegionNetworkEndpointGroupCloudRunArgs(
-                service=cloudrun_neg_service.name,
-            ))
+            cloud_run={
+                "service": cloudrun_neg_service.name,
+            })
         ```
         ### Region Network Endpoint Group Appengine
 
@@ -106,48 +106,48 @@ class RegionNetworkEndpointGroup(pulumi.CustomResource):
             version_id="v1",
             service="default",
             runtime="nodejs",
-            entrypoint=gcp.appengine.FlexibleAppVersionEntrypointArgs(
-                shell="node ./app.js",
-            ),
-            deployment=gcp.appengine.FlexibleAppVersionDeploymentArgs(
-                zip=gcp.appengine.FlexibleAppVersionDeploymentZipArgs(
-                    source_url=pulumi.Output.all(appengine_neg_bucket.name, appengine_neg_bucket_object.name).apply(lambda appengineNegBucketName, appengineNegBucketObjectName: f"https://storage.googleapis.com/{appengine_neg_bucket_name}/{appengine_neg_bucket_object_name}"),
-                ),
-            ),
-            liveness_check=gcp.appengine.FlexibleAppVersionLivenessCheckArgs(
-                path="/",
-            ),
-            readiness_check=gcp.appengine.FlexibleAppVersionReadinessCheckArgs(
-                path="/",
-            ),
+            entrypoint={
+                "shell": "node ./app.js",
+            },
+            deployment={
+                "zip": {
+                    "sourceUrl": pulumi.Output.all(appengine_neg_bucket.name, appengine_neg_bucket_object.name).apply(lambda appengineNegBucketName, appengineNegBucketObjectName: f"https://storage.googleapis.com/{appengine_neg_bucket_name}/{appengine_neg_bucket_object_name}"),
+                },
+            },
+            liveness_check={
+                "path": "/",
+            },
+            readiness_check={
+                "path": "/",
+            },
             env_variables={
                 "port": "8080",
             },
-            handlers=[gcp.appengine.FlexibleAppVersionHandlerArgs(
-                url_regex=".*\\/my-path\\/*",
-                security_level="SECURE_ALWAYS",
-                login="LOGIN_REQUIRED",
-                auth_fail_action="AUTH_FAIL_ACTION_REDIRECT",
-                static_files=gcp.appengine.FlexibleAppVersionHandlerStaticFilesArgs(
-                    path="my-other-path",
-                    upload_path_regex=".*\\/my-path\\/*",
-                ),
-            )],
-            automatic_scaling=gcp.appengine.FlexibleAppVersionAutomaticScalingArgs(
-                cool_down_period="120s",
-                cpu_utilization=gcp.appengine.FlexibleAppVersionAutomaticScalingCpuUtilizationArgs(
-                    target_utilization=0.5,
-                ),
-            ),
+            handlers=[{
+                "urlRegex": ".*\\/my-path\\/*",
+                "securityLevel": "SECURE_ALWAYS",
+                "login": "LOGIN_REQUIRED",
+                "authFailAction": "AUTH_FAIL_ACTION_REDIRECT",
+                "staticFiles": {
+                    "path": "my-other-path",
+                    "uploadPathRegex": ".*\\/my-path\\/*",
+                },
+            }],
+            automatic_scaling={
+                "coolDownPeriod": "120s",
+                "cpuUtilization": {
+                    "targetUtilization": 0.5,
+                },
+            },
             noop_on_destroy=True)
         # App Engine Example
         appengine_neg_region_network_endpoint_group = gcp.compute.RegionNetworkEndpointGroup("appengineNegRegionNetworkEndpointGroup",
             network_endpoint_type="SERVERLESS",
             region="us-central1",
-            app_engine=gcp.compute.RegionNetworkEndpointGroupAppEngineArgs(
-                service=appengine_neg_flexible_app_version.service,
-                version=appengine_neg_flexible_app_version.version_id,
-            ))
+            app_engine={
+                "service": appengine_neg_flexible_app_version.service,
+                "version": appengine_neg_flexible_app_version.version_id,
+            })
         ```
 
         ## Import
