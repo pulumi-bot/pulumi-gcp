@@ -46,7 +46,7 @@ class Repository(pulumi.CustomResource):
             repository_id="my-repository",
             description="example docker repository",
             format="DOCKER",
-            opts=ResourceOptions(provider=google_beta))
+            opts=pulumi.ResourceOptions(provider=google_beta))
         ```
         ### Artifact Registry Repository Cmek
 
@@ -60,7 +60,7 @@ class Repository(pulumi.CustomResource):
             description="example docker repository with cmek",
             format="DOCKER",
             kms_key_name="kms-key",
-            opts=ResourceOptions(provider=google_beta))
+            opts=pulumi.ResourceOptions(provider=google_beta))
         ```
         ### Artifact Registry Repository Iam
 
@@ -73,17 +73,17 @@ class Repository(pulumi.CustomResource):
             repository_id="my-repository",
             description="example docker repository with iam",
             format="DOCKER",
-            opts=ResourceOptions(provider=google_beta))
+            opts=pulumi.ResourceOptions(provider=google_beta))
         test_account = gcp.service_account.Account("test-account",
             account_id="my-account",
             display_name="Test Service Account",
-            opts=ResourceOptions(provider=google_beta))
+            opts=pulumi.ResourceOptions(provider=google_beta))
         test_iam = gcp.artifactregistry.RepositoryIamMember("test-iam",
             location=my_repo.location,
             repository=my_repo.name,
             role="roles/artifactregistry.reader",
             member=test_account.email.apply(lambda email: f"serviceAccount:{email}"),
-            opts=ResourceOptions(provider=google_beta))
+            opts=pulumi.ResourceOptions(provider=google_beta))
         ```
 
         ## Import

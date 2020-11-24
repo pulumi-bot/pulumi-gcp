@@ -49,7 +49,7 @@ class GroupMembership(pulumi.CustomResource):
             labels={
                 "cloudidentity.googleapis.com/groups.discussion_forum": "",
             },
-            opts=ResourceOptions(provider=google_beta))
+            opts=pulumi.ResourceOptions(provider=google_beta))
         cloud_identity_group_membership_basic = gcp.cloudidentity.GroupMembership("cloudIdentityGroupMembershipBasic",
             group=group.id,
             member_key=gcp.cloudidentity.GroupMembershipMemberKeyArgs(
@@ -63,7 +63,7 @@ class GroupMembership(pulumi.CustomResource):
                     name="MANAGER",
                 ),
             ],
-            opts=ResourceOptions(provider=google_beta))
+            opts=pulumi.ResourceOptions(provider=google_beta))
         ```
 
         ## Import
