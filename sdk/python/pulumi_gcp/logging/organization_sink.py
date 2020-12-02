@@ -96,14 +96,14 @@ class OrganizationSink(pulumi.CustomResource):
             __props__ = dict()
 
             __props__['bigquery_options'] = bigquery_options
-            if destination is None:
+            if destination is None and not opts.urn:
                 raise TypeError("Missing required property 'destination'")
             __props__['destination'] = destination
             __props__['exclusions'] = exclusions
             __props__['filter'] = filter
             __props__['include_children'] = include_children
             __props__['name'] = name
-            if org_id is None:
+            if org_id is None and not opts.urn:
                 raise TypeError("Missing required property 'org_id'")
             __props__['org_id'] = org_id
             __props__['writer_identity'] = None
