@@ -11,3 +11,34 @@ from .iam_policy import *
 from .service import *
 from ._inputs import *
 from . import outputs
+
+def _register_module():
+    import pulumi
+
+    class Module(pulumi.runtime.ResourceModule):
+        def version(self):
+            return None
+
+        def construct(self, name: str, typ: str, urn: str) -> pulumi.Resource:
+            if typ == "gcp:cloudrun/domainMapping:DomainMapping":
+                return DomainMapping(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "gcp:cloudrun/iamBinding:IamBinding":
+                return IamBinding(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "gcp:cloudrun/iamMember:IamMember":
+                return IamMember(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "gcp:cloudrun/iamPolicy:IamPolicy":
+                return IamPolicy(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "gcp:cloudrun/service:Service":
+                return Service(name, pulumi.ResourceOptions(urn=urn))
+            else:
+                raise Exception(f"unknown resource type {typ}")
+
+
+    _module_instance = Module()
+    pulumi.runtime.register_resource_module("gcp", "cloudrun/domainMapping", _module_instance)
+    pulumi.runtime.register_resource_module("gcp", "cloudrun/iamBinding", _module_instance)
+    pulumi.runtime.register_resource_module("gcp", "cloudrun/iamMember", _module_instance)
+    pulumi.runtime.register_resource_module("gcp", "cloudrun/iamPolicy", _module_instance)
+    pulumi.runtime.register_resource_module("gcp", "cloudrun/service", _module_instance)
+
+_register_module()
