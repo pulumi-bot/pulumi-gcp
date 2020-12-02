@@ -229,6 +229,7 @@ func NewTrigger(ctx *pulumi.Context,
 	if args == nil {
 		args = &TriggerArgs{}
 	}
+
 	var resource Trigger
 	err := ctx.RegisterResource("gcp:cloudbuild/trigger:Trigger", name, args, &resource, opts...)
 	if err != nil {
