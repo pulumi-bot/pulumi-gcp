@@ -124,7 +124,7 @@ export class DataStoreIndex extends pulumi.CustomResource {
             inputs["properties"] = state ? state.properties : undefined;
         } else {
             const args = argsOrState as DataStoreIndexArgs | undefined;
-            if (!args || args.kind === undefined) {
+            if ((!args || args.kind === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'kind'");
             }
             inputs["ancestor"] = args ? args.ancestor : undefined;
