@@ -24,7 +24,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/secretmanager"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -81,11 +81,12 @@ type SecretVersion struct {
 // NewSecretVersion registers a new resource with the given unique name, arguments, and options.
 func NewSecretVersion(ctx *pulumi.Context,
 	name string, args *SecretVersionArgs, opts ...pulumi.ResourceOption) (*SecretVersion, error) {
-	if args == nil || args.Secret == nil {
-		return nil, errors.New("missing required argument 'Secret'")
-	}
 	if args == nil {
-		args = &SecretVersionArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Secret == nil {
+		return nil, errors.New("invalid value for required argument 'Secret'")
 	}
 	var resource SecretVersion
 	err := ctx.RegisterResource("gcp:secretmanager/secretVersion:SecretVersion", name, args, &resource, opts...)

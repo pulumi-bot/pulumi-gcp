@@ -28,7 +28,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/cloudbuild"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -60,7 +60,7 @@ import (
 // 	"fmt"
 //
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/cloudbuild"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -231,6 +231,7 @@ func NewTrigger(ctx *pulumi.Context,
 	if args == nil {
 		args = &TriggerArgs{}
 	}
+
 	var resource Trigger
 	err := ctx.RegisterResource("gcp:cloudbuild/trigger:Trigger", name, args, &resource, opts...)
 	if err != nil {

@@ -45,7 +45,7 @@ type WorkloadIdentityPoolProvider struct {
 	// package main
 	//
 	// import (
-	// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	// )
 	//
 	// func main() {
@@ -90,7 +90,7 @@ type WorkloadIdentityPoolProvider struct {
 	// package main
 	//
 	// import (
-	// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	// )
 	//
 	// func main() {
@@ -109,7 +109,7 @@ type WorkloadIdentityPoolProvider struct {
 	// package main
 	//
 	// import (
-	// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	// )
 	//
 	// func main() {
@@ -156,14 +156,15 @@ type WorkloadIdentityPoolProvider struct {
 // NewWorkloadIdentityPoolProvider registers a new resource with the given unique name, arguments, and options.
 func NewWorkloadIdentityPoolProvider(ctx *pulumi.Context,
 	name string, args *WorkloadIdentityPoolProviderArgs, opts ...pulumi.ResourceOption) (*WorkloadIdentityPoolProvider, error) {
-	if args == nil || args.WorkloadIdentityPoolId == nil {
-		return nil, errors.New("missing required argument 'WorkloadIdentityPoolId'")
-	}
-	if args == nil || args.WorkloadIdentityPoolProviderId == nil {
-		return nil, errors.New("missing required argument 'WorkloadIdentityPoolProviderId'")
-	}
 	if args == nil {
-		args = &WorkloadIdentityPoolProviderArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.WorkloadIdentityPoolId == nil {
+		return nil, errors.New("invalid value for required argument 'WorkloadIdentityPoolId'")
+	}
+	if args.WorkloadIdentityPoolProviderId == nil {
+		return nil, errors.New("invalid value for required argument 'WorkloadIdentityPoolProviderId'")
 	}
 	var resource WorkloadIdentityPoolProvider
 	err := ctx.RegisterResource("gcp:iam/workloadIdentityPoolProvider:WorkloadIdentityPoolProvider", name, args, &resource, opts...)
@@ -203,7 +204,7 @@ type workloadIdentityPoolProviderState struct {
 	// package main
 	//
 	// import (
-	// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	// )
 	//
 	// func main() {
@@ -248,7 +249,7 @@ type workloadIdentityPoolProviderState struct {
 	// package main
 	//
 	// import (
-	// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	// )
 	//
 	// func main() {
@@ -267,7 +268,7 @@ type workloadIdentityPoolProviderState struct {
 	// package main
 	//
 	// import (
-	// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	// )
 	//
 	// func main() {
@@ -328,7 +329,7 @@ type WorkloadIdentityPoolProviderState struct {
 	// package main
 	//
 	// import (
-	// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	// )
 	//
 	// func main() {
@@ -373,7 +374,7 @@ type WorkloadIdentityPoolProviderState struct {
 	// package main
 	//
 	// import (
-	// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	// )
 	//
 	// func main() {
@@ -392,7 +393,7 @@ type WorkloadIdentityPoolProviderState struct {
 	// package main
 	//
 	// import (
-	// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	// )
 	//
 	// func main() {
@@ -457,7 +458,7 @@ type workloadIdentityPoolProviderArgs struct {
 	// package main
 	//
 	// import (
-	// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	// )
 	//
 	// func main() {
@@ -502,7 +503,7 @@ type workloadIdentityPoolProviderArgs struct {
 	// package main
 	//
 	// import (
-	// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	// )
 	//
 	// func main() {
@@ -521,7 +522,7 @@ type workloadIdentityPoolProviderArgs struct {
 	// package main
 	//
 	// import (
-	// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	// )
 	//
 	// func main() {
@@ -575,7 +576,7 @@ type WorkloadIdentityPoolProviderArgs struct {
 	// package main
 	//
 	// import (
-	// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	// )
 	//
 	// func main() {
@@ -620,7 +621,7 @@ type WorkloadIdentityPoolProviderArgs struct {
 	// package main
 	//
 	// import (
-	// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	// )
 	//
 	// func main() {
@@ -639,7 +640,7 @@ type WorkloadIdentityPoolProviderArgs struct {
 	// package main
 	//
 	// import (
-	// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	// )
 	//
 	// func main() {

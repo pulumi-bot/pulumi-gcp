@@ -29,7 +29,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/compute"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -190,17 +190,18 @@ type PacketMirroring struct {
 // NewPacketMirroring registers a new resource with the given unique name, arguments, and options.
 func NewPacketMirroring(ctx *pulumi.Context,
 	name string, args *PacketMirroringArgs, opts ...pulumi.ResourceOption) (*PacketMirroring, error) {
-	if args == nil || args.CollectorIlb == nil {
-		return nil, errors.New("missing required argument 'CollectorIlb'")
-	}
-	if args == nil || args.MirroredResources == nil {
-		return nil, errors.New("missing required argument 'MirroredResources'")
-	}
-	if args == nil || args.Network == nil {
-		return nil, errors.New("missing required argument 'Network'")
-	}
 	if args == nil {
-		args = &PacketMirroringArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.CollectorIlb == nil {
+		return nil, errors.New("invalid value for required argument 'CollectorIlb'")
+	}
+	if args.MirroredResources == nil {
+		return nil, errors.New("invalid value for required argument 'MirroredResources'")
+	}
+	if args.Network == nil {
+		return nil, errors.New("invalid value for required argument 'Network'")
 	}
 	var resource PacketMirroring
 	err := ctx.RegisterResource("gcp:compute/packetMirroring:PacketMirroring", name, args, &resource, opts...)

@@ -29,7 +29,7 @@ import (
 // import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/healthcare"
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/organizations"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -66,7 +66,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/healthcare"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -93,7 +93,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/healthcare"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -154,14 +154,15 @@ type DicomStoreIamPolicy struct {
 // NewDicomStoreIamPolicy registers a new resource with the given unique name, arguments, and options.
 func NewDicomStoreIamPolicy(ctx *pulumi.Context,
 	name string, args *DicomStoreIamPolicyArgs, opts ...pulumi.ResourceOption) (*DicomStoreIamPolicy, error) {
-	if args == nil || args.DicomStoreId == nil {
-		return nil, errors.New("missing required argument 'DicomStoreId'")
-	}
-	if args == nil || args.PolicyData == nil {
-		return nil, errors.New("missing required argument 'PolicyData'")
-	}
 	if args == nil {
-		args = &DicomStoreIamPolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.DicomStoreId == nil {
+		return nil, errors.New("invalid value for required argument 'DicomStoreId'")
+	}
+	if args.PolicyData == nil {
+		return nil, errors.New("invalid value for required argument 'PolicyData'")
 	}
 	var resource DicomStoreIamPolicy
 	err := ctx.RegisterResource("gcp:healthcare/dicomStoreIamPolicy:DicomStoreIamPolicy", name, args, &resource, opts...)

@@ -27,7 +27,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/dataloss"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -62,7 +62,7 @@ import (
 //
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/dataloss"
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/storage"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -147,11 +147,12 @@ type PreventionStoredInfoType struct {
 // NewPreventionStoredInfoType registers a new resource with the given unique name, arguments, and options.
 func NewPreventionStoredInfoType(ctx *pulumi.Context,
 	name string, args *PreventionStoredInfoTypeArgs, opts ...pulumi.ResourceOption) (*PreventionStoredInfoType, error) {
-	if args == nil || args.Parent == nil {
-		return nil, errors.New("missing required argument 'Parent'")
-	}
 	if args == nil {
-		args = &PreventionStoredInfoTypeArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Parent == nil {
+		return nil, errors.New("invalid value for required argument 'Parent'")
 	}
 	var resource PreventionStoredInfoType
 	err := ctx.RegisterResource("gcp:dataloss/preventionStoredInfoType:PreventionStoredInfoType", name, args, &resource, opts...)

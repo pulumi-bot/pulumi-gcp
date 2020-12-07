@@ -32,7 +32,7 @@ import (
 // import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/organizations"
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/spanner"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -69,7 +69,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/spanner"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -96,7 +96,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/spanner"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -155,14 +155,15 @@ type InstanceIAMPolicy struct {
 // NewInstanceIAMPolicy registers a new resource with the given unique name, arguments, and options.
 func NewInstanceIAMPolicy(ctx *pulumi.Context,
 	name string, args *InstanceIAMPolicyArgs, opts ...pulumi.ResourceOption) (*InstanceIAMPolicy, error) {
-	if args == nil || args.Instance == nil {
-		return nil, errors.New("missing required argument 'Instance'")
-	}
-	if args == nil || args.PolicyData == nil {
-		return nil, errors.New("missing required argument 'PolicyData'")
-	}
 	if args == nil {
-		args = &InstanceIAMPolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Instance == nil {
+		return nil, errors.New("invalid value for required argument 'Instance'")
+	}
+	if args.PolicyData == nil {
+		return nil, errors.New("invalid value for required argument 'PolicyData'")
 	}
 	var resource InstanceIAMPolicy
 	err := ctx.RegisterResource("gcp:spanner/instanceIAMPolicy:InstanceIAMPolicy", name, args, &resource, opts...)

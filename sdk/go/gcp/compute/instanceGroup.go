@@ -22,7 +22,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/compute"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -49,7 +49,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/compute"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -177,6 +177,7 @@ func NewInstanceGroup(ctx *pulumi.Context,
 	if args == nil {
 		args = &InstanceGroupArgs{}
 	}
+
 	var resource InstanceGroup
 	err := ctx.RegisterResource("gcp:compute/instanceGroup:InstanceGroup", name, args, &resource, opts...)
 	if err != nil {

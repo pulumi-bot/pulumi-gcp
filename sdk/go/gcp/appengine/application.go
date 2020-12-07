@@ -29,7 +29,7 @@ import (
 // import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/appengine"
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/organizations"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -102,11 +102,12 @@ type Application struct {
 // NewApplication registers a new resource with the given unique name, arguments, and options.
 func NewApplication(ctx *pulumi.Context,
 	name string, args *ApplicationArgs, opts ...pulumi.ResourceOption) (*Application, error) {
-	if args == nil || args.LocationId == nil {
-		return nil, errors.New("missing required argument 'LocationId'")
-	}
 	if args == nil {
-		args = &ApplicationArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.LocationId == nil {
+		return nil, errors.New("invalid value for required argument 'LocationId'")
 	}
 	var resource Application
 	err := ctx.RegisterResource("gcp:appengine/application:Application", name, args, &resource, opts...)

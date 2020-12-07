@@ -28,7 +28,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/osconfig"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -57,7 +57,7 @@ import (
 // import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/compute"
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/osconfig"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -201,14 +201,15 @@ type PatchDeployment struct {
 // NewPatchDeployment registers a new resource with the given unique name, arguments, and options.
 func NewPatchDeployment(ctx *pulumi.Context,
 	name string, args *PatchDeploymentArgs, opts ...pulumi.ResourceOption) (*PatchDeployment, error) {
-	if args == nil || args.InstanceFilter == nil {
-		return nil, errors.New("missing required argument 'InstanceFilter'")
-	}
-	if args == nil || args.PatchDeploymentId == nil {
-		return nil, errors.New("missing required argument 'PatchDeploymentId'")
-	}
 	if args == nil {
-		args = &PatchDeploymentArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.InstanceFilter == nil {
+		return nil, errors.New("invalid value for required argument 'InstanceFilter'")
+	}
+	if args.PatchDeploymentId == nil {
+		return nil, errors.New("invalid value for required argument 'PatchDeploymentId'")
 	}
 	var resource PatchDeployment
 	err := ctx.RegisterResource("gcp:osconfig/patchDeployment:PatchDeployment", name, args, &resource, opts...)

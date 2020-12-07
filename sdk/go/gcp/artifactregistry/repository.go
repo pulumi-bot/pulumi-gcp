@@ -27,7 +27,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/artifactregistry"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -52,7 +52,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/artifactregistry"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -81,7 +81,7 @@ import (
 //
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/artifactregistry"
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/serviceAccount"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -175,14 +175,15 @@ type Repository struct {
 // NewRepository registers a new resource with the given unique name, arguments, and options.
 func NewRepository(ctx *pulumi.Context,
 	name string, args *RepositoryArgs, opts ...pulumi.ResourceOption) (*Repository, error) {
-	if args == nil || args.Format == nil {
-		return nil, errors.New("missing required argument 'Format'")
-	}
-	if args == nil || args.RepositoryId == nil {
-		return nil, errors.New("missing required argument 'RepositoryId'")
-	}
 	if args == nil {
-		args = &RepositoryArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Format == nil {
+		return nil, errors.New("invalid value for required argument 'Format'")
+	}
+	if args.RepositoryId == nil {
+		return nil, errors.New("invalid value for required argument 'RepositoryId'")
 	}
 	var resource Repository
 	err := ctx.RegisterResource("gcp:artifactregistry/repository:Repository", name, args, &resource, opts...)

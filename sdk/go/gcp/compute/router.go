@@ -27,7 +27,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/compute"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -114,11 +114,12 @@ type Router struct {
 // NewRouter registers a new resource with the given unique name, arguments, and options.
 func NewRouter(ctx *pulumi.Context,
 	name string, args *RouterArgs, opts ...pulumi.ResourceOption) (*Router, error) {
-	if args == nil || args.Network == nil {
-		return nil, errors.New("missing required argument 'Network'")
-	}
 	if args == nil {
-		args = &RouterArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Network == nil {
+		return nil, errors.New("invalid value for required argument 'Network'")
 	}
 	var resource Router
 	err := ctx.RegisterResource("gcp:compute/router:Router", name, args, &resource, opts...)

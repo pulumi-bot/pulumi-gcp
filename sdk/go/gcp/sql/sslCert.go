@@ -23,7 +23,7 @@ import (
 // import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/sql"
 // 	"github.com/pulumi/pulumi-random/sdk/v2/go/random"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -90,14 +90,15 @@ type SslCert struct {
 // NewSslCert registers a new resource with the given unique name, arguments, and options.
 func NewSslCert(ctx *pulumi.Context,
 	name string, args *SslCertArgs, opts ...pulumi.ResourceOption) (*SslCert, error) {
-	if args == nil || args.CommonName == nil {
-		return nil, errors.New("missing required argument 'CommonName'")
-	}
-	if args == nil || args.Instance == nil {
-		return nil, errors.New("missing required argument 'Instance'")
-	}
 	if args == nil {
-		args = &SslCertArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.CommonName == nil {
+		return nil, errors.New("invalid value for required argument 'CommonName'")
+	}
+	if args.Instance == nil {
+		return nil, errors.New("invalid value for required argument 'Instance'")
 	}
 	var resource SslCert
 	err := ctx.RegisterResource("gcp:sql/sslCert:SslCert", name, args, &resource, opts...)

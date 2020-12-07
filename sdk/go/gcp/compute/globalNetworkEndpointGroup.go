@@ -32,7 +32,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/compute"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -55,7 +55,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/compute"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -117,11 +117,12 @@ type GlobalNetworkEndpointGroup struct {
 // NewGlobalNetworkEndpointGroup registers a new resource with the given unique name, arguments, and options.
 func NewGlobalNetworkEndpointGroup(ctx *pulumi.Context,
 	name string, args *GlobalNetworkEndpointGroupArgs, opts ...pulumi.ResourceOption) (*GlobalNetworkEndpointGroup, error) {
-	if args == nil || args.NetworkEndpointType == nil {
-		return nil, errors.New("missing required argument 'NetworkEndpointType'")
-	}
 	if args == nil {
-		args = &GlobalNetworkEndpointGroupArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.NetworkEndpointType == nil {
+		return nil, errors.New("invalid value for required argument 'NetworkEndpointType'")
 	}
 	var resource GlobalNetworkEndpointGroup
 	err := ctx.RegisterResource("gcp:compute/globalNetworkEndpointGroup:GlobalNetworkEndpointGroup", name, args, &resource, opts...)

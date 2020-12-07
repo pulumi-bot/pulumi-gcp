@@ -28,7 +28,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/diagflow"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -118,11 +118,12 @@ type Intent struct {
 // NewIntent registers a new resource with the given unique name, arguments, and options.
 func NewIntent(ctx *pulumi.Context,
 	name string, args *IntentArgs, opts ...pulumi.ResourceOption) (*Intent, error) {
-	if args == nil || args.DisplayName == nil {
-		return nil, errors.New("missing required argument 'DisplayName'")
-	}
 	if args == nil {
-		args = &IntentArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.DisplayName == nil {
+		return nil, errors.New("invalid value for required argument 'DisplayName'")
 	}
 	var resource Intent
 	err := ctx.RegisterResource("gcp:diagflow/intent:Intent", name, args, &resource, opts...)

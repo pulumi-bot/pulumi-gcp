@@ -32,7 +32,7 @@ import (
 //
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/organizations"
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/serviceusage"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -101,20 +101,21 @@ type ConsumerQuotaOverride struct {
 // NewConsumerQuotaOverride registers a new resource with the given unique name, arguments, and options.
 func NewConsumerQuotaOverride(ctx *pulumi.Context,
 	name string, args *ConsumerQuotaOverrideArgs, opts ...pulumi.ResourceOption) (*ConsumerQuotaOverride, error) {
-	if args == nil || args.Limit == nil {
-		return nil, errors.New("missing required argument 'Limit'")
-	}
-	if args == nil || args.Metric == nil {
-		return nil, errors.New("missing required argument 'Metric'")
-	}
-	if args == nil || args.OverrideValue == nil {
-		return nil, errors.New("missing required argument 'OverrideValue'")
-	}
-	if args == nil || args.Service == nil {
-		return nil, errors.New("missing required argument 'Service'")
-	}
 	if args == nil {
-		args = &ConsumerQuotaOverrideArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Limit == nil {
+		return nil, errors.New("invalid value for required argument 'Limit'")
+	}
+	if args.Metric == nil {
+		return nil, errors.New("invalid value for required argument 'Metric'")
+	}
+	if args.OverrideValue == nil {
+		return nil, errors.New("invalid value for required argument 'OverrideValue'")
+	}
+	if args.Service == nil {
+		return nil, errors.New("invalid value for required argument 'Service'")
 	}
 	var resource ConsumerQuotaOverride
 	err := ctx.RegisterResource("gcp:serviceusage/consumerQuotaOverride:ConsumerQuotaOverride", name, args, &resource, opts...)

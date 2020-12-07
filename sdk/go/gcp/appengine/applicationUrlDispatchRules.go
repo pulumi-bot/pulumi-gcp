@@ -28,7 +28,7 @@ import (
 //
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/appengine"
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/storage"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -111,11 +111,12 @@ type ApplicationUrlDispatchRules struct {
 // NewApplicationUrlDispatchRules registers a new resource with the given unique name, arguments, and options.
 func NewApplicationUrlDispatchRules(ctx *pulumi.Context,
 	name string, args *ApplicationUrlDispatchRulesArgs, opts ...pulumi.ResourceOption) (*ApplicationUrlDispatchRules, error) {
-	if args == nil || args.DispatchRules == nil {
-		return nil, errors.New("missing required argument 'DispatchRules'")
-	}
 	if args == nil {
-		args = &ApplicationUrlDispatchRulesArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.DispatchRules == nil {
+		return nil, errors.New("invalid value for required argument 'DispatchRules'")
 	}
 	var resource ApplicationUrlDispatchRules
 	err := ctx.RegisterResource("gcp:appengine/applicationUrlDispatchRules:ApplicationUrlDispatchRules", name, args, &resource, opts...)

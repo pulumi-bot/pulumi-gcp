@@ -32,7 +32,7 @@ import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/bigquery"
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/sql"
 // 	"github.com/pulumi/pulumi-random/sdk/v2/go/random"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -97,7 +97,7 @@ import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/bigquery"
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/sql"
 // 	"github.com/pulumi/pulumi-random/sdk/v2/go/random"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -193,11 +193,12 @@ type Connection struct {
 // NewConnection registers a new resource with the given unique name, arguments, and options.
 func NewConnection(ctx *pulumi.Context,
 	name string, args *ConnectionArgs, opts ...pulumi.ResourceOption) (*Connection, error) {
-	if args == nil || args.CloudSql == nil {
-		return nil, errors.New("missing required argument 'CloudSql'")
-	}
 	if args == nil {
-		args = &ConnectionArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.CloudSql == nil {
+		return nil, errors.New("invalid value for required argument 'CloudSql'")
 	}
 	var resource Connection
 	err := ctx.RegisterResource("gcp:bigquery/connection:Connection", name, args, &resource, opts...)

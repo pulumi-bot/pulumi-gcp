@@ -26,7 +26,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/sourcerepo"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -48,7 +48,7 @@ import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/pubsub"
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/serviceAccount"
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/sourcerepo"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -117,6 +117,7 @@ func NewRepository(ctx *pulumi.Context,
 	if args == nil {
 		args = &RepositoryArgs{}
 	}
+
 	var resource Repository
 	err := ctx.RegisterResource("gcp:sourcerepo/repository:Repository", name, args, &resource, opts...)
 	if err != nil {

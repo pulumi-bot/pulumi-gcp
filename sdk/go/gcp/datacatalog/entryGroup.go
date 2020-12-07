@@ -27,7 +27,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/datacatalog"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -49,7 +49,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/datacatalog"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -97,11 +97,12 @@ type EntryGroup struct {
 // NewEntryGroup registers a new resource with the given unique name, arguments, and options.
 func NewEntryGroup(ctx *pulumi.Context,
 	name string, args *EntryGroupArgs, opts ...pulumi.ResourceOption) (*EntryGroup, error) {
-	if args == nil || args.EntryGroupId == nil {
-		return nil, errors.New("missing required argument 'EntryGroupId'")
-	}
 	if args == nil {
-		args = &EntryGroupArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.EntryGroupId == nil {
+		return nil, errors.New("invalid value for required argument 'EntryGroupId'")
 	}
 	var resource EntryGroup
 	err := ctx.RegisterResource("gcp:datacatalog/entryGroup:EntryGroup", name, args, &resource, opts...)

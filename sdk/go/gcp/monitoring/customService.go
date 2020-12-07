@@ -30,7 +30,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/monitoring"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -81,6 +81,7 @@ func NewCustomService(ctx *pulumi.Context,
 	if args == nil {
 		args = &CustomServiceArgs{}
 	}
+
 	var resource CustomService
 	err := ctx.RegisterResource("gcp:monitoring/customService:CustomService", name, args, &resource, opts...)
 	if err != nil {

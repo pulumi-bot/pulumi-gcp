@@ -29,7 +29,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/logging"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -81,7 +81,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/logging"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -107,7 +107,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/logging"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -191,14 +191,15 @@ type Metric struct {
 // NewMetric registers a new resource with the given unique name, arguments, and options.
 func NewMetric(ctx *pulumi.Context,
 	name string, args *MetricArgs, opts ...pulumi.ResourceOption) (*Metric, error) {
-	if args == nil || args.Filter == nil {
-		return nil, errors.New("missing required argument 'Filter'")
-	}
-	if args == nil || args.MetricDescriptor == nil {
-		return nil, errors.New("missing required argument 'MetricDescriptor'")
-	}
 	if args == nil {
-		args = &MetricArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Filter == nil {
+		return nil, errors.New("invalid value for required argument 'Filter'")
+	}
+	if args.MetricDescriptor == nil {
+		return nil, errors.New("invalid value for required argument 'MetricDescriptor'")
 	}
 	var resource Metric
 	err := ctx.RegisterResource("gcp:logging/metric:Metric", name, args, &resource, opts...)

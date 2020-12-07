@@ -27,7 +27,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/cloudidentity"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -89,17 +89,18 @@ type Group struct {
 // NewGroup registers a new resource with the given unique name, arguments, and options.
 func NewGroup(ctx *pulumi.Context,
 	name string, args *GroupArgs, opts ...pulumi.ResourceOption) (*Group, error) {
-	if args == nil || args.GroupKey == nil {
-		return nil, errors.New("missing required argument 'GroupKey'")
-	}
-	if args == nil || args.Labels == nil {
-		return nil, errors.New("missing required argument 'Labels'")
-	}
-	if args == nil || args.Parent == nil {
-		return nil, errors.New("missing required argument 'Parent'")
-	}
 	if args == nil {
-		args = &GroupArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.GroupKey == nil {
+		return nil, errors.New("invalid value for required argument 'GroupKey'")
+	}
+	if args.Labels == nil {
+		return nil, errors.New("invalid value for required argument 'Labels'")
+	}
+	if args.Parent == nil {
+		return nil, errors.New("invalid value for required argument 'Parent'")
 	}
 	var resource Group
 	err := ctx.RegisterResource("gcp:cloudidentity/group:Group", name, args, &resource, opts...)

@@ -29,7 +29,7 @@ import (
 // import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/binaryauthorization"
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/organizations"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -67,7 +67,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/binaryauthorization"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -95,7 +95,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/binaryauthorization"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -155,14 +155,15 @@ type AttestorIamPolicy struct {
 // NewAttestorIamPolicy registers a new resource with the given unique name, arguments, and options.
 func NewAttestorIamPolicy(ctx *pulumi.Context,
 	name string, args *AttestorIamPolicyArgs, opts ...pulumi.ResourceOption) (*AttestorIamPolicy, error) {
-	if args == nil || args.Attestor == nil {
-		return nil, errors.New("missing required argument 'Attestor'")
-	}
-	if args == nil || args.PolicyData == nil {
-		return nil, errors.New("missing required argument 'PolicyData'")
-	}
 	if args == nil {
-		args = &AttestorIamPolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Attestor == nil {
+		return nil, errors.New("invalid value for required argument 'Attestor'")
+	}
+	if args.PolicyData == nil {
+		return nil, errors.New("invalid value for required argument 'PolicyData'")
 	}
 	var resource AttestorIamPolicy
 	err := ctx.RegisterResource("gcp:binaryauthorization/attestorIamPolicy:AttestorIamPolicy", name, args, &resource, opts...)

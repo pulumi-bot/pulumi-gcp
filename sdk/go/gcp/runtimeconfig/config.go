@@ -24,7 +24,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/runtimeconfig"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -72,6 +72,7 @@ func NewConfig(ctx *pulumi.Context,
 	if args == nil {
 		args = &ConfigArgs{}
 	}
+
 	var resource Config
 	err := ctx.RegisterResource("gcp:runtimeconfig/config:Config", name, args, &resource, opts...)
 	if err != nil {

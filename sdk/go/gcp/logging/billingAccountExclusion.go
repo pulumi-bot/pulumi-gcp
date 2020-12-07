@@ -25,7 +25,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/logging"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -71,14 +71,15 @@ type BillingAccountExclusion struct {
 // NewBillingAccountExclusion registers a new resource with the given unique name, arguments, and options.
 func NewBillingAccountExclusion(ctx *pulumi.Context,
 	name string, args *BillingAccountExclusionArgs, opts ...pulumi.ResourceOption) (*BillingAccountExclusion, error) {
-	if args == nil || args.BillingAccount == nil {
-		return nil, errors.New("missing required argument 'BillingAccount'")
-	}
-	if args == nil || args.Filter == nil {
-		return nil, errors.New("missing required argument 'Filter'")
-	}
 	if args == nil {
-		args = &BillingAccountExclusionArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.BillingAccount == nil {
+		return nil, errors.New("invalid value for required argument 'BillingAccount'")
+	}
+	if args.Filter == nil {
+		return nil, errors.New("invalid value for required argument 'Filter'")
 	}
 	var resource BillingAccountExclusion
 	err := ctx.RegisterResource("gcp:logging/billingAccountExclusion:BillingAccountExclusion", name, args, &resource, opts...)

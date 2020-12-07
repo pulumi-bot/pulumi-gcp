@@ -41,7 +41,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/compute"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -65,7 +65,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/compute"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -177,6 +177,7 @@ func NewImage(ctx *pulumi.Context,
 	if args == nil {
 		args = &ImageArgs{}
 	}
+
 	var resource Image
 	err := ctx.RegisterResource("gcp:compute/image:Image", name, args, &resource, opts...)
 	if err != nil {

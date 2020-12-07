@@ -23,7 +23,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/compute"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -115,6 +115,7 @@ func NewTargetPool(ctx *pulumi.Context,
 	if args == nil {
 		args = &TargetPoolArgs{}
 	}
+
 	var resource TargetPool
 	err := ctx.RegisterResource("gcp:compute/targetPool:TargetPool", name, args, &resource, opts...)
 	if err != nil {

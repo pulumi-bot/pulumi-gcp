@@ -27,7 +27,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/iot"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -100,11 +100,12 @@ type Device struct {
 // NewDevice registers a new resource with the given unique name, arguments, and options.
 func NewDevice(ctx *pulumi.Context,
 	name string, args *DeviceArgs, opts ...pulumi.ResourceOption) (*Device, error) {
-	if args == nil || args.Registry == nil {
-		return nil, errors.New("missing required argument 'Registry'")
-	}
 	if args == nil {
-		args = &DeviceArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Registry == nil {
+		return nil, errors.New("invalid value for required argument 'Registry'")
 	}
 	var resource Device
 	err := ctx.RegisterResource("gcp:iot/device:Device", name, args, &resource, opts...)

@@ -34,7 +34,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/monitoring"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -71,7 +71,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/monitoring"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -170,14 +170,15 @@ type Slo struct {
 // NewSlo registers a new resource with the given unique name, arguments, and options.
 func NewSlo(ctx *pulumi.Context,
 	name string, args *SloArgs, opts ...pulumi.ResourceOption) (*Slo, error) {
-	if args == nil || args.Goal == nil {
-		return nil, errors.New("missing required argument 'Goal'")
-	}
-	if args == nil || args.Service == nil {
-		return nil, errors.New("missing required argument 'Service'")
-	}
 	if args == nil {
-		args = &SloArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Goal == nil {
+		return nil, errors.New("invalid value for required argument 'Goal'")
+	}
+	if args.Service == nil {
+		return nil, errors.New("invalid value for required argument 'Service'")
 	}
 	var resource Slo
 	err := ctx.RegisterResource("gcp:monitoring/slo:Slo", name, args, &resource, opts...)

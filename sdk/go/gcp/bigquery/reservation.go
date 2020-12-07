@@ -27,7 +27,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/bigquery"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -83,11 +83,12 @@ type Reservation struct {
 // NewReservation registers a new resource with the given unique name, arguments, and options.
 func NewReservation(ctx *pulumi.Context,
 	name string, args *ReservationArgs, opts ...pulumi.ResourceOption) (*Reservation, error) {
-	if args == nil || args.SlotCapacity == nil {
-		return nil, errors.New("missing required argument 'SlotCapacity'")
-	}
 	if args == nil {
-		args = &ReservationArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.SlotCapacity == nil {
+		return nil, errors.New("invalid value for required argument 'SlotCapacity'")
 	}
 	var resource Reservation
 	err := ctx.RegisterResource("gcp:bigquery/reservation:Reservation", name, args, &resource, opts...)

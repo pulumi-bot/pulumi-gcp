@@ -22,7 +22,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/bigtable"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -76,7 +76,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/bigtable"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -130,17 +130,18 @@ type GCPolicy struct {
 // NewGCPolicy registers a new resource with the given unique name, arguments, and options.
 func NewGCPolicy(ctx *pulumi.Context,
 	name string, args *GCPolicyArgs, opts ...pulumi.ResourceOption) (*GCPolicy, error) {
-	if args == nil || args.ColumnFamily == nil {
-		return nil, errors.New("missing required argument 'ColumnFamily'")
-	}
-	if args == nil || args.InstanceName == nil {
-		return nil, errors.New("missing required argument 'InstanceName'")
-	}
-	if args == nil || args.Table == nil {
-		return nil, errors.New("missing required argument 'Table'")
-	}
 	if args == nil {
-		args = &GCPolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.ColumnFamily == nil {
+		return nil, errors.New("invalid value for required argument 'ColumnFamily'")
+	}
+	if args.InstanceName == nil {
+		return nil, errors.New("invalid value for required argument 'InstanceName'")
+	}
+	if args.Table == nil {
+		return nil, errors.New("invalid value for required argument 'Table'")
 	}
 	var resource GCPolicy
 	err := ctx.RegisterResource("gcp:bigtable/gCPolicy:GCPolicy", name, args, &resource, opts...)

@@ -40,7 +40,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/compute"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -132,11 +132,12 @@ type NetworkEndpointGroup struct {
 // NewNetworkEndpointGroup registers a new resource with the given unique name, arguments, and options.
 func NewNetworkEndpointGroup(ctx *pulumi.Context,
 	name string, args *NetworkEndpointGroupArgs, opts ...pulumi.ResourceOption) (*NetworkEndpointGroup, error) {
-	if args == nil || args.Network == nil {
-		return nil, errors.New("missing required argument 'Network'")
-	}
 	if args == nil {
-		args = &NetworkEndpointGroupArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Network == nil {
+		return nil, errors.New("invalid value for required argument 'Network'")
 	}
 	var resource NetworkEndpointGroup
 	err := ctx.RegisterResource("gcp:compute/networkEndpointGroup:NetworkEndpointGroup", name, args, &resource, opts...)

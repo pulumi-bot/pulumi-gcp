@@ -27,7 +27,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/compute"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -159,11 +159,12 @@ type InstanceFromTemplate struct {
 // NewInstanceFromTemplate registers a new resource with the given unique name, arguments, and options.
 func NewInstanceFromTemplate(ctx *pulumi.Context,
 	name string, args *InstanceFromTemplateArgs, opts ...pulumi.ResourceOption) (*InstanceFromTemplate, error) {
-	if args == nil || args.SourceInstanceTemplate == nil {
-		return nil, errors.New("missing required argument 'SourceInstanceTemplate'")
-	}
 	if args == nil {
-		args = &InstanceFromTemplateArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.SourceInstanceTemplate == nil {
+		return nil, errors.New("invalid value for required argument 'SourceInstanceTemplate'")
 	}
 	var resource InstanceFromTemplate
 	err := ctx.RegisterResource("gcp:compute/instanceFromTemplate:InstanceFromTemplate", name, args, &resource, opts...)

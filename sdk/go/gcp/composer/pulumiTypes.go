@@ -1319,7 +1319,7 @@ type EnvironmentConfigSoftwareConfig struct {
 	// package main
 	//
 	// import (
-	// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	// )
 	//
 	// func main() {
@@ -1373,7 +1373,7 @@ type EnvironmentConfigSoftwareConfigArgs struct {
 	// package main
 	//
 	// import (
-	// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	// )
 	//
 	// func main() {
@@ -1495,7 +1495,7 @@ func (o EnvironmentConfigSoftwareConfigOutput) AirflowConfigOverrides() pulumi.S
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -1573,7 +1573,7 @@ func (o EnvironmentConfigSoftwareConfigPtrOutput) AirflowConfigOverrides() pulum
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {

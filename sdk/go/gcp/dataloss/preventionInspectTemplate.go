@@ -27,7 +27,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/dataloss"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -166,7 +166,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/dataloss"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -283,11 +283,12 @@ type PreventionInspectTemplate struct {
 // NewPreventionInspectTemplate registers a new resource with the given unique name, arguments, and options.
 func NewPreventionInspectTemplate(ctx *pulumi.Context,
 	name string, args *PreventionInspectTemplateArgs, opts ...pulumi.ResourceOption) (*PreventionInspectTemplate, error) {
-	if args == nil || args.Parent == nil {
-		return nil, errors.New("missing required argument 'Parent'")
-	}
 	if args == nil {
-		args = &PreventionInspectTemplateArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Parent == nil {
+		return nil, errors.New("invalid value for required argument 'Parent'")
 	}
 	var resource PreventionInspectTemplate
 	err := ctx.RegisterResource("gcp:dataloss/preventionInspectTemplate:PreventionInspectTemplate", name, args, &resource, opts...)

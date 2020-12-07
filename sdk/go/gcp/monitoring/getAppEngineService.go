@@ -33,7 +33,7 @@ import (
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/appengine"
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/monitoring"
 // 	"github.com/pulumi/pulumi-gcp/sdk/v4/go/gcp/storage"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
