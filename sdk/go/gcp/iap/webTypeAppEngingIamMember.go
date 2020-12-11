@@ -384,15 +384,15 @@ type WebTypeAppEngingIamMemberInput interface {
 	ToWebTypeAppEngingIamMemberOutputWithContext(ctx context.Context) WebTypeAppEngingIamMemberOutput
 }
 
-func (WebTypeAppEngingIamMember) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebTypeAppEngingIamMember)(nil)).Elem()
+func (*WebTypeAppEngingIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebTypeAppEngingIamMember)(nil))
 }
 
-func (i WebTypeAppEngingIamMember) ToWebTypeAppEngingIamMemberOutput() WebTypeAppEngingIamMemberOutput {
+func (i *WebTypeAppEngingIamMember) ToWebTypeAppEngingIamMemberOutput() WebTypeAppEngingIamMemberOutput {
 	return i.ToWebTypeAppEngingIamMemberOutputWithContext(context.Background())
 }
 
-func (i WebTypeAppEngingIamMember) ToWebTypeAppEngingIamMemberOutputWithContext(ctx context.Context) WebTypeAppEngingIamMemberOutput {
+func (i *WebTypeAppEngingIamMember) ToWebTypeAppEngingIamMemberOutputWithContext(ctx context.Context) WebTypeAppEngingIamMemberOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WebTypeAppEngingIamMemberOutput)
 }
 
@@ -401,7 +401,7 @@ type WebTypeAppEngingIamMemberOutput struct {
 }
 
 func (WebTypeAppEngingIamMemberOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebTypeAppEngingIamMemberOutput)(nil)).Elem()
+	return reflect.TypeOf((*WebTypeAppEngingIamMember)(nil))
 }
 
 func (o WebTypeAppEngingIamMemberOutput) ToWebTypeAppEngingIamMemberOutput() WebTypeAppEngingIamMemberOutput {
