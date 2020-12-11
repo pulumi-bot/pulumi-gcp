@@ -152,6 +152,13 @@ type TaxonomyIamPolicyInput interface {
 	ToTaxonomyIamPolicyOutputWithContext(ctx context.Context) TaxonomyIamPolicyOutput
 }
 
+type TaxonomyIamPolicyPtrInput interface {
+	pulumi.Input
+
+	ToTaxonomyIamPolicyPtrOutput() TaxonomyIamPolicyPtrOutput
+	ToTaxonomyIamPolicyPtrOutputWithContext(ctx context.Context) TaxonomyIamPolicyPtrOutput
+}
+
 func (TaxonomyIamPolicy) ElementType() reflect.Type {
 	return reflect.TypeOf((*TaxonomyIamPolicy)(nil)).Elem()
 }
@@ -162,6 +169,14 @@ func (i TaxonomyIamPolicy) ToTaxonomyIamPolicyOutput() TaxonomyIamPolicyOutput {
 
 func (i TaxonomyIamPolicy) ToTaxonomyIamPolicyOutputWithContext(ctx context.Context) TaxonomyIamPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TaxonomyIamPolicyOutput)
+}
+
+func (i TaxonomyIamPolicy) ToTaxonomyIamPolicyPtrOutput() TaxonomyIamPolicyPtrOutput {
+	return i.ToTaxonomyIamPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i TaxonomyIamPolicy) ToTaxonomyIamPolicyPtrOutputWithContext(ctx context.Context) TaxonomyIamPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TaxonomyIamPolicyPtrOutput)
 }
 
 type TaxonomyIamPolicyOutput struct {
@@ -180,6 +195,23 @@ func (o TaxonomyIamPolicyOutput) ToTaxonomyIamPolicyOutputWithContext(ctx contex
 	return o
 }
 
+type TaxonomyIamPolicyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (TaxonomyIamPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TaxonomyIamPolicy)(nil)).Elem()
+}
+
+func (o TaxonomyIamPolicyPtrOutput) ToTaxonomyIamPolicyPtrOutput() TaxonomyIamPolicyPtrOutput {
+	return o
+}
+
+func (o TaxonomyIamPolicyPtrOutput) ToTaxonomyIamPolicyPtrOutputWithContext(ctx context.Context) TaxonomyIamPolicyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(TaxonomyIamPolicyOutput{})
+	pulumi.RegisterOutputType(TaxonomyIamPolicyPtrOutput{})
 }

@@ -205,6 +205,13 @@ type DomainMappingInput interface {
 	ToDomainMappingOutputWithContext(ctx context.Context) DomainMappingOutput
 }
 
+type DomainMappingPtrInput interface {
+	pulumi.Input
+
+	ToDomainMappingPtrOutput() DomainMappingPtrOutput
+	ToDomainMappingPtrOutputWithContext(ctx context.Context) DomainMappingPtrOutput
+}
+
 func (DomainMapping) ElementType() reflect.Type {
 	return reflect.TypeOf((*DomainMapping)(nil)).Elem()
 }
@@ -215,6 +222,14 @@ func (i DomainMapping) ToDomainMappingOutput() DomainMappingOutput {
 
 func (i DomainMapping) ToDomainMappingOutputWithContext(ctx context.Context) DomainMappingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DomainMappingOutput)
+}
+
+func (i DomainMapping) ToDomainMappingPtrOutput() DomainMappingPtrOutput {
+	return i.ToDomainMappingPtrOutputWithContext(context.Background())
+}
+
+func (i DomainMapping) ToDomainMappingPtrOutputWithContext(ctx context.Context) DomainMappingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DomainMappingPtrOutput)
 }
 
 type DomainMappingOutput struct {
@@ -233,6 +248,23 @@ func (o DomainMappingOutput) ToDomainMappingOutputWithContext(ctx context.Contex
 	return o
 }
 
+type DomainMappingPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (DomainMappingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DomainMapping)(nil)).Elem()
+}
+
+func (o DomainMappingPtrOutput) ToDomainMappingPtrOutput() DomainMappingPtrOutput {
+	return o
+}
+
+func (o DomainMappingPtrOutput) ToDomainMappingPtrOutputWithContext(ctx context.Context) DomainMappingPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(DomainMappingOutput{})
+	pulumi.RegisterOutputType(DomainMappingPtrOutput{})
 }

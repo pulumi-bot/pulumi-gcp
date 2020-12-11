@@ -259,6 +259,13 @@ type RegionPerInstanceConfigInput interface {
 	ToRegionPerInstanceConfigOutputWithContext(ctx context.Context) RegionPerInstanceConfigOutput
 }
 
+type RegionPerInstanceConfigPtrInput interface {
+	pulumi.Input
+
+	ToRegionPerInstanceConfigPtrOutput() RegionPerInstanceConfigPtrOutput
+	ToRegionPerInstanceConfigPtrOutputWithContext(ctx context.Context) RegionPerInstanceConfigPtrOutput
+}
+
 func (RegionPerInstanceConfig) ElementType() reflect.Type {
 	return reflect.TypeOf((*RegionPerInstanceConfig)(nil)).Elem()
 }
@@ -269,6 +276,14 @@ func (i RegionPerInstanceConfig) ToRegionPerInstanceConfigOutput() RegionPerInst
 
 func (i RegionPerInstanceConfig) ToRegionPerInstanceConfigOutputWithContext(ctx context.Context) RegionPerInstanceConfigOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RegionPerInstanceConfigOutput)
+}
+
+func (i RegionPerInstanceConfig) ToRegionPerInstanceConfigPtrOutput() RegionPerInstanceConfigPtrOutput {
+	return i.ToRegionPerInstanceConfigPtrOutputWithContext(context.Background())
+}
+
+func (i RegionPerInstanceConfig) ToRegionPerInstanceConfigPtrOutputWithContext(ctx context.Context) RegionPerInstanceConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegionPerInstanceConfigPtrOutput)
 }
 
 type RegionPerInstanceConfigOutput struct {
@@ -287,6 +302,23 @@ func (o RegionPerInstanceConfigOutput) ToRegionPerInstanceConfigOutputWithContex
 	return o
 }
 
+type RegionPerInstanceConfigPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (RegionPerInstanceConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RegionPerInstanceConfig)(nil)).Elem()
+}
+
+func (o RegionPerInstanceConfigPtrOutput) ToRegionPerInstanceConfigPtrOutput() RegionPerInstanceConfigPtrOutput {
+	return o
+}
+
+func (o RegionPerInstanceConfigPtrOutput) ToRegionPerInstanceConfigPtrOutputWithContext(ctx context.Context) RegionPerInstanceConfigPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(RegionPerInstanceConfigOutput{})
+	pulumi.RegisterOutputType(RegionPerInstanceConfigPtrOutput{})
 }

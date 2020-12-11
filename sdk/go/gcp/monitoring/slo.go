@@ -419,6 +419,13 @@ type SloInput interface {
 	ToSloOutputWithContext(ctx context.Context) SloOutput
 }
 
+type SloPtrInput interface {
+	pulumi.Input
+
+	ToSloPtrOutput() SloPtrOutput
+	ToSloPtrOutputWithContext(ctx context.Context) SloPtrOutput
+}
+
 func (Slo) ElementType() reflect.Type {
 	return reflect.TypeOf((*Slo)(nil)).Elem()
 }
@@ -429,6 +436,14 @@ func (i Slo) ToSloOutput() SloOutput {
 
 func (i Slo) ToSloOutputWithContext(ctx context.Context) SloOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SloOutput)
+}
+
+func (i Slo) ToSloPtrOutput() SloPtrOutput {
+	return i.ToSloPtrOutputWithContext(context.Background())
+}
+
+func (i Slo) ToSloPtrOutputWithContext(ctx context.Context) SloPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SloPtrOutput)
 }
 
 type SloOutput struct {
@@ -447,6 +462,23 @@ func (o SloOutput) ToSloOutputWithContext(ctx context.Context) SloOutput {
 	return o
 }
 
+type SloPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (SloPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Slo)(nil)).Elem()
+}
+
+func (o SloPtrOutput) ToSloPtrOutput() SloPtrOutput {
+	return o
+}
+
+func (o SloPtrOutput) ToSloPtrOutputWithContext(ctx context.Context) SloPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(SloOutput{})
+	pulumi.RegisterOutputType(SloPtrOutput{})
 }

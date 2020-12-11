@@ -248,6 +248,13 @@ type GCPolicyInput interface {
 	ToGCPolicyOutputWithContext(ctx context.Context) GCPolicyOutput
 }
 
+type GCPolicyPtrInput interface {
+	pulumi.Input
+
+	ToGCPolicyPtrOutput() GCPolicyPtrOutput
+	ToGCPolicyPtrOutputWithContext(ctx context.Context) GCPolicyPtrOutput
+}
+
 func (GCPolicy) ElementType() reflect.Type {
 	return reflect.TypeOf((*GCPolicy)(nil)).Elem()
 }
@@ -258,6 +265,14 @@ func (i GCPolicy) ToGCPolicyOutput() GCPolicyOutput {
 
 func (i GCPolicy) ToGCPolicyOutputWithContext(ctx context.Context) GCPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GCPolicyOutput)
+}
+
+func (i GCPolicy) ToGCPolicyPtrOutput() GCPolicyPtrOutput {
+	return i.ToGCPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i GCPolicy) ToGCPolicyPtrOutputWithContext(ctx context.Context) GCPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GCPolicyPtrOutput)
 }
 
 type GCPolicyOutput struct {
@@ -276,6 +291,23 @@ func (o GCPolicyOutput) ToGCPolicyOutputWithContext(ctx context.Context) GCPolic
 	return o
 }
 
+type GCPolicyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (GCPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GCPolicy)(nil)).Elem()
+}
+
+func (o GCPolicyPtrOutput) ToGCPolicyPtrOutput() GCPolicyPtrOutput {
+	return o
+}
+
+func (o GCPolicyPtrOutput) ToGCPolicyPtrOutputWithContext(ctx context.Context) GCPolicyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(GCPolicyOutput{})
+	pulumi.RegisterOutputType(GCPolicyPtrOutput{})
 }

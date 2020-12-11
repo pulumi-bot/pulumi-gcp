@@ -759,6 +759,13 @@ type RegionHealthCheckInput interface {
 	ToRegionHealthCheckOutputWithContext(ctx context.Context) RegionHealthCheckOutput
 }
 
+type RegionHealthCheckPtrInput interface {
+	pulumi.Input
+
+	ToRegionHealthCheckPtrOutput() RegionHealthCheckPtrOutput
+	ToRegionHealthCheckPtrOutputWithContext(ctx context.Context) RegionHealthCheckPtrOutput
+}
+
 func (RegionHealthCheck) ElementType() reflect.Type {
 	return reflect.TypeOf((*RegionHealthCheck)(nil)).Elem()
 }
@@ -769,6 +776,14 @@ func (i RegionHealthCheck) ToRegionHealthCheckOutput() RegionHealthCheckOutput {
 
 func (i RegionHealthCheck) ToRegionHealthCheckOutputWithContext(ctx context.Context) RegionHealthCheckOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RegionHealthCheckOutput)
+}
+
+func (i RegionHealthCheck) ToRegionHealthCheckPtrOutput() RegionHealthCheckPtrOutput {
+	return i.ToRegionHealthCheckPtrOutputWithContext(context.Background())
+}
+
+func (i RegionHealthCheck) ToRegionHealthCheckPtrOutputWithContext(ctx context.Context) RegionHealthCheckPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegionHealthCheckPtrOutput)
 }
 
 type RegionHealthCheckOutput struct {
@@ -787,6 +802,23 @@ func (o RegionHealthCheckOutput) ToRegionHealthCheckOutputWithContext(ctx contex
 	return o
 }
 
+type RegionHealthCheckPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (RegionHealthCheckPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RegionHealthCheck)(nil)).Elem()
+}
+
+func (o RegionHealthCheckPtrOutput) ToRegionHealthCheckPtrOutput() RegionHealthCheckPtrOutput {
+	return o
+}
+
+func (o RegionHealthCheckPtrOutput) ToRegionHealthCheckPtrOutputWithContext(ctx context.Context) RegionHealthCheckPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(RegionHealthCheckOutput{})
+	pulumi.RegisterOutputType(RegionHealthCheckPtrOutput{})
 }

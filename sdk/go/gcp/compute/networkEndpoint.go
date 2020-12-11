@@ -280,6 +280,13 @@ type NetworkEndpointInput interface {
 	ToNetworkEndpointOutputWithContext(ctx context.Context) NetworkEndpointOutput
 }
 
+type NetworkEndpointPtrInput interface {
+	pulumi.Input
+
+	ToNetworkEndpointPtrOutput() NetworkEndpointPtrOutput
+	ToNetworkEndpointPtrOutputWithContext(ctx context.Context) NetworkEndpointPtrOutput
+}
+
 func (NetworkEndpoint) ElementType() reflect.Type {
 	return reflect.TypeOf((*NetworkEndpoint)(nil)).Elem()
 }
@@ -290,6 +297,14 @@ func (i NetworkEndpoint) ToNetworkEndpointOutput() NetworkEndpointOutput {
 
 func (i NetworkEndpoint) ToNetworkEndpointOutputWithContext(ctx context.Context) NetworkEndpointOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkEndpointOutput)
+}
+
+func (i NetworkEndpoint) ToNetworkEndpointPtrOutput() NetworkEndpointPtrOutput {
+	return i.ToNetworkEndpointPtrOutputWithContext(context.Background())
+}
+
+func (i NetworkEndpoint) ToNetworkEndpointPtrOutputWithContext(ctx context.Context) NetworkEndpointPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NetworkEndpointPtrOutput)
 }
 
 type NetworkEndpointOutput struct {
@@ -308,6 +323,23 @@ func (o NetworkEndpointOutput) ToNetworkEndpointOutputWithContext(ctx context.Co
 	return o
 }
 
+type NetworkEndpointPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (NetworkEndpointPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NetworkEndpoint)(nil)).Elem()
+}
+
+func (o NetworkEndpointPtrOutput) ToNetworkEndpointPtrOutput() NetworkEndpointPtrOutput {
+	return o
+}
+
+func (o NetworkEndpointPtrOutput) ToNetworkEndpointPtrOutputWithContext(ctx context.Context) NetworkEndpointPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(NetworkEndpointOutput{})
+	pulumi.RegisterOutputType(NetworkEndpointPtrOutput{})
 }

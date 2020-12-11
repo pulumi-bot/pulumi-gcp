@@ -1215,6 +1215,13 @@ type ForwardingRuleInput interface {
 	ToForwardingRuleOutputWithContext(ctx context.Context) ForwardingRuleOutput
 }
 
+type ForwardingRulePtrInput interface {
+	pulumi.Input
+
+	ToForwardingRulePtrOutput() ForwardingRulePtrOutput
+	ToForwardingRulePtrOutputWithContext(ctx context.Context) ForwardingRulePtrOutput
+}
+
 func (ForwardingRule) ElementType() reflect.Type {
 	return reflect.TypeOf((*ForwardingRule)(nil)).Elem()
 }
@@ -1225,6 +1232,14 @@ func (i ForwardingRule) ToForwardingRuleOutput() ForwardingRuleOutput {
 
 func (i ForwardingRule) ToForwardingRuleOutputWithContext(ctx context.Context) ForwardingRuleOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ForwardingRuleOutput)
+}
+
+func (i ForwardingRule) ToForwardingRulePtrOutput() ForwardingRulePtrOutput {
+	return i.ToForwardingRulePtrOutputWithContext(context.Background())
+}
+
+func (i ForwardingRule) ToForwardingRulePtrOutputWithContext(ctx context.Context) ForwardingRulePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ForwardingRulePtrOutput)
 }
 
 type ForwardingRuleOutput struct {
@@ -1243,6 +1258,23 @@ func (o ForwardingRuleOutput) ToForwardingRuleOutputWithContext(ctx context.Cont
 	return o
 }
 
+type ForwardingRulePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ForwardingRulePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ForwardingRule)(nil)).Elem()
+}
+
+func (o ForwardingRulePtrOutput) ToForwardingRulePtrOutput() ForwardingRulePtrOutput {
+	return o
+}
+
+func (o ForwardingRulePtrOutput) ToForwardingRulePtrOutputWithContext(ctx context.Context) ForwardingRulePtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ForwardingRuleOutput{})
+	pulumi.RegisterOutputType(ForwardingRulePtrOutput{})
 }

@@ -286,6 +286,13 @@ type RepositoryIamMemberInput interface {
 	ToRepositoryIamMemberOutputWithContext(ctx context.Context) RepositoryIamMemberOutput
 }
 
+type RepositoryIamMemberPtrInput interface {
+	pulumi.Input
+
+	ToRepositoryIamMemberPtrOutput() RepositoryIamMemberPtrOutput
+	ToRepositoryIamMemberPtrOutputWithContext(ctx context.Context) RepositoryIamMemberPtrOutput
+}
+
 func (RepositoryIamMember) ElementType() reflect.Type {
 	return reflect.TypeOf((*RepositoryIamMember)(nil)).Elem()
 }
@@ -296,6 +303,14 @@ func (i RepositoryIamMember) ToRepositoryIamMemberOutput() RepositoryIamMemberOu
 
 func (i RepositoryIamMember) ToRepositoryIamMemberOutputWithContext(ctx context.Context) RepositoryIamMemberOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RepositoryIamMemberOutput)
+}
+
+func (i RepositoryIamMember) ToRepositoryIamMemberPtrOutput() RepositoryIamMemberPtrOutput {
+	return i.ToRepositoryIamMemberPtrOutputWithContext(context.Background())
+}
+
+func (i RepositoryIamMember) ToRepositoryIamMemberPtrOutputWithContext(ctx context.Context) RepositoryIamMemberPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RepositoryIamMemberPtrOutput)
 }
 
 type RepositoryIamMemberOutput struct {
@@ -314,6 +329,23 @@ func (o RepositoryIamMemberOutput) ToRepositoryIamMemberOutputWithContext(ctx co
 	return o
 }
 
+type RepositoryIamMemberPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (RepositoryIamMemberPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RepositoryIamMember)(nil)).Elem()
+}
+
+func (o RepositoryIamMemberPtrOutput) ToRepositoryIamMemberPtrOutput() RepositoryIamMemberPtrOutput {
+	return o
+}
+
+func (o RepositoryIamMemberPtrOutput) ToRepositoryIamMemberPtrOutputWithContext(ctx context.Context) RepositoryIamMemberPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(RepositoryIamMemberOutput{})
+	pulumi.RegisterOutputType(RepositoryIamMemberPtrOutput{})
 }

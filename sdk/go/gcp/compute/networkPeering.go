@@ -228,6 +228,13 @@ type NetworkPeeringInput interface {
 	ToNetworkPeeringOutputWithContext(ctx context.Context) NetworkPeeringOutput
 }
 
+type NetworkPeeringPtrInput interface {
+	pulumi.Input
+
+	ToNetworkPeeringPtrOutput() NetworkPeeringPtrOutput
+	ToNetworkPeeringPtrOutputWithContext(ctx context.Context) NetworkPeeringPtrOutput
+}
+
 func (NetworkPeering) ElementType() reflect.Type {
 	return reflect.TypeOf((*NetworkPeering)(nil)).Elem()
 }
@@ -238,6 +245,14 @@ func (i NetworkPeering) ToNetworkPeeringOutput() NetworkPeeringOutput {
 
 func (i NetworkPeering) ToNetworkPeeringOutputWithContext(ctx context.Context) NetworkPeeringOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkPeeringOutput)
+}
+
+func (i NetworkPeering) ToNetworkPeeringPtrOutput() NetworkPeeringPtrOutput {
+	return i.ToNetworkPeeringPtrOutputWithContext(context.Background())
+}
+
+func (i NetworkPeering) ToNetworkPeeringPtrOutputWithContext(ctx context.Context) NetworkPeeringPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NetworkPeeringPtrOutput)
 }
 
 type NetworkPeeringOutput struct {
@@ -256,6 +271,23 @@ func (o NetworkPeeringOutput) ToNetworkPeeringOutputWithContext(ctx context.Cont
 	return o
 }
 
+type NetworkPeeringPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (NetworkPeeringPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NetworkPeering)(nil)).Elem()
+}
+
+func (o NetworkPeeringPtrOutput) ToNetworkPeeringPtrOutput() NetworkPeeringPtrOutput {
+	return o
+}
+
+func (o NetworkPeeringPtrOutput) ToNetworkPeeringPtrOutputWithContext(ctx context.Context) NetworkPeeringPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(NetworkPeeringOutput{})
+	pulumi.RegisterOutputType(NetworkPeeringPtrOutput{})
 }

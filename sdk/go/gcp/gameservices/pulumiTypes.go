@@ -58,7 +58,7 @@ func (i GameServerClusterConnectionInfoArgs) ToGameServerClusterConnectionInfoPt
 }
 
 func (i GameServerClusterConnectionInfoArgs) ToGameServerClusterConnectionInfoPtrOutputWithContext(ctx context.Context) GameServerClusterConnectionInfoPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GameServerClusterConnectionInfoOutput).ToGameServerClusterConnectionInfoPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(GameServerClusterConnectionInfoOutput).ToGameServerClusterConnectionInfoPtrOutput()
 }
 
 // GameServerClusterConnectionInfoPtrInput is an input type that accepts GameServerClusterConnectionInfoArgs, GameServerClusterConnectionInfoPtr and GameServerClusterConnectionInfoPtrOutput values.
@@ -91,7 +91,7 @@ func (i *gameServerClusterConnectionInfoPtrType) ToGameServerClusterConnectionIn
 }
 
 func (i *gameServerClusterConnectionInfoPtrType) ToGameServerClusterConnectionInfoPtrOutputWithContext(ctx context.Context) GameServerClusterConnectionInfoPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GameServerClusterConnectionInfoPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(GameServerClusterConnectionInfoOutput).ToGameServerClusterConnectionInfoPtrOutput()
 }
 
 type GameServerClusterConnectionInfoOutput struct{ *pulumi.OutputState }
@@ -226,7 +226,7 @@ func (i GameServerClusterConnectionInfoGkeClusterReferenceArgs) ToGameServerClus
 }
 
 func (i GameServerClusterConnectionInfoGkeClusterReferenceArgs) ToGameServerClusterConnectionInfoGkeClusterReferencePtrOutputWithContext(ctx context.Context) GameServerClusterConnectionInfoGkeClusterReferencePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GameServerClusterConnectionInfoGkeClusterReferenceOutput).ToGameServerClusterConnectionInfoGkeClusterReferencePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(GameServerClusterConnectionInfoGkeClusterReferenceOutput).ToGameServerClusterConnectionInfoGkeClusterReferencePtrOutput()
 }
 
 // GameServerClusterConnectionInfoGkeClusterReferencePtrInput is an input type that accepts GameServerClusterConnectionInfoGkeClusterReferenceArgs, GameServerClusterConnectionInfoGkeClusterReferencePtr and GameServerClusterConnectionInfoGkeClusterReferencePtrOutput values.
@@ -259,7 +259,7 @@ func (i *gameServerClusterConnectionInfoGkeClusterReferencePtrType) ToGameServer
 }
 
 func (i *gameServerClusterConnectionInfoGkeClusterReferencePtrType) ToGameServerClusterConnectionInfoGkeClusterReferencePtrOutputWithContext(ctx context.Context) GameServerClusterConnectionInfoGkeClusterReferencePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GameServerClusterConnectionInfoGkeClusterReferencePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(GameServerClusterConnectionInfoGkeClusterReferenceOutput).ToGameServerClusterConnectionInfoGkeClusterReferencePtrOutput()
 }
 
 type GameServerClusterConnectionInfoGkeClusterReferenceOutput struct{ *pulumi.OutputState }
@@ -989,7 +989,7 @@ func (i GameServerDeploymentRolloutGameServerConfigOverrideRealmsSelectorArgs) T
 }
 
 func (i GameServerDeploymentRolloutGameServerConfigOverrideRealmsSelectorArgs) ToGameServerDeploymentRolloutGameServerConfigOverrideRealmsSelectorPtrOutputWithContext(ctx context.Context) GameServerDeploymentRolloutGameServerConfigOverrideRealmsSelectorPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GameServerDeploymentRolloutGameServerConfigOverrideRealmsSelectorOutput).ToGameServerDeploymentRolloutGameServerConfigOverrideRealmsSelectorPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(GameServerDeploymentRolloutGameServerConfigOverrideRealmsSelectorOutput).ToGameServerDeploymentRolloutGameServerConfigOverrideRealmsSelectorPtrOutput()
 }
 
 // GameServerDeploymentRolloutGameServerConfigOverrideRealmsSelectorPtrInput is an input type that accepts GameServerDeploymentRolloutGameServerConfigOverrideRealmsSelectorArgs, GameServerDeploymentRolloutGameServerConfigOverrideRealmsSelectorPtr and GameServerDeploymentRolloutGameServerConfigOverrideRealmsSelectorPtrOutput values.
@@ -1022,7 +1022,7 @@ func (i *gameServerDeploymentRolloutGameServerConfigOverrideRealmsSelectorPtrTyp
 }
 
 func (i *gameServerDeploymentRolloutGameServerConfigOverrideRealmsSelectorPtrType) ToGameServerDeploymentRolloutGameServerConfigOverrideRealmsSelectorPtrOutputWithContext(ctx context.Context) GameServerDeploymentRolloutGameServerConfigOverrideRealmsSelectorPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GameServerDeploymentRolloutGameServerConfigOverrideRealmsSelectorPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(GameServerDeploymentRolloutGameServerConfigOverrideRealmsSelectorOutput).ToGameServerDeploymentRolloutGameServerConfigOverrideRealmsSelectorPtrOutput()
 }
 
 type GameServerDeploymentRolloutGameServerConfigOverrideRealmsSelectorOutput struct{ *pulumi.OutputState }

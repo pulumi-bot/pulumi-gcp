@@ -323,6 +323,13 @@ type NodeTemplateInput interface {
 	ToNodeTemplateOutputWithContext(ctx context.Context) NodeTemplateOutput
 }
 
+type NodeTemplatePtrInput interface {
+	pulumi.Input
+
+	ToNodeTemplatePtrOutput() NodeTemplatePtrOutput
+	ToNodeTemplatePtrOutputWithContext(ctx context.Context) NodeTemplatePtrOutput
+}
+
 func (NodeTemplate) ElementType() reflect.Type {
 	return reflect.TypeOf((*NodeTemplate)(nil)).Elem()
 }
@@ -333,6 +340,14 @@ func (i NodeTemplate) ToNodeTemplateOutput() NodeTemplateOutput {
 
 func (i NodeTemplate) ToNodeTemplateOutputWithContext(ctx context.Context) NodeTemplateOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NodeTemplateOutput)
+}
+
+func (i NodeTemplate) ToNodeTemplatePtrOutput() NodeTemplatePtrOutput {
+	return i.ToNodeTemplatePtrOutputWithContext(context.Background())
+}
+
+func (i NodeTemplate) ToNodeTemplatePtrOutputWithContext(ctx context.Context) NodeTemplatePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodeTemplatePtrOutput)
 }
 
 type NodeTemplateOutput struct {
@@ -351,6 +366,23 @@ func (o NodeTemplateOutput) ToNodeTemplateOutputWithContext(ctx context.Context)
 	return o
 }
 
+type NodeTemplatePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (NodeTemplatePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NodeTemplate)(nil)).Elem()
+}
+
+func (o NodeTemplatePtrOutput) ToNodeTemplatePtrOutput() NodeTemplatePtrOutput {
+	return o
+}
+
+func (o NodeTemplatePtrOutput) ToNodeTemplatePtrOutputWithContext(ctx context.Context) NodeTemplatePtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(NodeTemplateOutput{})
+	pulumi.RegisterOutputType(NodeTemplatePtrOutput{})
 }

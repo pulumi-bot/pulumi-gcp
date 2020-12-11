@@ -362,6 +362,13 @@ type Hl7StoreInput interface {
 	ToHl7StoreOutputWithContext(ctx context.Context) Hl7StoreOutput
 }
 
+type Hl7StorePtrInput interface {
+	pulumi.Input
+
+	ToHl7StorePtrOutput() Hl7StorePtrOutput
+	ToHl7StorePtrOutputWithContext(ctx context.Context) Hl7StorePtrOutput
+}
+
 func (Hl7Store) ElementType() reflect.Type {
 	return reflect.TypeOf((*Hl7Store)(nil)).Elem()
 }
@@ -372,6 +379,14 @@ func (i Hl7Store) ToHl7StoreOutput() Hl7StoreOutput {
 
 func (i Hl7Store) ToHl7StoreOutputWithContext(ctx context.Context) Hl7StoreOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(Hl7StoreOutput)
+}
+
+func (i Hl7Store) ToHl7StorePtrOutput() Hl7StorePtrOutput {
+	return i.ToHl7StorePtrOutputWithContext(context.Background())
+}
+
+func (i Hl7Store) ToHl7StorePtrOutputWithContext(ctx context.Context) Hl7StorePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Hl7StorePtrOutput)
 }
 
 type Hl7StoreOutput struct {
@@ -390,6 +405,23 @@ func (o Hl7StoreOutput) ToHl7StoreOutputWithContext(ctx context.Context) Hl7Stor
 	return o
 }
 
+type Hl7StorePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (Hl7StorePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Hl7Store)(nil)).Elem()
+}
+
+func (o Hl7StorePtrOutput) ToHl7StorePtrOutput() Hl7StorePtrOutput {
+	return o
+}
+
+func (o Hl7StorePtrOutput) ToHl7StorePtrOutputWithContext(ctx context.Context) Hl7StorePtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(Hl7StoreOutput{})
+	pulumi.RegisterOutputType(Hl7StorePtrOutput{})
 }

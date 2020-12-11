@@ -331,6 +331,13 @@ type ExternalVpnGatewayInput interface {
 	ToExternalVpnGatewayOutputWithContext(ctx context.Context) ExternalVpnGatewayOutput
 }
 
+type ExternalVpnGatewayPtrInput interface {
+	pulumi.Input
+
+	ToExternalVpnGatewayPtrOutput() ExternalVpnGatewayPtrOutput
+	ToExternalVpnGatewayPtrOutputWithContext(ctx context.Context) ExternalVpnGatewayPtrOutput
+}
+
 func (ExternalVpnGateway) ElementType() reflect.Type {
 	return reflect.TypeOf((*ExternalVpnGateway)(nil)).Elem()
 }
@@ -341,6 +348,14 @@ func (i ExternalVpnGateway) ToExternalVpnGatewayOutput() ExternalVpnGatewayOutpu
 
 func (i ExternalVpnGateway) ToExternalVpnGatewayOutputWithContext(ctx context.Context) ExternalVpnGatewayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ExternalVpnGatewayOutput)
+}
+
+func (i ExternalVpnGateway) ToExternalVpnGatewayPtrOutput() ExternalVpnGatewayPtrOutput {
+	return i.ToExternalVpnGatewayPtrOutputWithContext(context.Background())
+}
+
+func (i ExternalVpnGateway) ToExternalVpnGatewayPtrOutputWithContext(ctx context.Context) ExternalVpnGatewayPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExternalVpnGatewayPtrOutput)
 }
 
 type ExternalVpnGatewayOutput struct {
@@ -359,6 +374,23 @@ func (o ExternalVpnGatewayOutput) ToExternalVpnGatewayOutputWithContext(ctx cont
 	return o
 }
 
+type ExternalVpnGatewayPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ExternalVpnGatewayPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ExternalVpnGateway)(nil)).Elem()
+}
+
+func (o ExternalVpnGatewayPtrOutput) ToExternalVpnGatewayPtrOutput() ExternalVpnGatewayPtrOutput {
+	return o
+}
+
+func (o ExternalVpnGatewayPtrOutput) ToExternalVpnGatewayPtrOutputWithContext(ctx context.Context) ExternalVpnGatewayPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ExternalVpnGatewayOutput{})
+	pulumi.RegisterOutputType(ExternalVpnGatewayPtrOutput{})
 }

@@ -278,6 +278,13 @@ type ClusterIAMBindingInput interface {
 	ToClusterIAMBindingOutputWithContext(ctx context.Context) ClusterIAMBindingOutput
 }
 
+type ClusterIAMBindingPtrInput interface {
+	pulumi.Input
+
+	ToClusterIAMBindingPtrOutput() ClusterIAMBindingPtrOutput
+	ToClusterIAMBindingPtrOutputWithContext(ctx context.Context) ClusterIAMBindingPtrOutput
+}
+
 func (ClusterIAMBinding) ElementType() reflect.Type {
 	return reflect.TypeOf((*ClusterIAMBinding)(nil)).Elem()
 }
@@ -288,6 +295,14 @@ func (i ClusterIAMBinding) ToClusterIAMBindingOutput() ClusterIAMBindingOutput {
 
 func (i ClusterIAMBinding) ToClusterIAMBindingOutputWithContext(ctx context.Context) ClusterIAMBindingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ClusterIAMBindingOutput)
+}
+
+func (i ClusterIAMBinding) ToClusterIAMBindingPtrOutput() ClusterIAMBindingPtrOutput {
+	return i.ToClusterIAMBindingPtrOutputWithContext(context.Background())
+}
+
+func (i ClusterIAMBinding) ToClusterIAMBindingPtrOutputWithContext(ctx context.Context) ClusterIAMBindingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterIAMBindingPtrOutput)
 }
 
 type ClusterIAMBindingOutput struct {
@@ -306,6 +321,23 @@ func (o ClusterIAMBindingOutput) ToClusterIAMBindingOutputWithContext(ctx contex
 	return o
 }
 
+type ClusterIAMBindingPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ClusterIAMBindingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ClusterIAMBinding)(nil)).Elem()
+}
+
+func (o ClusterIAMBindingPtrOutput) ToClusterIAMBindingPtrOutput() ClusterIAMBindingPtrOutput {
+	return o
+}
+
+func (o ClusterIAMBindingPtrOutput) ToClusterIAMBindingPtrOutputWithContext(ctx context.Context) ClusterIAMBindingPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ClusterIAMBindingOutput{})
+	pulumi.RegisterOutputType(ClusterIAMBindingPtrOutput{})
 }

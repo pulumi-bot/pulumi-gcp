@@ -220,6 +220,13 @@ type NetworkPeeringRoutesConfigInput interface {
 	ToNetworkPeeringRoutesConfigOutputWithContext(ctx context.Context) NetworkPeeringRoutesConfigOutput
 }
 
+type NetworkPeeringRoutesConfigPtrInput interface {
+	pulumi.Input
+
+	ToNetworkPeeringRoutesConfigPtrOutput() NetworkPeeringRoutesConfigPtrOutput
+	ToNetworkPeeringRoutesConfigPtrOutputWithContext(ctx context.Context) NetworkPeeringRoutesConfigPtrOutput
+}
+
 func (NetworkPeeringRoutesConfig) ElementType() reflect.Type {
 	return reflect.TypeOf((*NetworkPeeringRoutesConfig)(nil)).Elem()
 }
@@ -230,6 +237,14 @@ func (i NetworkPeeringRoutesConfig) ToNetworkPeeringRoutesConfigOutput() Network
 
 func (i NetworkPeeringRoutesConfig) ToNetworkPeeringRoutesConfigOutputWithContext(ctx context.Context) NetworkPeeringRoutesConfigOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkPeeringRoutesConfigOutput)
+}
+
+func (i NetworkPeeringRoutesConfig) ToNetworkPeeringRoutesConfigPtrOutput() NetworkPeeringRoutesConfigPtrOutput {
+	return i.ToNetworkPeeringRoutesConfigPtrOutputWithContext(context.Background())
+}
+
+func (i NetworkPeeringRoutesConfig) ToNetworkPeeringRoutesConfigPtrOutputWithContext(ctx context.Context) NetworkPeeringRoutesConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NetworkPeeringRoutesConfigPtrOutput)
 }
 
 type NetworkPeeringRoutesConfigOutput struct {
@@ -248,6 +263,23 @@ func (o NetworkPeeringRoutesConfigOutput) ToNetworkPeeringRoutesConfigOutputWith
 	return o
 }
 
+type NetworkPeeringRoutesConfigPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (NetworkPeeringRoutesConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NetworkPeeringRoutesConfig)(nil)).Elem()
+}
+
+func (o NetworkPeeringRoutesConfigPtrOutput) ToNetworkPeeringRoutesConfigPtrOutput() NetworkPeeringRoutesConfigPtrOutput {
+	return o
+}
+
+func (o NetworkPeeringRoutesConfigPtrOutput) ToNetworkPeeringRoutesConfigPtrOutputWithContext(ctx context.Context) NetworkPeeringRoutesConfigPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(NetworkPeeringRoutesConfigOutput{})
+	pulumi.RegisterOutputType(NetworkPeeringRoutesConfigPtrOutput{})
 }

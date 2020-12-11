@@ -188,6 +188,13 @@ type GameServerDeploymentRolloutInput interface {
 	ToGameServerDeploymentRolloutOutputWithContext(ctx context.Context) GameServerDeploymentRolloutOutput
 }
 
+type GameServerDeploymentRolloutPtrInput interface {
+	pulumi.Input
+
+	ToGameServerDeploymentRolloutPtrOutput() GameServerDeploymentRolloutPtrOutput
+	ToGameServerDeploymentRolloutPtrOutputWithContext(ctx context.Context) GameServerDeploymentRolloutPtrOutput
+}
+
 func (GameServerDeploymentRollout) ElementType() reflect.Type {
 	return reflect.TypeOf((*GameServerDeploymentRollout)(nil)).Elem()
 }
@@ -198,6 +205,14 @@ func (i GameServerDeploymentRollout) ToGameServerDeploymentRolloutOutput() GameS
 
 func (i GameServerDeploymentRollout) ToGameServerDeploymentRolloutOutputWithContext(ctx context.Context) GameServerDeploymentRolloutOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GameServerDeploymentRolloutOutput)
+}
+
+func (i GameServerDeploymentRollout) ToGameServerDeploymentRolloutPtrOutput() GameServerDeploymentRolloutPtrOutput {
+	return i.ToGameServerDeploymentRolloutPtrOutputWithContext(context.Background())
+}
+
+func (i GameServerDeploymentRollout) ToGameServerDeploymentRolloutPtrOutputWithContext(ctx context.Context) GameServerDeploymentRolloutPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GameServerDeploymentRolloutPtrOutput)
 }
 
 type GameServerDeploymentRolloutOutput struct {
@@ -216,6 +231,23 @@ func (o GameServerDeploymentRolloutOutput) ToGameServerDeploymentRolloutOutputWi
 	return o
 }
 
+type GameServerDeploymentRolloutPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (GameServerDeploymentRolloutPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GameServerDeploymentRollout)(nil)).Elem()
+}
+
+func (o GameServerDeploymentRolloutPtrOutput) ToGameServerDeploymentRolloutPtrOutput() GameServerDeploymentRolloutPtrOutput {
+	return o
+}
+
+func (o GameServerDeploymentRolloutPtrOutput) ToGameServerDeploymentRolloutPtrOutputWithContext(ctx context.Context) GameServerDeploymentRolloutPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(GameServerDeploymentRolloutOutput{})
+	pulumi.RegisterOutputType(GameServerDeploymentRolloutPtrOutput{})
 }

@@ -263,6 +263,13 @@ type ObjectAccessControlInput interface {
 	ToObjectAccessControlOutputWithContext(ctx context.Context) ObjectAccessControlOutput
 }
 
+type ObjectAccessControlPtrInput interface {
+	pulumi.Input
+
+	ToObjectAccessControlPtrOutput() ObjectAccessControlPtrOutput
+	ToObjectAccessControlPtrOutputWithContext(ctx context.Context) ObjectAccessControlPtrOutput
+}
+
 func (ObjectAccessControl) ElementType() reflect.Type {
 	return reflect.TypeOf((*ObjectAccessControl)(nil)).Elem()
 }
@@ -273,6 +280,14 @@ func (i ObjectAccessControl) ToObjectAccessControlOutput() ObjectAccessControlOu
 
 func (i ObjectAccessControl) ToObjectAccessControlOutputWithContext(ctx context.Context) ObjectAccessControlOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ObjectAccessControlOutput)
+}
+
+func (i ObjectAccessControl) ToObjectAccessControlPtrOutput() ObjectAccessControlPtrOutput {
+	return i.ToObjectAccessControlPtrOutputWithContext(context.Background())
+}
+
+func (i ObjectAccessControl) ToObjectAccessControlPtrOutputWithContext(ctx context.Context) ObjectAccessControlPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObjectAccessControlPtrOutput)
 }
 
 type ObjectAccessControlOutput struct {
@@ -291,6 +306,23 @@ func (o ObjectAccessControlOutput) ToObjectAccessControlOutputWithContext(ctx co
 	return o
 }
 
+type ObjectAccessControlPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ObjectAccessControlPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ObjectAccessControl)(nil)).Elem()
+}
+
+func (o ObjectAccessControlPtrOutput) ToObjectAccessControlPtrOutput() ObjectAccessControlPtrOutput {
+	return o
+}
+
+func (o ObjectAccessControlPtrOutput) ToObjectAccessControlPtrOutputWithContext(ctx context.Context) ObjectAccessControlPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ObjectAccessControlOutput{})
+	pulumi.RegisterOutputType(ObjectAccessControlPtrOutput{})
 }

@@ -185,6 +185,13 @@ type GatewayIamMemberInput interface {
 	ToGatewayIamMemberOutputWithContext(ctx context.Context) GatewayIamMemberOutput
 }
 
+type GatewayIamMemberPtrInput interface {
+	pulumi.Input
+
+	ToGatewayIamMemberPtrOutput() GatewayIamMemberPtrOutput
+	ToGatewayIamMemberPtrOutputWithContext(ctx context.Context) GatewayIamMemberPtrOutput
+}
+
 func (GatewayIamMember) ElementType() reflect.Type {
 	return reflect.TypeOf((*GatewayIamMember)(nil)).Elem()
 }
@@ -195,6 +202,14 @@ func (i GatewayIamMember) ToGatewayIamMemberOutput() GatewayIamMemberOutput {
 
 func (i GatewayIamMember) ToGatewayIamMemberOutputWithContext(ctx context.Context) GatewayIamMemberOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GatewayIamMemberOutput)
+}
+
+func (i GatewayIamMember) ToGatewayIamMemberPtrOutput() GatewayIamMemberPtrOutput {
+	return i.ToGatewayIamMemberPtrOutputWithContext(context.Background())
+}
+
+func (i GatewayIamMember) ToGatewayIamMemberPtrOutputWithContext(ctx context.Context) GatewayIamMemberPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GatewayIamMemberPtrOutput)
 }
 
 type GatewayIamMemberOutput struct {
@@ -213,6 +228,23 @@ func (o GatewayIamMemberOutput) ToGatewayIamMemberOutputWithContext(ctx context.
 	return o
 }
 
+type GatewayIamMemberPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (GatewayIamMemberPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GatewayIamMember)(nil)).Elem()
+}
+
+func (o GatewayIamMemberPtrOutput) ToGatewayIamMemberPtrOutput() GatewayIamMemberPtrOutput {
+	return o
+}
+
+func (o GatewayIamMemberPtrOutput) ToGatewayIamMemberPtrOutputWithContext(ctx context.Context) GatewayIamMemberPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(GatewayIamMemberOutput{})
+	pulumi.RegisterOutputType(GatewayIamMemberPtrOutput{})
 }

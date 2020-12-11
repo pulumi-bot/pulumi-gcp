@@ -235,6 +235,13 @@ type EntityTypeInput interface {
 	ToEntityTypeOutputWithContext(ctx context.Context) EntityTypeOutput
 }
 
+type EntityTypePtrInput interface {
+	pulumi.Input
+
+	ToEntityTypePtrOutput() EntityTypePtrOutput
+	ToEntityTypePtrOutputWithContext(ctx context.Context) EntityTypePtrOutput
+}
+
 func (EntityType) ElementType() reflect.Type {
 	return reflect.TypeOf((*EntityType)(nil)).Elem()
 }
@@ -245,6 +252,14 @@ func (i EntityType) ToEntityTypeOutput() EntityTypeOutput {
 
 func (i EntityType) ToEntityTypeOutputWithContext(ctx context.Context) EntityTypeOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EntityTypeOutput)
+}
+
+func (i EntityType) ToEntityTypePtrOutput() EntityTypePtrOutput {
+	return i.ToEntityTypePtrOutputWithContext(context.Background())
+}
+
+func (i EntityType) ToEntityTypePtrOutputWithContext(ctx context.Context) EntityTypePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EntityTypePtrOutput)
 }
 
 type EntityTypeOutput struct {
@@ -263,6 +278,23 @@ func (o EntityTypeOutput) ToEntityTypeOutputWithContext(ctx context.Context) Ent
 	return o
 }
 
+type EntityTypePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (EntityTypePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EntityType)(nil)).Elem()
+}
+
+func (o EntityTypePtrOutput) ToEntityTypePtrOutput() EntityTypePtrOutput {
+	return o
+}
+
+func (o EntityTypePtrOutput) ToEntityTypePtrOutputWithContext(ctx context.Context) EntityTypePtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(EntityTypeOutput{})
+	pulumi.RegisterOutputType(EntityTypePtrOutput{})
 }

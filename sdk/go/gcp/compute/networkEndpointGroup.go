@@ -308,6 +308,13 @@ type NetworkEndpointGroupInput interface {
 	ToNetworkEndpointGroupOutputWithContext(ctx context.Context) NetworkEndpointGroupOutput
 }
 
+type NetworkEndpointGroupPtrInput interface {
+	pulumi.Input
+
+	ToNetworkEndpointGroupPtrOutput() NetworkEndpointGroupPtrOutput
+	ToNetworkEndpointGroupPtrOutputWithContext(ctx context.Context) NetworkEndpointGroupPtrOutput
+}
+
 func (NetworkEndpointGroup) ElementType() reflect.Type {
 	return reflect.TypeOf((*NetworkEndpointGroup)(nil)).Elem()
 }
@@ -318,6 +325,14 @@ func (i NetworkEndpointGroup) ToNetworkEndpointGroupOutput() NetworkEndpointGrou
 
 func (i NetworkEndpointGroup) ToNetworkEndpointGroupOutputWithContext(ctx context.Context) NetworkEndpointGroupOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkEndpointGroupOutput)
+}
+
+func (i NetworkEndpointGroup) ToNetworkEndpointGroupPtrOutput() NetworkEndpointGroupPtrOutput {
+	return i.ToNetworkEndpointGroupPtrOutputWithContext(context.Background())
+}
+
+func (i NetworkEndpointGroup) ToNetworkEndpointGroupPtrOutputWithContext(ctx context.Context) NetworkEndpointGroupPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NetworkEndpointGroupPtrOutput)
 }
 
 type NetworkEndpointGroupOutput struct {
@@ -336,6 +351,23 @@ func (o NetworkEndpointGroupOutput) ToNetworkEndpointGroupOutputWithContext(ctx 
 	return o
 }
 
+type NetworkEndpointGroupPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (NetworkEndpointGroupPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NetworkEndpointGroup)(nil)).Elem()
+}
+
+func (o NetworkEndpointGroupPtrOutput) ToNetworkEndpointGroupPtrOutput() NetworkEndpointGroupPtrOutput {
+	return o
+}
+
+func (o NetworkEndpointGroupPtrOutput) ToNetworkEndpointGroupPtrOutputWithContext(ctx context.Context) NetworkEndpointGroupPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(NetworkEndpointGroupOutput{})
+	pulumi.RegisterOutputType(NetworkEndpointGroupPtrOutput{})
 }

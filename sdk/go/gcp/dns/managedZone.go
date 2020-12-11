@@ -545,6 +545,13 @@ type ManagedZoneInput interface {
 	ToManagedZoneOutputWithContext(ctx context.Context) ManagedZoneOutput
 }
 
+type ManagedZonePtrInput interface {
+	pulumi.Input
+
+	ToManagedZonePtrOutput() ManagedZonePtrOutput
+	ToManagedZonePtrOutputWithContext(ctx context.Context) ManagedZonePtrOutput
+}
+
 func (ManagedZone) ElementType() reflect.Type {
 	return reflect.TypeOf((*ManagedZone)(nil)).Elem()
 }
@@ -555,6 +562,14 @@ func (i ManagedZone) ToManagedZoneOutput() ManagedZoneOutput {
 
 func (i ManagedZone) ToManagedZoneOutputWithContext(ctx context.Context) ManagedZoneOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ManagedZoneOutput)
+}
+
+func (i ManagedZone) ToManagedZonePtrOutput() ManagedZonePtrOutput {
+	return i.ToManagedZonePtrOutputWithContext(context.Background())
+}
+
+func (i ManagedZone) ToManagedZonePtrOutputWithContext(ctx context.Context) ManagedZonePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedZonePtrOutput)
 }
 
 type ManagedZoneOutput struct {
@@ -573,6 +588,23 @@ func (o ManagedZoneOutput) ToManagedZoneOutputWithContext(ctx context.Context) M
 	return o
 }
 
+type ManagedZonePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ManagedZonePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedZone)(nil)).Elem()
+}
+
+func (o ManagedZonePtrOutput) ToManagedZonePtrOutput() ManagedZonePtrOutput {
+	return o
+}
+
+func (o ManagedZonePtrOutput) ToManagedZonePtrOutputWithContext(ctx context.Context) ManagedZonePtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ManagedZoneOutput{})
+	pulumi.RegisterOutputType(ManagedZonePtrOutput{})
 }

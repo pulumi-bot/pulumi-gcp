@@ -181,6 +181,13 @@ type ObjectACLInput interface {
 	ToObjectACLOutputWithContext(ctx context.Context) ObjectACLOutput
 }
 
+type ObjectACLPtrInput interface {
+	pulumi.Input
+
+	ToObjectACLPtrOutput() ObjectACLPtrOutput
+	ToObjectACLPtrOutputWithContext(ctx context.Context) ObjectACLPtrOutput
+}
+
 func (ObjectACL) ElementType() reflect.Type {
 	return reflect.TypeOf((*ObjectACL)(nil)).Elem()
 }
@@ -191,6 +198,14 @@ func (i ObjectACL) ToObjectACLOutput() ObjectACLOutput {
 
 func (i ObjectACL) ToObjectACLOutputWithContext(ctx context.Context) ObjectACLOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ObjectACLOutput)
+}
+
+func (i ObjectACL) ToObjectACLPtrOutput() ObjectACLPtrOutput {
+	return i.ToObjectACLPtrOutputWithContext(context.Background())
+}
+
+func (i ObjectACL) ToObjectACLPtrOutputWithContext(ctx context.Context) ObjectACLPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObjectACLPtrOutput)
 }
 
 type ObjectACLOutput struct {
@@ -209,6 +224,23 @@ func (o ObjectACLOutput) ToObjectACLOutputWithContext(ctx context.Context) Objec
 	return o
 }
 
+type ObjectACLPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ObjectACLPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ObjectACL)(nil)).Elem()
+}
+
+func (o ObjectACLPtrOutput) ToObjectACLPtrOutput() ObjectACLPtrOutput {
+	return o
+}
+
+func (o ObjectACLPtrOutput) ToObjectACLPtrOutputWithContext(ctx context.Context) ObjectACLPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ObjectACLOutput{})
+	pulumi.RegisterOutputType(ObjectACLPtrOutput{})
 }

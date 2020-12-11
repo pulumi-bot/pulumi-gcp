@@ -422,6 +422,13 @@ type AppEngineVersionIamBindingInput interface {
 	ToAppEngineVersionIamBindingOutputWithContext(ctx context.Context) AppEngineVersionIamBindingOutput
 }
 
+type AppEngineVersionIamBindingPtrInput interface {
+	pulumi.Input
+
+	ToAppEngineVersionIamBindingPtrOutput() AppEngineVersionIamBindingPtrOutput
+	ToAppEngineVersionIamBindingPtrOutputWithContext(ctx context.Context) AppEngineVersionIamBindingPtrOutput
+}
+
 func (AppEngineVersionIamBinding) ElementType() reflect.Type {
 	return reflect.TypeOf((*AppEngineVersionIamBinding)(nil)).Elem()
 }
@@ -432,6 +439,14 @@ func (i AppEngineVersionIamBinding) ToAppEngineVersionIamBindingOutput() AppEngi
 
 func (i AppEngineVersionIamBinding) ToAppEngineVersionIamBindingOutputWithContext(ctx context.Context) AppEngineVersionIamBindingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AppEngineVersionIamBindingOutput)
+}
+
+func (i AppEngineVersionIamBinding) ToAppEngineVersionIamBindingPtrOutput() AppEngineVersionIamBindingPtrOutput {
+	return i.ToAppEngineVersionIamBindingPtrOutputWithContext(context.Background())
+}
+
+func (i AppEngineVersionIamBinding) ToAppEngineVersionIamBindingPtrOutputWithContext(ctx context.Context) AppEngineVersionIamBindingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AppEngineVersionIamBindingPtrOutput)
 }
 
 type AppEngineVersionIamBindingOutput struct {
@@ -450,6 +465,23 @@ func (o AppEngineVersionIamBindingOutput) ToAppEngineVersionIamBindingOutputWith
 	return o
 }
 
+type AppEngineVersionIamBindingPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (AppEngineVersionIamBindingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AppEngineVersionIamBinding)(nil)).Elem()
+}
+
+func (o AppEngineVersionIamBindingPtrOutput) ToAppEngineVersionIamBindingPtrOutput() AppEngineVersionIamBindingPtrOutput {
+	return o
+}
+
+func (o AppEngineVersionIamBindingPtrOutput) ToAppEngineVersionIamBindingPtrOutputWithContext(ctx context.Context) AppEngineVersionIamBindingPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(AppEngineVersionIamBindingOutput{})
+	pulumi.RegisterOutputType(AppEngineVersionIamBindingPtrOutput{})
 }

@@ -380,6 +380,13 @@ type AlertPolicyInput interface {
 	ToAlertPolicyOutputWithContext(ctx context.Context) AlertPolicyOutput
 }
 
+type AlertPolicyPtrInput interface {
+	pulumi.Input
+
+	ToAlertPolicyPtrOutput() AlertPolicyPtrOutput
+	ToAlertPolicyPtrOutputWithContext(ctx context.Context) AlertPolicyPtrOutput
+}
+
 func (AlertPolicy) ElementType() reflect.Type {
 	return reflect.TypeOf((*AlertPolicy)(nil)).Elem()
 }
@@ -390,6 +397,14 @@ func (i AlertPolicy) ToAlertPolicyOutput() AlertPolicyOutput {
 
 func (i AlertPolicy) ToAlertPolicyOutputWithContext(ctx context.Context) AlertPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AlertPolicyOutput)
+}
+
+func (i AlertPolicy) ToAlertPolicyPtrOutput() AlertPolicyPtrOutput {
+	return i.ToAlertPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i AlertPolicy) ToAlertPolicyPtrOutputWithContext(ctx context.Context) AlertPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertPolicyPtrOutput)
 }
 
 type AlertPolicyOutput struct {
@@ -408,6 +423,23 @@ func (o AlertPolicyOutput) ToAlertPolicyOutputWithContext(ctx context.Context) A
 	return o
 }
 
+type AlertPolicyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (AlertPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertPolicy)(nil)).Elem()
+}
+
+func (o AlertPolicyPtrOutput) ToAlertPolicyPtrOutput() AlertPolicyPtrOutput {
+	return o
+}
+
+func (o AlertPolicyPtrOutput) ToAlertPolicyPtrOutputWithContext(ctx context.Context) AlertPolicyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(AlertPolicyOutput{})
+	pulumi.RegisterOutputType(AlertPolicyPtrOutput{})
 }

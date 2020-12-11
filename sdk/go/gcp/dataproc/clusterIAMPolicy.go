@@ -255,6 +255,13 @@ type ClusterIAMPolicyInput interface {
 	ToClusterIAMPolicyOutputWithContext(ctx context.Context) ClusterIAMPolicyOutput
 }
 
+type ClusterIAMPolicyPtrInput interface {
+	pulumi.Input
+
+	ToClusterIAMPolicyPtrOutput() ClusterIAMPolicyPtrOutput
+	ToClusterIAMPolicyPtrOutputWithContext(ctx context.Context) ClusterIAMPolicyPtrOutput
+}
+
 func (ClusterIAMPolicy) ElementType() reflect.Type {
 	return reflect.TypeOf((*ClusterIAMPolicy)(nil)).Elem()
 }
@@ -265,6 +272,14 @@ func (i ClusterIAMPolicy) ToClusterIAMPolicyOutput() ClusterIAMPolicyOutput {
 
 func (i ClusterIAMPolicy) ToClusterIAMPolicyOutputWithContext(ctx context.Context) ClusterIAMPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ClusterIAMPolicyOutput)
+}
+
+func (i ClusterIAMPolicy) ToClusterIAMPolicyPtrOutput() ClusterIAMPolicyPtrOutput {
+	return i.ToClusterIAMPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i ClusterIAMPolicy) ToClusterIAMPolicyPtrOutputWithContext(ctx context.Context) ClusterIAMPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterIAMPolicyPtrOutput)
 }
 
 type ClusterIAMPolicyOutput struct {
@@ -283,6 +298,23 @@ func (o ClusterIAMPolicyOutput) ToClusterIAMPolicyOutputWithContext(ctx context.
 	return o
 }
 
+type ClusterIAMPolicyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ClusterIAMPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ClusterIAMPolicy)(nil)).Elem()
+}
+
+func (o ClusterIAMPolicyPtrOutput) ToClusterIAMPolicyPtrOutput() ClusterIAMPolicyPtrOutput {
+	return o
+}
+
+func (o ClusterIAMPolicyPtrOutput) ToClusterIAMPolicyPtrOutputWithContext(ctx context.Context) ClusterIAMPolicyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ClusterIAMPolicyOutput{})
+	pulumi.RegisterOutputType(ClusterIAMPolicyPtrOutput{})
 }

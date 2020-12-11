@@ -195,6 +195,13 @@ type GameServerDeploymentInput interface {
 	ToGameServerDeploymentOutputWithContext(ctx context.Context) GameServerDeploymentOutput
 }
 
+type GameServerDeploymentPtrInput interface {
+	pulumi.Input
+
+	ToGameServerDeploymentPtrOutput() GameServerDeploymentPtrOutput
+	ToGameServerDeploymentPtrOutputWithContext(ctx context.Context) GameServerDeploymentPtrOutput
+}
+
 func (GameServerDeployment) ElementType() reflect.Type {
 	return reflect.TypeOf((*GameServerDeployment)(nil)).Elem()
 }
@@ -205,6 +212,14 @@ func (i GameServerDeployment) ToGameServerDeploymentOutput() GameServerDeploymen
 
 func (i GameServerDeployment) ToGameServerDeploymentOutputWithContext(ctx context.Context) GameServerDeploymentOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GameServerDeploymentOutput)
+}
+
+func (i GameServerDeployment) ToGameServerDeploymentPtrOutput() GameServerDeploymentPtrOutput {
+	return i.ToGameServerDeploymentPtrOutputWithContext(context.Background())
+}
+
+func (i GameServerDeployment) ToGameServerDeploymentPtrOutputWithContext(ctx context.Context) GameServerDeploymentPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GameServerDeploymentPtrOutput)
 }
 
 type GameServerDeploymentOutput struct {
@@ -223,6 +238,23 @@ func (o GameServerDeploymentOutput) ToGameServerDeploymentOutputWithContext(ctx 
 	return o
 }
 
+type GameServerDeploymentPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (GameServerDeploymentPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GameServerDeployment)(nil)).Elem()
+}
+
+func (o GameServerDeploymentPtrOutput) ToGameServerDeploymentPtrOutput() GameServerDeploymentPtrOutput {
+	return o
+}
+
+func (o GameServerDeploymentPtrOutput) ToGameServerDeploymentPtrOutputWithContext(ctx context.Context) GameServerDeploymentPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(GameServerDeploymentOutput{})
+	pulumi.RegisterOutputType(GameServerDeploymentPtrOutput{})
 }

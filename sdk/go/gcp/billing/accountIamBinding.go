@@ -104,6 +104,13 @@ type AccountIamBindingInput interface {
 	ToAccountIamBindingOutputWithContext(ctx context.Context) AccountIamBindingOutput
 }
 
+type AccountIamBindingPtrInput interface {
+	pulumi.Input
+
+	ToAccountIamBindingPtrOutput() AccountIamBindingPtrOutput
+	ToAccountIamBindingPtrOutputWithContext(ctx context.Context) AccountIamBindingPtrOutput
+}
+
 func (AccountIamBinding) ElementType() reflect.Type {
 	return reflect.TypeOf((*AccountIamBinding)(nil)).Elem()
 }
@@ -114,6 +121,14 @@ func (i AccountIamBinding) ToAccountIamBindingOutput() AccountIamBindingOutput {
 
 func (i AccountIamBinding) ToAccountIamBindingOutputWithContext(ctx context.Context) AccountIamBindingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AccountIamBindingOutput)
+}
+
+func (i AccountIamBinding) ToAccountIamBindingPtrOutput() AccountIamBindingPtrOutput {
+	return i.ToAccountIamBindingPtrOutputWithContext(context.Background())
+}
+
+func (i AccountIamBinding) ToAccountIamBindingPtrOutputWithContext(ctx context.Context) AccountIamBindingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AccountIamBindingPtrOutput)
 }
 
 type AccountIamBindingOutput struct {
@@ -132,6 +147,23 @@ func (o AccountIamBindingOutput) ToAccountIamBindingOutputWithContext(ctx contex
 	return o
 }
 
+type AccountIamBindingPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (AccountIamBindingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AccountIamBinding)(nil)).Elem()
+}
+
+func (o AccountIamBindingPtrOutput) ToAccountIamBindingPtrOutput() AccountIamBindingPtrOutput {
+	return o
+}
+
+func (o AccountIamBindingPtrOutput) ToAccountIamBindingPtrOutputWithContext(ctx context.Context) AccountIamBindingPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(AccountIamBindingOutput{})
+	pulumi.RegisterOutputType(AccountIamBindingPtrOutput{})
 }

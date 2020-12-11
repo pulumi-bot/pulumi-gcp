@@ -266,6 +266,13 @@ type DatabaseIAMPolicyInput interface {
 	ToDatabaseIAMPolicyOutputWithContext(ctx context.Context) DatabaseIAMPolicyOutput
 }
 
+type DatabaseIAMPolicyPtrInput interface {
+	pulumi.Input
+
+	ToDatabaseIAMPolicyPtrOutput() DatabaseIAMPolicyPtrOutput
+	ToDatabaseIAMPolicyPtrOutputWithContext(ctx context.Context) DatabaseIAMPolicyPtrOutput
+}
+
 func (DatabaseIAMPolicy) ElementType() reflect.Type {
 	return reflect.TypeOf((*DatabaseIAMPolicy)(nil)).Elem()
 }
@@ -276,6 +283,14 @@ func (i DatabaseIAMPolicy) ToDatabaseIAMPolicyOutput() DatabaseIAMPolicyOutput {
 
 func (i DatabaseIAMPolicy) ToDatabaseIAMPolicyOutputWithContext(ctx context.Context) DatabaseIAMPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DatabaseIAMPolicyOutput)
+}
+
+func (i DatabaseIAMPolicy) ToDatabaseIAMPolicyPtrOutput() DatabaseIAMPolicyPtrOutput {
+	return i.ToDatabaseIAMPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i DatabaseIAMPolicy) ToDatabaseIAMPolicyPtrOutputWithContext(ctx context.Context) DatabaseIAMPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatabaseIAMPolicyPtrOutput)
 }
 
 type DatabaseIAMPolicyOutput struct {
@@ -294,6 +309,23 @@ func (o DatabaseIAMPolicyOutput) ToDatabaseIAMPolicyOutputWithContext(ctx contex
 	return o
 }
 
+type DatabaseIAMPolicyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (DatabaseIAMPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatabaseIAMPolicy)(nil)).Elem()
+}
+
+func (o DatabaseIAMPolicyPtrOutput) ToDatabaseIAMPolicyPtrOutput() DatabaseIAMPolicyPtrOutput {
+	return o
+}
+
+func (o DatabaseIAMPolicyPtrOutput) ToDatabaseIAMPolicyPtrOutputWithContext(ctx context.Context) DatabaseIAMPolicyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(DatabaseIAMPolicyOutput{})
+	pulumi.RegisterOutputType(DatabaseIAMPolicyPtrOutput{})
 }

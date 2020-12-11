@@ -503,6 +503,13 @@ type GuestPoliciesInput interface {
 	ToGuestPoliciesOutputWithContext(ctx context.Context) GuestPoliciesOutput
 }
 
+type GuestPoliciesPtrInput interface {
+	pulumi.Input
+
+	ToGuestPoliciesPtrOutput() GuestPoliciesPtrOutput
+	ToGuestPoliciesPtrOutputWithContext(ctx context.Context) GuestPoliciesPtrOutput
+}
+
 func (GuestPolicies) ElementType() reflect.Type {
 	return reflect.TypeOf((*GuestPolicies)(nil)).Elem()
 }
@@ -513,6 +520,14 @@ func (i GuestPolicies) ToGuestPoliciesOutput() GuestPoliciesOutput {
 
 func (i GuestPolicies) ToGuestPoliciesOutputWithContext(ctx context.Context) GuestPoliciesOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesOutput)
+}
+
+func (i GuestPolicies) ToGuestPoliciesPtrOutput() GuestPoliciesPtrOutput {
+	return i.ToGuestPoliciesPtrOutputWithContext(context.Background())
+}
+
+func (i GuestPolicies) ToGuestPoliciesPtrOutputWithContext(ctx context.Context) GuestPoliciesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesPtrOutput)
 }
 
 type GuestPoliciesOutput struct {
@@ -531,6 +546,23 @@ func (o GuestPoliciesOutput) ToGuestPoliciesOutputWithContext(ctx context.Contex
 	return o
 }
 
+type GuestPoliciesPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (GuestPoliciesPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GuestPolicies)(nil)).Elem()
+}
+
+func (o GuestPoliciesPtrOutput) ToGuestPoliciesPtrOutput() GuestPoliciesPtrOutput {
+	return o
+}
+
+func (o GuestPoliciesPtrOutput) ToGuestPoliciesPtrOutputWithContext(ctx context.Context) GuestPoliciesPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(GuestPoliciesOutput{})
+	pulumi.RegisterOutputType(GuestPoliciesPtrOutput{})
 }

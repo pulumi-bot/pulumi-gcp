@@ -164,6 +164,13 @@ type ServiceIdentityInput interface {
 	ToServiceIdentityOutputWithContext(ctx context.Context) ServiceIdentityOutput
 }
 
+type ServiceIdentityPtrInput interface {
+	pulumi.Input
+
+	ToServiceIdentityPtrOutput() ServiceIdentityPtrOutput
+	ToServiceIdentityPtrOutputWithContext(ctx context.Context) ServiceIdentityPtrOutput
+}
+
 func (ServiceIdentity) ElementType() reflect.Type {
 	return reflect.TypeOf((*ServiceIdentity)(nil)).Elem()
 }
@@ -174,6 +181,14 @@ func (i ServiceIdentity) ToServiceIdentityOutput() ServiceIdentityOutput {
 
 func (i ServiceIdentity) ToServiceIdentityOutputWithContext(ctx context.Context) ServiceIdentityOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceIdentityOutput)
+}
+
+func (i ServiceIdentity) ToServiceIdentityPtrOutput() ServiceIdentityPtrOutput {
+	return i.ToServiceIdentityPtrOutputWithContext(context.Background())
+}
+
+func (i ServiceIdentity) ToServiceIdentityPtrOutputWithContext(ctx context.Context) ServiceIdentityPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceIdentityPtrOutput)
 }
 
 type ServiceIdentityOutput struct {
@@ -192,6 +207,23 @@ func (o ServiceIdentityOutput) ToServiceIdentityOutputWithContext(ctx context.Co
 	return o
 }
 
+type ServiceIdentityPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ServiceIdentityPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceIdentity)(nil)).Elem()
+}
+
+func (o ServiceIdentityPtrOutput) ToServiceIdentityPtrOutput() ServiceIdentityPtrOutput {
+	return o
+}
+
+func (o ServiceIdentityPtrOutput) ToServiceIdentityPtrOutputWithContext(ctx context.Context) ServiceIdentityPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ServiceIdentityOutput{})
+	pulumi.RegisterOutputType(ServiceIdentityPtrOutput{})
 }

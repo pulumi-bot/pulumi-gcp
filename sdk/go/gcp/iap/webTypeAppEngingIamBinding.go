@@ -384,6 +384,13 @@ type WebTypeAppEngingIamBindingInput interface {
 	ToWebTypeAppEngingIamBindingOutputWithContext(ctx context.Context) WebTypeAppEngingIamBindingOutput
 }
 
+type WebTypeAppEngingIamBindingPtrInput interface {
+	pulumi.Input
+
+	ToWebTypeAppEngingIamBindingPtrOutput() WebTypeAppEngingIamBindingPtrOutput
+	ToWebTypeAppEngingIamBindingPtrOutputWithContext(ctx context.Context) WebTypeAppEngingIamBindingPtrOutput
+}
+
 func (WebTypeAppEngingIamBinding) ElementType() reflect.Type {
 	return reflect.TypeOf((*WebTypeAppEngingIamBinding)(nil)).Elem()
 }
@@ -394,6 +401,14 @@ func (i WebTypeAppEngingIamBinding) ToWebTypeAppEngingIamBindingOutput() WebType
 
 func (i WebTypeAppEngingIamBinding) ToWebTypeAppEngingIamBindingOutputWithContext(ctx context.Context) WebTypeAppEngingIamBindingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WebTypeAppEngingIamBindingOutput)
+}
+
+func (i WebTypeAppEngingIamBinding) ToWebTypeAppEngingIamBindingPtrOutput() WebTypeAppEngingIamBindingPtrOutput {
+	return i.ToWebTypeAppEngingIamBindingPtrOutputWithContext(context.Background())
+}
+
+func (i WebTypeAppEngingIamBinding) ToWebTypeAppEngingIamBindingPtrOutputWithContext(ctx context.Context) WebTypeAppEngingIamBindingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebTypeAppEngingIamBindingPtrOutput)
 }
 
 type WebTypeAppEngingIamBindingOutput struct {
@@ -412,6 +427,23 @@ func (o WebTypeAppEngingIamBindingOutput) ToWebTypeAppEngingIamBindingOutputWith
 	return o
 }
 
+type WebTypeAppEngingIamBindingPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (WebTypeAppEngingIamBindingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebTypeAppEngingIamBinding)(nil)).Elem()
+}
+
+func (o WebTypeAppEngingIamBindingPtrOutput) ToWebTypeAppEngingIamBindingPtrOutput() WebTypeAppEngingIamBindingPtrOutput {
+	return o
+}
+
+func (o WebTypeAppEngingIamBindingPtrOutput) ToWebTypeAppEngingIamBindingPtrOutputWithContext(ctx context.Context) WebTypeAppEngingIamBindingPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(WebTypeAppEngingIamBindingOutput{})
+	pulumi.RegisterOutputType(WebTypeAppEngingIamBindingPtrOutput{})
 }

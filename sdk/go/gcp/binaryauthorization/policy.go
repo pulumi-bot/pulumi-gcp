@@ -328,6 +328,13 @@ type PolicyInput interface {
 	ToPolicyOutputWithContext(ctx context.Context) PolicyOutput
 }
 
+type PolicyPtrInput interface {
+	pulumi.Input
+
+	ToPolicyPtrOutput() PolicyPtrOutput
+	ToPolicyPtrOutputWithContext(ctx context.Context) PolicyPtrOutput
+}
+
 func (Policy) ElementType() reflect.Type {
 	return reflect.TypeOf((*Policy)(nil)).Elem()
 }
@@ -338,6 +345,14 @@ func (i Policy) ToPolicyOutput() PolicyOutput {
 
 func (i Policy) ToPolicyOutputWithContext(ctx context.Context) PolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(PolicyOutput)
+}
+
+func (i Policy) ToPolicyPtrOutput() PolicyPtrOutput {
+	return i.ToPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i Policy) ToPolicyPtrOutputWithContext(ctx context.Context) PolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PolicyPtrOutput)
 }
 
 type PolicyOutput struct {
@@ -356,6 +371,23 @@ func (o PolicyOutput) ToPolicyOutputWithContext(ctx context.Context) PolicyOutpu
 	return o
 }
 
+type PolicyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (PolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Policy)(nil)).Elem()
+}
+
+func (o PolicyPtrOutput) ToPolicyPtrOutput() PolicyPtrOutput {
+	return o
+}
+
+func (o PolicyPtrOutput) ToPolicyPtrOutputWithContext(ctx context.Context) PolicyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(PolicyOutput{})
+	pulumi.RegisterOutputType(PolicyPtrOutput{})
 }

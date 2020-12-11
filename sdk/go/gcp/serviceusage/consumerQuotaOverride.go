@@ -234,6 +234,13 @@ type ConsumerQuotaOverrideInput interface {
 	ToConsumerQuotaOverrideOutputWithContext(ctx context.Context) ConsumerQuotaOverrideOutput
 }
 
+type ConsumerQuotaOverridePtrInput interface {
+	pulumi.Input
+
+	ToConsumerQuotaOverridePtrOutput() ConsumerQuotaOverridePtrOutput
+	ToConsumerQuotaOverridePtrOutputWithContext(ctx context.Context) ConsumerQuotaOverridePtrOutput
+}
+
 func (ConsumerQuotaOverride) ElementType() reflect.Type {
 	return reflect.TypeOf((*ConsumerQuotaOverride)(nil)).Elem()
 }
@@ -244,6 +251,14 @@ func (i ConsumerQuotaOverride) ToConsumerQuotaOverrideOutput() ConsumerQuotaOver
 
 func (i ConsumerQuotaOverride) ToConsumerQuotaOverrideOutputWithContext(ctx context.Context) ConsumerQuotaOverrideOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ConsumerQuotaOverrideOutput)
+}
+
+func (i ConsumerQuotaOverride) ToConsumerQuotaOverridePtrOutput() ConsumerQuotaOverridePtrOutput {
+	return i.ToConsumerQuotaOverridePtrOutputWithContext(context.Background())
+}
+
+func (i ConsumerQuotaOverride) ToConsumerQuotaOverridePtrOutputWithContext(ctx context.Context) ConsumerQuotaOverridePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsumerQuotaOverridePtrOutput)
 }
 
 type ConsumerQuotaOverrideOutput struct {
@@ -262,6 +277,23 @@ func (o ConsumerQuotaOverrideOutput) ToConsumerQuotaOverrideOutputWithContext(ct
 	return o
 }
 
+type ConsumerQuotaOverridePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ConsumerQuotaOverridePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ConsumerQuotaOverride)(nil)).Elem()
+}
+
+func (o ConsumerQuotaOverridePtrOutput) ToConsumerQuotaOverridePtrOutput() ConsumerQuotaOverridePtrOutput {
+	return o
+}
+
+func (o ConsumerQuotaOverridePtrOutput) ToConsumerQuotaOverridePtrOutputWithContext(ctx context.Context) ConsumerQuotaOverridePtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ConsumerQuotaOverrideOutput{})
+	pulumi.RegisterOutputType(ConsumerQuotaOverridePtrOutput{})
 }

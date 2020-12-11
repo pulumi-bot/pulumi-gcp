@@ -206,6 +206,13 @@ type DiskResourcePolicyAttachmentInput interface {
 	ToDiskResourcePolicyAttachmentOutputWithContext(ctx context.Context) DiskResourcePolicyAttachmentOutput
 }
 
+type DiskResourcePolicyAttachmentPtrInput interface {
+	pulumi.Input
+
+	ToDiskResourcePolicyAttachmentPtrOutput() DiskResourcePolicyAttachmentPtrOutput
+	ToDiskResourcePolicyAttachmentPtrOutputWithContext(ctx context.Context) DiskResourcePolicyAttachmentPtrOutput
+}
+
 func (DiskResourcePolicyAttachment) ElementType() reflect.Type {
 	return reflect.TypeOf((*DiskResourcePolicyAttachment)(nil)).Elem()
 }
@@ -216,6 +223,14 @@ func (i DiskResourcePolicyAttachment) ToDiskResourcePolicyAttachmentOutput() Dis
 
 func (i DiskResourcePolicyAttachment) ToDiskResourcePolicyAttachmentOutputWithContext(ctx context.Context) DiskResourcePolicyAttachmentOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DiskResourcePolicyAttachmentOutput)
+}
+
+func (i DiskResourcePolicyAttachment) ToDiskResourcePolicyAttachmentPtrOutput() DiskResourcePolicyAttachmentPtrOutput {
+	return i.ToDiskResourcePolicyAttachmentPtrOutputWithContext(context.Background())
+}
+
+func (i DiskResourcePolicyAttachment) ToDiskResourcePolicyAttachmentPtrOutputWithContext(ctx context.Context) DiskResourcePolicyAttachmentPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DiskResourcePolicyAttachmentPtrOutput)
 }
 
 type DiskResourcePolicyAttachmentOutput struct {
@@ -234,6 +249,23 @@ func (o DiskResourcePolicyAttachmentOutput) ToDiskResourcePolicyAttachmentOutput
 	return o
 }
 
+type DiskResourcePolicyAttachmentPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (DiskResourcePolicyAttachmentPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DiskResourcePolicyAttachment)(nil)).Elem()
+}
+
+func (o DiskResourcePolicyAttachmentPtrOutput) ToDiskResourcePolicyAttachmentPtrOutput() DiskResourcePolicyAttachmentPtrOutput {
+	return o
+}
+
+func (o DiskResourcePolicyAttachmentPtrOutput) ToDiskResourcePolicyAttachmentPtrOutputWithContext(ctx context.Context) DiskResourcePolicyAttachmentPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(DiskResourcePolicyAttachmentOutput{})
+	pulumi.RegisterOutputType(DiskResourcePolicyAttachmentPtrOutput{})
 }

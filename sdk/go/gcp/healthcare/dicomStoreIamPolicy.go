@@ -249,6 +249,13 @@ type DicomStoreIamPolicyInput interface {
 	ToDicomStoreIamPolicyOutputWithContext(ctx context.Context) DicomStoreIamPolicyOutput
 }
 
+type DicomStoreIamPolicyPtrInput interface {
+	pulumi.Input
+
+	ToDicomStoreIamPolicyPtrOutput() DicomStoreIamPolicyPtrOutput
+	ToDicomStoreIamPolicyPtrOutputWithContext(ctx context.Context) DicomStoreIamPolicyPtrOutput
+}
+
 func (DicomStoreIamPolicy) ElementType() reflect.Type {
 	return reflect.TypeOf((*DicomStoreIamPolicy)(nil)).Elem()
 }
@@ -259,6 +266,14 @@ func (i DicomStoreIamPolicy) ToDicomStoreIamPolicyOutput() DicomStoreIamPolicyOu
 
 func (i DicomStoreIamPolicy) ToDicomStoreIamPolicyOutputWithContext(ctx context.Context) DicomStoreIamPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DicomStoreIamPolicyOutput)
+}
+
+func (i DicomStoreIamPolicy) ToDicomStoreIamPolicyPtrOutput() DicomStoreIamPolicyPtrOutput {
+	return i.ToDicomStoreIamPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i DicomStoreIamPolicy) ToDicomStoreIamPolicyPtrOutputWithContext(ctx context.Context) DicomStoreIamPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DicomStoreIamPolicyPtrOutput)
 }
 
 type DicomStoreIamPolicyOutput struct {
@@ -277,6 +292,23 @@ func (o DicomStoreIamPolicyOutput) ToDicomStoreIamPolicyOutputWithContext(ctx co
 	return o
 }
 
+type DicomStoreIamPolicyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (DicomStoreIamPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DicomStoreIamPolicy)(nil)).Elem()
+}
+
+func (o DicomStoreIamPolicyPtrOutput) ToDicomStoreIamPolicyPtrOutput() DicomStoreIamPolicyPtrOutput {
+	return o
+}
+
+func (o DicomStoreIamPolicyPtrOutput) ToDicomStoreIamPolicyPtrOutputWithContext(ctx context.Context) DicomStoreIamPolicyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(DicomStoreIamPolicyOutput{})
+	pulumi.RegisterOutputType(DicomStoreIamPolicyPtrOutput{})
 }

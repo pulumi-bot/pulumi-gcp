@@ -257,6 +257,13 @@ type GlobalNetworkEndpointGroupInput interface {
 	ToGlobalNetworkEndpointGroupOutputWithContext(ctx context.Context) GlobalNetworkEndpointGroupOutput
 }
 
+type GlobalNetworkEndpointGroupPtrInput interface {
+	pulumi.Input
+
+	ToGlobalNetworkEndpointGroupPtrOutput() GlobalNetworkEndpointGroupPtrOutput
+	ToGlobalNetworkEndpointGroupPtrOutputWithContext(ctx context.Context) GlobalNetworkEndpointGroupPtrOutput
+}
+
 func (GlobalNetworkEndpointGroup) ElementType() reflect.Type {
 	return reflect.TypeOf((*GlobalNetworkEndpointGroup)(nil)).Elem()
 }
@@ -267,6 +274,14 @@ func (i GlobalNetworkEndpointGroup) ToGlobalNetworkEndpointGroupOutput() GlobalN
 
 func (i GlobalNetworkEndpointGroup) ToGlobalNetworkEndpointGroupOutputWithContext(ctx context.Context) GlobalNetworkEndpointGroupOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GlobalNetworkEndpointGroupOutput)
+}
+
+func (i GlobalNetworkEndpointGroup) ToGlobalNetworkEndpointGroupPtrOutput() GlobalNetworkEndpointGroupPtrOutput {
+	return i.ToGlobalNetworkEndpointGroupPtrOutputWithContext(context.Background())
+}
+
+func (i GlobalNetworkEndpointGroup) ToGlobalNetworkEndpointGroupPtrOutputWithContext(ctx context.Context) GlobalNetworkEndpointGroupPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalNetworkEndpointGroupPtrOutput)
 }
 
 type GlobalNetworkEndpointGroupOutput struct {
@@ -285,6 +300,23 @@ func (o GlobalNetworkEndpointGroupOutput) ToGlobalNetworkEndpointGroupOutputWith
 	return o
 }
 
+type GlobalNetworkEndpointGroupPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (GlobalNetworkEndpointGroupPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GlobalNetworkEndpointGroup)(nil)).Elem()
+}
+
+func (o GlobalNetworkEndpointGroupPtrOutput) ToGlobalNetworkEndpointGroupPtrOutput() GlobalNetworkEndpointGroupPtrOutput {
+	return o
+}
+
+func (o GlobalNetworkEndpointGroupPtrOutput) ToGlobalNetworkEndpointGroupPtrOutputWithContext(ctx context.Context) GlobalNetworkEndpointGroupPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(GlobalNetworkEndpointGroupOutput{})
+	pulumi.RegisterOutputType(GlobalNetworkEndpointGroupPtrOutput{})
 }

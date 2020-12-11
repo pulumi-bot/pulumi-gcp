@@ -216,6 +216,13 @@ type ProjectBucketConfigInput interface {
 	ToProjectBucketConfigOutputWithContext(ctx context.Context) ProjectBucketConfigOutput
 }
 
+type ProjectBucketConfigPtrInput interface {
+	pulumi.Input
+
+	ToProjectBucketConfigPtrOutput() ProjectBucketConfigPtrOutput
+	ToProjectBucketConfigPtrOutputWithContext(ctx context.Context) ProjectBucketConfigPtrOutput
+}
+
 func (ProjectBucketConfig) ElementType() reflect.Type {
 	return reflect.TypeOf((*ProjectBucketConfig)(nil)).Elem()
 }
@@ -226,6 +233,14 @@ func (i ProjectBucketConfig) ToProjectBucketConfigOutput() ProjectBucketConfigOu
 
 func (i ProjectBucketConfig) ToProjectBucketConfigOutputWithContext(ctx context.Context) ProjectBucketConfigOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ProjectBucketConfigOutput)
+}
+
+func (i ProjectBucketConfig) ToProjectBucketConfigPtrOutput() ProjectBucketConfigPtrOutput {
+	return i.ToProjectBucketConfigPtrOutputWithContext(context.Background())
+}
+
+func (i ProjectBucketConfig) ToProjectBucketConfigPtrOutputWithContext(ctx context.Context) ProjectBucketConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProjectBucketConfigPtrOutput)
 }
 
 type ProjectBucketConfigOutput struct {
@@ -244,6 +259,23 @@ func (o ProjectBucketConfigOutput) ToProjectBucketConfigOutputWithContext(ctx co
 	return o
 }
 
+type ProjectBucketConfigPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ProjectBucketConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProjectBucketConfig)(nil)).Elem()
+}
+
+func (o ProjectBucketConfigPtrOutput) ToProjectBucketConfigPtrOutput() ProjectBucketConfigPtrOutput {
+	return o
+}
+
+func (o ProjectBucketConfigPtrOutput) ToProjectBucketConfigPtrOutputWithContext(ctx context.Context) ProjectBucketConfigPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ProjectBucketConfigOutput{})
+	pulumi.RegisterOutputType(ProjectBucketConfigPtrOutput{})
 }

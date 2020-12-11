@@ -622,6 +622,13 @@ type SubscriptionInput interface {
 	ToSubscriptionOutputWithContext(ctx context.Context) SubscriptionOutput
 }
 
+type SubscriptionPtrInput interface {
+	pulumi.Input
+
+	ToSubscriptionPtrOutput() SubscriptionPtrOutput
+	ToSubscriptionPtrOutputWithContext(ctx context.Context) SubscriptionPtrOutput
+}
+
 func (Subscription) ElementType() reflect.Type {
 	return reflect.TypeOf((*Subscription)(nil)).Elem()
 }
@@ -632,6 +639,14 @@ func (i Subscription) ToSubscriptionOutput() SubscriptionOutput {
 
 func (i Subscription) ToSubscriptionOutputWithContext(ctx context.Context) SubscriptionOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SubscriptionOutput)
+}
+
+func (i Subscription) ToSubscriptionPtrOutput() SubscriptionPtrOutput {
+	return i.ToSubscriptionPtrOutputWithContext(context.Background())
+}
+
+func (i Subscription) ToSubscriptionPtrOutputWithContext(ctx context.Context) SubscriptionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SubscriptionPtrOutput)
 }
 
 type SubscriptionOutput struct {
@@ -650,6 +665,23 @@ func (o SubscriptionOutput) ToSubscriptionOutputWithContext(ctx context.Context)
 	return o
 }
 
+type SubscriptionPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (SubscriptionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Subscription)(nil)).Elem()
+}
+
+func (o SubscriptionPtrOutput) ToSubscriptionPtrOutput() SubscriptionPtrOutput {
+	return o
+}
+
+func (o SubscriptionPtrOutput) ToSubscriptionPtrOutputWithContext(ctx context.Context) SubscriptionPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(SubscriptionOutput{})
+	pulumi.RegisterOutputType(SubscriptionPtrOutput{})
 }

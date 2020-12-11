@@ -324,6 +324,13 @@ type HttpHealthCheckInput interface {
 	ToHttpHealthCheckOutputWithContext(ctx context.Context) HttpHealthCheckOutput
 }
 
+type HttpHealthCheckPtrInput interface {
+	pulumi.Input
+
+	ToHttpHealthCheckPtrOutput() HttpHealthCheckPtrOutput
+	ToHttpHealthCheckPtrOutputWithContext(ctx context.Context) HttpHealthCheckPtrOutput
+}
+
 func (HttpHealthCheck) ElementType() reflect.Type {
 	return reflect.TypeOf((*HttpHealthCheck)(nil)).Elem()
 }
@@ -334,6 +341,14 @@ func (i HttpHealthCheck) ToHttpHealthCheckOutput() HttpHealthCheckOutput {
 
 func (i HttpHealthCheck) ToHttpHealthCheckOutputWithContext(ctx context.Context) HttpHealthCheckOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(HttpHealthCheckOutput)
+}
+
+func (i HttpHealthCheck) ToHttpHealthCheckPtrOutput() HttpHealthCheckPtrOutput {
+	return i.ToHttpHealthCheckPtrOutputWithContext(context.Background())
+}
+
+func (i HttpHealthCheck) ToHttpHealthCheckPtrOutputWithContext(ctx context.Context) HttpHealthCheckPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HttpHealthCheckPtrOutput)
 }
 
 type HttpHealthCheckOutput struct {
@@ -352,6 +367,23 @@ func (o HttpHealthCheckOutput) ToHttpHealthCheckOutputWithContext(ctx context.Co
 	return o
 }
 
+type HttpHealthCheckPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (HttpHealthCheckPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**HttpHealthCheck)(nil)).Elem()
+}
+
+func (o HttpHealthCheckPtrOutput) ToHttpHealthCheckPtrOutput() HttpHealthCheckPtrOutput {
+	return o
+}
+
+func (o HttpHealthCheckPtrOutput) ToHttpHealthCheckPtrOutputWithContext(ctx context.Context) HttpHealthCheckPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(HttpHealthCheckOutput{})
+	pulumi.RegisterOutputType(HttpHealthCheckPtrOutput{})
 }

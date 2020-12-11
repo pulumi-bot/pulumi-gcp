@@ -394,6 +394,13 @@ type KeyRingIAMMemberInput interface {
 	ToKeyRingIAMMemberOutputWithContext(ctx context.Context) KeyRingIAMMemberOutput
 }
 
+type KeyRingIAMMemberPtrInput interface {
+	pulumi.Input
+
+	ToKeyRingIAMMemberPtrOutput() KeyRingIAMMemberPtrOutput
+	ToKeyRingIAMMemberPtrOutputWithContext(ctx context.Context) KeyRingIAMMemberPtrOutput
+}
+
 func (KeyRingIAMMember) ElementType() reflect.Type {
 	return reflect.TypeOf((*KeyRingIAMMember)(nil)).Elem()
 }
@@ -404,6 +411,14 @@ func (i KeyRingIAMMember) ToKeyRingIAMMemberOutput() KeyRingIAMMemberOutput {
 
 func (i KeyRingIAMMember) ToKeyRingIAMMemberOutputWithContext(ctx context.Context) KeyRingIAMMemberOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(KeyRingIAMMemberOutput)
+}
+
+func (i KeyRingIAMMember) ToKeyRingIAMMemberPtrOutput() KeyRingIAMMemberPtrOutput {
+	return i.ToKeyRingIAMMemberPtrOutputWithContext(context.Background())
+}
+
+func (i KeyRingIAMMember) ToKeyRingIAMMemberPtrOutputWithContext(ctx context.Context) KeyRingIAMMemberPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KeyRingIAMMemberPtrOutput)
 }
 
 type KeyRingIAMMemberOutput struct {
@@ -422,6 +437,23 @@ func (o KeyRingIAMMemberOutput) ToKeyRingIAMMemberOutputWithContext(ctx context.
 	return o
 }
 
+type KeyRingIAMMemberPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (KeyRingIAMMemberPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**KeyRingIAMMember)(nil)).Elem()
+}
+
+func (o KeyRingIAMMemberPtrOutput) ToKeyRingIAMMemberPtrOutput() KeyRingIAMMemberPtrOutput {
+	return o
+}
+
+func (o KeyRingIAMMemberPtrOutput) ToKeyRingIAMMemberPtrOutputWithContext(ctx context.Context) KeyRingIAMMemberPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(KeyRingIAMMemberOutput{})
+	pulumi.RegisterOutputType(KeyRingIAMMemberPtrOutput{})
 }

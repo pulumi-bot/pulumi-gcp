@@ -235,6 +235,13 @@ type LienInput interface {
 	ToLienOutputWithContext(ctx context.Context) LienOutput
 }
 
+type LienPtrInput interface {
+	pulumi.Input
+
+	ToLienPtrOutput() LienPtrOutput
+	ToLienPtrOutputWithContext(ctx context.Context) LienPtrOutput
+}
+
 func (Lien) ElementType() reflect.Type {
 	return reflect.TypeOf((*Lien)(nil)).Elem()
 }
@@ -245,6 +252,14 @@ func (i Lien) ToLienOutput() LienOutput {
 
 func (i Lien) ToLienOutputWithContext(ctx context.Context) LienOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LienOutput)
+}
+
+func (i Lien) ToLienPtrOutput() LienPtrOutput {
+	return i.ToLienPtrOutputWithContext(context.Background())
+}
+
+func (i Lien) ToLienPtrOutputWithContext(ctx context.Context) LienPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LienPtrOutput)
 }
 
 type LienOutput struct {
@@ -263,6 +278,23 @@ func (o LienOutput) ToLienOutputWithContext(ctx context.Context) LienOutput {
 	return o
 }
 
+type LienPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (LienPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Lien)(nil)).Elem()
+}
+
+func (o LienPtrOutput) ToLienPtrOutput() LienPtrOutput {
+	return o
+}
+
+func (o LienPtrOutput) ToLienPtrOutputWithContext(ctx context.Context) LienPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(LienOutput{})
+	pulumi.RegisterOutputType(LienPtrOutput{})
 }

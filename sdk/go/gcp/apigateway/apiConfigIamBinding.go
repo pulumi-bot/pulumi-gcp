@@ -178,6 +178,13 @@ type ApiConfigIamBindingInput interface {
 	ToApiConfigIamBindingOutputWithContext(ctx context.Context) ApiConfigIamBindingOutput
 }
 
+type ApiConfigIamBindingPtrInput interface {
+	pulumi.Input
+
+	ToApiConfigIamBindingPtrOutput() ApiConfigIamBindingPtrOutput
+	ToApiConfigIamBindingPtrOutputWithContext(ctx context.Context) ApiConfigIamBindingPtrOutput
+}
+
 func (ApiConfigIamBinding) ElementType() reflect.Type {
 	return reflect.TypeOf((*ApiConfigIamBinding)(nil)).Elem()
 }
@@ -188,6 +195,14 @@ func (i ApiConfigIamBinding) ToApiConfigIamBindingOutput() ApiConfigIamBindingOu
 
 func (i ApiConfigIamBinding) ToApiConfigIamBindingOutputWithContext(ctx context.Context) ApiConfigIamBindingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ApiConfigIamBindingOutput)
+}
+
+func (i ApiConfigIamBinding) ToApiConfigIamBindingPtrOutput() ApiConfigIamBindingPtrOutput {
+	return i.ToApiConfigIamBindingPtrOutputWithContext(context.Background())
+}
+
+func (i ApiConfigIamBinding) ToApiConfigIamBindingPtrOutputWithContext(ctx context.Context) ApiConfigIamBindingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApiConfigIamBindingPtrOutput)
 }
 
 type ApiConfigIamBindingOutput struct {
@@ -206,6 +221,23 @@ func (o ApiConfigIamBindingOutput) ToApiConfigIamBindingOutputWithContext(ctx co
 	return o
 }
 
+type ApiConfigIamBindingPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ApiConfigIamBindingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ApiConfigIamBinding)(nil)).Elem()
+}
+
+func (o ApiConfigIamBindingPtrOutput) ToApiConfigIamBindingPtrOutput() ApiConfigIamBindingPtrOutput {
+	return o
+}
+
+func (o ApiConfigIamBindingPtrOutput) ToApiConfigIamBindingPtrOutputWithContext(ctx context.Context) ApiConfigIamBindingPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ApiConfigIamBindingOutput{})
+	pulumi.RegisterOutputType(ApiConfigIamBindingPtrOutput{})
 }

@@ -384,6 +384,13 @@ type WebTypeAppEngingIamMemberInput interface {
 	ToWebTypeAppEngingIamMemberOutputWithContext(ctx context.Context) WebTypeAppEngingIamMemberOutput
 }
 
+type WebTypeAppEngingIamMemberPtrInput interface {
+	pulumi.Input
+
+	ToWebTypeAppEngingIamMemberPtrOutput() WebTypeAppEngingIamMemberPtrOutput
+	ToWebTypeAppEngingIamMemberPtrOutputWithContext(ctx context.Context) WebTypeAppEngingIamMemberPtrOutput
+}
+
 func (WebTypeAppEngingIamMember) ElementType() reflect.Type {
 	return reflect.TypeOf((*WebTypeAppEngingIamMember)(nil)).Elem()
 }
@@ -394,6 +401,14 @@ func (i WebTypeAppEngingIamMember) ToWebTypeAppEngingIamMemberOutput() WebTypeAp
 
 func (i WebTypeAppEngingIamMember) ToWebTypeAppEngingIamMemberOutputWithContext(ctx context.Context) WebTypeAppEngingIamMemberOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WebTypeAppEngingIamMemberOutput)
+}
+
+func (i WebTypeAppEngingIamMember) ToWebTypeAppEngingIamMemberPtrOutput() WebTypeAppEngingIamMemberPtrOutput {
+	return i.ToWebTypeAppEngingIamMemberPtrOutputWithContext(context.Background())
+}
+
+func (i WebTypeAppEngingIamMember) ToWebTypeAppEngingIamMemberPtrOutputWithContext(ctx context.Context) WebTypeAppEngingIamMemberPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebTypeAppEngingIamMemberPtrOutput)
 }
 
 type WebTypeAppEngingIamMemberOutput struct {
@@ -412,6 +427,23 @@ func (o WebTypeAppEngingIamMemberOutput) ToWebTypeAppEngingIamMemberOutputWithCo
 	return o
 }
 
+type WebTypeAppEngingIamMemberPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (WebTypeAppEngingIamMemberPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebTypeAppEngingIamMember)(nil)).Elem()
+}
+
+func (o WebTypeAppEngingIamMemberPtrOutput) ToWebTypeAppEngingIamMemberPtrOutput() WebTypeAppEngingIamMemberPtrOutput {
+	return o
+}
+
+func (o WebTypeAppEngingIamMemberPtrOutput) ToWebTypeAppEngingIamMemberPtrOutputWithContext(ctx context.Context) WebTypeAppEngingIamMemberPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(WebTypeAppEngingIamMemberOutput{})
+	pulumi.RegisterOutputType(WebTypeAppEngingIamMemberPtrOutput{})
 }

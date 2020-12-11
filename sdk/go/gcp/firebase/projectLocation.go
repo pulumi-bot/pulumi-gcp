@@ -135,6 +135,13 @@ type ProjectLocationInput interface {
 	ToProjectLocationOutputWithContext(ctx context.Context) ProjectLocationOutput
 }
 
+type ProjectLocationPtrInput interface {
+	pulumi.Input
+
+	ToProjectLocationPtrOutput() ProjectLocationPtrOutput
+	ToProjectLocationPtrOutputWithContext(ctx context.Context) ProjectLocationPtrOutput
+}
+
 func (ProjectLocation) ElementType() reflect.Type {
 	return reflect.TypeOf((*ProjectLocation)(nil)).Elem()
 }
@@ -145,6 +152,14 @@ func (i ProjectLocation) ToProjectLocationOutput() ProjectLocationOutput {
 
 func (i ProjectLocation) ToProjectLocationOutputWithContext(ctx context.Context) ProjectLocationOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ProjectLocationOutput)
+}
+
+func (i ProjectLocation) ToProjectLocationPtrOutput() ProjectLocationPtrOutput {
+	return i.ToProjectLocationPtrOutputWithContext(context.Background())
+}
+
+func (i ProjectLocation) ToProjectLocationPtrOutputWithContext(ctx context.Context) ProjectLocationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProjectLocationPtrOutput)
 }
 
 type ProjectLocationOutput struct {
@@ -163,6 +178,23 @@ func (o ProjectLocationOutput) ToProjectLocationOutputWithContext(ctx context.Co
 	return o
 }
 
+type ProjectLocationPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ProjectLocationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProjectLocation)(nil)).Elem()
+}
+
+func (o ProjectLocationPtrOutput) ToProjectLocationPtrOutput() ProjectLocationPtrOutput {
+	return o
+}
+
+func (o ProjectLocationPtrOutput) ToProjectLocationPtrOutputWithContext(ctx context.Context) ProjectLocationPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ProjectLocationOutput{})
+	pulumi.RegisterOutputType(ProjectLocationPtrOutput{})
 }

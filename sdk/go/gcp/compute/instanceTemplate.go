@@ -615,6 +615,13 @@ type InstanceTemplateInput interface {
 	ToInstanceTemplateOutputWithContext(ctx context.Context) InstanceTemplateOutput
 }
 
+type InstanceTemplatePtrInput interface {
+	pulumi.Input
+
+	ToInstanceTemplatePtrOutput() InstanceTemplatePtrOutput
+	ToInstanceTemplatePtrOutputWithContext(ctx context.Context) InstanceTemplatePtrOutput
+}
+
 func (InstanceTemplate) ElementType() reflect.Type {
 	return reflect.TypeOf((*InstanceTemplate)(nil)).Elem()
 }
@@ -625,6 +632,14 @@ func (i InstanceTemplate) ToInstanceTemplateOutput() InstanceTemplateOutput {
 
 func (i InstanceTemplate) ToInstanceTemplateOutputWithContext(ctx context.Context) InstanceTemplateOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceTemplateOutput)
+}
+
+func (i InstanceTemplate) ToInstanceTemplatePtrOutput() InstanceTemplatePtrOutput {
+	return i.ToInstanceTemplatePtrOutputWithContext(context.Background())
+}
+
+func (i InstanceTemplate) ToInstanceTemplatePtrOutputWithContext(ctx context.Context) InstanceTemplatePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceTemplatePtrOutput)
 }
 
 type InstanceTemplateOutput struct {
@@ -643,6 +658,23 @@ func (o InstanceTemplateOutput) ToInstanceTemplateOutputWithContext(ctx context.
 	return o
 }
 
+type InstanceTemplatePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (InstanceTemplatePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**InstanceTemplate)(nil)).Elem()
+}
+
+func (o InstanceTemplatePtrOutput) ToInstanceTemplatePtrOutput() InstanceTemplatePtrOutput {
+	return o
+}
+
+func (o InstanceTemplatePtrOutput) ToInstanceTemplatePtrOutputWithContext(ctx context.Context) InstanceTemplatePtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(InstanceTemplateOutput{})
+	pulumi.RegisterOutputType(InstanceTemplatePtrOutput{})
 }

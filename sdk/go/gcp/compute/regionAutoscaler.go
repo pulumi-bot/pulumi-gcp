@@ -324,6 +324,13 @@ type RegionAutoscalerInput interface {
 	ToRegionAutoscalerOutputWithContext(ctx context.Context) RegionAutoscalerOutput
 }
 
+type RegionAutoscalerPtrInput interface {
+	pulumi.Input
+
+	ToRegionAutoscalerPtrOutput() RegionAutoscalerPtrOutput
+	ToRegionAutoscalerPtrOutputWithContext(ctx context.Context) RegionAutoscalerPtrOutput
+}
+
 func (RegionAutoscaler) ElementType() reflect.Type {
 	return reflect.TypeOf((*RegionAutoscaler)(nil)).Elem()
 }
@@ -334,6 +341,14 @@ func (i RegionAutoscaler) ToRegionAutoscalerOutput() RegionAutoscalerOutput {
 
 func (i RegionAutoscaler) ToRegionAutoscalerOutputWithContext(ctx context.Context) RegionAutoscalerOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RegionAutoscalerOutput)
+}
+
+func (i RegionAutoscaler) ToRegionAutoscalerPtrOutput() RegionAutoscalerPtrOutput {
+	return i.ToRegionAutoscalerPtrOutputWithContext(context.Background())
+}
+
+func (i RegionAutoscaler) ToRegionAutoscalerPtrOutputWithContext(ctx context.Context) RegionAutoscalerPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegionAutoscalerPtrOutput)
 }
 
 type RegionAutoscalerOutput struct {
@@ -352,6 +367,23 @@ func (o RegionAutoscalerOutput) ToRegionAutoscalerOutputWithContext(ctx context.
 	return o
 }
 
+type RegionAutoscalerPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (RegionAutoscalerPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RegionAutoscaler)(nil)).Elem()
+}
+
+func (o RegionAutoscalerPtrOutput) ToRegionAutoscalerPtrOutput() RegionAutoscalerPtrOutput {
+	return o
+}
+
+func (o RegionAutoscalerPtrOutput) ToRegionAutoscalerPtrOutputWithContext(ctx context.Context) RegionAutoscalerPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(RegionAutoscalerOutput{})
+	pulumi.RegisterOutputType(RegionAutoscalerPtrOutput{})
 }

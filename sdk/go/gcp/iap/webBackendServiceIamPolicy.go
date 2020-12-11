@@ -356,6 +356,13 @@ type WebBackendServiceIamPolicyInput interface {
 	ToWebBackendServiceIamPolicyOutputWithContext(ctx context.Context) WebBackendServiceIamPolicyOutput
 }
 
+type WebBackendServiceIamPolicyPtrInput interface {
+	pulumi.Input
+
+	ToWebBackendServiceIamPolicyPtrOutput() WebBackendServiceIamPolicyPtrOutput
+	ToWebBackendServiceIamPolicyPtrOutputWithContext(ctx context.Context) WebBackendServiceIamPolicyPtrOutput
+}
+
 func (WebBackendServiceIamPolicy) ElementType() reflect.Type {
 	return reflect.TypeOf((*WebBackendServiceIamPolicy)(nil)).Elem()
 }
@@ -366,6 +373,14 @@ func (i WebBackendServiceIamPolicy) ToWebBackendServiceIamPolicyOutput() WebBack
 
 func (i WebBackendServiceIamPolicy) ToWebBackendServiceIamPolicyOutputWithContext(ctx context.Context) WebBackendServiceIamPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WebBackendServiceIamPolicyOutput)
+}
+
+func (i WebBackendServiceIamPolicy) ToWebBackendServiceIamPolicyPtrOutput() WebBackendServiceIamPolicyPtrOutput {
+	return i.ToWebBackendServiceIamPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i WebBackendServiceIamPolicy) ToWebBackendServiceIamPolicyPtrOutputWithContext(ctx context.Context) WebBackendServiceIamPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebBackendServiceIamPolicyPtrOutput)
 }
 
 type WebBackendServiceIamPolicyOutput struct {
@@ -384,6 +399,23 @@ func (o WebBackendServiceIamPolicyOutput) ToWebBackendServiceIamPolicyOutputWith
 	return o
 }
 
+type WebBackendServiceIamPolicyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (WebBackendServiceIamPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebBackendServiceIamPolicy)(nil)).Elem()
+}
+
+func (o WebBackendServiceIamPolicyPtrOutput) ToWebBackendServiceIamPolicyPtrOutput() WebBackendServiceIamPolicyPtrOutput {
+	return o
+}
+
+func (o WebBackendServiceIamPolicyPtrOutput) ToWebBackendServiceIamPolicyPtrOutputWithContext(ctx context.Context) WebBackendServiceIamPolicyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(WebBackendServiceIamPolicyOutput{})
+	pulumi.RegisterOutputType(WebBackendServiceIamPolicyPtrOutput{})
 }

@@ -373,6 +373,13 @@ type InstanceGroupManagerInput interface {
 	ToInstanceGroupManagerOutputWithContext(ctx context.Context) InstanceGroupManagerOutput
 }
 
+type InstanceGroupManagerPtrInput interface {
+	pulumi.Input
+
+	ToInstanceGroupManagerPtrOutput() InstanceGroupManagerPtrOutput
+	ToInstanceGroupManagerPtrOutputWithContext(ctx context.Context) InstanceGroupManagerPtrOutput
+}
+
 func (InstanceGroupManager) ElementType() reflect.Type {
 	return reflect.TypeOf((*InstanceGroupManager)(nil)).Elem()
 }
@@ -383,6 +390,14 @@ func (i InstanceGroupManager) ToInstanceGroupManagerOutput() InstanceGroupManage
 
 func (i InstanceGroupManager) ToInstanceGroupManagerOutputWithContext(ctx context.Context) InstanceGroupManagerOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceGroupManagerOutput)
+}
+
+func (i InstanceGroupManager) ToInstanceGroupManagerPtrOutput() InstanceGroupManagerPtrOutput {
+	return i.ToInstanceGroupManagerPtrOutputWithContext(context.Background())
+}
+
+func (i InstanceGroupManager) ToInstanceGroupManagerPtrOutputWithContext(ctx context.Context) InstanceGroupManagerPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceGroupManagerPtrOutput)
 }
 
 type InstanceGroupManagerOutput struct {
@@ -401,6 +416,23 @@ func (o InstanceGroupManagerOutput) ToInstanceGroupManagerOutputWithContext(ctx 
 	return o
 }
 
+type InstanceGroupManagerPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (InstanceGroupManagerPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**InstanceGroupManager)(nil)).Elem()
+}
+
+func (o InstanceGroupManagerPtrOutput) ToInstanceGroupManagerPtrOutput() InstanceGroupManagerPtrOutput {
+	return o
+}
+
+func (o InstanceGroupManagerPtrOutput) ToInstanceGroupManagerPtrOutputWithContext(ctx context.Context) InstanceGroupManagerPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(InstanceGroupManagerOutput{})
+	pulumi.RegisterOutputType(InstanceGroupManagerPtrOutput{})
 }

@@ -410,6 +410,13 @@ type IAMAuditConfigInput interface {
 	ToIAMAuditConfigOutputWithContext(ctx context.Context) IAMAuditConfigOutput
 }
 
+type IAMAuditConfigPtrInput interface {
+	pulumi.Input
+
+	ToIAMAuditConfigPtrOutput() IAMAuditConfigPtrOutput
+	ToIAMAuditConfigPtrOutputWithContext(ctx context.Context) IAMAuditConfigPtrOutput
+}
+
 func (IAMAuditConfig) ElementType() reflect.Type {
 	return reflect.TypeOf((*IAMAuditConfig)(nil)).Elem()
 }
@@ -420,6 +427,14 @@ func (i IAMAuditConfig) ToIAMAuditConfigOutput() IAMAuditConfigOutput {
 
 func (i IAMAuditConfig) ToIAMAuditConfigOutputWithContext(ctx context.Context) IAMAuditConfigOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IAMAuditConfigOutput)
+}
+
+func (i IAMAuditConfig) ToIAMAuditConfigPtrOutput() IAMAuditConfigPtrOutput {
+	return i.ToIAMAuditConfigPtrOutputWithContext(context.Background())
+}
+
+func (i IAMAuditConfig) ToIAMAuditConfigPtrOutputWithContext(ctx context.Context) IAMAuditConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IAMAuditConfigPtrOutput)
 }
 
 type IAMAuditConfigOutput struct {
@@ -438,6 +453,23 @@ func (o IAMAuditConfigOutput) ToIAMAuditConfigOutputWithContext(ctx context.Cont
 	return o
 }
 
+type IAMAuditConfigPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (IAMAuditConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**IAMAuditConfig)(nil)).Elem()
+}
+
+func (o IAMAuditConfigPtrOutput) ToIAMAuditConfigPtrOutput() IAMAuditConfigPtrOutput {
+	return o
+}
+
+func (o IAMAuditConfigPtrOutput) ToIAMAuditConfigPtrOutputWithContext(ctx context.Context) IAMAuditConfigPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(IAMAuditConfigOutput{})
+	pulumi.RegisterOutputType(IAMAuditConfigPtrOutput{})
 }

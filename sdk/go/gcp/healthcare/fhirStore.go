@@ -508,6 +508,13 @@ type FhirStoreInput interface {
 	ToFhirStoreOutputWithContext(ctx context.Context) FhirStoreOutput
 }
 
+type FhirStorePtrInput interface {
+	pulumi.Input
+
+	ToFhirStorePtrOutput() FhirStorePtrOutput
+	ToFhirStorePtrOutputWithContext(ctx context.Context) FhirStorePtrOutput
+}
+
 func (FhirStore) ElementType() reflect.Type {
 	return reflect.TypeOf((*FhirStore)(nil)).Elem()
 }
@@ -518,6 +525,14 @@ func (i FhirStore) ToFhirStoreOutput() FhirStoreOutput {
 
 func (i FhirStore) ToFhirStoreOutputWithContext(ctx context.Context) FhirStoreOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FhirStoreOutput)
+}
+
+func (i FhirStore) ToFhirStorePtrOutput() FhirStorePtrOutput {
+	return i.ToFhirStorePtrOutputWithContext(context.Background())
+}
+
+func (i FhirStore) ToFhirStorePtrOutputWithContext(ctx context.Context) FhirStorePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FhirStorePtrOutput)
 }
 
 type FhirStoreOutput struct {
@@ -536,6 +551,23 @@ func (o FhirStoreOutput) ToFhirStoreOutputWithContext(ctx context.Context) FhirS
 	return o
 }
 
+type FhirStorePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (FhirStorePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**FhirStore)(nil)).Elem()
+}
+
+func (o FhirStorePtrOutput) ToFhirStorePtrOutput() FhirStorePtrOutput {
+	return o
+}
+
+func (o FhirStorePtrOutput) ToFhirStorePtrOutputWithContext(ctx context.Context) FhirStorePtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(FhirStoreOutput{})
+	pulumi.RegisterOutputType(FhirStorePtrOutput{})
 }

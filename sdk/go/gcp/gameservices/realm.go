@@ -218,6 +218,13 @@ type RealmInput interface {
 	ToRealmOutputWithContext(ctx context.Context) RealmOutput
 }
 
+type RealmPtrInput interface {
+	pulumi.Input
+
+	ToRealmPtrOutput() RealmPtrOutput
+	ToRealmPtrOutputWithContext(ctx context.Context) RealmPtrOutput
+}
+
 func (Realm) ElementType() reflect.Type {
 	return reflect.TypeOf((*Realm)(nil)).Elem()
 }
@@ -228,6 +235,14 @@ func (i Realm) ToRealmOutput() RealmOutput {
 
 func (i Realm) ToRealmOutputWithContext(ctx context.Context) RealmOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RealmOutput)
+}
+
+func (i Realm) ToRealmPtrOutput() RealmPtrOutput {
+	return i.ToRealmPtrOutputWithContext(context.Background())
+}
+
+func (i Realm) ToRealmPtrOutputWithContext(ctx context.Context) RealmPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RealmPtrOutput)
 }
 
 type RealmOutput struct {
@@ -246,6 +261,23 @@ func (o RealmOutput) ToRealmOutputWithContext(ctx context.Context) RealmOutput {
 	return o
 }
 
+type RealmPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (RealmPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Realm)(nil)).Elem()
+}
+
+func (o RealmPtrOutput) ToRealmPtrOutput() RealmPtrOutput {
+	return o
+}
+
+func (o RealmPtrOutput) ToRealmPtrOutputWithContext(ctx context.Context) RealmPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(RealmOutput{})
+	pulumi.RegisterOutputType(RealmPtrOutput{})
 }

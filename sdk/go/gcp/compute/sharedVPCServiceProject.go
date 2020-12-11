@@ -141,6 +141,13 @@ type SharedVPCServiceProjectInput interface {
 	ToSharedVPCServiceProjectOutputWithContext(ctx context.Context) SharedVPCServiceProjectOutput
 }
 
+type SharedVPCServiceProjectPtrInput interface {
+	pulumi.Input
+
+	ToSharedVPCServiceProjectPtrOutput() SharedVPCServiceProjectPtrOutput
+	ToSharedVPCServiceProjectPtrOutputWithContext(ctx context.Context) SharedVPCServiceProjectPtrOutput
+}
+
 func (SharedVPCServiceProject) ElementType() reflect.Type {
 	return reflect.TypeOf((*SharedVPCServiceProject)(nil)).Elem()
 }
@@ -151,6 +158,14 @@ func (i SharedVPCServiceProject) ToSharedVPCServiceProjectOutput() SharedVPCServ
 
 func (i SharedVPCServiceProject) ToSharedVPCServiceProjectOutputWithContext(ctx context.Context) SharedVPCServiceProjectOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SharedVPCServiceProjectOutput)
+}
+
+func (i SharedVPCServiceProject) ToSharedVPCServiceProjectPtrOutput() SharedVPCServiceProjectPtrOutput {
+	return i.ToSharedVPCServiceProjectPtrOutputWithContext(context.Background())
+}
+
+func (i SharedVPCServiceProject) ToSharedVPCServiceProjectPtrOutputWithContext(ctx context.Context) SharedVPCServiceProjectPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SharedVPCServiceProjectPtrOutput)
 }
 
 type SharedVPCServiceProjectOutput struct {
@@ -169,6 +184,23 @@ func (o SharedVPCServiceProjectOutput) ToSharedVPCServiceProjectOutputWithContex
 	return o
 }
 
+type SharedVPCServiceProjectPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (SharedVPCServiceProjectPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SharedVPCServiceProject)(nil)).Elem()
+}
+
+func (o SharedVPCServiceProjectPtrOutput) ToSharedVPCServiceProjectPtrOutput() SharedVPCServiceProjectPtrOutput {
+	return o
+}
+
+func (o SharedVPCServiceProjectPtrOutput) ToSharedVPCServiceProjectPtrOutputWithContext(ctx context.Context) SharedVPCServiceProjectPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(SharedVPCServiceProjectOutput{})
+	pulumi.RegisterOutputType(SharedVPCServiceProjectPtrOutput{})
 }

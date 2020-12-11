@@ -394,6 +394,13 @@ type AppEngineVersionIamPolicyInput interface {
 	ToAppEngineVersionIamPolicyOutputWithContext(ctx context.Context) AppEngineVersionIamPolicyOutput
 }
 
+type AppEngineVersionIamPolicyPtrInput interface {
+	pulumi.Input
+
+	ToAppEngineVersionIamPolicyPtrOutput() AppEngineVersionIamPolicyPtrOutput
+	ToAppEngineVersionIamPolicyPtrOutputWithContext(ctx context.Context) AppEngineVersionIamPolicyPtrOutput
+}
+
 func (AppEngineVersionIamPolicy) ElementType() reflect.Type {
 	return reflect.TypeOf((*AppEngineVersionIamPolicy)(nil)).Elem()
 }
@@ -404,6 +411,14 @@ func (i AppEngineVersionIamPolicy) ToAppEngineVersionIamPolicyOutput() AppEngine
 
 func (i AppEngineVersionIamPolicy) ToAppEngineVersionIamPolicyOutputWithContext(ctx context.Context) AppEngineVersionIamPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AppEngineVersionIamPolicyOutput)
+}
+
+func (i AppEngineVersionIamPolicy) ToAppEngineVersionIamPolicyPtrOutput() AppEngineVersionIamPolicyPtrOutput {
+	return i.ToAppEngineVersionIamPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i AppEngineVersionIamPolicy) ToAppEngineVersionIamPolicyPtrOutputWithContext(ctx context.Context) AppEngineVersionIamPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AppEngineVersionIamPolicyPtrOutput)
 }
 
 type AppEngineVersionIamPolicyOutput struct {
@@ -422,6 +437,23 @@ func (o AppEngineVersionIamPolicyOutput) ToAppEngineVersionIamPolicyOutputWithCo
 	return o
 }
 
+type AppEngineVersionIamPolicyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (AppEngineVersionIamPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AppEngineVersionIamPolicy)(nil)).Elem()
+}
+
+func (o AppEngineVersionIamPolicyPtrOutput) ToAppEngineVersionIamPolicyPtrOutput() AppEngineVersionIamPolicyPtrOutput {
+	return o
+}
+
+func (o AppEngineVersionIamPolicyPtrOutput) ToAppEngineVersionIamPolicyPtrOutputWithContext(ctx context.Context) AppEngineVersionIamPolicyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(AppEngineVersionIamPolicyOutput{})
+	pulumi.RegisterOutputType(AppEngineVersionIamPolicyPtrOutput{})
 }

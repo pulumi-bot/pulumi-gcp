@@ -166,7 +166,7 @@ func (i DeploymentTargetArgs) ToDeploymentTargetPtrOutput() DeploymentTargetPtrO
 }
 
 func (i DeploymentTargetArgs) ToDeploymentTargetPtrOutputWithContext(ctx context.Context) DeploymentTargetPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentTargetOutput).ToDeploymentTargetPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentTargetOutput).ToDeploymentTargetPtrOutput()
 }
 
 // DeploymentTargetPtrInput is an input type that accepts DeploymentTargetArgs, DeploymentTargetPtr and DeploymentTargetPtrOutput values.
@@ -199,7 +199,7 @@ func (i *deploymentTargetPtrType) ToDeploymentTargetPtrOutput() DeploymentTarget
 }
 
 func (i *deploymentTargetPtrType) ToDeploymentTargetPtrOutputWithContext(ctx context.Context) DeploymentTargetPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentTargetPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentTargetOutput).ToDeploymentTargetPtrOutput()
 }
 
 type DeploymentTargetOutput struct{ *pulumi.OutputState }
@@ -320,7 +320,7 @@ func (i DeploymentTargetConfigArgs) ToDeploymentTargetConfigPtrOutput() Deployme
 }
 
 func (i DeploymentTargetConfigArgs) ToDeploymentTargetConfigPtrOutputWithContext(ctx context.Context) DeploymentTargetConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentTargetConfigOutput).ToDeploymentTargetConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentTargetConfigOutput).ToDeploymentTargetConfigPtrOutput()
 }
 
 // DeploymentTargetConfigPtrInput is an input type that accepts DeploymentTargetConfigArgs, DeploymentTargetConfigPtr and DeploymentTargetConfigPtrOutput values.
@@ -353,7 +353,7 @@ func (i *deploymentTargetConfigPtrType) ToDeploymentTargetConfigPtrOutput() Depl
 }
 
 func (i *deploymentTargetConfigPtrType) ToDeploymentTargetConfigPtrOutputWithContext(ctx context.Context) DeploymentTargetConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeploymentTargetConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentTargetConfigOutput).ToDeploymentTargetConfigPtrOutput()
 }
 
 type DeploymentTargetConfigOutput struct{ *pulumi.OutputState }

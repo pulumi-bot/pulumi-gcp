@@ -207,6 +207,13 @@ type EntryGroupInput interface {
 	ToEntryGroupOutputWithContext(ctx context.Context) EntryGroupOutput
 }
 
+type EntryGroupPtrInput interface {
+	pulumi.Input
+
+	ToEntryGroupPtrOutput() EntryGroupPtrOutput
+	ToEntryGroupPtrOutputWithContext(ctx context.Context) EntryGroupPtrOutput
+}
+
 func (EntryGroup) ElementType() reflect.Type {
 	return reflect.TypeOf((*EntryGroup)(nil)).Elem()
 }
@@ -217,6 +224,14 @@ func (i EntryGroup) ToEntryGroupOutput() EntryGroupOutput {
 
 func (i EntryGroup) ToEntryGroupOutputWithContext(ctx context.Context) EntryGroupOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EntryGroupOutput)
+}
+
+func (i EntryGroup) ToEntryGroupPtrOutput() EntryGroupPtrOutput {
+	return i.ToEntryGroupPtrOutputWithContext(context.Background())
+}
+
+func (i EntryGroup) ToEntryGroupPtrOutputWithContext(ctx context.Context) EntryGroupPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EntryGroupPtrOutput)
 }
 
 type EntryGroupOutput struct {
@@ -235,6 +250,23 @@ func (o EntryGroupOutput) ToEntryGroupOutputWithContext(ctx context.Context) Ent
 	return o
 }
 
+type EntryGroupPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (EntryGroupPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EntryGroup)(nil)).Elem()
+}
+
+func (o EntryGroupPtrOutput) ToEntryGroupPtrOutput() EntryGroupPtrOutput {
+	return o
+}
+
+func (o EntryGroupPtrOutput) ToEntryGroupPtrOutputWithContext(ctx context.Context) EntryGroupPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(EntryGroupOutput{})
+	pulumi.RegisterOutputType(EntryGroupPtrOutput{})
 }

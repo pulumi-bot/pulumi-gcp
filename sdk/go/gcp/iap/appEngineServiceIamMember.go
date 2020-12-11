@@ -403,6 +403,13 @@ type AppEngineServiceIamMemberInput interface {
 	ToAppEngineServiceIamMemberOutputWithContext(ctx context.Context) AppEngineServiceIamMemberOutput
 }
 
+type AppEngineServiceIamMemberPtrInput interface {
+	pulumi.Input
+
+	ToAppEngineServiceIamMemberPtrOutput() AppEngineServiceIamMemberPtrOutput
+	ToAppEngineServiceIamMemberPtrOutputWithContext(ctx context.Context) AppEngineServiceIamMemberPtrOutput
+}
+
 func (AppEngineServiceIamMember) ElementType() reflect.Type {
 	return reflect.TypeOf((*AppEngineServiceIamMember)(nil)).Elem()
 }
@@ -413,6 +420,14 @@ func (i AppEngineServiceIamMember) ToAppEngineServiceIamMemberOutput() AppEngine
 
 func (i AppEngineServiceIamMember) ToAppEngineServiceIamMemberOutputWithContext(ctx context.Context) AppEngineServiceIamMemberOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AppEngineServiceIamMemberOutput)
+}
+
+func (i AppEngineServiceIamMember) ToAppEngineServiceIamMemberPtrOutput() AppEngineServiceIamMemberPtrOutput {
+	return i.ToAppEngineServiceIamMemberPtrOutputWithContext(context.Background())
+}
+
+func (i AppEngineServiceIamMember) ToAppEngineServiceIamMemberPtrOutputWithContext(ctx context.Context) AppEngineServiceIamMemberPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AppEngineServiceIamMemberPtrOutput)
 }
 
 type AppEngineServiceIamMemberOutput struct {
@@ -431,6 +446,23 @@ func (o AppEngineServiceIamMemberOutput) ToAppEngineServiceIamMemberOutputWithCo
 	return o
 }
 
+type AppEngineServiceIamMemberPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (AppEngineServiceIamMemberPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AppEngineServiceIamMember)(nil)).Elem()
+}
+
+func (o AppEngineServiceIamMemberPtrOutput) ToAppEngineServiceIamMemberPtrOutput() AppEngineServiceIamMemberPtrOutput {
+	return o
+}
+
+func (o AppEngineServiceIamMemberPtrOutput) ToAppEngineServiceIamMemberPtrOutputWithContext(ctx context.Context) AppEngineServiceIamMemberPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(AppEngineServiceIamMemberOutput{})
+	pulumi.RegisterOutputType(AppEngineServiceIamMemberPtrOutput{})
 }

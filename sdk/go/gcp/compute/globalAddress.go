@@ -345,6 +345,13 @@ type GlobalAddressInput interface {
 	ToGlobalAddressOutputWithContext(ctx context.Context) GlobalAddressOutput
 }
 
+type GlobalAddressPtrInput interface {
+	pulumi.Input
+
+	ToGlobalAddressPtrOutput() GlobalAddressPtrOutput
+	ToGlobalAddressPtrOutputWithContext(ctx context.Context) GlobalAddressPtrOutput
+}
+
 func (GlobalAddress) ElementType() reflect.Type {
 	return reflect.TypeOf((*GlobalAddress)(nil)).Elem()
 }
@@ -355,6 +362,14 @@ func (i GlobalAddress) ToGlobalAddressOutput() GlobalAddressOutput {
 
 func (i GlobalAddress) ToGlobalAddressOutputWithContext(ctx context.Context) GlobalAddressOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GlobalAddressOutput)
+}
+
+func (i GlobalAddress) ToGlobalAddressPtrOutput() GlobalAddressPtrOutput {
+	return i.ToGlobalAddressPtrOutputWithContext(context.Background())
+}
+
+func (i GlobalAddress) ToGlobalAddressPtrOutputWithContext(ctx context.Context) GlobalAddressPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalAddressPtrOutput)
 }
 
 type GlobalAddressOutput struct {
@@ -373,6 +388,23 @@ func (o GlobalAddressOutput) ToGlobalAddressOutputWithContext(ctx context.Contex
 	return o
 }
 
+type GlobalAddressPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (GlobalAddressPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GlobalAddress)(nil)).Elem()
+}
+
+func (o GlobalAddressPtrOutput) ToGlobalAddressPtrOutput() GlobalAddressPtrOutput {
+	return o
+}
+
+func (o GlobalAddressPtrOutput) ToGlobalAddressPtrOutputWithContext(ctx context.Context) GlobalAddressPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(GlobalAddressOutput{})
+	pulumi.RegisterOutputType(GlobalAddressPtrOutput{})
 }

@@ -292,6 +292,13 @@ type QueueInput interface {
 	ToQueueOutputWithContext(ctx context.Context) QueueOutput
 }
 
+type QueuePtrInput interface {
+	pulumi.Input
+
+	ToQueuePtrOutput() QueuePtrOutput
+	ToQueuePtrOutputWithContext(ctx context.Context) QueuePtrOutput
+}
+
 func (Queue) ElementType() reflect.Type {
 	return reflect.TypeOf((*Queue)(nil)).Elem()
 }
@@ -302,6 +309,14 @@ func (i Queue) ToQueueOutput() QueueOutput {
 
 func (i Queue) ToQueueOutputWithContext(ctx context.Context) QueueOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(QueueOutput)
+}
+
+func (i Queue) ToQueuePtrOutput() QueuePtrOutput {
+	return i.ToQueuePtrOutputWithContext(context.Background())
+}
+
+func (i Queue) ToQueuePtrOutputWithContext(ctx context.Context) QueuePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(QueuePtrOutput)
 }
 
 type QueueOutput struct {
@@ -320,6 +335,23 @@ func (o QueueOutput) ToQueueOutputWithContext(ctx context.Context) QueueOutput {
 	return o
 }
 
+type QueuePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (QueuePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Queue)(nil)).Elem()
+}
+
+func (o QueuePtrOutput) ToQueuePtrOutput() QueuePtrOutput {
+	return o
+}
+
+func (o QueuePtrOutput) ToQueuePtrOutputWithContext(ctx context.Context) QueuePtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(QueueOutput{})
+	pulumi.RegisterOutputType(QueuePtrOutput{})
 }

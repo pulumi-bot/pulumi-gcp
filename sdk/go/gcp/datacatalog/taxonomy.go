@@ -178,6 +178,13 @@ type TaxonomyInput interface {
 	ToTaxonomyOutputWithContext(ctx context.Context) TaxonomyOutput
 }
 
+type TaxonomyPtrInput interface {
+	pulumi.Input
+
+	ToTaxonomyPtrOutput() TaxonomyPtrOutput
+	ToTaxonomyPtrOutputWithContext(ctx context.Context) TaxonomyPtrOutput
+}
+
 func (Taxonomy) ElementType() reflect.Type {
 	return reflect.TypeOf((*Taxonomy)(nil)).Elem()
 }
@@ -188,6 +195,14 @@ func (i Taxonomy) ToTaxonomyOutput() TaxonomyOutput {
 
 func (i Taxonomy) ToTaxonomyOutputWithContext(ctx context.Context) TaxonomyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TaxonomyOutput)
+}
+
+func (i Taxonomy) ToTaxonomyPtrOutput() TaxonomyPtrOutput {
+	return i.ToTaxonomyPtrOutputWithContext(context.Background())
+}
+
+func (i Taxonomy) ToTaxonomyPtrOutputWithContext(ctx context.Context) TaxonomyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TaxonomyPtrOutput)
 }
 
 type TaxonomyOutput struct {
@@ -206,6 +221,23 @@ func (o TaxonomyOutput) ToTaxonomyOutputWithContext(ctx context.Context) Taxonom
 	return o
 }
 
+type TaxonomyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (TaxonomyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Taxonomy)(nil)).Elem()
+}
+
+func (o TaxonomyPtrOutput) ToTaxonomyPtrOutput() TaxonomyPtrOutput {
+	return o
+}
+
+func (o TaxonomyPtrOutput) ToTaxonomyPtrOutputWithContext(ctx context.Context) TaxonomyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(TaxonomyOutput{})
+	pulumi.RegisterOutputType(TaxonomyPtrOutput{})
 }

@@ -367,6 +367,13 @@ type TunnelInstanceIAMPolicyInput interface {
 	ToTunnelInstanceIAMPolicyOutputWithContext(ctx context.Context) TunnelInstanceIAMPolicyOutput
 }
 
+type TunnelInstanceIAMPolicyPtrInput interface {
+	pulumi.Input
+
+	ToTunnelInstanceIAMPolicyPtrOutput() TunnelInstanceIAMPolicyPtrOutput
+	ToTunnelInstanceIAMPolicyPtrOutputWithContext(ctx context.Context) TunnelInstanceIAMPolicyPtrOutput
+}
+
 func (TunnelInstanceIAMPolicy) ElementType() reflect.Type {
 	return reflect.TypeOf((*TunnelInstanceIAMPolicy)(nil)).Elem()
 }
@@ -377,6 +384,14 @@ func (i TunnelInstanceIAMPolicy) ToTunnelInstanceIAMPolicyOutput() TunnelInstanc
 
 func (i TunnelInstanceIAMPolicy) ToTunnelInstanceIAMPolicyOutputWithContext(ctx context.Context) TunnelInstanceIAMPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TunnelInstanceIAMPolicyOutput)
+}
+
+func (i TunnelInstanceIAMPolicy) ToTunnelInstanceIAMPolicyPtrOutput() TunnelInstanceIAMPolicyPtrOutput {
+	return i.ToTunnelInstanceIAMPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i TunnelInstanceIAMPolicy) ToTunnelInstanceIAMPolicyPtrOutputWithContext(ctx context.Context) TunnelInstanceIAMPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TunnelInstanceIAMPolicyPtrOutput)
 }
 
 type TunnelInstanceIAMPolicyOutput struct {
@@ -395,6 +410,23 @@ func (o TunnelInstanceIAMPolicyOutput) ToTunnelInstanceIAMPolicyOutputWithContex
 	return o
 }
 
+type TunnelInstanceIAMPolicyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (TunnelInstanceIAMPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TunnelInstanceIAMPolicy)(nil)).Elem()
+}
+
+func (o TunnelInstanceIAMPolicyPtrOutput) ToTunnelInstanceIAMPolicyPtrOutput() TunnelInstanceIAMPolicyPtrOutput {
+	return o
+}
+
+func (o TunnelInstanceIAMPolicyPtrOutput) ToTunnelInstanceIAMPolicyPtrOutputWithContext(ctx context.Context) TunnelInstanceIAMPolicyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(TunnelInstanceIAMPolicyOutput{})
+	pulumi.RegisterOutputType(TunnelInstanceIAMPolicyPtrOutput{})
 }

@@ -147,6 +147,13 @@ type MachineImageIamPolicyInput interface {
 	ToMachineImageIamPolicyOutputWithContext(ctx context.Context) MachineImageIamPolicyOutput
 }
 
+type MachineImageIamPolicyPtrInput interface {
+	pulumi.Input
+
+	ToMachineImageIamPolicyPtrOutput() MachineImageIamPolicyPtrOutput
+	ToMachineImageIamPolicyPtrOutputWithContext(ctx context.Context) MachineImageIamPolicyPtrOutput
+}
+
 func (MachineImageIamPolicy) ElementType() reflect.Type {
 	return reflect.TypeOf((*MachineImageIamPolicy)(nil)).Elem()
 }
@@ -157,6 +164,14 @@ func (i MachineImageIamPolicy) ToMachineImageIamPolicyOutput() MachineImageIamPo
 
 func (i MachineImageIamPolicy) ToMachineImageIamPolicyOutputWithContext(ctx context.Context) MachineImageIamPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(MachineImageIamPolicyOutput)
+}
+
+func (i MachineImageIamPolicy) ToMachineImageIamPolicyPtrOutput() MachineImageIamPolicyPtrOutput {
+	return i.ToMachineImageIamPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i MachineImageIamPolicy) ToMachineImageIamPolicyPtrOutputWithContext(ctx context.Context) MachineImageIamPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MachineImageIamPolicyPtrOutput)
 }
 
 type MachineImageIamPolicyOutput struct {
@@ -175,6 +190,23 @@ func (o MachineImageIamPolicyOutput) ToMachineImageIamPolicyOutputWithContext(ct
 	return o
 }
 
+type MachineImageIamPolicyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (MachineImageIamPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**MachineImageIamPolicy)(nil)).Elem()
+}
+
+func (o MachineImageIamPolicyPtrOutput) ToMachineImageIamPolicyPtrOutput() MachineImageIamPolicyPtrOutput {
+	return o
+}
+
+func (o MachineImageIamPolicyPtrOutput) ToMachineImageIamPolicyPtrOutputWithContext(ctx context.Context) MachineImageIamPolicyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(MachineImageIamPolicyOutput{})
+	pulumi.RegisterOutputType(MachineImageIamPolicyPtrOutput{})
 }

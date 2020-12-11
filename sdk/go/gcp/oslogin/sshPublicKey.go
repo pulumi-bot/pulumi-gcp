@@ -145,6 +145,13 @@ type SshPublicKeyInput interface {
 	ToSshPublicKeyOutputWithContext(ctx context.Context) SshPublicKeyOutput
 }
 
+type SshPublicKeyPtrInput interface {
+	pulumi.Input
+
+	ToSshPublicKeyPtrOutput() SshPublicKeyPtrOutput
+	ToSshPublicKeyPtrOutputWithContext(ctx context.Context) SshPublicKeyPtrOutput
+}
+
 func (SshPublicKey) ElementType() reflect.Type {
 	return reflect.TypeOf((*SshPublicKey)(nil)).Elem()
 }
@@ -155,6 +162,14 @@ func (i SshPublicKey) ToSshPublicKeyOutput() SshPublicKeyOutput {
 
 func (i SshPublicKey) ToSshPublicKeyOutputWithContext(ctx context.Context) SshPublicKeyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SshPublicKeyOutput)
+}
+
+func (i SshPublicKey) ToSshPublicKeyPtrOutput() SshPublicKeyPtrOutput {
+	return i.ToSshPublicKeyPtrOutputWithContext(context.Background())
+}
+
+func (i SshPublicKey) ToSshPublicKeyPtrOutputWithContext(ctx context.Context) SshPublicKeyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SshPublicKeyPtrOutput)
 }
 
 type SshPublicKeyOutput struct {
@@ -173,6 +188,23 @@ func (o SshPublicKeyOutput) ToSshPublicKeyOutputWithContext(ctx context.Context)
 	return o
 }
 
+type SshPublicKeyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (SshPublicKeyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SshPublicKey)(nil)).Elem()
+}
+
+func (o SshPublicKeyPtrOutput) ToSshPublicKeyPtrOutput() SshPublicKeyPtrOutput {
+	return o
+}
+
+func (o SshPublicKeyPtrOutput) ToSshPublicKeyPtrOutputWithContext(ctx context.Context) SshPublicKeyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(SshPublicKeyOutput{})
+	pulumi.RegisterOutputType(SshPublicKeyPtrOutput{})
 }

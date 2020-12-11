@@ -336,6 +336,13 @@ type NotificationChannelInput interface {
 	ToNotificationChannelOutputWithContext(ctx context.Context) NotificationChannelOutput
 }
 
+type NotificationChannelPtrInput interface {
+	pulumi.Input
+
+	ToNotificationChannelPtrOutput() NotificationChannelPtrOutput
+	ToNotificationChannelPtrOutputWithContext(ctx context.Context) NotificationChannelPtrOutput
+}
+
 func (NotificationChannel) ElementType() reflect.Type {
 	return reflect.TypeOf((*NotificationChannel)(nil)).Elem()
 }
@@ -346,6 +353,14 @@ func (i NotificationChannel) ToNotificationChannelOutput() NotificationChannelOu
 
 func (i NotificationChannel) ToNotificationChannelOutputWithContext(ctx context.Context) NotificationChannelOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NotificationChannelOutput)
+}
+
+func (i NotificationChannel) ToNotificationChannelPtrOutput() NotificationChannelPtrOutput {
+	return i.ToNotificationChannelPtrOutputWithContext(context.Background())
+}
+
+func (i NotificationChannel) ToNotificationChannelPtrOutputWithContext(ctx context.Context) NotificationChannelPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationChannelPtrOutput)
 }
 
 type NotificationChannelOutput struct {
@@ -364,6 +379,23 @@ func (o NotificationChannelOutput) ToNotificationChannelOutputWithContext(ctx co
 	return o
 }
 
+type NotificationChannelPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (NotificationChannelPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NotificationChannel)(nil)).Elem()
+}
+
+func (o NotificationChannelPtrOutput) ToNotificationChannelPtrOutput() NotificationChannelPtrOutput {
+	return o
+}
+
+func (o NotificationChannelPtrOutput) ToNotificationChannelPtrOutputWithContext(ctx context.Context) NotificationChannelPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(NotificationChannelOutput{})
+	pulumi.RegisterOutputType(NotificationChannelPtrOutput{})
 }

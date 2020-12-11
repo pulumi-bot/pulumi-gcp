@@ -273,6 +273,13 @@ type JobIAMMemberInput interface {
 	ToJobIAMMemberOutputWithContext(ctx context.Context) JobIAMMemberOutput
 }
 
+type JobIAMMemberPtrInput interface {
+	pulumi.Input
+
+	ToJobIAMMemberPtrOutput() JobIAMMemberPtrOutput
+	ToJobIAMMemberPtrOutputWithContext(ctx context.Context) JobIAMMemberPtrOutput
+}
+
 func (JobIAMMember) ElementType() reflect.Type {
 	return reflect.TypeOf((*JobIAMMember)(nil)).Elem()
 }
@@ -283,6 +290,14 @@ func (i JobIAMMember) ToJobIAMMemberOutput() JobIAMMemberOutput {
 
 func (i JobIAMMember) ToJobIAMMemberOutputWithContext(ctx context.Context) JobIAMMemberOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(JobIAMMemberOutput)
+}
+
+func (i JobIAMMember) ToJobIAMMemberPtrOutput() JobIAMMemberPtrOutput {
+	return i.ToJobIAMMemberPtrOutputWithContext(context.Background())
+}
+
+func (i JobIAMMember) ToJobIAMMemberPtrOutputWithContext(ctx context.Context) JobIAMMemberPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(JobIAMMemberPtrOutput)
 }
 
 type JobIAMMemberOutput struct {
@@ -301,6 +316,23 @@ func (o JobIAMMemberOutput) ToJobIAMMemberOutputWithContext(ctx context.Context)
 	return o
 }
 
+type JobIAMMemberPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (JobIAMMemberPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**JobIAMMember)(nil)).Elem()
+}
+
+func (o JobIAMMemberPtrOutput) ToJobIAMMemberPtrOutput() JobIAMMemberPtrOutput {
+	return o
+}
+
+func (o JobIAMMemberPtrOutput) ToJobIAMMemberPtrOutputWithContext(ctx context.Context) JobIAMMemberPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(JobIAMMemberOutput{})
+	pulumi.RegisterOutputType(JobIAMMemberPtrOutput{})
 }

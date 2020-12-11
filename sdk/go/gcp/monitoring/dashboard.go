@@ -174,6 +174,13 @@ type DashboardInput interface {
 	ToDashboardOutputWithContext(ctx context.Context) DashboardOutput
 }
 
+type DashboardPtrInput interface {
+	pulumi.Input
+
+	ToDashboardPtrOutput() DashboardPtrOutput
+	ToDashboardPtrOutputWithContext(ctx context.Context) DashboardPtrOutput
+}
+
 func (Dashboard) ElementType() reflect.Type {
 	return reflect.TypeOf((*Dashboard)(nil)).Elem()
 }
@@ -184,6 +191,14 @@ func (i Dashboard) ToDashboardOutput() DashboardOutput {
 
 func (i Dashboard) ToDashboardOutputWithContext(ctx context.Context) DashboardOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DashboardOutput)
+}
+
+func (i Dashboard) ToDashboardPtrOutput() DashboardPtrOutput {
+	return i.ToDashboardPtrOutputWithContext(context.Background())
+}
+
+func (i Dashboard) ToDashboardPtrOutputWithContext(ctx context.Context) DashboardPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DashboardPtrOutput)
 }
 
 type DashboardOutput struct {
@@ -202,6 +217,23 @@ func (o DashboardOutput) ToDashboardOutputWithContext(ctx context.Context) Dashb
 	return o
 }
 
+type DashboardPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (DashboardPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Dashboard)(nil)).Elem()
+}
+
+func (o DashboardPtrOutput) ToDashboardPtrOutput() DashboardPtrOutput {
+	return o
+}
+
+func (o DashboardPtrOutput) ToDashboardPtrOutputWithContext(ctx context.Context) DashboardPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(DashboardOutput{})
+	pulumi.RegisterOutputType(DashboardPtrOutput{})
 }

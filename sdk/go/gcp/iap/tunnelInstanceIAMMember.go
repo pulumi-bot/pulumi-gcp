@@ -395,6 +395,13 @@ type TunnelInstanceIAMMemberInput interface {
 	ToTunnelInstanceIAMMemberOutputWithContext(ctx context.Context) TunnelInstanceIAMMemberOutput
 }
 
+type TunnelInstanceIAMMemberPtrInput interface {
+	pulumi.Input
+
+	ToTunnelInstanceIAMMemberPtrOutput() TunnelInstanceIAMMemberPtrOutput
+	ToTunnelInstanceIAMMemberPtrOutputWithContext(ctx context.Context) TunnelInstanceIAMMemberPtrOutput
+}
+
 func (TunnelInstanceIAMMember) ElementType() reflect.Type {
 	return reflect.TypeOf((*TunnelInstanceIAMMember)(nil)).Elem()
 }
@@ -405,6 +412,14 @@ func (i TunnelInstanceIAMMember) ToTunnelInstanceIAMMemberOutput() TunnelInstanc
 
 func (i TunnelInstanceIAMMember) ToTunnelInstanceIAMMemberOutputWithContext(ctx context.Context) TunnelInstanceIAMMemberOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TunnelInstanceIAMMemberOutput)
+}
+
+func (i TunnelInstanceIAMMember) ToTunnelInstanceIAMMemberPtrOutput() TunnelInstanceIAMMemberPtrOutput {
+	return i.ToTunnelInstanceIAMMemberPtrOutputWithContext(context.Background())
+}
+
+func (i TunnelInstanceIAMMember) ToTunnelInstanceIAMMemberPtrOutputWithContext(ctx context.Context) TunnelInstanceIAMMemberPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TunnelInstanceIAMMemberPtrOutput)
 }
 
 type TunnelInstanceIAMMemberOutput struct {
@@ -423,6 +438,23 @@ func (o TunnelInstanceIAMMemberOutput) ToTunnelInstanceIAMMemberOutputWithContex
 	return o
 }
 
+type TunnelInstanceIAMMemberPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (TunnelInstanceIAMMemberPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TunnelInstanceIAMMember)(nil)).Elem()
+}
+
+func (o TunnelInstanceIAMMemberPtrOutput) ToTunnelInstanceIAMMemberPtrOutput() TunnelInstanceIAMMemberPtrOutput {
+	return o
+}
+
+func (o TunnelInstanceIAMMemberPtrOutput) ToTunnelInstanceIAMMemberPtrOutputWithContext(ctx context.Context) TunnelInstanceIAMMemberPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(TunnelInstanceIAMMemberOutput{})
+	pulumi.RegisterOutputType(TunnelInstanceIAMMemberPtrOutput{})
 }

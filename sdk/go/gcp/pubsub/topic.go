@@ -271,6 +271,13 @@ type TopicInput interface {
 	ToTopicOutputWithContext(ctx context.Context) TopicOutput
 }
 
+type TopicPtrInput interface {
+	pulumi.Input
+
+	ToTopicPtrOutput() TopicPtrOutput
+	ToTopicPtrOutputWithContext(ctx context.Context) TopicPtrOutput
+}
+
 func (Topic) ElementType() reflect.Type {
 	return reflect.TypeOf((*Topic)(nil)).Elem()
 }
@@ -281,6 +288,14 @@ func (i Topic) ToTopicOutput() TopicOutput {
 
 func (i Topic) ToTopicOutputWithContext(ctx context.Context) TopicOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TopicOutput)
+}
+
+func (i Topic) ToTopicPtrOutput() TopicPtrOutput {
+	return i.ToTopicPtrOutputWithContext(context.Background())
+}
+
+func (i Topic) ToTopicPtrOutputWithContext(ctx context.Context) TopicPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TopicPtrOutput)
 }
 
 type TopicOutput struct {
@@ -299,6 +314,23 @@ func (o TopicOutput) ToTopicOutputWithContext(ctx context.Context) TopicOutput {
 	return o
 }
 
+type TopicPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (TopicPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Topic)(nil)).Elem()
+}
+
+func (o TopicPtrOutput) ToTopicPtrOutput() TopicPtrOutput {
+	return o
+}
+
+func (o TopicPtrOutput) ToTopicPtrOutputWithContext(ctx context.Context) TopicPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(TopicOutput{})
+	pulumi.RegisterOutputType(TopicPtrOutput{})
 }

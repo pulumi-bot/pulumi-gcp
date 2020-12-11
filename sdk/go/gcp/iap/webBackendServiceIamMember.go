@@ -384,6 +384,13 @@ type WebBackendServiceIamMemberInput interface {
 	ToWebBackendServiceIamMemberOutputWithContext(ctx context.Context) WebBackendServiceIamMemberOutput
 }
 
+type WebBackendServiceIamMemberPtrInput interface {
+	pulumi.Input
+
+	ToWebBackendServiceIamMemberPtrOutput() WebBackendServiceIamMemberPtrOutput
+	ToWebBackendServiceIamMemberPtrOutputWithContext(ctx context.Context) WebBackendServiceIamMemberPtrOutput
+}
+
 func (WebBackendServiceIamMember) ElementType() reflect.Type {
 	return reflect.TypeOf((*WebBackendServiceIamMember)(nil)).Elem()
 }
@@ -394,6 +401,14 @@ func (i WebBackendServiceIamMember) ToWebBackendServiceIamMemberOutput() WebBack
 
 func (i WebBackendServiceIamMember) ToWebBackendServiceIamMemberOutputWithContext(ctx context.Context) WebBackendServiceIamMemberOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WebBackendServiceIamMemberOutput)
+}
+
+func (i WebBackendServiceIamMember) ToWebBackendServiceIamMemberPtrOutput() WebBackendServiceIamMemberPtrOutput {
+	return i.ToWebBackendServiceIamMemberPtrOutputWithContext(context.Background())
+}
+
+func (i WebBackendServiceIamMember) ToWebBackendServiceIamMemberPtrOutputWithContext(ctx context.Context) WebBackendServiceIamMemberPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebBackendServiceIamMemberPtrOutput)
 }
 
 type WebBackendServiceIamMemberOutput struct {
@@ -412,6 +427,23 @@ func (o WebBackendServiceIamMemberOutput) ToWebBackendServiceIamMemberOutputWith
 	return o
 }
 
+type WebBackendServiceIamMemberPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (WebBackendServiceIamMemberPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebBackendServiceIamMember)(nil)).Elem()
+}
+
+func (o WebBackendServiceIamMemberPtrOutput) ToWebBackendServiceIamMemberPtrOutput() WebBackendServiceIamMemberPtrOutput {
+	return o
+}
+
+func (o WebBackendServiceIamMemberPtrOutput) ToWebBackendServiceIamMemberPtrOutputWithContext(ctx context.Context) WebBackendServiceIamMemberPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(WebBackendServiceIamMemberOutput{})
+	pulumi.RegisterOutputType(WebBackendServiceIamMemberPtrOutput{})
 }

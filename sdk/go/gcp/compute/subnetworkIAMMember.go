@@ -415,6 +415,13 @@ type SubnetworkIAMMemberInput interface {
 	ToSubnetworkIAMMemberOutputWithContext(ctx context.Context) SubnetworkIAMMemberOutput
 }
 
+type SubnetworkIAMMemberPtrInput interface {
+	pulumi.Input
+
+	ToSubnetworkIAMMemberPtrOutput() SubnetworkIAMMemberPtrOutput
+	ToSubnetworkIAMMemberPtrOutputWithContext(ctx context.Context) SubnetworkIAMMemberPtrOutput
+}
+
 func (SubnetworkIAMMember) ElementType() reflect.Type {
 	return reflect.TypeOf((*SubnetworkIAMMember)(nil)).Elem()
 }
@@ -425,6 +432,14 @@ func (i SubnetworkIAMMember) ToSubnetworkIAMMemberOutput() SubnetworkIAMMemberOu
 
 func (i SubnetworkIAMMember) ToSubnetworkIAMMemberOutputWithContext(ctx context.Context) SubnetworkIAMMemberOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SubnetworkIAMMemberOutput)
+}
+
+func (i SubnetworkIAMMember) ToSubnetworkIAMMemberPtrOutput() SubnetworkIAMMemberPtrOutput {
+	return i.ToSubnetworkIAMMemberPtrOutputWithContext(context.Background())
+}
+
+func (i SubnetworkIAMMember) ToSubnetworkIAMMemberPtrOutputWithContext(ctx context.Context) SubnetworkIAMMemberPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SubnetworkIAMMemberPtrOutput)
 }
 
 type SubnetworkIAMMemberOutput struct {
@@ -443,6 +458,23 @@ func (o SubnetworkIAMMemberOutput) ToSubnetworkIAMMemberOutputWithContext(ctx co
 	return o
 }
 
+type SubnetworkIAMMemberPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (SubnetworkIAMMemberPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SubnetworkIAMMember)(nil)).Elem()
+}
+
+func (o SubnetworkIAMMemberPtrOutput) ToSubnetworkIAMMemberPtrOutput() SubnetworkIAMMemberPtrOutput {
+	return o
+}
+
+func (o SubnetworkIAMMemberPtrOutput) ToSubnetworkIAMMemberPtrOutputWithContext(ctx context.Context) SubnetworkIAMMemberPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(SubnetworkIAMMemberOutput{})
+	pulumi.RegisterOutputType(SubnetworkIAMMemberPtrOutput{})
 }

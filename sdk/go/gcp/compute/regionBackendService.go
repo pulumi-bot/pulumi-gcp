@@ -920,6 +920,13 @@ type RegionBackendServiceInput interface {
 	ToRegionBackendServiceOutputWithContext(ctx context.Context) RegionBackendServiceOutput
 }
 
+type RegionBackendServicePtrInput interface {
+	pulumi.Input
+
+	ToRegionBackendServicePtrOutput() RegionBackendServicePtrOutput
+	ToRegionBackendServicePtrOutputWithContext(ctx context.Context) RegionBackendServicePtrOutput
+}
+
 func (RegionBackendService) ElementType() reflect.Type {
 	return reflect.TypeOf((*RegionBackendService)(nil)).Elem()
 }
@@ -930,6 +937,14 @@ func (i RegionBackendService) ToRegionBackendServiceOutput() RegionBackendServic
 
 func (i RegionBackendService) ToRegionBackendServiceOutputWithContext(ctx context.Context) RegionBackendServiceOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceOutput)
+}
+
+func (i RegionBackendService) ToRegionBackendServicePtrOutput() RegionBackendServicePtrOutput {
+	return i.ToRegionBackendServicePtrOutputWithContext(context.Background())
+}
+
+func (i RegionBackendService) ToRegionBackendServicePtrOutputWithContext(ctx context.Context) RegionBackendServicePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServicePtrOutput)
 }
 
 type RegionBackendServiceOutput struct {
@@ -948,6 +963,23 @@ func (o RegionBackendServiceOutput) ToRegionBackendServiceOutputWithContext(ctx 
 	return o
 }
 
+type RegionBackendServicePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (RegionBackendServicePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RegionBackendService)(nil)).Elem()
+}
+
+func (o RegionBackendServicePtrOutput) ToRegionBackendServicePtrOutput() RegionBackendServicePtrOutput {
+	return o
+}
+
+func (o RegionBackendServicePtrOutput) ToRegionBackendServicePtrOutputWithContext(ctx context.Context) RegionBackendServicePtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(RegionBackendServiceOutput{})
+	pulumi.RegisterOutputType(RegionBackendServicePtrOutput{})
 }

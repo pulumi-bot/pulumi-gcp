@@ -344,6 +344,13 @@ type FolderSinkInput interface {
 	ToFolderSinkOutputWithContext(ctx context.Context) FolderSinkOutput
 }
 
+type FolderSinkPtrInput interface {
+	pulumi.Input
+
+	ToFolderSinkPtrOutput() FolderSinkPtrOutput
+	ToFolderSinkPtrOutputWithContext(ctx context.Context) FolderSinkPtrOutput
+}
+
 func (FolderSink) ElementType() reflect.Type {
 	return reflect.TypeOf((*FolderSink)(nil)).Elem()
 }
@@ -354,6 +361,14 @@ func (i FolderSink) ToFolderSinkOutput() FolderSinkOutput {
 
 func (i FolderSink) ToFolderSinkOutputWithContext(ctx context.Context) FolderSinkOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FolderSinkOutput)
+}
+
+func (i FolderSink) ToFolderSinkPtrOutput() FolderSinkPtrOutput {
+	return i.ToFolderSinkPtrOutputWithContext(context.Background())
+}
+
+func (i FolderSink) ToFolderSinkPtrOutputWithContext(ctx context.Context) FolderSinkPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FolderSinkPtrOutput)
 }
 
 type FolderSinkOutput struct {
@@ -372,6 +387,23 @@ func (o FolderSinkOutput) ToFolderSinkOutputWithContext(ctx context.Context) Fol
 	return o
 }
 
+type FolderSinkPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (FolderSinkPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**FolderSink)(nil)).Elem()
+}
+
+func (o FolderSinkPtrOutput) ToFolderSinkPtrOutput() FolderSinkPtrOutput {
+	return o
+}
+
+func (o FolderSinkPtrOutput) ToFolderSinkPtrOutputWithContext(ctx context.Context) FolderSinkPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(FolderSinkOutput{})
+	pulumi.RegisterOutputType(FolderSinkPtrOutput{})
 }

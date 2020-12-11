@@ -250,6 +250,13 @@ type ServiceIamBindingInput interface {
 	ToServiceIamBindingOutputWithContext(ctx context.Context) ServiceIamBindingOutput
 }
 
+type ServiceIamBindingPtrInput interface {
+	pulumi.Input
+
+	ToServiceIamBindingPtrOutput() ServiceIamBindingPtrOutput
+	ToServiceIamBindingPtrOutputWithContext(ctx context.Context) ServiceIamBindingPtrOutput
+}
+
 func (ServiceIamBinding) ElementType() reflect.Type {
 	return reflect.TypeOf((*ServiceIamBinding)(nil)).Elem()
 }
@@ -260,6 +267,14 @@ func (i ServiceIamBinding) ToServiceIamBindingOutput() ServiceIamBindingOutput {
 
 func (i ServiceIamBinding) ToServiceIamBindingOutputWithContext(ctx context.Context) ServiceIamBindingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceIamBindingOutput)
+}
+
+func (i ServiceIamBinding) ToServiceIamBindingPtrOutput() ServiceIamBindingPtrOutput {
+	return i.ToServiceIamBindingPtrOutputWithContext(context.Background())
+}
+
+func (i ServiceIamBinding) ToServiceIamBindingPtrOutputWithContext(ctx context.Context) ServiceIamBindingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceIamBindingPtrOutput)
 }
 
 type ServiceIamBindingOutput struct {
@@ -278,6 +293,23 @@ func (o ServiceIamBindingOutput) ToServiceIamBindingOutputWithContext(ctx contex
 	return o
 }
 
+type ServiceIamBindingPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ServiceIamBindingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceIamBinding)(nil)).Elem()
+}
+
+func (o ServiceIamBindingPtrOutput) ToServiceIamBindingPtrOutput() ServiceIamBindingPtrOutput {
+	return o
+}
+
+func (o ServiceIamBindingPtrOutput) ToServiceIamBindingPtrOutputWithContext(ctx context.Context) ServiceIamBindingPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ServiceIamBindingOutput{})
+	pulumi.RegisterOutputType(ServiceIamBindingPtrOutput{})
 }

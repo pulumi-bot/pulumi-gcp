@@ -244,6 +244,13 @@ type NamespaceIamBindingInput interface {
 	ToNamespaceIamBindingOutputWithContext(ctx context.Context) NamespaceIamBindingOutput
 }
 
+type NamespaceIamBindingPtrInput interface {
+	pulumi.Input
+
+	ToNamespaceIamBindingPtrOutput() NamespaceIamBindingPtrOutput
+	ToNamespaceIamBindingPtrOutputWithContext(ctx context.Context) NamespaceIamBindingPtrOutput
+}
+
 func (NamespaceIamBinding) ElementType() reflect.Type {
 	return reflect.TypeOf((*NamespaceIamBinding)(nil)).Elem()
 }
@@ -254,6 +261,14 @@ func (i NamespaceIamBinding) ToNamespaceIamBindingOutput() NamespaceIamBindingOu
 
 func (i NamespaceIamBinding) ToNamespaceIamBindingOutputWithContext(ctx context.Context) NamespaceIamBindingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NamespaceIamBindingOutput)
+}
+
+func (i NamespaceIamBinding) ToNamespaceIamBindingPtrOutput() NamespaceIamBindingPtrOutput {
+	return i.ToNamespaceIamBindingPtrOutputWithContext(context.Background())
+}
+
+func (i NamespaceIamBinding) ToNamespaceIamBindingPtrOutputWithContext(ctx context.Context) NamespaceIamBindingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NamespaceIamBindingPtrOutput)
 }
 
 type NamespaceIamBindingOutput struct {
@@ -272,6 +287,23 @@ func (o NamespaceIamBindingOutput) ToNamespaceIamBindingOutputWithContext(ctx co
 	return o
 }
 
+type NamespaceIamBindingPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (NamespaceIamBindingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NamespaceIamBinding)(nil)).Elem()
+}
+
+func (o NamespaceIamBindingPtrOutput) ToNamespaceIamBindingPtrOutput() NamespaceIamBindingPtrOutput {
+	return o
+}
+
+func (o NamespaceIamBindingPtrOutput) ToNamespaceIamBindingPtrOutputWithContext(ctx context.Context) NamespaceIamBindingPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(NamespaceIamBindingOutput{})
+	pulumi.RegisterOutputType(NamespaceIamBindingPtrOutput{})
 }

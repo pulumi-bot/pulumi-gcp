@@ -218,6 +218,13 @@ type IAMCustomRoleInput interface {
 	ToIAMCustomRoleOutputWithContext(ctx context.Context) IAMCustomRoleOutput
 }
 
+type IAMCustomRolePtrInput interface {
+	pulumi.Input
+
+	ToIAMCustomRolePtrOutput() IAMCustomRolePtrOutput
+	ToIAMCustomRolePtrOutputWithContext(ctx context.Context) IAMCustomRolePtrOutput
+}
+
 func (IAMCustomRole) ElementType() reflect.Type {
 	return reflect.TypeOf((*IAMCustomRole)(nil)).Elem()
 }
@@ -228,6 +235,14 @@ func (i IAMCustomRole) ToIAMCustomRoleOutput() IAMCustomRoleOutput {
 
 func (i IAMCustomRole) ToIAMCustomRoleOutputWithContext(ctx context.Context) IAMCustomRoleOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IAMCustomRoleOutput)
+}
+
+func (i IAMCustomRole) ToIAMCustomRolePtrOutput() IAMCustomRolePtrOutput {
+	return i.ToIAMCustomRolePtrOutputWithContext(context.Background())
+}
+
+func (i IAMCustomRole) ToIAMCustomRolePtrOutputWithContext(ctx context.Context) IAMCustomRolePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IAMCustomRolePtrOutput)
 }
 
 type IAMCustomRoleOutput struct {
@@ -246,6 +261,23 @@ func (o IAMCustomRoleOutput) ToIAMCustomRoleOutputWithContext(ctx context.Contex
 	return o
 }
 
+type IAMCustomRolePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (IAMCustomRolePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**IAMCustomRole)(nil)).Elem()
+}
+
+func (o IAMCustomRolePtrOutput) ToIAMCustomRolePtrOutput() IAMCustomRolePtrOutput {
+	return o
+}
+
+func (o IAMCustomRolePtrOutput) ToIAMCustomRolePtrOutputWithContext(ctx context.Context) IAMCustomRolePtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(IAMCustomRoleOutput{})
+	pulumi.RegisterOutputType(IAMCustomRolePtrOutput{})
 }

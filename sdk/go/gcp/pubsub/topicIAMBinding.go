@@ -268,6 +268,13 @@ type TopicIAMBindingInput interface {
 	ToTopicIAMBindingOutputWithContext(ctx context.Context) TopicIAMBindingOutput
 }
 
+type TopicIAMBindingPtrInput interface {
+	pulumi.Input
+
+	ToTopicIAMBindingPtrOutput() TopicIAMBindingPtrOutput
+	ToTopicIAMBindingPtrOutputWithContext(ctx context.Context) TopicIAMBindingPtrOutput
+}
+
 func (TopicIAMBinding) ElementType() reflect.Type {
 	return reflect.TypeOf((*TopicIAMBinding)(nil)).Elem()
 }
@@ -278,6 +285,14 @@ func (i TopicIAMBinding) ToTopicIAMBindingOutput() TopicIAMBindingOutput {
 
 func (i TopicIAMBinding) ToTopicIAMBindingOutputWithContext(ctx context.Context) TopicIAMBindingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TopicIAMBindingOutput)
+}
+
+func (i TopicIAMBinding) ToTopicIAMBindingPtrOutput() TopicIAMBindingPtrOutput {
+	return i.ToTopicIAMBindingPtrOutputWithContext(context.Background())
+}
+
+func (i TopicIAMBinding) ToTopicIAMBindingPtrOutputWithContext(ctx context.Context) TopicIAMBindingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TopicIAMBindingPtrOutput)
 }
 
 type TopicIAMBindingOutput struct {
@@ -296,6 +311,23 @@ func (o TopicIAMBindingOutput) ToTopicIAMBindingOutputWithContext(ctx context.Co
 	return o
 }
 
+type TopicIAMBindingPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (TopicIAMBindingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TopicIAMBinding)(nil)).Elem()
+}
+
+func (o TopicIAMBindingPtrOutput) ToTopicIAMBindingPtrOutput() TopicIAMBindingPtrOutput {
+	return o
+}
+
+func (o TopicIAMBindingPtrOutput) ToTopicIAMBindingPtrOutputWithContext(ctx context.Context) TopicIAMBindingPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(TopicIAMBindingOutput{})
+	pulumi.RegisterOutputType(TopicIAMBindingPtrOutput{})
 }

@@ -134,6 +134,13 @@ type TunnelIamPolicyInput interface {
 	ToTunnelIamPolicyOutputWithContext(ctx context.Context) TunnelIamPolicyOutput
 }
 
+type TunnelIamPolicyPtrInput interface {
+	pulumi.Input
+
+	ToTunnelIamPolicyPtrOutput() TunnelIamPolicyPtrOutput
+	ToTunnelIamPolicyPtrOutputWithContext(ctx context.Context) TunnelIamPolicyPtrOutput
+}
+
 func (TunnelIamPolicy) ElementType() reflect.Type {
 	return reflect.TypeOf((*TunnelIamPolicy)(nil)).Elem()
 }
@@ -144,6 +151,14 @@ func (i TunnelIamPolicy) ToTunnelIamPolicyOutput() TunnelIamPolicyOutput {
 
 func (i TunnelIamPolicy) ToTunnelIamPolicyOutputWithContext(ctx context.Context) TunnelIamPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TunnelIamPolicyOutput)
+}
+
+func (i TunnelIamPolicy) ToTunnelIamPolicyPtrOutput() TunnelIamPolicyPtrOutput {
+	return i.ToTunnelIamPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i TunnelIamPolicy) ToTunnelIamPolicyPtrOutputWithContext(ctx context.Context) TunnelIamPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TunnelIamPolicyPtrOutput)
 }
 
 type TunnelIamPolicyOutput struct {
@@ -162,6 +177,23 @@ func (o TunnelIamPolicyOutput) ToTunnelIamPolicyOutputWithContext(ctx context.Co
 	return o
 }
 
+type TunnelIamPolicyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (TunnelIamPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TunnelIamPolicy)(nil)).Elem()
+}
+
+func (o TunnelIamPolicyPtrOutput) ToTunnelIamPolicyPtrOutput() TunnelIamPolicyPtrOutput {
+	return o
+}
+
+func (o TunnelIamPolicyPtrOutput) ToTunnelIamPolicyPtrOutputWithContext(ctx context.Context) TunnelIamPolicyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(TunnelIamPolicyOutput{})
+	pulumi.RegisterOutputType(TunnelIamPolicyPtrOutput{})
 }

@@ -308,6 +308,13 @@ type ClusterInput interface {
 	ToClusterOutputWithContext(ctx context.Context) ClusterOutput
 }
 
+type ClusterPtrInput interface {
+	pulumi.Input
+
+	ToClusterPtrOutput() ClusterPtrOutput
+	ToClusterPtrOutputWithContext(ctx context.Context) ClusterPtrOutput
+}
+
 func (Cluster) ElementType() reflect.Type {
 	return reflect.TypeOf((*Cluster)(nil)).Elem()
 }
@@ -318,6 +325,14 @@ func (i Cluster) ToClusterOutput() ClusterOutput {
 
 func (i Cluster) ToClusterOutputWithContext(ctx context.Context) ClusterOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ClusterOutput)
+}
+
+func (i Cluster) ToClusterPtrOutput() ClusterPtrOutput {
+	return i.ToClusterPtrOutputWithContext(context.Background())
+}
+
+func (i Cluster) ToClusterPtrOutputWithContext(ctx context.Context) ClusterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterPtrOutput)
 }
 
 type ClusterOutput struct {
@@ -336,6 +351,23 @@ func (o ClusterOutput) ToClusterOutputWithContext(ctx context.Context) ClusterOu
 	return o
 }
 
+type ClusterPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ClusterPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Cluster)(nil)).Elem()
+}
+
+func (o ClusterPtrOutput) ToClusterPtrOutput() ClusterPtrOutput {
+	return o
+}
+
+func (o ClusterPtrOutput) ToClusterPtrOutputWithContext(ctx context.Context) ClusterPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ClusterOutput{})
+	pulumi.RegisterOutputType(ClusterPtrOutput{})
 }

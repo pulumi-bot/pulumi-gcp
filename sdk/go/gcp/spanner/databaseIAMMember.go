@@ -284,6 +284,13 @@ type DatabaseIAMMemberInput interface {
 	ToDatabaseIAMMemberOutputWithContext(ctx context.Context) DatabaseIAMMemberOutput
 }
 
+type DatabaseIAMMemberPtrInput interface {
+	pulumi.Input
+
+	ToDatabaseIAMMemberPtrOutput() DatabaseIAMMemberPtrOutput
+	ToDatabaseIAMMemberPtrOutputWithContext(ctx context.Context) DatabaseIAMMemberPtrOutput
+}
+
 func (DatabaseIAMMember) ElementType() reflect.Type {
 	return reflect.TypeOf((*DatabaseIAMMember)(nil)).Elem()
 }
@@ -294,6 +301,14 @@ func (i DatabaseIAMMember) ToDatabaseIAMMemberOutput() DatabaseIAMMemberOutput {
 
 func (i DatabaseIAMMember) ToDatabaseIAMMemberOutputWithContext(ctx context.Context) DatabaseIAMMemberOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DatabaseIAMMemberOutput)
+}
+
+func (i DatabaseIAMMember) ToDatabaseIAMMemberPtrOutput() DatabaseIAMMemberPtrOutput {
+	return i.ToDatabaseIAMMemberPtrOutputWithContext(context.Background())
+}
+
+func (i DatabaseIAMMember) ToDatabaseIAMMemberPtrOutputWithContext(ctx context.Context) DatabaseIAMMemberPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatabaseIAMMemberPtrOutput)
 }
 
 type DatabaseIAMMemberOutput struct {
@@ -312,6 +327,23 @@ func (o DatabaseIAMMemberOutput) ToDatabaseIAMMemberOutputWithContext(ctx contex
 	return o
 }
 
+type DatabaseIAMMemberPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (DatabaseIAMMemberPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatabaseIAMMember)(nil)).Elem()
+}
+
+func (o DatabaseIAMMemberPtrOutput) ToDatabaseIAMMemberPtrOutput() DatabaseIAMMemberPtrOutput {
+	return o
+}
+
+func (o DatabaseIAMMemberPtrOutput) ToDatabaseIAMMemberPtrOutputWithContext(ctx context.Context) DatabaseIAMMemberPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(DatabaseIAMMemberOutput{})
+	pulumi.RegisterOutputType(DatabaseIAMMemberPtrOutput{})
 }

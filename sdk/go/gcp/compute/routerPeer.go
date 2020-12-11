@@ -389,6 +389,13 @@ type RouterPeerInput interface {
 	ToRouterPeerOutputWithContext(ctx context.Context) RouterPeerOutput
 }
 
+type RouterPeerPtrInput interface {
+	pulumi.Input
+
+	ToRouterPeerPtrOutput() RouterPeerPtrOutput
+	ToRouterPeerPtrOutputWithContext(ctx context.Context) RouterPeerPtrOutput
+}
+
 func (RouterPeer) ElementType() reflect.Type {
 	return reflect.TypeOf((*RouterPeer)(nil)).Elem()
 }
@@ -399,6 +406,14 @@ func (i RouterPeer) ToRouterPeerOutput() RouterPeerOutput {
 
 func (i RouterPeer) ToRouterPeerOutputWithContext(ctx context.Context) RouterPeerOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RouterPeerOutput)
+}
+
+func (i RouterPeer) ToRouterPeerPtrOutput() RouterPeerPtrOutput {
+	return i.ToRouterPeerPtrOutputWithContext(context.Background())
+}
+
+func (i RouterPeer) ToRouterPeerPtrOutputWithContext(ctx context.Context) RouterPeerPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RouterPeerPtrOutput)
 }
 
 type RouterPeerOutput struct {
@@ -417,6 +432,23 @@ func (o RouterPeerOutput) ToRouterPeerOutputWithContext(ctx context.Context) Rou
 	return o
 }
 
+type RouterPeerPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (RouterPeerPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RouterPeer)(nil)).Elem()
+}
+
+func (o RouterPeerPtrOutput) ToRouterPeerPtrOutput() RouterPeerPtrOutput {
+	return o
+}
+
+func (o RouterPeerPtrOutput) ToRouterPeerPtrOutputWithContext(ctx context.Context) RouterPeerPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(RouterPeerOutput{})
+	pulumi.RegisterOutputType(RouterPeerPtrOutput{})
 }

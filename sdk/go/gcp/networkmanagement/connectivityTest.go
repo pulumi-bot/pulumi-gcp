@@ -509,6 +509,13 @@ type ConnectivityTestInput interface {
 	ToConnectivityTestOutputWithContext(ctx context.Context) ConnectivityTestOutput
 }
 
+type ConnectivityTestPtrInput interface {
+	pulumi.Input
+
+	ToConnectivityTestPtrOutput() ConnectivityTestPtrOutput
+	ToConnectivityTestPtrOutputWithContext(ctx context.Context) ConnectivityTestPtrOutput
+}
+
 func (ConnectivityTest) ElementType() reflect.Type {
 	return reflect.TypeOf((*ConnectivityTest)(nil)).Elem()
 }
@@ -519,6 +526,14 @@ func (i ConnectivityTest) ToConnectivityTestOutput() ConnectivityTestOutput {
 
 func (i ConnectivityTest) ToConnectivityTestOutputWithContext(ctx context.Context) ConnectivityTestOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ConnectivityTestOutput)
+}
+
+func (i ConnectivityTest) ToConnectivityTestPtrOutput() ConnectivityTestPtrOutput {
+	return i.ToConnectivityTestPtrOutputWithContext(context.Background())
+}
+
+func (i ConnectivityTest) ToConnectivityTestPtrOutputWithContext(ctx context.Context) ConnectivityTestPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConnectivityTestPtrOutput)
 }
 
 type ConnectivityTestOutput struct {
@@ -537,6 +552,23 @@ func (o ConnectivityTestOutput) ToConnectivityTestOutputWithContext(ctx context.
 	return o
 }
 
+type ConnectivityTestPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ConnectivityTestPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ConnectivityTest)(nil)).Elem()
+}
+
+func (o ConnectivityTestPtrOutput) ToConnectivityTestPtrOutput() ConnectivityTestPtrOutput {
+	return o
+}
+
+func (o ConnectivityTestPtrOutput) ToConnectivityTestPtrOutputWithContext(ctx context.Context) ConnectivityTestPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ConnectivityTestOutput{})
+	pulumi.RegisterOutputType(ConnectivityTestPtrOutput{})
 }

@@ -54,7 +54,7 @@ func (i BillingAccountSinkBigqueryOptionsArgs) ToBillingAccountSinkBigqueryOptio
 }
 
 func (i BillingAccountSinkBigqueryOptionsArgs) ToBillingAccountSinkBigqueryOptionsPtrOutputWithContext(ctx context.Context) BillingAccountSinkBigqueryOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BillingAccountSinkBigqueryOptionsOutput).ToBillingAccountSinkBigqueryOptionsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(BillingAccountSinkBigqueryOptionsOutput).ToBillingAccountSinkBigqueryOptionsPtrOutput()
 }
 
 // BillingAccountSinkBigqueryOptionsPtrInput is an input type that accepts BillingAccountSinkBigqueryOptionsArgs, BillingAccountSinkBigqueryOptionsPtr and BillingAccountSinkBigqueryOptionsPtrOutput values.
@@ -87,7 +87,7 @@ func (i *billingAccountSinkBigqueryOptionsPtrType) ToBillingAccountSinkBigqueryO
 }
 
 func (i *billingAccountSinkBigqueryOptionsPtrType) ToBillingAccountSinkBigqueryOptionsPtrOutputWithContext(ctx context.Context) BillingAccountSinkBigqueryOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BillingAccountSinkBigqueryOptionsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(BillingAccountSinkBigqueryOptionsOutput).ToBillingAccountSinkBigqueryOptionsPtrOutput()
 }
 
 type BillingAccountSinkBigqueryOptionsOutput struct{ *pulumi.OutputState }
@@ -327,7 +327,7 @@ func (i FolderSinkBigqueryOptionsArgs) ToFolderSinkBigqueryOptionsPtrOutput() Fo
 }
 
 func (i FolderSinkBigqueryOptionsArgs) ToFolderSinkBigqueryOptionsPtrOutputWithContext(ctx context.Context) FolderSinkBigqueryOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FolderSinkBigqueryOptionsOutput).ToFolderSinkBigqueryOptionsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(FolderSinkBigqueryOptionsOutput).ToFolderSinkBigqueryOptionsPtrOutput()
 }
 
 // FolderSinkBigqueryOptionsPtrInput is an input type that accepts FolderSinkBigqueryOptionsArgs, FolderSinkBigqueryOptionsPtr and FolderSinkBigqueryOptionsPtrOutput values.
@@ -360,7 +360,7 @@ func (i *folderSinkBigqueryOptionsPtrType) ToFolderSinkBigqueryOptionsPtrOutput(
 }
 
 func (i *folderSinkBigqueryOptionsPtrType) ToFolderSinkBigqueryOptionsPtrOutputWithContext(ctx context.Context) FolderSinkBigqueryOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FolderSinkBigqueryOptionsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(FolderSinkBigqueryOptionsOutput).ToFolderSinkBigqueryOptionsPtrOutput()
 }
 
 type FolderSinkBigqueryOptionsOutput struct{ *pulumi.OutputState }
@@ -612,7 +612,7 @@ func (i MetricBucketOptionsArgs) ToMetricBucketOptionsPtrOutput() MetricBucketOp
 }
 
 func (i MetricBucketOptionsArgs) ToMetricBucketOptionsPtrOutputWithContext(ctx context.Context) MetricBucketOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(MetricBucketOptionsOutput).ToMetricBucketOptionsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(MetricBucketOptionsOutput).ToMetricBucketOptionsPtrOutput()
 }
 
 // MetricBucketOptionsPtrInput is an input type that accepts MetricBucketOptionsArgs, MetricBucketOptionsPtr and MetricBucketOptionsPtrOutput values.
@@ -645,7 +645,7 @@ func (i *metricBucketOptionsPtrType) ToMetricBucketOptionsPtrOutput() MetricBuck
 }
 
 func (i *metricBucketOptionsPtrType) ToMetricBucketOptionsPtrOutputWithContext(ctx context.Context) MetricBucketOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(MetricBucketOptionsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(MetricBucketOptionsOutput).ToMetricBucketOptionsPtrOutput()
 }
 
 type MetricBucketOptionsOutput struct{ *pulumi.OutputState }
@@ -783,7 +783,7 @@ func (i MetricBucketOptionsExplicitBucketsArgs) ToMetricBucketOptionsExplicitBuc
 }
 
 func (i MetricBucketOptionsExplicitBucketsArgs) ToMetricBucketOptionsExplicitBucketsPtrOutputWithContext(ctx context.Context) MetricBucketOptionsExplicitBucketsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(MetricBucketOptionsExplicitBucketsOutput).ToMetricBucketOptionsExplicitBucketsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(MetricBucketOptionsExplicitBucketsOutput).ToMetricBucketOptionsExplicitBucketsPtrOutput()
 }
 
 // MetricBucketOptionsExplicitBucketsPtrInput is an input type that accepts MetricBucketOptionsExplicitBucketsArgs, MetricBucketOptionsExplicitBucketsPtr and MetricBucketOptionsExplicitBucketsPtrOutput values.
@@ -816,7 +816,7 @@ func (i *metricBucketOptionsExplicitBucketsPtrType) ToMetricBucketOptionsExplici
 }
 
 func (i *metricBucketOptionsExplicitBucketsPtrType) ToMetricBucketOptionsExplicitBucketsPtrOutputWithContext(ctx context.Context) MetricBucketOptionsExplicitBucketsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(MetricBucketOptionsExplicitBucketsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(MetricBucketOptionsExplicitBucketsOutput).ToMetricBucketOptionsExplicitBucketsPtrOutput()
 }
 
 type MetricBucketOptionsExplicitBucketsOutput struct{ *pulumi.OutputState }
@@ -922,7 +922,7 @@ func (i MetricBucketOptionsExponentialBucketsArgs) ToMetricBucketOptionsExponent
 }
 
 func (i MetricBucketOptionsExponentialBucketsArgs) ToMetricBucketOptionsExponentialBucketsPtrOutputWithContext(ctx context.Context) MetricBucketOptionsExponentialBucketsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(MetricBucketOptionsExponentialBucketsOutput).ToMetricBucketOptionsExponentialBucketsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(MetricBucketOptionsExponentialBucketsOutput).ToMetricBucketOptionsExponentialBucketsPtrOutput()
 }
 
 // MetricBucketOptionsExponentialBucketsPtrInput is an input type that accepts MetricBucketOptionsExponentialBucketsArgs, MetricBucketOptionsExponentialBucketsPtr and MetricBucketOptionsExponentialBucketsPtrOutput values.
@@ -955,7 +955,7 @@ func (i *metricBucketOptionsExponentialBucketsPtrType) ToMetricBucketOptionsExpo
 }
 
 func (i *metricBucketOptionsExponentialBucketsPtrType) ToMetricBucketOptionsExponentialBucketsPtrOutputWithContext(ctx context.Context) MetricBucketOptionsExponentialBucketsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(MetricBucketOptionsExponentialBucketsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(MetricBucketOptionsExponentialBucketsOutput).ToMetricBucketOptionsExponentialBucketsPtrOutput()
 }
 
 type MetricBucketOptionsExponentialBucketsOutput struct{ *pulumi.OutputState }
@@ -1091,7 +1091,7 @@ func (i MetricBucketOptionsLinearBucketsArgs) ToMetricBucketOptionsLinearBuckets
 }
 
 func (i MetricBucketOptionsLinearBucketsArgs) ToMetricBucketOptionsLinearBucketsPtrOutputWithContext(ctx context.Context) MetricBucketOptionsLinearBucketsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(MetricBucketOptionsLinearBucketsOutput).ToMetricBucketOptionsLinearBucketsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(MetricBucketOptionsLinearBucketsOutput).ToMetricBucketOptionsLinearBucketsPtrOutput()
 }
 
 // MetricBucketOptionsLinearBucketsPtrInput is an input type that accepts MetricBucketOptionsLinearBucketsArgs, MetricBucketOptionsLinearBucketsPtr and MetricBucketOptionsLinearBucketsPtrOutput values.
@@ -1124,7 +1124,7 @@ func (i *metricBucketOptionsLinearBucketsPtrType) ToMetricBucketOptionsLinearBuc
 }
 
 func (i *metricBucketOptionsLinearBucketsPtrType) ToMetricBucketOptionsLinearBucketsPtrOutputWithContext(ctx context.Context) MetricBucketOptionsLinearBucketsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(MetricBucketOptionsLinearBucketsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(MetricBucketOptionsLinearBucketsOutput).ToMetricBucketOptionsLinearBucketsPtrOutput()
 }
 
 type MetricBucketOptionsLinearBucketsOutput struct{ *pulumi.OutputState }
@@ -1294,7 +1294,7 @@ func (i MetricMetricDescriptorArgs) ToMetricMetricDescriptorPtrOutput() MetricMe
 }
 
 func (i MetricMetricDescriptorArgs) ToMetricMetricDescriptorPtrOutputWithContext(ctx context.Context) MetricMetricDescriptorPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(MetricMetricDescriptorOutput).ToMetricMetricDescriptorPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(MetricMetricDescriptorOutput).ToMetricMetricDescriptorPtrOutput()
 }
 
 // MetricMetricDescriptorPtrInput is an input type that accepts MetricMetricDescriptorArgs, MetricMetricDescriptorPtr and MetricMetricDescriptorPtrOutput values.
@@ -1327,7 +1327,7 @@ func (i *metricMetricDescriptorPtrType) ToMetricMetricDescriptorPtrOutput() Metr
 }
 
 func (i *metricMetricDescriptorPtrType) ToMetricMetricDescriptorPtrOutputWithContext(ctx context.Context) MetricMetricDescriptorPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(MetricMetricDescriptorPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(MetricMetricDescriptorOutput).ToMetricMetricDescriptorPtrOutput()
 }
 
 type MetricMetricDescriptorOutput struct{ *pulumi.OutputState }
@@ -1641,7 +1641,7 @@ func (i OrganizationSinkBigqueryOptionsArgs) ToOrganizationSinkBigqueryOptionsPt
 }
 
 func (i OrganizationSinkBigqueryOptionsArgs) ToOrganizationSinkBigqueryOptionsPtrOutputWithContext(ctx context.Context) OrganizationSinkBigqueryOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(OrganizationSinkBigqueryOptionsOutput).ToOrganizationSinkBigqueryOptionsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationSinkBigqueryOptionsOutput).ToOrganizationSinkBigqueryOptionsPtrOutput()
 }
 
 // OrganizationSinkBigqueryOptionsPtrInput is an input type that accepts OrganizationSinkBigqueryOptionsArgs, OrganizationSinkBigqueryOptionsPtr and OrganizationSinkBigqueryOptionsPtrOutput values.
@@ -1674,7 +1674,7 @@ func (i *organizationSinkBigqueryOptionsPtrType) ToOrganizationSinkBigqueryOptio
 }
 
 func (i *organizationSinkBigqueryOptionsPtrType) ToOrganizationSinkBigqueryOptionsPtrOutputWithContext(ctx context.Context) OrganizationSinkBigqueryOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(OrganizationSinkBigqueryOptionsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationSinkBigqueryOptionsOutput).ToOrganizationSinkBigqueryOptionsPtrOutput()
 }
 
 type OrganizationSinkBigqueryOptionsOutput struct{ *pulumi.OutputState }
@@ -1914,7 +1914,7 @@ func (i ProjectSinkBigqueryOptionsArgs) ToProjectSinkBigqueryOptionsPtrOutput() 
 }
 
 func (i ProjectSinkBigqueryOptionsArgs) ToProjectSinkBigqueryOptionsPtrOutputWithContext(ctx context.Context) ProjectSinkBigqueryOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ProjectSinkBigqueryOptionsOutput).ToProjectSinkBigqueryOptionsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ProjectSinkBigqueryOptionsOutput).ToProjectSinkBigqueryOptionsPtrOutput()
 }
 
 // ProjectSinkBigqueryOptionsPtrInput is an input type that accepts ProjectSinkBigqueryOptionsArgs, ProjectSinkBigqueryOptionsPtr and ProjectSinkBigqueryOptionsPtrOutput values.
@@ -1947,7 +1947,7 @@ func (i *projectSinkBigqueryOptionsPtrType) ToProjectSinkBigqueryOptionsPtrOutpu
 }
 
 func (i *projectSinkBigqueryOptionsPtrType) ToProjectSinkBigqueryOptionsPtrOutputWithContext(ctx context.Context) ProjectSinkBigqueryOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ProjectSinkBigqueryOptionsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ProjectSinkBigqueryOptionsOutput).ToProjectSinkBigqueryOptionsPtrOutput()
 }
 
 type ProjectSinkBigqueryOptionsOutput struct{ *pulumi.OutputState }

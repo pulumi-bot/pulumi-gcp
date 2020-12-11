@@ -277,6 +277,13 @@ type FolderFeedInput interface {
 	ToFolderFeedOutputWithContext(ctx context.Context) FolderFeedOutput
 }
 
+type FolderFeedPtrInput interface {
+	pulumi.Input
+
+	ToFolderFeedPtrOutput() FolderFeedPtrOutput
+	ToFolderFeedPtrOutputWithContext(ctx context.Context) FolderFeedPtrOutput
+}
+
 func (FolderFeed) ElementType() reflect.Type {
 	return reflect.TypeOf((*FolderFeed)(nil)).Elem()
 }
@@ -287,6 +294,14 @@ func (i FolderFeed) ToFolderFeedOutput() FolderFeedOutput {
 
 func (i FolderFeed) ToFolderFeedOutputWithContext(ctx context.Context) FolderFeedOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FolderFeedOutput)
+}
+
+func (i FolderFeed) ToFolderFeedPtrOutput() FolderFeedPtrOutput {
+	return i.ToFolderFeedPtrOutputWithContext(context.Background())
+}
+
+func (i FolderFeed) ToFolderFeedPtrOutputWithContext(ctx context.Context) FolderFeedPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FolderFeedPtrOutput)
 }
 
 type FolderFeedOutput struct {
@@ -305,6 +320,23 @@ func (o FolderFeedOutput) ToFolderFeedOutputWithContext(ctx context.Context) Fol
 	return o
 }
 
+type FolderFeedPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (FolderFeedPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**FolderFeed)(nil)).Elem()
+}
+
+func (o FolderFeedPtrOutput) ToFolderFeedPtrOutput() FolderFeedPtrOutput {
+	return o
+}
+
+func (o FolderFeedPtrOutput) ToFolderFeedPtrOutputWithContext(ctx context.Context) FolderFeedPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(FolderFeedOutput{})
+	pulumi.RegisterOutputType(FolderFeedPtrOutput{})
 }

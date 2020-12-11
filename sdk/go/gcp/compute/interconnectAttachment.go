@@ -469,6 +469,13 @@ type InterconnectAttachmentInput interface {
 	ToInterconnectAttachmentOutputWithContext(ctx context.Context) InterconnectAttachmentOutput
 }
 
+type InterconnectAttachmentPtrInput interface {
+	pulumi.Input
+
+	ToInterconnectAttachmentPtrOutput() InterconnectAttachmentPtrOutput
+	ToInterconnectAttachmentPtrOutputWithContext(ctx context.Context) InterconnectAttachmentPtrOutput
+}
+
 func (InterconnectAttachment) ElementType() reflect.Type {
 	return reflect.TypeOf((*InterconnectAttachment)(nil)).Elem()
 }
@@ -479,6 +486,14 @@ func (i InterconnectAttachment) ToInterconnectAttachmentOutput() InterconnectAtt
 
 func (i InterconnectAttachment) ToInterconnectAttachmentOutputWithContext(ctx context.Context) InterconnectAttachmentOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(InterconnectAttachmentOutput)
+}
+
+func (i InterconnectAttachment) ToInterconnectAttachmentPtrOutput() InterconnectAttachmentPtrOutput {
+	return i.ToInterconnectAttachmentPtrOutputWithContext(context.Background())
+}
+
+func (i InterconnectAttachment) ToInterconnectAttachmentPtrOutputWithContext(ctx context.Context) InterconnectAttachmentPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InterconnectAttachmentPtrOutput)
 }
 
 type InterconnectAttachmentOutput struct {
@@ -497,6 +512,23 @@ func (o InterconnectAttachmentOutput) ToInterconnectAttachmentOutputWithContext(
 	return o
 }
 
+type InterconnectAttachmentPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (InterconnectAttachmentPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**InterconnectAttachment)(nil)).Elem()
+}
+
+func (o InterconnectAttachmentPtrOutput) ToInterconnectAttachmentPtrOutput() InterconnectAttachmentPtrOutput {
+	return o
+}
+
+func (o InterconnectAttachmentPtrOutput) ToInterconnectAttachmentPtrOutputWithContext(ctx context.Context) InterconnectAttachmentPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(InterconnectAttachmentOutput{})
+	pulumi.RegisterOutputType(InterconnectAttachmentPtrOutput{})
 }

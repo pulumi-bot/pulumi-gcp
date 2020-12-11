@@ -167,6 +167,7 @@ namespace Pulumi.Gcp.BigQuery
     ///  $ pulumi import gcp:bigquery/connection:Connection default {{name}}
     /// ```
     /// </summary>
+    [GcpResourceType("gcp:bigquery/connection:Connection")]
     public partial class Connection : Pulumi.CustomResource
     {
         /// <summary>

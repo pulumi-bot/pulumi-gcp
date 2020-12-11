@@ -474,6 +474,13 @@ type StandardAppVersionInput interface {
 	ToStandardAppVersionOutputWithContext(ctx context.Context) StandardAppVersionOutput
 }
 
+type StandardAppVersionPtrInput interface {
+	pulumi.Input
+
+	ToStandardAppVersionPtrOutput() StandardAppVersionPtrOutput
+	ToStandardAppVersionPtrOutputWithContext(ctx context.Context) StandardAppVersionPtrOutput
+}
+
 func (StandardAppVersion) ElementType() reflect.Type {
 	return reflect.TypeOf((*StandardAppVersion)(nil)).Elem()
 }
@@ -484,6 +491,14 @@ func (i StandardAppVersion) ToStandardAppVersionOutput() StandardAppVersionOutpu
 
 func (i StandardAppVersion) ToStandardAppVersionOutputWithContext(ctx context.Context) StandardAppVersionOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(StandardAppVersionOutput)
+}
+
+func (i StandardAppVersion) ToStandardAppVersionPtrOutput() StandardAppVersionPtrOutput {
+	return i.ToStandardAppVersionPtrOutputWithContext(context.Background())
+}
+
+func (i StandardAppVersion) ToStandardAppVersionPtrOutputWithContext(ctx context.Context) StandardAppVersionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StandardAppVersionPtrOutput)
 }
 
 type StandardAppVersionOutput struct {
@@ -502,6 +517,23 @@ func (o StandardAppVersionOutput) ToStandardAppVersionOutputWithContext(ctx cont
 	return o
 }
 
+type StandardAppVersionPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (StandardAppVersionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StandardAppVersion)(nil)).Elem()
+}
+
+func (o StandardAppVersionPtrOutput) ToStandardAppVersionPtrOutput() StandardAppVersionPtrOutput {
+	return o
+}
+
+func (o StandardAppVersionPtrOutput) ToStandardAppVersionPtrOutputWithContext(ctx context.Context) StandardAppVersionPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(StandardAppVersionOutput{})
+	pulumi.RegisterOutputType(StandardAppVersionPtrOutput{})
 }

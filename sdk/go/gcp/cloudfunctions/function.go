@@ -436,6 +436,13 @@ type FunctionInput interface {
 	ToFunctionOutputWithContext(ctx context.Context) FunctionOutput
 }
 
+type FunctionPtrInput interface {
+	pulumi.Input
+
+	ToFunctionPtrOutput() FunctionPtrOutput
+	ToFunctionPtrOutputWithContext(ctx context.Context) FunctionPtrOutput
+}
+
 func (Function) ElementType() reflect.Type {
 	return reflect.TypeOf((*Function)(nil)).Elem()
 }
@@ -446,6 +453,14 @@ func (i Function) ToFunctionOutput() FunctionOutput {
 
 func (i Function) ToFunctionOutputWithContext(ctx context.Context) FunctionOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FunctionOutput)
+}
+
+func (i Function) ToFunctionPtrOutput() FunctionPtrOutput {
+	return i.ToFunctionPtrOutputWithContext(context.Background())
+}
+
+func (i Function) ToFunctionPtrOutputWithContext(ctx context.Context) FunctionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FunctionPtrOutput)
 }
 
 type FunctionOutput struct {
@@ -464,6 +479,23 @@ func (o FunctionOutput) ToFunctionOutputWithContext(ctx context.Context) Functio
 	return o
 }
 
+type FunctionPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (FunctionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Function)(nil)).Elem()
+}
+
+func (o FunctionPtrOutput) ToFunctionPtrOutput() FunctionPtrOutput {
+	return o
+}
+
+func (o FunctionPtrOutput) ToFunctionPtrOutputWithContext(ctx context.Context) FunctionPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(FunctionOutput{})
+	pulumi.RegisterOutputType(FunctionPtrOutput{})
 }

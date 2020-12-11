@@ -199,6 +199,13 @@ type ReservationInput interface {
 	ToReservationOutputWithContext(ctx context.Context) ReservationOutput
 }
 
+type ReservationPtrInput interface {
+	pulumi.Input
+
+	ToReservationPtrOutput() ReservationPtrOutput
+	ToReservationPtrOutputWithContext(ctx context.Context) ReservationPtrOutput
+}
+
 func (Reservation) ElementType() reflect.Type {
 	return reflect.TypeOf((*Reservation)(nil)).Elem()
 }
@@ -209,6 +216,14 @@ func (i Reservation) ToReservationOutput() ReservationOutput {
 
 func (i Reservation) ToReservationOutputWithContext(ctx context.Context) ReservationOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ReservationOutput)
+}
+
+func (i Reservation) ToReservationPtrOutput() ReservationPtrOutput {
+	return i.ToReservationPtrOutputWithContext(context.Background())
+}
+
+func (i Reservation) ToReservationPtrOutputWithContext(ctx context.Context) ReservationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ReservationPtrOutput)
 }
 
 type ReservationOutput struct {
@@ -227,6 +242,23 @@ func (o ReservationOutput) ToReservationOutputWithContext(ctx context.Context) R
 	return o
 }
 
+type ReservationPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ReservationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Reservation)(nil)).Elem()
+}
+
+func (o ReservationPtrOutput) ToReservationPtrOutput() ReservationPtrOutput {
+	return o
+}
+
+func (o ReservationPtrOutput) ToReservationPtrOutputWithContext(ctx context.Context) ReservationPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ReservationOutput{})
+	pulumi.RegisterOutputType(ReservationPtrOutput{})
 }

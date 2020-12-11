@@ -162,6 +162,13 @@ type ApiInput interface {
 	ToApiOutputWithContext(ctx context.Context) ApiOutput
 }
 
+type ApiPtrInput interface {
+	pulumi.Input
+
+	ToApiPtrOutput() ApiPtrOutput
+	ToApiPtrOutputWithContext(ctx context.Context) ApiPtrOutput
+}
+
 func (Api) ElementType() reflect.Type {
 	return reflect.TypeOf((*Api)(nil)).Elem()
 }
@@ -172,6 +179,14 @@ func (i Api) ToApiOutput() ApiOutput {
 
 func (i Api) ToApiOutputWithContext(ctx context.Context) ApiOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ApiOutput)
+}
+
+func (i Api) ToApiPtrOutput() ApiPtrOutput {
+	return i.ToApiPtrOutputWithContext(context.Background())
+}
+
+func (i Api) ToApiPtrOutputWithContext(ctx context.Context) ApiPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApiPtrOutput)
 }
 
 type ApiOutput struct {
@@ -190,6 +205,23 @@ func (o ApiOutput) ToApiOutputWithContext(ctx context.Context) ApiOutput {
 	return o
 }
 
+type ApiPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ApiPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Api)(nil)).Elem()
+}
+
+func (o ApiPtrOutput) ToApiPtrOutput() ApiPtrOutput {
+	return o
+}
+
+func (o ApiPtrOutput) ToApiPtrOutputWithContext(ctx context.Context) ApiPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ApiOutput{})
+	pulumi.RegisterOutputType(ApiPtrOutput{})
 }

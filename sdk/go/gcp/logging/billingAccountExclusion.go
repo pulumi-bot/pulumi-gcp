@@ -182,6 +182,13 @@ type BillingAccountExclusionInput interface {
 	ToBillingAccountExclusionOutputWithContext(ctx context.Context) BillingAccountExclusionOutput
 }
 
+type BillingAccountExclusionPtrInput interface {
+	pulumi.Input
+
+	ToBillingAccountExclusionPtrOutput() BillingAccountExclusionPtrOutput
+	ToBillingAccountExclusionPtrOutputWithContext(ctx context.Context) BillingAccountExclusionPtrOutput
+}
+
 func (BillingAccountExclusion) ElementType() reflect.Type {
 	return reflect.TypeOf((*BillingAccountExclusion)(nil)).Elem()
 }
@@ -192,6 +199,14 @@ func (i BillingAccountExclusion) ToBillingAccountExclusionOutput() BillingAccoun
 
 func (i BillingAccountExclusion) ToBillingAccountExclusionOutputWithContext(ctx context.Context) BillingAccountExclusionOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(BillingAccountExclusionOutput)
+}
+
+func (i BillingAccountExclusion) ToBillingAccountExclusionPtrOutput() BillingAccountExclusionPtrOutput {
+	return i.ToBillingAccountExclusionPtrOutputWithContext(context.Background())
+}
+
+func (i BillingAccountExclusion) ToBillingAccountExclusionPtrOutputWithContext(ctx context.Context) BillingAccountExclusionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BillingAccountExclusionPtrOutput)
 }
 
 type BillingAccountExclusionOutput struct {
@@ -210,6 +225,23 @@ func (o BillingAccountExclusionOutput) ToBillingAccountExclusionOutputWithContex
 	return o
 }
 
+type BillingAccountExclusionPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (BillingAccountExclusionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BillingAccountExclusion)(nil)).Elem()
+}
+
+func (o BillingAccountExclusionPtrOutput) ToBillingAccountExclusionPtrOutput() BillingAccountExclusionPtrOutput {
+	return o
+}
+
+func (o BillingAccountExclusionPtrOutput) ToBillingAccountExclusionPtrOutputWithContext(ctx context.Context) BillingAccountExclusionPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(BillingAccountExclusionOutput{})
+	pulumi.RegisterOutputType(BillingAccountExclusionPtrOutput{})
 }

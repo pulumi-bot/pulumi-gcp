@@ -395,6 +395,13 @@ type TunnelInstanceIAMBindingInput interface {
 	ToTunnelInstanceIAMBindingOutputWithContext(ctx context.Context) TunnelInstanceIAMBindingOutput
 }
 
+type TunnelInstanceIAMBindingPtrInput interface {
+	pulumi.Input
+
+	ToTunnelInstanceIAMBindingPtrOutput() TunnelInstanceIAMBindingPtrOutput
+	ToTunnelInstanceIAMBindingPtrOutputWithContext(ctx context.Context) TunnelInstanceIAMBindingPtrOutput
+}
+
 func (TunnelInstanceIAMBinding) ElementType() reflect.Type {
 	return reflect.TypeOf((*TunnelInstanceIAMBinding)(nil)).Elem()
 }
@@ -405,6 +412,14 @@ func (i TunnelInstanceIAMBinding) ToTunnelInstanceIAMBindingOutput() TunnelInsta
 
 func (i TunnelInstanceIAMBinding) ToTunnelInstanceIAMBindingOutputWithContext(ctx context.Context) TunnelInstanceIAMBindingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TunnelInstanceIAMBindingOutput)
+}
+
+func (i TunnelInstanceIAMBinding) ToTunnelInstanceIAMBindingPtrOutput() TunnelInstanceIAMBindingPtrOutput {
+	return i.ToTunnelInstanceIAMBindingPtrOutputWithContext(context.Background())
+}
+
+func (i TunnelInstanceIAMBinding) ToTunnelInstanceIAMBindingPtrOutputWithContext(ctx context.Context) TunnelInstanceIAMBindingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TunnelInstanceIAMBindingPtrOutput)
 }
 
 type TunnelInstanceIAMBindingOutput struct {
@@ -423,6 +438,23 @@ func (o TunnelInstanceIAMBindingOutput) ToTunnelInstanceIAMBindingOutputWithCont
 	return o
 }
 
+type TunnelInstanceIAMBindingPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (TunnelInstanceIAMBindingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TunnelInstanceIAMBinding)(nil)).Elem()
+}
+
+func (o TunnelInstanceIAMBindingPtrOutput) ToTunnelInstanceIAMBindingPtrOutput() TunnelInstanceIAMBindingPtrOutput {
+	return o
+}
+
+func (o TunnelInstanceIAMBindingPtrOutput) ToTunnelInstanceIAMBindingPtrOutputWithContext(ctx context.Context) TunnelInstanceIAMBindingPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(TunnelInstanceIAMBindingOutput{})
+	pulumi.RegisterOutputType(TunnelInstanceIAMBindingPtrOutput{})
 }

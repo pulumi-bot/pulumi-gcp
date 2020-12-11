@@ -384,6 +384,13 @@ type ImageIamMemberInput interface {
 	ToImageIamMemberOutputWithContext(ctx context.Context) ImageIamMemberOutput
 }
 
+type ImageIamMemberPtrInput interface {
+	pulumi.Input
+
+	ToImageIamMemberPtrOutput() ImageIamMemberPtrOutput
+	ToImageIamMemberPtrOutputWithContext(ctx context.Context) ImageIamMemberPtrOutput
+}
+
 func (ImageIamMember) ElementType() reflect.Type {
 	return reflect.TypeOf((*ImageIamMember)(nil)).Elem()
 }
@@ -394,6 +401,14 @@ func (i ImageIamMember) ToImageIamMemberOutput() ImageIamMemberOutput {
 
 func (i ImageIamMember) ToImageIamMemberOutputWithContext(ctx context.Context) ImageIamMemberOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ImageIamMemberOutput)
+}
+
+func (i ImageIamMember) ToImageIamMemberPtrOutput() ImageIamMemberPtrOutput {
+	return i.ToImageIamMemberPtrOutputWithContext(context.Background())
+}
+
+func (i ImageIamMember) ToImageIamMemberPtrOutputWithContext(ctx context.Context) ImageIamMemberPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ImageIamMemberPtrOutput)
 }
 
 type ImageIamMemberOutput struct {
@@ -412,6 +427,23 @@ func (o ImageIamMemberOutput) ToImageIamMemberOutputWithContext(ctx context.Cont
 	return o
 }
 
+type ImageIamMemberPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ImageIamMemberPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ImageIamMember)(nil)).Elem()
+}
+
+func (o ImageIamMemberPtrOutput) ToImageIamMemberPtrOutput() ImageIamMemberPtrOutput {
+	return o
+}
+
+func (o ImageIamMemberPtrOutput) ToImageIamMemberPtrOutputWithContext(ctx context.Context) ImageIamMemberPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ImageIamMemberOutput{})
+	pulumi.RegisterOutputType(ImageIamMemberPtrOutput{})
 }

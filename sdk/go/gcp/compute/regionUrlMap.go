@@ -837,6 +837,13 @@ type RegionUrlMapInput interface {
 	ToRegionUrlMapOutputWithContext(ctx context.Context) RegionUrlMapOutput
 }
 
+type RegionUrlMapPtrInput interface {
+	pulumi.Input
+
+	ToRegionUrlMapPtrOutput() RegionUrlMapPtrOutput
+	ToRegionUrlMapPtrOutputWithContext(ctx context.Context) RegionUrlMapPtrOutput
+}
+
 func (RegionUrlMap) ElementType() reflect.Type {
 	return reflect.TypeOf((*RegionUrlMap)(nil)).Elem()
 }
@@ -847,6 +854,14 @@ func (i RegionUrlMap) ToRegionUrlMapOutput() RegionUrlMapOutput {
 
 func (i RegionUrlMap) ToRegionUrlMapOutputWithContext(ctx context.Context) RegionUrlMapOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapOutput)
+}
+
+func (i RegionUrlMap) ToRegionUrlMapPtrOutput() RegionUrlMapPtrOutput {
+	return i.ToRegionUrlMapPtrOutputWithContext(context.Background())
+}
+
+func (i RegionUrlMap) ToRegionUrlMapPtrOutputWithContext(ctx context.Context) RegionUrlMapPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPtrOutput)
 }
 
 type RegionUrlMapOutput struct {
@@ -865,6 +880,23 @@ func (o RegionUrlMapOutput) ToRegionUrlMapOutputWithContext(ctx context.Context)
 	return o
 }
 
+type RegionUrlMapPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (RegionUrlMapPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RegionUrlMap)(nil)).Elem()
+}
+
+func (o RegionUrlMapPtrOutput) ToRegionUrlMapPtrOutput() RegionUrlMapPtrOutput {
+	return o
+}
+
+func (o RegionUrlMapPtrOutput) ToRegionUrlMapPtrOutputWithContext(ctx context.Context) RegionUrlMapPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(RegionUrlMapOutput{})
+	pulumi.RegisterOutputType(RegionUrlMapPtrOutput{})
 }

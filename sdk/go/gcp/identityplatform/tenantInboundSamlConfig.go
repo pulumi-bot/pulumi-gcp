@@ -207,6 +207,13 @@ type TenantInboundSamlConfigInput interface {
 	ToTenantInboundSamlConfigOutputWithContext(ctx context.Context) TenantInboundSamlConfigOutput
 }
 
+type TenantInboundSamlConfigPtrInput interface {
+	pulumi.Input
+
+	ToTenantInboundSamlConfigPtrOutput() TenantInboundSamlConfigPtrOutput
+	ToTenantInboundSamlConfigPtrOutputWithContext(ctx context.Context) TenantInboundSamlConfigPtrOutput
+}
+
 func (TenantInboundSamlConfig) ElementType() reflect.Type {
 	return reflect.TypeOf((*TenantInboundSamlConfig)(nil)).Elem()
 }
@@ -217,6 +224,14 @@ func (i TenantInboundSamlConfig) ToTenantInboundSamlConfigOutput() TenantInbound
 
 func (i TenantInboundSamlConfig) ToTenantInboundSamlConfigOutputWithContext(ctx context.Context) TenantInboundSamlConfigOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TenantInboundSamlConfigOutput)
+}
+
+func (i TenantInboundSamlConfig) ToTenantInboundSamlConfigPtrOutput() TenantInboundSamlConfigPtrOutput {
+	return i.ToTenantInboundSamlConfigPtrOutputWithContext(context.Background())
+}
+
+func (i TenantInboundSamlConfig) ToTenantInboundSamlConfigPtrOutputWithContext(ctx context.Context) TenantInboundSamlConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TenantInboundSamlConfigPtrOutput)
 }
 
 type TenantInboundSamlConfigOutput struct {
@@ -235,6 +250,23 @@ func (o TenantInboundSamlConfigOutput) ToTenantInboundSamlConfigOutputWithContex
 	return o
 }
 
+type TenantInboundSamlConfigPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (TenantInboundSamlConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TenantInboundSamlConfig)(nil)).Elem()
+}
+
+func (o TenantInboundSamlConfigPtrOutput) ToTenantInboundSamlConfigPtrOutput() TenantInboundSamlConfigPtrOutput {
+	return o
+}
+
+func (o TenantInboundSamlConfigPtrOutput) ToTenantInboundSamlConfigPtrOutputWithContext(ctx context.Context) TenantInboundSamlConfigPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(TenantInboundSamlConfigOutput{})
+	pulumi.RegisterOutputType(TenantInboundSamlConfigPtrOutput{})
 }

@@ -183,6 +183,13 @@ type ProjectExclusionInput interface {
 	ToProjectExclusionOutputWithContext(ctx context.Context) ProjectExclusionOutput
 }
 
+type ProjectExclusionPtrInput interface {
+	pulumi.Input
+
+	ToProjectExclusionPtrOutput() ProjectExclusionPtrOutput
+	ToProjectExclusionPtrOutputWithContext(ctx context.Context) ProjectExclusionPtrOutput
+}
+
 func (ProjectExclusion) ElementType() reflect.Type {
 	return reflect.TypeOf((*ProjectExclusion)(nil)).Elem()
 }
@@ -193,6 +200,14 @@ func (i ProjectExclusion) ToProjectExclusionOutput() ProjectExclusionOutput {
 
 func (i ProjectExclusion) ToProjectExclusionOutputWithContext(ctx context.Context) ProjectExclusionOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ProjectExclusionOutput)
+}
+
+func (i ProjectExclusion) ToProjectExclusionPtrOutput() ProjectExclusionPtrOutput {
+	return i.ToProjectExclusionPtrOutputWithContext(context.Background())
+}
+
+func (i ProjectExclusion) ToProjectExclusionPtrOutputWithContext(ctx context.Context) ProjectExclusionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProjectExclusionPtrOutput)
 }
 
 type ProjectExclusionOutput struct {
@@ -211,6 +226,23 @@ func (o ProjectExclusionOutput) ToProjectExclusionOutputWithContext(ctx context.
 	return o
 }
 
+type ProjectExclusionPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ProjectExclusionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProjectExclusion)(nil)).Elem()
+}
+
+func (o ProjectExclusionPtrOutput) ToProjectExclusionPtrOutput() ProjectExclusionPtrOutput {
+	return o
+}
+
+func (o ProjectExclusionPtrOutput) ToProjectExclusionPtrOutputWithContext(ctx context.Context) ProjectExclusionPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ProjectExclusionOutput{})
+	pulumi.RegisterOutputType(ProjectExclusionPtrOutput{})
 }

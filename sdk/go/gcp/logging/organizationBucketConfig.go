@@ -190,6 +190,13 @@ type OrganizationBucketConfigInput interface {
 	ToOrganizationBucketConfigOutputWithContext(ctx context.Context) OrganizationBucketConfigOutput
 }
 
+type OrganizationBucketConfigPtrInput interface {
+	pulumi.Input
+
+	ToOrganizationBucketConfigPtrOutput() OrganizationBucketConfigPtrOutput
+	ToOrganizationBucketConfigPtrOutputWithContext(ctx context.Context) OrganizationBucketConfigPtrOutput
+}
+
 func (OrganizationBucketConfig) ElementType() reflect.Type {
 	return reflect.TypeOf((*OrganizationBucketConfig)(nil)).Elem()
 }
@@ -200,6 +207,14 @@ func (i OrganizationBucketConfig) ToOrganizationBucketConfigOutput() Organizatio
 
 func (i OrganizationBucketConfig) ToOrganizationBucketConfigOutputWithContext(ctx context.Context) OrganizationBucketConfigOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(OrganizationBucketConfigOutput)
+}
+
+func (i OrganizationBucketConfig) ToOrganizationBucketConfigPtrOutput() OrganizationBucketConfigPtrOutput {
+	return i.ToOrganizationBucketConfigPtrOutputWithContext(context.Background())
+}
+
+func (i OrganizationBucketConfig) ToOrganizationBucketConfigPtrOutputWithContext(ctx context.Context) OrganizationBucketConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationBucketConfigPtrOutput)
 }
 
 type OrganizationBucketConfigOutput struct {
@@ -218,6 +233,23 @@ func (o OrganizationBucketConfigOutput) ToOrganizationBucketConfigOutputWithCont
 	return o
 }
 
+type OrganizationBucketConfigPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (OrganizationBucketConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**OrganizationBucketConfig)(nil)).Elem()
+}
+
+func (o OrganizationBucketConfigPtrOutput) ToOrganizationBucketConfigPtrOutput() OrganizationBucketConfigPtrOutput {
+	return o
+}
+
+func (o OrganizationBucketConfigPtrOutput) ToOrganizationBucketConfigPtrOutputWithContext(ctx context.Context) OrganizationBucketConfigPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(OrganizationBucketConfigOutput{})
+	pulumi.RegisterOutputType(OrganizationBucketConfigPtrOutput{})
 }

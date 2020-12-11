@@ -263,6 +263,13 @@ type TargetSSLProxyInput interface {
 	ToTargetSSLProxyOutputWithContext(ctx context.Context) TargetSSLProxyOutput
 }
 
+type TargetSSLProxyPtrInput interface {
+	pulumi.Input
+
+	ToTargetSSLProxyPtrOutput() TargetSSLProxyPtrOutput
+	ToTargetSSLProxyPtrOutputWithContext(ctx context.Context) TargetSSLProxyPtrOutput
+}
+
 func (TargetSSLProxy) ElementType() reflect.Type {
 	return reflect.TypeOf((*TargetSSLProxy)(nil)).Elem()
 }
@@ -273,6 +280,14 @@ func (i TargetSSLProxy) ToTargetSSLProxyOutput() TargetSSLProxyOutput {
 
 func (i TargetSSLProxy) ToTargetSSLProxyOutputWithContext(ctx context.Context) TargetSSLProxyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TargetSSLProxyOutput)
+}
+
+func (i TargetSSLProxy) ToTargetSSLProxyPtrOutput() TargetSSLProxyPtrOutput {
+	return i.ToTargetSSLProxyPtrOutputWithContext(context.Background())
+}
+
+func (i TargetSSLProxy) ToTargetSSLProxyPtrOutputWithContext(ctx context.Context) TargetSSLProxyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TargetSSLProxyPtrOutput)
 }
 
 type TargetSSLProxyOutput struct {
@@ -291,6 +306,23 @@ func (o TargetSSLProxyOutput) ToTargetSSLProxyOutputWithContext(ctx context.Cont
 	return o
 }
 
+type TargetSSLProxyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (TargetSSLProxyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TargetSSLProxy)(nil)).Elem()
+}
+
+func (o TargetSSLProxyPtrOutput) ToTargetSSLProxyPtrOutput() TargetSSLProxyPtrOutput {
+	return o
+}
+
+func (o TargetSSLProxyPtrOutput) ToTargetSSLProxyPtrOutputWithContext(ctx context.Context) TargetSSLProxyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(TargetSSLProxyOutput{})
+	pulumi.RegisterOutputType(TargetSSLProxyPtrOutput{})
 }

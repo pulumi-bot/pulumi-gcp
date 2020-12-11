@@ -460,6 +460,13 @@ type RegionNetworkEndpointGroupInput interface {
 	ToRegionNetworkEndpointGroupOutputWithContext(ctx context.Context) RegionNetworkEndpointGroupOutput
 }
 
+type RegionNetworkEndpointGroupPtrInput interface {
+	pulumi.Input
+
+	ToRegionNetworkEndpointGroupPtrOutput() RegionNetworkEndpointGroupPtrOutput
+	ToRegionNetworkEndpointGroupPtrOutputWithContext(ctx context.Context) RegionNetworkEndpointGroupPtrOutput
+}
+
 func (RegionNetworkEndpointGroup) ElementType() reflect.Type {
 	return reflect.TypeOf((*RegionNetworkEndpointGroup)(nil)).Elem()
 }
@@ -470,6 +477,14 @@ func (i RegionNetworkEndpointGroup) ToRegionNetworkEndpointGroupOutput() RegionN
 
 func (i RegionNetworkEndpointGroup) ToRegionNetworkEndpointGroupOutputWithContext(ctx context.Context) RegionNetworkEndpointGroupOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RegionNetworkEndpointGroupOutput)
+}
+
+func (i RegionNetworkEndpointGroup) ToRegionNetworkEndpointGroupPtrOutput() RegionNetworkEndpointGroupPtrOutput {
+	return i.ToRegionNetworkEndpointGroupPtrOutputWithContext(context.Background())
+}
+
+func (i RegionNetworkEndpointGroup) ToRegionNetworkEndpointGroupPtrOutputWithContext(ctx context.Context) RegionNetworkEndpointGroupPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegionNetworkEndpointGroupPtrOutput)
 }
 
 type RegionNetworkEndpointGroupOutput struct {
@@ -488,6 +503,23 @@ func (o RegionNetworkEndpointGroupOutput) ToRegionNetworkEndpointGroupOutputWith
 	return o
 }
 
+type RegionNetworkEndpointGroupPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (RegionNetworkEndpointGroupPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RegionNetworkEndpointGroup)(nil)).Elem()
+}
+
+func (o RegionNetworkEndpointGroupPtrOutput) ToRegionNetworkEndpointGroupPtrOutput() RegionNetworkEndpointGroupPtrOutput {
+	return o
+}
+
+func (o RegionNetworkEndpointGroupPtrOutput) ToRegionNetworkEndpointGroupPtrOutputWithContext(ctx context.Context) RegionNetworkEndpointGroupPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(RegionNetworkEndpointGroupOutput{})
+	pulumi.RegisterOutputType(RegionNetworkEndpointGroupPtrOutput{})
 }

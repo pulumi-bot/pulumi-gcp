@@ -350,6 +350,13 @@ type DatabaseInstanceInput interface {
 	ToDatabaseInstanceOutputWithContext(ctx context.Context) DatabaseInstanceOutput
 }
 
+type DatabaseInstancePtrInput interface {
+	pulumi.Input
+
+	ToDatabaseInstancePtrOutput() DatabaseInstancePtrOutput
+	ToDatabaseInstancePtrOutputWithContext(ctx context.Context) DatabaseInstancePtrOutput
+}
+
 func (DatabaseInstance) ElementType() reflect.Type {
 	return reflect.TypeOf((*DatabaseInstance)(nil)).Elem()
 }
@@ -360,6 +367,14 @@ func (i DatabaseInstance) ToDatabaseInstanceOutput() DatabaseInstanceOutput {
 
 func (i DatabaseInstance) ToDatabaseInstanceOutputWithContext(ctx context.Context) DatabaseInstanceOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DatabaseInstanceOutput)
+}
+
+func (i DatabaseInstance) ToDatabaseInstancePtrOutput() DatabaseInstancePtrOutput {
+	return i.ToDatabaseInstancePtrOutputWithContext(context.Background())
+}
+
+func (i DatabaseInstance) ToDatabaseInstancePtrOutputWithContext(ctx context.Context) DatabaseInstancePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatabaseInstancePtrOutput)
 }
 
 type DatabaseInstanceOutput struct {
@@ -378,6 +393,23 @@ func (o DatabaseInstanceOutput) ToDatabaseInstanceOutputWithContext(ctx context.
 	return o
 }
 
+type DatabaseInstancePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (DatabaseInstancePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatabaseInstance)(nil)).Elem()
+}
+
+func (o DatabaseInstancePtrOutput) ToDatabaseInstancePtrOutput() DatabaseInstancePtrOutput {
+	return o
+}
+
+func (o DatabaseInstancePtrOutput) ToDatabaseInstancePtrOutputWithContext(ctx context.Context) DatabaseInstancePtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(DatabaseInstanceOutput{})
+	pulumi.RegisterOutputType(DatabaseInstancePtrOutput{})
 }

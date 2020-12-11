@@ -250,6 +250,13 @@ type AttestorIamPolicyInput interface {
 	ToAttestorIamPolicyOutputWithContext(ctx context.Context) AttestorIamPolicyOutput
 }
 
+type AttestorIamPolicyPtrInput interface {
+	pulumi.Input
+
+	ToAttestorIamPolicyPtrOutput() AttestorIamPolicyPtrOutput
+	ToAttestorIamPolicyPtrOutputWithContext(ctx context.Context) AttestorIamPolicyPtrOutput
+}
+
 func (AttestorIamPolicy) ElementType() reflect.Type {
 	return reflect.TypeOf((*AttestorIamPolicy)(nil)).Elem()
 }
@@ -260,6 +267,14 @@ func (i AttestorIamPolicy) ToAttestorIamPolicyOutput() AttestorIamPolicyOutput {
 
 func (i AttestorIamPolicy) ToAttestorIamPolicyOutputWithContext(ctx context.Context) AttestorIamPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AttestorIamPolicyOutput)
+}
+
+func (i AttestorIamPolicy) ToAttestorIamPolicyPtrOutput() AttestorIamPolicyPtrOutput {
+	return i.ToAttestorIamPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i AttestorIamPolicy) ToAttestorIamPolicyPtrOutputWithContext(ctx context.Context) AttestorIamPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AttestorIamPolicyPtrOutput)
 }
 
 type AttestorIamPolicyOutput struct {
@@ -278,6 +293,23 @@ func (o AttestorIamPolicyOutput) ToAttestorIamPolicyOutputWithContext(ctx contex
 	return o
 }
 
+type AttestorIamPolicyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (AttestorIamPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AttestorIamPolicy)(nil)).Elem()
+}
+
+func (o AttestorIamPolicyPtrOutput) ToAttestorIamPolicyPtrOutput() AttestorIamPolicyPtrOutput {
+	return o
+}
+
+func (o AttestorIamPolicyPtrOutput) ToAttestorIamPolicyPtrOutputWithContext(ctx context.Context) AttestorIamPolicyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(AttestorIamPolicyOutput{})
+	pulumi.RegisterOutputType(AttestorIamPolicyPtrOutput{})
 }

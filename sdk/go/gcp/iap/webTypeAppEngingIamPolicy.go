@@ -356,6 +356,13 @@ type WebTypeAppEngingIamPolicyInput interface {
 	ToWebTypeAppEngingIamPolicyOutputWithContext(ctx context.Context) WebTypeAppEngingIamPolicyOutput
 }
 
+type WebTypeAppEngingIamPolicyPtrInput interface {
+	pulumi.Input
+
+	ToWebTypeAppEngingIamPolicyPtrOutput() WebTypeAppEngingIamPolicyPtrOutput
+	ToWebTypeAppEngingIamPolicyPtrOutputWithContext(ctx context.Context) WebTypeAppEngingIamPolicyPtrOutput
+}
+
 func (WebTypeAppEngingIamPolicy) ElementType() reflect.Type {
 	return reflect.TypeOf((*WebTypeAppEngingIamPolicy)(nil)).Elem()
 }
@@ -366,6 +373,14 @@ func (i WebTypeAppEngingIamPolicy) ToWebTypeAppEngingIamPolicyOutput() WebTypeAp
 
 func (i WebTypeAppEngingIamPolicy) ToWebTypeAppEngingIamPolicyOutputWithContext(ctx context.Context) WebTypeAppEngingIamPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WebTypeAppEngingIamPolicyOutput)
+}
+
+func (i WebTypeAppEngingIamPolicy) ToWebTypeAppEngingIamPolicyPtrOutput() WebTypeAppEngingIamPolicyPtrOutput {
+	return i.ToWebTypeAppEngingIamPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i WebTypeAppEngingIamPolicy) ToWebTypeAppEngingIamPolicyPtrOutputWithContext(ctx context.Context) WebTypeAppEngingIamPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebTypeAppEngingIamPolicyPtrOutput)
 }
 
 type WebTypeAppEngingIamPolicyOutput struct {
@@ -384,6 +399,23 @@ func (o WebTypeAppEngingIamPolicyOutput) ToWebTypeAppEngingIamPolicyOutputWithCo
 	return o
 }
 
+type WebTypeAppEngingIamPolicyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (WebTypeAppEngingIamPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebTypeAppEngingIamPolicy)(nil)).Elem()
+}
+
+func (o WebTypeAppEngingIamPolicyPtrOutput) ToWebTypeAppEngingIamPolicyPtrOutput() WebTypeAppEngingIamPolicyPtrOutput {
+	return o
+}
+
+func (o WebTypeAppEngingIamPolicyPtrOutput) ToWebTypeAppEngingIamPolicyPtrOutputWithContext(ctx context.Context) WebTypeAppEngingIamPolicyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(WebTypeAppEngingIamPolicyOutput{})
+	pulumi.RegisterOutputType(WebTypeAppEngingIamPolicyPtrOutput{})
 }

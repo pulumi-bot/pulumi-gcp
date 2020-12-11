@@ -279,6 +279,13 @@ type ProjectFeedInput interface {
 	ToProjectFeedOutputWithContext(ctx context.Context) ProjectFeedOutput
 }
 
+type ProjectFeedPtrInput interface {
+	pulumi.Input
+
+	ToProjectFeedPtrOutput() ProjectFeedPtrOutput
+	ToProjectFeedPtrOutputWithContext(ctx context.Context) ProjectFeedPtrOutput
+}
+
 func (ProjectFeed) ElementType() reflect.Type {
 	return reflect.TypeOf((*ProjectFeed)(nil)).Elem()
 }
@@ -289,6 +296,14 @@ func (i ProjectFeed) ToProjectFeedOutput() ProjectFeedOutput {
 
 func (i ProjectFeed) ToProjectFeedOutputWithContext(ctx context.Context) ProjectFeedOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ProjectFeedOutput)
+}
+
+func (i ProjectFeed) ToProjectFeedPtrOutput() ProjectFeedPtrOutput {
+	return i.ToProjectFeedPtrOutputWithContext(context.Background())
+}
+
+func (i ProjectFeed) ToProjectFeedPtrOutputWithContext(ctx context.Context) ProjectFeedPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProjectFeedPtrOutput)
 }
 
 type ProjectFeedOutput struct {
@@ -307,6 +322,23 @@ func (o ProjectFeedOutput) ToProjectFeedOutputWithContext(ctx context.Context) P
 	return o
 }
 
+type ProjectFeedPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ProjectFeedPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProjectFeed)(nil)).Elem()
+}
+
+func (o ProjectFeedPtrOutput) ToProjectFeedPtrOutput() ProjectFeedPtrOutput {
+	return o
+}
+
+func (o ProjectFeedPtrOutput) ToProjectFeedPtrOutputWithContext(ctx context.Context) ProjectFeedPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ProjectFeedOutput{})
+	pulumi.RegisterOutputType(ProjectFeedPtrOutput{})
 }

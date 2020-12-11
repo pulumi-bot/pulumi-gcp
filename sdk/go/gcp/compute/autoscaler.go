@@ -425,6 +425,13 @@ type AutoscalerInput interface {
 	ToAutoscalerOutputWithContext(ctx context.Context) AutoscalerOutput
 }
 
+type AutoscalerPtrInput interface {
+	pulumi.Input
+
+	ToAutoscalerPtrOutput() AutoscalerPtrOutput
+	ToAutoscalerPtrOutputWithContext(ctx context.Context) AutoscalerPtrOutput
+}
+
 func (Autoscaler) ElementType() reflect.Type {
 	return reflect.TypeOf((*Autoscaler)(nil)).Elem()
 }
@@ -435,6 +442,14 @@ func (i Autoscaler) ToAutoscalerOutput() AutoscalerOutput {
 
 func (i Autoscaler) ToAutoscalerOutputWithContext(ctx context.Context) AutoscalerOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AutoscalerOutput)
+}
+
+func (i Autoscaler) ToAutoscalerPtrOutput() AutoscalerPtrOutput {
+	return i.ToAutoscalerPtrOutputWithContext(context.Background())
+}
+
+func (i Autoscaler) ToAutoscalerPtrOutputWithContext(ctx context.Context) AutoscalerPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscalerPtrOutput)
 }
 
 type AutoscalerOutput struct {
@@ -453,6 +468,23 @@ func (o AutoscalerOutput) ToAutoscalerOutputWithContext(ctx context.Context) Aut
 	return o
 }
 
+type AutoscalerPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (AutoscalerPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Autoscaler)(nil)).Elem()
+}
+
+func (o AutoscalerPtrOutput) ToAutoscalerPtrOutput() AutoscalerPtrOutput {
+	return o
+}
+
+func (o AutoscalerPtrOutput) ToAutoscalerPtrOutputWithContext(ctx context.Context) AutoscalerPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(AutoscalerOutput{})
+	pulumi.RegisterOutputType(AutoscalerPtrOutput{})
 }

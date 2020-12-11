@@ -251,6 +251,13 @@ type NotificationInput interface {
 	ToNotificationOutputWithContext(ctx context.Context) NotificationOutput
 }
 
+type NotificationPtrInput interface {
+	pulumi.Input
+
+	ToNotificationPtrOutput() NotificationPtrOutput
+	ToNotificationPtrOutputWithContext(ctx context.Context) NotificationPtrOutput
+}
+
 func (Notification) ElementType() reflect.Type {
 	return reflect.TypeOf((*Notification)(nil)).Elem()
 }
@@ -261,6 +268,14 @@ func (i Notification) ToNotificationOutput() NotificationOutput {
 
 func (i Notification) ToNotificationOutputWithContext(ctx context.Context) NotificationOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NotificationOutput)
+}
+
+func (i Notification) ToNotificationPtrOutput() NotificationPtrOutput {
+	return i.ToNotificationPtrOutputWithContext(context.Background())
+}
+
+func (i Notification) ToNotificationPtrOutputWithContext(ctx context.Context) NotificationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationPtrOutput)
 }
 
 type NotificationOutput struct {
@@ -279,6 +294,23 @@ func (o NotificationOutput) ToNotificationOutputWithContext(ctx context.Context)
 	return o
 }
 
+type NotificationPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (NotificationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Notification)(nil)).Elem()
+}
+
+func (o NotificationPtrOutput) ToNotificationPtrOutput() NotificationPtrOutput {
+	return o
+}
+
+func (o NotificationPtrOutput) ToNotificationPtrOutputWithContext(ctx context.Context) NotificationPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(NotificationOutput{})
+	pulumi.RegisterOutputType(NotificationPtrOutput{})
 }

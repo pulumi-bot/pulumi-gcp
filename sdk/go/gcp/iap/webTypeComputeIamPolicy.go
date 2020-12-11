@@ -337,6 +337,13 @@ type WebTypeComputeIamPolicyInput interface {
 	ToWebTypeComputeIamPolicyOutputWithContext(ctx context.Context) WebTypeComputeIamPolicyOutput
 }
 
+type WebTypeComputeIamPolicyPtrInput interface {
+	pulumi.Input
+
+	ToWebTypeComputeIamPolicyPtrOutput() WebTypeComputeIamPolicyPtrOutput
+	ToWebTypeComputeIamPolicyPtrOutputWithContext(ctx context.Context) WebTypeComputeIamPolicyPtrOutput
+}
+
 func (WebTypeComputeIamPolicy) ElementType() reflect.Type {
 	return reflect.TypeOf((*WebTypeComputeIamPolicy)(nil)).Elem()
 }
@@ -347,6 +354,14 @@ func (i WebTypeComputeIamPolicy) ToWebTypeComputeIamPolicyOutput() WebTypeComput
 
 func (i WebTypeComputeIamPolicy) ToWebTypeComputeIamPolicyOutputWithContext(ctx context.Context) WebTypeComputeIamPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WebTypeComputeIamPolicyOutput)
+}
+
+func (i WebTypeComputeIamPolicy) ToWebTypeComputeIamPolicyPtrOutput() WebTypeComputeIamPolicyPtrOutput {
+	return i.ToWebTypeComputeIamPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i WebTypeComputeIamPolicy) ToWebTypeComputeIamPolicyPtrOutputWithContext(ctx context.Context) WebTypeComputeIamPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebTypeComputeIamPolicyPtrOutput)
 }
 
 type WebTypeComputeIamPolicyOutput struct {
@@ -365,6 +380,23 @@ func (o WebTypeComputeIamPolicyOutput) ToWebTypeComputeIamPolicyOutputWithContex
 	return o
 }
 
+type WebTypeComputeIamPolicyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (WebTypeComputeIamPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebTypeComputeIamPolicy)(nil)).Elem()
+}
+
+func (o WebTypeComputeIamPolicyPtrOutput) ToWebTypeComputeIamPolicyPtrOutput() WebTypeComputeIamPolicyPtrOutput {
+	return o
+}
+
+func (o WebTypeComputeIamPolicyPtrOutput) ToWebTypeComputeIamPolicyPtrOutputWithContext(ctx context.Context) WebTypeComputeIamPolicyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(WebTypeComputeIamPolicyOutput{})
+	pulumi.RegisterOutputType(WebTypeComputeIamPolicyPtrOutput{})
 }

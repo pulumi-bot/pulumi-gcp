@@ -268,6 +268,13 @@ type AttestorIamMemberInput interface {
 	ToAttestorIamMemberOutputWithContext(ctx context.Context) AttestorIamMemberOutput
 }
 
+type AttestorIamMemberPtrInput interface {
+	pulumi.Input
+
+	ToAttestorIamMemberPtrOutput() AttestorIamMemberPtrOutput
+	ToAttestorIamMemberPtrOutputWithContext(ctx context.Context) AttestorIamMemberPtrOutput
+}
+
 func (AttestorIamMember) ElementType() reflect.Type {
 	return reflect.TypeOf((*AttestorIamMember)(nil)).Elem()
 }
@@ -278,6 +285,14 @@ func (i AttestorIamMember) ToAttestorIamMemberOutput() AttestorIamMemberOutput {
 
 func (i AttestorIamMember) ToAttestorIamMemberOutputWithContext(ctx context.Context) AttestorIamMemberOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AttestorIamMemberOutput)
+}
+
+func (i AttestorIamMember) ToAttestorIamMemberPtrOutput() AttestorIamMemberPtrOutput {
+	return i.ToAttestorIamMemberPtrOutputWithContext(context.Background())
+}
+
+func (i AttestorIamMember) ToAttestorIamMemberPtrOutputWithContext(ctx context.Context) AttestorIamMemberPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AttestorIamMemberPtrOutput)
 }
 
 type AttestorIamMemberOutput struct {
@@ -296,6 +311,23 @@ func (o AttestorIamMemberOutput) ToAttestorIamMemberOutputWithContext(ctx contex
 	return o
 }
 
+type AttestorIamMemberPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (AttestorIamMemberPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AttestorIamMember)(nil)).Elem()
+}
+
+func (o AttestorIamMemberPtrOutput) ToAttestorIamMemberPtrOutput() AttestorIamMemberPtrOutput {
+	return o
+}
+
+func (o AttestorIamMemberPtrOutput) ToAttestorIamMemberPtrOutputWithContext(ctx context.Context) AttestorIamMemberPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(AttestorIamMemberOutput{})
+	pulumi.RegisterOutputType(AttestorIamMemberPtrOutput{})
 }

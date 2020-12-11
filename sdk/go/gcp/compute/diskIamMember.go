@@ -285,6 +285,13 @@ type DiskIamMemberInput interface {
 	ToDiskIamMemberOutputWithContext(ctx context.Context) DiskIamMemberOutput
 }
 
+type DiskIamMemberPtrInput interface {
+	pulumi.Input
+
+	ToDiskIamMemberPtrOutput() DiskIamMemberPtrOutput
+	ToDiskIamMemberPtrOutputWithContext(ctx context.Context) DiskIamMemberPtrOutput
+}
+
 func (DiskIamMember) ElementType() reflect.Type {
 	return reflect.TypeOf((*DiskIamMember)(nil)).Elem()
 }
@@ -295,6 +302,14 @@ func (i DiskIamMember) ToDiskIamMemberOutput() DiskIamMemberOutput {
 
 func (i DiskIamMember) ToDiskIamMemberOutputWithContext(ctx context.Context) DiskIamMemberOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DiskIamMemberOutput)
+}
+
+func (i DiskIamMember) ToDiskIamMemberPtrOutput() DiskIamMemberPtrOutput {
+	return i.ToDiskIamMemberPtrOutputWithContext(context.Background())
+}
+
+func (i DiskIamMember) ToDiskIamMemberPtrOutputWithContext(ctx context.Context) DiskIamMemberPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DiskIamMemberPtrOutput)
 }
 
 type DiskIamMemberOutput struct {
@@ -313,6 +328,23 @@ func (o DiskIamMemberOutput) ToDiskIamMemberOutputWithContext(ctx context.Contex
 	return o
 }
 
+type DiskIamMemberPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (DiskIamMemberPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DiskIamMember)(nil)).Elem()
+}
+
+func (o DiskIamMemberPtrOutput) ToDiskIamMemberPtrOutput() DiskIamMemberPtrOutput {
+	return o
+}
+
+func (o DiskIamMemberPtrOutput) ToDiskIamMemberPtrOutputWithContext(ctx context.Context) DiskIamMemberPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(DiskIamMemberOutput{})
+	pulumi.RegisterOutputType(DiskIamMemberPtrOutput{})
 }

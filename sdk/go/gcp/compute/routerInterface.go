@@ -238,6 +238,13 @@ type RouterInterfaceInput interface {
 	ToRouterInterfaceOutputWithContext(ctx context.Context) RouterInterfaceOutput
 }
 
+type RouterInterfacePtrInput interface {
+	pulumi.Input
+
+	ToRouterInterfacePtrOutput() RouterInterfacePtrOutput
+	ToRouterInterfacePtrOutputWithContext(ctx context.Context) RouterInterfacePtrOutput
+}
+
 func (RouterInterface) ElementType() reflect.Type {
 	return reflect.TypeOf((*RouterInterface)(nil)).Elem()
 }
@@ -248,6 +255,14 @@ func (i RouterInterface) ToRouterInterfaceOutput() RouterInterfaceOutput {
 
 func (i RouterInterface) ToRouterInterfaceOutputWithContext(ctx context.Context) RouterInterfaceOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RouterInterfaceOutput)
+}
+
+func (i RouterInterface) ToRouterInterfacePtrOutput() RouterInterfacePtrOutput {
+	return i.ToRouterInterfacePtrOutputWithContext(context.Background())
+}
+
+func (i RouterInterface) ToRouterInterfacePtrOutputWithContext(ctx context.Context) RouterInterfacePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RouterInterfacePtrOutput)
 }
 
 type RouterInterfaceOutput struct {
@@ -266,6 +281,23 @@ func (o RouterInterfaceOutput) ToRouterInterfaceOutputWithContext(ctx context.Co
 	return o
 }
 
+type RouterInterfacePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (RouterInterfacePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RouterInterface)(nil)).Elem()
+}
+
+func (o RouterInterfacePtrOutput) ToRouterInterfacePtrOutput() RouterInterfacePtrOutput {
+	return o
+}
+
+func (o RouterInterfacePtrOutput) ToRouterInterfacePtrOutputWithContext(ctx context.Context) RouterInterfacePtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(RouterInterfaceOutput{})
+	pulumi.RegisterOutputType(RouterInterfacePtrOutput{})
 }

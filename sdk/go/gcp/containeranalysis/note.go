@@ -319,6 +319,13 @@ type NoteInput interface {
 	ToNoteOutputWithContext(ctx context.Context) NoteOutput
 }
 
+type NotePtrInput interface {
+	pulumi.Input
+
+	ToNotePtrOutput() NotePtrOutput
+	ToNotePtrOutputWithContext(ctx context.Context) NotePtrOutput
+}
+
 func (Note) ElementType() reflect.Type {
 	return reflect.TypeOf((*Note)(nil)).Elem()
 }
@@ -329,6 +336,14 @@ func (i Note) ToNoteOutput() NoteOutput {
 
 func (i Note) ToNoteOutputWithContext(ctx context.Context) NoteOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NoteOutput)
+}
+
+func (i Note) ToNotePtrOutput() NotePtrOutput {
+	return i.ToNotePtrOutputWithContext(context.Background())
+}
+
+func (i Note) ToNotePtrOutputWithContext(ctx context.Context) NotePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotePtrOutput)
 }
 
 type NoteOutput struct {
@@ -347,6 +362,23 @@ func (o NoteOutput) ToNoteOutputWithContext(ctx context.Context) NoteOutput {
 	return o
 }
 
+type NotePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (NotePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Note)(nil)).Elem()
+}
+
+func (o NotePtrOutput) ToNotePtrOutput() NotePtrOutput {
+	return o
+}
+
+func (o NotePtrOutput) ToNotePtrOutputWithContext(ctx context.Context) NotePtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(NoteOutput{})
+	pulumi.RegisterOutputType(NotePtrOutput{})
 }

@@ -162,6 +162,13 @@ type TunnelIamMemberInput interface {
 	ToTunnelIamMemberOutputWithContext(ctx context.Context) TunnelIamMemberOutput
 }
 
+type TunnelIamMemberPtrInput interface {
+	pulumi.Input
+
+	ToTunnelIamMemberPtrOutput() TunnelIamMemberPtrOutput
+	ToTunnelIamMemberPtrOutputWithContext(ctx context.Context) TunnelIamMemberPtrOutput
+}
+
 func (TunnelIamMember) ElementType() reflect.Type {
 	return reflect.TypeOf((*TunnelIamMember)(nil)).Elem()
 }
@@ -172,6 +179,14 @@ func (i TunnelIamMember) ToTunnelIamMemberOutput() TunnelIamMemberOutput {
 
 func (i TunnelIamMember) ToTunnelIamMemberOutputWithContext(ctx context.Context) TunnelIamMemberOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TunnelIamMemberOutput)
+}
+
+func (i TunnelIamMember) ToTunnelIamMemberPtrOutput() TunnelIamMemberPtrOutput {
+	return i.ToTunnelIamMemberPtrOutputWithContext(context.Background())
+}
+
+func (i TunnelIamMember) ToTunnelIamMemberPtrOutputWithContext(ctx context.Context) TunnelIamMemberPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TunnelIamMemberPtrOutput)
 }
 
 type TunnelIamMemberOutput struct {
@@ -190,6 +205,23 @@ func (o TunnelIamMemberOutput) ToTunnelIamMemberOutputWithContext(ctx context.Co
 	return o
 }
 
+type TunnelIamMemberPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (TunnelIamMemberPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TunnelIamMember)(nil)).Elem()
+}
+
+func (o TunnelIamMemberPtrOutput) ToTunnelIamMemberPtrOutput() TunnelIamMemberPtrOutput {
+	return o
+}
+
+func (o TunnelIamMemberPtrOutput) ToTunnelIamMemberPtrOutputWithContext(ctx context.Context) TunnelIamMemberPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(TunnelIamMemberOutput{})
+	pulumi.RegisterOutputType(TunnelIamMemberPtrOutput{})
 }

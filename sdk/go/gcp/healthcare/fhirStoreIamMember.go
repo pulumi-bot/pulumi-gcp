@@ -267,6 +267,13 @@ type FhirStoreIamMemberInput interface {
 	ToFhirStoreIamMemberOutputWithContext(ctx context.Context) FhirStoreIamMemberOutput
 }
 
+type FhirStoreIamMemberPtrInput interface {
+	pulumi.Input
+
+	ToFhirStoreIamMemberPtrOutput() FhirStoreIamMemberPtrOutput
+	ToFhirStoreIamMemberPtrOutputWithContext(ctx context.Context) FhirStoreIamMemberPtrOutput
+}
+
 func (FhirStoreIamMember) ElementType() reflect.Type {
 	return reflect.TypeOf((*FhirStoreIamMember)(nil)).Elem()
 }
@@ -277,6 +284,14 @@ func (i FhirStoreIamMember) ToFhirStoreIamMemberOutput() FhirStoreIamMemberOutpu
 
 func (i FhirStoreIamMember) ToFhirStoreIamMemberOutputWithContext(ctx context.Context) FhirStoreIamMemberOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FhirStoreIamMemberOutput)
+}
+
+func (i FhirStoreIamMember) ToFhirStoreIamMemberPtrOutput() FhirStoreIamMemberPtrOutput {
+	return i.ToFhirStoreIamMemberPtrOutputWithContext(context.Background())
+}
+
+func (i FhirStoreIamMember) ToFhirStoreIamMemberPtrOutputWithContext(ctx context.Context) FhirStoreIamMemberPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FhirStoreIamMemberPtrOutput)
 }
 
 type FhirStoreIamMemberOutput struct {
@@ -295,6 +310,23 @@ func (o FhirStoreIamMemberOutput) ToFhirStoreIamMemberOutputWithContext(ctx cont
 	return o
 }
 
+type FhirStoreIamMemberPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (FhirStoreIamMemberPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**FhirStoreIamMember)(nil)).Elem()
+}
+
+func (o FhirStoreIamMemberPtrOutput) ToFhirStoreIamMemberPtrOutput() FhirStoreIamMemberPtrOutput {
+	return o
+}
+
+func (o FhirStoreIamMemberPtrOutput) ToFhirStoreIamMemberPtrOutputWithContext(ctx context.Context) FhirStoreIamMemberPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(FhirStoreIamMemberOutput{})
+	pulumi.RegisterOutputType(FhirStoreIamMemberPtrOutput{})
 }

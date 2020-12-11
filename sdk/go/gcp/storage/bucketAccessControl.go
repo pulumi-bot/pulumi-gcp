@@ -255,6 +255,13 @@ type BucketAccessControlInput interface {
 	ToBucketAccessControlOutputWithContext(ctx context.Context) BucketAccessControlOutput
 }
 
+type BucketAccessControlPtrInput interface {
+	pulumi.Input
+
+	ToBucketAccessControlPtrOutput() BucketAccessControlPtrOutput
+	ToBucketAccessControlPtrOutputWithContext(ctx context.Context) BucketAccessControlPtrOutput
+}
+
 func (BucketAccessControl) ElementType() reflect.Type {
 	return reflect.TypeOf((*BucketAccessControl)(nil)).Elem()
 }
@@ -265,6 +272,14 @@ func (i BucketAccessControl) ToBucketAccessControlOutput() BucketAccessControlOu
 
 func (i BucketAccessControl) ToBucketAccessControlOutputWithContext(ctx context.Context) BucketAccessControlOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(BucketAccessControlOutput)
+}
+
+func (i BucketAccessControl) ToBucketAccessControlPtrOutput() BucketAccessControlPtrOutput {
+	return i.ToBucketAccessControlPtrOutputWithContext(context.Background())
+}
+
+func (i BucketAccessControl) ToBucketAccessControlPtrOutputWithContext(ctx context.Context) BucketAccessControlPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketAccessControlPtrOutput)
 }
 
 type BucketAccessControlOutput struct {
@@ -283,6 +298,23 @@ func (o BucketAccessControlOutput) ToBucketAccessControlOutputWithContext(ctx co
 	return o
 }
 
+type BucketAccessControlPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (BucketAccessControlPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketAccessControl)(nil)).Elem()
+}
+
+func (o BucketAccessControlPtrOutput) ToBucketAccessControlPtrOutput() BucketAccessControlPtrOutput {
+	return o
+}
+
+func (o BucketAccessControlPtrOutput) ToBucketAccessControlPtrOutputWithContext(ctx context.Context) BucketAccessControlPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(BucketAccessControlOutput{})
+	pulumi.RegisterOutputType(BucketAccessControlPtrOutput{})
 }

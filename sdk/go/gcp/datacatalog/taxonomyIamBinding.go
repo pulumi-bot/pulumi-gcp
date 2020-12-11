@@ -170,6 +170,13 @@ type TaxonomyIamBindingInput interface {
 	ToTaxonomyIamBindingOutputWithContext(ctx context.Context) TaxonomyIamBindingOutput
 }
 
+type TaxonomyIamBindingPtrInput interface {
+	pulumi.Input
+
+	ToTaxonomyIamBindingPtrOutput() TaxonomyIamBindingPtrOutput
+	ToTaxonomyIamBindingPtrOutputWithContext(ctx context.Context) TaxonomyIamBindingPtrOutput
+}
+
 func (TaxonomyIamBinding) ElementType() reflect.Type {
 	return reflect.TypeOf((*TaxonomyIamBinding)(nil)).Elem()
 }
@@ -180,6 +187,14 @@ func (i TaxonomyIamBinding) ToTaxonomyIamBindingOutput() TaxonomyIamBindingOutpu
 
 func (i TaxonomyIamBinding) ToTaxonomyIamBindingOutputWithContext(ctx context.Context) TaxonomyIamBindingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TaxonomyIamBindingOutput)
+}
+
+func (i TaxonomyIamBinding) ToTaxonomyIamBindingPtrOutput() TaxonomyIamBindingPtrOutput {
+	return i.ToTaxonomyIamBindingPtrOutputWithContext(context.Background())
+}
+
+func (i TaxonomyIamBinding) ToTaxonomyIamBindingPtrOutputWithContext(ctx context.Context) TaxonomyIamBindingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TaxonomyIamBindingPtrOutput)
 }
 
 type TaxonomyIamBindingOutput struct {
@@ -198,6 +213,23 @@ func (o TaxonomyIamBindingOutput) ToTaxonomyIamBindingOutputWithContext(ctx cont
 	return o
 }
 
+type TaxonomyIamBindingPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (TaxonomyIamBindingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TaxonomyIamBinding)(nil)).Elem()
+}
+
+func (o TaxonomyIamBindingPtrOutput) ToTaxonomyIamBindingPtrOutput() TaxonomyIamBindingPtrOutput {
+	return o
+}
+
+func (o TaxonomyIamBindingPtrOutput) ToTaxonomyIamBindingPtrOutputWithContext(ctx context.Context) TaxonomyIamBindingPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(TaxonomyIamBindingOutput{})
+	pulumi.RegisterOutputType(TaxonomyIamBindingPtrOutput{})
 }

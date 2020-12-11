@@ -253,6 +253,13 @@ type DefaultObjectAccessControlInput interface {
 	ToDefaultObjectAccessControlOutputWithContext(ctx context.Context) DefaultObjectAccessControlOutput
 }
 
+type DefaultObjectAccessControlPtrInput interface {
+	pulumi.Input
+
+	ToDefaultObjectAccessControlPtrOutput() DefaultObjectAccessControlPtrOutput
+	ToDefaultObjectAccessControlPtrOutputWithContext(ctx context.Context) DefaultObjectAccessControlPtrOutput
+}
+
 func (DefaultObjectAccessControl) ElementType() reflect.Type {
 	return reflect.TypeOf((*DefaultObjectAccessControl)(nil)).Elem()
 }
@@ -263,6 +270,14 @@ func (i DefaultObjectAccessControl) ToDefaultObjectAccessControlOutput() Default
 
 func (i DefaultObjectAccessControl) ToDefaultObjectAccessControlOutputWithContext(ctx context.Context) DefaultObjectAccessControlOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DefaultObjectAccessControlOutput)
+}
+
+func (i DefaultObjectAccessControl) ToDefaultObjectAccessControlPtrOutput() DefaultObjectAccessControlPtrOutput {
+	return i.ToDefaultObjectAccessControlPtrOutputWithContext(context.Background())
+}
+
+func (i DefaultObjectAccessControl) ToDefaultObjectAccessControlPtrOutputWithContext(ctx context.Context) DefaultObjectAccessControlPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultObjectAccessControlPtrOutput)
 }
 
 type DefaultObjectAccessControlOutput struct {
@@ -281,6 +296,23 @@ func (o DefaultObjectAccessControlOutput) ToDefaultObjectAccessControlOutputWith
 	return o
 }
 
+type DefaultObjectAccessControlPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (DefaultObjectAccessControlPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DefaultObjectAccessControl)(nil)).Elem()
+}
+
+func (o DefaultObjectAccessControlPtrOutput) ToDefaultObjectAccessControlPtrOutput() DefaultObjectAccessControlPtrOutput {
+	return o
+}
+
+func (o DefaultObjectAccessControlPtrOutput) ToDefaultObjectAccessControlPtrOutputWithContext(ctx context.Context) DefaultObjectAccessControlPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(DefaultObjectAccessControlOutput{})
+	pulumi.RegisterOutputType(DefaultObjectAccessControlPtrOutput{})
 }

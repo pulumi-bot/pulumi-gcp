@@ -288,6 +288,13 @@ type OrganizationPolicyInput interface {
 	ToOrganizationPolicyOutputWithContext(ctx context.Context) OrganizationPolicyOutput
 }
 
+type OrganizationPolicyPtrInput interface {
+	pulumi.Input
+
+	ToOrganizationPolicyPtrOutput() OrganizationPolicyPtrOutput
+	ToOrganizationPolicyPtrOutputWithContext(ctx context.Context) OrganizationPolicyPtrOutput
+}
+
 func (OrganizationPolicy) ElementType() reflect.Type {
 	return reflect.TypeOf((*OrganizationPolicy)(nil)).Elem()
 }
@@ -298,6 +305,14 @@ func (i OrganizationPolicy) ToOrganizationPolicyOutput() OrganizationPolicyOutpu
 
 func (i OrganizationPolicy) ToOrganizationPolicyOutputWithContext(ctx context.Context) OrganizationPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(OrganizationPolicyOutput)
+}
+
+func (i OrganizationPolicy) ToOrganizationPolicyPtrOutput() OrganizationPolicyPtrOutput {
+	return i.ToOrganizationPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i OrganizationPolicy) ToOrganizationPolicyPtrOutputWithContext(ctx context.Context) OrganizationPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationPolicyPtrOutput)
 }
 
 type OrganizationPolicyOutput struct {
@@ -316,6 +331,23 @@ func (o OrganizationPolicyOutput) ToOrganizationPolicyOutputWithContext(ctx cont
 	return o
 }
 
+type OrganizationPolicyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (OrganizationPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**OrganizationPolicy)(nil)).Elem()
+}
+
+func (o OrganizationPolicyPtrOutput) ToOrganizationPolicyPtrOutput() OrganizationPolicyPtrOutput {
+	return o
+}
+
+func (o OrganizationPolicyPtrOutput) ToOrganizationPolicyPtrOutputWithContext(ctx context.Context) OrganizationPolicyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(OrganizationPolicyOutput{})
+	pulumi.RegisterOutputType(OrganizationPolicyPtrOutput{})
 }

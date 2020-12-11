@@ -365,6 +365,13 @@ type WebTypeComputeIamBindingInput interface {
 	ToWebTypeComputeIamBindingOutputWithContext(ctx context.Context) WebTypeComputeIamBindingOutput
 }
 
+type WebTypeComputeIamBindingPtrInput interface {
+	pulumi.Input
+
+	ToWebTypeComputeIamBindingPtrOutput() WebTypeComputeIamBindingPtrOutput
+	ToWebTypeComputeIamBindingPtrOutputWithContext(ctx context.Context) WebTypeComputeIamBindingPtrOutput
+}
+
 func (WebTypeComputeIamBinding) ElementType() reflect.Type {
 	return reflect.TypeOf((*WebTypeComputeIamBinding)(nil)).Elem()
 }
@@ -375,6 +382,14 @@ func (i WebTypeComputeIamBinding) ToWebTypeComputeIamBindingOutput() WebTypeComp
 
 func (i WebTypeComputeIamBinding) ToWebTypeComputeIamBindingOutputWithContext(ctx context.Context) WebTypeComputeIamBindingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WebTypeComputeIamBindingOutput)
+}
+
+func (i WebTypeComputeIamBinding) ToWebTypeComputeIamBindingPtrOutput() WebTypeComputeIamBindingPtrOutput {
+	return i.ToWebTypeComputeIamBindingPtrOutputWithContext(context.Background())
+}
+
+func (i WebTypeComputeIamBinding) ToWebTypeComputeIamBindingPtrOutputWithContext(ctx context.Context) WebTypeComputeIamBindingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebTypeComputeIamBindingPtrOutput)
 }
 
 type WebTypeComputeIamBindingOutput struct {
@@ -393,6 +408,23 @@ func (o WebTypeComputeIamBindingOutput) ToWebTypeComputeIamBindingOutputWithCont
 	return o
 }
 
+type WebTypeComputeIamBindingPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (WebTypeComputeIamBindingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebTypeComputeIamBinding)(nil)).Elem()
+}
+
+func (o WebTypeComputeIamBindingPtrOutput) ToWebTypeComputeIamBindingPtrOutput() WebTypeComputeIamBindingPtrOutput {
+	return o
+}
+
+func (o WebTypeComputeIamBindingPtrOutput) ToWebTypeComputeIamBindingPtrOutputWithContext(ctx context.Context) WebTypeComputeIamBindingPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(WebTypeComputeIamBindingOutput{})
+	pulumi.RegisterOutputType(WebTypeComputeIamBindingPtrOutput{})
 }

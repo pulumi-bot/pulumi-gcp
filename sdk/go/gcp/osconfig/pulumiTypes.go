@@ -88,7 +88,7 @@ func (i GuestPoliciesAssignmentArgs) ToGuestPoliciesAssignmentPtrOutput() GuestP
 }
 
 func (i GuestPoliciesAssignmentArgs) ToGuestPoliciesAssignmentPtrOutputWithContext(ctx context.Context) GuestPoliciesAssignmentPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesAssignmentOutput).ToGuestPoliciesAssignmentPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesAssignmentOutput).ToGuestPoliciesAssignmentPtrOutput()
 }
 
 // GuestPoliciesAssignmentPtrInput is an input type that accepts GuestPoliciesAssignmentArgs, GuestPoliciesAssignmentPtr and GuestPoliciesAssignmentPtrOutput values.
@@ -121,7 +121,7 @@ func (i *guestPoliciesAssignmentPtrType) ToGuestPoliciesAssignmentPtrOutput() Gu
 }
 
 func (i *guestPoliciesAssignmentPtrType) ToGuestPoliciesAssignmentPtrOutputWithContext(ctx context.Context) GuestPoliciesAssignmentPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesAssignmentPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesAssignmentOutput).ToGuestPoliciesAssignmentPtrOutput()
 }
 
 type GuestPoliciesAssignmentOutput struct{ *pulumi.OutputState }
@@ -833,7 +833,7 @@ func (i GuestPoliciesPackageRepositoryAptArgs) ToGuestPoliciesPackageRepositoryA
 }
 
 func (i GuestPoliciesPackageRepositoryAptArgs) ToGuestPoliciesPackageRepositoryAptPtrOutputWithContext(ctx context.Context) GuestPoliciesPackageRepositoryAptPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesPackageRepositoryAptOutput).ToGuestPoliciesPackageRepositoryAptPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesPackageRepositoryAptOutput).ToGuestPoliciesPackageRepositoryAptPtrOutput()
 }
 
 // GuestPoliciesPackageRepositoryAptPtrInput is an input type that accepts GuestPoliciesPackageRepositoryAptArgs, GuestPoliciesPackageRepositoryAptPtr and GuestPoliciesPackageRepositoryAptPtrOutput values.
@@ -866,7 +866,7 @@ func (i *guestPoliciesPackageRepositoryAptPtrType) ToGuestPoliciesPackageReposit
 }
 
 func (i *guestPoliciesPackageRepositoryAptPtrType) ToGuestPoliciesPackageRepositoryAptPtrOutputWithContext(ctx context.Context) GuestPoliciesPackageRepositoryAptPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesPackageRepositoryAptPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesPackageRepositoryAptOutput).ToGuestPoliciesPackageRepositoryAptPtrOutput()
 }
 
 type GuestPoliciesPackageRepositoryAptOutput struct{ *pulumi.OutputState }
@@ -1040,7 +1040,7 @@ func (i GuestPoliciesPackageRepositoryGooArgs) ToGuestPoliciesPackageRepositoryG
 }
 
 func (i GuestPoliciesPackageRepositoryGooArgs) ToGuestPoliciesPackageRepositoryGooPtrOutputWithContext(ctx context.Context) GuestPoliciesPackageRepositoryGooPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesPackageRepositoryGooOutput).ToGuestPoliciesPackageRepositoryGooPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesPackageRepositoryGooOutput).ToGuestPoliciesPackageRepositoryGooPtrOutput()
 }
 
 // GuestPoliciesPackageRepositoryGooPtrInput is an input type that accepts GuestPoliciesPackageRepositoryGooArgs, GuestPoliciesPackageRepositoryGooPtr and GuestPoliciesPackageRepositoryGooPtrOutput values.
@@ -1073,7 +1073,7 @@ func (i *guestPoliciesPackageRepositoryGooPtrType) ToGuestPoliciesPackageReposit
 }
 
 func (i *guestPoliciesPackageRepositoryGooPtrType) ToGuestPoliciesPackageRepositoryGooPtrOutputWithContext(ctx context.Context) GuestPoliciesPackageRepositoryGooPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesPackageRepositoryGooPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesPackageRepositoryGooOutput).ToGuestPoliciesPackageRepositoryGooPtrOutput()
 }
 
 type GuestPoliciesPackageRepositoryGooOutput struct{ *pulumi.OutputState }
@@ -1206,7 +1206,7 @@ func (i GuestPoliciesPackageRepositoryYumArgs) ToGuestPoliciesPackageRepositoryY
 }
 
 func (i GuestPoliciesPackageRepositoryYumArgs) ToGuestPoliciesPackageRepositoryYumPtrOutputWithContext(ctx context.Context) GuestPoliciesPackageRepositoryYumPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesPackageRepositoryYumOutput).ToGuestPoliciesPackageRepositoryYumPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesPackageRepositoryYumOutput).ToGuestPoliciesPackageRepositoryYumPtrOutput()
 }
 
 // GuestPoliciesPackageRepositoryYumPtrInput is an input type that accepts GuestPoliciesPackageRepositoryYumArgs, GuestPoliciesPackageRepositoryYumPtr and GuestPoliciesPackageRepositoryYumPtrOutput values.
@@ -1239,7 +1239,7 @@ func (i *guestPoliciesPackageRepositoryYumPtrType) ToGuestPoliciesPackageReposit
 }
 
 func (i *guestPoliciesPackageRepositoryYumPtrType) ToGuestPoliciesPackageRepositoryYumPtrOutputWithContext(ctx context.Context) GuestPoliciesPackageRepositoryYumPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesPackageRepositoryYumPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesPackageRepositoryYumOutput).ToGuestPoliciesPackageRepositoryYumPtrOutput()
 }
 
 type GuestPoliciesPackageRepositoryYumOutput struct{ *pulumi.OutputState }
@@ -1398,7 +1398,7 @@ func (i GuestPoliciesPackageRepositoryZypperArgs) ToGuestPoliciesPackageReposito
 }
 
 func (i GuestPoliciesPackageRepositoryZypperArgs) ToGuestPoliciesPackageRepositoryZypperPtrOutputWithContext(ctx context.Context) GuestPoliciesPackageRepositoryZypperPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesPackageRepositoryZypperOutput).ToGuestPoliciesPackageRepositoryZypperPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesPackageRepositoryZypperOutput).ToGuestPoliciesPackageRepositoryZypperPtrOutput()
 }
 
 // GuestPoliciesPackageRepositoryZypperPtrInput is an input type that accepts GuestPoliciesPackageRepositoryZypperArgs, GuestPoliciesPackageRepositoryZypperPtr and GuestPoliciesPackageRepositoryZypperPtrOutput values.
@@ -1431,7 +1431,7 @@ func (i *guestPoliciesPackageRepositoryZypperPtrType) ToGuestPoliciesPackageRepo
 }
 
 func (i *guestPoliciesPackageRepositoryZypperPtrType) ToGuestPoliciesPackageRepositoryZypperPtrOutputWithContext(ctx context.Context) GuestPoliciesPackageRepositoryZypperPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesPackageRepositoryZypperPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesPackageRepositoryZypperOutput).ToGuestPoliciesPackageRepositoryZypperPtrOutput()
 }
 
 type GuestPoliciesPackageRepositoryZypperOutput struct{ *pulumi.OutputState }
@@ -1913,7 +1913,7 @@ func (i GuestPoliciesRecipeArtifactGcsArgs) ToGuestPoliciesRecipeArtifactGcsPtrO
 }
 
 func (i GuestPoliciesRecipeArtifactGcsArgs) ToGuestPoliciesRecipeArtifactGcsPtrOutputWithContext(ctx context.Context) GuestPoliciesRecipeArtifactGcsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeArtifactGcsOutput).ToGuestPoliciesRecipeArtifactGcsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeArtifactGcsOutput).ToGuestPoliciesRecipeArtifactGcsPtrOutput()
 }
 
 // GuestPoliciesRecipeArtifactGcsPtrInput is an input type that accepts GuestPoliciesRecipeArtifactGcsArgs, GuestPoliciesRecipeArtifactGcsPtr and GuestPoliciesRecipeArtifactGcsPtrOutput values.
@@ -1946,7 +1946,7 @@ func (i *guestPoliciesRecipeArtifactGcsPtrType) ToGuestPoliciesRecipeArtifactGcs
 }
 
 func (i *guestPoliciesRecipeArtifactGcsPtrType) ToGuestPoliciesRecipeArtifactGcsPtrOutputWithContext(ctx context.Context) GuestPoliciesRecipeArtifactGcsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeArtifactGcsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeArtifactGcsOutput).ToGuestPoliciesRecipeArtifactGcsPtrOutput()
 }
 
 type GuestPoliciesRecipeArtifactGcsOutput struct{ *pulumi.OutputState }
@@ -2088,7 +2088,7 @@ func (i GuestPoliciesRecipeArtifactRemoteArgs) ToGuestPoliciesRecipeArtifactRemo
 }
 
 func (i GuestPoliciesRecipeArtifactRemoteArgs) ToGuestPoliciesRecipeArtifactRemotePtrOutputWithContext(ctx context.Context) GuestPoliciesRecipeArtifactRemotePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeArtifactRemoteOutput).ToGuestPoliciesRecipeArtifactRemotePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeArtifactRemoteOutput).ToGuestPoliciesRecipeArtifactRemotePtrOutput()
 }
 
 // GuestPoliciesRecipeArtifactRemotePtrInput is an input type that accepts GuestPoliciesRecipeArtifactRemoteArgs, GuestPoliciesRecipeArtifactRemotePtr and GuestPoliciesRecipeArtifactRemotePtrOutput values.
@@ -2121,7 +2121,7 @@ func (i *guestPoliciesRecipeArtifactRemotePtrType) ToGuestPoliciesRecipeArtifact
 }
 
 func (i *guestPoliciesRecipeArtifactRemotePtrType) ToGuestPoliciesRecipeArtifactRemotePtrOutputWithContext(ctx context.Context) GuestPoliciesRecipeArtifactRemotePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeArtifactRemotePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeArtifactRemoteOutput).ToGuestPoliciesRecipeArtifactRemotePtrOutput()
 }
 
 type GuestPoliciesRecipeArtifactRemoteOutput struct{ *pulumi.OutputState }
@@ -2428,7 +2428,7 @@ func (i GuestPoliciesRecipeInstallStepArchiveExtractionArgs) ToGuestPoliciesReci
 }
 
 func (i GuestPoliciesRecipeInstallStepArchiveExtractionArgs) ToGuestPoliciesRecipeInstallStepArchiveExtractionPtrOutputWithContext(ctx context.Context) GuestPoliciesRecipeInstallStepArchiveExtractionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeInstallStepArchiveExtractionOutput).ToGuestPoliciesRecipeInstallStepArchiveExtractionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeInstallStepArchiveExtractionOutput).ToGuestPoliciesRecipeInstallStepArchiveExtractionPtrOutput()
 }
 
 // GuestPoliciesRecipeInstallStepArchiveExtractionPtrInput is an input type that accepts GuestPoliciesRecipeInstallStepArchiveExtractionArgs, GuestPoliciesRecipeInstallStepArchiveExtractionPtr and GuestPoliciesRecipeInstallStepArchiveExtractionPtrOutput values.
@@ -2461,7 +2461,7 @@ func (i *guestPoliciesRecipeInstallStepArchiveExtractionPtrType) ToGuestPolicies
 }
 
 func (i *guestPoliciesRecipeInstallStepArchiveExtractionPtrType) ToGuestPoliciesRecipeInstallStepArchiveExtractionPtrOutputWithContext(ctx context.Context) GuestPoliciesRecipeInstallStepArchiveExtractionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeInstallStepArchiveExtractionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeInstallStepArchiveExtractionOutput).ToGuestPoliciesRecipeInstallStepArchiveExtractionPtrOutput()
 }
 
 type GuestPoliciesRecipeInstallStepArchiveExtractionOutput struct{ *pulumi.OutputState }
@@ -2593,7 +2593,7 @@ func (i GuestPoliciesRecipeInstallStepDpkgInstallationArgs) ToGuestPoliciesRecip
 }
 
 func (i GuestPoliciesRecipeInstallStepDpkgInstallationArgs) ToGuestPoliciesRecipeInstallStepDpkgInstallationPtrOutputWithContext(ctx context.Context) GuestPoliciesRecipeInstallStepDpkgInstallationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeInstallStepDpkgInstallationOutput).ToGuestPoliciesRecipeInstallStepDpkgInstallationPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeInstallStepDpkgInstallationOutput).ToGuestPoliciesRecipeInstallStepDpkgInstallationPtrOutput()
 }
 
 // GuestPoliciesRecipeInstallStepDpkgInstallationPtrInput is an input type that accepts GuestPoliciesRecipeInstallStepDpkgInstallationArgs, GuestPoliciesRecipeInstallStepDpkgInstallationPtr and GuestPoliciesRecipeInstallStepDpkgInstallationPtrOutput values.
@@ -2626,7 +2626,7 @@ func (i *guestPoliciesRecipeInstallStepDpkgInstallationPtrType) ToGuestPoliciesR
 }
 
 func (i *guestPoliciesRecipeInstallStepDpkgInstallationPtrType) ToGuestPoliciesRecipeInstallStepDpkgInstallationPtrOutputWithContext(ctx context.Context) GuestPoliciesRecipeInstallStepDpkgInstallationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeInstallStepDpkgInstallationPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeInstallStepDpkgInstallationOutput).ToGuestPoliciesRecipeInstallStepDpkgInstallationPtrOutput()
 }
 
 type GuestPoliciesRecipeInstallStepDpkgInstallationOutput struct{ *pulumi.OutputState }
@@ -2750,7 +2750,7 @@ func (i GuestPoliciesRecipeInstallStepFileCopyArgs) ToGuestPoliciesRecipeInstall
 }
 
 func (i GuestPoliciesRecipeInstallStepFileCopyArgs) ToGuestPoliciesRecipeInstallStepFileCopyPtrOutputWithContext(ctx context.Context) GuestPoliciesRecipeInstallStepFileCopyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeInstallStepFileCopyOutput).ToGuestPoliciesRecipeInstallStepFileCopyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeInstallStepFileCopyOutput).ToGuestPoliciesRecipeInstallStepFileCopyPtrOutput()
 }
 
 // GuestPoliciesRecipeInstallStepFileCopyPtrInput is an input type that accepts GuestPoliciesRecipeInstallStepFileCopyArgs, GuestPoliciesRecipeInstallStepFileCopyPtr and GuestPoliciesRecipeInstallStepFileCopyPtrOutput values.
@@ -2783,7 +2783,7 @@ func (i *guestPoliciesRecipeInstallStepFileCopyPtrType) ToGuestPoliciesRecipeIns
 }
 
 func (i *guestPoliciesRecipeInstallStepFileCopyPtrType) ToGuestPoliciesRecipeInstallStepFileCopyPtrOutputWithContext(ctx context.Context) GuestPoliciesRecipeInstallStepFileCopyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeInstallStepFileCopyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeInstallStepFileCopyOutput).ToGuestPoliciesRecipeInstallStepFileCopyPtrOutput()
 }
 
 type GuestPoliciesRecipeInstallStepFileCopyOutput struct{ *pulumi.OutputState }
@@ -2950,7 +2950,7 @@ func (i GuestPoliciesRecipeInstallStepFileExecArgs) ToGuestPoliciesRecipeInstall
 }
 
 func (i GuestPoliciesRecipeInstallStepFileExecArgs) ToGuestPoliciesRecipeInstallStepFileExecPtrOutputWithContext(ctx context.Context) GuestPoliciesRecipeInstallStepFileExecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeInstallStepFileExecOutput).ToGuestPoliciesRecipeInstallStepFileExecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeInstallStepFileExecOutput).ToGuestPoliciesRecipeInstallStepFileExecPtrOutput()
 }
 
 // GuestPoliciesRecipeInstallStepFileExecPtrInput is an input type that accepts GuestPoliciesRecipeInstallStepFileExecArgs, GuestPoliciesRecipeInstallStepFileExecPtr and GuestPoliciesRecipeInstallStepFileExecPtrOutput values.
@@ -2983,7 +2983,7 @@ func (i *guestPoliciesRecipeInstallStepFileExecPtrType) ToGuestPoliciesRecipeIns
 }
 
 func (i *guestPoliciesRecipeInstallStepFileExecPtrType) ToGuestPoliciesRecipeInstallStepFileExecPtrOutputWithContext(ctx context.Context) GuestPoliciesRecipeInstallStepFileExecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeInstallStepFileExecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeInstallStepFileExecOutput).ToGuestPoliciesRecipeInstallStepFileExecPtrOutput()
 }
 
 type GuestPoliciesRecipeInstallStepFileExecOutput struct{ *pulumi.OutputState }
@@ -3134,7 +3134,7 @@ func (i GuestPoliciesRecipeInstallStepMsiInstallationArgs) ToGuestPoliciesRecipe
 }
 
 func (i GuestPoliciesRecipeInstallStepMsiInstallationArgs) ToGuestPoliciesRecipeInstallStepMsiInstallationPtrOutputWithContext(ctx context.Context) GuestPoliciesRecipeInstallStepMsiInstallationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeInstallStepMsiInstallationOutput).ToGuestPoliciesRecipeInstallStepMsiInstallationPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeInstallStepMsiInstallationOutput).ToGuestPoliciesRecipeInstallStepMsiInstallationPtrOutput()
 }
 
 // GuestPoliciesRecipeInstallStepMsiInstallationPtrInput is an input type that accepts GuestPoliciesRecipeInstallStepMsiInstallationArgs, GuestPoliciesRecipeInstallStepMsiInstallationPtr and GuestPoliciesRecipeInstallStepMsiInstallationPtrOutput values.
@@ -3167,7 +3167,7 @@ func (i *guestPoliciesRecipeInstallStepMsiInstallationPtrType) ToGuestPoliciesRe
 }
 
 func (i *guestPoliciesRecipeInstallStepMsiInstallationPtrType) ToGuestPoliciesRecipeInstallStepMsiInstallationPtrOutputWithContext(ctx context.Context) GuestPoliciesRecipeInstallStepMsiInstallationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeInstallStepMsiInstallationPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeInstallStepMsiInstallationOutput).ToGuestPoliciesRecipeInstallStepMsiInstallationPtrOutput()
 }
 
 type GuestPoliciesRecipeInstallStepMsiInstallationOutput struct{ *pulumi.OutputState }
@@ -3297,7 +3297,7 @@ func (i GuestPoliciesRecipeInstallStepRpmInstallationArgs) ToGuestPoliciesRecipe
 }
 
 func (i GuestPoliciesRecipeInstallStepRpmInstallationArgs) ToGuestPoliciesRecipeInstallStepRpmInstallationPtrOutputWithContext(ctx context.Context) GuestPoliciesRecipeInstallStepRpmInstallationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeInstallStepRpmInstallationOutput).ToGuestPoliciesRecipeInstallStepRpmInstallationPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeInstallStepRpmInstallationOutput).ToGuestPoliciesRecipeInstallStepRpmInstallationPtrOutput()
 }
 
 // GuestPoliciesRecipeInstallStepRpmInstallationPtrInput is an input type that accepts GuestPoliciesRecipeInstallStepRpmInstallationArgs, GuestPoliciesRecipeInstallStepRpmInstallationPtr and GuestPoliciesRecipeInstallStepRpmInstallationPtrOutput values.
@@ -3330,7 +3330,7 @@ func (i *guestPoliciesRecipeInstallStepRpmInstallationPtrType) ToGuestPoliciesRe
 }
 
 func (i *guestPoliciesRecipeInstallStepRpmInstallationPtrType) ToGuestPoliciesRecipeInstallStepRpmInstallationPtrOutputWithContext(ctx context.Context) GuestPoliciesRecipeInstallStepRpmInstallationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeInstallStepRpmInstallationPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeInstallStepRpmInstallationOutput).ToGuestPoliciesRecipeInstallStepRpmInstallationPtrOutput()
 }
 
 type GuestPoliciesRecipeInstallStepRpmInstallationOutput struct{ *pulumi.OutputState }
@@ -3442,7 +3442,7 @@ func (i GuestPoliciesRecipeInstallStepScriptRunArgs) ToGuestPoliciesRecipeInstal
 }
 
 func (i GuestPoliciesRecipeInstallStepScriptRunArgs) ToGuestPoliciesRecipeInstallStepScriptRunPtrOutputWithContext(ctx context.Context) GuestPoliciesRecipeInstallStepScriptRunPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeInstallStepScriptRunOutput).ToGuestPoliciesRecipeInstallStepScriptRunPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeInstallStepScriptRunOutput).ToGuestPoliciesRecipeInstallStepScriptRunPtrOutput()
 }
 
 // GuestPoliciesRecipeInstallStepScriptRunPtrInput is an input type that accepts GuestPoliciesRecipeInstallStepScriptRunArgs, GuestPoliciesRecipeInstallStepScriptRunPtr and GuestPoliciesRecipeInstallStepScriptRunPtrOutput values.
@@ -3475,7 +3475,7 @@ func (i *guestPoliciesRecipeInstallStepScriptRunPtrType) ToGuestPoliciesRecipeIn
 }
 
 func (i *guestPoliciesRecipeInstallStepScriptRunPtrType) ToGuestPoliciesRecipeInstallStepScriptRunPtrOutputWithContext(ctx context.Context) GuestPoliciesRecipeInstallStepScriptRunPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeInstallStepScriptRunPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeInstallStepScriptRunOutput).ToGuestPoliciesRecipeInstallStepScriptRunPtrOutput()
 }
 
 type GuestPoliciesRecipeInstallStepScriptRunOutput struct{ *pulumi.OutputState }
@@ -3797,7 +3797,7 @@ func (i GuestPoliciesRecipeUpdateStepArchiveExtractionArgs) ToGuestPoliciesRecip
 }
 
 func (i GuestPoliciesRecipeUpdateStepArchiveExtractionArgs) ToGuestPoliciesRecipeUpdateStepArchiveExtractionPtrOutputWithContext(ctx context.Context) GuestPoliciesRecipeUpdateStepArchiveExtractionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeUpdateStepArchiveExtractionOutput).ToGuestPoliciesRecipeUpdateStepArchiveExtractionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeUpdateStepArchiveExtractionOutput).ToGuestPoliciesRecipeUpdateStepArchiveExtractionPtrOutput()
 }
 
 // GuestPoliciesRecipeUpdateStepArchiveExtractionPtrInput is an input type that accepts GuestPoliciesRecipeUpdateStepArchiveExtractionArgs, GuestPoliciesRecipeUpdateStepArchiveExtractionPtr and GuestPoliciesRecipeUpdateStepArchiveExtractionPtrOutput values.
@@ -3830,7 +3830,7 @@ func (i *guestPoliciesRecipeUpdateStepArchiveExtractionPtrType) ToGuestPoliciesR
 }
 
 func (i *guestPoliciesRecipeUpdateStepArchiveExtractionPtrType) ToGuestPoliciesRecipeUpdateStepArchiveExtractionPtrOutputWithContext(ctx context.Context) GuestPoliciesRecipeUpdateStepArchiveExtractionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeUpdateStepArchiveExtractionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeUpdateStepArchiveExtractionOutput).ToGuestPoliciesRecipeUpdateStepArchiveExtractionPtrOutput()
 }
 
 type GuestPoliciesRecipeUpdateStepArchiveExtractionOutput struct{ *pulumi.OutputState }
@@ -3962,7 +3962,7 @@ func (i GuestPoliciesRecipeUpdateStepDpkgInstallationArgs) ToGuestPoliciesRecipe
 }
 
 func (i GuestPoliciesRecipeUpdateStepDpkgInstallationArgs) ToGuestPoliciesRecipeUpdateStepDpkgInstallationPtrOutputWithContext(ctx context.Context) GuestPoliciesRecipeUpdateStepDpkgInstallationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeUpdateStepDpkgInstallationOutput).ToGuestPoliciesRecipeUpdateStepDpkgInstallationPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeUpdateStepDpkgInstallationOutput).ToGuestPoliciesRecipeUpdateStepDpkgInstallationPtrOutput()
 }
 
 // GuestPoliciesRecipeUpdateStepDpkgInstallationPtrInput is an input type that accepts GuestPoliciesRecipeUpdateStepDpkgInstallationArgs, GuestPoliciesRecipeUpdateStepDpkgInstallationPtr and GuestPoliciesRecipeUpdateStepDpkgInstallationPtrOutput values.
@@ -3995,7 +3995,7 @@ func (i *guestPoliciesRecipeUpdateStepDpkgInstallationPtrType) ToGuestPoliciesRe
 }
 
 func (i *guestPoliciesRecipeUpdateStepDpkgInstallationPtrType) ToGuestPoliciesRecipeUpdateStepDpkgInstallationPtrOutputWithContext(ctx context.Context) GuestPoliciesRecipeUpdateStepDpkgInstallationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeUpdateStepDpkgInstallationPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeUpdateStepDpkgInstallationOutput).ToGuestPoliciesRecipeUpdateStepDpkgInstallationPtrOutput()
 }
 
 type GuestPoliciesRecipeUpdateStepDpkgInstallationOutput struct{ *pulumi.OutputState }
@@ -4119,7 +4119,7 @@ func (i GuestPoliciesRecipeUpdateStepFileCopyArgs) ToGuestPoliciesRecipeUpdateSt
 }
 
 func (i GuestPoliciesRecipeUpdateStepFileCopyArgs) ToGuestPoliciesRecipeUpdateStepFileCopyPtrOutputWithContext(ctx context.Context) GuestPoliciesRecipeUpdateStepFileCopyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeUpdateStepFileCopyOutput).ToGuestPoliciesRecipeUpdateStepFileCopyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeUpdateStepFileCopyOutput).ToGuestPoliciesRecipeUpdateStepFileCopyPtrOutput()
 }
 
 // GuestPoliciesRecipeUpdateStepFileCopyPtrInput is an input type that accepts GuestPoliciesRecipeUpdateStepFileCopyArgs, GuestPoliciesRecipeUpdateStepFileCopyPtr and GuestPoliciesRecipeUpdateStepFileCopyPtrOutput values.
@@ -4152,7 +4152,7 @@ func (i *guestPoliciesRecipeUpdateStepFileCopyPtrType) ToGuestPoliciesRecipeUpda
 }
 
 func (i *guestPoliciesRecipeUpdateStepFileCopyPtrType) ToGuestPoliciesRecipeUpdateStepFileCopyPtrOutputWithContext(ctx context.Context) GuestPoliciesRecipeUpdateStepFileCopyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeUpdateStepFileCopyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeUpdateStepFileCopyOutput).ToGuestPoliciesRecipeUpdateStepFileCopyPtrOutput()
 }
 
 type GuestPoliciesRecipeUpdateStepFileCopyOutput struct{ *pulumi.OutputState }
@@ -4319,7 +4319,7 @@ func (i GuestPoliciesRecipeUpdateStepFileExecArgs) ToGuestPoliciesRecipeUpdateSt
 }
 
 func (i GuestPoliciesRecipeUpdateStepFileExecArgs) ToGuestPoliciesRecipeUpdateStepFileExecPtrOutputWithContext(ctx context.Context) GuestPoliciesRecipeUpdateStepFileExecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeUpdateStepFileExecOutput).ToGuestPoliciesRecipeUpdateStepFileExecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeUpdateStepFileExecOutput).ToGuestPoliciesRecipeUpdateStepFileExecPtrOutput()
 }
 
 // GuestPoliciesRecipeUpdateStepFileExecPtrInput is an input type that accepts GuestPoliciesRecipeUpdateStepFileExecArgs, GuestPoliciesRecipeUpdateStepFileExecPtr and GuestPoliciesRecipeUpdateStepFileExecPtrOutput values.
@@ -4352,7 +4352,7 @@ func (i *guestPoliciesRecipeUpdateStepFileExecPtrType) ToGuestPoliciesRecipeUpda
 }
 
 func (i *guestPoliciesRecipeUpdateStepFileExecPtrType) ToGuestPoliciesRecipeUpdateStepFileExecPtrOutputWithContext(ctx context.Context) GuestPoliciesRecipeUpdateStepFileExecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeUpdateStepFileExecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeUpdateStepFileExecOutput).ToGuestPoliciesRecipeUpdateStepFileExecPtrOutput()
 }
 
 type GuestPoliciesRecipeUpdateStepFileExecOutput struct{ *pulumi.OutputState }
@@ -4503,7 +4503,7 @@ func (i GuestPoliciesRecipeUpdateStepMsiInstallationArgs) ToGuestPoliciesRecipeU
 }
 
 func (i GuestPoliciesRecipeUpdateStepMsiInstallationArgs) ToGuestPoliciesRecipeUpdateStepMsiInstallationPtrOutputWithContext(ctx context.Context) GuestPoliciesRecipeUpdateStepMsiInstallationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeUpdateStepMsiInstallationOutput).ToGuestPoliciesRecipeUpdateStepMsiInstallationPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeUpdateStepMsiInstallationOutput).ToGuestPoliciesRecipeUpdateStepMsiInstallationPtrOutput()
 }
 
 // GuestPoliciesRecipeUpdateStepMsiInstallationPtrInput is an input type that accepts GuestPoliciesRecipeUpdateStepMsiInstallationArgs, GuestPoliciesRecipeUpdateStepMsiInstallationPtr and GuestPoliciesRecipeUpdateStepMsiInstallationPtrOutput values.
@@ -4536,7 +4536,7 @@ func (i *guestPoliciesRecipeUpdateStepMsiInstallationPtrType) ToGuestPoliciesRec
 }
 
 func (i *guestPoliciesRecipeUpdateStepMsiInstallationPtrType) ToGuestPoliciesRecipeUpdateStepMsiInstallationPtrOutputWithContext(ctx context.Context) GuestPoliciesRecipeUpdateStepMsiInstallationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeUpdateStepMsiInstallationPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeUpdateStepMsiInstallationOutput).ToGuestPoliciesRecipeUpdateStepMsiInstallationPtrOutput()
 }
 
 type GuestPoliciesRecipeUpdateStepMsiInstallationOutput struct{ *pulumi.OutputState }
@@ -4666,7 +4666,7 @@ func (i GuestPoliciesRecipeUpdateStepRpmInstallationArgs) ToGuestPoliciesRecipeU
 }
 
 func (i GuestPoliciesRecipeUpdateStepRpmInstallationArgs) ToGuestPoliciesRecipeUpdateStepRpmInstallationPtrOutputWithContext(ctx context.Context) GuestPoliciesRecipeUpdateStepRpmInstallationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeUpdateStepRpmInstallationOutput).ToGuestPoliciesRecipeUpdateStepRpmInstallationPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeUpdateStepRpmInstallationOutput).ToGuestPoliciesRecipeUpdateStepRpmInstallationPtrOutput()
 }
 
 // GuestPoliciesRecipeUpdateStepRpmInstallationPtrInput is an input type that accepts GuestPoliciesRecipeUpdateStepRpmInstallationArgs, GuestPoliciesRecipeUpdateStepRpmInstallationPtr and GuestPoliciesRecipeUpdateStepRpmInstallationPtrOutput values.
@@ -4699,7 +4699,7 @@ func (i *guestPoliciesRecipeUpdateStepRpmInstallationPtrType) ToGuestPoliciesRec
 }
 
 func (i *guestPoliciesRecipeUpdateStepRpmInstallationPtrType) ToGuestPoliciesRecipeUpdateStepRpmInstallationPtrOutputWithContext(ctx context.Context) GuestPoliciesRecipeUpdateStepRpmInstallationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeUpdateStepRpmInstallationPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeUpdateStepRpmInstallationOutput).ToGuestPoliciesRecipeUpdateStepRpmInstallationPtrOutput()
 }
 
 type GuestPoliciesRecipeUpdateStepRpmInstallationOutput struct{ *pulumi.OutputState }
@@ -4811,7 +4811,7 @@ func (i GuestPoliciesRecipeUpdateStepScriptRunArgs) ToGuestPoliciesRecipeUpdateS
 }
 
 func (i GuestPoliciesRecipeUpdateStepScriptRunArgs) ToGuestPoliciesRecipeUpdateStepScriptRunPtrOutputWithContext(ctx context.Context) GuestPoliciesRecipeUpdateStepScriptRunPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeUpdateStepScriptRunOutput).ToGuestPoliciesRecipeUpdateStepScriptRunPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeUpdateStepScriptRunOutput).ToGuestPoliciesRecipeUpdateStepScriptRunPtrOutput()
 }
 
 // GuestPoliciesRecipeUpdateStepScriptRunPtrInput is an input type that accepts GuestPoliciesRecipeUpdateStepScriptRunArgs, GuestPoliciesRecipeUpdateStepScriptRunPtr and GuestPoliciesRecipeUpdateStepScriptRunPtrOutput values.
@@ -4844,7 +4844,7 @@ func (i *guestPoliciesRecipeUpdateStepScriptRunPtrType) ToGuestPoliciesRecipeUpd
 }
 
 func (i *guestPoliciesRecipeUpdateStepScriptRunPtrType) ToGuestPoliciesRecipeUpdateStepScriptRunPtrOutputWithContext(ctx context.Context) GuestPoliciesRecipeUpdateStepScriptRunPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeUpdateStepScriptRunPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(GuestPoliciesRecipeUpdateStepScriptRunOutput).ToGuestPoliciesRecipeUpdateStepScriptRunPtrOutput()
 }
 
 type GuestPoliciesRecipeUpdateStepScriptRunOutput struct{ *pulumi.OutputState }
@@ -5000,7 +5000,7 @@ func (i PatchDeploymentInstanceFilterArgs) ToPatchDeploymentInstanceFilterPtrOut
 }
 
 func (i PatchDeploymentInstanceFilterArgs) ToPatchDeploymentInstanceFilterPtrOutputWithContext(ctx context.Context) PatchDeploymentInstanceFilterPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentInstanceFilterOutput).ToPatchDeploymentInstanceFilterPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentInstanceFilterOutput).ToPatchDeploymentInstanceFilterPtrOutput()
 }
 
 // PatchDeploymentInstanceFilterPtrInput is an input type that accepts PatchDeploymentInstanceFilterArgs, PatchDeploymentInstanceFilterPtr and PatchDeploymentInstanceFilterPtrOutput values.
@@ -5033,7 +5033,7 @@ func (i *patchDeploymentInstanceFilterPtrType) ToPatchDeploymentInstanceFilterPt
 }
 
 func (i *patchDeploymentInstanceFilterPtrType) ToPatchDeploymentInstanceFilterPtrOutputWithContext(ctx context.Context) PatchDeploymentInstanceFilterPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentInstanceFilterPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentInstanceFilterOutput).ToPatchDeploymentInstanceFilterPtrOutput()
 }
 
 type PatchDeploymentInstanceFilterOutput struct{ *pulumi.OutputState }
@@ -5298,7 +5298,7 @@ func (i PatchDeploymentOneTimeScheduleArgs) ToPatchDeploymentOneTimeSchedulePtrO
 }
 
 func (i PatchDeploymentOneTimeScheduleArgs) ToPatchDeploymentOneTimeSchedulePtrOutputWithContext(ctx context.Context) PatchDeploymentOneTimeSchedulePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentOneTimeScheduleOutput).ToPatchDeploymentOneTimeSchedulePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentOneTimeScheduleOutput).ToPatchDeploymentOneTimeSchedulePtrOutput()
 }
 
 // PatchDeploymentOneTimeSchedulePtrInput is an input type that accepts PatchDeploymentOneTimeScheduleArgs, PatchDeploymentOneTimeSchedulePtr and PatchDeploymentOneTimeSchedulePtrOutput values.
@@ -5331,7 +5331,7 @@ func (i *patchDeploymentOneTimeSchedulePtrType) ToPatchDeploymentOneTimeSchedule
 }
 
 func (i *patchDeploymentOneTimeSchedulePtrType) ToPatchDeploymentOneTimeSchedulePtrOutputWithContext(ctx context.Context) PatchDeploymentOneTimeSchedulePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentOneTimeSchedulePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentOneTimeScheduleOutput).ToPatchDeploymentOneTimeSchedulePtrOutput()
 }
 
 type PatchDeploymentOneTimeScheduleOutput struct{ *pulumi.OutputState }
@@ -5475,7 +5475,7 @@ func (i PatchDeploymentPatchConfigArgs) ToPatchDeploymentPatchConfigPtrOutput() 
 }
 
 func (i PatchDeploymentPatchConfigArgs) ToPatchDeploymentPatchConfigPtrOutputWithContext(ctx context.Context) PatchDeploymentPatchConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigOutput).ToPatchDeploymentPatchConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigOutput).ToPatchDeploymentPatchConfigPtrOutput()
 }
 
 // PatchDeploymentPatchConfigPtrInput is an input type that accepts PatchDeploymentPatchConfigArgs, PatchDeploymentPatchConfigPtr and PatchDeploymentPatchConfigPtrOutput values.
@@ -5508,7 +5508,7 @@ func (i *patchDeploymentPatchConfigPtrType) ToPatchDeploymentPatchConfigPtrOutpu
 }
 
 func (i *patchDeploymentPatchConfigPtrType) ToPatchDeploymentPatchConfigPtrOutputWithContext(ctx context.Context) PatchDeploymentPatchConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigOutput).ToPatchDeploymentPatchConfigPtrOutput()
 }
 
 type PatchDeploymentPatchConfigOutput struct{ *pulumi.OutputState }
@@ -5741,7 +5741,7 @@ func (i PatchDeploymentPatchConfigAptArgs) ToPatchDeploymentPatchConfigAptPtrOut
 }
 
 func (i PatchDeploymentPatchConfigAptArgs) ToPatchDeploymentPatchConfigAptPtrOutputWithContext(ctx context.Context) PatchDeploymentPatchConfigAptPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigAptOutput).ToPatchDeploymentPatchConfigAptPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigAptOutput).ToPatchDeploymentPatchConfigAptPtrOutput()
 }
 
 // PatchDeploymentPatchConfigAptPtrInput is an input type that accepts PatchDeploymentPatchConfigAptArgs, PatchDeploymentPatchConfigAptPtr and PatchDeploymentPatchConfigAptPtrOutput values.
@@ -5774,7 +5774,7 @@ func (i *patchDeploymentPatchConfigAptPtrType) ToPatchDeploymentPatchConfigAptPt
 }
 
 func (i *patchDeploymentPatchConfigAptPtrType) ToPatchDeploymentPatchConfigAptPtrOutputWithContext(ctx context.Context) PatchDeploymentPatchConfigAptPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigAptPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigAptOutput).ToPatchDeploymentPatchConfigAptPtrOutput()
 }
 
 type PatchDeploymentPatchConfigAptOutput struct{ *pulumi.OutputState }
@@ -5908,7 +5908,7 @@ func (i PatchDeploymentPatchConfigGooArgs) ToPatchDeploymentPatchConfigGooPtrOut
 }
 
 func (i PatchDeploymentPatchConfigGooArgs) ToPatchDeploymentPatchConfigGooPtrOutputWithContext(ctx context.Context) PatchDeploymentPatchConfigGooPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigGooOutput).ToPatchDeploymentPatchConfigGooPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigGooOutput).ToPatchDeploymentPatchConfigGooPtrOutput()
 }
 
 // PatchDeploymentPatchConfigGooPtrInput is an input type that accepts PatchDeploymentPatchConfigGooArgs, PatchDeploymentPatchConfigGooPtr and PatchDeploymentPatchConfigGooPtrOutput values.
@@ -5941,7 +5941,7 @@ func (i *patchDeploymentPatchConfigGooPtrType) ToPatchDeploymentPatchConfigGooPt
 }
 
 func (i *patchDeploymentPatchConfigGooPtrType) ToPatchDeploymentPatchConfigGooPtrOutputWithContext(ctx context.Context) PatchDeploymentPatchConfigGooPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigGooPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigGooOutput).ToPatchDeploymentPatchConfigGooPtrOutput()
 }
 
 type PatchDeploymentPatchConfigGooOutput struct{ *pulumi.OutputState }
@@ -6047,7 +6047,7 @@ func (i PatchDeploymentPatchConfigPostStepArgs) ToPatchDeploymentPatchConfigPost
 }
 
 func (i PatchDeploymentPatchConfigPostStepArgs) ToPatchDeploymentPatchConfigPostStepPtrOutputWithContext(ctx context.Context) PatchDeploymentPatchConfigPostStepPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigPostStepOutput).ToPatchDeploymentPatchConfigPostStepPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigPostStepOutput).ToPatchDeploymentPatchConfigPostStepPtrOutput()
 }
 
 // PatchDeploymentPatchConfigPostStepPtrInput is an input type that accepts PatchDeploymentPatchConfigPostStepArgs, PatchDeploymentPatchConfigPostStepPtr and PatchDeploymentPatchConfigPostStepPtrOutput values.
@@ -6080,7 +6080,7 @@ func (i *patchDeploymentPatchConfigPostStepPtrType) ToPatchDeploymentPatchConfig
 }
 
 func (i *patchDeploymentPatchConfigPostStepPtrType) ToPatchDeploymentPatchConfigPostStepPtrOutputWithContext(ctx context.Context) PatchDeploymentPatchConfigPostStepPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigPostStepPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigPostStepOutput).ToPatchDeploymentPatchConfigPostStepPtrOutput()
 }
 
 type PatchDeploymentPatchConfigPostStepOutput struct{ *pulumi.OutputState }
@@ -6219,7 +6219,7 @@ func (i PatchDeploymentPatchConfigPostStepLinuxExecStepConfigArgs) ToPatchDeploy
 }
 
 func (i PatchDeploymentPatchConfigPostStepLinuxExecStepConfigArgs) ToPatchDeploymentPatchConfigPostStepLinuxExecStepConfigPtrOutputWithContext(ctx context.Context) PatchDeploymentPatchConfigPostStepLinuxExecStepConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigPostStepLinuxExecStepConfigOutput).ToPatchDeploymentPatchConfigPostStepLinuxExecStepConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigPostStepLinuxExecStepConfigOutput).ToPatchDeploymentPatchConfigPostStepLinuxExecStepConfigPtrOutput()
 }
 
 // PatchDeploymentPatchConfigPostStepLinuxExecStepConfigPtrInput is an input type that accepts PatchDeploymentPatchConfigPostStepLinuxExecStepConfigArgs, PatchDeploymentPatchConfigPostStepLinuxExecStepConfigPtr and PatchDeploymentPatchConfigPostStepLinuxExecStepConfigPtrOutput values.
@@ -6252,7 +6252,7 @@ func (i *patchDeploymentPatchConfigPostStepLinuxExecStepConfigPtrType) ToPatchDe
 }
 
 func (i *patchDeploymentPatchConfigPostStepLinuxExecStepConfigPtrType) ToPatchDeploymentPatchConfigPostStepLinuxExecStepConfigPtrOutputWithContext(ctx context.Context) PatchDeploymentPatchConfigPostStepLinuxExecStepConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigPostStepLinuxExecStepConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigPostStepLinuxExecStepConfigOutput).ToPatchDeploymentPatchConfigPostStepLinuxExecStepConfigPtrOutput()
 }
 
 type PatchDeploymentPatchConfigPostStepLinuxExecStepConfigOutput struct{ *pulumi.OutputState }
@@ -6413,7 +6413,7 @@ func (i PatchDeploymentPatchConfigPostStepLinuxExecStepConfigGcsObjectArgs) ToPa
 }
 
 func (i PatchDeploymentPatchConfigPostStepLinuxExecStepConfigGcsObjectArgs) ToPatchDeploymentPatchConfigPostStepLinuxExecStepConfigGcsObjectPtrOutputWithContext(ctx context.Context) PatchDeploymentPatchConfigPostStepLinuxExecStepConfigGcsObjectPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigPostStepLinuxExecStepConfigGcsObjectOutput).ToPatchDeploymentPatchConfigPostStepLinuxExecStepConfigGcsObjectPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigPostStepLinuxExecStepConfigGcsObjectOutput).ToPatchDeploymentPatchConfigPostStepLinuxExecStepConfigGcsObjectPtrOutput()
 }
 
 // PatchDeploymentPatchConfigPostStepLinuxExecStepConfigGcsObjectPtrInput is an input type that accepts PatchDeploymentPatchConfigPostStepLinuxExecStepConfigGcsObjectArgs, PatchDeploymentPatchConfigPostStepLinuxExecStepConfigGcsObjectPtr and PatchDeploymentPatchConfigPostStepLinuxExecStepConfigGcsObjectPtrOutput values.
@@ -6446,7 +6446,7 @@ func (i *patchDeploymentPatchConfigPostStepLinuxExecStepConfigGcsObjectPtrType) 
 }
 
 func (i *patchDeploymentPatchConfigPostStepLinuxExecStepConfigGcsObjectPtrType) ToPatchDeploymentPatchConfigPostStepLinuxExecStepConfigGcsObjectPtrOutputWithContext(ctx context.Context) PatchDeploymentPatchConfigPostStepLinuxExecStepConfigGcsObjectPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigPostStepLinuxExecStepConfigGcsObjectPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigPostStepLinuxExecStepConfigGcsObjectOutput).ToPatchDeploymentPatchConfigPostStepLinuxExecStepConfigGcsObjectPtrOutput()
 }
 
 type PatchDeploymentPatchConfigPostStepLinuxExecStepConfigGcsObjectOutput struct{ *pulumi.OutputState }
@@ -6596,7 +6596,7 @@ func (i PatchDeploymentPatchConfigPostStepWindowsExecStepConfigArgs) ToPatchDepl
 }
 
 func (i PatchDeploymentPatchConfigPostStepWindowsExecStepConfigArgs) ToPatchDeploymentPatchConfigPostStepWindowsExecStepConfigPtrOutputWithContext(ctx context.Context) PatchDeploymentPatchConfigPostStepWindowsExecStepConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigPostStepWindowsExecStepConfigOutput).ToPatchDeploymentPatchConfigPostStepWindowsExecStepConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigPostStepWindowsExecStepConfigOutput).ToPatchDeploymentPatchConfigPostStepWindowsExecStepConfigPtrOutput()
 }
 
 // PatchDeploymentPatchConfigPostStepWindowsExecStepConfigPtrInput is an input type that accepts PatchDeploymentPatchConfigPostStepWindowsExecStepConfigArgs, PatchDeploymentPatchConfigPostStepWindowsExecStepConfigPtr and PatchDeploymentPatchConfigPostStepWindowsExecStepConfigPtrOutput values.
@@ -6629,7 +6629,7 @@ func (i *patchDeploymentPatchConfigPostStepWindowsExecStepConfigPtrType) ToPatch
 }
 
 func (i *patchDeploymentPatchConfigPostStepWindowsExecStepConfigPtrType) ToPatchDeploymentPatchConfigPostStepWindowsExecStepConfigPtrOutputWithContext(ctx context.Context) PatchDeploymentPatchConfigPostStepWindowsExecStepConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigPostStepWindowsExecStepConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigPostStepWindowsExecStepConfigOutput).ToPatchDeploymentPatchConfigPostStepWindowsExecStepConfigPtrOutput()
 }
 
 type PatchDeploymentPatchConfigPostStepWindowsExecStepConfigOutput struct{ *pulumi.OutputState }
@@ -6790,7 +6790,7 @@ func (i PatchDeploymentPatchConfigPostStepWindowsExecStepConfigGcsObjectArgs) To
 }
 
 func (i PatchDeploymentPatchConfigPostStepWindowsExecStepConfigGcsObjectArgs) ToPatchDeploymentPatchConfigPostStepWindowsExecStepConfigGcsObjectPtrOutputWithContext(ctx context.Context) PatchDeploymentPatchConfigPostStepWindowsExecStepConfigGcsObjectPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigPostStepWindowsExecStepConfigGcsObjectOutput).ToPatchDeploymentPatchConfigPostStepWindowsExecStepConfigGcsObjectPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigPostStepWindowsExecStepConfigGcsObjectOutput).ToPatchDeploymentPatchConfigPostStepWindowsExecStepConfigGcsObjectPtrOutput()
 }
 
 // PatchDeploymentPatchConfigPostStepWindowsExecStepConfigGcsObjectPtrInput is an input type that accepts PatchDeploymentPatchConfigPostStepWindowsExecStepConfigGcsObjectArgs, PatchDeploymentPatchConfigPostStepWindowsExecStepConfigGcsObjectPtr and PatchDeploymentPatchConfigPostStepWindowsExecStepConfigGcsObjectPtrOutput values.
@@ -6823,7 +6823,7 @@ func (i *patchDeploymentPatchConfigPostStepWindowsExecStepConfigGcsObjectPtrType
 }
 
 func (i *patchDeploymentPatchConfigPostStepWindowsExecStepConfigGcsObjectPtrType) ToPatchDeploymentPatchConfigPostStepWindowsExecStepConfigGcsObjectPtrOutputWithContext(ctx context.Context) PatchDeploymentPatchConfigPostStepWindowsExecStepConfigGcsObjectPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigPostStepWindowsExecStepConfigGcsObjectPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigPostStepWindowsExecStepConfigGcsObjectOutput).ToPatchDeploymentPatchConfigPostStepWindowsExecStepConfigGcsObjectPtrOutput()
 }
 
 type PatchDeploymentPatchConfigPostStepWindowsExecStepConfigGcsObjectOutput struct{ *pulumi.OutputState }
@@ -6963,7 +6963,7 @@ func (i PatchDeploymentPatchConfigPreStepArgs) ToPatchDeploymentPatchConfigPreSt
 }
 
 func (i PatchDeploymentPatchConfigPreStepArgs) ToPatchDeploymentPatchConfigPreStepPtrOutputWithContext(ctx context.Context) PatchDeploymentPatchConfigPreStepPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigPreStepOutput).ToPatchDeploymentPatchConfigPreStepPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigPreStepOutput).ToPatchDeploymentPatchConfigPreStepPtrOutput()
 }
 
 // PatchDeploymentPatchConfigPreStepPtrInput is an input type that accepts PatchDeploymentPatchConfigPreStepArgs, PatchDeploymentPatchConfigPreStepPtr and PatchDeploymentPatchConfigPreStepPtrOutput values.
@@ -6996,7 +6996,7 @@ func (i *patchDeploymentPatchConfigPreStepPtrType) ToPatchDeploymentPatchConfigP
 }
 
 func (i *patchDeploymentPatchConfigPreStepPtrType) ToPatchDeploymentPatchConfigPreStepPtrOutputWithContext(ctx context.Context) PatchDeploymentPatchConfigPreStepPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigPreStepPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigPreStepOutput).ToPatchDeploymentPatchConfigPreStepPtrOutput()
 }
 
 type PatchDeploymentPatchConfigPreStepOutput struct{ *pulumi.OutputState }
@@ -7135,7 +7135,7 @@ func (i PatchDeploymentPatchConfigPreStepLinuxExecStepConfigArgs) ToPatchDeploym
 }
 
 func (i PatchDeploymentPatchConfigPreStepLinuxExecStepConfigArgs) ToPatchDeploymentPatchConfigPreStepLinuxExecStepConfigPtrOutputWithContext(ctx context.Context) PatchDeploymentPatchConfigPreStepLinuxExecStepConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigPreStepLinuxExecStepConfigOutput).ToPatchDeploymentPatchConfigPreStepLinuxExecStepConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigPreStepLinuxExecStepConfigOutput).ToPatchDeploymentPatchConfigPreStepLinuxExecStepConfigPtrOutput()
 }
 
 // PatchDeploymentPatchConfigPreStepLinuxExecStepConfigPtrInput is an input type that accepts PatchDeploymentPatchConfigPreStepLinuxExecStepConfigArgs, PatchDeploymentPatchConfigPreStepLinuxExecStepConfigPtr and PatchDeploymentPatchConfigPreStepLinuxExecStepConfigPtrOutput values.
@@ -7168,7 +7168,7 @@ func (i *patchDeploymentPatchConfigPreStepLinuxExecStepConfigPtrType) ToPatchDep
 }
 
 func (i *patchDeploymentPatchConfigPreStepLinuxExecStepConfigPtrType) ToPatchDeploymentPatchConfigPreStepLinuxExecStepConfigPtrOutputWithContext(ctx context.Context) PatchDeploymentPatchConfigPreStepLinuxExecStepConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigPreStepLinuxExecStepConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigPreStepLinuxExecStepConfigOutput).ToPatchDeploymentPatchConfigPreStepLinuxExecStepConfigPtrOutput()
 }
 
 type PatchDeploymentPatchConfigPreStepLinuxExecStepConfigOutput struct{ *pulumi.OutputState }
@@ -7329,7 +7329,7 @@ func (i PatchDeploymentPatchConfigPreStepLinuxExecStepConfigGcsObjectArgs) ToPat
 }
 
 func (i PatchDeploymentPatchConfigPreStepLinuxExecStepConfigGcsObjectArgs) ToPatchDeploymentPatchConfigPreStepLinuxExecStepConfigGcsObjectPtrOutputWithContext(ctx context.Context) PatchDeploymentPatchConfigPreStepLinuxExecStepConfigGcsObjectPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigPreStepLinuxExecStepConfigGcsObjectOutput).ToPatchDeploymentPatchConfigPreStepLinuxExecStepConfigGcsObjectPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigPreStepLinuxExecStepConfigGcsObjectOutput).ToPatchDeploymentPatchConfigPreStepLinuxExecStepConfigGcsObjectPtrOutput()
 }
 
 // PatchDeploymentPatchConfigPreStepLinuxExecStepConfigGcsObjectPtrInput is an input type that accepts PatchDeploymentPatchConfigPreStepLinuxExecStepConfigGcsObjectArgs, PatchDeploymentPatchConfigPreStepLinuxExecStepConfigGcsObjectPtr and PatchDeploymentPatchConfigPreStepLinuxExecStepConfigGcsObjectPtrOutput values.
@@ -7362,7 +7362,7 @@ func (i *patchDeploymentPatchConfigPreStepLinuxExecStepConfigGcsObjectPtrType) T
 }
 
 func (i *patchDeploymentPatchConfigPreStepLinuxExecStepConfigGcsObjectPtrType) ToPatchDeploymentPatchConfigPreStepLinuxExecStepConfigGcsObjectPtrOutputWithContext(ctx context.Context) PatchDeploymentPatchConfigPreStepLinuxExecStepConfigGcsObjectPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigPreStepLinuxExecStepConfigGcsObjectPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigPreStepLinuxExecStepConfigGcsObjectOutput).ToPatchDeploymentPatchConfigPreStepLinuxExecStepConfigGcsObjectPtrOutput()
 }
 
 type PatchDeploymentPatchConfigPreStepLinuxExecStepConfigGcsObjectOutput struct{ *pulumi.OutputState }
@@ -7512,7 +7512,7 @@ func (i PatchDeploymentPatchConfigPreStepWindowsExecStepConfigArgs) ToPatchDeplo
 }
 
 func (i PatchDeploymentPatchConfigPreStepWindowsExecStepConfigArgs) ToPatchDeploymentPatchConfigPreStepWindowsExecStepConfigPtrOutputWithContext(ctx context.Context) PatchDeploymentPatchConfigPreStepWindowsExecStepConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigPreStepWindowsExecStepConfigOutput).ToPatchDeploymentPatchConfigPreStepWindowsExecStepConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigPreStepWindowsExecStepConfigOutput).ToPatchDeploymentPatchConfigPreStepWindowsExecStepConfigPtrOutput()
 }
 
 // PatchDeploymentPatchConfigPreStepWindowsExecStepConfigPtrInput is an input type that accepts PatchDeploymentPatchConfigPreStepWindowsExecStepConfigArgs, PatchDeploymentPatchConfigPreStepWindowsExecStepConfigPtr and PatchDeploymentPatchConfigPreStepWindowsExecStepConfigPtrOutput values.
@@ -7545,7 +7545,7 @@ func (i *patchDeploymentPatchConfigPreStepWindowsExecStepConfigPtrType) ToPatchD
 }
 
 func (i *patchDeploymentPatchConfigPreStepWindowsExecStepConfigPtrType) ToPatchDeploymentPatchConfigPreStepWindowsExecStepConfigPtrOutputWithContext(ctx context.Context) PatchDeploymentPatchConfigPreStepWindowsExecStepConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigPreStepWindowsExecStepConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigPreStepWindowsExecStepConfigOutput).ToPatchDeploymentPatchConfigPreStepWindowsExecStepConfigPtrOutput()
 }
 
 type PatchDeploymentPatchConfigPreStepWindowsExecStepConfigOutput struct{ *pulumi.OutputState }
@@ -7706,7 +7706,7 @@ func (i PatchDeploymentPatchConfigPreStepWindowsExecStepConfigGcsObjectArgs) ToP
 }
 
 func (i PatchDeploymentPatchConfigPreStepWindowsExecStepConfigGcsObjectArgs) ToPatchDeploymentPatchConfigPreStepWindowsExecStepConfigGcsObjectPtrOutputWithContext(ctx context.Context) PatchDeploymentPatchConfigPreStepWindowsExecStepConfigGcsObjectPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigPreStepWindowsExecStepConfigGcsObjectOutput).ToPatchDeploymentPatchConfigPreStepWindowsExecStepConfigGcsObjectPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigPreStepWindowsExecStepConfigGcsObjectOutput).ToPatchDeploymentPatchConfigPreStepWindowsExecStepConfigGcsObjectPtrOutput()
 }
 
 // PatchDeploymentPatchConfigPreStepWindowsExecStepConfigGcsObjectPtrInput is an input type that accepts PatchDeploymentPatchConfigPreStepWindowsExecStepConfigGcsObjectArgs, PatchDeploymentPatchConfigPreStepWindowsExecStepConfigGcsObjectPtr and PatchDeploymentPatchConfigPreStepWindowsExecStepConfigGcsObjectPtrOutput values.
@@ -7739,7 +7739,7 @@ func (i *patchDeploymentPatchConfigPreStepWindowsExecStepConfigGcsObjectPtrType)
 }
 
 func (i *patchDeploymentPatchConfigPreStepWindowsExecStepConfigGcsObjectPtrType) ToPatchDeploymentPatchConfigPreStepWindowsExecStepConfigGcsObjectPtrOutputWithContext(ctx context.Context) PatchDeploymentPatchConfigPreStepWindowsExecStepConfigGcsObjectPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigPreStepWindowsExecStepConfigGcsObjectPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigPreStepWindowsExecStepConfigGcsObjectOutput).ToPatchDeploymentPatchConfigPreStepWindowsExecStepConfigGcsObjectPtrOutput()
 }
 
 type PatchDeploymentPatchConfigPreStepWindowsExecStepConfigGcsObjectOutput struct{ *pulumi.OutputState }
@@ -7883,7 +7883,7 @@ func (i PatchDeploymentPatchConfigWindowsUpdateArgs) ToPatchDeploymentPatchConfi
 }
 
 func (i PatchDeploymentPatchConfigWindowsUpdateArgs) ToPatchDeploymentPatchConfigWindowsUpdatePtrOutputWithContext(ctx context.Context) PatchDeploymentPatchConfigWindowsUpdatePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigWindowsUpdateOutput).ToPatchDeploymentPatchConfigWindowsUpdatePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigWindowsUpdateOutput).ToPatchDeploymentPatchConfigWindowsUpdatePtrOutput()
 }
 
 // PatchDeploymentPatchConfigWindowsUpdatePtrInput is an input type that accepts PatchDeploymentPatchConfigWindowsUpdateArgs, PatchDeploymentPatchConfigWindowsUpdatePtr and PatchDeploymentPatchConfigWindowsUpdatePtrOutput values.
@@ -7916,7 +7916,7 @@ func (i *patchDeploymentPatchConfigWindowsUpdatePtrType) ToPatchDeploymentPatchC
 }
 
 func (i *patchDeploymentPatchConfigWindowsUpdatePtrType) ToPatchDeploymentPatchConfigWindowsUpdatePtrOutputWithContext(ctx context.Context) PatchDeploymentPatchConfigWindowsUpdatePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigWindowsUpdatePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigWindowsUpdateOutput).ToPatchDeploymentPatchConfigWindowsUpdatePtrOutput()
 }
 
 type PatchDeploymentPatchConfigWindowsUpdateOutput struct{ *pulumi.OutputState }
@@ -8064,7 +8064,7 @@ func (i PatchDeploymentPatchConfigYumArgs) ToPatchDeploymentPatchConfigYumPtrOut
 }
 
 func (i PatchDeploymentPatchConfigYumArgs) ToPatchDeploymentPatchConfigYumPtrOutputWithContext(ctx context.Context) PatchDeploymentPatchConfigYumPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigYumOutput).ToPatchDeploymentPatchConfigYumPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigYumOutput).ToPatchDeploymentPatchConfigYumPtrOutput()
 }
 
 // PatchDeploymentPatchConfigYumPtrInput is an input type that accepts PatchDeploymentPatchConfigYumArgs, PatchDeploymentPatchConfigYumPtr and PatchDeploymentPatchConfigYumPtrOutput values.
@@ -8097,7 +8097,7 @@ func (i *patchDeploymentPatchConfigYumPtrType) ToPatchDeploymentPatchConfigYumPt
 }
 
 func (i *patchDeploymentPatchConfigYumPtrType) ToPatchDeploymentPatchConfigYumPtrOutputWithContext(ctx context.Context) PatchDeploymentPatchConfigYumPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigYumPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigYumOutput).ToPatchDeploymentPatchConfigYumPtrOutput()
 }
 
 type PatchDeploymentPatchConfigYumOutput struct{ *pulumi.OutputState }
@@ -8266,7 +8266,7 @@ func (i PatchDeploymentPatchConfigZypperArgs) ToPatchDeploymentPatchConfigZypper
 }
 
 func (i PatchDeploymentPatchConfigZypperArgs) ToPatchDeploymentPatchConfigZypperPtrOutputWithContext(ctx context.Context) PatchDeploymentPatchConfigZypperPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigZypperOutput).ToPatchDeploymentPatchConfigZypperPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigZypperOutput).ToPatchDeploymentPatchConfigZypperPtrOutput()
 }
 
 // PatchDeploymentPatchConfigZypperPtrInput is an input type that accepts PatchDeploymentPatchConfigZypperArgs, PatchDeploymentPatchConfigZypperPtr and PatchDeploymentPatchConfigZypperPtrOutput values.
@@ -8299,7 +8299,7 @@ func (i *patchDeploymentPatchConfigZypperPtrType) ToPatchDeploymentPatchConfigZy
 }
 
 func (i *patchDeploymentPatchConfigZypperPtrType) ToPatchDeploymentPatchConfigZypperPtrOutputWithContext(ctx context.Context) PatchDeploymentPatchConfigZypperPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigZypperPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentPatchConfigZypperOutput).ToPatchDeploymentPatchConfigZypperPtrOutput()
 }
 
 type PatchDeploymentPatchConfigZypperOutput struct{ *pulumi.OutputState }
@@ -8524,7 +8524,7 @@ func (i PatchDeploymentRecurringScheduleArgs) ToPatchDeploymentRecurringSchedule
 }
 
 func (i PatchDeploymentRecurringScheduleArgs) ToPatchDeploymentRecurringSchedulePtrOutputWithContext(ctx context.Context) PatchDeploymentRecurringSchedulePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentRecurringScheduleOutput).ToPatchDeploymentRecurringSchedulePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentRecurringScheduleOutput).ToPatchDeploymentRecurringSchedulePtrOutput()
 }
 
 // PatchDeploymentRecurringSchedulePtrInput is an input type that accepts PatchDeploymentRecurringScheduleArgs, PatchDeploymentRecurringSchedulePtr and PatchDeploymentRecurringSchedulePtrOutput values.
@@ -8557,7 +8557,7 @@ func (i *patchDeploymentRecurringSchedulePtrType) ToPatchDeploymentRecurringSche
 }
 
 func (i *patchDeploymentRecurringSchedulePtrType) ToPatchDeploymentRecurringSchedulePtrOutputWithContext(ctx context.Context) PatchDeploymentRecurringSchedulePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentRecurringSchedulePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentRecurringScheduleOutput).ToPatchDeploymentRecurringSchedulePtrOutput()
 }
 
 type PatchDeploymentRecurringScheduleOutput struct{ *pulumi.OutputState }
@@ -8792,7 +8792,7 @@ func (i PatchDeploymentRecurringScheduleMonthlyArgs) ToPatchDeploymentRecurringS
 }
 
 func (i PatchDeploymentRecurringScheduleMonthlyArgs) ToPatchDeploymentRecurringScheduleMonthlyPtrOutputWithContext(ctx context.Context) PatchDeploymentRecurringScheduleMonthlyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentRecurringScheduleMonthlyOutput).ToPatchDeploymentRecurringScheduleMonthlyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentRecurringScheduleMonthlyOutput).ToPatchDeploymentRecurringScheduleMonthlyPtrOutput()
 }
 
 // PatchDeploymentRecurringScheduleMonthlyPtrInput is an input type that accepts PatchDeploymentRecurringScheduleMonthlyArgs, PatchDeploymentRecurringScheduleMonthlyPtr and PatchDeploymentRecurringScheduleMonthlyPtrOutput values.
@@ -8825,7 +8825,7 @@ func (i *patchDeploymentRecurringScheduleMonthlyPtrType) ToPatchDeploymentRecurr
 }
 
 func (i *patchDeploymentRecurringScheduleMonthlyPtrType) ToPatchDeploymentRecurringScheduleMonthlyPtrOutputWithContext(ctx context.Context) PatchDeploymentRecurringScheduleMonthlyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentRecurringScheduleMonthlyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentRecurringScheduleMonthlyOutput).ToPatchDeploymentRecurringScheduleMonthlyPtrOutput()
 }
 
 type PatchDeploymentRecurringScheduleMonthlyOutput struct{ *pulumi.OutputState }
@@ -8952,7 +8952,7 @@ func (i PatchDeploymentRecurringScheduleMonthlyWeekDayOfMonthArgs) ToPatchDeploy
 }
 
 func (i PatchDeploymentRecurringScheduleMonthlyWeekDayOfMonthArgs) ToPatchDeploymentRecurringScheduleMonthlyWeekDayOfMonthPtrOutputWithContext(ctx context.Context) PatchDeploymentRecurringScheduleMonthlyWeekDayOfMonthPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentRecurringScheduleMonthlyWeekDayOfMonthOutput).ToPatchDeploymentRecurringScheduleMonthlyWeekDayOfMonthPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentRecurringScheduleMonthlyWeekDayOfMonthOutput).ToPatchDeploymentRecurringScheduleMonthlyWeekDayOfMonthPtrOutput()
 }
 
 // PatchDeploymentRecurringScheduleMonthlyWeekDayOfMonthPtrInput is an input type that accepts PatchDeploymentRecurringScheduleMonthlyWeekDayOfMonthArgs, PatchDeploymentRecurringScheduleMonthlyWeekDayOfMonthPtr and PatchDeploymentRecurringScheduleMonthlyWeekDayOfMonthPtrOutput values.
@@ -8985,7 +8985,7 @@ func (i *patchDeploymentRecurringScheduleMonthlyWeekDayOfMonthPtrType) ToPatchDe
 }
 
 func (i *patchDeploymentRecurringScheduleMonthlyWeekDayOfMonthPtrType) ToPatchDeploymentRecurringScheduleMonthlyWeekDayOfMonthPtrOutputWithContext(ctx context.Context) PatchDeploymentRecurringScheduleMonthlyWeekDayOfMonthPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentRecurringScheduleMonthlyWeekDayOfMonthPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentRecurringScheduleMonthlyWeekDayOfMonthOutput).ToPatchDeploymentRecurringScheduleMonthlyWeekDayOfMonthPtrOutput()
 }
 
 type PatchDeploymentRecurringScheduleMonthlyWeekDayOfMonthOutput struct{ *pulumi.OutputState }
@@ -9116,7 +9116,7 @@ func (i PatchDeploymentRecurringScheduleTimeOfDayArgs) ToPatchDeploymentRecurrin
 }
 
 func (i PatchDeploymentRecurringScheduleTimeOfDayArgs) ToPatchDeploymentRecurringScheduleTimeOfDayPtrOutputWithContext(ctx context.Context) PatchDeploymentRecurringScheduleTimeOfDayPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentRecurringScheduleTimeOfDayOutput).ToPatchDeploymentRecurringScheduleTimeOfDayPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentRecurringScheduleTimeOfDayOutput).ToPatchDeploymentRecurringScheduleTimeOfDayPtrOutput()
 }
 
 // PatchDeploymentRecurringScheduleTimeOfDayPtrInput is an input type that accepts PatchDeploymentRecurringScheduleTimeOfDayArgs, PatchDeploymentRecurringScheduleTimeOfDayPtr and PatchDeploymentRecurringScheduleTimeOfDayPtrOutput values.
@@ -9149,7 +9149,7 @@ func (i *patchDeploymentRecurringScheduleTimeOfDayPtrType) ToPatchDeploymentRecu
 }
 
 func (i *patchDeploymentRecurringScheduleTimeOfDayPtrType) ToPatchDeploymentRecurringScheduleTimeOfDayPtrOutputWithContext(ctx context.Context) PatchDeploymentRecurringScheduleTimeOfDayPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentRecurringScheduleTimeOfDayPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentRecurringScheduleTimeOfDayOutput).ToPatchDeploymentRecurringScheduleTimeOfDayPtrOutput()
 }
 
 type PatchDeploymentRecurringScheduleTimeOfDayOutput struct{ *pulumi.OutputState }
@@ -9300,7 +9300,7 @@ func (i PatchDeploymentRecurringScheduleTimeZoneArgs) ToPatchDeploymentRecurring
 }
 
 func (i PatchDeploymentRecurringScheduleTimeZoneArgs) ToPatchDeploymentRecurringScheduleTimeZonePtrOutputWithContext(ctx context.Context) PatchDeploymentRecurringScheduleTimeZonePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentRecurringScheduleTimeZoneOutput).ToPatchDeploymentRecurringScheduleTimeZonePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentRecurringScheduleTimeZoneOutput).ToPatchDeploymentRecurringScheduleTimeZonePtrOutput()
 }
 
 // PatchDeploymentRecurringScheduleTimeZonePtrInput is an input type that accepts PatchDeploymentRecurringScheduleTimeZoneArgs, PatchDeploymentRecurringScheduleTimeZonePtr and PatchDeploymentRecurringScheduleTimeZonePtrOutput values.
@@ -9333,7 +9333,7 @@ func (i *patchDeploymentRecurringScheduleTimeZonePtrType) ToPatchDeploymentRecur
 }
 
 func (i *patchDeploymentRecurringScheduleTimeZonePtrType) ToPatchDeploymentRecurringScheduleTimeZonePtrOutputWithContext(ctx context.Context) PatchDeploymentRecurringScheduleTimeZonePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentRecurringScheduleTimeZonePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentRecurringScheduleTimeZoneOutput).ToPatchDeploymentRecurringScheduleTimeZonePtrOutput()
 }
 
 type PatchDeploymentRecurringScheduleTimeZoneOutput struct{ *pulumi.OutputState }
@@ -9448,7 +9448,7 @@ func (i PatchDeploymentRecurringScheduleWeeklyArgs) ToPatchDeploymentRecurringSc
 }
 
 func (i PatchDeploymentRecurringScheduleWeeklyArgs) ToPatchDeploymentRecurringScheduleWeeklyPtrOutputWithContext(ctx context.Context) PatchDeploymentRecurringScheduleWeeklyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentRecurringScheduleWeeklyOutput).ToPatchDeploymentRecurringScheduleWeeklyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentRecurringScheduleWeeklyOutput).ToPatchDeploymentRecurringScheduleWeeklyPtrOutput()
 }
 
 // PatchDeploymentRecurringScheduleWeeklyPtrInput is an input type that accepts PatchDeploymentRecurringScheduleWeeklyArgs, PatchDeploymentRecurringScheduleWeeklyPtr and PatchDeploymentRecurringScheduleWeeklyPtrOutput values.
@@ -9481,7 +9481,7 @@ func (i *patchDeploymentRecurringScheduleWeeklyPtrType) ToPatchDeploymentRecurri
 }
 
 func (i *patchDeploymentRecurringScheduleWeeklyPtrType) ToPatchDeploymentRecurringScheduleWeeklyPtrOutputWithContext(ctx context.Context) PatchDeploymentRecurringScheduleWeeklyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentRecurringScheduleWeeklyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentRecurringScheduleWeeklyOutput).ToPatchDeploymentRecurringScheduleWeeklyPtrOutput()
 }
 
 type PatchDeploymentRecurringScheduleWeeklyOutput struct{ *pulumi.OutputState }
@@ -9597,7 +9597,7 @@ func (i PatchDeploymentRolloutArgs) ToPatchDeploymentRolloutPtrOutput() PatchDep
 }
 
 func (i PatchDeploymentRolloutArgs) ToPatchDeploymentRolloutPtrOutputWithContext(ctx context.Context) PatchDeploymentRolloutPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentRolloutOutput).ToPatchDeploymentRolloutPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentRolloutOutput).ToPatchDeploymentRolloutPtrOutput()
 }
 
 // PatchDeploymentRolloutPtrInput is an input type that accepts PatchDeploymentRolloutArgs, PatchDeploymentRolloutPtr and PatchDeploymentRolloutPtrOutput values.
@@ -9630,7 +9630,7 @@ func (i *patchDeploymentRolloutPtrType) ToPatchDeploymentRolloutPtrOutput() Patc
 }
 
 func (i *patchDeploymentRolloutPtrType) ToPatchDeploymentRolloutPtrOutputWithContext(ctx context.Context) PatchDeploymentRolloutPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentRolloutPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentRolloutOutput).ToPatchDeploymentRolloutPtrOutput()
 }
 
 type PatchDeploymentRolloutOutput struct{ *pulumi.OutputState }
@@ -9759,7 +9759,7 @@ func (i PatchDeploymentRolloutDisruptionBudgetArgs) ToPatchDeploymentRolloutDisr
 }
 
 func (i PatchDeploymentRolloutDisruptionBudgetArgs) ToPatchDeploymentRolloutDisruptionBudgetPtrOutputWithContext(ctx context.Context) PatchDeploymentRolloutDisruptionBudgetPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentRolloutDisruptionBudgetOutput).ToPatchDeploymentRolloutDisruptionBudgetPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentRolloutDisruptionBudgetOutput).ToPatchDeploymentRolloutDisruptionBudgetPtrOutput()
 }
 
 // PatchDeploymentRolloutDisruptionBudgetPtrInput is an input type that accepts PatchDeploymentRolloutDisruptionBudgetArgs, PatchDeploymentRolloutDisruptionBudgetPtr and PatchDeploymentRolloutDisruptionBudgetPtrOutput values.
@@ -9792,7 +9792,7 @@ func (i *patchDeploymentRolloutDisruptionBudgetPtrType) ToPatchDeploymentRollout
 }
 
 func (i *patchDeploymentRolloutDisruptionBudgetPtrType) ToPatchDeploymentRolloutDisruptionBudgetPtrOutputWithContext(ctx context.Context) PatchDeploymentRolloutDisruptionBudgetPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentRolloutDisruptionBudgetPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PatchDeploymentRolloutDisruptionBudgetOutput).ToPatchDeploymentRolloutDisruptionBudgetPtrOutput()
 }
 
 type PatchDeploymentRolloutDisruptionBudgetOutput struct{ *pulumi.OutputState }

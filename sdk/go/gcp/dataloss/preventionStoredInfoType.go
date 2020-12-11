@@ -283,6 +283,13 @@ type PreventionStoredInfoTypeInput interface {
 	ToPreventionStoredInfoTypeOutputWithContext(ctx context.Context) PreventionStoredInfoTypeOutput
 }
 
+type PreventionStoredInfoTypePtrInput interface {
+	pulumi.Input
+
+	ToPreventionStoredInfoTypePtrOutput() PreventionStoredInfoTypePtrOutput
+	ToPreventionStoredInfoTypePtrOutputWithContext(ctx context.Context) PreventionStoredInfoTypePtrOutput
+}
+
 func (PreventionStoredInfoType) ElementType() reflect.Type {
 	return reflect.TypeOf((*PreventionStoredInfoType)(nil)).Elem()
 }
@@ -293,6 +300,14 @@ func (i PreventionStoredInfoType) ToPreventionStoredInfoTypeOutput() PreventionS
 
 func (i PreventionStoredInfoType) ToPreventionStoredInfoTypeOutputWithContext(ctx context.Context) PreventionStoredInfoTypeOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(PreventionStoredInfoTypeOutput)
+}
+
+func (i PreventionStoredInfoType) ToPreventionStoredInfoTypePtrOutput() PreventionStoredInfoTypePtrOutput {
+	return i.ToPreventionStoredInfoTypePtrOutputWithContext(context.Background())
+}
+
+func (i PreventionStoredInfoType) ToPreventionStoredInfoTypePtrOutputWithContext(ctx context.Context) PreventionStoredInfoTypePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PreventionStoredInfoTypePtrOutput)
 }
 
 type PreventionStoredInfoTypeOutput struct {
@@ -311,6 +326,23 @@ func (o PreventionStoredInfoTypeOutput) ToPreventionStoredInfoTypeOutputWithCont
 	return o
 }
 
+type PreventionStoredInfoTypePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (PreventionStoredInfoTypePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PreventionStoredInfoType)(nil)).Elem()
+}
+
+func (o PreventionStoredInfoTypePtrOutput) ToPreventionStoredInfoTypePtrOutput() PreventionStoredInfoTypePtrOutput {
+	return o
+}
+
+func (o PreventionStoredInfoTypePtrOutput) ToPreventionStoredInfoTypePtrOutputWithContext(ctx context.Context) PreventionStoredInfoTypePtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(PreventionStoredInfoTypeOutput{})
+	pulumi.RegisterOutputType(PreventionStoredInfoTypePtrOutput{})
 }

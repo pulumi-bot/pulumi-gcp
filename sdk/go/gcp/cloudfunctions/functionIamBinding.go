@@ -291,6 +291,13 @@ type FunctionIamBindingInput interface {
 	ToFunctionIamBindingOutputWithContext(ctx context.Context) FunctionIamBindingOutput
 }
 
+type FunctionIamBindingPtrInput interface {
+	pulumi.Input
+
+	ToFunctionIamBindingPtrOutput() FunctionIamBindingPtrOutput
+	ToFunctionIamBindingPtrOutputWithContext(ctx context.Context) FunctionIamBindingPtrOutput
+}
+
 func (FunctionIamBinding) ElementType() reflect.Type {
 	return reflect.TypeOf((*FunctionIamBinding)(nil)).Elem()
 }
@@ -301,6 +308,14 @@ func (i FunctionIamBinding) ToFunctionIamBindingOutput() FunctionIamBindingOutpu
 
 func (i FunctionIamBinding) ToFunctionIamBindingOutputWithContext(ctx context.Context) FunctionIamBindingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FunctionIamBindingOutput)
+}
+
+func (i FunctionIamBinding) ToFunctionIamBindingPtrOutput() FunctionIamBindingPtrOutput {
+	return i.ToFunctionIamBindingPtrOutputWithContext(context.Background())
+}
+
+func (i FunctionIamBinding) ToFunctionIamBindingPtrOutputWithContext(ctx context.Context) FunctionIamBindingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FunctionIamBindingPtrOutput)
 }
 
 type FunctionIamBindingOutput struct {
@@ -319,6 +334,23 @@ func (o FunctionIamBindingOutput) ToFunctionIamBindingOutputWithContext(ctx cont
 	return o
 }
 
+type FunctionIamBindingPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (FunctionIamBindingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**FunctionIamBinding)(nil)).Elem()
+}
+
+func (o FunctionIamBindingPtrOutput) ToFunctionIamBindingPtrOutput() FunctionIamBindingPtrOutput {
+	return o
+}
+
+func (o FunctionIamBindingPtrOutput) ToFunctionIamBindingPtrOutputWithContext(ctx context.Context) FunctionIamBindingPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(FunctionIamBindingOutput{})
+	pulumi.RegisterOutputType(FunctionIamBindingPtrOutput{})
 }

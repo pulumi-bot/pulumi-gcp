@@ -169,6 +169,13 @@ type KeyRingInput interface {
 	ToKeyRingOutputWithContext(ctx context.Context) KeyRingOutput
 }
 
+type KeyRingPtrInput interface {
+	pulumi.Input
+
+	ToKeyRingPtrOutput() KeyRingPtrOutput
+	ToKeyRingPtrOutputWithContext(ctx context.Context) KeyRingPtrOutput
+}
+
 func (KeyRing) ElementType() reflect.Type {
 	return reflect.TypeOf((*KeyRing)(nil)).Elem()
 }
@@ -179,6 +186,14 @@ func (i KeyRing) ToKeyRingOutput() KeyRingOutput {
 
 func (i KeyRing) ToKeyRingOutputWithContext(ctx context.Context) KeyRingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(KeyRingOutput)
+}
+
+func (i KeyRing) ToKeyRingPtrOutput() KeyRingPtrOutput {
+	return i.ToKeyRingPtrOutputWithContext(context.Background())
+}
+
+func (i KeyRing) ToKeyRingPtrOutputWithContext(ctx context.Context) KeyRingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KeyRingPtrOutput)
 }
 
 type KeyRingOutput struct {
@@ -197,6 +212,23 @@ func (o KeyRingOutput) ToKeyRingOutputWithContext(ctx context.Context) KeyRingOu
 	return o
 }
 
+type KeyRingPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (KeyRingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**KeyRing)(nil)).Elem()
+}
+
+func (o KeyRingPtrOutput) ToKeyRingPtrOutput() KeyRingPtrOutput {
+	return o
+}
+
+func (o KeyRingPtrOutput) ToKeyRingPtrOutputWithContext(ctx context.Context) KeyRingPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(KeyRingOutput{})
+	pulumi.RegisterOutputType(KeyRingPtrOutput{})
 }

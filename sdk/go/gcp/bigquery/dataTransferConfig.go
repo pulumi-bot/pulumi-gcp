@@ -441,6 +441,13 @@ type DataTransferConfigInput interface {
 	ToDataTransferConfigOutputWithContext(ctx context.Context) DataTransferConfigOutput
 }
 
+type DataTransferConfigPtrInput interface {
+	pulumi.Input
+
+	ToDataTransferConfigPtrOutput() DataTransferConfigPtrOutput
+	ToDataTransferConfigPtrOutputWithContext(ctx context.Context) DataTransferConfigPtrOutput
+}
+
 func (DataTransferConfig) ElementType() reflect.Type {
 	return reflect.TypeOf((*DataTransferConfig)(nil)).Elem()
 }
@@ -451,6 +458,14 @@ func (i DataTransferConfig) ToDataTransferConfigOutput() DataTransferConfigOutpu
 
 func (i DataTransferConfig) ToDataTransferConfigOutputWithContext(ctx context.Context) DataTransferConfigOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DataTransferConfigOutput)
+}
+
+func (i DataTransferConfig) ToDataTransferConfigPtrOutput() DataTransferConfigPtrOutput {
+	return i.ToDataTransferConfigPtrOutputWithContext(context.Background())
+}
+
+func (i DataTransferConfig) ToDataTransferConfigPtrOutputWithContext(ctx context.Context) DataTransferConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DataTransferConfigPtrOutput)
 }
 
 type DataTransferConfigOutput struct {
@@ -469,6 +484,23 @@ func (o DataTransferConfigOutput) ToDataTransferConfigOutputWithContext(ctx cont
 	return o
 }
 
+type DataTransferConfigPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (DataTransferConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DataTransferConfig)(nil)).Elem()
+}
+
+func (o DataTransferConfigPtrOutput) ToDataTransferConfigPtrOutput() DataTransferConfigPtrOutput {
+	return o
+}
+
+func (o DataTransferConfigPtrOutput) ToDataTransferConfigPtrOutputWithContext(ctx context.Context) DataTransferConfigPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(DataTransferConfigOutput{})
+	pulumi.RegisterOutputType(DataTransferConfigPtrOutput{})
 }

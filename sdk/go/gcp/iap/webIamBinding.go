@@ -365,6 +365,13 @@ type WebIamBindingInput interface {
 	ToWebIamBindingOutputWithContext(ctx context.Context) WebIamBindingOutput
 }
 
+type WebIamBindingPtrInput interface {
+	pulumi.Input
+
+	ToWebIamBindingPtrOutput() WebIamBindingPtrOutput
+	ToWebIamBindingPtrOutputWithContext(ctx context.Context) WebIamBindingPtrOutput
+}
+
 func (WebIamBinding) ElementType() reflect.Type {
 	return reflect.TypeOf((*WebIamBinding)(nil)).Elem()
 }
@@ -375,6 +382,14 @@ func (i WebIamBinding) ToWebIamBindingOutput() WebIamBindingOutput {
 
 func (i WebIamBinding) ToWebIamBindingOutputWithContext(ctx context.Context) WebIamBindingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WebIamBindingOutput)
+}
+
+func (i WebIamBinding) ToWebIamBindingPtrOutput() WebIamBindingPtrOutput {
+	return i.ToWebIamBindingPtrOutputWithContext(context.Background())
+}
+
+func (i WebIamBinding) ToWebIamBindingPtrOutputWithContext(ctx context.Context) WebIamBindingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebIamBindingPtrOutput)
 }
 
 type WebIamBindingOutput struct {
@@ -393,6 +408,23 @@ func (o WebIamBindingOutput) ToWebIamBindingOutputWithContext(ctx context.Contex
 	return o
 }
 
+type WebIamBindingPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (WebIamBindingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebIamBinding)(nil)).Elem()
+}
+
+func (o WebIamBindingPtrOutput) ToWebIamBindingPtrOutput() WebIamBindingPtrOutput {
+	return o
+}
+
+func (o WebIamBindingPtrOutput) ToWebIamBindingPtrOutputWithContext(ctx context.Context) WebIamBindingPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(WebIamBindingOutput{})
+	pulumi.RegisterOutputType(WebIamBindingPtrOutput{})
 }

@@ -179,6 +179,13 @@ type CustomServiceInput interface {
 	ToCustomServiceOutputWithContext(ctx context.Context) CustomServiceOutput
 }
 
+type CustomServicePtrInput interface {
+	pulumi.Input
+
+	ToCustomServicePtrOutput() CustomServicePtrOutput
+	ToCustomServicePtrOutputWithContext(ctx context.Context) CustomServicePtrOutput
+}
+
 func (CustomService) ElementType() reflect.Type {
 	return reflect.TypeOf((*CustomService)(nil)).Elem()
 }
@@ -189,6 +196,14 @@ func (i CustomService) ToCustomServiceOutput() CustomServiceOutput {
 
 func (i CustomService) ToCustomServiceOutputWithContext(ctx context.Context) CustomServiceOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CustomServiceOutput)
+}
+
+func (i CustomService) ToCustomServicePtrOutput() CustomServicePtrOutput {
+	return i.ToCustomServicePtrOutputWithContext(context.Background())
+}
+
+func (i CustomService) ToCustomServicePtrOutputWithContext(ctx context.Context) CustomServicePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomServicePtrOutput)
 }
 
 type CustomServiceOutput struct {
@@ -207,6 +222,23 @@ func (o CustomServiceOutput) ToCustomServiceOutputWithContext(ctx context.Contex
 	return o
 }
 
+type CustomServicePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (CustomServicePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CustomService)(nil)).Elem()
+}
+
+func (o CustomServicePtrOutput) ToCustomServicePtrOutput() CustomServicePtrOutput {
+	return o
+}
+
+func (o CustomServicePtrOutput) ToCustomServicePtrOutputWithContext(ctx context.Context) CustomServicePtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(CustomServiceOutput{})
+	pulumi.RegisterOutputType(CustomServicePtrOutput{})
 }

@@ -172,6 +172,13 @@ type ServiceInput interface {
 	ToServiceOutputWithContext(ctx context.Context) ServiceOutput
 }
 
+type ServicePtrInput interface {
+	pulumi.Input
+
+	ToServicePtrOutput() ServicePtrOutput
+	ToServicePtrOutputWithContext(ctx context.Context) ServicePtrOutput
+}
+
 func (Service) ElementType() reflect.Type {
 	return reflect.TypeOf((*Service)(nil)).Elem()
 }
@@ -182,6 +189,14 @@ func (i Service) ToServiceOutput() ServiceOutput {
 
 func (i Service) ToServiceOutputWithContext(ctx context.Context) ServiceOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceOutput)
+}
+
+func (i Service) ToServicePtrOutput() ServicePtrOutput {
+	return i.ToServicePtrOutputWithContext(context.Background())
+}
+
+func (i Service) ToServicePtrOutputWithContext(ctx context.Context) ServicePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServicePtrOutput)
 }
 
 type ServiceOutput struct {
@@ -200,6 +215,23 @@ func (o ServiceOutput) ToServiceOutputWithContext(ctx context.Context) ServiceOu
 	return o
 }
 
+type ServicePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ServicePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Service)(nil)).Elem()
+}
+
+func (o ServicePtrOutput) ToServicePtrOutput() ServicePtrOutput {
+	return o
+}
+
+func (o ServicePtrOutput) ToServicePtrOutputWithContext(ctx context.Context) ServicePtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ServiceOutput{})
+	pulumi.RegisterOutputType(ServicePtrOutput{})
 }

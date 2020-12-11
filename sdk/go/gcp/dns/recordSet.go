@@ -378,6 +378,13 @@ type RecordSetInput interface {
 	ToRecordSetOutputWithContext(ctx context.Context) RecordSetOutput
 }
 
+type RecordSetPtrInput interface {
+	pulumi.Input
+
+	ToRecordSetPtrOutput() RecordSetPtrOutput
+	ToRecordSetPtrOutputWithContext(ctx context.Context) RecordSetPtrOutput
+}
+
 func (RecordSet) ElementType() reflect.Type {
 	return reflect.TypeOf((*RecordSet)(nil)).Elem()
 }
@@ -388,6 +395,14 @@ func (i RecordSet) ToRecordSetOutput() RecordSetOutput {
 
 func (i RecordSet) ToRecordSetOutputWithContext(ctx context.Context) RecordSetOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RecordSetOutput)
+}
+
+func (i RecordSet) ToRecordSetPtrOutput() RecordSetPtrOutput {
+	return i.ToRecordSetPtrOutputWithContext(context.Background())
+}
+
+func (i RecordSet) ToRecordSetPtrOutputWithContext(ctx context.Context) RecordSetPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RecordSetPtrOutput)
 }
 
 type RecordSetOutput struct {
@@ -406,6 +421,23 @@ func (o RecordSetOutput) ToRecordSetOutputWithContext(ctx context.Context) Recor
 	return o
 }
 
+type RecordSetPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (RecordSetPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RecordSet)(nil)).Elem()
+}
+
+func (o RecordSetPtrOutput) ToRecordSetPtrOutput() RecordSetPtrOutput {
+	return o
+}
+
+func (o RecordSetPtrOutput) ToRecordSetPtrOutputWithContext(ctx context.Context) RecordSetPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(RecordSetOutput{})
+	pulumi.RegisterOutputType(RecordSetPtrOutput{})
 }

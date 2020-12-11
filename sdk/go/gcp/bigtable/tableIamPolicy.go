@@ -245,6 +245,13 @@ type TableIamPolicyInput interface {
 	ToTableIamPolicyOutputWithContext(ctx context.Context) TableIamPolicyOutput
 }
 
+type TableIamPolicyPtrInput interface {
+	pulumi.Input
+
+	ToTableIamPolicyPtrOutput() TableIamPolicyPtrOutput
+	ToTableIamPolicyPtrOutputWithContext(ctx context.Context) TableIamPolicyPtrOutput
+}
+
 func (TableIamPolicy) ElementType() reflect.Type {
 	return reflect.TypeOf((*TableIamPolicy)(nil)).Elem()
 }
@@ -255,6 +262,14 @@ func (i TableIamPolicy) ToTableIamPolicyOutput() TableIamPolicyOutput {
 
 func (i TableIamPolicy) ToTableIamPolicyOutputWithContext(ctx context.Context) TableIamPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TableIamPolicyOutput)
+}
+
+func (i TableIamPolicy) ToTableIamPolicyPtrOutput() TableIamPolicyPtrOutput {
+	return i.ToTableIamPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i TableIamPolicy) ToTableIamPolicyPtrOutputWithContext(ctx context.Context) TableIamPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TableIamPolicyPtrOutput)
 }
 
 type TableIamPolicyOutput struct {
@@ -273,6 +288,23 @@ func (o TableIamPolicyOutput) ToTableIamPolicyOutputWithContext(ctx context.Cont
 	return o
 }
 
+type TableIamPolicyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (TableIamPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TableIamPolicy)(nil)).Elem()
+}
+
+func (o TableIamPolicyPtrOutput) ToTableIamPolicyPtrOutput() TableIamPolicyPtrOutput {
+	return o
+}
+
+func (o TableIamPolicyPtrOutput) ToTableIamPolicyPtrOutputWithContext(ctx context.Context) TableIamPolicyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(TableIamPolicyOutput{})
+	pulumi.RegisterOutputType(TableIamPolicyPtrOutput{})
 }

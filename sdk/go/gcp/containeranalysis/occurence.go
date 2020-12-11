@@ -249,6 +249,13 @@ type OccurenceInput interface {
 	ToOccurenceOutputWithContext(ctx context.Context) OccurenceOutput
 }
 
+type OccurencePtrInput interface {
+	pulumi.Input
+
+	ToOccurencePtrOutput() OccurencePtrOutput
+	ToOccurencePtrOutputWithContext(ctx context.Context) OccurencePtrOutput
+}
+
 func (Occurence) ElementType() reflect.Type {
 	return reflect.TypeOf((*Occurence)(nil)).Elem()
 }
@@ -259,6 +266,14 @@ func (i Occurence) ToOccurenceOutput() OccurenceOutput {
 
 func (i Occurence) ToOccurenceOutputWithContext(ctx context.Context) OccurenceOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(OccurenceOutput)
+}
+
+func (i Occurence) ToOccurencePtrOutput() OccurencePtrOutput {
+	return i.ToOccurencePtrOutputWithContext(context.Background())
+}
+
+func (i Occurence) ToOccurencePtrOutputWithContext(ctx context.Context) OccurencePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OccurencePtrOutput)
 }
 
 type OccurenceOutput struct {
@@ -277,6 +292,23 @@ func (o OccurenceOutput) ToOccurenceOutputWithContext(ctx context.Context) Occur
 	return o
 }
 
+type OccurencePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (OccurencePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Occurence)(nil)).Elem()
+}
+
+func (o OccurencePtrOutput) ToOccurencePtrOutput() OccurencePtrOutput {
+	return o
+}
+
+func (o OccurencePtrOutput) ToOccurencePtrOutputWithContext(ctx context.Context) OccurencePtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(OccurenceOutput{})
+	pulumi.RegisterOutputType(OccurencePtrOutput{})
 }

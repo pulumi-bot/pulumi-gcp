@@ -240,6 +240,13 @@ type DefaultSupportedIdpConfigInput interface {
 	ToDefaultSupportedIdpConfigOutputWithContext(ctx context.Context) DefaultSupportedIdpConfigOutput
 }
 
+type DefaultSupportedIdpConfigPtrInput interface {
+	pulumi.Input
+
+	ToDefaultSupportedIdpConfigPtrOutput() DefaultSupportedIdpConfigPtrOutput
+	ToDefaultSupportedIdpConfigPtrOutputWithContext(ctx context.Context) DefaultSupportedIdpConfigPtrOutput
+}
+
 func (DefaultSupportedIdpConfig) ElementType() reflect.Type {
 	return reflect.TypeOf((*DefaultSupportedIdpConfig)(nil)).Elem()
 }
@@ -250,6 +257,14 @@ func (i DefaultSupportedIdpConfig) ToDefaultSupportedIdpConfigOutput() DefaultSu
 
 func (i DefaultSupportedIdpConfig) ToDefaultSupportedIdpConfigOutputWithContext(ctx context.Context) DefaultSupportedIdpConfigOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DefaultSupportedIdpConfigOutput)
+}
+
+func (i DefaultSupportedIdpConfig) ToDefaultSupportedIdpConfigPtrOutput() DefaultSupportedIdpConfigPtrOutput {
+	return i.ToDefaultSupportedIdpConfigPtrOutputWithContext(context.Background())
+}
+
+func (i DefaultSupportedIdpConfig) ToDefaultSupportedIdpConfigPtrOutputWithContext(ctx context.Context) DefaultSupportedIdpConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultSupportedIdpConfigPtrOutput)
 }
 
 type DefaultSupportedIdpConfigOutput struct {
@@ -268,6 +283,23 @@ func (o DefaultSupportedIdpConfigOutput) ToDefaultSupportedIdpConfigOutputWithCo
 	return o
 }
 
+type DefaultSupportedIdpConfigPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (DefaultSupportedIdpConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DefaultSupportedIdpConfig)(nil)).Elem()
+}
+
+func (o DefaultSupportedIdpConfigPtrOutput) ToDefaultSupportedIdpConfigPtrOutput() DefaultSupportedIdpConfigPtrOutput {
+	return o
+}
+
+func (o DefaultSupportedIdpConfigPtrOutput) ToDefaultSupportedIdpConfigPtrOutputWithContext(ctx context.Context) DefaultSupportedIdpConfigPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(DefaultSupportedIdpConfigOutput{})
+	pulumi.RegisterOutputType(DefaultSupportedIdpConfigPtrOutput{})
 }

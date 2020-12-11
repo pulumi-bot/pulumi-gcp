@@ -208,6 +208,13 @@ type GameServerClusterInput interface {
 	ToGameServerClusterOutputWithContext(ctx context.Context) GameServerClusterOutput
 }
 
+type GameServerClusterPtrInput interface {
+	pulumi.Input
+
+	ToGameServerClusterPtrOutput() GameServerClusterPtrOutput
+	ToGameServerClusterPtrOutputWithContext(ctx context.Context) GameServerClusterPtrOutput
+}
+
 func (GameServerCluster) ElementType() reflect.Type {
 	return reflect.TypeOf((*GameServerCluster)(nil)).Elem()
 }
@@ -218,6 +225,14 @@ func (i GameServerCluster) ToGameServerClusterOutput() GameServerClusterOutput {
 
 func (i GameServerCluster) ToGameServerClusterOutputWithContext(ctx context.Context) GameServerClusterOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GameServerClusterOutput)
+}
+
+func (i GameServerCluster) ToGameServerClusterPtrOutput() GameServerClusterPtrOutput {
+	return i.ToGameServerClusterPtrOutputWithContext(context.Background())
+}
+
+func (i GameServerCluster) ToGameServerClusterPtrOutputWithContext(ctx context.Context) GameServerClusterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GameServerClusterPtrOutput)
 }
 
 type GameServerClusterOutput struct {
@@ -236,6 +251,23 @@ func (o GameServerClusterOutput) ToGameServerClusterOutputWithContext(ctx contex
 	return o
 }
 
+type GameServerClusterPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (GameServerClusterPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GameServerCluster)(nil)).Elem()
+}
+
+func (o GameServerClusterPtrOutput) ToGameServerClusterPtrOutput() GameServerClusterPtrOutput {
+	return o
+}
+
+func (o GameServerClusterPtrOutput) ToGameServerClusterPtrOutputWithContext(ctx context.Context) GameServerClusterPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(GameServerClusterOutput{})
+	pulumi.RegisterOutputType(GameServerClusterPtrOutput{})
 }

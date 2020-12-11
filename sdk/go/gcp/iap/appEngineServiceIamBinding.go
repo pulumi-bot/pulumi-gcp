@@ -403,6 +403,13 @@ type AppEngineServiceIamBindingInput interface {
 	ToAppEngineServiceIamBindingOutputWithContext(ctx context.Context) AppEngineServiceIamBindingOutput
 }
 
+type AppEngineServiceIamBindingPtrInput interface {
+	pulumi.Input
+
+	ToAppEngineServiceIamBindingPtrOutput() AppEngineServiceIamBindingPtrOutput
+	ToAppEngineServiceIamBindingPtrOutputWithContext(ctx context.Context) AppEngineServiceIamBindingPtrOutput
+}
+
 func (AppEngineServiceIamBinding) ElementType() reflect.Type {
 	return reflect.TypeOf((*AppEngineServiceIamBinding)(nil)).Elem()
 }
@@ -413,6 +420,14 @@ func (i AppEngineServiceIamBinding) ToAppEngineServiceIamBindingOutput() AppEngi
 
 func (i AppEngineServiceIamBinding) ToAppEngineServiceIamBindingOutputWithContext(ctx context.Context) AppEngineServiceIamBindingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AppEngineServiceIamBindingOutput)
+}
+
+func (i AppEngineServiceIamBinding) ToAppEngineServiceIamBindingPtrOutput() AppEngineServiceIamBindingPtrOutput {
+	return i.ToAppEngineServiceIamBindingPtrOutputWithContext(context.Background())
+}
+
+func (i AppEngineServiceIamBinding) ToAppEngineServiceIamBindingPtrOutputWithContext(ctx context.Context) AppEngineServiceIamBindingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AppEngineServiceIamBindingPtrOutput)
 }
 
 type AppEngineServiceIamBindingOutput struct {
@@ -431,6 +446,23 @@ func (o AppEngineServiceIamBindingOutput) ToAppEngineServiceIamBindingOutputWith
 	return o
 }
 
+type AppEngineServiceIamBindingPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (AppEngineServiceIamBindingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AppEngineServiceIamBinding)(nil)).Elem()
+}
+
+func (o AppEngineServiceIamBindingPtrOutput) ToAppEngineServiceIamBindingPtrOutput() AppEngineServiceIamBindingPtrOutput {
+	return o
+}
+
+func (o AppEngineServiceIamBindingPtrOutput) ToAppEngineServiceIamBindingPtrOutputWithContext(ctx context.Context) AppEngineServiceIamBindingPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(AppEngineServiceIamBindingOutput{})
+	pulumi.RegisterOutputType(AppEngineServiceIamBindingPtrOutput{})
 }

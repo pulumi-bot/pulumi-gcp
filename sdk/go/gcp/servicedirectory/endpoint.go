@@ -227,6 +227,13 @@ type EndpointInput interface {
 	ToEndpointOutputWithContext(ctx context.Context) EndpointOutput
 }
 
+type EndpointPtrInput interface {
+	pulumi.Input
+
+	ToEndpointPtrOutput() EndpointPtrOutput
+	ToEndpointPtrOutputWithContext(ctx context.Context) EndpointPtrOutput
+}
+
 func (Endpoint) ElementType() reflect.Type {
 	return reflect.TypeOf((*Endpoint)(nil)).Elem()
 }
@@ -237,6 +244,14 @@ func (i Endpoint) ToEndpointOutput() EndpointOutput {
 
 func (i Endpoint) ToEndpointOutputWithContext(ctx context.Context) EndpointOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EndpointOutput)
+}
+
+func (i Endpoint) ToEndpointPtrOutput() EndpointPtrOutput {
+	return i.ToEndpointPtrOutputWithContext(context.Background())
+}
+
+func (i Endpoint) ToEndpointPtrOutputWithContext(ctx context.Context) EndpointPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EndpointPtrOutput)
 }
 
 type EndpointOutput struct {
@@ -255,6 +270,23 @@ func (o EndpointOutput) ToEndpointOutputWithContext(ctx context.Context) Endpoin
 	return o
 }
 
+type EndpointPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (EndpointPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Endpoint)(nil)).Elem()
+}
+
+func (o EndpointPtrOutput) ToEndpointPtrOutput() EndpointPtrOutput {
+	return o
+}
+
+func (o EndpointPtrOutput) ToEndpointPtrOutputWithContext(ctx context.Context) EndpointPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(EndpointOutput{})
+	pulumi.RegisterOutputType(EndpointPtrOutput{})
 }

@@ -160,6 +160,13 @@ type ApiIamMemberInput interface {
 	ToApiIamMemberOutputWithContext(ctx context.Context) ApiIamMemberOutput
 }
 
+type ApiIamMemberPtrInput interface {
+	pulumi.Input
+
+	ToApiIamMemberPtrOutput() ApiIamMemberPtrOutput
+	ToApiIamMemberPtrOutputWithContext(ctx context.Context) ApiIamMemberPtrOutput
+}
+
 func (ApiIamMember) ElementType() reflect.Type {
 	return reflect.TypeOf((*ApiIamMember)(nil)).Elem()
 }
@@ -170,6 +177,14 @@ func (i ApiIamMember) ToApiIamMemberOutput() ApiIamMemberOutput {
 
 func (i ApiIamMember) ToApiIamMemberOutputWithContext(ctx context.Context) ApiIamMemberOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ApiIamMemberOutput)
+}
+
+func (i ApiIamMember) ToApiIamMemberPtrOutput() ApiIamMemberPtrOutput {
+	return i.ToApiIamMemberPtrOutputWithContext(context.Background())
+}
+
+func (i ApiIamMember) ToApiIamMemberPtrOutputWithContext(ctx context.Context) ApiIamMemberPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApiIamMemberPtrOutput)
 }
 
 type ApiIamMemberOutput struct {
@@ -188,6 +203,23 @@ func (o ApiIamMemberOutput) ToApiIamMemberOutputWithContext(ctx context.Context)
 	return o
 }
 
+type ApiIamMemberPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ApiIamMemberPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ApiIamMember)(nil)).Elem()
+}
+
+func (o ApiIamMemberPtrOutput) ToApiIamMemberPtrOutput() ApiIamMemberPtrOutput {
+	return o
+}
+
+func (o ApiIamMemberPtrOutput) ToApiIamMemberPtrOutputWithContext(ctx context.Context) ApiIamMemberPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ApiIamMemberOutput{})
+	pulumi.RegisterOutputType(ApiIamMemberPtrOutput{})
 }

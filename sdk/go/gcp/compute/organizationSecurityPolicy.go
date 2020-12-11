@@ -176,6 +176,13 @@ type OrganizationSecurityPolicyInput interface {
 	ToOrganizationSecurityPolicyOutputWithContext(ctx context.Context) OrganizationSecurityPolicyOutput
 }
 
+type OrganizationSecurityPolicyPtrInput interface {
+	pulumi.Input
+
+	ToOrganizationSecurityPolicyPtrOutput() OrganizationSecurityPolicyPtrOutput
+	ToOrganizationSecurityPolicyPtrOutputWithContext(ctx context.Context) OrganizationSecurityPolicyPtrOutput
+}
+
 func (OrganizationSecurityPolicy) ElementType() reflect.Type {
 	return reflect.TypeOf((*OrganizationSecurityPolicy)(nil)).Elem()
 }
@@ -186,6 +193,14 @@ func (i OrganizationSecurityPolicy) ToOrganizationSecurityPolicyOutput() Organiz
 
 func (i OrganizationSecurityPolicy) ToOrganizationSecurityPolicyOutputWithContext(ctx context.Context) OrganizationSecurityPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(OrganizationSecurityPolicyOutput)
+}
+
+func (i OrganizationSecurityPolicy) ToOrganizationSecurityPolicyPtrOutput() OrganizationSecurityPolicyPtrOutput {
+	return i.ToOrganizationSecurityPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i OrganizationSecurityPolicy) ToOrganizationSecurityPolicyPtrOutputWithContext(ctx context.Context) OrganizationSecurityPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationSecurityPolicyPtrOutput)
 }
 
 type OrganizationSecurityPolicyOutput struct {
@@ -204,6 +219,23 @@ func (o OrganizationSecurityPolicyOutput) ToOrganizationSecurityPolicyOutputWith
 	return o
 }
 
+type OrganizationSecurityPolicyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (OrganizationSecurityPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**OrganizationSecurityPolicy)(nil)).Elem()
+}
+
+func (o OrganizationSecurityPolicyPtrOutput) ToOrganizationSecurityPolicyPtrOutput() OrganizationSecurityPolicyPtrOutput {
+	return o
+}
+
+func (o OrganizationSecurityPolicyPtrOutput) ToOrganizationSecurityPolicyPtrOutputWithContext(ctx context.Context) OrganizationSecurityPolicyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(OrganizationSecurityPolicyOutput{})
+	pulumi.RegisterOutputType(OrganizationSecurityPolicyPtrOutput{})
 }

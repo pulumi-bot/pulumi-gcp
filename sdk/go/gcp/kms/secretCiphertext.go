@@ -210,6 +210,13 @@ type SecretCiphertextInput interface {
 	ToSecretCiphertextOutputWithContext(ctx context.Context) SecretCiphertextOutput
 }
 
+type SecretCiphertextPtrInput interface {
+	pulumi.Input
+
+	ToSecretCiphertextPtrOutput() SecretCiphertextPtrOutput
+	ToSecretCiphertextPtrOutputWithContext(ctx context.Context) SecretCiphertextPtrOutput
+}
+
 func (SecretCiphertext) ElementType() reflect.Type {
 	return reflect.TypeOf((*SecretCiphertext)(nil)).Elem()
 }
@@ -220,6 +227,14 @@ func (i SecretCiphertext) ToSecretCiphertextOutput() SecretCiphertextOutput {
 
 func (i SecretCiphertext) ToSecretCiphertextOutputWithContext(ctx context.Context) SecretCiphertextOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretCiphertextOutput)
+}
+
+func (i SecretCiphertext) ToSecretCiphertextPtrOutput() SecretCiphertextPtrOutput {
+	return i.ToSecretCiphertextPtrOutputWithContext(context.Background())
+}
+
+func (i SecretCiphertext) ToSecretCiphertextPtrOutputWithContext(ctx context.Context) SecretCiphertextPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretCiphertextPtrOutput)
 }
 
 type SecretCiphertextOutput struct {
@@ -238,6 +253,23 @@ func (o SecretCiphertextOutput) ToSecretCiphertextOutputWithContext(ctx context.
 	return o
 }
 
+type SecretCiphertextPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (SecretCiphertextPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecretCiphertext)(nil)).Elem()
+}
+
+func (o SecretCiphertextPtrOutput) ToSecretCiphertextPtrOutput() SecretCiphertextPtrOutput {
+	return o
+}
+
+func (o SecretCiphertextPtrOutput) ToSecretCiphertextPtrOutputWithContext(ctx context.Context) SecretCiphertextPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(SecretCiphertextOutput{})
+	pulumi.RegisterOutputType(SecretCiphertextPtrOutput{})
 }

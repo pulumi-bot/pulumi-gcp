@@ -208,6 +208,13 @@ type AccountInput interface {
 	ToAccountOutputWithContext(ctx context.Context) AccountOutput
 }
 
+type AccountPtrInput interface {
+	pulumi.Input
+
+	ToAccountPtrOutput() AccountPtrOutput
+	ToAccountPtrOutputWithContext(ctx context.Context) AccountPtrOutput
+}
+
 func (Account) ElementType() reflect.Type {
 	return reflect.TypeOf((*Account)(nil)).Elem()
 }
@@ -218,6 +225,14 @@ func (i Account) ToAccountOutput() AccountOutput {
 
 func (i Account) ToAccountOutputWithContext(ctx context.Context) AccountOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AccountOutput)
+}
+
+func (i Account) ToAccountPtrOutput() AccountPtrOutput {
+	return i.ToAccountPtrOutputWithContext(context.Background())
+}
+
+func (i Account) ToAccountPtrOutputWithContext(ctx context.Context) AccountPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AccountPtrOutput)
 }
 
 type AccountOutput struct {
@@ -236,6 +251,23 @@ func (o AccountOutput) ToAccountOutputWithContext(ctx context.Context) AccountOu
 	return o
 }
 
+type AccountPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (AccountPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Account)(nil)).Elem()
+}
+
+func (o AccountPtrOutput) ToAccountPtrOutput() AccountPtrOutput {
+	return o
+}
+
+func (o AccountPtrOutput) ToAccountPtrOutputWithContext(ctx context.Context) AccountPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(AccountOutput{})
+	pulumi.RegisterOutputType(AccountPtrOutput{})
 }

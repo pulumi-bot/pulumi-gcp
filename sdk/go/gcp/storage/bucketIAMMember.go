@@ -363,6 +363,13 @@ type BucketIAMMemberInput interface {
 	ToBucketIAMMemberOutputWithContext(ctx context.Context) BucketIAMMemberOutput
 }
 
+type BucketIAMMemberPtrInput interface {
+	pulumi.Input
+
+	ToBucketIAMMemberPtrOutput() BucketIAMMemberPtrOutput
+	ToBucketIAMMemberPtrOutputWithContext(ctx context.Context) BucketIAMMemberPtrOutput
+}
+
 func (BucketIAMMember) ElementType() reflect.Type {
 	return reflect.TypeOf((*BucketIAMMember)(nil)).Elem()
 }
@@ -373,6 +380,14 @@ func (i BucketIAMMember) ToBucketIAMMemberOutput() BucketIAMMemberOutput {
 
 func (i BucketIAMMember) ToBucketIAMMemberOutputWithContext(ctx context.Context) BucketIAMMemberOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(BucketIAMMemberOutput)
+}
+
+func (i BucketIAMMember) ToBucketIAMMemberPtrOutput() BucketIAMMemberPtrOutput {
+	return i.ToBucketIAMMemberPtrOutputWithContext(context.Background())
+}
+
+func (i BucketIAMMember) ToBucketIAMMemberPtrOutputWithContext(ctx context.Context) BucketIAMMemberPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketIAMMemberPtrOutput)
 }
 
 type BucketIAMMemberOutput struct {
@@ -391,6 +406,23 @@ func (o BucketIAMMemberOutput) ToBucketIAMMemberOutputWithContext(ctx context.Co
 	return o
 }
 
+type BucketIAMMemberPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (BucketIAMMemberPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketIAMMember)(nil)).Elem()
+}
+
+func (o BucketIAMMemberPtrOutput) ToBucketIAMMemberPtrOutput() BucketIAMMemberPtrOutput {
+	return o
+}
+
+func (o BucketIAMMemberPtrOutput) ToBucketIAMMemberPtrOutputWithContext(ctx context.Context) BucketIAMMemberPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(BucketIAMMemberOutput{})
+	pulumi.RegisterOutputType(BucketIAMMemberPtrOutput{})
 }

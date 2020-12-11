@@ -270,6 +270,13 @@ type RegionDiskIamMemberInput interface {
 	ToRegionDiskIamMemberOutputWithContext(ctx context.Context) RegionDiskIamMemberOutput
 }
 
+type RegionDiskIamMemberPtrInput interface {
+	pulumi.Input
+
+	ToRegionDiskIamMemberPtrOutput() RegionDiskIamMemberPtrOutput
+	ToRegionDiskIamMemberPtrOutputWithContext(ctx context.Context) RegionDiskIamMemberPtrOutput
+}
+
 func (RegionDiskIamMember) ElementType() reflect.Type {
 	return reflect.TypeOf((*RegionDiskIamMember)(nil)).Elem()
 }
@@ -280,6 +287,14 @@ func (i RegionDiskIamMember) ToRegionDiskIamMemberOutput() RegionDiskIamMemberOu
 
 func (i RegionDiskIamMember) ToRegionDiskIamMemberOutputWithContext(ctx context.Context) RegionDiskIamMemberOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RegionDiskIamMemberOutput)
+}
+
+func (i RegionDiskIamMember) ToRegionDiskIamMemberPtrOutput() RegionDiskIamMemberPtrOutput {
+	return i.ToRegionDiskIamMemberPtrOutputWithContext(context.Background())
+}
+
+func (i RegionDiskIamMember) ToRegionDiskIamMemberPtrOutputWithContext(ctx context.Context) RegionDiskIamMemberPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegionDiskIamMemberPtrOutput)
 }
 
 type RegionDiskIamMemberOutput struct {
@@ -298,6 +313,23 @@ func (o RegionDiskIamMemberOutput) ToRegionDiskIamMemberOutputWithContext(ctx co
 	return o
 }
 
+type RegionDiskIamMemberPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (RegionDiskIamMemberPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RegionDiskIamMember)(nil)).Elem()
+}
+
+func (o RegionDiskIamMemberPtrOutput) ToRegionDiskIamMemberPtrOutput() RegionDiskIamMemberPtrOutput {
+	return o
+}
+
+func (o RegionDiskIamMemberPtrOutput) ToRegionDiskIamMemberPtrOutputWithContext(ctx context.Context) RegionDiskIamMemberPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(RegionDiskIamMemberOutput{})
+	pulumi.RegisterOutputType(RegionDiskIamMemberPtrOutput{})
 }

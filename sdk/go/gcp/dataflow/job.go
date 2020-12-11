@@ -376,6 +376,13 @@ type JobInput interface {
 	ToJobOutputWithContext(ctx context.Context) JobOutput
 }
 
+type JobPtrInput interface {
+	pulumi.Input
+
+	ToJobPtrOutput() JobPtrOutput
+	ToJobPtrOutputWithContext(ctx context.Context) JobPtrOutput
+}
+
 func (Job) ElementType() reflect.Type {
 	return reflect.TypeOf((*Job)(nil)).Elem()
 }
@@ -386,6 +393,14 @@ func (i Job) ToJobOutput() JobOutput {
 
 func (i Job) ToJobOutputWithContext(ctx context.Context) JobOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(JobOutput)
+}
+
+func (i Job) ToJobPtrOutput() JobPtrOutput {
+	return i.ToJobPtrOutputWithContext(context.Background())
+}
+
+func (i Job) ToJobPtrOutputWithContext(ctx context.Context) JobPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(JobPtrOutput)
 }
 
 type JobOutput struct {
@@ -404,6 +419,23 @@ func (o JobOutput) ToJobOutputWithContext(ctx context.Context) JobOutput {
 	return o
 }
 
+type JobPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (JobPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Job)(nil)).Elem()
+}
+
+func (o JobPtrOutput) ToJobPtrOutput() JobPtrOutput {
+	return o
+}
+
+func (o JobPtrOutput) ToJobPtrOutputWithContext(ctx context.Context) JobPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(JobOutput{})
+	pulumi.RegisterOutputType(JobPtrOutput{})
 }

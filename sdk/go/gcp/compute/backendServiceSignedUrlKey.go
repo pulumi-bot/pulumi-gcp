@@ -237,6 +237,13 @@ type BackendServiceSignedUrlKeyInput interface {
 	ToBackendServiceSignedUrlKeyOutputWithContext(ctx context.Context) BackendServiceSignedUrlKeyOutput
 }
 
+type BackendServiceSignedUrlKeyPtrInput interface {
+	pulumi.Input
+
+	ToBackendServiceSignedUrlKeyPtrOutput() BackendServiceSignedUrlKeyPtrOutput
+	ToBackendServiceSignedUrlKeyPtrOutputWithContext(ctx context.Context) BackendServiceSignedUrlKeyPtrOutput
+}
+
 func (BackendServiceSignedUrlKey) ElementType() reflect.Type {
 	return reflect.TypeOf((*BackendServiceSignedUrlKey)(nil)).Elem()
 }
@@ -247,6 +254,14 @@ func (i BackendServiceSignedUrlKey) ToBackendServiceSignedUrlKeyOutput() Backend
 
 func (i BackendServiceSignedUrlKey) ToBackendServiceSignedUrlKeyOutputWithContext(ctx context.Context) BackendServiceSignedUrlKeyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceSignedUrlKeyOutput)
+}
+
+func (i BackendServiceSignedUrlKey) ToBackendServiceSignedUrlKeyPtrOutput() BackendServiceSignedUrlKeyPtrOutput {
+	return i.ToBackendServiceSignedUrlKeyPtrOutputWithContext(context.Background())
+}
+
+func (i BackendServiceSignedUrlKey) ToBackendServiceSignedUrlKeyPtrOutputWithContext(ctx context.Context) BackendServiceSignedUrlKeyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceSignedUrlKeyPtrOutput)
 }
 
 type BackendServiceSignedUrlKeyOutput struct {
@@ -265,6 +280,23 @@ func (o BackendServiceSignedUrlKeyOutput) ToBackendServiceSignedUrlKeyOutputWith
 	return o
 }
 
+type BackendServiceSignedUrlKeyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (BackendServiceSignedUrlKeyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BackendServiceSignedUrlKey)(nil)).Elem()
+}
+
+func (o BackendServiceSignedUrlKeyPtrOutput) ToBackendServiceSignedUrlKeyPtrOutput() BackendServiceSignedUrlKeyPtrOutput {
+	return o
+}
+
+func (o BackendServiceSignedUrlKeyPtrOutput) ToBackendServiceSignedUrlKeyPtrOutputWithContext(ctx context.Context) BackendServiceSignedUrlKeyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(BackendServiceSignedUrlKeyOutput{})
+	pulumi.RegisterOutputType(BackendServiceSignedUrlKeyPtrOutput{})
 }

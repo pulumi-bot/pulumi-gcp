@@ -263,6 +263,13 @@ type SecretIamBindingInput interface {
 	ToSecretIamBindingOutputWithContext(ctx context.Context) SecretIamBindingOutput
 }
 
+type SecretIamBindingPtrInput interface {
+	pulumi.Input
+
+	ToSecretIamBindingPtrOutput() SecretIamBindingPtrOutput
+	ToSecretIamBindingPtrOutputWithContext(ctx context.Context) SecretIamBindingPtrOutput
+}
+
 func (SecretIamBinding) ElementType() reflect.Type {
 	return reflect.TypeOf((*SecretIamBinding)(nil)).Elem()
 }
@@ -273,6 +280,14 @@ func (i SecretIamBinding) ToSecretIamBindingOutput() SecretIamBindingOutput {
 
 func (i SecretIamBinding) ToSecretIamBindingOutputWithContext(ctx context.Context) SecretIamBindingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretIamBindingOutput)
+}
+
+func (i SecretIamBinding) ToSecretIamBindingPtrOutput() SecretIamBindingPtrOutput {
+	return i.ToSecretIamBindingPtrOutputWithContext(context.Background())
+}
+
+func (i SecretIamBinding) ToSecretIamBindingPtrOutputWithContext(ctx context.Context) SecretIamBindingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretIamBindingPtrOutput)
 }
 
 type SecretIamBindingOutput struct {
@@ -291,6 +306,23 @@ func (o SecretIamBindingOutput) ToSecretIamBindingOutputWithContext(ctx context.
 	return o
 }
 
+type SecretIamBindingPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (SecretIamBindingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecretIamBinding)(nil)).Elem()
+}
+
+func (o SecretIamBindingPtrOutput) ToSecretIamBindingPtrOutput() SecretIamBindingPtrOutput {
+	return o
+}
+
+func (o SecretIamBindingPtrOutput) ToSecretIamBindingPtrOutputWithContext(ctx context.Context) SecretIamBindingPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(SecretIamBindingOutput{})
+	pulumi.RegisterOutputType(SecretIamBindingPtrOutput{})
 }

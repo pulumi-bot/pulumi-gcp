@@ -252,6 +252,13 @@ type RegionDiskIamPolicyInput interface {
 	ToRegionDiskIamPolicyOutputWithContext(ctx context.Context) RegionDiskIamPolicyOutput
 }
 
+type RegionDiskIamPolicyPtrInput interface {
+	pulumi.Input
+
+	ToRegionDiskIamPolicyPtrOutput() RegionDiskIamPolicyPtrOutput
+	ToRegionDiskIamPolicyPtrOutputWithContext(ctx context.Context) RegionDiskIamPolicyPtrOutput
+}
+
 func (RegionDiskIamPolicy) ElementType() reflect.Type {
 	return reflect.TypeOf((*RegionDiskIamPolicy)(nil)).Elem()
 }
@@ -262,6 +269,14 @@ func (i RegionDiskIamPolicy) ToRegionDiskIamPolicyOutput() RegionDiskIamPolicyOu
 
 func (i RegionDiskIamPolicy) ToRegionDiskIamPolicyOutputWithContext(ctx context.Context) RegionDiskIamPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RegionDiskIamPolicyOutput)
+}
+
+func (i RegionDiskIamPolicy) ToRegionDiskIamPolicyPtrOutput() RegionDiskIamPolicyPtrOutput {
+	return i.ToRegionDiskIamPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i RegionDiskIamPolicy) ToRegionDiskIamPolicyPtrOutputWithContext(ctx context.Context) RegionDiskIamPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegionDiskIamPolicyPtrOutput)
 }
 
 type RegionDiskIamPolicyOutput struct {
@@ -280,6 +295,23 @@ func (o RegionDiskIamPolicyOutput) ToRegionDiskIamPolicyOutputWithContext(ctx co
 	return o
 }
 
+type RegionDiskIamPolicyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (RegionDiskIamPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RegionDiskIamPolicy)(nil)).Elem()
+}
+
+func (o RegionDiskIamPolicyPtrOutput) ToRegionDiskIamPolicyPtrOutput() RegionDiskIamPolicyPtrOutput {
+	return o
+}
+
+func (o RegionDiskIamPolicyPtrOutput) ToRegionDiskIamPolicyPtrOutputWithContext(ctx context.Context) RegionDiskIamPolicyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(RegionDiskIamPolicyOutput{})
+	pulumi.RegisterOutputType(RegionDiskIamPolicyPtrOutput{})
 }

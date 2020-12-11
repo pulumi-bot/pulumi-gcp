@@ -58,7 +58,7 @@ func (i InstanceNetworkConfigArgs) ToInstanceNetworkConfigPtrOutput() InstanceNe
 }
 
 func (i InstanceNetworkConfigArgs) ToInstanceNetworkConfigPtrOutputWithContext(ctx context.Context) InstanceNetworkConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceNetworkConfigOutput).ToInstanceNetworkConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceNetworkConfigOutput).ToInstanceNetworkConfigPtrOutput()
 }
 
 // InstanceNetworkConfigPtrInput is an input type that accepts InstanceNetworkConfigArgs, InstanceNetworkConfigPtr and InstanceNetworkConfigPtrOutput values.
@@ -91,7 +91,7 @@ func (i *instanceNetworkConfigPtrType) ToInstanceNetworkConfigPtrOutput() Instan
 }
 
 func (i *instanceNetworkConfigPtrType) ToInstanceNetworkConfigPtrOutputWithContext(ctx context.Context) InstanceNetworkConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceNetworkConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceNetworkConfigOutput).ToInstanceNetworkConfigPtrOutput()
 }
 
 type InstanceNetworkConfigOutput struct{ *pulumi.OutputState }

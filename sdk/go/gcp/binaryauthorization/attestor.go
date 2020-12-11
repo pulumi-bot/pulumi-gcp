@@ -264,6 +264,13 @@ type AttestorInput interface {
 	ToAttestorOutputWithContext(ctx context.Context) AttestorOutput
 }
 
+type AttestorPtrInput interface {
+	pulumi.Input
+
+	ToAttestorPtrOutput() AttestorPtrOutput
+	ToAttestorPtrOutputWithContext(ctx context.Context) AttestorPtrOutput
+}
+
 func (Attestor) ElementType() reflect.Type {
 	return reflect.TypeOf((*Attestor)(nil)).Elem()
 }
@@ -274,6 +281,14 @@ func (i Attestor) ToAttestorOutput() AttestorOutput {
 
 func (i Attestor) ToAttestorOutputWithContext(ctx context.Context) AttestorOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AttestorOutput)
+}
+
+func (i Attestor) ToAttestorPtrOutput() AttestorPtrOutput {
+	return i.ToAttestorPtrOutputWithContext(context.Background())
+}
+
+func (i Attestor) ToAttestorPtrOutputWithContext(ctx context.Context) AttestorPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AttestorPtrOutput)
 }
 
 type AttestorOutput struct {
@@ -292,6 +307,23 @@ func (o AttestorOutput) ToAttestorOutputWithContext(ctx context.Context) Attesto
 	return o
 }
 
+type AttestorPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (AttestorPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Attestor)(nil)).Elem()
+}
+
+func (o AttestorPtrOutput) ToAttestorPtrOutput() AttestorPtrOutput {
+	return o
+}
+
+func (o AttestorPtrOutput) ToAttestorPtrOutputWithContext(ctx context.Context) AttestorPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(AttestorOutput{})
+	pulumi.RegisterOutputType(AttestorPtrOutput{})
 }

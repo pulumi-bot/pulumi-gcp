@@ -154,6 +154,13 @@ type ConfigInput interface {
 	ToConfigOutputWithContext(ctx context.Context) ConfigOutput
 }
 
+type ConfigPtrInput interface {
+	pulumi.Input
+
+	ToConfigPtrOutput() ConfigPtrOutput
+	ToConfigPtrOutputWithContext(ctx context.Context) ConfigPtrOutput
+}
+
 func (Config) ElementType() reflect.Type {
 	return reflect.TypeOf((*Config)(nil)).Elem()
 }
@@ -164,6 +171,14 @@ func (i Config) ToConfigOutput() ConfigOutput {
 
 func (i Config) ToConfigOutputWithContext(ctx context.Context) ConfigOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ConfigOutput)
+}
+
+func (i Config) ToConfigPtrOutput() ConfigPtrOutput {
+	return i.ToConfigPtrOutputWithContext(context.Background())
+}
+
+func (i Config) ToConfigPtrOutputWithContext(ctx context.Context) ConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConfigPtrOutput)
 }
 
 type ConfigOutput struct {
@@ -182,6 +197,23 @@ func (o ConfigOutput) ToConfigOutputWithContext(ctx context.Context) ConfigOutpu
 	return o
 }
 
+type ConfigPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Config)(nil)).Elem()
+}
+
+func (o ConfigPtrOutput) ToConfigPtrOutput() ConfigPtrOutput {
+	return o
+}
+
+func (o ConfigPtrOutput) ToConfigPtrOutputWithContext(ctx context.Context) ConfigPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ConfigOutput{})
+	pulumi.RegisterOutputType(ConfigPtrOutput{})
 }

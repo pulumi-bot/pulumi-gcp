@@ -369,6 +369,13 @@ type RegionInstanceGroupManagerInput interface {
 	ToRegionInstanceGroupManagerOutputWithContext(ctx context.Context) RegionInstanceGroupManagerOutput
 }
 
+type RegionInstanceGroupManagerPtrInput interface {
+	pulumi.Input
+
+	ToRegionInstanceGroupManagerPtrOutput() RegionInstanceGroupManagerPtrOutput
+	ToRegionInstanceGroupManagerPtrOutputWithContext(ctx context.Context) RegionInstanceGroupManagerPtrOutput
+}
+
 func (RegionInstanceGroupManager) ElementType() reflect.Type {
 	return reflect.TypeOf((*RegionInstanceGroupManager)(nil)).Elem()
 }
@@ -379,6 +386,14 @@ func (i RegionInstanceGroupManager) ToRegionInstanceGroupManagerOutput() RegionI
 
 func (i RegionInstanceGroupManager) ToRegionInstanceGroupManagerOutputWithContext(ctx context.Context) RegionInstanceGroupManagerOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RegionInstanceGroupManagerOutput)
+}
+
+func (i RegionInstanceGroupManager) ToRegionInstanceGroupManagerPtrOutput() RegionInstanceGroupManagerPtrOutput {
+	return i.ToRegionInstanceGroupManagerPtrOutputWithContext(context.Background())
+}
+
+func (i RegionInstanceGroupManager) ToRegionInstanceGroupManagerPtrOutputWithContext(ctx context.Context) RegionInstanceGroupManagerPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegionInstanceGroupManagerPtrOutput)
 }
 
 type RegionInstanceGroupManagerOutput struct {
@@ -397,6 +412,23 @@ func (o RegionInstanceGroupManagerOutput) ToRegionInstanceGroupManagerOutputWith
 	return o
 }
 
+type RegionInstanceGroupManagerPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (RegionInstanceGroupManagerPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RegionInstanceGroupManager)(nil)).Elem()
+}
+
+func (o RegionInstanceGroupManagerPtrOutput) ToRegionInstanceGroupManagerPtrOutput() RegionInstanceGroupManagerPtrOutput {
+	return o
+}
+
+func (o RegionInstanceGroupManagerPtrOutput) ToRegionInstanceGroupManagerPtrOutputWithContext(ctx context.Context) RegionInstanceGroupManagerPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(RegionInstanceGroupManagerOutput{})
+	pulumi.RegisterOutputType(RegionInstanceGroupManagerPtrOutput{})
 }

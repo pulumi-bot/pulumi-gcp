@@ -190,6 +190,13 @@ type FolderBucketConfigInput interface {
 	ToFolderBucketConfigOutputWithContext(ctx context.Context) FolderBucketConfigOutput
 }
 
+type FolderBucketConfigPtrInput interface {
+	pulumi.Input
+
+	ToFolderBucketConfigPtrOutput() FolderBucketConfigPtrOutput
+	ToFolderBucketConfigPtrOutputWithContext(ctx context.Context) FolderBucketConfigPtrOutput
+}
+
 func (FolderBucketConfig) ElementType() reflect.Type {
 	return reflect.TypeOf((*FolderBucketConfig)(nil)).Elem()
 }
@@ -200,6 +207,14 @@ func (i FolderBucketConfig) ToFolderBucketConfigOutput() FolderBucketConfigOutpu
 
 func (i FolderBucketConfig) ToFolderBucketConfigOutputWithContext(ctx context.Context) FolderBucketConfigOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FolderBucketConfigOutput)
+}
+
+func (i FolderBucketConfig) ToFolderBucketConfigPtrOutput() FolderBucketConfigPtrOutput {
+	return i.ToFolderBucketConfigPtrOutputWithContext(context.Background())
+}
+
+func (i FolderBucketConfig) ToFolderBucketConfigPtrOutputWithContext(ctx context.Context) FolderBucketConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FolderBucketConfigPtrOutput)
 }
 
 type FolderBucketConfigOutput struct {
@@ -218,6 +233,23 @@ func (o FolderBucketConfigOutput) ToFolderBucketConfigOutputWithContext(ctx cont
 	return o
 }
 
+type FolderBucketConfigPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (FolderBucketConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**FolderBucketConfig)(nil)).Elem()
+}
+
+func (o FolderBucketConfigPtrOutput) ToFolderBucketConfigPtrOutput() FolderBucketConfigPtrOutput {
+	return o
+}
+
+func (o FolderBucketConfigPtrOutput) ToFolderBucketConfigPtrOutputWithContext(ctx context.Context) FolderBucketConfigPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(FolderBucketConfigOutput{})
+	pulumi.RegisterOutputType(FolderBucketConfigPtrOutput{})
 }

@@ -270,6 +270,13 @@ type EntryGroupIamBindingInput interface {
 	ToEntryGroupIamBindingOutputWithContext(ctx context.Context) EntryGroupIamBindingOutput
 }
 
+type EntryGroupIamBindingPtrInput interface {
+	pulumi.Input
+
+	ToEntryGroupIamBindingPtrOutput() EntryGroupIamBindingPtrOutput
+	ToEntryGroupIamBindingPtrOutputWithContext(ctx context.Context) EntryGroupIamBindingPtrOutput
+}
+
 func (EntryGroupIamBinding) ElementType() reflect.Type {
 	return reflect.TypeOf((*EntryGroupIamBinding)(nil)).Elem()
 }
@@ -280,6 +287,14 @@ func (i EntryGroupIamBinding) ToEntryGroupIamBindingOutput() EntryGroupIamBindin
 
 func (i EntryGroupIamBinding) ToEntryGroupIamBindingOutputWithContext(ctx context.Context) EntryGroupIamBindingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EntryGroupIamBindingOutput)
+}
+
+func (i EntryGroupIamBinding) ToEntryGroupIamBindingPtrOutput() EntryGroupIamBindingPtrOutput {
+	return i.ToEntryGroupIamBindingPtrOutputWithContext(context.Background())
+}
+
+func (i EntryGroupIamBinding) ToEntryGroupIamBindingPtrOutputWithContext(ctx context.Context) EntryGroupIamBindingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EntryGroupIamBindingPtrOutput)
 }
 
 type EntryGroupIamBindingOutput struct {
@@ -298,6 +313,23 @@ func (o EntryGroupIamBindingOutput) ToEntryGroupIamBindingOutputWithContext(ctx 
 	return o
 }
 
+type EntryGroupIamBindingPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (EntryGroupIamBindingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EntryGroupIamBinding)(nil)).Elem()
+}
+
+func (o EntryGroupIamBindingPtrOutput) ToEntryGroupIamBindingPtrOutput() EntryGroupIamBindingPtrOutput {
+	return o
+}
+
+func (o EntryGroupIamBindingPtrOutput) ToEntryGroupIamBindingPtrOutputWithContext(ctx context.Context) EntryGroupIamBindingPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(EntryGroupIamBindingOutput{})
+	pulumi.RegisterOutputType(EntryGroupIamBindingPtrOutput{})
 }

@@ -263,6 +263,13 @@ type RepositoryIamBindingInput interface {
 	ToRepositoryIamBindingOutputWithContext(ctx context.Context) RepositoryIamBindingOutput
 }
 
+type RepositoryIamBindingPtrInput interface {
+	pulumi.Input
+
+	ToRepositoryIamBindingPtrOutput() RepositoryIamBindingPtrOutput
+	ToRepositoryIamBindingPtrOutputWithContext(ctx context.Context) RepositoryIamBindingPtrOutput
+}
+
 func (RepositoryIamBinding) ElementType() reflect.Type {
 	return reflect.TypeOf((*RepositoryIamBinding)(nil)).Elem()
 }
@@ -273,6 +280,14 @@ func (i RepositoryIamBinding) ToRepositoryIamBindingOutput() RepositoryIamBindin
 
 func (i RepositoryIamBinding) ToRepositoryIamBindingOutputWithContext(ctx context.Context) RepositoryIamBindingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RepositoryIamBindingOutput)
+}
+
+func (i RepositoryIamBinding) ToRepositoryIamBindingPtrOutput() RepositoryIamBindingPtrOutput {
+	return i.ToRepositoryIamBindingPtrOutputWithContext(context.Background())
+}
+
+func (i RepositoryIamBinding) ToRepositoryIamBindingPtrOutputWithContext(ctx context.Context) RepositoryIamBindingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RepositoryIamBindingPtrOutput)
 }
 
 type RepositoryIamBindingOutput struct {
@@ -291,6 +306,23 @@ func (o RepositoryIamBindingOutput) ToRepositoryIamBindingOutputWithContext(ctx 
 	return o
 }
 
+type RepositoryIamBindingPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (RepositoryIamBindingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RepositoryIamBinding)(nil)).Elem()
+}
+
+func (o RepositoryIamBindingPtrOutput) ToRepositoryIamBindingPtrOutput() RepositoryIamBindingPtrOutput {
+	return o
+}
+
+func (o RepositoryIamBindingPtrOutput) ToRepositoryIamBindingPtrOutputWithContext(ctx context.Context) RepositoryIamBindingPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(RepositoryIamBindingOutput{})
+	pulumi.RegisterOutputType(RepositoryIamBindingPtrOutput{})
 }

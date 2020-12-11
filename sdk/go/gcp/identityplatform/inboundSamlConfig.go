@@ -194,6 +194,13 @@ type InboundSamlConfigInput interface {
 	ToInboundSamlConfigOutputWithContext(ctx context.Context) InboundSamlConfigOutput
 }
 
+type InboundSamlConfigPtrInput interface {
+	pulumi.Input
+
+	ToInboundSamlConfigPtrOutput() InboundSamlConfigPtrOutput
+	ToInboundSamlConfigPtrOutputWithContext(ctx context.Context) InboundSamlConfigPtrOutput
+}
+
 func (InboundSamlConfig) ElementType() reflect.Type {
 	return reflect.TypeOf((*InboundSamlConfig)(nil)).Elem()
 }
@@ -204,6 +211,14 @@ func (i InboundSamlConfig) ToInboundSamlConfigOutput() InboundSamlConfigOutput {
 
 func (i InboundSamlConfig) ToInboundSamlConfigOutputWithContext(ctx context.Context) InboundSamlConfigOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(InboundSamlConfigOutput)
+}
+
+func (i InboundSamlConfig) ToInboundSamlConfigPtrOutput() InboundSamlConfigPtrOutput {
+	return i.ToInboundSamlConfigPtrOutputWithContext(context.Background())
+}
+
+func (i InboundSamlConfig) ToInboundSamlConfigPtrOutputWithContext(ctx context.Context) InboundSamlConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InboundSamlConfigPtrOutput)
 }
 
 type InboundSamlConfigOutput struct {
@@ -222,6 +237,23 @@ func (o InboundSamlConfigOutput) ToInboundSamlConfigOutputWithContext(ctx contex
 	return o
 }
 
+type InboundSamlConfigPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (InboundSamlConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**InboundSamlConfig)(nil)).Elem()
+}
+
+func (o InboundSamlConfigPtrOutput) ToInboundSamlConfigPtrOutput() InboundSamlConfigPtrOutput {
+	return o
+}
+
+func (o InboundSamlConfigPtrOutput) ToInboundSamlConfigPtrOutputWithContext(ctx context.Context) InboundSamlConfigPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(InboundSamlConfigOutput{})
+	pulumi.RegisterOutputType(InboundSamlConfigPtrOutput{})
 }

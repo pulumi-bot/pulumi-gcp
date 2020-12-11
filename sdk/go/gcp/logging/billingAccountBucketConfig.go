@@ -190,6 +190,13 @@ type BillingAccountBucketConfigInput interface {
 	ToBillingAccountBucketConfigOutputWithContext(ctx context.Context) BillingAccountBucketConfigOutput
 }
 
+type BillingAccountBucketConfigPtrInput interface {
+	pulumi.Input
+
+	ToBillingAccountBucketConfigPtrOutput() BillingAccountBucketConfigPtrOutput
+	ToBillingAccountBucketConfigPtrOutputWithContext(ctx context.Context) BillingAccountBucketConfigPtrOutput
+}
+
 func (BillingAccountBucketConfig) ElementType() reflect.Type {
 	return reflect.TypeOf((*BillingAccountBucketConfig)(nil)).Elem()
 }
@@ -200,6 +207,14 @@ func (i BillingAccountBucketConfig) ToBillingAccountBucketConfigOutput() Billing
 
 func (i BillingAccountBucketConfig) ToBillingAccountBucketConfigOutputWithContext(ctx context.Context) BillingAccountBucketConfigOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(BillingAccountBucketConfigOutput)
+}
+
+func (i BillingAccountBucketConfig) ToBillingAccountBucketConfigPtrOutput() BillingAccountBucketConfigPtrOutput {
+	return i.ToBillingAccountBucketConfigPtrOutputWithContext(context.Background())
+}
+
+func (i BillingAccountBucketConfig) ToBillingAccountBucketConfigPtrOutputWithContext(ctx context.Context) BillingAccountBucketConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BillingAccountBucketConfigPtrOutput)
 }
 
 type BillingAccountBucketConfigOutput struct {
@@ -218,6 +233,23 @@ func (o BillingAccountBucketConfigOutput) ToBillingAccountBucketConfigOutputWith
 	return o
 }
 
+type BillingAccountBucketConfigPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (BillingAccountBucketConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BillingAccountBucketConfig)(nil)).Elem()
+}
+
+func (o BillingAccountBucketConfigPtrOutput) ToBillingAccountBucketConfigPtrOutput() BillingAccountBucketConfigPtrOutput {
+	return o
+}
+
+func (o BillingAccountBucketConfigPtrOutput) ToBillingAccountBucketConfigPtrOutputWithContext(ctx context.Context) BillingAccountBucketConfigPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(BillingAccountBucketConfigOutput{})
+	pulumi.RegisterOutputType(BillingAccountBucketConfigPtrOutput{})
 }

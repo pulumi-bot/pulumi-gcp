@@ -232,6 +232,13 @@ type DicomStoreInput interface {
 	ToDicomStoreOutputWithContext(ctx context.Context) DicomStoreOutput
 }
 
+type DicomStorePtrInput interface {
+	pulumi.Input
+
+	ToDicomStorePtrOutput() DicomStorePtrOutput
+	ToDicomStorePtrOutputWithContext(ctx context.Context) DicomStorePtrOutput
+}
+
 func (DicomStore) ElementType() reflect.Type {
 	return reflect.TypeOf((*DicomStore)(nil)).Elem()
 }
@@ -242,6 +249,14 @@ func (i DicomStore) ToDicomStoreOutput() DicomStoreOutput {
 
 func (i DicomStore) ToDicomStoreOutputWithContext(ctx context.Context) DicomStoreOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DicomStoreOutput)
+}
+
+func (i DicomStore) ToDicomStorePtrOutput() DicomStorePtrOutput {
+	return i.ToDicomStorePtrOutputWithContext(context.Background())
+}
+
+func (i DicomStore) ToDicomStorePtrOutputWithContext(ctx context.Context) DicomStorePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DicomStorePtrOutput)
 }
 
 type DicomStoreOutput struct {
@@ -260,6 +275,23 @@ func (o DicomStoreOutput) ToDicomStoreOutputWithContext(ctx context.Context) Dic
 	return o
 }
 
+type DicomStorePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (DicomStorePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DicomStore)(nil)).Elem()
+}
+
+func (o DicomStorePtrOutput) ToDicomStorePtrOutput() DicomStorePtrOutput {
+	return o
+}
+
+func (o DicomStorePtrOutput) ToDicomStorePtrOutputWithContext(ctx context.Context) DicomStorePtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(DicomStoreOutput{})
+	pulumi.RegisterOutputType(DicomStorePtrOutput{})
 }

@@ -175,6 +175,13 @@ type MachineImageIamMemberInput interface {
 	ToMachineImageIamMemberOutputWithContext(ctx context.Context) MachineImageIamMemberOutput
 }
 
+type MachineImageIamMemberPtrInput interface {
+	pulumi.Input
+
+	ToMachineImageIamMemberPtrOutput() MachineImageIamMemberPtrOutput
+	ToMachineImageIamMemberPtrOutputWithContext(ctx context.Context) MachineImageIamMemberPtrOutput
+}
+
 func (MachineImageIamMember) ElementType() reflect.Type {
 	return reflect.TypeOf((*MachineImageIamMember)(nil)).Elem()
 }
@@ -185,6 +192,14 @@ func (i MachineImageIamMember) ToMachineImageIamMemberOutput() MachineImageIamMe
 
 func (i MachineImageIamMember) ToMachineImageIamMemberOutputWithContext(ctx context.Context) MachineImageIamMemberOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(MachineImageIamMemberOutput)
+}
+
+func (i MachineImageIamMember) ToMachineImageIamMemberPtrOutput() MachineImageIamMemberPtrOutput {
+	return i.ToMachineImageIamMemberPtrOutputWithContext(context.Background())
+}
+
+func (i MachineImageIamMember) ToMachineImageIamMemberPtrOutputWithContext(ctx context.Context) MachineImageIamMemberPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MachineImageIamMemberPtrOutput)
 }
 
 type MachineImageIamMemberOutput struct {
@@ -203,6 +218,23 @@ func (o MachineImageIamMemberOutput) ToMachineImageIamMemberOutputWithContext(ct
 	return o
 }
 
+type MachineImageIamMemberPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (MachineImageIamMemberPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**MachineImageIamMember)(nil)).Elem()
+}
+
+func (o MachineImageIamMemberPtrOutput) ToMachineImageIamMemberPtrOutput() MachineImageIamMemberPtrOutput {
+	return o
+}
+
+func (o MachineImageIamMemberPtrOutput) ToMachineImageIamMemberPtrOutputWithContext(ctx context.Context) MachineImageIamMemberPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(MachineImageIamMemberOutput{})
+	pulumi.RegisterOutputType(MachineImageIamMemberPtrOutput{})
 }

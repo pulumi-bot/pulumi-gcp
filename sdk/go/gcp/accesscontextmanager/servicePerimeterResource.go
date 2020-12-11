@@ -184,6 +184,13 @@ type ServicePerimeterResourceInput interface {
 	ToServicePerimeterResourceOutputWithContext(ctx context.Context) ServicePerimeterResourceOutput
 }
 
+type ServicePerimeterResourcePtrInput interface {
+	pulumi.Input
+
+	ToServicePerimeterResourcePtrOutput() ServicePerimeterResourcePtrOutput
+	ToServicePerimeterResourcePtrOutputWithContext(ctx context.Context) ServicePerimeterResourcePtrOutput
+}
+
 func (ServicePerimeterResource) ElementType() reflect.Type {
 	return reflect.TypeOf((*ServicePerimeterResource)(nil)).Elem()
 }
@@ -194,6 +201,14 @@ func (i ServicePerimeterResource) ToServicePerimeterResourceOutput() ServicePeri
 
 func (i ServicePerimeterResource) ToServicePerimeterResourceOutputWithContext(ctx context.Context) ServicePerimeterResourceOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ServicePerimeterResourceOutput)
+}
+
+func (i ServicePerimeterResource) ToServicePerimeterResourcePtrOutput() ServicePerimeterResourcePtrOutput {
+	return i.ToServicePerimeterResourcePtrOutputWithContext(context.Background())
+}
+
+func (i ServicePerimeterResource) ToServicePerimeterResourcePtrOutputWithContext(ctx context.Context) ServicePerimeterResourcePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServicePerimeterResourcePtrOutput)
 }
 
 type ServicePerimeterResourceOutput struct {
@@ -212,6 +227,23 @@ func (o ServicePerimeterResourceOutput) ToServicePerimeterResourceOutputWithCont
 	return o
 }
 
+type ServicePerimeterResourcePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ServicePerimeterResourcePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServicePerimeterResource)(nil)).Elem()
+}
+
+func (o ServicePerimeterResourcePtrOutput) ToServicePerimeterResourcePtrOutput() ServicePerimeterResourcePtrOutput {
+	return o
+}
+
+func (o ServicePerimeterResourcePtrOutput) ToServicePerimeterResourcePtrOutputWithContext(ctx context.Context) ServicePerimeterResourcePtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ServicePerimeterResourceOutput{})
+	pulumi.RegisterOutputType(ServicePerimeterResourcePtrOutput{})
 }

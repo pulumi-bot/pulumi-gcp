@@ -178,6 +178,13 @@ type MangedSslCertificateInput interface {
 	ToMangedSslCertificateOutputWithContext(ctx context.Context) MangedSslCertificateOutput
 }
 
+type MangedSslCertificatePtrInput interface {
+	pulumi.Input
+
+	ToMangedSslCertificatePtrOutput() MangedSslCertificatePtrOutput
+	ToMangedSslCertificatePtrOutputWithContext(ctx context.Context) MangedSslCertificatePtrOutput
+}
+
 func (MangedSslCertificate) ElementType() reflect.Type {
 	return reflect.TypeOf((*MangedSslCertificate)(nil)).Elem()
 }
@@ -188,6 +195,14 @@ func (i MangedSslCertificate) ToMangedSslCertificateOutput() MangedSslCertificat
 
 func (i MangedSslCertificate) ToMangedSslCertificateOutputWithContext(ctx context.Context) MangedSslCertificateOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(MangedSslCertificateOutput)
+}
+
+func (i MangedSslCertificate) ToMangedSslCertificatePtrOutput() MangedSslCertificatePtrOutput {
+	return i.ToMangedSslCertificatePtrOutputWithContext(context.Background())
+}
+
+func (i MangedSslCertificate) ToMangedSslCertificatePtrOutputWithContext(ctx context.Context) MangedSslCertificatePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MangedSslCertificatePtrOutput)
 }
 
 type MangedSslCertificateOutput struct {
@@ -206,6 +221,23 @@ func (o MangedSslCertificateOutput) ToMangedSslCertificateOutputWithContext(ctx 
 	return o
 }
 
+type MangedSslCertificatePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (MangedSslCertificatePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**MangedSslCertificate)(nil)).Elem()
+}
+
+func (o MangedSslCertificatePtrOutput) ToMangedSslCertificatePtrOutput() MangedSslCertificatePtrOutput {
+	return o
+}
+
+func (o MangedSslCertificatePtrOutput) ToMangedSslCertificatePtrOutputWithContext(ctx context.Context) MangedSslCertificatePtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(MangedSslCertificateOutput{})
+	pulumi.RegisterOutputType(MangedSslCertificatePtrOutput{})
 }

@@ -191,6 +191,13 @@ type ApplicationUrlDispatchRulesInput interface {
 	ToApplicationUrlDispatchRulesOutputWithContext(ctx context.Context) ApplicationUrlDispatchRulesOutput
 }
 
+type ApplicationUrlDispatchRulesPtrInput interface {
+	pulumi.Input
+
+	ToApplicationUrlDispatchRulesPtrOutput() ApplicationUrlDispatchRulesPtrOutput
+	ToApplicationUrlDispatchRulesPtrOutputWithContext(ctx context.Context) ApplicationUrlDispatchRulesPtrOutput
+}
+
 func (ApplicationUrlDispatchRules) ElementType() reflect.Type {
 	return reflect.TypeOf((*ApplicationUrlDispatchRules)(nil)).Elem()
 }
@@ -201,6 +208,14 @@ func (i ApplicationUrlDispatchRules) ToApplicationUrlDispatchRulesOutput() Appli
 
 func (i ApplicationUrlDispatchRules) ToApplicationUrlDispatchRulesOutputWithContext(ctx context.Context) ApplicationUrlDispatchRulesOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ApplicationUrlDispatchRulesOutput)
+}
+
+func (i ApplicationUrlDispatchRules) ToApplicationUrlDispatchRulesPtrOutput() ApplicationUrlDispatchRulesPtrOutput {
+	return i.ToApplicationUrlDispatchRulesPtrOutputWithContext(context.Background())
+}
+
+func (i ApplicationUrlDispatchRules) ToApplicationUrlDispatchRulesPtrOutputWithContext(ctx context.Context) ApplicationUrlDispatchRulesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApplicationUrlDispatchRulesPtrOutput)
 }
 
 type ApplicationUrlDispatchRulesOutput struct {
@@ -219,6 +234,23 @@ func (o ApplicationUrlDispatchRulesOutput) ToApplicationUrlDispatchRulesOutputWi
 	return o
 }
 
+type ApplicationUrlDispatchRulesPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ApplicationUrlDispatchRulesPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ApplicationUrlDispatchRules)(nil)).Elem()
+}
+
+func (o ApplicationUrlDispatchRulesPtrOutput) ToApplicationUrlDispatchRulesPtrOutput() ApplicationUrlDispatchRulesPtrOutput {
+	return o
+}
+
+func (o ApplicationUrlDispatchRulesPtrOutput) ToApplicationUrlDispatchRulesPtrOutputWithContext(ctx context.Context) ApplicationUrlDispatchRulesPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ApplicationUrlDispatchRulesOutput{})
+	pulumi.RegisterOutputType(ApplicationUrlDispatchRulesPtrOutput{})
 }

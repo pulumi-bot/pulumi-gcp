@@ -394,6 +394,13 @@ type KeyRingIAMBindingInput interface {
 	ToKeyRingIAMBindingOutputWithContext(ctx context.Context) KeyRingIAMBindingOutput
 }
 
+type KeyRingIAMBindingPtrInput interface {
+	pulumi.Input
+
+	ToKeyRingIAMBindingPtrOutput() KeyRingIAMBindingPtrOutput
+	ToKeyRingIAMBindingPtrOutputWithContext(ctx context.Context) KeyRingIAMBindingPtrOutput
+}
+
 func (KeyRingIAMBinding) ElementType() reflect.Type {
 	return reflect.TypeOf((*KeyRingIAMBinding)(nil)).Elem()
 }
@@ -404,6 +411,14 @@ func (i KeyRingIAMBinding) ToKeyRingIAMBindingOutput() KeyRingIAMBindingOutput {
 
 func (i KeyRingIAMBinding) ToKeyRingIAMBindingOutputWithContext(ctx context.Context) KeyRingIAMBindingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(KeyRingIAMBindingOutput)
+}
+
+func (i KeyRingIAMBinding) ToKeyRingIAMBindingPtrOutput() KeyRingIAMBindingPtrOutput {
+	return i.ToKeyRingIAMBindingPtrOutputWithContext(context.Background())
+}
+
+func (i KeyRingIAMBinding) ToKeyRingIAMBindingPtrOutputWithContext(ctx context.Context) KeyRingIAMBindingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KeyRingIAMBindingPtrOutput)
 }
 
 type KeyRingIAMBindingOutput struct {
@@ -422,6 +437,23 @@ func (o KeyRingIAMBindingOutput) ToKeyRingIAMBindingOutputWithContext(ctx contex
 	return o
 }
 
+type KeyRingIAMBindingPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (KeyRingIAMBindingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**KeyRingIAMBinding)(nil)).Elem()
+}
+
+func (o KeyRingIAMBindingPtrOutput) ToKeyRingIAMBindingPtrOutput() KeyRingIAMBindingPtrOutput {
+	return o
+}
+
+func (o KeyRingIAMBindingPtrOutput) ToKeyRingIAMBindingPtrOutputWithContext(ctx context.Context) KeyRingIAMBindingPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(KeyRingIAMBindingOutput{})
+	pulumi.RegisterOutputType(KeyRingIAMBindingPtrOutput{})
 }

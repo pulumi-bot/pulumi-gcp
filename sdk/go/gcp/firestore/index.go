@@ -244,6 +244,13 @@ type IndexInput interface {
 	ToIndexOutputWithContext(ctx context.Context) IndexOutput
 }
 
+type IndexPtrInput interface {
+	pulumi.Input
+
+	ToIndexPtrOutput() IndexPtrOutput
+	ToIndexPtrOutputWithContext(ctx context.Context) IndexPtrOutput
+}
+
 func (Index) ElementType() reflect.Type {
 	return reflect.TypeOf((*Index)(nil)).Elem()
 }
@@ -254,6 +261,14 @@ func (i Index) ToIndexOutput() IndexOutput {
 
 func (i Index) ToIndexOutputWithContext(ctx context.Context) IndexOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IndexOutput)
+}
+
+func (i Index) ToIndexPtrOutput() IndexPtrOutput {
+	return i.ToIndexPtrOutputWithContext(context.Background())
+}
+
+func (i Index) ToIndexPtrOutputWithContext(ctx context.Context) IndexPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IndexPtrOutput)
 }
 
 type IndexOutput struct {
@@ -272,6 +287,23 @@ func (o IndexOutput) ToIndexOutputWithContext(ctx context.Context) IndexOutput {
 	return o
 }
 
+type IndexPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (IndexPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Index)(nil)).Elem()
+}
+
+func (o IndexPtrOutput) ToIndexPtrOutput() IndexPtrOutput {
+	return o
+}
+
+func (o IndexPtrOutput) ToIndexPtrOutputWithContext(ctx context.Context) IndexPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(IndexOutput{})
+	pulumi.RegisterOutputType(IndexPtrOutput{})
 }

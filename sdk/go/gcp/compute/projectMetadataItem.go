@@ -149,6 +149,13 @@ type ProjectMetadataItemInput interface {
 	ToProjectMetadataItemOutputWithContext(ctx context.Context) ProjectMetadataItemOutput
 }
 
+type ProjectMetadataItemPtrInput interface {
+	pulumi.Input
+
+	ToProjectMetadataItemPtrOutput() ProjectMetadataItemPtrOutput
+	ToProjectMetadataItemPtrOutputWithContext(ctx context.Context) ProjectMetadataItemPtrOutput
+}
+
 func (ProjectMetadataItem) ElementType() reflect.Type {
 	return reflect.TypeOf((*ProjectMetadataItem)(nil)).Elem()
 }
@@ -159,6 +166,14 @@ func (i ProjectMetadataItem) ToProjectMetadataItemOutput() ProjectMetadataItemOu
 
 func (i ProjectMetadataItem) ToProjectMetadataItemOutputWithContext(ctx context.Context) ProjectMetadataItemOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ProjectMetadataItemOutput)
+}
+
+func (i ProjectMetadataItem) ToProjectMetadataItemPtrOutput() ProjectMetadataItemPtrOutput {
+	return i.ToProjectMetadataItemPtrOutputWithContext(context.Background())
+}
+
+func (i ProjectMetadataItem) ToProjectMetadataItemPtrOutputWithContext(ctx context.Context) ProjectMetadataItemPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProjectMetadataItemPtrOutput)
 }
 
 type ProjectMetadataItemOutput struct {
@@ -177,6 +192,23 @@ func (o ProjectMetadataItemOutput) ToProjectMetadataItemOutputWithContext(ctx co
 	return o
 }
 
+type ProjectMetadataItemPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ProjectMetadataItemPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProjectMetadataItem)(nil)).Elem()
+}
+
+func (o ProjectMetadataItemPtrOutput) ToProjectMetadataItemPtrOutput() ProjectMetadataItemPtrOutput {
+	return o
+}
+
+func (o ProjectMetadataItemPtrOutput) ToProjectMetadataItemPtrOutputWithContext(ctx context.Context) ProjectMetadataItemPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ProjectMetadataItemOutput{})
+	pulumi.RegisterOutputType(ProjectMetadataItemPtrOutput{})
 }

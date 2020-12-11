@@ -157,6 +157,13 @@ type DefaultObjectACLInput interface {
 	ToDefaultObjectACLOutputWithContext(ctx context.Context) DefaultObjectACLOutput
 }
 
+type DefaultObjectACLPtrInput interface {
+	pulumi.Input
+
+	ToDefaultObjectACLPtrOutput() DefaultObjectACLPtrOutput
+	ToDefaultObjectACLPtrOutputWithContext(ctx context.Context) DefaultObjectACLPtrOutput
+}
+
 func (DefaultObjectACL) ElementType() reflect.Type {
 	return reflect.TypeOf((*DefaultObjectACL)(nil)).Elem()
 }
@@ -167,6 +174,14 @@ func (i DefaultObjectACL) ToDefaultObjectACLOutput() DefaultObjectACLOutput {
 
 func (i DefaultObjectACL) ToDefaultObjectACLOutputWithContext(ctx context.Context) DefaultObjectACLOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DefaultObjectACLOutput)
+}
+
+func (i DefaultObjectACL) ToDefaultObjectACLPtrOutput() DefaultObjectACLPtrOutput {
+	return i.ToDefaultObjectACLPtrOutputWithContext(context.Background())
+}
+
+func (i DefaultObjectACL) ToDefaultObjectACLPtrOutputWithContext(ctx context.Context) DefaultObjectACLPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultObjectACLPtrOutput)
 }
 
 type DefaultObjectACLOutput struct {
@@ -185,6 +200,23 @@ func (o DefaultObjectACLOutput) ToDefaultObjectACLOutputWithContext(ctx context.
 	return o
 }
 
+type DefaultObjectACLPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (DefaultObjectACLPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DefaultObjectACL)(nil)).Elem()
+}
+
+func (o DefaultObjectACLPtrOutput) ToDefaultObjectACLPtrOutput() DefaultObjectACLPtrOutput {
+	return o
+}
+
+func (o DefaultObjectACLPtrOutput) ToDefaultObjectACLPtrOutputWithContext(ctx context.Context) DefaultObjectACLPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(DefaultObjectACLOutput{})
+	pulumi.RegisterOutputType(DefaultObjectACLPtrOutput{})
 }

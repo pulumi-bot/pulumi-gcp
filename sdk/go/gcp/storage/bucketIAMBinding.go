@@ -403,6 +403,13 @@ type BucketIAMBindingInput interface {
 	ToBucketIAMBindingOutputWithContext(ctx context.Context) BucketIAMBindingOutput
 }
 
+type BucketIAMBindingPtrInput interface {
+	pulumi.Input
+
+	ToBucketIAMBindingPtrOutput() BucketIAMBindingPtrOutput
+	ToBucketIAMBindingPtrOutputWithContext(ctx context.Context) BucketIAMBindingPtrOutput
+}
+
 func (BucketIAMBinding) ElementType() reflect.Type {
 	return reflect.TypeOf((*BucketIAMBinding)(nil)).Elem()
 }
@@ -413,6 +420,14 @@ func (i BucketIAMBinding) ToBucketIAMBindingOutput() BucketIAMBindingOutput {
 
 func (i BucketIAMBinding) ToBucketIAMBindingOutputWithContext(ctx context.Context) BucketIAMBindingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(BucketIAMBindingOutput)
+}
+
+func (i BucketIAMBinding) ToBucketIAMBindingPtrOutput() BucketIAMBindingPtrOutput {
+	return i.ToBucketIAMBindingPtrOutputWithContext(context.Background())
+}
+
+func (i BucketIAMBinding) ToBucketIAMBindingPtrOutputWithContext(ctx context.Context) BucketIAMBindingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketIAMBindingPtrOutput)
 }
 
 type BucketIAMBindingOutput struct {
@@ -431,6 +446,23 @@ func (o BucketIAMBindingOutput) ToBucketIAMBindingOutputWithContext(ctx context.
 	return o
 }
 
+type BucketIAMBindingPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (BucketIAMBindingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketIAMBinding)(nil)).Elem()
+}
+
+func (o BucketIAMBindingPtrOutput) ToBucketIAMBindingPtrOutput() BucketIAMBindingPtrOutput {
+	return o
+}
+
+func (o BucketIAMBindingPtrOutput) ToBucketIAMBindingPtrOutputWithContext(ctx context.Context) BucketIAMBindingPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(BucketIAMBindingOutput{})
+	pulumi.RegisterOutputType(BucketIAMBindingPtrOutput{})
 }

@@ -244,6 +244,13 @@ type NamespaceIamMemberInput interface {
 	ToNamespaceIamMemberOutputWithContext(ctx context.Context) NamespaceIamMemberOutput
 }
 
+type NamespaceIamMemberPtrInput interface {
+	pulumi.Input
+
+	ToNamespaceIamMemberPtrOutput() NamespaceIamMemberPtrOutput
+	ToNamespaceIamMemberPtrOutputWithContext(ctx context.Context) NamespaceIamMemberPtrOutput
+}
+
 func (NamespaceIamMember) ElementType() reflect.Type {
 	return reflect.TypeOf((*NamespaceIamMember)(nil)).Elem()
 }
@@ -254,6 +261,14 @@ func (i NamespaceIamMember) ToNamespaceIamMemberOutput() NamespaceIamMemberOutpu
 
 func (i NamespaceIamMember) ToNamespaceIamMemberOutputWithContext(ctx context.Context) NamespaceIamMemberOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NamespaceIamMemberOutput)
+}
+
+func (i NamespaceIamMember) ToNamespaceIamMemberPtrOutput() NamespaceIamMemberPtrOutput {
+	return i.ToNamespaceIamMemberPtrOutputWithContext(context.Background())
+}
+
+func (i NamespaceIamMember) ToNamespaceIamMemberPtrOutputWithContext(ctx context.Context) NamespaceIamMemberPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NamespaceIamMemberPtrOutput)
 }
 
 type NamespaceIamMemberOutput struct {
@@ -272,6 +287,23 @@ func (o NamespaceIamMemberOutput) ToNamespaceIamMemberOutputWithContext(ctx cont
 	return o
 }
 
+type NamespaceIamMemberPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (NamespaceIamMemberPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NamespaceIamMember)(nil)).Elem()
+}
+
+func (o NamespaceIamMemberPtrOutput) ToNamespaceIamMemberPtrOutput() NamespaceIamMemberPtrOutput {
+	return o
+}
+
+func (o NamespaceIamMemberPtrOutput) ToNamespaceIamMemberPtrOutputWithContext(ctx context.Context) NamespaceIamMemberPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(NamespaceIamMemberOutput{})
+	pulumi.RegisterOutputType(NamespaceIamMemberPtrOutput{})
 }

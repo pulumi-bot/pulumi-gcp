@@ -142,6 +142,13 @@ type ProjectDefaultNetworkTierInput interface {
 	ToProjectDefaultNetworkTierOutputWithContext(ctx context.Context) ProjectDefaultNetworkTierOutput
 }
 
+type ProjectDefaultNetworkTierPtrInput interface {
+	pulumi.Input
+
+	ToProjectDefaultNetworkTierPtrOutput() ProjectDefaultNetworkTierPtrOutput
+	ToProjectDefaultNetworkTierPtrOutputWithContext(ctx context.Context) ProjectDefaultNetworkTierPtrOutput
+}
+
 func (ProjectDefaultNetworkTier) ElementType() reflect.Type {
 	return reflect.TypeOf((*ProjectDefaultNetworkTier)(nil)).Elem()
 }
@@ -152,6 +159,14 @@ func (i ProjectDefaultNetworkTier) ToProjectDefaultNetworkTierOutput() ProjectDe
 
 func (i ProjectDefaultNetworkTier) ToProjectDefaultNetworkTierOutputWithContext(ctx context.Context) ProjectDefaultNetworkTierOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ProjectDefaultNetworkTierOutput)
+}
+
+func (i ProjectDefaultNetworkTier) ToProjectDefaultNetworkTierPtrOutput() ProjectDefaultNetworkTierPtrOutput {
+	return i.ToProjectDefaultNetworkTierPtrOutputWithContext(context.Background())
+}
+
+func (i ProjectDefaultNetworkTier) ToProjectDefaultNetworkTierPtrOutputWithContext(ctx context.Context) ProjectDefaultNetworkTierPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProjectDefaultNetworkTierPtrOutput)
 }
 
 type ProjectDefaultNetworkTierOutput struct {
@@ -170,6 +185,23 @@ func (o ProjectDefaultNetworkTierOutput) ToProjectDefaultNetworkTierOutputWithCo
 	return o
 }
 
+type ProjectDefaultNetworkTierPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ProjectDefaultNetworkTierPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProjectDefaultNetworkTier)(nil)).Elem()
+}
+
+func (o ProjectDefaultNetworkTierPtrOutput) ToProjectDefaultNetworkTierPtrOutput() ProjectDefaultNetworkTierPtrOutput {
+	return o
+}
+
+func (o ProjectDefaultNetworkTierPtrOutput) ToProjectDefaultNetworkTierPtrOutputWithContext(ctx context.Context) ProjectDefaultNetworkTierPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ProjectDefaultNetworkTierOutput{})
+	pulumi.RegisterOutputType(ProjectDefaultNetworkTierPtrOutput{})
 }

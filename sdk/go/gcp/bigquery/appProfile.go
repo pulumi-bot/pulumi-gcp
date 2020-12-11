@@ -280,6 +280,13 @@ type AppProfileInput interface {
 	ToAppProfileOutputWithContext(ctx context.Context) AppProfileOutput
 }
 
+type AppProfilePtrInput interface {
+	pulumi.Input
+
+	ToAppProfilePtrOutput() AppProfilePtrOutput
+	ToAppProfilePtrOutputWithContext(ctx context.Context) AppProfilePtrOutput
+}
+
 func (AppProfile) ElementType() reflect.Type {
 	return reflect.TypeOf((*AppProfile)(nil)).Elem()
 }
@@ -290,6 +297,14 @@ func (i AppProfile) ToAppProfileOutput() AppProfileOutput {
 
 func (i AppProfile) ToAppProfileOutputWithContext(ctx context.Context) AppProfileOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AppProfileOutput)
+}
+
+func (i AppProfile) ToAppProfilePtrOutput() AppProfilePtrOutput {
+	return i.ToAppProfilePtrOutputWithContext(context.Background())
+}
+
+func (i AppProfile) ToAppProfilePtrOutputWithContext(ctx context.Context) AppProfilePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AppProfilePtrOutput)
 }
 
 type AppProfileOutput struct {
@@ -308,6 +323,23 @@ func (o AppProfileOutput) ToAppProfileOutputWithContext(ctx context.Context) App
 	return o
 }
 
+type AppProfilePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (AppProfilePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AppProfile)(nil)).Elem()
+}
+
+func (o AppProfilePtrOutput) ToAppProfilePtrOutput() AppProfilePtrOutput {
+	return o
+}
+
+func (o AppProfilePtrOutput) ToAppProfilePtrOutputWithContext(ctx context.Context) AppProfilePtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(AppProfileOutput{})
+	pulumi.RegisterOutputType(AppProfilePtrOutput{})
 }

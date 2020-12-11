@@ -137,6 +137,13 @@ type SharedVPCHostProjectInput interface {
 	ToSharedVPCHostProjectOutputWithContext(ctx context.Context) SharedVPCHostProjectOutput
 }
 
+type SharedVPCHostProjectPtrInput interface {
+	pulumi.Input
+
+	ToSharedVPCHostProjectPtrOutput() SharedVPCHostProjectPtrOutput
+	ToSharedVPCHostProjectPtrOutputWithContext(ctx context.Context) SharedVPCHostProjectPtrOutput
+}
+
 func (SharedVPCHostProject) ElementType() reflect.Type {
 	return reflect.TypeOf((*SharedVPCHostProject)(nil)).Elem()
 }
@@ -147,6 +154,14 @@ func (i SharedVPCHostProject) ToSharedVPCHostProjectOutput() SharedVPCHostProjec
 
 func (i SharedVPCHostProject) ToSharedVPCHostProjectOutputWithContext(ctx context.Context) SharedVPCHostProjectOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SharedVPCHostProjectOutput)
+}
+
+func (i SharedVPCHostProject) ToSharedVPCHostProjectPtrOutput() SharedVPCHostProjectPtrOutput {
+	return i.ToSharedVPCHostProjectPtrOutputWithContext(context.Background())
+}
+
+func (i SharedVPCHostProject) ToSharedVPCHostProjectPtrOutputWithContext(ctx context.Context) SharedVPCHostProjectPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SharedVPCHostProjectPtrOutput)
 }
 
 type SharedVPCHostProjectOutput struct {
@@ -165,6 +180,23 @@ func (o SharedVPCHostProjectOutput) ToSharedVPCHostProjectOutputWithContext(ctx 
 	return o
 }
 
+type SharedVPCHostProjectPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (SharedVPCHostProjectPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SharedVPCHostProject)(nil)).Elem()
+}
+
+func (o SharedVPCHostProjectPtrOutput) ToSharedVPCHostProjectPtrOutput() SharedVPCHostProjectPtrOutput {
+	return o
+}
+
+func (o SharedVPCHostProjectPtrOutput) ToSharedVPCHostProjectPtrOutputWithContext(ctx context.Context) SharedVPCHostProjectPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(SharedVPCHostProjectOutput{})
+	pulumi.RegisterOutputType(SharedVPCHostProjectPtrOutput{})
 }
