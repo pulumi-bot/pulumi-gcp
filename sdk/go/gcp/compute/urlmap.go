@@ -1145,15 +1145,15 @@ type URLMapInput interface {
 	ToURLMapOutputWithContext(ctx context.Context) URLMapOutput
 }
 
-func (URLMap) ElementType() reflect.Type {
-	return reflect.TypeOf((*URLMap)(nil)).Elem()
+func (*URLMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*URLMap)(nil))
 }
 
-func (i URLMap) ToURLMapOutput() URLMapOutput {
+func (i *URLMap) ToURLMapOutput() URLMapOutput {
 	return i.ToURLMapOutputWithContext(context.Background())
 }
 
-func (i URLMap) ToURLMapOutputWithContext(ctx context.Context) URLMapOutput {
+func (i *URLMap) ToURLMapOutputWithContext(ctx context.Context) URLMapOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(URLMapOutput)
 }
 
@@ -1162,7 +1162,7 @@ type URLMapOutput struct {
 }
 
 func (URLMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*URLMapOutput)(nil)).Elem()
+	return reflect.TypeOf((*URLMap)(nil))
 }
 
 func (o URLMapOutput) ToURLMapOutput() URLMapOutput {
