@@ -329,16 +329,31 @@ type OrganizationSinkInput interface {
 	ToOrganizationSinkOutputWithContext(ctx context.Context) OrganizationSinkOutput
 }
 
-func (OrganizationSink) ElementType() reflect.Type {
-	return reflect.TypeOf((*OrganizationSink)(nil)).Elem()
+func (*OrganizationSink) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationSink)(nil))
 }
 
-func (i OrganizationSink) ToOrganizationSinkOutput() OrganizationSinkOutput {
+func (i *OrganizationSink) ToOrganizationSinkOutput() OrganizationSinkOutput {
 	return i.ToOrganizationSinkOutputWithContext(context.Background())
 }
 
-func (i OrganizationSink) ToOrganizationSinkOutputWithContext(ctx context.Context) OrganizationSinkOutput {
+func (i *OrganizationSink) ToOrganizationSinkOutputWithContext(ctx context.Context) OrganizationSinkOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(OrganizationSinkOutput)
+}
+
+func (i *OrganizationSink) ToOrganizationSinkPtrOutput() OrganizationSinkPtrOutput {
+	return i.ToOrganizationSinkPtrOutputWithContext(context.Background())
+}
+
+func (i *OrganizationSink) ToOrganizationSinkPtrOutputWithContext(ctx context.Context) OrganizationSinkPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationSinkPtrOutput)
+}
+
+type OrganizationSinkPtrInput interface {
+	pulumi.Input
+
+	ToOrganizationSinkPtrOutput() OrganizationSinkPtrOutput
+	ToOrganizationSinkPtrOutputWithContext(ctx context.Context) OrganizationSinkPtrOutput
 }
 
 type OrganizationSinkOutput struct {
@@ -346,7 +361,7 @@ type OrganizationSinkOutput struct {
 }
 
 func (OrganizationSinkOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*OrganizationSinkOutput)(nil)).Elem()
+	return reflect.TypeOf((*OrganizationSink)(nil))
 }
 
 func (o OrganizationSinkOutput) ToOrganizationSinkOutput() OrganizationSinkOutput {
@@ -357,6 +372,23 @@ func (o OrganizationSinkOutput) ToOrganizationSinkOutputWithContext(ctx context.
 	return o
 }
 
+type OrganizationSinkPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (OrganizationSinkPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**OrganizationSink)(nil))
+}
+
+func (o OrganizationSinkPtrOutput) ToOrganizationSinkPtrOutput() OrganizationSinkPtrOutput {
+	return o
+}
+
+func (o OrganizationSinkPtrOutput) ToOrganizationSinkPtrOutputWithContext(ctx context.Context) OrganizationSinkPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(OrganizationSinkOutput{})
+	pulumi.RegisterOutputType(OrganizationSinkPtrOutput{})
 }

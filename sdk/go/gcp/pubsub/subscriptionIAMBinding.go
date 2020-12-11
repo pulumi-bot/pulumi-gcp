@@ -261,16 +261,31 @@ type SubscriptionIAMBindingInput interface {
 	ToSubscriptionIAMBindingOutputWithContext(ctx context.Context) SubscriptionIAMBindingOutput
 }
 
-func (SubscriptionIAMBinding) ElementType() reflect.Type {
-	return reflect.TypeOf((*SubscriptionIAMBinding)(nil)).Elem()
+func (*SubscriptionIAMBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*SubscriptionIAMBinding)(nil))
 }
 
-func (i SubscriptionIAMBinding) ToSubscriptionIAMBindingOutput() SubscriptionIAMBindingOutput {
+func (i *SubscriptionIAMBinding) ToSubscriptionIAMBindingOutput() SubscriptionIAMBindingOutput {
 	return i.ToSubscriptionIAMBindingOutputWithContext(context.Background())
 }
 
-func (i SubscriptionIAMBinding) ToSubscriptionIAMBindingOutputWithContext(ctx context.Context) SubscriptionIAMBindingOutput {
+func (i *SubscriptionIAMBinding) ToSubscriptionIAMBindingOutputWithContext(ctx context.Context) SubscriptionIAMBindingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SubscriptionIAMBindingOutput)
+}
+
+func (i *SubscriptionIAMBinding) ToSubscriptionIAMBindingPtrOutput() SubscriptionIAMBindingPtrOutput {
+	return i.ToSubscriptionIAMBindingPtrOutputWithContext(context.Background())
+}
+
+func (i *SubscriptionIAMBinding) ToSubscriptionIAMBindingPtrOutputWithContext(ctx context.Context) SubscriptionIAMBindingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SubscriptionIAMBindingPtrOutput)
+}
+
+type SubscriptionIAMBindingPtrInput interface {
+	pulumi.Input
+
+	ToSubscriptionIAMBindingPtrOutput() SubscriptionIAMBindingPtrOutput
+	ToSubscriptionIAMBindingPtrOutputWithContext(ctx context.Context) SubscriptionIAMBindingPtrOutput
 }
 
 type SubscriptionIAMBindingOutput struct {
@@ -278,7 +293,7 @@ type SubscriptionIAMBindingOutput struct {
 }
 
 func (SubscriptionIAMBindingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SubscriptionIAMBindingOutput)(nil)).Elem()
+	return reflect.TypeOf((*SubscriptionIAMBinding)(nil))
 }
 
 func (o SubscriptionIAMBindingOutput) ToSubscriptionIAMBindingOutput() SubscriptionIAMBindingOutput {
@@ -289,6 +304,23 @@ func (o SubscriptionIAMBindingOutput) ToSubscriptionIAMBindingOutputWithContext(
 	return o
 }
 
+type SubscriptionIAMBindingPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (SubscriptionIAMBindingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SubscriptionIAMBinding)(nil))
+}
+
+func (o SubscriptionIAMBindingPtrOutput) ToSubscriptionIAMBindingPtrOutput() SubscriptionIAMBindingPtrOutput {
+	return o
+}
+
+func (o SubscriptionIAMBindingPtrOutput) ToSubscriptionIAMBindingPtrOutputWithContext(ctx context.Context) SubscriptionIAMBindingPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(SubscriptionIAMBindingOutput{})
+	pulumi.RegisterOutputType(SubscriptionIAMBindingPtrOutput{})
 }

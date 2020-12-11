@@ -365,16 +365,31 @@ type SnapshotInput interface {
 	ToSnapshotOutputWithContext(ctx context.Context) SnapshotOutput
 }
 
-func (Snapshot) ElementType() reflect.Type {
-	return reflect.TypeOf((*Snapshot)(nil)).Elem()
+func (*Snapshot) ElementType() reflect.Type {
+	return reflect.TypeOf((*Snapshot)(nil))
 }
 
-func (i Snapshot) ToSnapshotOutput() SnapshotOutput {
+func (i *Snapshot) ToSnapshotOutput() SnapshotOutput {
 	return i.ToSnapshotOutputWithContext(context.Background())
 }
 
-func (i Snapshot) ToSnapshotOutputWithContext(ctx context.Context) SnapshotOutput {
+func (i *Snapshot) ToSnapshotOutputWithContext(ctx context.Context) SnapshotOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SnapshotOutput)
+}
+
+func (i *Snapshot) ToSnapshotPtrOutput() SnapshotPtrOutput {
+	return i.ToSnapshotPtrOutputWithContext(context.Background())
+}
+
+func (i *Snapshot) ToSnapshotPtrOutputWithContext(ctx context.Context) SnapshotPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SnapshotPtrOutput)
+}
+
+type SnapshotPtrInput interface {
+	pulumi.Input
+
+	ToSnapshotPtrOutput() SnapshotPtrOutput
+	ToSnapshotPtrOutputWithContext(ctx context.Context) SnapshotPtrOutput
 }
 
 type SnapshotOutput struct {
@@ -382,7 +397,7 @@ type SnapshotOutput struct {
 }
 
 func (SnapshotOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SnapshotOutput)(nil)).Elem()
+	return reflect.TypeOf((*Snapshot)(nil))
 }
 
 func (o SnapshotOutput) ToSnapshotOutput() SnapshotOutput {
@@ -393,6 +408,23 @@ func (o SnapshotOutput) ToSnapshotOutputWithContext(ctx context.Context) Snapsho
 	return o
 }
 
+type SnapshotPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (SnapshotPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Snapshot)(nil))
+}
+
+func (o SnapshotPtrOutput) ToSnapshotPtrOutput() SnapshotPtrOutput {
+	return o
+}
+
+func (o SnapshotPtrOutput) ToSnapshotPtrOutputWithContext(ctx context.Context) SnapshotPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(SnapshotOutput{})
+	pulumi.RegisterOutputType(SnapshotPtrOutput{})
 }

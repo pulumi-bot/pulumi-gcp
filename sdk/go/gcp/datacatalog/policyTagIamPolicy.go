@@ -132,16 +132,31 @@ type PolicyTagIamPolicyInput interface {
 	ToPolicyTagIamPolicyOutputWithContext(ctx context.Context) PolicyTagIamPolicyOutput
 }
 
-func (PolicyTagIamPolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*PolicyTagIamPolicy)(nil)).Elem()
+func (*PolicyTagIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*PolicyTagIamPolicy)(nil))
 }
 
-func (i PolicyTagIamPolicy) ToPolicyTagIamPolicyOutput() PolicyTagIamPolicyOutput {
+func (i *PolicyTagIamPolicy) ToPolicyTagIamPolicyOutput() PolicyTagIamPolicyOutput {
 	return i.ToPolicyTagIamPolicyOutputWithContext(context.Background())
 }
 
-func (i PolicyTagIamPolicy) ToPolicyTagIamPolicyOutputWithContext(ctx context.Context) PolicyTagIamPolicyOutput {
+func (i *PolicyTagIamPolicy) ToPolicyTagIamPolicyOutputWithContext(ctx context.Context) PolicyTagIamPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(PolicyTagIamPolicyOutput)
+}
+
+func (i *PolicyTagIamPolicy) ToPolicyTagIamPolicyPtrOutput() PolicyTagIamPolicyPtrOutput {
+	return i.ToPolicyTagIamPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i *PolicyTagIamPolicy) ToPolicyTagIamPolicyPtrOutputWithContext(ctx context.Context) PolicyTagIamPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PolicyTagIamPolicyPtrOutput)
+}
+
+type PolicyTagIamPolicyPtrInput interface {
+	pulumi.Input
+
+	ToPolicyTagIamPolicyPtrOutput() PolicyTagIamPolicyPtrOutput
+	ToPolicyTagIamPolicyPtrOutputWithContext(ctx context.Context) PolicyTagIamPolicyPtrOutput
 }
 
 type PolicyTagIamPolicyOutput struct {
@@ -149,7 +164,7 @@ type PolicyTagIamPolicyOutput struct {
 }
 
 func (PolicyTagIamPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*PolicyTagIamPolicyOutput)(nil)).Elem()
+	return reflect.TypeOf((*PolicyTagIamPolicy)(nil))
 }
 
 func (o PolicyTagIamPolicyOutput) ToPolicyTagIamPolicyOutput() PolicyTagIamPolicyOutput {
@@ -160,6 +175,23 @@ func (o PolicyTagIamPolicyOutput) ToPolicyTagIamPolicyOutputWithContext(ctx cont
 	return o
 }
 
+type PolicyTagIamPolicyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (PolicyTagIamPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PolicyTagIamPolicy)(nil))
+}
+
+func (o PolicyTagIamPolicyPtrOutput) ToPolicyTagIamPolicyPtrOutput() PolicyTagIamPolicyPtrOutput {
+	return o
+}
+
+func (o PolicyTagIamPolicyPtrOutput) ToPolicyTagIamPolicyPtrOutputWithContext(ctx context.Context) PolicyTagIamPolicyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(PolicyTagIamPolicyOutput{})
+	pulumi.RegisterOutputType(PolicyTagIamPolicyPtrOutput{})
 }

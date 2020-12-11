@@ -191,16 +191,31 @@ type FolderInput interface {
 	ToFolderOutputWithContext(ctx context.Context) FolderOutput
 }
 
-func (Folder) ElementType() reflect.Type {
-	return reflect.TypeOf((*Folder)(nil)).Elem()
+func (*Folder) ElementType() reflect.Type {
+	return reflect.TypeOf((*Folder)(nil))
 }
 
-func (i Folder) ToFolderOutput() FolderOutput {
+func (i *Folder) ToFolderOutput() FolderOutput {
 	return i.ToFolderOutputWithContext(context.Background())
 }
 
-func (i Folder) ToFolderOutputWithContext(ctx context.Context) FolderOutput {
+func (i *Folder) ToFolderOutputWithContext(ctx context.Context) FolderOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FolderOutput)
+}
+
+func (i *Folder) ToFolderPtrOutput() FolderPtrOutput {
+	return i.ToFolderPtrOutputWithContext(context.Background())
+}
+
+func (i *Folder) ToFolderPtrOutputWithContext(ctx context.Context) FolderPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FolderPtrOutput)
+}
+
+type FolderPtrInput interface {
+	pulumi.Input
+
+	ToFolderPtrOutput() FolderPtrOutput
+	ToFolderPtrOutputWithContext(ctx context.Context) FolderPtrOutput
 }
 
 type FolderOutput struct {
@@ -208,7 +223,7 @@ type FolderOutput struct {
 }
 
 func (FolderOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FolderOutput)(nil)).Elem()
+	return reflect.TypeOf((*Folder)(nil))
 }
 
 func (o FolderOutput) ToFolderOutput() FolderOutput {
@@ -219,6 +234,23 @@ func (o FolderOutput) ToFolderOutputWithContext(ctx context.Context) FolderOutpu
 	return o
 }
 
+type FolderPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (FolderPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Folder)(nil))
+}
+
+func (o FolderPtrOutput) ToFolderPtrOutput() FolderPtrOutput {
+	return o
+}
+
+func (o FolderPtrOutput) ToFolderPtrOutputWithContext(ctx context.Context) FolderPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(FolderOutput{})
+	pulumi.RegisterOutputType(FolderPtrOutput{})
 }

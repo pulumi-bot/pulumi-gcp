@@ -268,16 +268,31 @@ type InstanceIAMMemberInput interface {
 	ToInstanceIAMMemberOutputWithContext(ctx context.Context) InstanceIAMMemberOutput
 }
 
-func (InstanceIAMMember) ElementType() reflect.Type {
-	return reflect.TypeOf((*InstanceIAMMember)(nil)).Elem()
+func (*InstanceIAMMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceIAMMember)(nil))
 }
 
-func (i InstanceIAMMember) ToInstanceIAMMemberOutput() InstanceIAMMemberOutput {
+func (i *InstanceIAMMember) ToInstanceIAMMemberOutput() InstanceIAMMemberOutput {
 	return i.ToInstanceIAMMemberOutputWithContext(context.Background())
 }
 
-func (i InstanceIAMMember) ToInstanceIAMMemberOutputWithContext(ctx context.Context) InstanceIAMMemberOutput {
+func (i *InstanceIAMMember) ToInstanceIAMMemberOutputWithContext(ctx context.Context) InstanceIAMMemberOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceIAMMemberOutput)
+}
+
+func (i *InstanceIAMMember) ToInstanceIAMMemberPtrOutput() InstanceIAMMemberPtrOutput {
+	return i.ToInstanceIAMMemberPtrOutputWithContext(context.Background())
+}
+
+func (i *InstanceIAMMember) ToInstanceIAMMemberPtrOutputWithContext(ctx context.Context) InstanceIAMMemberPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceIAMMemberPtrOutput)
+}
+
+type InstanceIAMMemberPtrInput interface {
+	pulumi.Input
+
+	ToInstanceIAMMemberPtrOutput() InstanceIAMMemberPtrOutput
+	ToInstanceIAMMemberPtrOutputWithContext(ctx context.Context) InstanceIAMMemberPtrOutput
 }
 
 type InstanceIAMMemberOutput struct {
@@ -285,7 +300,7 @@ type InstanceIAMMemberOutput struct {
 }
 
 func (InstanceIAMMemberOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*InstanceIAMMemberOutput)(nil)).Elem()
+	return reflect.TypeOf((*InstanceIAMMember)(nil))
 }
 
 func (o InstanceIAMMemberOutput) ToInstanceIAMMemberOutput() InstanceIAMMemberOutput {
@@ -296,6 +311,23 @@ func (o InstanceIAMMemberOutput) ToInstanceIAMMemberOutputWithContext(ctx contex
 	return o
 }
 
+type InstanceIAMMemberPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (InstanceIAMMemberPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**InstanceIAMMember)(nil))
+}
+
+func (o InstanceIAMMemberPtrOutput) ToInstanceIAMMemberPtrOutput() InstanceIAMMemberPtrOutput {
+	return o
+}
+
+func (o InstanceIAMMemberPtrOutput) ToInstanceIAMMemberPtrOutputWithContext(ctx context.Context) InstanceIAMMemberPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(InstanceIAMMemberOutput{})
+	pulumi.RegisterOutputType(InstanceIAMMemberPtrOutput{})
 }

@@ -483,16 +483,31 @@ type ServicePerimeterInput interface {
 	ToServicePerimeterOutputWithContext(ctx context.Context) ServicePerimeterOutput
 }
 
-func (ServicePerimeter) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServicePerimeter)(nil)).Elem()
+func (*ServicePerimeter) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServicePerimeter)(nil))
 }
 
-func (i ServicePerimeter) ToServicePerimeterOutput() ServicePerimeterOutput {
+func (i *ServicePerimeter) ToServicePerimeterOutput() ServicePerimeterOutput {
 	return i.ToServicePerimeterOutputWithContext(context.Background())
 }
 
-func (i ServicePerimeter) ToServicePerimeterOutputWithContext(ctx context.Context) ServicePerimeterOutput {
+func (i *ServicePerimeter) ToServicePerimeterOutputWithContext(ctx context.Context) ServicePerimeterOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ServicePerimeterOutput)
+}
+
+func (i *ServicePerimeter) ToServicePerimeterPtrOutput() ServicePerimeterPtrOutput {
+	return i.ToServicePerimeterPtrOutputWithContext(context.Background())
+}
+
+func (i *ServicePerimeter) ToServicePerimeterPtrOutputWithContext(ctx context.Context) ServicePerimeterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServicePerimeterPtrOutput)
+}
+
+type ServicePerimeterPtrInput interface {
+	pulumi.Input
+
+	ToServicePerimeterPtrOutput() ServicePerimeterPtrOutput
+	ToServicePerimeterPtrOutputWithContext(ctx context.Context) ServicePerimeterPtrOutput
 }
 
 type ServicePerimeterOutput struct {
@@ -500,7 +515,7 @@ type ServicePerimeterOutput struct {
 }
 
 func (ServicePerimeterOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServicePerimeterOutput)(nil)).Elem()
+	return reflect.TypeOf((*ServicePerimeter)(nil))
 }
 
 func (o ServicePerimeterOutput) ToServicePerimeterOutput() ServicePerimeterOutput {
@@ -511,6 +526,23 @@ func (o ServicePerimeterOutput) ToServicePerimeterOutputWithContext(ctx context.
 	return o
 }
 
+type ServicePerimeterPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ServicePerimeterPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServicePerimeter)(nil))
+}
+
+func (o ServicePerimeterPtrOutput) ToServicePerimeterPtrOutput() ServicePerimeterPtrOutput {
+	return o
+}
+
+func (o ServicePerimeterPtrOutput) ToServicePerimeterPtrOutputWithContext(ctx context.Context) ServicePerimeterPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ServicePerimeterOutput{})
+	pulumi.RegisterOutputType(ServicePerimeterPtrOutput{})
 }

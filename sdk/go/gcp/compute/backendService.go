@@ -849,16 +849,31 @@ type BackendServiceInput interface {
 	ToBackendServiceOutputWithContext(ctx context.Context) BackendServiceOutput
 }
 
-func (BackendService) ElementType() reflect.Type {
-	return reflect.TypeOf((*BackendService)(nil)).Elem()
+func (*BackendService) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackendService)(nil))
 }
 
-func (i BackendService) ToBackendServiceOutput() BackendServiceOutput {
+func (i *BackendService) ToBackendServiceOutput() BackendServiceOutput {
 	return i.ToBackendServiceOutputWithContext(context.Background())
 }
 
-func (i BackendService) ToBackendServiceOutputWithContext(ctx context.Context) BackendServiceOutput {
+func (i *BackendService) ToBackendServiceOutputWithContext(ctx context.Context) BackendServiceOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceOutput)
+}
+
+func (i *BackendService) ToBackendServicePtrOutput() BackendServicePtrOutput {
+	return i.ToBackendServicePtrOutputWithContext(context.Background())
+}
+
+func (i *BackendService) ToBackendServicePtrOutputWithContext(ctx context.Context) BackendServicePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackendServicePtrOutput)
+}
+
+type BackendServicePtrInput interface {
+	pulumi.Input
+
+	ToBackendServicePtrOutput() BackendServicePtrOutput
+	ToBackendServicePtrOutputWithContext(ctx context.Context) BackendServicePtrOutput
 }
 
 type BackendServiceOutput struct {
@@ -866,7 +881,7 @@ type BackendServiceOutput struct {
 }
 
 func (BackendServiceOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*BackendServiceOutput)(nil)).Elem()
+	return reflect.TypeOf((*BackendService)(nil))
 }
 
 func (o BackendServiceOutput) ToBackendServiceOutput() BackendServiceOutput {
@@ -877,6 +892,23 @@ func (o BackendServiceOutput) ToBackendServiceOutputWithContext(ctx context.Cont
 	return o
 }
 
+type BackendServicePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (BackendServicePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BackendService)(nil))
+}
+
+func (o BackendServicePtrOutput) ToBackendServicePtrOutput() BackendServicePtrOutput {
+	return o
+}
+
+func (o BackendServicePtrOutput) ToBackendServicePtrOutputWithContext(ctx context.Context) BackendServicePtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(BackendServiceOutput{})
+	pulumi.RegisterOutputType(BackendServicePtrOutput{})
 }

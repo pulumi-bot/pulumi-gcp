@@ -425,16 +425,31 @@ type AutoscalerInput interface {
 	ToAutoscalerOutputWithContext(ctx context.Context) AutoscalerOutput
 }
 
-func (Autoscaler) ElementType() reflect.Type {
-	return reflect.TypeOf((*Autoscaler)(nil)).Elem()
+func (*Autoscaler) ElementType() reflect.Type {
+	return reflect.TypeOf((*Autoscaler)(nil))
 }
 
-func (i Autoscaler) ToAutoscalerOutput() AutoscalerOutput {
+func (i *Autoscaler) ToAutoscalerOutput() AutoscalerOutput {
 	return i.ToAutoscalerOutputWithContext(context.Background())
 }
 
-func (i Autoscaler) ToAutoscalerOutputWithContext(ctx context.Context) AutoscalerOutput {
+func (i *Autoscaler) ToAutoscalerOutputWithContext(ctx context.Context) AutoscalerOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AutoscalerOutput)
+}
+
+func (i *Autoscaler) ToAutoscalerPtrOutput() AutoscalerPtrOutput {
+	return i.ToAutoscalerPtrOutputWithContext(context.Background())
+}
+
+func (i *Autoscaler) ToAutoscalerPtrOutputWithContext(ctx context.Context) AutoscalerPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscalerPtrOutput)
+}
+
+type AutoscalerPtrInput interface {
+	pulumi.Input
+
+	ToAutoscalerPtrOutput() AutoscalerPtrOutput
+	ToAutoscalerPtrOutputWithContext(ctx context.Context) AutoscalerPtrOutput
 }
 
 type AutoscalerOutput struct {
@@ -442,7 +457,7 @@ type AutoscalerOutput struct {
 }
 
 func (AutoscalerOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AutoscalerOutput)(nil)).Elem()
+	return reflect.TypeOf((*Autoscaler)(nil))
 }
 
 func (o AutoscalerOutput) ToAutoscalerOutput() AutoscalerOutput {
@@ -453,6 +468,23 @@ func (o AutoscalerOutput) ToAutoscalerOutputWithContext(ctx context.Context) Aut
 	return o
 }
 
+type AutoscalerPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (AutoscalerPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Autoscaler)(nil))
+}
+
+func (o AutoscalerPtrOutput) ToAutoscalerPtrOutput() AutoscalerPtrOutput {
+	return o
+}
+
+func (o AutoscalerPtrOutput) ToAutoscalerPtrOutputWithContext(ctx context.Context) AutoscalerPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(AutoscalerOutput{})
+	pulumi.RegisterOutputType(AutoscalerPtrOutput{})
 }

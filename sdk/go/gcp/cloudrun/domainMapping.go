@@ -226,16 +226,31 @@ type DomainMappingInput interface {
 	ToDomainMappingOutputWithContext(ctx context.Context) DomainMappingOutput
 }
 
-func (DomainMapping) ElementType() reflect.Type {
-	return reflect.TypeOf((*DomainMapping)(nil)).Elem()
+func (*DomainMapping) ElementType() reflect.Type {
+	return reflect.TypeOf((*DomainMapping)(nil))
 }
 
-func (i DomainMapping) ToDomainMappingOutput() DomainMappingOutput {
+func (i *DomainMapping) ToDomainMappingOutput() DomainMappingOutput {
 	return i.ToDomainMappingOutputWithContext(context.Background())
 }
 
-func (i DomainMapping) ToDomainMappingOutputWithContext(ctx context.Context) DomainMappingOutput {
+func (i *DomainMapping) ToDomainMappingOutputWithContext(ctx context.Context) DomainMappingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DomainMappingOutput)
+}
+
+func (i *DomainMapping) ToDomainMappingPtrOutput() DomainMappingPtrOutput {
+	return i.ToDomainMappingPtrOutputWithContext(context.Background())
+}
+
+func (i *DomainMapping) ToDomainMappingPtrOutputWithContext(ctx context.Context) DomainMappingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DomainMappingPtrOutput)
+}
+
+type DomainMappingPtrInput interface {
+	pulumi.Input
+
+	ToDomainMappingPtrOutput() DomainMappingPtrOutput
+	ToDomainMappingPtrOutputWithContext(ctx context.Context) DomainMappingPtrOutput
 }
 
 type DomainMappingOutput struct {
@@ -243,7 +258,7 @@ type DomainMappingOutput struct {
 }
 
 func (DomainMappingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DomainMappingOutput)(nil)).Elem()
+	return reflect.TypeOf((*DomainMapping)(nil))
 }
 
 func (o DomainMappingOutput) ToDomainMappingOutput() DomainMappingOutput {
@@ -254,6 +269,23 @@ func (o DomainMappingOutput) ToDomainMappingOutputWithContext(ctx context.Contex
 	return o
 }
 
+type DomainMappingPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (DomainMappingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DomainMapping)(nil))
+}
+
+func (o DomainMappingPtrOutput) ToDomainMappingPtrOutput() DomainMappingPtrOutput {
+	return o
+}
+
+func (o DomainMappingPtrOutput) ToDomainMappingPtrOutputWithContext(ctx context.Context) DomainMappingPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(DomainMappingOutput{})
+	pulumi.RegisterOutputType(DomainMappingPtrOutput{})
 }

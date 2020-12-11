@@ -212,16 +212,31 @@ type GameServerConfigInput interface {
 	ToGameServerConfigOutputWithContext(ctx context.Context) GameServerConfigOutput
 }
 
-func (GameServerConfig) ElementType() reflect.Type {
-	return reflect.TypeOf((*GameServerConfig)(nil)).Elem()
+func (*GameServerConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*GameServerConfig)(nil))
 }
 
-func (i GameServerConfig) ToGameServerConfigOutput() GameServerConfigOutput {
+func (i *GameServerConfig) ToGameServerConfigOutput() GameServerConfigOutput {
 	return i.ToGameServerConfigOutputWithContext(context.Background())
 }
 
-func (i GameServerConfig) ToGameServerConfigOutputWithContext(ctx context.Context) GameServerConfigOutput {
+func (i *GameServerConfig) ToGameServerConfigOutputWithContext(ctx context.Context) GameServerConfigOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GameServerConfigOutput)
+}
+
+func (i *GameServerConfig) ToGameServerConfigPtrOutput() GameServerConfigPtrOutput {
+	return i.ToGameServerConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *GameServerConfig) ToGameServerConfigPtrOutputWithContext(ctx context.Context) GameServerConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GameServerConfigPtrOutput)
+}
+
+type GameServerConfigPtrInput interface {
+	pulumi.Input
+
+	ToGameServerConfigPtrOutput() GameServerConfigPtrOutput
+	ToGameServerConfigPtrOutputWithContext(ctx context.Context) GameServerConfigPtrOutput
 }
 
 type GameServerConfigOutput struct {
@@ -229,7 +244,7 @@ type GameServerConfigOutput struct {
 }
 
 func (GameServerConfigOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GameServerConfigOutput)(nil)).Elem()
+	return reflect.TypeOf((*GameServerConfig)(nil))
 }
 
 func (o GameServerConfigOutput) ToGameServerConfigOutput() GameServerConfigOutput {
@@ -240,6 +255,23 @@ func (o GameServerConfigOutput) ToGameServerConfigOutputWithContext(ctx context.
 	return o
 }
 
+type GameServerConfigPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (GameServerConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GameServerConfig)(nil))
+}
+
+func (o GameServerConfigPtrOutput) ToGameServerConfigPtrOutput() GameServerConfigPtrOutput {
+	return o
+}
+
+func (o GameServerConfigPtrOutput) ToGameServerConfigPtrOutputWithContext(ctx context.Context) GameServerConfigPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(GameServerConfigOutput{})
+	pulumi.RegisterOutputType(GameServerConfigPtrOutput{})
 }

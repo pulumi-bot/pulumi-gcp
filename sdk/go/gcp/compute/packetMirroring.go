@@ -376,16 +376,31 @@ type PacketMirroringInput interface {
 	ToPacketMirroringOutputWithContext(ctx context.Context) PacketMirroringOutput
 }
 
-func (PacketMirroring) ElementType() reflect.Type {
-	return reflect.TypeOf((*PacketMirroring)(nil)).Elem()
+func (*PacketMirroring) ElementType() reflect.Type {
+	return reflect.TypeOf((*PacketMirroring)(nil))
 }
 
-func (i PacketMirroring) ToPacketMirroringOutput() PacketMirroringOutput {
+func (i *PacketMirroring) ToPacketMirroringOutput() PacketMirroringOutput {
 	return i.ToPacketMirroringOutputWithContext(context.Background())
 }
 
-func (i PacketMirroring) ToPacketMirroringOutputWithContext(ctx context.Context) PacketMirroringOutput {
+func (i *PacketMirroring) ToPacketMirroringOutputWithContext(ctx context.Context) PacketMirroringOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(PacketMirroringOutput)
+}
+
+func (i *PacketMirroring) ToPacketMirroringPtrOutput() PacketMirroringPtrOutput {
+	return i.ToPacketMirroringPtrOutputWithContext(context.Background())
+}
+
+func (i *PacketMirroring) ToPacketMirroringPtrOutputWithContext(ctx context.Context) PacketMirroringPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PacketMirroringPtrOutput)
+}
+
+type PacketMirroringPtrInput interface {
+	pulumi.Input
+
+	ToPacketMirroringPtrOutput() PacketMirroringPtrOutput
+	ToPacketMirroringPtrOutputWithContext(ctx context.Context) PacketMirroringPtrOutput
 }
 
 type PacketMirroringOutput struct {
@@ -393,7 +408,7 @@ type PacketMirroringOutput struct {
 }
 
 func (PacketMirroringOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*PacketMirroringOutput)(nil)).Elem()
+	return reflect.TypeOf((*PacketMirroring)(nil))
 }
 
 func (o PacketMirroringOutput) ToPacketMirroringOutput() PacketMirroringOutput {
@@ -404,6 +419,23 @@ func (o PacketMirroringOutput) ToPacketMirroringOutputWithContext(ctx context.Co
 	return o
 }
 
+type PacketMirroringPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (PacketMirroringPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PacketMirroring)(nil))
+}
+
+func (o PacketMirroringPtrOutput) ToPacketMirroringPtrOutput() PacketMirroringPtrOutput {
+	return o
+}
+
+func (o PacketMirroringPtrOutput) ToPacketMirroringPtrOutputWithContext(ctx context.Context) PacketMirroringPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(PacketMirroringOutput{})
+	pulumi.RegisterOutputType(PacketMirroringPtrOutput{})
 }

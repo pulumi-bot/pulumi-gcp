@@ -369,16 +369,31 @@ type RegionInstanceGroupManagerInput interface {
 	ToRegionInstanceGroupManagerOutputWithContext(ctx context.Context) RegionInstanceGroupManagerOutput
 }
 
-func (RegionInstanceGroupManager) ElementType() reflect.Type {
-	return reflect.TypeOf((*RegionInstanceGroupManager)(nil)).Elem()
+func (*RegionInstanceGroupManager) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionInstanceGroupManager)(nil))
 }
 
-func (i RegionInstanceGroupManager) ToRegionInstanceGroupManagerOutput() RegionInstanceGroupManagerOutput {
+func (i *RegionInstanceGroupManager) ToRegionInstanceGroupManagerOutput() RegionInstanceGroupManagerOutput {
 	return i.ToRegionInstanceGroupManagerOutputWithContext(context.Background())
 }
 
-func (i RegionInstanceGroupManager) ToRegionInstanceGroupManagerOutputWithContext(ctx context.Context) RegionInstanceGroupManagerOutput {
+func (i *RegionInstanceGroupManager) ToRegionInstanceGroupManagerOutputWithContext(ctx context.Context) RegionInstanceGroupManagerOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RegionInstanceGroupManagerOutput)
+}
+
+func (i *RegionInstanceGroupManager) ToRegionInstanceGroupManagerPtrOutput() RegionInstanceGroupManagerPtrOutput {
+	return i.ToRegionInstanceGroupManagerPtrOutputWithContext(context.Background())
+}
+
+func (i *RegionInstanceGroupManager) ToRegionInstanceGroupManagerPtrOutputWithContext(ctx context.Context) RegionInstanceGroupManagerPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegionInstanceGroupManagerPtrOutput)
+}
+
+type RegionInstanceGroupManagerPtrInput interface {
+	pulumi.Input
+
+	ToRegionInstanceGroupManagerPtrOutput() RegionInstanceGroupManagerPtrOutput
+	ToRegionInstanceGroupManagerPtrOutputWithContext(ctx context.Context) RegionInstanceGroupManagerPtrOutput
 }
 
 type RegionInstanceGroupManagerOutput struct {
@@ -386,7 +401,7 @@ type RegionInstanceGroupManagerOutput struct {
 }
 
 func (RegionInstanceGroupManagerOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RegionInstanceGroupManagerOutput)(nil)).Elem()
+	return reflect.TypeOf((*RegionInstanceGroupManager)(nil))
 }
 
 func (o RegionInstanceGroupManagerOutput) ToRegionInstanceGroupManagerOutput() RegionInstanceGroupManagerOutput {
@@ -397,6 +412,23 @@ func (o RegionInstanceGroupManagerOutput) ToRegionInstanceGroupManagerOutputWith
 	return o
 }
 
+type RegionInstanceGroupManagerPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (RegionInstanceGroupManagerPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RegionInstanceGroupManager)(nil))
+}
+
+func (o RegionInstanceGroupManagerPtrOutput) ToRegionInstanceGroupManagerPtrOutput() RegionInstanceGroupManagerPtrOutput {
+	return o
+}
+
+func (o RegionInstanceGroupManagerPtrOutput) ToRegionInstanceGroupManagerPtrOutputWithContext(ctx context.Context) RegionInstanceGroupManagerPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(RegionInstanceGroupManagerOutput{})
+	pulumi.RegisterOutputType(RegionInstanceGroupManagerPtrOutput{})
 }

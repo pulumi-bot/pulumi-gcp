@@ -182,16 +182,31 @@ type BillingAccountExclusionInput interface {
 	ToBillingAccountExclusionOutputWithContext(ctx context.Context) BillingAccountExclusionOutput
 }
 
-func (BillingAccountExclusion) ElementType() reflect.Type {
-	return reflect.TypeOf((*BillingAccountExclusion)(nil)).Elem()
+func (*BillingAccountExclusion) ElementType() reflect.Type {
+	return reflect.TypeOf((*BillingAccountExclusion)(nil))
 }
 
-func (i BillingAccountExclusion) ToBillingAccountExclusionOutput() BillingAccountExclusionOutput {
+func (i *BillingAccountExclusion) ToBillingAccountExclusionOutput() BillingAccountExclusionOutput {
 	return i.ToBillingAccountExclusionOutputWithContext(context.Background())
 }
 
-func (i BillingAccountExclusion) ToBillingAccountExclusionOutputWithContext(ctx context.Context) BillingAccountExclusionOutput {
+func (i *BillingAccountExclusion) ToBillingAccountExclusionOutputWithContext(ctx context.Context) BillingAccountExclusionOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(BillingAccountExclusionOutput)
+}
+
+func (i *BillingAccountExclusion) ToBillingAccountExclusionPtrOutput() BillingAccountExclusionPtrOutput {
+	return i.ToBillingAccountExclusionPtrOutputWithContext(context.Background())
+}
+
+func (i *BillingAccountExclusion) ToBillingAccountExclusionPtrOutputWithContext(ctx context.Context) BillingAccountExclusionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BillingAccountExclusionPtrOutput)
+}
+
+type BillingAccountExclusionPtrInput interface {
+	pulumi.Input
+
+	ToBillingAccountExclusionPtrOutput() BillingAccountExclusionPtrOutput
+	ToBillingAccountExclusionPtrOutputWithContext(ctx context.Context) BillingAccountExclusionPtrOutput
 }
 
 type BillingAccountExclusionOutput struct {
@@ -199,7 +214,7 @@ type BillingAccountExclusionOutput struct {
 }
 
 func (BillingAccountExclusionOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*BillingAccountExclusionOutput)(nil)).Elem()
+	return reflect.TypeOf((*BillingAccountExclusion)(nil))
 }
 
 func (o BillingAccountExclusionOutput) ToBillingAccountExclusionOutput() BillingAccountExclusionOutput {
@@ -210,6 +225,23 @@ func (o BillingAccountExclusionOutput) ToBillingAccountExclusionOutputWithContex
 	return o
 }
 
+type BillingAccountExclusionPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (BillingAccountExclusionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BillingAccountExclusion)(nil))
+}
+
+func (o BillingAccountExclusionPtrOutput) ToBillingAccountExclusionPtrOutput() BillingAccountExclusionPtrOutput {
+	return o
+}
+
+func (o BillingAccountExclusionPtrOutput) ToBillingAccountExclusionPtrOutputWithContext(ctx context.Context) BillingAccountExclusionPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(BillingAccountExclusionOutput{})
+	pulumi.RegisterOutputType(BillingAccountExclusionPtrOutput{})
 }

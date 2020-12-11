@@ -252,16 +252,31 @@ type DomainTrustInput interface {
 	ToDomainTrustOutputWithContext(ctx context.Context) DomainTrustOutput
 }
 
-func (DomainTrust) ElementType() reflect.Type {
-	return reflect.TypeOf((*DomainTrust)(nil)).Elem()
+func (*DomainTrust) ElementType() reflect.Type {
+	return reflect.TypeOf((*DomainTrust)(nil))
 }
 
-func (i DomainTrust) ToDomainTrustOutput() DomainTrustOutput {
+func (i *DomainTrust) ToDomainTrustOutput() DomainTrustOutput {
 	return i.ToDomainTrustOutputWithContext(context.Background())
 }
 
-func (i DomainTrust) ToDomainTrustOutputWithContext(ctx context.Context) DomainTrustOutput {
+func (i *DomainTrust) ToDomainTrustOutputWithContext(ctx context.Context) DomainTrustOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DomainTrustOutput)
+}
+
+func (i *DomainTrust) ToDomainTrustPtrOutput() DomainTrustPtrOutput {
+	return i.ToDomainTrustPtrOutputWithContext(context.Background())
+}
+
+func (i *DomainTrust) ToDomainTrustPtrOutputWithContext(ctx context.Context) DomainTrustPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DomainTrustPtrOutput)
+}
+
+type DomainTrustPtrInput interface {
+	pulumi.Input
+
+	ToDomainTrustPtrOutput() DomainTrustPtrOutput
+	ToDomainTrustPtrOutputWithContext(ctx context.Context) DomainTrustPtrOutput
 }
 
 type DomainTrustOutput struct {
@@ -269,7 +284,7 @@ type DomainTrustOutput struct {
 }
 
 func (DomainTrustOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DomainTrustOutput)(nil)).Elem()
+	return reflect.TypeOf((*DomainTrust)(nil))
 }
 
 func (o DomainTrustOutput) ToDomainTrustOutput() DomainTrustOutput {
@@ -280,6 +295,23 @@ func (o DomainTrustOutput) ToDomainTrustOutputWithContext(ctx context.Context) D
 	return o
 }
 
+type DomainTrustPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (DomainTrustPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DomainTrust)(nil))
+}
+
+func (o DomainTrustPtrOutput) ToDomainTrustPtrOutput() DomainTrustPtrOutput {
+	return o
+}
+
+func (o DomainTrustPtrOutput) ToDomainTrustPtrOutputWithContext(ctx context.Context) DomainTrustPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(DomainTrustOutput{})
+	pulumi.RegisterOutputType(DomainTrustPtrOutput{})
 }

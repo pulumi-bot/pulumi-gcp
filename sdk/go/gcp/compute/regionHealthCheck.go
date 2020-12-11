@@ -759,16 +759,31 @@ type RegionHealthCheckInput interface {
 	ToRegionHealthCheckOutputWithContext(ctx context.Context) RegionHealthCheckOutput
 }
 
-func (RegionHealthCheck) ElementType() reflect.Type {
-	return reflect.TypeOf((*RegionHealthCheck)(nil)).Elem()
+func (*RegionHealthCheck) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionHealthCheck)(nil))
 }
 
-func (i RegionHealthCheck) ToRegionHealthCheckOutput() RegionHealthCheckOutput {
+func (i *RegionHealthCheck) ToRegionHealthCheckOutput() RegionHealthCheckOutput {
 	return i.ToRegionHealthCheckOutputWithContext(context.Background())
 }
 
-func (i RegionHealthCheck) ToRegionHealthCheckOutputWithContext(ctx context.Context) RegionHealthCheckOutput {
+func (i *RegionHealthCheck) ToRegionHealthCheckOutputWithContext(ctx context.Context) RegionHealthCheckOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RegionHealthCheckOutput)
+}
+
+func (i *RegionHealthCheck) ToRegionHealthCheckPtrOutput() RegionHealthCheckPtrOutput {
+	return i.ToRegionHealthCheckPtrOutputWithContext(context.Background())
+}
+
+func (i *RegionHealthCheck) ToRegionHealthCheckPtrOutputWithContext(ctx context.Context) RegionHealthCheckPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegionHealthCheckPtrOutput)
+}
+
+type RegionHealthCheckPtrInput interface {
+	pulumi.Input
+
+	ToRegionHealthCheckPtrOutput() RegionHealthCheckPtrOutput
+	ToRegionHealthCheckPtrOutputWithContext(ctx context.Context) RegionHealthCheckPtrOutput
 }
 
 type RegionHealthCheckOutput struct {
@@ -776,7 +791,7 @@ type RegionHealthCheckOutput struct {
 }
 
 func (RegionHealthCheckOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RegionHealthCheckOutput)(nil)).Elem()
+	return reflect.TypeOf((*RegionHealthCheck)(nil))
 }
 
 func (o RegionHealthCheckOutput) ToRegionHealthCheckOutput() RegionHealthCheckOutput {
@@ -787,6 +802,23 @@ func (o RegionHealthCheckOutput) ToRegionHealthCheckOutputWithContext(ctx contex
 	return o
 }
 
+type RegionHealthCheckPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (RegionHealthCheckPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RegionHealthCheck)(nil))
+}
+
+func (o RegionHealthCheckPtrOutput) ToRegionHealthCheckPtrOutput() RegionHealthCheckPtrOutput {
+	return o
+}
+
+func (o RegionHealthCheckPtrOutput) ToRegionHealthCheckPtrOutputWithContext(ctx context.Context) RegionHealthCheckPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(RegionHealthCheckOutput{})
+	pulumi.RegisterOutputType(RegionHealthCheckPtrOutput{})
 }

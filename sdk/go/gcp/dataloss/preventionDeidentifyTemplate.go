@@ -257,16 +257,31 @@ type PreventionDeidentifyTemplateInput interface {
 	ToPreventionDeidentifyTemplateOutputWithContext(ctx context.Context) PreventionDeidentifyTemplateOutput
 }
 
-func (PreventionDeidentifyTemplate) ElementType() reflect.Type {
-	return reflect.TypeOf((*PreventionDeidentifyTemplate)(nil)).Elem()
+func (*PreventionDeidentifyTemplate) ElementType() reflect.Type {
+	return reflect.TypeOf((*PreventionDeidentifyTemplate)(nil))
 }
 
-func (i PreventionDeidentifyTemplate) ToPreventionDeidentifyTemplateOutput() PreventionDeidentifyTemplateOutput {
+func (i *PreventionDeidentifyTemplate) ToPreventionDeidentifyTemplateOutput() PreventionDeidentifyTemplateOutput {
 	return i.ToPreventionDeidentifyTemplateOutputWithContext(context.Background())
 }
 
-func (i PreventionDeidentifyTemplate) ToPreventionDeidentifyTemplateOutputWithContext(ctx context.Context) PreventionDeidentifyTemplateOutput {
+func (i *PreventionDeidentifyTemplate) ToPreventionDeidentifyTemplateOutputWithContext(ctx context.Context) PreventionDeidentifyTemplateOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(PreventionDeidentifyTemplateOutput)
+}
+
+func (i *PreventionDeidentifyTemplate) ToPreventionDeidentifyTemplatePtrOutput() PreventionDeidentifyTemplatePtrOutput {
+	return i.ToPreventionDeidentifyTemplatePtrOutputWithContext(context.Background())
+}
+
+func (i *PreventionDeidentifyTemplate) ToPreventionDeidentifyTemplatePtrOutputWithContext(ctx context.Context) PreventionDeidentifyTemplatePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PreventionDeidentifyTemplatePtrOutput)
+}
+
+type PreventionDeidentifyTemplatePtrInput interface {
+	pulumi.Input
+
+	ToPreventionDeidentifyTemplatePtrOutput() PreventionDeidentifyTemplatePtrOutput
+	ToPreventionDeidentifyTemplatePtrOutputWithContext(ctx context.Context) PreventionDeidentifyTemplatePtrOutput
 }
 
 type PreventionDeidentifyTemplateOutput struct {
@@ -274,7 +289,7 @@ type PreventionDeidentifyTemplateOutput struct {
 }
 
 func (PreventionDeidentifyTemplateOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*PreventionDeidentifyTemplateOutput)(nil)).Elem()
+	return reflect.TypeOf((*PreventionDeidentifyTemplate)(nil))
 }
 
 func (o PreventionDeidentifyTemplateOutput) ToPreventionDeidentifyTemplateOutput() PreventionDeidentifyTemplateOutput {
@@ -285,6 +300,23 @@ func (o PreventionDeidentifyTemplateOutput) ToPreventionDeidentifyTemplateOutput
 	return o
 }
 
+type PreventionDeidentifyTemplatePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (PreventionDeidentifyTemplatePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PreventionDeidentifyTemplate)(nil))
+}
+
+func (o PreventionDeidentifyTemplatePtrOutput) ToPreventionDeidentifyTemplatePtrOutput() PreventionDeidentifyTemplatePtrOutput {
+	return o
+}
+
+func (o PreventionDeidentifyTemplatePtrOutput) ToPreventionDeidentifyTemplatePtrOutputWithContext(ctx context.Context) PreventionDeidentifyTemplatePtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(PreventionDeidentifyTemplateOutput{})
+	pulumi.RegisterOutputType(PreventionDeidentifyTemplatePtrOutput{})
 }

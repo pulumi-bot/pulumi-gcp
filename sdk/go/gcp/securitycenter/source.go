@@ -187,16 +187,31 @@ type SourceInput interface {
 	ToSourceOutputWithContext(ctx context.Context) SourceOutput
 }
 
-func (Source) ElementType() reflect.Type {
-	return reflect.TypeOf((*Source)(nil)).Elem()
+func (*Source) ElementType() reflect.Type {
+	return reflect.TypeOf((*Source)(nil))
 }
 
-func (i Source) ToSourceOutput() SourceOutput {
+func (i *Source) ToSourceOutput() SourceOutput {
 	return i.ToSourceOutputWithContext(context.Background())
 }
 
-func (i Source) ToSourceOutputWithContext(ctx context.Context) SourceOutput {
+func (i *Source) ToSourceOutputWithContext(ctx context.Context) SourceOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SourceOutput)
+}
+
+func (i *Source) ToSourcePtrOutput() SourcePtrOutput {
+	return i.ToSourcePtrOutputWithContext(context.Background())
+}
+
+func (i *Source) ToSourcePtrOutputWithContext(ctx context.Context) SourcePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourcePtrOutput)
+}
+
+type SourcePtrInput interface {
+	pulumi.Input
+
+	ToSourcePtrOutput() SourcePtrOutput
+	ToSourcePtrOutputWithContext(ctx context.Context) SourcePtrOutput
 }
 
 type SourceOutput struct {
@@ -204,7 +219,7 @@ type SourceOutput struct {
 }
 
 func (SourceOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SourceOutput)(nil)).Elem()
+	return reflect.TypeOf((*Source)(nil))
 }
 
 func (o SourceOutput) ToSourceOutput() SourceOutput {
@@ -215,6 +230,23 @@ func (o SourceOutput) ToSourceOutputWithContext(ctx context.Context) SourceOutpu
 	return o
 }
 
+type SourcePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (SourcePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Source)(nil))
+}
+
+func (o SourcePtrOutput) ToSourcePtrOutput() SourcePtrOutput {
+	return o
+}
+
+func (o SourcePtrOutput) ToSourcePtrOutputWithContext(ctx context.Context) SourcePtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(SourceOutput{})
+	pulumi.RegisterOutputType(SourcePtrOutput{})
 }

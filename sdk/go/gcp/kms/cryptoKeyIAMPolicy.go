@@ -353,16 +353,31 @@ type CryptoKeyIAMPolicyInput interface {
 	ToCryptoKeyIAMPolicyOutputWithContext(ctx context.Context) CryptoKeyIAMPolicyOutput
 }
 
-func (CryptoKeyIAMPolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*CryptoKeyIAMPolicy)(nil)).Elem()
+func (*CryptoKeyIAMPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*CryptoKeyIAMPolicy)(nil))
 }
 
-func (i CryptoKeyIAMPolicy) ToCryptoKeyIAMPolicyOutput() CryptoKeyIAMPolicyOutput {
+func (i *CryptoKeyIAMPolicy) ToCryptoKeyIAMPolicyOutput() CryptoKeyIAMPolicyOutput {
 	return i.ToCryptoKeyIAMPolicyOutputWithContext(context.Background())
 }
 
-func (i CryptoKeyIAMPolicy) ToCryptoKeyIAMPolicyOutputWithContext(ctx context.Context) CryptoKeyIAMPolicyOutput {
+func (i *CryptoKeyIAMPolicy) ToCryptoKeyIAMPolicyOutputWithContext(ctx context.Context) CryptoKeyIAMPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CryptoKeyIAMPolicyOutput)
+}
+
+func (i *CryptoKeyIAMPolicy) ToCryptoKeyIAMPolicyPtrOutput() CryptoKeyIAMPolicyPtrOutput {
+	return i.ToCryptoKeyIAMPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i *CryptoKeyIAMPolicy) ToCryptoKeyIAMPolicyPtrOutputWithContext(ctx context.Context) CryptoKeyIAMPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CryptoKeyIAMPolicyPtrOutput)
+}
+
+type CryptoKeyIAMPolicyPtrInput interface {
+	pulumi.Input
+
+	ToCryptoKeyIAMPolicyPtrOutput() CryptoKeyIAMPolicyPtrOutput
+	ToCryptoKeyIAMPolicyPtrOutputWithContext(ctx context.Context) CryptoKeyIAMPolicyPtrOutput
 }
 
 type CryptoKeyIAMPolicyOutput struct {
@@ -370,7 +385,7 @@ type CryptoKeyIAMPolicyOutput struct {
 }
 
 func (CryptoKeyIAMPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*CryptoKeyIAMPolicyOutput)(nil)).Elem()
+	return reflect.TypeOf((*CryptoKeyIAMPolicy)(nil))
 }
 
 func (o CryptoKeyIAMPolicyOutput) ToCryptoKeyIAMPolicyOutput() CryptoKeyIAMPolicyOutput {
@@ -381,6 +396,23 @@ func (o CryptoKeyIAMPolicyOutput) ToCryptoKeyIAMPolicyOutputWithContext(ctx cont
 	return o
 }
 
+type CryptoKeyIAMPolicyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (CryptoKeyIAMPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CryptoKeyIAMPolicy)(nil))
+}
+
+func (o CryptoKeyIAMPolicyPtrOutput) ToCryptoKeyIAMPolicyPtrOutput() CryptoKeyIAMPolicyPtrOutput {
+	return o
+}
+
+func (o CryptoKeyIAMPolicyPtrOutput) ToCryptoKeyIAMPolicyPtrOutputWithContext(ctx context.Context) CryptoKeyIAMPolicyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(CryptoKeyIAMPolicyOutput{})
+	pulumi.RegisterOutputType(CryptoKeyIAMPolicyPtrOutput{})
 }

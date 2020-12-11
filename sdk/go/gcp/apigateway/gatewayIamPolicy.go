@@ -167,16 +167,31 @@ type GatewayIamPolicyInput interface {
 	ToGatewayIamPolicyOutputWithContext(ctx context.Context) GatewayIamPolicyOutput
 }
 
-func (GatewayIamPolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*GatewayIamPolicy)(nil)).Elem()
+func (*GatewayIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*GatewayIamPolicy)(nil))
 }
 
-func (i GatewayIamPolicy) ToGatewayIamPolicyOutput() GatewayIamPolicyOutput {
+func (i *GatewayIamPolicy) ToGatewayIamPolicyOutput() GatewayIamPolicyOutput {
 	return i.ToGatewayIamPolicyOutputWithContext(context.Background())
 }
 
-func (i GatewayIamPolicy) ToGatewayIamPolicyOutputWithContext(ctx context.Context) GatewayIamPolicyOutput {
+func (i *GatewayIamPolicy) ToGatewayIamPolicyOutputWithContext(ctx context.Context) GatewayIamPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GatewayIamPolicyOutput)
+}
+
+func (i *GatewayIamPolicy) ToGatewayIamPolicyPtrOutput() GatewayIamPolicyPtrOutput {
+	return i.ToGatewayIamPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i *GatewayIamPolicy) ToGatewayIamPolicyPtrOutputWithContext(ctx context.Context) GatewayIamPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GatewayIamPolicyPtrOutput)
+}
+
+type GatewayIamPolicyPtrInput interface {
+	pulumi.Input
+
+	ToGatewayIamPolicyPtrOutput() GatewayIamPolicyPtrOutput
+	ToGatewayIamPolicyPtrOutputWithContext(ctx context.Context) GatewayIamPolicyPtrOutput
 }
 
 type GatewayIamPolicyOutput struct {
@@ -184,7 +199,7 @@ type GatewayIamPolicyOutput struct {
 }
 
 func (GatewayIamPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GatewayIamPolicyOutput)(nil)).Elem()
+	return reflect.TypeOf((*GatewayIamPolicy)(nil))
 }
 
 func (o GatewayIamPolicyOutput) ToGatewayIamPolicyOutput() GatewayIamPolicyOutput {
@@ -195,6 +210,23 @@ func (o GatewayIamPolicyOutput) ToGatewayIamPolicyOutputWithContext(ctx context.
 	return o
 }
 
+type GatewayIamPolicyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (GatewayIamPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GatewayIamPolicy)(nil))
+}
+
+func (o GatewayIamPolicyPtrOutput) ToGatewayIamPolicyPtrOutput() GatewayIamPolicyPtrOutput {
+	return o
+}
+
+func (o GatewayIamPolicyPtrOutput) ToGatewayIamPolicyPtrOutputWithContext(ctx context.Context) GatewayIamPolicyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(GatewayIamPolicyOutput{})
+	pulumi.RegisterOutputType(GatewayIamPolicyPtrOutput{})
 }

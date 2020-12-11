@@ -223,16 +223,31 @@ type KeyInput interface {
 	ToKeyOutputWithContext(ctx context.Context) KeyOutput
 }
 
-func (Key) ElementType() reflect.Type {
-	return reflect.TypeOf((*Key)(nil)).Elem()
+func (*Key) ElementType() reflect.Type {
+	return reflect.TypeOf((*Key)(nil))
 }
 
-func (i Key) ToKeyOutput() KeyOutput {
+func (i *Key) ToKeyOutput() KeyOutput {
 	return i.ToKeyOutputWithContext(context.Background())
 }
 
-func (i Key) ToKeyOutputWithContext(ctx context.Context) KeyOutput {
+func (i *Key) ToKeyOutputWithContext(ctx context.Context) KeyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(KeyOutput)
+}
+
+func (i *Key) ToKeyPtrOutput() KeyPtrOutput {
+	return i.ToKeyPtrOutputWithContext(context.Background())
+}
+
+func (i *Key) ToKeyPtrOutputWithContext(ctx context.Context) KeyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KeyPtrOutput)
+}
+
+type KeyPtrInput interface {
+	pulumi.Input
+
+	ToKeyPtrOutput() KeyPtrOutput
+	ToKeyPtrOutputWithContext(ctx context.Context) KeyPtrOutput
 }
 
 type KeyOutput struct {
@@ -240,7 +255,7 @@ type KeyOutput struct {
 }
 
 func (KeyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*KeyOutput)(nil)).Elem()
+	return reflect.TypeOf((*Key)(nil))
 }
 
 func (o KeyOutput) ToKeyOutput() KeyOutput {
@@ -251,6 +266,23 @@ func (o KeyOutput) ToKeyOutputWithContext(ctx context.Context) KeyOutput {
 	return o
 }
 
+type KeyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (KeyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Key)(nil))
+}
+
+func (o KeyPtrOutput) ToKeyPtrOutput() KeyPtrOutput {
+	return o
+}
+
+func (o KeyPtrOutput) ToKeyPtrOutputWithContext(ctx context.Context) KeyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(KeyOutput{})
+	pulumi.RegisterOutputType(KeyPtrOutput{})
 }

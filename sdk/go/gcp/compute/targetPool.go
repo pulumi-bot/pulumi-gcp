@@ -289,16 +289,31 @@ type TargetPoolInput interface {
 	ToTargetPoolOutputWithContext(ctx context.Context) TargetPoolOutput
 }
 
-func (TargetPool) ElementType() reflect.Type {
-	return reflect.TypeOf((*TargetPool)(nil)).Elem()
+func (*TargetPool) ElementType() reflect.Type {
+	return reflect.TypeOf((*TargetPool)(nil))
 }
 
-func (i TargetPool) ToTargetPoolOutput() TargetPoolOutput {
+func (i *TargetPool) ToTargetPoolOutput() TargetPoolOutput {
 	return i.ToTargetPoolOutputWithContext(context.Background())
 }
 
-func (i TargetPool) ToTargetPoolOutputWithContext(ctx context.Context) TargetPoolOutput {
+func (i *TargetPool) ToTargetPoolOutputWithContext(ctx context.Context) TargetPoolOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TargetPoolOutput)
+}
+
+func (i *TargetPool) ToTargetPoolPtrOutput() TargetPoolPtrOutput {
+	return i.ToTargetPoolPtrOutputWithContext(context.Background())
+}
+
+func (i *TargetPool) ToTargetPoolPtrOutputWithContext(ctx context.Context) TargetPoolPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TargetPoolPtrOutput)
+}
+
+type TargetPoolPtrInput interface {
+	pulumi.Input
+
+	ToTargetPoolPtrOutput() TargetPoolPtrOutput
+	ToTargetPoolPtrOutputWithContext(ctx context.Context) TargetPoolPtrOutput
 }
 
 type TargetPoolOutput struct {
@@ -306,7 +321,7 @@ type TargetPoolOutput struct {
 }
 
 func (TargetPoolOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*TargetPoolOutput)(nil)).Elem()
+	return reflect.TypeOf((*TargetPool)(nil))
 }
 
 func (o TargetPoolOutput) ToTargetPoolOutput() TargetPoolOutput {
@@ -317,6 +332,23 @@ func (o TargetPoolOutput) ToTargetPoolOutputWithContext(ctx context.Context) Tar
 	return o
 }
 
+type TargetPoolPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (TargetPoolPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TargetPool)(nil))
+}
+
+func (o TargetPoolPtrOutput) ToTargetPoolPtrOutput() TargetPoolPtrOutput {
+	return o
+}
+
+func (o TargetPoolPtrOutput) ToTargetPoolPtrOutputWithContext(ctx context.Context) TargetPoolPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(TargetPoolOutput{})
+	pulumi.RegisterOutputType(TargetPoolPtrOutput{})
 }

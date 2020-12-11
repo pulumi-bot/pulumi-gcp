@@ -744,16 +744,31 @@ type HealthCheckInput interface {
 	ToHealthCheckOutputWithContext(ctx context.Context) HealthCheckOutput
 }
 
-func (HealthCheck) ElementType() reflect.Type {
-	return reflect.TypeOf((*HealthCheck)(nil)).Elem()
+func (*HealthCheck) ElementType() reflect.Type {
+	return reflect.TypeOf((*HealthCheck)(nil))
 }
 
-func (i HealthCheck) ToHealthCheckOutput() HealthCheckOutput {
+func (i *HealthCheck) ToHealthCheckOutput() HealthCheckOutput {
 	return i.ToHealthCheckOutputWithContext(context.Background())
 }
 
-func (i HealthCheck) ToHealthCheckOutputWithContext(ctx context.Context) HealthCheckOutput {
+func (i *HealthCheck) ToHealthCheckOutputWithContext(ctx context.Context) HealthCheckOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(HealthCheckOutput)
+}
+
+func (i *HealthCheck) ToHealthCheckPtrOutput() HealthCheckPtrOutput {
+	return i.ToHealthCheckPtrOutputWithContext(context.Background())
+}
+
+func (i *HealthCheck) ToHealthCheckPtrOutputWithContext(ctx context.Context) HealthCheckPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HealthCheckPtrOutput)
+}
+
+type HealthCheckPtrInput interface {
+	pulumi.Input
+
+	ToHealthCheckPtrOutput() HealthCheckPtrOutput
+	ToHealthCheckPtrOutputWithContext(ctx context.Context) HealthCheckPtrOutput
 }
 
 type HealthCheckOutput struct {
@@ -761,7 +776,7 @@ type HealthCheckOutput struct {
 }
 
 func (HealthCheckOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*HealthCheckOutput)(nil)).Elem()
+	return reflect.TypeOf((*HealthCheck)(nil))
 }
 
 func (o HealthCheckOutput) ToHealthCheckOutput() HealthCheckOutput {
@@ -772,6 +787,23 @@ func (o HealthCheckOutput) ToHealthCheckOutputWithContext(ctx context.Context) H
 	return o
 }
 
+type HealthCheckPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (HealthCheckPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**HealthCheck)(nil))
+}
+
+func (o HealthCheckPtrOutput) ToHealthCheckPtrOutput() HealthCheckPtrOutput {
+	return o
+}
+
+func (o HealthCheckPtrOutput) ToHealthCheckPtrOutputWithContext(ctx context.Context) HealthCheckPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(HealthCheckOutput{})
+	pulumi.RegisterOutputType(HealthCheckPtrOutput{})
 }

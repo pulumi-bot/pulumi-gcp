@@ -1145,16 +1145,31 @@ type URLMapInput interface {
 	ToURLMapOutputWithContext(ctx context.Context) URLMapOutput
 }
 
-func (URLMap) ElementType() reflect.Type {
-	return reflect.TypeOf((*URLMap)(nil)).Elem()
+func (*URLMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*URLMap)(nil))
 }
 
-func (i URLMap) ToURLMapOutput() URLMapOutput {
+func (i *URLMap) ToURLMapOutput() URLMapOutput {
 	return i.ToURLMapOutputWithContext(context.Background())
 }
 
-func (i URLMap) ToURLMapOutputWithContext(ctx context.Context) URLMapOutput {
+func (i *URLMap) ToURLMapOutputWithContext(ctx context.Context) URLMapOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(URLMapOutput)
+}
+
+func (i *URLMap) ToURLMapPtrOutput() URLMapPtrOutput {
+	return i.ToURLMapPtrOutputWithContext(context.Background())
+}
+
+func (i *URLMap) ToURLMapPtrOutputWithContext(ctx context.Context) URLMapPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPtrOutput)
+}
+
+type URLMapPtrInput interface {
+	pulumi.Input
+
+	ToURLMapPtrOutput() URLMapPtrOutput
+	ToURLMapPtrOutputWithContext(ctx context.Context) URLMapPtrOutput
 }
 
 type URLMapOutput struct {
@@ -1162,7 +1177,7 @@ type URLMapOutput struct {
 }
 
 func (URLMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*URLMapOutput)(nil)).Elem()
+	return reflect.TypeOf((*URLMap)(nil))
 }
 
 func (o URLMapOutput) ToURLMapOutput() URLMapOutput {
@@ -1173,6 +1188,23 @@ func (o URLMapOutput) ToURLMapOutputWithContext(ctx context.Context) URLMapOutpu
 	return o
 }
 
+type URLMapPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (URLMapPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**URLMap)(nil))
+}
+
+func (o URLMapPtrOutput) ToURLMapPtrOutput() URLMapPtrOutput {
+	return o
+}
+
+func (o URLMapPtrOutput) ToURLMapPtrOutputWithContext(ctx context.Context) URLMapPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(URLMapOutput{})
+	pulumi.RegisterOutputType(URLMapPtrOutput{})
 }

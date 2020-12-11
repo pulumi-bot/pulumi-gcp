@@ -303,16 +303,31 @@ type SecurityScanConfigInput interface {
 	ToSecurityScanConfigOutputWithContext(ctx context.Context) SecurityScanConfigOutput
 }
 
-func (SecurityScanConfig) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecurityScanConfig)(nil)).Elem()
+func (*SecurityScanConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecurityScanConfig)(nil))
 }
 
-func (i SecurityScanConfig) ToSecurityScanConfigOutput() SecurityScanConfigOutput {
+func (i *SecurityScanConfig) ToSecurityScanConfigOutput() SecurityScanConfigOutput {
 	return i.ToSecurityScanConfigOutputWithContext(context.Background())
 }
 
-func (i SecurityScanConfig) ToSecurityScanConfigOutputWithContext(ctx context.Context) SecurityScanConfigOutput {
+func (i *SecurityScanConfig) ToSecurityScanConfigOutputWithContext(ctx context.Context) SecurityScanConfigOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecurityScanConfigOutput)
+}
+
+func (i *SecurityScanConfig) ToSecurityScanConfigPtrOutput() SecurityScanConfigPtrOutput {
+	return i.ToSecurityScanConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *SecurityScanConfig) ToSecurityScanConfigPtrOutputWithContext(ctx context.Context) SecurityScanConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityScanConfigPtrOutput)
+}
+
+type SecurityScanConfigPtrInput interface {
+	pulumi.Input
+
+	ToSecurityScanConfigPtrOutput() SecurityScanConfigPtrOutput
+	ToSecurityScanConfigPtrOutputWithContext(ctx context.Context) SecurityScanConfigPtrOutput
 }
 
 type SecurityScanConfigOutput struct {
@@ -320,7 +335,7 @@ type SecurityScanConfigOutput struct {
 }
 
 func (SecurityScanConfigOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecurityScanConfigOutput)(nil)).Elem()
+	return reflect.TypeOf((*SecurityScanConfig)(nil))
 }
 
 func (o SecurityScanConfigOutput) ToSecurityScanConfigOutput() SecurityScanConfigOutput {
@@ -331,6 +346,23 @@ func (o SecurityScanConfigOutput) ToSecurityScanConfigOutputWithContext(ctx cont
 	return o
 }
 
+type SecurityScanConfigPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (SecurityScanConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecurityScanConfig)(nil))
+}
+
+func (o SecurityScanConfigPtrOutput) ToSecurityScanConfigPtrOutput() SecurityScanConfigPtrOutput {
+	return o
+}
+
+func (o SecurityScanConfigPtrOutput) ToSecurityScanConfigPtrOutputWithContext(ctx context.Context) SecurityScanConfigPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(SecurityScanConfigOutput{})
+	pulumi.RegisterOutputType(SecurityScanConfigPtrOutput{})
 }

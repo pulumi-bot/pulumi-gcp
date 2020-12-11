@@ -213,16 +213,31 @@ type AccessLevelsInput interface {
 	ToAccessLevelsOutputWithContext(ctx context.Context) AccessLevelsOutput
 }
 
-func (AccessLevels) ElementType() reflect.Type {
-	return reflect.TypeOf((*AccessLevels)(nil)).Elem()
+func (*AccessLevels) ElementType() reflect.Type {
+	return reflect.TypeOf((*AccessLevels)(nil))
 }
 
-func (i AccessLevels) ToAccessLevelsOutput() AccessLevelsOutput {
+func (i *AccessLevels) ToAccessLevelsOutput() AccessLevelsOutput {
 	return i.ToAccessLevelsOutputWithContext(context.Background())
 }
 
-func (i AccessLevels) ToAccessLevelsOutputWithContext(ctx context.Context) AccessLevelsOutput {
+func (i *AccessLevels) ToAccessLevelsOutputWithContext(ctx context.Context) AccessLevelsOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AccessLevelsOutput)
+}
+
+func (i *AccessLevels) ToAccessLevelsPtrOutput() AccessLevelsPtrOutput {
+	return i.ToAccessLevelsPtrOutputWithContext(context.Background())
+}
+
+func (i *AccessLevels) ToAccessLevelsPtrOutputWithContext(ctx context.Context) AccessLevelsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AccessLevelsPtrOutput)
+}
+
+type AccessLevelsPtrInput interface {
+	pulumi.Input
+
+	ToAccessLevelsPtrOutput() AccessLevelsPtrOutput
+	ToAccessLevelsPtrOutputWithContext(ctx context.Context) AccessLevelsPtrOutput
 }
 
 type AccessLevelsOutput struct {
@@ -230,7 +245,7 @@ type AccessLevelsOutput struct {
 }
 
 func (AccessLevelsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AccessLevelsOutput)(nil)).Elem()
+	return reflect.TypeOf((*AccessLevels)(nil))
 }
 
 func (o AccessLevelsOutput) ToAccessLevelsOutput() AccessLevelsOutput {
@@ -241,6 +256,23 @@ func (o AccessLevelsOutput) ToAccessLevelsOutputWithContext(ctx context.Context)
 	return o
 }
 
+type AccessLevelsPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (AccessLevelsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AccessLevels)(nil))
+}
+
+func (o AccessLevelsPtrOutput) ToAccessLevelsPtrOutput() AccessLevelsPtrOutput {
+	return o
+}
+
+func (o AccessLevelsPtrOutput) ToAccessLevelsPtrOutputWithContext(ctx context.Context) AccessLevelsPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(AccessLevelsOutput{})
+	pulumi.RegisterOutputType(AccessLevelsPtrOutput{})
 }

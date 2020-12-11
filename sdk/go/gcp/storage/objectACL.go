@@ -181,16 +181,31 @@ type ObjectACLInput interface {
 	ToObjectACLOutputWithContext(ctx context.Context) ObjectACLOutput
 }
 
-func (ObjectACL) ElementType() reflect.Type {
-	return reflect.TypeOf((*ObjectACL)(nil)).Elem()
+func (*ObjectACL) ElementType() reflect.Type {
+	return reflect.TypeOf((*ObjectACL)(nil))
 }
 
-func (i ObjectACL) ToObjectACLOutput() ObjectACLOutput {
+func (i *ObjectACL) ToObjectACLOutput() ObjectACLOutput {
 	return i.ToObjectACLOutputWithContext(context.Background())
 }
 
-func (i ObjectACL) ToObjectACLOutputWithContext(ctx context.Context) ObjectACLOutput {
+func (i *ObjectACL) ToObjectACLOutputWithContext(ctx context.Context) ObjectACLOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ObjectACLOutput)
+}
+
+func (i *ObjectACL) ToObjectACLPtrOutput() ObjectACLPtrOutput {
+	return i.ToObjectACLPtrOutputWithContext(context.Background())
+}
+
+func (i *ObjectACL) ToObjectACLPtrOutputWithContext(ctx context.Context) ObjectACLPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObjectACLPtrOutput)
+}
+
+type ObjectACLPtrInput interface {
+	pulumi.Input
+
+	ToObjectACLPtrOutput() ObjectACLPtrOutput
+	ToObjectACLPtrOutputWithContext(ctx context.Context) ObjectACLPtrOutput
 }
 
 type ObjectACLOutput struct {
@@ -198,7 +213,7 @@ type ObjectACLOutput struct {
 }
 
 func (ObjectACLOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ObjectACLOutput)(nil)).Elem()
+	return reflect.TypeOf((*ObjectACL)(nil))
 }
 
 func (o ObjectACLOutput) ToObjectACLOutput() ObjectACLOutput {
@@ -209,6 +224,23 @@ func (o ObjectACLOutput) ToObjectACLOutputWithContext(ctx context.Context) Objec
 	return o
 }
 
+type ObjectACLPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ObjectACLPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ObjectACL)(nil))
+}
+
+func (o ObjectACLPtrOutput) ToObjectACLPtrOutput() ObjectACLPtrOutput {
+	return o
+}
+
+func (o ObjectACLPtrOutput) ToObjectACLPtrOutputWithContext(ctx context.Context) ObjectACLPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ObjectACLOutput{})
+	pulumi.RegisterOutputType(ObjectACLPtrOutput{})
 }

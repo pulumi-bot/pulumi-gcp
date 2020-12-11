@@ -193,16 +193,31 @@ type ServiceInput interface {
 	ToServiceOutputWithContext(ctx context.Context) ServiceOutput
 }
 
-func (Service) ElementType() reflect.Type {
-	return reflect.TypeOf((*Service)(nil)).Elem()
+func (*Service) ElementType() reflect.Type {
+	return reflect.TypeOf((*Service)(nil))
 }
 
-func (i Service) ToServiceOutput() ServiceOutput {
+func (i *Service) ToServiceOutput() ServiceOutput {
 	return i.ToServiceOutputWithContext(context.Background())
 }
 
-func (i Service) ToServiceOutputWithContext(ctx context.Context) ServiceOutput {
+func (i *Service) ToServiceOutputWithContext(ctx context.Context) ServiceOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceOutput)
+}
+
+func (i *Service) ToServicePtrOutput() ServicePtrOutput {
+	return i.ToServicePtrOutputWithContext(context.Background())
+}
+
+func (i *Service) ToServicePtrOutputWithContext(ctx context.Context) ServicePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServicePtrOutput)
+}
+
+type ServicePtrInput interface {
+	pulumi.Input
+
+	ToServicePtrOutput() ServicePtrOutput
+	ToServicePtrOutputWithContext(ctx context.Context) ServicePtrOutput
 }
 
 type ServiceOutput struct {
@@ -210,7 +225,7 @@ type ServiceOutput struct {
 }
 
 func (ServiceOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServiceOutput)(nil)).Elem()
+	return reflect.TypeOf((*Service)(nil))
 }
 
 func (o ServiceOutput) ToServiceOutput() ServiceOutput {
@@ -221,6 +236,23 @@ func (o ServiceOutput) ToServiceOutputWithContext(ctx context.Context) ServiceOu
 	return o
 }
 
+type ServicePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ServicePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Service)(nil))
+}
+
+func (o ServicePtrOutput) ToServicePtrOutput() ServicePtrOutput {
+	return o
+}
+
+func (o ServicePtrOutput) ToServicePtrOutputWithContext(ctx context.Context) ServicePtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ServiceOutput{})
+	pulumi.RegisterOutputType(ServicePtrOutput{})
 }

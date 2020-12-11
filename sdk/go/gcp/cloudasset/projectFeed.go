@@ -279,16 +279,31 @@ type ProjectFeedInput interface {
 	ToProjectFeedOutputWithContext(ctx context.Context) ProjectFeedOutput
 }
 
-func (ProjectFeed) ElementType() reflect.Type {
-	return reflect.TypeOf((*ProjectFeed)(nil)).Elem()
+func (*ProjectFeed) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProjectFeed)(nil))
 }
 
-func (i ProjectFeed) ToProjectFeedOutput() ProjectFeedOutput {
+func (i *ProjectFeed) ToProjectFeedOutput() ProjectFeedOutput {
 	return i.ToProjectFeedOutputWithContext(context.Background())
 }
 
-func (i ProjectFeed) ToProjectFeedOutputWithContext(ctx context.Context) ProjectFeedOutput {
+func (i *ProjectFeed) ToProjectFeedOutputWithContext(ctx context.Context) ProjectFeedOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ProjectFeedOutput)
+}
+
+func (i *ProjectFeed) ToProjectFeedPtrOutput() ProjectFeedPtrOutput {
+	return i.ToProjectFeedPtrOutputWithContext(context.Background())
+}
+
+func (i *ProjectFeed) ToProjectFeedPtrOutputWithContext(ctx context.Context) ProjectFeedPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProjectFeedPtrOutput)
+}
+
+type ProjectFeedPtrInput interface {
+	pulumi.Input
+
+	ToProjectFeedPtrOutput() ProjectFeedPtrOutput
+	ToProjectFeedPtrOutputWithContext(ctx context.Context) ProjectFeedPtrOutput
 }
 
 type ProjectFeedOutput struct {
@@ -296,7 +311,7 @@ type ProjectFeedOutput struct {
 }
 
 func (ProjectFeedOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ProjectFeedOutput)(nil)).Elem()
+	return reflect.TypeOf((*ProjectFeed)(nil))
 }
 
 func (o ProjectFeedOutput) ToProjectFeedOutput() ProjectFeedOutput {
@@ -307,6 +322,23 @@ func (o ProjectFeedOutput) ToProjectFeedOutputWithContext(ctx context.Context) P
 	return o
 }
 
+type ProjectFeedPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ProjectFeedPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProjectFeed)(nil))
+}
+
+func (o ProjectFeedPtrOutput) ToProjectFeedPtrOutput() ProjectFeedPtrOutput {
+	return o
+}
+
+func (o ProjectFeedPtrOutput) ToProjectFeedPtrOutputWithContext(ctx context.Context) ProjectFeedPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ProjectFeedOutput{})
+	pulumi.RegisterOutputType(ProjectFeedPtrOutput{})
 }

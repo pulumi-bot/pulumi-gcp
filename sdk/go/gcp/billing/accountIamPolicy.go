@@ -91,16 +91,31 @@ type AccountIamPolicyInput interface {
 	ToAccountIamPolicyOutputWithContext(ctx context.Context) AccountIamPolicyOutput
 }
 
-func (AccountIamPolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*AccountIamPolicy)(nil)).Elem()
+func (*AccountIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*AccountIamPolicy)(nil))
 }
 
-func (i AccountIamPolicy) ToAccountIamPolicyOutput() AccountIamPolicyOutput {
+func (i *AccountIamPolicy) ToAccountIamPolicyOutput() AccountIamPolicyOutput {
 	return i.ToAccountIamPolicyOutputWithContext(context.Background())
 }
 
-func (i AccountIamPolicy) ToAccountIamPolicyOutputWithContext(ctx context.Context) AccountIamPolicyOutput {
+func (i *AccountIamPolicy) ToAccountIamPolicyOutputWithContext(ctx context.Context) AccountIamPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AccountIamPolicyOutput)
+}
+
+func (i *AccountIamPolicy) ToAccountIamPolicyPtrOutput() AccountIamPolicyPtrOutput {
+	return i.ToAccountIamPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i *AccountIamPolicy) ToAccountIamPolicyPtrOutputWithContext(ctx context.Context) AccountIamPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AccountIamPolicyPtrOutput)
+}
+
+type AccountIamPolicyPtrInput interface {
+	pulumi.Input
+
+	ToAccountIamPolicyPtrOutput() AccountIamPolicyPtrOutput
+	ToAccountIamPolicyPtrOutputWithContext(ctx context.Context) AccountIamPolicyPtrOutput
 }
 
 type AccountIamPolicyOutput struct {
@@ -108,7 +123,7 @@ type AccountIamPolicyOutput struct {
 }
 
 func (AccountIamPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AccountIamPolicyOutput)(nil)).Elem()
+	return reflect.TypeOf((*AccountIamPolicy)(nil))
 }
 
 func (o AccountIamPolicyOutput) ToAccountIamPolicyOutput() AccountIamPolicyOutput {
@@ -119,6 +134,23 @@ func (o AccountIamPolicyOutput) ToAccountIamPolicyOutputWithContext(ctx context.
 	return o
 }
 
+type AccountIamPolicyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (AccountIamPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AccountIamPolicy)(nil))
+}
+
+func (o AccountIamPolicyPtrOutput) ToAccountIamPolicyPtrOutput() AccountIamPolicyPtrOutput {
+	return o
+}
+
+func (o AccountIamPolicyPtrOutput) ToAccountIamPolicyPtrOutputWithContext(ctx context.Context) AccountIamPolicyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(AccountIamPolicyOutput{})
+	pulumi.RegisterOutputType(AccountIamPolicyPtrOutput{})
 }

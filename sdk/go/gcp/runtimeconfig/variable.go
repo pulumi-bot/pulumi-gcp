@@ -180,16 +180,31 @@ type VariableInput interface {
 	ToVariableOutputWithContext(ctx context.Context) VariableOutput
 }
 
-func (Variable) ElementType() reflect.Type {
-	return reflect.TypeOf((*Variable)(nil)).Elem()
+func (*Variable) ElementType() reflect.Type {
+	return reflect.TypeOf((*Variable)(nil))
 }
 
-func (i Variable) ToVariableOutput() VariableOutput {
+func (i *Variable) ToVariableOutput() VariableOutput {
 	return i.ToVariableOutputWithContext(context.Background())
 }
 
-func (i Variable) ToVariableOutputWithContext(ctx context.Context) VariableOutput {
+func (i *Variable) ToVariableOutputWithContext(ctx context.Context) VariableOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VariableOutput)
+}
+
+func (i *Variable) ToVariablePtrOutput() VariablePtrOutput {
+	return i.ToVariablePtrOutputWithContext(context.Background())
+}
+
+func (i *Variable) ToVariablePtrOutputWithContext(ctx context.Context) VariablePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VariablePtrOutput)
+}
+
+type VariablePtrInput interface {
+	pulumi.Input
+
+	ToVariablePtrOutput() VariablePtrOutput
+	ToVariablePtrOutputWithContext(ctx context.Context) VariablePtrOutput
 }
 
 type VariableOutput struct {
@@ -197,7 +212,7 @@ type VariableOutput struct {
 }
 
 func (VariableOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*VariableOutput)(nil)).Elem()
+	return reflect.TypeOf((*Variable)(nil))
 }
 
 func (o VariableOutput) ToVariableOutput() VariableOutput {
@@ -208,6 +223,23 @@ func (o VariableOutput) ToVariableOutputWithContext(ctx context.Context) Variabl
 	return o
 }
 
+type VariablePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (VariablePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Variable)(nil))
+}
+
+func (o VariablePtrOutput) ToVariablePtrOutput() VariablePtrOutput {
+	return o
+}
+
+func (o VariablePtrOutput) ToVariablePtrOutputWithContext(ctx context.Context) VariablePtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(VariableOutput{})
+	pulumi.RegisterOutputType(VariablePtrOutput{})
 }

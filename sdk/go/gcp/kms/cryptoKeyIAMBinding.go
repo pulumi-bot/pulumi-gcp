@@ -376,16 +376,31 @@ type CryptoKeyIAMBindingInput interface {
 	ToCryptoKeyIAMBindingOutputWithContext(ctx context.Context) CryptoKeyIAMBindingOutput
 }
 
-func (CryptoKeyIAMBinding) ElementType() reflect.Type {
-	return reflect.TypeOf((*CryptoKeyIAMBinding)(nil)).Elem()
+func (*CryptoKeyIAMBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*CryptoKeyIAMBinding)(nil))
 }
 
-func (i CryptoKeyIAMBinding) ToCryptoKeyIAMBindingOutput() CryptoKeyIAMBindingOutput {
+func (i *CryptoKeyIAMBinding) ToCryptoKeyIAMBindingOutput() CryptoKeyIAMBindingOutput {
 	return i.ToCryptoKeyIAMBindingOutputWithContext(context.Background())
 }
 
-func (i CryptoKeyIAMBinding) ToCryptoKeyIAMBindingOutputWithContext(ctx context.Context) CryptoKeyIAMBindingOutput {
+func (i *CryptoKeyIAMBinding) ToCryptoKeyIAMBindingOutputWithContext(ctx context.Context) CryptoKeyIAMBindingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CryptoKeyIAMBindingOutput)
+}
+
+func (i *CryptoKeyIAMBinding) ToCryptoKeyIAMBindingPtrOutput() CryptoKeyIAMBindingPtrOutput {
+	return i.ToCryptoKeyIAMBindingPtrOutputWithContext(context.Background())
+}
+
+func (i *CryptoKeyIAMBinding) ToCryptoKeyIAMBindingPtrOutputWithContext(ctx context.Context) CryptoKeyIAMBindingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CryptoKeyIAMBindingPtrOutput)
+}
+
+type CryptoKeyIAMBindingPtrInput interface {
+	pulumi.Input
+
+	ToCryptoKeyIAMBindingPtrOutput() CryptoKeyIAMBindingPtrOutput
+	ToCryptoKeyIAMBindingPtrOutputWithContext(ctx context.Context) CryptoKeyIAMBindingPtrOutput
 }
 
 type CryptoKeyIAMBindingOutput struct {
@@ -393,7 +408,7 @@ type CryptoKeyIAMBindingOutput struct {
 }
 
 func (CryptoKeyIAMBindingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*CryptoKeyIAMBindingOutput)(nil)).Elem()
+	return reflect.TypeOf((*CryptoKeyIAMBinding)(nil))
 }
 
 func (o CryptoKeyIAMBindingOutput) ToCryptoKeyIAMBindingOutput() CryptoKeyIAMBindingOutput {
@@ -404,6 +419,23 @@ func (o CryptoKeyIAMBindingOutput) ToCryptoKeyIAMBindingOutputWithContext(ctx co
 	return o
 }
 
+type CryptoKeyIAMBindingPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (CryptoKeyIAMBindingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CryptoKeyIAMBinding)(nil))
+}
+
+func (o CryptoKeyIAMBindingPtrOutput) ToCryptoKeyIAMBindingPtrOutput() CryptoKeyIAMBindingPtrOutput {
+	return o
+}
+
+func (o CryptoKeyIAMBindingPtrOutput) ToCryptoKeyIAMBindingPtrOutputWithContext(ctx context.Context) CryptoKeyIAMBindingPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(CryptoKeyIAMBindingOutput{})
+	pulumi.RegisterOutputType(CryptoKeyIAMBindingPtrOutput{})
 }

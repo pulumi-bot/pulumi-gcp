@@ -207,16 +207,31 @@ type NamespaceInput interface {
 	ToNamespaceOutputWithContext(ctx context.Context) NamespaceOutput
 }
 
-func (Namespace) ElementType() reflect.Type {
-	return reflect.TypeOf((*Namespace)(nil)).Elem()
+func (*Namespace) ElementType() reflect.Type {
+	return reflect.TypeOf((*Namespace)(nil))
 }
 
-func (i Namespace) ToNamespaceOutput() NamespaceOutput {
+func (i *Namespace) ToNamespaceOutput() NamespaceOutput {
 	return i.ToNamespaceOutputWithContext(context.Background())
 }
 
-func (i Namespace) ToNamespaceOutputWithContext(ctx context.Context) NamespaceOutput {
+func (i *Namespace) ToNamespaceOutputWithContext(ctx context.Context) NamespaceOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NamespaceOutput)
+}
+
+func (i *Namespace) ToNamespacePtrOutput() NamespacePtrOutput {
+	return i.ToNamespacePtrOutputWithContext(context.Background())
+}
+
+func (i *Namespace) ToNamespacePtrOutputWithContext(ctx context.Context) NamespacePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NamespacePtrOutput)
+}
+
+type NamespacePtrInput interface {
+	pulumi.Input
+
+	ToNamespacePtrOutput() NamespacePtrOutput
+	ToNamespacePtrOutputWithContext(ctx context.Context) NamespacePtrOutput
 }
 
 type NamespaceOutput struct {
@@ -224,7 +239,7 @@ type NamespaceOutput struct {
 }
 
 func (NamespaceOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*NamespaceOutput)(nil)).Elem()
+	return reflect.TypeOf((*Namespace)(nil))
 }
 
 func (o NamespaceOutput) ToNamespaceOutput() NamespaceOutput {
@@ -235,6 +250,23 @@ func (o NamespaceOutput) ToNamespaceOutputWithContext(ctx context.Context) Names
 	return o
 }
 
+type NamespacePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (NamespacePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Namespace)(nil))
+}
+
+func (o NamespacePtrOutput) ToNamespacePtrOutput() NamespacePtrOutput {
+	return o
+}
+
+func (o NamespacePtrOutput) ToNamespacePtrOutputWithContext(ctx context.Context) NamespacePtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(NamespaceOutput{})
+	pulumi.RegisterOutputType(NamespacePtrOutput{})
 }

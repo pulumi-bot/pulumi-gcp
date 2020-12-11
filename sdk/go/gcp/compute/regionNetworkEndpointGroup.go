@@ -460,16 +460,31 @@ type RegionNetworkEndpointGroupInput interface {
 	ToRegionNetworkEndpointGroupOutputWithContext(ctx context.Context) RegionNetworkEndpointGroupOutput
 }
 
-func (RegionNetworkEndpointGroup) ElementType() reflect.Type {
-	return reflect.TypeOf((*RegionNetworkEndpointGroup)(nil)).Elem()
+func (*RegionNetworkEndpointGroup) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionNetworkEndpointGroup)(nil))
 }
 
-func (i RegionNetworkEndpointGroup) ToRegionNetworkEndpointGroupOutput() RegionNetworkEndpointGroupOutput {
+func (i *RegionNetworkEndpointGroup) ToRegionNetworkEndpointGroupOutput() RegionNetworkEndpointGroupOutput {
 	return i.ToRegionNetworkEndpointGroupOutputWithContext(context.Background())
 }
 
-func (i RegionNetworkEndpointGroup) ToRegionNetworkEndpointGroupOutputWithContext(ctx context.Context) RegionNetworkEndpointGroupOutput {
+func (i *RegionNetworkEndpointGroup) ToRegionNetworkEndpointGroupOutputWithContext(ctx context.Context) RegionNetworkEndpointGroupOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RegionNetworkEndpointGroupOutput)
+}
+
+func (i *RegionNetworkEndpointGroup) ToRegionNetworkEndpointGroupPtrOutput() RegionNetworkEndpointGroupPtrOutput {
+	return i.ToRegionNetworkEndpointGroupPtrOutputWithContext(context.Background())
+}
+
+func (i *RegionNetworkEndpointGroup) ToRegionNetworkEndpointGroupPtrOutputWithContext(ctx context.Context) RegionNetworkEndpointGroupPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegionNetworkEndpointGroupPtrOutput)
+}
+
+type RegionNetworkEndpointGroupPtrInput interface {
+	pulumi.Input
+
+	ToRegionNetworkEndpointGroupPtrOutput() RegionNetworkEndpointGroupPtrOutput
+	ToRegionNetworkEndpointGroupPtrOutputWithContext(ctx context.Context) RegionNetworkEndpointGroupPtrOutput
 }
 
 type RegionNetworkEndpointGroupOutput struct {
@@ -477,7 +492,7 @@ type RegionNetworkEndpointGroupOutput struct {
 }
 
 func (RegionNetworkEndpointGroupOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RegionNetworkEndpointGroupOutput)(nil)).Elem()
+	return reflect.TypeOf((*RegionNetworkEndpointGroup)(nil))
 }
 
 func (o RegionNetworkEndpointGroupOutput) ToRegionNetworkEndpointGroupOutput() RegionNetworkEndpointGroupOutput {
@@ -488,6 +503,23 @@ func (o RegionNetworkEndpointGroupOutput) ToRegionNetworkEndpointGroupOutputWith
 	return o
 }
 
+type RegionNetworkEndpointGroupPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (RegionNetworkEndpointGroupPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RegionNetworkEndpointGroup)(nil))
+}
+
+func (o RegionNetworkEndpointGroupPtrOutput) ToRegionNetworkEndpointGroupPtrOutput() RegionNetworkEndpointGroupPtrOutput {
+	return o
+}
+
+func (o RegionNetworkEndpointGroupPtrOutput) ToRegionNetworkEndpointGroupPtrOutputWithContext(ctx context.Context) RegionNetworkEndpointGroupPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(RegionNetworkEndpointGroupOutput{})
+	pulumi.RegisterOutputType(RegionNetworkEndpointGroupPtrOutput{})
 }

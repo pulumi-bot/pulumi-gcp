@@ -179,16 +179,31 @@ type CustomServiceInput interface {
 	ToCustomServiceOutputWithContext(ctx context.Context) CustomServiceOutput
 }
 
-func (CustomService) ElementType() reflect.Type {
-	return reflect.TypeOf((*CustomService)(nil)).Elem()
+func (*CustomService) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomService)(nil))
 }
 
-func (i CustomService) ToCustomServiceOutput() CustomServiceOutput {
+func (i *CustomService) ToCustomServiceOutput() CustomServiceOutput {
 	return i.ToCustomServiceOutputWithContext(context.Background())
 }
 
-func (i CustomService) ToCustomServiceOutputWithContext(ctx context.Context) CustomServiceOutput {
+func (i *CustomService) ToCustomServiceOutputWithContext(ctx context.Context) CustomServiceOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CustomServiceOutput)
+}
+
+func (i *CustomService) ToCustomServicePtrOutput() CustomServicePtrOutput {
+	return i.ToCustomServicePtrOutputWithContext(context.Background())
+}
+
+func (i *CustomService) ToCustomServicePtrOutputWithContext(ctx context.Context) CustomServicePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomServicePtrOutput)
+}
+
+type CustomServicePtrInput interface {
+	pulumi.Input
+
+	ToCustomServicePtrOutput() CustomServicePtrOutput
+	ToCustomServicePtrOutputWithContext(ctx context.Context) CustomServicePtrOutput
 }
 
 type CustomServiceOutput struct {
@@ -196,7 +211,7 @@ type CustomServiceOutput struct {
 }
 
 func (CustomServiceOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*CustomServiceOutput)(nil)).Elem()
+	return reflect.TypeOf((*CustomService)(nil))
 }
 
 func (o CustomServiceOutput) ToCustomServiceOutput() CustomServiceOutput {
@@ -207,6 +222,23 @@ func (o CustomServiceOutput) ToCustomServiceOutputWithContext(ctx context.Contex
 	return o
 }
 
+type CustomServicePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (CustomServicePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CustomService)(nil))
+}
+
+func (o CustomServicePtrOutput) ToCustomServicePtrOutput() CustomServicePtrOutput {
+	return o
+}
+
+func (o CustomServicePtrOutput) ToCustomServicePtrOutputWithContext(ctx context.Context) CustomServicePtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(CustomServiceOutput{})
+	pulumi.RegisterOutputType(CustomServicePtrOutput{})
 }

@@ -393,16 +393,31 @@ type IamMemberInput interface {
 	ToIamMemberOutputWithContext(ctx context.Context) IamMemberOutput
 }
 
-func (IamMember) ElementType() reflect.Type {
-	return reflect.TypeOf((*IamMember)(nil)).Elem()
+func (*IamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*IamMember)(nil))
 }
 
-func (i IamMember) ToIamMemberOutput() IamMemberOutput {
+func (i *IamMember) ToIamMemberOutput() IamMemberOutput {
 	return i.ToIamMemberOutputWithContext(context.Background())
 }
 
-func (i IamMember) ToIamMemberOutputWithContext(ctx context.Context) IamMemberOutput {
+func (i *IamMember) ToIamMemberOutputWithContext(ctx context.Context) IamMemberOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IamMemberOutput)
+}
+
+func (i *IamMember) ToIamMemberPtrOutput() IamMemberPtrOutput {
+	return i.ToIamMemberPtrOutputWithContext(context.Background())
+}
+
+func (i *IamMember) ToIamMemberPtrOutputWithContext(ctx context.Context) IamMemberPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IamMemberPtrOutput)
+}
+
+type IamMemberPtrInput interface {
+	pulumi.Input
+
+	ToIamMemberPtrOutput() IamMemberPtrOutput
+	ToIamMemberPtrOutputWithContext(ctx context.Context) IamMemberPtrOutput
 }
 
 type IamMemberOutput struct {
@@ -410,7 +425,7 @@ type IamMemberOutput struct {
 }
 
 func (IamMemberOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*IamMemberOutput)(nil)).Elem()
+	return reflect.TypeOf((*IamMember)(nil))
 }
 
 func (o IamMemberOutput) ToIamMemberOutput() IamMemberOutput {
@@ -421,6 +436,23 @@ func (o IamMemberOutput) ToIamMemberOutputWithContext(ctx context.Context) IamMe
 	return o
 }
 
+type IamMemberPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (IamMemberPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**IamMember)(nil))
+}
+
+func (o IamMemberPtrOutput) ToIamMemberPtrOutput() IamMemberPtrOutput {
+	return o
+}
+
+func (o IamMemberPtrOutput) ToIamMemberPtrOutputWithContext(ctx context.Context) IamMemberPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(IamMemberOutput{})
+	pulumi.RegisterOutputType(IamMemberPtrOutput{})
 }

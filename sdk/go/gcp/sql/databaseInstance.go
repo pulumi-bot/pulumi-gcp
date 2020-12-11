@@ -350,16 +350,31 @@ type DatabaseInstanceInput interface {
 	ToDatabaseInstanceOutputWithContext(ctx context.Context) DatabaseInstanceOutput
 }
 
-func (DatabaseInstance) ElementType() reflect.Type {
-	return reflect.TypeOf((*DatabaseInstance)(nil)).Elem()
+func (*DatabaseInstance) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatabaseInstance)(nil))
 }
 
-func (i DatabaseInstance) ToDatabaseInstanceOutput() DatabaseInstanceOutput {
+func (i *DatabaseInstance) ToDatabaseInstanceOutput() DatabaseInstanceOutput {
 	return i.ToDatabaseInstanceOutputWithContext(context.Background())
 }
 
-func (i DatabaseInstance) ToDatabaseInstanceOutputWithContext(ctx context.Context) DatabaseInstanceOutput {
+func (i *DatabaseInstance) ToDatabaseInstanceOutputWithContext(ctx context.Context) DatabaseInstanceOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DatabaseInstanceOutput)
+}
+
+func (i *DatabaseInstance) ToDatabaseInstancePtrOutput() DatabaseInstancePtrOutput {
+	return i.ToDatabaseInstancePtrOutputWithContext(context.Background())
+}
+
+func (i *DatabaseInstance) ToDatabaseInstancePtrOutputWithContext(ctx context.Context) DatabaseInstancePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatabaseInstancePtrOutput)
+}
+
+type DatabaseInstancePtrInput interface {
+	pulumi.Input
+
+	ToDatabaseInstancePtrOutput() DatabaseInstancePtrOutput
+	ToDatabaseInstancePtrOutputWithContext(ctx context.Context) DatabaseInstancePtrOutput
 }
 
 type DatabaseInstanceOutput struct {
@@ -367,7 +382,7 @@ type DatabaseInstanceOutput struct {
 }
 
 func (DatabaseInstanceOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DatabaseInstanceOutput)(nil)).Elem()
+	return reflect.TypeOf((*DatabaseInstance)(nil))
 }
 
 func (o DatabaseInstanceOutput) ToDatabaseInstanceOutput() DatabaseInstanceOutput {
@@ -378,6 +393,23 @@ func (o DatabaseInstanceOutput) ToDatabaseInstanceOutputWithContext(ctx context.
 	return o
 }
 
+type DatabaseInstancePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (DatabaseInstancePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatabaseInstance)(nil))
+}
+
+func (o DatabaseInstancePtrOutput) ToDatabaseInstancePtrOutput() DatabaseInstancePtrOutput {
+	return o
+}
+
+func (o DatabaseInstancePtrOutput) ToDatabaseInstancePtrOutputWithContext(ctx context.Context) DatabaseInstancePtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(DatabaseInstanceOutput{})
+	pulumi.RegisterOutputType(DatabaseInstancePtrOutput{})
 }

@@ -249,16 +249,31 @@ type PreventionJobTriggerInput interface {
 	ToPreventionJobTriggerOutputWithContext(ctx context.Context) PreventionJobTriggerOutput
 }
 
-func (PreventionJobTrigger) ElementType() reflect.Type {
-	return reflect.TypeOf((*PreventionJobTrigger)(nil)).Elem()
+func (*PreventionJobTrigger) ElementType() reflect.Type {
+	return reflect.TypeOf((*PreventionJobTrigger)(nil))
 }
 
-func (i PreventionJobTrigger) ToPreventionJobTriggerOutput() PreventionJobTriggerOutput {
+func (i *PreventionJobTrigger) ToPreventionJobTriggerOutput() PreventionJobTriggerOutput {
 	return i.ToPreventionJobTriggerOutputWithContext(context.Background())
 }
 
-func (i PreventionJobTrigger) ToPreventionJobTriggerOutputWithContext(ctx context.Context) PreventionJobTriggerOutput {
+func (i *PreventionJobTrigger) ToPreventionJobTriggerOutputWithContext(ctx context.Context) PreventionJobTriggerOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(PreventionJobTriggerOutput)
+}
+
+func (i *PreventionJobTrigger) ToPreventionJobTriggerPtrOutput() PreventionJobTriggerPtrOutput {
+	return i.ToPreventionJobTriggerPtrOutputWithContext(context.Background())
+}
+
+func (i *PreventionJobTrigger) ToPreventionJobTriggerPtrOutputWithContext(ctx context.Context) PreventionJobTriggerPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PreventionJobTriggerPtrOutput)
+}
+
+type PreventionJobTriggerPtrInput interface {
+	pulumi.Input
+
+	ToPreventionJobTriggerPtrOutput() PreventionJobTriggerPtrOutput
+	ToPreventionJobTriggerPtrOutputWithContext(ctx context.Context) PreventionJobTriggerPtrOutput
 }
 
 type PreventionJobTriggerOutput struct {
@@ -266,7 +281,7 @@ type PreventionJobTriggerOutput struct {
 }
 
 func (PreventionJobTriggerOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*PreventionJobTriggerOutput)(nil)).Elem()
+	return reflect.TypeOf((*PreventionJobTrigger)(nil))
 }
 
 func (o PreventionJobTriggerOutput) ToPreventionJobTriggerOutput() PreventionJobTriggerOutput {
@@ -277,6 +292,23 @@ func (o PreventionJobTriggerOutput) ToPreventionJobTriggerOutputWithContext(ctx 
 	return o
 }
 
+type PreventionJobTriggerPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (PreventionJobTriggerPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PreventionJobTrigger)(nil))
+}
+
+func (o PreventionJobTriggerPtrOutput) ToPreventionJobTriggerPtrOutput() PreventionJobTriggerPtrOutput {
+	return o
+}
+
+func (o PreventionJobTriggerPtrOutput) ToPreventionJobTriggerPtrOutputWithContext(ctx context.Context) PreventionJobTriggerPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(PreventionJobTriggerOutput{})
+	pulumi.RegisterOutputType(PreventionJobTriggerPtrOutput{})
 }

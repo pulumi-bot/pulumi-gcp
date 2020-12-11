@@ -240,16 +240,31 @@ type SecretInput interface {
 	ToSecretOutputWithContext(ctx context.Context) SecretOutput
 }
 
-func (Secret) ElementType() reflect.Type {
-	return reflect.TypeOf((*Secret)(nil)).Elem()
+func (*Secret) ElementType() reflect.Type {
+	return reflect.TypeOf((*Secret)(nil))
 }
 
-func (i Secret) ToSecretOutput() SecretOutput {
+func (i *Secret) ToSecretOutput() SecretOutput {
 	return i.ToSecretOutputWithContext(context.Background())
 }
 
-func (i Secret) ToSecretOutputWithContext(ctx context.Context) SecretOutput {
+func (i *Secret) ToSecretOutputWithContext(ctx context.Context) SecretOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretOutput)
+}
+
+func (i *Secret) ToSecretPtrOutput() SecretPtrOutput {
+	return i.ToSecretPtrOutputWithContext(context.Background())
+}
+
+func (i *Secret) ToSecretPtrOutputWithContext(ctx context.Context) SecretPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretPtrOutput)
+}
+
+type SecretPtrInput interface {
+	pulumi.Input
+
+	ToSecretPtrOutput() SecretPtrOutput
+	ToSecretPtrOutputWithContext(ctx context.Context) SecretPtrOutput
 }
 
 type SecretOutput struct {
@@ -257,7 +272,7 @@ type SecretOutput struct {
 }
 
 func (SecretOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretOutput)(nil)).Elem()
+	return reflect.TypeOf((*Secret)(nil))
 }
 
 func (o SecretOutput) ToSecretOutput() SecretOutput {
@@ -268,6 +283,23 @@ func (o SecretOutput) ToSecretOutputWithContext(ctx context.Context) SecretOutpu
 	return o
 }
 
+type SecretPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (SecretPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Secret)(nil))
+}
+
+func (o SecretPtrOutput) ToSecretPtrOutput() SecretPtrOutput {
+	return o
+}
+
+func (o SecretPtrOutput) ToSecretPtrOutputWithContext(ctx context.Context) SecretPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(SecretOutput{})
+	pulumi.RegisterOutputType(SecretPtrOutput{})
 }

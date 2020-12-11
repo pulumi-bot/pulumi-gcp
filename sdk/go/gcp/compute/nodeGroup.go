@@ -289,16 +289,31 @@ type NodeGroupInput interface {
 	ToNodeGroupOutputWithContext(ctx context.Context) NodeGroupOutput
 }
 
-func (NodeGroup) ElementType() reflect.Type {
-	return reflect.TypeOf((*NodeGroup)(nil)).Elem()
+func (*NodeGroup) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodeGroup)(nil))
 }
 
-func (i NodeGroup) ToNodeGroupOutput() NodeGroupOutput {
+func (i *NodeGroup) ToNodeGroupOutput() NodeGroupOutput {
 	return i.ToNodeGroupOutputWithContext(context.Background())
 }
 
-func (i NodeGroup) ToNodeGroupOutputWithContext(ctx context.Context) NodeGroupOutput {
+func (i *NodeGroup) ToNodeGroupOutputWithContext(ctx context.Context) NodeGroupOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NodeGroupOutput)
+}
+
+func (i *NodeGroup) ToNodeGroupPtrOutput() NodeGroupPtrOutput {
+	return i.ToNodeGroupPtrOutputWithContext(context.Background())
+}
+
+func (i *NodeGroup) ToNodeGroupPtrOutputWithContext(ctx context.Context) NodeGroupPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodeGroupPtrOutput)
+}
+
+type NodeGroupPtrInput interface {
+	pulumi.Input
+
+	ToNodeGroupPtrOutput() NodeGroupPtrOutput
+	ToNodeGroupPtrOutputWithContext(ctx context.Context) NodeGroupPtrOutput
 }
 
 type NodeGroupOutput struct {
@@ -306,7 +321,7 @@ type NodeGroupOutput struct {
 }
 
 func (NodeGroupOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*NodeGroupOutput)(nil)).Elem()
+	return reflect.TypeOf((*NodeGroup)(nil))
 }
 
 func (o NodeGroupOutput) ToNodeGroupOutput() NodeGroupOutput {
@@ -317,6 +332,23 @@ func (o NodeGroupOutput) ToNodeGroupOutputWithContext(ctx context.Context) NodeG
 	return o
 }
 
+type NodeGroupPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (NodeGroupPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NodeGroup)(nil))
+}
+
+func (o NodeGroupPtrOutput) ToNodeGroupPtrOutput() NodeGroupPtrOutput {
+	return o
+}
+
+func (o NodeGroupPtrOutput) ToNodeGroupPtrOutputWithContext(ctx context.Context) NodeGroupPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(NodeGroupOutput{})
+	pulumi.RegisterOutputType(NodeGroupPtrOutput{})
 }

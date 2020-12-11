@@ -519,16 +519,31 @@ type RegionDiskInput interface {
 	ToRegionDiskOutputWithContext(ctx context.Context) RegionDiskOutput
 }
 
-func (RegionDisk) ElementType() reflect.Type {
-	return reflect.TypeOf((*RegionDisk)(nil)).Elem()
+func (*RegionDisk) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionDisk)(nil))
 }
 
-func (i RegionDisk) ToRegionDiskOutput() RegionDiskOutput {
+func (i *RegionDisk) ToRegionDiskOutput() RegionDiskOutput {
 	return i.ToRegionDiskOutputWithContext(context.Background())
 }
 
-func (i RegionDisk) ToRegionDiskOutputWithContext(ctx context.Context) RegionDiskOutput {
+func (i *RegionDisk) ToRegionDiskOutputWithContext(ctx context.Context) RegionDiskOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RegionDiskOutput)
+}
+
+func (i *RegionDisk) ToRegionDiskPtrOutput() RegionDiskPtrOutput {
+	return i.ToRegionDiskPtrOutputWithContext(context.Background())
+}
+
+func (i *RegionDisk) ToRegionDiskPtrOutputWithContext(ctx context.Context) RegionDiskPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegionDiskPtrOutput)
+}
+
+type RegionDiskPtrInput interface {
+	pulumi.Input
+
+	ToRegionDiskPtrOutput() RegionDiskPtrOutput
+	ToRegionDiskPtrOutputWithContext(ctx context.Context) RegionDiskPtrOutput
 }
 
 type RegionDiskOutput struct {
@@ -536,7 +551,7 @@ type RegionDiskOutput struct {
 }
 
 func (RegionDiskOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RegionDiskOutput)(nil)).Elem()
+	return reflect.TypeOf((*RegionDisk)(nil))
 }
 
 func (o RegionDiskOutput) ToRegionDiskOutput() RegionDiskOutput {
@@ -547,6 +562,23 @@ func (o RegionDiskOutput) ToRegionDiskOutputWithContext(ctx context.Context) Reg
 	return o
 }
 
+type RegionDiskPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (RegionDiskPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RegionDisk)(nil))
+}
+
+func (o RegionDiskPtrOutput) ToRegionDiskPtrOutput() RegionDiskPtrOutput {
+	return o
+}
+
+func (o RegionDiskPtrOutput) ToRegionDiskPtrOutputWithContext(ctx context.Context) RegionDiskPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(RegionDiskOutput{})
+	pulumi.RegisterOutputType(RegionDiskPtrOutput{})
 }

@@ -266,16 +266,31 @@ type ApplicationInput interface {
 	ToApplicationOutputWithContext(ctx context.Context) ApplicationOutput
 }
 
-func (Application) ElementType() reflect.Type {
-	return reflect.TypeOf((*Application)(nil)).Elem()
+func (*Application) ElementType() reflect.Type {
+	return reflect.TypeOf((*Application)(nil))
 }
 
-func (i Application) ToApplicationOutput() ApplicationOutput {
+func (i *Application) ToApplicationOutput() ApplicationOutput {
 	return i.ToApplicationOutputWithContext(context.Background())
 }
 
-func (i Application) ToApplicationOutputWithContext(ctx context.Context) ApplicationOutput {
+func (i *Application) ToApplicationOutputWithContext(ctx context.Context) ApplicationOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ApplicationOutput)
+}
+
+func (i *Application) ToApplicationPtrOutput() ApplicationPtrOutput {
+	return i.ToApplicationPtrOutputWithContext(context.Background())
+}
+
+func (i *Application) ToApplicationPtrOutputWithContext(ctx context.Context) ApplicationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApplicationPtrOutput)
+}
+
+type ApplicationPtrInput interface {
+	pulumi.Input
+
+	ToApplicationPtrOutput() ApplicationPtrOutput
+	ToApplicationPtrOutputWithContext(ctx context.Context) ApplicationPtrOutput
 }
 
 type ApplicationOutput struct {
@@ -283,7 +298,7 @@ type ApplicationOutput struct {
 }
 
 func (ApplicationOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ApplicationOutput)(nil)).Elem()
+	return reflect.TypeOf((*Application)(nil))
 }
 
 func (o ApplicationOutput) ToApplicationOutput() ApplicationOutput {
@@ -294,6 +309,23 @@ func (o ApplicationOutput) ToApplicationOutputWithContext(ctx context.Context) A
 	return o
 }
 
+type ApplicationPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ApplicationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Application)(nil))
+}
+
+func (o ApplicationPtrOutput) ToApplicationPtrOutput() ApplicationPtrOutput {
+	return o
+}
+
+func (o ApplicationPtrOutput) ToApplicationPtrOutputWithContext(ctx context.Context) ApplicationPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ApplicationOutput{})
+	pulumi.RegisterOutputType(ApplicationPtrOutput{})
 }

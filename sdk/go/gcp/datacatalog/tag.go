@@ -504,16 +504,31 @@ type TagInput interface {
 	ToTagOutputWithContext(ctx context.Context) TagOutput
 }
 
-func (Tag) ElementType() reflect.Type {
-	return reflect.TypeOf((*Tag)(nil)).Elem()
+func (*Tag) ElementType() reflect.Type {
+	return reflect.TypeOf((*Tag)(nil))
 }
 
-func (i Tag) ToTagOutput() TagOutput {
+func (i *Tag) ToTagOutput() TagOutput {
 	return i.ToTagOutputWithContext(context.Background())
 }
 
-func (i Tag) ToTagOutputWithContext(ctx context.Context) TagOutput {
+func (i *Tag) ToTagOutputWithContext(ctx context.Context) TagOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TagOutput)
+}
+
+func (i *Tag) ToTagPtrOutput() TagPtrOutput {
+	return i.ToTagPtrOutputWithContext(context.Background())
+}
+
+func (i *Tag) ToTagPtrOutputWithContext(ctx context.Context) TagPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TagPtrOutput)
+}
+
+type TagPtrInput interface {
+	pulumi.Input
+
+	ToTagPtrOutput() TagPtrOutput
+	ToTagPtrOutputWithContext(ctx context.Context) TagPtrOutput
 }
 
 type TagOutput struct {
@@ -521,7 +536,7 @@ type TagOutput struct {
 }
 
 func (TagOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*TagOutput)(nil)).Elem()
+	return reflect.TypeOf((*Tag)(nil))
 }
 
 func (o TagOutput) ToTagOutput() TagOutput {
@@ -532,6 +547,23 @@ func (o TagOutput) ToTagOutputWithContext(ctx context.Context) TagOutput {
 	return o
 }
 
+type TagPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (TagPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Tag)(nil))
+}
+
+func (o TagPtrOutput) ToTagPtrOutput() TagPtrOutput {
+	return o
+}
+
+func (o TagPtrOutput) ToTagPtrOutputWithContext(ctx context.Context) TagPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(TagOutput{})
+	pulumi.RegisterOutputType(TagPtrOutput{})
 }

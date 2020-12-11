@@ -258,16 +258,31 @@ type PerInstanceConfigInput interface {
 	ToPerInstanceConfigOutputWithContext(ctx context.Context) PerInstanceConfigOutput
 }
 
-func (PerInstanceConfig) ElementType() reflect.Type {
-	return reflect.TypeOf((*PerInstanceConfig)(nil)).Elem()
+func (*PerInstanceConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*PerInstanceConfig)(nil))
 }
 
-func (i PerInstanceConfig) ToPerInstanceConfigOutput() PerInstanceConfigOutput {
+func (i *PerInstanceConfig) ToPerInstanceConfigOutput() PerInstanceConfigOutput {
 	return i.ToPerInstanceConfigOutputWithContext(context.Background())
 }
 
-func (i PerInstanceConfig) ToPerInstanceConfigOutputWithContext(ctx context.Context) PerInstanceConfigOutput {
+func (i *PerInstanceConfig) ToPerInstanceConfigOutputWithContext(ctx context.Context) PerInstanceConfigOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(PerInstanceConfigOutput)
+}
+
+func (i *PerInstanceConfig) ToPerInstanceConfigPtrOutput() PerInstanceConfigPtrOutput {
+	return i.ToPerInstanceConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *PerInstanceConfig) ToPerInstanceConfigPtrOutputWithContext(ctx context.Context) PerInstanceConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PerInstanceConfigPtrOutput)
+}
+
+type PerInstanceConfigPtrInput interface {
+	pulumi.Input
+
+	ToPerInstanceConfigPtrOutput() PerInstanceConfigPtrOutput
+	ToPerInstanceConfigPtrOutputWithContext(ctx context.Context) PerInstanceConfigPtrOutput
 }
 
 type PerInstanceConfigOutput struct {
@@ -275,7 +290,7 @@ type PerInstanceConfigOutput struct {
 }
 
 func (PerInstanceConfigOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*PerInstanceConfigOutput)(nil)).Elem()
+	return reflect.TypeOf((*PerInstanceConfig)(nil))
 }
 
 func (o PerInstanceConfigOutput) ToPerInstanceConfigOutput() PerInstanceConfigOutput {
@@ -286,6 +301,23 @@ func (o PerInstanceConfigOutput) ToPerInstanceConfigOutputWithContext(ctx contex
 	return o
 }
 
+type PerInstanceConfigPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (PerInstanceConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PerInstanceConfig)(nil))
+}
+
+func (o PerInstanceConfigPtrOutput) ToPerInstanceConfigPtrOutput() PerInstanceConfigPtrOutput {
+	return o
+}
+
+func (o PerInstanceConfigPtrOutput) ToPerInstanceConfigPtrOutputWithContext(ctx context.Context) PerInstanceConfigPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(PerInstanceConfigOutput{})
+	pulumi.RegisterOutputType(PerInstanceConfigPtrOutput{})
 }

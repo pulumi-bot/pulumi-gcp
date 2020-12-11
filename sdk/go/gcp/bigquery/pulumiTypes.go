@@ -54,7 +54,7 @@ func (i AppProfileSingleClusterRoutingArgs) ToAppProfileSingleClusterRoutingPtrO
 }
 
 func (i AppProfileSingleClusterRoutingArgs) ToAppProfileSingleClusterRoutingPtrOutputWithContext(ctx context.Context) AppProfileSingleClusterRoutingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AppProfileSingleClusterRoutingOutput).ToAppProfileSingleClusterRoutingPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(AppProfileSingleClusterRoutingOutput).ToAppProfileSingleClusterRoutingPtrOutput()
 }
 
 // AppProfileSingleClusterRoutingPtrInput is an input type that accepts AppProfileSingleClusterRoutingArgs, AppProfileSingleClusterRoutingPtr and AppProfileSingleClusterRoutingPtrOutput values.
@@ -87,7 +87,7 @@ func (i *appProfileSingleClusterRoutingPtrType) ToAppProfileSingleClusterRouting
 }
 
 func (i *appProfileSingleClusterRoutingPtrType) ToAppProfileSingleClusterRoutingPtrOutputWithContext(ctx context.Context) AppProfileSingleClusterRoutingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AppProfileSingleClusterRoutingPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(AppProfileSingleClusterRoutingOutput).ToAppProfileSingleClusterRoutingPtrOutput()
 }
 
 type AppProfileSingleClusterRoutingOutput struct{ *pulumi.OutputState }
@@ -218,7 +218,7 @@ func (i ConnectionCloudSqlArgs) ToConnectionCloudSqlPtrOutput() ConnectionCloudS
 }
 
 func (i ConnectionCloudSqlArgs) ToConnectionCloudSqlPtrOutputWithContext(ctx context.Context) ConnectionCloudSqlPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ConnectionCloudSqlOutput).ToConnectionCloudSqlPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ConnectionCloudSqlOutput).ToConnectionCloudSqlPtrOutput()
 }
 
 // ConnectionCloudSqlPtrInput is an input type that accepts ConnectionCloudSqlArgs, ConnectionCloudSqlPtr and ConnectionCloudSqlPtrOutput values.
@@ -251,7 +251,7 @@ func (i *connectionCloudSqlPtrType) ToConnectionCloudSqlPtrOutput() ConnectionCl
 }
 
 func (i *connectionCloudSqlPtrType) ToConnectionCloudSqlPtrOutputWithContext(ctx context.Context) ConnectionCloudSqlPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ConnectionCloudSqlPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ConnectionCloudSqlOutput).ToConnectionCloudSqlPtrOutput()
 }
 
 type ConnectionCloudSqlOutput struct{ *pulumi.OutputState }
@@ -404,7 +404,7 @@ func (i ConnectionCloudSqlCredentialArgs) ToConnectionCloudSqlCredentialPtrOutpu
 }
 
 func (i ConnectionCloudSqlCredentialArgs) ToConnectionCloudSqlCredentialPtrOutputWithContext(ctx context.Context) ConnectionCloudSqlCredentialPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ConnectionCloudSqlCredentialOutput).ToConnectionCloudSqlCredentialPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ConnectionCloudSqlCredentialOutput).ToConnectionCloudSqlCredentialPtrOutput()
 }
 
 // ConnectionCloudSqlCredentialPtrInput is an input type that accepts ConnectionCloudSqlCredentialArgs, ConnectionCloudSqlCredentialPtr and ConnectionCloudSqlCredentialPtrOutput values.
@@ -437,7 +437,7 @@ func (i *connectionCloudSqlCredentialPtrType) ToConnectionCloudSqlCredentialPtrO
 }
 
 func (i *connectionCloudSqlCredentialPtrType) ToConnectionCloudSqlCredentialPtrOutputWithContext(ctx context.Context) ConnectionCloudSqlCredentialPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ConnectionCloudSqlCredentialPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ConnectionCloudSqlCredentialOutput).ToConnectionCloudSqlCredentialPtrOutput()
 }
 
 type ConnectionCloudSqlCredentialOutput struct{ *pulumi.OutputState }
@@ -552,7 +552,7 @@ func (i DataTransferConfigEmailPreferencesArgs) ToDataTransferConfigEmailPrefere
 }
 
 func (i DataTransferConfigEmailPreferencesArgs) ToDataTransferConfigEmailPreferencesPtrOutputWithContext(ctx context.Context) DataTransferConfigEmailPreferencesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DataTransferConfigEmailPreferencesOutput).ToDataTransferConfigEmailPreferencesPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(DataTransferConfigEmailPreferencesOutput).ToDataTransferConfigEmailPreferencesPtrOutput()
 }
 
 // DataTransferConfigEmailPreferencesPtrInput is an input type that accepts DataTransferConfigEmailPreferencesArgs, DataTransferConfigEmailPreferencesPtr and DataTransferConfigEmailPreferencesPtrOutput values.
@@ -585,7 +585,7 @@ func (i *dataTransferConfigEmailPreferencesPtrType) ToDataTransferConfigEmailPre
 }
 
 func (i *dataTransferConfigEmailPreferencesPtrType) ToDataTransferConfigEmailPreferencesPtrOutputWithContext(ctx context.Context) DataTransferConfigEmailPreferencesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DataTransferConfigEmailPreferencesPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(DataTransferConfigEmailPreferencesOutput).ToDataTransferConfigEmailPreferencesPtrOutput()
 }
 
 type DataTransferConfigEmailPreferencesOutput struct{ *pulumi.OutputState }
@@ -713,7 +713,7 @@ func (i DataTransferConfigScheduleOptionsArgs) ToDataTransferConfigScheduleOptio
 }
 
 func (i DataTransferConfigScheduleOptionsArgs) ToDataTransferConfigScheduleOptionsPtrOutputWithContext(ctx context.Context) DataTransferConfigScheduleOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DataTransferConfigScheduleOptionsOutput).ToDataTransferConfigScheduleOptionsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(DataTransferConfigScheduleOptionsOutput).ToDataTransferConfigScheduleOptionsPtrOutput()
 }
 
 // DataTransferConfigScheduleOptionsPtrInput is an input type that accepts DataTransferConfigScheduleOptionsArgs, DataTransferConfigScheduleOptionsPtr and DataTransferConfigScheduleOptionsPtrOutput values.
@@ -746,7 +746,7 @@ func (i *dataTransferConfigScheduleOptionsPtrType) ToDataTransferConfigScheduleO
 }
 
 func (i *dataTransferConfigScheduleOptionsPtrType) ToDataTransferConfigScheduleOptionsPtrOutputWithContext(ctx context.Context) DataTransferConfigScheduleOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DataTransferConfigScheduleOptionsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(DataTransferConfigScheduleOptionsOutput).ToDataTransferConfigScheduleOptionsPtrOutput()
 }
 
 type DataTransferConfigScheduleOptionsOutput struct{ *pulumi.OutputState }
@@ -898,7 +898,7 @@ func (i DataTransferConfigSensitiveParamsArgs) ToDataTransferConfigSensitivePara
 }
 
 func (i DataTransferConfigSensitiveParamsArgs) ToDataTransferConfigSensitiveParamsPtrOutputWithContext(ctx context.Context) DataTransferConfigSensitiveParamsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DataTransferConfigSensitiveParamsOutput).ToDataTransferConfigSensitiveParamsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(DataTransferConfigSensitiveParamsOutput).ToDataTransferConfigSensitiveParamsPtrOutput()
 }
 
 // DataTransferConfigSensitiveParamsPtrInput is an input type that accepts DataTransferConfigSensitiveParamsArgs, DataTransferConfigSensitiveParamsPtr and DataTransferConfigSensitiveParamsPtrOutput values.
@@ -931,7 +931,7 @@ func (i *dataTransferConfigSensitiveParamsPtrType) ToDataTransferConfigSensitive
 }
 
 func (i *dataTransferConfigSensitiveParamsPtrType) ToDataTransferConfigSensitiveParamsPtrOutputWithContext(ctx context.Context) DataTransferConfigSensitiveParamsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DataTransferConfigSensitiveParamsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(DataTransferConfigSensitiveParamsOutput).ToDataTransferConfigSensitiveParamsPtrOutput()
 }
 
 type DataTransferConfigSensitiveParamsOutput struct{ *pulumi.OutputState }
@@ -1218,7 +1218,7 @@ func (i DatasetAccessViewArgs) ToDatasetAccessViewPtrOutput() DatasetAccessViewP
 }
 
 func (i DatasetAccessViewArgs) ToDatasetAccessViewPtrOutputWithContext(ctx context.Context) DatasetAccessViewPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DatasetAccessViewOutput).ToDatasetAccessViewPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetAccessViewOutput).ToDatasetAccessViewPtrOutput()
 }
 
 // DatasetAccessViewPtrInput is an input type that accepts DatasetAccessViewArgs, DatasetAccessViewPtr and DatasetAccessViewPtrOutput values.
@@ -1251,7 +1251,7 @@ func (i *datasetAccessViewPtrType) ToDatasetAccessViewPtrOutput() DatasetAccessV
 }
 
 func (i *datasetAccessViewPtrType) ToDatasetAccessViewPtrOutputWithContext(ctx context.Context) DatasetAccessViewPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DatasetAccessViewPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetAccessViewOutput).ToDatasetAccessViewPtrOutput()
 }
 
 type DatasetAccessViewOutput struct{ *pulumi.OutputState }
@@ -1387,7 +1387,7 @@ func (i DatasetDefaultEncryptionConfigurationArgs) ToDatasetDefaultEncryptionCon
 }
 
 func (i DatasetDefaultEncryptionConfigurationArgs) ToDatasetDefaultEncryptionConfigurationPtrOutputWithContext(ctx context.Context) DatasetDefaultEncryptionConfigurationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DatasetDefaultEncryptionConfigurationOutput).ToDatasetDefaultEncryptionConfigurationPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetDefaultEncryptionConfigurationOutput).ToDatasetDefaultEncryptionConfigurationPtrOutput()
 }
 
 // DatasetDefaultEncryptionConfigurationPtrInput is an input type that accepts DatasetDefaultEncryptionConfigurationArgs, DatasetDefaultEncryptionConfigurationPtr and DatasetDefaultEncryptionConfigurationPtrOutput values.
@@ -1420,7 +1420,7 @@ func (i *datasetDefaultEncryptionConfigurationPtrType) ToDatasetDefaultEncryptio
 }
 
 func (i *datasetDefaultEncryptionConfigurationPtrType) ToDatasetDefaultEncryptionConfigurationPtrOutputWithContext(ctx context.Context) DatasetDefaultEncryptionConfigurationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DatasetDefaultEncryptionConfigurationPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetDefaultEncryptionConfigurationOutput).ToDatasetDefaultEncryptionConfigurationPtrOutput()
 }
 
 type DatasetDefaultEncryptionConfigurationOutput struct{ *pulumi.OutputState }
@@ -1524,7 +1524,7 @@ func (i DatasetIamBindingConditionArgs) ToDatasetIamBindingConditionPtrOutput() 
 }
 
 func (i DatasetIamBindingConditionArgs) ToDatasetIamBindingConditionPtrOutputWithContext(ctx context.Context) DatasetIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DatasetIamBindingConditionOutput).ToDatasetIamBindingConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetIamBindingConditionOutput).ToDatasetIamBindingConditionPtrOutput()
 }
 
 // DatasetIamBindingConditionPtrInput is an input type that accepts DatasetIamBindingConditionArgs, DatasetIamBindingConditionPtr and DatasetIamBindingConditionPtrOutput values.
@@ -1557,7 +1557,7 @@ func (i *datasetIamBindingConditionPtrType) ToDatasetIamBindingConditionPtrOutpu
 }
 
 func (i *datasetIamBindingConditionPtrType) ToDatasetIamBindingConditionPtrOutputWithContext(ctx context.Context) DatasetIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DatasetIamBindingConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetIamBindingConditionOutput).ToDatasetIamBindingConditionPtrOutput()
 }
 
 type DatasetIamBindingConditionOutput struct{ *pulumi.OutputState }
@@ -1680,7 +1680,7 @@ func (i DatasetIamMemberConditionArgs) ToDatasetIamMemberConditionPtrOutput() Da
 }
 
 func (i DatasetIamMemberConditionArgs) ToDatasetIamMemberConditionPtrOutputWithContext(ctx context.Context) DatasetIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DatasetIamMemberConditionOutput).ToDatasetIamMemberConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetIamMemberConditionOutput).ToDatasetIamMemberConditionPtrOutput()
 }
 
 // DatasetIamMemberConditionPtrInput is an input type that accepts DatasetIamMemberConditionArgs, DatasetIamMemberConditionPtr and DatasetIamMemberConditionPtrOutput values.
@@ -1713,7 +1713,7 @@ func (i *datasetIamMemberConditionPtrType) ToDatasetIamMemberConditionPtrOutput(
 }
 
 func (i *datasetIamMemberConditionPtrType) ToDatasetIamMemberConditionPtrOutputWithContext(ctx context.Context) DatasetIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DatasetIamMemberConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetIamMemberConditionOutput).ToDatasetIamMemberConditionPtrOutput()
 }
 
 type DatasetIamMemberConditionOutput struct{ *pulumi.OutputState }
@@ -1842,7 +1842,7 @@ func (i IamBindingConditionArgs) ToIamBindingConditionPtrOutput() IamBindingCond
 }
 
 func (i IamBindingConditionArgs) ToIamBindingConditionPtrOutputWithContext(ctx context.Context) IamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IamBindingConditionOutput).ToIamBindingConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(IamBindingConditionOutput).ToIamBindingConditionPtrOutput()
 }
 
 // IamBindingConditionPtrInput is an input type that accepts IamBindingConditionArgs, IamBindingConditionPtr and IamBindingConditionPtrOutput values.
@@ -1875,7 +1875,7 @@ func (i *iamBindingConditionPtrType) ToIamBindingConditionPtrOutput() IamBinding
 }
 
 func (i *iamBindingConditionPtrType) ToIamBindingConditionPtrOutputWithContext(ctx context.Context) IamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IamBindingConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(IamBindingConditionOutput).ToIamBindingConditionPtrOutput()
 }
 
 type IamBindingConditionOutput struct{ *pulumi.OutputState }
@@ -2011,7 +2011,7 @@ func (i IamMemberConditionArgs) ToIamMemberConditionPtrOutput() IamMemberConditi
 }
 
 func (i IamMemberConditionArgs) ToIamMemberConditionPtrOutputWithContext(ctx context.Context) IamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IamMemberConditionOutput).ToIamMemberConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(IamMemberConditionOutput).ToIamMemberConditionPtrOutput()
 }
 
 // IamMemberConditionPtrInput is an input type that accepts IamMemberConditionArgs, IamMemberConditionPtr and IamMemberConditionPtrOutput values.
@@ -2044,7 +2044,7 @@ func (i *iamMemberConditionPtrType) ToIamMemberConditionPtrOutput() IamMemberCon
 }
 
 func (i *iamMemberConditionPtrType) ToIamMemberConditionPtrOutputWithContext(ctx context.Context) IamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IamMemberConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(IamMemberConditionOutput).ToIamMemberConditionPtrOutput()
 }
 
 type IamMemberConditionOutput struct{ *pulumi.OutputState }
@@ -2218,7 +2218,7 @@ func (i JobCopyArgs) ToJobCopyPtrOutput() JobCopyPtrOutput {
 }
 
 func (i JobCopyArgs) ToJobCopyPtrOutputWithContext(ctx context.Context) JobCopyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobCopyOutput).ToJobCopyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(JobCopyOutput).ToJobCopyPtrOutput()
 }
 
 // JobCopyPtrInput is an input type that accepts JobCopyArgs, JobCopyPtr and JobCopyPtrOutput values.
@@ -2251,7 +2251,7 @@ func (i *jobCopyPtrType) ToJobCopyPtrOutput() JobCopyPtrOutput {
 }
 
 func (i *jobCopyPtrType) ToJobCopyPtrOutputWithContext(ctx context.Context) JobCopyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobCopyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(JobCopyOutput).ToJobCopyPtrOutput()
 }
 
 type JobCopyOutput struct{ *pulumi.OutputState }
@@ -2443,7 +2443,7 @@ func (i JobCopyDestinationEncryptionConfigurationArgs) ToJobCopyDestinationEncry
 }
 
 func (i JobCopyDestinationEncryptionConfigurationArgs) ToJobCopyDestinationEncryptionConfigurationPtrOutputWithContext(ctx context.Context) JobCopyDestinationEncryptionConfigurationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobCopyDestinationEncryptionConfigurationOutput).ToJobCopyDestinationEncryptionConfigurationPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(JobCopyDestinationEncryptionConfigurationOutput).ToJobCopyDestinationEncryptionConfigurationPtrOutput()
 }
 
 // JobCopyDestinationEncryptionConfigurationPtrInput is an input type that accepts JobCopyDestinationEncryptionConfigurationArgs, JobCopyDestinationEncryptionConfigurationPtr and JobCopyDestinationEncryptionConfigurationPtrOutput values.
@@ -2476,7 +2476,7 @@ func (i *jobCopyDestinationEncryptionConfigurationPtrType) ToJobCopyDestinationE
 }
 
 func (i *jobCopyDestinationEncryptionConfigurationPtrType) ToJobCopyDestinationEncryptionConfigurationPtrOutputWithContext(ctx context.Context) JobCopyDestinationEncryptionConfigurationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobCopyDestinationEncryptionConfigurationPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(JobCopyDestinationEncryptionConfigurationOutput).ToJobCopyDestinationEncryptionConfigurationPtrOutput()
 }
 
 type JobCopyDestinationEncryptionConfigurationOutput struct{ *pulumi.OutputState }
@@ -2588,7 +2588,7 @@ func (i JobCopyDestinationTableArgs) ToJobCopyDestinationTablePtrOutput() JobCop
 }
 
 func (i JobCopyDestinationTableArgs) ToJobCopyDestinationTablePtrOutputWithContext(ctx context.Context) JobCopyDestinationTablePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobCopyDestinationTableOutput).ToJobCopyDestinationTablePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(JobCopyDestinationTableOutput).ToJobCopyDestinationTablePtrOutput()
 }
 
 // JobCopyDestinationTablePtrInput is an input type that accepts JobCopyDestinationTableArgs, JobCopyDestinationTablePtr and JobCopyDestinationTablePtrOutput values.
@@ -2621,7 +2621,7 @@ func (i *jobCopyDestinationTablePtrType) ToJobCopyDestinationTablePtrOutput() Jo
 }
 
 func (i *jobCopyDestinationTablePtrType) ToJobCopyDestinationTablePtrOutputWithContext(ctx context.Context) JobCopyDestinationTablePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobCopyDestinationTablePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(JobCopyDestinationTableOutput).ToJobCopyDestinationTablePtrOutput()
 }
 
 type JobCopyDestinationTableOutput struct{ *pulumi.OutputState }
@@ -2909,7 +2909,7 @@ func (i JobExtractArgs) ToJobExtractPtrOutput() JobExtractPtrOutput {
 }
 
 func (i JobExtractArgs) ToJobExtractPtrOutputWithContext(ctx context.Context) JobExtractPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobExtractOutput).ToJobExtractPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(JobExtractOutput).ToJobExtractPtrOutput()
 }
 
 // JobExtractPtrInput is an input type that accepts JobExtractArgs, JobExtractPtr and JobExtractPtrOutput values.
@@ -2942,7 +2942,7 @@ func (i *jobExtractPtrType) ToJobExtractPtrOutput() JobExtractPtrOutput {
 }
 
 func (i *jobExtractPtrType) ToJobExtractPtrOutputWithContext(ctx context.Context) JobExtractPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobExtractPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(JobExtractOutput).ToJobExtractPtrOutput()
 }
 
 type JobExtractOutput struct{ *pulumi.OutputState }
@@ -3165,7 +3165,7 @@ func (i JobExtractSourceModelArgs) ToJobExtractSourceModelPtrOutput() JobExtract
 }
 
 func (i JobExtractSourceModelArgs) ToJobExtractSourceModelPtrOutputWithContext(ctx context.Context) JobExtractSourceModelPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobExtractSourceModelOutput).ToJobExtractSourceModelPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(JobExtractSourceModelOutput).ToJobExtractSourceModelPtrOutput()
 }
 
 // JobExtractSourceModelPtrInput is an input type that accepts JobExtractSourceModelArgs, JobExtractSourceModelPtr and JobExtractSourceModelPtrOutput values.
@@ -3198,7 +3198,7 @@ func (i *jobExtractSourceModelPtrType) ToJobExtractSourceModelPtrOutput() JobExt
 }
 
 func (i *jobExtractSourceModelPtrType) ToJobExtractSourceModelPtrOutputWithContext(ctx context.Context) JobExtractSourceModelPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobExtractSourceModelPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(JobExtractSourceModelOutput).ToJobExtractSourceModelPtrOutput()
 }
 
 type JobExtractSourceModelOutput struct{ *pulumi.OutputState }
@@ -3336,7 +3336,7 @@ func (i JobExtractSourceTableArgs) ToJobExtractSourceTablePtrOutput() JobExtract
 }
 
 func (i JobExtractSourceTableArgs) ToJobExtractSourceTablePtrOutputWithContext(ctx context.Context) JobExtractSourceTablePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobExtractSourceTableOutput).ToJobExtractSourceTablePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(JobExtractSourceTableOutput).ToJobExtractSourceTablePtrOutput()
 }
 
 // JobExtractSourceTablePtrInput is an input type that accepts JobExtractSourceTableArgs, JobExtractSourceTablePtr and JobExtractSourceTablePtrOutput values.
@@ -3369,7 +3369,7 @@ func (i *jobExtractSourceTablePtrType) ToJobExtractSourceTablePtrOutput() JobExt
 }
 
 func (i *jobExtractSourceTablePtrType) ToJobExtractSourceTablePtrOutputWithContext(ctx context.Context) JobExtractSourceTablePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobExtractSourceTablePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(JobExtractSourceTableOutput).ToJobExtractSourceTablePtrOutput()
 }
 
 type JobExtractSourceTableOutput struct{ *pulumi.OutputState }
@@ -3679,7 +3679,7 @@ func (i JobLoadArgs) ToJobLoadPtrOutput() JobLoadPtrOutput {
 }
 
 func (i JobLoadArgs) ToJobLoadPtrOutputWithContext(ctx context.Context) JobLoadPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobLoadOutput).ToJobLoadPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(JobLoadOutput).ToJobLoadPtrOutput()
 }
 
 // JobLoadPtrInput is an input type that accepts JobLoadArgs, JobLoadPtr and JobLoadPtrOutput values.
@@ -3712,7 +3712,7 @@ func (i *jobLoadPtrType) ToJobLoadPtrOutput() JobLoadPtrOutput {
 }
 
 func (i *jobLoadPtrType) ToJobLoadPtrOutputWithContext(ctx context.Context) JobLoadPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobLoadPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(JobLoadOutput).ToJobLoadPtrOutput()
 }
 
 type JobLoadOutput struct{ *pulumi.OutputState }
@@ -4192,7 +4192,7 @@ func (i JobLoadDestinationEncryptionConfigurationArgs) ToJobLoadDestinationEncry
 }
 
 func (i JobLoadDestinationEncryptionConfigurationArgs) ToJobLoadDestinationEncryptionConfigurationPtrOutputWithContext(ctx context.Context) JobLoadDestinationEncryptionConfigurationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobLoadDestinationEncryptionConfigurationOutput).ToJobLoadDestinationEncryptionConfigurationPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(JobLoadDestinationEncryptionConfigurationOutput).ToJobLoadDestinationEncryptionConfigurationPtrOutput()
 }
 
 // JobLoadDestinationEncryptionConfigurationPtrInput is an input type that accepts JobLoadDestinationEncryptionConfigurationArgs, JobLoadDestinationEncryptionConfigurationPtr and JobLoadDestinationEncryptionConfigurationPtrOutput values.
@@ -4225,7 +4225,7 @@ func (i *jobLoadDestinationEncryptionConfigurationPtrType) ToJobLoadDestinationE
 }
 
 func (i *jobLoadDestinationEncryptionConfigurationPtrType) ToJobLoadDestinationEncryptionConfigurationPtrOutputWithContext(ctx context.Context) JobLoadDestinationEncryptionConfigurationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobLoadDestinationEncryptionConfigurationPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(JobLoadDestinationEncryptionConfigurationOutput).ToJobLoadDestinationEncryptionConfigurationPtrOutput()
 }
 
 type JobLoadDestinationEncryptionConfigurationOutput struct{ *pulumi.OutputState }
@@ -4337,7 +4337,7 @@ func (i JobLoadDestinationTableArgs) ToJobLoadDestinationTablePtrOutput() JobLoa
 }
 
 func (i JobLoadDestinationTableArgs) ToJobLoadDestinationTablePtrOutputWithContext(ctx context.Context) JobLoadDestinationTablePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobLoadDestinationTableOutput).ToJobLoadDestinationTablePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(JobLoadDestinationTableOutput).ToJobLoadDestinationTablePtrOutput()
 }
 
 // JobLoadDestinationTablePtrInput is an input type that accepts JobLoadDestinationTableArgs, JobLoadDestinationTablePtr and JobLoadDestinationTablePtrOutput values.
@@ -4370,7 +4370,7 @@ func (i *jobLoadDestinationTablePtrType) ToJobLoadDestinationTablePtrOutput() Jo
 }
 
 func (i *jobLoadDestinationTablePtrType) ToJobLoadDestinationTablePtrOutputWithContext(ctx context.Context) JobLoadDestinationTablePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobLoadDestinationTablePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(JobLoadDestinationTableOutput).ToJobLoadDestinationTablePtrOutput()
 }
 
 type JobLoadDestinationTableOutput struct{ *pulumi.OutputState }
@@ -4514,7 +4514,7 @@ func (i JobLoadTimePartitioningArgs) ToJobLoadTimePartitioningPtrOutput() JobLoa
 }
 
 func (i JobLoadTimePartitioningArgs) ToJobLoadTimePartitioningPtrOutputWithContext(ctx context.Context) JobLoadTimePartitioningPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobLoadTimePartitioningOutput).ToJobLoadTimePartitioningPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(JobLoadTimePartitioningOutput).ToJobLoadTimePartitioningPtrOutput()
 }
 
 // JobLoadTimePartitioningPtrInput is an input type that accepts JobLoadTimePartitioningArgs, JobLoadTimePartitioningPtr and JobLoadTimePartitioningPtrOutput values.
@@ -4547,7 +4547,7 @@ func (i *jobLoadTimePartitioningPtrType) ToJobLoadTimePartitioningPtrOutput() Jo
 }
 
 func (i *jobLoadTimePartitioningPtrType) ToJobLoadTimePartitioningPtrOutputWithContext(ctx context.Context) JobLoadTimePartitioningPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobLoadTimePartitioningPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(JobLoadTimePartitioningOutput).ToJobLoadTimePartitioningPtrOutput()
 }
 
 type JobLoadTimePartitioningOutput struct{ *pulumi.OutputState }
@@ -4811,7 +4811,7 @@ func (i JobQueryArgs) ToJobQueryPtrOutput() JobQueryPtrOutput {
 }
 
 func (i JobQueryArgs) ToJobQueryPtrOutputWithContext(ctx context.Context) JobQueryPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobQueryOutput).ToJobQueryPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(JobQueryOutput).ToJobQueryPtrOutput()
 }
 
 // JobQueryPtrInput is an input type that accepts JobQueryArgs, JobQueryPtr and JobQueryPtrOutput values.
@@ -4844,7 +4844,7 @@ func (i *jobQueryPtrType) ToJobQueryPtrOutput() JobQueryPtrOutput {
 }
 
 func (i *jobQueryPtrType) ToJobQueryPtrOutputWithContext(ctx context.Context) JobQueryPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobQueryPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(JobQueryOutput).ToJobQueryPtrOutput()
 }
 
 type JobQueryOutput struct{ *pulumi.OutputState }
@@ -5254,7 +5254,7 @@ func (i JobQueryDefaultDatasetArgs) ToJobQueryDefaultDatasetPtrOutput() JobQuery
 }
 
 func (i JobQueryDefaultDatasetArgs) ToJobQueryDefaultDatasetPtrOutputWithContext(ctx context.Context) JobQueryDefaultDatasetPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobQueryDefaultDatasetOutput).ToJobQueryDefaultDatasetPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(JobQueryDefaultDatasetOutput).ToJobQueryDefaultDatasetPtrOutput()
 }
 
 // JobQueryDefaultDatasetPtrInput is an input type that accepts JobQueryDefaultDatasetArgs, JobQueryDefaultDatasetPtr and JobQueryDefaultDatasetPtrOutput values.
@@ -5287,7 +5287,7 @@ func (i *jobQueryDefaultDatasetPtrType) ToJobQueryDefaultDatasetPtrOutput() JobQ
 }
 
 func (i *jobQueryDefaultDatasetPtrType) ToJobQueryDefaultDatasetPtrOutputWithContext(ctx context.Context) JobQueryDefaultDatasetPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobQueryDefaultDatasetPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(JobQueryDefaultDatasetOutput).ToJobQueryDefaultDatasetPtrOutput()
 }
 
 type JobQueryDefaultDatasetOutput struct{ *pulumi.OutputState }
@@ -5402,7 +5402,7 @@ func (i JobQueryDestinationEncryptionConfigurationArgs) ToJobQueryDestinationEnc
 }
 
 func (i JobQueryDestinationEncryptionConfigurationArgs) ToJobQueryDestinationEncryptionConfigurationPtrOutputWithContext(ctx context.Context) JobQueryDestinationEncryptionConfigurationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobQueryDestinationEncryptionConfigurationOutput).ToJobQueryDestinationEncryptionConfigurationPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(JobQueryDestinationEncryptionConfigurationOutput).ToJobQueryDestinationEncryptionConfigurationPtrOutput()
 }
 
 // JobQueryDestinationEncryptionConfigurationPtrInput is an input type that accepts JobQueryDestinationEncryptionConfigurationArgs, JobQueryDestinationEncryptionConfigurationPtr and JobQueryDestinationEncryptionConfigurationPtrOutput values.
@@ -5435,7 +5435,7 @@ func (i *jobQueryDestinationEncryptionConfigurationPtrType) ToJobQueryDestinatio
 }
 
 func (i *jobQueryDestinationEncryptionConfigurationPtrType) ToJobQueryDestinationEncryptionConfigurationPtrOutputWithContext(ctx context.Context) JobQueryDestinationEncryptionConfigurationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobQueryDestinationEncryptionConfigurationPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(JobQueryDestinationEncryptionConfigurationOutput).ToJobQueryDestinationEncryptionConfigurationPtrOutput()
 }
 
 type JobQueryDestinationEncryptionConfigurationOutput struct{ *pulumi.OutputState }
@@ -5547,7 +5547,7 @@ func (i JobQueryDestinationTableArgs) ToJobQueryDestinationTablePtrOutput() JobQ
 }
 
 func (i JobQueryDestinationTableArgs) ToJobQueryDestinationTablePtrOutputWithContext(ctx context.Context) JobQueryDestinationTablePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobQueryDestinationTableOutput).ToJobQueryDestinationTablePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(JobQueryDestinationTableOutput).ToJobQueryDestinationTablePtrOutput()
 }
 
 // JobQueryDestinationTablePtrInput is an input type that accepts JobQueryDestinationTableArgs, JobQueryDestinationTablePtr and JobQueryDestinationTablePtrOutput values.
@@ -5580,7 +5580,7 @@ func (i *jobQueryDestinationTablePtrType) ToJobQueryDestinationTablePtrOutput() 
 }
 
 func (i *jobQueryDestinationTablePtrType) ToJobQueryDestinationTablePtrOutputWithContext(ctx context.Context) JobQueryDestinationTablePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobQueryDestinationTablePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(JobQueryDestinationTableOutput).ToJobQueryDestinationTablePtrOutput()
 }
 
 type JobQueryDestinationTableOutput struct{ *pulumi.OutputState }
@@ -5722,7 +5722,7 @@ func (i JobQueryScriptOptionsArgs) ToJobQueryScriptOptionsPtrOutput() JobQuerySc
 }
 
 func (i JobQueryScriptOptionsArgs) ToJobQueryScriptOptionsPtrOutputWithContext(ctx context.Context) JobQueryScriptOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobQueryScriptOptionsOutput).ToJobQueryScriptOptionsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(JobQueryScriptOptionsOutput).ToJobQueryScriptOptionsPtrOutput()
 }
 
 // JobQueryScriptOptionsPtrInput is an input type that accepts JobQueryScriptOptionsArgs, JobQueryScriptOptionsPtr and JobQueryScriptOptionsPtrOutput values.
@@ -5755,7 +5755,7 @@ func (i *jobQueryScriptOptionsPtrType) ToJobQueryScriptOptionsPtrOutput() JobQue
 }
 
 func (i *jobQueryScriptOptionsPtrType) ToJobQueryScriptOptionsPtrOutputWithContext(ctx context.Context) JobQueryScriptOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobQueryScriptOptionsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(JobQueryScriptOptionsOutput).ToJobQueryScriptOptionsPtrOutput()
 }
 
 type JobQueryScriptOptionsOutput struct{ *pulumi.OutputState }
@@ -6155,7 +6155,7 @@ func (i TableEncryptionConfigurationArgs) ToTableEncryptionConfigurationPtrOutpu
 }
 
 func (i TableEncryptionConfigurationArgs) ToTableEncryptionConfigurationPtrOutputWithContext(ctx context.Context) TableEncryptionConfigurationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TableEncryptionConfigurationOutput).ToTableEncryptionConfigurationPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TableEncryptionConfigurationOutput).ToTableEncryptionConfigurationPtrOutput()
 }
 
 // TableEncryptionConfigurationPtrInput is an input type that accepts TableEncryptionConfigurationArgs, TableEncryptionConfigurationPtr and TableEncryptionConfigurationPtrOutput values.
@@ -6188,7 +6188,7 @@ func (i *tableEncryptionConfigurationPtrType) ToTableEncryptionConfigurationPtrO
 }
 
 func (i *tableEncryptionConfigurationPtrType) ToTableEncryptionConfigurationPtrOutputWithContext(ctx context.Context) TableEncryptionConfigurationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TableEncryptionConfigurationPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TableEncryptionConfigurationOutput).ToTableEncryptionConfigurationPtrOutput()
 }
 
 type TableEncryptionConfigurationOutput struct{ *pulumi.OutputState }
@@ -6388,7 +6388,7 @@ func (i TableExternalDataConfigurationArgs) ToTableExternalDataConfigurationPtrO
 }
 
 func (i TableExternalDataConfigurationArgs) ToTableExternalDataConfigurationPtrOutputWithContext(ctx context.Context) TableExternalDataConfigurationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TableExternalDataConfigurationOutput).ToTableExternalDataConfigurationPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TableExternalDataConfigurationOutput).ToTableExternalDataConfigurationPtrOutput()
 }
 
 // TableExternalDataConfigurationPtrInput is an input type that accepts TableExternalDataConfigurationArgs, TableExternalDataConfigurationPtr and TableExternalDataConfigurationPtrOutput values.
@@ -6421,7 +6421,7 @@ func (i *tableExternalDataConfigurationPtrType) ToTableExternalDataConfiguration
 }
 
 func (i *tableExternalDataConfigurationPtrType) ToTableExternalDataConfigurationPtrOutputWithContext(ctx context.Context) TableExternalDataConfigurationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TableExternalDataConfigurationPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TableExternalDataConfigurationOutput).ToTableExternalDataConfigurationPtrOutput()
 }
 
 type TableExternalDataConfigurationOutput struct{ *pulumi.OutputState }
@@ -6760,7 +6760,7 @@ func (i TableExternalDataConfigurationCsvOptionsArgs) ToTableExternalDataConfigu
 }
 
 func (i TableExternalDataConfigurationCsvOptionsArgs) ToTableExternalDataConfigurationCsvOptionsPtrOutputWithContext(ctx context.Context) TableExternalDataConfigurationCsvOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TableExternalDataConfigurationCsvOptionsOutput).ToTableExternalDataConfigurationCsvOptionsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TableExternalDataConfigurationCsvOptionsOutput).ToTableExternalDataConfigurationCsvOptionsPtrOutput()
 }
 
 // TableExternalDataConfigurationCsvOptionsPtrInput is an input type that accepts TableExternalDataConfigurationCsvOptionsArgs, TableExternalDataConfigurationCsvOptionsPtr and TableExternalDataConfigurationCsvOptionsPtrOutput values.
@@ -6793,7 +6793,7 @@ func (i *tableExternalDataConfigurationCsvOptionsPtrType) ToTableExternalDataCon
 }
 
 func (i *tableExternalDataConfigurationCsvOptionsPtrType) ToTableExternalDataConfigurationCsvOptionsPtrOutputWithContext(ctx context.Context) TableExternalDataConfigurationCsvOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TableExternalDataConfigurationCsvOptionsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TableExternalDataConfigurationCsvOptionsOutput).ToTableExternalDataConfigurationCsvOptionsPtrOutput()
 }
 
 type TableExternalDataConfigurationCsvOptionsOutput struct{ *pulumi.OutputState }
@@ -7000,7 +7000,7 @@ func (i TableExternalDataConfigurationGoogleSheetsOptionsArgs) ToTableExternalDa
 }
 
 func (i TableExternalDataConfigurationGoogleSheetsOptionsArgs) ToTableExternalDataConfigurationGoogleSheetsOptionsPtrOutputWithContext(ctx context.Context) TableExternalDataConfigurationGoogleSheetsOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TableExternalDataConfigurationGoogleSheetsOptionsOutput).ToTableExternalDataConfigurationGoogleSheetsOptionsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TableExternalDataConfigurationGoogleSheetsOptionsOutput).ToTableExternalDataConfigurationGoogleSheetsOptionsPtrOutput()
 }
 
 // TableExternalDataConfigurationGoogleSheetsOptionsPtrInput is an input type that accepts TableExternalDataConfigurationGoogleSheetsOptionsArgs, TableExternalDataConfigurationGoogleSheetsOptionsPtr and TableExternalDataConfigurationGoogleSheetsOptionsPtrOutput values.
@@ -7033,7 +7033,7 @@ func (i *tableExternalDataConfigurationGoogleSheetsOptionsPtrType) ToTableExtern
 }
 
 func (i *tableExternalDataConfigurationGoogleSheetsOptionsPtrType) ToTableExternalDataConfigurationGoogleSheetsOptionsPtrOutputWithContext(ctx context.Context) TableExternalDataConfigurationGoogleSheetsOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TableExternalDataConfigurationGoogleSheetsOptionsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TableExternalDataConfigurationGoogleSheetsOptionsOutput).ToTableExternalDataConfigurationGoogleSheetsOptionsPtrOutput()
 }
 
 type TableExternalDataConfigurationGoogleSheetsOptionsOutput struct{ *pulumi.OutputState }
@@ -7186,7 +7186,7 @@ func (i TableExternalDataConfigurationHivePartitioningOptionsArgs) ToTableExtern
 }
 
 func (i TableExternalDataConfigurationHivePartitioningOptionsArgs) ToTableExternalDataConfigurationHivePartitioningOptionsPtrOutputWithContext(ctx context.Context) TableExternalDataConfigurationHivePartitioningOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TableExternalDataConfigurationHivePartitioningOptionsOutput).ToTableExternalDataConfigurationHivePartitioningOptionsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TableExternalDataConfigurationHivePartitioningOptionsOutput).ToTableExternalDataConfigurationHivePartitioningOptionsPtrOutput()
 }
 
 // TableExternalDataConfigurationHivePartitioningOptionsPtrInput is an input type that accepts TableExternalDataConfigurationHivePartitioningOptionsArgs, TableExternalDataConfigurationHivePartitioningOptionsPtr and TableExternalDataConfigurationHivePartitioningOptionsPtrOutput values.
@@ -7219,7 +7219,7 @@ func (i *tableExternalDataConfigurationHivePartitioningOptionsPtrType) ToTableEx
 }
 
 func (i *tableExternalDataConfigurationHivePartitioningOptionsPtrType) ToTableExternalDataConfigurationHivePartitioningOptionsPtrOutputWithContext(ctx context.Context) TableExternalDataConfigurationHivePartitioningOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TableExternalDataConfigurationHivePartitioningOptionsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TableExternalDataConfigurationHivePartitioningOptionsOutput).ToTableExternalDataConfigurationHivePartitioningOptionsPtrOutput()
 }
 
 type TableExternalDataConfigurationHivePartitioningOptionsOutput struct{ *pulumi.OutputState }
@@ -7374,7 +7374,7 @@ func (i TableMaterializedViewArgs) ToTableMaterializedViewPtrOutput() TableMater
 }
 
 func (i TableMaterializedViewArgs) ToTableMaterializedViewPtrOutputWithContext(ctx context.Context) TableMaterializedViewPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TableMaterializedViewOutput).ToTableMaterializedViewPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TableMaterializedViewOutput).ToTableMaterializedViewPtrOutput()
 }
 
 // TableMaterializedViewPtrInput is an input type that accepts TableMaterializedViewArgs, TableMaterializedViewPtr and TableMaterializedViewPtrOutput values.
@@ -7407,7 +7407,7 @@ func (i *tableMaterializedViewPtrType) ToTableMaterializedViewPtrOutput() TableM
 }
 
 func (i *tableMaterializedViewPtrType) ToTableMaterializedViewPtrOutputWithContext(ctx context.Context) TableMaterializedViewPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TableMaterializedViewPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TableMaterializedViewOutput).ToTableMaterializedViewPtrOutput()
 }
 
 type TableMaterializedViewOutput struct{ *pulumi.OutputState }
@@ -7547,7 +7547,7 @@ func (i TableRangePartitioningArgs) ToTableRangePartitioningPtrOutput() TableRan
 }
 
 func (i TableRangePartitioningArgs) ToTableRangePartitioningPtrOutputWithContext(ctx context.Context) TableRangePartitioningPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TableRangePartitioningOutput).ToTableRangePartitioningPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TableRangePartitioningOutput).ToTableRangePartitioningPtrOutput()
 }
 
 // TableRangePartitioningPtrInput is an input type that accepts TableRangePartitioningArgs, TableRangePartitioningPtr and TableRangePartitioningPtrOutput values.
@@ -7580,7 +7580,7 @@ func (i *tableRangePartitioningPtrType) ToTableRangePartitioningPtrOutput() Tabl
 }
 
 func (i *tableRangePartitioningPtrType) ToTableRangePartitioningPtrOutputWithContext(ctx context.Context) TableRangePartitioningPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TableRangePartitioningPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TableRangePartitioningOutput).ToTableRangePartitioningPtrOutput()
 }
 
 type TableRangePartitioningOutput struct{ *pulumi.OutputState }
@@ -7705,7 +7705,7 @@ func (i TableRangePartitioningRangeArgs) ToTableRangePartitioningRangePtrOutput(
 }
 
 func (i TableRangePartitioningRangeArgs) ToTableRangePartitioningRangePtrOutputWithContext(ctx context.Context) TableRangePartitioningRangePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TableRangePartitioningRangeOutput).ToTableRangePartitioningRangePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TableRangePartitioningRangeOutput).ToTableRangePartitioningRangePtrOutput()
 }
 
 // TableRangePartitioningRangePtrInput is an input type that accepts TableRangePartitioningRangeArgs, TableRangePartitioningRangePtr and TableRangePartitioningRangePtrOutput values.
@@ -7738,7 +7738,7 @@ func (i *tableRangePartitioningRangePtrType) ToTableRangePartitioningRangePtrOut
 }
 
 func (i *tableRangePartitioningRangePtrType) ToTableRangePartitioningRangePtrOutputWithContext(ctx context.Context) TableRangePartitioningRangePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TableRangePartitioningRangePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TableRangePartitioningRangeOutput).ToTableRangePartitioningRangePtrOutput()
 }
 
 type TableRangePartitioningRangeOutput struct{ *pulumi.OutputState }
@@ -7888,7 +7888,7 @@ func (i TableTimePartitioningArgs) ToTableTimePartitioningPtrOutput() TableTimeP
 }
 
 func (i TableTimePartitioningArgs) ToTableTimePartitioningPtrOutputWithContext(ctx context.Context) TableTimePartitioningPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TableTimePartitioningOutput).ToTableTimePartitioningPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TableTimePartitioningOutput).ToTableTimePartitioningPtrOutput()
 }
 
 // TableTimePartitioningPtrInput is an input type that accepts TableTimePartitioningArgs, TableTimePartitioningPtr and TableTimePartitioningPtrOutput values.
@@ -7921,7 +7921,7 @@ func (i *tableTimePartitioningPtrType) ToTableTimePartitioningPtrOutput() TableT
 }
 
 func (i *tableTimePartitioningPtrType) ToTableTimePartitioningPtrOutputWithContext(ctx context.Context) TableTimePartitioningPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TableTimePartitioningPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TableTimePartitioningOutput).ToTableTimePartitioningPtrOutput()
 }
 
 type TableTimePartitioningOutput struct{ *pulumi.OutputState }
@@ -8080,7 +8080,7 @@ func (i TableViewArgs) ToTableViewPtrOutput() TableViewPtrOutput {
 }
 
 func (i TableViewArgs) ToTableViewPtrOutputWithContext(ctx context.Context) TableViewPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TableViewOutput).ToTableViewPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TableViewOutput).ToTableViewPtrOutput()
 }
 
 // TableViewPtrInput is an input type that accepts TableViewArgs, TableViewPtr and TableViewPtrOutput values.
@@ -8113,7 +8113,7 @@ func (i *tableViewPtrType) ToTableViewPtrOutput() TableViewPtrOutput {
 }
 
 func (i *tableViewPtrType) ToTableViewPtrOutputWithContext(ctx context.Context) TableViewPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TableViewPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TableViewOutput).ToTableViewPtrOutput()
 }
 
 type TableViewOutput struct{ *pulumi.OutputState }

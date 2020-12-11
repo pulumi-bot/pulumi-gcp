@@ -389,16 +389,31 @@ type RouterPeerInput interface {
 	ToRouterPeerOutputWithContext(ctx context.Context) RouterPeerOutput
 }
 
-func (RouterPeer) ElementType() reflect.Type {
-	return reflect.TypeOf((*RouterPeer)(nil)).Elem()
+func (*RouterPeer) ElementType() reflect.Type {
+	return reflect.TypeOf((*RouterPeer)(nil))
 }
 
-func (i RouterPeer) ToRouterPeerOutput() RouterPeerOutput {
+func (i *RouterPeer) ToRouterPeerOutput() RouterPeerOutput {
 	return i.ToRouterPeerOutputWithContext(context.Background())
 }
 
-func (i RouterPeer) ToRouterPeerOutputWithContext(ctx context.Context) RouterPeerOutput {
+func (i *RouterPeer) ToRouterPeerOutputWithContext(ctx context.Context) RouterPeerOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RouterPeerOutput)
+}
+
+func (i *RouterPeer) ToRouterPeerPtrOutput() RouterPeerPtrOutput {
+	return i.ToRouterPeerPtrOutputWithContext(context.Background())
+}
+
+func (i *RouterPeer) ToRouterPeerPtrOutputWithContext(ctx context.Context) RouterPeerPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RouterPeerPtrOutput)
+}
+
+type RouterPeerPtrInput interface {
+	pulumi.Input
+
+	ToRouterPeerPtrOutput() RouterPeerPtrOutput
+	ToRouterPeerPtrOutputWithContext(ctx context.Context) RouterPeerPtrOutput
 }
 
 type RouterPeerOutput struct {
@@ -406,7 +421,7 @@ type RouterPeerOutput struct {
 }
 
 func (RouterPeerOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RouterPeerOutput)(nil)).Elem()
+	return reflect.TypeOf((*RouterPeer)(nil))
 }
 
 func (o RouterPeerOutput) ToRouterPeerOutput() RouterPeerOutput {
@@ -417,6 +432,23 @@ func (o RouterPeerOutput) ToRouterPeerOutputWithContext(ctx context.Context) Rou
 	return o
 }
 
+type RouterPeerPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (RouterPeerPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RouterPeer)(nil))
+}
+
+func (o RouterPeerPtrOutput) ToRouterPeerPtrOutput() RouterPeerPtrOutput {
+	return o
+}
+
+func (o RouterPeerPtrOutput) ToRouterPeerPtrOutputWithContext(ctx context.Context) RouterPeerPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(RouterPeerOutput{})
+	pulumi.RegisterOutputType(RouterPeerPtrOutput{})
 }

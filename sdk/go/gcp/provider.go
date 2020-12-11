@@ -243,16 +243,31 @@ type ProviderInput interface {
 	ToProviderOutputWithContext(ctx context.Context) ProviderOutput
 }
 
-func (Provider) ElementType() reflect.Type {
-	return reflect.TypeOf((*Provider)(nil)).Elem()
+func (*Provider) ElementType() reflect.Type {
+	return reflect.TypeOf((*Provider)(nil))
 }
 
-func (i Provider) ToProviderOutput() ProviderOutput {
+func (i *Provider) ToProviderOutput() ProviderOutput {
 	return i.ToProviderOutputWithContext(context.Background())
 }
 
-func (i Provider) ToProviderOutputWithContext(ctx context.Context) ProviderOutput {
+func (i *Provider) ToProviderOutputWithContext(ctx context.Context) ProviderOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderOutput)
+}
+
+func (i *Provider) ToProviderPtrOutput() ProviderPtrOutput {
+	return i.ToProviderPtrOutputWithContext(context.Background())
+}
+
+func (i *Provider) ToProviderPtrOutputWithContext(ctx context.Context) ProviderPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderPtrOutput)
+}
+
+type ProviderPtrInput interface {
+	pulumi.Input
+
+	ToProviderPtrOutput() ProviderPtrOutput
+	ToProviderPtrOutputWithContext(ctx context.Context) ProviderPtrOutput
 }
 
 type ProviderOutput struct {
@@ -260,7 +275,7 @@ type ProviderOutput struct {
 }
 
 func (ProviderOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ProviderOutput)(nil)).Elem()
+	return reflect.TypeOf((*Provider)(nil))
 }
 
 func (o ProviderOutput) ToProviderOutput() ProviderOutput {
@@ -271,6 +286,23 @@ func (o ProviderOutput) ToProviderOutputWithContext(ctx context.Context) Provide
 	return o
 }
 
+type ProviderPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ProviderPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Provider)(nil))
+}
+
+func (o ProviderPtrOutput) ToProviderPtrOutput() ProviderPtrOutput {
+	return o
+}
+
+func (o ProviderPtrOutput) ToProviderPtrOutputWithContext(ctx context.Context) ProviderPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ProviderOutput{})
+	pulumi.RegisterOutputType(ProviderPtrOutput{})
 }

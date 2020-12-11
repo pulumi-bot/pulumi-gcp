@@ -259,16 +259,31 @@ type AttachedDiskInput interface {
 	ToAttachedDiskOutputWithContext(ctx context.Context) AttachedDiskOutput
 }
 
-func (AttachedDisk) ElementType() reflect.Type {
-	return reflect.TypeOf((*AttachedDisk)(nil)).Elem()
+func (*AttachedDisk) ElementType() reflect.Type {
+	return reflect.TypeOf((*AttachedDisk)(nil))
 }
 
-func (i AttachedDisk) ToAttachedDiskOutput() AttachedDiskOutput {
+func (i *AttachedDisk) ToAttachedDiskOutput() AttachedDiskOutput {
 	return i.ToAttachedDiskOutputWithContext(context.Background())
 }
 
-func (i AttachedDisk) ToAttachedDiskOutputWithContext(ctx context.Context) AttachedDiskOutput {
+func (i *AttachedDisk) ToAttachedDiskOutputWithContext(ctx context.Context) AttachedDiskOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AttachedDiskOutput)
+}
+
+func (i *AttachedDisk) ToAttachedDiskPtrOutput() AttachedDiskPtrOutput {
+	return i.ToAttachedDiskPtrOutputWithContext(context.Background())
+}
+
+func (i *AttachedDisk) ToAttachedDiskPtrOutputWithContext(ctx context.Context) AttachedDiskPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AttachedDiskPtrOutput)
+}
+
+type AttachedDiskPtrInput interface {
+	pulumi.Input
+
+	ToAttachedDiskPtrOutput() AttachedDiskPtrOutput
+	ToAttachedDiskPtrOutputWithContext(ctx context.Context) AttachedDiskPtrOutput
 }
 
 type AttachedDiskOutput struct {
@@ -276,7 +291,7 @@ type AttachedDiskOutput struct {
 }
 
 func (AttachedDiskOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AttachedDiskOutput)(nil)).Elem()
+	return reflect.TypeOf((*AttachedDisk)(nil))
 }
 
 func (o AttachedDiskOutput) ToAttachedDiskOutput() AttachedDiskOutput {
@@ -287,6 +302,23 @@ func (o AttachedDiskOutput) ToAttachedDiskOutputWithContext(ctx context.Context)
 	return o
 }
 
+type AttachedDiskPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (AttachedDiskPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AttachedDisk)(nil))
+}
+
+func (o AttachedDiskPtrOutput) ToAttachedDiskPtrOutput() AttachedDiskPtrOutput {
+	return o
+}
+
+func (o AttachedDiskPtrOutput) ToAttachedDiskPtrOutputWithContext(ctx context.Context) AttachedDiskPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(AttachedDiskOutput{})
+	pulumi.RegisterOutputType(AttachedDiskPtrOutput{})
 }

@@ -291,16 +291,31 @@ type ProjectSinkInput interface {
 	ToProjectSinkOutputWithContext(ctx context.Context) ProjectSinkOutput
 }
 
-func (ProjectSink) ElementType() reflect.Type {
-	return reflect.TypeOf((*ProjectSink)(nil)).Elem()
+func (*ProjectSink) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProjectSink)(nil))
 }
 
-func (i ProjectSink) ToProjectSinkOutput() ProjectSinkOutput {
+func (i *ProjectSink) ToProjectSinkOutput() ProjectSinkOutput {
 	return i.ToProjectSinkOutputWithContext(context.Background())
 }
 
-func (i ProjectSink) ToProjectSinkOutputWithContext(ctx context.Context) ProjectSinkOutput {
+func (i *ProjectSink) ToProjectSinkOutputWithContext(ctx context.Context) ProjectSinkOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ProjectSinkOutput)
+}
+
+func (i *ProjectSink) ToProjectSinkPtrOutput() ProjectSinkPtrOutput {
+	return i.ToProjectSinkPtrOutputWithContext(context.Background())
+}
+
+func (i *ProjectSink) ToProjectSinkPtrOutputWithContext(ctx context.Context) ProjectSinkPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProjectSinkPtrOutput)
+}
+
+type ProjectSinkPtrInput interface {
+	pulumi.Input
+
+	ToProjectSinkPtrOutput() ProjectSinkPtrOutput
+	ToProjectSinkPtrOutputWithContext(ctx context.Context) ProjectSinkPtrOutput
 }
 
 type ProjectSinkOutput struct {
@@ -308,7 +323,7 @@ type ProjectSinkOutput struct {
 }
 
 func (ProjectSinkOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ProjectSinkOutput)(nil)).Elem()
+	return reflect.TypeOf((*ProjectSink)(nil))
 }
 
 func (o ProjectSinkOutput) ToProjectSinkOutput() ProjectSinkOutput {
@@ -319,6 +334,23 @@ func (o ProjectSinkOutput) ToProjectSinkOutputWithContext(ctx context.Context) P
 	return o
 }
 
+type ProjectSinkPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ProjectSinkPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProjectSink)(nil))
+}
+
+func (o ProjectSinkPtrOutput) ToProjectSinkPtrOutput() ProjectSinkPtrOutput {
+	return o
+}
+
+func (o ProjectSinkPtrOutput) ToProjectSinkPtrOutputWithContext(ctx context.Context) ProjectSinkPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ProjectSinkOutput{})
+	pulumi.RegisterOutputType(ProjectSinkPtrOutput{})
 }

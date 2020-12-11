@@ -419,16 +419,31 @@ type SloInput interface {
 	ToSloOutputWithContext(ctx context.Context) SloOutput
 }
 
-func (Slo) ElementType() reflect.Type {
-	return reflect.TypeOf((*Slo)(nil)).Elem()
+func (*Slo) ElementType() reflect.Type {
+	return reflect.TypeOf((*Slo)(nil))
 }
 
-func (i Slo) ToSloOutput() SloOutput {
+func (i *Slo) ToSloOutput() SloOutput {
 	return i.ToSloOutputWithContext(context.Background())
 }
 
-func (i Slo) ToSloOutputWithContext(ctx context.Context) SloOutput {
+func (i *Slo) ToSloOutputWithContext(ctx context.Context) SloOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SloOutput)
+}
+
+func (i *Slo) ToSloPtrOutput() SloPtrOutput {
+	return i.ToSloPtrOutputWithContext(context.Background())
+}
+
+func (i *Slo) ToSloPtrOutputWithContext(ctx context.Context) SloPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SloPtrOutput)
+}
+
+type SloPtrInput interface {
+	pulumi.Input
+
+	ToSloPtrOutput() SloPtrOutput
+	ToSloPtrOutputWithContext(ctx context.Context) SloPtrOutput
 }
 
 type SloOutput struct {
@@ -436,7 +451,7 @@ type SloOutput struct {
 }
 
 func (SloOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SloOutput)(nil)).Elem()
+	return reflect.TypeOf((*Slo)(nil))
 }
 
 func (o SloOutput) ToSloOutput() SloOutput {
@@ -447,6 +462,23 @@ func (o SloOutput) ToSloOutputWithContext(ctx context.Context) SloOutput {
 	return o
 }
 
+type SloPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (SloPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Slo)(nil))
+}
+
+func (o SloPtrOutput) ToSloPtrOutput() SloPtrOutput {
+	return o
+}
+
+func (o SloPtrOutput) ToSloPtrOutputWithContext(ctx context.Context) SloPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(SloOutput{})
+	pulumi.RegisterOutputType(SloPtrOutput{})
 }

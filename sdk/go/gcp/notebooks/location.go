@@ -119,16 +119,31 @@ type LocationInput interface {
 	ToLocationOutputWithContext(ctx context.Context) LocationOutput
 }
 
-func (Location) ElementType() reflect.Type {
-	return reflect.TypeOf((*Location)(nil)).Elem()
+func (*Location) ElementType() reflect.Type {
+	return reflect.TypeOf((*Location)(nil))
 }
 
-func (i Location) ToLocationOutput() LocationOutput {
+func (i *Location) ToLocationOutput() LocationOutput {
 	return i.ToLocationOutputWithContext(context.Background())
 }
 
-func (i Location) ToLocationOutputWithContext(ctx context.Context) LocationOutput {
+func (i *Location) ToLocationOutputWithContext(ctx context.Context) LocationOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LocationOutput)
+}
+
+func (i *Location) ToLocationPtrOutput() LocationPtrOutput {
+	return i.ToLocationPtrOutputWithContext(context.Background())
+}
+
+func (i *Location) ToLocationPtrOutputWithContext(ctx context.Context) LocationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LocationPtrOutput)
+}
+
+type LocationPtrInput interface {
+	pulumi.Input
+
+	ToLocationPtrOutput() LocationPtrOutput
+	ToLocationPtrOutputWithContext(ctx context.Context) LocationPtrOutput
 }
 
 type LocationOutput struct {
@@ -136,7 +151,7 @@ type LocationOutput struct {
 }
 
 func (LocationOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LocationOutput)(nil)).Elem()
+	return reflect.TypeOf((*Location)(nil))
 }
 
 func (o LocationOutput) ToLocationOutput() LocationOutput {
@@ -147,6 +162,23 @@ func (o LocationOutput) ToLocationOutputWithContext(ctx context.Context) Locatio
 	return o
 }
 
+type LocationPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (LocationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Location)(nil))
+}
+
+func (o LocationPtrOutput) ToLocationPtrOutput() LocationPtrOutput {
+	return o
+}
+
+func (o LocationPtrOutput) ToLocationPtrOutputWithContext(ctx context.Context) LocationPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(LocationOutput{})
+	pulumi.RegisterOutputType(LocationPtrOutput{})
 }

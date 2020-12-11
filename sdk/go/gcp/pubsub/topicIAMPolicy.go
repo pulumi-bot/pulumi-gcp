@@ -250,16 +250,31 @@ type TopicIAMPolicyInput interface {
 	ToTopicIAMPolicyOutputWithContext(ctx context.Context) TopicIAMPolicyOutput
 }
 
-func (TopicIAMPolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*TopicIAMPolicy)(nil)).Elem()
+func (*TopicIAMPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*TopicIAMPolicy)(nil))
 }
 
-func (i TopicIAMPolicy) ToTopicIAMPolicyOutput() TopicIAMPolicyOutput {
+func (i *TopicIAMPolicy) ToTopicIAMPolicyOutput() TopicIAMPolicyOutput {
 	return i.ToTopicIAMPolicyOutputWithContext(context.Background())
 }
 
-func (i TopicIAMPolicy) ToTopicIAMPolicyOutputWithContext(ctx context.Context) TopicIAMPolicyOutput {
+func (i *TopicIAMPolicy) ToTopicIAMPolicyOutputWithContext(ctx context.Context) TopicIAMPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TopicIAMPolicyOutput)
+}
+
+func (i *TopicIAMPolicy) ToTopicIAMPolicyPtrOutput() TopicIAMPolicyPtrOutput {
+	return i.ToTopicIAMPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i *TopicIAMPolicy) ToTopicIAMPolicyPtrOutputWithContext(ctx context.Context) TopicIAMPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TopicIAMPolicyPtrOutput)
+}
+
+type TopicIAMPolicyPtrInput interface {
+	pulumi.Input
+
+	ToTopicIAMPolicyPtrOutput() TopicIAMPolicyPtrOutput
+	ToTopicIAMPolicyPtrOutputWithContext(ctx context.Context) TopicIAMPolicyPtrOutput
 }
 
 type TopicIAMPolicyOutput struct {
@@ -267,7 +282,7 @@ type TopicIAMPolicyOutput struct {
 }
 
 func (TopicIAMPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*TopicIAMPolicyOutput)(nil)).Elem()
+	return reflect.TypeOf((*TopicIAMPolicy)(nil))
 }
 
 func (o TopicIAMPolicyOutput) ToTopicIAMPolicyOutput() TopicIAMPolicyOutput {
@@ -278,6 +293,23 @@ func (o TopicIAMPolicyOutput) ToTopicIAMPolicyOutputWithContext(ctx context.Cont
 	return o
 }
 
+type TopicIAMPolicyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (TopicIAMPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TopicIAMPolicy)(nil))
+}
+
+func (o TopicIAMPolicyPtrOutput) ToTopicIAMPolicyPtrOutput() TopicIAMPolicyPtrOutput {
+	return o
+}
+
+func (o TopicIAMPolicyPtrOutput) ToTopicIAMPolicyPtrOutputWithContext(ctx context.Context) TopicIAMPolicyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(TopicIAMPolicyOutput{})
+	pulumi.RegisterOutputType(TopicIAMPolicyPtrOutput{})
 }

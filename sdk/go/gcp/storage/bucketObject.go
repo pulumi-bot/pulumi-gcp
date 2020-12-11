@@ -279,16 +279,31 @@ type BucketObjectInput interface {
 	ToBucketObjectOutputWithContext(ctx context.Context) BucketObjectOutput
 }
 
-func (BucketObject) ElementType() reflect.Type {
-	return reflect.TypeOf((*BucketObject)(nil)).Elem()
+func (*BucketObject) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketObject)(nil))
 }
 
-func (i BucketObject) ToBucketObjectOutput() BucketObjectOutput {
+func (i *BucketObject) ToBucketObjectOutput() BucketObjectOutput {
 	return i.ToBucketObjectOutputWithContext(context.Background())
 }
 
-func (i BucketObject) ToBucketObjectOutputWithContext(ctx context.Context) BucketObjectOutput {
+func (i *BucketObject) ToBucketObjectOutputWithContext(ctx context.Context) BucketObjectOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(BucketObjectOutput)
+}
+
+func (i *BucketObject) ToBucketObjectPtrOutput() BucketObjectPtrOutput {
+	return i.ToBucketObjectPtrOutputWithContext(context.Background())
+}
+
+func (i *BucketObject) ToBucketObjectPtrOutputWithContext(ctx context.Context) BucketObjectPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketObjectPtrOutput)
+}
+
+type BucketObjectPtrInput interface {
+	pulumi.Input
+
+	ToBucketObjectPtrOutput() BucketObjectPtrOutput
+	ToBucketObjectPtrOutputWithContext(ctx context.Context) BucketObjectPtrOutput
 }
 
 type BucketObjectOutput struct {
@@ -296,7 +311,7 @@ type BucketObjectOutput struct {
 }
 
 func (BucketObjectOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*BucketObjectOutput)(nil)).Elem()
+	return reflect.TypeOf((*BucketObject)(nil))
 }
 
 func (o BucketObjectOutput) ToBucketObjectOutput() BucketObjectOutput {
@@ -307,6 +322,23 @@ func (o BucketObjectOutput) ToBucketObjectOutputWithContext(ctx context.Context)
 	return o
 }
 
+type BucketObjectPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (BucketObjectPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketObject)(nil))
+}
+
+func (o BucketObjectPtrOutput) ToBucketObjectPtrOutput() BucketObjectPtrOutput {
+	return o
+}
+
+func (o BucketObjectPtrOutput) ToBucketObjectPtrOutputWithContext(ctx context.Context) BucketObjectPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(BucketObjectOutput{})
+	pulumi.RegisterOutputType(BucketObjectPtrOutput{})
 }

@@ -422,16 +422,31 @@ type AppEngineVersionIamBindingInput interface {
 	ToAppEngineVersionIamBindingOutputWithContext(ctx context.Context) AppEngineVersionIamBindingOutput
 }
 
-func (AppEngineVersionIamBinding) ElementType() reflect.Type {
-	return reflect.TypeOf((*AppEngineVersionIamBinding)(nil)).Elem()
+func (*AppEngineVersionIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*AppEngineVersionIamBinding)(nil))
 }
 
-func (i AppEngineVersionIamBinding) ToAppEngineVersionIamBindingOutput() AppEngineVersionIamBindingOutput {
+func (i *AppEngineVersionIamBinding) ToAppEngineVersionIamBindingOutput() AppEngineVersionIamBindingOutput {
 	return i.ToAppEngineVersionIamBindingOutputWithContext(context.Background())
 }
 
-func (i AppEngineVersionIamBinding) ToAppEngineVersionIamBindingOutputWithContext(ctx context.Context) AppEngineVersionIamBindingOutput {
+func (i *AppEngineVersionIamBinding) ToAppEngineVersionIamBindingOutputWithContext(ctx context.Context) AppEngineVersionIamBindingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AppEngineVersionIamBindingOutput)
+}
+
+func (i *AppEngineVersionIamBinding) ToAppEngineVersionIamBindingPtrOutput() AppEngineVersionIamBindingPtrOutput {
+	return i.ToAppEngineVersionIamBindingPtrOutputWithContext(context.Background())
+}
+
+func (i *AppEngineVersionIamBinding) ToAppEngineVersionIamBindingPtrOutputWithContext(ctx context.Context) AppEngineVersionIamBindingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AppEngineVersionIamBindingPtrOutput)
+}
+
+type AppEngineVersionIamBindingPtrInput interface {
+	pulumi.Input
+
+	ToAppEngineVersionIamBindingPtrOutput() AppEngineVersionIamBindingPtrOutput
+	ToAppEngineVersionIamBindingPtrOutputWithContext(ctx context.Context) AppEngineVersionIamBindingPtrOutput
 }
 
 type AppEngineVersionIamBindingOutput struct {
@@ -439,7 +454,7 @@ type AppEngineVersionIamBindingOutput struct {
 }
 
 func (AppEngineVersionIamBindingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AppEngineVersionIamBindingOutput)(nil)).Elem()
+	return reflect.TypeOf((*AppEngineVersionIamBinding)(nil))
 }
 
 func (o AppEngineVersionIamBindingOutput) ToAppEngineVersionIamBindingOutput() AppEngineVersionIamBindingOutput {
@@ -450,6 +465,23 @@ func (o AppEngineVersionIamBindingOutput) ToAppEngineVersionIamBindingOutputWith
 	return o
 }
 
+type AppEngineVersionIamBindingPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (AppEngineVersionIamBindingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AppEngineVersionIamBinding)(nil))
+}
+
+func (o AppEngineVersionIamBindingPtrOutput) ToAppEngineVersionIamBindingPtrOutput() AppEngineVersionIamBindingPtrOutput {
+	return o
+}
+
+func (o AppEngineVersionIamBindingPtrOutput) ToAppEngineVersionIamBindingPtrOutputWithContext(ctx context.Context) AppEngineVersionIamBindingPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(AppEngineVersionIamBindingOutput{})
+	pulumi.RegisterOutputType(AppEngineVersionIamBindingPtrOutput{})
 }

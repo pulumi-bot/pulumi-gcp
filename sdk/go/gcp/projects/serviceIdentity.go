@@ -164,16 +164,31 @@ type ServiceIdentityInput interface {
 	ToServiceIdentityOutputWithContext(ctx context.Context) ServiceIdentityOutput
 }
 
-func (ServiceIdentity) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServiceIdentity)(nil)).Elem()
+func (*ServiceIdentity) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceIdentity)(nil))
 }
 
-func (i ServiceIdentity) ToServiceIdentityOutput() ServiceIdentityOutput {
+func (i *ServiceIdentity) ToServiceIdentityOutput() ServiceIdentityOutput {
 	return i.ToServiceIdentityOutputWithContext(context.Background())
 }
 
-func (i ServiceIdentity) ToServiceIdentityOutputWithContext(ctx context.Context) ServiceIdentityOutput {
+func (i *ServiceIdentity) ToServiceIdentityOutputWithContext(ctx context.Context) ServiceIdentityOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceIdentityOutput)
+}
+
+func (i *ServiceIdentity) ToServiceIdentityPtrOutput() ServiceIdentityPtrOutput {
+	return i.ToServiceIdentityPtrOutputWithContext(context.Background())
+}
+
+func (i *ServiceIdentity) ToServiceIdentityPtrOutputWithContext(ctx context.Context) ServiceIdentityPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceIdentityPtrOutput)
+}
+
+type ServiceIdentityPtrInput interface {
+	pulumi.Input
+
+	ToServiceIdentityPtrOutput() ServiceIdentityPtrOutput
+	ToServiceIdentityPtrOutputWithContext(ctx context.Context) ServiceIdentityPtrOutput
 }
 
 type ServiceIdentityOutput struct {
@@ -181,7 +196,7 @@ type ServiceIdentityOutput struct {
 }
 
 func (ServiceIdentityOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServiceIdentityOutput)(nil)).Elem()
+	return reflect.TypeOf((*ServiceIdentity)(nil))
 }
 
 func (o ServiceIdentityOutput) ToServiceIdentityOutput() ServiceIdentityOutput {
@@ -192,6 +207,23 @@ func (o ServiceIdentityOutput) ToServiceIdentityOutputWithContext(ctx context.Co
 	return o
 }
 
+type ServiceIdentityPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ServiceIdentityPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceIdentity)(nil))
+}
+
+func (o ServiceIdentityPtrOutput) ToServiceIdentityPtrOutput() ServiceIdentityPtrOutput {
+	return o
+}
+
+func (o ServiceIdentityPtrOutput) ToServiceIdentityPtrOutputWithContext(ctx context.Context) ServiceIdentityPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ServiceIdentityOutput{})
+	pulumi.RegisterOutputType(ServiceIdentityPtrOutput{})
 }

@@ -66,7 +66,7 @@ func (i FolderFeedConditionArgs) ToFolderFeedConditionPtrOutput() FolderFeedCond
 }
 
 func (i FolderFeedConditionArgs) ToFolderFeedConditionPtrOutputWithContext(ctx context.Context) FolderFeedConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FolderFeedConditionOutput).ToFolderFeedConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(FolderFeedConditionOutput).ToFolderFeedConditionPtrOutput()
 }
 
 // FolderFeedConditionPtrInput is an input type that accepts FolderFeedConditionArgs, FolderFeedConditionPtr and FolderFeedConditionPtrOutput values.
@@ -99,7 +99,7 @@ func (i *folderFeedConditionPtrType) ToFolderFeedConditionPtrOutput() FolderFeed
 }
 
 func (i *folderFeedConditionPtrType) ToFolderFeedConditionPtrOutputWithContext(ctx context.Context) FolderFeedConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FolderFeedConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(FolderFeedConditionOutput).ToFolderFeedConditionPtrOutput()
 }
 
 type FolderFeedConditionOutput struct{ *pulumi.OutputState }
@@ -250,7 +250,7 @@ func (i FolderFeedFeedOutputConfigArgs) ToFolderFeedFeedOutputConfigPtrOutput() 
 }
 
 func (i FolderFeedFeedOutputConfigArgs) ToFolderFeedFeedOutputConfigPtrOutputWithContext(ctx context.Context) FolderFeedFeedOutputConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FolderFeedFeedOutputConfigOutput).ToFolderFeedFeedOutputConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(FolderFeedFeedOutputConfigOutput).ToFolderFeedFeedOutputConfigPtrOutput()
 }
 
 // FolderFeedFeedOutputConfigPtrInput is an input type that accepts FolderFeedFeedOutputConfigArgs, FolderFeedFeedOutputConfigPtr and FolderFeedFeedOutputConfigPtrOutput values.
@@ -283,7 +283,7 @@ func (i *folderFeedFeedOutputConfigPtrType) ToFolderFeedFeedOutputConfigPtrOutpu
 }
 
 func (i *folderFeedFeedOutputConfigPtrType) ToFolderFeedFeedOutputConfigPtrOutputWithContext(ctx context.Context) FolderFeedFeedOutputConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FolderFeedFeedOutputConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(FolderFeedFeedOutputConfigOutput).ToFolderFeedFeedOutputConfigPtrOutput()
 }
 
 type FolderFeedFeedOutputConfigOutput struct{ *pulumi.OutputState }
@@ -385,7 +385,7 @@ func (i FolderFeedFeedOutputConfigPubsubDestinationArgs) ToFolderFeedFeedOutputC
 }
 
 func (i FolderFeedFeedOutputConfigPubsubDestinationArgs) ToFolderFeedFeedOutputConfigPubsubDestinationPtrOutputWithContext(ctx context.Context) FolderFeedFeedOutputConfigPubsubDestinationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FolderFeedFeedOutputConfigPubsubDestinationOutput).ToFolderFeedFeedOutputConfigPubsubDestinationPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(FolderFeedFeedOutputConfigPubsubDestinationOutput).ToFolderFeedFeedOutputConfigPubsubDestinationPtrOutput()
 }
 
 // FolderFeedFeedOutputConfigPubsubDestinationPtrInput is an input type that accepts FolderFeedFeedOutputConfigPubsubDestinationArgs, FolderFeedFeedOutputConfigPubsubDestinationPtr and FolderFeedFeedOutputConfigPubsubDestinationPtrOutput values.
@@ -418,7 +418,7 @@ func (i *folderFeedFeedOutputConfigPubsubDestinationPtrType) ToFolderFeedFeedOut
 }
 
 func (i *folderFeedFeedOutputConfigPubsubDestinationPtrType) ToFolderFeedFeedOutputConfigPubsubDestinationPtrOutputWithContext(ctx context.Context) FolderFeedFeedOutputConfigPubsubDestinationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FolderFeedFeedOutputConfigPubsubDestinationPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(FolderFeedFeedOutputConfigPubsubDestinationOutput).ToFolderFeedFeedOutputConfigPubsubDestinationPtrOutput()
 }
 
 type FolderFeedFeedOutputConfigPubsubDestinationOutput struct{ *pulumi.OutputState }
@@ -536,7 +536,7 @@ func (i OrganizationFeedConditionArgs) ToOrganizationFeedConditionPtrOutput() Or
 }
 
 func (i OrganizationFeedConditionArgs) ToOrganizationFeedConditionPtrOutputWithContext(ctx context.Context) OrganizationFeedConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(OrganizationFeedConditionOutput).ToOrganizationFeedConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationFeedConditionOutput).ToOrganizationFeedConditionPtrOutput()
 }
 
 // OrganizationFeedConditionPtrInput is an input type that accepts OrganizationFeedConditionArgs, OrganizationFeedConditionPtr and OrganizationFeedConditionPtrOutput values.
@@ -569,7 +569,7 @@ func (i *organizationFeedConditionPtrType) ToOrganizationFeedConditionPtrOutput(
 }
 
 func (i *organizationFeedConditionPtrType) ToOrganizationFeedConditionPtrOutputWithContext(ctx context.Context) OrganizationFeedConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(OrganizationFeedConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationFeedConditionOutput).ToOrganizationFeedConditionPtrOutput()
 }
 
 type OrganizationFeedConditionOutput struct{ *pulumi.OutputState }
@@ -720,7 +720,7 @@ func (i OrganizationFeedFeedOutputConfigArgs) ToOrganizationFeedFeedOutputConfig
 }
 
 func (i OrganizationFeedFeedOutputConfigArgs) ToOrganizationFeedFeedOutputConfigPtrOutputWithContext(ctx context.Context) OrganizationFeedFeedOutputConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(OrganizationFeedFeedOutputConfigOutput).ToOrganizationFeedFeedOutputConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationFeedFeedOutputConfigOutput).ToOrganizationFeedFeedOutputConfigPtrOutput()
 }
 
 // OrganizationFeedFeedOutputConfigPtrInput is an input type that accepts OrganizationFeedFeedOutputConfigArgs, OrganizationFeedFeedOutputConfigPtr and OrganizationFeedFeedOutputConfigPtrOutput values.
@@ -753,7 +753,7 @@ func (i *organizationFeedFeedOutputConfigPtrType) ToOrganizationFeedFeedOutputCo
 }
 
 func (i *organizationFeedFeedOutputConfigPtrType) ToOrganizationFeedFeedOutputConfigPtrOutputWithContext(ctx context.Context) OrganizationFeedFeedOutputConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(OrganizationFeedFeedOutputConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationFeedFeedOutputConfigOutput).ToOrganizationFeedFeedOutputConfigPtrOutput()
 }
 
 type OrganizationFeedFeedOutputConfigOutput struct{ *pulumi.OutputState }
@@ -855,7 +855,7 @@ func (i OrganizationFeedFeedOutputConfigPubsubDestinationArgs) ToOrganizationFee
 }
 
 func (i OrganizationFeedFeedOutputConfigPubsubDestinationArgs) ToOrganizationFeedFeedOutputConfigPubsubDestinationPtrOutputWithContext(ctx context.Context) OrganizationFeedFeedOutputConfigPubsubDestinationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(OrganizationFeedFeedOutputConfigPubsubDestinationOutput).ToOrganizationFeedFeedOutputConfigPubsubDestinationPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationFeedFeedOutputConfigPubsubDestinationOutput).ToOrganizationFeedFeedOutputConfigPubsubDestinationPtrOutput()
 }
 
 // OrganizationFeedFeedOutputConfigPubsubDestinationPtrInput is an input type that accepts OrganizationFeedFeedOutputConfigPubsubDestinationArgs, OrganizationFeedFeedOutputConfigPubsubDestinationPtr and OrganizationFeedFeedOutputConfigPubsubDestinationPtrOutput values.
@@ -888,7 +888,7 @@ func (i *organizationFeedFeedOutputConfigPubsubDestinationPtrType) ToOrganizatio
 }
 
 func (i *organizationFeedFeedOutputConfigPubsubDestinationPtrType) ToOrganizationFeedFeedOutputConfigPubsubDestinationPtrOutputWithContext(ctx context.Context) OrganizationFeedFeedOutputConfigPubsubDestinationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(OrganizationFeedFeedOutputConfigPubsubDestinationPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationFeedFeedOutputConfigPubsubDestinationOutput).ToOrganizationFeedFeedOutputConfigPubsubDestinationPtrOutput()
 }
 
 type OrganizationFeedFeedOutputConfigPubsubDestinationOutput struct{ *pulumi.OutputState }
@@ -1006,7 +1006,7 @@ func (i ProjectFeedConditionArgs) ToProjectFeedConditionPtrOutput() ProjectFeedC
 }
 
 func (i ProjectFeedConditionArgs) ToProjectFeedConditionPtrOutputWithContext(ctx context.Context) ProjectFeedConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ProjectFeedConditionOutput).ToProjectFeedConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ProjectFeedConditionOutput).ToProjectFeedConditionPtrOutput()
 }
 
 // ProjectFeedConditionPtrInput is an input type that accepts ProjectFeedConditionArgs, ProjectFeedConditionPtr and ProjectFeedConditionPtrOutput values.
@@ -1039,7 +1039,7 @@ func (i *projectFeedConditionPtrType) ToProjectFeedConditionPtrOutput() ProjectF
 }
 
 func (i *projectFeedConditionPtrType) ToProjectFeedConditionPtrOutputWithContext(ctx context.Context) ProjectFeedConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ProjectFeedConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ProjectFeedConditionOutput).ToProjectFeedConditionPtrOutput()
 }
 
 type ProjectFeedConditionOutput struct{ *pulumi.OutputState }
@@ -1190,7 +1190,7 @@ func (i ProjectFeedFeedOutputConfigArgs) ToProjectFeedFeedOutputConfigPtrOutput(
 }
 
 func (i ProjectFeedFeedOutputConfigArgs) ToProjectFeedFeedOutputConfigPtrOutputWithContext(ctx context.Context) ProjectFeedFeedOutputConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ProjectFeedFeedOutputConfigOutput).ToProjectFeedFeedOutputConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ProjectFeedFeedOutputConfigOutput).ToProjectFeedFeedOutputConfigPtrOutput()
 }
 
 // ProjectFeedFeedOutputConfigPtrInput is an input type that accepts ProjectFeedFeedOutputConfigArgs, ProjectFeedFeedOutputConfigPtr and ProjectFeedFeedOutputConfigPtrOutput values.
@@ -1223,7 +1223,7 @@ func (i *projectFeedFeedOutputConfigPtrType) ToProjectFeedFeedOutputConfigPtrOut
 }
 
 func (i *projectFeedFeedOutputConfigPtrType) ToProjectFeedFeedOutputConfigPtrOutputWithContext(ctx context.Context) ProjectFeedFeedOutputConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ProjectFeedFeedOutputConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ProjectFeedFeedOutputConfigOutput).ToProjectFeedFeedOutputConfigPtrOutput()
 }
 
 type ProjectFeedFeedOutputConfigOutput struct{ *pulumi.OutputState }
@@ -1325,7 +1325,7 @@ func (i ProjectFeedFeedOutputConfigPubsubDestinationArgs) ToProjectFeedFeedOutpu
 }
 
 func (i ProjectFeedFeedOutputConfigPubsubDestinationArgs) ToProjectFeedFeedOutputConfigPubsubDestinationPtrOutputWithContext(ctx context.Context) ProjectFeedFeedOutputConfigPubsubDestinationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ProjectFeedFeedOutputConfigPubsubDestinationOutput).ToProjectFeedFeedOutputConfigPubsubDestinationPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ProjectFeedFeedOutputConfigPubsubDestinationOutput).ToProjectFeedFeedOutputConfigPubsubDestinationPtrOutput()
 }
 
 // ProjectFeedFeedOutputConfigPubsubDestinationPtrInput is an input type that accepts ProjectFeedFeedOutputConfigPubsubDestinationArgs, ProjectFeedFeedOutputConfigPubsubDestinationPtr and ProjectFeedFeedOutputConfigPubsubDestinationPtrOutput values.
@@ -1358,7 +1358,7 @@ func (i *projectFeedFeedOutputConfigPubsubDestinationPtrType) ToProjectFeedFeedO
 }
 
 func (i *projectFeedFeedOutputConfigPubsubDestinationPtrType) ToProjectFeedFeedOutputConfigPubsubDestinationPtrOutputWithContext(ctx context.Context) ProjectFeedFeedOutputConfigPubsubDestinationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ProjectFeedFeedOutputConfigPubsubDestinationPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ProjectFeedFeedOutputConfigPubsubDestinationOutput).ToProjectFeedFeedOutputConfigPubsubDestinationPtrOutput()
 }
 
 type ProjectFeedFeedOutputConfigPubsubDestinationOutput struct{ *pulumi.OutputState }

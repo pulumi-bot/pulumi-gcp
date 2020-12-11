@@ -632,16 +632,31 @@ type FlexibleAppVersionInput interface {
 	ToFlexibleAppVersionOutputWithContext(ctx context.Context) FlexibleAppVersionOutput
 }
 
-func (FlexibleAppVersion) ElementType() reflect.Type {
-	return reflect.TypeOf((*FlexibleAppVersion)(nil)).Elem()
+func (*FlexibleAppVersion) ElementType() reflect.Type {
+	return reflect.TypeOf((*FlexibleAppVersion)(nil))
 }
 
-func (i FlexibleAppVersion) ToFlexibleAppVersionOutput() FlexibleAppVersionOutput {
+func (i *FlexibleAppVersion) ToFlexibleAppVersionOutput() FlexibleAppVersionOutput {
 	return i.ToFlexibleAppVersionOutputWithContext(context.Background())
 }
 
-func (i FlexibleAppVersion) ToFlexibleAppVersionOutputWithContext(ctx context.Context) FlexibleAppVersionOutput {
+func (i *FlexibleAppVersion) ToFlexibleAppVersionOutputWithContext(ctx context.Context) FlexibleAppVersionOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionOutput)
+}
+
+func (i *FlexibleAppVersion) ToFlexibleAppVersionPtrOutput() FlexibleAppVersionPtrOutput {
+	return i.ToFlexibleAppVersionPtrOutputWithContext(context.Background())
+}
+
+func (i *FlexibleAppVersion) ToFlexibleAppVersionPtrOutputWithContext(ctx context.Context) FlexibleAppVersionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionPtrOutput)
+}
+
+type FlexibleAppVersionPtrInput interface {
+	pulumi.Input
+
+	ToFlexibleAppVersionPtrOutput() FlexibleAppVersionPtrOutput
+	ToFlexibleAppVersionPtrOutputWithContext(ctx context.Context) FlexibleAppVersionPtrOutput
 }
 
 type FlexibleAppVersionOutput struct {
@@ -649,7 +664,7 @@ type FlexibleAppVersionOutput struct {
 }
 
 func (FlexibleAppVersionOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FlexibleAppVersionOutput)(nil)).Elem()
+	return reflect.TypeOf((*FlexibleAppVersion)(nil))
 }
 
 func (o FlexibleAppVersionOutput) ToFlexibleAppVersionOutput() FlexibleAppVersionOutput {
@@ -660,6 +675,23 @@ func (o FlexibleAppVersionOutput) ToFlexibleAppVersionOutputWithContext(ctx cont
 	return o
 }
 
+type FlexibleAppVersionPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (FlexibleAppVersionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**FlexibleAppVersion)(nil))
+}
+
+func (o FlexibleAppVersionPtrOutput) ToFlexibleAppVersionPtrOutput() FlexibleAppVersionPtrOutput {
+	return o
+}
+
+func (o FlexibleAppVersionPtrOutput) ToFlexibleAppVersionPtrOutputWithContext(ctx context.Context) FlexibleAppVersionPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(FlexibleAppVersionOutput{})
+	pulumi.RegisterOutputType(FlexibleAppVersionPtrOutput{})
 }

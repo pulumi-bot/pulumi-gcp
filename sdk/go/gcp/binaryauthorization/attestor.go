@@ -264,16 +264,31 @@ type AttestorInput interface {
 	ToAttestorOutputWithContext(ctx context.Context) AttestorOutput
 }
 
-func (Attestor) ElementType() reflect.Type {
-	return reflect.TypeOf((*Attestor)(nil)).Elem()
+func (*Attestor) ElementType() reflect.Type {
+	return reflect.TypeOf((*Attestor)(nil))
 }
 
-func (i Attestor) ToAttestorOutput() AttestorOutput {
+func (i *Attestor) ToAttestorOutput() AttestorOutput {
 	return i.ToAttestorOutputWithContext(context.Background())
 }
 
-func (i Attestor) ToAttestorOutputWithContext(ctx context.Context) AttestorOutput {
+func (i *Attestor) ToAttestorOutputWithContext(ctx context.Context) AttestorOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AttestorOutput)
+}
+
+func (i *Attestor) ToAttestorPtrOutput() AttestorPtrOutput {
+	return i.ToAttestorPtrOutputWithContext(context.Background())
+}
+
+func (i *Attestor) ToAttestorPtrOutputWithContext(ctx context.Context) AttestorPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AttestorPtrOutput)
+}
+
+type AttestorPtrInput interface {
+	pulumi.Input
+
+	ToAttestorPtrOutput() AttestorPtrOutput
+	ToAttestorPtrOutputWithContext(ctx context.Context) AttestorPtrOutput
 }
 
 type AttestorOutput struct {
@@ -281,7 +296,7 @@ type AttestorOutput struct {
 }
 
 func (AttestorOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AttestorOutput)(nil)).Elem()
+	return reflect.TypeOf((*Attestor)(nil))
 }
 
 func (o AttestorOutput) ToAttestorOutput() AttestorOutput {
@@ -292,6 +307,23 @@ func (o AttestorOutput) ToAttestorOutputWithContext(ctx context.Context) Attesto
 	return o
 }
 
+type AttestorPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (AttestorPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Attestor)(nil))
+}
+
+func (o AttestorPtrOutput) ToAttestorPtrOutput() AttestorPtrOutput {
+	return o
+}
+
+func (o AttestorPtrOutput) ToAttestorPtrOutputWithContext(ctx context.Context) AttestorPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(AttestorOutput{})
+	pulumi.RegisterOutputType(AttestorPtrOutput{})
 }

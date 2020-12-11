@@ -286,16 +286,31 @@ type VPNGatewayInput interface {
 	ToVPNGatewayOutputWithContext(ctx context.Context) VPNGatewayOutput
 }
 
-func (VPNGateway) ElementType() reflect.Type {
-	return reflect.TypeOf((*VPNGateway)(nil)).Elem()
+func (*VPNGateway) ElementType() reflect.Type {
+	return reflect.TypeOf((*VPNGateway)(nil))
 }
 
-func (i VPNGateway) ToVPNGatewayOutput() VPNGatewayOutput {
+func (i *VPNGateway) ToVPNGatewayOutput() VPNGatewayOutput {
 	return i.ToVPNGatewayOutputWithContext(context.Background())
 }
 
-func (i VPNGateway) ToVPNGatewayOutputWithContext(ctx context.Context) VPNGatewayOutput {
+func (i *VPNGateway) ToVPNGatewayOutputWithContext(ctx context.Context) VPNGatewayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VPNGatewayOutput)
+}
+
+func (i *VPNGateway) ToVPNGatewayPtrOutput() VPNGatewayPtrOutput {
+	return i.ToVPNGatewayPtrOutputWithContext(context.Background())
+}
+
+func (i *VPNGateway) ToVPNGatewayPtrOutputWithContext(ctx context.Context) VPNGatewayPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VPNGatewayPtrOutput)
+}
+
+type VPNGatewayPtrInput interface {
+	pulumi.Input
+
+	ToVPNGatewayPtrOutput() VPNGatewayPtrOutput
+	ToVPNGatewayPtrOutputWithContext(ctx context.Context) VPNGatewayPtrOutput
 }
 
 type VPNGatewayOutput struct {
@@ -303,7 +318,7 @@ type VPNGatewayOutput struct {
 }
 
 func (VPNGatewayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*VPNGatewayOutput)(nil)).Elem()
+	return reflect.TypeOf((*VPNGateway)(nil))
 }
 
 func (o VPNGatewayOutput) ToVPNGatewayOutput() VPNGatewayOutput {
@@ -314,6 +329,23 @@ func (o VPNGatewayOutput) ToVPNGatewayOutputWithContext(ctx context.Context) VPN
 	return o
 }
 
+type VPNGatewayPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (VPNGatewayPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**VPNGateway)(nil))
+}
+
+func (o VPNGatewayPtrOutput) ToVPNGatewayPtrOutput() VPNGatewayPtrOutput {
+	return o
+}
+
+func (o VPNGatewayPtrOutput) ToVPNGatewayPtrOutputWithContext(ctx context.Context) VPNGatewayPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(VPNGatewayOutput{})
+	pulumi.RegisterOutputType(VPNGatewayPtrOutput{})
 }

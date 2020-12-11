@@ -162,16 +162,31 @@ type TunnelIamMemberInput interface {
 	ToTunnelIamMemberOutputWithContext(ctx context.Context) TunnelIamMemberOutput
 }
 
-func (TunnelIamMember) ElementType() reflect.Type {
-	return reflect.TypeOf((*TunnelIamMember)(nil)).Elem()
+func (*TunnelIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*TunnelIamMember)(nil))
 }
 
-func (i TunnelIamMember) ToTunnelIamMemberOutput() TunnelIamMemberOutput {
+func (i *TunnelIamMember) ToTunnelIamMemberOutput() TunnelIamMemberOutput {
 	return i.ToTunnelIamMemberOutputWithContext(context.Background())
 }
 
-func (i TunnelIamMember) ToTunnelIamMemberOutputWithContext(ctx context.Context) TunnelIamMemberOutput {
+func (i *TunnelIamMember) ToTunnelIamMemberOutputWithContext(ctx context.Context) TunnelIamMemberOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TunnelIamMemberOutput)
+}
+
+func (i *TunnelIamMember) ToTunnelIamMemberPtrOutput() TunnelIamMemberPtrOutput {
+	return i.ToTunnelIamMemberPtrOutputWithContext(context.Background())
+}
+
+func (i *TunnelIamMember) ToTunnelIamMemberPtrOutputWithContext(ctx context.Context) TunnelIamMemberPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TunnelIamMemberPtrOutput)
+}
+
+type TunnelIamMemberPtrInput interface {
+	pulumi.Input
+
+	ToTunnelIamMemberPtrOutput() TunnelIamMemberPtrOutput
+	ToTunnelIamMemberPtrOutputWithContext(ctx context.Context) TunnelIamMemberPtrOutput
 }
 
 type TunnelIamMemberOutput struct {
@@ -179,7 +194,7 @@ type TunnelIamMemberOutput struct {
 }
 
 func (TunnelIamMemberOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*TunnelIamMemberOutput)(nil)).Elem()
+	return reflect.TypeOf((*TunnelIamMember)(nil))
 }
 
 func (o TunnelIamMemberOutput) ToTunnelIamMemberOutput() TunnelIamMemberOutput {
@@ -190,6 +205,23 @@ func (o TunnelIamMemberOutput) ToTunnelIamMemberOutputWithContext(ctx context.Co
 	return o
 }
 
+type TunnelIamMemberPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (TunnelIamMemberPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TunnelIamMember)(nil))
+}
+
+func (o TunnelIamMemberPtrOutput) ToTunnelIamMemberPtrOutput() TunnelIamMemberPtrOutput {
+	return o
+}
+
+func (o TunnelIamMemberPtrOutput) ToTunnelIamMemberPtrOutputWithContext(ctx context.Context) TunnelIamMemberPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(TunnelIamMemberOutput{})
+	pulumi.RegisterOutputType(TunnelIamMemberPtrOutput{})
 }

@@ -239,16 +239,31 @@ type InstanceIamPolicyInput interface {
 	ToInstanceIamPolicyOutputWithContext(ctx context.Context) InstanceIamPolicyOutput
 }
 
-func (InstanceIamPolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*InstanceIamPolicy)(nil)).Elem()
+func (*InstanceIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceIamPolicy)(nil))
 }
 
-func (i InstanceIamPolicy) ToInstanceIamPolicyOutput() InstanceIamPolicyOutput {
+func (i *InstanceIamPolicy) ToInstanceIamPolicyOutput() InstanceIamPolicyOutput {
 	return i.ToInstanceIamPolicyOutputWithContext(context.Background())
 }
 
-func (i InstanceIamPolicy) ToInstanceIamPolicyOutputWithContext(ctx context.Context) InstanceIamPolicyOutput {
+func (i *InstanceIamPolicy) ToInstanceIamPolicyOutputWithContext(ctx context.Context) InstanceIamPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceIamPolicyOutput)
+}
+
+func (i *InstanceIamPolicy) ToInstanceIamPolicyPtrOutput() InstanceIamPolicyPtrOutput {
+	return i.ToInstanceIamPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i *InstanceIamPolicy) ToInstanceIamPolicyPtrOutputWithContext(ctx context.Context) InstanceIamPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceIamPolicyPtrOutput)
+}
+
+type InstanceIamPolicyPtrInput interface {
+	pulumi.Input
+
+	ToInstanceIamPolicyPtrOutput() InstanceIamPolicyPtrOutput
+	ToInstanceIamPolicyPtrOutputWithContext(ctx context.Context) InstanceIamPolicyPtrOutput
 }
 
 type InstanceIamPolicyOutput struct {
@@ -256,7 +271,7 @@ type InstanceIamPolicyOutput struct {
 }
 
 func (InstanceIamPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*InstanceIamPolicyOutput)(nil)).Elem()
+	return reflect.TypeOf((*InstanceIamPolicy)(nil))
 }
 
 func (o InstanceIamPolicyOutput) ToInstanceIamPolicyOutput() InstanceIamPolicyOutput {
@@ -267,6 +282,23 @@ func (o InstanceIamPolicyOutput) ToInstanceIamPolicyOutputWithContext(ctx contex
 	return o
 }
 
+type InstanceIamPolicyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (InstanceIamPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**InstanceIamPolicy)(nil))
+}
+
+func (o InstanceIamPolicyPtrOutput) ToInstanceIamPolicyPtrOutput() InstanceIamPolicyPtrOutput {
+	return o
+}
+
+func (o InstanceIamPolicyPtrOutput) ToInstanceIamPolicyPtrOutputWithContext(ctx context.Context) InstanceIamPolicyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(InstanceIamPolicyOutput{})
+	pulumi.RegisterOutputType(InstanceIamPolicyPtrOutput{})
 }
