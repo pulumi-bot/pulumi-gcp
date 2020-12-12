@@ -244,16 +244,31 @@ type ServiceIamMemberInput interface {
 	ToServiceIamMemberOutputWithContext(ctx context.Context) ServiceIamMemberOutput
 }
 
-func (ServiceIamMember) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServiceIamMember)(nil)).Elem()
+func (*ServiceIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceIamMember)(nil))
 }
 
-func (i ServiceIamMember) ToServiceIamMemberOutput() ServiceIamMemberOutput {
+func (i *ServiceIamMember) ToServiceIamMemberOutput() ServiceIamMemberOutput {
 	return i.ToServiceIamMemberOutputWithContext(context.Background())
 }
 
-func (i ServiceIamMember) ToServiceIamMemberOutputWithContext(ctx context.Context) ServiceIamMemberOutput {
+func (i *ServiceIamMember) ToServiceIamMemberOutputWithContext(ctx context.Context) ServiceIamMemberOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceIamMemberOutput)
+}
+
+func (i *ServiceIamMember) ToServiceIamMemberPtrOutput() ServiceIamMemberPtrOutput {
+	return i.ToServiceIamMemberPtrOutputWithContext(context.Background())
+}
+
+func (i *ServiceIamMember) ToServiceIamMemberPtrOutputWithContext(ctx context.Context) ServiceIamMemberPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceIamMemberPtrOutput)
+}
+
+type ServiceIamMemberPtrInput interface {
+	pulumi.Input
+
+	ToServiceIamMemberPtrOutput() ServiceIamMemberPtrOutput
+	ToServiceIamMemberPtrOutputWithContext(ctx context.Context) ServiceIamMemberPtrOutput
 }
 
 type ServiceIamMemberOutput struct {
@@ -261,7 +276,7 @@ type ServiceIamMemberOutput struct {
 }
 
 func (ServiceIamMemberOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServiceIamMemberOutput)(nil)).Elem()
+	return reflect.TypeOf((*ServiceIamMember)(nil))
 }
 
 func (o ServiceIamMemberOutput) ToServiceIamMemberOutput() ServiceIamMemberOutput {
@@ -272,6 +287,23 @@ func (o ServiceIamMemberOutput) ToServiceIamMemberOutputWithContext(ctx context.
 	return o
 }
 
+type ServiceIamMemberPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ServiceIamMemberPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceIamMember)(nil))
+}
+
+func (o ServiceIamMemberPtrOutput) ToServiceIamMemberPtrOutput() ServiceIamMemberPtrOutput {
+	return o
+}
+
+func (o ServiceIamMemberPtrOutput) ToServiceIamMemberPtrOutputWithContext(ctx context.Context) ServiceIamMemberPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ServiceIamMemberOutput{})
+	pulumi.RegisterOutputType(ServiceIamMemberPtrOutput{})
 }

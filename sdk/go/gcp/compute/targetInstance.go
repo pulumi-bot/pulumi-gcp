@@ -369,16 +369,31 @@ type TargetInstanceInput interface {
 	ToTargetInstanceOutputWithContext(ctx context.Context) TargetInstanceOutput
 }
 
-func (TargetInstance) ElementType() reflect.Type {
-	return reflect.TypeOf((*TargetInstance)(nil)).Elem()
+func (*TargetInstance) ElementType() reflect.Type {
+	return reflect.TypeOf((*TargetInstance)(nil))
 }
 
-func (i TargetInstance) ToTargetInstanceOutput() TargetInstanceOutput {
+func (i *TargetInstance) ToTargetInstanceOutput() TargetInstanceOutput {
 	return i.ToTargetInstanceOutputWithContext(context.Background())
 }
 
-func (i TargetInstance) ToTargetInstanceOutputWithContext(ctx context.Context) TargetInstanceOutput {
+func (i *TargetInstance) ToTargetInstanceOutputWithContext(ctx context.Context) TargetInstanceOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TargetInstanceOutput)
+}
+
+func (i *TargetInstance) ToTargetInstancePtrOutput() TargetInstancePtrOutput {
+	return i.ToTargetInstancePtrOutputWithContext(context.Background())
+}
+
+func (i *TargetInstance) ToTargetInstancePtrOutputWithContext(ctx context.Context) TargetInstancePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TargetInstancePtrOutput)
+}
+
+type TargetInstancePtrInput interface {
+	pulumi.Input
+
+	ToTargetInstancePtrOutput() TargetInstancePtrOutput
+	ToTargetInstancePtrOutputWithContext(ctx context.Context) TargetInstancePtrOutput
 }
 
 type TargetInstanceOutput struct {
@@ -386,7 +401,7 @@ type TargetInstanceOutput struct {
 }
 
 func (TargetInstanceOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*TargetInstanceOutput)(nil)).Elem()
+	return reflect.TypeOf((*TargetInstance)(nil))
 }
 
 func (o TargetInstanceOutput) ToTargetInstanceOutput() TargetInstanceOutput {
@@ -397,6 +412,23 @@ func (o TargetInstanceOutput) ToTargetInstanceOutputWithContext(ctx context.Cont
 	return o
 }
 
+type TargetInstancePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (TargetInstancePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TargetInstance)(nil))
+}
+
+func (o TargetInstancePtrOutput) ToTargetInstancePtrOutput() TargetInstancePtrOutput {
+	return o
+}
+
+func (o TargetInstancePtrOutput) ToTargetInstancePtrOutputWithContext(ctx context.Context) TargetInstancePtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(TargetInstanceOutput{})
+	pulumi.RegisterOutputType(TargetInstancePtrOutput{})
 }

@@ -279,16 +279,31 @@ type DatasetInput interface {
 	ToDatasetOutputWithContext(ctx context.Context) DatasetOutput
 }
 
-func (Dataset) ElementType() reflect.Type {
-	return reflect.TypeOf((*Dataset)(nil)).Elem()
+func (*Dataset) ElementType() reflect.Type {
+	return reflect.TypeOf((*Dataset)(nil))
 }
 
-func (i Dataset) ToDatasetOutput() DatasetOutput {
+func (i *Dataset) ToDatasetOutput() DatasetOutput {
 	return i.ToDatasetOutputWithContext(context.Background())
 }
 
-func (i Dataset) ToDatasetOutputWithContext(ctx context.Context) DatasetOutput {
+func (i *Dataset) ToDatasetOutputWithContext(ctx context.Context) DatasetOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DatasetOutput)
+}
+
+func (i *Dataset) ToDatasetPtrOutput() DatasetPtrOutput {
+	return i.ToDatasetPtrOutputWithContext(context.Background())
+}
+
+func (i *Dataset) ToDatasetPtrOutputWithContext(ctx context.Context) DatasetPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetPtrOutput)
+}
+
+type DatasetPtrInput interface {
+	pulumi.Input
+
+	ToDatasetPtrOutput() DatasetPtrOutput
+	ToDatasetPtrOutputWithContext(ctx context.Context) DatasetPtrOutput
 }
 
 type DatasetOutput struct {
@@ -296,7 +311,7 @@ type DatasetOutput struct {
 }
 
 func (DatasetOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DatasetOutput)(nil)).Elem()
+	return reflect.TypeOf((*Dataset)(nil))
 }
 
 func (o DatasetOutput) ToDatasetOutput() DatasetOutput {
@@ -307,6 +322,23 @@ func (o DatasetOutput) ToDatasetOutputWithContext(ctx context.Context) DatasetOu
 	return o
 }
 
+type DatasetPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (DatasetPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Dataset)(nil))
+}
+
+func (o DatasetPtrOutput) ToDatasetPtrOutput() DatasetPtrOutput {
+	return o
+}
+
+func (o DatasetPtrOutput) ToDatasetPtrOutputWithContext(ctx context.Context) DatasetPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(DatasetOutput{})
+	pulumi.RegisterOutputType(DatasetPtrOutput{})
 }

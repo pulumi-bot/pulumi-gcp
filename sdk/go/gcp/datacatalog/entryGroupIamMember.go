@@ -270,16 +270,31 @@ type EntryGroupIamMemberInput interface {
 	ToEntryGroupIamMemberOutputWithContext(ctx context.Context) EntryGroupIamMemberOutput
 }
 
-func (EntryGroupIamMember) ElementType() reflect.Type {
-	return reflect.TypeOf((*EntryGroupIamMember)(nil)).Elem()
+func (*EntryGroupIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*EntryGroupIamMember)(nil))
 }
 
-func (i EntryGroupIamMember) ToEntryGroupIamMemberOutput() EntryGroupIamMemberOutput {
+func (i *EntryGroupIamMember) ToEntryGroupIamMemberOutput() EntryGroupIamMemberOutput {
 	return i.ToEntryGroupIamMemberOutputWithContext(context.Background())
 }
 
-func (i EntryGroupIamMember) ToEntryGroupIamMemberOutputWithContext(ctx context.Context) EntryGroupIamMemberOutput {
+func (i *EntryGroupIamMember) ToEntryGroupIamMemberOutputWithContext(ctx context.Context) EntryGroupIamMemberOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EntryGroupIamMemberOutput)
+}
+
+func (i *EntryGroupIamMember) ToEntryGroupIamMemberPtrOutput() EntryGroupIamMemberPtrOutput {
+	return i.ToEntryGroupIamMemberPtrOutputWithContext(context.Background())
+}
+
+func (i *EntryGroupIamMember) ToEntryGroupIamMemberPtrOutputWithContext(ctx context.Context) EntryGroupIamMemberPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EntryGroupIamMemberPtrOutput)
+}
+
+type EntryGroupIamMemberPtrInput interface {
+	pulumi.Input
+
+	ToEntryGroupIamMemberPtrOutput() EntryGroupIamMemberPtrOutput
+	ToEntryGroupIamMemberPtrOutputWithContext(ctx context.Context) EntryGroupIamMemberPtrOutput
 }
 
 type EntryGroupIamMemberOutput struct {
@@ -287,7 +302,7 @@ type EntryGroupIamMemberOutput struct {
 }
 
 func (EntryGroupIamMemberOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EntryGroupIamMemberOutput)(nil)).Elem()
+	return reflect.TypeOf((*EntryGroupIamMember)(nil))
 }
 
 func (o EntryGroupIamMemberOutput) ToEntryGroupIamMemberOutput() EntryGroupIamMemberOutput {
@@ -298,6 +313,23 @@ func (o EntryGroupIamMemberOutput) ToEntryGroupIamMemberOutputWithContext(ctx co
 	return o
 }
 
+type EntryGroupIamMemberPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (EntryGroupIamMemberPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EntryGroupIamMember)(nil))
+}
+
+func (o EntryGroupIamMemberPtrOutput) ToEntryGroupIamMemberPtrOutput() EntryGroupIamMemberPtrOutput {
+	return o
+}
+
+func (o EntryGroupIamMemberPtrOutput) ToEntryGroupIamMemberPtrOutputWithContext(ctx context.Context) EntryGroupIamMemberPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(EntryGroupIamMemberOutput{})
+	pulumi.RegisterOutputType(EntryGroupIamMemberPtrOutput{})
 }

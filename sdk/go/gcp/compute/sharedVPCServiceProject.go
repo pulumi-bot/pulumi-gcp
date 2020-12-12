@@ -141,16 +141,31 @@ type SharedVPCServiceProjectInput interface {
 	ToSharedVPCServiceProjectOutputWithContext(ctx context.Context) SharedVPCServiceProjectOutput
 }
 
-func (SharedVPCServiceProject) ElementType() reflect.Type {
-	return reflect.TypeOf((*SharedVPCServiceProject)(nil)).Elem()
+func (*SharedVPCServiceProject) ElementType() reflect.Type {
+	return reflect.TypeOf((*SharedVPCServiceProject)(nil))
 }
 
-func (i SharedVPCServiceProject) ToSharedVPCServiceProjectOutput() SharedVPCServiceProjectOutput {
+func (i *SharedVPCServiceProject) ToSharedVPCServiceProjectOutput() SharedVPCServiceProjectOutput {
 	return i.ToSharedVPCServiceProjectOutputWithContext(context.Background())
 }
 
-func (i SharedVPCServiceProject) ToSharedVPCServiceProjectOutputWithContext(ctx context.Context) SharedVPCServiceProjectOutput {
+func (i *SharedVPCServiceProject) ToSharedVPCServiceProjectOutputWithContext(ctx context.Context) SharedVPCServiceProjectOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SharedVPCServiceProjectOutput)
+}
+
+func (i *SharedVPCServiceProject) ToSharedVPCServiceProjectPtrOutput() SharedVPCServiceProjectPtrOutput {
+	return i.ToSharedVPCServiceProjectPtrOutputWithContext(context.Background())
+}
+
+func (i *SharedVPCServiceProject) ToSharedVPCServiceProjectPtrOutputWithContext(ctx context.Context) SharedVPCServiceProjectPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SharedVPCServiceProjectPtrOutput)
+}
+
+type SharedVPCServiceProjectPtrInput interface {
+	pulumi.Input
+
+	ToSharedVPCServiceProjectPtrOutput() SharedVPCServiceProjectPtrOutput
+	ToSharedVPCServiceProjectPtrOutputWithContext(ctx context.Context) SharedVPCServiceProjectPtrOutput
 }
 
 type SharedVPCServiceProjectOutput struct {
@@ -158,7 +173,7 @@ type SharedVPCServiceProjectOutput struct {
 }
 
 func (SharedVPCServiceProjectOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SharedVPCServiceProjectOutput)(nil)).Elem()
+	return reflect.TypeOf((*SharedVPCServiceProject)(nil))
 }
 
 func (o SharedVPCServiceProjectOutput) ToSharedVPCServiceProjectOutput() SharedVPCServiceProjectOutput {
@@ -169,6 +184,23 @@ func (o SharedVPCServiceProjectOutput) ToSharedVPCServiceProjectOutputWithContex
 	return o
 }
 
+type SharedVPCServiceProjectPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (SharedVPCServiceProjectPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SharedVPCServiceProject)(nil))
+}
+
+func (o SharedVPCServiceProjectPtrOutput) ToSharedVPCServiceProjectPtrOutput() SharedVPCServiceProjectPtrOutput {
+	return o
+}
+
+func (o SharedVPCServiceProjectPtrOutput) ToSharedVPCServiceProjectPtrOutputWithContext(ctx context.Context) SharedVPCServiceProjectPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(SharedVPCServiceProjectOutput{})
+	pulumi.RegisterOutputType(SharedVPCServiceProjectPtrOutput{})
 }

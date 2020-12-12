@@ -251,16 +251,31 @@ type DatasetIamPolicyInput interface {
 	ToDatasetIamPolicyOutputWithContext(ctx context.Context) DatasetIamPolicyOutput
 }
 
-func (DatasetIamPolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*DatasetIamPolicy)(nil)).Elem()
+func (*DatasetIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatasetIamPolicy)(nil))
 }
 
-func (i DatasetIamPolicy) ToDatasetIamPolicyOutput() DatasetIamPolicyOutput {
+func (i *DatasetIamPolicy) ToDatasetIamPolicyOutput() DatasetIamPolicyOutput {
 	return i.ToDatasetIamPolicyOutputWithContext(context.Background())
 }
 
-func (i DatasetIamPolicy) ToDatasetIamPolicyOutputWithContext(ctx context.Context) DatasetIamPolicyOutput {
+func (i *DatasetIamPolicy) ToDatasetIamPolicyOutputWithContext(ctx context.Context) DatasetIamPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DatasetIamPolicyOutput)
+}
+
+func (i *DatasetIamPolicy) ToDatasetIamPolicyPtrOutput() DatasetIamPolicyPtrOutput {
+	return i.ToDatasetIamPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i *DatasetIamPolicy) ToDatasetIamPolicyPtrOutputWithContext(ctx context.Context) DatasetIamPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetIamPolicyPtrOutput)
+}
+
+type DatasetIamPolicyPtrInput interface {
+	pulumi.Input
+
+	ToDatasetIamPolicyPtrOutput() DatasetIamPolicyPtrOutput
+	ToDatasetIamPolicyPtrOutputWithContext(ctx context.Context) DatasetIamPolicyPtrOutput
 }
 
 type DatasetIamPolicyOutput struct {
@@ -268,7 +283,7 @@ type DatasetIamPolicyOutput struct {
 }
 
 func (DatasetIamPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DatasetIamPolicyOutput)(nil)).Elem()
+	return reflect.TypeOf((*DatasetIamPolicy)(nil))
 }
 
 func (o DatasetIamPolicyOutput) ToDatasetIamPolicyOutput() DatasetIamPolicyOutput {
@@ -279,6 +294,23 @@ func (o DatasetIamPolicyOutput) ToDatasetIamPolicyOutputWithContext(ctx context.
 	return o
 }
 
+type DatasetIamPolicyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (DatasetIamPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatasetIamPolicy)(nil))
+}
+
+func (o DatasetIamPolicyPtrOutput) ToDatasetIamPolicyPtrOutput() DatasetIamPolicyPtrOutput {
+	return o
+}
+
+func (o DatasetIamPolicyPtrOutput) ToDatasetIamPolicyPtrOutputWithContext(ctx context.Context) DatasetIamPolicyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(DatasetIamPolicyOutput{})
+	pulumi.RegisterOutputType(DatasetIamPolicyPtrOutput{})
 }

@@ -426,16 +426,31 @@ type EntryInput interface {
 	ToEntryOutputWithContext(ctx context.Context) EntryOutput
 }
 
-func (Entry) ElementType() reflect.Type {
-	return reflect.TypeOf((*Entry)(nil)).Elem()
+func (*Entry) ElementType() reflect.Type {
+	return reflect.TypeOf((*Entry)(nil))
 }
 
-func (i Entry) ToEntryOutput() EntryOutput {
+func (i *Entry) ToEntryOutput() EntryOutput {
 	return i.ToEntryOutputWithContext(context.Background())
 }
 
-func (i Entry) ToEntryOutputWithContext(ctx context.Context) EntryOutput {
+func (i *Entry) ToEntryOutputWithContext(ctx context.Context) EntryOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EntryOutput)
+}
+
+func (i *Entry) ToEntryPtrOutput() EntryPtrOutput {
+	return i.ToEntryPtrOutputWithContext(context.Background())
+}
+
+func (i *Entry) ToEntryPtrOutputWithContext(ctx context.Context) EntryPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EntryPtrOutput)
+}
+
+type EntryPtrInput interface {
+	pulumi.Input
+
+	ToEntryPtrOutput() EntryPtrOutput
+	ToEntryPtrOutputWithContext(ctx context.Context) EntryPtrOutput
 }
 
 type EntryOutput struct {
@@ -443,7 +458,7 @@ type EntryOutput struct {
 }
 
 func (EntryOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EntryOutput)(nil)).Elem()
+	return reflect.TypeOf((*Entry)(nil))
 }
 
 func (o EntryOutput) ToEntryOutput() EntryOutput {
@@ -454,6 +469,23 @@ func (o EntryOutput) ToEntryOutputWithContext(ctx context.Context) EntryOutput {
 	return o
 }
 
+type EntryPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (EntryPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Entry)(nil))
+}
+
+func (o EntryPtrOutput) ToEntryPtrOutput() EntryPtrOutput {
+	return o
+}
+
+func (o EntryPtrOutput) ToEntryPtrOutputWithContext(ctx context.Context) EntryPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(EntryOutput{})
+	pulumi.RegisterOutputType(EntryPtrOutput{})
 }

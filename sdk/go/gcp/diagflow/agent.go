@@ -391,16 +391,31 @@ type AgentInput interface {
 	ToAgentOutputWithContext(ctx context.Context) AgentOutput
 }
 
-func (Agent) ElementType() reflect.Type {
-	return reflect.TypeOf((*Agent)(nil)).Elem()
+func (*Agent) ElementType() reflect.Type {
+	return reflect.TypeOf((*Agent)(nil))
 }
 
-func (i Agent) ToAgentOutput() AgentOutput {
+func (i *Agent) ToAgentOutput() AgentOutput {
 	return i.ToAgentOutputWithContext(context.Background())
 }
 
-func (i Agent) ToAgentOutputWithContext(ctx context.Context) AgentOutput {
+func (i *Agent) ToAgentOutputWithContext(ctx context.Context) AgentOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AgentOutput)
+}
+
+func (i *Agent) ToAgentPtrOutput() AgentPtrOutput {
+	return i.ToAgentPtrOutputWithContext(context.Background())
+}
+
+func (i *Agent) ToAgentPtrOutputWithContext(ctx context.Context) AgentPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AgentPtrOutput)
+}
+
+type AgentPtrInput interface {
+	pulumi.Input
+
+	ToAgentPtrOutput() AgentPtrOutput
+	ToAgentPtrOutputWithContext(ctx context.Context) AgentPtrOutput
 }
 
 type AgentOutput struct {
@@ -408,7 +423,7 @@ type AgentOutput struct {
 }
 
 func (AgentOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AgentOutput)(nil)).Elem()
+	return reflect.TypeOf((*Agent)(nil))
 }
 
 func (o AgentOutput) ToAgentOutput() AgentOutput {
@@ -419,6 +434,23 @@ func (o AgentOutput) ToAgentOutputWithContext(ctx context.Context) AgentOutput {
 	return o
 }
 
+type AgentPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (AgentPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Agent)(nil))
+}
+
+func (o AgentPtrOutput) ToAgentPtrOutput() AgentPtrOutput {
+	return o
+}
+
+func (o AgentPtrOutput) ToAgentPtrOutputWithContext(ctx context.Context) AgentPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(AgentOutput{})
+	pulumi.RegisterOutputType(AgentPtrOutput{})
 }

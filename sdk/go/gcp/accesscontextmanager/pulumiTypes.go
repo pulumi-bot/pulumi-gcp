@@ -66,7 +66,7 @@ func (i AccessLevelBasicArgs) ToAccessLevelBasicPtrOutput() AccessLevelBasicPtrO
 }
 
 func (i AccessLevelBasicArgs) ToAccessLevelBasicPtrOutputWithContext(ctx context.Context) AccessLevelBasicPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AccessLevelBasicOutput).ToAccessLevelBasicPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(AccessLevelBasicOutput).ToAccessLevelBasicPtrOutput()
 }
 
 // AccessLevelBasicPtrInput is an input type that accepts AccessLevelBasicArgs, AccessLevelBasicPtr and AccessLevelBasicPtrOutput values.
@@ -99,7 +99,7 @@ func (i *accessLevelBasicPtrType) ToAccessLevelBasicPtrOutput() AccessLevelBasic
 }
 
 func (i *accessLevelBasicPtrType) ToAccessLevelBasicPtrOutputWithContext(ctx context.Context) AccessLevelBasicPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AccessLevelBasicPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(AccessLevelBasicOutput).ToAccessLevelBasicPtrOutput()
 }
 
 type AccessLevelBasicOutput struct{ *pulumi.OutputState }
@@ -480,7 +480,7 @@ func (i AccessLevelBasicConditionDevicePolicyArgs) ToAccessLevelBasicConditionDe
 }
 
 func (i AccessLevelBasicConditionDevicePolicyArgs) ToAccessLevelBasicConditionDevicePolicyPtrOutputWithContext(ctx context.Context) AccessLevelBasicConditionDevicePolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AccessLevelBasicConditionDevicePolicyOutput).ToAccessLevelBasicConditionDevicePolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(AccessLevelBasicConditionDevicePolicyOutput).ToAccessLevelBasicConditionDevicePolicyPtrOutput()
 }
 
 // AccessLevelBasicConditionDevicePolicyPtrInput is an input type that accepts AccessLevelBasicConditionDevicePolicyArgs, AccessLevelBasicConditionDevicePolicyPtr and AccessLevelBasicConditionDevicePolicyPtrOutput values.
@@ -513,7 +513,7 @@ func (i *accessLevelBasicConditionDevicePolicyPtrType) ToAccessLevelBasicConditi
 }
 
 func (i *accessLevelBasicConditionDevicePolicyPtrType) ToAccessLevelBasicConditionDevicePolicyPtrOutputWithContext(ctx context.Context) AccessLevelBasicConditionDevicePolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AccessLevelBasicConditionDevicePolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(AccessLevelBasicConditionDevicePolicyOutput).ToAccessLevelBasicConditionDevicePolicyPtrOutput()
 }
 
 type AccessLevelBasicConditionDevicePolicyOutput struct{ *pulumi.OutputState }
@@ -851,7 +851,7 @@ func (i AccessLevelConditionDevicePolicyArgs) ToAccessLevelConditionDevicePolicy
 }
 
 func (i AccessLevelConditionDevicePolicyArgs) ToAccessLevelConditionDevicePolicyPtrOutputWithContext(ctx context.Context) AccessLevelConditionDevicePolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AccessLevelConditionDevicePolicyOutput).ToAccessLevelConditionDevicePolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(AccessLevelConditionDevicePolicyOutput).ToAccessLevelConditionDevicePolicyPtrOutput()
 }
 
 // AccessLevelConditionDevicePolicyPtrInput is an input type that accepts AccessLevelConditionDevicePolicyArgs, AccessLevelConditionDevicePolicyPtr and AccessLevelConditionDevicePolicyPtrOutput values.
@@ -884,7 +884,7 @@ func (i *accessLevelConditionDevicePolicyPtrType) ToAccessLevelConditionDevicePo
 }
 
 func (i *accessLevelConditionDevicePolicyPtrType) ToAccessLevelConditionDevicePolicyPtrOutputWithContext(ctx context.Context) AccessLevelConditionDevicePolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AccessLevelConditionDevicePolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(AccessLevelConditionDevicePolicyOutput).ToAccessLevelConditionDevicePolicyPtrOutput()
 }
 
 type AccessLevelConditionDevicePolicyOutput struct{ *pulumi.OutputState }
@@ -1194,7 +1194,7 @@ func (i AccessLevelCustomArgs) ToAccessLevelCustomPtrOutput() AccessLevelCustomP
 }
 
 func (i AccessLevelCustomArgs) ToAccessLevelCustomPtrOutputWithContext(ctx context.Context) AccessLevelCustomPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AccessLevelCustomOutput).ToAccessLevelCustomPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(AccessLevelCustomOutput).ToAccessLevelCustomPtrOutput()
 }
 
 // AccessLevelCustomPtrInput is an input type that accepts AccessLevelCustomArgs, AccessLevelCustomPtr and AccessLevelCustomPtrOutput values.
@@ -1227,7 +1227,7 @@ func (i *accessLevelCustomPtrType) ToAccessLevelCustomPtrOutput() AccessLevelCus
 }
 
 func (i *accessLevelCustomPtrType) ToAccessLevelCustomPtrOutputWithContext(ctx context.Context) AccessLevelCustomPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AccessLevelCustomPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(AccessLevelCustomOutput).ToAccessLevelCustomPtrOutput()
 }
 
 type AccessLevelCustomOutput struct{ *pulumi.OutputState }
@@ -1343,7 +1343,7 @@ func (i AccessLevelCustomExprArgs) ToAccessLevelCustomExprPtrOutput() AccessLeve
 }
 
 func (i AccessLevelCustomExprArgs) ToAccessLevelCustomExprPtrOutputWithContext(ctx context.Context) AccessLevelCustomExprPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AccessLevelCustomExprOutput).ToAccessLevelCustomExprPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(AccessLevelCustomExprOutput).ToAccessLevelCustomExprPtrOutput()
 }
 
 // AccessLevelCustomExprPtrInput is an input type that accepts AccessLevelCustomExprArgs, AccessLevelCustomExprPtr and AccessLevelCustomExprPtrOutput values.
@@ -1376,7 +1376,7 @@ func (i *accessLevelCustomExprPtrType) ToAccessLevelCustomExprPtrOutput() Access
 }
 
 func (i *accessLevelCustomExprPtrType) ToAccessLevelCustomExprPtrOutputWithContext(ctx context.Context) AccessLevelCustomExprPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AccessLevelCustomExprPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(AccessLevelCustomExprOutput).ToAccessLevelCustomExprPtrOutput()
 }
 
 type AccessLevelCustomExprOutput struct{ *pulumi.OutputState }
@@ -1685,7 +1685,7 @@ func (i AccessLevelsAccessLevelBasicArgs) ToAccessLevelsAccessLevelBasicPtrOutpu
 }
 
 func (i AccessLevelsAccessLevelBasicArgs) ToAccessLevelsAccessLevelBasicPtrOutputWithContext(ctx context.Context) AccessLevelsAccessLevelBasicPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AccessLevelsAccessLevelBasicOutput).ToAccessLevelsAccessLevelBasicPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(AccessLevelsAccessLevelBasicOutput).ToAccessLevelsAccessLevelBasicPtrOutput()
 }
 
 // AccessLevelsAccessLevelBasicPtrInput is an input type that accepts AccessLevelsAccessLevelBasicArgs, AccessLevelsAccessLevelBasicPtr and AccessLevelsAccessLevelBasicPtrOutput values.
@@ -1718,7 +1718,7 @@ func (i *accessLevelsAccessLevelBasicPtrType) ToAccessLevelsAccessLevelBasicPtrO
 }
 
 func (i *accessLevelsAccessLevelBasicPtrType) ToAccessLevelsAccessLevelBasicPtrOutputWithContext(ctx context.Context) AccessLevelsAccessLevelBasicPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AccessLevelsAccessLevelBasicPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(AccessLevelsAccessLevelBasicOutput).ToAccessLevelsAccessLevelBasicPtrOutput()
 }
 
 type AccessLevelsAccessLevelBasicOutput struct{ *pulumi.OutputState }
@@ -2101,7 +2101,7 @@ func (i AccessLevelsAccessLevelBasicConditionDevicePolicyArgs) ToAccessLevelsAcc
 }
 
 func (i AccessLevelsAccessLevelBasicConditionDevicePolicyArgs) ToAccessLevelsAccessLevelBasicConditionDevicePolicyPtrOutputWithContext(ctx context.Context) AccessLevelsAccessLevelBasicConditionDevicePolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AccessLevelsAccessLevelBasicConditionDevicePolicyOutput).ToAccessLevelsAccessLevelBasicConditionDevicePolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(AccessLevelsAccessLevelBasicConditionDevicePolicyOutput).ToAccessLevelsAccessLevelBasicConditionDevicePolicyPtrOutput()
 }
 
 // AccessLevelsAccessLevelBasicConditionDevicePolicyPtrInput is an input type that accepts AccessLevelsAccessLevelBasicConditionDevicePolicyArgs, AccessLevelsAccessLevelBasicConditionDevicePolicyPtr and AccessLevelsAccessLevelBasicConditionDevicePolicyPtrOutput values.
@@ -2134,7 +2134,7 @@ func (i *accessLevelsAccessLevelBasicConditionDevicePolicyPtrType) ToAccessLevel
 }
 
 func (i *accessLevelsAccessLevelBasicConditionDevicePolicyPtrType) ToAccessLevelsAccessLevelBasicConditionDevicePolicyPtrOutputWithContext(ctx context.Context) AccessLevelsAccessLevelBasicConditionDevicePolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AccessLevelsAccessLevelBasicConditionDevicePolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(AccessLevelsAccessLevelBasicConditionDevicePolicyOutput).ToAccessLevelsAccessLevelBasicConditionDevicePolicyPtrOutput()
 }
 
 type AccessLevelsAccessLevelBasicConditionDevicePolicyOutput struct{ *pulumi.OutputState }
@@ -2448,7 +2448,7 @@ func (i AccessLevelsAccessLevelCustomArgs) ToAccessLevelsAccessLevelCustomPtrOut
 }
 
 func (i AccessLevelsAccessLevelCustomArgs) ToAccessLevelsAccessLevelCustomPtrOutputWithContext(ctx context.Context) AccessLevelsAccessLevelCustomPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AccessLevelsAccessLevelCustomOutput).ToAccessLevelsAccessLevelCustomPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(AccessLevelsAccessLevelCustomOutput).ToAccessLevelsAccessLevelCustomPtrOutput()
 }
 
 // AccessLevelsAccessLevelCustomPtrInput is an input type that accepts AccessLevelsAccessLevelCustomArgs, AccessLevelsAccessLevelCustomPtr and AccessLevelsAccessLevelCustomPtrOutput values.
@@ -2481,7 +2481,7 @@ func (i *accessLevelsAccessLevelCustomPtrType) ToAccessLevelsAccessLevelCustomPt
 }
 
 func (i *accessLevelsAccessLevelCustomPtrType) ToAccessLevelsAccessLevelCustomPtrOutputWithContext(ctx context.Context) AccessLevelsAccessLevelCustomPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AccessLevelsAccessLevelCustomPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(AccessLevelsAccessLevelCustomOutput).ToAccessLevelsAccessLevelCustomPtrOutput()
 }
 
 type AccessLevelsAccessLevelCustomOutput struct{ *pulumi.OutputState }
@@ -2597,7 +2597,7 @@ func (i AccessLevelsAccessLevelCustomExprArgs) ToAccessLevelsAccessLevelCustomEx
 }
 
 func (i AccessLevelsAccessLevelCustomExprArgs) ToAccessLevelsAccessLevelCustomExprPtrOutputWithContext(ctx context.Context) AccessLevelsAccessLevelCustomExprPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AccessLevelsAccessLevelCustomExprOutput).ToAccessLevelsAccessLevelCustomExprPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(AccessLevelsAccessLevelCustomExprOutput).ToAccessLevelsAccessLevelCustomExprPtrOutput()
 }
 
 // AccessLevelsAccessLevelCustomExprPtrInput is an input type that accepts AccessLevelsAccessLevelCustomExprArgs, AccessLevelsAccessLevelCustomExprPtr and AccessLevelsAccessLevelCustomExprPtrOutput values.
@@ -2630,7 +2630,7 @@ func (i *accessLevelsAccessLevelCustomExprPtrType) ToAccessLevelsAccessLevelCust
 }
 
 func (i *accessLevelsAccessLevelCustomExprPtrType) ToAccessLevelsAccessLevelCustomExprPtrOutputWithContext(ctx context.Context) AccessLevelsAccessLevelCustomExprPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AccessLevelsAccessLevelCustomExprPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(AccessLevelsAccessLevelCustomExprOutput).ToAccessLevelsAccessLevelCustomExprPtrOutput()
 }
 
 type AccessLevelsAccessLevelCustomExprOutput struct{ *pulumi.OutputState }
@@ -2817,7 +2817,7 @@ func (i ServicePerimeterSpecArgs) ToServicePerimeterSpecPtrOutput() ServicePerim
 }
 
 func (i ServicePerimeterSpecArgs) ToServicePerimeterSpecPtrOutputWithContext(ctx context.Context) ServicePerimeterSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServicePerimeterSpecOutput).ToServicePerimeterSpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ServicePerimeterSpecOutput).ToServicePerimeterSpecPtrOutput()
 }
 
 // ServicePerimeterSpecPtrInput is an input type that accepts ServicePerimeterSpecArgs, ServicePerimeterSpecPtr and ServicePerimeterSpecPtrOutput values.
@@ -2850,7 +2850,7 @@ func (i *servicePerimeterSpecPtrType) ToServicePerimeterSpecPtrOutput() ServiceP
 }
 
 func (i *servicePerimeterSpecPtrType) ToServicePerimeterSpecPtrOutputWithContext(ctx context.Context) ServicePerimeterSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServicePerimeterSpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ServicePerimeterSpecOutput).ToServicePerimeterSpecPtrOutput()
 }
 
 type ServicePerimeterSpecOutput struct{ *pulumi.OutputState }
@@ -3035,7 +3035,7 @@ func (i ServicePerimeterSpecVpcAccessibleServicesArgs) ToServicePerimeterSpecVpc
 }
 
 func (i ServicePerimeterSpecVpcAccessibleServicesArgs) ToServicePerimeterSpecVpcAccessibleServicesPtrOutputWithContext(ctx context.Context) ServicePerimeterSpecVpcAccessibleServicesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServicePerimeterSpecVpcAccessibleServicesOutput).ToServicePerimeterSpecVpcAccessibleServicesPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ServicePerimeterSpecVpcAccessibleServicesOutput).ToServicePerimeterSpecVpcAccessibleServicesPtrOutput()
 }
 
 // ServicePerimeterSpecVpcAccessibleServicesPtrInput is an input type that accepts ServicePerimeterSpecVpcAccessibleServicesArgs, ServicePerimeterSpecVpcAccessibleServicesPtr and ServicePerimeterSpecVpcAccessibleServicesPtrOutput values.
@@ -3068,7 +3068,7 @@ func (i *servicePerimeterSpecVpcAccessibleServicesPtrType) ToServicePerimeterSpe
 }
 
 func (i *servicePerimeterSpecVpcAccessibleServicesPtrType) ToServicePerimeterSpecVpcAccessibleServicesPtrOutputWithContext(ctx context.Context) ServicePerimeterSpecVpcAccessibleServicesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServicePerimeterSpecVpcAccessibleServicesPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ServicePerimeterSpecVpcAccessibleServicesOutput).ToServicePerimeterSpecVpcAccessibleServicesPtrOutput()
 }
 
 type ServicePerimeterSpecVpcAccessibleServicesOutput struct{ *pulumi.OutputState }
@@ -3231,7 +3231,7 @@ func (i ServicePerimeterStatusArgs) ToServicePerimeterStatusPtrOutput() ServiceP
 }
 
 func (i ServicePerimeterStatusArgs) ToServicePerimeterStatusPtrOutputWithContext(ctx context.Context) ServicePerimeterStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServicePerimeterStatusOutput).ToServicePerimeterStatusPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ServicePerimeterStatusOutput).ToServicePerimeterStatusPtrOutput()
 }
 
 // ServicePerimeterStatusPtrInput is an input type that accepts ServicePerimeterStatusArgs, ServicePerimeterStatusPtr and ServicePerimeterStatusPtrOutput values.
@@ -3264,7 +3264,7 @@ func (i *servicePerimeterStatusPtrType) ToServicePerimeterStatusPtrOutput() Serv
 }
 
 func (i *servicePerimeterStatusPtrType) ToServicePerimeterStatusPtrOutputWithContext(ctx context.Context) ServicePerimeterStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServicePerimeterStatusPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ServicePerimeterStatusOutput).ToServicePerimeterStatusPtrOutput()
 }
 
 type ServicePerimeterStatusOutput struct{ *pulumi.OutputState }
@@ -3449,7 +3449,7 @@ func (i ServicePerimeterStatusVpcAccessibleServicesArgs) ToServicePerimeterStatu
 }
 
 func (i ServicePerimeterStatusVpcAccessibleServicesArgs) ToServicePerimeterStatusVpcAccessibleServicesPtrOutputWithContext(ctx context.Context) ServicePerimeterStatusVpcAccessibleServicesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServicePerimeterStatusVpcAccessibleServicesOutput).ToServicePerimeterStatusVpcAccessibleServicesPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ServicePerimeterStatusVpcAccessibleServicesOutput).ToServicePerimeterStatusVpcAccessibleServicesPtrOutput()
 }
 
 // ServicePerimeterStatusVpcAccessibleServicesPtrInput is an input type that accepts ServicePerimeterStatusVpcAccessibleServicesArgs, ServicePerimeterStatusVpcAccessibleServicesPtr and ServicePerimeterStatusVpcAccessibleServicesPtrOutput values.
@@ -3482,7 +3482,7 @@ func (i *servicePerimeterStatusVpcAccessibleServicesPtrType) ToServicePerimeterS
 }
 
 func (i *servicePerimeterStatusVpcAccessibleServicesPtrType) ToServicePerimeterStatusVpcAccessibleServicesPtrOutputWithContext(ctx context.Context) ServicePerimeterStatusVpcAccessibleServicesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServicePerimeterStatusVpcAccessibleServicesPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ServicePerimeterStatusVpcAccessibleServicesOutput).ToServicePerimeterStatusVpcAccessibleServicesPtrOutput()
 }
 
 type ServicePerimeterStatusVpcAccessibleServicesOutput struct{ *pulumi.OutputState }
@@ -3919,7 +3919,7 @@ func (i ServicePerimetersServicePerimeterSpecArgs) ToServicePerimetersServicePer
 }
 
 func (i ServicePerimetersServicePerimeterSpecArgs) ToServicePerimetersServicePerimeterSpecPtrOutputWithContext(ctx context.Context) ServicePerimetersServicePerimeterSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServicePerimetersServicePerimeterSpecOutput).ToServicePerimetersServicePerimeterSpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ServicePerimetersServicePerimeterSpecOutput).ToServicePerimetersServicePerimeterSpecPtrOutput()
 }
 
 // ServicePerimetersServicePerimeterSpecPtrInput is an input type that accepts ServicePerimetersServicePerimeterSpecArgs, ServicePerimetersServicePerimeterSpecPtr and ServicePerimetersServicePerimeterSpecPtrOutput values.
@@ -3952,7 +3952,7 @@ func (i *servicePerimetersServicePerimeterSpecPtrType) ToServicePerimetersServic
 }
 
 func (i *servicePerimetersServicePerimeterSpecPtrType) ToServicePerimetersServicePerimeterSpecPtrOutputWithContext(ctx context.Context) ServicePerimetersServicePerimeterSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServicePerimetersServicePerimeterSpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ServicePerimetersServicePerimeterSpecOutput).ToServicePerimetersServicePerimeterSpecPtrOutput()
 }
 
 type ServicePerimetersServicePerimeterSpecOutput struct{ *pulumi.OutputState }
@@ -4137,7 +4137,7 @@ func (i ServicePerimetersServicePerimeterSpecVpcAccessibleServicesArgs) ToServic
 }
 
 func (i ServicePerimetersServicePerimeterSpecVpcAccessibleServicesArgs) ToServicePerimetersServicePerimeterSpecVpcAccessibleServicesPtrOutputWithContext(ctx context.Context) ServicePerimetersServicePerimeterSpecVpcAccessibleServicesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServicePerimetersServicePerimeterSpecVpcAccessibleServicesOutput).ToServicePerimetersServicePerimeterSpecVpcAccessibleServicesPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ServicePerimetersServicePerimeterSpecVpcAccessibleServicesOutput).ToServicePerimetersServicePerimeterSpecVpcAccessibleServicesPtrOutput()
 }
 
 // ServicePerimetersServicePerimeterSpecVpcAccessibleServicesPtrInput is an input type that accepts ServicePerimetersServicePerimeterSpecVpcAccessibleServicesArgs, ServicePerimetersServicePerimeterSpecVpcAccessibleServicesPtr and ServicePerimetersServicePerimeterSpecVpcAccessibleServicesPtrOutput values.
@@ -4170,7 +4170,7 @@ func (i *servicePerimetersServicePerimeterSpecVpcAccessibleServicesPtrType) ToSe
 }
 
 func (i *servicePerimetersServicePerimeterSpecVpcAccessibleServicesPtrType) ToServicePerimetersServicePerimeterSpecVpcAccessibleServicesPtrOutputWithContext(ctx context.Context) ServicePerimetersServicePerimeterSpecVpcAccessibleServicesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServicePerimetersServicePerimeterSpecVpcAccessibleServicesPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ServicePerimetersServicePerimeterSpecVpcAccessibleServicesOutput).ToServicePerimetersServicePerimeterSpecVpcAccessibleServicesPtrOutput()
 }
 
 type ServicePerimetersServicePerimeterSpecVpcAccessibleServicesOutput struct{ *pulumi.OutputState }
@@ -4333,7 +4333,7 @@ func (i ServicePerimetersServicePerimeterStatusArgs) ToServicePerimetersServiceP
 }
 
 func (i ServicePerimetersServicePerimeterStatusArgs) ToServicePerimetersServicePerimeterStatusPtrOutputWithContext(ctx context.Context) ServicePerimetersServicePerimeterStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServicePerimetersServicePerimeterStatusOutput).ToServicePerimetersServicePerimeterStatusPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ServicePerimetersServicePerimeterStatusOutput).ToServicePerimetersServicePerimeterStatusPtrOutput()
 }
 
 // ServicePerimetersServicePerimeterStatusPtrInput is an input type that accepts ServicePerimetersServicePerimeterStatusArgs, ServicePerimetersServicePerimeterStatusPtr and ServicePerimetersServicePerimeterStatusPtrOutput values.
@@ -4366,7 +4366,7 @@ func (i *servicePerimetersServicePerimeterStatusPtrType) ToServicePerimetersServ
 }
 
 func (i *servicePerimetersServicePerimeterStatusPtrType) ToServicePerimetersServicePerimeterStatusPtrOutputWithContext(ctx context.Context) ServicePerimetersServicePerimeterStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServicePerimetersServicePerimeterStatusPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ServicePerimetersServicePerimeterStatusOutput).ToServicePerimetersServicePerimeterStatusPtrOutput()
 }
 
 type ServicePerimetersServicePerimeterStatusOutput struct{ *pulumi.OutputState }
@@ -4551,7 +4551,7 @@ func (i ServicePerimetersServicePerimeterStatusVpcAccessibleServicesArgs) ToServ
 }
 
 func (i ServicePerimetersServicePerimeterStatusVpcAccessibleServicesArgs) ToServicePerimetersServicePerimeterStatusVpcAccessibleServicesPtrOutputWithContext(ctx context.Context) ServicePerimetersServicePerimeterStatusVpcAccessibleServicesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServicePerimetersServicePerimeterStatusVpcAccessibleServicesOutput).ToServicePerimetersServicePerimeterStatusVpcAccessibleServicesPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ServicePerimetersServicePerimeterStatusVpcAccessibleServicesOutput).ToServicePerimetersServicePerimeterStatusVpcAccessibleServicesPtrOutput()
 }
 
 // ServicePerimetersServicePerimeterStatusVpcAccessibleServicesPtrInput is an input type that accepts ServicePerimetersServicePerimeterStatusVpcAccessibleServicesArgs, ServicePerimetersServicePerimeterStatusVpcAccessibleServicesPtr and ServicePerimetersServicePerimeterStatusVpcAccessibleServicesPtrOutput values.
@@ -4584,7 +4584,7 @@ func (i *servicePerimetersServicePerimeterStatusVpcAccessibleServicesPtrType) To
 }
 
 func (i *servicePerimetersServicePerimeterStatusVpcAccessibleServicesPtrType) ToServicePerimetersServicePerimeterStatusVpcAccessibleServicesPtrOutputWithContext(ctx context.Context) ServicePerimetersServicePerimeterStatusVpcAccessibleServicesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServicePerimetersServicePerimeterStatusVpcAccessibleServicesPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ServicePerimetersServicePerimeterStatusVpcAccessibleServicesOutput).ToServicePerimetersServicePerimeterStatusVpcAccessibleServicesPtrOutput()
 }
 
 type ServicePerimetersServicePerimeterStatusVpcAccessibleServicesOutput struct{ *pulumi.OutputState }

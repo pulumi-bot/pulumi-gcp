@@ -387,16 +387,31 @@ type SubnetworkIAMPolicyInput interface {
 	ToSubnetworkIAMPolicyOutputWithContext(ctx context.Context) SubnetworkIAMPolicyOutput
 }
 
-func (SubnetworkIAMPolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*SubnetworkIAMPolicy)(nil)).Elem()
+func (*SubnetworkIAMPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*SubnetworkIAMPolicy)(nil))
 }
 
-func (i SubnetworkIAMPolicy) ToSubnetworkIAMPolicyOutput() SubnetworkIAMPolicyOutput {
+func (i *SubnetworkIAMPolicy) ToSubnetworkIAMPolicyOutput() SubnetworkIAMPolicyOutput {
 	return i.ToSubnetworkIAMPolicyOutputWithContext(context.Background())
 }
 
-func (i SubnetworkIAMPolicy) ToSubnetworkIAMPolicyOutputWithContext(ctx context.Context) SubnetworkIAMPolicyOutput {
+func (i *SubnetworkIAMPolicy) ToSubnetworkIAMPolicyOutputWithContext(ctx context.Context) SubnetworkIAMPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SubnetworkIAMPolicyOutput)
+}
+
+func (i *SubnetworkIAMPolicy) ToSubnetworkIAMPolicyPtrOutput() SubnetworkIAMPolicyPtrOutput {
+	return i.ToSubnetworkIAMPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i *SubnetworkIAMPolicy) ToSubnetworkIAMPolicyPtrOutputWithContext(ctx context.Context) SubnetworkIAMPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SubnetworkIAMPolicyPtrOutput)
+}
+
+type SubnetworkIAMPolicyPtrInput interface {
+	pulumi.Input
+
+	ToSubnetworkIAMPolicyPtrOutput() SubnetworkIAMPolicyPtrOutput
+	ToSubnetworkIAMPolicyPtrOutputWithContext(ctx context.Context) SubnetworkIAMPolicyPtrOutput
 }
 
 type SubnetworkIAMPolicyOutput struct {
@@ -404,7 +419,7 @@ type SubnetworkIAMPolicyOutput struct {
 }
 
 func (SubnetworkIAMPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SubnetworkIAMPolicyOutput)(nil)).Elem()
+	return reflect.TypeOf((*SubnetworkIAMPolicy)(nil))
 }
 
 func (o SubnetworkIAMPolicyOutput) ToSubnetworkIAMPolicyOutput() SubnetworkIAMPolicyOutput {
@@ -415,6 +430,23 @@ func (o SubnetworkIAMPolicyOutput) ToSubnetworkIAMPolicyOutputWithContext(ctx co
 	return o
 }
 
+type SubnetworkIAMPolicyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (SubnetworkIAMPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SubnetworkIAMPolicy)(nil))
+}
+
+func (o SubnetworkIAMPolicyPtrOutput) ToSubnetworkIAMPolicyPtrOutput() SubnetworkIAMPolicyPtrOutput {
+	return o
+}
+
+func (o SubnetworkIAMPolicyPtrOutput) ToSubnetworkIAMPolicyPtrOutputWithContext(ctx context.Context) SubnetworkIAMPolicyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(SubnetworkIAMPolicyOutput{})
+	pulumi.RegisterOutputType(SubnetworkIAMPolicyPtrOutput{})
 }

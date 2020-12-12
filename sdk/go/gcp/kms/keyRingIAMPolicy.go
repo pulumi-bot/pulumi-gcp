@@ -366,16 +366,31 @@ type KeyRingIAMPolicyInput interface {
 	ToKeyRingIAMPolicyOutputWithContext(ctx context.Context) KeyRingIAMPolicyOutput
 }
 
-func (KeyRingIAMPolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*KeyRingIAMPolicy)(nil)).Elem()
+func (*KeyRingIAMPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*KeyRingIAMPolicy)(nil))
 }
 
-func (i KeyRingIAMPolicy) ToKeyRingIAMPolicyOutput() KeyRingIAMPolicyOutput {
+func (i *KeyRingIAMPolicy) ToKeyRingIAMPolicyOutput() KeyRingIAMPolicyOutput {
 	return i.ToKeyRingIAMPolicyOutputWithContext(context.Background())
 }
 
-func (i KeyRingIAMPolicy) ToKeyRingIAMPolicyOutputWithContext(ctx context.Context) KeyRingIAMPolicyOutput {
+func (i *KeyRingIAMPolicy) ToKeyRingIAMPolicyOutputWithContext(ctx context.Context) KeyRingIAMPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(KeyRingIAMPolicyOutput)
+}
+
+func (i *KeyRingIAMPolicy) ToKeyRingIAMPolicyPtrOutput() KeyRingIAMPolicyPtrOutput {
+	return i.ToKeyRingIAMPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i *KeyRingIAMPolicy) ToKeyRingIAMPolicyPtrOutputWithContext(ctx context.Context) KeyRingIAMPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KeyRingIAMPolicyPtrOutput)
+}
+
+type KeyRingIAMPolicyPtrInput interface {
+	pulumi.Input
+
+	ToKeyRingIAMPolicyPtrOutput() KeyRingIAMPolicyPtrOutput
+	ToKeyRingIAMPolicyPtrOutputWithContext(ctx context.Context) KeyRingIAMPolicyPtrOutput
 }
 
 type KeyRingIAMPolicyOutput struct {
@@ -383,7 +398,7 @@ type KeyRingIAMPolicyOutput struct {
 }
 
 func (KeyRingIAMPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*KeyRingIAMPolicyOutput)(nil)).Elem()
+	return reflect.TypeOf((*KeyRingIAMPolicy)(nil))
 }
 
 func (o KeyRingIAMPolicyOutput) ToKeyRingIAMPolicyOutput() KeyRingIAMPolicyOutput {
@@ -394,6 +409,23 @@ func (o KeyRingIAMPolicyOutput) ToKeyRingIAMPolicyOutputWithContext(ctx context.
 	return o
 }
 
+type KeyRingIAMPolicyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (KeyRingIAMPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**KeyRingIAMPolicy)(nil))
+}
+
+func (o KeyRingIAMPolicyPtrOutput) ToKeyRingIAMPolicyPtrOutput() KeyRingIAMPolicyPtrOutput {
+	return o
+}
+
+func (o KeyRingIAMPolicyPtrOutput) ToKeyRingIAMPolicyPtrOutputWithContext(ctx context.Context) KeyRingIAMPolicyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(KeyRingIAMPolicyOutput{})
+	pulumi.RegisterOutputType(KeyRingIAMPolicyPtrOutput{})
 }

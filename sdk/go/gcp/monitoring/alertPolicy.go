@@ -380,16 +380,31 @@ type AlertPolicyInput interface {
 	ToAlertPolicyOutputWithContext(ctx context.Context) AlertPolicyOutput
 }
 
-func (AlertPolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*AlertPolicy)(nil)).Elem()
+func (*AlertPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertPolicy)(nil))
 }
 
-func (i AlertPolicy) ToAlertPolicyOutput() AlertPolicyOutput {
+func (i *AlertPolicy) ToAlertPolicyOutput() AlertPolicyOutput {
 	return i.ToAlertPolicyOutputWithContext(context.Background())
 }
 
-func (i AlertPolicy) ToAlertPolicyOutputWithContext(ctx context.Context) AlertPolicyOutput {
+func (i *AlertPolicy) ToAlertPolicyOutputWithContext(ctx context.Context) AlertPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AlertPolicyOutput)
+}
+
+func (i *AlertPolicy) ToAlertPolicyPtrOutput() AlertPolicyPtrOutput {
+	return i.ToAlertPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i *AlertPolicy) ToAlertPolicyPtrOutputWithContext(ctx context.Context) AlertPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertPolicyPtrOutput)
+}
+
+type AlertPolicyPtrInput interface {
+	pulumi.Input
+
+	ToAlertPolicyPtrOutput() AlertPolicyPtrOutput
+	ToAlertPolicyPtrOutputWithContext(ctx context.Context) AlertPolicyPtrOutput
 }
 
 type AlertPolicyOutput struct {
@@ -397,7 +412,7 @@ type AlertPolicyOutput struct {
 }
 
 func (AlertPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AlertPolicyOutput)(nil)).Elem()
+	return reflect.TypeOf((*AlertPolicy)(nil))
 }
 
 func (o AlertPolicyOutput) ToAlertPolicyOutput() AlertPolicyOutput {
@@ -408,6 +423,23 @@ func (o AlertPolicyOutput) ToAlertPolicyOutputWithContext(ctx context.Context) A
 	return o
 }
 
+type AlertPolicyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (AlertPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertPolicy)(nil))
+}
+
+func (o AlertPolicyPtrOutput) ToAlertPolicyPtrOutput() AlertPolicyPtrOutput {
+	return o
+}
+
+func (o AlertPolicyPtrOutput) ToAlertPolicyPtrOutputWithContext(ctx context.Context) AlertPolicyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(AlertPolicyOutput{})
+	pulumi.RegisterOutputType(AlertPolicyPtrOutput{})
 }

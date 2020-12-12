@@ -172,16 +172,31 @@ type BrandInput interface {
 	ToBrandOutputWithContext(ctx context.Context) BrandOutput
 }
 
-func (Brand) ElementType() reflect.Type {
-	return reflect.TypeOf((*Brand)(nil)).Elem()
+func (*Brand) ElementType() reflect.Type {
+	return reflect.TypeOf((*Brand)(nil))
 }
 
-func (i Brand) ToBrandOutput() BrandOutput {
+func (i *Brand) ToBrandOutput() BrandOutput {
 	return i.ToBrandOutputWithContext(context.Background())
 }
 
-func (i Brand) ToBrandOutputWithContext(ctx context.Context) BrandOutput {
+func (i *Brand) ToBrandOutputWithContext(ctx context.Context) BrandOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(BrandOutput)
+}
+
+func (i *Brand) ToBrandPtrOutput() BrandPtrOutput {
+	return i.ToBrandPtrOutputWithContext(context.Background())
+}
+
+func (i *Brand) ToBrandPtrOutputWithContext(ctx context.Context) BrandPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BrandPtrOutput)
+}
+
+type BrandPtrInput interface {
+	pulumi.Input
+
+	ToBrandPtrOutput() BrandPtrOutput
+	ToBrandPtrOutputWithContext(ctx context.Context) BrandPtrOutput
 }
 
 type BrandOutput struct {
@@ -189,7 +204,7 @@ type BrandOutput struct {
 }
 
 func (BrandOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*BrandOutput)(nil)).Elem()
+	return reflect.TypeOf((*Brand)(nil))
 }
 
 func (o BrandOutput) ToBrandOutput() BrandOutput {
@@ -200,6 +215,23 @@ func (o BrandOutput) ToBrandOutputWithContext(ctx context.Context) BrandOutput {
 	return o
 }
 
+type BrandPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (BrandPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Brand)(nil))
+}
+
+func (o BrandPtrOutput) ToBrandPtrOutput() BrandPtrOutput {
+	return o
+}
+
+func (o BrandPtrOutput) ToBrandPtrOutputWithContext(ctx context.Context) BrandPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(BrandOutput{})
+	pulumi.RegisterOutputType(BrandPtrOutput{})
 }

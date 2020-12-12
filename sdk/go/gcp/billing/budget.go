@@ -421,16 +421,31 @@ type BudgetInput interface {
 	ToBudgetOutputWithContext(ctx context.Context) BudgetOutput
 }
 
-func (Budget) ElementType() reflect.Type {
-	return reflect.TypeOf((*Budget)(nil)).Elem()
+func (*Budget) ElementType() reflect.Type {
+	return reflect.TypeOf((*Budget)(nil))
 }
 
-func (i Budget) ToBudgetOutput() BudgetOutput {
+func (i *Budget) ToBudgetOutput() BudgetOutput {
 	return i.ToBudgetOutputWithContext(context.Background())
 }
 
-func (i Budget) ToBudgetOutputWithContext(ctx context.Context) BudgetOutput {
+func (i *Budget) ToBudgetOutputWithContext(ctx context.Context) BudgetOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(BudgetOutput)
+}
+
+func (i *Budget) ToBudgetPtrOutput() BudgetPtrOutput {
+	return i.ToBudgetPtrOutputWithContext(context.Background())
+}
+
+func (i *Budget) ToBudgetPtrOutputWithContext(ctx context.Context) BudgetPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BudgetPtrOutput)
+}
+
+type BudgetPtrInput interface {
+	pulumi.Input
+
+	ToBudgetPtrOutput() BudgetPtrOutput
+	ToBudgetPtrOutputWithContext(ctx context.Context) BudgetPtrOutput
 }
 
 type BudgetOutput struct {
@@ -438,7 +453,7 @@ type BudgetOutput struct {
 }
 
 func (BudgetOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*BudgetOutput)(nil)).Elem()
+	return reflect.TypeOf((*Budget)(nil))
 }
 
 func (o BudgetOutput) ToBudgetOutput() BudgetOutput {
@@ -449,6 +464,23 @@ func (o BudgetOutput) ToBudgetOutputWithContext(ctx context.Context) BudgetOutpu
 	return o
 }
 
+type BudgetPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (BudgetPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Budget)(nil))
+}
+
+func (o BudgetPtrOutput) ToBudgetPtrOutput() BudgetPtrOutput {
+	return o
+}
+
+func (o BudgetPtrOutput) ToBudgetPtrOutputWithContext(ctx context.Context) BudgetPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(BudgetOutput{})
+	pulumi.RegisterOutputType(BudgetPtrOutput{})
 }

@@ -273,16 +273,31 @@ type JobIAMMemberInput interface {
 	ToJobIAMMemberOutputWithContext(ctx context.Context) JobIAMMemberOutput
 }
 
-func (JobIAMMember) ElementType() reflect.Type {
-	return reflect.TypeOf((*JobIAMMember)(nil)).Elem()
+func (*JobIAMMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*JobIAMMember)(nil))
 }
 
-func (i JobIAMMember) ToJobIAMMemberOutput() JobIAMMemberOutput {
+func (i *JobIAMMember) ToJobIAMMemberOutput() JobIAMMemberOutput {
 	return i.ToJobIAMMemberOutputWithContext(context.Background())
 }
 
-func (i JobIAMMember) ToJobIAMMemberOutputWithContext(ctx context.Context) JobIAMMemberOutput {
+func (i *JobIAMMember) ToJobIAMMemberOutputWithContext(ctx context.Context) JobIAMMemberOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(JobIAMMemberOutput)
+}
+
+func (i *JobIAMMember) ToJobIAMMemberPtrOutput() JobIAMMemberPtrOutput {
+	return i.ToJobIAMMemberPtrOutputWithContext(context.Background())
+}
+
+func (i *JobIAMMember) ToJobIAMMemberPtrOutputWithContext(ctx context.Context) JobIAMMemberPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(JobIAMMemberPtrOutput)
+}
+
+type JobIAMMemberPtrInput interface {
+	pulumi.Input
+
+	ToJobIAMMemberPtrOutput() JobIAMMemberPtrOutput
+	ToJobIAMMemberPtrOutputWithContext(ctx context.Context) JobIAMMemberPtrOutput
 }
 
 type JobIAMMemberOutput struct {
@@ -290,7 +305,7 @@ type JobIAMMemberOutput struct {
 }
 
 func (JobIAMMemberOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*JobIAMMemberOutput)(nil)).Elem()
+	return reflect.TypeOf((*JobIAMMember)(nil))
 }
 
 func (o JobIAMMemberOutput) ToJobIAMMemberOutput() JobIAMMemberOutput {
@@ -301,6 +316,23 @@ func (o JobIAMMemberOutput) ToJobIAMMemberOutputWithContext(ctx context.Context)
 	return o
 }
 
+type JobIAMMemberPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (JobIAMMemberPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**JobIAMMember)(nil))
+}
+
+func (o JobIAMMemberPtrOutput) ToJobIAMMemberPtrOutput() JobIAMMemberPtrOutput {
+	return o
+}
+
+func (o JobIAMMemberPtrOutput) ToJobIAMMemberPtrOutputWithContext(ctx context.Context) JobIAMMemberPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(JobIAMMemberOutput{})
+	pulumi.RegisterOutputType(JobIAMMemberPtrOutput{})
 }

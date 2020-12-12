@@ -660,16 +660,31 @@ type FirewallInput interface {
 	ToFirewallOutputWithContext(ctx context.Context) FirewallOutput
 }
 
-func (Firewall) ElementType() reflect.Type {
-	return reflect.TypeOf((*Firewall)(nil)).Elem()
+func (*Firewall) ElementType() reflect.Type {
+	return reflect.TypeOf((*Firewall)(nil))
 }
 
-func (i Firewall) ToFirewallOutput() FirewallOutput {
+func (i *Firewall) ToFirewallOutput() FirewallOutput {
 	return i.ToFirewallOutputWithContext(context.Background())
 }
 
-func (i Firewall) ToFirewallOutputWithContext(ctx context.Context) FirewallOutput {
+func (i *Firewall) ToFirewallOutputWithContext(ctx context.Context) FirewallOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallOutput)
+}
+
+func (i *Firewall) ToFirewallPtrOutput() FirewallPtrOutput {
+	return i.ToFirewallPtrOutputWithContext(context.Background())
+}
+
+func (i *Firewall) ToFirewallPtrOutputWithContext(ctx context.Context) FirewallPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FirewallPtrOutput)
+}
+
+type FirewallPtrInput interface {
+	pulumi.Input
+
+	ToFirewallPtrOutput() FirewallPtrOutput
+	ToFirewallPtrOutputWithContext(ctx context.Context) FirewallPtrOutput
 }
 
 type FirewallOutput struct {
@@ -677,7 +692,7 @@ type FirewallOutput struct {
 }
 
 func (FirewallOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallOutput)(nil)).Elem()
+	return reflect.TypeOf((*Firewall)(nil))
 }
 
 func (o FirewallOutput) ToFirewallOutput() FirewallOutput {
@@ -688,6 +703,23 @@ func (o FirewallOutput) ToFirewallOutputWithContext(ctx context.Context) Firewal
 	return o
 }
 
+type FirewallPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (FirewallPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Firewall)(nil))
+}
+
+func (o FirewallPtrOutput) ToFirewallPtrOutput() FirewallPtrOutput {
+	return o
+}
+
+func (o FirewallPtrOutput) ToFirewallPtrOutputWithContext(ctx context.Context) FirewallPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(FirewallOutput{})
+	pulumi.RegisterOutputType(FirewallPtrOutput{})
 }

@@ -248,16 +248,31 @@ type GCPolicyInput interface {
 	ToGCPolicyOutputWithContext(ctx context.Context) GCPolicyOutput
 }
 
-func (GCPolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*GCPolicy)(nil)).Elem()
+func (*GCPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*GCPolicy)(nil))
 }
 
-func (i GCPolicy) ToGCPolicyOutput() GCPolicyOutput {
+func (i *GCPolicy) ToGCPolicyOutput() GCPolicyOutput {
 	return i.ToGCPolicyOutputWithContext(context.Background())
 }
 
-func (i GCPolicy) ToGCPolicyOutputWithContext(ctx context.Context) GCPolicyOutput {
+func (i *GCPolicy) ToGCPolicyOutputWithContext(ctx context.Context) GCPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GCPolicyOutput)
+}
+
+func (i *GCPolicy) ToGCPolicyPtrOutput() GCPolicyPtrOutput {
+	return i.ToGCPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i *GCPolicy) ToGCPolicyPtrOutputWithContext(ctx context.Context) GCPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GCPolicyPtrOutput)
+}
+
+type GCPolicyPtrInput interface {
+	pulumi.Input
+
+	ToGCPolicyPtrOutput() GCPolicyPtrOutput
+	ToGCPolicyPtrOutputWithContext(ctx context.Context) GCPolicyPtrOutput
 }
 
 type GCPolicyOutput struct {
@@ -265,7 +280,7 @@ type GCPolicyOutput struct {
 }
 
 func (GCPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GCPolicyOutput)(nil)).Elem()
+	return reflect.TypeOf((*GCPolicy)(nil))
 }
 
 func (o GCPolicyOutput) ToGCPolicyOutput() GCPolicyOutput {
@@ -276,6 +291,23 @@ func (o GCPolicyOutput) ToGCPolicyOutputWithContext(ctx context.Context) GCPolic
 	return o
 }
 
+type GCPolicyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (GCPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GCPolicy)(nil))
+}
+
+func (o GCPolicyPtrOutput) ToGCPolicyPtrOutput() GCPolicyPtrOutput {
+	return o
+}
+
+func (o GCPolicyPtrOutput) ToGCPolicyPtrOutputWithContext(ctx context.Context) GCPolicyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(GCPolicyOutput{})
+	pulumi.RegisterOutputType(GCPolicyPtrOutput{})
 }

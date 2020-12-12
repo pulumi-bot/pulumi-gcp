@@ -217,16 +217,31 @@ type SslCertInput interface {
 	ToSslCertOutputWithContext(ctx context.Context) SslCertOutput
 }
 
-func (SslCert) ElementType() reflect.Type {
-	return reflect.TypeOf((*SslCert)(nil)).Elem()
+func (*SslCert) ElementType() reflect.Type {
+	return reflect.TypeOf((*SslCert)(nil))
 }
 
-func (i SslCert) ToSslCertOutput() SslCertOutput {
+func (i *SslCert) ToSslCertOutput() SslCertOutput {
 	return i.ToSslCertOutputWithContext(context.Background())
 }
 
-func (i SslCert) ToSslCertOutputWithContext(ctx context.Context) SslCertOutput {
+func (i *SslCert) ToSslCertOutputWithContext(ctx context.Context) SslCertOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SslCertOutput)
+}
+
+func (i *SslCert) ToSslCertPtrOutput() SslCertPtrOutput {
+	return i.ToSslCertPtrOutputWithContext(context.Background())
+}
+
+func (i *SslCert) ToSslCertPtrOutputWithContext(ctx context.Context) SslCertPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SslCertPtrOutput)
+}
+
+type SslCertPtrInput interface {
+	pulumi.Input
+
+	ToSslCertPtrOutput() SslCertPtrOutput
+	ToSslCertPtrOutputWithContext(ctx context.Context) SslCertPtrOutput
 }
 
 type SslCertOutput struct {
@@ -234,7 +249,7 @@ type SslCertOutput struct {
 }
 
 func (SslCertOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SslCertOutput)(nil)).Elem()
+	return reflect.TypeOf((*SslCert)(nil))
 }
 
 func (o SslCertOutput) ToSslCertOutput() SslCertOutput {
@@ -245,6 +260,23 @@ func (o SslCertOutput) ToSslCertOutputWithContext(ctx context.Context) SslCertOu
 	return o
 }
 
+type SslCertPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (SslCertPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SslCert)(nil))
+}
+
+func (o SslCertPtrOutput) ToSslCertPtrOutput() SslCertPtrOutput {
+	return o
+}
+
+func (o SslCertPtrOutput) ToSslCertPtrOutputWithContext(ctx context.Context) SslCertPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(SslCertOutput{})
+	pulumi.RegisterOutputType(SslCertPtrOutput{})
 }

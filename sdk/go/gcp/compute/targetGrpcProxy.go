@@ -411,16 +411,31 @@ type TargetGrpcProxyInput interface {
 	ToTargetGrpcProxyOutputWithContext(ctx context.Context) TargetGrpcProxyOutput
 }
 
-func (TargetGrpcProxy) ElementType() reflect.Type {
-	return reflect.TypeOf((*TargetGrpcProxy)(nil)).Elem()
+func (*TargetGrpcProxy) ElementType() reflect.Type {
+	return reflect.TypeOf((*TargetGrpcProxy)(nil))
 }
 
-func (i TargetGrpcProxy) ToTargetGrpcProxyOutput() TargetGrpcProxyOutput {
+func (i *TargetGrpcProxy) ToTargetGrpcProxyOutput() TargetGrpcProxyOutput {
 	return i.ToTargetGrpcProxyOutputWithContext(context.Background())
 }
 
-func (i TargetGrpcProxy) ToTargetGrpcProxyOutputWithContext(ctx context.Context) TargetGrpcProxyOutput {
+func (i *TargetGrpcProxy) ToTargetGrpcProxyOutputWithContext(ctx context.Context) TargetGrpcProxyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TargetGrpcProxyOutput)
+}
+
+func (i *TargetGrpcProxy) ToTargetGrpcProxyPtrOutput() TargetGrpcProxyPtrOutput {
+	return i.ToTargetGrpcProxyPtrOutputWithContext(context.Background())
+}
+
+func (i *TargetGrpcProxy) ToTargetGrpcProxyPtrOutputWithContext(ctx context.Context) TargetGrpcProxyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TargetGrpcProxyPtrOutput)
+}
+
+type TargetGrpcProxyPtrInput interface {
+	pulumi.Input
+
+	ToTargetGrpcProxyPtrOutput() TargetGrpcProxyPtrOutput
+	ToTargetGrpcProxyPtrOutputWithContext(ctx context.Context) TargetGrpcProxyPtrOutput
 }
 
 type TargetGrpcProxyOutput struct {
@@ -428,7 +443,7 @@ type TargetGrpcProxyOutput struct {
 }
 
 func (TargetGrpcProxyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*TargetGrpcProxyOutput)(nil)).Elem()
+	return reflect.TypeOf((*TargetGrpcProxy)(nil))
 }
 
 func (o TargetGrpcProxyOutput) ToTargetGrpcProxyOutput() TargetGrpcProxyOutput {
@@ -439,6 +454,23 @@ func (o TargetGrpcProxyOutput) ToTargetGrpcProxyOutputWithContext(ctx context.Co
 	return o
 }
 
+type TargetGrpcProxyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (TargetGrpcProxyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TargetGrpcProxy)(nil))
+}
+
+func (o TargetGrpcProxyPtrOutput) ToTargetGrpcProxyPtrOutput() TargetGrpcProxyPtrOutput {
+	return o
+}
+
+func (o TargetGrpcProxyPtrOutput) ToTargetGrpcProxyPtrOutputWithContext(ctx context.Context) TargetGrpcProxyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(TargetGrpcProxyOutput{})
+	pulumi.RegisterOutputType(TargetGrpcProxyPtrOutput{})
 }

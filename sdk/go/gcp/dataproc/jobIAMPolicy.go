@@ -250,16 +250,31 @@ type JobIAMPolicyInput interface {
 	ToJobIAMPolicyOutputWithContext(ctx context.Context) JobIAMPolicyOutput
 }
 
-func (JobIAMPolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*JobIAMPolicy)(nil)).Elem()
+func (*JobIAMPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*JobIAMPolicy)(nil))
 }
 
-func (i JobIAMPolicy) ToJobIAMPolicyOutput() JobIAMPolicyOutput {
+func (i *JobIAMPolicy) ToJobIAMPolicyOutput() JobIAMPolicyOutput {
 	return i.ToJobIAMPolicyOutputWithContext(context.Background())
 }
 
-func (i JobIAMPolicy) ToJobIAMPolicyOutputWithContext(ctx context.Context) JobIAMPolicyOutput {
+func (i *JobIAMPolicy) ToJobIAMPolicyOutputWithContext(ctx context.Context) JobIAMPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(JobIAMPolicyOutput)
+}
+
+func (i *JobIAMPolicy) ToJobIAMPolicyPtrOutput() JobIAMPolicyPtrOutput {
+	return i.ToJobIAMPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i *JobIAMPolicy) ToJobIAMPolicyPtrOutputWithContext(ctx context.Context) JobIAMPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(JobIAMPolicyPtrOutput)
+}
+
+type JobIAMPolicyPtrInput interface {
+	pulumi.Input
+
+	ToJobIAMPolicyPtrOutput() JobIAMPolicyPtrOutput
+	ToJobIAMPolicyPtrOutputWithContext(ctx context.Context) JobIAMPolicyPtrOutput
 }
 
 type JobIAMPolicyOutput struct {
@@ -267,7 +282,7 @@ type JobIAMPolicyOutput struct {
 }
 
 func (JobIAMPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*JobIAMPolicyOutput)(nil)).Elem()
+	return reflect.TypeOf((*JobIAMPolicy)(nil))
 }
 
 func (o JobIAMPolicyOutput) ToJobIAMPolicyOutput() JobIAMPolicyOutput {
@@ -278,6 +293,23 @@ func (o JobIAMPolicyOutput) ToJobIAMPolicyOutputWithContext(ctx context.Context)
 	return o
 }
 
+type JobIAMPolicyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (JobIAMPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**JobIAMPolicy)(nil))
+}
+
+func (o JobIAMPolicyPtrOutput) ToJobIAMPolicyPtrOutput() JobIAMPolicyPtrOutput {
+	return o
+}
+
+func (o JobIAMPolicyPtrOutput) ToJobIAMPolicyPtrOutputWithContext(ctx context.Context) JobIAMPolicyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(JobIAMPolicyOutput{})
+	pulumi.RegisterOutputType(JobIAMPolicyPtrOutput{})
 }

@@ -323,16 +323,31 @@ type NodeTemplateInput interface {
 	ToNodeTemplateOutputWithContext(ctx context.Context) NodeTemplateOutput
 }
 
-func (NodeTemplate) ElementType() reflect.Type {
-	return reflect.TypeOf((*NodeTemplate)(nil)).Elem()
+func (*NodeTemplate) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodeTemplate)(nil))
 }
 
-func (i NodeTemplate) ToNodeTemplateOutput() NodeTemplateOutput {
+func (i *NodeTemplate) ToNodeTemplateOutput() NodeTemplateOutput {
 	return i.ToNodeTemplateOutputWithContext(context.Background())
 }
 
-func (i NodeTemplate) ToNodeTemplateOutputWithContext(ctx context.Context) NodeTemplateOutput {
+func (i *NodeTemplate) ToNodeTemplateOutputWithContext(ctx context.Context) NodeTemplateOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NodeTemplateOutput)
+}
+
+func (i *NodeTemplate) ToNodeTemplatePtrOutput() NodeTemplatePtrOutput {
+	return i.ToNodeTemplatePtrOutputWithContext(context.Background())
+}
+
+func (i *NodeTemplate) ToNodeTemplatePtrOutputWithContext(ctx context.Context) NodeTemplatePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodeTemplatePtrOutput)
+}
+
+type NodeTemplatePtrInput interface {
+	pulumi.Input
+
+	ToNodeTemplatePtrOutput() NodeTemplatePtrOutput
+	ToNodeTemplatePtrOutputWithContext(ctx context.Context) NodeTemplatePtrOutput
 }
 
 type NodeTemplateOutput struct {
@@ -340,7 +355,7 @@ type NodeTemplateOutput struct {
 }
 
 func (NodeTemplateOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*NodeTemplateOutput)(nil)).Elem()
+	return reflect.TypeOf((*NodeTemplate)(nil))
 }
 
 func (o NodeTemplateOutput) ToNodeTemplateOutput() NodeTemplateOutput {
@@ -351,6 +366,23 @@ func (o NodeTemplateOutput) ToNodeTemplateOutputWithContext(ctx context.Context)
 	return o
 }
 
+type NodeTemplatePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (NodeTemplatePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NodeTemplate)(nil))
+}
+
+func (o NodeTemplatePtrOutput) ToNodeTemplatePtrOutput() NodeTemplatePtrOutput {
+	return o
+}
+
+func (o NodeTemplatePtrOutput) ToNodeTemplatePtrOutputWithContext(ctx context.Context) NodeTemplatePtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(NodeTemplateOutput{})
+	pulumi.RegisterOutputType(NodeTemplatePtrOutput{})
 }

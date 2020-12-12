@@ -281,16 +281,31 @@ type IamBindingInput interface {
 	ToIamBindingOutputWithContext(ctx context.Context) IamBindingOutput
 }
 
-func (IamBinding) ElementType() reflect.Type {
-	return reflect.TypeOf((*IamBinding)(nil)).Elem()
+func (*IamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*IamBinding)(nil))
 }
 
-func (i IamBinding) ToIamBindingOutput() IamBindingOutput {
+func (i *IamBinding) ToIamBindingOutput() IamBindingOutput {
 	return i.ToIamBindingOutputWithContext(context.Background())
 }
 
-func (i IamBinding) ToIamBindingOutputWithContext(ctx context.Context) IamBindingOutput {
+func (i *IamBinding) ToIamBindingOutputWithContext(ctx context.Context) IamBindingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IamBindingOutput)
+}
+
+func (i *IamBinding) ToIamBindingPtrOutput() IamBindingPtrOutput {
+	return i.ToIamBindingPtrOutputWithContext(context.Background())
+}
+
+func (i *IamBinding) ToIamBindingPtrOutputWithContext(ctx context.Context) IamBindingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IamBindingPtrOutput)
+}
+
+type IamBindingPtrInput interface {
+	pulumi.Input
+
+	ToIamBindingPtrOutput() IamBindingPtrOutput
+	ToIamBindingPtrOutputWithContext(ctx context.Context) IamBindingPtrOutput
 }
 
 type IamBindingOutput struct {
@@ -298,7 +313,7 @@ type IamBindingOutput struct {
 }
 
 func (IamBindingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*IamBindingOutput)(nil)).Elem()
+	return reflect.TypeOf((*IamBinding)(nil))
 }
 
 func (o IamBindingOutput) ToIamBindingOutput() IamBindingOutput {
@@ -309,6 +324,23 @@ func (o IamBindingOutput) ToIamBindingOutputWithContext(ctx context.Context) Iam
 	return o
 }
 
+type IamBindingPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (IamBindingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**IamBinding)(nil))
+}
+
+func (o IamBindingPtrOutput) ToIamBindingPtrOutput() IamBindingPtrOutput {
+	return o
+}
+
+func (o IamBindingPtrOutput) ToIamBindingPtrOutputWithContext(ctx context.Context) IamBindingPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(IamBindingOutput{})
+	pulumi.RegisterOutputType(IamBindingPtrOutput{})
 }

@@ -280,16 +280,31 @@ type NetworkEndpointInput interface {
 	ToNetworkEndpointOutputWithContext(ctx context.Context) NetworkEndpointOutput
 }
 
-func (NetworkEndpoint) ElementType() reflect.Type {
-	return reflect.TypeOf((*NetworkEndpoint)(nil)).Elem()
+func (*NetworkEndpoint) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetworkEndpoint)(nil))
 }
 
-func (i NetworkEndpoint) ToNetworkEndpointOutput() NetworkEndpointOutput {
+func (i *NetworkEndpoint) ToNetworkEndpointOutput() NetworkEndpointOutput {
 	return i.ToNetworkEndpointOutputWithContext(context.Background())
 }
 
-func (i NetworkEndpoint) ToNetworkEndpointOutputWithContext(ctx context.Context) NetworkEndpointOutput {
+func (i *NetworkEndpoint) ToNetworkEndpointOutputWithContext(ctx context.Context) NetworkEndpointOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkEndpointOutput)
+}
+
+func (i *NetworkEndpoint) ToNetworkEndpointPtrOutput() NetworkEndpointPtrOutput {
+	return i.ToNetworkEndpointPtrOutputWithContext(context.Background())
+}
+
+func (i *NetworkEndpoint) ToNetworkEndpointPtrOutputWithContext(ctx context.Context) NetworkEndpointPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NetworkEndpointPtrOutput)
+}
+
+type NetworkEndpointPtrInput interface {
+	pulumi.Input
+
+	ToNetworkEndpointPtrOutput() NetworkEndpointPtrOutput
+	ToNetworkEndpointPtrOutputWithContext(ctx context.Context) NetworkEndpointPtrOutput
 }
 
 type NetworkEndpointOutput struct {
@@ -297,7 +312,7 @@ type NetworkEndpointOutput struct {
 }
 
 func (NetworkEndpointOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*NetworkEndpointOutput)(nil)).Elem()
+	return reflect.TypeOf((*NetworkEndpoint)(nil))
 }
 
 func (o NetworkEndpointOutput) ToNetworkEndpointOutput() NetworkEndpointOutput {
@@ -308,6 +323,23 @@ func (o NetworkEndpointOutput) ToNetworkEndpointOutputWithContext(ctx context.Co
 	return o
 }
 
+type NetworkEndpointPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (NetworkEndpointPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NetworkEndpoint)(nil))
+}
+
+func (o NetworkEndpointPtrOutput) ToNetworkEndpointPtrOutput() NetworkEndpointPtrOutput {
+	return o
+}
+
+func (o NetworkEndpointPtrOutput) ToNetworkEndpointPtrOutputWithContext(ctx context.Context) NetworkEndpointPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(NetworkEndpointOutput{})
+	pulumi.RegisterOutputType(NetworkEndpointPtrOutput{})
 }

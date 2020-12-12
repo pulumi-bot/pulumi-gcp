@@ -84,7 +84,7 @@ func (i ConnectivityTestDestinationArgs) ToConnectivityTestDestinationPtrOutput(
 }
 
 func (i ConnectivityTestDestinationArgs) ToConnectivityTestDestinationPtrOutputWithContext(ctx context.Context) ConnectivityTestDestinationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ConnectivityTestDestinationOutput).ToConnectivityTestDestinationPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ConnectivityTestDestinationOutput).ToConnectivityTestDestinationPtrOutput()
 }
 
 // ConnectivityTestDestinationPtrInput is an input type that accepts ConnectivityTestDestinationArgs, ConnectivityTestDestinationPtr and ConnectivityTestDestinationPtrOutput values.
@@ -117,7 +117,7 @@ func (i *connectivityTestDestinationPtrType) ToConnectivityTestDestinationPtrOut
 }
 
 func (i *connectivityTestDestinationPtrType) ToConnectivityTestDestinationPtrOutputWithContext(ctx context.Context) ConnectivityTestDestinationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ConnectivityTestDestinationPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ConnectivityTestDestinationOutput).ToConnectivityTestDestinationPtrOutput()
 }
 
 type ConnectivityTestDestinationOutput struct{ *pulumi.OutputState }
@@ -337,7 +337,7 @@ func (i ConnectivityTestSourceArgs) ToConnectivityTestSourcePtrOutput() Connecti
 }
 
 func (i ConnectivityTestSourceArgs) ToConnectivityTestSourcePtrOutputWithContext(ctx context.Context) ConnectivityTestSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ConnectivityTestSourceOutput).ToConnectivityTestSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ConnectivityTestSourceOutput).ToConnectivityTestSourcePtrOutput()
 }
 
 // ConnectivityTestSourcePtrInput is an input type that accepts ConnectivityTestSourceArgs, ConnectivityTestSourcePtr and ConnectivityTestSourcePtrOutput values.
@@ -370,7 +370,7 @@ func (i *connectivityTestSourcePtrType) ToConnectivityTestSourcePtrOutput() Conn
 }
 
 func (i *connectivityTestSourcePtrType) ToConnectivityTestSourcePtrOutputWithContext(ctx context.Context) ConnectivityTestSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ConnectivityTestSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ConnectivityTestSourceOutput).ToConnectivityTestSourcePtrOutput()
 }
 
 type ConnectivityTestSourceOutput struct{ *pulumi.OutputState }

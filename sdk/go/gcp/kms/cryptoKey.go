@@ -288,16 +288,31 @@ type CryptoKeyInput interface {
 	ToCryptoKeyOutputWithContext(ctx context.Context) CryptoKeyOutput
 }
 
-func (CryptoKey) ElementType() reflect.Type {
-	return reflect.TypeOf((*CryptoKey)(nil)).Elem()
+func (*CryptoKey) ElementType() reflect.Type {
+	return reflect.TypeOf((*CryptoKey)(nil))
 }
 
-func (i CryptoKey) ToCryptoKeyOutput() CryptoKeyOutput {
+func (i *CryptoKey) ToCryptoKeyOutput() CryptoKeyOutput {
 	return i.ToCryptoKeyOutputWithContext(context.Background())
 }
 
-func (i CryptoKey) ToCryptoKeyOutputWithContext(ctx context.Context) CryptoKeyOutput {
+func (i *CryptoKey) ToCryptoKeyOutputWithContext(ctx context.Context) CryptoKeyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CryptoKeyOutput)
+}
+
+func (i *CryptoKey) ToCryptoKeyPtrOutput() CryptoKeyPtrOutput {
+	return i.ToCryptoKeyPtrOutputWithContext(context.Background())
+}
+
+func (i *CryptoKey) ToCryptoKeyPtrOutputWithContext(ctx context.Context) CryptoKeyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CryptoKeyPtrOutput)
+}
+
+type CryptoKeyPtrInput interface {
+	pulumi.Input
+
+	ToCryptoKeyPtrOutput() CryptoKeyPtrOutput
+	ToCryptoKeyPtrOutputWithContext(ctx context.Context) CryptoKeyPtrOutput
 }
 
 type CryptoKeyOutput struct {
@@ -305,7 +320,7 @@ type CryptoKeyOutput struct {
 }
 
 func (CryptoKeyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*CryptoKeyOutput)(nil)).Elem()
+	return reflect.TypeOf((*CryptoKey)(nil))
 }
 
 func (o CryptoKeyOutput) ToCryptoKeyOutput() CryptoKeyOutput {
@@ -316,6 +331,23 @@ func (o CryptoKeyOutput) ToCryptoKeyOutputWithContext(ctx context.Context) Crypt
 	return o
 }
 
+type CryptoKeyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (CryptoKeyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CryptoKey)(nil))
+}
+
+func (o CryptoKeyPtrOutput) ToCryptoKeyPtrOutput() CryptoKeyPtrOutput {
+	return o
+}
+
+func (o CryptoKeyPtrOutput) ToCryptoKeyPtrOutputWithContext(ctx context.Context) CryptoKeyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(CryptoKeyOutput{})
+	pulumi.RegisterOutputType(CryptoKeyPtrOutput{})
 }

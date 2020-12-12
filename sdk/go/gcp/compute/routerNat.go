@@ -490,16 +490,31 @@ type RouterNatInput interface {
 	ToRouterNatOutputWithContext(ctx context.Context) RouterNatOutput
 }
 
-func (RouterNat) ElementType() reflect.Type {
-	return reflect.TypeOf((*RouterNat)(nil)).Elem()
+func (*RouterNat) ElementType() reflect.Type {
+	return reflect.TypeOf((*RouterNat)(nil))
 }
 
-func (i RouterNat) ToRouterNatOutput() RouterNatOutput {
+func (i *RouterNat) ToRouterNatOutput() RouterNatOutput {
 	return i.ToRouterNatOutputWithContext(context.Background())
 }
 
-func (i RouterNat) ToRouterNatOutputWithContext(ctx context.Context) RouterNatOutput {
+func (i *RouterNat) ToRouterNatOutputWithContext(ctx context.Context) RouterNatOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RouterNatOutput)
+}
+
+func (i *RouterNat) ToRouterNatPtrOutput() RouterNatPtrOutput {
+	return i.ToRouterNatPtrOutputWithContext(context.Background())
+}
+
+func (i *RouterNat) ToRouterNatPtrOutputWithContext(ctx context.Context) RouterNatPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RouterNatPtrOutput)
+}
+
+type RouterNatPtrInput interface {
+	pulumi.Input
+
+	ToRouterNatPtrOutput() RouterNatPtrOutput
+	ToRouterNatPtrOutputWithContext(ctx context.Context) RouterNatPtrOutput
 }
 
 type RouterNatOutput struct {
@@ -507,7 +522,7 @@ type RouterNatOutput struct {
 }
 
 func (RouterNatOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RouterNatOutput)(nil)).Elem()
+	return reflect.TypeOf((*RouterNat)(nil))
 }
 
 func (o RouterNatOutput) ToRouterNatOutput() RouterNatOutput {
@@ -518,6 +533,23 @@ func (o RouterNatOutput) ToRouterNatOutputWithContext(ctx context.Context) Route
 	return o
 }
 
+type RouterNatPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (RouterNatPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RouterNat)(nil))
+}
+
+func (o RouterNatPtrOutput) ToRouterNatPtrOutput() RouterNatPtrOutput {
+	return o
+}
+
+func (o RouterNatPtrOutput) ToRouterNatPtrOutputWithContext(ctx context.Context) RouterNatPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(RouterNatOutput{})
+	pulumi.RegisterOutputType(RouterNatPtrOutput{})
 }

@@ -395,16 +395,31 @@ type TunnelInstanceIAMBindingInput interface {
 	ToTunnelInstanceIAMBindingOutputWithContext(ctx context.Context) TunnelInstanceIAMBindingOutput
 }
 
-func (TunnelInstanceIAMBinding) ElementType() reflect.Type {
-	return reflect.TypeOf((*TunnelInstanceIAMBinding)(nil)).Elem()
+func (*TunnelInstanceIAMBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*TunnelInstanceIAMBinding)(nil))
 }
 
-func (i TunnelInstanceIAMBinding) ToTunnelInstanceIAMBindingOutput() TunnelInstanceIAMBindingOutput {
+func (i *TunnelInstanceIAMBinding) ToTunnelInstanceIAMBindingOutput() TunnelInstanceIAMBindingOutput {
 	return i.ToTunnelInstanceIAMBindingOutputWithContext(context.Background())
 }
 
-func (i TunnelInstanceIAMBinding) ToTunnelInstanceIAMBindingOutputWithContext(ctx context.Context) TunnelInstanceIAMBindingOutput {
+func (i *TunnelInstanceIAMBinding) ToTunnelInstanceIAMBindingOutputWithContext(ctx context.Context) TunnelInstanceIAMBindingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TunnelInstanceIAMBindingOutput)
+}
+
+func (i *TunnelInstanceIAMBinding) ToTunnelInstanceIAMBindingPtrOutput() TunnelInstanceIAMBindingPtrOutput {
+	return i.ToTunnelInstanceIAMBindingPtrOutputWithContext(context.Background())
+}
+
+func (i *TunnelInstanceIAMBinding) ToTunnelInstanceIAMBindingPtrOutputWithContext(ctx context.Context) TunnelInstanceIAMBindingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TunnelInstanceIAMBindingPtrOutput)
+}
+
+type TunnelInstanceIAMBindingPtrInput interface {
+	pulumi.Input
+
+	ToTunnelInstanceIAMBindingPtrOutput() TunnelInstanceIAMBindingPtrOutput
+	ToTunnelInstanceIAMBindingPtrOutputWithContext(ctx context.Context) TunnelInstanceIAMBindingPtrOutput
 }
 
 type TunnelInstanceIAMBindingOutput struct {
@@ -412,7 +427,7 @@ type TunnelInstanceIAMBindingOutput struct {
 }
 
 func (TunnelInstanceIAMBindingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*TunnelInstanceIAMBindingOutput)(nil)).Elem()
+	return reflect.TypeOf((*TunnelInstanceIAMBinding)(nil))
 }
 
 func (o TunnelInstanceIAMBindingOutput) ToTunnelInstanceIAMBindingOutput() TunnelInstanceIAMBindingOutput {
@@ -423,6 +438,23 @@ func (o TunnelInstanceIAMBindingOutput) ToTunnelInstanceIAMBindingOutputWithCont
 	return o
 }
 
+type TunnelInstanceIAMBindingPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (TunnelInstanceIAMBindingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TunnelInstanceIAMBinding)(nil))
+}
+
+func (o TunnelInstanceIAMBindingPtrOutput) ToTunnelInstanceIAMBindingPtrOutput() TunnelInstanceIAMBindingPtrOutput {
+	return o
+}
+
+func (o TunnelInstanceIAMBindingPtrOutput) ToTunnelInstanceIAMBindingPtrOutputWithContext(ctx context.Context) TunnelInstanceIAMBindingPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(TunnelInstanceIAMBindingOutput{})
+	pulumi.RegisterOutputType(TunnelInstanceIAMBindingPtrOutput{})
 }

@@ -267,16 +267,31 @@ type DicomStoreIamBindingInput interface {
 	ToDicomStoreIamBindingOutputWithContext(ctx context.Context) DicomStoreIamBindingOutput
 }
 
-func (DicomStoreIamBinding) ElementType() reflect.Type {
-	return reflect.TypeOf((*DicomStoreIamBinding)(nil)).Elem()
+func (*DicomStoreIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*DicomStoreIamBinding)(nil))
 }
 
-func (i DicomStoreIamBinding) ToDicomStoreIamBindingOutput() DicomStoreIamBindingOutput {
+func (i *DicomStoreIamBinding) ToDicomStoreIamBindingOutput() DicomStoreIamBindingOutput {
 	return i.ToDicomStoreIamBindingOutputWithContext(context.Background())
 }
 
-func (i DicomStoreIamBinding) ToDicomStoreIamBindingOutputWithContext(ctx context.Context) DicomStoreIamBindingOutput {
+func (i *DicomStoreIamBinding) ToDicomStoreIamBindingOutputWithContext(ctx context.Context) DicomStoreIamBindingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DicomStoreIamBindingOutput)
+}
+
+func (i *DicomStoreIamBinding) ToDicomStoreIamBindingPtrOutput() DicomStoreIamBindingPtrOutput {
+	return i.ToDicomStoreIamBindingPtrOutputWithContext(context.Background())
+}
+
+func (i *DicomStoreIamBinding) ToDicomStoreIamBindingPtrOutputWithContext(ctx context.Context) DicomStoreIamBindingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DicomStoreIamBindingPtrOutput)
+}
+
+type DicomStoreIamBindingPtrInput interface {
+	pulumi.Input
+
+	ToDicomStoreIamBindingPtrOutput() DicomStoreIamBindingPtrOutput
+	ToDicomStoreIamBindingPtrOutputWithContext(ctx context.Context) DicomStoreIamBindingPtrOutput
 }
 
 type DicomStoreIamBindingOutput struct {
@@ -284,7 +299,7 @@ type DicomStoreIamBindingOutput struct {
 }
 
 func (DicomStoreIamBindingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DicomStoreIamBindingOutput)(nil)).Elem()
+	return reflect.TypeOf((*DicomStoreIamBinding)(nil))
 }
 
 func (o DicomStoreIamBindingOutput) ToDicomStoreIamBindingOutput() DicomStoreIamBindingOutput {
@@ -295,6 +310,23 @@ func (o DicomStoreIamBindingOutput) ToDicomStoreIamBindingOutputWithContext(ctx 
 	return o
 }
 
+type DicomStoreIamBindingPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (DicomStoreIamBindingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DicomStoreIamBinding)(nil))
+}
+
+func (o DicomStoreIamBindingPtrOutput) ToDicomStoreIamBindingPtrOutput() DicomStoreIamBindingPtrOutput {
+	return o
+}
+
+func (o DicomStoreIamBindingPtrOutput) ToDicomStoreIamBindingPtrOutputWithContext(ctx context.Context) DicomStoreIamBindingPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(DicomStoreIamBindingOutput{})
+	pulumi.RegisterOutputType(DicomStoreIamBindingPtrOutput{})
 }

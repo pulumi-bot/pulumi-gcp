@@ -384,16 +384,31 @@ type WebBackendServiceIamBindingInput interface {
 	ToWebBackendServiceIamBindingOutputWithContext(ctx context.Context) WebBackendServiceIamBindingOutput
 }
 
-func (WebBackendServiceIamBinding) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebBackendServiceIamBinding)(nil)).Elem()
+func (*WebBackendServiceIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebBackendServiceIamBinding)(nil))
 }
 
-func (i WebBackendServiceIamBinding) ToWebBackendServiceIamBindingOutput() WebBackendServiceIamBindingOutput {
+func (i *WebBackendServiceIamBinding) ToWebBackendServiceIamBindingOutput() WebBackendServiceIamBindingOutput {
 	return i.ToWebBackendServiceIamBindingOutputWithContext(context.Background())
 }
 
-func (i WebBackendServiceIamBinding) ToWebBackendServiceIamBindingOutputWithContext(ctx context.Context) WebBackendServiceIamBindingOutput {
+func (i *WebBackendServiceIamBinding) ToWebBackendServiceIamBindingOutputWithContext(ctx context.Context) WebBackendServiceIamBindingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WebBackendServiceIamBindingOutput)
+}
+
+func (i *WebBackendServiceIamBinding) ToWebBackendServiceIamBindingPtrOutput() WebBackendServiceIamBindingPtrOutput {
+	return i.ToWebBackendServiceIamBindingPtrOutputWithContext(context.Background())
+}
+
+func (i *WebBackendServiceIamBinding) ToWebBackendServiceIamBindingPtrOutputWithContext(ctx context.Context) WebBackendServiceIamBindingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebBackendServiceIamBindingPtrOutput)
+}
+
+type WebBackendServiceIamBindingPtrInput interface {
+	pulumi.Input
+
+	ToWebBackendServiceIamBindingPtrOutput() WebBackendServiceIamBindingPtrOutput
+	ToWebBackendServiceIamBindingPtrOutputWithContext(ctx context.Context) WebBackendServiceIamBindingPtrOutput
 }
 
 type WebBackendServiceIamBindingOutput struct {
@@ -401,7 +416,7 @@ type WebBackendServiceIamBindingOutput struct {
 }
 
 func (WebBackendServiceIamBindingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebBackendServiceIamBindingOutput)(nil)).Elem()
+	return reflect.TypeOf((*WebBackendServiceIamBinding)(nil))
 }
 
 func (o WebBackendServiceIamBindingOutput) ToWebBackendServiceIamBindingOutput() WebBackendServiceIamBindingOutput {
@@ -412,6 +427,23 @@ func (o WebBackendServiceIamBindingOutput) ToWebBackendServiceIamBindingOutputWi
 	return o
 }
 
+type WebBackendServiceIamBindingPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (WebBackendServiceIamBindingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebBackendServiceIamBinding)(nil))
+}
+
+func (o WebBackendServiceIamBindingPtrOutput) ToWebBackendServiceIamBindingPtrOutput() WebBackendServiceIamBindingPtrOutput {
+	return o
+}
+
+func (o WebBackendServiceIamBindingPtrOutput) ToWebBackendServiceIamBindingPtrOutputWithContext(ctx context.Context) WebBackendServiceIamBindingPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(WebBackendServiceIamBindingOutput{})
+	pulumi.RegisterOutputType(WebBackendServiceIamBindingPtrOutput{})
 }

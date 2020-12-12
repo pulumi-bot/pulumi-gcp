@@ -384,16 +384,31 @@ type ImageIamBindingInput interface {
 	ToImageIamBindingOutputWithContext(ctx context.Context) ImageIamBindingOutput
 }
 
-func (ImageIamBinding) ElementType() reflect.Type {
-	return reflect.TypeOf((*ImageIamBinding)(nil)).Elem()
+func (*ImageIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*ImageIamBinding)(nil))
 }
 
-func (i ImageIamBinding) ToImageIamBindingOutput() ImageIamBindingOutput {
+func (i *ImageIamBinding) ToImageIamBindingOutput() ImageIamBindingOutput {
 	return i.ToImageIamBindingOutputWithContext(context.Background())
 }
 
-func (i ImageIamBinding) ToImageIamBindingOutputWithContext(ctx context.Context) ImageIamBindingOutput {
+func (i *ImageIamBinding) ToImageIamBindingOutputWithContext(ctx context.Context) ImageIamBindingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ImageIamBindingOutput)
+}
+
+func (i *ImageIamBinding) ToImageIamBindingPtrOutput() ImageIamBindingPtrOutput {
+	return i.ToImageIamBindingPtrOutputWithContext(context.Background())
+}
+
+func (i *ImageIamBinding) ToImageIamBindingPtrOutputWithContext(ctx context.Context) ImageIamBindingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ImageIamBindingPtrOutput)
+}
+
+type ImageIamBindingPtrInput interface {
+	pulumi.Input
+
+	ToImageIamBindingPtrOutput() ImageIamBindingPtrOutput
+	ToImageIamBindingPtrOutputWithContext(ctx context.Context) ImageIamBindingPtrOutput
 }
 
 type ImageIamBindingOutput struct {
@@ -401,7 +416,7 @@ type ImageIamBindingOutput struct {
 }
 
 func (ImageIamBindingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ImageIamBindingOutput)(nil)).Elem()
+	return reflect.TypeOf((*ImageIamBinding)(nil))
 }
 
 func (o ImageIamBindingOutput) ToImageIamBindingOutput() ImageIamBindingOutput {
@@ -412,6 +427,23 @@ func (o ImageIamBindingOutput) ToImageIamBindingOutputWithContext(ctx context.Co
 	return o
 }
 
+type ImageIamBindingPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ImageIamBindingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ImageIamBinding)(nil))
+}
+
+func (o ImageIamBindingPtrOutput) ToImageIamBindingPtrOutput() ImageIamBindingPtrOutput {
+	return o
+}
+
+func (o ImageIamBindingPtrOutput) ToImageIamBindingPtrOutputWithContext(ctx context.Context) ImageIamBindingPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ImageIamBindingOutput{})
+	pulumi.RegisterOutputType(ImageIamBindingPtrOutput{})
 }

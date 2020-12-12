@@ -365,16 +365,31 @@ type WebTypeComputeIamBindingInput interface {
 	ToWebTypeComputeIamBindingOutputWithContext(ctx context.Context) WebTypeComputeIamBindingOutput
 }
 
-func (WebTypeComputeIamBinding) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebTypeComputeIamBinding)(nil)).Elem()
+func (*WebTypeComputeIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebTypeComputeIamBinding)(nil))
 }
 
-func (i WebTypeComputeIamBinding) ToWebTypeComputeIamBindingOutput() WebTypeComputeIamBindingOutput {
+func (i *WebTypeComputeIamBinding) ToWebTypeComputeIamBindingOutput() WebTypeComputeIamBindingOutput {
 	return i.ToWebTypeComputeIamBindingOutputWithContext(context.Background())
 }
 
-func (i WebTypeComputeIamBinding) ToWebTypeComputeIamBindingOutputWithContext(ctx context.Context) WebTypeComputeIamBindingOutput {
+func (i *WebTypeComputeIamBinding) ToWebTypeComputeIamBindingOutputWithContext(ctx context.Context) WebTypeComputeIamBindingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WebTypeComputeIamBindingOutput)
+}
+
+func (i *WebTypeComputeIamBinding) ToWebTypeComputeIamBindingPtrOutput() WebTypeComputeIamBindingPtrOutput {
+	return i.ToWebTypeComputeIamBindingPtrOutputWithContext(context.Background())
+}
+
+func (i *WebTypeComputeIamBinding) ToWebTypeComputeIamBindingPtrOutputWithContext(ctx context.Context) WebTypeComputeIamBindingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebTypeComputeIamBindingPtrOutput)
+}
+
+type WebTypeComputeIamBindingPtrInput interface {
+	pulumi.Input
+
+	ToWebTypeComputeIamBindingPtrOutput() WebTypeComputeIamBindingPtrOutput
+	ToWebTypeComputeIamBindingPtrOutputWithContext(ctx context.Context) WebTypeComputeIamBindingPtrOutput
 }
 
 type WebTypeComputeIamBindingOutput struct {
@@ -382,7 +397,7 @@ type WebTypeComputeIamBindingOutput struct {
 }
 
 func (WebTypeComputeIamBindingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebTypeComputeIamBindingOutput)(nil)).Elem()
+	return reflect.TypeOf((*WebTypeComputeIamBinding)(nil))
 }
 
 func (o WebTypeComputeIamBindingOutput) ToWebTypeComputeIamBindingOutput() WebTypeComputeIamBindingOutput {
@@ -393,6 +408,23 @@ func (o WebTypeComputeIamBindingOutput) ToWebTypeComputeIamBindingOutputWithCont
 	return o
 }
 
+type WebTypeComputeIamBindingPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (WebTypeComputeIamBindingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebTypeComputeIamBinding)(nil))
+}
+
+func (o WebTypeComputeIamBindingPtrOutput) ToWebTypeComputeIamBindingPtrOutput() WebTypeComputeIamBindingPtrOutput {
+	return o
+}
+
+func (o WebTypeComputeIamBindingPtrOutput) ToWebTypeComputeIamBindingPtrOutputWithContext(ctx context.Context) WebTypeComputeIamBindingPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(WebTypeComputeIamBindingOutput{})
+	pulumi.RegisterOutputType(WebTypeComputeIamBindingPtrOutput{})
 }

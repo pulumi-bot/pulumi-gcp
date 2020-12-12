@@ -342,16 +342,31 @@ type RepositoryInput interface {
 	ToRepositoryOutputWithContext(ctx context.Context) RepositoryOutput
 }
 
-func (Repository) ElementType() reflect.Type {
-	return reflect.TypeOf((*Repository)(nil)).Elem()
+func (*Repository) ElementType() reflect.Type {
+	return reflect.TypeOf((*Repository)(nil))
 }
 
-func (i Repository) ToRepositoryOutput() RepositoryOutput {
+func (i *Repository) ToRepositoryOutput() RepositoryOutput {
 	return i.ToRepositoryOutputWithContext(context.Background())
 }
 
-func (i Repository) ToRepositoryOutputWithContext(ctx context.Context) RepositoryOutput {
+func (i *Repository) ToRepositoryOutputWithContext(ctx context.Context) RepositoryOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RepositoryOutput)
+}
+
+func (i *Repository) ToRepositoryPtrOutput() RepositoryPtrOutput {
+	return i.ToRepositoryPtrOutputWithContext(context.Background())
+}
+
+func (i *Repository) ToRepositoryPtrOutputWithContext(ctx context.Context) RepositoryPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RepositoryPtrOutput)
+}
+
+type RepositoryPtrInput interface {
+	pulumi.Input
+
+	ToRepositoryPtrOutput() RepositoryPtrOutput
+	ToRepositoryPtrOutputWithContext(ctx context.Context) RepositoryPtrOutput
 }
 
 type RepositoryOutput struct {
@@ -359,7 +374,7 @@ type RepositoryOutput struct {
 }
 
 func (RepositoryOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RepositoryOutput)(nil)).Elem()
+	return reflect.TypeOf((*Repository)(nil))
 }
 
 func (o RepositoryOutput) ToRepositoryOutput() RepositoryOutput {
@@ -370,6 +385,23 @@ func (o RepositoryOutput) ToRepositoryOutputWithContext(ctx context.Context) Rep
 	return o
 }
 
+type RepositoryPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (RepositoryPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Repository)(nil))
+}
+
+func (o RepositoryPtrOutput) ToRepositoryPtrOutput() RepositoryPtrOutput {
+	return o
+}
+
+func (o RepositoryPtrOutput) ToRepositoryPtrOutputWithContext(ctx context.Context) RepositoryPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(RepositoryOutput{})
+	pulumi.RegisterOutputType(RepositoryPtrOutput{})
 }

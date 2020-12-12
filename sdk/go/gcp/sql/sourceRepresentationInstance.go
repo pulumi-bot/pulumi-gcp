@@ -206,16 +206,31 @@ type SourceRepresentationInstanceInput interface {
 	ToSourceRepresentationInstanceOutputWithContext(ctx context.Context) SourceRepresentationInstanceOutput
 }
 
-func (SourceRepresentationInstance) ElementType() reflect.Type {
-	return reflect.TypeOf((*SourceRepresentationInstance)(nil)).Elem()
+func (*SourceRepresentationInstance) ElementType() reflect.Type {
+	return reflect.TypeOf((*SourceRepresentationInstance)(nil))
 }
 
-func (i SourceRepresentationInstance) ToSourceRepresentationInstanceOutput() SourceRepresentationInstanceOutput {
+func (i *SourceRepresentationInstance) ToSourceRepresentationInstanceOutput() SourceRepresentationInstanceOutput {
 	return i.ToSourceRepresentationInstanceOutputWithContext(context.Background())
 }
 
-func (i SourceRepresentationInstance) ToSourceRepresentationInstanceOutputWithContext(ctx context.Context) SourceRepresentationInstanceOutput {
+func (i *SourceRepresentationInstance) ToSourceRepresentationInstanceOutputWithContext(ctx context.Context) SourceRepresentationInstanceOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SourceRepresentationInstanceOutput)
+}
+
+func (i *SourceRepresentationInstance) ToSourceRepresentationInstancePtrOutput() SourceRepresentationInstancePtrOutput {
+	return i.ToSourceRepresentationInstancePtrOutputWithContext(context.Background())
+}
+
+func (i *SourceRepresentationInstance) ToSourceRepresentationInstancePtrOutputWithContext(ctx context.Context) SourceRepresentationInstancePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceRepresentationInstancePtrOutput)
+}
+
+type SourceRepresentationInstancePtrInput interface {
+	pulumi.Input
+
+	ToSourceRepresentationInstancePtrOutput() SourceRepresentationInstancePtrOutput
+	ToSourceRepresentationInstancePtrOutputWithContext(ctx context.Context) SourceRepresentationInstancePtrOutput
 }
 
 type SourceRepresentationInstanceOutput struct {
@@ -223,7 +238,7 @@ type SourceRepresentationInstanceOutput struct {
 }
 
 func (SourceRepresentationInstanceOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SourceRepresentationInstanceOutput)(nil)).Elem()
+	return reflect.TypeOf((*SourceRepresentationInstance)(nil))
 }
 
 func (o SourceRepresentationInstanceOutput) ToSourceRepresentationInstanceOutput() SourceRepresentationInstanceOutput {
@@ -234,6 +249,23 @@ func (o SourceRepresentationInstanceOutput) ToSourceRepresentationInstanceOutput
 	return o
 }
 
+type SourceRepresentationInstancePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (SourceRepresentationInstancePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SourceRepresentationInstance)(nil))
+}
+
+func (o SourceRepresentationInstancePtrOutput) ToSourceRepresentationInstancePtrOutput() SourceRepresentationInstancePtrOutput {
+	return o
+}
+
+func (o SourceRepresentationInstancePtrOutput) ToSourceRepresentationInstancePtrOutputWithContext(ctx context.Context) SourceRepresentationInstancePtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(SourceRepresentationInstanceOutput{})
+	pulumi.RegisterOutputType(SourceRepresentationInstancePtrOutput{})
 }

@@ -365,16 +365,31 @@ type WebIamMemberInput interface {
 	ToWebIamMemberOutputWithContext(ctx context.Context) WebIamMemberOutput
 }
 
-func (WebIamMember) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebIamMember)(nil)).Elem()
+func (*WebIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebIamMember)(nil))
 }
 
-func (i WebIamMember) ToWebIamMemberOutput() WebIamMemberOutput {
+func (i *WebIamMember) ToWebIamMemberOutput() WebIamMemberOutput {
 	return i.ToWebIamMemberOutputWithContext(context.Background())
 }
 
-func (i WebIamMember) ToWebIamMemberOutputWithContext(ctx context.Context) WebIamMemberOutput {
+func (i *WebIamMember) ToWebIamMemberOutputWithContext(ctx context.Context) WebIamMemberOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WebIamMemberOutput)
+}
+
+func (i *WebIamMember) ToWebIamMemberPtrOutput() WebIamMemberPtrOutput {
+	return i.ToWebIamMemberPtrOutputWithContext(context.Background())
+}
+
+func (i *WebIamMember) ToWebIamMemberPtrOutputWithContext(ctx context.Context) WebIamMemberPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebIamMemberPtrOutput)
+}
+
+type WebIamMemberPtrInput interface {
+	pulumi.Input
+
+	ToWebIamMemberPtrOutput() WebIamMemberPtrOutput
+	ToWebIamMemberPtrOutputWithContext(ctx context.Context) WebIamMemberPtrOutput
 }
 
 type WebIamMemberOutput struct {
@@ -382,7 +397,7 @@ type WebIamMemberOutput struct {
 }
 
 func (WebIamMemberOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebIamMemberOutput)(nil)).Elem()
+	return reflect.TypeOf((*WebIamMember)(nil))
 }
 
 func (o WebIamMemberOutput) ToWebIamMemberOutput() WebIamMemberOutput {
@@ -393,6 +408,23 @@ func (o WebIamMemberOutput) ToWebIamMemberOutputWithContext(ctx context.Context)
 	return o
 }
 
+type WebIamMemberPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (WebIamMemberPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebIamMember)(nil))
+}
+
+func (o WebIamMemberPtrOutput) ToWebIamMemberPtrOutput() WebIamMemberPtrOutput {
+	return o
+}
+
+func (o WebIamMemberPtrOutput) ToWebIamMemberPtrOutputWithContext(ctx context.Context) WebIamMemberPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(WebIamMemberOutput{})
+	pulumi.RegisterOutputType(WebIamMemberPtrOutput{})
 }

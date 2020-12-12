@@ -413,16 +413,31 @@ type NodePoolInput interface {
 	ToNodePoolOutputWithContext(ctx context.Context) NodePoolOutput
 }
 
-func (NodePool) ElementType() reflect.Type {
-	return reflect.TypeOf((*NodePool)(nil)).Elem()
+func (*NodePool) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodePool)(nil))
 }
 
-func (i NodePool) ToNodePoolOutput() NodePoolOutput {
+func (i *NodePool) ToNodePoolOutput() NodePoolOutput {
 	return i.ToNodePoolOutputWithContext(context.Background())
 }
 
-func (i NodePool) ToNodePoolOutputWithContext(ctx context.Context) NodePoolOutput {
+func (i *NodePool) ToNodePoolOutputWithContext(ctx context.Context) NodePoolOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NodePoolOutput)
+}
+
+func (i *NodePool) ToNodePoolPtrOutput() NodePoolPtrOutput {
+	return i.ToNodePoolPtrOutputWithContext(context.Background())
+}
+
+func (i *NodePool) ToNodePoolPtrOutputWithContext(ctx context.Context) NodePoolPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolPtrOutput)
+}
+
+type NodePoolPtrInput interface {
+	pulumi.Input
+
+	ToNodePoolPtrOutput() NodePoolPtrOutput
+	ToNodePoolPtrOutputWithContext(ctx context.Context) NodePoolPtrOutput
 }
 
 type NodePoolOutput struct {
@@ -430,7 +445,7 @@ type NodePoolOutput struct {
 }
 
 func (NodePoolOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*NodePoolOutput)(nil)).Elem()
+	return reflect.TypeOf((*NodePool)(nil))
 }
 
 func (o NodePoolOutput) ToNodePoolOutput() NodePoolOutput {
@@ -441,6 +456,23 @@ func (o NodePoolOutput) ToNodePoolOutputWithContext(ctx context.Context) NodePoo
 	return o
 }
 
+type NodePoolPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (NodePoolPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NodePool)(nil))
+}
+
+func (o NodePoolPtrOutput) ToNodePoolPtrOutput() NodePoolPtrOutput {
+	return o
+}
+
+func (o NodePoolPtrOutput) ToNodePoolPtrOutputWithContext(ctx context.Context) NodePoolPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(NodePoolOutput{})
+	pulumi.RegisterOutputType(NodePoolPtrOutput{})
 }

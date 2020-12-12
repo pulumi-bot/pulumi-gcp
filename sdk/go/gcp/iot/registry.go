@@ -318,16 +318,31 @@ type RegistryInput interface {
 	ToRegistryOutputWithContext(ctx context.Context) RegistryOutput
 }
 
-func (Registry) ElementType() reflect.Type {
-	return reflect.TypeOf((*Registry)(nil)).Elem()
+func (*Registry) ElementType() reflect.Type {
+	return reflect.TypeOf((*Registry)(nil))
 }
 
-func (i Registry) ToRegistryOutput() RegistryOutput {
+func (i *Registry) ToRegistryOutput() RegistryOutput {
 	return i.ToRegistryOutputWithContext(context.Background())
 }
 
-func (i Registry) ToRegistryOutputWithContext(ctx context.Context) RegistryOutput {
+func (i *Registry) ToRegistryOutputWithContext(ctx context.Context) RegistryOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RegistryOutput)
+}
+
+func (i *Registry) ToRegistryPtrOutput() RegistryPtrOutput {
+	return i.ToRegistryPtrOutputWithContext(context.Background())
+}
+
+func (i *Registry) ToRegistryPtrOutputWithContext(ctx context.Context) RegistryPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegistryPtrOutput)
+}
+
+type RegistryPtrInput interface {
+	pulumi.Input
+
+	ToRegistryPtrOutput() RegistryPtrOutput
+	ToRegistryPtrOutputWithContext(ctx context.Context) RegistryPtrOutput
 }
 
 type RegistryOutput struct {
@@ -335,7 +350,7 @@ type RegistryOutput struct {
 }
 
 func (RegistryOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RegistryOutput)(nil)).Elem()
+	return reflect.TypeOf((*Registry)(nil))
 }
 
 func (o RegistryOutput) ToRegistryOutput() RegistryOutput {
@@ -346,6 +361,23 @@ func (o RegistryOutput) ToRegistryOutputWithContext(ctx context.Context) Registr
 	return o
 }
 
+type RegistryPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (RegistryPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Registry)(nil))
+}
+
+func (o RegistryPtrOutput) ToRegistryPtrOutput() RegistryPtrOutput {
+	return o
+}
+
+func (o RegistryPtrOutput) ToRegistryPtrOutputWithContext(ctx context.Context) RegistryPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(RegistryOutput{})
+	pulumi.RegisterOutputType(RegistryPtrOutput{})
 }

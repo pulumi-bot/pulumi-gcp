@@ -324,16 +324,31 @@ type RegionAutoscalerInput interface {
 	ToRegionAutoscalerOutputWithContext(ctx context.Context) RegionAutoscalerOutput
 }
 
-func (RegionAutoscaler) ElementType() reflect.Type {
-	return reflect.TypeOf((*RegionAutoscaler)(nil)).Elem()
+func (*RegionAutoscaler) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionAutoscaler)(nil))
 }
 
-func (i RegionAutoscaler) ToRegionAutoscalerOutput() RegionAutoscalerOutput {
+func (i *RegionAutoscaler) ToRegionAutoscalerOutput() RegionAutoscalerOutput {
 	return i.ToRegionAutoscalerOutputWithContext(context.Background())
 }
 
-func (i RegionAutoscaler) ToRegionAutoscalerOutputWithContext(ctx context.Context) RegionAutoscalerOutput {
+func (i *RegionAutoscaler) ToRegionAutoscalerOutputWithContext(ctx context.Context) RegionAutoscalerOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RegionAutoscalerOutput)
+}
+
+func (i *RegionAutoscaler) ToRegionAutoscalerPtrOutput() RegionAutoscalerPtrOutput {
+	return i.ToRegionAutoscalerPtrOutputWithContext(context.Background())
+}
+
+func (i *RegionAutoscaler) ToRegionAutoscalerPtrOutputWithContext(ctx context.Context) RegionAutoscalerPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegionAutoscalerPtrOutput)
+}
+
+type RegionAutoscalerPtrInput interface {
+	pulumi.Input
+
+	ToRegionAutoscalerPtrOutput() RegionAutoscalerPtrOutput
+	ToRegionAutoscalerPtrOutputWithContext(ctx context.Context) RegionAutoscalerPtrOutput
 }
 
 type RegionAutoscalerOutput struct {
@@ -341,7 +356,7 @@ type RegionAutoscalerOutput struct {
 }
 
 func (RegionAutoscalerOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RegionAutoscalerOutput)(nil)).Elem()
+	return reflect.TypeOf((*RegionAutoscaler)(nil))
 }
 
 func (o RegionAutoscalerOutput) ToRegionAutoscalerOutput() RegionAutoscalerOutput {
@@ -352,6 +367,23 @@ func (o RegionAutoscalerOutput) ToRegionAutoscalerOutputWithContext(ctx context.
 	return o
 }
 
+type RegionAutoscalerPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (RegionAutoscalerPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RegionAutoscaler)(nil))
+}
+
+func (o RegionAutoscalerPtrOutput) ToRegionAutoscalerPtrOutput() RegionAutoscalerPtrOutput {
+	return o
+}
+
+func (o RegionAutoscalerPtrOutput) ToRegionAutoscalerPtrOutputWithContext(ctx context.Context) RegionAutoscalerPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(RegionAutoscalerOutput{})
+	pulumi.RegisterOutputType(RegionAutoscalerPtrOutput{})
 }

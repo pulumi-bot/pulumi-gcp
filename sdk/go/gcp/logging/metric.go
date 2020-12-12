@@ -390,16 +390,31 @@ type MetricInput interface {
 	ToMetricOutputWithContext(ctx context.Context) MetricOutput
 }
 
-func (Metric) ElementType() reflect.Type {
-	return reflect.TypeOf((*Metric)(nil)).Elem()
+func (*Metric) ElementType() reflect.Type {
+	return reflect.TypeOf((*Metric)(nil))
 }
 
-func (i Metric) ToMetricOutput() MetricOutput {
+func (i *Metric) ToMetricOutput() MetricOutput {
 	return i.ToMetricOutputWithContext(context.Background())
 }
 
-func (i Metric) ToMetricOutputWithContext(ctx context.Context) MetricOutput {
+func (i *Metric) ToMetricOutputWithContext(ctx context.Context) MetricOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(MetricOutput)
+}
+
+func (i *Metric) ToMetricPtrOutput() MetricPtrOutput {
+	return i.ToMetricPtrOutputWithContext(context.Background())
+}
+
+func (i *Metric) ToMetricPtrOutputWithContext(ctx context.Context) MetricPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MetricPtrOutput)
+}
+
+type MetricPtrInput interface {
+	pulumi.Input
+
+	ToMetricPtrOutput() MetricPtrOutput
+	ToMetricPtrOutputWithContext(ctx context.Context) MetricPtrOutput
 }
 
 type MetricOutput struct {
@@ -407,7 +422,7 @@ type MetricOutput struct {
 }
 
 func (MetricOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*MetricOutput)(nil)).Elem()
+	return reflect.TypeOf((*Metric)(nil))
 }
 
 func (o MetricOutput) ToMetricOutput() MetricOutput {
@@ -418,6 +433,23 @@ func (o MetricOutput) ToMetricOutputWithContext(ctx context.Context) MetricOutpu
 	return o
 }
 
+type MetricPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (MetricPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Metric)(nil))
+}
+
+func (o MetricPtrOutput) ToMetricPtrOutput() MetricPtrOutput {
+	return o
+}
+
+func (o MetricPtrOutput) ToMetricPtrOutputWithContext(ctx context.Context) MetricPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(MetricOutput{})
+	pulumi.RegisterOutputType(MetricPtrOutput{})
 }

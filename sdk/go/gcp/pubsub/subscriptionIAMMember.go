@@ -261,16 +261,31 @@ type SubscriptionIAMMemberInput interface {
 	ToSubscriptionIAMMemberOutputWithContext(ctx context.Context) SubscriptionIAMMemberOutput
 }
 
-func (SubscriptionIAMMember) ElementType() reflect.Type {
-	return reflect.TypeOf((*SubscriptionIAMMember)(nil)).Elem()
+func (*SubscriptionIAMMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*SubscriptionIAMMember)(nil))
 }
 
-func (i SubscriptionIAMMember) ToSubscriptionIAMMemberOutput() SubscriptionIAMMemberOutput {
+func (i *SubscriptionIAMMember) ToSubscriptionIAMMemberOutput() SubscriptionIAMMemberOutput {
 	return i.ToSubscriptionIAMMemberOutputWithContext(context.Background())
 }
 
-func (i SubscriptionIAMMember) ToSubscriptionIAMMemberOutputWithContext(ctx context.Context) SubscriptionIAMMemberOutput {
+func (i *SubscriptionIAMMember) ToSubscriptionIAMMemberOutputWithContext(ctx context.Context) SubscriptionIAMMemberOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SubscriptionIAMMemberOutput)
+}
+
+func (i *SubscriptionIAMMember) ToSubscriptionIAMMemberPtrOutput() SubscriptionIAMMemberPtrOutput {
+	return i.ToSubscriptionIAMMemberPtrOutputWithContext(context.Background())
+}
+
+func (i *SubscriptionIAMMember) ToSubscriptionIAMMemberPtrOutputWithContext(ctx context.Context) SubscriptionIAMMemberPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SubscriptionIAMMemberPtrOutput)
+}
+
+type SubscriptionIAMMemberPtrInput interface {
+	pulumi.Input
+
+	ToSubscriptionIAMMemberPtrOutput() SubscriptionIAMMemberPtrOutput
+	ToSubscriptionIAMMemberPtrOutputWithContext(ctx context.Context) SubscriptionIAMMemberPtrOutput
 }
 
 type SubscriptionIAMMemberOutput struct {
@@ -278,7 +293,7 @@ type SubscriptionIAMMemberOutput struct {
 }
 
 func (SubscriptionIAMMemberOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SubscriptionIAMMemberOutput)(nil)).Elem()
+	return reflect.TypeOf((*SubscriptionIAMMember)(nil))
 }
 
 func (o SubscriptionIAMMemberOutput) ToSubscriptionIAMMemberOutput() SubscriptionIAMMemberOutput {
@@ -289,6 +304,23 @@ func (o SubscriptionIAMMemberOutput) ToSubscriptionIAMMemberOutputWithContext(ct
 	return o
 }
 
+type SubscriptionIAMMemberPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (SubscriptionIAMMemberPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SubscriptionIAMMember)(nil))
+}
+
+func (o SubscriptionIAMMemberPtrOutput) ToSubscriptionIAMMemberPtrOutput() SubscriptionIAMMemberPtrOutput {
+	return o
+}
+
+func (o SubscriptionIAMMemberPtrOutput) ToSubscriptionIAMMemberPtrOutputWithContext(ctx context.Context) SubscriptionIAMMemberPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(SubscriptionIAMMemberOutput{})
+	pulumi.RegisterOutputType(SubscriptionIAMMemberPtrOutput{})
 }

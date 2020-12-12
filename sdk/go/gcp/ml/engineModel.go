@@ -244,16 +244,31 @@ type EngineModelInput interface {
 	ToEngineModelOutputWithContext(ctx context.Context) EngineModelOutput
 }
 
-func (EngineModel) ElementType() reflect.Type {
-	return reflect.TypeOf((*EngineModel)(nil)).Elem()
+func (*EngineModel) ElementType() reflect.Type {
+	return reflect.TypeOf((*EngineModel)(nil))
 }
 
-func (i EngineModel) ToEngineModelOutput() EngineModelOutput {
+func (i *EngineModel) ToEngineModelOutput() EngineModelOutput {
 	return i.ToEngineModelOutputWithContext(context.Background())
 }
 
-func (i EngineModel) ToEngineModelOutputWithContext(ctx context.Context) EngineModelOutput {
+func (i *EngineModel) ToEngineModelOutputWithContext(ctx context.Context) EngineModelOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EngineModelOutput)
+}
+
+func (i *EngineModel) ToEngineModelPtrOutput() EngineModelPtrOutput {
+	return i.ToEngineModelPtrOutputWithContext(context.Background())
+}
+
+func (i *EngineModel) ToEngineModelPtrOutputWithContext(ctx context.Context) EngineModelPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EngineModelPtrOutput)
+}
+
+type EngineModelPtrInput interface {
+	pulumi.Input
+
+	ToEngineModelPtrOutput() EngineModelPtrOutput
+	ToEngineModelPtrOutputWithContext(ctx context.Context) EngineModelPtrOutput
 }
 
 type EngineModelOutput struct {
@@ -261,7 +276,7 @@ type EngineModelOutput struct {
 }
 
 func (EngineModelOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EngineModelOutput)(nil)).Elem()
+	return reflect.TypeOf((*EngineModel)(nil))
 }
 
 func (o EngineModelOutput) ToEngineModelOutput() EngineModelOutput {
@@ -272,6 +287,23 @@ func (o EngineModelOutput) ToEngineModelOutputWithContext(ctx context.Context) E
 	return o
 }
 
+type EngineModelPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (EngineModelPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EngineModel)(nil))
+}
+
+func (o EngineModelPtrOutput) ToEngineModelPtrOutput() EngineModelPtrOutput {
+	return o
+}
+
+func (o EngineModelPtrOutput) ToEngineModelPtrOutputWithContext(ctx context.Context) EngineModelPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(EngineModelOutput{})
+	pulumi.RegisterOutputType(EngineModelPtrOutput{})
 }

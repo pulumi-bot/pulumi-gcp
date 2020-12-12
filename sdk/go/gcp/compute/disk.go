@@ -625,16 +625,31 @@ type DiskInput interface {
 	ToDiskOutputWithContext(ctx context.Context) DiskOutput
 }
 
-func (Disk) ElementType() reflect.Type {
-	return reflect.TypeOf((*Disk)(nil)).Elem()
+func (*Disk) ElementType() reflect.Type {
+	return reflect.TypeOf((*Disk)(nil))
 }
 
-func (i Disk) ToDiskOutput() DiskOutput {
+func (i *Disk) ToDiskOutput() DiskOutput {
 	return i.ToDiskOutputWithContext(context.Background())
 }
 
-func (i Disk) ToDiskOutputWithContext(ctx context.Context) DiskOutput {
+func (i *Disk) ToDiskOutputWithContext(ctx context.Context) DiskOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DiskOutput)
+}
+
+func (i *Disk) ToDiskPtrOutput() DiskPtrOutput {
+	return i.ToDiskPtrOutputWithContext(context.Background())
+}
+
+func (i *Disk) ToDiskPtrOutputWithContext(ctx context.Context) DiskPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DiskPtrOutput)
+}
+
+type DiskPtrInput interface {
+	pulumi.Input
+
+	ToDiskPtrOutput() DiskPtrOutput
+	ToDiskPtrOutputWithContext(ctx context.Context) DiskPtrOutput
 }
 
 type DiskOutput struct {
@@ -642,7 +657,7 @@ type DiskOutput struct {
 }
 
 func (DiskOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DiskOutput)(nil)).Elem()
+	return reflect.TypeOf((*Disk)(nil))
 }
 
 func (o DiskOutput) ToDiskOutput() DiskOutput {
@@ -653,6 +668,23 @@ func (o DiskOutput) ToDiskOutputWithContext(ctx context.Context) DiskOutput {
 	return o
 }
 
+type DiskPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (DiskPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Disk)(nil))
+}
+
+func (o DiskPtrOutput) ToDiskPtrOutput() DiskPtrOutput {
+	return o
+}
+
+func (o DiskPtrOutput) ToDiskPtrOutputWithContext(ctx context.Context) DiskPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(DiskOutput{})
+	pulumi.RegisterOutputType(DiskPtrOutput{})
 }

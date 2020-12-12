@@ -173,16 +173,31 @@ type ConsentStoreIamBindingInput interface {
 	ToConsentStoreIamBindingOutputWithContext(ctx context.Context) ConsentStoreIamBindingOutput
 }
 
-func (ConsentStoreIamBinding) ElementType() reflect.Type {
-	return reflect.TypeOf((*ConsentStoreIamBinding)(nil)).Elem()
+func (*ConsentStoreIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConsentStoreIamBinding)(nil))
 }
 
-func (i ConsentStoreIamBinding) ToConsentStoreIamBindingOutput() ConsentStoreIamBindingOutput {
+func (i *ConsentStoreIamBinding) ToConsentStoreIamBindingOutput() ConsentStoreIamBindingOutput {
 	return i.ToConsentStoreIamBindingOutputWithContext(context.Background())
 }
 
-func (i ConsentStoreIamBinding) ToConsentStoreIamBindingOutputWithContext(ctx context.Context) ConsentStoreIamBindingOutput {
+func (i *ConsentStoreIamBinding) ToConsentStoreIamBindingOutputWithContext(ctx context.Context) ConsentStoreIamBindingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ConsentStoreIamBindingOutput)
+}
+
+func (i *ConsentStoreIamBinding) ToConsentStoreIamBindingPtrOutput() ConsentStoreIamBindingPtrOutput {
+	return i.ToConsentStoreIamBindingPtrOutputWithContext(context.Background())
+}
+
+func (i *ConsentStoreIamBinding) ToConsentStoreIamBindingPtrOutputWithContext(ctx context.Context) ConsentStoreIamBindingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConsentStoreIamBindingPtrOutput)
+}
+
+type ConsentStoreIamBindingPtrInput interface {
+	pulumi.Input
+
+	ToConsentStoreIamBindingPtrOutput() ConsentStoreIamBindingPtrOutput
+	ToConsentStoreIamBindingPtrOutputWithContext(ctx context.Context) ConsentStoreIamBindingPtrOutput
 }
 
 type ConsentStoreIamBindingOutput struct {
@@ -190,7 +205,7 @@ type ConsentStoreIamBindingOutput struct {
 }
 
 func (ConsentStoreIamBindingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ConsentStoreIamBindingOutput)(nil)).Elem()
+	return reflect.TypeOf((*ConsentStoreIamBinding)(nil))
 }
 
 func (o ConsentStoreIamBindingOutput) ToConsentStoreIamBindingOutput() ConsentStoreIamBindingOutput {
@@ -201,6 +216,23 @@ func (o ConsentStoreIamBindingOutput) ToConsentStoreIamBindingOutputWithContext(
 	return o
 }
 
+type ConsentStoreIamBindingPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ConsentStoreIamBindingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ConsentStoreIamBinding)(nil))
+}
+
+func (o ConsentStoreIamBindingPtrOutput) ToConsentStoreIamBindingPtrOutput() ConsentStoreIamBindingPtrOutput {
+	return o
+}
+
+func (o ConsentStoreIamBindingPtrOutput) ToConsentStoreIamBindingPtrOutputWithContext(ctx context.Context) ConsentStoreIamBindingPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ConsentStoreIamBindingOutput{})
+	pulumi.RegisterOutputType(ConsentStoreIamBindingPtrOutput{})
 }

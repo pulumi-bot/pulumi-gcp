@@ -135,16 +135,31 @@ type OrganizationSecurityPolicyAssociationInput interface {
 	ToOrganizationSecurityPolicyAssociationOutputWithContext(ctx context.Context) OrganizationSecurityPolicyAssociationOutput
 }
 
-func (OrganizationSecurityPolicyAssociation) ElementType() reflect.Type {
-	return reflect.TypeOf((*OrganizationSecurityPolicyAssociation)(nil)).Elem()
+func (*OrganizationSecurityPolicyAssociation) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationSecurityPolicyAssociation)(nil))
 }
 
-func (i OrganizationSecurityPolicyAssociation) ToOrganizationSecurityPolicyAssociationOutput() OrganizationSecurityPolicyAssociationOutput {
+func (i *OrganizationSecurityPolicyAssociation) ToOrganizationSecurityPolicyAssociationOutput() OrganizationSecurityPolicyAssociationOutput {
 	return i.ToOrganizationSecurityPolicyAssociationOutputWithContext(context.Background())
 }
 
-func (i OrganizationSecurityPolicyAssociation) ToOrganizationSecurityPolicyAssociationOutputWithContext(ctx context.Context) OrganizationSecurityPolicyAssociationOutput {
+func (i *OrganizationSecurityPolicyAssociation) ToOrganizationSecurityPolicyAssociationOutputWithContext(ctx context.Context) OrganizationSecurityPolicyAssociationOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(OrganizationSecurityPolicyAssociationOutput)
+}
+
+func (i *OrganizationSecurityPolicyAssociation) ToOrganizationSecurityPolicyAssociationPtrOutput() OrganizationSecurityPolicyAssociationPtrOutput {
+	return i.ToOrganizationSecurityPolicyAssociationPtrOutputWithContext(context.Background())
+}
+
+func (i *OrganizationSecurityPolicyAssociation) ToOrganizationSecurityPolicyAssociationPtrOutputWithContext(ctx context.Context) OrganizationSecurityPolicyAssociationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationSecurityPolicyAssociationPtrOutput)
+}
+
+type OrganizationSecurityPolicyAssociationPtrInput interface {
+	pulumi.Input
+
+	ToOrganizationSecurityPolicyAssociationPtrOutput() OrganizationSecurityPolicyAssociationPtrOutput
+	ToOrganizationSecurityPolicyAssociationPtrOutputWithContext(ctx context.Context) OrganizationSecurityPolicyAssociationPtrOutput
 }
 
 type OrganizationSecurityPolicyAssociationOutput struct {
@@ -152,7 +167,7 @@ type OrganizationSecurityPolicyAssociationOutput struct {
 }
 
 func (OrganizationSecurityPolicyAssociationOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*OrganizationSecurityPolicyAssociationOutput)(nil)).Elem()
+	return reflect.TypeOf((*OrganizationSecurityPolicyAssociation)(nil))
 }
 
 func (o OrganizationSecurityPolicyAssociationOutput) ToOrganizationSecurityPolicyAssociationOutput() OrganizationSecurityPolicyAssociationOutput {
@@ -163,6 +178,23 @@ func (o OrganizationSecurityPolicyAssociationOutput) ToOrganizationSecurityPolic
 	return o
 }
 
+type OrganizationSecurityPolicyAssociationPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (OrganizationSecurityPolicyAssociationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**OrganizationSecurityPolicyAssociation)(nil))
+}
+
+func (o OrganizationSecurityPolicyAssociationPtrOutput) ToOrganizationSecurityPolicyAssociationPtrOutput() OrganizationSecurityPolicyAssociationPtrOutput {
+	return o
+}
+
+func (o OrganizationSecurityPolicyAssociationPtrOutput) ToOrganizationSecurityPolicyAssociationPtrOutputWithContext(ctx context.Context) OrganizationSecurityPolicyAssociationPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(OrganizationSecurityPolicyAssociationOutput{})
+	pulumi.RegisterOutputType(OrganizationSecurityPolicyAssociationPtrOutput{})
 }

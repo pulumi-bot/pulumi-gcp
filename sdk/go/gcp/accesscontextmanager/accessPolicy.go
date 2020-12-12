@@ -171,16 +171,31 @@ type AccessPolicyInput interface {
 	ToAccessPolicyOutputWithContext(ctx context.Context) AccessPolicyOutput
 }
 
-func (AccessPolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*AccessPolicy)(nil)).Elem()
+func (*AccessPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*AccessPolicy)(nil))
 }
 
-func (i AccessPolicy) ToAccessPolicyOutput() AccessPolicyOutput {
+func (i *AccessPolicy) ToAccessPolicyOutput() AccessPolicyOutput {
 	return i.ToAccessPolicyOutputWithContext(context.Background())
 }
 
-func (i AccessPolicy) ToAccessPolicyOutputWithContext(ctx context.Context) AccessPolicyOutput {
+func (i *AccessPolicy) ToAccessPolicyOutputWithContext(ctx context.Context) AccessPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AccessPolicyOutput)
+}
+
+func (i *AccessPolicy) ToAccessPolicyPtrOutput() AccessPolicyPtrOutput {
+	return i.ToAccessPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i *AccessPolicy) ToAccessPolicyPtrOutputWithContext(ctx context.Context) AccessPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AccessPolicyPtrOutput)
+}
+
+type AccessPolicyPtrInput interface {
+	pulumi.Input
+
+	ToAccessPolicyPtrOutput() AccessPolicyPtrOutput
+	ToAccessPolicyPtrOutputWithContext(ctx context.Context) AccessPolicyPtrOutput
 }
 
 type AccessPolicyOutput struct {
@@ -188,7 +203,7 @@ type AccessPolicyOutput struct {
 }
 
 func (AccessPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AccessPolicyOutput)(nil)).Elem()
+	return reflect.TypeOf((*AccessPolicy)(nil))
 }
 
 func (o AccessPolicyOutput) ToAccessPolicyOutput() AccessPolicyOutput {
@@ -199,6 +214,23 @@ func (o AccessPolicyOutput) ToAccessPolicyOutputWithContext(ctx context.Context)
 	return o
 }
 
+type AccessPolicyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (AccessPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AccessPolicy)(nil))
+}
+
+func (o AccessPolicyPtrOutput) ToAccessPolicyPtrOutput() AccessPolicyPtrOutput {
+	return o
+}
+
+func (o AccessPolicyPtrOutput) ToAccessPolicyPtrOutputWithContext(ctx context.Context) AccessPolicyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(AccessPolicyOutput{})
+	pulumi.RegisterOutputType(AccessPolicyPtrOutput{})
 }

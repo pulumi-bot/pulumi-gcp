@@ -142,16 +142,31 @@ type ProjectDefaultNetworkTierInput interface {
 	ToProjectDefaultNetworkTierOutputWithContext(ctx context.Context) ProjectDefaultNetworkTierOutput
 }
 
-func (ProjectDefaultNetworkTier) ElementType() reflect.Type {
-	return reflect.TypeOf((*ProjectDefaultNetworkTier)(nil)).Elem()
+func (*ProjectDefaultNetworkTier) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProjectDefaultNetworkTier)(nil))
 }
 
-func (i ProjectDefaultNetworkTier) ToProjectDefaultNetworkTierOutput() ProjectDefaultNetworkTierOutput {
+func (i *ProjectDefaultNetworkTier) ToProjectDefaultNetworkTierOutput() ProjectDefaultNetworkTierOutput {
 	return i.ToProjectDefaultNetworkTierOutputWithContext(context.Background())
 }
 
-func (i ProjectDefaultNetworkTier) ToProjectDefaultNetworkTierOutputWithContext(ctx context.Context) ProjectDefaultNetworkTierOutput {
+func (i *ProjectDefaultNetworkTier) ToProjectDefaultNetworkTierOutputWithContext(ctx context.Context) ProjectDefaultNetworkTierOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ProjectDefaultNetworkTierOutput)
+}
+
+func (i *ProjectDefaultNetworkTier) ToProjectDefaultNetworkTierPtrOutput() ProjectDefaultNetworkTierPtrOutput {
+	return i.ToProjectDefaultNetworkTierPtrOutputWithContext(context.Background())
+}
+
+func (i *ProjectDefaultNetworkTier) ToProjectDefaultNetworkTierPtrOutputWithContext(ctx context.Context) ProjectDefaultNetworkTierPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProjectDefaultNetworkTierPtrOutput)
+}
+
+type ProjectDefaultNetworkTierPtrInput interface {
+	pulumi.Input
+
+	ToProjectDefaultNetworkTierPtrOutput() ProjectDefaultNetworkTierPtrOutput
+	ToProjectDefaultNetworkTierPtrOutputWithContext(ctx context.Context) ProjectDefaultNetworkTierPtrOutput
 }
 
 type ProjectDefaultNetworkTierOutput struct {
@@ -159,7 +174,7 @@ type ProjectDefaultNetworkTierOutput struct {
 }
 
 func (ProjectDefaultNetworkTierOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ProjectDefaultNetworkTierOutput)(nil)).Elem()
+	return reflect.TypeOf((*ProjectDefaultNetworkTier)(nil))
 }
 
 func (o ProjectDefaultNetworkTierOutput) ToProjectDefaultNetworkTierOutput() ProjectDefaultNetworkTierOutput {
@@ -170,6 +185,23 @@ func (o ProjectDefaultNetworkTierOutput) ToProjectDefaultNetworkTierOutputWithCo
 	return o
 }
 
+type ProjectDefaultNetworkTierPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ProjectDefaultNetworkTierPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProjectDefaultNetworkTier)(nil))
+}
+
+func (o ProjectDefaultNetworkTierPtrOutput) ToProjectDefaultNetworkTierPtrOutput() ProjectDefaultNetworkTierPtrOutput {
+	return o
+}
+
+func (o ProjectDefaultNetworkTierPtrOutput) ToProjectDefaultNetworkTierPtrOutputWithContext(ctx context.Context) ProjectDefaultNetworkTierPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ProjectDefaultNetworkTierOutput{})
+	pulumi.RegisterOutputType(ProjectDefaultNetworkTierPtrOutput{})
 }

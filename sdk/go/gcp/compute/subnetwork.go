@@ -537,16 +537,31 @@ type SubnetworkInput interface {
 	ToSubnetworkOutputWithContext(ctx context.Context) SubnetworkOutput
 }
 
-func (Subnetwork) ElementType() reflect.Type {
-	return reflect.TypeOf((*Subnetwork)(nil)).Elem()
+func (*Subnetwork) ElementType() reflect.Type {
+	return reflect.TypeOf((*Subnetwork)(nil))
 }
 
-func (i Subnetwork) ToSubnetworkOutput() SubnetworkOutput {
+func (i *Subnetwork) ToSubnetworkOutput() SubnetworkOutput {
 	return i.ToSubnetworkOutputWithContext(context.Background())
 }
 
-func (i Subnetwork) ToSubnetworkOutputWithContext(ctx context.Context) SubnetworkOutput {
+func (i *Subnetwork) ToSubnetworkOutputWithContext(ctx context.Context) SubnetworkOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SubnetworkOutput)
+}
+
+func (i *Subnetwork) ToSubnetworkPtrOutput() SubnetworkPtrOutput {
+	return i.ToSubnetworkPtrOutputWithContext(context.Background())
+}
+
+func (i *Subnetwork) ToSubnetworkPtrOutputWithContext(ctx context.Context) SubnetworkPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SubnetworkPtrOutput)
+}
+
+type SubnetworkPtrInput interface {
+	pulumi.Input
+
+	ToSubnetworkPtrOutput() SubnetworkPtrOutput
+	ToSubnetworkPtrOutputWithContext(ctx context.Context) SubnetworkPtrOutput
 }
 
 type SubnetworkOutput struct {
@@ -554,7 +569,7 @@ type SubnetworkOutput struct {
 }
 
 func (SubnetworkOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SubnetworkOutput)(nil)).Elem()
+	return reflect.TypeOf((*Subnetwork)(nil))
 }
 
 func (o SubnetworkOutput) ToSubnetworkOutput() SubnetworkOutput {
@@ -565,6 +580,23 @@ func (o SubnetworkOutput) ToSubnetworkOutputWithContext(ctx context.Context) Sub
 	return o
 }
 
+type SubnetworkPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (SubnetworkPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Subnetwork)(nil))
+}
+
+func (o SubnetworkPtrOutput) ToSubnetworkPtrOutput() SubnetworkPtrOutput {
+	return o
+}
+
+func (o SubnetworkPtrOutput) ToSubnetworkPtrOutputWithContext(ctx context.Context) SubnetworkPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(SubnetworkOutput{})
+	pulumi.RegisterOutputType(SubnetworkPtrOutput{})
 }

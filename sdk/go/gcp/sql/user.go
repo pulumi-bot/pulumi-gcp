@@ -232,16 +232,31 @@ type UserInput interface {
 	ToUserOutputWithContext(ctx context.Context) UserOutput
 }
 
-func (User) ElementType() reflect.Type {
-	return reflect.TypeOf((*User)(nil)).Elem()
+func (*User) ElementType() reflect.Type {
+	return reflect.TypeOf((*User)(nil))
 }
 
-func (i User) ToUserOutput() UserOutput {
+func (i *User) ToUserOutput() UserOutput {
 	return i.ToUserOutputWithContext(context.Background())
 }
 
-func (i User) ToUserOutputWithContext(ctx context.Context) UserOutput {
+func (i *User) ToUserOutputWithContext(ctx context.Context) UserOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserOutput)
+}
+
+func (i *User) ToUserPtrOutput() UserPtrOutput {
+	return i.ToUserPtrOutputWithContext(context.Background())
+}
+
+func (i *User) ToUserPtrOutputWithContext(ctx context.Context) UserPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserPtrOutput)
+}
+
+type UserPtrInput interface {
+	pulumi.Input
+
+	ToUserPtrOutput() UserPtrOutput
+	ToUserPtrOutputWithContext(ctx context.Context) UserPtrOutput
 }
 
 type UserOutput struct {
@@ -249,7 +264,7 @@ type UserOutput struct {
 }
 
 func (UserOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserOutput)(nil)).Elem()
+	return reflect.TypeOf((*User)(nil))
 }
 
 func (o UserOutput) ToUserOutput() UserOutput {
@@ -260,6 +275,23 @@ func (o UserOutput) ToUserOutputWithContext(ctx context.Context) UserOutput {
 	return o
 }
 
+type UserPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (UserPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**User)(nil))
+}
+
+func (o UserPtrOutput) ToUserPtrOutput() UserPtrOutput {
+	return o
+}
+
+func (o UserPtrOutput) ToUserPtrOutputWithContext(ctx context.Context) UserPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(UserOutput{})
+	pulumi.RegisterOutputType(UserPtrOutput{})
 }

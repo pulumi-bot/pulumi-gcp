@@ -254,16 +254,31 @@ type BackendBucketInput interface {
 	ToBackendBucketOutputWithContext(ctx context.Context) BackendBucketOutput
 }
 
-func (BackendBucket) ElementType() reflect.Type {
-	return reflect.TypeOf((*BackendBucket)(nil)).Elem()
+func (*BackendBucket) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackendBucket)(nil))
 }
 
-func (i BackendBucket) ToBackendBucketOutput() BackendBucketOutput {
+func (i *BackendBucket) ToBackendBucketOutput() BackendBucketOutput {
 	return i.ToBackendBucketOutputWithContext(context.Background())
 }
 
-func (i BackendBucket) ToBackendBucketOutputWithContext(ctx context.Context) BackendBucketOutput {
+func (i *BackendBucket) ToBackendBucketOutputWithContext(ctx context.Context) BackendBucketOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(BackendBucketOutput)
+}
+
+func (i *BackendBucket) ToBackendBucketPtrOutput() BackendBucketPtrOutput {
+	return i.ToBackendBucketPtrOutputWithContext(context.Background())
+}
+
+func (i *BackendBucket) ToBackendBucketPtrOutputWithContext(ctx context.Context) BackendBucketPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackendBucketPtrOutput)
+}
+
+type BackendBucketPtrInput interface {
+	pulumi.Input
+
+	ToBackendBucketPtrOutput() BackendBucketPtrOutput
+	ToBackendBucketPtrOutputWithContext(ctx context.Context) BackendBucketPtrOutput
 }
 
 type BackendBucketOutput struct {
@@ -271,7 +286,7 @@ type BackendBucketOutput struct {
 }
 
 func (BackendBucketOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*BackendBucketOutput)(nil)).Elem()
+	return reflect.TypeOf((*BackendBucket)(nil))
 }
 
 func (o BackendBucketOutput) ToBackendBucketOutput() BackendBucketOutput {
@@ -282,6 +297,23 @@ func (o BackendBucketOutput) ToBackendBucketOutputWithContext(ctx context.Contex
 	return o
 }
 
+type BackendBucketPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (BackendBucketPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BackendBucket)(nil))
+}
+
+func (o BackendBucketPtrOutput) ToBackendBucketPtrOutput() BackendBucketPtrOutput {
+	return o
+}
+
+func (o BackendBucketPtrOutput) ToBackendBucketPtrOutputWithContext(ctx context.Context) BackendBucketPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(BackendBucketOutput{})
+	pulumi.RegisterOutputType(BackendBucketPtrOutput{})
 }

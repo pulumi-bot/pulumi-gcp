@@ -174,16 +174,31 @@ type DashboardInput interface {
 	ToDashboardOutputWithContext(ctx context.Context) DashboardOutput
 }
 
-func (Dashboard) ElementType() reflect.Type {
-	return reflect.TypeOf((*Dashboard)(nil)).Elem()
+func (*Dashboard) ElementType() reflect.Type {
+	return reflect.TypeOf((*Dashboard)(nil))
 }
 
-func (i Dashboard) ToDashboardOutput() DashboardOutput {
+func (i *Dashboard) ToDashboardOutput() DashboardOutput {
 	return i.ToDashboardOutputWithContext(context.Background())
 }
 
-func (i Dashboard) ToDashboardOutputWithContext(ctx context.Context) DashboardOutput {
+func (i *Dashboard) ToDashboardOutputWithContext(ctx context.Context) DashboardOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DashboardOutput)
+}
+
+func (i *Dashboard) ToDashboardPtrOutput() DashboardPtrOutput {
+	return i.ToDashboardPtrOutputWithContext(context.Background())
+}
+
+func (i *Dashboard) ToDashboardPtrOutputWithContext(ctx context.Context) DashboardPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DashboardPtrOutput)
+}
+
+type DashboardPtrInput interface {
+	pulumi.Input
+
+	ToDashboardPtrOutput() DashboardPtrOutput
+	ToDashboardPtrOutputWithContext(ctx context.Context) DashboardPtrOutput
 }
 
 type DashboardOutput struct {
@@ -191,7 +206,7 @@ type DashboardOutput struct {
 }
 
 func (DashboardOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DashboardOutput)(nil)).Elem()
+	return reflect.TypeOf((*Dashboard)(nil))
 }
 
 func (o DashboardOutput) ToDashboardOutput() DashboardOutput {
@@ -202,6 +217,23 @@ func (o DashboardOutput) ToDashboardOutputWithContext(ctx context.Context) Dashb
 	return o
 }
 
+type DashboardPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (DashboardPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Dashboard)(nil))
+}
+
+func (o DashboardPtrOutput) ToDashboardPtrOutput() DashboardPtrOutput {
+	return o
+}
+
+func (o DashboardPtrOutput) ToDashboardPtrOutputWithContext(ctx context.Context) DashboardPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(DashboardOutput{})
+	pulumi.RegisterOutputType(DashboardPtrOutput{})
 }

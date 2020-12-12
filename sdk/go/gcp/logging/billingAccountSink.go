@@ -317,16 +317,31 @@ type BillingAccountSinkInput interface {
 	ToBillingAccountSinkOutputWithContext(ctx context.Context) BillingAccountSinkOutput
 }
 
-func (BillingAccountSink) ElementType() reflect.Type {
-	return reflect.TypeOf((*BillingAccountSink)(nil)).Elem()
+func (*BillingAccountSink) ElementType() reflect.Type {
+	return reflect.TypeOf((*BillingAccountSink)(nil))
 }
 
-func (i BillingAccountSink) ToBillingAccountSinkOutput() BillingAccountSinkOutput {
+func (i *BillingAccountSink) ToBillingAccountSinkOutput() BillingAccountSinkOutput {
 	return i.ToBillingAccountSinkOutputWithContext(context.Background())
 }
 
-func (i BillingAccountSink) ToBillingAccountSinkOutputWithContext(ctx context.Context) BillingAccountSinkOutput {
+func (i *BillingAccountSink) ToBillingAccountSinkOutputWithContext(ctx context.Context) BillingAccountSinkOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(BillingAccountSinkOutput)
+}
+
+func (i *BillingAccountSink) ToBillingAccountSinkPtrOutput() BillingAccountSinkPtrOutput {
+	return i.ToBillingAccountSinkPtrOutputWithContext(context.Background())
+}
+
+func (i *BillingAccountSink) ToBillingAccountSinkPtrOutputWithContext(ctx context.Context) BillingAccountSinkPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BillingAccountSinkPtrOutput)
+}
+
+type BillingAccountSinkPtrInput interface {
+	pulumi.Input
+
+	ToBillingAccountSinkPtrOutput() BillingAccountSinkPtrOutput
+	ToBillingAccountSinkPtrOutputWithContext(ctx context.Context) BillingAccountSinkPtrOutput
 }
 
 type BillingAccountSinkOutput struct {
@@ -334,7 +349,7 @@ type BillingAccountSinkOutput struct {
 }
 
 func (BillingAccountSinkOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*BillingAccountSinkOutput)(nil)).Elem()
+	return reflect.TypeOf((*BillingAccountSink)(nil))
 }
 
 func (o BillingAccountSinkOutput) ToBillingAccountSinkOutput() BillingAccountSinkOutput {
@@ -345,6 +360,23 @@ func (o BillingAccountSinkOutput) ToBillingAccountSinkOutputWithContext(ctx cont
 	return o
 }
 
+type BillingAccountSinkPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (BillingAccountSinkPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BillingAccountSink)(nil))
+}
+
+func (o BillingAccountSinkPtrOutput) ToBillingAccountSinkPtrOutput() BillingAccountSinkPtrOutput {
+	return o
+}
+
+func (o BillingAccountSinkPtrOutput) ToBillingAccountSinkPtrOutputWithContext(ctx context.Context) BillingAccountSinkPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(BillingAccountSinkOutput{})
+	pulumi.RegisterOutputType(BillingAccountSinkPtrOutput{})
 }

@@ -485,16 +485,31 @@ type TriggerInput interface {
 	ToTriggerOutputWithContext(ctx context.Context) TriggerOutput
 }
 
-func (Trigger) ElementType() reflect.Type {
-	return reflect.TypeOf((*Trigger)(nil)).Elem()
+func (*Trigger) ElementType() reflect.Type {
+	return reflect.TypeOf((*Trigger)(nil))
 }
 
-func (i Trigger) ToTriggerOutput() TriggerOutput {
+func (i *Trigger) ToTriggerOutput() TriggerOutput {
 	return i.ToTriggerOutputWithContext(context.Background())
 }
 
-func (i Trigger) ToTriggerOutputWithContext(ctx context.Context) TriggerOutput {
+func (i *Trigger) ToTriggerOutputWithContext(ctx context.Context) TriggerOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TriggerOutput)
+}
+
+func (i *Trigger) ToTriggerPtrOutput() TriggerPtrOutput {
+	return i.ToTriggerPtrOutputWithContext(context.Background())
+}
+
+func (i *Trigger) ToTriggerPtrOutputWithContext(ctx context.Context) TriggerPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TriggerPtrOutput)
+}
+
+type TriggerPtrInput interface {
+	pulumi.Input
+
+	ToTriggerPtrOutput() TriggerPtrOutput
+	ToTriggerPtrOutputWithContext(ctx context.Context) TriggerPtrOutput
 }
 
 type TriggerOutput struct {
@@ -502,7 +517,7 @@ type TriggerOutput struct {
 }
 
 func (TriggerOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*TriggerOutput)(nil)).Elem()
+	return reflect.TypeOf((*Trigger)(nil))
 }
 
 func (o TriggerOutput) ToTriggerOutput() TriggerOutput {
@@ -513,6 +528,23 @@ func (o TriggerOutput) ToTriggerOutputWithContext(ctx context.Context) TriggerOu
 	return o
 }
 
+type TriggerPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (TriggerPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Trigger)(nil))
+}
+
+func (o TriggerPtrOutput) ToTriggerPtrOutput() TriggerPtrOutput {
+	return o
+}
+
+func (o TriggerPtrOutput) ToTriggerPtrOutputWithContext(ctx context.Context) TriggerPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(TriggerOutput{})
+	pulumi.RegisterOutputType(TriggerPtrOutput{})
 }

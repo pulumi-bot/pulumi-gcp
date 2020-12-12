@@ -266,16 +266,31 @@ type DeviceInput interface {
 	ToDeviceOutputWithContext(ctx context.Context) DeviceOutput
 }
 
-func (Device) ElementType() reflect.Type {
-	return reflect.TypeOf((*Device)(nil)).Elem()
+func (*Device) ElementType() reflect.Type {
+	return reflect.TypeOf((*Device)(nil))
 }
 
-func (i Device) ToDeviceOutput() DeviceOutput {
+func (i *Device) ToDeviceOutput() DeviceOutput {
 	return i.ToDeviceOutputWithContext(context.Background())
 }
 
-func (i Device) ToDeviceOutputWithContext(ctx context.Context) DeviceOutput {
+func (i *Device) ToDeviceOutputWithContext(ctx context.Context) DeviceOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DeviceOutput)
+}
+
+func (i *Device) ToDevicePtrOutput() DevicePtrOutput {
+	return i.ToDevicePtrOutputWithContext(context.Background())
+}
+
+func (i *Device) ToDevicePtrOutputWithContext(ctx context.Context) DevicePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DevicePtrOutput)
+}
+
+type DevicePtrInput interface {
+	pulumi.Input
+
+	ToDevicePtrOutput() DevicePtrOutput
+	ToDevicePtrOutputWithContext(ctx context.Context) DevicePtrOutput
 }
 
 type DeviceOutput struct {
@@ -283,7 +298,7 @@ type DeviceOutput struct {
 }
 
 func (DeviceOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DeviceOutput)(nil)).Elem()
+	return reflect.TypeOf((*Device)(nil))
 }
 
 func (o DeviceOutput) ToDeviceOutput() DeviceOutput {
@@ -294,6 +309,23 @@ func (o DeviceOutput) ToDeviceOutputWithContext(ctx context.Context) DeviceOutpu
 	return o
 }
 
+type DevicePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (DevicePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Device)(nil))
+}
+
+func (o DevicePtrOutput) ToDevicePtrOutput() DevicePtrOutput {
+	return o
+}
+
+func (o DevicePtrOutput) ToDevicePtrOutputWithContext(ctx context.Context) DevicePtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(DeviceOutput{})
+	pulumi.RegisterOutputType(DevicePtrOutput{})
 }
