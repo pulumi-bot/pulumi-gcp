@@ -920,15 +920,15 @@ type RegionBackendServiceInput interface {
 	ToRegionBackendServiceOutputWithContext(ctx context.Context) RegionBackendServiceOutput
 }
 
-func (RegionBackendService) ElementType() reflect.Type {
-	return reflect.TypeOf((*RegionBackendService)(nil)).Elem()
+func (*RegionBackendService) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionBackendService)(nil))
 }
 
-func (i RegionBackendService) ToRegionBackendServiceOutput() RegionBackendServiceOutput {
+func (i *RegionBackendService) ToRegionBackendServiceOutput() RegionBackendServiceOutput {
 	return i.ToRegionBackendServiceOutputWithContext(context.Background())
 }
 
-func (i RegionBackendService) ToRegionBackendServiceOutputWithContext(ctx context.Context) RegionBackendServiceOutput {
+func (i *RegionBackendService) ToRegionBackendServiceOutputWithContext(ctx context.Context) RegionBackendServiceOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceOutput)
 }
 
@@ -937,7 +937,7 @@ type RegionBackendServiceOutput struct {
 }
 
 func (RegionBackendServiceOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RegionBackendServiceOutput)(nil)).Elem()
+	return reflect.TypeOf((*RegionBackendService)(nil))
 }
 
 func (o RegionBackendServiceOutput) ToRegionBackendServiceOutput() RegionBackendServiceOutput {

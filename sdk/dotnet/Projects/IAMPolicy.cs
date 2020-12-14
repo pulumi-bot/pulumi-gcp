@@ -278,6 +278,7 @@ namespace Pulumi.Gcp.Projects
     /// 
     /// full name of the custom role, e.g. `[projects/my-project|organizations/my-org]/roles/my-custom-role`.
     /// </summary>
+    [GcpResourceType("gcp:projects/iAMPolicy:IAMPolicy")]
     public partial class IAMPolicy : Pulumi.CustomResource
     {
         /// <summary>

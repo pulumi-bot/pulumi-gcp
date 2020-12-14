@@ -60,6 +60,7 @@ namespace Pulumi.Gcp.VpcAccess
     ///  $ pulumi import gcp:vpcaccess/connector:Connector default {{name}}
     /// ```
     /// </summary>
+    [GcpResourceType("gcp:vpcaccess/connector:Connector")]
     public partial class Connector : Pulumi.CustomResource
     {
         /// <summary>
