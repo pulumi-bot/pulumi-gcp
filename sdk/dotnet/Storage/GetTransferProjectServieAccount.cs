@@ -27,7 +27,7 @@ namespace Pulumi.Gcp.Storage
         ///     public MyStack()
         ///     {
         ///         var @default = Output.Create(Gcp.Storage.GetTransferProjectServieAccount.InvokeAsync());
-        ///         this.DefaultAccount = @default.Apply(@default =&gt; @default.Email);
+        ///         this.DefaultAccount = @default.Apply(@default =&gt; _default.Email);
         ///     }
         /// 
         ///     [Output("defaultAccount")]

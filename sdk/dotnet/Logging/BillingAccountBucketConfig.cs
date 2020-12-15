@@ -32,7 +32,7 @@ namespace Pulumi.Gcp.Logging
     ///         }));
     ///         var basic = new Gcp.Logging.BillingAccountBucketConfig("basic", new Gcp.Logging.BillingAccountBucketConfigArgs
     ///         {
-    ///             BillingAccount = @default.Apply(@default =&gt; @default.BillingAccount),
+    ///             BillingAccount = @default.Apply(@default =&gt; _default.BillingAccount),
     ///             Location = "global",
     ///             RetentionDays = 30,
     ///             BucketId = "_Default",
@@ -50,6 +50,7 @@ namespace Pulumi.Gcp.Logging
     ///  $ pulumi import gcp:logging/billingAccountBucketConfig:BillingAccountBucketConfig default billingAccounts/{{billingAccount}}/locations/{{location}}/buckets/{{bucket_id}}
     /// ```
     /// </summary>
+    [GcpResourceType("gcp:logging/billingAccountBucketConfig:BillingAccountBucketConfig")]
     public partial class BillingAccountBucketConfig : Pulumi.CustomResource
     {
         /// <summary>

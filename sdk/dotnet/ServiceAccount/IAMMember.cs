@@ -150,7 +150,7 @@ namespace Pulumi.Gcp.ServiceAccount
     ///         // Allow SA service account use the default GCE account
     ///         var gce_default_account_iam = new Gcp.ServiceAccount.IAMMember("gce-default-account-iam", new Gcp.ServiceAccount.IAMMemberArgs
     ///         {
-    ///             ServiceAccountId = @default.Apply(@default =&gt; @default.Name),
+    ///             ServiceAccountId = @default.Apply(@default =&gt; _default.Name),
     ///             Role = "roles/iam.serviceAccountUser",
     ///             Member = sa.Email.Apply(email =&gt; $"serviceAccount:{email}"),
     ///         });
@@ -217,6 +217,7 @@ namespace Pulumi.Gcp.ServiceAccount
     ///  $ pulumi import gcp:serviceAccount/iAMMember:IAMMember admin-account-iam "projects/{your-project-id}/serviceAccounts/{your-service-account-email} iam.serviceAccountUser user:foo@example.com expires_after_2019_12_31"
     /// ```
     /// </summary>
+    [GcpResourceType("gcp:serviceAccount/iAMMember:IAMMember")]
     public partial class IAMMember : Pulumi.CustomResource
     {
         /// <summary>

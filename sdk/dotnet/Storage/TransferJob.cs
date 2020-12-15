@@ -44,7 +44,7 @@ namespace Pulumi.Gcp.Storage
     ///         {
     ///             Bucket = s3_backup_bucketBucket.Name,
     ///             Role = "roles/storage.admin",
-    ///             Member = @default.Apply(@default =&gt; $"serviceAccount:{@default.Email}"),
+    ///             Member = @default.Apply(@default =&gt; $"serviceAccount:{_default.Email}"),
     ///         }, new CustomResourceOptions
     ///         {
     ///             DependsOn = 
@@ -126,6 +126,7 @@ namespace Pulumi.Gcp.Storage
     ///  $ pulumi import gcp:storage/transferJob:TransferJob nightly-backup-transfer-job my-project-1asd32/8422144862922355674
     /// ```
     /// </summary>
+    [GcpResourceType("gcp:storage/transferJob:TransferJob")]
     public partial class TransferJob : Pulumi.CustomResource
     {
         /// <summary>
