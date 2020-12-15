@@ -288,16 +288,31 @@ type OrganizationPolicyInput interface {
 	ToOrganizationPolicyOutputWithContext(ctx context.Context) OrganizationPolicyOutput
 }
 
-func (OrganizationPolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*OrganizationPolicy)(nil)).Elem()
+func (*OrganizationPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationPolicy)(nil))
 }
 
-func (i OrganizationPolicy) ToOrganizationPolicyOutput() OrganizationPolicyOutput {
+func (i *OrganizationPolicy) ToOrganizationPolicyOutput() OrganizationPolicyOutput {
 	return i.ToOrganizationPolicyOutputWithContext(context.Background())
 }
 
-func (i OrganizationPolicy) ToOrganizationPolicyOutputWithContext(ctx context.Context) OrganizationPolicyOutput {
+func (i *OrganizationPolicy) ToOrganizationPolicyOutputWithContext(ctx context.Context) OrganizationPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(OrganizationPolicyOutput)
+}
+
+func (i *OrganizationPolicy) ToOrganizationPolicyPtrOutput() OrganizationPolicyPtrOutput {
+	return i.ToOrganizationPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i *OrganizationPolicy) ToOrganizationPolicyPtrOutputWithContext(ctx context.Context) OrganizationPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationPolicyPtrOutput)
+}
+
+type OrganizationPolicyPtrInput interface {
+	pulumi.Input
+
+	ToOrganizationPolicyPtrOutput() OrganizationPolicyPtrOutput
+	ToOrganizationPolicyPtrOutputWithContext(ctx context.Context) OrganizationPolicyPtrOutput
 }
 
 type OrganizationPolicyOutput struct {
@@ -305,7 +320,7 @@ type OrganizationPolicyOutput struct {
 }
 
 func (OrganizationPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*OrganizationPolicyOutput)(nil)).Elem()
+	return reflect.TypeOf((*OrganizationPolicy)(nil))
 }
 
 func (o OrganizationPolicyOutput) ToOrganizationPolicyOutput() OrganizationPolicyOutput {
@@ -316,6 +331,23 @@ func (o OrganizationPolicyOutput) ToOrganizationPolicyOutputWithContext(ctx cont
 	return o
 }
 
+type OrganizationPolicyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (OrganizationPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**OrganizationPolicy)(nil))
+}
+
+func (o OrganizationPolicyPtrOutput) ToOrganizationPolicyPtrOutput() OrganizationPolicyPtrOutput {
+	return o
+}
+
+func (o OrganizationPolicyPtrOutput) ToOrganizationPolicyPtrOutputWithContext(ctx context.Context) OrganizationPolicyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(OrganizationPolicyOutput{})
+	pulumi.RegisterOutputType(OrganizationPolicyPtrOutput{})
 }

@@ -170,7 +170,7 @@ func (i BucketEncryptionArgs) ToBucketEncryptionPtrOutput() BucketEncryptionPtrO
 }
 
 func (i BucketEncryptionArgs) ToBucketEncryptionPtrOutputWithContext(ctx context.Context) BucketEncryptionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BucketEncryptionOutput).ToBucketEncryptionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(BucketEncryptionOutput).ToBucketEncryptionPtrOutput()
 }
 
 // BucketEncryptionPtrInput is an input type that accepts BucketEncryptionArgs, BucketEncryptionPtr and BucketEncryptionPtrOutput values.
@@ -203,7 +203,7 @@ func (i *bucketEncryptionPtrType) ToBucketEncryptionPtrOutput() BucketEncryption
 }
 
 func (i *bucketEncryptionPtrType) ToBucketEncryptionPtrOutputWithContext(ctx context.Context) BucketEncryptionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BucketEncryptionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(BucketEncryptionOutput).ToBucketEncryptionPtrOutput()
 }
 
 type BucketEncryptionOutput struct{ *pulumi.OutputState }
@@ -306,7 +306,7 @@ func (i BucketIAMBindingConditionArgs) ToBucketIAMBindingConditionPtrOutput() Bu
 }
 
 func (i BucketIAMBindingConditionArgs) ToBucketIAMBindingConditionPtrOutputWithContext(ctx context.Context) BucketIAMBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BucketIAMBindingConditionOutput).ToBucketIAMBindingConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(BucketIAMBindingConditionOutput).ToBucketIAMBindingConditionPtrOutput()
 }
 
 // BucketIAMBindingConditionPtrInput is an input type that accepts BucketIAMBindingConditionArgs, BucketIAMBindingConditionPtr and BucketIAMBindingConditionPtrOutput values.
@@ -339,7 +339,7 @@ func (i *bucketIAMBindingConditionPtrType) ToBucketIAMBindingConditionPtrOutput(
 }
 
 func (i *bucketIAMBindingConditionPtrType) ToBucketIAMBindingConditionPtrOutputWithContext(ctx context.Context) BucketIAMBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BucketIAMBindingConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(BucketIAMBindingConditionOutput).ToBucketIAMBindingConditionPtrOutput()
 }
 
 type BucketIAMBindingConditionOutput struct{ *pulumi.OutputState }
@@ -475,7 +475,7 @@ func (i BucketIAMMemberConditionArgs) ToBucketIAMMemberConditionPtrOutput() Buck
 }
 
 func (i BucketIAMMemberConditionArgs) ToBucketIAMMemberConditionPtrOutputWithContext(ctx context.Context) BucketIAMMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BucketIAMMemberConditionOutput).ToBucketIAMMemberConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(BucketIAMMemberConditionOutput).ToBucketIAMMemberConditionPtrOutput()
 }
 
 // BucketIAMMemberConditionPtrInput is an input type that accepts BucketIAMMemberConditionArgs, BucketIAMMemberConditionPtr and BucketIAMMemberConditionPtrOutput values.
@@ -508,7 +508,7 @@ func (i *bucketIAMMemberConditionPtrType) ToBucketIAMMemberConditionPtrOutput() 
 }
 
 func (i *bucketIAMMemberConditionPtrType) ToBucketIAMMemberConditionPtrOutputWithContext(ctx context.Context) BucketIAMMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BucketIAMMemberConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(BucketIAMMemberConditionOutput).ToBucketIAMMemberConditionPtrOutput()
 }
 
 type BucketIAMMemberConditionOutput struct{ *pulumi.OutputState }
@@ -897,7 +897,7 @@ func (i BucketLoggingArgs) ToBucketLoggingPtrOutput() BucketLoggingPtrOutput {
 }
 
 func (i BucketLoggingArgs) ToBucketLoggingPtrOutputWithContext(ctx context.Context) BucketLoggingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BucketLoggingOutput).ToBucketLoggingPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(BucketLoggingOutput).ToBucketLoggingPtrOutput()
 }
 
 // BucketLoggingPtrInput is an input type that accepts BucketLoggingArgs, BucketLoggingPtr and BucketLoggingPtrOutput values.
@@ -930,7 +930,7 @@ func (i *bucketLoggingPtrType) ToBucketLoggingPtrOutput() BucketLoggingPtrOutput
 }
 
 func (i *bucketLoggingPtrType) ToBucketLoggingPtrOutputWithContext(ctx context.Context) BucketLoggingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BucketLoggingPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(BucketLoggingOutput).ToBucketLoggingPtrOutput()
 }
 
 type BucketLoggingOutput struct{ *pulumi.OutputState }
@@ -1049,7 +1049,7 @@ func (i BucketRetentionPolicyArgs) ToBucketRetentionPolicyPtrOutput() BucketRete
 }
 
 func (i BucketRetentionPolicyArgs) ToBucketRetentionPolicyPtrOutputWithContext(ctx context.Context) BucketRetentionPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BucketRetentionPolicyOutput).ToBucketRetentionPolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(BucketRetentionPolicyOutput).ToBucketRetentionPolicyPtrOutput()
 }
 
 // BucketRetentionPolicyPtrInput is an input type that accepts BucketRetentionPolicyArgs, BucketRetentionPolicyPtr and BucketRetentionPolicyPtrOutput values.
@@ -1082,7 +1082,7 @@ func (i *bucketRetentionPolicyPtrType) ToBucketRetentionPolicyPtrOutput() Bucket
 }
 
 func (i *bucketRetentionPolicyPtrType) ToBucketRetentionPolicyPtrOutputWithContext(ctx context.Context) BucketRetentionPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BucketRetentionPolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(BucketRetentionPolicyOutput).ToBucketRetentionPolicyPtrOutput()
 }
 
 type BucketRetentionPolicyOutput struct{ *pulumi.OutputState }
@@ -1195,7 +1195,7 @@ func (i BucketVersioningArgs) ToBucketVersioningPtrOutput() BucketVersioningPtrO
 }
 
 func (i BucketVersioningArgs) ToBucketVersioningPtrOutputWithContext(ctx context.Context) BucketVersioningPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BucketVersioningOutput).ToBucketVersioningPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(BucketVersioningOutput).ToBucketVersioningPtrOutput()
 }
 
 // BucketVersioningPtrInput is an input type that accepts BucketVersioningArgs, BucketVersioningPtr and BucketVersioningPtrOutput values.
@@ -1228,7 +1228,7 @@ func (i *bucketVersioningPtrType) ToBucketVersioningPtrOutput() BucketVersioning
 }
 
 func (i *bucketVersioningPtrType) ToBucketVersioningPtrOutputWithContext(ctx context.Context) BucketVersioningPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BucketVersioningPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(BucketVersioningOutput).ToBucketVersioningPtrOutput()
 }
 
 type BucketVersioningOutput struct{ *pulumi.OutputState }
@@ -1334,7 +1334,7 @@ func (i BucketWebsiteArgs) ToBucketWebsitePtrOutput() BucketWebsitePtrOutput {
 }
 
 func (i BucketWebsiteArgs) ToBucketWebsitePtrOutputWithContext(ctx context.Context) BucketWebsitePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BucketWebsiteOutput).ToBucketWebsitePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(BucketWebsiteOutput).ToBucketWebsitePtrOutput()
 }
 
 // BucketWebsitePtrInput is an input type that accepts BucketWebsiteArgs, BucketWebsitePtr and BucketWebsitePtrOutput values.
@@ -1367,7 +1367,7 @@ func (i *bucketWebsitePtrType) ToBucketWebsitePtrOutput() BucketWebsitePtrOutput
 }
 
 func (i *bucketWebsitePtrType) ToBucketWebsitePtrOutputWithContext(ctx context.Context) BucketWebsitePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BucketWebsitePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(BucketWebsiteOutput).ToBucketWebsitePtrOutput()
 }
 
 type BucketWebsiteOutput struct{ *pulumi.OutputState }
@@ -1692,7 +1692,7 @@ func (i TransferJobScheduleArgs) ToTransferJobSchedulePtrOutput() TransferJobSch
 }
 
 func (i TransferJobScheduleArgs) ToTransferJobSchedulePtrOutputWithContext(ctx context.Context) TransferJobSchedulePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TransferJobScheduleOutput).ToTransferJobSchedulePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TransferJobScheduleOutput).ToTransferJobSchedulePtrOutput()
 }
 
 // TransferJobSchedulePtrInput is an input type that accepts TransferJobScheduleArgs, TransferJobSchedulePtr and TransferJobSchedulePtrOutput values.
@@ -1725,7 +1725,7 @@ func (i *transferJobSchedulePtrType) ToTransferJobSchedulePtrOutput() TransferJo
 }
 
 func (i *transferJobSchedulePtrType) ToTransferJobSchedulePtrOutputWithContext(ctx context.Context) TransferJobSchedulePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TransferJobSchedulePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TransferJobScheduleOutput).ToTransferJobSchedulePtrOutput()
 }
 
 type TransferJobScheduleOutput struct{ *pulumi.OutputState }
@@ -1861,7 +1861,7 @@ func (i TransferJobScheduleScheduleEndDateArgs) ToTransferJobScheduleScheduleEnd
 }
 
 func (i TransferJobScheduleScheduleEndDateArgs) ToTransferJobScheduleScheduleEndDatePtrOutputWithContext(ctx context.Context) TransferJobScheduleScheduleEndDatePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TransferJobScheduleScheduleEndDateOutput).ToTransferJobScheduleScheduleEndDatePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TransferJobScheduleScheduleEndDateOutput).ToTransferJobScheduleScheduleEndDatePtrOutput()
 }
 
 // TransferJobScheduleScheduleEndDatePtrInput is an input type that accepts TransferJobScheduleScheduleEndDateArgs, TransferJobScheduleScheduleEndDatePtr and TransferJobScheduleScheduleEndDatePtrOutput values.
@@ -1894,7 +1894,7 @@ func (i *transferJobScheduleScheduleEndDatePtrType) ToTransferJobScheduleSchedul
 }
 
 func (i *transferJobScheduleScheduleEndDatePtrType) ToTransferJobScheduleScheduleEndDatePtrOutputWithContext(ctx context.Context) TransferJobScheduleScheduleEndDatePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TransferJobScheduleScheduleEndDatePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TransferJobScheduleScheduleEndDateOutput).ToTransferJobScheduleScheduleEndDatePtrOutput()
 }
 
 type TransferJobScheduleScheduleEndDateOutput struct{ *pulumi.OutputState }
@@ -2030,7 +2030,7 @@ func (i TransferJobScheduleScheduleStartDateArgs) ToTransferJobScheduleScheduleS
 }
 
 func (i TransferJobScheduleScheduleStartDateArgs) ToTransferJobScheduleScheduleStartDatePtrOutputWithContext(ctx context.Context) TransferJobScheduleScheduleStartDatePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TransferJobScheduleScheduleStartDateOutput).ToTransferJobScheduleScheduleStartDatePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TransferJobScheduleScheduleStartDateOutput).ToTransferJobScheduleScheduleStartDatePtrOutput()
 }
 
 // TransferJobScheduleScheduleStartDatePtrInput is an input type that accepts TransferJobScheduleScheduleStartDateArgs, TransferJobScheduleScheduleStartDatePtr and TransferJobScheduleScheduleStartDatePtrOutput values.
@@ -2063,7 +2063,7 @@ func (i *transferJobScheduleScheduleStartDatePtrType) ToTransferJobScheduleSched
 }
 
 func (i *transferJobScheduleScheduleStartDatePtrType) ToTransferJobScheduleScheduleStartDatePtrOutputWithContext(ctx context.Context) TransferJobScheduleScheduleStartDatePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TransferJobScheduleScheduleStartDatePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TransferJobScheduleScheduleStartDateOutput).ToTransferJobScheduleScheduleStartDatePtrOutput()
 }
 
 type TransferJobScheduleScheduleStartDateOutput struct{ *pulumi.OutputState }
@@ -2203,7 +2203,7 @@ func (i TransferJobScheduleStartTimeOfDayArgs) ToTransferJobScheduleStartTimeOfD
 }
 
 func (i TransferJobScheduleStartTimeOfDayArgs) ToTransferJobScheduleStartTimeOfDayPtrOutputWithContext(ctx context.Context) TransferJobScheduleStartTimeOfDayPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TransferJobScheduleStartTimeOfDayOutput).ToTransferJobScheduleStartTimeOfDayPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TransferJobScheduleStartTimeOfDayOutput).ToTransferJobScheduleStartTimeOfDayPtrOutput()
 }
 
 // TransferJobScheduleStartTimeOfDayPtrInput is an input type that accepts TransferJobScheduleStartTimeOfDayArgs, TransferJobScheduleStartTimeOfDayPtr and TransferJobScheduleStartTimeOfDayPtrOutput values.
@@ -2236,7 +2236,7 @@ func (i *transferJobScheduleStartTimeOfDayPtrType) ToTransferJobScheduleStartTim
 }
 
 func (i *transferJobScheduleStartTimeOfDayPtrType) ToTransferJobScheduleStartTimeOfDayPtrOutputWithContext(ctx context.Context) TransferJobScheduleStartTimeOfDayPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TransferJobScheduleStartTimeOfDayPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TransferJobScheduleStartTimeOfDayOutput).ToTransferJobScheduleStartTimeOfDayPtrOutput()
 }
 
 type TransferJobScheduleStartTimeOfDayOutput struct{ *pulumi.OutputState }
@@ -2399,7 +2399,7 @@ func (i TransferJobTransferSpecArgs) ToTransferJobTransferSpecPtrOutput() Transf
 }
 
 func (i TransferJobTransferSpecArgs) ToTransferJobTransferSpecPtrOutputWithContext(ctx context.Context) TransferJobTransferSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TransferJobTransferSpecOutput).ToTransferJobTransferSpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TransferJobTransferSpecOutput).ToTransferJobTransferSpecPtrOutput()
 }
 
 // TransferJobTransferSpecPtrInput is an input type that accepts TransferJobTransferSpecArgs, TransferJobTransferSpecPtr and TransferJobTransferSpecPtrOutput values.
@@ -2432,7 +2432,7 @@ func (i *transferJobTransferSpecPtrType) ToTransferJobTransferSpecPtrOutput() Tr
 }
 
 func (i *transferJobTransferSpecPtrType) ToTransferJobTransferSpecPtrOutputWithContext(ctx context.Context) TransferJobTransferSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TransferJobTransferSpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TransferJobTransferSpecOutput).ToTransferJobTransferSpecPtrOutput()
 }
 
 type TransferJobTransferSpecOutput struct{ *pulumi.OutputState }
@@ -2609,7 +2609,7 @@ func (i TransferJobTransferSpecAwsS3DataSourceArgs) ToTransferJobTransferSpecAws
 }
 
 func (i TransferJobTransferSpecAwsS3DataSourceArgs) ToTransferJobTransferSpecAwsS3DataSourcePtrOutputWithContext(ctx context.Context) TransferJobTransferSpecAwsS3DataSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TransferJobTransferSpecAwsS3DataSourceOutput).ToTransferJobTransferSpecAwsS3DataSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TransferJobTransferSpecAwsS3DataSourceOutput).ToTransferJobTransferSpecAwsS3DataSourcePtrOutput()
 }
 
 // TransferJobTransferSpecAwsS3DataSourcePtrInput is an input type that accepts TransferJobTransferSpecAwsS3DataSourceArgs, TransferJobTransferSpecAwsS3DataSourcePtr and TransferJobTransferSpecAwsS3DataSourcePtrOutput values.
@@ -2642,7 +2642,7 @@ func (i *transferJobTransferSpecAwsS3DataSourcePtrType) ToTransferJobTransferSpe
 }
 
 func (i *transferJobTransferSpecAwsS3DataSourcePtrType) ToTransferJobTransferSpecAwsS3DataSourcePtrOutputWithContext(ctx context.Context) TransferJobTransferSpecAwsS3DataSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TransferJobTransferSpecAwsS3DataSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TransferJobTransferSpecAwsS3DataSourceOutput).ToTransferJobTransferSpecAwsS3DataSourcePtrOutput()
 }
 
 type TransferJobTransferSpecAwsS3DataSourceOutput struct{ *pulumi.OutputState }
@@ -2761,7 +2761,7 @@ func (i TransferJobTransferSpecAwsS3DataSourceAwsAccessKeyArgs) ToTransferJobTra
 }
 
 func (i TransferJobTransferSpecAwsS3DataSourceAwsAccessKeyArgs) ToTransferJobTransferSpecAwsS3DataSourceAwsAccessKeyPtrOutputWithContext(ctx context.Context) TransferJobTransferSpecAwsS3DataSourceAwsAccessKeyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TransferJobTransferSpecAwsS3DataSourceAwsAccessKeyOutput).ToTransferJobTransferSpecAwsS3DataSourceAwsAccessKeyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TransferJobTransferSpecAwsS3DataSourceAwsAccessKeyOutput).ToTransferJobTransferSpecAwsS3DataSourceAwsAccessKeyPtrOutput()
 }
 
 // TransferJobTransferSpecAwsS3DataSourceAwsAccessKeyPtrInput is an input type that accepts TransferJobTransferSpecAwsS3DataSourceAwsAccessKeyArgs, TransferJobTransferSpecAwsS3DataSourceAwsAccessKeyPtr and TransferJobTransferSpecAwsS3DataSourceAwsAccessKeyPtrOutput values.
@@ -2794,7 +2794,7 @@ func (i *transferJobTransferSpecAwsS3DataSourceAwsAccessKeyPtrType) ToTransferJo
 }
 
 func (i *transferJobTransferSpecAwsS3DataSourceAwsAccessKeyPtrType) ToTransferJobTransferSpecAwsS3DataSourceAwsAccessKeyPtrOutputWithContext(ctx context.Context) TransferJobTransferSpecAwsS3DataSourceAwsAccessKeyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TransferJobTransferSpecAwsS3DataSourceAwsAccessKeyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TransferJobTransferSpecAwsS3DataSourceAwsAccessKeyOutput).ToTransferJobTransferSpecAwsS3DataSourceAwsAccessKeyPtrOutput()
 }
 
 type TransferJobTransferSpecAwsS3DataSourceAwsAccessKeyOutput struct{ *pulumi.OutputState }
@@ -2909,7 +2909,7 @@ func (i TransferJobTransferSpecGcsDataSinkArgs) ToTransferJobTransferSpecGcsData
 }
 
 func (i TransferJobTransferSpecGcsDataSinkArgs) ToTransferJobTransferSpecGcsDataSinkPtrOutputWithContext(ctx context.Context) TransferJobTransferSpecGcsDataSinkPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TransferJobTransferSpecGcsDataSinkOutput).ToTransferJobTransferSpecGcsDataSinkPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TransferJobTransferSpecGcsDataSinkOutput).ToTransferJobTransferSpecGcsDataSinkPtrOutput()
 }
 
 // TransferJobTransferSpecGcsDataSinkPtrInput is an input type that accepts TransferJobTransferSpecGcsDataSinkArgs, TransferJobTransferSpecGcsDataSinkPtr and TransferJobTransferSpecGcsDataSinkPtrOutput values.
@@ -2942,7 +2942,7 @@ func (i *transferJobTransferSpecGcsDataSinkPtrType) ToTransferJobTransferSpecGcs
 }
 
 func (i *transferJobTransferSpecGcsDataSinkPtrType) ToTransferJobTransferSpecGcsDataSinkPtrOutputWithContext(ctx context.Context) TransferJobTransferSpecGcsDataSinkPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TransferJobTransferSpecGcsDataSinkPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TransferJobTransferSpecGcsDataSinkOutput).ToTransferJobTransferSpecGcsDataSinkPtrOutput()
 }
 
 type TransferJobTransferSpecGcsDataSinkOutput struct{ *pulumi.OutputState }
@@ -3040,7 +3040,7 @@ func (i TransferJobTransferSpecGcsDataSourceArgs) ToTransferJobTransferSpecGcsDa
 }
 
 func (i TransferJobTransferSpecGcsDataSourceArgs) ToTransferJobTransferSpecGcsDataSourcePtrOutputWithContext(ctx context.Context) TransferJobTransferSpecGcsDataSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TransferJobTransferSpecGcsDataSourceOutput).ToTransferJobTransferSpecGcsDataSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TransferJobTransferSpecGcsDataSourceOutput).ToTransferJobTransferSpecGcsDataSourcePtrOutput()
 }
 
 // TransferJobTransferSpecGcsDataSourcePtrInput is an input type that accepts TransferJobTransferSpecGcsDataSourceArgs, TransferJobTransferSpecGcsDataSourcePtr and TransferJobTransferSpecGcsDataSourcePtrOutput values.
@@ -3073,7 +3073,7 @@ func (i *transferJobTransferSpecGcsDataSourcePtrType) ToTransferJobTransferSpecG
 }
 
 func (i *transferJobTransferSpecGcsDataSourcePtrType) ToTransferJobTransferSpecGcsDataSourcePtrOutputWithContext(ctx context.Context) TransferJobTransferSpecGcsDataSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TransferJobTransferSpecGcsDataSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TransferJobTransferSpecGcsDataSourceOutput).ToTransferJobTransferSpecGcsDataSourcePtrOutput()
 }
 
 type TransferJobTransferSpecGcsDataSourceOutput struct{ *pulumi.OutputState }
@@ -3171,7 +3171,7 @@ func (i TransferJobTransferSpecHttpDataSourceArgs) ToTransferJobTransferSpecHttp
 }
 
 func (i TransferJobTransferSpecHttpDataSourceArgs) ToTransferJobTransferSpecHttpDataSourcePtrOutputWithContext(ctx context.Context) TransferJobTransferSpecHttpDataSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TransferJobTransferSpecHttpDataSourceOutput).ToTransferJobTransferSpecHttpDataSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TransferJobTransferSpecHttpDataSourceOutput).ToTransferJobTransferSpecHttpDataSourcePtrOutput()
 }
 
 // TransferJobTransferSpecHttpDataSourcePtrInput is an input type that accepts TransferJobTransferSpecHttpDataSourceArgs, TransferJobTransferSpecHttpDataSourcePtr and TransferJobTransferSpecHttpDataSourcePtrOutput values.
@@ -3204,7 +3204,7 @@ func (i *transferJobTransferSpecHttpDataSourcePtrType) ToTransferJobTransferSpec
 }
 
 func (i *transferJobTransferSpecHttpDataSourcePtrType) ToTransferJobTransferSpecHttpDataSourcePtrOutputWithContext(ctx context.Context) TransferJobTransferSpecHttpDataSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TransferJobTransferSpecHttpDataSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TransferJobTransferSpecHttpDataSourceOutput).ToTransferJobTransferSpecHttpDataSourcePtrOutput()
 }
 
 type TransferJobTransferSpecHttpDataSourceOutput struct{ *pulumi.OutputState }
@@ -3314,7 +3314,7 @@ func (i TransferJobTransferSpecObjectConditionsArgs) ToTransferJobTransferSpecOb
 }
 
 func (i TransferJobTransferSpecObjectConditionsArgs) ToTransferJobTransferSpecObjectConditionsPtrOutputWithContext(ctx context.Context) TransferJobTransferSpecObjectConditionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TransferJobTransferSpecObjectConditionsOutput).ToTransferJobTransferSpecObjectConditionsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TransferJobTransferSpecObjectConditionsOutput).ToTransferJobTransferSpecObjectConditionsPtrOutput()
 }
 
 // TransferJobTransferSpecObjectConditionsPtrInput is an input type that accepts TransferJobTransferSpecObjectConditionsArgs, TransferJobTransferSpecObjectConditionsPtr and TransferJobTransferSpecObjectConditionsPtrOutput values.
@@ -3347,7 +3347,7 @@ func (i *transferJobTransferSpecObjectConditionsPtrType) ToTransferJobTransferSp
 }
 
 func (i *transferJobTransferSpecObjectConditionsPtrType) ToTransferJobTransferSpecObjectConditionsPtrOutputWithContext(ctx context.Context) TransferJobTransferSpecObjectConditionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TransferJobTransferSpecObjectConditionsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TransferJobTransferSpecObjectConditionsOutput).ToTransferJobTransferSpecObjectConditionsPtrOutput()
 }
 
 type TransferJobTransferSpecObjectConditionsOutput struct{ *pulumi.OutputState }
@@ -3500,7 +3500,7 @@ func (i TransferJobTransferSpecTransferOptionsArgs) ToTransferJobTransferSpecTra
 }
 
 func (i TransferJobTransferSpecTransferOptionsArgs) ToTransferJobTransferSpecTransferOptionsPtrOutputWithContext(ctx context.Context) TransferJobTransferSpecTransferOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TransferJobTransferSpecTransferOptionsOutput).ToTransferJobTransferSpecTransferOptionsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TransferJobTransferSpecTransferOptionsOutput).ToTransferJobTransferSpecTransferOptionsPtrOutput()
 }
 
 // TransferJobTransferSpecTransferOptionsPtrInput is an input type that accepts TransferJobTransferSpecTransferOptionsArgs, TransferJobTransferSpecTransferOptionsPtr and TransferJobTransferSpecTransferOptionsPtrOutput values.
@@ -3533,7 +3533,7 @@ func (i *transferJobTransferSpecTransferOptionsPtrType) ToTransferJobTransferSpe
 }
 
 func (i *transferJobTransferSpecTransferOptionsPtrType) ToTransferJobTransferSpecTransferOptionsPtrOutputWithContext(ctx context.Context) TransferJobTransferSpecTransferOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TransferJobTransferSpecTransferOptionsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TransferJobTransferSpecTransferOptionsOutput).ToTransferJobTransferSpecTransferOptionsPtrOutput()
 }
 
 type TransferJobTransferSpecTransferOptionsOutput struct{ *pulumi.OutputState }

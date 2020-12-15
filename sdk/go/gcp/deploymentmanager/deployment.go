@@ -329,16 +329,31 @@ type DeploymentInput interface {
 	ToDeploymentOutputWithContext(ctx context.Context) DeploymentOutput
 }
 
-func (Deployment) ElementType() reflect.Type {
-	return reflect.TypeOf((*Deployment)(nil)).Elem()
+func (*Deployment) ElementType() reflect.Type {
+	return reflect.TypeOf((*Deployment)(nil))
 }
 
-func (i Deployment) ToDeploymentOutput() DeploymentOutput {
+func (i *Deployment) ToDeploymentOutput() DeploymentOutput {
 	return i.ToDeploymentOutputWithContext(context.Background())
 }
 
-func (i Deployment) ToDeploymentOutputWithContext(ctx context.Context) DeploymentOutput {
+func (i *Deployment) ToDeploymentOutputWithContext(ctx context.Context) DeploymentOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentOutput)
+}
+
+func (i *Deployment) ToDeploymentPtrOutput() DeploymentPtrOutput {
+	return i.ToDeploymentPtrOutputWithContext(context.Background())
+}
+
+func (i *Deployment) ToDeploymentPtrOutputWithContext(ctx context.Context) DeploymentPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentPtrOutput)
+}
+
+type DeploymentPtrInput interface {
+	pulumi.Input
+
+	ToDeploymentPtrOutput() DeploymentPtrOutput
+	ToDeploymentPtrOutputWithContext(ctx context.Context) DeploymentPtrOutput
 }
 
 type DeploymentOutput struct {
@@ -346,7 +361,7 @@ type DeploymentOutput struct {
 }
 
 func (DeploymentOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DeploymentOutput)(nil)).Elem()
+	return reflect.TypeOf((*Deployment)(nil))
 }
 
 func (o DeploymentOutput) ToDeploymentOutput() DeploymentOutput {
@@ -357,6 +372,23 @@ func (o DeploymentOutput) ToDeploymentOutputWithContext(ctx context.Context) Dep
 	return o
 }
 
+type DeploymentPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (DeploymentPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Deployment)(nil))
+}
+
+func (o DeploymentPtrOutput) ToDeploymentPtrOutput() DeploymentPtrOutput {
+	return o
+}
+
+func (o DeploymentPtrOutput) ToDeploymentPtrOutputWithContext(ctx context.Context) DeploymentPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(DeploymentOutput{})
+	pulumi.RegisterOutputType(DeploymentPtrOutput{})
 }

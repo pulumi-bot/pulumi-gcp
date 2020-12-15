@@ -249,16 +249,31 @@ type Hl7StoreIamPolicyInput interface {
 	ToHl7StoreIamPolicyOutputWithContext(ctx context.Context) Hl7StoreIamPolicyOutput
 }
 
-func (Hl7StoreIamPolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*Hl7StoreIamPolicy)(nil)).Elem()
+func (*Hl7StoreIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*Hl7StoreIamPolicy)(nil))
 }
 
-func (i Hl7StoreIamPolicy) ToHl7StoreIamPolicyOutput() Hl7StoreIamPolicyOutput {
+func (i *Hl7StoreIamPolicy) ToHl7StoreIamPolicyOutput() Hl7StoreIamPolicyOutput {
 	return i.ToHl7StoreIamPolicyOutputWithContext(context.Background())
 }
 
-func (i Hl7StoreIamPolicy) ToHl7StoreIamPolicyOutputWithContext(ctx context.Context) Hl7StoreIamPolicyOutput {
+func (i *Hl7StoreIamPolicy) ToHl7StoreIamPolicyOutputWithContext(ctx context.Context) Hl7StoreIamPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(Hl7StoreIamPolicyOutput)
+}
+
+func (i *Hl7StoreIamPolicy) ToHl7StoreIamPolicyPtrOutput() Hl7StoreIamPolicyPtrOutput {
+	return i.ToHl7StoreIamPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i *Hl7StoreIamPolicy) ToHl7StoreIamPolicyPtrOutputWithContext(ctx context.Context) Hl7StoreIamPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Hl7StoreIamPolicyPtrOutput)
+}
+
+type Hl7StoreIamPolicyPtrInput interface {
+	pulumi.Input
+
+	ToHl7StoreIamPolicyPtrOutput() Hl7StoreIamPolicyPtrOutput
+	ToHl7StoreIamPolicyPtrOutputWithContext(ctx context.Context) Hl7StoreIamPolicyPtrOutput
 }
 
 type Hl7StoreIamPolicyOutput struct {
@@ -266,7 +281,7 @@ type Hl7StoreIamPolicyOutput struct {
 }
 
 func (Hl7StoreIamPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*Hl7StoreIamPolicyOutput)(nil)).Elem()
+	return reflect.TypeOf((*Hl7StoreIamPolicy)(nil))
 }
 
 func (o Hl7StoreIamPolicyOutput) ToHl7StoreIamPolicyOutput() Hl7StoreIamPolicyOutput {
@@ -277,6 +292,23 @@ func (o Hl7StoreIamPolicyOutput) ToHl7StoreIamPolicyOutputWithContext(ctx contex
 	return o
 }
 
+type Hl7StoreIamPolicyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (Hl7StoreIamPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Hl7StoreIamPolicy)(nil))
+}
+
+func (o Hl7StoreIamPolicyPtrOutput) ToHl7StoreIamPolicyPtrOutput() Hl7StoreIamPolicyPtrOutput {
+	return o
+}
+
+func (o Hl7StoreIamPolicyPtrOutput) ToHl7StoreIamPolicyPtrOutputWithContext(ctx context.Context) Hl7StoreIamPolicyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(Hl7StoreIamPolicyOutput{})
+	pulumi.RegisterOutputType(Hl7StoreIamPolicyPtrOutput{})
 }

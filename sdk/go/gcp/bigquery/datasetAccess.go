@@ -247,16 +247,31 @@ type DatasetAccessInput interface {
 	ToDatasetAccessOutputWithContext(ctx context.Context) DatasetAccessOutput
 }
 
-func (DatasetAccess) ElementType() reflect.Type {
-	return reflect.TypeOf((*DatasetAccess)(nil)).Elem()
+func (*DatasetAccess) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatasetAccess)(nil))
 }
 
-func (i DatasetAccess) ToDatasetAccessOutput() DatasetAccessOutput {
+func (i *DatasetAccess) ToDatasetAccessOutput() DatasetAccessOutput {
 	return i.ToDatasetAccessOutputWithContext(context.Background())
 }
 
-func (i DatasetAccess) ToDatasetAccessOutputWithContext(ctx context.Context) DatasetAccessOutput {
+func (i *DatasetAccess) ToDatasetAccessOutputWithContext(ctx context.Context) DatasetAccessOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DatasetAccessOutput)
+}
+
+func (i *DatasetAccess) ToDatasetAccessPtrOutput() DatasetAccessPtrOutput {
+	return i.ToDatasetAccessPtrOutputWithContext(context.Background())
+}
+
+func (i *DatasetAccess) ToDatasetAccessPtrOutputWithContext(ctx context.Context) DatasetAccessPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetAccessPtrOutput)
+}
+
+type DatasetAccessPtrInput interface {
+	pulumi.Input
+
+	ToDatasetAccessPtrOutput() DatasetAccessPtrOutput
+	ToDatasetAccessPtrOutputWithContext(ctx context.Context) DatasetAccessPtrOutput
 }
 
 type DatasetAccessOutput struct {
@@ -264,7 +279,7 @@ type DatasetAccessOutput struct {
 }
 
 func (DatasetAccessOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DatasetAccessOutput)(nil)).Elem()
+	return reflect.TypeOf((*DatasetAccess)(nil))
 }
 
 func (o DatasetAccessOutput) ToDatasetAccessOutput() DatasetAccessOutput {
@@ -275,6 +290,23 @@ func (o DatasetAccessOutput) ToDatasetAccessOutputWithContext(ctx context.Contex
 	return o
 }
 
+type DatasetAccessPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (DatasetAccessPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatasetAccess)(nil))
+}
+
+func (o DatasetAccessPtrOutput) ToDatasetAccessPtrOutput() DatasetAccessPtrOutput {
+	return o
+}
+
+func (o DatasetAccessPtrOutput) ToDatasetAccessPtrOutputWithContext(ctx context.Context) DatasetAccessPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(DatasetAccessOutput{})
+	pulumi.RegisterOutputType(DatasetAccessPtrOutput{})
 }

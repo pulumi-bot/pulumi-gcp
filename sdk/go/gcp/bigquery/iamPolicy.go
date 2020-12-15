@@ -365,16 +365,31 @@ type IamPolicyInput interface {
 	ToIamPolicyOutputWithContext(ctx context.Context) IamPolicyOutput
 }
 
-func (IamPolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*IamPolicy)(nil)).Elem()
+func (*IamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*IamPolicy)(nil))
 }
 
-func (i IamPolicy) ToIamPolicyOutput() IamPolicyOutput {
+func (i *IamPolicy) ToIamPolicyOutput() IamPolicyOutput {
 	return i.ToIamPolicyOutputWithContext(context.Background())
 }
 
-func (i IamPolicy) ToIamPolicyOutputWithContext(ctx context.Context) IamPolicyOutput {
+func (i *IamPolicy) ToIamPolicyOutputWithContext(ctx context.Context) IamPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IamPolicyOutput)
+}
+
+func (i *IamPolicy) ToIamPolicyPtrOutput() IamPolicyPtrOutput {
+	return i.ToIamPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i *IamPolicy) ToIamPolicyPtrOutputWithContext(ctx context.Context) IamPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IamPolicyPtrOutput)
+}
+
+type IamPolicyPtrInput interface {
+	pulumi.Input
+
+	ToIamPolicyPtrOutput() IamPolicyPtrOutput
+	ToIamPolicyPtrOutputWithContext(ctx context.Context) IamPolicyPtrOutput
 }
 
 type IamPolicyOutput struct {
@@ -382,7 +397,7 @@ type IamPolicyOutput struct {
 }
 
 func (IamPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*IamPolicyOutput)(nil)).Elem()
+	return reflect.TypeOf((*IamPolicy)(nil))
 }
 
 func (o IamPolicyOutput) ToIamPolicyOutput() IamPolicyOutput {
@@ -393,6 +408,23 @@ func (o IamPolicyOutput) ToIamPolicyOutputWithContext(ctx context.Context) IamPo
 	return o
 }
 
+type IamPolicyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (IamPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**IamPolicy)(nil))
+}
+
+func (o IamPolicyPtrOutput) ToIamPolicyPtrOutput() IamPolicyPtrOutput {
+	return o
+}
+
+func (o IamPolicyPtrOutput) ToIamPolicyPtrOutputWithContext(ctx context.Context) IamPolicyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(IamPolicyOutput{})
+	pulumi.RegisterOutputType(IamPolicyPtrOutput{})
 }

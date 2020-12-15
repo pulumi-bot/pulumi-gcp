@@ -245,16 +245,31 @@ type SecretIamPolicyInput interface {
 	ToSecretIamPolicyOutputWithContext(ctx context.Context) SecretIamPolicyOutput
 }
 
-func (SecretIamPolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretIamPolicy)(nil)).Elem()
+func (*SecretIamPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretIamPolicy)(nil))
 }
 
-func (i SecretIamPolicy) ToSecretIamPolicyOutput() SecretIamPolicyOutput {
+func (i *SecretIamPolicy) ToSecretIamPolicyOutput() SecretIamPolicyOutput {
 	return i.ToSecretIamPolicyOutputWithContext(context.Background())
 }
 
-func (i SecretIamPolicy) ToSecretIamPolicyOutputWithContext(ctx context.Context) SecretIamPolicyOutput {
+func (i *SecretIamPolicy) ToSecretIamPolicyOutputWithContext(ctx context.Context) SecretIamPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretIamPolicyOutput)
+}
+
+func (i *SecretIamPolicy) ToSecretIamPolicyPtrOutput() SecretIamPolicyPtrOutput {
+	return i.ToSecretIamPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i *SecretIamPolicy) ToSecretIamPolicyPtrOutputWithContext(ctx context.Context) SecretIamPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretIamPolicyPtrOutput)
+}
+
+type SecretIamPolicyPtrInput interface {
+	pulumi.Input
+
+	ToSecretIamPolicyPtrOutput() SecretIamPolicyPtrOutput
+	ToSecretIamPolicyPtrOutputWithContext(ctx context.Context) SecretIamPolicyPtrOutput
 }
 
 type SecretIamPolicyOutput struct {
@@ -262,7 +277,7 @@ type SecretIamPolicyOutput struct {
 }
 
 func (SecretIamPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretIamPolicyOutput)(nil)).Elem()
+	return reflect.TypeOf((*SecretIamPolicy)(nil))
 }
 
 func (o SecretIamPolicyOutput) ToSecretIamPolicyOutput() SecretIamPolicyOutput {
@@ -273,6 +288,23 @@ func (o SecretIamPolicyOutput) ToSecretIamPolicyOutputWithContext(ctx context.Co
 	return o
 }
 
+type SecretIamPolicyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (SecretIamPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecretIamPolicy)(nil))
+}
+
+func (o SecretIamPolicyPtrOutput) ToSecretIamPolicyPtrOutput() SecretIamPolicyPtrOutput {
+	return o
+}
+
+func (o SecretIamPolicyPtrOutput) ToSecretIamPolicyPtrOutputWithContext(ctx context.Context) SecretIamPolicyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(SecretIamPolicyOutput{})
+	pulumi.RegisterOutputType(SecretIamPolicyPtrOutput{})
 }

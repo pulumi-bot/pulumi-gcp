@@ -210,16 +210,31 @@ type ApiConfigInput interface {
 	ToApiConfigOutputWithContext(ctx context.Context) ApiConfigOutput
 }
 
-func (ApiConfig) ElementType() reflect.Type {
-	return reflect.TypeOf((*ApiConfig)(nil)).Elem()
+func (*ApiConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*ApiConfig)(nil))
 }
 
-func (i ApiConfig) ToApiConfigOutput() ApiConfigOutput {
+func (i *ApiConfig) ToApiConfigOutput() ApiConfigOutput {
 	return i.ToApiConfigOutputWithContext(context.Background())
 }
 
-func (i ApiConfig) ToApiConfigOutputWithContext(ctx context.Context) ApiConfigOutput {
+func (i *ApiConfig) ToApiConfigOutputWithContext(ctx context.Context) ApiConfigOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ApiConfigOutput)
+}
+
+func (i *ApiConfig) ToApiConfigPtrOutput() ApiConfigPtrOutput {
+	return i.ToApiConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *ApiConfig) ToApiConfigPtrOutputWithContext(ctx context.Context) ApiConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApiConfigPtrOutput)
+}
+
+type ApiConfigPtrInput interface {
+	pulumi.Input
+
+	ToApiConfigPtrOutput() ApiConfigPtrOutput
+	ToApiConfigPtrOutputWithContext(ctx context.Context) ApiConfigPtrOutput
 }
 
 type ApiConfigOutput struct {
@@ -227,7 +242,7 @@ type ApiConfigOutput struct {
 }
 
 func (ApiConfigOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ApiConfigOutput)(nil)).Elem()
+	return reflect.TypeOf((*ApiConfig)(nil))
 }
 
 func (o ApiConfigOutput) ToApiConfigOutput() ApiConfigOutput {
@@ -238,6 +253,23 @@ func (o ApiConfigOutput) ToApiConfigOutputWithContext(ctx context.Context) ApiCo
 	return o
 }
 
+type ApiConfigPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ApiConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ApiConfig)(nil))
+}
+
+func (o ApiConfigPtrOutput) ToApiConfigPtrOutput() ApiConfigPtrOutput {
+	return o
+}
+
+func (o ApiConfigPtrOutput) ToApiConfigPtrOutputWithContext(ctx context.Context) ApiConfigPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ApiConfigOutput{})
+	pulumi.RegisterOutputType(ApiConfigPtrOutput{})
 }

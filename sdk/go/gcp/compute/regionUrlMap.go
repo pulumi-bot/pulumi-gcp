@@ -837,16 +837,31 @@ type RegionUrlMapInput interface {
 	ToRegionUrlMapOutputWithContext(ctx context.Context) RegionUrlMapOutput
 }
 
-func (RegionUrlMap) ElementType() reflect.Type {
-	return reflect.TypeOf((*RegionUrlMap)(nil)).Elem()
+func (*RegionUrlMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionUrlMap)(nil))
 }
 
-func (i RegionUrlMap) ToRegionUrlMapOutput() RegionUrlMapOutput {
+func (i *RegionUrlMap) ToRegionUrlMapOutput() RegionUrlMapOutput {
 	return i.ToRegionUrlMapOutputWithContext(context.Background())
 }
 
-func (i RegionUrlMap) ToRegionUrlMapOutputWithContext(ctx context.Context) RegionUrlMapOutput {
+func (i *RegionUrlMap) ToRegionUrlMapOutputWithContext(ctx context.Context) RegionUrlMapOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapOutput)
+}
+
+func (i *RegionUrlMap) ToRegionUrlMapPtrOutput() RegionUrlMapPtrOutput {
+	return i.ToRegionUrlMapPtrOutputWithContext(context.Background())
+}
+
+func (i *RegionUrlMap) ToRegionUrlMapPtrOutputWithContext(ctx context.Context) RegionUrlMapPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPtrOutput)
+}
+
+type RegionUrlMapPtrInput interface {
+	pulumi.Input
+
+	ToRegionUrlMapPtrOutput() RegionUrlMapPtrOutput
+	ToRegionUrlMapPtrOutputWithContext(ctx context.Context) RegionUrlMapPtrOutput
 }
 
 type RegionUrlMapOutput struct {
@@ -854,7 +869,7 @@ type RegionUrlMapOutput struct {
 }
 
 func (RegionUrlMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RegionUrlMapOutput)(nil)).Elem()
+	return reflect.TypeOf((*RegionUrlMap)(nil))
 }
 
 func (o RegionUrlMapOutput) ToRegionUrlMapOutput() RegionUrlMapOutput {
@@ -865,6 +880,23 @@ func (o RegionUrlMapOutput) ToRegionUrlMapOutputWithContext(ctx context.Context)
 	return o
 }
 
+type RegionUrlMapPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (RegionUrlMapPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RegionUrlMap)(nil))
+}
+
+func (o RegionUrlMapPtrOutput) ToRegionUrlMapPtrOutput() RegionUrlMapPtrOutput {
+	return o
+}
+
+func (o RegionUrlMapPtrOutput) ToRegionUrlMapPtrOutputWithContext(ctx context.Context) RegionUrlMapPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(RegionUrlMapOutput{})
+	pulumi.RegisterOutputType(RegionUrlMapPtrOutput{})
 }

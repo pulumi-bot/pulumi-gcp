@@ -451,16 +451,31 @@ type ImageInput interface {
 	ToImageOutputWithContext(ctx context.Context) ImageOutput
 }
 
-func (Image) ElementType() reflect.Type {
-	return reflect.TypeOf((*Image)(nil)).Elem()
+func (*Image) ElementType() reflect.Type {
+	return reflect.TypeOf((*Image)(nil))
 }
 
-func (i Image) ToImageOutput() ImageOutput {
+func (i *Image) ToImageOutput() ImageOutput {
 	return i.ToImageOutputWithContext(context.Background())
 }
 
-func (i Image) ToImageOutputWithContext(ctx context.Context) ImageOutput {
+func (i *Image) ToImageOutputWithContext(ctx context.Context) ImageOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ImageOutput)
+}
+
+func (i *Image) ToImagePtrOutput() ImagePtrOutput {
+	return i.ToImagePtrOutputWithContext(context.Background())
+}
+
+func (i *Image) ToImagePtrOutputWithContext(ctx context.Context) ImagePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ImagePtrOutput)
+}
+
+type ImagePtrInput interface {
+	pulumi.Input
+
+	ToImagePtrOutput() ImagePtrOutput
+	ToImagePtrOutputWithContext(ctx context.Context) ImagePtrOutput
 }
 
 type ImageOutput struct {
@@ -468,7 +483,7 @@ type ImageOutput struct {
 }
 
 func (ImageOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ImageOutput)(nil)).Elem()
+	return reflect.TypeOf((*Image)(nil))
 }
 
 func (o ImageOutput) ToImageOutput() ImageOutput {
@@ -479,6 +494,23 @@ func (o ImageOutput) ToImageOutputWithContext(ctx context.Context) ImageOutput {
 	return o
 }
 
+type ImagePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ImagePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Image)(nil))
+}
+
+func (o ImagePtrOutput) ToImagePtrOutput() ImagePtrOutput {
+	return o
+}
+
+func (o ImagePtrOutput) ToImagePtrOutputWithContext(ctx context.Context) ImagePtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ImageOutput{})
+	pulumi.RegisterOutputType(ImagePtrOutput{})
 }

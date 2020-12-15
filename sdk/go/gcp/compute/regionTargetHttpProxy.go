@@ -323,16 +323,31 @@ type RegionTargetHttpProxyInput interface {
 	ToRegionTargetHttpProxyOutputWithContext(ctx context.Context) RegionTargetHttpProxyOutput
 }
 
-func (RegionTargetHttpProxy) ElementType() reflect.Type {
-	return reflect.TypeOf((*RegionTargetHttpProxy)(nil)).Elem()
+func (*RegionTargetHttpProxy) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionTargetHttpProxy)(nil))
 }
 
-func (i RegionTargetHttpProxy) ToRegionTargetHttpProxyOutput() RegionTargetHttpProxyOutput {
+func (i *RegionTargetHttpProxy) ToRegionTargetHttpProxyOutput() RegionTargetHttpProxyOutput {
 	return i.ToRegionTargetHttpProxyOutputWithContext(context.Background())
 }
 
-func (i RegionTargetHttpProxy) ToRegionTargetHttpProxyOutputWithContext(ctx context.Context) RegionTargetHttpProxyOutput {
+func (i *RegionTargetHttpProxy) ToRegionTargetHttpProxyOutputWithContext(ctx context.Context) RegionTargetHttpProxyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RegionTargetHttpProxyOutput)
+}
+
+func (i *RegionTargetHttpProxy) ToRegionTargetHttpProxyPtrOutput() RegionTargetHttpProxyPtrOutput {
+	return i.ToRegionTargetHttpProxyPtrOutputWithContext(context.Background())
+}
+
+func (i *RegionTargetHttpProxy) ToRegionTargetHttpProxyPtrOutputWithContext(ctx context.Context) RegionTargetHttpProxyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegionTargetHttpProxyPtrOutput)
+}
+
+type RegionTargetHttpProxyPtrInput interface {
+	pulumi.Input
+
+	ToRegionTargetHttpProxyPtrOutput() RegionTargetHttpProxyPtrOutput
+	ToRegionTargetHttpProxyPtrOutputWithContext(ctx context.Context) RegionTargetHttpProxyPtrOutput
 }
 
 type RegionTargetHttpProxyOutput struct {
@@ -340,7 +355,7 @@ type RegionTargetHttpProxyOutput struct {
 }
 
 func (RegionTargetHttpProxyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RegionTargetHttpProxyOutput)(nil)).Elem()
+	return reflect.TypeOf((*RegionTargetHttpProxy)(nil))
 }
 
 func (o RegionTargetHttpProxyOutput) ToRegionTargetHttpProxyOutput() RegionTargetHttpProxyOutput {
@@ -351,6 +366,23 @@ func (o RegionTargetHttpProxyOutput) ToRegionTargetHttpProxyOutputWithContext(ct
 	return o
 }
 
+type RegionTargetHttpProxyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (RegionTargetHttpProxyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RegionTargetHttpProxy)(nil))
+}
+
+func (o RegionTargetHttpProxyPtrOutput) ToRegionTargetHttpProxyPtrOutput() RegionTargetHttpProxyPtrOutput {
+	return o
+}
+
+func (o RegionTargetHttpProxyPtrOutput) ToRegionTargetHttpProxyPtrOutputWithContext(ctx context.Context) RegionTargetHttpProxyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(RegionTargetHttpProxyOutput{})
+	pulumi.RegisterOutputType(RegionTargetHttpProxyPtrOutput{})
 }

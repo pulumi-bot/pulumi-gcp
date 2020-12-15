@@ -363,16 +363,31 @@ type BucketIAMMemberInput interface {
 	ToBucketIAMMemberOutputWithContext(ctx context.Context) BucketIAMMemberOutput
 }
 
-func (BucketIAMMember) ElementType() reflect.Type {
-	return reflect.TypeOf((*BucketIAMMember)(nil)).Elem()
+func (*BucketIAMMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketIAMMember)(nil))
 }
 
-func (i BucketIAMMember) ToBucketIAMMemberOutput() BucketIAMMemberOutput {
+func (i *BucketIAMMember) ToBucketIAMMemberOutput() BucketIAMMemberOutput {
 	return i.ToBucketIAMMemberOutputWithContext(context.Background())
 }
 
-func (i BucketIAMMember) ToBucketIAMMemberOutputWithContext(ctx context.Context) BucketIAMMemberOutput {
+func (i *BucketIAMMember) ToBucketIAMMemberOutputWithContext(ctx context.Context) BucketIAMMemberOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(BucketIAMMemberOutput)
+}
+
+func (i *BucketIAMMember) ToBucketIAMMemberPtrOutput() BucketIAMMemberPtrOutput {
+	return i.ToBucketIAMMemberPtrOutputWithContext(context.Background())
+}
+
+func (i *BucketIAMMember) ToBucketIAMMemberPtrOutputWithContext(ctx context.Context) BucketIAMMemberPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketIAMMemberPtrOutput)
+}
+
+type BucketIAMMemberPtrInput interface {
+	pulumi.Input
+
+	ToBucketIAMMemberPtrOutput() BucketIAMMemberPtrOutput
+	ToBucketIAMMemberPtrOutputWithContext(ctx context.Context) BucketIAMMemberPtrOutput
 }
 
 type BucketIAMMemberOutput struct {
@@ -380,7 +395,7 @@ type BucketIAMMemberOutput struct {
 }
 
 func (BucketIAMMemberOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*BucketIAMMemberOutput)(nil)).Elem()
+	return reflect.TypeOf((*BucketIAMMember)(nil))
 }
 
 func (o BucketIAMMemberOutput) ToBucketIAMMemberOutput() BucketIAMMemberOutput {
@@ -391,6 +406,23 @@ func (o BucketIAMMemberOutput) ToBucketIAMMemberOutputWithContext(ctx context.Co
 	return o
 }
 
+type BucketIAMMemberPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (BucketIAMMemberPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketIAMMember)(nil))
+}
+
+func (o BucketIAMMemberPtrOutput) ToBucketIAMMemberPtrOutput() BucketIAMMemberPtrOutput {
+	return o
+}
+
+func (o BucketIAMMemberPtrOutput) ToBucketIAMMemberPtrOutputWithContext(ctx context.Context) BucketIAMMemberPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(BucketIAMMemberOutput{})
+	pulumi.RegisterOutputType(BucketIAMMemberPtrOutput{})
 }

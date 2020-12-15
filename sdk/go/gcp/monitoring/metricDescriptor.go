@@ -379,16 +379,31 @@ type MetricDescriptorInput interface {
 	ToMetricDescriptorOutputWithContext(ctx context.Context) MetricDescriptorOutput
 }
 
-func (MetricDescriptor) ElementType() reflect.Type {
-	return reflect.TypeOf((*MetricDescriptor)(nil)).Elem()
+func (*MetricDescriptor) ElementType() reflect.Type {
+	return reflect.TypeOf((*MetricDescriptor)(nil))
 }
 
-func (i MetricDescriptor) ToMetricDescriptorOutput() MetricDescriptorOutput {
+func (i *MetricDescriptor) ToMetricDescriptorOutput() MetricDescriptorOutput {
 	return i.ToMetricDescriptorOutputWithContext(context.Background())
 }
 
-func (i MetricDescriptor) ToMetricDescriptorOutputWithContext(ctx context.Context) MetricDescriptorOutput {
+func (i *MetricDescriptor) ToMetricDescriptorOutputWithContext(ctx context.Context) MetricDescriptorOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(MetricDescriptorOutput)
+}
+
+func (i *MetricDescriptor) ToMetricDescriptorPtrOutput() MetricDescriptorPtrOutput {
+	return i.ToMetricDescriptorPtrOutputWithContext(context.Background())
+}
+
+func (i *MetricDescriptor) ToMetricDescriptorPtrOutputWithContext(ctx context.Context) MetricDescriptorPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MetricDescriptorPtrOutput)
+}
+
+type MetricDescriptorPtrInput interface {
+	pulumi.Input
+
+	ToMetricDescriptorPtrOutput() MetricDescriptorPtrOutput
+	ToMetricDescriptorPtrOutputWithContext(ctx context.Context) MetricDescriptorPtrOutput
 }
 
 type MetricDescriptorOutput struct {
@@ -396,7 +411,7 @@ type MetricDescriptorOutput struct {
 }
 
 func (MetricDescriptorOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*MetricDescriptorOutput)(nil)).Elem()
+	return reflect.TypeOf((*MetricDescriptor)(nil))
 }
 
 func (o MetricDescriptorOutput) ToMetricDescriptorOutput() MetricDescriptorOutput {
@@ -407,6 +422,23 @@ func (o MetricDescriptorOutput) ToMetricDescriptorOutputWithContext(ctx context.
 	return o
 }
 
+type MetricDescriptorPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (MetricDescriptorPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**MetricDescriptor)(nil))
+}
+
+func (o MetricDescriptorPtrOutput) ToMetricDescriptorPtrOutput() MetricDescriptorPtrOutput {
+	return o
+}
+
+func (o MetricDescriptorPtrOutput) ToMetricDescriptorPtrOutputWithContext(ctx context.Context) MetricDescriptorPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(MetricDescriptorOutput{})
+	pulumi.RegisterOutputType(MetricDescriptorPtrOutput{})
 }

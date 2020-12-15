@@ -148,7 +148,7 @@ func (i NodeSchedulingConfigArgs) ToNodeSchedulingConfigPtrOutput() NodeScheduli
 }
 
 func (i NodeSchedulingConfigArgs) ToNodeSchedulingConfigPtrOutputWithContext(ctx context.Context) NodeSchedulingConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NodeSchedulingConfigOutput).ToNodeSchedulingConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(NodeSchedulingConfigOutput).ToNodeSchedulingConfigPtrOutput()
 }
 
 // NodeSchedulingConfigPtrInput is an input type that accepts NodeSchedulingConfigArgs, NodeSchedulingConfigPtr and NodeSchedulingConfigPtrOutput values.
@@ -181,7 +181,7 @@ func (i *nodeSchedulingConfigPtrType) ToNodeSchedulingConfigPtrOutput() NodeSche
 }
 
 func (i *nodeSchedulingConfigPtrType) ToNodeSchedulingConfigPtrOutputWithContext(ctx context.Context) NodeSchedulingConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NodeSchedulingConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(NodeSchedulingConfigOutput).ToNodeSchedulingConfigPtrOutput()
 }
 
 type NodeSchedulingConfigOutput struct{ *pulumi.OutputState }

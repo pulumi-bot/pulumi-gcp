@@ -263,16 +263,31 @@ type SecretIamMemberInput interface {
 	ToSecretIamMemberOutputWithContext(ctx context.Context) SecretIamMemberOutput
 }
 
-func (SecretIamMember) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretIamMember)(nil)).Elem()
+func (*SecretIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretIamMember)(nil))
 }
 
-func (i SecretIamMember) ToSecretIamMemberOutput() SecretIamMemberOutput {
+func (i *SecretIamMember) ToSecretIamMemberOutput() SecretIamMemberOutput {
 	return i.ToSecretIamMemberOutputWithContext(context.Background())
 }
 
-func (i SecretIamMember) ToSecretIamMemberOutputWithContext(ctx context.Context) SecretIamMemberOutput {
+func (i *SecretIamMember) ToSecretIamMemberOutputWithContext(ctx context.Context) SecretIamMemberOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretIamMemberOutput)
+}
+
+func (i *SecretIamMember) ToSecretIamMemberPtrOutput() SecretIamMemberPtrOutput {
+	return i.ToSecretIamMemberPtrOutputWithContext(context.Background())
+}
+
+func (i *SecretIamMember) ToSecretIamMemberPtrOutputWithContext(ctx context.Context) SecretIamMemberPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretIamMemberPtrOutput)
+}
+
+type SecretIamMemberPtrInput interface {
+	pulumi.Input
+
+	ToSecretIamMemberPtrOutput() SecretIamMemberPtrOutput
+	ToSecretIamMemberPtrOutputWithContext(ctx context.Context) SecretIamMemberPtrOutput
 }
 
 type SecretIamMemberOutput struct {
@@ -280,7 +295,7 @@ type SecretIamMemberOutput struct {
 }
 
 func (SecretIamMemberOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretIamMemberOutput)(nil)).Elem()
+	return reflect.TypeOf((*SecretIamMember)(nil))
 }
 
 func (o SecretIamMemberOutput) ToSecretIamMemberOutput() SecretIamMemberOutput {
@@ -291,6 +306,23 @@ func (o SecretIamMemberOutput) ToSecretIamMemberOutputWithContext(ctx context.Co
 	return o
 }
 
+type SecretIamMemberPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (SecretIamMemberPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecretIamMember)(nil))
+}
+
+func (o SecretIamMemberPtrOutput) ToSecretIamMemberPtrOutput() SecretIamMemberPtrOutput {
+	return o
+}
+
+func (o SecretIamMemberPtrOutput) ToSecretIamMemberPtrOutputWithContext(ctx context.Context) SecretIamMemberPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(SecretIamMemberOutput{})
+	pulumi.RegisterOutputType(SecretIamMemberPtrOutput{})
 }

@@ -494,16 +494,31 @@ type TableInput interface {
 	ToTableOutputWithContext(ctx context.Context) TableOutput
 }
 
-func (Table) ElementType() reflect.Type {
-	return reflect.TypeOf((*Table)(nil)).Elem()
+func (*Table) ElementType() reflect.Type {
+	return reflect.TypeOf((*Table)(nil))
 }
 
-func (i Table) ToTableOutput() TableOutput {
+func (i *Table) ToTableOutput() TableOutput {
 	return i.ToTableOutputWithContext(context.Background())
 }
 
-func (i Table) ToTableOutputWithContext(ctx context.Context) TableOutput {
+func (i *Table) ToTableOutputWithContext(ctx context.Context) TableOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TableOutput)
+}
+
+func (i *Table) ToTablePtrOutput() TablePtrOutput {
+	return i.ToTablePtrOutputWithContext(context.Background())
+}
+
+func (i *Table) ToTablePtrOutputWithContext(ctx context.Context) TablePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TablePtrOutput)
+}
+
+type TablePtrInput interface {
+	pulumi.Input
+
+	ToTablePtrOutput() TablePtrOutput
+	ToTablePtrOutputWithContext(ctx context.Context) TablePtrOutput
 }
 
 type TableOutput struct {
@@ -511,7 +526,7 @@ type TableOutput struct {
 }
 
 func (TableOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*TableOutput)(nil)).Elem()
+	return reflect.TypeOf((*Table)(nil))
 }
 
 func (o TableOutput) ToTableOutput() TableOutput {
@@ -522,6 +537,23 @@ func (o TableOutput) ToTableOutputWithContext(ctx context.Context) TableOutput {
 	return o
 }
 
+type TablePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (TablePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Table)(nil))
+}
+
+func (o TablePtrOutput) ToTablePtrOutput() TablePtrOutput {
+	return o
+}
+
+func (o TablePtrOutput) ToTablePtrOutputWithContext(ctx context.Context) TablePtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(TableOutput{})
+	pulumi.RegisterOutputType(TablePtrOutput{})
 }

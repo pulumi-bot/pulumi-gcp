@@ -403,16 +403,31 @@ type AppEngineServiceIamMemberInput interface {
 	ToAppEngineServiceIamMemberOutputWithContext(ctx context.Context) AppEngineServiceIamMemberOutput
 }
 
-func (AppEngineServiceIamMember) ElementType() reflect.Type {
-	return reflect.TypeOf((*AppEngineServiceIamMember)(nil)).Elem()
+func (*AppEngineServiceIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*AppEngineServiceIamMember)(nil))
 }
 
-func (i AppEngineServiceIamMember) ToAppEngineServiceIamMemberOutput() AppEngineServiceIamMemberOutput {
+func (i *AppEngineServiceIamMember) ToAppEngineServiceIamMemberOutput() AppEngineServiceIamMemberOutput {
 	return i.ToAppEngineServiceIamMemberOutputWithContext(context.Background())
 }
 
-func (i AppEngineServiceIamMember) ToAppEngineServiceIamMemberOutputWithContext(ctx context.Context) AppEngineServiceIamMemberOutput {
+func (i *AppEngineServiceIamMember) ToAppEngineServiceIamMemberOutputWithContext(ctx context.Context) AppEngineServiceIamMemberOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AppEngineServiceIamMemberOutput)
+}
+
+func (i *AppEngineServiceIamMember) ToAppEngineServiceIamMemberPtrOutput() AppEngineServiceIamMemberPtrOutput {
+	return i.ToAppEngineServiceIamMemberPtrOutputWithContext(context.Background())
+}
+
+func (i *AppEngineServiceIamMember) ToAppEngineServiceIamMemberPtrOutputWithContext(ctx context.Context) AppEngineServiceIamMemberPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AppEngineServiceIamMemberPtrOutput)
+}
+
+type AppEngineServiceIamMemberPtrInput interface {
+	pulumi.Input
+
+	ToAppEngineServiceIamMemberPtrOutput() AppEngineServiceIamMemberPtrOutput
+	ToAppEngineServiceIamMemberPtrOutputWithContext(ctx context.Context) AppEngineServiceIamMemberPtrOutput
 }
 
 type AppEngineServiceIamMemberOutput struct {
@@ -420,7 +435,7 @@ type AppEngineServiceIamMemberOutput struct {
 }
 
 func (AppEngineServiceIamMemberOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AppEngineServiceIamMemberOutput)(nil)).Elem()
+	return reflect.TypeOf((*AppEngineServiceIamMember)(nil))
 }
 
 func (o AppEngineServiceIamMemberOutput) ToAppEngineServiceIamMemberOutput() AppEngineServiceIamMemberOutput {
@@ -431,6 +446,23 @@ func (o AppEngineServiceIamMemberOutput) ToAppEngineServiceIamMemberOutputWithCo
 	return o
 }
 
+type AppEngineServiceIamMemberPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (AppEngineServiceIamMemberPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AppEngineServiceIamMember)(nil))
+}
+
+func (o AppEngineServiceIamMemberPtrOutput) ToAppEngineServiceIamMemberPtrOutput() AppEngineServiceIamMemberPtrOutput {
+	return o
+}
+
+func (o AppEngineServiceIamMemberPtrOutput) ToAppEngineServiceIamMemberPtrOutputWithContext(ctx context.Context) AppEngineServiceIamMemberPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(AppEngineServiceIamMemberOutput{})
+	pulumi.RegisterOutputType(AppEngineServiceIamMemberPtrOutput{})
 }

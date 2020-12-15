@@ -116,7 +116,7 @@ func (i ClusterAddonsConfigArgs) ToClusterAddonsConfigPtrOutput() ClusterAddonsC
 }
 
 func (i ClusterAddonsConfigArgs) ToClusterAddonsConfigPtrOutputWithContext(ctx context.Context) ClusterAddonsConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterAddonsConfigOutput).ToClusterAddonsConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterAddonsConfigOutput).ToClusterAddonsConfigPtrOutput()
 }
 
 // ClusterAddonsConfigPtrInput is an input type that accepts ClusterAddonsConfigArgs, ClusterAddonsConfigPtr and ClusterAddonsConfigPtrOutput values.
@@ -149,7 +149,7 @@ func (i *clusterAddonsConfigPtrType) ToClusterAddonsConfigPtrOutput() ClusterAdd
 }
 
 func (i *clusterAddonsConfigPtrType) ToClusterAddonsConfigPtrOutputWithContext(ctx context.Context) ClusterAddonsConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterAddonsConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterAddonsConfigOutput).ToClusterAddonsConfigPtrOutput()
 }
 
 type ClusterAddonsConfigOutput struct{ *pulumi.OutputState }
@@ -415,7 +415,7 @@ func (i ClusterAddonsConfigCloudrunConfigArgs) ToClusterAddonsConfigCloudrunConf
 }
 
 func (i ClusterAddonsConfigCloudrunConfigArgs) ToClusterAddonsConfigCloudrunConfigPtrOutputWithContext(ctx context.Context) ClusterAddonsConfigCloudrunConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterAddonsConfigCloudrunConfigOutput).ToClusterAddonsConfigCloudrunConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterAddonsConfigCloudrunConfigOutput).ToClusterAddonsConfigCloudrunConfigPtrOutput()
 }
 
 // ClusterAddonsConfigCloudrunConfigPtrInput is an input type that accepts ClusterAddonsConfigCloudrunConfigArgs, ClusterAddonsConfigCloudrunConfigPtr and ClusterAddonsConfigCloudrunConfigPtrOutput values.
@@ -448,7 +448,7 @@ func (i *clusterAddonsConfigCloudrunConfigPtrType) ToClusterAddonsConfigCloudrun
 }
 
 func (i *clusterAddonsConfigCloudrunConfigPtrType) ToClusterAddonsConfigCloudrunConfigPtrOutputWithContext(ctx context.Context) ClusterAddonsConfigCloudrunConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterAddonsConfigCloudrunConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterAddonsConfigCloudrunConfigOutput).ToClusterAddonsConfigCloudrunConfigPtrOutput()
 }
 
 type ClusterAddonsConfigCloudrunConfigOutput struct{ *pulumi.OutputState }
@@ -567,7 +567,7 @@ func (i ClusterAddonsConfigConfigConnectorConfigArgs) ToClusterAddonsConfigConfi
 }
 
 func (i ClusterAddonsConfigConfigConnectorConfigArgs) ToClusterAddonsConfigConfigConnectorConfigPtrOutputWithContext(ctx context.Context) ClusterAddonsConfigConfigConnectorConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterAddonsConfigConfigConnectorConfigOutput).ToClusterAddonsConfigConfigConnectorConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterAddonsConfigConfigConnectorConfigOutput).ToClusterAddonsConfigConfigConnectorConfigPtrOutput()
 }
 
 // ClusterAddonsConfigConfigConnectorConfigPtrInput is an input type that accepts ClusterAddonsConfigConfigConnectorConfigArgs, ClusterAddonsConfigConfigConnectorConfigPtr and ClusterAddonsConfigConfigConnectorConfigPtrOutput values.
@@ -600,7 +600,7 @@ func (i *clusterAddonsConfigConfigConnectorConfigPtrType) ToClusterAddonsConfigC
 }
 
 func (i *clusterAddonsConfigConfigConnectorConfigPtrType) ToClusterAddonsConfigConfigConnectorConfigPtrOutputWithContext(ctx context.Context) ClusterAddonsConfigConfigConnectorConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterAddonsConfigConfigConnectorConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterAddonsConfigConfigConnectorConfigOutput).ToClusterAddonsConfigConfigConnectorConfigPtrOutput()
 }
 
 type ClusterAddonsConfigConfigConnectorConfigOutput struct{ *pulumi.OutputState }
@@ -702,7 +702,7 @@ func (i ClusterAddonsConfigDnsCacheConfigArgs) ToClusterAddonsConfigDnsCacheConf
 }
 
 func (i ClusterAddonsConfigDnsCacheConfigArgs) ToClusterAddonsConfigDnsCacheConfigPtrOutputWithContext(ctx context.Context) ClusterAddonsConfigDnsCacheConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterAddonsConfigDnsCacheConfigOutput).ToClusterAddonsConfigDnsCacheConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterAddonsConfigDnsCacheConfigOutput).ToClusterAddonsConfigDnsCacheConfigPtrOutput()
 }
 
 // ClusterAddonsConfigDnsCacheConfigPtrInput is an input type that accepts ClusterAddonsConfigDnsCacheConfigArgs, ClusterAddonsConfigDnsCacheConfigPtr and ClusterAddonsConfigDnsCacheConfigPtrOutput values.
@@ -735,7 +735,7 @@ func (i *clusterAddonsConfigDnsCacheConfigPtrType) ToClusterAddonsConfigDnsCache
 }
 
 func (i *clusterAddonsConfigDnsCacheConfigPtrType) ToClusterAddonsConfigDnsCacheConfigPtrOutputWithContext(ctx context.Context) ClusterAddonsConfigDnsCacheConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterAddonsConfigDnsCacheConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterAddonsConfigDnsCacheConfigOutput).ToClusterAddonsConfigDnsCacheConfigPtrOutput()
 }
 
 type ClusterAddonsConfigDnsCacheConfigOutput struct{ *pulumi.OutputState }
@@ -837,7 +837,7 @@ func (i ClusterAddonsConfigGcePersistentDiskCsiDriverConfigArgs) ToClusterAddons
 }
 
 func (i ClusterAddonsConfigGcePersistentDiskCsiDriverConfigArgs) ToClusterAddonsConfigGcePersistentDiskCsiDriverConfigPtrOutputWithContext(ctx context.Context) ClusterAddonsConfigGcePersistentDiskCsiDriverConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterAddonsConfigGcePersistentDiskCsiDriverConfigOutput).ToClusterAddonsConfigGcePersistentDiskCsiDriverConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterAddonsConfigGcePersistentDiskCsiDriverConfigOutput).ToClusterAddonsConfigGcePersistentDiskCsiDriverConfigPtrOutput()
 }
 
 // ClusterAddonsConfigGcePersistentDiskCsiDriverConfigPtrInput is an input type that accepts ClusterAddonsConfigGcePersistentDiskCsiDriverConfigArgs, ClusterAddonsConfigGcePersistentDiskCsiDriverConfigPtr and ClusterAddonsConfigGcePersistentDiskCsiDriverConfigPtrOutput values.
@@ -870,7 +870,7 @@ func (i *clusterAddonsConfigGcePersistentDiskCsiDriverConfigPtrType) ToClusterAd
 }
 
 func (i *clusterAddonsConfigGcePersistentDiskCsiDriverConfigPtrType) ToClusterAddonsConfigGcePersistentDiskCsiDriverConfigPtrOutputWithContext(ctx context.Context) ClusterAddonsConfigGcePersistentDiskCsiDriverConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterAddonsConfigGcePersistentDiskCsiDriverConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterAddonsConfigGcePersistentDiskCsiDriverConfigOutput).ToClusterAddonsConfigGcePersistentDiskCsiDriverConfigPtrOutput()
 }
 
 type ClusterAddonsConfigGcePersistentDiskCsiDriverConfigOutput struct{ *pulumi.OutputState }
@@ -974,7 +974,7 @@ func (i ClusterAddonsConfigHorizontalPodAutoscalingArgs) ToClusterAddonsConfigHo
 }
 
 func (i ClusterAddonsConfigHorizontalPodAutoscalingArgs) ToClusterAddonsConfigHorizontalPodAutoscalingPtrOutputWithContext(ctx context.Context) ClusterAddonsConfigHorizontalPodAutoscalingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterAddonsConfigHorizontalPodAutoscalingOutput).ToClusterAddonsConfigHorizontalPodAutoscalingPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterAddonsConfigHorizontalPodAutoscalingOutput).ToClusterAddonsConfigHorizontalPodAutoscalingPtrOutput()
 }
 
 // ClusterAddonsConfigHorizontalPodAutoscalingPtrInput is an input type that accepts ClusterAddonsConfigHorizontalPodAutoscalingArgs, ClusterAddonsConfigHorizontalPodAutoscalingPtr and ClusterAddonsConfigHorizontalPodAutoscalingPtrOutput values.
@@ -1007,7 +1007,7 @@ func (i *clusterAddonsConfigHorizontalPodAutoscalingPtrType) ToClusterAddonsConf
 }
 
 func (i *clusterAddonsConfigHorizontalPodAutoscalingPtrType) ToClusterAddonsConfigHorizontalPodAutoscalingPtrOutputWithContext(ctx context.Context) ClusterAddonsConfigHorizontalPodAutoscalingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterAddonsConfigHorizontalPodAutoscalingPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterAddonsConfigHorizontalPodAutoscalingOutput).ToClusterAddonsConfigHorizontalPodAutoscalingPtrOutput()
 }
 
 type ClusterAddonsConfigHorizontalPodAutoscalingOutput struct{ *pulumi.OutputState }
@@ -1111,7 +1111,7 @@ func (i ClusterAddonsConfigHttpLoadBalancingArgs) ToClusterAddonsConfigHttpLoadB
 }
 
 func (i ClusterAddonsConfigHttpLoadBalancingArgs) ToClusterAddonsConfigHttpLoadBalancingPtrOutputWithContext(ctx context.Context) ClusterAddonsConfigHttpLoadBalancingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterAddonsConfigHttpLoadBalancingOutput).ToClusterAddonsConfigHttpLoadBalancingPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterAddonsConfigHttpLoadBalancingOutput).ToClusterAddonsConfigHttpLoadBalancingPtrOutput()
 }
 
 // ClusterAddonsConfigHttpLoadBalancingPtrInput is an input type that accepts ClusterAddonsConfigHttpLoadBalancingArgs, ClusterAddonsConfigHttpLoadBalancingPtr and ClusterAddonsConfigHttpLoadBalancingPtrOutput values.
@@ -1144,7 +1144,7 @@ func (i *clusterAddonsConfigHttpLoadBalancingPtrType) ToClusterAddonsConfigHttpL
 }
 
 func (i *clusterAddonsConfigHttpLoadBalancingPtrType) ToClusterAddonsConfigHttpLoadBalancingPtrOutputWithContext(ctx context.Context) ClusterAddonsConfigHttpLoadBalancingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterAddonsConfigHttpLoadBalancingPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterAddonsConfigHttpLoadBalancingOutput).ToClusterAddonsConfigHttpLoadBalancingPtrOutput()
 }
 
 type ClusterAddonsConfigHttpLoadBalancingOutput struct{ *pulumi.OutputState }
@@ -1250,7 +1250,7 @@ func (i ClusterAddonsConfigIstioConfigArgs) ToClusterAddonsConfigIstioConfigPtrO
 }
 
 func (i ClusterAddonsConfigIstioConfigArgs) ToClusterAddonsConfigIstioConfigPtrOutputWithContext(ctx context.Context) ClusterAddonsConfigIstioConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterAddonsConfigIstioConfigOutput).ToClusterAddonsConfigIstioConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterAddonsConfigIstioConfigOutput).ToClusterAddonsConfigIstioConfigPtrOutput()
 }
 
 // ClusterAddonsConfigIstioConfigPtrInput is an input type that accepts ClusterAddonsConfigIstioConfigArgs, ClusterAddonsConfigIstioConfigPtr and ClusterAddonsConfigIstioConfigPtrOutput values.
@@ -1283,7 +1283,7 @@ func (i *clusterAddonsConfigIstioConfigPtrType) ToClusterAddonsConfigIstioConfig
 }
 
 func (i *clusterAddonsConfigIstioConfigPtrType) ToClusterAddonsConfigIstioConfigPtrOutputWithContext(ctx context.Context) ClusterAddonsConfigIstioConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterAddonsConfigIstioConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterAddonsConfigIstioConfigOutput).ToClusterAddonsConfigIstioConfigPtrOutput()
 }
 
 type ClusterAddonsConfigIstioConfigOutput struct{ *pulumi.OutputState }
@@ -1400,7 +1400,7 @@ func (i ClusterAddonsConfigKalmConfigArgs) ToClusterAddonsConfigKalmConfigPtrOut
 }
 
 func (i ClusterAddonsConfigKalmConfigArgs) ToClusterAddonsConfigKalmConfigPtrOutputWithContext(ctx context.Context) ClusterAddonsConfigKalmConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterAddonsConfigKalmConfigOutput).ToClusterAddonsConfigKalmConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterAddonsConfigKalmConfigOutput).ToClusterAddonsConfigKalmConfigPtrOutput()
 }
 
 // ClusterAddonsConfigKalmConfigPtrInput is an input type that accepts ClusterAddonsConfigKalmConfigArgs, ClusterAddonsConfigKalmConfigPtr and ClusterAddonsConfigKalmConfigPtrOutput values.
@@ -1433,7 +1433,7 @@ func (i *clusterAddonsConfigKalmConfigPtrType) ToClusterAddonsConfigKalmConfigPt
 }
 
 func (i *clusterAddonsConfigKalmConfigPtrType) ToClusterAddonsConfigKalmConfigPtrOutputWithContext(ctx context.Context) ClusterAddonsConfigKalmConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterAddonsConfigKalmConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterAddonsConfigKalmConfigOutput).ToClusterAddonsConfigKalmConfigPtrOutput()
 }
 
 type ClusterAddonsConfigKalmConfigOutput struct{ *pulumi.OutputState }
@@ -1535,7 +1535,7 @@ func (i ClusterAddonsConfigNetworkPolicyConfigArgs) ToClusterAddonsConfigNetwork
 }
 
 func (i ClusterAddonsConfigNetworkPolicyConfigArgs) ToClusterAddonsConfigNetworkPolicyConfigPtrOutputWithContext(ctx context.Context) ClusterAddonsConfigNetworkPolicyConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterAddonsConfigNetworkPolicyConfigOutput).ToClusterAddonsConfigNetworkPolicyConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterAddonsConfigNetworkPolicyConfigOutput).ToClusterAddonsConfigNetworkPolicyConfigPtrOutput()
 }
 
 // ClusterAddonsConfigNetworkPolicyConfigPtrInput is an input type that accepts ClusterAddonsConfigNetworkPolicyConfigArgs, ClusterAddonsConfigNetworkPolicyConfigPtr and ClusterAddonsConfigNetworkPolicyConfigPtrOutput values.
@@ -1568,7 +1568,7 @@ func (i *clusterAddonsConfigNetworkPolicyConfigPtrType) ToClusterAddonsConfigNet
 }
 
 func (i *clusterAddonsConfigNetworkPolicyConfigPtrType) ToClusterAddonsConfigNetworkPolicyConfigPtrOutputWithContext(ctx context.Context) ClusterAddonsConfigNetworkPolicyConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterAddonsConfigNetworkPolicyConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterAddonsConfigNetworkPolicyConfigOutput).ToClusterAddonsConfigNetworkPolicyConfigPtrOutput()
 }
 
 type ClusterAddonsConfigNetworkPolicyConfigOutput struct{ *pulumi.OutputState }
@@ -1668,7 +1668,7 @@ func (i ClusterAuthenticatorGroupsConfigArgs) ToClusterAuthenticatorGroupsConfig
 }
 
 func (i ClusterAuthenticatorGroupsConfigArgs) ToClusterAuthenticatorGroupsConfigPtrOutputWithContext(ctx context.Context) ClusterAuthenticatorGroupsConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterAuthenticatorGroupsConfigOutput).ToClusterAuthenticatorGroupsConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterAuthenticatorGroupsConfigOutput).ToClusterAuthenticatorGroupsConfigPtrOutput()
 }
 
 // ClusterAuthenticatorGroupsConfigPtrInput is an input type that accepts ClusterAuthenticatorGroupsConfigArgs, ClusterAuthenticatorGroupsConfigPtr and ClusterAuthenticatorGroupsConfigPtrOutput values.
@@ -1701,7 +1701,7 @@ func (i *clusterAuthenticatorGroupsConfigPtrType) ToClusterAuthenticatorGroupsCo
 }
 
 func (i *clusterAuthenticatorGroupsConfigPtrType) ToClusterAuthenticatorGroupsConfigPtrOutputWithContext(ctx context.Context) ClusterAuthenticatorGroupsConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterAuthenticatorGroupsConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterAuthenticatorGroupsConfigOutput).ToClusterAuthenticatorGroupsConfigPtrOutput()
 }
 
 type ClusterAuthenticatorGroupsConfigOutput struct{ *pulumi.OutputState }
@@ -1827,7 +1827,7 @@ func (i ClusterClusterAutoscalingArgs) ToClusterClusterAutoscalingPtrOutput() Cl
 }
 
 func (i ClusterClusterAutoscalingArgs) ToClusterClusterAutoscalingPtrOutputWithContext(ctx context.Context) ClusterClusterAutoscalingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterClusterAutoscalingOutput).ToClusterClusterAutoscalingPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterClusterAutoscalingOutput).ToClusterClusterAutoscalingPtrOutput()
 }
 
 // ClusterClusterAutoscalingPtrInput is an input type that accepts ClusterClusterAutoscalingArgs, ClusterClusterAutoscalingPtr and ClusterClusterAutoscalingPtrOutput values.
@@ -1860,7 +1860,7 @@ func (i *clusterClusterAutoscalingPtrType) ToClusterClusterAutoscalingPtrOutput(
 }
 
 func (i *clusterClusterAutoscalingPtrType) ToClusterClusterAutoscalingPtrOutputWithContext(ctx context.Context) ClusterClusterAutoscalingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterClusterAutoscalingPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterClusterAutoscalingOutput).ToClusterClusterAutoscalingPtrOutput()
 }
 
 type ClusterClusterAutoscalingOutput struct{ *pulumi.OutputState }
@@ -2049,7 +2049,7 @@ func (i ClusterClusterAutoscalingAutoProvisioningDefaultsArgs) ToClusterClusterA
 }
 
 func (i ClusterClusterAutoscalingAutoProvisioningDefaultsArgs) ToClusterClusterAutoscalingAutoProvisioningDefaultsPtrOutputWithContext(ctx context.Context) ClusterClusterAutoscalingAutoProvisioningDefaultsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterClusterAutoscalingAutoProvisioningDefaultsOutput).ToClusterClusterAutoscalingAutoProvisioningDefaultsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterClusterAutoscalingAutoProvisioningDefaultsOutput).ToClusterClusterAutoscalingAutoProvisioningDefaultsPtrOutput()
 }
 
 // ClusterClusterAutoscalingAutoProvisioningDefaultsPtrInput is an input type that accepts ClusterClusterAutoscalingAutoProvisioningDefaultsArgs, ClusterClusterAutoscalingAutoProvisioningDefaultsPtr and ClusterClusterAutoscalingAutoProvisioningDefaultsPtrOutput values.
@@ -2082,7 +2082,7 @@ func (i *clusterClusterAutoscalingAutoProvisioningDefaultsPtrType) ToClusterClus
 }
 
 func (i *clusterClusterAutoscalingAutoProvisioningDefaultsPtrType) ToClusterClusterAutoscalingAutoProvisioningDefaultsPtrOutputWithContext(ctx context.Context) ClusterClusterAutoscalingAutoProvisioningDefaultsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterClusterAutoscalingAutoProvisioningDefaultsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterClusterAutoscalingAutoProvisioningDefaultsOutput).ToClusterClusterAutoscalingAutoProvisioningDefaultsPtrOutput()
 }
 
 type ClusterClusterAutoscalingAutoProvisioningDefaultsOutput struct{ *pulumi.OutputState }
@@ -2353,7 +2353,7 @@ func (i ClusterClusterTelemetryArgs) ToClusterClusterTelemetryPtrOutput() Cluste
 }
 
 func (i ClusterClusterTelemetryArgs) ToClusterClusterTelemetryPtrOutputWithContext(ctx context.Context) ClusterClusterTelemetryPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterClusterTelemetryOutput).ToClusterClusterTelemetryPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterClusterTelemetryOutput).ToClusterClusterTelemetryPtrOutput()
 }
 
 // ClusterClusterTelemetryPtrInput is an input type that accepts ClusterClusterTelemetryArgs, ClusterClusterTelemetryPtr and ClusterClusterTelemetryPtrOutput values.
@@ -2386,7 +2386,7 @@ func (i *clusterClusterTelemetryPtrType) ToClusterClusterTelemetryPtrOutput() Cl
 }
 
 func (i *clusterClusterTelemetryPtrType) ToClusterClusterTelemetryPtrOutputWithContext(ctx context.Context) ClusterClusterTelemetryPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterClusterTelemetryPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterClusterTelemetryOutput).ToClusterClusterTelemetryPtrOutput()
 }
 
 type ClusterClusterTelemetryOutput struct{ *pulumi.OutputState }
@@ -2486,7 +2486,7 @@ func (i ClusterConfidentialNodesArgs) ToClusterConfidentialNodesPtrOutput() Clus
 }
 
 func (i ClusterConfidentialNodesArgs) ToClusterConfidentialNodesPtrOutputWithContext(ctx context.Context) ClusterConfidentialNodesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterConfidentialNodesOutput).ToClusterConfidentialNodesPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterConfidentialNodesOutput).ToClusterConfidentialNodesPtrOutput()
 }
 
 // ClusterConfidentialNodesPtrInput is an input type that accepts ClusterConfidentialNodesArgs, ClusterConfidentialNodesPtr and ClusterConfidentialNodesPtrOutput values.
@@ -2519,7 +2519,7 @@ func (i *clusterConfidentialNodesPtrType) ToClusterConfidentialNodesPtrOutput() 
 }
 
 func (i *clusterConfidentialNodesPtrType) ToClusterConfidentialNodesPtrOutputWithContext(ctx context.Context) ClusterConfidentialNodesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterConfidentialNodesPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterConfidentialNodesOutput).ToClusterConfidentialNodesPtrOutput()
 }
 
 type ClusterConfidentialNodesOutput struct{ *pulumi.OutputState }
@@ -2623,7 +2623,7 @@ func (i ClusterDatabaseEncryptionArgs) ToClusterDatabaseEncryptionPtrOutput() Cl
 }
 
 func (i ClusterDatabaseEncryptionArgs) ToClusterDatabaseEncryptionPtrOutputWithContext(ctx context.Context) ClusterDatabaseEncryptionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterDatabaseEncryptionOutput).ToClusterDatabaseEncryptionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterDatabaseEncryptionOutput).ToClusterDatabaseEncryptionPtrOutput()
 }
 
 // ClusterDatabaseEncryptionPtrInput is an input type that accepts ClusterDatabaseEncryptionArgs, ClusterDatabaseEncryptionPtr and ClusterDatabaseEncryptionPtrOutput values.
@@ -2656,7 +2656,7 @@ func (i *clusterDatabaseEncryptionPtrType) ToClusterDatabaseEncryptionPtrOutput(
 }
 
 func (i *clusterDatabaseEncryptionPtrType) ToClusterDatabaseEncryptionPtrOutputWithContext(ctx context.Context) ClusterDatabaseEncryptionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterDatabaseEncryptionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterDatabaseEncryptionOutput).ToClusterDatabaseEncryptionPtrOutput()
 }
 
 type ClusterDatabaseEncryptionOutput struct{ *pulumi.OutputState }
@@ -2771,7 +2771,7 @@ func (i ClusterDefaultSnatStatusArgs) ToClusterDefaultSnatStatusPtrOutput() Clus
 }
 
 func (i ClusterDefaultSnatStatusArgs) ToClusterDefaultSnatStatusPtrOutputWithContext(ctx context.Context) ClusterDefaultSnatStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterDefaultSnatStatusOutput).ToClusterDefaultSnatStatusPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterDefaultSnatStatusOutput).ToClusterDefaultSnatStatusPtrOutput()
 }
 
 // ClusterDefaultSnatStatusPtrInput is an input type that accepts ClusterDefaultSnatStatusArgs, ClusterDefaultSnatStatusPtr and ClusterDefaultSnatStatusPtrOutput values.
@@ -2804,7 +2804,7 @@ func (i *clusterDefaultSnatStatusPtrType) ToClusterDefaultSnatStatusPtrOutput() 
 }
 
 func (i *clusterDefaultSnatStatusPtrType) ToClusterDefaultSnatStatusPtrOutputWithContext(ctx context.Context) ClusterDefaultSnatStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterDefaultSnatStatusPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterDefaultSnatStatusOutput).ToClusterDefaultSnatStatusPtrOutput()
 }
 
 type ClusterDefaultSnatStatusOutput struct{ *pulumi.OutputState }
@@ -2942,7 +2942,7 @@ func (i ClusterIpAllocationPolicyArgs) ToClusterIpAllocationPolicyPtrOutput() Cl
 }
 
 func (i ClusterIpAllocationPolicyArgs) ToClusterIpAllocationPolicyPtrOutputWithContext(ctx context.Context) ClusterIpAllocationPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterIpAllocationPolicyOutput).ToClusterIpAllocationPolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterIpAllocationPolicyOutput).ToClusterIpAllocationPolicyPtrOutput()
 }
 
 // ClusterIpAllocationPolicyPtrInput is an input type that accepts ClusterIpAllocationPolicyArgs, ClusterIpAllocationPolicyPtr and ClusterIpAllocationPolicyPtrOutput values.
@@ -2975,7 +2975,7 @@ func (i *clusterIpAllocationPolicyPtrType) ToClusterIpAllocationPolicyPtrOutput(
 }
 
 func (i *clusterIpAllocationPolicyPtrType) ToClusterIpAllocationPolicyPtrOutputWithContext(ctx context.Context) ClusterIpAllocationPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterIpAllocationPolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterIpAllocationPolicyOutput).ToClusterIpAllocationPolicyPtrOutput()
 }
 
 type ClusterIpAllocationPolicyOutput struct{ *pulumi.OutputState }
@@ -3156,7 +3156,7 @@ func (i ClusterMaintenancePolicyArgs) ToClusterMaintenancePolicyPtrOutput() Clus
 }
 
 func (i ClusterMaintenancePolicyArgs) ToClusterMaintenancePolicyPtrOutputWithContext(ctx context.Context) ClusterMaintenancePolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterMaintenancePolicyOutput).ToClusterMaintenancePolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterMaintenancePolicyOutput).ToClusterMaintenancePolicyPtrOutput()
 }
 
 // ClusterMaintenancePolicyPtrInput is an input type that accepts ClusterMaintenancePolicyArgs, ClusterMaintenancePolicyPtr and ClusterMaintenancePolicyPtrOutput values.
@@ -3189,7 +3189,7 @@ func (i *clusterMaintenancePolicyPtrType) ToClusterMaintenancePolicyPtrOutput() 
 }
 
 func (i *clusterMaintenancePolicyPtrType) ToClusterMaintenancePolicyPtrOutputWithContext(ctx context.Context) ClusterMaintenancePolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterMaintenancePolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterMaintenancePolicyOutput).ToClusterMaintenancePolicyPtrOutput()
 }
 
 type ClusterMaintenancePolicyOutput struct{ *pulumi.OutputState }
@@ -3325,7 +3325,7 @@ func (i ClusterMaintenancePolicyDailyMaintenanceWindowArgs) ToClusterMaintenance
 }
 
 func (i ClusterMaintenancePolicyDailyMaintenanceWindowArgs) ToClusterMaintenancePolicyDailyMaintenanceWindowPtrOutputWithContext(ctx context.Context) ClusterMaintenancePolicyDailyMaintenanceWindowPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterMaintenancePolicyDailyMaintenanceWindowOutput).ToClusterMaintenancePolicyDailyMaintenanceWindowPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterMaintenancePolicyDailyMaintenanceWindowOutput).ToClusterMaintenancePolicyDailyMaintenanceWindowPtrOutput()
 }
 
 // ClusterMaintenancePolicyDailyMaintenanceWindowPtrInput is an input type that accepts ClusterMaintenancePolicyDailyMaintenanceWindowArgs, ClusterMaintenancePolicyDailyMaintenanceWindowPtr and ClusterMaintenancePolicyDailyMaintenanceWindowPtrOutput values.
@@ -3358,7 +3358,7 @@ func (i *clusterMaintenancePolicyDailyMaintenanceWindowPtrType) ToClusterMainten
 }
 
 func (i *clusterMaintenancePolicyDailyMaintenanceWindowPtrType) ToClusterMaintenancePolicyDailyMaintenanceWindowPtrOutputWithContext(ctx context.Context) ClusterMaintenancePolicyDailyMaintenanceWindowPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterMaintenancePolicyDailyMaintenanceWindowPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterMaintenancePolicyDailyMaintenanceWindowOutput).ToClusterMaintenancePolicyDailyMaintenanceWindowPtrOutput()
 }
 
 type ClusterMaintenancePolicyDailyMaintenanceWindowOutput struct{ *pulumi.OutputState }
@@ -3576,7 +3576,7 @@ func (i ClusterMaintenancePolicyRecurringWindowArgs) ToClusterMaintenancePolicyR
 }
 
 func (i ClusterMaintenancePolicyRecurringWindowArgs) ToClusterMaintenancePolicyRecurringWindowPtrOutputWithContext(ctx context.Context) ClusterMaintenancePolicyRecurringWindowPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterMaintenancePolicyRecurringWindowOutput).ToClusterMaintenancePolicyRecurringWindowPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterMaintenancePolicyRecurringWindowOutput).ToClusterMaintenancePolicyRecurringWindowPtrOutput()
 }
 
 // ClusterMaintenancePolicyRecurringWindowPtrInput is an input type that accepts ClusterMaintenancePolicyRecurringWindowArgs, ClusterMaintenancePolicyRecurringWindowPtr and ClusterMaintenancePolicyRecurringWindowPtrOutput values.
@@ -3609,7 +3609,7 @@ func (i *clusterMaintenancePolicyRecurringWindowPtrType) ToClusterMaintenancePol
 }
 
 func (i *clusterMaintenancePolicyRecurringWindowPtrType) ToClusterMaintenancePolicyRecurringWindowPtrOutputWithContext(ctx context.Context) ClusterMaintenancePolicyRecurringWindowPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterMaintenancePolicyRecurringWindowPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterMaintenancePolicyRecurringWindowOutput).ToClusterMaintenancePolicyRecurringWindowPtrOutput()
 }
 
 type ClusterMaintenancePolicyRecurringWindowOutput struct{ *pulumi.OutputState }
@@ -3748,7 +3748,7 @@ func (i ClusterMasterAuthArgs) ToClusterMasterAuthPtrOutput() ClusterMasterAuthP
 }
 
 func (i ClusterMasterAuthArgs) ToClusterMasterAuthPtrOutputWithContext(ctx context.Context) ClusterMasterAuthPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterMasterAuthOutput).ToClusterMasterAuthPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterMasterAuthOutput).ToClusterMasterAuthPtrOutput()
 }
 
 // ClusterMasterAuthPtrInput is an input type that accepts ClusterMasterAuthArgs, ClusterMasterAuthPtr and ClusterMasterAuthPtrOutput values.
@@ -3781,7 +3781,7 @@ func (i *clusterMasterAuthPtrType) ToClusterMasterAuthPtrOutput() ClusterMasterA
 }
 
 func (i *clusterMasterAuthPtrType) ToClusterMasterAuthPtrOutputWithContext(ctx context.Context) ClusterMasterAuthPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterMasterAuthPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterMasterAuthOutput).ToClusterMasterAuthPtrOutput()
 }
 
 type ClusterMasterAuthOutput struct{ *pulumi.OutputState }
@@ -3949,7 +3949,7 @@ func (i ClusterMasterAuthClientCertificateConfigArgs) ToClusterMasterAuthClientC
 }
 
 func (i ClusterMasterAuthClientCertificateConfigArgs) ToClusterMasterAuthClientCertificateConfigPtrOutputWithContext(ctx context.Context) ClusterMasterAuthClientCertificateConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterMasterAuthClientCertificateConfigOutput).ToClusterMasterAuthClientCertificateConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterMasterAuthClientCertificateConfigOutput).ToClusterMasterAuthClientCertificateConfigPtrOutput()
 }
 
 // ClusterMasterAuthClientCertificateConfigPtrInput is an input type that accepts ClusterMasterAuthClientCertificateConfigArgs, ClusterMasterAuthClientCertificateConfigPtr and ClusterMasterAuthClientCertificateConfigPtrOutput values.
@@ -3982,7 +3982,7 @@ func (i *clusterMasterAuthClientCertificateConfigPtrType) ToClusterMasterAuthCli
 }
 
 func (i *clusterMasterAuthClientCertificateConfigPtrType) ToClusterMasterAuthClientCertificateConfigPtrOutputWithContext(ctx context.Context) ClusterMasterAuthClientCertificateConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterMasterAuthClientCertificateConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterMasterAuthClientCertificateConfigOutput).ToClusterMasterAuthClientCertificateConfigPtrOutput()
 }
 
 type ClusterMasterAuthClientCertificateConfigOutput struct{ *pulumi.OutputState }
@@ -4079,7 +4079,7 @@ func (i ClusterMasterAuthorizedNetworksConfigArgs) ToClusterMasterAuthorizedNetw
 }
 
 func (i ClusterMasterAuthorizedNetworksConfigArgs) ToClusterMasterAuthorizedNetworksConfigPtrOutputWithContext(ctx context.Context) ClusterMasterAuthorizedNetworksConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterMasterAuthorizedNetworksConfigOutput).ToClusterMasterAuthorizedNetworksConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterMasterAuthorizedNetworksConfigOutput).ToClusterMasterAuthorizedNetworksConfigPtrOutput()
 }
 
 // ClusterMasterAuthorizedNetworksConfigPtrInput is an input type that accepts ClusterMasterAuthorizedNetworksConfigArgs, ClusterMasterAuthorizedNetworksConfigPtr and ClusterMasterAuthorizedNetworksConfigPtrOutput values.
@@ -4112,7 +4112,7 @@ func (i *clusterMasterAuthorizedNetworksConfigPtrType) ToClusterMasterAuthorized
 }
 
 func (i *clusterMasterAuthorizedNetworksConfigPtrType) ToClusterMasterAuthorizedNetworksConfigPtrOutputWithContext(ctx context.Context) ClusterMasterAuthorizedNetworksConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterMasterAuthorizedNetworksConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterMasterAuthorizedNetworksConfigOutput).ToClusterMasterAuthorizedNetworksConfigPtrOutput()
 }
 
 type ClusterMasterAuthorizedNetworksConfigOutput struct{ *pulumi.OutputState }
@@ -4329,7 +4329,7 @@ func (i ClusterNetworkPolicyArgs) ToClusterNetworkPolicyPtrOutput() ClusterNetwo
 }
 
 func (i ClusterNetworkPolicyArgs) ToClusterNetworkPolicyPtrOutputWithContext(ctx context.Context) ClusterNetworkPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterNetworkPolicyOutput).ToClusterNetworkPolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterNetworkPolicyOutput).ToClusterNetworkPolicyPtrOutput()
 }
 
 // ClusterNetworkPolicyPtrInput is an input type that accepts ClusterNetworkPolicyArgs, ClusterNetworkPolicyPtr and ClusterNetworkPolicyPtrOutput values.
@@ -4362,7 +4362,7 @@ func (i *clusterNetworkPolicyPtrType) ToClusterNetworkPolicyPtrOutput() ClusterN
 }
 
 func (i *clusterNetworkPolicyPtrType) ToClusterNetworkPolicyPtrOutputWithContext(ctx context.Context) ClusterNetworkPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterNetworkPolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterNetworkPolicyOutput).ToClusterNetworkPolicyPtrOutput()
 }
 
 type ClusterNetworkPolicyOutput struct{ *pulumi.OutputState }
@@ -4627,7 +4627,7 @@ func (i ClusterNodeConfigArgs) ToClusterNodeConfigPtrOutput() ClusterNodeConfigP
 }
 
 func (i ClusterNodeConfigArgs) ToClusterNodeConfigPtrOutputWithContext(ctx context.Context) ClusterNodeConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodeConfigOutput).ToClusterNodeConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodeConfigOutput).ToClusterNodeConfigPtrOutput()
 }
 
 // ClusterNodeConfigPtrInput is an input type that accepts ClusterNodeConfigArgs, ClusterNodeConfigPtr and ClusterNodeConfigPtrOutput values.
@@ -4660,7 +4660,7 @@ func (i *clusterNodeConfigPtrType) ToClusterNodeConfigPtrOutput() ClusterNodeCon
 }
 
 func (i *clusterNodeConfigPtrType) ToClusterNodeConfigPtrOutputWithContext(ctx context.Context) ClusterNodeConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodeConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodeConfigOutput).ToClusterNodeConfigPtrOutput()
 }
 
 type ClusterNodeConfigOutput struct{ *pulumi.OutputState }
@@ -5243,7 +5243,7 @@ func (i ClusterNodeConfigKubeletConfigArgs) ToClusterNodeConfigKubeletConfigPtrO
 }
 
 func (i ClusterNodeConfigKubeletConfigArgs) ToClusterNodeConfigKubeletConfigPtrOutputWithContext(ctx context.Context) ClusterNodeConfigKubeletConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodeConfigKubeletConfigOutput).ToClusterNodeConfigKubeletConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodeConfigKubeletConfigOutput).ToClusterNodeConfigKubeletConfigPtrOutput()
 }
 
 // ClusterNodeConfigKubeletConfigPtrInput is an input type that accepts ClusterNodeConfigKubeletConfigArgs, ClusterNodeConfigKubeletConfigPtr and ClusterNodeConfigKubeletConfigPtrOutput values.
@@ -5276,7 +5276,7 @@ func (i *clusterNodeConfigKubeletConfigPtrType) ToClusterNodeConfigKubeletConfig
 }
 
 func (i *clusterNodeConfigKubeletConfigPtrType) ToClusterNodeConfigKubeletConfigPtrOutputWithContext(ctx context.Context) ClusterNodeConfigKubeletConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodeConfigKubeletConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodeConfigKubeletConfigOutput).ToClusterNodeConfigKubeletConfigPtrOutput()
 }
 
 type ClusterNodeConfigKubeletConfigOutput struct{ *pulumi.OutputState }
@@ -5420,7 +5420,7 @@ func (i ClusterNodeConfigLinuxNodeConfigArgs) ToClusterNodeConfigLinuxNodeConfig
 }
 
 func (i ClusterNodeConfigLinuxNodeConfigArgs) ToClusterNodeConfigLinuxNodeConfigPtrOutputWithContext(ctx context.Context) ClusterNodeConfigLinuxNodeConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodeConfigLinuxNodeConfigOutput).ToClusterNodeConfigLinuxNodeConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodeConfigLinuxNodeConfigOutput).ToClusterNodeConfigLinuxNodeConfigPtrOutput()
 }
 
 // ClusterNodeConfigLinuxNodeConfigPtrInput is an input type that accepts ClusterNodeConfigLinuxNodeConfigArgs, ClusterNodeConfigLinuxNodeConfigPtr and ClusterNodeConfigLinuxNodeConfigPtrOutput values.
@@ -5453,7 +5453,7 @@ func (i *clusterNodeConfigLinuxNodeConfigPtrType) ToClusterNodeConfigLinuxNodeCo
 }
 
 func (i *clusterNodeConfigLinuxNodeConfigPtrType) ToClusterNodeConfigLinuxNodeConfigPtrOutputWithContext(ctx context.Context) ClusterNodeConfigLinuxNodeConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodeConfigLinuxNodeConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodeConfigLinuxNodeConfigOutput).ToClusterNodeConfigLinuxNodeConfigPtrOutput()
 }
 
 type ClusterNodeConfigLinuxNodeConfigOutput struct{ *pulumi.OutputState }
@@ -5557,7 +5557,7 @@ func (i ClusterNodeConfigSandboxConfigArgs) ToClusterNodeConfigSandboxConfigPtrO
 }
 
 func (i ClusterNodeConfigSandboxConfigArgs) ToClusterNodeConfigSandboxConfigPtrOutputWithContext(ctx context.Context) ClusterNodeConfigSandboxConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodeConfigSandboxConfigOutput).ToClusterNodeConfigSandboxConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodeConfigSandboxConfigOutput).ToClusterNodeConfigSandboxConfigPtrOutput()
 }
 
 // ClusterNodeConfigSandboxConfigPtrInput is an input type that accepts ClusterNodeConfigSandboxConfigArgs, ClusterNodeConfigSandboxConfigPtr and ClusterNodeConfigSandboxConfigPtrOutput values.
@@ -5590,7 +5590,7 @@ func (i *clusterNodeConfigSandboxConfigPtrType) ToClusterNodeConfigSandboxConfig
 }
 
 func (i *clusterNodeConfigSandboxConfigPtrType) ToClusterNodeConfigSandboxConfigPtrOutputWithContext(ctx context.Context) ClusterNodeConfigSandboxConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodeConfigSandboxConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodeConfigSandboxConfigOutput).ToClusterNodeConfigSandboxConfigPtrOutput()
 }
 
 type ClusterNodeConfigSandboxConfigOutput struct{ *pulumi.OutputState }
@@ -5694,7 +5694,7 @@ func (i ClusterNodeConfigShieldedInstanceConfigArgs) ToClusterNodeConfigShielded
 }
 
 func (i ClusterNodeConfigShieldedInstanceConfigArgs) ToClusterNodeConfigShieldedInstanceConfigPtrOutputWithContext(ctx context.Context) ClusterNodeConfigShieldedInstanceConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodeConfigShieldedInstanceConfigOutput).ToClusterNodeConfigShieldedInstanceConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodeConfigShieldedInstanceConfigOutput).ToClusterNodeConfigShieldedInstanceConfigPtrOutput()
 }
 
 // ClusterNodeConfigShieldedInstanceConfigPtrInput is an input type that accepts ClusterNodeConfigShieldedInstanceConfigArgs, ClusterNodeConfigShieldedInstanceConfigPtr and ClusterNodeConfigShieldedInstanceConfigPtrOutput values.
@@ -5727,7 +5727,7 @@ func (i *clusterNodeConfigShieldedInstanceConfigPtrType) ToClusterNodeConfigShie
 }
 
 func (i *clusterNodeConfigShieldedInstanceConfigPtrType) ToClusterNodeConfigShieldedInstanceConfigPtrOutputWithContext(ctx context.Context) ClusterNodeConfigShieldedInstanceConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodeConfigShieldedInstanceConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodeConfigShieldedInstanceConfigOutput).ToClusterNodeConfigShieldedInstanceConfigPtrOutput()
 }
 
 type ClusterNodeConfigShieldedInstanceConfigOutput struct{ *pulumi.OutputState }
@@ -5965,7 +5965,7 @@ func (i ClusterNodeConfigWorkloadMetadataConfigArgs) ToClusterNodeConfigWorkload
 }
 
 func (i ClusterNodeConfigWorkloadMetadataConfigArgs) ToClusterNodeConfigWorkloadMetadataConfigPtrOutputWithContext(ctx context.Context) ClusterNodeConfigWorkloadMetadataConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodeConfigWorkloadMetadataConfigOutput).ToClusterNodeConfigWorkloadMetadataConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodeConfigWorkloadMetadataConfigOutput).ToClusterNodeConfigWorkloadMetadataConfigPtrOutput()
 }
 
 // ClusterNodeConfigWorkloadMetadataConfigPtrInput is an input type that accepts ClusterNodeConfigWorkloadMetadataConfigArgs, ClusterNodeConfigWorkloadMetadataConfigPtr and ClusterNodeConfigWorkloadMetadataConfigPtrOutput values.
@@ -5998,7 +5998,7 @@ func (i *clusterNodeConfigWorkloadMetadataConfigPtrType) ToClusterNodeConfigWork
 }
 
 func (i *clusterNodeConfigWorkloadMetadataConfigPtrType) ToClusterNodeConfigWorkloadMetadataConfigPtrOutputWithContext(ctx context.Context) ClusterNodeConfigWorkloadMetadataConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodeConfigWorkloadMetadataConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodeConfigWorkloadMetadataConfigOutput).ToClusterNodeConfigWorkloadMetadataConfigPtrOutput()
 }
 
 type ClusterNodeConfigWorkloadMetadataConfigOutput struct{ *pulumi.OutputState }
@@ -6323,7 +6323,7 @@ func (i ClusterNodePoolAutoscalingArgs) ToClusterNodePoolAutoscalingPtrOutput() 
 }
 
 func (i ClusterNodePoolAutoscalingArgs) ToClusterNodePoolAutoscalingPtrOutputWithContext(ctx context.Context) ClusterNodePoolAutoscalingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodePoolAutoscalingOutput).ToClusterNodePoolAutoscalingPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodePoolAutoscalingOutput).ToClusterNodePoolAutoscalingPtrOutput()
 }
 
 // ClusterNodePoolAutoscalingPtrInput is an input type that accepts ClusterNodePoolAutoscalingArgs, ClusterNodePoolAutoscalingPtr and ClusterNodePoolAutoscalingPtrOutput values.
@@ -6356,7 +6356,7 @@ func (i *clusterNodePoolAutoscalingPtrType) ToClusterNodePoolAutoscalingPtrOutpu
 }
 
 func (i *clusterNodePoolAutoscalingPtrType) ToClusterNodePoolAutoscalingPtrOutputWithContext(ctx context.Context) ClusterNodePoolAutoscalingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodePoolAutoscalingPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodePoolAutoscalingOutput).ToClusterNodePoolAutoscalingPtrOutput()
 }
 
 type ClusterNodePoolAutoscalingOutput struct{ *pulumi.OutputState }
@@ -6464,7 +6464,7 @@ func (i ClusterNodePoolManagementArgs) ToClusterNodePoolManagementPtrOutput() Cl
 }
 
 func (i ClusterNodePoolManagementArgs) ToClusterNodePoolManagementPtrOutputWithContext(ctx context.Context) ClusterNodePoolManagementPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodePoolManagementOutput).ToClusterNodePoolManagementPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodePoolManagementOutput).ToClusterNodePoolManagementPtrOutput()
 }
 
 // ClusterNodePoolManagementPtrInput is an input type that accepts ClusterNodePoolManagementArgs, ClusterNodePoolManagementPtr and ClusterNodePoolManagementPtrOutput values.
@@ -6497,7 +6497,7 @@ func (i *clusterNodePoolManagementPtrType) ToClusterNodePoolManagementPtrOutput(
 }
 
 func (i *clusterNodePoolManagementPtrType) ToClusterNodePoolManagementPtrOutputWithContext(ctx context.Context) ClusterNodePoolManagementPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodePoolManagementPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodePoolManagementOutput).ToClusterNodePoolManagementPtrOutput()
 }
 
 type ClusterNodePoolManagementOutput struct{ *pulumi.OutputState }
@@ -6755,7 +6755,7 @@ func (i ClusterNodePoolNodeConfigArgs) ToClusterNodePoolNodeConfigPtrOutput() Cl
 }
 
 func (i ClusterNodePoolNodeConfigArgs) ToClusterNodePoolNodeConfigPtrOutputWithContext(ctx context.Context) ClusterNodePoolNodeConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodePoolNodeConfigOutput).ToClusterNodePoolNodeConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodePoolNodeConfigOutput).ToClusterNodePoolNodeConfigPtrOutput()
 }
 
 // ClusterNodePoolNodeConfigPtrInput is an input type that accepts ClusterNodePoolNodeConfigArgs, ClusterNodePoolNodeConfigPtr and ClusterNodePoolNodeConfigPtrOutput values.
@@ -6788,7 +6788,7 @@ func (i *clusterNodePoolNodeConfigPtrType) ToClusterNodePoolNodeConfigPtrOutput(
 }
 
 func (i *clusterNodePoolNodeConfigPtrType) ToClusterNodePoolNodeConfigPtrOutputWithContext(ctx context.Context) ClusterNodePoolNodeConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodePoolNodeConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodePoolNodeConfigOutput).ToClusterNodePoolNodeConfigPtrOutput()
 }
 
 type ClusterNodePoolNodeConfigOutput struct{ *pulumi.OutputState }
@@ -7377,7 +7377,7 @@ func (i ClusterNodePoolNodeConfigKubeletConfigArgs) ToClusterNodePoolNodeConfigK
 }
 
 func (i ClusterNodePoolNodeConfigKubeletConfigArgs) ToClusterNodePoolNodeConfigKubeletConfigPtrOutputWithContext(ctx context.Context) ClusterNodePoolNodeConfigKubeletConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodePoolNodeConfigKubeletConfigOutput).ToClusterNodePoolNodeConfigKubeletConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodePoolNodeConfigKubeletConfigOutput).ToClusterNodePoolNodeConfigKubeletConfigPtrOutput()
 }
 
 // ClusterNodePoolNodeConfigKubeletConfigPtrInput is an input type that accepts ClusterNodePoolNodeConfigKubeletConfigArgs, ClusterNodePoolNodeConfigKubeletConfigPtr and ClusterNodePoolNodeConfigKubeletConfigPtrOutput values.
@@ -7410,7 +7410,7 @@ func (i *clusterNodePoolNodeConfigKubeletConfigPtrType) ToClusterNodePoolNodeCon
 }
 
 func (i *clusterNodePoolNodeConfigKubeletConfigPtrType) ToClusterNodePoolNodeConfigKubeletConfigPtrOutputWithContext(ctx context.Context) ClusterNodePoolNodeConfigKubeletConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodePoolNodeConfigKubeletConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodePoolNodeConfigKubeletConfigOutput).ToClusterNodePoolNodeConfigKubeletConfigPtrOutput()
 }
 
 type ClusterNodePoolNodeConfigKubeletConfigOutput struct{ *pulumi.OutputState }
@@ -7554,7 +7554,7 @@ func (i ClusterNodePoolNodeConfigLinuxNodeConfigArgs) ToClusterNodePoolNodeConfi
 }
 
 func (i ClusterNodePoolNodeConfigLinuxNodeConfigArgs) ToClusterNodePoolNodeConfigLinuxNodeConfigPtrOutputWithContext(ctx context.Context) ClusterNodePoolNodeConfigLinuxNodeConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodePoolNodeConfigLinuxNodeConfigOutput).ToClusterNodePoolNodeConfigLinuxNodeConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodePoolNodeConfigLinuxNodeConfigOutput).ToClusterNodePoolNodeConfigLinuxNodeConfigPtrOutput()
 }
 
 // ClusterNodePoolNodeConfigLinuxNodeConfigPtrInput is an input type that accepts ClusterNodePoolNodeConfigLinuxNodeConfigArgs, ClusterNodePoolNodeConfigLinuxNodeConfigPtr and ClusterNodePoolNodeConfigLinuxNodeConfigPtrOutput values.
@@ -7587,7 +7587,7 @@ func (i *clusterNodePoolNodeConfigLinuxNodeConfigPtrType) ToClusterNodePoolNodeC
 }
 
 func (i *clusterNodePoolNodeConfigLinuxNodeConfigPtrType) ToClusterNodePoolNodeConfigLinuxNodeConfigPtrOutputWithContext(ctx context.Context) ClusterNodePoolNodeConfigLinuxNodeConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodePoolNodeConfigLinuxNodeConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodePoolNodeConfigLinuxNodeConfigOutput).ToClusterNodePoolNodeConfigLinuxNodeConfigPtrOutput()
 }
 
 type ClusterNodePoolNodeConfigLinuxNodeConfigOutput struct{ *pulumi.OutputState }
@@ -7691,7 +7691,7 @@ func (i ClusterNodePoolNodeConfigSandboxConfigArgs) ToClusterNodePoolNodeConfigS
 }
 
 func (i ClusterNodePoolNodeConfigSandboxConfigArgs) ToClusterNodePoolNodeConfigSandboxConfigPtrOutputWithContext(ctx context.Context) ClusterNodePoolNodeConfigSandboxConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodePoolNodeConfigSandboxConfigOutput).ToClusterNodePoolNodeConfigSandboxConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodePoolNodeConfigSandboxConfigOutput).ToClusterNodePoolNodeConfigSandboxConfigPtrOutput()
 }
 
 // ClusterNodePoolNodeConfigSandboxConfigPtrInput is an input type that accepts ClusterNodePoolNodeConfigSandboxConfigArgs, ClusterNodePoolNodeConfigSandboxConfigPtr and ClusterNodePoolNodeConfigSandboxConfigPtrOutput values.
@@ -7724,7 +7724,7 @@ func (i *clusterNodePoolNodeConfigSandboxConfigPtrType) ToClusterNodePoolNodeCon
 }
 
 func (i *clusterNodePoolNodeConfigSandboxConfigPtrType) ToClusterNodePoolNodeConfigSandboxConfigPtrOutputWithContext(ctx context.Context) ClusterNodePoolNodeConfigSandboxConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodePoolNodeConfigSandboxConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodePoolNodeConfigSandboxConfigOutput).ToClusterNodePoolNodeConfigSandboxConfigPtrOutput()
 }
 
 type ClusterNodePoolNodeConfigSandboxConfigOutput struct{ *pulumi.OutputState }
@@ -7828,7 +7828,7 @@ func (i ClusterNodePoolNodeConfigShieldedInstanceConfigArgs) ToClusterNodePoolNo
 }
 
 func (i ClusterNodePoolNodeConfigShieldedInstanceConfigArgs) ToClusterNodePoolNodeConfigShieldedInstanceConfigPtrOutputWithContext(ctx context.Context) ClusterNodePoolNodeConfigShieldedInstanceConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodePoolNodeConfigShieldedInstanceConfigOutput).ToClusterNodePoolNodeConfigShieldedInstanceConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodePoolNodeConfigShieldedInstanceConfigOutput).ToClusterNodePoolNodeConfigShieldedInstanceConfigPtrOutput()
 }
 
 // ClusterNodePoolNodeConfigShieldedInstanceConfigPtrInput is an input type that accepts ClusterNodePoolNodeConfigShieldedInstanceConfigArgs, ClusterNodePoolNodeConfigShieldedInstanceConfigPtr and ClusterNodePoolNodeConfigShieldedInstanceConfigPtrOutput values.
@@ -7861,7 +7861,7 @@ func (i *clusterNodePoolNodeConfigShieldedInstanceConfigPtrType) ToClusterNodePo
 }
 
 func (i *clusterNodePoolNodeConfigShieldedInstanceConfigPtrType) ToClusterNodePoolNodeConfigShieldedInstanceConfigPtrOutputWithContext(ctx context.Context) ClusterNodePoolNodeConfigShieldedInstanceConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodePoolNodeConfigShieldedInstanceConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodePoolNodeConfigShieldedInstanceConfigOutput).ToClusterNodePoolNodeConfigShieldedInstanceConfigPtrOutput()
 }
 
 type ClusterNodePoolNodeConfigShieldedInstanceConfigOutput struct{ *pulumi.OutputState }
@@ -8101,7 +8101,7 @@ func (i ClusterNodePoolNodeConfigWorkloadMetadataConfigArgs) ToClusterNodePoolNo
 }
 
 func (i ClusterNodePoolNodeConfigWorkloadMetadataConfigArgs) ToClusterNodePoolNodeConfigWorkloadMetadataConfigPtrOutputWithContext(ctx context.Context) ClusterNodePoolNodeConfigWorkloadMetadataConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodePoolNodeConfigWorkloadMetadataConfigOutput).ToClusterNodePoolNodeConfigWorkloadMetadataConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodePoolNodeConfigWorkloadMetadataConfigOutput).ToClusterNodePoolNodeConfigWorkloadMetadataConfigPtrOutput()
 }
 
 // ClusterNodePoolNodeConfigWorkloadMetadataConfigPtrInput is an input type that accepts ClusterNodePoolNodeConfigWorkloadMetadataConfigArgs, ClusterNodePoolNodeConfigWorkloadMetadataConfigPtr and ClusterNodePoolNodeConfigWorkloadMetadataConfigPtrOutput values.
@@ -8134,7 +8134,7 @@ func (i *clusterNodePoolNodeConfigWorkloadMetadataConfigPtrType) ToClusterNodePo
 }
 
 func (i *clusterNodePoolNodeConfigWorkloadMetadataConfigPtrType) ToClusterNodePoolNodeConfigWorkloadMetadataConfigPtrOutputWithContext(ctx context.Context) ClusterNodePoolNodeConfigWorkloadMetadataConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodePoolNodeConfigWorkloadMetadataConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodePoolNodeConfigWorkloadMetadataConfigOutput).ToClusterNodePoolNodeConfigWorkloadMetadataConfigPtrOutput()
 }
 
 type ClusterNodePoolNodeConfigWorkloadMetadataConfigOutput struct{ *pulumi.OutputState }
@@ -8244,7 +8244,7 @@ func (i ClusterNodePoolUpgradeSettingsArgs) ToClusterNodePoolUpgradeSettingsPtrO
 }
 
 func (i ClusterNodePoolUpgradeSettingsArgs) ToClusterNodePoolUpgradeSettingsPtrOutputWithContext(ctx context.Context) ClusterNodePoolUpgradeSettingsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodePoolUpgradeSettingsOutput).ToClusterNodePoolUpgradeSettingsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodePoolUpgradeSettingsOutput).ToClusterNodePoolUpgradeSettingsPtrOutput()
 }
 
 // ClusterNodePoolUpgradeSettingsPtrInput is an input type that accepts ClusterNodePoolUpgradeSettingsArgs, ClusterNodePoolUpgradeSettingsPtr and ClusterNodePoolUpgradeSettingsPtrOutput values.
@@ -8277,7 +8277,7 @@ func (i *clusterNodePoolUpgradeSettingsPtrType) ToClusterNodePoolUpgradeSettings
 }
 
 func (i *clusterNodePoolUpgradeSettingsPtrType) ToClusterNodePoolUpgradeSettingsPtrOutputWithContext(ctx context.Context) ClusterNodePoolUpgradeSettingsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodePoolUpgradeSettingsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterNodePoolUpgradeSettingsOutput).ToClusterNodePoolUpgradeSettingsPtrOutput()
 }
 
 type ClusterNodePoolUpgradeSettingsOutput struct{ *pulumi.OutputState }
@@ -8383,7 +8383,7 @@ func (i ClusterNotificationConfigArgs) ToClusterNotificationConfigPtrOutput() Cl
 }
 
 func (i ClusterNotificationConfigArgs) ToClusterNotificationConfigPtrOutputWithContext(ctx context.Context) ClusterNotificationConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterNotificationConfigOutput).ToClusterNotificationConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterNotificationConfigOutput).ToClusterNotificationConfigPtrOutput()
 }
 
 // ClusterNotificationConfigPtrInput is an input type that accepts ClusterNotificationConfigArgs, ClusterNotificationConfigPtr and ClusterNotificationConfigPtrOutput values.
@@ -8416,7 +8416,7 @@ func (i *clusterNotificationConfigPtrType) ToClusterNotificationConfigPtrOutput(
 }
 
 func (i *clusterNotificationConfigPtrType) ToClusterNotificationConfigPtrOutputWithContext(ctx context.Context) ClusterNotificationConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterNotificationConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterNotificationConfigOutput).ToClusterNotificationConfigPtrOutput()
 }
 
 type ClusterNotificationConfigOutput struct{ *pulumi.OutputState }
@@ -8515,7 +8515,7 @@ func (i ClusterNotificationConfigPubsubArgs) ToClusterNotificationConfigPubsubPt
 }
 
 func (i ClusterNotificationConfigPubsubArgs) ToClusterNotificationConfigPubsubPtrOutputWithContext(ctx context.Context) ClusterNotificationConfigPubsubPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterNotificationConfigPubsubOutput).ToClusterNotificationConfigPubsubPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterNotificationConfigPubsubOutput).ToClusterNotificationConfigPubsubPtrOutput()
 }
 
 // ClusterNotificationConfigPubsubPtrInput is an input type that accepts ClusterNotificationConfigPubsubArgs, ClusterNotificationConfigPubsubPtr and ClusterNotificationConfigPubsubPtrOutput values.
@@ -8548,7 +8548,7 @@ func (i *clusterNotificationConfigPubsubPtrType) ToClusterNotificationConfigPubs
 }
 
 func (i *clusterNotificationConfigPubsubPtrType) ToClusterNotificationConfigPubsubPtrOutputWithContext(ctx context.Context) ClusterNotificationConfigPubsubPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterNotificationConfigPubsubPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterNotificationConfigPubsubOutput).ToClusterNotificationConfigPubsubPtrOutput()
 }
 
 type ClusterNotificationConfigPubsubOutput struct{ *pulumi.OutputState }
@@ -8663,7 +8663,7 @@ func (i ClusterPodSecurityPolicyConfigArgs) ToClusterPodSecurityPolicyConfigPtrO
 }
 
 func (i ClusterPodSecurityPolicyConfigArgs) ToClusterPodSecurityPolicyConfigPtrOutputWithContext(ctx context.Context) ClusterPodSecurityPolicyConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterPodSecurityPolicyConfigOutput).ToClusterPodSecurityPolicyConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterPodSecurityPolicyConfigOutput).ToClusterPodSecurityPolicyConfigPtrOutput()
 }
 
 // ClusterPodSecurityPolicyConfigPtrInput is an input type that accepts ClusterPodSecurityPolicyConfigArgs, ClusterPodSecurityPolicyConfigPtr and ClusterPodSecurityPolicyConfigPtrOutput values.
@@ -8696,7 +8696,7 @@ func (i *clusterPodSecurityPolicyConfigPtrType) ToClusterPodSecurityPolicyConfig
 }
 
 func (i *clusterPodSecurityPolicyConfigPtrType) ToClusterPodSecurityPolicyConfigPtrOutputWithContext(ctx context.Context) ClusterPodSecurityPolicyConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterPodSecurityPolicyConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterPodSecurityPolicyConfigOutput).ToClusterPodSecurityPolicyConfigPtrOutput()
 }
 
 type ClusterPodSecurityPolicyConfigOutput struct{ *pulumi.OutputState }
@@ -8848,7 +8848,7 @@ func (i ClusterPrivateClusterConfigArgs) ToClusterPrivateClusterConfigPtrOutput(
 }
 
 func (i ClusterPrivateClusterConfigArgs) ToClusterPrivateClusterConfigPtrOutputWithContext(ctx context.Context) ClusterPrivateClusterConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterPrivateClusterConfigOutput).ToClusterPrivateClusterConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterPrivateClusterConfigOutput).ToClusterPrivateClusterConfigPtrOutput()
 }
 
 // ClusterPrivateClusterConfigPtrInput is an input type that accepts ClusterPrivateClusterConfigArgs, ClusterPrivateClusterConfigPtr and ClusterPrivateClusterConfigPtrOutput values.
@@ -8881,7 +8881,7 @@ func (i *clusterPrivateClusterConfigPtrType) ToClusterPrivateClusterConfigPtrOut
 }
 
 func (i *clusterPrivateClusterConfigPtrType) ToClusterPrivateClusterConfigPtrOutputWithContext(ctx context.Context) ClusterPrivateClusterConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterPrivateClusterConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterPrivateClusterConfigOutput).ToClusterPrivateClusterConfigPtrOutput()
 }
 
 type ClusterPrivateClusterConfigOutput struct{ *pulumi.OutputState }
@@ -9101,7 +9101,7 @@ func (i ClusterPrivateClusterConfigMasterGlobalAccessConfigArgs) ToClusterPrivat
 }
 
 func (i ClusterPrivateClusterConfigMasterGlobalAccessConfigArgs) ToClusterPrivateClusterConfigMasterGlobalAccessConfigPtrOutputWithContext(ctx context.Context) ClusterPrivateClusterConfigMasterGlobalAccessConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterPrivateClusterConfigMasterGlobalAccessConfigOutput).ToClusterPrivateClusterConfigMasterGlobalAccessConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterPrivateClusterConfigMasterGlobalAccessConfigOutput).ToClusterPrivateClusterConfigMasterGlobalAccessConfigPtrOutput()
 }
 
 // ClusterPrivateClusterConfigMasterGlobalAccessConfigPtrInput is an input type that accepts ClusterPrivateClusterConfigMasterGlobalAccessConfigArgs, ClusterPrivateClusterConfigMasterGlobalAccessConfigPtr and ClusterPrivateClusterConfigMasterGlobalAccessConfigPtrOutput values.
@@ -9134,7 +9134,7 @@ func (i *clusterPrivateClusterConfigMasterGlobalAccessConfigPtrType) ToClusterPr
 }
 
 func (i *clusterPrivateClusterConfigMasterGlobalAccessConfigPtrType) ToClusterPrivateClusterConfigMasterGlobalAccessConfigPtrOutputWithContext(ctx context.Context) ClusterPrivateClusterConfigMasterGlobalAccessConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterPrivateClusterConfigMasterGlobalAccessConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterPrivateClusterConfigMasterGlobalAccessConfigOutput).ToClusterPrivateClusterConfigMasterGlobalAccessConfigPtrOutput()
 }
 
 type ClusterPrivateClusterConfigMasterGlobalAccessConfigOutput struct{ *pulumi.OutputState }
@@ -9246,7 +9246,7 @@ func (i ClusterReleaseChannelArgs) ToClusterReleaseChannelPtrOutput() ClusterRel
 }
 
 func (i ClusterReleaseChannelArgs) ToClusterReleaseChannelPtrOutputWithContext(ctx context.Context) ClusterReleaseChannelPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterReleaseChannelOutput).ToClusterReleaseChannelPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterReleaseChannelOutput).ToClusterReleaseChannelPtrOutput()
 }
 
 // ClusterReleaseChannelPtrInput is an input type that accepts ClusterReleaseChannelArgs, ClusterReleaseChannelPtr and ClusterReleaseChannelPtrOutput values.
@@ -9279,7 +9279,7 @@ func (i *clusterReleaseChannelPtrType) ToClusterReleaseChannelPtrOutput() Cluste
 }
 
 func (i *clusterReleaseChannelPtrType) ToClusterReleaseChannelPtrOutputWithContext(ctx context.Context) ClusterReleaseChannelPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterReleaseChannelPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterReleaseChannelOutput).ToClusterReleaseChannelPtrOutput()
 }
 
 type ClusterReleaseChannelOutput struct{ *pulumi.OutputState }
@@ -9405,7 +9405,7 @@ func (i ClusterResourceUsageExportConfigArgs) ToClusterResourceUsageExportConfig
 }
 
 func (i ClusterResourceUsageExportConfigArgs) ToClusterResourceUsageExportConfigPtrOutputWithContext(ctx context.Context) ClusterResourceUsageExportConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterResourceUsageExportConfigOutput).ToClusterResourceUsageExportConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterResourceUsageExportConfigOutput).ToClusterResourceUsageExportConfigPtrOutput()
 }
 
 // ClusterResourceUsageExportConfigPtrInput is an input type that accepts ClusterResourceUsageExportConfigArgs, ClusterResourceUsageExportConfigPtr and ClusterResourceUsageExportConfigPtrOutput values.
@@ -9438,7 +9438,7 @@ func (i *clusterResourceUsageExportConfigPtrType) ToClusterResourceUsageExportCo
 }
 
 func (i *clusterResourceUsageExportConfigPtrType) ToClusterResourceUsageExportConfigPtrOutputWithContext(ctx context.Context) ClusterResourceUsageExportConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterResourceUsageExportConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterResourceUsageExportConfigOutput).ToClusterResourceUsageExportConfigPtrOutput()
 }
 
 type ClusterResourceUsageExportConfigOutput struct{ *pulumi.OutputState }
@@ -9576,7 +9576,7 @@ func (i ClusterResourceUsageExportConfigBigqueryDestinationArgs) ToClusterResour
 }
 
 func (i ClusterResourceUsageExportConfigBigqueryDestinationArgs) ToClusterResourceUsageExportConfigBigqueryDestinationPtrOutputWithContext(ctx context.Context) ClusterResourceUsageExportConfigBigqueryDestinationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterResourceUsageExportConfigBigqueryDestinationOutput).ToClusterResourceUsageExportConfigBigqueryDestinationPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterResourceUsageExportConfigBigqueryDestinationOutput).ToClusterResourceUsageExportConfigBigqueryDestinationPtrOutput()
 }
 
 // ClusterResourceUsageExportConfigBigqueryDestinationPtrInput is an input type that accepts ClusterResourceUsageExportConfigBigqueryDestinationArgs, ClusterResourceUsageExportConfigBigqueryDestinationPtr and ClusterResourceUsageExportConfigBigqueryDestinationPtrOutput values.
@@ -9609,7 +9609,7 @@ func (i *clusterResourceUsageExportConfigBigqueryDestinationPtrType) ToClusterRe
 }
 
 func (i *clusterResourceUsageExportConfigBigqueryDestinationPtrType) ToClusterResourceUsageExportConfigBigqueryDestinationPtrOutputWithContext(ctx context.Context) ClusterResourceUsageExportConfigBigqueryDestinationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterResourceUsageExportConfigBigqueryDestinationPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterResourceUsageExportConfigBigqueryDestinationOutput).ToClusterResourceUsageExportConfigBigqueryDestinationPtrOutput()
 }
 
 type ClusterResourceUsageExportConfigBigqueryDestinationOutput struct{ *pulumi.OutputState }
@@ -9708,7 +9708,7 @@ func (i ClusterVerticalPodAutoscalingArgs) ToClusterVerticalPodAutoscalingPtrOut
 }
 
 func (i ClusterVerticalPodAutoscalingArgs) ToClusterVerticalPodAutoscalingPtrOutputWithContext(ctx context.Context) ClusterVerticalPodAutoscalingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterVerticalPodAutoscalingOutput).ToClusterVerticalPodAutoscalingPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterVerticalPodAutoscalingOutput).ToClusterVerticalPodAutoscalingPtrOutput()
 }
 
 // ClusterVerticalPodAutoscalingPtrInput is an input type that accepts ClusterVerticalPodAutoscalingArgs, ClusterVerticalPodAutoscalingPtr and ClusterVerticalPodAutoscalingPtrOutput values.
@@ -9741,7 +9741,7 @@ func (i *clusterVerticalPodAutoscalingPtrType) ToClusterVerticalPodAutoscalingPt
 }
 
 func (i *clusterVerticalPodAutoscalingPtrType) ToClusterVerticalPodAutoscalingPtrOutputWithContext(ctx context.Context) ClusterVerticalPodAutoscalingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterVerticalPodAutoscalingPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterVerticalPodAutoscalingOutput).ToClusterVerticalPodAutoscalingPtrOutput()
 }
 
 type ClusterVerticalPodAutoscalingOutput struct{ *pulumi.OutputState }
@@ -9841,7 +9841,7 @@ func (i ClusterWorkloadIdentityConfigArgs) ToClusterWorkloadIdentityConfigPtrOut
 }
 
 func (i ClusterWorkloadIdentityConfigArgs) ToClusterWorkloadIdentityConfigPtrOutputWithContext(ctx context.Context) ClusterWorkloadIdentityConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterWorkloadIdentityConfigOutput).ToClusterWorkloadIdentityConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterWorkloadIdentityConfigOutput).ToClusterWorkloadIdentityConfigPtrOutput()
 }
 
 // ClusterWorkloadIdentityConfigPtrInput is an input type that accepts ClusterWorkloadIdentityConfigArgs, ClusterWorkloadIdentityConfigPtr and ClusterWorkloadIdentityConfigPtrOutput values.
@@ -9874,7 +9874,7 @@ func (i *clusterWorkloadIdentityConfigPtrType) ToClusterWorkloadIdentityConfigPt
 }
 
 func (i *clusterWorkloadIdentityConfigPtrType) ToClusterWorkloadIdentityConfigPtrOutputWithContext(ctx context.Context) ClusterWorkloadIdentityConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterWorkloadIdentityConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterWorkloadIdentityConfigOutput).ToClusterWorkloadIdentityConfigPtrOutput()
 }
 
 type ClusterWorkloadIdentityConfigOutput struct{ *pulumi.OutputState }
@@ -9978,7 +9978,7 @@ func (i NodePoolAutoscalingArgs) ToNodePoolAutoscalingPtrOutput() NodePoolAutosc
 }
 
 func (i NodePoolAutoscalingArgs) ToNodePoolAutoscalingPtrOutputWithContext(ctx context.Context) NodePoolAutoscalingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NodePoolAutoscalingOutput).ToNodePoolAutoscalingPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolAutoscalingOutput).ToNodePoolAutoscalingPtrOutput()
 }
 
 // NodePoolAutoscalingPtrInput is an input type that accepts NodePoolAutoscalingArgs, NodePoolAutoscalingPtr and NodePoolAutoscalingPtrOutput values.
@@ -10011,7 +10011,7 @@ func (i *nodePoolAutoscalingPtrType) ToNodePoolAutoscalingPtrOutput() NodePoolAu
 }
 
 func (i *nodePoolAutoscalingPtrType) ToNodePoolAutoscalingPtrOutputWithContext(ctx context.Context) NodePoolAutoscalingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NodePoolAutoscalingPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolAutoscalingOutput).ToNodePoolAutoscalingPtrOutput()
 }
 
 type NodePoolAutoscalingOutput struct{ *pulumi.OutputState }
@@ -10130,7 +10130,7 @@ func (i NodePoolManagementArgs) ToNodePoolManagementPtrOutput() NodePoolManageme
 }
 
 func (i NodePoolManagementArgs) ToNodePoolManagementPtrOutputWithContext(ctx context.Context) NodePoolManagementPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NodePoolManagementOutput).ToNodePoolManagementPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolManagementOutput).ToNodePoolManagementPtrOutput()
 }
 
 // NodePoolManagementPtrInput is an input type that accepts NodePoolManagementArgs, NodePoolManagementPtr and NodePoolManagementPtrOutput values.
@@ -10163,7 +10163,7 @@ func (i *nodePoolManagementPtrType) ToNodePoolManagementPtrOutput() NodePoolMana
 }
 
 func (i *nodePoolManagementPtrType) ToNodePoolManagementPtrOutputWithContext(ctx context.Context) NodePoolManagementPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NodePoolManagementPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolManagementOutput).ToNodePoolManagementPtrOutput()
 }
 
 type NodePoolManagementOutput struct{ *pulumi.OutputState }
@@ -10312,7 +10312,7 @@ func (i NodePoolNodeConfigArgs) ToNodePoolNodeConfigPtrOutput() NodePoolNodeConf
 }
 
 func (i NodePoolNodeConfigArgs) ToNodePoolNodeConfigPtrOutputWithContext(ctx context.Context) NodePoolNodeConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NodePoolNodeConfigOutput).ToNodePoolNodeConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolNodeConfigOutput).ToNodePoolNodeConfigPtrOutput()
 }
 
 // NodePoolNodeConfigPtrInput is an input type that accepts NodePoolNodeConfigArgs, NodePoolNodeConfigPtr and NodePoolNodeConfigPtrOutput values.
@@ -10345,7 +10345,7 @@ func (i *nodePoolNodeConfigPtrType) ToNodePoolNodeConfigPtrOutput() NodePoolNode
 }
 
 func (i *nodePoolNodeConfigPtrType) ToNodePoolNodeConfigPtrOutputWithContext(ctx context.Context) NodePoolNodeConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NodePoolNodeConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolNodeConfigOutput).ToNodePoolNodeConfigPtrOutput()
 }
 
 type NodePoolNodeConfigOutput struct{ *pulumi.OutputState }
@@ -10789,7 +10789,7 @@ func (i NodePoolNodeConfigKubeletConfigArgs) ToNodePoolNodeConfigKubeletConfigPt
 }
 
 func (i NodePoolNodeConfigKubeletConfigArgs) ToNodePoolNodeConfigKubeletConfigPtrOutputWithContext(ctx context.Context) NodePoolNodeConfigKubeletConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NodePoolNodeConfigKubeletConfigOutput).ToNodePoolNodeConfigKubeletConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolNodeConfigKubeletConfigOutput).ToNodePoolNodeConfigKubeletConfigPtrOutput()
 }
 
 // NodePoolNodeConfigKubeletConfigPtrInput is an input type that accepts NodePoolNodeConfigKubeletConfigArgs, NodePoolNodeConfigKubeletConfigPtr and NodePoolNodeConfigKubeletConfigPtrOutput values.
@@ -10822,7 +10822,7 @@ func (i *nodePoolNodeConfigKubeletConfigPtrType) ToNodePoolNodeConfigKubeletConf
 }
 
 func (i *nodePoolNodeConfigKubeletConfigPtrType) ToNodePoolNodeConfigKubeletConfigPtrOutputWithContext(ctx context.Context) NodePoolNodeConfigKubeletConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NodePoolNodeConfigKubeletConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolNodeConfigKubeletConfigOutput).ToNodePoolNodeConfigKubeletConfigPtrOutput()
 }
 
 type NodePoolNodeConfigKubeletConfigOutput struct{ *pulumi.OutputState }
@@ -10941,7 +10941,7 @@ func (i NodePoolNodeConfigLinuxNodeConfigArgs) ToNodePoolNodeConfigLinuxNodeConf
 }
 
 func (i NodePoolNodeConfigLinuxNodeConfigArgs) ToNodePoolNodeConfigLinuxNodeConfigPtrOutputWithContext(ctx context.Context) NodePoolNodeConfigLinuxNodeConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NodePoolNodeConfigLinuxNodeConfigOutput).ToNodePoolNodeConfigLinuxNodeConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolNodeConfigLinuxNodeConfigOutput).ToNodePoolNodeConfigLinuxNodeConfigPtrOutput()
 }
 
 // NodePoolNodeConfigLinuxNodeConfigPtrInput is an input type that accepts NodePoolNodeConfigLinuxNodeConfigArgs, NodePoolNodeConfigLinuxNodeConfigPtr and NodePoolNodeConfigLinuxNodeConfigPtrOutput values.
@@ -10974,7 +10974,7 @@ func (i *nodePoolNodeConfigLinuxNodeConfigPtrType) ToNodePoolNodeConfigLinuxNode
 }
 
 func (i *nodePoolNodeConfigLinuxNodeConfigPtrType) ToNodePoolNodeConfigLinuxNodeConfigPtrOutputWithContext(ctx context.Context) NodePoolNodeConfigLinuxNodeConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NodePoolNodeConfigLinuxNodeConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolNodeConfigLinuxNodeConfigOutput).ToNodePoolNodeConfigLinuxNodeConfigPtrOutput()
 }
 
 type NodePoolNodeConfigLinuxNodeConfigOutput struct{ *pulumi.OutputState }
@@ -11067,7 +11067,7 @@ func (i NodePoolNodeConfigSandboxConfigArgs) ToNodePoolNodeConfigSandboxConfigPt
 }
 
 func (i NodePoolNodeConfigSandboxConfigArgs) ToNodePoolNodeConfigSandboxConfigPtrOutputWithContext(ctx context.Context) NodePoolNodeConfigSandboxConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NodePoolNodeConfigSandboxConfigOutput).ToNodePoolNodeConfigSandboxConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolNodeConfigSandboxConfigOutput).ToNodePoolNodeConfigSandboxConfigPtrOutput()
 }
 
 // NodePoolNodeConfigSandboxConfigPtrInput is an input type that accepts NodePoolNodeConfigSandboxConfigArgs, NodePoolNodeConfigSandboxConfigPtr and NodePoolNodeConfigSandboxConfigPtrOutput values.
@@ -11100,7 +11100,7 @@ func (i *nodePoolNodeConfigSandboxConfigPtrType) ToNodePoolNodeConfigSandboxConf
 }
 
 func (i *nodePoolNodeConfigSandboxConfigPtrType) ToNodePoolNodeConfigSandboxConfigPtrOutputWithContext(ctx context.Context) NodePoolNodeConfigSandboxConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NodePoolNodeConfigSandboxConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolNodeConfigSandboxConfigOutput).ToNodePoolNodeConfigSandboxConfigPtrOutput()
 }
 
 type NodePoolNodeConfigSandboxConfigOutput struct{ *pulumi.OutputState }
@@ -11195,7 +11195,7 @@ func (i NodePoolNodeConfigShieldedInstanceConfigArgs) ToNodePoolNodeConfigShield
 }
 
 func (i NodePoolNodeConfigShieldedInstanceConfigArgs) ToNodePoolNodeConfigShieldedInstanceConfigPtrOutputWithContext(ctx context.Context) NodePoolNodeConfigShieldedInstanceConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NodePoolNodeConfigShieldedInstanceConfigOutput).ToNodePoolNodeConfigShieldedInstanceConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolNodeConfigShieldedInstanceConfigOutput).ToNodePoolNodeConfigShieldedInstanceConfigPtrOutput()
 }
 
 // NodePoolNodeConfigShieldedInstanceConfigPtrInput is an input type that accepts NodePoolNodeConfigShieldedInstanceConfigArgs, NodePoolNodeConfigShieldedInstanceConfigPtr and NodePoolNodeConfigShieldedInstanceConfigPtrOutput values.
@@ -11228,7 +11228,7 @@ func (i *nodePoolNodeConfigShieldedInstanceConfigPtrType) ToNodePoolNodeConfigSh
 }
 
 func (i *nodePoolNodeConfigShieldedInstanceConfigPtrType) ToNodePoolNodeConfigShieldedInstanceConfigPtrOutputWithContext(ctx context.Context) NodePoolNodeConfigShieldedInstanceConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NodePoolNodeConfigShieldedInstanceConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolNodeConfigShieldedInstanceConfigOutput).ToNodePoolNodeConfigShieldedInstanceConfigPtrOutput()
 }
 
 type NodePoolNodeConfigShieldedInstanceConfigOutput struct{ *pulumi.OutputState }
@@ -11440,7 +11440,7 @@ func (i NodePoolNodeConfigWorkloadMetadataConfigArgs) ToNodePoolNodeConfigWorklo
 }
 
 func (i NodePoolNodeConfigWorkloadMetadataConfigArgs) ToNodePoolNodeConfigWorkloadMetadataConfigPtrOutputWithContext(ctx context.Context) NodePoolNodeConfigWorkloadMetadataConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NodePoolNodeConfigWorkloadMetadataConfigOutput).ToNodePoolNodeConfigWorkloadMetadataConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolNodeConfigWorkloadMetadataConfigOutput).ToNodePoolNodeConfigWorkloadMetadataConfigPtrOutput()
 }
 
 // NodePoolNodeConfigWorkloadMetadataConfigPtrInput is an input type that accepts NodePoolNodeConfigWorkloadMetadataConfigArgs, NodePoolNodeConfigWorkloadMetadataConfigPtr and NodePoolNodeConfigWorkloadMetadataConfigPtrOutput values.
@@ -11473,7 +11473,7 @@ func (i *nodePoolNodeConfigWorkloadMetadataConfigPtrType) ToNodePoolNodeConfigWo
 }
 
 func (i *nodePoolNodeConfigWorkloadMetadataConfigPtrType) ToNodePoolNodeConfigWorkloadMetadataConfigPtrOutputWithContext(ctx context.Context) NodePoolNodeConfigWorkloadMetadataConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NodePoolNodeConfigWorkloadMetadataConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolNodeConfigWorkloadMetadataConfigOutput).ToNodePoolNodeConfigWorkloadMetadataConfigPtrOutput()
 }
 
 type NodePoolNodeConfigWorkloadMetadataConfigOutput struct{ *pulumi.OutputState }
@@ -11580,7 +11580,7 @@ func (i NodePoolUpgradeSettingsArgs) ToNodePoolUpgradeSettingsPtrOutput() NodePo
 }
 
 func (i NodePoolUpgradeSettingsArgs) ToNodePoolUpgradeSettingsPtrOutputWithContext(ctx context.Context) NodePoolUpgradeSettingsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NodePoolUpgradeSettingsOutput).ToNodePoolUpgradeSettingsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolUpgradeSettingsOutput).ToNodePoolUpgradeSettingsPtrOutput()
 }
 
 // NodePoolUpgradeSettingsPtrInput is an input type that accepts NodePoolUpgradeSettingsArgs, NodePoolUpgradeSettingsPtr and NodePoolUpgradeSettingsPtrOutput values.
@@ -11613,7 +11613,7 @@ func (i *nodePoolUpgradeSettingsPtrType) ToNodePoolUpgradeSettingsPtrOutput() No
 }
 
 func (i *nodePoolUpgradeSettingsPtrType) ToNodePoolUpgradeSettingsPtrOutputWithContext(ctx context.Context) NodePoolUpgradeSettingsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NodePoolUpgradeSettingsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolUpgradeSettingsOutput).ToNodePoolUpgradeSettingsPtrOutput()
 }
 
 type NodePoolUpgradeSettingsOutput struct{ *pulumi.OutputState }

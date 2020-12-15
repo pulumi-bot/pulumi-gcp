@@ -476,7 +476,7 @@ func (i EntryGcsFilesetSpecArgs) ToEntryGcsFilesetSpecPtrOutput() EntryGcsFilese
 }
 
 func (i EntryGcsFilesetSpecArgs) ToEntryGcsFilesetSpecPtrOutputWithContext(ctx context.Context) EntryGcsFilesetSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EntryGcsFilesetSpecOutput).ToEntryGcsFilesetSpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(EntryGcsFilesetSpecOutput).ToEntryGcsFilesetSpecPtrOutput()
 }
 
 // EntryGcsFilesetSpecPtrInput is an input type that accepts EntryGcsFilesetSpecArgs, EntryGcsFilesetSpecPtr and EntryGcsFilesetSpecPtrOutput values.
@@ -509,7 +509,7 @@ func (i *entryGcsFilesetSpecPtrType) ToEntryGcsFilesetSpecPtrOutput() EntryGcsFi
 }
 
 func (i *entryGcsFilesetSpecPtrType) ToEntryGcsFilesetSpecPtrOutputWithContext(ctx context.Context) EntryGcsFilesetSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EntryGcsFilesetSpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(EntryGcsFilesetSpecOutput).ToEntryGcsFilesetSpecPtrOutput()
 }
 
 type EntryGcsFilesetSpecOutput struct{ *pulumi.OutputState }
@@ -760,7 +760,7 @@ func (i EntryGroupIamBindingConditionArgs) ToEntryGroupIamBindingConditionPtrOut
 }
 
 func (i EntryGroupIamBindingConditionArgs) ToEntryGroupIamBindingConditionPtrOutputWithContext(ctx context.Context) EntryGroupIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EntryGroupIamBindingConditionOutput).ToEntryGroupIamBindingConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(EntryGroupIamBindingConditionOutput).ToEntryGroupIamBindingConditionPtrOutput()
 }
 
 // EntryGroupIamBindingConditionPtrInput is an input type that accepts EntryGroupIamBindingConditionArgs, EntryGroupIamBindingConditionPtr and EntryGroupIamBindingConditionPtrOutput values.
@@ -793,7 +793,7 @@ func (i *entryGroupIamBindingConditionPtrType) ToEntryGroupIamBindingConditionPt
 }
 
 func (i *entryGroupIamBindingConditionPtrType) ToEntryGroupIamBindingConditionPtrOutputWithContext(ctx context.Context) EntryGroupIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EntryGroupIamBindingConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(EntryGroupIamBindingConditionOutput).ToEntryGroupIamBindingConditionPtrOutput()
 }
 
 type EntryGroupIamBindingConditionOutput struct{ *pulumi.OutputState }
@@ -916,7 +916,7 @@ func (i EntryGroupIamMemberConditionArgs) ToEntryGroupIamMemberConditionPtrOutpu
 }
 
 func (i EntryGroupIamMemberConditionArgs) ToEntryGroupIamMemberConditionPtrOutputWithContext(ctx context.Context) EntryGroupIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EntryGroupIamMemberConditionOutput).ToEntryGroupIamMemberConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(EntryGroupIamMemberConditionOutput).ToEntryGroupIamMemberConditionPtrOutput()
 }
 
 // EntryGroupIamMemberConditionPtrInput is an input type that accepts EntryGroupIamMemberConditionArgs, EntryGroupIamMemberConditionPtr and EntryGroupIamMemberConditionPtrOutput values.
@@ -949,7 +949,7 @@ func (i *entryGroupIamMemberConditionPtrType) ToEntryGroupIamMemberConditionPtrO
 }
 
 func (i *entryGroupIamMemberConditionPtrType) ToEntryGroupIamMemberConditionPtrOutputWithContext(ctx context.Context) EntryGroupIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EntryGroupIamMemberConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(EntryGroupIamMemberConditionOutput).ToEntryGroupIamMemberConditionPtrOutput()
 }
 
 type EntryGroupIamMemberConditionOutput struct{ *pulumi.OutputState }
@@ -1072,7 +1072,7 @@ func (i PolicyTagIamBindingConditionArgs) ToPolicyTagIamBindingConditionPtrOutpu
 }
 
 func (i PolicyTagIamBindingConditionArgs) ToPolicyTagIamBindingConditionPtrOutputWithContext(ctx context.Context) PolicyTagIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PolicyTagIamBindingConditionOutput).ToPolicyTagIamBindingConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PolicyTagIamBindingConditionOutput).ToPolicyTagIamBindingConditionPtrOutput()
 }
 
 // PolicyTagIamBindingConditionPtrInput is an input type that accepts PolicyTagIamBindingConditionArgs, PolicyTagIamBindingConditionPtr and PolicyTagIamBindingConditionPtrOutput values.
@@ -1105,7 +1105,7 @@ func (i *policyTagIamBindingConditionPtrType) ToPolicyTagIamBindingConditionPtrO
 }
 
 func (i *policyTagIamBindingConditionPtrType) ToPolicyTagIamBindingConditionPtrOutputWithContext(ctx context.Context) PolicyTagIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PolicyTagIamBindingConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PolicyTagIamBindingConditionOutput).ToPolicyTagIamBindingConditionPtrOutput()
 }
 
 type PolicyTagIamBindingConditionOutput struct{ *pulumi.OutputState }
@@ -1228,7 +1228,7 @@ func (i PolicyTagIamMemberConditionArgs) ToPolicyTagIamMemberConditionPtrOutput(
 }
 
 func (i PolicyTagIamMemberConditionArgs) ToPolicyTagIamMemberConditionPtrOutputWithContext(ctx context.Context) PolicyTagIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PolicyTagIamMemberConditionOutput).ToPolicyTagIamMemberConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PolicyTagIamMemberConditionOutput).ToPolicyTagIamMemberConditionPtrOutput()
 }
 
 // PolicyTagIamMemberConditionPtrInput is an input type that accepts PolicyTagIamMemberConditionArgs, PolicyTagIamMemberConditionPtr and PolicyTagIamMemberConditionPtrOutput values.
@@ -1261,7 +1261,7 @@ func (i *policyTagIamMemberConditionPtrType) ToPolicyTagIamMemberConditionPtrOut
 }
 
 func (i *policyTagIamMemberConditionPtrType) ToPolicyTagIamMemberConditionPtrOutputWithContext(ctx context.Context) PolicyTagIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PolicyTagIamMemberConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PolicyTagIamMemberConditionOutput).ToPolicyTagIamMemberConditionPtrOutput()
 }
 
 type PolicyTagIamMemberConditionOutput struct{ *pulumi.OutputState }
@@ -1794,7 +1794,7 @@ func (i TagTemplateFieldTypeEnumTypeArgs) ToTagTemplateFieldTypeEnumTypePtrOutpu
 }
 
 func (i TagTemplateFieldTypeEnumTypeArgs) ToTagTemplateFieldTypeEnumTypePtrOutputWithContext(ctx context.Context) TagTemplateFieldTypeEnumTypePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TagTemplateFieldTypeEnumTypeOutput).ToTagTemplateFieldTypeEnumTypePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TagTemplateFieldTypeEnumTypeOutput).ToTagTemplateFieldTypeEnumTypePtrOutput()
 }
 
 // TagTemplateFieldTypeEnumTypePtrInput is an input type that accepts TagTemplateFieldTypeEnumTypeArgs, TagTemplateFieldTypeEnumTypePtr and TagTemplateFieldTypeEnumTypePtrOutput values.
@@ -1827,7 +1827,7 @@ func (i *tagTemplateFieldTypeEnumTypePtrType) ToTagTemplateFieldTypeEnumTypePtrO
 }
 
 func (i *tagTemplateFieldTypeEnumTypePtrType) ToTagTemplateFieldTypeEnumTypePtrOutputWithContext(ctx context.Context) TagTemplateFieldTypeEnumTypePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TagTemplateFieldTypeEnumTypePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TagTemplateFieldTypeEnumTypeOutput).ToTagTemplateFieldTypeEnumTypePtrOutput()
 }
 
 type TagTemplateFieldTypeEnumTypeOutput struct{ *pulumi.OutputState }
@@ -2036,7 +2036,7 @@ func (i TaxonomyIamBindingConditionArgs) ToTaxonomyIamBindingConditionPtrOutput(
 }
 
 func (i TaxonomyIamBindingConditionArgs) ToTaxonomyIamBindingConditionPtrOutputWithContext(ctx context.Context) TaxonomyIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TaxonomyIamBindingConditionOutput).ToTaxonomyIamBindingConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TaxonomyIamBindingConditionOutput).ToTaxonomyIamBindingConditionPtrOutput()
 }
 
 // TaxonomyIamBindingConditionPtrInput is an input type that accepts TaxonomyIamBindingConditionArgs, TaxonomyIamBindingConditionPtr and TaxonomyIamBindingConditionPtrOutput values.
@@ -2069,7 +2069,7 @@ func (i *taxonomyIamBindingConditionPtrType) ToTaxonomyIamBindingConditionPtrOut
 }
 
 func (i *taxonomyIamBindingConditionPtrType) ToTaxonomyIamBindingConditionPtrOutputWithContext(ctx context.Context) TaxonomyIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TaxonomyIamBindingConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TaxonomyIamBindingConditionOutput).ToTaxonomyIamBindingConditionPtrOutput()
 }
 
 type TaxonomyIamBindingConditionOutput struct{ *pulumi.OutputState }
@@ -2192,7 +2192,7 @@ func (i TaxonomyIamMemberConditionArgs) ToTaxonomyIamMemberConditionPtrOutput() 
 }
 
 func (i TaxonomyIamMemberConditionArgs) ToTaxonomyIamMemberConditionPtrOutputWithContext(ctx context.Context) TaxonomyIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TaxonomyIamMemberConditionOutput).ToTaxonomyIamMemberConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TaxonomyIamMemberConditionOutput).ToTaxonomyIamMemberConditionPtrOutput()
 }
 
 // TaxonomyIamMemberConditionPtrInput is an input type that accepts TaxonomyIamMemberConditionArgs, TaxonomyIamMemberConditionPtr and TaxonomyIamMemberConditionPtrOutput values.
@@ -2225,7 +2225,7 @@ func (i *taxonomyIamMemberConditionPtrType) ToTaxonomyIamMemberConditionPtrOutpu
 }
 
 func (i *taxonomyIamMemberConditionPtrType) ToTaxonomyIamMemberConditionPtrOutputWithContext(ctx context.Context) TaxonomyIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TaxonomyIamMemberConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TaxonomyIamMemberConditionOutput).ToTaxonomyIamMemberConditionPtrOutput()
 }
 
 type TaxonomyIamMemberConditionOutput struct{ *pulumi.OutputState }

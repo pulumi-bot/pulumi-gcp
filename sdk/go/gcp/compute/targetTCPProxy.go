@@ -262,16 +262,31 @@ type TargetTCPProxyInput interface {
 	ToTargetTCPProxyOutputWithContext(ctx context.Context) TargetTCPProxyOutput
 }
 
-func (TargetTCPProxy) ElementType() reflect.Type {
-	return reflect.TypeOf((*TargetTCPProxy)(nil)).Elem()
+func (*TargetTCPProxy) ElementType() reflect.Type {
+	return reflect.TypeOf((*TargetTCPProxy)(nil))
 }
 
-func (i TargetTCPProxy) ToTargetTCPProxyOutput() TargetTCPProxyOutput {
+func (i *TargetTCPProxy) ToTargetTCPProxyOutput() TargetTCPProxyOutput {
 	return i.ToTargetTCPProxyOutputWithContext(context.Background())
 }
 
-func (i TargetTCPProxy) ToTargetTCPProxyOutputWithContext(ctx context.Context) TargetTCPProxyOutput {
+func (i *TargetTCPProxy) ToTargetTCPProxyOutputWithContext(ctx context.Context) TargetTCPProxyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TargetTCPProxyOutput)
+}
+
+func (i *TargetTCPProxy) ToTargetTCPProxyPtrOutput() TargetTCPProxyPtrOutput {
+	return i.ToTargetTCPProxyPtrOutputWithContext(context.Background())
+}
+
+func (i *TargetTCPProxy) ToTargetTCPProxyPtrOutputWithContext(ctx context.Context) TargetTCPProxyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TargetTCPProxyPtrOutput)
+}
+
+type TargetTCPProxyPtrInput interface {
+	pulumi.Input
+
+	ToTargetTCPProxyPtrOutput() TargetTCPProxyPtrOutput
+	ToTargetTCPProxyPtrOutputWithContext(ctx context.Context) TargetTCPProxyPtrOutput
 }
 
 type TargetTCPProxyOutput struct {
@@ -279,7 +294,7 @@ type TargetTCPProxyOutput struct {
 }
 
 func (TargetTCPProxyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*TargetTCPProxyOutput)(nil)).Elem()
+	return reflect.TypeOf((*TargetTCPProxy)(nil))
 }
 
 func (o TargetTCPProxyOutput) ToTargetTCPProxyOutput() TargetTCPProxyOutput {
@@ -290,6 +305,23 @@ func (o TargetTCPProxyOutput) ToTargetTCPProxyOutputWithContext(ctx context.Cont
 	return o
 }
 
+type TargetTCPProxyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (TargetTCPProxyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TargetTCPProxy)(nil))
+}
+
+func (o TargetTCPProxyPtrOutput) ToTargetTCPProxyPtrOutput() TargetTCPProxyPtrOutput {
+	return o
+}
+
+func (o TargetTCPProxyPtrOutput) ToTargetTCPProxyPtrOutputWithContext(ctx context.Context) TargetTCPProxyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(TargetTCPProxyOutput{})
+	pulumi.RegisterOutputType(TargetTCPProxyPtrOutput{})
 }

@@ -268,16 +268,31 @@ type TableIamMemberInput interface {
 	ToTableIamMemberOutputWithContext(ctx context.Context) TableIamMemberOutput
 }
 
-func (TableIamMember) ElementType() reflect.Type {
-	return reflect.TypeOf((*TableIamMember)(nil)).Elem()
+func (*TableIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*TableIamMember)(nil))
 }
 
-func (i TableIamMember) ToTableIamMemberOutput() TableIamMemberOutput {
+func (i *TableIamMember) ToTableIamMemberOutput() TableIamMemberOutput {
 	return i.ToTableIamMemberOutputWithContext(context.Background())
 }
 
-func (i TableIamMember) ToTableIamMemberOutputWithContext(ctx context.Context) TableIamMemberOutput {
+func (i *TableIamMember) ToTableIamMemberOutputWithContext(ctx context.Context) TableIamMemberOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TableIamMemberOutput)
+}
+
+func (i *TableIamMember) ToTableIamMemberPtrOutput() TableIamMemberPtrOutput {
+	return i.ToTableIamMemberPtrOutputWithContext(context.Background())
+}
+
+func (i *TableIamMember) ToTableIamMemberPtrOutputWithContext(ctx context.Context) TableIamMemberPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TableIamMemberPtrOutput)
+}
+
+type TableIamMemberPtrInput interface {
+	pulumi.Input
+
+	ToTableIamMemberPtrOutput() TableIamMemberPtrOutput
+	ToTableIamMemberPtrOutputWithContext(ctx context.Context) TableIamMemberPtrOutput
 }
 
 type TableIamMemberOutput struct {
@@ -285,7 +300,7 @@ type TableIamMemberOutput struct {
 }
 
 func (TableIamMemberOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*TableIamMemberOutput)(nil)).Elem()
+	return reflect.TypeOf((*TableIamMember)(nil))
 }
 
 func (o TableIamMemberOutput) ToTableIamMemberOutput() TableIamMemberOutput {
@@ -296,6 +311,23 @@ func (o TableIamMemberOutput) ToTableIamMemberOutputWithContext(ctx context.Cont
 	return o
 }
 
+type TableIamMemberPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (TableIamMemberPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TableIamMember)(nil))
+}
+
+func (o TableIamMemberPtrOutput) ToTableIamMemberPtrOutput() TableIamMemberPtrOutput {
+	return o
+}
+
+func (o TableIamMemberPtrOutput) ToTableIamMemberPtrOutputWithContext(ctx context.Context) TableIamMemberPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(TableIamMemberOutput{})
+	pulumi.RegisterOutputType(TableIamMemberPtrOutput{})
 }

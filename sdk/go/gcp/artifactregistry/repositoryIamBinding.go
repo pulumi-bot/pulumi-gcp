@@ -286,16 +286,31 @@ type RepositoryIamBindingInput interface {
 	ToRepositoryIamBindingOutputWithContext(ctx context.Context) RepositoryIamBindingOutput
 }
 
-func (RepositoryIamBinding) ElementType() reflect.Type {
-	return reflect.TypeOf((*RepositoryIamBinding)(nil)).Elem()
+func (*RepositoryIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*RepositoryIamBinding)(nil))
 }
 
-func (i RepositoryIamBinding) ToRepositoryIamBindingOutput() RepositoryIamBindingOutput {
+func (i *RepositoryIamBinding) ToRepositoryIamBindingOutput() RepositoryIamBindingOutput {
 	return i.ToRepositoryIamBindingOutputWithContext(context.Background())
 }
 
-func (i RepositoryIamBinding) ToRepositoryIamBindingOutputWithContext(ctx context.Context) RepositoryIamBindingOutput {
+func (i *RepositoryIamBinding) ToRepositoryIamBindingOutputWithContext(ctx context.Context) RepositoryIamBindingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RepositoryIamBindingOutput)
+}
+
+func (i *RepositoryIamBinding) ToRepositoryIamBindingPtrOutput() RepositoryIamBindingPtrOutput {
+	return i.ToRepositoryIamBindingPtrOutputWithContext(context.Background())
+}
+
+func (i *RepositoryIamBinding) ToRepositoryIamBindingPtrOutputWithContext(ctx context.Context) RepositoryIamBindingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RepositoryIamBindingPtrOutput)
+}
+
+type RepositoryIamBindingPtrInput interface {
+	pulumi.Input
+
+	ToRepositoryIamBindingPtrOutput() RepositoryIamBindingPtrOutput
+	ToRepositoryIamBindingPtrOutputWithContext(ctx context.Context) RepositoryIamBindingPtrOutput
 }
 
 type RepositoryIamBindingOutput struct {
@@ -303,7 +318,7 @@ type RepositoryIamBindingOutput struct {
 }
 
 func (RepositoryIamBindingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RepositoryIamBindingOutput)(nil)).Elem()
+	return reflect.TypeOf((*RepositoryIamBinding)(nil))
 }
 
 func (o RepositoryIamBindingOutput) ToRepositoryIamBindingOutput() RepositoryIamBindingOutput {
@@ -314,6 +329,23 @@ func (o RepositoryIamBindingOutput) ToRepositoryIamBindingOutputWithContext(ctx 
 	return o
 }
 
+type RepositoryIamBindingPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (RepositoryIamBindingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RepositoryIamBinding)(nil))
+}
+
+func (o RepositoryIamBindingPtrOutput) ToRepositoryIamBindingPtrOutput() RepositoryIamBindingPtrOutput {
+	return o
+}
+
+func (o RepositoryIamBindingPtrOutput) ToRepositoryIamBindingPtrOutputWithContext(ctx context.Context) RepositoryIamBindingPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(RepositoryIamBindingOutput{})
+	pulumi.RegisterOutputType(RepositoryIamBindingPtrOutput{})
 }

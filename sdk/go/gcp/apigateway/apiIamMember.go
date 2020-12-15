@@ -160,16 +160,31 @@ type ApiIamMemberInput interface {
 	ToApiIamMemberOutputWithContext(ctx context.Context) ApiIamMemberOutput
 }
 
-func (ApiIamMember) ElementType() reflect.Type {
-	return reflect.TypeOf((*ApiIamMember)(nil)).Elem()
+func (*ApiIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*ApiIamMember)(nil))
 }
 
-func (i ApiIamMember) ToApiIamMemberOutput() ApiIamMemberOutput {
+func (i *ApiIamMember) ToApiIamMemberOutput() ApiIamMemberOutput {
 	return i.ToApiIamMemberOutputWithContext(context.Background())
 }
 
-func (i ApiIamMember) ToApiIamMemberOutputWithContext(ctx context.Context) ApiIamMemberOutput {
+func (i *ApiIamMember) ToApiIamMemberOutputWithContext(ctx context.Context) ApiIamMemberOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ApiIamMemberOutput)
+}
+
+func (i *ApiIamMember) ToApiIamMemberPtrOutput() ApiIamMemberPtrOutput {
+	return i.ToApiIamMemberPtrOutputWithContext(context.Background())
+}
+
+func (i *ApiIamMember) ToApiIamMemberPtrOutputWithContext(ctx context.Context) ApiIamMemberPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApiIamMemberPtrOutput)
+}
+
+type ApiIamMemberPtrInput interface {
+	pulumi.Input
+
+	ToApiIamMemberPtrOutput() ApiIamMemberPtrOutput
+	ToApiIamMemberPtrOutputWithContext(ctx context.Context) ApiIamMemberPtrOutput
 }
 
 type ApiIamMemberOutput struct {
@@ -177,7 +192,7 @@ type ApiIamMemberOutput struct {
 }
 
 func (ApiIamMemberOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ApiIamMemberOutput)(nil)).Elem()
+	return reflect.TypeOf((*ApiIamMember)(nil))
 }
 
 func (o ApiIamMemberOutput) ToApiIamMemberOutput() ApiIamMemberOutput {
@@ -188,6 +203,23 @@ func (o ApiIamMemberOutput) ToApiIamMemberOutputWithContext(ctx context.Context)
 	return o
 }
 
+type ApiIamMemberPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ApiIamMemberPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ApiIamMember)(nil))
+}
+
+func (o ApiIamMemberPtrOutput) ToApiIamMemberPtrOutput() ApiIamMemberPtrOutput {
+	return o
+}
+
+func (o ApiIamMemberPtrOutput) ToApiIamMemberPtrOutputWithContext(ctx context.Context) ApiIamMemberPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ApiIamMemberOutput{})
+	pulumi.RegisterOutputType(ApiIamMemberPtrOutput{})
 }

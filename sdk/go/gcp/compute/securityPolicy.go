@@ -207,16 +207,31 @@ type SecurityPolicyInput interface {
 	ToSecurityPolicyOutputWithContext(ctx context.Context) SecurityPolicyOutput
 }
 
-func (SecurityPolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecurityPolicy)(nil)).Elem()
+func (*SecurityPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecurityPolicy)(nil))
 }
 
-func (i SecurityPolicy) ToSecurityPolicyOutput() SecurityPolicyOutput {
+func (i *SecurityPolicy) ToSecurityPolicyOutput() SecurityPolicyOutput {
 	return i.ToSecurityPolicyOutputWithContext(context.Background())
 }
 
-func (i SecurityPolicy) ToSecurityPolicyOutputWithContext(ctx context.Context) SecurityPolicyOutput {
+func (i *SecurityPolicy) ToSecurityPolicyOutputWithContext(ctx context.Context) SecurityPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecurityPolicyOutput)
+}
+
+func (i *SecurityPolicy) ToSecurityPolicyPtrOutput() SecurityPolicyPtrOutput {
+	return i.ToSecurityPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i *SecurityPolicy) ToSecurityPolicyPtrOutputWithContext(ctx context.Context) SecurityPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityPolicyPtrOutput)
+}
+
+type SecurityPolicyPtrInput interface {
+	pulumi.Input
+
+	ToSecurityPolicyPtrOutput() SecurityPolicyPtrOutput
+	ToSecurityPolicyPtrOutputWithContext(ctx context.Context) SecurityPolicyPtrOutput
 }
 
 type SecurityPolicyOutput struct {
@@ -224,7 +239,7 @@ type SecurityPolicyOutput struct {
 }
 
 func (SecurityPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecurityPolicyOutput)(nil)).Elem()
+	return reflect.TypeOf((*SecurityPolicy)(nil))
 }
 
 func (o SecurityPolicyOutput) ToSecurityPolicyOutput() SecurityPolicyOutput {
@@ -235,6 +250,23 @@ func (o SecurityPolicyOutput) ToSecurityPolicyOutputWithContext(ctx context.Cont
 	return o
 }
 
+type SecurityPolicyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (SecurityPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecurityPolicy)(nil))
+}
+
+func (o SecurityPolicyPtrOutput) ToSecurityPolicyPtrOutput() SecurityPolicyPtrOutput {
+	return o
+}
+
+func (o SecurityPolicyPtrOutput) ToSecurityPolicyPtrOutputWithContext(ctx context.Context) SecurityPolicyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(SecurityPolicyOutput{})
+	pulumi.RegisterOutputType(SecurityPolicyPtrOutput{})
 }

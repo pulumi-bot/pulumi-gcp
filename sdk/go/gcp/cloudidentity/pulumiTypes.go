@@ -72,7 +72,7 @@ func (i GroupGroupKeyArgs) ToGroupGroupKeyPtrOutput() GroupGroupKeyPtrOutput {
 }
 
 func (i GroupGroupKeyArgs) ToGroupGroupKeyPtrOutputWithContext(ctx context.Context) GroupGroupKeyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GroupGroupKeyOutput).ToGroupGroupKeyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(GroupGroupKeyOutput).ToGroupGroupKeyPtrOutput()
 }
 
 // GroupGroupKeyPtrInput is an input type that accepts GroupGroupKeyArgs, GroupGroupKeyPtr and GroupGroupKeyPtrOutput values.
@@ -105,7 +105,7 @@ func (i *groupGroupKeyPtrType) ToGroupGroupKeyPtrOutput() GroupGroupKeyPtrOutput
 }
 
 func (i *groupGroupKeyPtrType) ToGroupGroupKeyPtrOutputWithContext(ctx context.Context) GroupGroupKeyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GroupGroupKeyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(GroupGroupKeyOutput).ToGroupGroupKeyPtrOutput()
 }
 
 type GroupGroupKeyOutput struct{ *pulumi.OutputState }
@@ -262,7 +262,7 @@ func (i GroupMembershipMemberKeyArgs) ToGroupMembershipMemberKeyPtrOutput() Grou
 }
 
 func (i GroupMembershipMemberKeyArgs) ToGroupMembershipMemberKeyPtrOutputWithContext(ctx context.Context) GroupMembershipMemberKeyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GroupMembershipMemberKeyOutput).ToGroupMembershipMemberKeyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(GroupMembershipMemberKeyOutput).ToGroupMembershipMemberKeyPtrOutput()
 }
 
 // GroupMembershipMemberKeyPtrInput is an input type that accepts GroupMembershipMemberKeyArgs, GroupMembershipMemberKeyPtr and GroupMembershipMemberKeyPtrOutput values.
@@ -295,7 +295,7 @@ func (i *groupMembershipMemberKeyPtrType) ToGroupMembershipMemberKeyPtrOutput() 
 }
 
 func (i *groupMembershipMemberKeyPtrType) ToGroupMembershipMemberKeyPtrOutputWithContext(ctx context.Context) GroupMembershipMemberKeyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GroupMembershipMemberKeyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(GroupMembershipMemberKeyOutput).ToGroupMembershipMemberKeyPtrOutput()
 }
 
 type GroupMembershipMemberKeyOutput struct{ *pulumi.OutputState }
@@ -452,7 +452,7 @@ func (i GroupMembershipPreferredMemberKeyArgs) ToGroupMembershipPreferredMemberK
 }
 
 func (i GroupMembershipPreferredMemberKeyArgs) ToGroupMembershipPreferredMemberKeyPtrOutputWithContext(ctx context.Context) GroupMembershipPreferredMemberKeyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GroupMembershipPreferredMemberKeyOutput).ToGroupMembershipPreferredMemberKeyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(GroupMembershipPreferredMemberKeyOutput).ToGroupMembershipPreferredMemberKeyPtrOutput()
 }
 
 // GroupMembershipPreferredMemberKeyPtrInput is an input type that accepts GroupMembershipPreferredMemberKeyArgs, GroupMembershipPreferredMemberKeyPtr and GroupMembershipPreferredMemberKeyPtrOutput values.
@@ -485,7 +485,7 @@ func (i *groupMembershipPreferredMemberKeyPtrType) ToGroupMembershipPreferredMem
 }
 
 func (i *groupMembershipPreferredMemberKeyPtrType) ToGroupMembershipPreferredMemberKeyPtrOutputWithContext(ctx context.Context) GroupMembershipPreferredMemberKeyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GroupMembershipPreferredMemberKeyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(GroupMembershipPreferredMemberKeyOutput).ToGroupMembershipPreferredMemberKeyPtrOutput()
 }
 
 type GroupMembershipPreferredMemberKeyOutput struct{ *pulumi.OutputState }

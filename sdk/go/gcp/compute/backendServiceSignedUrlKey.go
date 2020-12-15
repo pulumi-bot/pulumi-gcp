@@ -237,16 +237,31 @@ type BackendServiceSignedUrlKeyInput interface {
 	ToBackendServiceSignedUrlKeyOutputWithContext(ctx context.Context) BackendServiceSignedUrlKeyOutput
 }
 
-func (BackendServiceSignedUrlKey) ElementType() reflect.Type {
-	return reflect.TypeOf((*BackendServiceSignedUrlKey)(nil)).Elem()
+func (*BackendServiceSignedUrlKey) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackendServiceSignedUrlKey)(nil))
 }
 
-func (i BackendServiceSignedUrlKey) ToBackendServiceSignedUrlKeyOutput() BackendServiceSignedUrlKeyOutput {
+func (i *BackendServiceSignedUrlKey) ToBackendServiceSignedUrlKeyOutput() BackendServiceSignedUrlKeyOutput {
 	return i.ToBackendServiceSignedUrlKeyOutputWithContext(context.Background())
 }
 
-func (i BackendServiceSignedUrlKey) ToBackendServiceSignedUrlKeyOutputWithContext(ctx context.Context) BackendServiceSignedUrlKeyOutput {
+func (i *BackendServiceSignedUrlKey) ToBackendServiceSignedUrlKeyOutputWithContext(ctx context.Context) BackendServiceSignedUrlKeyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceSignedUrlKeyOutput)
+}
+
+func (i *BackendServiceSignedUrlKey) ToBackendServiceSignedUrlKeyPtrOutput() BackendServiceSignedUrlKeyPtrOutput {
+	return i.ToBackendServiceSignedUrlKeyPtrOutputWithContext(context.Background())
+}
+
+func (i *BackendServiceSignedUrlKey) ToBackendServiceSignedUrlKeyPtrOutputWithContext(ctx context.Context) BackendServiceSignedUrlKeyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceSignedUrlKeyPtrOutput)
+}
+
+type BackendServiceSignedUrlKeyPtrInput interface {
+	pulumi.Input
+
+	ToBackendServiceSignedUrlKeyPtrOutput() BackendServiceSignedUrlKeyPtrOutput
+	ToBackendServiceSignedUrlKeyPtrOutputWithContext(ctx context.Context) BackendServiceSignedUrlKeyPtrOutput
 }
 
 type BackendServiceSignedUrlKeyOutput struct {
@@ -254,7 +269,7 @@ type BackendServiceSignedUrlKeyOutput struct {
 }
 
 func (BackendServiceSignedUrlKeyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*BackendServiceSignedUrlKeyOutput)(nil)).Elem()
+	return reflect.TypeOf((*BackendServiceSignedUrlKey)(nil))
 }
 
 func (o BackendServiceSignedUrlKeyOutput) ToBackendServiceSignedUrlKeyOutput() BackendServiceSignedUrlKeyOutput {
@@ -265,6 +280,23 @@ func (o BackendServiceSignedUrlKeyOutput) ToBackendServiceSignedUrlKeyOutputWith
 	return o
 }
 
+type BackendServiceSignedUrlKeyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (BackendServiceSignedUrlKeyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BackendServiceSignedUrlKey)(nil))
+}
+
+func (o BackendServiceSignedUrlKeyPtrOutput) ToBackendServiceSignedUrlKeyPtrOutput() BackendServiceSignedUrlKeyPtrOutput {
+	return o
+}
+
+func (o BackendServiceSignedUrlKeyPtrOutput) ToBackendServiceSignedUrlKeyPtrOutputWithContext(ctx context.Context) BackendServiceSignedUrlKeyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(BackendServiceSignedUrlKeyOutput{})
+	pulumi.RegisterOutputType(BackendServiceSignedUrlKeyPtrOutput{})
 }

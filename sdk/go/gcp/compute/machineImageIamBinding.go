@@ -175,16 +175,31 @@ type MachineImageIamBindingInput interface {
 	ToMachineImageIamBindingOutputWithContext(ctx context.Context) MachineImageIamBindingOutput
 }
 
-func (MachineImageIamBinding) ElementType() reflect.Type {
-	return reflect.TypeOf((*MachineImageIamBinding)(nil)).Elem()
+func (*MachineImageIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*MachineImageIamBinding)(nil))
 }
 
-func (i MachineImageIamBinding) ToMachineImageIamBindingOutput() MachineImageIamBindingOutput {
+func (i *MachineImageIamBinding) ToMachineImageIamBindingOutput() MachineImageIamBindingOutput {
 	return i.ToMachineImageIamBindingOutputWithContext(context.Background())
 }
 
-func (i MachineImageIamBinding) ToMachineImageIamBindingOutputWithContext(ctx context.Context) MachineImageIamBindingOutput {
+func (i *MachineImageIamBinding) ToMachineImageIamBindingOutputWithContext(ctx context.Context) MachineImageIamBindingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(MachineImageIamBindingOutput)
+}
+
+func (i *MachineImageIamBinding) ToMachineImageIamBindingPtrOutput() MachineImageIamBindingPtrOutput {
+	return i.ToMachineImageIamBindingPtrOutputWithContext(context.Background())
+}
+
+func (i *MachineImageIamBinding) ToMachineImageIamBindingPtrOutputWithContext(ctx context.Context) MachineImageIamBindingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MachineImageIamBindingPtrOutput)
+}
+
+type MachineImageIamBindingPtrInput interface {
+	pulumi.Input
+
+	ToMachineImageIamBindingPtrOutput() MachineImageIamBindingPtrOutput
+	ToMachineImageIamBindingPtrOutputWithContext(ctx context.Context) MachineImageIamBindingPtrOutput
 }
 
 type MachineImageIamBindingOutput struct {
@@ -192,7 +207,7 @@ type MachineImageIamBindingOutput struct {
 }
 
 func (MachineImageIamBindingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*MachineImageIamBindingOutput)(nil)).Elem()
+	return reflect.TypeOf((*MachineImageIamBinding)(nil))
 }
 
 func (o MachineImageIamBindingOutput) ToMachineImageIamBindingOutput() MachineImageIamBindingOutput {
@@ -203,6 +218,23 @@ func (o MachineImageIamBindingOutput) ToMachineImageIamBindingOutputWithContext(
 	return o
 }
 
+type MachineImageIamBindingPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (MachineImageIamBindingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**MachineImageIamBinding)(nil))
+}
+
+func (o MachineImageIamBindingPtrOutput) ToMachineImageIamBindingPtrOutput() MachineImageIamBindingPtrOutput {
+	return o
+}
+
+func (o MachineImageIamBindingPtrOutput) ToMachineImageIamBindingPtrOutputWithContext(ctx context.Context) MachineImageIamBindingPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(MachineImageIamBindingOutput{})
+	pulumi.RegisterOutputType(MachineImageIamBindingPtrOutput{})
 }

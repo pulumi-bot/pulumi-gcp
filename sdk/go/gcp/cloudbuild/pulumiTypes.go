@@ -120,7 +120,7 @@ func (i TriggerBuildArgs) ToTriggerBuildPtrOutput() TriggerBuildPtrOutput {
 }
 
 func (i TriggerBuildArgs) ToTriggerBuildPtrOutputWithContext(ctx context.Context) TriggerBuildPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TriggerBuildOutput).ToTriggerBuildPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TriggerBuildOutput).ToTriggerBuildPtrOutput()
 }
 
 // TriggerBuildPtrInput is an input type that accepts TriggerBuildArgs, TriggerBuildPtr and TriggerBuildPtrOutput values.
@@ -153,7 +153,7 @@ func (i *triggerBuildPtrType) ToTriggerBuildPtrOutput() TriggerBuildPtrOutput {
 }
 
 func (i *triggerBuildPtrType) ToTriggerBuildPtrOutputWithContext(ctx context.Context) TriggerBuildPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TriggerBuildPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TriggerBuildOutput).ToTriggerBuildPtrOutput()
 }
 
 type TriggerBuildOutput struct{ *pulumi.OutputState }
@@ -453,7 +453,7 @@ func (i TriggerBuildArtifactsArgs) ToTriggerBuildArtifactsPtrOutput() TriggerBui
 }
 
 func (i TriggerBuildArtifactsArgs) ToTriggerBuildArtifactsPtrOutputWithContext(ctx context.Context) TriggerBuildArtifactsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TriggerBuildArtifactsOutput).ToTriggerBuildArtifactsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TriggerBuildArtifactsOutput).ToTriggerBuildArtifactsPtrOutput()
 }
 
 // TriggerBuildArtifactsPtrInput is an input type that accepts TriggerBuildArtifactsArgs, TriggerBuildArtifactsPtr and TriggerBuildArtifactsPtrOutput values.
@@ -486,7 +486,7 @@ func (i *triggerBuildArtifactsPtrType) ToTriggerBuildArtifactsPtrOutput() Trigge
 }
 
 func (i *triggerBuildArtifactsPtrType) ToTriggerBuildArtifactsPtrOutputWithContext(ctx context.Context) TriggerBuildArtifactsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TriggerBuildArtifactsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TriggerBuildArtifactsOutput).ToTriggerBuildArtifactsPtrOutput()
 }
 
 type TriggerBuildArtifactsOutput struct{ *pulumi.OutputState }
@@ -631,7 +631,7 @@ func (i TriggerBuildArtifactsObjectsArgs) ToTriggerBuildArtifactsObjectsPtrOutpu
 }
 
 func (i TriggerBuildArtifactsObjectsArgs) ToTriggerBuildArtifactsObjectsPtrOutputWithContext(ctx context.Context) TriggerBuildArtifactsObjectsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TriggerBuildArtifactsObjectsOutput).ToTriggerBuildArtifactsObjectsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TriggerBuildArtifactsObjectsOutput).ToTriggerBuildArtifactsObjectsPtrOutput()
 }
 
 // TriggerBuildArtifactsObjectsPtrInput is an input type that accepts TriggerBuildArtifactsObjectsArgs, TriggerBuildArtifactsObjectsPtr and TriggerBuildArtifactsObjectsPtrOutput values.
@@ -664,7 +664,7 @@ func (i *triggerBuildArtifactsObjectsPtrType) ToTriggerBuildArtifactsObjectsPtrO
 }
 
 func (i *triggerBuildArtifactsObjectsPtrType) ToTriggerBuildArtifactsObjectsPtrOutputWithContext(ctx context.Context) TriggerBuildArtifactsObjectsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TriggerBuildArtifactsObjectsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TriggerBuildArtifactsObjectsOutput).ToTriggerBuildArtifactsObjectsPtrOutput()
 }
 
 type TriggerBuildArtifactsObjectsOutput struct{ *pulumi.OutputState }
@@ -1012,7 +1012,7 @@ func (i TriggerBuildOptionsArgs) ToTriggerBuildOptionsPtrOutput() TriggerBuildOp
 }
 
 func (i TriggerBuildOptionsArgs) ToTriggerBuildOptionsPtrOutputWithContext(ctx context.Context) TriggerBuildOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TriggerBuildOptionsOutput).ToTriggerBuildOptionsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TriggerBuildOptionsOutput).ToTriggerBuildOptionsPtrOutput()
 }
 
 // TriggerBuildOptionsPtrInput is an input type that accepts TriggerBuildOptionsArgs, TriggerBuildOptionsPtr and TriggerBuildOptionsPtrOutput values.
@@ -1045,7 +1045,7 @@ func (i *triggerBuildOptionsPtrType) ToTriggerBuildOptionsPtrOutput() TriggerBui
 }
 
 func (i *triggerBuildOptionsPtrType) ToTriggerBuildOptionsPtrOutputWithContext(ctx context.Context) TriggerBuildOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TriggerBuildOptionsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TriggerBuildOptionsOutput).ToTriggerBuildOptionsPtrOutput()
 }
 
 type TriggerBuildOptionsOutput struct{ *pulumi.OutputState }
@@ -1596,7 +1596,7 @@ func (i TriggerBuildSourceArgs) ToTriggerBuildSourcePtrOutput() TriggerBuildSour
 }
 
 func (i TriggerBuildSourceArgs) ToTriggerBuildSourcePtrOutputWithContext(ctx context.Context) TriggerBuildSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TriggerBuildSourceOutput).ToTriggerBuildSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TriggerBuildSourceOutput).ToTriggerBuildSourcePtrOutput()
 }
 
 // TriggerBuildSourcePtrInput is an input type that accepts TriggerBuildSourceArgs, TriggerBuildSourcePtr and TriggerBuildSourcePtrOutput values.
@@ -1629,7 +1629,7 @@ func (i *triggerBuildSourcePtrType) ToTriggerBuildSourcePtrOutput() TriggerBuild
 }
 
 func (i *triggerBuildSourcePtrType) ToTriggerBuildSourcePtrOutputWithContext(ctx context.Context) TriggerBuildSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TriggerBuildSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TriggerBuildSourceOutput).ToTriggerBuildSourcePtrOutput()
 }
 
 type TriggerBuildSourceOutput struct{ *pulumi.OutputState }
@@ -1800,7 +1800,7 @@ func (i TriggerBuildSourceRepoSourceArgs) ToTriggerBuildSourceRepoSourcePtrOutpu
 }
 
 func (i TriggerBuildSourceRepoSourceArgs) ToTriggerBuildSourceRepoSourcePtrOutputWithContext(ctx context.Context) TriggerBuildSourceRepoSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TriggerBuildSourceRepoSourceOutput).ToTriggerBuildSourceRepoSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TriggerBuildSourceRepoSourceOutput).ToTriggerBuildSourceRepoSourcePtrOutput()
 }
 
 // TriggerBuildSourceRepoSourcePtrInput is an input type that accepts TriggerBuildSourceRepoSourceArgs, TriggerBuildSourceRepoSourcePtr and TriggerBuildSourceRepoSourcePtrOutput values.
@@ -1833,7 +1833,7 @@ func (i *triggerBuildSourceRepoSourcePtrType) ToTriggerBuildSourceRepoSourcePtrO
 }
 
 func (i *triggerBuildSourceRepoSourcePtrType) ToTriggerBuildSourceRepoSourcePtrOutputWithContext(ctx context.Context) TriggerBuildSourceRepoSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TriggerBuildSourceRepoSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TriggerBuildSourceRepoSourceOutput).ToTriggerBuildSourceRepoSourcePtrOutput()
 }
 
 type TriggerBuildSourceRepoSourceOutput struct{ *pulumi.OutputState }
@@ -2074,7 +2074,7 @@ func (i TriggerBuildSourceStorageSourceArgs) ToTriggerBuildSourceStorageSourcePt
 }
 
 func (i TriggerBuildSourceStorageSourceArgs) ToTriggerBuildSourceStorageSourcePtrOutputWithContext(ctx context.Context) TriggerBuildSourceStorageSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TriggerBuildSourceStorageSourceOutput).ToTriggerBuildSourceStorageSourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TriggerBuildSourceStorageSourceOutput).ToTriggerBuildSourceStorageSourcePtrOutput()
 }
 
 // TriggerBuildSourceStorageSourcePtrInput is an input type that accepts TriggerBuildSourceStorageSourceArgs, TriggerBuildSourceStorageSourcePtr and TriggerBuildSourceStorageSourcePtrOutput values.
@@ -2107,7 +2107,7 @@ func (i *triggerBuildSourceStorageSourcePtrType) ToTriggerBuildSourceStorageSour
 }
 
 func (i *triggerBuildSourceStorageSourcePtrType) ToTriggerBuildSourceStorageSourcePtrOutputWithContext(ctx context.Context) TriggerBuildSourceStorageSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TriggerBuildSourceStorageSourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TriggerBuildSourceStorageSourceOutput).ToTriggerBuildSourceStorageSourcePtrOutput()
 }
 
 type TriggerBuildSourceStorageSourceOutput struct{ *pulumi.OutputState }
@@ -2677,7 +2677,7 @@ func (i TriggerGithubArgs) ToTriggerGithubPtrOutput() TriggerGithubPtrOutput {
 }
 
 func (i TriggerGithubArgs) ToTriggerGithubPtrOutputWithContext(ctx context.Context) TriggerGithubPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TriggerGithubOutput).ToTriggerGithubPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TriggerGithubOutput).ToTriggerGithubPtrOutput()
 }
 
 // TriggerGithubPtrInput is an input type that accepts TriggerGithubArgs, TriggerGithubPtr and TriggerGithubPtrOutput values.
@@ -2710,7 +2710,7 @@ func (i *triggerGithubPtrType) ToTriggerGithubPtrOutput() TriggerGithubPtrOutput
 }
 
 func (i *triggerGithubPtrType) ToTriggerGithubPtrOutputWithContext(ctx context.Context) TriggerGithubPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TriggerGithubPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TriggerGithubOutput).ToTriggerGithubPtrOutput()
 }
 
 type TriggerGithubOutput struct{ *pulumi.OutputState }
@@ -2873,7 +2873,7 @@ func (i TriggerGithubPullRequestArgs) ToTriggerGithubPullRequestPtrOutput() Trig
 }
 
 func (i TriggerGithubPullRequestArgs) ToTriggerGithubPullRequestPtrOutputWithContext(ctx context.Context) TriggerGithubPullRequestPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TriggerGithubPullRequestOutput).ToTriggerGithubPullRequestPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TriggerGithubPullRequestOutput).ToTriggerGithubPullRequestPtrOutput()
 }
 
 // TriggerGithubPullRequestPtrInput is an input type that accepts TriggerGithubPullRequestArgs, TriggerGithubPullRequestPtr and TriggerGithubPullRequestPtrOutput values.
@@ -2906,7 +2906,7 @@ func (i *triggerGithubPullRequestPtrType) ToTriggerGithubPullRequestPtrOutput() 
 }
 
 func (i *triggerGithubPullRequestPtrType) ToTriggerGithubPullRequestPtrOutputWithContext(ctx context.Context) TriggerGithubPullRequestPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TriggerGithubPullRequestPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TriggerGithubPullRequestOutput).ToTriggerGithubPullRequestPtrOutput()
 }
 
 type TriggerGithubPullRequestOutput struct{ *pulumi.OutputState }
@@ -3044,7 +3044,7 @@ func (i TriggerGithubPushArgs) ToTriggerGithubPushPtrOutput() TriggerGithubPushP
 }
 
 func (i TriggerGithubPushArgs) ToTriggerGithubPushPtrOutputWithContext(ctx context.Context) TriggerGithubPushPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TriggerGithubPushOutput).ToTriggerGithubPushPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TriggerGithubPushOutput).ToTriggerGithubPushPtrOutput()
 }
 
 // TriggerGithubPushPtrInput is an input type that accepts TriggerGithubPushArgs, TriggerGithubPushPtr and TriggerGithubPushPtrOutput values.
@@ -3077,7 +3077,7 @@ func (i *triggerGithubPushPtrType) ToTriggerGithubPushPtrOutput() TriggerGithubP
 }
 
 func (i *triggerGithubPushPtrType) ToTriggerGithubPushPtrOutputWithContext(ctx context.Context) TriggerGithubPushPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TriggerGithubPushPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TriggerGithubPushOutput).ToTriggerGithubPushPtrOutput()
 }
 
 type TriggerGithubPushOutput struct{ *pulumi.OutputState }
@@ -3255,7 +3255,7 @@ func (i TriggerTriggerTemplateArgs) ToTriggerTriggerTemplatePtrOutput() TriggerT
 }
 
 func (i TriggerTriggerTemplateArgs) ToTriggerTriggerTemplatePtrOutputWithContext(ctx context.Context) TriggerTriggerTemplatePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TriggerTriggerTemplateOutput).ToTriggerTriggerTemplatePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TriggerTriggerTemplateOutput).ToTriggerTriggerTemplatePtrOutput()
 }
 
 // TriggerTriggerTemplatePtrInput is an input type that accepts TriggerTriggerTemplateArgs, TriggerTriggerTemplatePtr and TriggerTriggerTemplatePtrOutput values.
@@ -3288,7 +3288,7 @@ func (i *triggerTriggerTemplatePtrType) ToTriggerTriggerTemplatePtrOutput() Trig
 }
 
 func (i *triggerTriggerTemplatePtrType) ToTriggerTriggerTemplatePtrOutputWithContext(ctx context.Context) TriggerTriggerTemplatePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TriggerTriggerTemplatePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TriggerTriggerTemplateOutput).ToTriggerTriggerTemplatePtrOutput()
 }
 
 type TriggerTriggerTemplateOutput struct{ *pulumi.OutputState }

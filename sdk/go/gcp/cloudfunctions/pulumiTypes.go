@@ -62,7 +62,7 @@ func (i FunctionEventTriggerArgs) ToFunctionEventTriggerPtrOutput() FunctionEven
 }
 
 func (i FunctionEventTriggerArgs) ToFunctionEventTriggerPtrOutputWithContext(ctx context.Context) FunctionEventTriggerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FunctionEventTriggerOutput).ToFunctionEventTriggerPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(FunctionEventTriggerOutput).ToFunctionEventTriggerPtrOutput()
 }
 
 // FunctionEventTriggerPtrInput is an input type that accepts FunctionEventTriggerArgs, FunctionEventTriggerPtr and FunctionEventTriggerPtrOutput values.
@@ -95,7 +95,7 @@ func (i *functionEventTriggerPtrType) ToFunctionEventTriggerPtrOutput() Function
 }
 
 func (i *functionEventTriggerPtrType) ToFunctionEventTriggerPtrOutputWithContext(ctx context.Context) FunctionEventTriggerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FunctionEventTriggerPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(FunctionEventTriggerOutput).ToFunctionEventTriggerPtrOutput()
 }
 
 type FunctionEventTriggerOutput struct{ *pulumi.OutputState }
@@ -229,7 +229,7 @@ func (i FunctionEventTriggerFailurePolicyArgs) ToFunctionEventTriggerFailurePoli
 }
 
 func (i FunctionEventTriggerFailurePolicyArgs) ToFunctionEventTriggerFailurePolicyPtrOutputWithContext(ctx context.Context) FunctionEventTriggerFailurePolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FunctionEventTriggerFailurePolicyOutput).ToFunctionEventTriggerFailurePolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(FunctionEventTriggerFailurePolicyOutput).ToFunctionEventTriggerFailurePolicyPtrOutput()
 }
 
 // FunctionEventTriggerFailurePolicyPtrInput is an input type that accepts FunctionEventTriggerFailurePolicyArgs, FunctionEventTriggerFailurePolicyPtr and FunctionEventTriggerFailurePolicyPtrOutput values.
@@ -262,7 +262,7 @@ func (i *functionEventTriggerFailurePolicyPtrType) ToFunctionEventTriggerFailure
 }
 
 func (i *functionEventTriggerFailurePolicyPtrType) ToFunctionEventTriggerFailurePolicyPtrOutputWithContext(ctx context.Context) FunctionEventTriggerFailurePolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FunctionEventTriggerFailurePolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(FunctionEventTriggerFailurePolicyOutput).ToFunctionEventTriggerFailurePolicyPtrOutput()
 }
 
 type FunctionEventTriggerFailurePolicyOutput struct{ *pulumi.OutputState }
@@ -362,7 +362,7 @@ func (i FunctionIamBindingConditionArgs) ToFunctionIamBindingConditionPtrOutput(
 }
 
 func (i FunctionIamBindingConditionArgs) ToFunctionIamBindingConditionPtrOutputWithContext(ctx context.Context) FunctionIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FunctionIamBindingConditionOutput).ToFunctionIamBindingConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(FunctionIamBindingConditionOutput).ToFunctionIamBindingConditionPtrOutput()
 }
 
 // FunctionIamBindingConditionPtrInput is an input type that accepts FunctionIamBindingConditionArgs, FunctionIamBindingConditionPtr and FunctionIamBindingConditionPtrOutput values.
@@ -395,7 +395,7 @@ func (i *functionIamBindingConditionPtrType) ToFunctionIamBindingConditionPtrOut
 }
 
 func (i *functionIamBindingConditionPtrType) ToFunctionIamBindingConditionPtrOutputWithContext(ctx context.Context) FunctionIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FunctionIamBindingConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(FunctionIamBindingConditionOutput).ToFunctionIamBindingConditionPtrOutput()
 }
 
 type FunctionIamBindingConditionOutput struct{ *pulumi.OutputState }
@@ -518,7 +518,7 @@ func (i FunctionIamMemberConditionArgs) ToFunctionIamMemberConditionPtrOutput() 
 }
 
 func (i FunctionIamMemberConditionArgs) ToFunctionIamMemberConditionPtrOutputWithContext(ctx context.Context) FunctionIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FunctionIamMemberConditionOutput).ToFunctionIamMemberConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(FunctionIamMemberConditionOutput).ToFunctionIamMemberConditionPtrOutput()
 }
 
 // FunctionIamMemberConditionPtrInput is an input type that accepts FunctionIamMemberConditionArgs, FunctionIamMemberConditionPtr and FunctionIamMemberConditionPtrOutput values.
@@ -551,7 +551,7 @@ func (i *functionIamMemberConditionPtrType) ToFunctionIamMemberConditionPtrOutpu
 }
 
 func (i *functionIamMemberConditionPtrType) ToFunctionIamMemberConditionPtrOutputWithContext(ctx context.Context) FunctionIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FunctionIamMemberConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(FunctionIamMemberConditionOutput).ToFunctionIamMemberConditionPtrOutput()
 }
 
 type FunctionIamMemberConditionOutput struct{ *pulumi.OutputState }
@@ -674,7 +674,7 @@ func (i FunctionSourceRepositoryArgs) ToFunctionSourceRepositoryPtrOutput() Func
 }
 
 func (i FunctionSourceRepositoryArgs) ToFunctionSourceRepositoryPtrOutputWithContext(ctx context.Context) FunctionSourceRepositoryPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FunctionSourceRepositoryOutput).ToFunctionSourceRepositoryPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(FunctionSourceRepositoryOutput).ToFunctionSourceRepositoryPtrOutput()
 }
 
 // FunctionSourceRepositoryPtrInput is an input type that accepts FunctionSourceRepositoryArgs, FunctionSourceRepositoryPtr and FunctionSourceRepositoryPtrOutput values.
@@ -707,7 +707,7 @@ func (i *functionSourceRepositoryPtrType) ToFunctionSourceRepositoryPtrOutput() 
 }
 
 func (i *functionSourceRepositoryPtrType) ToFunctionSourceRepositoryPtrOutputWithContext(ctx context.Context) FunctionSourceRepositoryPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FunctionSourceRepositoryPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(FunctionSourceRepositoryOutput).ToFunctionSourceRepositoryPtrOutput()
 }
 
 type FunctionSourceRepositoryOutput struct{ *pulumi.OutputState }

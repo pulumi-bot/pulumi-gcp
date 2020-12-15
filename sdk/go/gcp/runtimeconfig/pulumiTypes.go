@@ -50,7 +50,7 @@ func (i ConfigIamBindingConditionArgs) ToConfigIamBindingConditionPtrOutput() Co
 }
 
 func (i ConfigIamBindingConditionArgs) ToConfigIamBindingConditionPtrOutputWithContext(ctx context.Context) ConfigIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ConfigIamBindingConditionOutput).ToConfigIamBindingConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ConfigIamBindingConditionOutput).ToConfigIamBindingConditionPtrOutput()
 }
 
 // ConfigIamBindingConditionPtrInput is an input type that accepts ConfigIamBindingConditionArgs, ConfigIamBindingConditionPtr and ConfigIamBindingConditionPtrOutput values.
@@ -83,7 +83,7 @@ func (i *configIamBindingConditionPtrType) ToConfigIamBindingConditionPtrOutput(
 }
 
 func (i *configIamBindingConditionPtrType) ToConfigIamBindingConditionPtrOutputWithContext(ctx context.Context) ConfigIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ConfigIamBindingConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ConfigIamBindingConditionOutput).ToConfigIamBindingConditionPtrOutput()
 }
 
 type ConfigIamBindingConditionOutput struct{ *pulumi.OutputState }
@@ -206,7 +206,7 @@ func (i ConfigIamMemberConditionArgs) ToConfigIamMemberConditionPtrOutput() Conf
 }
 
 func (i ConfigIamMemberConditionArgs) ToConfigIamMemberConditionPtrOutputWithContext(ctx context.Context) ConfigIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ConfigIamMemberConditionOutput).ToConfigIamMemberConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ConfigIamMemberConditionOutput).ToConfigIamMemberConditionPtrOutput()
 }
 
 // ConfigIamMemberConditionPtrInput is an input type that accepts ConfigIamMemberConditionArgs, ConfigIamMemberConditionPtr and ConfigIamMemberConditionPtrOutput values.
@@ -239,7 +239,7 @@ func (i *configIamMemberConditionPtrType) ToConfigIamMemberConditionPtrOutput() 
 }
 
 func (i *configIamMemberConditionPtrType) ToConfigIamMemberConditionPtrOutputWithContext(ctx context.Context) ConfigIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ConfigIamMemberConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ConfigIamMemberConditionOutput).ToConfigIamMemberConditionPtrOutput()
 }
 
 type ConfigIamMemberConditionOutput struct{ *pulumi.OutputState }

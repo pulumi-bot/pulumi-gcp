@@ -169,16 +169,31 @@ type KeyRingInput interface {
 	ToKeyRingOutputWithContext(ctx context.Context) KeyRingOutput
 }
 
-func (KeyRing) ElementType() reflect.Type {
-	return reflect.TypeOf((*KeyRing)(nil)).Elem()
+func (*KeyRing) ElementType() reflect.Type {
+	return reflect.TypeOf((*KeyRing)(nil))
 }
 
-func (i KeyRing) ToKeyRingOutput() KeyRingOutput {
+func (i *KeyRing) ToKeyRingOutput() KeyRingOutput {
 	return i.ToKeyRingOutputWithContext(context.Background())
 }
 
-func (i KeyRing) ToKeyRingOutputWithContext(ctx context.Context) KeyRingOutput {
+func (i *KeyRing) ToKeyRingOutputWithContext(ctx context.Context) KeyRingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(KeyRingOutput)
+}
+
+func (i *KeyRing) ToKeyRingPtrOutput() KeyRingPtrOutput {
+	return i.ToKeyRingPtrOutputWithContext(context.Background())
+}
+
+func (i *KeyRing) ToKeyRingPtrOutputWithContext(ctx context.Context) KeyRingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KeyRingPtrOutput)
+}
+
+type KeyRingPtrInput interface {
+	pulumi.Input
+
+	ToKeyRingPtrOutput() KeyRingPtrOutput
+	ToKeyRingPtrOutputWithContext(ctx context.Context) KeyRingPtrOutput
 }
 
 type KeyRingOutput struct {
@@ -186,7 +201,7 @@ type KeyRingOutput struct {
 }
 
 func (KeyRingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*KeyRingOutput)(nil)).Elem()
+	return reflect.TypeOf((*KeyRing)(nil))
 }
 
 func (o KeyRingOutput) ToKeyRingOutput() KeyRingOutput {
@@ -197,6 +212,23 @@ func (o KeyRingOutput) ToKeyRingOutputWithContext(ctx context.Context) KeyRingOu
 	return o
 }
 
+type KeyRingPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (KeyRingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**KeyRing)(nil))
+}
+
+func (o KeyRingPtrOutput) ToKeyRingPtrOutput() KeyRingPtrOutput {
+	return o
+}
+
+func (o KeyRingPtrOutput) ToKeyRingPtrOutputWithContext(ctx context.Context) KeyRingPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(KeyRingOutput{})
+	pulumi.RegisterOutputType(KeyRingPtrOutput{})
 }

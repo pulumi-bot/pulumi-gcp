@@ -260,16 +260,31 @@ type TenantDefaultSupportedIdpConfigInput interface {
 	ToTenantDefaultSupportedIdpConfigOutputWithContext(ctx context.Context) TenantDefaultSupportedIdpConfigOutput
 }
 
-func (TenantDefaultSupportedIdpConfig) ElementType() reflect.Type {
-	return reflect.TypeOf((*TenantDefaultSupportedIdpConfig)(nil)).Elem()
+func (*TenantDefaultSupportedIdpConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*TenantDefaultSupportedIdpConfig)(nil))
 }
 
-func (i TenantDefaultSupportedIdpConfig) ToTenantDefaultSupportedIdpConfigOutput() TenantDefaultSupportedIdpConfigOutput {
+func (i *TenantDefaultSupportedIdpConfig) ToTenantDefaultSupportedIdpConfigOutput() TenantDefaultSupportedIdpConfigOutput {
 	return i.ToTenantDefaultSupportedIdpConfigOutputWithContext(context.Background())
 }
 
-func (i TenantDefaultSupportedIdpConfig) ToTenantDefaultSupportedIdpConfigOutputWithContext(ctx context.Context) TenantDefaultSupportedIdpConfigOutput {
+func (i *TenantDefaultSupportedIdpConfig) ToTenantDefaultSupportedIdpConfigOutputWithContext(ctx context.Context) TenantDefaultSupportedIdpConfigOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TenantDefaultSupportedIdpConfigOutput)
+}
+
+func (i *TenantDefaultSupportedIdpConfig) ToTenantDefaultSupportedIdpConfigPtrOutput() TenantDefaultSupportedIdpConfigPtrOutput {
+	return i.ToTenantDefaultSupportedIdpConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *TenantDefaultSupportedIdpConfig) ToTenantDefaultSupportedIdpConfigPtrOutputWithContext(ctx context.Context) TenantDefaultSupportedIdpConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TenantDefaultSupportedIdpConfigPtrOutput)
+}
+
+type TenantDefaultSupportedIdpConfigPtrInput interface {
+	pulumi.Input
+
+	ToTenantDefaultSupportedIdpConfigPtrOutput() TenantDefaultSupportedIdpConfigPtrOutput
+	ToTenantDefaultSupportedIdpConfigPtrOutputWithContext(ctx context.Context) TenantDefaultSupportedIdpConfigPtrOutput
 }
 
 type TenantDefaultSupportedIdpConfigOutput struct {
@@ -277,7 +292,7 @@ type TenantDefaultSupportedIdpConfigOutput struct {
 }
 
 func (TenantDefaultSupportedIdpConfigOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*TenantDefaultSupportedIdpConfigOutput)(nil)).Elem()
+	return reflect.TypeOf((*TenantDefaultSupportedIdpConfig)(nil))
 }
 
 func (o TenantDefaultSupportedIdpConfigOutput) ToTenantDefaultSupportedIdpConfigOutput() TenantDefaultSupportedIdpConfigOutput {
@@ -288,6 +303,23 @@ func (o TenantDefaultSupportedIdpConfigOutput) ToTenantDefaultSupportedIdpConfig
 	return o
 }
 
+type TenantDefaultSupportedIdpConfigPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (TenantDefaultSupportedIdpConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TenantDefaultSupportedIdpConfig)(nil))
+}
+
+func (o TenantDefaultSupportedIdpConfigPtrOutput) ToTenantDefaultSupportedIdpConfigPtrOutput() TenantDefaultSupportedIdpConfigPtrOutput {
+	return o
+}
+
+func (o TenantDefaultSupportedIdpConfigPtrOutput) ToTenantDefaultSupportedIdpConfigPtrOutputWithContext(ctx context.Context) TenantDefaultSupportedIdpConfigPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(TenantDefaultSupportedIdpConfigOutput{})
+	pulumi.RegisterOutputType(TenantDefaultSupportedIdpConfigPtrOutput{})
 }

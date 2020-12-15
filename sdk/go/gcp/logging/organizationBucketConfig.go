@@ -190,16 +190,31 @@ type OrganizationBucketConfigInput interface {
 	ToOrganizationBucketConfigOutputWithContext(ctx context.Context) OrganizationBucketConfigOutput
 }
 
-func (OrganizationBucketConfig) ElementType() reflect.Type {
-	return reflect.TypeOf((*OrganizationBucketConfig)(nil)).Elem()
+func (*OrganizationBucketConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationBucketConfig)(nil))
 }
 
-func (i OrganizationBucketConfig) ToOrganizationBucketConfigOutput() OrganizationBucketConfigOutput {
+func (i *OrganizationBucketConfig) ToOrganizationBucketConfigOutput() OrganizationBucketConfigOutput {
 	return i.ToOrganizationBucketConfigOutputWithContext(context.Background())
 }
 
-func (i OrganizationBucketConfig) ToOrganizationBucketConfigOutputWithContext(ctx context.Context) OrganizationBucketConfigOutput {
+func (i *OrganizationBucketConfig) ToOrganizationBucketConfigOutputWithContext(ctx context.Context) OrganizationBucketConfigOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(OrganizationBucketConfigOutput)
+}
+
+func (i *OrganizationBucketConfig) ToOrganizationBucketConfigPtrOutput() OrganizationBucketConfigPtrOutput {
+	return i.ToOrganizationBucketConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *OrganizationBucketConfig) ToOrganizationBucketConfigPtrOutputWithContext(ctx context.Context) OrganizationBucketConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationBucketConfigPtrOutput)
+}
+
+type OrganizationBucketConfigPtrInput interface {
+	pulumi.Input
+
+	ToOrganizationBucketConfigPtrOutput() OrganizationBucketConfigPtrOutput
+	ToOrganizationBucketConfigPtrOutputWithContext(ctx context.Context) OrganizationBucketConfigPtrOutput
 }
 
 type OrganizationBucketConfigOutput struct {
@@ -207,7 +222,7 @@ type OrganizationBucketConfigOutput struct {
 }
 
 func (OrganizationBucketConfigOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*OrganizationBucketConfigOutput)(nil)).Elem()
+	return reflect.TypeOf((*OrganizationBucketConfig)(nil))
 }
 
 func (o OrganizationBucketConfigOutput) ToOrganizationBucketConfigOutput() OrganizationBucketConfigOutput {
@@ -218,6 +233,23 @@ func (o OrganizationBucketConfigOutput) ToOrganizationBucketConfigOutputWithCont
 	return o
 }
 
+type OrganizationBucketConfigPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (OrganizationBucketConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**OrganizationBucketConfig)(nil))
+}
+
+func (o OrganizationBucketConfigPtrOutput) ToOrganizationBucketConfigPtrOutput() OrganizationBucketConfigPtrOutput {
+	return o
+}
+
+func (o OrganizationBucketConfigPtrOutput) ToOrganizationBucketConfigPtrOutputWithContext(ctx context.Context) OrganizationBucketConfigPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(OrganizationBucketConfigOutput{})
+	pulumi.RegisterOutputType(OrganizationBucketConfigPtrOutput{})
 }

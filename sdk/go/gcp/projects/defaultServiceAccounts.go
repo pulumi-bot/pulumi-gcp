@@ -173,16 +173,31 @@ type DefaultServiceAccountsInput interface {
 	ToDefaultServiceAccountsOutputWithContext(ctx context.Context) DefaultServiceAccountsOutput
 }
 
-func (DefaultServiceAccounts) ElementType() reflect.Type {
-	return reflect.TypeOf((*DefaultServiceAccounts)(nil)).Elem()
+func (*DefaultServiceAccounts) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultServiceAccounts)(nil))
 }
 
-func (i DefaultServiceAccounts) ToDefaultServiceAccountsOutput() DefaultServiceAccountsOutput {
+func (i *DefaultServiceAccounts) ToDefaultServiceAccountsOutput() DefaultServiceAccountsOutput {
 	return i.ToDefaultServiceAccountsOutputWithContext(context.Background())
 }
 
-func (i DefaultServiceAccounts) ToDefaultServiceAccountsOutputWithContext(ctx context.Context) DefaultServiceAccountsOutput {
+func (i *DefaultServiceAccounts) ToDefaultServiceAccountsOutputWithContext(ctx context.Context) DefaultServiceAccountsOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DefaultServiceAccountsOutput)
+}
+
+func (i *DefaultServiceAccounts) ToDefaultServiceAccountsPtrOutput() DefaultServiceAccountsPtrOutput {
+	return i.ToDefaultServiceAccountsPtrOutputWithContext(context.Background())
+}
+
+func (i *DefaultServiceAccounts) ToDefaultServiceAccountsPtrOutputWithContext(ctx context.Context) DefaultServiceAccountsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultServiceAccountsPtrOutput)
+}
+
+type DefaultServiceAccountsPtrInput interface {
+	pulumi.Input
+
+	ToDefaultServiceAccountsPtrOutput() DefaultServiceAccountsPtrOutput
+	ToDefaultServiceAccountsPtrOutputWithContext(ctx context.Context) DefaultServiceAccountsPtrOutput
 }
 
 type DefaultServiceAccountsOutput struct {
@@ -190,7 +205,7 @@ type DefaultServiceAccountsOutput struct {
 }
 
 func (DefaultServiceAccountsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DefaultServiceAccountsOutput)(nil)).Elem()
+	return reflect.TypeOf((*DefaultServiceAccounts)(nil))
 }
 
 func (o DefaultServiceAccountsOutput) ToDefaultServiceAccountsOutput() DefaultServiceAccountsOutput {
@@ -201,6 +216,23 @@ func (o DefaultServiceAccountsOutput) ToDefaultServiceAccountsOutputWithContext(
 	return o
 }
 
+type DefaultServiceAccountsPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (DefaultServiceAccountsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DefaultServiceAccounts)(nil))
+}
+
+func (o DefaultServiceAccountsPtrOutput) ToDefaultServiceAccountsPtrOutput() DefaultServiceAccountsPtrOutput {
+	return o
+}
+
+func (o DefaultServiceAccountsPtrOutput) ToDefaultServiceAccountsPtrOutputWithContext(ctx context.Context) DefaultServiceAccountsPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(DefaultServiceAccountsOutput{})
+	pulumi.RegisterOutputType(DefaultServiceAccountsPtrOutput{})
 }

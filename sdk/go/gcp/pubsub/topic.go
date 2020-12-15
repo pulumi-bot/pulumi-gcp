@@ -271,16 +271,31 @@ type TopicInput interface {
 	ToTopicOutputWithContext(ctx context.Context) TopicOutput
 }
 
-func (Topic) ElementType() reflect.Type {
-	return reflect.TypeOf((*Topic)(nil)).Elem()
+func (*Topic) ElementType() reflect.Type {
+	return reflect.TypeOf((*Topic)(nil))
 }
 
-func (i Topic) ToTopicOutput() TopicOutput {
+func (i *Topic) ToTopicOutput() TopicOutput {
 	return i.ToTopicOutputWithContext(context.Background())
 }
 
-func (i Topic) ToTopicOutputWithContext(ctx context.Context) TopicOutput {
+func (i *Topic) ToTopicOutputWithContext(ctx context.Context) TopicOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TopicOutput)
+}
+
+func (i *Topic) ToTopicPtrOutput() TopicPtrOutput {
+	return i.ToTopicPtrOutputWithContext(context.Background())
+}
+
+func (i *Topic) ToTopicPtrOutputWithContext(ctx context.Context) TopicPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TopicPtrOutput)
+}
+
+type TopicPtrInput interface {
+	pulumi.Input
+
+	ToTopicPtrOutput() TopicPtrOutput
+	ToTopicPtrOutputWithContext(ctx context.Context) TopicPtrOutput
 }
 
 type TopicOutput struct {
@@ -288,7 +303,7 @@ type TopicOutput struct {
 }
 
 func (TopicOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*TopicOutput)(nil)).Elem()
+	return reflect.TypeOf((*Topic)(nil))
 }
 
 func (o TopicOutput) ToTopicOutput() TopicOutput {
@@ -299,6 +314,23 @@ func (o TopicOutput) ToTopicOutputWithContext(ctx context.Context) TopicOutput {
 	return o
 }
 
+type TopicPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (TopicPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Topic)(nil))
+}
+
+func (o TopicPtrOutput) ToTopicPtrOutput() TopicPtrOutput {
+	return o
+}
+
+func (o TopicPtrOutput) ToTopicPtrOutputWithContext(ctx context.Context) TopicPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(TopicOutput{})
+	pulumi.RegisterOutputType(TopicPtrOutput{})
 }

@@ -292,16 +292,31 @@ type ResourcePolicyInput interface {
 	ToResourcePolicyOutputWithContext(ctx context.Context) ResourcePolicyOutput
 }
 
-func (ResourcePolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*ResourcePolicy)(nil)).Elem()
+func (*ResourcePolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResourcePolicy)(nil))
 }
 
-func (i ResourcePolicy) ToResourcePolicyOutput() ResourcePolicyOutput {
+func (i *ResourcePolicy) ToResourcePolicyOutput() ResourcePolicyOutput {
 	return i.ToResourcePolicyOutputWithContext(context.Background())
 }
 
-func (i ResourcePolicy) ToResourcePolicyOutputWithContext(ctx context.Context) ResourcePolicyOutput {
+func (i *ResourcePolicy) ToResourcePolicyOutputWithContext(ctx context.Context) ResourcePolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicyOutput)
+}
+
+func (i *ResourcePolicy) ToResourcePolicyPtrOutput() ResourcePolicyPtrOutput {
+	return i.ToResourcePolicyPtrOutputWithContext(context.Background())
+}
+
+func (i *ResourcePolicy) ToResourcePolicyPtrOutputWithContext(ctx context.Context) ResourcePolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicyPtrOutput)
+}
+
+type ResourcePolicyPtrInput interface {
+	pulumi.Input
+
+	ToResourcePolicyPtrOutput() ResourcePolicyPtrOutput
+	ToResourcePolicyPtrOutputWithContext(ctx context.Context) ResourcePolicyPtrOutput
 }
 
 type ResourcePolicyOutput struct {
@@ -309,7 +324,7 @@ type ResourcePolicyOutput struct {
 }
 
 func (ResourcePolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ResourcePolicyOutput)(nil)).Elem()
+	return reflect.TypeOf((*ResourcePolicy)(nil))
 }
 
 func (o ResourcePolicyOutput) ToResourcePolicyOutput() ResourcePolicyOutput {
@@ -320,6 +335,23 @@ func (o ResourcePolicyOutput) ToResourcePolicyOutputWithContext(ctx context.Cont
 	return o
 }
 
+type ResourcePolicyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ResourcePolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ResourcePolicy)(nil))
+}
+
+func (o ResourcePolicyPtrOutput) ToResourcePolicyPtrOutput() ResourcePolicyPtrOutput {
+	return o
+}
+
+func (o ResourcePolicyPtrOutput) ToResourcePolicyPtrOutputWithContext(ctx context.Context) ResourcePolicyPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ResourcePolicyOutput{})
+	pulumi.RegisterOutputType(ResourcePolicyPtrOutput{})
 }

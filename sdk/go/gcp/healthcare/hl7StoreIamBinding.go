@@ -267,16 +267,31 @@ type Hl7StoreIamBindingInput interface {
 	ToHl7StoreIamBindingOutputWithContext(ctx context.Context) Hl7StoreIamBindingOutput
 }
 
-func (Hl7StoreIamBinding) ElementType() reflect.Type {
-	return reflect.TypeOf((*Hl7StoreIamBinding)(nil)).Elem()
+func (*Hl7StoreIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*Hl7StoreIamBinding)(nil))
 }
 
-func (i Hl7StoreIamBinding) ToHl7StoreIamBindingOutput() Hl7StoreIamBindingOutput {
+func (i *Hl7StoreIamBinding) ToHl7StoreIamBindingOutput() Hl7StoreIamBindingOutput {
 	return i.ToHl7StoreIamBindingOutputWithContext(context.Background())
 }
 
-func (i Hl7StoreIamBinding) ToHl7StoreIamBindingOutputWithContext(ctx context.Context) Hl7StoreIamBindingOutput {
+func (i *Hl7StoreIamBinding) ToHl7StoreIamBindingOutputWithContext(ctx context.Context) Hl7StoreIamBindingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(Hl7StoreIamBindingOutput)
+}
+
+func (i *Hl7StoreIamBinding) ToHl7StoreIamBindingPtrOutput() Hl7StoreIamBindingPtrOutput {
+	return i.ToHl7StoreIamBindingPtrOutputWithContext(context.Background())
+}
+
+func (i *Hl7StoreIamBinding) ToHl7StoreIamBindingPtrOutputWithContext(ctx context.Context) Hl7StoreIamBindingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Hl7StoreIamBindingPtrOutput)
+}
+
+type Hl7StoreIamBindingPtrInput interface {
+	pulumi.Input
+
+	ToHl7StoreIamBindingPtrOutput() Hl7StoreIamBindingPtrOutput
+	ToHl7StoreIamBindingPtrOutputWithContext(ctx context.Context) Hl7StoreIamBindingPtrOutput
 }
 
 type Hl7StoreIamBindingOutput struct {
@@ -284,7 +299,7 @@ type Hl7StoreIamBindingOutput struct {
 }
 
 func (Hl7StoreIamBindingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*Hl7StoreIamBindingOutput)(nil)).Elem()
+	return reflect.TypeOf((*Hl7StoreIamBinding)(nil))
 }
 
 func (o Hl7StoreIamBindingOutput) ToHl7StoreIamBindingOutput() Hl7StoreIamBindingOutput {
@@ -295,6 +310,23 @@ func (o Hl7StoreIamBindingOutput) ToHl7StoreIamBindingOutputWithContext(ctx cont
 	return o
 }
 
+type Hl7StoreIamBindingPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (Hl7StoreIamBindingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Hl7StoreIamBinding)(nil))
+}
+
+func (o Hl7StoreIamBindingPtrOutput) ToHl7StoreIamBindingPtrOutput() Hl7StoreIamBindingPtrOutput {
+	return o
+}
+
+func (o Hl7StoreIamBindingPtrOutput) ToHl7StoreIamBindingPtrOutputWithContext(ctx context.Context) Hl7StoreIamBindingPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(Hl7StoreIamBindingOutput{})
+	pulumi.RegisterOutputType(Hl7StoreIamBindingPtrOutput{})
 }

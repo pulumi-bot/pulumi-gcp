@@ -56,7 +56,7 @@ func (i IAMBindingConditionArgs) ToIAMBindingConditionPtrOutput() IAMBindingCond
 }
 
 func (i IAMBindingConditionArgs) ToIAMBindingConditionPtrOutputWithContext(ctx context.Context) IAMBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IAMBindingConditionOutput).ToIAMBindingConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(IAMBindingConditionOutput).ToIAMBindingConditionPtrOutput()
 }
 
 // IAMBindingConditionPtrInput is an input type that accepts IAMBindingConditionArgs, IAMBindingConditionPtr and IAMBindingConditionPtrOutput values.
@@ -89,7 +89,7 @@ func (i *iambindingConditionPtrType) ToIAMBindingConditionPtrOutput() IAMBinding
 }
 
 func (i *iambindingConditionPtrType) ToIAMBindingConditionPtrOutputWithContext(ctx context.Context) IAMBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IAMBindingConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(IAMBindingConditionOutput).ToIAMBindingConditionPtrOutput()
 }
 
 type IAMBindingConditionOutput struct{ *pulumi.OutputState }
@@ -225,7 +225,7 @@ func (i IAMMemberConditionArgs) ToIAMMemberConditionPtrOutput() IAMMemberConditi
 }
 
 func (i IAMMemberConditionArgs) ToIAMMemberConditionPtrOutputWithContext(ctx context.Context) IAMMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IAMMemberConditionOutput).ToIAMMemberConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(IAMMemberConditionOutput).ToIAMMemberConditionPtrOutput()
 }
 
 // IAMMemberConditionPtrInput is an input type that accepts IAMMemberConditionArgs, IAMMemberConditionPtr and IAMMemberConditionPtrOutput values.
@@ -258,7 +258,7 @@ func (i *iammemberConditionPtrType) ToIAMMemberConditionPtrOutput() IAMMemberCon
 }
 
 func (i *iammemberConditionPtrType) ToIAMMemberConditionPtrOutputWithContext(ctx context.Context) IAMMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IAMMemberConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(IAMMemberConditionOutput).ToIAMMemberConditionPtrOutput()
 }
 
 type IAMMemberConditionOutput struct{ *pulumi.OutputState }

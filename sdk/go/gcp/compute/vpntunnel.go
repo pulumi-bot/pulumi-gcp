@@ -586,16 +586,31 @@ type VPNTunnelInput interface {
 	ToVPNTunnelOutputWithContext(ctx context.Context) VPNTunnelOutput
 }
 
-func (VPNTunnel) ElementType() reflect.Type {
-	return reflect.TypeOf((*VPNTunnel)(nil)).Elem()
+func (*VPNTunnel) ElementType() reflect.Type {
+	return reflect.TypeOf((*VPNTunnel)(nil))
 }
 
-func (i VPNTunnel) ToVPNTunnelOutput() VPNTunnelOutput {
+func (i *VPNTunnel) ToVPNTunnelOutput() VPNTunnelOutput {
 	return i.ToVPNTunnelOutputWithContext(context.Background())
 }
 
-func (i VPNTunnel) ToVPNTunnelOutputWithContext(ctx context.Context) VPNTunnelOutput {
+func (i *VPNTunnel) ToVPNTunnelOutputWithContext(ctx context.Context) VPNTunnelOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VPNTunnelOutput)
+}
+
+func (i *VPNTunnel) ToVPNTunnelPtrOutput() VPNTunnelPtrOutput {
+	return i.ToVPNTunnelPtrOutputWithContext(context.Background())
+}
+
+func (i *VPNTunnel) ToVPNTunnelPtrOutputWithContext(ctx context.Context) VPNTunnelPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VPNTunnelPtrOutput)
+}
+
+type VPNTunnelPtrInput interface {
+	pulumi.Input
+
+	ToVPNTunnelPtrOutput() VPNTunnelPtrOutput
+	ToVPNTunnelPtrOutputWithContext(ctx context.Context) VPNTunnelPtrOutput
 }
 
 type VPNTunnelOutput struct {
@@ -603,7 +618,7 @@ type VPNTunnelOutput struct {
 }
 
 func (VPNTunnelOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*VPNTunnelOutput)(nil)).Elem()
+	return reflect.TypeOf((*VPNTunnel)(nil))
 }
 
 func (o VPNTunnelOutput) ToVPNTunnelOutput() VPNTunnelOutput {
@@ -614,6 +629,23 @@ func (o VPNTunnelOutput) ToVPNTunnelOutputWithContext(ctx context.Context) VPNTu
 	return o
 }
 
+type VPNTunnelPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (VPNTunnelPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**VPNTunnel)(nil))
+}
+
+func (o VPNTunnelPtrOutput) ToVPNTunnelPtrOutput() VPNTunnelPtrOutput {
+	return o
+}
+
+func (o VPNTunnelPtrOutput) ToVPNTunnelPtrOutputWithContext(ctx context.Context) VPNTunnelPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(VPNTunnelOutput{})
+	pulumi.RegisterOutputType(VPNTunnelPtrOutput{})
 }

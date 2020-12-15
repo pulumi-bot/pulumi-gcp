@@ -260,16 +260,31 @@ type OrganizationSecurityPolicyRuleInput interface {
 	ToOrganizationSecurityPolicyRuleOutputWithContext(ctx context.Context) OrganizationSecurityPolicyRuleOutput
 }
 
-func (OrganizationSecurityPolicyRule) ElementType() reflect.Type {
-	return reflect.TypeOf((*OrganizationSecurityPolicyRule)(nil)).Elem()
+func (*OrganizationSecurityPolicyRule) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationSecurityPolicyRule)(nil))
 }
 
-func (i OrganizationSecurityPolicyRule) ToOrganizationSecurityPolicyRuleOutput() OrganizationSecurityPolicyRuleOutput {
+func (i *OrganizationSecurityPolicyRule) ToOrganizationSecurityPolicyRuleOutput() OrganizationSecurityPolicyRuleOutput {
 	return i.ToOrganizationSecurityPolicyRuleOutputWithContext(context.Background())
 }
 
-func (i OrganizationSecurityPolicyRule) ToOrganizationSecurityPolicyRuleOutputWithContext(ctx context.Context) OrganizationSecurityPolicyRuleOutput {
+func (i *OrganizationSecurityPolicyRule) ToOrganizationSecurityPolicyRuleOutputWithContext(ctx context.Context) OrganizationSecurityPolicyRuleOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(OrganizationSecurityPolicyRuleOutput)
+}
+
+func (i *OrganizationSecurityPolicyRule) ToOrganizationSecurityPolicyRulePtrOutput() OrganizationSecurityPolicyRulePtrOutput {
+	return i.ToOrganizationSecurityPolicyRulePtrOutputWithContext(context.Background())
+}
+
+func (i *OrganizationSecurityPolicyRule) ToOrganizationSecurityPolicyRulePtrOutputWithContext(ctx context.Context) OrganizationSecurityPolicyRulePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationSecurityPolicyRulePtrOutput)
+}
+
+type OrganizationSecurityPolicyRulePtrInput interface {
+	pulumi.Input
+
+	ToOrganizationSecurityPolicyRulePtrOutput() OrganizationSecurityPolicyRulePtrOutput
+	ToOrganizationSecurityPolicyRulePtrOutputWithContext(ctx context.Context) OrganizationSecurityPolicyRulePtrOutput
 }
 
 type OrganizationSecurityPolicyRuleOutput struct {
@@ -277,7 +292,7 @@ type OrganizationSecurityPolicyRuleOutput struct {
 }
 
 func (OrganizationSecurityPolicyRuleOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*OrganizationSecurityPolicyRuleOutput)(nil)).Elem()
+	return reflect.TypeOf((*OrganizationSecurityPolicyRule)(nil))
 }
 
 func (o OrganizationSecurityPolicyRuleOutput) ToOrganizationSecurityPolicyRuleOutput() OrganizationSecurityPolicyRuleOutput {
@@ -288,6 +303,23 @@ func (o OrganizationSecurityPolicyRuleOutput) ToOrganizationSecurityPolicyRuleOu
 	return o
 }
 
+type OrganizationSecurityPolicyRulePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (OrganizationSecurityPolicyRulePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**OrganizationSecurityPolicyRule)(nil))
+}
+
+func (o OrganizationSecurityPolicyRulePtrOutput) ToOrganizationSecurityPolicyRulePtrOutput() OrganizationSecurityPolicyRulePtrOutput {
+	return o
+}
+
+func (o OrganizationSecurityPolicyRulePtrOutput) ToOrganizationSecurityPolicyRulePtrOutputWithContext(ctx context.Context) OrganizationSecurityPolicyRulePtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(OrganizationSecurityPolicyRuleOutput{})
+	pulumi.RegisterOutputType(OrganizationSecurityPolicyRulePtrOutput{})
 }

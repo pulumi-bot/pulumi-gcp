@@ -249,16 +249,31 @@ type OccurenceInput interface {
 	ToOccurenceOutputWithContext(ctx context.Context) OccurenceOutput
 }
 
-func (Occurence) ElementType() reflect.Type {
-	return reflect.TypeOf((*Occurence)(nil)).Elem()
+func (*Occurence) ElementType() reflect.Type {
+	return reflect.TypeOf((*Occurence)(nil))
 }
 
-func (i Occurence) ToOccurenceOutput() OccurenceOutput {
+func (i *Occurence) ToOccurenceOutput() OccurenceOutput {
 	return i.ToOccurenceOutputWithContext(context.Background())
 }
 
-func (i Occurence) ToOccurenceOutputWithContext(ctx context.Context) OccurenceOutput {
+func (i *Occurence) ToOccurenceOutputWithContext(ctx context.Context) OccurenceOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(OccurenceOutput)
+}
+
+func (i *Occurence) ToOccurencePtrOutput() OccurencePtrOutput {
+	return i.ToOccurencePtrOutputWithContext(context.Background())
+}
+
+func (i *Occurence) ToOccurencePtrOutputWithContext(ctx context.Context) OccurencePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OccurencePtrOutput)
+}
+
+type OccurencePtrInput interface {
+	pulumi.Input
+
+	ToOccurencePtrOutput() OccurencePtrOutput
+	ToOccurencePtrOutputWithContext(ctx context.Context) OccurencePtrOutput
 }
 
 type OccurenceOutput struct {
@@ -266,7 +281,7 @@ type OccurenceOutput struct {
 }
 
 func (OccurenceOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*OccurenceOutput)(nil)).Elem()
+	return reflect.TypeOf((*Occurence)(nil))
 }
 
 func (o OccurenceOutput) ToOccurenceOutput() OccurenceOutput {
@@ -277,6 +292,23 @@ func (o OccurenceOutput) ToOccurenceOutputWithContext(ctx context.Context) Occur
 	return o
 }
 
+type OccurencePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (OccurencePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Occurence)(nil))
+}
+
+func (o OccurencePtrOutput) ToOccurencePtrOutput() OccurencePtrOutput {
+	return o
+}
+
+func (o OccurencePtrOutput) ToOccurencePtrOutputWithContext(ctx context.Context) OccurencePtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(OccurenceOutput{})
+	pulumi.RegisterOutputType(OccurencePtrOutput{})
 }

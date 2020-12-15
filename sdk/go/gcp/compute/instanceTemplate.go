@@ -615,16 +615,31 @@ type InstanceTemplateInput interface {
 	ToInstanceTemplateOutputWithContext(ctx context.Context) InstanceTemplateOutput
 }
 
-func (InstanceTemplate) ElementType() reflect.Type {
-	return reflect.TypeOf((*InstanceTemplate)(nil)).Elem()
+func (*InstanceTemplate) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceTemplate)(nil))
 }
 
-func (i InstanceTemplate) ToInstanceTemplateOutput() InstanceTemplateOutput {
+func (i *InstanceTemplate) ToInstanceTemplateOutput() InstanceTemplateOutput {
 	return i.ToInstanceTemplateOutputWithContext(context.Background())
 }
 
-func (i InstanceTemplate) ToInstanceTemplateOutputWithContext(ctx context.Context) InstanceTemplateOutput {
+func (i *InstanceTemplate) ToInstanceTemplateOutputWithContext(ctx context.Context) InstanceTemplateOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceTemplateOutput)
+}
+
+func (i *InstanceTemplate) ToInstanceTemplatePtrOutput() InstanceTemplatePtrOutput {
+	return i.ToInstanceTemplatePtrOutputWithContext(context.Background())
+}
+
+func (i *InstanceTemplate) ToInstanceTemplatePtrOutputWithContext(ctx context.Context) InstanceTemplatePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceTemplatePtrOutput)
+}
+
+type InstanceTemplatePtrInput interface {
+	pulumi.Input
+
+	ToInstanceTemplatePtrOutput() InstanceTemplatePtrOutput
+	ToInstanceTemplatePtrOutputWithContext(ctx context.Context) InstanceTemplatePtrOutput
 }
 
 type InstanceTemplateOutput struct {
@@ -632,7 +647,7 @@ type InstanceTemplateOutput struct {
 }
 
 func (InstanceTemplateOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*InstanceTemplateOutput)(nil)).Elem()
+	return reflect.TypeOf((*InstanceTemplate)(nil))
 }
 
 func (o InstanceTemplateOutput) ToInstanceTemplateOutput() InstanceTemplateOutput {
@@ -643,6 +658,23 @@ func (o InstanceTemplateOutput) ToInstanceTemplateOutputWithContext(ctx context.
 	return o
 }
 
+type InstanceTemplatePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (InstanceTemplatePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**InstanceTemplate)(nil))
+}
+
+func (o InstanceTemplatePtrOutput) ToInstanceTemplatePtrOutput() InstanceTemplatePtrOutput {
+	return o
+}
+
+func (o InstanceTemplatePtrOutput) ToInstanceTemplatePtrOutputWithContext(ctx context.Context) InstanceTemplatePtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(InstanceTemplateOutput{})
+	pulumi.RegisterOutputType(InstanceTemplatePtrOutput{})
 }

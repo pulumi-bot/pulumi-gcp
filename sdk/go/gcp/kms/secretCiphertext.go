@@ -210,16 +210,31 @@ type SecretCiphertextInput interface {
 	ToSecretCiphertextOutputWithContext(ctx context.Context) SecretCiphertextOutput
 }
 
-func (SecretCiphertext) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretCiphertext)(nil)).Elem()
+func (*SecretCiphertext) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretCiphertext)(nil))
 }
 
-func (i SecretCiphertext) ToSecretCiphertextOutput() SecretCiphertextOutput {
+func (i *SecretCiphertext) ToSecretCiphertextOutput() SecretCiphertextOutput {
 	return i.ToSecretCiphertextOutputWithContext(context.Background())
 }
 
-func (i SecretCiphertext) ToSecretCiphertextOutputWithContext(ctx context.Context) SecretCiphertextOutput {
+func (i *SecretCiphertext) ToSecretCiphertextOutputWithContext(ctx context.Context) SecretCiphertextOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretCiphertextOutput)
+}
+
+func (i *SecretCiphertext) ToSecretCiphertextPtrOutput() SecretCiphertextPtrOutput {
+	return i.ToSecretCiphertextPtrOutputWithContext(context.Background())
+}
+
+func (i *SecretCiphertext) ToSecretCiphertextPtrOutputWithContext(ctx context.Context) SecretCiphertextPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretCiphertextPtrOutput)
+}
+
+type SecretCiphertextPtrInput interface {
+	pulumi.Input
+
+	ToSecretCiphertextPtrOutput() SecretCiphertextPtrOutput
+	ToSecretCiphertextPtrOutputWithContext(ctx context.Context) SecretCiphertextPtrOutput
 }
 
 type SecretCiphertextOutput struct {
@@ -227,7 +242,7 @@ type SecretCiphertextOutput struct {
 }
 
 func (SecretCiphertextOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretCiphertextOutput)(nil)).Elem()
+	return reflect.TypeOf((*SecretCiphertext)(nil))
 }
 
 func (o SecretCiphertextOutput) ToSecretCiphertextOutput() SecretCiphertextOutput {
@@ -238,6 +253,23 @@ func (o SecretCiphertextOutput) ToSecretCiphertextOutputWithContext(ctx context.
 	return o
 }
 
+type SecretCiphertextPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (SecretCiphertextPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecretCiphertext)(nil))
+}
+
+func (o SecretCiphertextPtrOutput) ToSecretCiphertextPtrOutput() SecretCiphertextPtrOutput {
+	return o
+}
+
+func (o SecretCiphertextPtrOutput) ToSecretCiphertextPtrOutputWithContext(ctx context.Context) SecretCiphertextPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(SecretCiphertextOutput{})
+	pulumi.RegisterOutputType(SecretCiphertextPtrOutput{})
 }

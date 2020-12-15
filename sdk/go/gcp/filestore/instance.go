@@ -325,16 +325,31 @@ type InstanceInput interface {
 	ToInstanceOutputWithContext(ctx context.Context) InstanceOutput
 }
 
-func (Instance) ElementType() reflect.Type {
-	return reflect.TypeOf((*Instance)(nil)).Elem()
+func (*Instance) ElementType() reflect.Type {
+	return reflect.TypeOf((*Instance)(nil))
 }
 
-func (i Instance) ToInstanceOutput() InstanceOutput {
+func (i *Instance) ToInstanceOutput() InstanceOutput {
 	return i.ToInstanceOutputWithContext(context.Background())
 }
 
-func (i Instance) ToInstanceOutputWithContext(ctx context.Context) InstanceOutput {
+func (i *Instance) ToInstanceOutputWithContext(ctx context.Context) InstanceOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceOutput)
+}
+
+func (i *Instance) ToInstancePtrOutput() InstancePtrOutput {
+	return i.ToInstancePtrOutputWithContext(context.Background())
+}
+
+func (i *Instance) ToInstancePtrOutputWithContext(ctx context.Context) InstancePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstancePtrOutput)
+}
+
+type InstancePtrInput interface {
+	pulumi.Input
+
+	ToInstancePtrOutput() InstancePtrOutput
+	ToInstancePtrOutputWithContext(ctx context.Context) InstancePtrOutput
 }
 
 type InstanceOutput struct {
@@ -342,7 +357,7 @@ type InstanceOutput struct {
 }
 
 func (InstanceOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*InstanceOutput)(nil)).Elem()
+	return reflect.TypeOf((*Instance)(nil))
 }
 
 func (o InstanceOutput) ToInstanceOutput() InstanceOutput {
@@ -353,6 +368,23 @@ func (o InstanceOutput) ToInstanceOutputWithContext(ctx context.Context) Instanc
 	return o
 }
 
+type InstancePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (InstancePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Instance)(nil))
+}
+
+func (o InstancePtrOutput) ToInstancePtrOutput() InstancePtrOutput {
+	return o
+}
+
+func (o InstancePtrOutput) ToInstancePtrOutputWithContext(ctx context.Context) InstancePtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(InstanceOutput{})
+	pulumi.RegisterOutputType(InstancePtrOutput{})
 }

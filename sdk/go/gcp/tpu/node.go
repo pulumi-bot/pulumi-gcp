@@ -342,16 +342,31 @@ type NodeInput interface {
 	ToNodeOutputWithContext(ctx context.Context) NodeOutput
 }
 
-func (Node) ElementType() reflect.Type {
-	return reflect.TypeOf((*Node)(nil)).Elem()
+func (*Node) ElementType() reflect.Type {
+	return reflect.TypeOf((*Node)(nil))
 }
 
-func (i Node) ToNodeOutput() NodeOutput {
+func (i *Node) ToNodeOutput() NodeOutput {
 	return i.ToNodeOutputWithContext(context.Background())
 }
 
-func (i Node) ToNodeOutputWithContext(ctx context.Context) NodeOutput {
+func (i *Node) ToNodeOutputWithContext(ctx context.Context) NodeOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NodeOutput)
+}
+
+func (i *Node) ToNodePtrOutput() NodePtrOutput {
+	return i.ToNodePtrOutputWithContext(context.Background())
+}
+
+func (i *Node) ToNodePtrOutputWithContext(ctx context.Context) NodePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePtrOutput)
+}
+
+type NodePtrInput interface {
+	pulumi.Input
+
+	ToNodePtrOutput() NodePtrOutput
+	ToNodePtrOutputWithContext(ctx context.Context) NodePtrOutput
 }
 
 type NodeOutput struct {
@@ -359,7 +374,7 @@ type NodeOutput struct {
 }
 
 func (NodeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*NodeOutput)(nil)).Elem()
+	return reflect.TypeOf((*Node)(nil))
 }
 
 func (o NodeOutput) ToNodeOutput() NodeOutput {
@@ -370,6 +385,23 @@ func (o NodeOutput) ToNodeOutputWithContext(ctx context.Context) NodeOutput {
 	return o
 }
 
+type NodePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (NodePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Node)(nil))
+}
+
+func (o NodePtrOutput) ToNodePtrOutput() NodePtrOutput {
+	return o
+}
+
+func (o NodePtrOutput) ToNodePtrOutputWithContext(ctx context.Context) NodePtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(NodeOutput{})
+	pulumi.RegisterOutputType(NodePtrOutput{})
 }

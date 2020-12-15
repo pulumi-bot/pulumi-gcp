@@ -268,16 +268,31 @@ type ConfigIamMemberInput interface {
 	ToConfigIamMemberOutputWithContext(ctx context.Context) ConfigIamMemberOutput
 }
 
-func (ConfigIamMember) ElementType() reflect.Type {
-	return reflect.TypeOf((*ConfigIamMember)(nil)).Elem()
+func (*ConfigIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConfigIamMember)(nil))
 }
 
-func (i ConfigIamMember) ToConfigIamMemberOutput() ConfigIamMemberOutput {
+func (i *ConfigIamMember) ToConfigIamMemberOutput() ConfigIamMemberOutput {
 	return i.ToConfigIamMemberOutputWithContext(context.Background())
 }
 
-func (i ConfigIamMember) ToConfigIamMemberOutputWithContext(ctx context.Context) ConfigIamMemberOutput {
+func (i *ConfigIamMember) ToConfigIamMemberOutputWithContext(ctx context.Context) ConfigIamMemberOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ConfigIamMemberOutput)
+}
+
+func (i *ConfigIamMember) ToConfigIamMemberPtrOutput() ConfigIamMemberPtrOutput {
+	return i.ToConfigIamMemberPtrOutputWithContext(context.Background())
+}
+
+func (i *ConfigIamMember) ToConfigIamMemberPtrOutputWithContext(ctx context.Context) ConfigIamMemberPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConfigIamMemberPtrOutput)
+}
+
+type ConfigIamMemberPtrInput interface {
+	pulumi.Input
+
+	ToConfigIamMemberPtrOutput() ConfigIamMemberPtrOutput
+	ToConfigIamMemberPtrOutputWithContext(ctx context.Context) ConfigIamMemberPtrOutput
 }
 
 type ConfigIamMemberOutput struct {
@@ -285,7 +300,7 @@ type ConfigIamMemberOutput struct {
 }
 
 func (ConfigIamMemberOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ConfigIamMemberOutput)(nil)).Elem()
+	return reflect.TypeOf((*ConfigIamMember)(nil))
 }
 
 func (o ConfigIamMemberOutput) ToConfigIamMemberOutput() ConfigIamMemberOutput {
@@ -296,6 +311,23 @@ func (o ConfigIamMemberOutput) ToConfigIamMemberOutputWithContext(ctx context.Co
 	return o
 }
 
+type ConfigIamMemberPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ConfigIamMemberPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ConfigIamMember)(nil))
+}
+
+func (o ConfigIamMemberPtrOutput) ToConfigIamMemberPtrOutput() ConfigIamMemberPtrOutput {
+	return o
+}
+
+func (o ConfigIamMemberPtrOutput) ToConfigIamMemberPtrOutputWithContext(ctx context.Context) ConfigIamMemberPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ConfigIamMemberOutput{})
+	pulumi.RegisterOutputType(ConfigIamMemberPtrOutput{})
 }

@@ -175,16 +175,31 @@ type PolicyTagInput interface {
 	ToPolicyTagOutputWithContext(ctx context.Context) PolicyTagOutput
 }
 
-func (PolicyTag) ElementType() reflect.Type {
-	return reflect.TypeOf((*PolicyTag)(nil)).Elem()
+func (*PolicyTag) ElementType() reflect.Type {
+	return reflect.TypeOf((*PolicyTag)(nil))
 }
 
-func (i PolicyTag) ToPolicyTagOutput() PolicyTagOutput {
+func (i *PolicyTag) ToPolicyTagOutput() PolicyTagOutput {
 	return i.ToPolicyTagOutputWithContext(context.Background())
 }
 
-func (i PolicyTag) ToPolicyTagOutputWithContext(ctx context.Context) PolicyTagOutput {
+func (i *PolicyTag) ToPolicyTagOutputWithContext(ctx context.Context) PolicyTagOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(PolicyTagOutput)
+}
+
+func (i *PolicyTag) ToPolicyTagPtrOutput() PolicyTagPtrOutput {
+	return i.ToPolicyTagPtrOutputWithContext(context.Background())
+}
+
+func (i *PolicyTag) ToPolicyTagPtrOutputWithContext(ctx context.Context) PolicyTagPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PolicyTagPtrOutput)
+}
+
+type PolicyTagPtrInput interface {
+	pulumi.Input
+
+	ToPolicyTagPtrOutput() PolicyTagPtrOutput
+	ToPolicyTagPtrOutputWithContext(ctx context.Context) PolicyTagPtrOutput
 }
 
 type PolicyTagOutput struct {
@@ -192,7 +207,7 @@ type PolicyTagOutput struct {
 }
 
 func (PolicyTagOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*PolicyTagOutput)(nil)).Elem()
+	return reflect.TypeOf((*PolicyTag)(nil))
 }
 
 func (o PolicyTagOutput) ToPolicyTagOutput() PolicyTagOutput {
@@ -203,6 +218,23 @@ func (o PolicyTagOutput) ToPolicyTagOutputWithContext(ctx context.Context) Polic
 	return o
 }
 
+type PolicyTagPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (PolicyTagPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PolicyTag)(nil))
+}
+
+func (o PolicyTagPtrOutput) ToPolicyTagPtrOutput() PolicyTagPtrOutput {
+	return o
+}
+
+func (o PolicyTagPtrOutput) ToPolicyTagPtrOutputWithContext(ctx context.Context) PolicyTagPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(PolicyTagOutput{})
+	pulumi.RegisterOutputType(PolicyTagPtrOutput{})
 }

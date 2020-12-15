@@ -174,16 +174,31 @@ type GatewayInput interface {
 	ToGatewayOutputWithContext(ctx context.Context) GatewayOutput
 }
 
-func (Gateway) ElementType() reflect.Type {
-	return reflect.TypeOf((*Gateway)(nil)).Elem()
+func (*Gateway) ElementType() reflect.Type {
+	return reflect.TypeOf((*Gateway)(nil))
 }
 
-func (i Gateway) ToGatewayOutput() GatewayOutput {
+func (i *Gateway) ToGatewayOutput() GatewayOutput {
 	return i.ToGatewayOutputWithContext(context.Background())
 }
 
-func (i Gateway) ToGatewayOutputWithContext(ctx context.Context) GatewayOutput {
+func (i *Gateway) ToGatewayOutputWithContext(ctx context.Context) GatewayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GatewayOutput)
+}
+
+func (i *Gateway) ToGatewayPtrOutput() GatewayPtrOutput {
+	return i.ToGatewayPtrOutputWithContext(context.Background())
+}
+
+func (i *Gateway) ToGatewayPtrOutputWithContext(ctx context.Context) GatewayPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GatewayPtrOutput)
+}
+
+type GatewayPtrInput interface {
+	pulumi.Input
+
+	ToGatewayPtrOutput() GatewayPtrOutput
+	ToGatewayPtrOutputWithContext(ctx context.Context) GatewayPtrOutput
 }
 
 type GatewayOutput struct {
@@ -191,7 +206,7 @@ type GatewayOutput struct {
 }
 
 func (GatewayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GatewayOutput)(nil)).Elem()
+	return reflect.TypeOf((*Gateway)(nil))
 }
 
 func (o GatewayOutput) ToGatewayOutput() GatewayOutput {
@@ -202,6 +217,23 @@ func (o GatewayOutput) ToGatewayOutputWithContext(ctx context.Context) GatewayOu
 	return o
 }
 
+type GatewayPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (GatewayPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Gateway)(nil))
+}
+
+func (o GatewayPtrOutput) ToGatewayPtrOutput() GatewayPtrOutput {
+	return o
+}
+
+func (o GatewayPtrOutput) ToGatewayPtrOutputWithContext(ctx context.Context) GatewayPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(GatewayOutput{})
+	pulumi.RegisterOutputType(GatewayPtrOutput{})
 }

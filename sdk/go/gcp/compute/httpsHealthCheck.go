@@ -324,16 +324,31 @@ type HttpsHealthCheckInput interface {
 	ToHttpsHealthCheckOutputWithContext(ctx context.Context) HttpsHealthCheckOutput
 }
 
-func (HttpsHealthCheck) ElementType() reflect.Type {
-	return reflect.TypeOf((*HttpsHealthCheck)(nil)).Elem()
+func (*HttpsHealthCheck) ElementType() reflect.Type {
+	return reflect.TypeOf((*HttpsHealthCheck)(nil))
 }
 
-func (i HttpsHealthCheck) ToHttpsHealthCheckOutput() HttpsHealthCheckOutput {
+func (i *HttpsHealthCheck) ToHttpsHealthCheckOutput() HttpsHealthCheckOutput {
 	return i.ToHttpsHealthCheckOutputWithContext(context.Background())
 }
 
-func (i HttpsHealthCheck) ToHttpsHealthCheckOutputWithContext(ctx context.Context) HttpsHealthCheckOutput {
+func (i *HttpsHealthCheck) ToHttpsHealthCheckOutputWithContext(ctx context.Context) HttpsHealthCheckOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(HttpsHealthCheckOutput)
+}
+
+func (i *HttpsHealthCheck) ToHttpsHealthCheckPtrOutput() HttpsHealthCheckPtrOutput {
+	return i.ToHttpsHealthCheckPtrOutputWithContext(context.Background())
+}
+
+func (i *HttpsHealthCheck) ToHttpsHealthCheckPtrOutputWithContext(ctx context.Context) HttpsHealthCheckPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HttpsHealthCheckPtrOutput)
+}
+
+type HttpsHealthCheckPtrInput interface {
+	pulumi.Input
+
+	ToHttpsHealthCheckPtrOutput() HttpsHealthCheckPtrOutput
+	ToHttpsHealthCheckPtrOutputWithContext(ctx context.Context) HttpsHealthCheckPtrOutput
 }
 
 type HttpsHealthCheckOutput struct {
@@ -341,7 +356,7 @@ type HttpsHealthCheckOutput struct {
 }
 
 func (HttpsHealthCheckOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*HttpsHealthCheckOutput)(nil)).Elem()
+	return reflect.TypeOf((*HttpsHealthCheck)(nil))
 }
 
 func (o HttpsHealthCheckOutput) ToHttpsHealthCheckOutput() HttpsHealthCheckOutput {
@@ -352,6 +367,23 @@ func (o HttpsHealthCheckOutput) ToHttpsHealthCheckOutputWithContext(ctx context.
 	return o
 }
 
+type HttpsHealthCheckPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (HttpsHealthCheckPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**HttpsHealthCheck)(nil))
+}
+
+func (o HttpsHealthCheckPtrOutput) ToHttpsHealthCheckPtrOutput() HttpsHealthCheckPtrOutput {
+	return o
+}
+
+func (o HttpsHealthCheckPtrOutput) ToHttpsHealthCheckPtrOutputWithContext(ctx context.Context) HttpsHealthCheckPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(HttpsHealthCheckOutput{})
+	pulumi.RegisterOutputType(HttpsHealthCheckPtrOutput{})
 }

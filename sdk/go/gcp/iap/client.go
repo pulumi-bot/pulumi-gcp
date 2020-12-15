@@ -148,16 +148,31 @@ type ClientInput interface {
 	ToClientOutputWithContext(ctx context.Context) ClientOutput
 }
 
-func (Client) ElementType() reflect.Type {
-	return reflect.TypeOf((*Client)(nil)).Elem()
+func (*Client) ElementType() reflect.Type {
+	return reflect.TypeOf((*Client)(nil))
 }
 
-func (i Client) ToClientOutput() ClientOutput {
+func (i *Client) ToClientOutput() ClientOutput {
 	return i.ToClientOutputWithContext(context.Background())
 }
 
-func (i Client) ToClientOutputWithContext(ctx context.Context) ClientOutput {
+func (i *Client) ToClientOutputWithContext(ctx context.Context) ClientOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ClientOutput)
+}
+
+func (i *Client) ToClientPtrOutput() ClientPtrOutput {
+	return i.ToClientPtrOutputWithContext(context.Background())
+}
+
+func (i *Client) ToClientPtrOutputWithContext(ctx context.Context) ClientPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClientPtrOutput)
+}
+
+type ClientPtrInput interface {
+	pulumi.Input
+
+	ToClientPtrOutput() ClientPtrOutput
+	ToClientPtrOutputWithContext(ctx context.Context) ClientPtrOutput
 }
 
 type ClientOutput struct {
@@ -165,7 +180,7 @@ type ClientOutput struct {
 }
 
 func (ClientOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ClientOutput)(nil)).Elem()
+	return reflect.TypeOf((*Client)(nil))
 }
 
 func (o ClientOutput) ToClientOutput() ClientOutput {
@@ -176,6 +191,23 @@ func (o ClientOutput) ToClientOutputWithContext(ctx context.Context) ClientOutpu
 	return o
 }
 
+type ClientPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ClientPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Client)(nil))
+}
+
+func (o ClientPtrOutput) ToClientPtrOutput() ClientPtrOutput {
+	return o
+}
+
+func (o ClientPtrOutput) ToClientPtrOutputWithContext(ctx context.Context) ClientPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ClientOutput{})
+	pulumi.RegisterOutputType(ClientPtrOutput{})
 }

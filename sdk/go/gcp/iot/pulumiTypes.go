@@ -355,7 +355,7 @@ func (i DeviceGatewayConfigArgs) ToDeviceGatewayConfigPtrOutput() DeviceGatewayC
 }
 
 func (i DeviceGatewayConfigArgs) ToDeviceGatewayConfigPtrOutputWithContext(ctx context.Context) DeviceGatewayConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeviceGatewayConfigOutput).ToDeviceGatewayConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(DeviceGatewayConfigOutput).ToDeviceGatewayConfigPtrOutput()
 }
 
 // DeviceGatewayConfigPtrInput is an input type that accepts DeviceGatewayConfigArgs, DeviceGatewayConfigPtr and DeviceGatewayConfigPtrOutput values.
@@ -388,7 +388,7 @@ func (i *deviceGatewayConfigPtrType) ToDeviceGatewayConfigPtrOutput() DeviceGate
 }
 
 func (i *deviceGatewayConfigPtrType) ToDeviceGatewayConfigPtrOutputWithContext(ctx context.Context) DeviceGatewayConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeviceGatewayConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(DeviceGatewayConfigOutput).ToDeviceGatewayConfigPtrOutput()
 }
 
 type DeviceGatewayConfigOutput struct{ *pulumi.OutputState }

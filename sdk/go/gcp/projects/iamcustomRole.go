@@ -219,16 +219,31 @@ type IAMCustomRoleInput interface {
 	ToIAMCustomRoleOutputWithContext(ctx context.Context) IAMCustomRoleOutput
 }
 
-func (IAMCustomRole) ElementType() reflect.Type {
-	return reflect.TypeOf((*IAMCustomRole)(nil)).Elem()
+func (*IAMCustomRole) ElementType() reflect.Type {
+	return reflect.TypeOf((*IAMCustomRole)(nil))
 }
 
-func (i IAMCustomRole) ToIAMCustomRoleOutput() IAMCustomRoleOutput {
+func (i *IAMCustomRole) ToIAMCustomRoleOutput() IAMCustomRoleOutput {
 	return i.ToIAMCustomRoleOutputWithContext(context.Background())
 }
 
-func (i IAMCustomRole) ToIAMCustomRoleOutputWithContext(ctx context.Context) IAMCustomRoleOutput {
+func (i *IAMCustomRole) ToIAMCustomRoleOutputWithContext(ctx context.Context) IAMCustomRoleOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IAMCustomRoleOutput)
+}
+
+func (i *IAMCustomRole) ToIAMCustomRolePtrOutput() IAMCustomRolePtrOutput {
+	return i.ToIAMCustomRolePtrOutputWithContext(context.Background())
+}
+
+func (i *IAMCustomRole) ToIAMCustomRolePtrOutputWithContext(ctx context.Context) IAMCustomRolePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IAMCustomRolePtrOutput)
+}
+
+type IAMCustomRolePtrInput interface {
+	pulumi.Input
+
+	ToIAMCustomRolePtrOutput() IAMCustomRolePtrOutput
+	ToIAMCustomRolePtrOutputWithContext(ctx context.Context) IAMCustomRolePtrOutput
 }
 
 type IAMCustomRoleOutput struct {
@@ -236,7 +251,7 @@ type IAMCustomRoleOutput struct {
 }
 
 func (IAMCustomRoleOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*IAMCustomRoleOutput)(nil)).Elem()
+	return reflect.TypeOf((*IAMCustomRole)(nil))
 }
 
 func (o IAMCustomRoleOutput) ToIAMCustomRoleOutput() IAMCustomRoleOutput {
@@ -247,6 +262,23 @@ func (o IAMCustomRoleOutput) ToIAMCustomRoleOutputWithContext(ctx context.Contex
 	return o
 }
 
+type IAMCustomRolePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (IAMCustomRolePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**IAMCustomRole)(nil))
+}
+
+func (o IAMCustomRolePtrOutput) ToIAMCustomRolePtrOutput() IAMCustomRolePtrOutput {
+	return o
+}
+
+func (o IAMCustomRolePtrOutput) ToIAMCustomRolePtrOutputWithContext(ctx context.Context) IAMCustomRolePtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(IAMCustomRoleOutput{})
+	pulumi.RegisterOutputType(IAMCustomRolePtrOutput{})
 }

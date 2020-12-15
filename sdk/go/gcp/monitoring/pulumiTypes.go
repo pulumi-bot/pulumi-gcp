@@ -332,7 +332,7 @@ func (i AlertPolicyConditionConditionAbsentArgs) ToAlertPolicyConditionCondition
 }
 
 func (i AlertPolicyConditionConditionAbsentArgs) ToAlertPolicyConditionConditionAbsentPtrOutputWithContext(ctx context.Context) AlertPolicyConditionConditionAbsentPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AlertPolicyConditionConditionAbsentOutput).ToAlertPolicyConditionConditionAbsentPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(AlertPolicyConditionConditionAbsentOutput).ToAlertPolicyConditionConditionAbsentPtrOutput()
 }
 
 // AlertPolicyConditionConditionAbsentPtrInput is an input type that accepts AlertPolicyConditionConditionAbsentArgs, AlertPolicyConditionConditionAbsentPtr and AlertPolicyConditionConditionAbsentPtrOutput values.
@@ -365,7 +365,7 @@ func (i *alertPolicyConditionConditionAbsentPtrType) ToAlertPolicyConditionCondi
 }
 
 func (i *alertPolicyConditionConditionAbsentPtrType) ToAlertPolicyConditionConditionAbsentPtrOutputWithContext(ctx context.Context) AlertPolicyConditionConditionAbsentPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AlertPolicyConditionConditionAbsentPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(AlertPolicyConditionConditionAbsentOutput).ToAlertPolicyConditionConditionAbsentPtrOutput()
 }
 
 type AlertPolicyConditionConditionAbsentOutput struct{ *pulumi.OutputState }
@@ -953,7 +953,7 @@ func (i AlertPolicyConditionConditionAbsentTriggerArgs) ToAlertPolicyConditionCo
 }
 
 func (i AlertPolicyConditionConditionAbsentTriggerArgs) ToAlertPolicyConditionConditionAbsentTriggerPtrOutputWithContext(ctx context.Context) AlertPolicyConditionConditionAbsentTriggerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AlertPolicyConditionConditionAbsentTriggerOutput).ToAlertPolicyConditionConditionAbsentTriggerPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(AlertPolicyConditionConditionAbsentTriggerOutput).ToAlertPolicyConditionConditionAbsentTriggerPtrOutput()
 }
 
 // AlertPolicyConditionConditionAbsentTriggerPtrInput is an input type that accepts AlertPolicyConditionConditionAbsentTriggerArgs, AlertPolicyConditionConditionAbsentTriggerPtr and AlertPolicyConditionConditionAbsentTriggerPtrOutput values.
@@ -986,7 +986,7 @@ func (i *alertPolicyConditionConditionAbsentTriggerPtrType) ToAlertPolicyConditi
 }
 
 func (i *alertPolicyConditionConditionAbsentTriggerPtrType) ToAlertPolicyConditionConditionAbsentTriggerPtrOutputWithContext(ctx context.Context) AlertPolicyConditionConditionAbsentTriggerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AlertPolicyConditionConditionAbsentTriggerPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(AlertPolicyConditionConditionAbsentTriggerOutput).ToAlertPolicyConditionConditionAbsentTriggerPtrOutput()
 }
 
 type AlertPolicyConditionConditionAbsentTriggerOutput struct{ *pulumi.OutputState }
@@ -1161,7 +1161,7 @@ func (i AlertPolicyConditionConditionMonitoringQueryLanguageArgs) ToAlertPolicyC
 }
 
 func (i AlertPolicyConditionConditionMonitoringQueryLanguageArgs) ToAlertPolicyConditionConditionMonitoringQueryLanguagePtrOutputWithContext(ctx context.Context) AlertPolicyConditionConditionMonitoringQueryLanguagePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AlertPolicyConditionConditionMonitoringQueryLanguageOutput).ToAlertPolicyConditionConditionMonitoringQueryLanguagePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(AlertPolicyConditionConditionMonitoringQueryLanguageOutput).ToAlertPolicyConditionConditionMonitoringQueryLanguagePtrOutput()
 }
 
 // AlertPolicyConditionConditionMonitoringQueryLanguagePtrInput is an input type that accepts AlertPolicyConditionConditionMonitoringQueryLanguageArgs, AlertPolicyConditionConditionMonitoringQueryLanguagePtr and AlertPolicyConditionConditionMonitoringQueryLanguagePtrOutput values.
@@ -1194,7 +1194,7 @@ func (i *alertPolicyConditionConditionMonitoringQueryLanguagePtrType) ToAlertPol
 }
 
 func (i *alertPolicyConditionConditionMonitoringQueryLanguagePtrType) ToAlertPolicyConditionConditionMonitoringQueryLanguagePtrOutputWithContext(ctx context.Context) AlertPolicyConditionConditionMonitoringQueryLanguagePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AlertPolicyConditionConditionMonitoringQueryLanguagePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(AlertPolicyConditionConditionMonitoringQueryLanguageOutput).ToAlertPolicyConditionConditionMonitoringQueryLanguagePtrOutput()
 }
 
 type AlertPolicyConditionConditionMonitoringQueryLanguageOutput struct{ *pulumi.OutputState }
@@ -1382,7 +1382,7 @@ func (i AlertPolicyConditionConditionMonitoringQueryLanguageTriggerArgs) ToAlert
 }
 
 func (i AlertPolicyConditionConditionMonitoringQueryLanguageTriggerArgs) ToAlertPolicyConditionConditionMonitoringQueryLanguageTriggerPtrOutputWithContext(ctx context.Context) AlertPolicyConditionConditionMonitoringQueryLanguageTriggerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AlertPolicyConditionConditionMonitoringQueryLanguageTriggerOutput).ToAlertPolicyConditionConditionMonitoringQueryLanguageTriggerPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(AlertPolicyConditionConditionMonitoringQueryLanguageTriggerOutput).ToAlertPolicyConditionConditionMonitoringQueryLanguageTriggerPtrOutput()
 }
 
 // AlertPolicyConditionConditionMonitoringQueryLanguageTriggerPtrInput is an input type that accepts AlertPolicyConditionConditionMonitoringQueryLanguageTriggerArgs, AlertPolicyConditionConditionMonitoringQueryLanguageTriggerPtr and AlertPolicyConditionConditionMonitoringQueryLanguageTriggerPtrOutput values.
@@ -1415,7 +1415,7 @@ func (i *alertPolicyConditionConditionMonitoringQueryLanguageTriggerPtrType) ToA
 }
 
 func (i *alertPolicyConditionConditionMonitoringQueryLanguageTriggerPtrType) ToAlertPolicyConditionConditionMonitoringQueryLanguageTriggerPtrOutputWithContext(ctx context.Context) AlertPolicyConditionConditionMonitoringQueryLanguageTriggerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AlertPolicyConditionConditionMonitoringQueryLanguageTriggerPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(AlertPolicyConditionConditionMonitoringQueryLanguageTriggerOutput).ToAlertPolicyConditionConditionMonitoringQueryLanguageTriggerPtrOutput()
 }
 
 type AlertPolicyConditionConditionMonitoringQueryLanguageTriggerOutput struct{ *pulumi.OutputState }
@@ -1736,7 +1736,7 @@ func (i AlertPolicyConditionConditionThresholdArgs) ToAlertPolicyConditionCondit
 }
 
 func (i AlertPolicyConditionConditionThresholdArgs) ToAlertPolicyConditionConditionThresholdPtrOutputWithContext(ctx context.Context) AlertPolicyConditionConditionThresholdPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AlertPolicyConditionConditionThresholdOutput).ToAlertPolicyConditionConditionThresholdPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(AlertPolicyConditionConditionThresholdOutput).ToAlertPolicyConditionConditionThresholdPtrOutput()
 }
 
 // AlertPolicyConditionConditionThresholdPtrInput is an input type that accepts AlertPolicyConditionConditionThresholdArgs, AlertPolicyConditionConditionThresholdPtr and AlertPolicyConditionConditionThresholdPtrOutput values.
@@ -1769,7 +1769,7 @@ func (i *alertPolicyConditionConditionThresholdPtrType) ToAlertPolicyConditionCo
 }
 
 func (i *alertPolicyConditionConditionThresholdPtrType) ToAlertPolicyConditionConditionThresholdPtrOutputWithContext(ctx context.Context) AlertPolicyConditionConditionThresholdPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AlertPolicyConditionConditionThresholdPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(AlertPolicyConditionConditionThresholdOutput).ToAlertPolicyConditionConditionThresholdPtrOutput()
 }
 
 type AlertPolicyConditionConditionThresholdOutput struct{ *pulumi.OutputState }
@@ -2838,7 +2838,7 @@ func (i AlertPolicyConditionConditionThresholdTriggerArgs) ToAlertPolicyConditio
 }
 
 func (i AlertPolicyConditionConditionThresholdTriggerArgs) ToAlertPolicyConditionConditionThresholdTriggerPtrOutputWithContext(ctx context.Context) AlertPolicyConditionConditionThresholdTriggerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AlertPolicyConditionConditionThresholdTriggerOutput).ToAlertPolicyConditionConditionThresholdTriggerPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(AlertPolicyConditionConditionThresholdTriggerOutput).ToAlertPolicyConditionConditionThresholdTriggerPtrOutput()
 }
 
 // AlertPolicyConditionConditionThresholdTriggerPtrInput is an input type that accepts AlertPolicyConditionConditionThresholdTriggerArgs, AlertPolicyConditionConditionThresholdTriggerPtr and AlertPolicyConditionConditionThresholdTriggerPtrOutput values.
@@ -2871,7 +2871,7 @@ func (i *alertPolicyConditionConditionThresholdTriggerPtrType) ToAlertPolicyCond
 }
 
 func (i *alertPolicyConditionConditionThresholdTriggerPtrType) ToAlertPolicyConditionConditionThresholdTriggerPtrOutputWithContext(ctx context.Context) AlertPolicyConditionConditionThresholdTriggerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AlertPolicyConditionConditionThresholdTriggerPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(AlertPolicyConditionConditionThresholdTriggerOutput).ToAlertPolicyConditionConditionThresholdTriggerPtrOutput()
 }
 
 type AlertPolicyConditionConditionThresholdTriggerOutput struct{ *pulumi.OutputState }
@@ -3106,7 +3106,7 @@ func (i AlertPolicyDocumentationArgs) ToAlertPolicyDocumentationPtrOutput() Aler
 }
 
 func (i AlertPolicyDocumentationArgs) ToAlertPolicyDocumentationPtrOutputWithContext(ctx context.Context) AlertPolicyDocumentationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AlertPolicyDocumentationOutput).ToAlertPolicyDocumentationPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(AlertPolicyDocumentationOutput).ToAlertPolicyDocumentationPtrOutput()
 }
 
 // AlertPolicyDocumentationPtrInput is an input type that accepts AlertPolicyDocumentationArgs, AlertPolicyDocumentationPtr and AlertPolicyDocumentationPtrOutput values.
@@ -3139,7 +3139,7 @@ func (i *alertPolicyDocumentationPtrType) ToAlertPolicyDocumentationPtrOutput() 
 }
 
 func (i *alertPolicyDocumentationPtrType) ToAlertPolicyDocumentationPtrOutputWithContext(ctx context.Context) AlertPolicyDocumentationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AlertPolicyDocumentationPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(AlertPolicyDocumentationOutput).ToAlertPolicyDocumentationPtrOutput()
 }
 
 type AlertPolicyDocumentationOutput struct{ *pulumi.OutputState }
@@ -3264,7 +3264,7 @@ func (i CustomServiceTelemetryArgs) ToCustomServiceTelemetryPtrOutput() CustomSe
 }
 
 func (i CustomServiceTelemetryArgs) ToCustomServiceTelemetryPtrOutputWithContext(ctx context.Context) CustomServiceTelemetryPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CustomServiceTelemetryOutput).ToCustomServiceTelemetryPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(CustomServiceTelemetryOutput).ToCustomServiceTelemetryPtrOutput()
 }
 
 // CustomServiceTelemetryPtrInput is an input type that accepts CustomServiceTelemetryArgs, CustomServiceTelemetryPtr and CustomServiceTelemetryPtrOutput values.
@@ -3297,7 +3297,7 @@ func (i *customServiceTelemetryPtrType) ToCustomServiceTelemetryPtrOutput() Cust
 }
 
 func (i *customServiceTelemetryPtrType) ToCustomServiceTelemetryPtrOutputWithContext(ctx context.Context) CustomServiceTelemetryPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CustomServiceTelemetryPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(CustomServiceTelemetryOutput).ToCustomServiceTelemetryPtrOutput()
 }
 
 type CustomServiceTelemetryOutput struct{ *pulumi.OutputState }
@@ -3524,7 +3524,7 @@ func (i MetricDescriptorMetadataArgs) ToMetricDescriptorMetadataPtrOutput() Metr
 }
 
 func (i MetricDescriptorMetadataArgs) ToMetricDescriptorMetadataPtrOutputWithContext(ctx context.Context) MetricDescriptorMetadataPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(MetricDescriptorMetadataOutput).ToMetricDescriptorMetadataPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(MetricDescriptorMetadataOutput).ToMetricDescriptorMetadataPtrOutput()
 }
 
 // MetricDescriptorMetadataPtrInput is an input type that accepts MetricDescriptorMetadataArgs, MetricDescriptorMetadataPtr and MetricDescriptorMetadataPtrOutput values.
@@ -3557,7 +3557,7 @@ func (i *metricDescriptorMetadataPtrType) ToMetricDescriptorMetadataPtrOutput() 
 }
 
 func (i *metricDescriptorMetadataPtrType) ToMetricDescriptorMetadataPtrOutputWithContext(ctx context.Context) MetricDescriptorMetadataPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(MetricDescriptorMetadataPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(MetricDescriptorMetadataOutput).ToMetricDescriptorMetadataPtrOutput()
 }
 
 type MetricDescriptorMetadataOutput struct{ *pulumi.OutputState }
@@ -3684,7 +3684,7 @@ func (i NotificationChannelSensitiveLabelsArgs) ToNotificationChannelSensitiveLa
 }
 
 func (i NotificationChannelSensitiveLabelsArgs) ToNotificationChannelSensitiveLabelsPtrOutputWithContext(ctx context.Context) NotificationChannelSensitiveLabelsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NotificationChannelSensitiveLabelsOutput).ToNotificationChannelSensitiveLabelsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationChannelSensitiveLabelsOutput).ToNotificationChannelSensitiveLabelsPtrOutput()
 }
 
 // NotificationChannelSensitiveLabelsPtrInput is an input type that accepts NotificationChannelSensitiveLabelsArgs, NotificationChannelSensitiveLabelsPtr and NotificationChannelSensitiveLabelsPtrOutput values.
@@ -3717,7 +3717,7 @@ func (i *notificationChannelSensitiveLabelsPtrType) ToNotificationChannelSensiti
 }
 
 func (i *notificationChannelSensitiveLabelsPtrType) ToNotificationChannelSensitiveLabelsPtrOutputWithContext(ctx context.Context) NotificationChannelSensitiveLabelsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NotificationChannelSensitiveLabelsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationChannelSensitiveLabelsOutput).ToNotificationChannelSensitiveLabelsPtrOutput()
 }
 
 type NotificationChannelSensitiveLabelsOutput struct{ *pulumi.OutputState }
@@ -3895,7 +3895,7 @@ func (i SloBasicSliArgs) ToSloBasicSliPtrOutput() SloBasicSliPtrOutput {
 }
 
 func (i SloBasicSliArgs) ToSloBasicSliPtrOutputWithContext(ctx context.Context) SloBasicSliPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SloBasicSliOutput).ToSloBasicSliPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SloBasicSliOutput).ToSloBasicSliPtrOutput()
 }
 
 // SloBasicSliPtrInput is an input type that accepts SloBasicSliArgs, SloBasicSliPtr and SloBasicSliPtrOutput values.
@@ -3928,7 +3928,7 @@ func (i *sloBasicSliPtrType) ToSloBasicSliPtrOutput() SloBasicSliPtrOutput {
 }
 
 func (i *sloBasicSliPtrType) ToSloBasicSliPtrOutputWithContext(ctx context.Context) SloBasicSliPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SloBasicSliPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SloBasicSliOutput).ToSloBasicSliPtrOutput()
 }
 
 type SloBasicSliOutput struct{ *pulumi.OutputState }
@@ -4107,7 +4107,7 @@ func (i SloBasicSliLatencyArgs) ToSloBasicSliLatencyPtrOutput() SloBasicSliLaten
 }
 
 func (i SloBasicSliLatencyArgs) ToSloBasicSliLatencyPtrOutputWithContext(ctx context.Context) SloBasicSliLatencyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SloBasicSliLatencyOutput).ToSloBasicSliLatencyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SloBasicSliLatencyOutput).ToSloBasicSliLatencyPtrOutput()
 }
 
 // SloBasicSliLatencyPtrInput is an input type that accepts SloBasicSliLatencyArgs, SloBasicSliLatencyPtr and SloBasicSliLatencyPtrOutput values.
@@ -4140,7 +4140,7 @@ func (i *sloBasicSliLatencyPtrType) ToSloBasicSliLatencyPtrOutput() SloBasicSliL
 }
 
 func (i *sloBasicSliLatencyPtrType) ToSloBasicSliLatencyPtrOutputWithContext(ctx context.Context) SloBasicSliLatencyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SloBasicSliLatencyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SloBasicSliLatencyOutput).ToSloBasicSliLatencyPtrOutput()
 }
 
 type SloBasicSliLatencyOutput struct{ *pulumi.OutputState }
@@ -4266,7 +4266,7 @@ func (i SloRequestBasedSliArgs) ToSloRequestBasedSliPtrOutput() SloRequestBasedS
 }
 
 func (i SloRequestBasedSliArgs) ToSloRequestBasedSliPtrOutputWithContext(ctx context.Context) SloRequestBasedSliPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SloRequestBasedSliOutput).ToSloRequestBasedSliPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SloRequestBasedSliOutput).ToSloRequestBasedSliPtrOutput()
 }
 
 // SloRequestBasedSliPtrInput is an input type that accepts SloRequestBasedSliArgs, SloRequestBasedSliPtr and SloRequestBasedSliPtrOutput values.
@@ -4299,7 +4299,7 @@ func (i *sloRequestBasedSliPtrType) ToSloRequestBasedSliPtrOutput() SloRequestBa
 }
 
 func (i *sloRequestBasedSliPtrType) ToSloRequestBasedSliPtrOutputWithContext(ctx context.Context) SloRequestBasedSliPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SloRequestBasedSliPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SloRequestBasedSliOutput).ToSloRequestBasedSliPtrOutput()
 }
 
 type SloRequestBasedSliOutput struct{ *pulumi.OutputState }
@@ -4454,7 +4454,7 @@ func (i SloRequestBasedSliDistributionCutArgs) ToSloRequestBasedSliDistributionC
 }
 
 func (i SloRequestBasedSliDistributionCutArgs) ToSloRequestBasedSliDistributionCutPtrOutputWithContext(ctx context.Context) SloRequestBasedSliDistributionCutPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SloRequestBasedSliDistributionCutOutput).ToSloRequestBasedSliDistributionCutPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SloRequestBasedSliDistributionCutOutput).ToSloRequestBasedSliDistributionCutPtrOutput()
 }
 
 // SloRequestBasedSliDistributionCutPtrInput is an input type that accepts SloRequestBasedSliDistributionCutArgs, SloRequestBasedSliDistributionCutPtr and SloRequestBasedSliDistributionCutPtrOutput values.
@@ -4487,7 +4487,7 @@ func (i *sloRequestBasedSliDistributionCutPtrType) ToSloRequestBasedSliDistribut
 }
 
 func (i *sloRequestBasedSliDistributionCutPtrType) ToSloRequestBasedSliDistributionCutPtrOutputWithContext(ctx context.Context) SloRequestBasedSliDistributionCutPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SloRequestBasedSliDistributionCutPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SloRequestBasedSliDistributionCutOutput).ToSloRequestBasedSliDistributionCutPtrOutput()
 }
 
 type SloRequestBasedSliDistributionCutOutput struct{ *pulumi.OutputState }
@@ -4630,7 +4630,7 @@ func (i SloRequestBasedSliDistributionCutRangeArgs) ToSloRequestBasedSliDistribu
 }
 
 func (i SloRequestBasedSliDistributionCutRangeArgs) ToSloRequestBasedSliDistributionCutRangePtrOutputWithContext(ctx context.Context) SloRequestBasedSliDistributionCutRangePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SloRequestBasedSliDistributionCutRangeOutput).ToSloRequestBasedSliDistributionCutRangePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SloRequestBasedSliDistributionCutRangeOutput).ToSloRequestBasedSliDistributionCutRangePtrOutput()
 }
 
 // SloRequestBasedSliDistributionCutRangePtrInput is an input type that accepts SloRequestBasedSliDistributionCutRangeArgs, SloRequestBasedSliDistributionCutRangePtr and SloRequestBasedSliDistributionCutRangePtrOutput values.
@@ -4663,7 +4663,7 @@ func (i *sloRequestBasedSliDistributionCutRangePtrType) ToSloRequestBasedSliDist
 }
 
 func (i *sloRequestBasedSliDistributionCutRangePtrType) ToSloRequestBasedSliDistributionCutRangePtrOutputWithContext(ctx context.Context) SloRequestBasedSliDistributionCutRangePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SloRequestBasedSliDistributionCutRangePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SloRequestBasedSliDistributionCutRangeOutput).ToSloRequestBasedSliDistributionCutRangePtrOutput()
 }
 
 type SloRequestBasedSliDistributionCutRangeOutput struct{ *pulumi.OutputState }
@@ -4826,7 +4826,7 @@ func (i SloRequestBasedSliGoodTotalRatioArgs) ToSloRequestBasedSliGoodTotalRatio
 }
 
 func (i SloRequestBasedSliGoodTotalRatioArgs) ToSloRequestBasedSliGoodTotalRatioPtrOutputWithContext(ctx context.Context) SloRequestBasedSliGoodTotalRatioPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SloRequestBasedSliGoodTotalRatioOutput).ToSloRequestBasedSliGoodTotalRatioPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SloRequestBasedSliGoodTotalRatioOutput).ToSloRequestBasedSliGoodTotalRatioPtrOutput()
 }
 
 // SloRequestBasedSliGoodTotalRatioPtrInput is an input type that accepts SloRequestBasedSliGoodTotalRatioArgs, SloRequestBasedSliGoodTotalRatioPtr and SloRequestBasedSliGoodTotalRatioPtrOutput values.
@@ -4859,7 +4859,7 @@ func (i *sloRequestBasedSliGoodTotalRatioPtrType) ToSloRequestBasedSliGoodTotalR
 }
 
 func (i *sloRequestBasedSliGoodTotalRatioPtrType) ToSloRequestBasedSliGoodTotalRatioPtrOutputWithContext(ctx context.Context) SloRequestBasedSliGoodTotalRatioPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SloRequestBasedSliGoodTotalRatioPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SloRequestBasedSliGoodTotalRatioOutput).ToSloRequestBasedSliGoodTotalRatioPtrOutput()
 }
 
 type SloRequestBasedSliGoodTotalRatioOutput struct{ *pulumi.OutputState }
@@ -5085,7 +5085,7 @@ func (i SloWindowsBasedSliArgs) ToSloWindowsBasedSliPtrOutput() SloWindowsBasedS
 }
 
 func (i SloWindowsBasedSliArgs) ToSloWindowsBasedSliPtrOutputWithContext(ctx context.Context) SloWindowsBasedSliPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SloWindowsBasedSliOutput).ToSloWindowsBasedSliPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SloWindowsBasedSliOutput).ToSloWindowsBasedSliPtrOutput()
 }
 
 // SloWindowsBasedSliPtrInput is an input type that accepts SloWindowsBasedSliArgs, SloWindowsBasedSliPtr and SloWindowsBasedSliPtrOutput values.
@@ -5118,7 +5118,7 @@ func (i *sloWindowsBasedSliPtrType) ToSloWindowsBasedSliPtrOutput() SloWindowsBa
 }
 
 func (i *sloWindowsBasedSliPtrType) ToSloWindowsBasedSliPtrOutputWithContext(ctx context.Context) SloWindowsBasedSliPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SloWindowsBasedSliPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SloWindowsBasedSliOutput).ToSloWindowsBasedSliPtrOutput()
 }
 
 type SloWindowsBasedSliOutput struct{ *pulumi.OutputState }
@@ -5342,7 +5342,7 @@ func (i SloWindowsBasedSliGoodTotalRatioThresholdArgs) ToSloWindowsBasedSliGoodT
 }
 
 func (i SloWindowsBasedSliGoodTotalRatioThresholdArgs) ToSloWindowsBasedSliGoodTotalRatioThresholdPtrOutputWithContext(ctx context.Context) SloWindowsBasedSliGoodTotalRatioThresholdPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SloWindowsBasedSliGoodTotalRatioThresholdOutput).ToSloWindowsBasedSliGoodTotalRatioThresholdPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SloWindowsBasedSliGoodTotalRatioThresholdOutput).ToSloWindowsBasedSliGoodTotalRatioThresholdPtrOutput()
 }
 
 // SloWindowsBasedSliGoodTotalRatioThresholdPtrInput is an input type that accepts SloWindowsBasedSliGoodTotalRatioThresholdArgs, SloWindowsBasedSliGoodTotalRatioThresholdPtr and SloWindowsBasedSliGoodTotalRatioThresholdPtrOutput values.
@@ -5375,7 +5375,7 @@ func (i *sloWindowsBasedSliGoodTotalRatioThresholdPtrType) ToSloWindowsBasedSliG
 }
 
 func (i *sloWindowsBasedSliGoodTotalRatioThresholdPtrType) ToSloWindowsBasedSliGoodTotalRatioThresholdPtrOutputWithContext(ctx context.Context) SloWindowsBasedSliGoodTotalRatioThresholdPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SloWindowsBasedSliGoodTotalRatioThresholdPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SloWindowsBasedSliGoodTotalRatioThresholdOutput).ToSloWindowsBasedSliGoodTotalRatioThresholdPtrOutput()
 }
 
 type SloWindowsBasedSliGoodTotalRatioThresholdOutput struct{ *pulumi.OutputState }
@@ -5561,7 +5561,7 @@ func (i SloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceArgs) ToSloW
 }
 
 func (i SloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceArgs) ToSloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformancePtrOutputWithContext(ctx context.Context) SloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformancePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceOutput).ToSloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformancePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceOutput).ToSloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformancePtrOutput()
 }
 
 // SloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformancePtrInput is an input type that accepts SloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceArgs, SloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformancePtr and SloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformancePtrOutput values.
@@ -5594,7 +5594,7 @@ func (i *sloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformancePtrType) To
 }
 
 func (i *sloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformancePtrType) ToSloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformancePtrOutputWithContext(ctx context.Context) SloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformancePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformancePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceOutput).ToSloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformancePtrOutput()
 }
 
 type SloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceOutput struct{ *pulumi.OutputState }
@@ -5777,7 +5777,7 @@ func (i SloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceLatencyArgs)
 }
 
 func (i SloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceLatencyArgs) ToSloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceLatencyPtrOutputWithContext(ctx context.Context) SloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceLatencyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceLatencyOutput).ToSloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceLatencyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceLatencyOutput).ToSloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceLatencyPtrOutput()
 }
 
 // SloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceLatencyPtrInput is an input type that accepts SloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceLatencyArgs, SloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceLatencyPtr and SloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceLatencyPtrOutput values.
@@ -5810,7 +5810,7 @@ func (i *sloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceLatencyPtrT
 }
 
 func (i *sloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceLatencyPtrType) ToSloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceLatencyPtrOutputWithContext(ctx context.Context) SloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceLatencyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceLatencyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceLatencyOutput).ToSloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceLatencyPtrOutput()
 }
 
 type SloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceLatencyOutput struct{ *pulumi.OutputState }
@@ -5938,7 +5938,7 @@ func (i SloWindowsBasedSliGoodTotalRatioThresholdPerformanceArgs) ToSloWindowsBa
 }
 
 func (i SloWindowsBasedSliGoodTotalRatioThresholdPerformanceArgs) ToSloWindowsBasedSliGoodTotalRatioThresholdPerformancePtrOutputWithContext(ctx context.Context) SloWindowsBasedSliGoodTotalRatioThresholdPerformancePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SloWindowsBasedSliGoodTotalRatioThresholdPerformanceOutput).ToSloWindowsBasedSliGoodTotalRatioThresholdPerformancePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SloWindowsBasedSliGoodTotalRatioThresholdPerformanceOutput).ToSloWindowsBasedSliGoodTotalRatioThresholdPerformancePtrOutput()
 }
 
 // SloWindowsBasedSliGoodTotalRatioThresholdPerformancePtrInput is an input type that accepts SloWindowsBasedSliGoodTotalRatioThresholdPerformanceArgs, SloWindowsBasedSliGoodTotalRatioThresholdPerformancePtr and SloWindowsBasedSliGoodTotalRatioThresholdPerformancePtrOutput values.
@@ -5971,7 +5971,7 @@ func (i *sloWindowsBasedSliGoodTotalRatioThresholdPerformancePtrType) ToSloWindo
 }
 
 func (i *sloWindowsBasedSliGoodTotalRatioThresholdPerformancePtrType) ToSloWindowsBasedSliGoodTotalRatioThresholdPerformancePtrOutputWithContext(ctx context.Context) SloWindowsBasedSliGoodTotalRatioThresholdPerformancePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SloWindowsBasedSliGoodTotalRatioThresholdPerformancePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SloWindowsBasedSliGoodTotalRatioThresholdPerformanceOutput).ToSloWindowsBasedSliGoodTotalRatioThresholdPerformancePtrOutput()
 }
 
 type SloWindowsBasedSliGoodTotalRatioThresholdPerformanceOutput struct{ *pulumi.OutputState }
@@ -6132,7 +6132,7 @@ func (i SloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCutArgs)
 }
 
 func (i SloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCutArgs) ToSloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCutPtrOutputWithContext(ctx context.Context) SloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCutPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCutOutput).ToSloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCutPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCutOutput).ToSloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCutPtrOutput()
 }
 
 // SloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCutPtrInput is an input type that accepts SloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCutArgs, SloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCutPtr and SloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCutPtrOutput values.
@@ -6165,7 +6165,7 @@ func (i *sloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCutPtrT
 }
 
 func (i *sloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCutPtrType) ToSloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCutPtrOutputWithContext(ctx context.Context) SloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCutPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCutPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCutOutput).ToSloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCutPtrOutput()
 }
 
 type SloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCutOutput struct{ *pulumi.OutputState }
@@ -6314,7 +6314,7 @@ func (i SloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCutRange
 }
 
 func (i SloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCutRangeArgs) ToSloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCutRangePtrOutputWithContext(ctx context.Context) SloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCutRangePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCutRangeOutput).ToSloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCutRangePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCutRangeOutput).ToSloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCutRangePtrOutput()
 }
 
 // SloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCutRangePtrInput is an input type that accepts SloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCutRangeArgs, SloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCutRangePtr and SloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCutRangePtrOutput values.
@@ -6347,7 +6347,7 @@ func (i *sloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCutRang
 }
 
 func (i *sloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCutRangePtrType) ToSloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCutRangePtrOutputWithContext(ctx context.Context) SloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCutRangePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCutRangePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCutRangeOutput).ToSloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCutRangePtrOutput()
 }
 
 type SloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCutRangeOutput struct{ *pulumi.OutputState }
@@ -6516,7 +6516,7 @@ func (i SloWindowsBasedSliGoodTotalRatioThresholdPerformanceGoodTotalRatioArgs) 
 }
 
 func (i SloWindowsBasedSliGoodTotalRatioThresholdPerformanceGoodTotalRatioArgs) ToSloWindowsBasedSliGoodTotalRatioThresholdPerformanceGoodTotalRatioPtrOutputWithContext(ctx context.Context) SloWindowsBasedSliGoodTotalRatioThresholdPerformanceGoodTotalRatioPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SloWindowsBasedSliGoodTotalRatioThresholdPerformanceGoodTotalRatioOutput).ToSloWindowsBasedSliGoodTotalRatioThresholdPerformanceGoodTotalRatioPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SloWindowsBasedSliGoodTotalRatioThresholdPerformanceGoodTotalRatioOutput).ToSloWindowsBasedSliGoodTotalRatioThresholdPerformanceGoodTotalRatioPtrOutput()
 }
 
 // SloWindowsBasedSliGoodTotalRatioThresholdPerformanceGoodTotalRatioPtrInput is an input type that accepts SloWindowsBasedSliGoodTotalRatioThresholdPerformanceGoodTotalRatioArgs, SloWindowsBasedSliGoodTotalRatioThresholdPerformanceGoodTotalRatioPtr and SloWindowsBasedSliGoodTotalRatioThresholdPerformanceGoodTotalRatioPtrOutput values.
@@ -6549,7 +6549,7 @@ func (i *sloWindowsBasedSliGoodTotalRatioThresholdPerformanceGoodTotalRatioPtrTy
 }
 
 func (i *sloWindowsBasedSliGoodTotalRatioThresholdPerformanceGoodTotalRatioPtrType) ToSloWindowsBasedSliGoodTotalRatioThresholdPerformanceGoodTotalRatioPtrOutputWithContext(ctx context.Context) SloWindowsBasedSliGoodTotalRatioThresholdPerformanceGoodTotalRatioPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SloWindowsBasedSliGoodTotalRatioThresholdPerformanceGoodTotalRatioPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SloWindowsBasedSliGoodTotalRatioThresholdPerformanceGoodTotalRatioOutput).ToSloWindowsBasedSliGoodTotalRatioThresholdPerformanceGoodTotalRatioPtrOutput()
 }
 
 type SloWindowsBasedSliGoodTotalRatioThresholdPerformanceGoodTotalRatioOutput struct{ *pulumi.OutputState }
@@ -6747,7 +6747,7 @@ func (i SloWindowsBasedSliMetricMeanInRangeArgs) ToSloWindowsBasedSliMetricMeanI
 }
 
 func (i SloWindowsBasedSliMetricMeanInRangeArgs) ToSloWindowsBasedSliMetricMeanInRangePtrOutputWithContext(ctx context.Context) SloWindowsBasedSliMetricMeanInRangePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SloWindowsBasedSliMetricMeanInRangeOutput).ToSloWindowsBasedSliMetricMeanInRangePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SloWindowsBasedSliMetricMeanInRangeOutput).ToSloWindowsBasedSliMetricMeanInRangePtrOutput()
 }
 
 // SloWindowsBasedSliMetricMeanInRangePtrInput is an input type that accepts SloWindowsBasedSliMetricMeanInRangeArgs, SloWindowsBasedSliMetricMeanInRangePtr and SloWindowsBasedSliMetricMeanInRangePtrOutput values.
@@ -6780,7 +6780,7 @@ func (i *sloWindowsBasedSliMetricMeanInRangePtrType) ToSloWindowsBasedSliMetricM
 }
 
 func (i *sloWindowsBasedSliMetricMeanInRangePtrType) ToSloWindowsBasedSliMetricMeanInRangePtrOutputWithContext(ctx context.Context) SloWindowsBasedSliMetricMeanInRangePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SloWindowsBasedSliMetricMeanInRangePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SloWindowsBasedSliMetricMeanInRangeOutput).ToSloWindowsBasedSliMetricMeanInRangePtrOutput()
 }
 
 type SloWindowsBasedSliMetricMeanInRangeOutput struct{ *pulumi.OutputState }
@@ -6929,7 +6929,7 @@ func (i SloWindowsBasedSliMetricMeanInRangeRangeArgs) ToSloWindowsBasedSliMetric
 }
 
 func (i SloWindowsBasedSliMetricMeanInRangeRangeArgs) ToSloWindowsBasedSliMetricMeanInRangeRangePtrOutputWithContext(ctx context.Context) SloWindowsBasedSliMetricMeanInRangeRangePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SloWindowsBasedSliMetricMeanInRangeRangeOutput).ToSloWindowsBasedSliMetricMeanInRangeRangePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SloWindowsBasedSliMetricMeanInRangeRangeOutput).ToSloWindowsBasedSliMetricMeanInRangeRangePtrOutput()
 }
 
 // SloWindowsBasedSliMetricMeanInRangeRangePtrInput is an input type that accepts SloWindowsBasedSliMetricMeanInRangeRangeArgs, SloWindowsBasedSliMetricMeanInRangeRangePtr and SloWindowsBasedSliMetricMeanInRangeRangePtrOutput values.
@@ -6962,7 +6962,7 @@ func (i *sloWindowsBasedSliMetricMeanInRangeRangePtrType) ToSloWindowsBasedSliMe
 }
 
 func (i *sloWindowsBasedSliMetricMeanInRangeRangePtrType) ToSloWindowsBasedSliMetricMeanInRangeRangePtrOutputWithContext(ctx context.Context) SloWindowsBasedSliMetricMeanInRangeRangePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SloWindowsBasedSliMetricMeanInRangeRangePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SloWindowsBasedSliMetricMeanInRangeRangeOutput).ToSloWindowsBasedSliMetricMeanInRangeRangePtrOutput()
 }
 
 type SloWindowsBasedSliMetricMeanInRangeRangeOutput struct{ *pulumi.OutputState }
@@ -7111,7 +7111,7 @@ func (i SloWindowsBasedSliMetricSumInRangeArgs) ToSloWindowsBasedSliMetricSumInR
 }
 
 func (i SloWindowsBasedSliMetricSumInRangeArgs) ToSloWindowsBasedSliMetricSumInRangePtrOutputWithContext(ctx context.Context) SloWindowsBasedSliMetricSumInRangePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SloWindowsBasedSliMetricSumInRangeOutput).ToSloWindowsBasedSliMetricSumInRangePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SloWindowsBasedSliMetricSumInRangeOutput).ToSloWindowsBasedSliMetricSumInRangePtrOutput()
 }
 
 // SloWindowsBasedSliMetricSumInRangePtrInput is an input type that accepts SloWindowsBasedSliMetricSumInRangeArgs, SloWindowsBasedSliMetricSumInRangePtr and SloWindowsBasedSliMetricSumInRangePtrOutput values.
@@ -7144,7 +7144,7 @@ func (i *sloWindowsBasedSliMetricSumInRangePtrType) ToSloWindowsBasedSliMetricSu
 }
 
 func (i *sloWindowsBasedSliMetricSumInRangePtrType) ToSloWindowsBasedSliMetricSumInRangePtrOutputWithContext(ctx context.Context) SloWindowsBasedSliMetricSumInRangePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SloWindowsBasedSliMetricSumInRangePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SloWindowsBasedSliMetricSumInRangeOutput).ToSloWindowsBasedSliMetricSumInRangePtrOutput()
 }
 
 type SloWindowsBasedSliMetricSumInRangeOutput struct{ *pulumi.OutputState }
@@ -7293,7 +7293,7 @@ func (i SloWindowsBasedSliMetricSumInRangeRangeArgs) ToSloWindowsBasedSliMetricS
 }
 
 func (i SloWindowsBasedSliMetricSumInRangeRangeArgs) ToSloWindowsBasedSliMetricSumInRangeRangePtrOutputWithContext(ctx context.Context) SloWindowsBasedSliMetricSumInRangeRangePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SloWindowsBasedSliMetricSumInRangeRangeOutput).ToSloWindowsBasedSliMetricSumInRangeRangePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SloWindowsBasedSliMetricSumInRangeRangeOutput).ToSloWindowsBasedSliMetricSumInRangeRangePtrOutput()
 }
 
 // SloWindowsBasedSliMetricSumInRangeRangePtrInput is an input type that accepts SloWindowsBasedSliMetricSumInRangeRangeArgs, SloWindowsBasedSliMetricSumInRangeRangePtr and SloWindowsBasedSliMetricSumInRangeRangePtrOutput values.
@@ -7326,7 +7326,7 @@ func (i *sloWindowsBasedSliMetricSumInRangeRangePtrType) ToSloWindowsBasedSliMet
 }
 
 func (i *sloWindowsBasedSliMetricSumInRangeRangePtrType) ToSloWindowsBasedSliMetricSumInRangeRangePtrOutputWithContext(ctx context.Context) SloWindowsBasedSliMetricSumInRangeRangePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SloWindowsBasedSliMetricSumInRangeRangePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SloWindowsBasedSliMetricSumInRangeRangeOutput).ToSloWindowsBasedSliMetricSumInRangeRangePtrOutput()
 }
 
 type SloWindowsBasedSliMetricSumInRangeRangeOutput struct{ *pulumi.OutputState }
@@ -7603,7 +7603,7 @@ func (i UptimeCheckConfigHttpCheckArgs) ToUptimeCheckConfigHttpCheckPtrOutput() 
 }
 
 func (i UptimeCheckConfigHttpCheckArgs) ToUptimeCheckConfigHttpCheckPtrOutputWithContext(ctx context.Context) UptimeCheckConfigHttpCheckPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UptimeCheckConfigHttpCheckOutput).ToUptimeCheckConfigHttpCheckPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(UptimeCheckConfigHttpCheckOutput).ToUptimeCheckConfigHttpCheckPtrOutput()
 }
 
 // UptimeCheckConfigHttpCheckPtrInput is an input type that accepts UptimeCheckConfigHttpCheckArgs, UptimeCheckConfigHttpCheckPtr and UptimeCheckConfigHttpCheckPtrOutput values.
@@ -7636,7 +7636,7 @@ func (i *uptimeCheckConfigHttpCheckPtrType) ToUptimeCheckConfigHttpCheckPtrOutpu
 }
 
 func (i *uptimeCheckConfigHttpCheckPtrType) ToUptimeCheckConfigHttpCheckPtrOutputWithContext(ctx context.Context) UptimeCheckConfigHttpCheckPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UptimeCheckConfigHttpCheckPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(UptimeCheckConfigHttpCheckOutput).ToUptimeCheckConfigHttpCheckPtrOutput()
 }
 
 type UptimeCheckConfigHttpCheckOutput struct{ *pulumi.OutputState }
@@ -7883,7 +7883,7 @@ func (i UptimeCheckConfigHttpCheckAuthInfoArgs) ToUptimeCheckConfigHttpCheckAuth
 }
 
 func (i UptimeCheckConfigHttpCheckAuthInfoArgs) ToUptimeCheckConfigHttpCheckAuthInfoPtrOutputWithContext(ctx context.Context) UptimeCheckConfigHttpCheckAuthInfoPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UptimeCheckConfigHttpCheckAuthInfoOutput).ToUptimeCheckConfigHttpCheckAuthInfoPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(UptimeCheckConfigHttpCheckAuthInfoOutput).ToUptimeCheckConfigHttpCheckAuthInfoPtrOutput()
 }
 
 // UptimeCheckConfigHttpCheckAuthInfoPtrInput is an input type that accepts UptimeCheckConfigHttpCheckAuthInfoArgs, UptimeCheckConfigHttpCheckAuthInfoPtr and UptimeCheckConfigHttpCheckAuthInfoPtrOutput values.
@@ -7916,7 +7916,7 @@ func (i *uptimeCheckConfigHttpCheckAuthInfoPtrType) ToUptimeCheckConfigHttpCheck
 }
 
 func (i *uptimeCheckConfigHttpCheckAuthInfoPtrType) ToUptimeCheckConfigHttpCheckAuthInfoPtrOutputWithContext(ctx context.Context) UptimeCheckConfigHttpCheckAuthInfoPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UptimeCheckConfigHttpCheckAuthInfoPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(UptimeCheckConfigHttpCheckAuthInfoOutput).ToUptimeCheckConfigHttpCheckAuthInfoPtrOutput()
 }
 
 type UptimeCheckConfigHttpCheckAuthInfoOutput struct{ *pulumi.OutputState }
@@ -8035,7 +8035,7 @@ func (i UptimeCheckConfigMonitoredResourceArgs) ToUptimeCheckConfigMonitoredReso
 }
 
 func (i UptimeCheckConfigMonitoredResourceArgs) ToUptimeCheckConfigMonitoredResourcePtrOutputWithContext(ctx context.Context) UptimeCheckConfigMonitoredResourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UptimeCheckConfigMonitoredResourceOutput).ToUptimeCheckConfigMonitoredResourcePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(UptimeCheckConfigMonitoredResourceOutput).ToUptimeCheckConfigMonitoredResourcePtrOutput()
 }
 
 // UptimeCheckConfigMonitoredResourcePtrInput is an input type that accepts UptimeCheckConfigMonitoredResourceArgs, UptimeCheckConfigMonitoredResourcePtr and UptimeCheckConfigMonitoredResourcePtrOutput values.
@@ -8068,7 +8068,7 @@ func (i *uptimeCheckConfigMonitoredResourcePtrType) ToUptimeCheckConfigMonitored
 }
 
 func (i *uptimeCheckConfigMonitoredResourcePtrType) ToUptimeCheckConfigMonitoredResourcePtrOutputWithContext(ctx context.Context) UptimeCheckConfigMonitoredResourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UptimeCheckConfigMonitoredResourcePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(UptimeCheckConfigMonitoredResourceOutput).ToUptimeCheckConfigMonitoredResourcePtrOutput()
 }
 
 type UptimeCheckConfigMonitoredResourceOutput struct{ *pulumi.OutputState }
@@ -8187,7 +8187,7 @@ func (i UptimeCheckConfigResourceGroupArgs) ToUptimeCheckConfigResourceGroupPtrO
 }
 
 func (i UptimeCheckConfigResourceGroupArgs) ToUptimeCheckConfigResourceGroupPtrOutputWithContext(ctx context.Context) UptimeCheckConfigResourceGroupPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UptimeCheckConfigResourceGroupOutput).ToUptimeCheckConfigResourceGroupPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(UptimeCheckConfigResourceGroupOutput).ToUptimeCheckConfigResourceGroupPtrOutput()
 }
 
 // UptimeCheckConfigResourceGroupPtrInput is an input type that accepts UptimeCheckConfigResourceGroupArgs, UptimeCheckConfigResourceGroupPtr and UptimeCheckConfigResourceGroupPtrOutput values.
@@ -8220,7 +8220,7 @@ func (i *uptimeCheckConfigResourceGroupPtrType) ToUptimeCheckConfigResourceGroup
 }
 
 func (i *uptimeCheckConfigResourceGroupPtrType) ToUptimeCheckConfigResourceGroupPtrOutputWithContext(ctx context.Context) UptimeCheckConfigResourceGroupPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UptimeCheckConfigResourceGroupPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(UptimeCheckConfigResourceGroupOutput).ToUptimeCheckConfigResourceGroupPtrOutput()
 }
 
 type UptimeCheckConfigResourceGroupOutput struct{ *pulumi.OutputState }
@@ -8335,7 +8335,7 @@ func (i UptimeCheckConfigTcpCheckArgs) ToUptimeCheckConfigTcpCheckPtrOutput() Up
 }
 
 func (i UptimeCheckConfigTcpCheckArgs) ToUptimeCheckConfigTcpCheckPtrOutputWithContext(ctx context.Context) UptimeCheckConfigTcpCheckPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UptimeCheckConfigTcpCheckOutput).ToUptimeCheckConfigTcpCheckPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(UptimeCheckConfigTcpCheckOutput).ToUptimeCheckConfigTcpCheckPtrOutput()
 }
 
 // UptimeCheckConfigTcpCheckPtrInput is an input type that accepts UptimeCheckConfigTcpCheckArgs, UptimeCheckConfigTcpCheckPtr and UptimeCheckConfigTcpCheckPtrOutput values.
@@ -8368,7 +8368,7 @@ func (i *uptimeCheckConfigTcpCheckPtrType) ToUptimeCheckConfigTcpCheckPtrOutput(
 }
 
 func (i *uptimeCheckConfigTcpCheckPtrType) ToUptimeCheckConfigTcpCheckPtrOutputWithContext(ctx context.Context) UptimeCheckConfigTcpCheckPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UptimeCheckConfigTcpCheckPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(UptimeCheckConfigTcpCheckOutput).ToUptimeCheckConfigTcpCheckPtrOutput()
 }
 
 type UptimeCheckConfigTcpCheckOutput struct{ *pulumi.OutputState }

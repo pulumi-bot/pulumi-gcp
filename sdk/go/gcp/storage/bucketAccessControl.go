@@ -255,16 +255,31 @@ type BucketAccessControlInput interface {
 	ToBucketAccessControlOutputWithContext(ctx context.Context) BucketAccessControlOutput
 }
 
-func (BucketAccessControl) ElementType() reflect.Type {
-	return reflect.TypeOf((*BucketAccessControl)(nil)).Elem()
+func (*BucketAccessControl) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketAccessControl)(nil))
 }
 
-func (i BucketAccessControl) ToBucketAccessControlOutput() BucketAccessControlOutput {
+func (i *BucketAccessControl) ToBucketAccessControlOutput() BucketAccessControlOutput {
 	return i.ToBucketAccessControlOutputWithContext(context.Background())
 }
 
-func (i BucketAccessControl) ToBucketAccessControlOutputWithContext(ctx context.Context) BucketAccessControlOutput {
+func (i *BucketAccessControl) ToBucketAccessControlOutputWithContext(ctx context.Context) BucketAccessControlOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(BucketAccessControlOutput)
+}
+
+func (i *BucketAccessControl) ToBucketAccessControlPtrOutput() BucketAccessControlPtrOutput {
+	return i.ToBucketAccessControlPtrOutputWithContext(context.Background())
+}
+
+func (i *BucketAccessControl) ToBucketAccessControlPtrOutputWithContext(ctx context.Context) BucketAccessControlPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketAccessControlPtrOutput)
+}
+
+type BucketAccessControlPtrInput interface {
+	pulumi.Input
+
+	ToBucketAccessControlPtrOutput() BucketAccessControlPtrOutput
+	ToBucketAccessControlPtrOutputWithContext(ctx context.Context) BucketAccessControlPtrOutput
 }
 
 type BucketAccessControlOutput struct {
@@ -272,7 +287,7 @@ type BucketAccessControlOutput struct {
 }
 
 func (BucketAccessControlOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*BucketAccessControlOutput)(nil)).Elem()
+	return reflect.TypeOf((*BucketAccessControl)(nil))
 }
 
 func (o BucketAccessControlOutput) ToBucketAccessControlOutput() BucketAccessControlOutput {
@@ -283,6 +298,23 @@ func (o BucketAccessControlOutput) ToBucketAccessControlOutputWithContext(ctx co
 	return o
 }
 
+type BucketAccessControlPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (BucketAccessControlPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketAccessControl)(nil))
+}
+
+func (o BucketAccessControlPtrOutput) ToBucketAccessControlPtrOutput() BucketAccessControlPtrOutput {
+	return o
+}
+
+func (o BucketAccessControlPtrOutput) ToBucketAccessControlPtrOutputWithContext(ctx context.Context) BucketAccessControlPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(BucketAccessControlOutput{})
+	pulumi.RegisterOutputType(BucketAccessControlPtrOutput{})
 }

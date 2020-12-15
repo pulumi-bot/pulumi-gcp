@@ -185,16 +185,31 @@ type GatewayIamBindingInput interface {
 	ToGatewayIamBindingOutputWithContext(ctx context.Context) GatewayIamBindingOutput
 }
 
-func (GatewayIamBinding) ElementType() reflect.Type {
-	return reflect.TypeOf((*GatewayIamBinding)(nil)).Elem()
+func (*GatewayIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*GatewayIamBinding)(nil))
 }
 
-func (i GatewayIamBinding) ToGatewayIamBindingOutput() GatewayIamBindingOutput {
+func (i *GatewayIamBinding) ToGatewayIamBindingOutput() GatewayIamBindingOutput {
 	return i.ToGatewayIamBindingOutputWithContext(context.Background())
 }
 
-func (i GatewayIamBinding) ToGatewayIamBindingOutputWithContext(ctx context.Context) GatewayIamBindingOutput {
+func (i *GatewayIamBinding) ToGatewayIamBindingOutputWithContext(ctx context.Context) GatewayIamBindingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GatewayIamBindingOutput)
+}
+
+func (i *GatewayIamBinding) ToGatewayIamBindingPtrOutput() GatewayIamBindingPtrOutput {
+	return i.ToGatewayIamBindingPtrOutputWithContext(context.Background())
+}
+
+func (i *GatewayIamBinding) ToGatewayIamBindingPtrOutputWithContext(ctx context.Context) GatewayIamBindingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GatewayIamBindingPtrOutput)
+}
+
+type GatewayIamBindingPtrInput interface {
+	pulumi.Input
+
+	ToGatewayIamBindingPtrOutput() GatewayIamBindingPtrOutput
+	ToGatewayIamBindingPtrOutputWithContext(ctx context.Context) GatewayIamBindingPtrOutput
 }
 
 type GatewayIamBindingOutput struct {
@@ -202,7 +217,7 @@ type GatewayIamBindingOutput struct {
 }
 
 func (GatewayIamBindingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GatewayIamBindingOutput)(nil)).Elem()
+	return reflect.TypeOf((*GatewayIamBinding)(nil))
 }
 
 func (o GatewayIamBindingOutput) ToGatewayIamBindingOutput() GatewayIamBindingOutput {
@@ -213,6 +228,23 @@ func (o GatewayIamBindingOutput) ToGatewayIamBindingOutputWithContext(ctx contex
 	return o
 }
 
+type GatewayIamBindingPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (GatewayIamBindingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GatewayIamBinding)(nil))
+}
+
+func (o GatewayIamBindingPtrOutput) ToGatewayIamBindingPtrOutput() GatewayIamBindingPtrOutput {
+	return o
+}
+
+func (o GatewayIamBindingPtrOutput) ToGatewayIamBindingPtrOutputWithContext(ctx context.Context) GatewayIamBindingPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(GatewayIamBindingOutput{})
+	pulumi.RegisterOutputType(GatewayIamBindingPtrOutput{})
 }
