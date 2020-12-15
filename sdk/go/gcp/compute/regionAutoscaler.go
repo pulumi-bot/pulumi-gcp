@@ -39,8 +39,8 @@ import (
 // 		opt0 := "debian-9"
 // 		opt1 := "debian-cloud"
 // 		debian9, err := compute.LookupImage(ctx, &compute.LookupImageArgs{
-// 			Family:  &opt0,
-// 			Project: &opt1,
+// 			Family:  _opt0,
+// 			Project: _opt1,
 // 		}, nil)
 // 		if err != nil {
 // 			return err
@@ -324,15 +324,15 @@ type RegionAutoscalerInput interface {
 	ToRegionAutoscalerOutputWithContext(ctx context.Context) RegionAutoscalerOutput
 }
 
-func (RegionAutoscaler) ElementType() reflect.Type {
-	return reflect.TypeOf((*RegionAutoscaler)(nil)).Elem()
+func (*RegionAutoscaler) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionAutoscaler)(nil))
 }
 
-func (i RegionAutoscaler) ToRegionAutoscalerOutput() RegionAutoscalerOutput {
+func (i *RegionAutoscaler) ToRegionAutoscalerOutput() RegionAutoscalerOutput {
 	return i.ToRegionAutoscalerOutputWithContext(context.Background())
 }
 
-func (i RegionAutoscaler) ToRegionAutoscalerOutputWithContext(ctx context.Context) RegionAutoscalerOutput {
+func (i *RegionAutoscaler) ToRegionAutoscalerOutputWithContext(ctx context.Context) RegionAutoscalerOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RegionAutoscalerOutput)
 }
 
@@ -341,7 +341,7 @@ type RegionAutoscalerOutput struct {
 }
 
 func (RegionAutoscalerOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RegionAutoscalerOutput)(nil)).Elem()
+	return reflect.TypeOf((*RegionAutoscaler)(nil))
 }
 
 func (o RegionAutoscalerOutput) ToRegionAutoscalerOutput() RegionAutoscalerOutput {

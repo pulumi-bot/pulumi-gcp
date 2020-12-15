@@ -135,8 +135,8 @@ import (
 // 		opt0 := "default"
 // 		opt1 := "us-central1"
 // 		mySubnetwork, err := compute.LookupSubnetwork(ctx, &compute.LookupSubnetworkArgs{
-// 			Name:   &opt0,
-// 			Region: &opt1,
+// 			Name:   _opt0,
+// 			Region: _opt1,
 // 		}, nil)
 // 		if err != nil {
 // 			return err
@@ -695,15 +695,15 @@ type InstanceInput interface {
 	ToInstanceOutputWithContext(ctx context.Context) InstanceOutput
 }
 
-func (Instance) ElementType() reflect.Type {
-	return reflect.TypeOf((*Instance)(nil)).Elem()
+func (*Instance) ElementType() reflect.Type {
+	return reflect.TypeOf((*Instance)(nil))
 }
 
-func (i Instance) ToInstanceOutput() InstanceOutput {
+func (i *Instance) ToInstanceOutput() InstanceOutput {
 	return i.ToInstanceOutputWithContext(context.Background())
 }
 
-func (i Instance) ToInstanceOutputWithContext(ctx context.Context) InstanceOutput {
+func (i *Instance) ToInstanceOutputWithContext(ctx context.Context) InstanceOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceOutput)
 }
 
@@ -712,7 +712,7 @@ type InstanceOutput struct {
 }
 
 func (InstanceOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*InstanceOutput)(nil)).Elem()
+	return reflect.TypeOf((*Instance)(nil))
 }
 
 func (o InstanceOutput) ToInstanceOutput() InstanceOutput {

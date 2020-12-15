@@ -27,8 +27,8 @@ import (
 // 		opt0 := "primary-application-server"
 // 		opt1 := "us-central1-a"
 // 		_, err := compute.LookupInstance(ctx, &compute.LookupInstanceArgs{
-// 			Name: &opt0,
-// 			Zone: &opt1,
+// 			Name: _opt0,
+// 			Zone: _opt1,
 // 		}, nil)
 // 		if err != nil {
 // 			return err

@@ -27,7 +27,7 @@ namespace Pulumi.Gcp.AppEngine
         ///     public MyStack()
         ///     {
         ///         var @default = Output.Create(Gcp.AppEngine.GetDefaultServiceAccount.InvokeAsync());
-        ///         this.DefaultAccount = @default.Apply(@default =&gt; @default.Email);
+        ///         this.DefaultAccount = @default.Apply(@default =&gt; _default.Email);
         ///     }
         /// 
         ///     [Output("defaultAccount")]

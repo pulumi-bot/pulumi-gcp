@@ -384,15 +384,15 @@ type ImageIamMemberInput interface {
 	ToImageIamMemberOutputWithContext(ctx context.Context) ImageIamMemberOutput
 }
 
-func (ImageIamMember) ElementType() reflect.Type {
-	return reflect.TypeOf((*ImageIamMember)(nil)).Elem()
+func (*ImageIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*ImageIamMember)(nil))
 }
 
-func (i ImageIamMember) ToImageIamMemberOutput() ImageIamMemberOutput {
+func (i *ImageIamMember) ToImageIamMemberOutput() ImageIamMemberOutput {
 	return i.ToImageIamMemberOutputWithContext(context.Background())
 }
 
-func (i ImageIamMember) ToImageIamMemberOutputWithContext(ctx context.Context) ImageIamMemberOutput {
+func (i *ImageIamMember) ToImageIamMemberOutputWithContext(ctx context.Context) ImageIamMemberOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ImageIamMemberOutput)
 }
 
@@ -401,7 +401,7 @@ type ImageIamMemberOutput struct {
 }
 
 func (ImageIamMemberOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ImageIamMemberOutput)(nil)).Elem()
+	return reflect.TypeOf((*ImageIamMember)(nil))
 }
 
 func (o ImageIamMemberOutput) ToImageIamMemberOutput() ImageIamMemberOutput {

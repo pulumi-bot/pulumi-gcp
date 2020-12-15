@@ -40,8 +40,8 @@ import (
 // 		opt0 := "debian-9"
 // 		opt1 := "debian-cloud"
 // 		vmimage, err := compute.LookupImage(ctx, &compute.LookupImageArgs{
-// 			Family:  &opt0,
-// 			Project: &opt1,
+// 			Family:  _opt0,
+// 			Project: _opt1,
 // 		}, nil)
 // 		if err != nil {
 // 			return err
@@ -94,8 +94,8 @@ import (
 // 		opt0 := "debian-10"
 // 		opt1 := "debian-cloud"
 // 		vmimage, err := compute.LookupImage(ctx, &compute.LookupImageArgs{
-// 			Family:  &opt0,
-// 			Project: &opt1,
+// 			Family:  _opt0,
+// 			Project: _opt1,
 // 		}, nil)
 // 		if err != nil {
 // 			return err
@@ -369,15 +369,15 @@ type TargetInstanceInput interface {
 	ToTargetInstanceOutputWithContext(ctx context.Context) TargetInstanceOutput
 }
 
-func (TargetInstance) ElementType() reflect.Type {
-	return reflect.TypeOf((*TargetInstance)(nil)).Elem()
+func (*TargetInstance) ElementType() reflect.Type {
+	return reflect.TypeOf((*TargetInstance)(nil))
 }
 
-func (i TargetInstance) ToTargetInstanceOutput() TargetInstanceOutput {
+func (i *TargetInstance) ToTargetInstanceOutput() TargetInstanceOutput {
 	return i.ToTargetInstanceOutputWithContext(context.Background())
 }
 
-func (i TargetInstance) ToTargetInstanceOutputWithContext(ctx context.Context) TargetInstanceOutput {
+func (i *TargetInstance) ToTargetInstanceOutputWithContext(ctx context.Context) TargetInstanceOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TargetInstanceOutput)
 }
 
@@ -386,7 +386,7 @@ type TargetInstanceOutput struct {
 }
 
 func (TargetInstanceOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*TargetInstanceOutput)(nil)).Elem()
+	return reflect.TypeOf((*TargetInstance)(nil))
 }
 
 func (o TargetInstanceOutput) ToTargetInstanceOutput() TargetInstanceOutput {

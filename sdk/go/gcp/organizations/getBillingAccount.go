@@ -22,8 +22,8 @@ import (
 // 		opt0 := "My Billing Account"
 // 		opt1 := true
 // 		acct, err := organizations.GetBillingAccount(ctx, &organizations.GetBillingAccountArgs{
-// 			DisplayName: &opt0,
-// 			Open:        &opt1,
+// 			DisplayName: _opt0,
+// 			Open:        _opt1,
 // 		}, nil)
 // 		if err != nil {
 // 			return err

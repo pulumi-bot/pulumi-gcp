@@ -22,7 +22,7 @@ import (
 // 		opt0 := true
 // 		myFolder1, err := organizations.LookupFolder(ctx, &organizations.LookupFolderArgs{
 // 			Folder:             "folders/12345",
-// 			LookupOrganization: &opt0,
+// 			LookupOrganization: _opt0,
 // 		}, nil)
 // 		if err != nil {
 // 			return err

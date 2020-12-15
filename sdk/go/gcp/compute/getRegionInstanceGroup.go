@@ -22,7 +22,7 @@ import (
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		opt0 := "instance-group-name"
 // 		_, err := compute.GetRegionInstanceGroup(ctx, &compute.GetRegionInstanceGroupArgs{
-// 			Name: &opt0,
+// 			Name: _opt0,
 // 		}, nil)
 // 		if err != nil {
 // 			return err

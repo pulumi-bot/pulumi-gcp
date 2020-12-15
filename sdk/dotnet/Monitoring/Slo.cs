@@ -42,7 +42,7 @@ namespace Pulumi.Gcp.Monitoring
     ///         }));
     ///         var appengSlo = new Gcp.Monitoring.Slo("appengSlo", new Gcp.Monitoring.SloArgs
     ///         {
-    ///             Service = @default.Apply(@default =&gt; @default.ServiceId),
+    ///             Service = @default.Apply(@default =&gt; _default.ServiceId),
     ///             SloId = "ae-slo",
     ///             DisplayName = "Test SLO for App Engine",
     ///             Goal = 0.9,
@@ -106,6 +106,7 @@ namespace Pulumi.Gcp.Monitoring
     ///  $ pulumi import gcp:monitoring/slo:Slo default {{name}}
     /// ```
     /// </summary>
+    [GcpResourceType("gcp:monitoring/slo:Slo")]
     public partial class Slo : Pulumi.CustomResource
     {
         /// <summary>

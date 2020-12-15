@@ -24,8 +24,8 @@ import (
 // 		opt0 := "instance-group-name"
 // 		opt1 := "us-central1-a"
 // 		_, err := compute.LookupInstanceGroup(ctx, &compute.LookupInstanceGroupArgs{
-// 			Name: &opt0,
-// 			Zone: &opt1,
+// 			Name: _opt0,
+// 			Zone: _opt1,
 // 		}, nil)
 // 		if err != nil {
 // 			return err

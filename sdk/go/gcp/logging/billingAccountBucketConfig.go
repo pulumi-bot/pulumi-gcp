@@ -32,7 +32,7 @@ import (
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		opt0 := "00AA00-000AAA-00AA0A"
 // 		_default, err := organizations.GetBillingAccount(ctx, &organizations.GetBillingAccountArgs{
-// 			BillingAccount: &opt0,
+// 			BillingAccount: _opt0,
 // 		}, nil)
 // 		if err != nil {
 // 			return err
@@ -190,15 +190,15 @@ type BillingAccountBucketConfigInput interface {
 	ToBillingAccountBucketConfigOutputWithContext(ctx context.Context) BillingAccountBucketConfigOutput
 }
 
-func (BillingAccountBucketConfig) ElementType() reflect.Type {
-	return reflect.TypeOf((*BillingAccountBucketConfig)(nil)).Elem()
+func (*BillingAccountBucketConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*BillingAccountBucketConfig)(nil))
 }
 
-func (i BillingAccountBucketConfig) ToBillingAccountBucketConfigOutput() BillingAccountBucketConfigOutput {
+func (i *BillingAccountBucketConfig) ToBillingAccountBucketConfigOutput() BillingAccountBucketConfigOutput {
 	return i.ToBillingAccountBucketConfigOutputWithContext(context.Background())
 }
 
-func (i BillingAccountBucketConfig) ToBillingAccountBucketConfigOutputWithContext(ctx context.Context) BillingAccountBucketConfigOutput {
+func (i *BillingAccountBucketConfig) ToBillingAccountBucketConfigOutputWithContext(ctx context.Context) BillingAccountBucketConfigOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(BillingAccountBucketConfigOutput)
 }
 
@@ -207,7 +207,7 @@ type BillingAccountBucketConfigOutput struct {
 }
 
 func (BillingAccountBucketConfigOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*BillingAccountBucketConfigOutput)(nil)).Elem()
+	return reflect.TypeOf((*BillingAccountBucketConfig)(nil))
 }
 
 func (o BillingAccountBucketConfigOutput) ToBillingAccountBucketConfigOutput() BillingAccountBucketConfigOutput {

@@ -24,7 +24,7 @@ import (
 // 		opt0 := "us-east1-a"
 // 		myCluster, err := container.LookupCluster(ctx, &container.LookupClusterArgs{
 // 			Name:     "my-cluster",
-// 			Location: &opt0,
+// 			Location: _opt0,
 // 		}, nil)
 // 		if err != nil {
 // 			return err

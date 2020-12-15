@@ -29,8 +29,8 @@ import (
 // 		opt0 := "image-store"
 // 		opt1 := "folder/butterfly01.jpg"
 // 		_, err := storage.LookupBucketObject(ctx, &storage.LookupBucketObjectArgs{
-// 			Bucket: &opt0,
-// 			Name:   &opt1,
+// 			Bucket: _opt0,
+// 			Name:   _opt1,
 // 		}, nil)
 // 		if err != nil {
 // 			return err

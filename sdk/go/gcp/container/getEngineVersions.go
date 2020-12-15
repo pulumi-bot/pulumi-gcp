@@ -30,8 +30,8 @@ import (
 // 		opt0 := "us-central1-b"
 // 		opt1 := "1.12."
 // 		central1b, err := container.GetEngineVersions(ctx, &container.GetEngineVersionsArgs{
-// 			Location:      &opt0,
-// 			VersionPrefix: &opt1,
+// 			Location:      _opt0,
+// 			VersionPrefix: _opt1,
 // 		}, nil)
 // 		if err != nil {
 // 			return err

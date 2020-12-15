@@ -25,8 +25,8 @@ import (
 // 		opt0 := "debian-9"
 // 		opt1 := "debian-cloud"
 // 		myImage, err := compute.LookupImage(ctx, &compute.LookupImageArgs{
-// 			Family:  &opt0,
-// 			Project: &opt1,
+// 			Family:  _opt0,
+// 			Project: _opt1,
 // 		}, nil)
 // 		if err != nil {
 // 			return err

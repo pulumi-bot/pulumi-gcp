@@ -58,7 +58,7 @@ import (
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		opt0 := "us-central1-a"
 // 		_, err := compute.GetNodeTypes(ctx, &compute.GetNodeTypesArgs{
-// 			Zone: &opt0,
+// 			Zone: _opt0,
 // 		}, nil)
 // 		if err != nil {
 // 			return err
@@ -323,15 +323,15 @@ type NodeTemplateInput interface {
 	ToNodeTemplateOutputWithContext(ctx context.Context) NodeTemplateOutput
 }
 
-func (NodeTemplate) ElementType() reflect.Type {
-	return reflect.TypeOf((*NodeTemplate)(nil)).Elem()
+func (*NodeTemplate) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodeTemplate)(nil))
 }
 
-func (i NodeTemplate) ToNodeTemplateOutput() NodeTemplateOutput {
+func (i *NodeTemplate) ToNodeTemplateOutput() NodeTemplateOutput {
 	return i.ToNodeTemplateOutputWithContext(context.Background())
 }
 
-func (i NodeTemplate) ToNodeTemplateOutputWithContext(ctx context.Context) NodeTemplateOutput {
+func (i *NodeTemplate) ToNodeTemplateOutputWithContext(ctx context.Context) NodeTemplateOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NodeTemplateOutput)
 }
 
@@ -340,7 +340,7 @@ type NodeTemplateOutput struct {
 }
 
 func (NodeTemplateOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*NodeTemplateOutput)(nil)).Elem()
+	return reflect.TypeOf((*NodeTemplate)(nil))
 }
 
 func (o NodeTemplateOutput) ToNodeTemplateOutput() NodeTemplateOutput {

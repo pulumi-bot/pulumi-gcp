@@ -26,15 +26,15 @@ import (
 // 		opt0 := "k8s1-abcdef01-myns-mysvc-8080-4b6bac43"
 // 		opt1 := "us-central1-a"
 // 		_, err := compute.LookupNetworkEndpointGroup(ctx, &compute.LookupNetworkEndpointGroupArgs{
-// 			Name: &opt0,
-// 			Zone: &opt1,
+// 			Name: _opt0,
+// 			Zone: _opt1,
 // 		}, nil)
 // 		if err != nil {
 // 			return err
 // 		}
 // 		opt2 := "https://www.googleapis.com/compute/v1/projects/myproject/zones/us-central1-a/networkEndpointGroups/k8s1-abcdef01-myns-mysvc-8080-4b6bac43"
 // 		_, err = compute.LookupNetworkEndpointGroup(ctx, &compute.LookupNetworkEndpointGroupArgs{
-// 			SelfLink: &opt2,
+// 			SelfLink: _opt2,
 // 		}, nil)
 // 		if err != nil {
 // 			return err

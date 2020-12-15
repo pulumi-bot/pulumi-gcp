@@ -31,8 +31,8 @@ import (
 // 		opt0 := "debian-9"
 // 		opt1 := "debian-cloud"
 // 		myImage, err := compute.LookupImage(ctx, &compute.LookupImageArgs{
-// 			Family:  &opt0,
-// 			Project: &opt1,
+// 			Family:  _opt0,
+// 			Project: _opt1,
 // 		}, nil)
 // 		if err != nil {
 // 			return err
@@ -127,8 +127,8 @@ import (
 // 		opt0 := "debian-9"
 // 		opt1 := "debian-cloud"
 // 		_, err := compute.LookupImage(ctx, &compute.LookupImageArgs{
-// 			Family:  &opt0,
-// 			Project: &opt1,
+// 			Family:  _opt0,
+// 			Project: _opt1,
 // 		}, nil)
 // 		if err != nil {
 // 			return err
@@ -615,15 +615,15 @@ type InstanceTemplateInput interface {
 	ToInstanceTemplateOutputWithContext(ctx context.Context) InstanceTemplateOutput
 }
 
-func (InstanceTemplate) ElementType() reflect.Type {
-	return reflect.TypeOf((*InstanceTemplate)(nil)).Elem()
+func (*InstanceTemplate) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceTemplate)(nil))
 }
 
-func (i InstanceTemplate) ToInstanceTemplateOutput() InstanceTemplateOutput {
+func (i *InstanceTemplate) ToInstanceTemplateOutput() InstanceTemplateOutput {
 	return i.ToInstanceTemplateOutputWithContext(context.Background())
 }
 
-func (i InstanceTemplate) ToInstanceTemplateOutputWithContext(ctx context.Context) InstanceTemplateOutput {
+func (i *InstanceTemplate) ToInstanceTemplateOutputWithContext(ctx context.Context) InstanceTemplateOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceTemplateOutput)
 }
 
@@ -632,7 +632,7 @@ type InstanceTemplateOutput struct {
 }
 
 func (InstanceTemplateOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*InstanceTemplateOutput)(nil)).Elem()
+	return reflect.TypeOf((*InstanceTemplate)(nil))
 }
 
 func (o InstanceTemplateOutput) ToInstanceTemplateOutput() InstanceTemplateOutput {

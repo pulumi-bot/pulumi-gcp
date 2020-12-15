@@ -42,8 +42,8 @@ import (
 // 		opt0 := "debian-9"
 // 		opt1 := "debian-cloud"
 // 		debian9, err := compute.LookupImage(ctx, &compute.LookupImageArgs{
-// 			Family:  &opt0,
-// 			Project: &opt1,
+// 			Family:  _opt0,
+// 			Project: _opt1,
 // 		}, nil)
 // 		if err != nil {
 // 			return err
@@ -509,15 +509,15 @@ type ConnectivityTestInput interface {
 	ToConnectivityTestOutputWithContext(ctx context.Context) ConnectivityTestOutput
 }
 
-func (ConnectivityTest) ElementType() reflect.Type {
-	return reflect.TypeOf((*ConnectivityTest)(nil)).Elem()
+func (*ConnectivityTest) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConnectivityTest)(nil))
 }
 
-func (i ConnectivityTest) ToConnectivityTestOutput() ConnectivityTestOutput {
+func (i *ConnectivityTest) ToConnectivityTestOutput() ConnectivityTestOutput {
 	return i.ToConnectivityTestOutputWithContext(context.Background())
 }
 
-func (i ConnectivityTest) ToConnectivityTestOutputWithContext(ctx context.Context) ConnectivityTestOutput {
+func (i *ConnectivityTest) ToConnectivityTestOutputWithContext(ctx context.Context) ConnectivityTestOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ConnectivityTestOutput)
 }
 
@@ -526,7 +526,7 @@ type ConnectivityTestOutput struct {
 }
 
 func (ConnectivityTestOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ConnectivityTestOutput)(nil)).Elem()
+	return reflect.TypeOf((*ConnectivityTest)(nil))
 }
 
 func (o ConnectivityTestOutput) ToConnectivityTestOutput() ConnectivityTestOutput {

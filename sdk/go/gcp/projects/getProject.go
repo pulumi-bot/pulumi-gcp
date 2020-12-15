@@ -33,7 +33,7 @@ import (
 // 		}
 // 		opt0 := my_org_projects.Projects[0].ProjectId
 // 		_, err = organizations.LookupProject(ctx, &organizations.LookupProjectArgs{
-// 			ProjectId: &opt0,
+// 			ProjectId: _opt0,
 // 		}, nil)
 // 		if err != nil {
 // 			return err

@@ -116,7 +116,7 @@ namespace Pulumi.Gcp.CloudScheduler
     ///                 Uri = "https://cloudscheduler.googleapis.com/v1/projects/my-project-name/locations/us-west1/jobs",
     ///                 OauthToken = new Gcp.CloudScheduler.Inputs.JobHttpTargetOauthTokenArgs
     ///                 {
-    ///                     ServiceAccountEmail = @default.Apply(@default =&gt; @default.Email),
+    ///                     ServiceAccountEmail = @default.Apply(@default =&gt; _default.Email),
     ///                 },
     ///             },
     ///         });
@@ -147,7 +147,7 @@ namespace Pulumi.Gcp.CloudScheduler
     ///                 Uri = "https://example.com/ping",
     ///                 OidcToken = new Gcp.CloudScheduler.Inputs.JobHttpTargetOidcTokenArgs
     ///                 {
-    ///                     ServiceAccountEmail = @default.Apply(@default =&gt; @default.Email),
+    ///                     ServiceAccountEmail = @default.Apply(@default =&gt; _default.Email),
     ///                 },
     ///             },
     ///         });
@@ -176,6 +176,7 @@ namespace Pulumi.Gcp.CloudScheduler
     ///  $ pulumi import gcp:cloudscheduler/job:Job default {{name}}
     /// ```
     /// </summary>
+    [GcpResourceType("gcp:cloudscheduler/job:Job")]
     public partial class Job : Pulumi.CustomResource
     {
         /// <summary>
