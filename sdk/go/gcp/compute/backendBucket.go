@@ -254,15 +254,15 @@ type BackendBucketInput interface {
 	ToBackendBucketOutputWithContext(ctx context.Context) BackendBucketOutput
 }
 
-func (BackendBucket) ElementType() reflect.Type {
-	return reflect.TypeOf((*BackendBucket)(nil)).Elem()
+func (*BackendBucket) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackendBucket)(nil))
 }
 
-func (i BackendBucket) ToBackendBucketOutput() BackendBucketOutput {
+func (i *BackendBucket) ToBackendBucketOutput() BackendBucketOutput {
 	return i.ToBackendBucketOutputWithContext(context.Background())
 }
 
-func (i BackendBucket) ToBackendBucketOutputWithContext(ctx context.Context) BackendBucketOutput {
+func (i *BackendBucket) ToBackendBucketOutputWithContext(ctx context.Context) BackendBucketOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(BackendBucketOutput)
 }
 
@@ -271,7 +271,7 @@ type BackendBucketOutput struct {
 }
 
 func (BackendBucketOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*BackendBucketOutput)(nil)).Elem()
+	return reflect.TypeOf((*BackendBucket)(nil))
 }
 
 func (o BackendBucketOutput) ToBackendBucketOutput() BackendBucketOutput {
