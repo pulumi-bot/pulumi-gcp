@@ -335,15 +335,15 @@ type BucketIAMPolicyInput interface {
 	ToBucketIAMPolicyOutputWithContext(ctx context.Context) BucketIAMPolicyOutput
 }
 
-func (BucketIAMPolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*BucketIAMPolicy)(nil)).Elem()
+func (*BucketIAMPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketIAMPolicy)(nil))
 }
 
-func (i BucketIAMPolicy) ToBucketIAMPolicyOutput() BucketIAMPolicyOutput {
+func (i *BucketIAMPolicy) ToBucketIAMPolicyOutput() BucketIAMPolicyOutput {
 	return i.ToBucketIAMPolicyOutputWithContext(context.Background())
 }
 
-func (i BucketIAMPolicy) ToBucketIAMPolicyOutputWithContext(ctx context.Context) BucketIAMPolicyOutput {
+func (i *BucketIAMPolicy) ToBucketIAMPolicyOutputWithContext(ctx context.Context) BucketIAMPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(BucketIAMPolicyOutput)
 }
 
@@ -352,7 +352,7 @@ type BucketIAMPolicyOutput struct {
 }
 
 func (BucketIAMPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*BucketIAMPolicyOutput)(nil)).Elem()
+	return reflect.TypeOf((*BucketIAMPolicy)(nil))
 }
 
 func (o BucketIAMPolicyOutput) ToBucketIAMPolicyOutput() BucketIAMPolicyOutput {
