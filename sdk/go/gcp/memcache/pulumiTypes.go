@@ -172,7 +172,7 @@ func (i InstanceMemcacheParametersArgs) ToInstanceMemcacheParametersPtrOutput() 
 }
 
 func (i InstanceMemcacheParametersArgs) ToInstanceMemcacheParametersPtrOutputWithContext(ctx context.Context) InstanceMemcacheParametersPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceMemcacheParametersOutput).ToInstanceMemcacheParametersPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceMemcacheParametersOutput).ToInstanceMemcacheParametersPtrOutput()
 }
 
 // InstanceMemcacheParametersPtrInput is an input type that accepts InstanceMemcacheParametersArgs, InstanceMemcacheParametersPtr and InstanceMemcacheParametersPtrOutput values.
@@ -205,7 +205,7 @@ func (i *instanceMemcacheParametersPtrType) ToInstanceMemcacheParametersPtrOutpu
 }
 
 func (i *instanceMemcacheParametersPtrType) ToInstanceMemcacheParametersPtrOutputWithContext(ctx context.Context) InstanceMemcacheParametersPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceMemcacheParametersPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceMemcacheParametersOutput).ToInstanceMemcacheParametersPtrOutput()
 }
 
 type InstanceMemcacheParametersOutput struct{ *pulumi.OutputState }
@@ -324,7 +324,7 @@ func (i InstanceNodeConfigArgs) ToInstanceNodeConfigPtrOutput() InstanceNodeConf
 }
 
 func (i InstanceNodeConfigArgs) ToInstanceNodeConfigPtrOutputWithContext(ctx context.Context) InstanceNodeConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceNodeConfigOutput).ToInstanceNodeConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceNodeConfigOutput).ToInstanceNodeConfigPtrOutput()
 }
 
 // InstanceNodeConfigPtrInput is an input type that accepts InstanceNodeConfigArgs, InstanceNodeConfigPtr and InstanceNodeConfigPtrOutput values.
@@ -357,7 +357,7 @@ func (i *instanceNodeConfigPtrType) ToInstanceNodeConfigPtrOutput() InstanceNode
 }
 
 func (i *instanceNodeConfigPtrType) ToInstanceNodeConfigPtrOutputWithContext(ctx context.Context) InstanceNodeConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceNodeConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceNodeConfigOutput).ToInstanceNodeConfigPtrOutput()
 }
 
 type InstanceNodeConfigOutput struct{ *pulumi.OutputState }

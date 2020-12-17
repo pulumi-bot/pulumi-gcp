@@ -56,7 +56,7 @@ func (i AppEngineServiceIamBindingConditionArgs) ToAppEngineServiceIamBindingCon
 }
 
 func (i AppEngineServiceIamBindingConditionArgs) ToAppEngineServiceIamBindingConditionPtrOutputWithContext(ctx context.Context) AppEngineServiceIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AppEngineServiceIamBindingConditionOutput).ToAppEngineServiceIamBindingConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(AppEngineServiceIamBindingConditionOutput).ToAppEngineServiceIamBindingConditionPtrOutput()
 }
 
 // AppEngineServiceIamBindingConditionPtrInput is an input type that accepts AppEngineServiceIamBindingConditionArgs, AppEngineServiceIamBindingConditionPtr and AppEngineServiceIamBindingConditionPtrOutput values.
@@ -89,7 +89,7 @@ func (i *appEngineServiceIamBindingConditionPtrType) ToAppEngineServiceIamBindin
 }
 
 func (i *appEngineServiceIamBindingConditionPtrType) ToAppEngineServiceIamBindingConditionPtrOutputWithContext(ctx context.Context) AppEngineServiceIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AppEngineServiceIamBindingConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(AppEngineServiceIamBindingConditionOutput).ToAppEngineServiceIamBindingConditionPtrOutput()
 }
 
 type AppEngineServiceIamBindingConditionOutput struct{ *pulumi.OutputState }
@@ -225,7 +225,7 @@ func (i AppEngineServiceIamMemberConditionArgs) ToAppEngineServiceIamMemberCondi
 }
 
 func (i AppEngineServiceIamMemberConditionArgs) ToAppEngineServiceIamMemberConditionPtrOutputWithContext(ctx context.Context) AppEngineServiceIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AppEngineServiceIamMemberConditionOutput).ToAppEngineServiceIamMemberConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(AppEngineServiceIamMemberConditionOutput).ToAppEngineServiceIamMemberConditionPtrOutput()
 }
 
 // AppEngineServiceIamMemberConditionPtrInput is an input type that accepts AppEngineServiceIamMemberConditionArgs, AppEngineServiceIamMemberConditionPtr and AppEngineServiceIamMemberConditionPtrOutput values.
@@ -258,7 +258,7 @@ func (i *appEngineServiceIamMemberConditionPtrType) ToAppEngineServiceIamMemberC
 }
 
 func (i *appEngineServiceIamMemberConditionPtrType) ToAppEngineServiceIamMemberConditionPtrOutputWithContext(ctx context.Context) AppEngineServiceIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AppEngineServiceIamMemberConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(AppEngineServiceIamMemberConditionOutput).ToAppEngineServiceIamMemberConditionPtrOutput()
 }
 
 type AppEngineServiceIamMemberConditionOutput struct{ *pulumi.OutputState }
@@ -394,7 +394,7 @@ func (i AppEngineVersionIamBindingConditionArgs) ToAppEngineVersionIamBindingCon
 }
 
 func (i AppEngineVersionIamBindingConditionArgs) ToAppEngineVersionIamBindingConditionPtrOutputWithContext(ctx context.Context) AppEngineVersionIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AppEngineVersionIamBindingConditionOutput).ToAppEngineVersionIamBindingConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(AppEngineVersionIamBindingConditionOutput).ToAppEngineVersionIamBindingConditionPtrOutput()
 }
 
 // AppEngineVersionIamBindingConditionPtrInput is an input type that accepts AppEngineVersionIamBindingConditionArgs, AppEngineVersionIamBindingConditionPtr and AppEngineVersionIamBindingConditionPtrOutput values.
@@ -427,7 +427,7 @@ func (i *appEngineVersionIamBindingConditionPtrType) ToAppEngineVersionIamBindin
 }
 
 func (i *appEngineVersionIamBindingConditionPtrType) ToAppEngineVersionIamBindingConditionPtrOutputWithContext(ctx context.Context) AppEngineVersionIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AppEngineVersionIamBindingConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(AppEngineVersionIamBindingConditionOutput).ToAppEngineVersionIamBindingConditionPtrOutput()
 }
 
 type AppEngineVersionIamBindingConditionOutput struct{ *pulumi.OutputState }
@@ -563,7 +563,7 @@ func (i AppEngineVersionIamMemberConditionArgs) ToAppEngineVersionIamMemberCondi
 }
 
 func (i AppEngineVersionIamMemberConditionArgs) ToAppEngineVersionIamMemberConditionPtrOutputWithContext(ctx context.Context) AppEngineVersionIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AppEngineVersionIamMemberConditionOutput).ToAppEngineVersionIamMemberConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(AppEngineVersionIamMemberConditionOutput).ToAppEngineVersionIamMemberConditionPtrOutput()
 }
 
 // AppEngineVersionIamMemberConditionPtrInput is an input type that accepts AppEngineVersionIamMemberConditionArgs, AppEngineVersionIamMemberConditionPtr and AppEngineVersionIamMemberConditionPtrOutput values.
@@ -596,7 +596,7 @@ func (i *appEngineVersionIamMemberConditionPtrType) ToAppEngineVersionIamMemberC
 }
 
 func (i *appEngineVersionIamMemberConditionPtrType) ToAppEngineVersionIamMemberConditionPtrOutputWithContext(ctx context.Context) AppEngineVersionIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AppEngineVersionIamMemberConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(AppEngineVersionIamMemberConditionOutput).ToAppEngineVersionIamMemberConditionPtrOutput()
 }
 
 type AppEngineVersionIamMemberConditionOutput struct{ *pulumi.OutputState }
@@ -732,7 +732,7 @@ func (i TunnelIamBindingConditionArgs) ToTunnelIamBindingConditionPtrOutput() Tu
 }
 
 func (i TunnelIamBindingConditionArgs) ToTunnelIamBindingConditionPtrOutputWithContext(ctx context.Context) TunnelIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TunnelIamBindingConditionOutput).ToTunnelIamBindingConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TunnelIamBindingConditionOutput).ToTunnelIamBindingConditionPtrOutput()
 }
 
 // TunnelIamBindingConditionPtrInput is an input type that accepts TunnelIamBindingConditionArgs, TunnelIamBindingConditionPtr and TunnelIamBindingConditionPtrOutput values.
@@ -765,7 +765,7 @@ func (i *tunnelIamBindingConditionPtrType) ToTunnelIamBindingConditionPtrOutput(
 }
 
 func (i *tunnelIamBindingConditionPtrType) ToTunnelIamBindingConditionPtrOutputWithContext(ctx context.Context) TunnelIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TunnelIamBindingConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TunnelIamBindingConditionOutput).ToTunnelIamBindingConditionPtrOutput()
 }
 
 type TunnelIamBindingConditionOutput struct{ *pulumi.OutputState }
@@ -901,7 +901,7 @@ func (i TunnelIamMemberConditionArgs) ToTunnelIamMemberConditionPtrOutput() Tunn
 }
 
 func (i TunnelIamMemberConditionArgs) ToTunnelIamMemberConditionPtrOutputWithContext(ctx context.Context) TunnelIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TunnelIamMemberConditionOutput).ToTunnelIamMemberConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TunnelIamMemberConditionOutput).ToTunnelIamMemberConditionPtrOutput()
 }
 
 // TunnelIamMemberConditionPtrInput is an input type that accepts TunnelIamMemberConditionArgs, TunnelIamMemberConditionPtr and TunnelIamMemberConditionPtrOutput values.
@@ -934,7 +934,7 @@ func (i *tunnelIamMemberConditionPtrType) ToTunnelIamMemberConditionPtrOutput() 
 }
 
 func (i *tunnelIamMemberConditionPtrType) ToTunnelIamMemberConditionPtrOutputWithContext(ctx context.Context) TunnelIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TunnelIamMemberConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TunnelIamMemberConditionOutput).ToTunnelIamMemberConditionPtrOutput()
 }
 
 type TunnelIamMemberConditionOutput struct{ *pulumi.OutputState }
@@ -1070,7 +1070,7 @@ func (i TunnelInstanceIAMBindingConditionArgs) ToTunnelInstanceIAMBindingConditi
 }
 
 func (i TunnelInstanceIAMBindingConditionArgs) ToTunnelInstanceIAMBindingConditionPtrOutputWithContext(ctx context.Context) TunnelInstanceIAMBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TunnelInstanceIAMBindingConditionOutput).ToTunnelInstanceIAMBindingConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TunnelInstanceIAMBindingConditionOutput).ToTunnelInstanceIAMBindingConditionPtrOutput()
 }
 
 // TunnelInstanceIAMBindingConditionPtrInput is an input type that accepts TunnelInstanceIAMBindingConditionArgs, TunnelInstanceIAMBindingConditionPtr and TunnelInstanceIAMBindingConditionPtrOutput values.
@@ -1103,7 +1103,7 @@ func (i *tunnelInstanceIAMBindingConditionPtrType) ToTunnelInstanceIAMBindingCon
 }
 
 func (i *tunnelInstanceIAMBindingConditionPtrType) ToTunnelInstanceIAMBindingConditionPtrOutputWithContext(ctx context.Context) TunnelInstanceIAMBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TunnelInstanceIAMBindingConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TunnelInstanceIAMBindingConditionOutput).ToTunnelInstanceIAMBindingConditionPtrOutput()
 }
 
 type TunnelInstanceIAMBindingConditionOutput struct{ *pulumi.OutputState }
@@ -1239,7 +1239,7 @@ func (i TunnelInstanceIAMMemberConditionArgs) ToTunnelInstanceIAMMemberCondition
 }
 
 func (i TunnelInstanceIAMMemberConditionArgs) ToTunnelInstanceIAMMemberConditionPtrOutputWithContext(ctx context.Context) TunnelInstanceIAMMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TunnelInstanceIAMMemberConditionOutput).ToTunnelInstanceIAMMemberConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TunnelInstanceIAMMemberConditionOutput).ToTunnelInstanceIAMMemberConditionPtrOutput()
 }
 
 // TunnelInstanceIAMMemberConditionPtrInput is an input type that accepts TunnelInstanceIAMMemberConditionArgs, TunnelInstanceIAMMemberConditionPtr and TunnelInstanceIAMMemberConditionPtrOutput values.
@@ -1272,7 +1272,7 @@ func (i *tunnelInstanceIAMMemberConditionPtrType) ToTunnelInstanceIAMMemberCondi
 }
 
 func (i *tunnelInstanceIAMMemberConditionPtrType) ToTunnelInstanceIAMMemberConditionPtrOutputWithContext(ctx context.Context) TunnelInstanceIAMMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TunnelInstanceIAMMemberConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TunnelInstanceIAMMemberConditionOutput).ToTunnelInstanceIAMMemberConditionPtrOutput()
 }
 
 type TunnelInstanceIAMMemberConditionOutput struct{ *pulumi.OutputState }
@@ -1408,7 +1408,7 @@ func (i WebBackendServiceIamBindingConditionArgs) ToWebBackendServiceIamBindingC
 }
 
 func (i WebBackendServiceIamBindingConditionArgs) ToWebBackendServiceIamBindingConditionPtrOutputWithContext(ctx context.Context) WebBackendServiceIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebBackendServiceIamBindingConditionOutput).ToWebBackendServiceIamBindingConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(WebBackendServiceIamBindingConditionOutput).ToWebBackendServiceIamBindingConditionPtrOutput()
 }
 
 // WebBackendServiceIamBindingConditionPtrInput is an input type that accepts WebBackendServiceIamBindingConditionArgs, WebBackendServiceIamBindingConditionPtr and WebBackendServiceIamBindingConditionPtrOutput values.
@@ -1441,7 +1441,7 @@ func (i *webBackendServiceIamBindingConditionPtrType) ToWebBackendServiceIamBind
 }
 
 func (i *webBackendServiceIamBindingConditionPtrType) ToWebBackendServiceIamBindingConditionPtrOutputWithContext(ctx context.Context) WebBackendServiceIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebBackendServiceIamBindingConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(WebBackendServiceIamBindingConditionOutput).ToWebBackendServiceIamBindingConditionPtrOutput()
 }
 
 type WebBackendServiceIamBindingConditionOutput struct{ *pulumi.OutputState }
@@ -1577,7 +1577,7 @@ func (i WebBackendServiceIamMemberConditionArgs) ToWebBackendServiceIamMemberCon
 }
 
 func (i WebBackendServiceIamMemberConditionArgs) ToWebBackendServiceIamMemberConditionPtrOutputWithContext(ctx context.Context) WebBackendServiceIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebBackendServiceIamMemberConditionOutput).ToWebBackendServiceIamMemberConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(WebBackendServiceIamMemberConditionOutput).ToWebBackendServiceIamMemberConditionPtrOutput()
 }
 
 // WebBackendServiceIamMemberConditionPtrInput is an input type that accepts WebBackendServiceIamMemberConditionArgs, WebBackendServiceIamMemberConditionPtr and WebBackendServiceIamMemberConditionPtrOutput values.
@@ -1610,7 +1610,7 @@ func (i *webBackendServiceIamMemberConditionPtrType) ToWebBackendServiceIamMembe
 }
 
 func (i *webBackendServiceIamMemberConditionPtrType) ToWebBackendServiceIamMemberConditionPtrOutputWithContext(ctx context.Context) WebBackendServiceIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebBackendServiceIamMemberConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(WebBackendServiceIamMemberConditionOutput).ToWebBackendServiceIamMemberConditionPtrOutput()
 }
 
 type WebBackendServiceIamMemberConditionOutput struct{ *pulumi.OutputState }
@@ -1746,7 +1746,7 @@ func (i WebIamBindingConditionArgs) ToWebIamBindingConditionPtrOutput() WebIamBi
 }
 
 func (i WebIamBindingConditionArgs) ToWebIamBindingConditionPtrOutputWithContext(ctx context.Context) WebIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebIamBindingConditionOutput).ToWebIamBindingConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(WebIamBindingConditionOutput).ToWebIamBindingConditionPtrOutput()
 }
 
 // WebIamBindingConditionPtrInput is an input type that accepts WebIamBindingConditionArgs, WebIamBindingConditionPtr and WebIamBindingConditionPtrOutput values.
@@ -1779,7 +1779,7 @@ func (i *webIamBindingConditionPtrType) ToWebIamBindingConditionPtrOutput() WebI
 }
 
 func (i *webIamBindingConditionPtrType) ToWebIamBindingConditionPtrOutputWithContext(ctx context.Context) WebIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebIamBindingConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(WebIamBindingConditionOutput).ToWebIamBindingConditionPtrOutput()
 }
 
 type WebIamBindingConditionOutput struct{ *pulumi.OutputState }
@@ -1915,7 +1915,7 @@ func (i WebIamMemberConditionArgs) ToWebIamMemberConditionPtrOutput() WebIamMemb
 }
 
 func (i WebIamMemberConditionArgs) ToWebIamMemberConditionPtrOutputWithContext(ctx context.Context) WebIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebIamMemberConditionOutput).ToWebIamMemberConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(WebIamMemberConditionOutput).ToWebIamMemberConditionPtrOutput()
 }
 
 // WebIamMemberConditionPtrInput is an input type that accepts WebIamMemberConditionArgs, WebIamMemberConditionPtr and WebIamMemberConditionPtrOutput values.
@@ -1948,7 +1948,7 @@ func (i *webIamMemberConditionPtrType) ToWebIamMemberConditionPtrOutput() WebIam
 }
 
 func (i *webIamMemberConditionPtrType) ToWebIamMemberConditionPtrOutputWithContext(ctx context.Context) WebIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebIamMemberConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(WebIamMemberConditionOutput).ToWebIamMemberConditionPtrOutput()
 }
 
 type WebIamMemberConditionOutput struct{ *pulumi.OutputState }
@@ -2084,7 +2084,7 @@ func (i WebTypeAppEngingIamBindingConditionArgs) ToWebTypeAppEngingIamBindingCon
 }
 
 func (i WebTypeAppEngingIamBindingConditionArgs) ToWebTypeAppEngingIamBindingConditionPtrOutputWithContext(ctx context.Context) WebTypeAppEngingIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebTypeAppEngingIamBindingConditionOutput).ToWebTypeAppEngingIamBindingConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(WebTypeAppEngingIamBindingConditionOutput).ToWebTypeAppEngingIamBindingConditionPtrOutput()
 }
 
 // WebTypeAppEngingIamBindingConditionPtrInput is an input type that accepts WebTypeAppEngingIamBindingConditionArgs, WebTypeAppEngingIamBindingConditionPtr and WebTypeAppEngingIamBindingConditionPtrOutput values.
@@ -2117,7 +2117,7 @@ func (i *webTypeAppEngingIamBindingConditionPtrType) ToWebTypeAppEngingIamBindin
 }
 
 func (i *webTypeAppEngingIamBindingConditionPtrType) ToWebTypeAppEngingIamBindingConditionPtrOutputWithContext(ctx context.Context) WebTypeAppEngingIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebTypeAppEngingIamBindingConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(WebTypeAppEngingIamBindingConditionOutput).ToWebTypeAppEngingIamBindingConditionPtrOutput()
 }
 
 type WebTypeAppEngingIamBindingConditionOutput struct{ *pulumi.OutputState }
@@ -2253,7 +2253,7 @@ func (i WebTypeAppEngingIamMemberConditionArgs) ToWebTypeAppEngingIamMemberCondi
 }
 
 func (i WebTypeAppEngingIamMemberConditionArgs) ToWebTypeAppEngingIamMemberConditionPtrOutputWithContext(ctx context.Context) WebTypeAppEngingIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebTypeAppEngingIamMemberConditionOutput).ToWebTypeAppEngingIamMemberConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(WebTypeAppEngingIamMemberConditionOutput).ToWebTypeAppEngingIamMemberConditionPtrOutput()
 }
 
 // WebTypeAppEngingIamMemberConditionPtrInput is an input type that accepts WebTypeAppEngingIamMemberConditionArgs, WebTypeAppEngingIamMemberConditionPtr and WebTypeAppEngingIamMemberConditionPtrOutput values.
@@ -2286,7 +2286,7 @@ func (i *webTypeAppEngingIamMemberConditionPtrType) ToWebTypeAppEngingIamMemberC
 }
 
 func (i *webTypeAppEngingIamMemberConditionPtrType) ToWebTypeAppEngingIamMemberConditionPtrOutputWithContext(ctx context.Context) WebTypeAppEngingIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebTypeAppEngingIamMemberConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(WebTypeAppEngingIamMemberConditionOutput).ToWebTypeAppEngingIamMemberConditionPtrOutput()
 }
 
 type WebTypeAppEngingIamMemberConditionOutput struct{ *pulumi.OutputState }
@@ -2422,7 +2422,7 @@ func (i WebTypeComputeIamBindingConditionArgs) ToWebTypeComputeIamBindingConditi
 }
 
 func (i WebTypeComputeIamBindingConditionArgs) ToWebTypeComputeIamBindingConditionPtrOutputWithContext(ctx context.Context) WebTypeComputeIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebTypeComputeIamBindingConditionOutput).ToWebTypeComputeIamBindingConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(WebTypeComputeIamBindingConditionOutput).ToWebTypeComputeIamBindingConditionPtrOutput()
 }
 
 // WebTypeComputeIamBindingConditionPtrInput is an input type that accepts WebTypeComputeIamBindingConditionArgs, WebTypeComputeIamBindingConditionPtr and WebTypeComputeIamBindingConditionPtrOutput values.
@@ -2455,7 +2455,7 @@ func (i *webTypeComputeIamBindingConditionPtrType) ToWebTypeComputeIamBindingCon
 }
 
 func (i *webTypeComputeIamBindingConditionPtrType) ToWebTypeComputeIamBindingConditionPtrOutputWithContext(ctx context.Context) WebTypeComputeIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebTypeComputeIamBindingConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(WebTypeComputeIamBindingConditionOutput).ToWebTypeComputeIamBindingConditionPtrOutput()
 }
 
 type WebTypeComputeIamBindingConditionOutput struct{ *pulumi.OutputState }
@@ -2591,7 +2591,7 @@ func (i WebTypeComputeIamMemberConditionArgs) ToWebTypeComputeIamMemberCondition
 }
 
 func (i WebTypeComputeIamMemberConditionArgs) ToWebTypeComputeIamMemberConditionPtrOutputWithContext(ctx context.Context) WebTypeComputeIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebTypeComputeIamMemberConditionOutput).ToWebTypeComputeIamMemberConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(WebTypeComputeIamMemberConditionOutput).ToWebTypeComputeIamMemberConditionPtrOutput()
 }
 
 // WebTypeComputeIamMemberConditionPtrInput is an input type that accepts WebTypeComputeIamMemberConditionArgs, WebTypeComputeIamMemberConditionPtr and WebTypeComputeIamMemberConditionPtrOutput values.
@@ -2624,7 +2624,7 @@ func (i *webTypeComputeIamMemberConditionPtrType) ToWebTypeComputeIamMemberCondi
 }
 
 func (i *webTypeComputeIamMemberConditionPtrType) ToWebTypeComputeIamMemberConditionPtrOutputWithContext(ctx context.Context) WebTypeComputeIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebTypeComputeIamMemberConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(WebTypeComputeIamMemberConditionOutput).ToWebTypeComputeIamMemberConditionPtrOutput()
 }
 
 type WebTypeComputeIamMemberConditionOutput struct{ *pulumi.OutputState }

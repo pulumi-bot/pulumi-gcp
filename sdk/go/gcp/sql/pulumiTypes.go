@@ -212,7 +212,7 @@ func (i DatabaseInstanceReplicaConfigurationArgs) ToDatabaseInstanceReplicaConfi
 }
 
 func (i DatabaseInstanceReplicaConfigurationArgs) ToDatabaseInstanceReplicaConfigurationPtrOutputWithContext(ctx context.Context) DatabaseInstanceReplicaConfigurationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DatabaseInstanceReplicaConfigurationOutput).ToDatabaseInstanceReplicaConfigurationPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(DatabaseInstanceReplicaConfigurationOutput).ToDatabaseInstanceReplicaConfigurationPtrOutput()
 }
 
 // DatabaseInstanceReplicaConfigurationPtrInput is an input type that accepts DatabaseInstanceReplicaConfigurationArgs, DatabaseInstanceReplicaConfigurationPtr and DatabaseInstanceReplicaConfigurationPtrOutput values.
@@ -245,7 +245,7 @@ func (i *databaseInstanceReplicaConfigurationPtrType) ToDatabaseInstanceReplicaC
 }
 
 func (i *databaseInstanceReplicaConfigurationPtrType) ToDatabaseInstanceReplicaConfigurationPtrOutputWithContext(ctx context.Context) DatabaseInstanceReplicaConfigurationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DatabaseInstanceReplicaConfigurationPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(DatabaseInstanceReplicaConfigurationOutput).ToDatabaseInstanceReplicaConfigurationPtrOutput()
 }
 
 type DatabaseInstanceReplicaConfigurationOutput struct{ *pulumi.OutputState }
@@ -731,7 +731,7 @@ func (i DatabaseInstanceSettingsArgs) ToDatabaseInstanceSettingsPtrOutput() Data
 }
 
 func (i DatabaseInstanceSettingsArgs) ToDatabaseInstanceSettingsPtrOutputWithContext(ctx context.Context) DatabaseInstanceSettingsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DatabaseInstanceSettingsOutput).ToDatabaseInstanceSettingsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(DatabaseInstanceSettingsOutput).ToDatabaseInstanceSettingsPtrOutput()
 }
 
 // DatabaseInstanceSettingsPtrInput is an input type that accepts DatabaseInstanceSettingsArgs, DatabaseInstanceSettingsPtr and DatabaseInstanceSettingsPtrOutput values.
@@ -764,7 +764,7 @@ func (i *databaseInstanceSettingsPtrType) ToDatabaseInstanceSettingsPtrOutput() 
 }
 
 func (i *databaseInstanceSettingsPtrType) ToDatabaseInstanceSettingsPtrOutputWithContext(ctx context.Context) DatabaseInstanceSettingsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DatabaseInstanceSettingsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(DatabaseInstanceSettingsOutput).ToDatabaseInstanceSettingsPtrOutput()
 }
 
 type DatabaseInstanceSettingsOutput struct{ *pulumi.OutputState }
@@ -1160,7 +1160,7 @@ func (i DatabaseInstanceSettingsBackupConfigurationArgs) ToDatabaseInstanceSetti
 }
 
 func (i DatabaseInstanceSettingsBackupConfigurationArgs) ToDatabaseInstanceSettingsBackupConfigurationPtrOutputWithContext(ctx context.Context) DatabaseInstanceSettingsBackupConfigurationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DatabaseInstanceSettingsBackupConfigurationOutput).ToDatabaseInstanceSettingsBackupConfigurationPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(DatabaseInstanceSettingsBackupConfigurationOutput).ToDatabaseInstanceSettingsBackupConfigurationPtrOutput()
 }
 
 // DatabaseInstanceSettingsBackupConfigurationPtrInput is an input type that accepts DatabaseInstanceSettingsBackupConfigurationArgs, DatabaseInstanceSettingsBackupConfigurationPtr and DatabaseInstanceSettingsBackupConfigurationPtrOutput values.
@@ -1193,7 +1193,7 @@ func (i *databaseInstanceSettingsBackupConfigurationPtrType) ToDatabaseInstanceS
 }
 
 func (i *databaseInstanceSettingsBackupConfigurationPtrType) ToDatabaseInstanceSettingsBackupConfigurationPtrOutputWithContext(ctx context.Context) DatabaseInstanceSettingsBackupConfigurationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DatabaseInstanceSettingsBackupConfigurationPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(DatabaseInstanceSettingsBackupConfigurationOutput).ToDatabaseInstanceSettingsBackupConfigurationPtrOutput()
 }
 
 type DatabaseInstanceSettingsBackupConfigurationOutput struct{ *pulumi.OutputState }
@@ -1491,7 +1491,7 @@ func (i DatabaseInstanceSettingsIpConfigurationArgs) ToDatabaseInstanceSettingsI
 }
 
 func (i DatabaseInstanceSettingsIpConfigurationArgs) ToDatabaseInstanceSettingsIpConfigurationPtrOutputWithContext(ctx context.Context) DatabaseInstanceSettingsIpConfigurationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DatabaseInstanceSettingsIpConfigurationOutput).ToDatabaseInstanceSettingsIpConfigurationPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(DatabaseInstanceSettingsIpConfigurationOutput).ToDatabaseInstanceSettingsIpConfigurationPtrOutput()
 }
 
 // DatabaseInstanceSettingsIpConfigurationPtrInput is an input type that accepts DatabaseInstanceSettingsIpConfigurationArgs, DatabaseInstanceSettingsIpConfigurationPtr and DatabaseInstanceSettingsIpConfigurationPtrOutput values.
@@ -1524,7 +1524,7 @@ func (i *databaseInstanceSettingsIpConfigurationPtrType) ToDatabaseInstanceSetti
 }
 
 func (i *databaseInstanceSettingsIpConfigurationPtrType) ToDatabaseInstanceSettingsIpConfigurationPtrOutputWithContext(ctx context.Context) DatabaseInstanceSettingsIpConfigurationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DatabaseInstanceSettingsIpConfigurationPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(DatabaseInstanceSettingsIpConfigurationOutput).ToDatabaseInstanceSettingsIpConfigurationPtrOutput()
 }
 
 type DatabaseInstanceSettingsIpConfigurationOutput struct{ *pulumi.OutputState }
@@ -1810,7 +1810,7 @@ func (i DatabaseInstanceSettingsLocationPreferenceArgs) ToDatabaseInstanceSettin
 }
 
 func (i DatabaseInstanceSettingsLocationPreferenceArgs) ToDatabaseInstanceSettingsLocationPreferencePtrOutputWithContext(ctx context.Context) DatabaseInstanceSettingsLocationPreferencePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DatabaseInstanceSettingsLocationPreferenceOutput).ToDatabaseInstanceSettingsLocationPreferencePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(DatabaseInstanceSettingsLocationPreferenceOutput).ToDatabaseInstanceSettingsLocationPreferencePtrOutput()
 }
 
 // DatabaseInstanceSettingsLocationPreferencePtrInput is an input type that accepts DatabaseInstanceSettingsLocationPreferenceArgs, DatabaseInstanceSettingsLocationPreferencePtr and DatabaseInstanceSettingsLocationPreferencePtrOutput values.
@@ -1843,7 +1843,7 @@ func (i *databaseInstanceSettingsLocationPreferencePtrType) ToDatabaseInstanceSe
 }
 
 func (i *databaseInstanceSettingsLocationPreferencePtrType) ToDatabaseInstanceSettingsLocationPreferencePtrOutputWithContext(ctx context.Context) DatabaseInstanceSettingsLocationPreferencePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DatabaseInstanceSettingsLocationPreferencePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(DatabaseInstanceSettingsLocationPreferenceOutput).ToDatabaseInstanceSettingsLocationPreferencePtrOutput()
 }
 
 type DatabaseInstanceSettingsLocationPreferenceOutput struct{ *pulumi.OutputState }
@@ -1972,7 +1972,7 @@ func (i DatabaseInstanceSettingsMaintenanceWindowArgs) ToDatabaseInstanceSetting
 }
 
 func (i DatabaseInstanceSettingsMaintenanceWindowArgs) ToDatabaseInstanceSettingsMaintenanceWindowPtrOutputWithContext(ctx context.Context) DatabaseInstanceSettingsMaintenanceWindowPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DatabaseInstanceSettingsMaintenanceWindowOutput).ToDatabaseInstanceSettingsMaintenanceWindowPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(DatabaseInstanceSettingsMaintenanceWindowOutput).ToDatabaseInstanceSettingsMaintenanceWindowPtrOutput()
 }
 
 // DatabaseInstanceSettingsMaintenanceWindowPtrInput is an input type that accepts DatabaseInstanceSettingsMaintenanceWindowArgs, DatabaseInstanceSettingsMaintenanceWindowPtr and DatabaseInstanceSettingsMaintenanceWindowPtrOutput values.
@@ -2005,7 +2005,7 @@ func (i *databaseInstanceSettingsMaintenanceWindowPtrType) ToDatabaseInstanceSet
 }
 
 func (i *databaseInstanceSettingsMaintenanceWindowPtrType) ToDatabaseInstanceSettingsMaintenanceWindowPtrOutputWithContext(ctx context.Context) DatabaseInstanceSettingsMaintenanceWindowPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DatabaseInstanceSettingsMaintenanceWindowPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(DatabaseInstanceSettingsMaintenanceWindowOutput).ToDatabaseInstanceSettingsMaintenanceWindowPtrOutput()
 }
 
 type DatabaseInstanceSettingsMaintenanceWindowOutput struct{ *pulumi.OutputState }

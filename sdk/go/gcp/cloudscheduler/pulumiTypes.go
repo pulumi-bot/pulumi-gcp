@@ -80,7 +80,7 @@ func (i JobAppEngineHttpTargetArgs) ToJobAppEngineHttpTargetPtrOutput() JobAppEn
 }
 
 func (i JobAppEngineHttpTargetArgs) ToJobAppEngineHttpTargetPtrOutputWithContext(ctx context.Context) JobAppEngineHttpTargetPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobAppEngineHttpTargetOutput).ToJobAppEngineHttpTargetPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(JobAppEngineHttpTargetOutput).ToJobAppEngineHttpTargetPtrOutput()
 }
 
 // JobAppEngineHttpTargetPtrInput is an input type that accepts JobAppEngineHttpTargetArgs, JobAppEngineHttpTargetPtr and JobAppEngineHttpTargetPtrOutput values.
@@ -113,7 +113,7 @@ func (i *jobAppEngineHttpTargetPtrType) ToJobAppEngineHttpTargetPtrOutput() JobA
 }
 
 func (i *jobAppEngineHttpTargetPtrType) ToJobAppEngineHttpTargetPtrOutputWithContext(ctx context.Context) JobAppEngineHttpTargetPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobAppEngineHttpTargetPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(JobAppEngineHttpTargetOutput).ToJobAppEngineHttpTargetPtrOutput()
 }
 
 type JobAppEngineHttpTargetOutput struct{ *pulumi.OutputState }
@@ -301,7 +301,7 @@ func (i JobAppEngineHttpTargetAppEngineRoutingArgs) ToJobAppEngineHttpTargetAppE
 }
 
 func (i JobAppEngineHttpTargetAppEngineRoutingArgs) ToJobAppEngineHttpTargetAppEngineRoutingPtrOutputWithContext(ctx context.Context) JobAppEngineHttpTargetAppEngineRoutingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobAppEngineHttpTargetAppEngineRoutingOutput).ToJobAppEngineHttpTargetAppEngineRoutingPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(JobAppEngineHttpTargetAppEngineRoutingOutput).ToJobAppEngineHttpTargetAppEngineRoutingPtrOutput()
 }
 
 // JobAppEngineHttpTargetAppEngineRoutingPtrInput is an input type that accepts JobAppEngineHttpTargetAppEngineRoutingArgs, JobAppEngineHttpTargetAppEngineRoutingPtr and JobAppEngineHttpTargetAppEngineRoutingPtrOutput values.
@@ -334,7 +334,7 @@ func (i *jobAppEngineHttpTargetAppEngineRoutingPtrType) ToJobAppEngineHttpTarget
 }
 
 func (i *jobAppEngineHttpTargetAppEngineRoutingPtrType) ToJobAppEngineHttpTargetAppEngineRoutingPtrOutputWithContext(ctx context.Context) JobAppEngineHttpTargetAppEngineRoutingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobAppEngineHttpTargetAppEngineRoutingPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(JobAppEngineHttpTargetAppEngineRoutingOutput).ToJobAppEngineHttpTargetAppEngineRoutingPtrOutput()
 }
 
 type JobAppEngineHttpTargetAppEngineRoutingOutput struct{ *pulumi.OutputState }
@@ -502,7 +502,7 @@ func (i JobHttpTargetArgs) ToJobHttpTargetPtrOutput() JobHttpTargetPtrOutput {
 }
 
 func (i JobHttpTargetArgs) ToJobHttpTargetPtrOutputWithContext(ctx context.Context) JobHttpTargetPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobHttpTargetOutput).ToJobHttpTargetPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(JobHttpTargetOutput).ToJobHttpTargetPtrOutput()
 }
 
 // JobHttpTargetPtrInput is an input type that accepts JobHttpTargetArgs, JobHttpTargetPtr and JobHttpTargetPtrOutput values.
@@ -535,7 +535,7 @@ func (i *jobHttpTargetPtrType) ToJobHttpTargetPtrOutput() JobHttpTargetPtrOutput
 }
 
 func (i *jobHttpTargetPtrType) ToJobHttpTargetPtrOutputWithContext(ctx context.Context) JobHttpTargetPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobHttpTargetPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(JobHttpTargetOutput).ToJobHttpTargetPtrOutput()
 }
 
 type JobHttpTargetOutput struct{ *pulumi.OutputState }
@@ -730,7 +730,7 @@ func (i JobHttpTargetOauthTokenArgs) ToJobHttpTargetOauthTokenPtrOutput() JobHtt
 }
 
 func (i JobHttpTargetOauthTokenArgs) ToJobHttpTargetOauthTokenPtrOutputWithContext(ctx context.Context) JobHttpTargetOauthTokenPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobHttpTargetOauthTokenOutput).ToJobHttpTargetOauthTokenPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(JobHttpTargetOauthTokenOutput).ToJobHttpTargetOauthTokenPtrOutput()
 }
 
 // JobHttpTargetOauthTokenPtrInput is an input type that accepts JobHttpTargetOauthTokenArgs, JobHttpTargetOauthTokenPtr and JobHttpTargetOauthTokenPtrOutput values.
@@ -763,7 +763,7 @@ func (i *jobHttpTargetOauthTokenPtrType) ToJobHttpTargetOauthTokenPtrOutput() Jo
 }
 
 func (i *jobHttpTargetOauthTokenPtrType) ToJobHttpTargetOauthTokenPtrOutputWithContext(ctx context.Context) JobHttpTargetOauthTokenPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobHttpTargetOauthTokenPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(JobHttpTargetOauthTokenOutput).ToJobHttpTargetOauthTokenPtrOutput()
 }
 
 type JobHttpTargetOauthTokenOutput struct{ *pulumi.OutputState }
@@ -888,7 +888,7 @@ func (i JobHttpTargetOidcTokenArgs) ToJobHttpTargetOidcTokenPtrOutput() JobHttpT
 }
 
 func (i JobHttpTargetOidcTokenArgs) ToJobHttpTargetOidcTokenPtrOutputWithContext(ctx context.Context) JobHttpTargetOidcTokenPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobHttpTargetOidcTokenOutput).ToJobHttpTargetOidcTokenPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(JobHttpTargetOidcTokenOutput).ToJobHttpTargetOidcTokenPtrOutput()
 }
 
 // JobHttpTargetOidcTokenPtrInput is an input type that accepts JobHttpTargetOidcTokenArgs, JobHttpTargetOidcTokenPtr and JobHttpTargetOidcTokenPtrOutput values.
@@ -921,7 +921,7 @@ func (i *jobHttpTargetOidcTokenPtrType) ToJobHttpTargetOidcTokenPtrOutput() JobH
 }
 
 func (i *jobHttpTargetOidcTokenPtrType) ToJobHttpTargetOidcTokenPtrOutputWithContext(ctx context.Context) JobHttpTargetOidcTokenPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobHttpTargetOidcTokenPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(JobHttpTargetOidcTokenOutput).ToJobHttpTargetOidcTokenPtrOutput()
 }
 
 type JobHttpTargetOidcTokenOutput struct{ *pulumi.OutputState }
@@ -1056,7 +1056,7 @@ func (i JobPubsubTargetArgs) ToJobPubsubTargetPtrOutput() JobPubsubTargetPtrOutp
 }
 
 func (i JobPubsubTargetArgs) ToJobPubsubTargetPtrOutputWithContext(ctx context.Context) JobPubsubTargetPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobPubsubTargetOutput).ToJobPubsubTargetPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(JobPubsubTargetOutput).ToJobPubsubTargetPtrOutput()
 }
 
 // JobPubsubTargetPtrInput is an input type that accepts JobPubsubTargetArgs, JobPubsubTargetPtr and JobPubsubTargetPtrOutput values.
@@ -1089,7 +1089,7 @@ func (i *jobPubsubTargetPtrType) ToJobPubsubTargetPtrOutput() JobPubsubTargetPtr
 }
 
 func (i *jobPubsubTargetPtrType) ToJobPubsubTargetPtrOutputWithContext(ctx context.Context) JobPubsubTargetPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobPubsubTargetPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(JobPubsubTargetOutput).ToJobPubsubTargetPtrOutput()
 }
 
 type JobPubsubTargetOutput struct{ *pulumi.OutputState }
@@ -1261,7 +1261,7 @@ func (i JobRetryConfigArgs) ToJobRetryConfigPtrOutput() JobRetryConfigPtrOutput 
 }
 
 func (i JobRetryConfigArgs) ToJobRetryConfigPtrOutputWithContext(ctx context.Context) JobRetryConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobRetryConfigOutput).ToJobRetryConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(JobRetryConfigOutput).ToJobRetryConfigPtrOutput()
 }
 
 // JobRetryConfigPtrInput is an input type that accepts JobRetryConfigArgs, JobRetryConfigPtr and JobRetryConfigPtrOutput values.
@@ -1294,7 +1294,7 @@ func (i *jobRetryConfigPtrType) ToJobRetryConfigPtrOutput() JobRetryConfigPtrOut
 }
 
 func (i *jobRetryConfigPtrType) ToJobRetryConfigPtrOutputWithContext(ctx context.Context) JobRetryConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobRetryConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(JobRetryConfigOutput).ToJobRetryConfigPtrOutput()
 }
 
 type JobRetryConfigOutput struct{ *pulumi.OutputState }

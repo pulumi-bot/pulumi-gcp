@@ -108,7 +108,7 @@ func (i DomainMappingMetadataArgs) ToDomainMappingMetadataPtrOutput() DomainMapp
 }
 
 func (i DomainMappingMetadataArgs) ToDomainMappingMetadataPtrOutputWithContext(ctx context.Context) DomainMappingMetadataPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DomainMappingMetadataOutput).ToDomainMappingMetadataPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(DomainMappingMetadataOutput).ToDomainMappingMetadataPtrOutput()
 }
 
 // DomainMappingMetadataPtrInput is an input type that accepts DomainMappingMetadataArgs, DomainMappingMetadataPtr and DomainMappingMetadataPtrOutput values.
@@ -141,7 +141,7 @@ func (i *domainMappingMetadataPtrType) ToDomainMappingMetadataPtrOutput() Domain
 }
 
 func (i *domainMappingMetadataPtrType) ToDomainMappingMetadataPtrOutputWithContext(ctx context.Context) DomainMappingMetadataPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DomainMappingMetadataPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(DomainMappingMetadataOutput).ToDomainMappingMetadataPtrOutput()
 }
 
 type DomainMappingMetadataOutput struct{ *pulumi.OutputState }
@@ -385,7 +385,7 @@ func (i DomainMappingSpecArgs) ToDomainMappingSpecPtrOutput() DomainMappingSpecP
 }
 
 func (i DomainMappingSpecArgs) ToDomainMappingSpecPtrOutputWithContext(ctx context.Context) DomainMappingSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DomainMappingSpecOutput).ToDomainMappingSpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(DomainMappingSpecOutput).ToDomainMappingSpecPtrOutput()
 }
 
 // DomainMappingSpecPtrInput is an input type that accepts DomainMappingSpecArgs, DomainMappingSpecPtr and DomainMappingSpecPtrOutput values.
@@ -418,7 +418,7 @@ func (i *domainMappingSpecPtrType) ToDomainMappingSpecPtrOutput() DomainMappingS
 }
 
 func (i *domainMappingSpecPtrType) ToDomainMappingSpecPtrOutputWithContext(ctx context.Context) DomainMappingSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DomainMappingSpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(DomainMappingSpecOutput).ToDomainMappingSpecPtrOutput()
 }
 
 type DomainMappingSpecOutput struct{ *pulumi.OutputState }
@@ -893,7 +893,7 @@ func (i IamBindingConditionArgs) ToIamBindingConditionPtrOutput() IamBindingCond
 }
 
 func (i IamBindingConditionArgs) ToIamBindingConditionPtrOutputWithContext(ctx context.Context) IamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IamBindingConditionOutput).ToIamBindingConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(IamBindingConditionOutput).ToIamBindingConditionPtrOutput()
 }
 
 // IamBindingConditionPtrInput is an input type that accepts IamBindingConditionArgs, IamBindingConditionPtr and IamBindingConditionPtrOutput values.
@@ -926,7 +926,7 @@ func (i *iamBindingConditionPtrType) ToIamBindingConditionPtrOutput() IamBinding
 }
 
 func (i *iamBindingConditionPtrType) ToIamBindingConditionPtrOutputWithContext(ctx context.Context) IamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IamBindingConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(IamBindingConditionOutput).ToIamBindingConditionPtrOutput()
 }
 
 type IamBindingConditionOutput struct{ *pulumi.OutputState }
@@ -1049,7 +1049,7 @@ func (i IamMemberConditionArgs) ToIamMemberConditionPtrOutput() IamMemberConditi
 }
 
 func (i IamMemberConditionArgs) ToIamMemberConditionPtrOutputWithContext(ctx context.Context) IamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IamMemberConditionOutput).ToIamMemberConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(IamMemberConditionOutput).ToIamMemberConditionPtrOutput()
 }
 
 // IamMemberConditionPtrInput is an input type that accepts IamMemberConditionArgs, IamMemberConditionPtr and IamMemberConditionPtrOutput values.
@@ -1082,7 +1082,7 @@ func (i *iamMemberConditionPtrType) ToIamMemberConditionPtrOutput() IamMemberCon
 }
 
 func (i *iamMemberConditionPtrType) ToIamMemberConditionPtrOutputWithContext(ctx context.Context) IamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IamMemberConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(IamMemberConditionOutput).ToIamMemberConditionPtrOutput()
 }
 
 type IamMemberConditionOutput struct{ *pulumi.OutputState }
@@ -1263,7 +1263,7 @@ func (i ServiceMetadataArgs) ToServiceMetadataPtrOutput() ServiceMetadataPtrOutp
 }
 
 func (i ServiceMetadataArgs) ToServiceMetadataPtrOutputWithContext(ctx context.Context) ServiceMetadataPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceMetadataOutput).ToServiceMetadataPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceMetadataOutput).ToServiceMetadataPtrOutput()
 }
 
 // ServiceMetadataPtrInput is an input type that accepts ServiceMetadataArgs, ServiceMetadataPtr and ServiceMetadataPtrOutput values.
@@ -1296,7 +1296,7 @@ func (i *serviceMetadataPtrType) ToServiceMetadataPtrOutput() ServiceMetadataPtr
 }
 
 func (i *serviceMetadataPtrType) ToServiceMetadataPtrOutputWithContext(ctx context.Context) ServiceMetadataPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceMetadataPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceMetadataOutput).ToServiceMetadataPtrOutput()
 }
 
 type ServiceMetadataOutput struct{ *pulumi.OutputState }
@@ -1760,7 +1760,7 @@ func (i ServiceTemplateArgs) ToServiceTemplatePtrOutput() ServiceTemplatePtrOutp
 }
 
 func (i ServiceTemplateArgs) ToServiceTemplatePtrOutputWithContext(ctx context.Context) ServiceTemplatePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceTemplateOutput).ToServiceTemplatePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceTemplateOutput).ToServiceTemplatePtrOutput()
 }
 
 // ServiceTemplatePtrInput is an input type that accepts ServiceTemplateArgs, ServiceTemplatePtr and ServiceTemplatePtrOutput values.
@@ -1793,7 +1793,7 @@ func (i *serviceTemplatePtrType) ToServiceTemplatePtrOutput() ServiceTemplatePtr
 }
 
 func (i *serviceTemplatePtrType) ToServiceTemplatePtrOutputWithContext(ctx context.Context) ServiceTemplatePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceTemplatePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceTemplateOutput).ToServiceTemplatePtrOutput()
 }
 
 type ServiceTemplateOutput struct{ *pulumi.OutputState }
@@ -1976,7 +1976,7 @@ func (i ServiceTemplateMetadataArgs) ToServiceTemplateMetadataPtrOutput() Servic
 }
 
 func (i ServiceTemplateMetadataArgs) ToServiceTemplateMetadataPtrOutputWithContext(ctx context.Context) ServiceTemplateMetadataPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceTemplateMetadataOutput).ToServiceTemplateMetadataPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceTemplateMetadataOutput).ToServiceTemplateMetadataPtrOutput()
 }
 
 // ServiceTemplateMetadataPtrInput is an input type that accepts ServiceTemplateMetadataArgs, ServiceTemplateMetadataPtr and ServiceTemplateMetadataPtrOutput values.
@@ -2009,7 +2009,7 @@ func (i *serviceTemplateMetadataPtrType) ToServiceTemplateMetadataPtrOutput() Se
 }
 
 func (i *serviceTemplateMetadataPtrType) ToServiceTemplateMetadataPtrOutputWithContext(ctx context.Context) ServiceTemplateMetadataPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceTemplateMetadataPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceTemplateMetadataOutput).ToServiceTemplateMetadataPtrOutput()
 }
 
 type ServiceTemplateMetadataOutput struct{ *pulumi.OutputState }
@@ -2294,7 +2294,7 @@ func (i ServiceTemplateSpecArgs) ToServiceTemplateSpecPtrOutput() ServiceTemplat
 }
 
 func (i ServiceTemplateSpecArgs) ToServiceTemplateSpecPtrOutputWithContext(ctx context.Context) ServiceTemplateSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceTemplateSpecOutput).ToServiceTemplateSpecPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceTemplateSpecOutput).ToServiceTemplateSpecPtrOutput()
 }
 
 // ServiceTemplateSpecPtrInput is an input type that accepts ServiceTemplateSpecArgs, ServiceTemplateSpecPtr and ServiceTemplateSpecPtrOutput values.
@@ -2327,7 +2327,7 @@ func (i *serviceTemplateSpecPtrType) ToServiceTemplateSpecPtrOutput() ServiceTem
 }
 
 func (i *serviceTemplateSpecPtrType) ToServiceTemplateSpecPtrOutputWithContext(ctx context.Context) ServiceTemplateSpecPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceTemplateSpecPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceTemplateSpecOutput).ToServiceTemplateSpecPtrOutput()
 }
 
 type ServiceTemplateSpecOutput struct{ *pulumi.OutputState }
@@ -3053,7 +3053,7 @@ func (i ServiceTemplateSpecContainerEnvFromConfigMapRefArgs) ToServiceTemplateSp
 }
 
 func (i ServiceTemplateSpecContainerEnvFromConfigMapRefArgs) ToServiceTemplateSpecContainerEnvFromConfigMapRefPtrOutputWithContext(ctx context.Context) ServiceTemplateSpecContainerEnvFromConfigMapRefPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceTemplateSpecContainerEnvFromConfigMapRefOutput).ToServiceTemplateSpecContainerEnvFromConfigMapRefPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceTemplateSpecContainerEnvFromConfigMapRefOutput).ToServiceTemplateSpecContainerEnvFromConfigMapRefPtrOutput()
 }
 
 // ServiceTemplateSpecContainerEnvFromConfigMapRefPtrInput is an input type that accepts ServiceTemplateSpecContainerEnvFromConfigMapRefArgs, ServiceTemplateSpecContainerEnvFromConfigMapRefPtr and ServiceTemplateSpecContainerEnvFromConfigMapRefPtrOutput values.
@@ -3086,7 +3086,7 @@ func (i *serviceTemplateSpecContainerEnvFromConfigMapRefPtrType) ToServiceTempla
 }
 
 func (i *serviceTemplateSpecContainerEnvFromConfigMapRefPtrType) ToServiceTemplateSpecContainerEnvFromConfigMapRefPtrOutputWithContext(ctx context.Context) ServiceTemplateSpecContainerEnvFromConfigMapRefPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceTemplateSpecContainerEnvFromConfigMapRefPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceTemplateSpecContainerEnvFromConfigMapRefOutput).ToServiceTemplateSpecContainerEnvFromConfigMapRefPtrOutput()
 }
 
 type ServiceTemplateSpecContainerEnvFromConfigMapRefOutput struct{ *pulumi.OutputState }
@@ -3205,7 +3205,7 @@ func (i ServiceTemplateSpecContainerEnvFromConfigMapRefLocalObjectReferenceArgs)
 }
 
 func (i ServiceTemplateSpecContainerEnvFromConfigMapRefLocalObjectReferenceArgs) ToServiceTemplateSpecContainerEnvFromConfigMapRefLocalObjectReferencePtrOutputWithContext(ctx context.Context) ServiceTemplateSpecContainerEnvFromConfigMapRefLocalObjectReferencePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceTemplateSpecContainerEnvFromConfigMapRefLocalObjectReferenceOutput).ToServiceTemplateSpecContainerEnvFromConfigMapRefLocalObjectReferencePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceTemplateSpecContainerEnvFromConfigMapRefLocalObjectReferenceOutput).ToServiceTemplateSpecContainerEnvFromConfigMapRefLocalObjectReferencePtrOutput()
 }
 
 // ServiceTemplateSpecContainerEnvFromConfigMapRefLocalObjectReferencePtrInput is an input type that accepts ServiceTemplateSpecContainerEnvFromConfigMapRefLocalObjectReferenceArgs, ServiceTemplateSpecContainerEnvFromConfigMapRefLocalObjectReferencePtr and ServiceTemplateSpecContainerEnvFromConfigMapRefLocalObjectReferencePtrOutput values.
@@ -3238,7 +3238,7 @@ func (i *serviceTemplateSpecContainerEnvFromConfigMapRefLocalObjectReferencePtrT
 }
 
 func (i *serviceTemplateSpecContainerEnvFromConfigMapRefLocalObjectReferencePtrType) ToServiceTemplateSpecContainerEnvFromConfigMapRefLocalObjectReferencePtrOutputWithContext(ctx context.Context) ServiceTemplateSpecContainerEnvFromConfigMapRefLocalObjectReferencePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceTemplateSpecContainerEnvFromConfigMapRefLocalObjectReferencePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceTemplateSpecContainerEnvFromConfigMapRefLocalObjectReferenceOutput).ToServiceTemplateSpecContainerEnvFromConfigMapRefLocalObjectReferencePtrOutput()
 }
 
 type ServiceTemplateSpecContainerEnvFromConfigMapRefLocalObjectReferenceOutput struct{ *pulumi.OutputState }
@@ -3344,7 +3344,7 @@ func (i ServiceTemplateSpecContainerEnvFromSecretRefArgs) ToServiceTemplateSpecC
 }
 
 func (i ServiceTemplateSpecContainerEnvFromSecretRefArgs) ToServiceTemplateSpecContainerEnvFromSecretRefPtrOutputWithContext(ctx context.Context) ServiceTemplateSpecContainerEnvFromSecretRefPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceTemplateSpecContainerEnvFromSecretRefOutput).ToServiceTemplateSpecContainerEnvFromSecretRefPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceTemplateSpecContainerEnvFromSecretRefOutput).ToServiceTemplateSpecContainerEnvFromSecretRefPtrOutput()
 }
 
 // ServiceTemplateSpecContainerEnvFromSecretRefPtrInput is an input type that accepts ServiceTemplateSpecContainerEnvFromSecretRefArgs, ServiceTemplateSpecContainerEnvFromSecretRefPtr and ServiceTemplateSpecContainerEnvFromSecretRefPtrOutput values.
@@ -3377,7 +3377,7 @@ func (i *serviceTemplateSpecContainerEnvFromSecretRefPtrType) ToServiceTemplateS
 }
 
 func (i *serviceTemplateSpecContainerEnvFromSecretRefPtrType) ToServiceTemplateSpecContainerEnvFromSecretRefPtrOutputWithContext(ctx context.Context) ServiceTemplateSpecContainerEnvFromSecretRefPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceTemplateSpecContainerEnvFromSecretRefPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceTemplateSpecContainerEnvFromSecretRefOutput).ToServiceTemplateSpecContainerEnvFromSecretRefPtrOutput()
 }
 
 type ServiceTemplateSpecContainerEnvFromSecretRefOutput struct{ *pulumi.OutputState }
@@ -3496,7 +3496,7 @@ func (i ServiceTemplateSpecContainerEnvFromSecretRefLocalObjectReferenceArgs) To
 }
 
 func (i ServiceTemplateSpecContainerEnvFromSecretRefLocalObjectReferenceArgs) ToServiceTemplateSpecContainerEnvFromSecretRefLocalObjectReferencePtrOutputWithContext(ctx context.Context) ServiceTemplateSpecContainerEnvFromSecretRefLocalObjectReferencePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceTemplateSpecContainerEnvFromSecretRefLocalObjectReferenceOutput).ToServiceTemplateSpecContainerEnvFromSecretRefLocalObjectReferencePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceTemplateSpecContainerEnvFromSecretRefLocalObjectReferenceOutput).ToServiceTemplateSpecContainerEnvFromSecretRefLocalObjectReferencePtrOutput()
 }
 
 // ServiceTemplateSpecContainerEnvFromSecretRefLocalObjectReferencePtrInput is an input type that accepts ServiceTemplateSpecContainerEnvFromSecretRefLocalObjectReferenceArgs, ServiceTemplateSpecContainerEnvFromSecretRefLocalObjectReferencePtr and ServiceTemplateSpecContainerEnvFromSecretRefLocalObjectReferencePtrOutput values.
@@ -3529,7 +3529,7 @@ func (i *serviceTemplateSpecContainerEnvFromSecretRefLocalObjectReferencePtrType
 }
 
 func (i *serviceTemplateSpecContainerEnvFromSecretRefLocalObjectReferencePtrType) ToServiceTemplateSpecContainerEnvFromSecretRefLocalObjectReferencePtrOutputWithContext(ctx context.Context) ServiceTemplateSpecContainerEnvFromSecretRefLocalObjectReferencePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceTemplateSpecContainerEnvFromSecretRefLocalObjectReferencePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceTemplateSpecContainerEnvFromSecretRefLocalObjectReferenceOutput).ToServiceTemplateSpecContainerEnvFromSecretRefLocalObjectReferencePtrOutput()
 }
 
 type ServiceTemplateSpecContainerEnvFromSecretRefLocalObjectReferenceOutput struct{ *pulumi.OutputState }
@@ -3760,7 +3760,7 @@ func (i ServiceTemplateSpecContainerResourcesArgs) ToServiceTemplateSpecContaine
 }
 
 func (i ServiceTemplateSpecContainerResourcesArgs) ToServiceTemplateSpecContainerResourcesPtrOutputWithContext(ctx context.Context) ServiceTemplateSpecContainerResourcesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceTemplateSpecContainerResourcesOutput).ToServiceTemplateSpecContainerResourcesPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceTemplateSpecContainerResourcesOutput).ToServiceTemplateSpecContainerResourcesPtrOutput()
 }
 
 // ServiceTemplateSpecContainerResourcesPtrInput is an input type that accepts ServiceTemplateSpecContainerResourcesArgs, ServiceTemplateSpecContainerResourcesPtr and ServiceTemplateSpecContainerResourcesPtrOutput values.
@@ -3793,7 +3793,7 @@ func (i *serviceTemplateSpecContainerResourcesPtrType) ToServiceTemplateSpecCont
 }
 
 func (i *serviceTemplateSpecContainerResourcesPtrType) ToServiceTemplateSpecContainerResourcesPtrOutputWithContext(ctx context.Context) ServiceTemplateSpecContainerResourcesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceTemplateSpecContainerResourcesPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceTemplateSpecContainerResourcesOutput).ToServiceTemplateSpecContainerResourcesPtrOutput()
 }
 
 type ServiceTemplateSpecContainerResourcesOutput struct{ *pulumi.OutputState }

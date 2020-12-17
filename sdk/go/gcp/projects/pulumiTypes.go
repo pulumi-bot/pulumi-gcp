@@ -262,7 +262,7 @@ func (i IAMBindingConditionArgs) ToIAMBindingConditionPtrOutput() IAMBindingCond
 }
 
 func (i IAMBindingConditionArgs) ToIAMBindingConditionPtrOutputWithContext(ctx context.Context) IAMBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IAMBindingConditionOutput).ToIAMBindingConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(IAMBindingConditionOutput).ToIAMBindingConditionPtrOutput()
 }
 
 // IAMBindingConditionPtrInput is an input type that accepts IAMBindingConditionArgs, IAMBindingConditionPtr and IAMBindingConditionPtrOutput values.
@@ -295,7 +295,7 @@ func (i *iambindingConditionPtrType) ToIAMBindingConditionPtrOutput() IAMBinding
 }
 
 func (i *iambindingConditionPtrType) ToIAMBindingConditionPtrOutputWithContext(ctx context.Context) IAMBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IAMBindingConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(IAMBindingConditionOutput).ToIAMBindingConditionPtrOutput()
 }
 
 type IAMBindingConditionOutput struct{ *pulumi.OutputState }
@@ -431,7 +431,7 @@ func (i IAMMemberConditionArgs) ToIAMMemberConditionPtrOutput() IAMMemberConditi
 }
 
 func (i IAMMemberConditionArgs) ToIAMMemberConditionPtrOutputWithContext(ctx context.Context) IAMMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IAMMemberConditionOutput).ToIAMMemberConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(IAMMemberConditionOutput).ToIAMMemberConditionPtrOutput()
 }
 
 // IAMMemberConditionPtrInput is an input type that accepts IAMMemberConditionArgs, IAMMemberConditionPtr and IAMMemberConditionPtrOutput values.
@@ -464,7 +464,7 @@ func (i *iammemberConditionPtrType) ToIAMMemberConditionPtrOutput() IAMMemberCon
 }
 
 func (i *iammemberConditionPtrType) ToIAMMemberConditionPtrOutputWithContext(ctx context.Context) IAMMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IAMMemberConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(IAMMemberConditionOutput).ToIAMMemberConditionPtrOutput()
 }
 
 type IAMMemberConditionOutput struct{ *pulumi.OutputState }
@@ -592,7 +592,7 @@ func (i OrganizationPolicyBooleanPolicyArgs) ToOrganizationPolicyBooleanPolicyPt
 }
 
 func (i OrganizationPolicyBooleanPolicyArgs) ToOrganizationPolicyBooleanPolicyPtrOutputWithContext(ctx context.Context) OrganizationPolicyBooleanPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(OrganizationPolicyBooleanPolicyOutput).ToOrganizationPolicyBooleanPolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationPolicyBooleanPolicyOutput).ToOrganizationPolicyBooleanPolicyPtrOutput()
 }
 
 // OrganizationPolicyBooleanPolicyPtrInput is an input type that accepts OrganizationPolicyBooleanPolicyArgs, OrganizationPolicyBooleanPolicyPtr and OrganizationPolicyBooleanPolicyPtrOutput values.
@@ -625,7 +625,7 @@ func (i *organizationPolicyBooleanPolicyPtrType) ToOrganizationPolicyBooleanPoli
 }
 
 func (i *organizationPolicyBooleanPolicyPtrType) ToOrganizationPolicyBooleanPolicyPtrOutputWithContext(ctx context.Context) OrganizationPolicyBooleanPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(OrganizationPolicyBooleanPolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationPolicyBooleanPolicyOutput).ToOrganizationPolicyBooleanPolicyPtrOutput()
 }
 
 type OrganizationPolicyBooleanPolicyOutput struct{ *pulumi.OutputState }
@@ -735,7 +735,7 @@ func (i OrganizationPolicyListPolicyArgs) ToOrganizationPolicyListPolicyPtrOutpu
 }
 
 func (i OrganizationPolicyListPolicyArgs) ToOrganizationPolicyListPolicyPtrOutputWithContext(ctx context.Context) OrganizationPolicyListPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(OrganizationPolicyListPolicyOutput).ToOrganizationPolicyListPolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationPolicyListPolicyOutput).ToOrganizationPolicyListPolicyPtrOutput()
 }
 
 // OrganizationPolicyListPolicyPtrInput is an input type that accepts OrganizationPolicyListPolicyArgs, OrganizationPolicyListPolicyPtr and OrganizationPolicyListPolicyPtrOutput values.
@@ -768,7 +768,7 @@ func (i *organizationPolicyListPolicyPtrType) ToOrganizationPolicyListPolicyPtrO
 }
 
 func (i *organizationPolicyListPolicyPtrType) ToOrganizationPolicyListPolicyPtrOutputWithContext(ctx context.Context) OrganizationPolicyListPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(OrganizationPolicyListPolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationPolicyListPolicyOutput).ToOrganizationPolicyListPolicyPtrOutput()
 }
 
 type OrganizationPolicyListPolicyOutput struct{ *pulumi.OutputState }
@@ -915,7 +915,7 @@ func (i OrganizationPolicyListPolicyAllowArgs) ToOrganizationPolicyListPolicyAll
 }
 
 func (i OrganizationPolicyListPolicyAllowArgs) ToOrganizationPolicyListPolicyAllowPtrOutputWithContext(ctx context.Context) OrganizationPolicyListPolicyAllowPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(OrganizationPolicyListPolicyAllowOutput).ToOrganizationPolicyListPolicyAllowPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationPolicyListPolicyAllowOutput).ToOrganizationPolicyListPolicyAllowPtrOutput()
 }
 
 // OrganizationPolicyListPolicyAllowPtrInput is an input type that accepts OrganizationPolicyListPolicyAllowArgs, OrganizationPolicyListPolicyAllowPtr and OrganizationPolicyListPolicyAllowPtrOutput values.
@@ -948,7 +948,7 @@ func (i *organizationPolicyListPolicyAllowPtrType) ToOrganizationPolicyListPolic
 }
 
 func (i *organizationPolicyListPolicyAllowPtrType) ToOrganizationPolicyListPolicyAllowPtrOutputWithContext(ctx context.Context) OrganizationPolicyListPolicyAllowPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(OrganizationPolicyListPolicyAllowPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationPolicyListPolicyAllowOutput).ToOrganizationPolicyListPolicyAllowPtrOutput()
 }
 
 type OrganizationPolicyListPolicyAllowOutput struct{ *pulumi.OutputState }
@@ -1065,7 +1065,7 @@ func (i OrganizationPolicyListPolicyDenyArgs) ToOrganizationPolicyListPolicyDeny
 }
 
 func (i OrganizationPolicyListPolicyDenyArgs) ToOrganizationPolicyListPolicyDenyPtrOutputWithContext(ctx context.Context) OrganizationPolicyListPolicyDenyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(OrganizationPolicyListPolicyDenyOutput).ToOrganizationPolicyListPolicyDenyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationPolicyListPolicyDenyOutput).ToOrganizationPolicyListPolicyDenyPtrOutput()
 }
 
 // OrganizationPolicyListPolicyDenyPtrInput is an input type that accepts OrganizationPolicyListPolicyDenyArgs, OrganizationPolicyListPolicyDenyPtr and OrganizationPolicyListPolicyDenyPtrOutput values.
@@ -1098,7 +1098,7 @@ func (i *organizationPolicyListPolicyDenyPtrType) ToOrganizationPolicyListPolicy
 }
 
 func (i *organizationPolicyListPolicyDenyPtrType) ToOrganizationPolicyListPolicyDenyPtrOutputWithContext(ctx context.Context) OrganizationPolicyListPolicyDenyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(OrganizationPolicyListPolicyDenyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationPolicyListPolicyDenyOutput).ToOrganizationPolicyListPolicyDenyPtrOutput()
 }
 
 type OrganizationPolicyListPolicyDenyOutput struct{ *pulumi.OutputState }
@@ -1211,7 +1211,7 @@ func (i OrganizationPolicyRestorePolicyArgs) ToOrganizationPolicyRestorePolicyPt
 }
 
 func (i OrganizationPolicyRestorePolicyArgs) ToOrganizationPolicyRestorePolicyPtrOutputWithContext(ctx context.Context) OrganizationPolicyRestorePolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(OrganizationPolicyRestorePolicyOutput).ToOrganizationPolicyRestorePolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationPolicyRestorePolicyOutput).ToOrganizationPolicyRestorePolicyPtrOutput()
 }
 
 // OrganizationPolicyRestorePolicyPtrInput is an input type that accepts OrganizationPolicyRestorePolicyArgs, OrganizationPolicyRestorePolicyPtr and OrganizationPolicyRestorePolicyPtrOutput values.
@@ -1244,7 +1244,7 @@ func (i *organizationPolicyRestorePolicyPtrType) ToOrganizationPolicyRestorePoli
 }
 
 func (i *organizationPolicyRestorePolicyPtrType) ToOrganizationPolicyRestorePolicyPtrOutputWithContext(ctx context.Context) OrganizationPolicyRestorePolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(OrganizationPolicyRestorePolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationPolicyRestorePolicyOutput).ToOrganizationPolicyRestorePolicyPtrOutput()
 }
 
 type OrganizationPolicyRestorePolicyOutput struct{ *pulumi.OutputState }

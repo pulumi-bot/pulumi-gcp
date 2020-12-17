@@ -365,16 +365,95 @@ type WebIamMemberInput interface {
 	ToWebIamMemberOutputWithContext(ctx context.Context) WebIamMemberOutput
 }
 
-func (WebIamMember) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebIamMember)(nil)).Elem()
+func (*WebIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebIamMember)(nil))
 }
 
-func (i WebIamMember) ToWebIamMemberOutput() WebIamMemberOutput {
+func (i *WebIamMember) ToWebIamMemberOutput() WebIamMemberOutput {
 	return i.ToWebIamMemberOutputWithContext(context.Background())
 }
 
-func (i WebIamMember) ToWebIamMemberOutputWithContext(ctx context.Context) WebIamMemberOutput {
+func (i *WebIamMember) ToWebIamMemberOutputWithContext(ctx context.Context) WebIamMemberOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WebIamMemberOutput)
+}
+
+func (i *WebIamMember) ToWebIamMemberPtrOutput() WebIamMemberPtrOutput {
+	return i.ToWebIamMemberPtrOutputWithContext(context.Background())
+}
+
+func (i *WebIamMember) ToWebIamMemberPtrOutputWithContext(ctx context.Context) WebIamMemberPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebIamMemberPtrOutput)
+}
+
+type WebIamMemberPtrInput interface {
+	pulumi.Input
+
+	ToWebIamMemberPtrOutput() WebIamMemberPtrOutput
+	ToWebIamMemberPtrOutputWithContext(ctx context.Context) WebIamMemberPtrOutput
+}
+
+type webIamMemberPtrType WebIamMemberArgs
+
+func (*webIamMemberPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebIamMember)(nil))
+}
+
+func (i *webIamMemberPtrType) ToWebIamMemberPtrOutput() WebIamMemberPtrOutput {
+	return i.ToWebIamMemberPtrOutputWithContext(context.Background())
+}
+
+func (i *webIamMemberPtrType) ToWebIamMemberPtrOutputWithContext(ctx context.Context) WebIamMemberPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebIamMemberOutput).ToWebIamMemberPtrOutput()
+}
+
+// WebIamMemberArrayInput is an input type that accepts WebIamMemberArray and WebIamMemberArrayOutput values.
+// You can construct a concrete instance of `WebIamMemberArrayInput` via:
+//
+//          WebIamMemberArray{ WebIamMemberArgs{...} }
+type WebIamMemberArrayInput interface {
+	pulumi.Input
+
+	ToWebIamMemberArrayOutput() WebIamMemberArrayOutput
+	ToWebIamMemberArrayOutputWithContext(context.Context) WebIamMemberArrayOutput
+}
+
+type WebIamMemberArray []WebIamMemberInput
+
+func (WebIamMemberArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]WebIamMember)(nil))
+}
+
+func (i WebIamMemberArray) ToWebIamMemberArrayOutput() WebIamMemberArrayOutput {
+	return i.ToWebIamMemberArrayOutputWithContext(context.Background())
+}
+
+func (i WebIamMemberArray) ToWebIamMemberArrayOutputWithContext(ctx context.Context) WebIamMemberArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebIamMemberArrayOutput)
+}
+
+// WebIamMemberMapInput is an input type that accepts WebIamMemberMap and WebIamMemberMapOutput values.
+// You can construct a concrete instance of `WebIamMemberMapInput` via:
+//
+//          WebIamMemberMap{ "key": WebIamMemberArgs{...} }
+type WebIamMemberMapInput interface {
+	pulumi.Input
+
+	ToWebIamMemberMapOutput() WebIamMemberMapOutput
+	ToWebIamMemberMapOutputWithContext(context.Context) WebIamMemberMapOutput
+}
+
+type WebIamMemberMap map[string]WebIamMemberInput
+
+func (WebIamMemberMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]WebIamMember)(nil))
+}
+
+func (i WebIamMemberMap) ToWebIamMemberMapOutput() WebIamMemberMapOutput {
+	return i.ToWebIamMemberMapOutputWithContext(context.Background())
+}
+
+func (i WebIamMemberMap) ToWebIamMemberMapOutputWithContext(ctx context.Context) WebIamMemberMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebIamMemberMapOutput)
 }
 
 type WebIamMemberOutput struct {
@@ -382,7 +461,7 @@ type WebIamMemberOutput struct {
 }
 
 func (WebIamMemberOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebIamMemberOutput)(nil)).Elem()
+	return reflect.TypeOf((*WebIamMember)(nil))
 }
 
 func (o WebIamMemberOutput) ToWebIamMemberOutput() WebIamMemberOutput {
@@ -393,6 +472,75 @@ func (o WebIamMemberOutput) ToWebIamMemberOutputWithContext(ctx context.Context)
 	return o
 }
 
+func (o WebIamMemberOutput) ToWebIamMemberPtrOutput() WebIamMemberPtrOutput {
+	return o.ToWebIamMemberPtrOutputWithContext(context.Background())
+}
+
+func (o WebIamMemberOutput) ToWebIamMemberPtrOutputWithContext(ctx context.Context) WebIamMemberPtrOutput {
+	return o.ApplyT(func(v WebIamMember) *WebIamMember {
+		return &v
+	}).(WebIamMemberPtrOutput)
+}
+
+type WebIamMemberPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (WebIamMemberPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebIamMember)(nil))
+}
+
+func (o WebIamMemberPtrOutput) ToWebIamMemberPtrOutput() WebIamMemberPtrOutput {
+	return o
+}
+
+func (o WebIamMemberPtrOutput) ToWebIamMemberPtrOutputWithContext(ctx context.Context) WebIamMemberPtrOutput {
+	return o
+}
+
+type WebIamMemberArrayOutput struct{ *pulumi.OutputState }
+
+func (WebIamMemberArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]WebIamMember)(nil))
+}
+
+func (o WebIamMemberArrayOutput) ToWebIamMemberArrayOutput() WebIamMemberArrayOutput {
+	return o
+}
+
+func (o WebIamMemberArrayOutput) ToWebIamMemberArrayOutputWithContext(ctx context.Context) WebIamMemberArrayOutput {
+	return o
+}
+
+func (o WebIamMemberArrayOutput) Index(i pulumi.IntInput) WebIamMemberOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WebIamMember {
+		return vs[0].([]WebIamMember)[vs[1].(int)]
+	}).(WebIamMemberOutput)
+}
+
+type WebIamMemberMapOutput struct{ *pulumi.OutputState }
+
+func (WebIamMemberMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]WebIamMember)(nil))
+}
+
+func (o WebIamMemberMapOutput) ToWebIamMemberMapOutput() WebIamMemberMapOutput {
+	return o
+}
+
+func (o WebIamMemberMapOutput) ToWebIamMemberMapOutputWithContext(ctx context.Context) WebIamMemberMapOutput {
+	return o
+}
+
+func (o WebIamMemberMapOutput) MapIndex(k pulumi.StringInput) WebIamMemberOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) WebIamMember {
+		return vs[0].(map[string]WebIamMember)[vs[1].(string)]
+	}).(WebIamMemberOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(WebIamMemberOutput{})
+	pulumi.RegisterOutputType(WebIamMemberPtrOutput{})
+	pulumi.RegisterOutputType(WebIamMemberArrayOutput{})
+	pulumi.RegisterOutputType(WebIamMemberMapOutput{})
 }

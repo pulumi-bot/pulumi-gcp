@@ -80,7 +80,7 @@ func (i EnvironmentConfigArgs) ToEnvironmentConfigPtrOutput() EnvironmentConfigP
 }
 
 func (i EnvironmentConfigArgs) ToEnvironmentConfigPtrOutputWithContext(ctx context.Context) EnvironmentConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentConfigOutput).ToEnvironmentConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentConfigOutput).ToEnvironmentConfigPtrOutput()
 }
 
 // EnvironmentConfigPtrInput is an input type that accepts EnvironmentConfigArgs, EnvironmentConfigPtr and EnvironmentConfigPtrOutput values.
@@ -113,7 +113,7 @@ func (i *environmentConfigPtrType) ToEnvironmentConfigPtrOutput() EnvironmentCon
 }
 
 func (i *environmentConfigPtrType) ToEnvironmentConfigPtrOutputWithContext(ctx context.Context) EnvironmentConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentConfigOutput).ToEnvironmentConfigPtrOutput()
 }
 
 type EnvironmentConfigOutput struct{ *pulumi.OutputState }
@@ -351,7 +351,7 @@ func (i EnvironmentConfigDatabaseConfigArgs) ToEnvironmentConfigDatabaseConfigPt
 }
 
 func (i EnvironmentConfigDatabaseConfigArgs) ToEnvironmentConfigDatabaseConfigPtrOutputWithContext(ctx context.Context) EnvironmentConfigDatabaseConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentConfigDatabaseConfigOutput).ToEnvironmentConfigDatabaseConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentConfigDatabaseConfigOutput).ToEnvironmentConfigDatabaseConfigPtrOutput()
 }
 
 // EnvironmentConfigDatabaseConfigPtrInput is an input type that accepts EnvironmentConfigDatabaseConfigArgs, EnvironmentConfigDatabaseConfigPtr and EnvironmentConfigDatabaseConfigPtrOutput values.
@@ -384,7 +384,7 @@ func (i *environmentConfigDatabaseConfigPtrType) ToEnvironmentConfigDatabaseConf
 }
 
 func (i *environmentConfigDatabaseConfigPtrType) ToEnvironmentConfigDatabaseConfigPtrOutputWithContext(ctx context.Context) EnvironmentConfigDatabaseConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentConfigDatabaseConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentConfigDatabaseConfigOutput).ToEnvironmentConfigDatabaseConfigPtrOutput()
 }
 
 type EnvironmentConfigDatabaseConfigOutput struct{ *pulumi.OutputState }
@@ -566,7 +566,7 @@ func (i EnvironmentConfigNodeConfigArgs) ToEnvironmentConfigNodeConfigPtrOutput(
 }
 
 func (i EnvironmentConfigNodeConfigArgs) ToEnvironmentConfigNodeConfigPtrOutputWithContext(ctx context.Context) EnvironmentConfigNodeConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentConfigNodeConfigOutput).ToEnvironmentConfigNodeConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentConfigNodeConfigOutput).ToEnvironmentConfigNodeConfigPtrOutput()
 }
 
 // EnvironmentConfigNodeConfigPtrInput is an input type that accepts EnvironmentConfigNodeConfigArgs, EnvironmentConfigNodeConfigPtr and EnvironmentConfigNodeConfigPtrOutput values.
@@ -599,7 +599,7 @@ func (i *environmentConfigNodeConfigPtrType) ToEnvironmentConfigNodeConfigPtrOut
 }
 
 func (i *environmentConfigNodeConfigPtrType) ToEnvironmentConfigNodeConfigPtrOutputWithContext(ctx context.Context) EnvironmentConfigNodeConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentConfigNodeConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentConfigNodeConfigOutput).ToEnvironmentConfigNodeConfigPtrOutput()
 }
 
 type EnvironmentConfigNodeConfigOutput struct{ *pulumi.OutputState }
@@ -911,7 +911,7 @@ func (i EnvironmentConfigNodeConfigIpAllocationPolicyArgs) ToEnvironmentConfigNo
 }
 
 func (i EnvironmentConfigNodeConfigIpAllocationPolicyArgs) ToEnvironmentConfigNodeConfigIpAllocationPolicyPtrOutputWithContext(ctx context.Context) EnvironmentConfigNodeConfigIpAllocationPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentConfigNodeConfigIpAllocationPolicyOutput).ToEnvironmentConfigNodeConfigIpAllocationPolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentConfigNodeConfigIpAllocationPolicyOutput).ToEnvironmentConfigNodeConfigIpAllocationPolicyPtrOutput()
 }
 
 // EnvironmentConfigNodeConfigIpAllocationPolicyPtrInput is an input type that accepts EnvironmentConfigNodeConfigIpAllocationPolicyArgs, EnvironmentConfigNodeConfigIpAllocationPolicyPtr and EnvironmentConfigNodeConfigIpAllocationPolicyPtrOutput values.
@@ -944,7 +944,7 @@ func (i *environmentConfigNodeConfigIpAllocationPolicyPtrType) ToEnvironmentConf
 }
 
 func (i *environmentConfigNodeConfigIpAllocationPolicyPtrType) ToEnvironmentConfigNodeConfigIpAllocationPolicyPtrOutputWithContext(ctx context.Context) EnvironmentConfigNodeConfigIpAllocationPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentConfigNodeConfigIpAllocationPolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentConfigNodeConfigIpAllocationPolicyOutput).ToEnvironmentConfigNodeConfigIpAllocationPolicyPtrOutput()
 }
 
 type EnvironmentConfigNodeConfigIpAllocationPolicyOutput struct{ *pulumi.OutputState }
@@ -1156,7 +1156,7 @@ func (i EnvironmentConfigPrivateEnvironmentConfigArgs) ToEnvironmentConfigPrivat
 }
 
 func (i EnvironmentConfigPrivateEnvironmentConfigArgs) ToEnvironmentConfigPrivateEnvironmentConfigPtrOutputWithContext(ctx context.Context) EnvironmentConfigPrivateEnvironmentConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentConfigPrivateEnvironmentConfigOutput).ToEnvironmentConfigPrivateEnvironmentConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentConfigPrivateEnvironmentConfigOutput).ToEnvironmentConfigPrivateEnvironmentConfigPtrOutput()
 }
 
 // EnvironmentConfigPrivateEnvironmentConfigPtrInput is an input type that accepts EnvironmentConfigPrivateEnvironmentConfigArgs, EnvironmentConfigPrivateEnvironmentConfigPtr and EnvironmentConfigPrivateEnvironmentConfigPtrOutput values.
@@ -1189,7 +1189,7 @@ func (i *environmentConfigPrivateEnvironmentConfigPtrType) ToEnvironmentConfigPr
 }
 
 func (i *environmentConfigPrivateEnvironmentConfigPtrType) ToEnvironmentConfigPrivateEnvironmentConfigPtrOutputWithContext(ctx context.Context) EnvironmentConfigPrivateEnvironmentConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentConfigPrivateEnvironmentConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentConfigPrivateEnvironmentConfigOutput).ToEnvironmentConfigPrivateEnvironmentConfigPtrOutput()
 }
 
 type EnvironmentConfigPrivateEnvironmentConfigOutput struct{ *pulumi.OutputState }
@@ -1420,7 +1420,7 @@ func (i EnvironmentConfigSoftwareConfigArgs) ToEnvironmentConfigSoftwareConfigPt
 }
 
 func (i EnvironmentConfigSoftwareConfigArgs) ToEnvironmentConfigSoftwareConfigPtrOutputWithContext(ctx context.Context) EnvironmentConfigSoftwareConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentConfigSoftwareConfigOutput).ToEnvironmentConfigSoftwareConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentConfigSoftwareConfigOutput).ToEnvironmentConfigSoftwareConfigPtrOutput()
 }
 
 // EnvironmentConfigSoftwareConfigPtrInput is an input type that accepts EnvironmentConfigSoftwareConfigArgs, EnvironmentConfigSoftwareConfigPtr and EnvironmentConfigSoftwareConfigPtrOutput values.
@@ -1453,7 +1453,7 @@ func (i *environmentConfigSoftwareConfigPtrType) ToEnvironmentConfigSoftwareConf
 }
 
 func (i *environmentConfigSoftwareConfigPtrType) ToEnvironmentConfigSoftwareConfigPtrOutputWithContext(ctx context.Context) EnvironmentConfigSoftwareConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentConfigSoftwareConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentConfigSoftwareConfigOutput).ToEnvironmentConfigSoftwareConfigPtrOutput()
 }
 
 type EnvironmentConfigSoftwareConfigOutput struct{ *pulumi.OutputState }
@@ -1677,7 +1677,7 @@ func (i EnvironmentConfigWebServerConfigArgs) ToEnvironmentConfigWebServerConfig
 }
 
 func (i EnvironmentConfigWebServerConfigArgs) ToEnvironmentConfigWebServerConfigPtrOutputWithContext(ctx context.Context) EnvironmentConfigWebServerConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentConfigWebServerConfigOutput).ToEnvironmentConfigWebServerConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentConfigWebServerConfigOutput).ToEnvironmentConfigWebServerConfigPtrOutput()
 }
 
 // EnvironmentConfigWebServerConfigPtrInput is an input type that accepts EnvironmentConfigWebServerConfigArgs, EnvironmentConfigWebServerConfigPtr and EnvironmentConfigWebServerConfigPtrOutput values.
@@ -1710,7 +1710,7 @@ func (i *environmentConfigWebServerConfigPtrType) ToEnvironmentConfigWebServerCo
 }
 
 func (i *environmentConfigWebServerConfigPtrType) ToEnvironmentConfigWebServerConfigPtrOutputWithContext(ctx context.Context) EnvironmentConfigWebServerConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentConfigWebServerConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentConfigWebServerConfigOutput).ToEnvironmentConfigWebServerConfigPtrOutput()
 }
 
 type EnvironmentConfigWebServerConfigOutput struct{ *pulumi.OutputState }
@@ -1816,7 +1816,7 @@ func (i EnvironmentConfigWebServerNetworkAccessControlArgs) ToEnvironmentConfigW
 }
 
 func (i EnvironmentConfigWebServerNetworkAccessControlArgs) ToEnvironmentConfigWebServerNetworkAccessControlPtrOutputWithContext(ctx context.Context) EnvironmentConfigWebServerNetworkAccessControlPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentConfigWebServerNetworkAccessControlOutput).ToEnvironmentConfigWebServerNetworkAccessControlPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentConfigWebServerNetworkAccessControlOutput).ToEnvironmentConfigWebServerNetworkAccessControlPtrOutput()
 }
 
 // EnvironmentConfigWebServerNetworkAccessControlPtrInput is an input type that accepts EnvironmentConfigWebServerNetworkAccessControlArgs, EnvironmentConfigWebServerNetworkAccessControlPtr and EnvironmentConfigWebServerNetworkAccessControlPtrOutput values.
@@ -1849,7 +1849,7 @@ func (i *environmentConfigWebServerNetworkAccessControlPtrType) ToEnvironmentCon
 }
 
 func (i *environmentConfigWebServerNetworkAccessControlPtrType) ToEnvironmentConfigWebServerNetworkAccessControlPtrOutputWithContext(ctx context.Context) EnvironmentConfigWebServerNetworkAccessControlPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentConfigWebServerNetworkAccessControlPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentConfigWebServerNetworkAccessControlOutput).ToEnvironmentConfigWebServerNetworkAccessControlPtrOutput()
 }
 
 type EnvironmentConfigWebServerNetworkAccessControlOutput struct{ *pulumi.OutputState }

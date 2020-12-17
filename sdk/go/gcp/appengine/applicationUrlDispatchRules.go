@@ -191,16 +191,95 @@ type ApplicationUrlDispatchRulesInput interface {
 	ToApplicationUrlDispatchRulesOutputWithContext(ctx context.Context) ApplicationUrlDispatchRulesOutput
 }
 
-func (ApplicationUrlDispatchRules) ElementType() reflect.Type {
-	return reflect.TypeOf((*ApplicationUrlDispatchRules)(nil)).Elem()
+func (*ApplicationUrlDispatchRules) ElementType() reflect.Type {
+	return reflect.TypeOf((*ApplicationUrlDispatchRules)(nil))
 }
 
-func (i ApplicationUrlDispatchRules) ToApplicationUrlDispatchRulesOutput() ApplicationUrlDispatchRulesOutput {
+func (i *ApplicationUrlDispatchRules) ToApplicationUrlDispatchRulesOutput() ApplicationUrlDispatchRulesOutput {
 	return i.ToApplicationUrlDispatchRulesOutputWithContext(context.Background())
 }
 
-func (i ApplicationUrlDispatchRules) ToApplicationUrlDispatchRulesOutputWithContext(ctx context.Context) ApplicationUrlDispatchRulesOutput {
+func (i *ApplicationUrlDispatchRules) ToApplicationUrlDispatchRulesOutputWithContext(ctx context.Context) ApplicationUrlDispatchRulesOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ApplicationUrlDispatchRulesOutput)
+}
+
+func (i *ApplicationUrlDispatchRules) ToApplicationUrlDispatchRulesPtrOutput() ApplicationUrlDispatchRulesPtrOutput {
+	return i.ToApplicationUrlDispatchRulesPtrOutputWithContext(context.Background())
+}
+
+func (i *ApplicationUrlDispatchRules) ToApplicationUrlDispatchRulesPtrOutputWithContext(ctx context.Context) ApplicationUrlDispatchRulesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApplicationUrlDispatchRulesPtrOutput)
+}
+
+type ApplicationUrlDispatchRulesPtrInput interface {
+	pulumi.Input
+
+	ToApplicationUrlDispatchRulesPtrOutput() ApplicationUrlDispatchRulesPtrOutput
+	ToApplicationUrlDispatchRulesPtrOutputWithContext(ctx context.Context) ApplicationUrlDispatchRulesPtrOutput
+}
+
+type applicationUrlDispatchRulesPtrType ApplicationUrlDispatchRulesArgs
+
+func (*applicationUrlDispatchRulesPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ApplicationUrlDispatchRules)(nil))
+}
+
+func (i *applicationUrlDispatchRulesPtrType) ToApplicationUrlDispatchRulesPtrOutput() ApplicationUrlDispatchRulesPtrOutput {
+	return i.ToApplicationUrlDispatchRulesPtrOutputWithContext(context.Background())
+}
+
+func (i *applicationUrlDispatchRulesPtrType) ToApplicationUrlDispatchRulesPtrOutputWithContext(ctx context.Context) ApplicationUrlDispatchRulesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApplicationUrlDispatchRulesOutput).ToApplicationUrlDispatchRulesPtrOutput()
+}
+
+// ApplicationUrlDispatchRulesArrayInput is an input type that accepts ApplicationUrlDispatchRulesArray and ApplicationUrlDispatchRulesArrayOutput values.
+// You can construct a concrete instance of `ApplicationUrlDispatchRulesArrayInput` via:
+//
+//          ApplicationUrlDispatchRulesArray{ ApplicationUrlDispatchRulesArgs{...} }
+type ApplicationUrlDispatchRulesArrayInput interface {
+	pulumi.Input
+
+	ToApplicationUrlDispatchRulesArrayOutput() ApplicationUrlDispatchRulesArrayOutput
+	ToApplicationUrlDispatchRulesArrayOutputWithContext(context.Context) ApplicationUrlDispatchRulesArrayOutput
+}
+
+type ApplicationUrlDispatchRulesArray []ApplicationUrlDispatchRulesInput
+
+func (ApplicationUrlDispatchRulesArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ApplicationUrlDispatchRules)(nil))
+}
+
+func (i ApplicationUrlDispatchRulesArray) ToApplicationUrlDispatchRulesArrayOutput() ApplicationUrlDispatchRulesArrayOutput {
+	return i.ToApplicationUrlDispatchRulesArrayOutputWithContext(context.Background())
+}
+
+func (i ApplicationUrlDispatchRulesArray) ToApplicationUrlDispatchRulesArrayOutputWithContext(ctx context.Context) ApplicationUrlDispatchRulesArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApplicationUrlDispatchRulesArrayOutput)
+}
+
+// ApplicationUrlDispatchRulesMapInput is an input type that accepts ApplicationUrlDispatchRulesMap and ApplicationUrlDispatchRulesMapOutput values.
+// You can construct a concrete instance of `ApplicationUrlDispatchRulesMapInput` via:
+//
+//          ApplicationUrlDispatchRulesMap{ "key": ApplicationUrlDispatchRulesArgs{...} }
+type ApplicationUrlDispatchRulesMapInput interface {
+	pulumi.Input
+
+	ToApplicationUrlDispatchRulesMapOutput() ApplicationUrlDispatchRulesMapOutput
+	ToApplicationUrlDispatchRulesMapOutputWithContext(context.Context) ApplicationUrlDispatchRulesMapOutput
+}
+
+type ApplicationUrlDispatchRulesMap map[string]ApplicationUrlDispatchRulesInput
+
+func (ApplicationUrlDispatchRulesMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]ApplicationUrlDispatchRules)(nil))
+}
+
+func (i ApplicationUrlDispatchRulesMap) ToApplicationUrlDispatchRulesMapOutput() ApplicationUrlDispatchRulesMapOutput {
+	return i.ToApplicationUrlDispatchRulesMapOutputWithContext(context.Background())
+}
+
+func (i ApplicationUrlDispatchRulesMap) ToApplicationUrlDispatchRulesMapOutputWithContext(ctx context.Context) ApplicationUrlDispatchRulesMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApplicationUrlDispatchRulesMapOutput)
 }
 
 type ApplicationUrlDispatchRulesOutput struct {
@@ -208,7 +287,7 @@ type ApplicationUrlDispatchRulesOutput struct {
 }
 
 func (ApplicationUrlDispatchRulesOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ApplicationUrlDispatchRulesOutput)(nil)).Elem()
+	return reflect.TypeOf((*ApplicationUrlDispatchRules)(nil))
 }
 
 func (o ApplicationUrlDispatchRulesOutput) ToApplicationUrlDispatchRulesOutput() ApplicationUrlDispatchRulesOutput {
@@ -219,6 +298,75 @@ func (o ApplicationUrlDispatchRulesOutput) ToApplicationUrlDispatchRulesOutputWi
 	return o
 }
 
+func (o ApplicationUrlDispatchRulesOutput) ToApplicationUrlDispatchRulesPtrOutput() ApplicationUrlDispatchRulesPtrOutput {
+	return o.ToApplicationUrlDispatchRulesPtrOutputWithContext(context.Background())
+}
+
+func (o ApplicationUrlDispatchRulesOutput) ToApplicationUrlDispatchRulesPtrOutputWithContext(ctx context.Context) ApplicationUrlDispatchRulesPtrOutput {
+	return o.ApplyT(func(v ApplicationUrlDispatchRules) *ApplicationUrlDispatchRules {
+		return &v
+	}).(ApplicationUrlDispatchRulesPtrOutput)
+}
+
+type ApplicationUrlDispatchRulesPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ApplicationUrlDispatchRulesPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ApplicationUrlDispatchRules)(nil))
+}
+
+func (o ApplicationUrlDispatchRulesPtrOutput) ToApplicationUrlDispatchRulesPtrOutput() ApplicationUrlDispatchRulesPtrOutput {
+	return o
+}
+
+func (o ApplicationUrlDispatchRulesPtrOutput) ToApplicationUrlDispatchRulesPtrOutputWithContext(ctx context.Context) ApplicationUrlDispatchRulesPtrOutput {
+	return o
+}
+
+type ApplicationUrlDispatchRulesArrayOutput struct{ *pulumi.OutputState }
+
+func (ApplicationUrlDispatchRulesArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ApplicationUrlDispatchRules)(nil))
+}
+
+func (o ApplicationUrlDispatchRulesArrayOutput) ToApplicationUrlDispatchRulesArrayOutput() ApplicationUrlDispatchRulesArrayOutput {
+	return o
+}
+
+func (o ApplicationUrlDispatchRulesArrayOutput) ToApplicationUrlDispatchRulesArrayOutputWithContext(ctx context.Context) ApplicationUrlDispatchRulesArrayOutput {
+	return o
+}
+
+func (o ApplicationUrlDispatchRulesArrayOutput) Index(i pulumi.IntInput) ApplicationUrlDispatchRulesOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ApplicationUrlDispatchRules {
+		return vs[0].([]ApplicationUrlDispatchRules)[vs[1].(int)]
+	}).(ApplicationUrlDispatchRulesOutput)
+}
+
+type ApplicationUrlDispatchRulesMapOutput struct{ *pulumi.OutputState }
+
+func (ApplicationUrlDispatchRulesMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]ApplicationUrlDispatchRules)(nil))
+}
+
+func (o ApplicationUrlDispatchRulesMapOutput) ToApplicationUrlDispatchRulesMapOutput() ApplicationUrlDispatchRulesMapOutput {
+	return o
+}
+
+func (o ApplicationUrlDispatchRulesMapOutput) ToApplicationUrlDispatchRulesMapOutputWithContext(ctx context.Context) ApplicationUrlDispatchRulesMapOutput {
+	return o
+}
+
+func (o ApplicationUrlDispatchRulesMapOutput) MapIndex(k pulumi.StringInput) ApplicationUrlDispatchRulesOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) ApplicationUrlDispatchRules {
+		return vs[0].(map[string]ApplicationUrlDispatchRules)[vs[1].(string)]
+	}).(ApplicationUrlDispatchRulesOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(ApplicationUrlDispatchRulesOutput{})
+	pulumi.RegisterOutputType(ApplicationUrlDispatchRulesPtrOutput{})
+	pulumi.RegisterOutputType(ApplicationUrlDispatchRulesArrayOutput{})
+	pulumi.RegisterOutputType(ApplicationUrlDispatchRulesMapOutput{})
 }
