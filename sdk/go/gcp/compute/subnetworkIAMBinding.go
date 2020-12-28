@@ -415,15 +415,15 @@ type SubnetworkIAMBindingInput interface {
 	ToSubnetworkIAMBindingOutputWithContext(ctx context.Context) SubnetworkIAMBindingOutput
 }
 
-func (SubnetworkIAMBinding) ElementType() reflect.Type {
-	return reflect.TypeOf((*SubnetworkIAMBinding)(nil)).Elem()
+func (*SubnetworkIAMBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*SubnetworkIAMBinding)(nil))
 }
 
-func (i SubnetworkIAMBinding) ToSubnetworkIAMBindingOutput() SubnetworkIAMBindingOutput {
+func (i *SubnetworkIAMBinding) ToSubnetworkIAMBindingOutput() SubnetworkIAMBindingOutput {
 	return i.ToSubnetworkIAMBindingOutputWithContext(context.Background())
 }
 
-func (i SubnetworkIAMBinding) ToSubnetworkIAMBindingOutputWithContext(ctx context.Context) SubnetworkIAMBindingOutput {
+func (i *SubnetworkIAMBinding) ToSubnetworkIAMBindingOutputWithContext(ctx context.Context) SubnetworkIAMBindingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SubnetworkIAMBindingOutput)
 }
 
@@ -432,7 +432,7 @@ type SubnetworkIAMBindingOutput struct {
 }
 
 func (SubnetworkIAMBindingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SubnetworkIAMBindingOutput)(nil)).Elem()
+	return reflect.TypeOf((*SubnetworkIAMBinding)(nil))
 }
 
 func (o SubnetworkIAMBindingOutput) ToSubnetworkIAMBindingOutput() SubnetworkIAMBindingOutput {

@@ -230,6 +230,7 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// full name of the custom role, e.g. `[projects/my-project|organizations/my-org]/roles/my-custom-role`.
     /// </summary>
+    [GcpResourceType("gcp:compute/instanceIAMMember:InstanceIAMMember")]
     public partial class InstanceIAMMember : Pulumi.CustomResource
     {
         /// <summary>
