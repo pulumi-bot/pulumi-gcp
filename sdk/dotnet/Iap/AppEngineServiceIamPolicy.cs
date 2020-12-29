@@ -230,6 +230,7 @@ namespace Pulumi.Gcp.Iap
     /// 
     /// full name of the custom role, e.g. `[projects/my-project|organizations/my-org]/roles/my-custom-role`.
     /// </summary>
+    [GcpResourceType("gcp:iap/appEngineServiceIamPolicy:AppEngineServiceIamPolicy")]
     public partial class AppEngineServiceIamPolicy : Pulumi.CustomResource
     {
         /// <summary>
