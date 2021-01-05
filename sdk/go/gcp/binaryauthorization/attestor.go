@@ -82,7 +82,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = kms.NewCryptoKey(ctx, "crypto_key", &kms.CryptoKeyArgs{
+// 		_, err = kms.NewCryptoKey(ctx, "crypto-key", &kms.CryptoKeyArgs{
 // 			KeyRing: keyring.ID(),
 // 			Purpose: pulumi.String("ASYMMETRIC_SIGN"),
 // 			VersionTemplate: &kms.CryptoKeyVersionTemplateArgs{
@@ -264,15 +264,15 @@ type AttestorInput interface {
 	ToAttestorOutputWithContext(ctx context.Context) AttestorOutput
 }
 
-func (Attestor) ElementType() reflect.Type {
-	return reflect.TypeOf((*Attestor)(nil)).Elem()
+func (*Attestor) ElementType() reflect.Type {
+	return reflect.TypeOf((*Attestor)(nil))
 }
 
-func (i Attestor) ToAttestorOutput() AttestorOutput {
+func (i *Attestor) ToAttestorOutput() AttestorOutput {
 	return i.ToAttestorOutputWithContext(context.Background())
 }
 
-func (i Attestor) ToAttestorOutputWithContext(ctx context.Context) AttestorOutput {
+func (i *Attestor) ToAttestorOutputWithContext(ctx context.Context) AttestorOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AttestorOutput)
 }
 
@@ -281,7 +281,7 @@ type AttestorOutput struct {
 }
 
 func (AttestorOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AttestorOutput)(nil)).Elem()
+	return reflect.TypeOf((*Attestor)(nil))
 }
 
 func (o AttestorOutput) ToAttestorOutput() AttestorOutput {

@@ -203,7 +203,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := bigquery.NewDataset(ctx, "source_oneDataset", &bigquery.DatasetArgs{
+// 		_, err := bigquery.NewDataset(ctx, "source-oneDataset", &bigquery.DatasetArgs{
 // 			DatasetId:    pulumi.String("job_extract_dataset"),
 // 			FriendlyName: pulumi.String("test"),
 // 			Description:  pulumi.String("This is a test description"),
@@ -212,7 +212,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = bigquery.NewTable(ctx, "source_oneTable", &bigquery.TableArgs{
+// 		_, err = bigquery.NewTable(ctx, "source-oneTable", &bigquery.TableArgs{
 // 			DatasetId: source_oneDataset.DatasetId,
 // 			TableId:   pulumi.String("job_extract_table"),
 // 			Schema:    pulumi.String(fmt.Sprintf("%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v", "[\n", "  {\n", "    \"name\": \"name\",\n", "    \"type\": \"STRING\",\n", "    \"mode\": \"NULLABLE\"\n", "  },\n", "  {\n", "    \"name\": \"post_abbr\",\n", "    \"type\": \"STRING\",\n", "    \"mode\": \"NULLABLE\"\n", "  },\n", "  {\n", "    \"name\": \"date\",\n", "    \"type\": \"DATE\",\n", "    \"mode\": \"NULLABLE\"\n", "  }\n", "]\n")),
@@ -469,15 +469,15 @@ type JobInput interface {
 	ToJobOutputWithContext(ctx context.Context) JobOutput
 }
 
-func (Job) ElementType() reflect.Type {
-	return reflect.TypeOf((*Job)(nil)).Elem()
+func (*Job) ElementType() reflect.Type {
+	return reflect.TypeOf((*Job)(nil))
 }
 
-func (i Job) ToJobOutput() JobOutput {
+func (i *Job) ToJobOutput() JobOutput {
 	return i.ToJobOutputWithContext(context.Background())
 }
 
-func (i Job) ToJobOutputWithContext(ctx context.Context) JobOutput {
+func (i *Job) ToJobOutputWithContext(ctx context.Context) JobOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(JobOutput)
 }
 
@@ -486,7 +486,7 @@ type JobOutput struct {
 }
 
 func (JobOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*JobOutput)(nil)).Elem()
+	return reflect.TypeOf((*Job)(nil))
 }
 
 func (o JobOutput) ToJobOutput() JobOutput {

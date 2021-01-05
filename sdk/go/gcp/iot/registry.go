@@ -31,7 +31,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := iot.NewRegistry(ctx, "test_registry", nil)
+// 		_, err := iot.NewRegistry(ctx, "test-registry", nil)
 // 		if err != nil {
 // 			return err
 // 		}
@@ -52,11 +52,11 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := pubsub.NewTopic(ctx, "default_telemetry", nil)
+// 		_, err := pubsub.NewTopic(ctx, "default-telemetry", nil)
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = iot.NewRegistry(ctx, "test_registry", &iot.RegistryArgs{
+// 		_, err = iot.NewRegistry(ctx, "test-registry", &iot.RegistryArgs{
 // 			EventNotificationConfigs: iot.RegistryEventNotificationConfigItemArray{
 // 				&iot.RegistryEventNotificationConfigItemArgs{
 // 					PubsubTopicName:  default_telemetry.ID(),
@@ -318,15 +318,15 @@ type RegistryInput interface {
 	ToRegistryOutputWithContext(ctx context.Context) RegistryOutput
 }
 
-func (Registry) ElementType() reflect.Type {
-	return reflect.TypeOf((*Registry)(nil)).Elem()
+func (*Registry) ElementType() reflect.Type {
+	return reflect.TypeOf((*Registry)(nil))
 }
 
-func (i Registry) ToRegistryOutput() RegistryOutput {
+func (i *Registry) ToRegistryOutput() RegistryOutput {
 	return i.ToRegistryOutputWithContext(context.Background())
 }
 
-func (i Registry) ToRegistryOutputWithContext(ctx context.Context) RegistryOutput {
+func (i *Registry) ToRegistryOutputWithContext(ctx context.Context) RegistryOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RegistryOutput)
 }
 
@@ -335,7 +335,7 @@ type RegistryOutput struct {
 }
 
 func (RegistryOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RegistryOutput)(nil)).Elem()
+	return reflect.TypeOf((*Registry)(nil))
 }
 
 func (o RegistryOutput) ToRegistryOutput() RegistryOutput {

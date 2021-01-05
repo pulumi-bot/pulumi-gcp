@@ -48,14 +48,14 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := accesscontextmanager.NewAccessPolicy(ctx, "access_policy", &accesscontextmanager.AccessPolicyArgs{
+// 		_, err := accesscontextmanager.NewAccessPolicy(ctx, "access-policy", &accesscontextmanager.AccessPolicyArgs{
 // 			Parent: pulumi.String("organizations/123456789"),
 // 			Title:  pulumi.String("my policy"),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = accesscontextmanager.NewServicePerimeter(ctx, "service_perimeter", &accesscontextmanager.ServicePerimeterArgs{
+// 		_, err = accesscontextmanager.NewServicePerimeter(ctx, "service-perimeter", &accesscontextmanager.ServicePerimeterArgs{
 // 			Parent: access_policy.Name.ApplyT(func(name string) (string, error) {
 // 				return fmt.Sprintf("%v%v", "accessPolicies/", name), nil
 // 			}).(pulumi.StringOutput),
@@ -69,7 +69,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = accesscontextmanager.NewAccessLevel(ctx, "access_level", &accesscontextmanager.AccessLevelArgs{
+// 		_, err = accesscontextmanager.NewAccessLevel(ctx, "access-level", &accesscontextmanager.AccessLevelArgs{
 // 			Basic: &accesscontextmanager.AccessLevelBasicArgs{
 // 				Conditions: accesscontextmanager.AccessLevelBasicConditionArray{
 // 					&accesscontextmanager.AccessLevelBasicConditionArgs{
@@ -115,14 +115,14 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := accesscontextmanager.NewAccessPolicy(ctx, "access_policy", &accesscontextmanager.AccessPolicyArgs{
+// 		_, err := accesscontextmanager.NewAccessPolicy(ctx, "access-policy", &accesscontextmanager.AccessPolicyArgs{
 // 			Parent: pulumi.String("organizations/123456789"),
 // 			Title:  pulumi.String("my policy"),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = accesscontextmanager.NewServicePerimeter(ctx, "service_perimeter", &accesscontextmanager.ServicePerimeterArgs{
+// 		_, err = accesscontextmanager.NewServicePerimeter(ctx, "service-perimeter", &accesscontextmanager.ServicePerimeterArgs{
 // 			Parent: access_policy.Name.ApplyT(func(name string) (string, error) {
 // 				return fmt.Sprintf("%v%v", "accessPolicies/", name), nil
 // 			}).(pulumi.StringOutput),
@@ -483,15 +483,15 @@ type ServicePerimeterInput interface {
 	ToServicePerimeterOutputWithContext(ctx context.Context) ServicePerimeterOutput
 }
 
-func (ServicePerimeter) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServicePerimeter)(nil)).Elem()
+func (*ServicePerimeter) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServicePerimeter)(nil))
 }
 
-func (i ServicePerimeter) ToServicePerimeterOutput() ServicePerimeterOutput {
+func (i *ServicePerimeter) ToServicePerimeterOutput() ServicePerimeterOutput {
 	return i.ToServicePerimeterOutputWithContext(context.Background())
 }
 
-func (i ServicePerimeter) ToServicePerimeterOutputWithContext(ctx context.Context) ServicePerimeterOutput {
+func (i *ServicePerimeter) ToServicePerimeterOutputWithContext(ctx context.Context) ServicePerimeterOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ServicePerimeterOutput)
 }
 
@@ -500,7 +500,7 @@ type ServicePerimeterOutput struct {
 }
 
 func (ServicePerimeterOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServicePerimeterOutput)(nil)).Elem()
+	return reflect.TypeOf((*ServicePerimeter)(nil))
 }
 
 func (o ServicePerimeterOutput) ToServicePerimeterOutput() ServicePerimeterOutput {

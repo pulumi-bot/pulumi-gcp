@@ -32,7 +32,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := artifactregistry.NewRepository(ctx, "my_repo", &artifactregistry.RepositoryArgs{
+// 		_, err := artifactregistry.NewRepository(ctx, "my-repo", &artifactregistry.RepositoryArgs{
 // 			Location:     pulumi.String("us-central1"),
 // 			RepositoryId: pulumi.String("my-repository"),
 // 			Description:  pulumi.String("example docker repository"),
@@ -57,7 +57,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := artifactregistry.NewRepository(ctx, "my_repo", &artifactregistry.RepositoryArgs{
+// 		_, err := artifactregistry.NewRepository(ctx, "my-repo", &artifactregistry.RepositoryArgs{
 // 			Location:     pulumi.String("us-central1"),
 // 			RepositoryId: pulumi.String("my-repository"),
 // 			Description:  pulumi.String("example docker repository with cmek"),
@@ -86,7 +86,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := artifactregistry.NewRepository(ctx, "my_repo", &artifactregistry.RepositoryArgs{
+// 		_, err := artifactregistry.NewRepository(ctx, "my-repo", &artifactregistry.RepositoryArgs{
 // 			Location:     pulumi.String("us-central1"),
 // 			RepositoryId: pulumi.String("my-repository"),
 // 			Description:  pulumi.String("example docker repository with iam"),
@@ -95,14 +95,14 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = serviceAccount.NewAccount(ctx, "test_account", &serviceAccount.AccountArgs{
+// 		_, err = serviceAccount.NewAccount(ctx, "test-account", &serviceAccount.AccountArgs{
 // 			AccountId:   pulumi.String("my-account"),
 // 			DisplayName: pulumi.String("Test Service Account"),
 // 		}, pulumi.Provider(google_beta))
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = artifactregistry.NewRepositoryIamMember(ctx, "test_iam", &artifactregistry.RepositoryIamMemberArgs{
+// 		_, err = artifactregistry.NewRepositoryIamMember(ctx, "test-iam", &artifactregistry.RepositoryIamMemberArgs{
 // 			Location:   my_repo.Location,
 // 			Repository: my_repo.Name,
 // 			Role:       pulumi.String("roles/artifactregistry.reader"),
@@ -342,15 +342,15 @@ type RepositoryInput interface {
 	ToRepositoryOutputWithContext(ctx context.Context) RepositoryOutput
 }
 
-func (Repository) ElementType() reflect.Type {
-	return reflect.TypeOf((*Repository)(nil)).Elem()
+func (*Repository) ElementType() reflect.Type {
+	return reflect.TypeOf((*Repository)(nil))
 }
 
-func (i Repository) ToRepositoryOutput() RepositoryOutput {
+func (i *Repository) ToRepositoryOutput() RepositoryOutput {
 	return i.ToRepositoryOutputWithContext(context.Background())
 }
 
-func (i Repository) ToRepositoryOutputWithContext(ctx context.Context) RepositoryOutput {
+func (i *Repository) ToRepositoryOutputWithContext(ctx context.Context) RepositoryOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RepositoryOutput)
 }
 
@@ -359,7 +359,7 @@ type RepositoryOutput struct {
 }
 
 func (RepositoryOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RepositoryOutput)(nil)).Elem()
+	return reflect.TypeOf((*Repository)(nil))
 }
 
 func (o RepositoryOutput) ToRepositoryOutput() RepositoryOutput {

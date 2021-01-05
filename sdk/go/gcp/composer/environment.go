@@ -97,7 +97,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = projects.NewIAMMember(ctx, "composer_worker", &projects.IAMMemberArgs{
+// 		_, err = projects.NewIAMMember(ctx, "composer-worker", &projects.IAMMemberArgs{
 // 			Role: pulumi.String("roles/composer.worker"),
 // 			Member: testAccount.Email.ApplyT(func(email string) (string, error) {
 // 				return fmt.Sprintf("%v%v", "serviceAccount:", email), nil
@@ -335,15 +335,15 @@ type EnvironmentInput interface {
 	ToEnvironmentOutputWithContext(ctx context.Context) EnvironmentOutput
 }
 
-func (Environment) ElementType() reflect.Type {
-	return reflect.TypeOf((*Environment)(nil)).Elem()
+func (*Environment) ElementType() reflect.Type {
+	return reflect.TypeOf((*Environment)(nil))
 }
 
-func (i Environment) ToEnvironmentOutput() EnvironmentOutput {
+func (i *Environment) ToEnvironmentOutput() EnvironmentOutput {
 	return i.ToEnvironmentOutputWithContext(context.Background())
 }
 
-func (i Environment) ToEnvironmentOutputWithContext(ctx context.Context) EnvironmentOutput {
+func (i *Environment) ToEnvironmentOutputWithContext(ctx context.Context) EnvironmentOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentOutput)
 }
 
@@ -352,7 +352,7 @@ type EnvironmentOutput struct {
 }
 
 func (EnvironmentOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EnvironmentOutput)(nil)).Elem()
+	return reflect.TypeOf((*Environment)(nil))
 }
 
 func (o EnvironmentOutput) ToEnvironmentOutput() EnvironmentOutput {

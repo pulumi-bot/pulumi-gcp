@@ -30,7 +30,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := logging.NewBillingAccountExclusion(ctx, "my_exclusion", &logging.BillingAccountExclusionArgs{
+// 		_, err := logging.NewBillingAccountExclusion(ctx, "my-exclusion", &logging.BillingAccountExclusionArgs{
 // 			BillingAccount: pulumi.String("ABCDEF-012345-GHIJKL"),
 // 			Description:    pulumi.String("Exclude GCE instance debug logs"),
 // 			Filter:         pulumi.String("resource.type = gce_instance AND severity <= DEBUG"),
@@ -182,15 +182,15 @@ type BillingAccountExclusionInput interface {
 	ToBillingAccountExclusionOutputWithContext(ctx context.Context) BillingAccountExclusionOutput
 }
 
-func (BillingAccountExclusion) ElementType() reflect.Type {
-	return reflect.TypeOf((*BillingAccountExclusion)(nil)).Elem()
+func (*BillingAccountExclusion) ElementType() reflect.Type {
+	return reflect.TypeOf((*BillingAccountExclusion)(nil))
 }
 
-func (i BillingAccountExclusion) ToBillingAccountExclusionOutput() BillingAccountExclusionOutput {
+func (i *BillingAccountExclusion) ToBillingAccountExclusionOutput() BillingAccountExclusionOutput {
 	return i.ToBillingAccountExclusionOutputWithContext(context.Background())
 }
 
-func (i BillingAccountExclusion) ToBillingAccountExclusionOutputWithContext(ctx context.Context) BillingAccountExclusionOutput {
+func (i *BillingAccountExclusion) ToBillingAccountExclusionOutputWithContext(ctx context.Context) BillingAccountExclusionOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(BillingAccountExclusionOutput)
 }
 
@@ -199,7 +199,7 @@ type BillingAccountExclusionOutput struct {
 }
 
 func (BillingAccountExclusionOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*BillingAccountExclusionOutput)(nil)).Elem()
+	return reflect.TypeOf((*BillingAccountExclusion)(nil))
 }
 
 func (o BillingAccountExclusionOutput) ToBillingAccountExclusionOutput() BillingAccountExclusionOutput {

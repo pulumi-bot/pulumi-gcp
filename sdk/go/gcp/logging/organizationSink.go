@@ -34,11 +34,11 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := storage.NewBucket(ctx, "log_bucket", nil)
+// 		_, err := storage.NewBucket(ctx, "log-bucket", nil)
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = logging.NewOrganizationSink(ctx, "my_sink", &logging.OrganizationSinkArgs{
+// 		_, err = logging.NewOrganizationSink(ctx, "my-sink", &logging.OrganizationSinkArgs{
 // 			Description: pulumi.String("some explaination on what this is"),
 // 			OrgId:       pulumi.String("123456789"),
 // 			Destination: log_bucket.Name.ApplyT(func(name string) (string, error) {
@@ -49,7 +49,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = projects.NewIAMMember(ctx, "log_writer", &projects.IAMMemberArgs{
+// 		_, err = projects.NewIAMMember(ctx, "log-writer", &projects.IAMMemberArgs{
 // 			Role:   pulumi.String("roles/storage.objectCreator"),
 // 			Member: my_sink.WriterIdentity,
 // 		})
@@ -329,15 +329,15 @@ type OrganizationSinkInput interface {
 	ToOrganizationSinkOutputWithContext(ctx context.Context) OrganizationSinkOutput
 }
 
-func (OrganizationSink) ElementType() reflect.Type {
-	return reflect.TypeOf((*OrganizationSink)(nil)).Elem()
+func (*OrganizationSink) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationSink)(nil))
 }
 
-func (i OrganizationSink) ToOrganizationSinkOutput() OrganizationSinkOutput {
+func (i *OrganizationSink) ToOrganizationSinkOutput() OrganizationSinkOutput {
 	return i.ToOrganizationSinkOutputWithContext(context.Background())
 }
 
-func (i OrganizationSink) ToOrganizationSinkOutputWithContext(ctx context.Context) OrganizationSinkOutput {
+func (i *OrganizationSink) ToOrganizationSinkOutputWithContext(ctx context.Context) OrganizationSinkOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(OrganizationSinkOutput)
 }
 
@@ -346,7 +346,7 @@ type OrganizationSinkOutput struct {
 }
 
 func (OrganizationSinkOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*OrganizationSinkOutput)(nil)).Elem()
+	return reflect.TypeOf((*OrganizationSink)(nil))
 }
 
 func (o OrganizationSinkOutput) ToOrganizationSinkOutput() OrganizationSinkOutput {

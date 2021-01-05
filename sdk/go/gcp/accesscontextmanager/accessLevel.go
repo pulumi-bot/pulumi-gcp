@@ -41,14 +41,14 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := accesscontextmanager.NewAccessPolicy(ctx, "access_policy", &accesscontextmanager.AccessPolicyArgs{
+// 		_, err := accesscontextmanager.NewAccessPolicy(ctx, "access-policy", &accesscontextmanager.AccessPolicyArgs{
 // 			Parent: pulumi.String("organizations/123456789"),
 // 			Title:  pulumi.String("my policy"),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = accesscontextmanager.NewAccessLevel(ctx, "access_level", &accesscontextmanager.AccessLevelArgs{
+// 		_, err = accesscontextmanager.NewAccessLevel(ctx, "access-level", &accesscontextmanager.AccessLevelArgs{
 // 			Basic: &accesscontextmanager.AccessLevelBasicArgs{
 // 				Conditions: accesscontextmanager.AccessLevelBasicConditionArray{
 // 					&accesscontextmanager.AccessLevelBasicConditionArgs{
@@ -245,15 +245,15 @@ type AccessLevelInput interface {
 	ToAccessLevelOutputWithContext(ctx context.Context) AccessLevelOutput
 }
 
-func (AccessLevel) ElementType() reflect.Type {
-	return reflect.TypeOf((*AccessLevel)(nil)).Elem()
+func (*AccessLevel) ElementType() reflect.Type {
+	return reflect.TypeOf((*AccessLevel)(nil))
 }
 
-func (i AccessLevel) ToAccessLevelOutput() AccessLevelOutput {
+func (i *AccessLevel) ToAccessLevelOutput() AccessLevelOutput {
 	return i.ToAccessLevelOutputWithContext(context.Background())
 }
 
-func (i AccessLevel) ToAccessLevelOutputWithContext(ctx context.Context) AccessLevelOutput {
+func (i *AccessLevel) ToAccessLevelOutputWithContext(ctx context.Context) AccessLevelOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AccessLevelOutput)
 }
 
@@ -262,7 +262,7 @@ type AccessLevelOutput struct {
 }
 
 func (AccessLevelOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AccessLevelOutput)(nil)).Elem()
+	return reflect.TypeOf((*AccessLevel)(nil))
 }
 
 func (o AccessLevelOutput) ToAccessLevelOutput() AccessLevelOutput {

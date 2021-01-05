@@ -35,18 +35,18 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := storage.NewBucket(ctx, "log_bucket", nil)
+// 		_, err := storage.NewBucket(ctx, "log-bucket", nil)
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = organizations.NewFolder(ctx, "my_folder", &organizations.FolderArgs{
+// 		_, err = organizations.NewFolder(ctx, "my-folder", &organizations.FolderArgs{
 // 			DisplayName: pulumi.String("My folder"),
 // 			Parent:      pulumi.String("organizations/123456"),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = logging.NewFolderSink(ctx, "my_sink", &logging.FolderSinkArgs{
+// 		_, err = logging.NewFolderSink(ctx, "my-sink", &logging.FolderSinkArgs{
 // 			Description: pulumi.String("some explaination on what this is"),
 // 			Folder:      my_folder.Name,
 // 			Destination: log_bucket.Name.ApplyT(func(name string) (string, error) {
@@ -57,7 +57,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = projects.NewIAMBinding(ctx, "log_writer", &projects.IAMBindingArgs{
+// 		_, err = projects.NewIAMBinding(ctx, "log-writer", &projects.IAMBindingArgs{
 // 			Role: pulumi.String("roles/storage.objectCreator"),
 // 			Members: pulumi.StringArray{
 // 				my_sink.WriterIdentity,
@@ -344,15 +344,15 @@ type FolderSinkInput interface {
 	ToFolderSinkOutputWithContext(ctx context.Context) FolderSinkOutput
 }
 
-func (FolderSink) ElementType() reflect.Type {
-	return reflect.TypeOf((*FolderSink)(nil)).Elem()
+func (*FolderSink) ElementType() reflect.Type {
+	return reflect.TypeOf((*FolderSink)(nil))
 }
 
-func (i FolderSink) ToFolderSinkOutput() FolderSinkOutput {
+func (i *FolderSink) ToFolderSinkOutput() FolderSinkOutput {
 	return i.ToFolderSinkOutputWithContext(context.Background())
 }
 
-func (i FolderSink) ToFolderSinkOutputWithContext(ctx context.Context) FolderSinkOutput {
+func (i *FolderSink) ToFolderSinkOutputWithContext(ctx context.Context) FolderSinkOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FolderSinkOutput)
 }
 
@@ -361,7 +361,7 @@ type FolderSinkOutput struct {
 }
 
 func (FolderSinkOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FolderSinkOutput)(nil)).Elem()
+	return reflect.TypeOf((*FolderSink)(nil))
 }
 
 func (o FolderSinkOutput) ToFolderSinkOutput() FolderSinkOutput {

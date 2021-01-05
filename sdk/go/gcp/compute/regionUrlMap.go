@@ -26,7 +26,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := compute.NewRegionHealthCheck(ctx, "_default", &compute.RegionHealthCheckArgs{
+// 		_, err := compute.NewRegionHealthCheck(ctx, "default", &compute.RegionHealthCheckArgs{
 // 			Region:           pulumi.String("us-central1"),
 // 			CheckIntervalSec: pulumi.Int(1),
 // 			TimeoutSec:       pulumi.Int(1),
@@ -119,7 +119,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := compute.NewRegionHealthCheck(ctx, "_default", &compute.RegionHealthCheckArgs{
+// 		_, err := compute.NewRegionHealthCheck(ctx, "default", &compute.RegionHealthCheckArgs{
 // 			HttpHealthCheck: &compute.RegionHealthCheckHttpHealthCheckArgs{
 // 				Port: pulumi.Int(80),
 // 			},
@@ -270,7 +270,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := compute.NewRegionHealthCheck(ctx, "_default", &compute.RegionHealthCheckArgs{
+// 		_, err := compute.NewRegionHealthCheck(ctx, "default", &compute.RegionHealthCheckArgs{
 // 			HttpHealthCheck: &compute.RegionHealthCheckHttpHealthCheckArgs{
 // 				Port: pulumi.Int(80),
 // 			},
@@ -375,7 +375,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := compute.NewRegionHealthCheck(ctx, "_default", &compute.RegionHealthCheckArgs{
+// 		_, err := compute.NewRegionHealthCheck(ctx, "default", &compute.RegionHealthCheckArgs{
 // 			HttpHealthCheck: &compute.RegionHealthCheckHttpHealthCheckArgs{
 // 				Port: pulumi.Int(80),
 // 			},
@@ -502,7 +502,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := compute.NewRegionHealthCheck(ctx, "_default", &compute.RegionHealthCheckArgs{
+// 		_, err := compute.NewRegionHealthCheck(ctx, "default", &compute.RegionHealthCheckArgs{
 // 			HttpHealthCheck: &compute.RegionHealthCheckHttpHealthCheckArgs{
 // 				Port: pulumi.Int(80),
 // 			},
@@ -837,15 +837,15 @@ type RegionUrlMapInput interface {
 	ToRegionUrlMapOutputWithContext(ctx context.Context) RegionUrlMapOutput
 }
 
-func (RegionUrlMap) ElementType() reflect.Type {
-	return reflect.TypeOf((*RegionUrlMap)(nil)).Elem()
+func (*RegionUrlMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionUrlMap)(nil))
 }
 
-func (i RegionUrlMap) ToRegionUrlMapOutput() RegionUrlMapOutput {
+func (i *RegionUrlMap) ToRegionUrlMapOutput() RegionUrlMapOutput {
 	return i.ToRegionUrlMapOutputWithContext(context.Background())
 }
 
-func (i RegionUrlMap) ToRegionUrlMapOutputWithContext(ctx context.Context) RegionUrlMapOutput {
+func (i *RegionUrlMap) ToRegionUrlMapOutputWithContext(ctx context.Context) RegionUrlMapOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapOutput)
 }
 
@@ -854,7 +854,7 @@ type RegionUrlMapOutput struct {
 }
 
 func (RegionUrlMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RegionUrlMapOutput)(nil)).Elem()
+	return reflect.TypeOf((*RegionUrlMap)(nil))
 }
 
 func (o RegionUrlMapOutput) ToRegionUrlMapOutput() RegionUrlMapOutput {

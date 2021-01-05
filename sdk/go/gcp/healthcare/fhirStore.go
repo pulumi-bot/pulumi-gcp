@@ -44,7 +44,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = healthcare.NewFhirStore(ctx, "_default", &healthcare.FhirStoreArgs{
+// 		_, err = healthcare.NewFhirStore(ctx, "default", &healthcare.FhirStoreArgs{
 // 			Dataset:                     dataset.ID(),
 // 			Version:                     pulumi.String("R4"),
 // 			EnableUpdateCreate:          pulumi.Bool(false),
@@ -97,7 +97,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = healthcare.NewFhirStore(ctx, "_default", &healthcare.FhirStoreArgs{
+// 		_, err = healthcare.NewFhirStore(ctx, "default", &healthcare.FhirStoreArgs{
 // 			Dataset:                     dataset.ID(),
 // 			Version:                     pulumi.String("R4"),
 // 			EnableUpdateCreate:          pulumi.Bool(false),
@@ -508,15 +508,15 @@ type FhirStoreInput interface {
 	ToFhirStoreOutputWithContext(ctx context.Context) FhirStoreOutput
 }
 
-func (FhirStore) ElementType() reflect.Type {
-	return reflect.TypeOf((*FhirStore)(nil)).Elem()
+func (*FhirStore) ElementType() reflect.Type {
+	return reflect.TypeOf((*FhirStore)(nil))
 }
 
-func (i FhirStore) ToFhirStoreOutput() FhirStoreOutput {
+func (i *FhirStore) ToFhirStoreOutput() FhirStoreOutput {
 	return i.ToFhirStoreOutputWithContext(context.Background())
 }
 
-func (i FhirStore) ToFhirStoreOutputWithContext(ctx context.Context) FhirStoreOutput {
+func (i *FhirStore) ToFhirStoreOutputWithContext(ctx context.Context) FhirStoreOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FhirStoreOutput)
 }
 
@@ -525,7 +525,7 @@ type FhirStoreOutput struct {
 }
 
 func (FhirStoreOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FhirStoreOutput)(nil)).Elem()
+	return reflect.TypeOf((*FhirStore)(nil))
 }
 
 func (o FhirStoreOutput) ToFhirStoreOutput() FhirStoreOutput {

@@ -28,7 +28,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := compute.NewProjectMetadataItem(ctx, "_default", &compute.ProjectMetadataItemArgs{
+// 		_, err := compute.NewProjectMetadataItem(ctx, "default", &compute.ProjectMetadataItemArgs{
 // 			Key:   pulumi.String("my_metadata"),
 // 			Value: pulumi.String("my_value"),
 // 		})
@@ -149,15 +149,15 @@ type ProjectMetadataItemInput interface {
 	ToProjectMetadataItemOutputWithContext(ctx context.Context) ProjectMetadataItemOutput
 }
 
-func (ProjectMetadataItem) ElementType() reflect.Type {
-	return reflect.TypeOf((*ProjectMetadataItem)(nil)).Elem()
+func (*ProjectMetadataItem) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProjectMetadataItem)(nil))
 }
 
-func (i ProjectMetadataItem) ToProjectMetadataItemOutput() ProjectMetadataItemOutput {
+func (i *ProjectMetadataItem) ToProjectMetadataItemOutput() ProjectMetadataItemOutput {
 	return i.ToProjectMetadataItemOutputWithContext(context.Background())
 }
 
-func (i ProjectMetadataItem) ToProjectMetadataItemOutputWithContext(ctx context.Context) ProjectMetadataItemOutput {
+func (i *ProjectMetadataItem) ToProjectMetadataItemOutputWithContext(ctx context.Context) ProjectMetadataItemOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ProjectMetadataItemOutput)
 }
 
@@ -166,7 +166,7 @@ type ProjectMetadataItemOutput struct {
 }
 
 func (ProjectMetadataItemOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ProjectMetadataItemOutput)(nil)).Elem()
+	return reflect.TypeOf((*ProjectMetadataItem)(nil))
 }
 
 func (o ProjectMetadataItemOutput) ToProjectMetadataItemOutput() ProjectMetadataItemOutput {

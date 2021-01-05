@@ -32,7 +32,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := healthcare.NewDataset(ctx, "_default", &healthcare.DatasetArgs{
+// 		_, err := healthcare.NewDataset(ctx, "default", &healthcare.DatasetArgs{
 // 			Location: pulumi.String("us-central1"),
 // 			TimeZone: pulumi.String("UTC"),
 // 		})
@@ -184,15 +184,15 @@ type DatasetInput interface {
 	ToDatasetOutputWithContext(ctx context.Context) DatasetOutput
 }
 
-func (Dataset) ElementType() reflect.Type {
-	return reflect.TypeOf((*Dataset)(nil)).Elem()
+func (*Dataset) ElementType() reflect.Type {
+	return reflect.TypeOf((*Dataset)(nil))
 }
 
-func (i Dataset) ToDatasetOutput() DatasetOutput {
+func (i *Dataset) ToDatasetOutput() DatasetOutput {
 	return i.ToDatasetOutputWithContext(context.Background())
 }
 
-func (i Dataset) ToDatasetOutputWithContext(ctx context.Context) DatasetOutput {
+func (i *Dataset) ToDatasetOutputWithContext(ctx context.Context) DatasetOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DatasetOutput)
 }
 
@@ -201,7 +201,7 @@ type DatasetOutput struct {
 }
 
 func (DatasetOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DatasetOutput)(nil)).Elem()
+	return reflect.TypeOf((*Dataset)(nil))
 }
 
 func (o DatasetOutput) ToDatasetOutput() DatasetOutput {

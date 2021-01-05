@@ -36,14 +36,14 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := accesscontextmanager.NewAccessPolicy(ctx, "access_policy", &accesscontextmanager.AccessPolicyArgs{
+// 		_, err := accesscontextmanager.NewAccessPolicy(ctx, "access-policy", &accesscontextmanager.AccessPolicyArgs{
 // 			Parent: pulumi.String("organizations/123456789"),
 // 			Title:  pulumi.String("my policy"),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = accesscontextmanager.NewServicePerimeters(ctx, "service_perimeter", &accesscontextmanager.ServicePerimetersArgs{
+// 		_, err = accesscontextmanager.NewServicePerimeters(ctx, "service-perimeter", &accesscontextmanager.ServicePerimetersArgs{
 // 			Parent: access_policy.Name.ApplyT(func(name string) (string, error) {
 // 				return fmt.Sprintf("%v%v", "accessPolicies/", name), nil
 // 			}).(pulumi.StringOutput),
@@ -75,7 +75,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = accesscontextmanager.NewAccessLevel(ctx, "access_level", &accesscontextmanager.AccessLevelArgs{
+// 		_, err = accesscontextmanager.NewAccessLevel(ctx, "access-level", &accesscontextmanager.AccessLevelArgs{
 // 			Basic: &accesscontextmanager.AccessLevelBasicArgs{
 // 				Conditions: accesscontextmanager.AccessLevelBasicConditionArray{
 // 					&accesscontextmanager.AccessLevelBasicConditionArgs{
@@ -213,15 +213,15 @@ type ServicePerimetersInput interface {
 	ToServicePerimetersOutputWithContext(ctx context.Context) ServicePerimetersOutput
 }
 
-func (ServicePerimeters) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServicePerimeters)(nil)).Elem()
+func (*ServicePerimeters) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServicePerimeters)(nil))
 }
 
-func (i ServicePerimeters) ToServicePerimetersOutput() ServicePerimetersOutput {
+func (i *ServicePerimeters) ToServicePerimetersOutput() ServicePerimetersOutput {
 	return i.ToServicePerimetersOutputWithContext(context.Background())
 }
 
-func (i ServicePerimeters) ToServicePerimetersOutputWithContext(ctx context.Context) ServicePerimetersOutput {
+func (i *ServicePerimeters) ToServicePerimetersOutputWithContext(ctx context.Context) ServicePerimetersOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ServicePerimetersOutput)
 }
 
@@ -230,7 +230,7 @@ type ServicePerimetersOutput struct {
 }
 
 func (ServicePerimetersOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServicePerimetersOutput)(nil)).Elem()
+	return reflect.TypeOf((*ServicePerimeters)(nil))
 }
 
 func (o ServicePerimetersOutput) ToServicePerimetersOutput() ServicePerimetersOutput {

@@ -33,7 +33,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := cloudbuild.NewTrigger(ctx, "filename_trigger", &cloudbuild.TriggerArgs{
+// 		_, err := cloudbuild.NewTrigger(ctx, "filename-trigger", &cloudbuild.TriggerArgs{
 // 			Filename: pulumi.String("cloudbuild.yaml"),
 // 			Substitutions: pulumi.StringMap{
 // 				"_BAZ": pulumi.String("qux"),
@@ -65,7 +65,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := cloudbuild.NewTrigger(ctx, "build_trigger", &cloudbuild.TriggerArgs{
+// 		_, err := cloudbuild.NewTrigger(ctx, "build-trigger", &cloudbuild.TriggerArgs{
 // 			Build: &cloudbuild.TriggerBuildArgs{
 // 				Artifacts: &cloudbuild.TriggerBuildArtifactsArgs{
 // 					Images: pulumi.StringArray{
@@ -485,15 +485,15 @@ type TriggerInput interface {
 	ToTriggerOutputWithContext(ctx context.Context) TriggerOutput
 }
 
-func (Trigger) ElementType() reflect.Type {
-	return reflect.TypeOf((*Trigger)(nil)).Elem()
+func (*Trigger) ElementType() reflect.Type {
+	return reflect.TypeOf((*Trigger)(nil))
 }
 
-func (i Trigger) ToTriggerOutput() TriggerOutput {
+func (i *Trigger) ToTriggerOutput() TriggerOutput {
 	return i.ToTriggerOutputWithContext(context.Background())
 }
 
-func (i Trigger) ToTriggerOutputWithContext(ctx context.Context) TriggerOutput {
+func (i *Trigger) ToTriggerOutputWithContext(ctx context.Context) TriggerOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TriggerOutput)
 }
 
@@ -502,7 +502,7 @@ type TriggerOutput struct {
 }
 
 func (TriggerOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*TriggerOutput)(nil)).Elem()
+	return reflect.TypeOf((*Trigger)(nil))
 }
 
 func (o TriggerOutput) ToTriggerOutput() TriggerOutput {

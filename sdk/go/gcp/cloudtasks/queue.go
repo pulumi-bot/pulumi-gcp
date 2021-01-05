@@ -31,7 +31,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := cloudtasks.NewQueue(ctx, "_default", &cloudtasks.QueueArgs{
+// 		_, err := cloudtasks.NewQueue(ctx, "default", &cloudtasks.QueueArgs{
 // 			Location: pulumi.String("us-central1"),
 // 		})
 // 		if err != nil {
@@ -292,15 +292,15 @@ type QueueInput interface {
 	ToQueueOutputWithContext(ctx context.Context) QueueOutput
 }
 
-func (Queue) ElementType() reflect.Type {
-	return reflect.TypeOf((*Queue)(nil)).Elem()
+func (*Queue) ElementType() reflect.Type {
+	return reflect.TypeOf((*Queue)(nil))
 }
 
-func (i Queue) ToQueueOutput() QueueOutput {
+func (i *Queue) ToQueueOutput() QueueOutput {
 	return i.ToQueueOutputWithContext(context.Background())
 }
 
-func (i Queue) ToQueueOutputWithContext(ctx context.Context) QueueOutput {
+func (i *Queue) ToQueueOutputWithContext(ctx context.Context) QueueOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(QueueOutput)
 }
 
@@ -309,7 +309,7 @@ type QueueOutput struct {
 }
 
 func (QueueOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*QueueOutput)(nil)).Elem()
+	return reflect.TypeOf((*Queue)(nil))
 }
 
 func (o QueueOutput) ToQueueOutput() QueueOutput {

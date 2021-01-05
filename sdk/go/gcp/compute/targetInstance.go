@@ -46,7 +46,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = compute.NewInstance(ctx, "target_vm", &compute.InstanceArgs{
+// 		_, err = compute.NewInstance(ctx, "target-vm", &compute.InstanceArgs{
 // 			MachineType: pulumi.String("e2-medium"),
 // 			Zone:        pulumi.String("us-central1-a"),
 // 			BootDisk: &compute.InstanceBootDiskArgs{
@@ -63,7 +63,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = compute.NewTargetInstance(ctx, "_default", &compute.TargetInstanceArgs{
+// 		_, err = compute.NewTargetInstance(ctx, "default", &compute.TargetInstanceArgs{
 // 			Instance: target_vm.ID(),
 // 		})
 // 		if err != nil {
@@ -100,7 +100,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = compute.NewInstance(ctx, "target_vmInstance", &compute.InstanceArgs{
+// 		_, err = compute.NewInstance(ctx, "target-vmInstance", &compute.InstanceArgs{
 // 			MachineType: pulumi.String("e2-medium"),
 // 			Zone:        pulumi.String("us-central1-a"),
 // 			BootDisk: &compute.InstanceBootDiskArgs{
@@ -369,15 +369,15 @@ type TargetInstanceInput interface {
 	ToTargetInstanceOutputWithContext(ctx context.Context) TargetInstanceOutput
 }
 
-func (TargetInstance) ElementType() reflect.Type {
-	return reflect.TypeOf((*TargetInstance)(nil)).Elem()
+func (*TargetInstance) ElementType() reflect.Type {
+	return reflect.TypeOf((*TargetInstance)(nil))
 }
 
-func (i TargetInstance) ToTargetInstanceOutput() TargetInstanceOutput {
+func (i *TargetInstance) ToTargetInstanceOutput() TargetInstanceOutput {
 	return i.ToTargetInstanceOutputWithContext(context.Background())
 }
 
-func (i TargetInstance) ToTargetInstanceOutputWithContext(ctx context.Context) TargetInstanceOutput {
+func (i *TargetInstance) ToTargetInstanceOutputWithContext(ctx context.Context) TargetInstanceOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TargetInstanceOutput)
 }
 
@@ -386,7 +386,7 @@ type TargetInstanceOutput struct {
 }
 
 func (TargetInstanceOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*TargetInstanceOutput)(nil)).Elem()
+	return reflect.TypeOf((*TargetInstance)(nil))
 }
 
 func (o TargetInstanceOutput) ToTargetInstanceOutput() TargetInstanceOutput {

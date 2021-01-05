@@ -30,7 +30,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := organizations.NewFolder(ctx, "_default", &organizations.FolderArgs{
+// 		_, err := organizations.NewFolder(ctx, "default", &organizations.FolderArgs{
 // 			DisplayName: pulumi.String("some-folder-name"),
 // 			Parent:      pulumi.String("organizations/123456789"),
 // 		})
@@ -190,15 +190,15 @@ type FolderBucketConfigInput interface {
 	ToFolderBucketConfigOutputWithContext(ctx context.Context) FolderBucketConfigOutput
 }
 
-func (FolderBucketConfig) ElementType() reflect.Type {
-	return reflect.TypeOf((*FolderBucketConfig)(nil)).Elem()
+func (*FolderBucketConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*FolderBucketConfig)(nil))
 }
 
-func (i FolderBucketConfig) ToFolderBucketConfigOutput() FolderBucketConfigOutput {
+func (i *FolderBucketConfig) ToFolderBucketConfigOutput() FolderBucketConfigOutput {
 	return i.ToFolderBucketConfigOutputWithContext(context.Background())
 }
 
-func (i FolderBucketConfig) ToFolderBucketConfigOutputWithContext(ctx context.Context) FolderBucketConfigOutput {
+func (i *FolderBucketConfig) ToFolderBucketConfigOutputWithContext(ctx context.Context) FolderBucketConfigOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FolderBucketConfigOutput)
 }
 
@@ -207,7 +207,7 @@ type FolderBucketConfigOutput struct {
 }
 
 func (FolderBucketConfigOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FolderBucketConfigOutput)(nil)).Elem()
+	return reflect.TypeOf((*FolderBucketConfig)(nil))
 }
 
 func (o FolderBucketConfigOutput) ToFolderBucketConfigOutput() FolderBucketConfigOutput {

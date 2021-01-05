@@ -31,7 +31,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := sourcerepo.NewRepository(ctx, "my_repo", nil)
+// 		_, err := sourcerepo.NewRepository(ctx, "my-repo", nil)
 // 		if err != nil {
 // 			return err
 // 		}
@@ -53,7 +53,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := serviceAccount.NewAccount(ctx, "test_account", &serviceAccount.AccountArgs{
+// 		_, err := serviceAccount.NewAccount(ctx, "test-account", &serviceAccount.AccountArgs{
 // 			AccountId:   pulumi.String("my-account"),
 // 			DisplayName: pulumi.String("Test Service Account"),
 // 		})
@@ -64,7 +64,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = sourcerepo.NewRepository(ctx, "my_repo", &sourcerepo.RepositoryArgs{
+// 		_, err = sourcerepo.NewRepository(ctx, "my-repo", &sourcerepo.RepositoryArgs{
 // 			PubsubConfigs: sourcerepo.RepositoryPubsubConfigArray{
 // 				&sourcerepo.RepositoryPubsubConfigArgs{
 // 					Topic:               topic.ID(),
@@ -215,15 +215,15 @@ type RepositoryInput interface {
 	ToRepositoryOutputWithContext(ctx context.Context) RepositoryOutput
 }
 
-func (Repository) ElementType() reflect.Type {
-	return reflect.TypeOf((*Repository)(nil)).Elem()
+func (*Repository) ElementType() reflect.Type {
+	return reflect.TypeOf((*Repository)(nil))
 }
 
-func (i Repository) ToRepositoryOutput() RepositoryOutput {
+func (i *Repository) ToRepositoryOutput() RepositoryOutput {
 	return i.ToRepositoryOutputWithContext(context.Background())
 }
 
-func (i Repository) ToRepositoryOutputWithContext(ctx context.Context) RepositoryOutput {
+func (i *Repository) ToRepositoryOutputWithContext(ctx context.Context) RepositoryOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RepositoryOutput)
 }
 
@@ -232,7 +232,7 @@ type RepositoryOutput struct {
 }
 
 func (RepositoryOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RepositoryOutput)(nil)).Elem()
+	return reflect.TypeOf((*Repository)(nil))
 }
 
 func (o RepositoryOutput) ToRepositoryOutput() RepositoryOutput {

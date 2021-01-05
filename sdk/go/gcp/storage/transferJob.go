@@ -43,14 +43,14 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = storage.NewBucket(ctx, "s3_backup_bucketBucket", &storage.BucketArgs{
+// 		_, err = storage.NewBucket(ctx, "s3-backup-bucketBucket", &storage.BucketArgs{
 // 			StorageClass: pulumi.String("NEARLINE"),
 // 			Project:      pulumi.Any(_var.Project),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = storage.NewBucketIAMMember(ctx, "s3_backup_bucketBucketIAMMember", &storage.BucketIAMMemberArgs{
+// 		_, err = storage.NewBucketIAMMember(ctx, "s3-backup-bucketBucketIAMMember", &storage.BucketIAMMemberArgs{
 // 			Bucket: s3_backup_bucketBucket.Name,
 // 			Role:   pulumi.String("roles/storage.admin"),
 // 			Member: pulumi.String(fmt.Sprintf("%v%v", "serviceAccount:", _default.Email)),
@@ -60,7 +60,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = storage.NewTransferJob(ctx, "s3_bucket_nightly_backup", &storage.TransferJobArgs{
+// 		_, err = storage.NewTransferJob(ctx, "s3-bucket-nightly-backup", &storage.TransferJobArgs{
 // 			Description: pulumi.String("Nightly backup of S3 bucket"),
 // 			Project:     pulumi.Any(_var.Project),
 // 			TransferSpec: &storage.TransferJobTransferSpecArgs{
@@ -269,15 +269,15 @@ type TransferJobInput interface {
 	ToTransferJobOutputWithContext(ctx context.Context) TransferJobOutput
 }
 
-func (TransferJob) ElementType() reflect.Type {
-	return reflect.TypeOf((*TransferJob)(nil)).Elem()
+func (*TransferJob) ElementType() reflect.Type {
+	return reflect.TypeOf((*TransferJob)(nil))
 }
 
-func (i TransferJob) ToTransferJobOutput() TransferJobOutput {
+func (i *TransferJob) ToTransferJobOutput() TransferJobOutput {
 	return i.ToTransferJobOutputWithContext(context.Background())
 }
 
-func (i TransferJob) ToTransferJobOutputWithContext(ctx context.Context) TransferJobOutput {
+func (i *TransferJob) ToTransferJobOutputWithContext(ctx context.Context) TransferJobOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TransferJobOutput)
 }
 
@@ -286,7 +286,7 @@ type TransferJobOutput struct {
 }
 
 func (TransferJobOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*TransferJobOutput)(nil)).Elem()
+	return reflect.TypeOf((*TransferJob)(nil))
 }
 
 func (o TransferJobOutput) ToTransferJobOutput() TransferJobOutput {

@@ -44,7 +44,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = healthcare.NewDicomStore(ctx, "_default", &healthcare.DicomStoreArgs{
+// 		_, err = healthcare.NewDicomStore(ctx, "default", &healthcare.DicomStoreArgs{
 // 			Dataset: dataset.ID(),
 // 			NotificationConfig: &healthcare.DicomStoreNotificationConfigArgs{
 // 				PubsubTopic: topic.ID(),
@@ -232,15 +232,15 @@ type DicomStoreInput interface {
 	ToDicomStoreOutputWithContext(ctx context.Context) DicomStoreOutput
 }
 
-func (DicomStore) ElementType() reflect.Type {
-	return reflect.TypeOf((*DicomStore)(nil)).Elem()
+func (*DicomStore) ElementType() reflect.Type {
+	return reflect.TypeOf((*DicomStore)(nil))
 }
 
-func (i DicomStore) ToDicomStoreOutput() DicomStoreOutput {
+func (i *DicomStore) ToDicomStoreOutput() DicomStoreOutput {
 	return i.ToDicomStoreOutputWithContext(context.Background())
 }
 
-func (i DicomStore) ToDicomStoreOutputWithContext(ctx context.Context) DicomStoreOutput {
+func (i *DicomStore) ToDicomStoreOutputWithContext(ctx context.Context) DicomStoreOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DicomStoreOutput)
 }
 
@@ -249,7 +249,7 @@ type DicomStoreOutput struct {
 }
 
 func (DicomStoreOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DicomStoreOutput)(nil)).Elem()
+	return reflect.TypeOf((*DicomStore)(nil))
 }
 
 func (o DicomStoreOutput) ToDicomStoreOutput() DicomStoreOutput {

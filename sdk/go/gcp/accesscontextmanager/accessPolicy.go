@@ -42,7 +42,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := accesscontextmanager.NewAccessPolicy(ctx, "access_policy", &accesscontextmanager.AccessPolicyArgs{
+// 		_, err := accesscontextmanager.NewAccessPolicy(ctx, "access-policy", &accesscontextmanager.AccessPolicyArgs{
 // 			Parent: pulumi.String("organizations/123456789"),
 // 			Title:  pulumi.String("my policy"),
 // 		})
@@ -171,15 +171,15 @@ type AccessPolicyInput interface {
 	ToAccessPolicyOutputWithContext(ctx context.Context) AccessPolicyOutput
 }
 
-func (AccessPolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*AccessPolicy)(nil)).Elem()
+func (*AccessPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*AccessPolicy)(nil))
 }
 
-func (i AccessPolicy) ToAccessPolicyOutput() AccessPolicyOutput {
+func (i *AccessPolicy) ToAccessPolicyOutput() AccessPolicyOutput {
 	return i.ToAccessPolicyOutputWithContext(context.Background())
 }
 
-func (i AccessPolicy) ToAccessPolicyOutputWithContext(ctx context.Context) AccessPolicyOutput {
+func (i *AccessPolicy) ToAccessPolicyOutputWithContext(ctx context.Context) AccessPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AccessPolicyOutput)
 }
 
@@ -188,7 +188,7 @@ type AccessPolicyOutput struct {
 }
 
 func (AccessPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AccessPolicyOutput)(nil)).Elem()
+	return reflect.TypeOf((*AccessPolicy)(nil))
 }
 
 func (o AccessPolicyOutput) ToAccessPolicyOutput() AccessPolicyOutput {

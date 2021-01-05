@@ -36,11 +36,11 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := storage.NewBucket(ctx, "log_bucket", nil)
+// 		_, err := storage.NewBucket(ctx, "log-bucket", nil)
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = logging.NewBillingAccountSink(ctx, "my_sink", &logging.BillingAccountSinkArgs{
+// 		_, err = logging.NewBillingAccountSink(ctx, "my-sink", &logging.BillingAccountSinkArgs{
 // 			Description:    pulumi.String("some explaination on what this is"),
 // 			BillingAccount: pulumi.String("ABCDEF-012345-GHIJKL"),
 // 			Destination: log_bucket.Name.ApplyT(func(name string) (string, error) {
@@ -50,7 +50,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = projects.NewIAMBinding(ctx, "log_writer", &projects.IAMBindingArgs{
+// 		_, err = projects.NewIAMBinding(ctx, "log-writer", &projects.IAMBindingArgs{
 // 			Role: pulumi.String("roles/storage.objectCreator"),
 // 			Members: pulumi.StringArray{
 // 				my_sink.WriterIdentity,
@@ -317,15 +317,15 @@ type BillingAccountSinkInput interface {
 	ToBillingAccountSinkOutputWithContext(ctx context.Context) BillingAccountSinkOutput
 }
 
-func (BillingAccountSink) ElementType() reflect.Type {
-	return reflect.TypeOf((*BillingAccountSink)(nil)).Elem()
+func (*BillingAccountSink) ElementType() reflect.Type {
+	return reflect.TypeOf((*BillingAccountSink)(nil))
 }
 
-func (i BillingAccountSink) ToBillingAccountSinkOutput() BillingAccountSinkOutput {
+func (i *BillingAccountSink) ToBillingAccountSinkOutput() BillingAccountSinkOutput {
 	return i.ToBillingAccountSinkOutputWithContext(context.Background())
 }
 
-func (i BillingAccountSink) ToBillingAccountSinkOutputWithContext(ctx context.Context) BillingAccountSinkOutput {
+func (i *BillingAccountSink) ToBillingAccountSinkOutputWithContext(ctx context.Context) BillingAccountSinkOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(BillingAccountSinkOutput)
 }
 
@@ -334,7 +334,7 @@ type BillingAccountSinkOutput struct {
 }
 
 func (BillingAccountSinkOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*BillingAccountSinkOutput)(nil)).Elem()
+	return reflect.TypeOf((*BillingAccountSink)(nil))
 }
 
 func (o BillingAccountSinkOutput) ToBillingAccountSinkOutput() BillingAccountSinkOutput {

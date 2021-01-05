@@ -32,7 +32,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := gameservices.NewRealm(ctx, "_default", &gameservices.RealmArgs{
+// 		_, err := gameservices.NewRealm(ctx, "default", &gameservices.RealmArgs{
 // 			Description: pulumi.String("one of the nine"),
 // 			Location:    pulumi.String("global"),
 // 			RealmId:     pulumi.String("tf-test-realm"),
@@ -218,15 +218,15 @@ type RealmInput interface {
 	ToRealmOutputWithContext(ctx context.Context) RealmOutput
 }
 
-func (Realm) ElementType() reflect.Type {
-	return reflect.TypeOf((*Realm)(nil)).Elem()
+func (*Realm) ElementType() reflect.Type {
+	return reflect.TypeOf((*Realm)(nil))
 }
 
-func (i Realm) ToRealmOutput() RealmOutput {
+func (i *Realm) ToRealmOutput() RealmOutput {
 	return i.ToRealmOutputWithContext(context.Background())
 }
 
-func (i Realm) ToRealmOutputWithContext(ctx context.Context) RealmOutput {
+func (i *Realm) ToRealmOutputWithContext(ctx context.Context) RealmOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RealmOutput)
 }
 
@@ -235,7 +235,7 @@ type RealmOutput struct {
 }
 
 func (RealmOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RealmOutput)(nil)).Elem()
+	return reflect.TypeOf((*Realm)(nil))
 }
 
 func (o RealmOutput) ToRealmOutput() RealmOutput {

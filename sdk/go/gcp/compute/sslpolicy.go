@@ -32,20 +32,20 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := compute.NewSSLPolicy(ctx, "prod_ssl_policy", &compute.SSLPolicyArgs{
+// 		_, err := compute.NewSSLPolicy(ctx, "prod-ssl-policy", &compute.SSLPolicyArgs{
 // 			Profile: pulumi.String("MODERN"),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = compute.NewSSLPolicy(ctx, "nonprod_ssl_policy", &compute.SSLPolicyArgs{
+// 		_, err = compute.NewSSLPolicy(ctx, "nonprod-ssl-policy", &compute.SSLPolicyArgs{
 // 			MinTlsVersion: pulumi.String("TLS_1_2"),
 // 			Profile:       pulumi.String("MODERN"),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = compute.NewSSLPolicy(ctx, "custom_ssl_policy", &compute.SSLPolicyArgs{
+// 		_, err = compute.NewSSLPolicy(ctx, "custom-ssl-policy", &compute.SSLPolicyArgs{
 // 			CustomFeatures: pulumi.StringArray{
 // 				pulumi.String("TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384"),
 // 				pulumi.String("TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384"),
@@ -351,15 +351,15 @@ type SSLPolicyInput interface {
 	ToSSLPolicyOutputWithContext(ctx context.Context) SSLPolicyOutput
 }
 
-func (SSLPolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*SSLPolicy)(nil)).Elem()
+func (*SSLPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*SSLPolicy)(nil))
 }
 
-func (i SSLPolicy) ToSSLPolicyOutput() SSLPolicyOutput {
+func (i *SSLPolicy) ToSSLPolicyOutput() SSLPolicyOutput {
 	return i.ToSSLPolicyOutputWithContext(context.Background())
 }
 
-func (i SSLPolicy) ToSSLPolicyOutputWithContext(ctx context.Context) SSLPolicyOutput {
+func (i *SSLPolicy) ToSSLPolicyOutputWithContext(ctx context.Context) SSLPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SSLPolicyOutput)
 }
 
@@ -368,7 +368,7 @@ type SSLPolicyOutput struct {
 }
 
 func (SSLPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SSLPolicyOutput)(nil)).Elem()
+	return reflect.TypeOf((*SSLPolicy)(nil))
 }
 
 func (o SSLPolicyOutput) ToSSLPolicyOutput() SSLPolicyOutput {

@@ -31,7 +31,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := compute.NewHttpHealthCheck(ctx, "_default", &compute.HttpHealthCheckArgs{
+// 		_, err := compute.NewHttpHealthCheck(ctx, "default", &compute.HttpHealthCheckArgs{
 // 			RequestPath:      pulumi.String("/"),
 // 			CheckIntervalSec: pulumi.Int(1),
 // 			TimeoutSec:       pulumi.Int(1),
@@ -137,7 +137,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := compute.NewHealthCheck(ctx, "_default", &compute.HealthCheckArgs{
+// 		_, err := compute.NewHealthCheck(ctx, "default", &compute.HealthCheckArgs{
 // 			HttpHealthCheck: &compute.HealthCheckHttpHealthCheckArgs{
 // 				Port: pulumi.Int(80),
 // 			},
@@ -265,7 +265,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := compute.NewHealthCheck(ctx, "_default", &compute.HealthCheckArgs{
+// 		_, err := compute.NewHealthCheck(ctx, "default", &compute.HealthCheckArgs{
 // 			HttpHealthCheck: &compute.HealthCheckHttpHealthCheckArgs{
 // 				Port: pulumi.Int(80),
 // 			},
@@ -350,7 +350,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := compute.NewHealthCheck(ctx, "_default", &compute.HealthCheckArgs{
+// 		_, err := compute.NewHealthCheck(ctx, "default", &compute.HealthCheckArgs{
 // 			HttpHealthCheck: &compute.HealthCheckHttpHealthCheckArgs{
 // 				Port: pulumi.Int(80),
 // 			},
@@ -505,7 +505,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := compute.NewHealthCheck(ctx, "_default", &compute.HealthCheckArgs{
+// 		_, err := compute.NewHealthCheck(ctx, "default", &compute.HealthCheckArgs{
 // 			HttpHealthCheck: &compute.HealthCheckHttpHealthCheckArgs{
 // 				Port: pulumi.Int(80),
 // 			},
@@ -645,7 +645,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = compute.NewBackendService(ctx, "service_a", &compute.BackendServiceArgs{
+// 		_, err = compute.NewBackendService(ctx, "service-a", &compute.BackendServiceArgs{
 // 			PortName:   pulumi.String("http"),
 // 			Protocol:   pulumi.String("HTTP"),
 // 			TimeoutSec: pulumi.Int(10),
@@ -656,7 +656,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = compute.NewBackendService(ctx, "service_b", &compute.BackendServiceArgs{
+// 		_, err = compute.NewBackendService(ctx, "service-b", &compute.BackendServiceArgs{
 // 			PortName:   pulumi.String("http"),
 // 			Protocol:   pulumi.String("HTTP"),
 // 			TimeoutSec: pulumi.Int(10),
@@ -757,7 +757,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = compute.NewBackendService(ctx, "service_a", &compute.BackendServiceArgs{
+// 		_, err = compute.NewBackendService(ctx, "service-a", &compute.BackendServiceArgs{
 // 			PortName:   pulumi.String("http"),
 // 			Protocol:   pulumi.String("HTTP"),
 // 			TimeoutSec: pulumi.Int(10),
@@ -768,7 +768,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = compute.NewBackendService(ctx, "service_b", &compute.BackendServiceArgs{
+// 		_, err = compute.NewBackendService(ctx, "service-b", &compute.BackendServiceArgs{
 // 			PortName:   pulumi.String("http"),
 // 			Protocol:   pulumi.String("HTTP"),
 // 			TimeoutSec: pulumi.Int(10),
@@ -1134,15 +1134,15 @@ type URLMapInput interface {
 	ToURLMapOutputWithContext(ctx context.Context) URLMapOutput
 }
 
-func (URLMap) ElementType() reflect.Type {
-	return reflect.TypeOf((*URLMap)(nil)).Elem()
+func (*URLMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*URLMap)(nil))
 }
 
-func (i URLMap) ToURLMapOutput() URLMapOutput {
+func (i *URLMap) ToURLMapOutput() URLMapOutput {
 	return i.ToURLMapOutputWithContext(context.Background())
 }
 
-func (i URLMap) ToURLMapOutputWithContext(ctx context.Context) URLMapOutput {
+func (i *URLMap) ToURLMapOutputWithContext(ctx context.Context) URLMapOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(URLMapOutput)
 }
 
@@ -1151,7 +1151,7 @@ type URLMapOutput struct {
 }
 
 func (URLMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*URLMapOutput)(nil)).Elem()
+	return reflect.TypeOf((*URLMap)(nil))
 }
 
 func (o URLMapOutput) ToURLMapOutput() URLMapOutput {

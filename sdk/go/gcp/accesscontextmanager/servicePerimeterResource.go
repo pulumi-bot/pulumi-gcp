@@ -47,14 +47,14 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := accesscontextmanager.NewAccessPolicy(ctx, "access_policy", &accesscontextmanager.AccessPolicyArgs{
+// 		_, err := accesscontextmanager.NewAccessPolicy(ctx, "access-policy", &accesscontextmanager.AccessPolicyArgs{
 // 			Parent: pulumi.String("organizations/123456789"),
 // 			Title:  pulumi.String("my policy"),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = accesscontextmanager.NewServicePerimeter(ctx, "service_perimeter_resourceServicePerimeter", &accesscontextmanager.ServicePerimeterArgs{
+// 		_, err = accesscontextmanager.NewServicePerimeter(ctx, "service-perimeter-resourceServicePerimeter", &accesscontextmanager.ServicePerimeterArgs{
 // 			Parent: access_policy.Name.ApplyT(func(name string) (string, error) {
 // 				return fmt.Sprintf("%v%v", "accessPolicies/", name), nil
 // 			}).(pulumi.StringOutput),
@@ -68,7 +68,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = accesscontextmanager.NewServicePerimeterResource(ctx, "service_perimeter_resourceServicePerimeterResource", &accesscontextmanager.ServicePerimeterResourceArgs{
+// 		_, err = accesscontextmanager.NewServicePerimeterResource(ctx, "service-perimeter-resourceServicePerimeterResource", &accesscontextmanager.ServicePerimeterResourceArgs{
 // 			PerimeterName: service_perimeter_resourceServicePerimeter.Name,
 // 			Resource:      pulumi.String("projects/987654321"),
 // 		})
@@ -184,15 +184,15 @@ type ServicePerimeterResourceInput interface {
 	ToServicePerimeterResourceOutputWithContext(ctx context.Context) ServicePerimeterResourceOutput
 }
 
-func (ServicePerimeterResource) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServicePerimeterResource)(nil)).Elem()
+func (*ServicePerimeterResource) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServicePerimeterResource)(nil))
 }
 
-func (i ServicePerimeterResource) ToServicePerimeterResourceOutput() ServicePerimeterResourceOutput {
+func (i *ServicePerimeterResource) ToServicePerimeterResourceOutput() ServicePerimeterResourceOutput {
 	return i.ToServicePerimeterResourceOutputWithContext(context.Background())
 }
 
-func (i ServicePerimeterResource) ToServicePerimeterResourceOutputWithContext(ctx context.Context) ServicePerimeterResourceOutput {
+func (i *ServicePerimeterResource) ToServicePerimeterResourceOutputWithContext(ctx context.Context) ServicePerimeterResourceOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ServicePerimeterResourceOutput)
 }
 
@@ -201,7 +201,7 @@ type ServicePerimeterResourceOutput struct {
 }
 
 func (ServicePerimeterResourceOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServicePerimeterResourceOutput)(nil)).Elem()
+	return reflect.TypeOf((*ServicePerimeterResource)(nil))
 }
 
 func (o ServicePerimeterResourceOutput) ToServicePerimeterResourceOutput() ServicePerimeterResourceOutput {

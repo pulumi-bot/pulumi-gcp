@@ -28,7 +28,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := ml.NewEngineModel(ctx, "_default", &ml.EngineModelArgs{
+// 		_, err := ml.NewEngineModel(ctx, "default", &ml.EngineModelArgs{
 // 			Description: pulumi.String("My model"),
 // 			Regions:     pulumi.String("us-central1"),
 // 		})
@@ -51,7 +51,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := ml.NewEngineModel(ctx, "_default", &ml.EngineModelArgs{
+// 		_, err := ml.NewEngineModel(ctx, "default", &ml.EngineModelArgs{
 // 			Description: pulumi.String("My model"),
 // 			Labels: pulumi.StringMap{
 // 				"my_model": pulumi.String("foo"),
@@ -244,15 +244,15 @@ type EngineModelInput interface {
 	ToEngineModelOutputWithContext(ctx context.Context) EngineModelOutput
 }
 
-func (EngineModel) ElementType() reflect.Type {
-	return reflect.TypeOf((*EngineModel)(nil)).Elem()
+func (*EngineModel) ElementType() reflect.Type {
+	return reflect.TypeOf((*EngineModel)(nil))
 }
 
-func (i EngineModel) ToEngineModelOutput() EngineModelOutput {
+func (i *EngineModel) ToEngineModelOutput() EngineModelOutput {
 	return i.ToEngineModelOutputWithContext(context.Background())
 }
 
-func (i EngineModel) ToEngineModelOutputWithContext(ctx context.Context) EngineModelOutput {
+func (i *EngineModel) ToEngineModelOutputWithContext(ctx context.Context) EngineModelOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EngineModelOutput)
 }
 
@@ -261,7 +261,7 @@ type EngineModelOutput struct {
 }
 
 func (EngineModelOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EngineModelOutput)(nil)).Elem()
+	return reflect.TypeOf((*EngineModel)(nil))
 }
 
 func (o EngineModelOutput) ToEngineModelOutput() EngineModelOutput {

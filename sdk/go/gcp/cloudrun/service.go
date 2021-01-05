@@ -44,7 +44,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := cloudrun.NewService(ctx, "_default", &cloudrun.ServiceArgs{
+// 		_, err := cloudrun.NewService(ctx, "default", &cloudrun.ServiceArgs{
 // 			Location: pulumi.String("us-central1"),
 // 			Template: &cloudrun.ServiceTemplateArgs{
 // 				Spec: &cloudrun.ServiceTemplateSpecArgs{
@@ -96,7 +96,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = cloudrun.NewService(ctx, "_default", &cloudrun.ServiceArgs{
+// 		_, err = cloudrun.NewService(ctx, "default", &cloudrun.ServiceArgs{
 // 			AutogenerateRevisionName: pulumi.Bool(true),
 // 			Location:                 pulumi.String("us-central1"),
 // 			Template: &cloudrun.ServiceTemplateArgs{
@@ -139,7 +139,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := cloudrun.NewService(ctx, "_default", &cloudrun.ServiceArgs{
+// 		_, err := cloudrun.NewService(ctx, "default", &cloudrun.ServiceArgs{
 // 			Location: pulumi.String("us-central1"),
 // 			Template: &cloudrun.ServiceTemplateArgs{
 // 				Spec: &cloudrun.ServiceTemplateSpecArgs{
@@ -192,7 +192,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := cloudrun.NewService(ctx, "_default", &cloudrun.ServiceArgs{
+// 		_, err := cloudrun.NewService(ctx, "default", &cloudrun.ServiceArgs{
 // 			AutogenerateRevisionName: pulumi.Bool(true),
 // 			Location:                 pulumi.String("us-central1"),
 // 			Metadata: &cloudrun.ServiceMetadataArgs{
@@ -245,7 +245,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := cloudrun.NewService(ctx, "_default", &cloudrun.ServiceArgs{
+// 		_, err := cloudrun.NewService(ctx, "default", &cloudrun.ServiceArgs{
 // 			Location: pulumi.String("us-central1"),
 // 			Template: &cloudrun.ServiceTemplateArgs{
 // 				Metadata: &cloudrun.ServiceTemplateMetadataArgs{
@@ -523,15 +523,15 @@ type ServiceInput interface {
 	ToServiceOutputWithContext(ctx context.Context) ServiceOutput
 }
 
-func (Service) ElementType() reflect.Type {
-	return reflect.TypeOf((*Service)(nil)).Elem()
+func (*Service) ElementType() reflect.Type {
+	return reflect.TypeOf((*Service)(nil))
 }
 
-func (i Service) ToServiceOutput() ServiceOutput {
+func (i *Service) ToServiceOutput() ServiceOutput {
 	return i.ToServiceOutputWithContext(context.Background())
 }
 
-func (i Service) ToServiceOutputWithContext(ctx context.Context) ServiceOutput {
+func (i *Service) ToServiceOutputWithContext(ctx context.Context) ServiceOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceOutput)
 }
 
@@ -540,7 +540,7 @@ type ServiceOutput struct {
 }
 
 func (ServiceOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServiceOutput)(nil)).Elem()
+	return reflect.TypeOf((*Service)(nil))
 }
 
 func (o ServiceOutput) ToServiceOutput() ServiceOutput {

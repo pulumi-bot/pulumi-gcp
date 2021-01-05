@@ -45,7 +45,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := compute.NewHealthCheck(ctx, "tcp_health_check", &compute.HealthCheckArgs{
+// 		_, err := compute.NewHealthCheck(ctx, "tcp-health-check", &compute.HealthCheckArgs{
 // 			CheckIntervalSec: pulumi.Int(1),
 // 			TcpHealthCheck: &compute.HealthCheckTcpHealthCheckArgs{
 // 				Port: pulumi.Int(80),
@@ -71,7 +71,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := compute.NewHealthCheck(ctx, "tcp_health_check", &compute.HealthCheckArgs{
+// 		_, err := compute.NewHealthCheck(ctx, "tcp-health-check", &compute.HealthCheckArgs{
 // 			CheckIntervalSec: pulumi.Int(1),
 // 			Description:      pulumi.String("Health check via tcp"),
 // 			HealthyThreshold: pulumi.Int(4),
@@ -104,7 +104,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := compute.NewHealthCheck(ctx, "ssl_health_check", &compute.HealthCheckArgs{
+// 		_, err := compute.NewHealthCheck(ctx, "ssl-health-check", &compute.HealthCheckArgs{
 // 			CheckIntervalSec: pulumi.Int(1),
 // 			SslHealthCheck: &compute.HealthCheckSslHealthCheckArgs{
 // 				Port: pulumi.Int(443),
@@ -130,7 +130,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := compute.NewHealthCheck(ctx, "ssl_health_check", &compute.HealthCheckArgs{
+// 		_, err := compute.NewHealthCheck(ctx, "ssl-health-check", &compute.HealthCheckArgs{
 // 			CheckIntervalSec: pulumi.Int(1),
 // 			Description:      pulumi.String("Health check via ssl"),
 // 			HealthyThreshold: pulumi.Int(4),
@@ -163,7 +163,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := compute.NewHealthCheck(ctx, "http_health_check", &compute.HealthCheckArgs{
+// 		_, err := compute.NewHealthCheck(ctx, "http-health-check", &compute.HealthCheckArgs{
 // 			CheckIntervalSec: pulumi.Int(1),
 // 			HttpHealthCheck: &compute.HealthCheckHttpHealthCheckArgs{
 // 				Port: pulumi.Int(80),
@@ -189,7 +189,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := compute.NewHealthCheck(ctx, "http_health_check", &compute.HealthCheckArgs{
+// 		_, err := compute.NewHealthCheck(ctx, "http-health-check", &compute.HealthCheckArgs{
 // 			CheckIntervalSec: pulumi.Int(1),
 // 			Description:      pulumi.String("Health check via http"),
 // 			HealthyThreshold: pulumi.Int(4),
@@ -223,7 +223,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := compute.NewHealthCheck(ctx, "https_health_check", &compute.HealthCheckArgs{
+// 		_, err := compute.NewHealthCheck(ctx, "https-health-check", &compute.HealthCheckArgs{
 // 			CheckIntervalSec: pulumi.Int(1),
 // 			HttpsHealthCheck: &compute.HealthCheckHttpsHealthCheckArgs{
 // 				Port: pulumi.Int(443),
@@ -249,7 +249,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := compute.NewHealthCheck(ctx, "https_health_check", &compute.HealthCheckArgs{
+// 		_, err := compute.NewHealthCheck(ctx, "https-health-check", &compute.HealthCheckArgs{
 // 			CheckIntervalSec: pulumi.Int(1),
 // 			Description:      pulumi.String("Health check via https"),
 // 			HealthyThreshold: pulumi.Int(4),
@@ -283,7 +283,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := compute.NewHealthCheck(ctx, "http2_health_check", &compute.HealthCheckArgs{
+// 		_, err := compute.NewHealthCheck(ctx, "http2-health-check", &compute.HealthCheckArgs{
 // 			CheckIntervalSec: pulumi.Int(1),
 // 			Http2HealthCheck: &compute.HealthCheckHttp2HealthCheckArgs{
 // 				Port: pulumi.Int(443),
@@ -309,7 +309,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := compute.NewHealthCheck(ctx, "http2_health_check", &compute.HealthCheckArgs{
+// 		_, err := compute.NewHealthCheck(ctx, "http2-health-check", &compute.HealthCheckArgs{
 // 			CheckIntervalSec: pulumi.Int(1),
 // 			Description:      pulumi.String("Health check via http2"),
 // 			HealthyThreshold: pulumi.Int(4),
@@ -343,7 +343,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := compute.NewHealthCheck(ctx, "grpc_health_check", &compute.HealthCheckArgs{
+// 		_, err := compute.NewHealthCheck(ctx, "grpc-health-check", &compute.HealthCheckArgs{
 // 			CheckIntervalSec: pulumi.Int(1),
 // 			GrpcHealthCheck: &compute.HealthCheckGrpcHealthCheckArgs{
 // 				Port: pulumi.Int(443),
@@ -369,7 +369,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := compute.NewHealthCheck(ctx, "grpc_health_check", &compute.HealthCheckArgs{
+// 		_, err := compute.NewHealthCheck(ctx, "grpc-health-check", &compute.HealthCheckArgs{
 // 			CheckIntervalSec: pulumi.Int(1),
 // 			GrpcHealthCheck: &compute.HealthCheckGrpcHealthCheckArgs{
 // 				GrpcServiceName:   pulumi.String("testservice"),
@@ -397,7 +397,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := compute.NewHealthCheck(ctx, "health_check_with_logging", &compute.HealthCheckArgs{
+// 		_, err := compute.NewHealthCheck(ctx, "health-check-with-logging", &compute.HealthCheckArgs{
 // 			TimeoutSec:       pulumi.Int(1),
 // 			CheckIntervalSec: pulumi.Int(1),
 // 			TcpHealthCheck: &compute.HealthCheckTcpHealthCheckArgs{
@@ -744,15 +744,15 @@ type HealthCheckInput interface {
 	ToHealthCheckOutputWithContext(ctx context.Context) HealthCheckOutput
 }
 
-func (HealthCheck) ElementType() reflect.Type {
-	return reflect.TypeOf((*HealthCheck)(nil)).Elem()
+func (*HealthCheck) ElementType() reflect.Type {
+	return reflect.TypeOf((*HealthCheck)(nil))
 }
 
-func (i HealthCheck) ToHealthCheckOutput() HealthCheckOutput {
+func (i *HealthCheck) ToHealthCheckOutput() HealthCheckOutput {
 	return i.ToHealthCheckOutputWithContext(context.Background())
 }
 
-func (i HealthCheck) ToHealthCheckOutputWithContext(ctx context.Context) HealthCheckOutput {
+func (i *HealthCheck) ToHealthCheckOutputWithContext(ctx context.Context) HealthCheckOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(HealthCheckOutput)
 }
 
@@ -761,7 +761,7 @@ type HealthCheckOutput struct {
 }
 
 func (HealthCheckOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*HealthCheckOutput)(nil)).Elem()
+	return reflect.TypeOf((*HealthCheck)(nil))
 }
 
 func (o HealthCheckOutput) ToHealthCheckOutput() HealthCheckOutput {

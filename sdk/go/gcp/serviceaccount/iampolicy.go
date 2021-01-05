@@ -56,7 +56,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = serviceAccount.NewIAMPolicy(ctx, "admin_account_iam", &serviceAccount.IAMPolicyArgs{
+// 		_, err = serviceAccount.NewIAMPolicy(ctx, "admin-account-iam", &serviceAccount.IAMPolicyArgs{
 // 			ServiceAccountId: sa.Name,
 // 			PolicyData:       pulumi.String(admin.PolicyData),
 // 		})
@@ -87,7 +87,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = serviceAccount.NewIAMBinding(ctx, "admin_account_iam", &serviceAccount.IAMBindingArgs{
+// 		_, err = serviceAccount.NewIAMBinding(ctx, "admin-account-iam", &serviceAccount.IAMBindingArgs{
 // 			ServiceAccountId: sa.Name,
 // 			Role:             pulumi.String("roles/iam.serviceAccountUser"),
 // 			Members: pulumi.StringArray{
@@ -121,7 +121,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = serviceAccount.NewIAMBinding(ctx, "admin_account_iam", &serviceAccount.IAMBindingArgs{
+// 		_, err = serviceAccount.NewIAMBinding(ctx, "admin-account-iam", &serviceAccount.IAMBindingArgs{
 // 			Condition: &serviceAccount.IAMBindingConditionArgs{
 // 				Description: pulumi.String("Expiring at midnight of 2019-12-31"),
 // 				Expression:  pulumi.String("request.time < timestamp(\"2020-01-01T00:00:00Z\")"),
@@ -167,7 +167,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = serviceAccount.NewIAMMember(ctx, "admin_account_iam", &serviceAccount.IAMMemberArgs{
+// 		_, err = serviceAccount.NewIAMMember(ctx, "admin-account-iam", &serviceAccount.IAMMemberArgs{
 // 			ServiceAccountId: sa.Name,
 // 			Role:             pulumi.String("roles/iam.serviceAccountUser"),
 // 			Member:           pulumi.String("user:jane@example.com"),
@@ -175,7 +175,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = serviceAccount.NewIAMMember(ctx, "gce_default_account_iam", &serviceAccount.IAMMemberArgs{
+// 		_, err = serviceAccount.NewIAMMember(ctx, "gce-default-account-iam", &serviceAccount.IAMMemberArgs{
 // 			ServiceAccountId: pulumi.String(_default.Name),
 // 			Role:             pulumi.String("roles/iam.serviceAccountUser"),
 // 			Member: sa.Email.ApplyT(func(email string) (string, error) {
@@ -209,7 +209,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = serviceAccount.NewIAMMember(ctx, "admin_account_iam", &serviceAccount.IAMMemberArgs{
+// 		_, err = serviceAccount.NewIAMMember(ctx, "admin-account-iam", &serviceAccount.IAMMemberArgs{
 // 			Condition: &serviceAccount.IAMMemberConditionArgs{
 // 				Description: pulumi.String("Expiring at midnight of 2019-12-31"),
 // 				Expression:  pulumi.String("request.time < timestamp(\"2020-01-01T00:00:00Z\")"),
@@ -350,15 +350,15 @@ type IAMPolicyInput interface {
 	ToIAMPolicyOutputWithContext(ctx context.Context) IAMPolicyOutput
 }
 
-func (IAMPolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*IAMPolicy)(nil)).Elem()
+func (*IAMPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*IAMPolicy)(nil))
 }
 
-func (i IAMPolicy) ToIAMPolicyOutput() IAMPolicyOutput {
+func (i *IAMPolicy) ToIAMPolicyOutput() IAMPolicyOutput {
 	return i.ToIAMPolicyOutputWithContext(context.Background())
 }
 
-func (i IAMPolicy) ToIAMPolicyOutputWithContext(ctx context.Context) IAMPolicyOutput {
+func (i *IAMPolicy) ToIAMPolicyOutputWithContext(ctx context.Context) IAMPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IAMPolicyOutput)
 }
 
@@ -367,7 +367,7 @@ type IAMPolicyOutput struct {
 }
 
 func (IAMPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*IAMPolicyOutput)(nil)).Elem()
+	return reflect.TypeOf((*IAMPolicy)(nil))
 }
 
 func (o IAMPolicyOutput) ToIAMPolicyOutput() IAMPolicyOutput {

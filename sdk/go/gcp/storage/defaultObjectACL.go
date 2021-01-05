@@ -39,13 +39,13 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := storage.NewBucket(ctx, "image_store", &storage.BucketArgs{
+// 		_, err := storage.NewBucket(ctx, "image-store", &storage.BucketArgs{
 // 			Location: pulumi.String("EU"),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = storage.NewDefaultObjectACL(ctx, "image_store_default_acl", &storage.DefaultObjectACLArgs{
+// 		_, err = storage.NewDefaultObjectACL(ctx, "image-store-default-acl", &storage.DefaultObjectACLArgs{
 // 			Bucket: image_store.Name,
 // 			RoleEntities: pulumi.StringArray{
 // 				pulumi.String("OWNER:user-my.email@gmail.com"),
@@ -157,15 +157,15 @@ type DefaultObjectACLInput interface {
 	ToDefaultObjectACLOutputWithContext(ctx context.Context) DefaultObjectACLOutput
 }
 
-func (DefaultObjectACL) ElementType() reflect.Type {
-	return reflect.TypeOf((*DefaultObjectACL)(nil)).Elem()
+func (*DefaultObjectACL) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultObjectACL)(nil))
 }
 
-func (i DefaultObjectACL) ToDefaultObjectACLOutput() DefaultObjectACLOutput {
+func (i *DefaultObjectACL) ToDefaultObjectACLOutput() DefaultObjectACLOutput {
 	return i.ToDefaultObjectACLOutputWithContext(context.Background())
 }
 
-func (i DefaultObjectACL) ToDefaultObjectACLOutputWithContext(ctx context.Context) DefaultObjectACLOutput {
+func (i *DefaultObjectACL) ToDefaultObjectACLOutputWithContext(ctx context.Context) DefaultObjectACLOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DefaultObjectACLOutput)
 }
 
@@ -174,7 +174,7 @@ type DefaultObjectACLOutput struct {
 }
 
 func (DefaultObjectACLOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DefaultObjectACLOutput)(nil)).Elem()
+	return reflect.TypeOf((*DefaultObjectACL)(nil))
 }
 
 func (o DefaultObjectACLOutput) ToDefaultObjectACLOutput() DefaultObjectACLOutput {

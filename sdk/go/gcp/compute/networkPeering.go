@@ -33,7 +33,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := compute.NewNetwork(ctx, "_default", &compute.NetworkArgs{
+// 		_, err := compute.NewNetwork(ctx, "default", &compute.NetworkArgs{
 // 			AutoCreateSubnetworks: pulumi.Bool(false),
 // 		})
 // 		if err != nil {
@@ -228,15 +228,15 @@ type NetworkPeeringInput interface {
 	ToNetworkPeeringOutputWithContext(ctx context.Context) NetworkPeeringOutput
 }
 
-func (NetworkPeering) ElementType() reflect.Type {
-	return reflect.TypeOf((*NetworkPeering)(nil)).Elem()
+func (*NetworkPeering) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetworkPeering)(nil))
 }
 
-func (i NetworkPeering) ToNetworkPeeringOutput() NetworkPeeringOutput {
+func (i *NetworkPeering) ToNetworkPeeringOutput() NetworkPeeringOutput {
 	return i.ToNetworkPeeringOutputWithContext(context.Background())
 }
 
-func (i NetworkPeering) ToNetworkPeeringOutputWithContext(ctx context.Context) NetworkPeeringOutput {
+func (i *NetworkPeering) ToNetworkPeeringOutputWithContext(ctx context.Context) NetworkPeeringOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkPeeringOutput)
 }
 
@@ -245,7 +245,7 @@ type NetworkPeeringOutput struct {
 }
 
 func (NetworkPeeringOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*NetworkPeeringOutput)(nil)).Elem()
+	return reflect.TypeOf((*NetworkPeering)(nil))
 }
 
 func (o NetworkPeeringOutput) ToNetworkPeeringOutput() NetworkPeeringOutput {

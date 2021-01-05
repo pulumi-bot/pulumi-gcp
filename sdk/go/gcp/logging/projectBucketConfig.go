@@ -30,7 +30,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := organizations.NewProject(ctx, "_default", &organizations.ProjectArgs{
+// 		_, err := organizations.NewProject(ctx, "default", &organizations.ProjectArgs{
 // 			ProjectId: pulumi.String("your-project-id"),
 // 			OrgId:     pulumi.String("123456789"),
 // 		})
@@ -216,15 +216,15 @@ type ProjectBucketConfigInput interface {
 	ToProjectBucketConfigOutputWithContext(ctx context.Context) ProjectBucketConfigOutput
 }
 
-func (ProjectBucketConfig) ElementType() reflect.Type {
-	return reflect.TypeOf((*ProjectBucketConfig)(nil)).Elem()
+func (*ProjectBucketConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProjectBucketConfig)(nil))
 }
 
-func (i ProjectBucketConfig) ToProjectBucketConfigOutput() ProjectBucketConfigOutput {
+func (i *ProjectBucketConfig) ToProjectBucketConfigOutput() ProjectBucketConfigOutput {
 	return i.ToProjectBucketConfigOutputWithContext(context.Background())
 }
 
-func (i ProjectBucketConfig) ToProjectBucketConfigOutputWithContext(ctx context.Context) ProjectBucketConfigOutput {
+func (i *ProjectBucketConfig) ToProjectBucketConfigOutputWithContext(ctx context.Context) ProjectBucketConfigOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ProjectBucketConfigOutput)
 }
 
@@ -233,7 +233,7 @@ type ProjectBucketConfigOutput struct {
 }
 
 func (ProjectBucketConfigOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ProjectBucketConfigOutput)(nil)).Elem()
+	return reflect.TypeOf((*ProjectBucketConfig)(nil))
 }
 
 func (o ProjectBucketConfigOutput) ToProjectBucketConfigOutput() ProjectBucketConfigOutput {

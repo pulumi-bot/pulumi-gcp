@@ -86,7 +86,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = networkmanagement.NewConnectivityTest(ctx, "instance_test", &networkmanagement.ConnectivityTestArgs{
+// 		_, err = networkmanagement.NewConnectivityTest(ctx, "instance-test", &networkmanagement.ConnectivityTestArgs{
 // 			Source: &networkmanagement.ConnectivityTestSourceArgs{
 // 				Instance: source.ID(),
 // 			},
@@ -127,7 +127,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = compute.NewAddress(ctx, "source_addr", &compute.AddressArgs{
+// 		_, err = compute.NewAddress(ctx, "source-addr", &compute.AddressArgs{
 // 			Subnetwork:  subnet.ID(),
 // 			AddressType: pulumi.String("INTERNAL"),
 // 			Address:     pulumi.String("10.0.42.42"),
@@ -136,7 +136,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = compute.NewAddress(ctx, "dest_addr", &compute.AddressArgs{
+// 		_, err = compute.NewAddress(ctx, "dest-addr", &compute.AddressArgs{
 // 			Subnetwork:  subnet.ID(),
 // 			AddressType: pulumi.String("INTERNAL"),
 // 			Address:     pulumi.String("10.0.43.43"),
@@ -145,7 +145,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = networkmanagement.NewConnectivityTest(ctx, "address_test", &networkmanagement.ConnectivityTestArgs{
+// 		_, err = networkmanagement.NewConnectivityTest(ctx, "address-test", &networkmanagement.ConnectivityTestArgs{
 // 			Source: &networkmanagement.ConnectivityTestSourceArgs{
 // 				IpAddress:   source_addr.Address,
 // 				ProjectId:   source_addr.Project,
@@ -509,15 +509,15 @@ type ConnectivityTestInput interface {
 	ToConnectivityTestOutputWithContext(ctx context.Context) ConnectivityTestOutput
 }
 
-func (ConnectivityTest) ElementType() reflect.Type {
-	return reflect.TypeOf((*ConnectivityTest)(nil)).Elem()
+func (*ConnectivityTest) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConnectivityTest)(nil))
 }
 
-func (i ConnectivityTest) ToConnectivityTestOutput() ConnectivityTestOutput {
+func (i *ConnectivityTest) ToConnectivityTestOutput() ConnectivityTestOutput {
 	return i.ToConnectivityTestOutputWithContext(context.Background())
 }
 
-func (i ConnectivityTest) ToConnectivityTestOutputWithContext(ctx context.Context) ConnectivityTestOutput {
+func (i *ConnectivityTest) ToConnectivityTestOutputWithContext(ctx context.Context) ConnectivityTestOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ConnectivityTestOutput)
 }
 
@@ -526,7 +526,7 @@ type ConnectivityTestOutput struct {
 }
 
 func (ConnectivityTestOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ConnectivityTestOutput)(nil)).Elem()
+	return reflect.TypeOf((*ConnectivityTest)(nil))
 }
 
 func (o ConnectivityTestOutput) ToConnectivityTestOutput() ConnectivityTestOutput {

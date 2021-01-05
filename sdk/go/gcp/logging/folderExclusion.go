@@ -31,14 +31,14 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := organizations.NewFolder(ctx, "my_folder", &organizations.FolderArgs{
+// 		_, err := organizations.NewFolder(ctx, "my-folder", &organizations.FolderArgs{
 // 			DisplayName: pulumi.String("My folder"),
 // 			Parent:      pulumi.String("organizations/123456"),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = logging.NewFolderExclusion(ctx, "my_exclusion", &logging.FolderExclusionArgs{
+// 		_, err = logging.NewFolderExclusion(ctx, "my-exclusion", &logging.FolderExclusionArgs{
 // 			Folder:      my_folder.Name,
 // 			Description: pulumi.String("Exclude GCE instance debug logs"),
 // 			Filter:      pulumi.String("resource.type = gce_instance AND severity <= DEBUG"),
@@ -195,15 +195,15 @@ type FolderExclusionInput interface {
 	ToFolderExclusionOutputWithContext(ctx context.Context) FolderExclusionOutput
 }
 
-func (FolderExclusion) ElementType() reflect.Type {
-	return reflect.TypeOf((*FolderExclusion)(nil)).Elem()
+func (*FolderExclusion) ElementType() reflect.Type {
+	return reflect.TypeOf((*FolderExclusion)(nil))
 }
 
-func (i FolderExclusion) ToFolderExclusionOutput() FolderExclusionOutput {
+func (i *FolderExclusion) ToFolderExclusionOutput() FolderExclusionOutput {
 	return i.ToFolderExclusionOutputWithContext(context.Background())
 }
 
-func (i FolderExclusion) ToFolderExclusionOutputWithContext(ctx context.Context) FolderExclusionOutput {
+func (i *FolderExclusion) ToFolderExclusionOutputWithContext(ctx context.Context) FolderExclusionOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FolderExclusionOutput)
 }
 
@@ -212,7 +212,7 @@ type FolderExclusionOutput struct {
 }
 
 func (FolderExclusionOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FolderExclusionOutput)(nil)).Elem()
+	return reflect.TypeOf((*FolderExclusion)(nil))
 }
 
 func (o FolderExclusionOutput) ToFolderExclusionOutput() FolderExclusionOutput {

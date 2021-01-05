@@ -33,19 +33,19 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := compute.NewNetwork(ctx, "network_1", &compute.NetworkArgs{
+// 		_, err := compute.NewNetwork(ctx, "network-1", &compute.NetworkArgs{
 // 			AutoCreateSubnetworks: pulumi.Bool(false),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = compute.NewNetwork(ctx, "network_2", &compute.NetworkArgs{
+// 		_, err = compute.NewNetwork(ctx, "network-2", &compute.NetworkArgs{
 // 			AutoCreateSubnetworks: pulumi.Bool(false),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = dns.NewPolicy(ctx, "example_policy", &dns.PolicyArgs{
+// 		_, err = dns.NewPolicy(ctx, "example-policy", &dns.PolicyArgs{
 // 			EnableInboundForwarding: pulumi.Bool(true),
 // 			EnableLogging:           pulumi.Bool(true),
 // 			AlternativeNameServerConfig: &dns.PolicyAlternativeNameServerConfigArgs{
@@ -267,15 +267,15 @@ type PolicyInput interface {
 	ToPolicyOutputWithContext(ctx context.Context) PolicyOutput
 }
 
-func (Policy) ElementType() reflect.Type {
-	return reflect.TypeOf((*Policy)(nil)).Elem()
+func (*Policy) ElementType() reflect.Type {
+	return reflect.TypeOf((*Policy)(nil))
 }
 
-func (i Policy) ToPolicyOutput() PolicyOutput {
+func (i *Policy) ToPolicyOutput() PolicyOutput {
 	return i.ToPolicyOutputWithContext(context.Background())
 }
 
-func (i Policy) ToPolicyOutputWithContext(ctx context.Context) PolicyOutput {
+func (i *Policy) ToPolicyOutputWithContext(ctx context.Context) PolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(PolicyOutput)
 }
 
@@ -284,7 +284,7 @@ type PolicyOutput struct {
 }
 
 func (PolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*PolicyOutput)(nil)).Elem()
+	return reflect.TypeOf((*Policy)(nil))
 }
 
 func (o PolicyOutput) ToPolicyOutput() PolicyOutput {

@@ -37,7 +37,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := storage.NewBucket(ctx, "image_store", &storage.BucketArgs{
+// 		_, err := storage.NewBucket(ctx, "image-store", &storage.BucketArgs{
 // 			Location: pulumi.String("EU"),
 // 		})
 // 		if err != nil {
@@ -50,7 +50,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = storage.NewObjectACL(ctx, "image_store_acl", &storage.ObjectACLArgs{
+// 		_, err = storage.NewObjectACL(ctx, "image-store-acl", &storage.ObjectACLArgs{
 // 			Bucket: image_store.Name,
 // 			Object: image.OutputName,
 // 			RoleEntities: pulumi.StringArray{
@@ -181,15 +181,15 @@ type ObjectACLInput interface {
 	ToObjectACLOutputWithContext(ctx context.Context) ObjectACLOutput
 }
 
-func (ObjectACL) ElementType() reflect.Type {
-	return reflect.TypeOf((*ObjectACL)(nil)).Elem()
+func (*ObjectACL) ElementType() reflect.Type {
+	return reflect.TypeOf((*ObjectACL)(nil))
 }
 
-func (i ObjectACL) ToObjectACLOutput() ObjectACLOutput {
+func (i *ObjectACL) ToObjectACLOutput() ObjectACLOutput {
 	return i.ToObjectACLOutputWithContext(context.Background())
 }
 
-func (i ObjectACL) ToObjectACLOutputWithContext(ctx context.Context) ObjectACLOutput {
+func (i *ObjectACL) ToObjectACLOutputWithContext(ctx context.Context) ObjectACLOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ObjectACLOutput)
 }
 
@@ -198,7 +198,7 @@ type ObjectACLOutput struct {
 }
 
 func (ObjectACLOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ObjectACLOutput)(nil)).Elem()
+	return reflect.TypeOf((*ObjectACL)(nil))
 }
 
 func (o ObjectACLOutput) ToObjectACLOutput() ObjectACLOutput {

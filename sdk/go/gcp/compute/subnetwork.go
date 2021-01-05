@@ -54,13 +54,13 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := compute.NewNetwork(ctx, "custom_test", &compute.NetworkArgs{
+// 		_, err := compute.NewNetwork(ctx, "custom-test", &compute.NetworkArgs{
 // 			AutoCreateSubnetworks: pulumi.Bool(false),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = compute.NewSubnetwork(ctx, "network_with_private_secondary_ip_ranges", &compute.SubnetworkArgs{
+// 		_, err = compute.NewSubnetwork(ctx, "network-with-private-secondary-ip-ranges", &compute.SubnetworkArgs{
 // 			IpCidrRange: pulumi.String("10.2.0.0/16"),
 // 			Region:      pulumi.String("us-central1"),
 // 			Network:     custom_test.ID(),
@@ -90,13 +90,13 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := compute.NewNetwork(ctx, "custom_test", &compute.NetworkArgs{
+// 		_, err := compute.NewNetwork(ctx, "custom-test", &compute.NetworkArgs{
 // 			AutoCreateSubnetworks: pulumi.Bool(false),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = compute.NewSubnetwork(ctx, "subnet_with_logging", &compute.SubnetworkArgs{
+// 		_, err = compute.NewSubnetwork(ctx, "subnet-with-logging", &compute.SubnetworkArgs{
 // 			IpCidrRange: pulumi.String("10.2.0.0/16"),
 // 			Region:      pulumi.String("us-central1"),
 // 			Network:     custom_test.ID(),
@@ -125,13 +125,13 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := compute.NewNetwork(ctx, "custom_test", &compute.NetworkArgs{
+// 		_, err := compute.NewNetwork(ctx, "custom-test", &compute.NetworkArgs{
 // 			AutoCreateSubnetworks: pulumi.Bool(false),
 // 		}, pulumi.Provider(google_beta))
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = compute.NewSubnetwork(ctx, "network_for_l7lb", &compute.SubnetworkArgs{
+// 		_, err = compute.NewSubnetwork(ctx, "network-for-l7lb", &compute.SubnetworkArgs{
 // 			IpCidrRange: pulumi.String("10.0.0.0/22"),
 // 			Region:      pulumi.String("us-central1"),
 // 			Purpose:     pulumi.String("INTERNAL_HTTPS_LOAD_BALANCER"),
@@ -537,15 +537,15 @@ type SubnetworkInput interface {
 	ToSubnetworkOutputWithContext(ctx context.Context) SubnetworkOutput
 }
 
-func (Subnetwork) ElementType() reflect.Type {
-	return reflect.TypeOf((*Subnetwork)(nil)).Elem()
+func (*Subnetwork) ElementType() reflect.Type {
+	return reflect.TypeOf((*Subnetwork)(nil))
 }
 
-func (i Subnetwork) ToSubnetworkOutput() SubnetworkOutput {
+func (i *Subnetwork) ToSubnetworkOutput() SubnetworkOutput {
 	return i.ToSubnetworkOutputWithContext(context.Background())
 }
 
-func (i Subnetwork) ToSubnetworkOutputWithContext(ctx context.Context) SubnetworkOutput {
+func (i *Subnetwork) ToSubnetworkOutputWithContext(ctx context.Context) SubnetworkOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SubnetworkOutput)
 }
 
@@ -554,7 +554,7 @@ type SubnetworkOutput struct {
 }
 
 func (SubnetworkOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SubnetworkOutput)(nil)).Elem()
+	return reflect.TypeOf((*Subnetwork)(nil))
 }
 
 func (o SubnetworkOutput) ToSubnetworkOutput() SubnetworkOutput {
