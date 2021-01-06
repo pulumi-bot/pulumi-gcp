@@ -48,7 +48,7 @@ func (i WorkloadIdentityPoolProviderAwsArgs) ToWorkloadIdentityPoolProviderAwsPt
 }
 
 func (i WorkloadIdentityPoolProviderAwsArgs) ToWorkloadIdentityPoolProviderAwsPtrOutputWithContext(ctx context.Context) WorkloadIdentityPoolProviderAwsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WorkloadIdentityPoolProviderAwsOutput).ToWorkloadIdentityPoolProviderAwsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(WorkloadIdentityPoolProviderAwsOutput).ToWorkloadIdentityPoolProviderAwsPtrOutput()
 }
 
 // WorkloadIdentityPoolProviderAwsPtrInput is an input type that accepts WorkloadIdentityPoolProviderAwsArgs, WorkloadIdentityPoolProviderAwsPtr and WorkloadIdentityPoolProviderAwsPtrOutput values.
@@ -81,7 +81,7 @@ func (i *workloadIdentityPoolProviderAwsPtrType) ToWorkloadIdentityPoolProviderA
 }
 
 func (i *workloadIdentityPoolProviderAwsPtrType) ToWorkloadIdentityPoolProviderAwsPtrOutputWithContext(ctx context.Context) WorkloadIdentityPoolProviderAwsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WorkloadIdentityPoolProviderAwsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(WorkloadIdentityPoolProviderAwsOutput).ToWorkloadIdentityPoolProviderAwsPtrOutput()
 }
 
 type WorkloadIdentityPoolProviderAwsOutput struct{ *pulumi.OutputState }
@@ -221,7 +221,7 @@ func (i WorkloadIdentityPoolProviderOidcArgs) ToWorkloadIdentityPoolProviderOidc
 }
 
 func (i WorkloadIdentityPoolProviderOidcArgs) ToWorkloadIdentityPoolProviderOidcPtrOutputWithContext(ctx context.Context) WorkloadIdentityPoolProviderOidcPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WorkloadIdentityPoolProviderOidcOutput).ToWorkloadIdentityPoolProviderOidcPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(WorkloadIdentityPoolProviderOidcOutput).ToWorkloadIdentityPoolProviderOidcPtrOutput()
 }
 
 // WorkloadIdentityPoolProviderOidcPtrInput is an input type that accepts WorkloadIdentityPoolProviderOidcArgs, WorkloadIdentityPoolProviderOidcPtr and WorkloadIdentityPoolProviderOidcPtrOutput values.
@@ -254,7 +254,7 @@ func (i *workloadIdentityPoolProviderOidcPtrType) ToWorkloadIdentityPoolProvider
 }
 
 func (i *workloadIdentityPoolProviderOidcPtrType) ToWorkloadIdentityPoolProviderOidcPtrOutputWithContext(ctx context.Context) WorkloadIdentityPoolProviderOidcPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WorkloadIdentityPoolProviderOidcPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(WorkloadIdentityPoolProviderOidcOutput).ToWorkloadIdentityPoolProviderOidcPtrOutput()
 }
 
 type WorkloadIdentityPoolProviderOidcOutput struct{ *pulumi.OutputState }

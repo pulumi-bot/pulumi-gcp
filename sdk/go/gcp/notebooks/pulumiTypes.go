@@ -54,7 +54,7 @@ func (i EnvironmentContainerImageArgs) ToEnvironmentContainerImagePtrOutput() En
 }
 
 func (i EnvironmentContainerImageArgs) ToEnvironmentContainerImagePtrOutputWithContext(ctx context.Context) EnvironmentContainerImagePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentContainerImageOutput).ToEnvironmentContainerImagePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentContainerImageOutput).ToEnvironmentContainerImagePtrOutput()
 }
 
 // EnvironmentContainerImagePtrInput is an input type that accepts EnvironmentContainerImageArgs, EnvironmentContainerImagePtr and EnvironmentContainerImagePtrOutput values.
@@ -87,7 +87,7 @@ func (i *environmentContainerImagePtrType) ToEnvironmentContainerImagePtrOutput(
 }
 
 func (i *environmentContainerImagePtrType) ToEnvironmentContainerImagePtrOutputWithContext(ctx context.Context) EnvironmentContainerImagePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentContainerImagePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentContainerImageOutput).ToEnvironmentContainerImagePtrOutput()
 }
 
 type EnvironmentContainerImageOutput struct{ *pulumi.OutputState }
@@ -212,7 +212,7 @@ func (i EnvironmentVmImageArgs) ToEnvironmentVmImagePtrOutput() EnvironmentVmIma
 }
 
 func (i EnvironmentVmImageArgs) ToEnvironmentVmImagePtrOutputWithContext(ctx context.Context) EnvironmentVmImagePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentVmImageOutput).ToEnvironmentVmImagePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentVmImageOutput).ToEnvironmentVmImagePtrOutput()
 }
 
 // EnvironmentVmImagePtrInput is an input type that accepts EnvironmentVmImageArgs, EnvironmentVmImagePtr and EnvironmentVmImagePtrOutput values.
@@ -245,7 +245,7 @@ func (i *environmentVmImagePtrType) ToEnvironmentVmImagePtrOutput() EnvironmentV
 }
 
 func (i *environmentVmImagePtrType) ToEnvironmentVmImagePtrOutputWithContext(ctx context.Context) EnvironmentVmImagePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentVmImagePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentVmImageOutput).ToEnvironmentVmImagePtrOutput()
 }
 
 type EnvironmentVmImageOutput struct{ *pulumi.OutputState }
@@ -381,7 +381,7 @@ func (i InstanceAcceleratorConfigArgs) ToInstanceAcceleratorConfigPtrOutput() In
 }
 
 func (i InstanceAcceleratorConfigArgs) ToInstanceAcceleratorConfigPtrOutputWithContext(ctx context.Context) InstanceAcceleratorConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceAcceleratorConfigOutput).ToInstanceAcceleratorConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceAcceleratorConfigOutput).ToInstanceAcceleratorConfigPtrOutput()
 }
 
 // InstanceAcceleratorConfigPtrInput is an input type that accepts InstanceAcceleratorConfigArgs, InstanceAcceleratorConfigPtr and InstanceAcceleratorConfigPtrOutput values.
@@ -414,7 +414,7 @@ func (i *instanceAcceleratorConfigPtrType) ToInstanceAcceleratorConfigPtrOutput(
 }
 
 func (i *instanceAcceleratorConfigPtrType) ToInstanceAcceleratorConfigPtrOutputWithContext(ctx context.Context) InstanceAcceleratorConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceAcceleratorConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceAcceleratorConfigOutput).ToInstanceAcceleratorConfigPtrOutput()
 }
 
 type InstanceAcceleratorConfigOutput struct{ *pulumi.OutputState }
@@ -535,7 +535,7 @@ func (i InstanceContainerImageArgs) ToInstanceContainerImagePtrOutput() Instance
 }
 
 func (i InstanceContainerImageArgs) ToInstanceContainerImagePtrOutputWithContext(ctx context.Context) InstanceContainerImagePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceContainerImageOutput).ToInstanceContainerImagePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceContainerImageOutput).ToInstanceContainerImagePtrOutput()
 }
 
 // InstanceContainerImagePtrInput is an input type that accepts InstanceContainerImageArgs, InstanceContainerImagePtr and InstanceContainerImagePtrOutput values.
@@ -568,7 +568,7 @@ func (i *instanceContainerImagePtrType) ToInstanceContainerImagePtrOutput() Inst
 }
 
 func (i *instanceContainerImagePtrType) ToInstanceContainerImagePtrOutputWithContext(ctx context.Context) InstanceContainerImagePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceContainerImagePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceContainerImageOutput).ToInstanceContainerImagePtrOutput()
 }
 
 type InstanceContainerImageOutput struct{ *pulumi.OutputState }
@@ -685,7 +685,7 @@ func (i InstanceIamBindingConditionArgs) ToInstanceIamBindingConditionPtrOutput(
 }
 
 func (i InstanceIamBindingConditionArgs) ToInstanceIamBindingConditionPtrOutputWithContext(ctx context.Context) InstanceIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceIamBindingConditionOutput).ToInstanceIamBindingConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceIamBindingConditionOutput).ToInstanceIamBindingConditionPtrOutput()
 }
 
 // InstanceIamBindingConditionPtrInput is an input type that accepts InstanceIamBindingConditionArgs, InstanceIamBindingConditionPtr and InstanceIamBindingConditionPtrOutput values.
@@ -718,7 +718,7 @@ func (i *instanceIamBindingConditionPtrType) ToInstanceIamBindingConditionPtrOut
 }
 
 func (i *instanceIamBindingConditionPtrType) ToInstanceIamBindingConditionPtrOutputWithContext(ctx context.Context) InstanceIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceIamBindingConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceIamBindingConditionOutput).ToInstanceIamBindingConditionPtrOutput()
 }
 
 type InstanceIamBindingConditionOutput struct{ *pulumi.OutputState }
@@ -841,7 +841,7 @@ func (i InstanceIamMemberConditionArgs) ToInstanceIamMemberConditionPtrOutput() 
 }
 
 func (i InstanceIamMemberConditionArgs) ToInstanceIamMemberConditionPtrOutputWithContext(ctx context.Context) InstanceIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceIamMemberConditionOutput).ToInstanceIamMemberConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceIamMemberConditionOutput).ToInstanceIamMemberConditionPtrOutput()
 }
 
 // InstanceIamMemberConditionPtrInput is an input type that accepts InstanceIamMemberConditionArgs, InstanceIamMemberConditionPtr and InstanceIamMemberConditionPtrOutput values.
@@ -874,7 +874,7 @@ func (i *instanceIamMemberConditionPtrType) ToInstanceIamMemberConditionPtrOutpu
 }
 
 func (i *instanceIamMemberConditionPtrType) ToInstanceIamMemberConditionPtrOutputWithContext(ctx context.Context) InstanceIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceIamMemberConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceIamMemberConditionOutput).ToInstanceIamMemberConditionPtrOutput()
 }
 
 type InstanceIamMemberConditionOutput struct{ *pulumi.OutputState }
@@ -1005,7 +1005,7 @@ func (i InstanceVmImageArgs) ToInstanceVmImagePtrOutput() InstanceVmImagePtrOutp
 }
 
 func (i InstanceVmImageArgs) ToInstanceVmImagePtrOutputWithContext(ctx context.Context) InstanceVmImagePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceVmImageOutput).ToInstanceVmImagePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceVmImageOutput).ToInstanceVmImagePtrOutput()
 }
 
 // InstanceVmImagePtrInput is an input type that accepts InstanceVmImageArgs, InstanceVmImagePtr and InstanceVmImagePtrOutput values.
@@ -1038,7 +1038,7 @@ func (i *instanceVmImagePtrType) ToInstanceVmImagePtrOutput() InstanceVmImagePtr
 }
 
 func (i *instanceVmImagePtrType) ToInstanceVmImagePtrOutputWithContext(ctx context.Context) InstanceVmImagePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceVmImagePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceVmImageOutput).ToInstanceVmImagePtrOutput()
 }
 
 type InstanceVmImageOutput struct{ *pulumi.OutputState }

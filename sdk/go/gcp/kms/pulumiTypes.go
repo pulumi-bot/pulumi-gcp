@@ -56,7 +56,7 @@ func (i CryptoKeyIAMBindingConditionArgs) ToCryptoKeyIAMBindingConditionPtrOutpu
 }
 
 func (i CryptoKeyIAMBindingConditionArgs) ToCryptoKeyIAMBindingConditionPtrOutputWithContext(ctx context.Context) CryptoKeyIAMBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CryptoKeyIAMBindingConditionOutput).ToCryptoKeyIAMBindingConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(CryptoKeyIAMBindingConditionOutput).ToCryptoKeyIAMBindingConditionPtrOutput()
 }
 
 // CryptoKeyIAMBindingConditionPtrInput is an input type that accepts CryptoKeyIAMBindingConditionArgs, CryptoKeyIAMBindingConditionPtr and CryptoKeyIAMBindingConditionPtrOutput values.
@@ -89,7 +89,7 @@ func (i *cryptoKeyIAMBindingConditionPtrType) ToCryptoKeyIAMBindingConditionPtrO
 }
 
 func (i *cryptoKeyIAMBindingConditionPtrType) ToCryptoKeyIAMBindingConditionPtrOutputWithContext(ctx context.Context) CryptoKeyIAMBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CryptoKeyIAMBindingConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(CryptoKeyIAMBindingConditionOutput).ToCryptoKeyIAMBindingConditionPtrOutput()
 }
 
 type CryptoKeyIAMBindingConditionOutput struct{ *pulumi.OutputState }
@@ -225,7 +225,7 @@ func (i CryptoKeyIAMMemberConditionArgs) ToCryptoKeyIAMMemberConditionPtrOutput(
 }
 
 func (i CryptoKeyIAMMemberConditionArgs) ToCryptoKeyIAMMemberConditionPtrOutputWithContext(ctx context.Context) CryptoKeyIAMMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CryptoKeyIAMMemberConditionOutput).ToCryptoKeyIAMMemberConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(CryptoKeyIAMMemberConditionOutput).ToCryptoKeyIAMMemberConditionPtrOutput()
 }
 
 // CryptoKeyIAMMemberConditionPtrInput is an input type that accepts CryptoKeyIAMMemberConditionArgs, CryptoKeyIAMMemberConditionPtr and CryptoKeyIAMMemberConditionPtrOutput values.
@@ -258,7 +258,7 @@ func (i *cryptoKeyIAMMemberConditionPtrType) ToCryptoKeyIAMMemberConditionPtrOut
 }
 
 func (i *cryptoKeyIAMMemberConditionPtrType) ToCryptoKeyIAMMemberConditionPtrOutputWithContext(ctx context.Context) CryptoKeyIAMMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CryptoKeyIAMMemberConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(CryptoKeyIAMMemberConditionOutput).ToCryptoKeyIAMMemberConditionPtrOutput()
 }
 
 type CryptoKeyIAMMemberConditionOutput struct{ *pulumi.OutputState }
@@ -396,7 +396,7 @@ func (i CryptoKeyVersionTemplateArgs) ToCryptoKeyVersionTemplatePtrOutput() Cryp
 }
 
 func (i CryptoKeyVersionTemplateArgs) ToCryptoKeyVersionTemplatePtrOutputWithContext(ctx context.Context) CryptoKeyVersionTemplatePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CryptoKeyVersionTemplateOutput).ToCryptoKeyVersionTemplatePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(CryptoKeyVersionTemplateOutput).ToCryptoKeyVersionTemplatePtrOutput()
 }
 
 // CryptoKeyVersionTemplatePtrInput is an input type that accepts CryptoKeyVersionTemplateArgs, CryptoKeyVersionTemplatePtr and CryptoKeyVersionTemplatePtrOutput values.
@@ -429,7 +429,7 @@ func (i *cryptoKeyVersionTemplatePtrType) ToCryptoKeyVersionTemplatePtrOutput() 
 }
 
 func (i *cryptoKeyVersionTemplatePtrType) ToCryptoKeyVersionTemplatePtrOutputWithContext(ctx context.Context) CryptoKeyVersionTemplatePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CryptoKeyVersionTemplatePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(CryptoKeyVersionTemplateOutput).ToCryptoKeyVersionTemplatePtrOutput()
 }
 
 type CryptoKeyVersionTemplateOutput struct{ *pulumi.OutputState }
@@ -556,7 +556,7 @@ func (i KeyRingIAMBindingConditionArgs) ToKeyRingIAMBindingConditionPtrOutput() 
 }
 
 func (i KeyRingIAMBindingConditionArgs) ToKeyRingIAMBindingConditionPtrOutputWithContext(ctx context.Context) KeyRingIAMBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(KeyRingIAMBindingConditionOutput).ToKeyRingIAMBindingConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(KeyRingIAMBindingConditionOutput).ToKeyRingIAMBindingConditionPtrOutput()
 }
 
 // KeyRingIAMBindingConditionPtrInput is an input type that accepts KeyRingIAMBindingConditionArgs, KeyRingIAMBindingConditionPtr and KeyRingIAMBindingConditionPtrOutput values.
@@ -589,7 +589,7 @@ func (i *keyRingIAMBindingConditionPtrType) ToKeyRingIAMBindingConditionPtrOutpu
 }
 
 func (i *keyRingIAMBindingConditionPtrType) ToKeyRingIAMBindingConditionPtrOutputWithContext(ctx context.Context) KeyRingIAMBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(KeyRingIAMBindingConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(KeyRingIAMBindingConditionOutput).ToKeyRingIAMBindingConditionPtrOutput()
 }
 
 type KeyRingIAMBindingConditionOutput struct{ *pulumi.OutputState }
@@ -725,7 +725,7 @@ func (i KeyRingIAMMemberConditionArgs) ToKeyRingIAMMemberConditionPtrOutput() Ke
 }
 
 func (i KeyRingIAMMemberConditionArgs) ToKeyRingIAMMemberConditionPtrOutputWithContext(ctx context.Context) KeyRingIAMMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(KeyRingIAMMemberConditionOutput).ToKeyRingIAMMemberConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(KeyRingIAMMemberConditionOutput).ToKeyRingIAMMemberConditionPtrOutput()
 }
 
 // KeyRingIAMMemberConditionPtrInput is an input type that accepts KeyRingIAMMemberConditionArgs, KeyRingIAMMemberConditionPtr and KeyRingIAMMemberConditionPtrOutput values.
@@ -758,7 +758,7 @@ func (i *keyRingIAMMemberConditionPtrType) ToKeyRingIAMMemberConditionPtrOutput(
 }
 
 func (i *keyRingIAMMemberConditionPtrType) ToKeyRingIAMMemberConditionPtrOutputWithContext(ctx context.Context) KeyRingIAMMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(KeyRingIAMMemberConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(KeyRingIAMMemberConditionOutput).ToKeyRingIAMMemberConditionPtrOutput()
 }
 
 type KeyRingIAMMemberConditionOutput struct{ *pulumi.OutputState }

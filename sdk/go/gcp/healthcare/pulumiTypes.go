@@ -50,7 +50,7 @@ func (i ConsentStoreIamBindingConditionArgs) ToConsentStoreIamBindingConditionPt
 }
 
 func (i ConsentStoreIamBindingConditionArgs) ToConsentStoreIamBindingConditionPtrOutputWithContext(ctx context.Context) ConsentStoreIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ConsentStoreIamBindingConditionOutput).ToConsentStoreIamBindingConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ConsentStoreIamBindingConditionOutput).ToConsentStoreIamBindingConditionPtrOutput()
 }
 
 // ConsentStoreIamBindingConditionPtrInput is an input type that accepts ConsentStoreIamBindingConditionArgs, ConsentStoreIamBindingConditionPtr and ConsentStoreIamBindingConditionPtrOutput values.
@@ -83,7 +83,7 @@ func (i *consentStoreIamBindingConditionPtrType) ToConsentStoreIamBindingConditi
 }
 
 func (i *consentStoreIamBindingConditionPtrType) ToConsentStoreIamBindingConditionPtrOutputWithContext(ctx context.Context) ConsentStoreIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ConsentStoreIamBindingConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ConsentStoreIamBindingConditionOutput).ToConsentStoreIamBindingConditionPtrOutput()
 }
 
 type ConsentStoreIamBindingConditionOutput struct{ *pulumi.OutputState }
@@ -206,7 +206,7 @@ func (i ConsentStoreIamMemberConditionArgs) ToConsentStoreIamMemberConditionPtrO
 }
 
 func (i ConsentStoreIamMemberConditionArgs) ToConsentStoreIamMemberConditionPtrOutputWithContext(ctx context.Context) ConsentStoreIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ConsentStoreIamMemberConditionOutput).ToConsentStoreIamMemberConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ConsentStoreIamMemberConditionOutput).ToConsentStoreIamMemberConditionPtrOutput()
 }
 
 // ConsentStoreIamMemberConditionPtrInput is an input type that accepts ConsentStoreIamMemberConditionArgs, ConsentStoreIamMemberConditionPtr and ConsentStoreIamMemberConditionPtrOutput values.
@@ -239,7 +239,7 @@ func (i *consentStoreIamMemberConditionPtrType) ToConsentStoreIamMemberCondition
 }
 
 func (i *consentStoreIamMemberConditionPtrType) ToConsentStoreIamMemberConditionPtrOutputWithContext(ctx context.Context) ConsentStoreIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ConsentStoreIamMemberConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ConsentStoreIamMemberConditionOutput).ToConsentStoreIamMemberConditionPtrOutput()
 }
 
 type ConsentStoreIamMemberConditionOutput struct{ *pulumi.OutputState }
@@ -362,7 +362,7 @@ func (i DatasetIamBindingConditionArgs) ToDatasetIamBindingConditionPtrOutput() 
 }
 
 func (i DatasetIamBindingConditionArgs) ToDatasetIamBindingConditionPtrOutputWithContext(ctx context.Context) DatasetIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DatasetIamBindingConditionOutput).ToDatasetIamBindingConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetIamBindingConditionOutput).ToDatasetIamBindingConditionPtrOutput()
 }
 
 // DatasetIamBindingConditionPtrInput is an input type that accepts DatasetIamBindingConditionArgs, DatasetIamBindingConditionPtr and DatasetIamBindingConditionPtrOutput values.
@@ -395,7 +395,7 @@ func (i *datasetIamBindingConditionPtrType) ToDatasetIamBindingConditionPtrOutpu
 }
 
 func (i *datasetIamBindingConditionPtrType) ToDatasetIamBindingConditionPtrOutputWithContext(ctx context.Context) DatasetIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DatasetIamBindingConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetIamBindingConditionOutput).ToDatasetIamBindingConditionPtrOutput()
 }
 
 type DatasetIamBindingConditionOutput struct{ *pulumi.OutputState }
@@ -518,7 +518,7 @@ func (i DatasetIamMemberConditionArgs) ToDatasetIamMemberConditionPtrOutput() Da
 }
 
 func (i DatasetIamMemberConditionArgs) ToDatasetIamMemberConditionPtrOutputWithContext(ctx context.Context) DatasetIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DatasetIamMemberConditionOutput).ToDatasetIamMemberConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetIamMemberConditionOutput).ToDatasetIamMemberConditionPtrOutput()
 }
 
 // DatasetIamMemberConditionPtrInput is an input type that accepts DatasetIamMemberConditionArgs, DatasetIamMemberConditionPtr and DatasetIamMemberConditionPtrOutput values.
@@ -551,7 +551,7 @@ func (i *datasetIamMemberConditionPtrType) ToDatasetIamMemberConditionPtrOutput(
 }
 
 func (i *datasetIamMemberConditionPtrType) ToDatasetIamMemberConditionPtrOutputWithContext(ctx context.Context) DatasetIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DatasetIamMemberConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(DatasetIamMemberConditionOutput).ToDatasetIamMemberConditionPtrOutput()
 }
 
 type DatasetIamMemberConditionOutput struct{ *pulumi.OutputState }
@@ -674,7 +674,7 @@ func (i DicomStoreIamBindingConditionArgs) ToDicomStoreIamBindingConditionPtrOut
 }
 
 func (i DicomStoreIamBindingConditionArgs) ToDicomStoreIamBindingConditionPtrOutputWithContext(ctx context.Context) DicomStoreIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DicomStoreIamBindingConditionOutput).ToDicomStoreIamBindingConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(DicomStoreIamBindingConditionOutput).ToDicomStoreIamBindingConditionPtrOutput()
 }
 
 // DicomStoreIamBindingConditionPtrInput is an input type that accepts DicomStoreIamBindingConditionArgs, DicomStoreIamBindingConditionPtr and DicomStoreIamBindingConditionPtrOutput values.
@@ -707,7 +707,7 @@ func (i *dicomStoreIamBindingConditionPtrType) ToDicomStoreIamBindingConditionPt
 }
 
 func (i *dicomStoreIamBindingConditionPtrType) ToDicomStoreIamBindingConditionPtrOutputWithContext(ctx context.Context) DicomStoreIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DicomStoreIamBindingConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(DicomStoreIamBindingConditionOutput).ToDicomStoreIamBindingConditionPtrOutput()
 }
 
 type DicomStoreIamBindingConditionOutput struct{ *pulumi.OutputState }
@@ -830,7 +830,7 @@ func (i DicomStoreIamMemberConditionArgs) ToDicomStoreIamMemberConditionPtrOutpu
 }
 
 func (i DicomStoreIamMemberConditionArgs) ToDicomStoreIamMemberConditionPtrOutputWithContext(ctx context.Context) DicomStoreIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DicomStoreIamMemberConditionOutput).ToDicomStoreIamMemberConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(DicomStoreIamMemberConditionOutput).ToDicomStoreIamMemberConditionPtrOutput()
 }
 
 // DicomStoreIamMemberConditionPtrInput is an input type that accepts DicomStoreIamMemberConditionArgs, DicomStoreIamMemberConditionPtr and DicomStoreIamMemberConditionPtrOutput values.
@@ -863,7 +863,7 @@ func (i *dicomStoreIamMemberConditionPtrType) ToDicomStoreIamMemberConditionPtrO
 }
 
 func (i *dicomStoreIamMemberConditionPtrType) ToDicomStoreIamMemberConditionPtrOutputWithContext(ctx context.Context) DicomStoreIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DicomStoreIamMemberConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(DicomStoreIamMemberConditionOutput).ToDicomStoreIamMemberConditionPtrOutput()
 }
 
 type DicomStoreIamMemberConditionOutput struct{ *pulumi.OutputState }
@@ -994,7 +994,7 @@ func (i DicomStoreNotificationConfigArgs) ToDicomStoreNotificationConfigPtrOutpu
 }
 
 func (i DicomStoreNotificationConfigArgs) ToDicomStoreNotificationConfigPtrOutputWithContext(ctx context.Context) DicomStoreNotificationConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DicomStoreNotificationConfigOutput).ToDicomStoreNotificationConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(DicomStoreNotificationConfigOutput).ToDicomStoreNotificationConfigPtrOutput()
 }
 
 // DicomStoreNotificationConfigPtrInput is an input type that accepts DicomStoreNotificationConfigArgs, DicomStoreNotificationConfigPtr and DicomStoreNotificationConfigPtrOutput values.
@@ -1027,7 +1027,7 @@ func (i *dicomStoreNotificationConfigPtrType) ToDicomStoreNotificationConfigPtrO
 }
 
 func (i *dicomStoreNotificationConfigPtrType) ToDicomStoreNotificationConfigPtrOutputWithContext(ctx context.Context) DicomStoreNotificationConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DicomStoreNotificationConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(DicomStoreNotificationConfigOutput).ToDicomStoreNotificationConfigPtrOutput()
 }
 
 type DicomStoreNotificationConfigOutput struct{ *pulumi.OutputState }
@@ -1137,7 +1137,7 @@ func (i FhirStoreIamBindingConditionArgs) ToFhirStoreIamBindingConditionPtrOutpu
 }
 
 func (i FhirStoreIamBindingConditionArgs) ToFhirStoreIamBindingConditionPtrOutputWithContext(ctx context.Context) FhirStoreIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FhirStoreIamBindingConditionOutput).ToFhirStoreIamBindingConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(FhirStoreIamBindingConditionOutput).ToFhirStoreIamBindingConditionPtrOutput()
 }
 
 // FhirStoreIamBindingConditionPtrInput is an input type that accepts FhirStoreIamBindingConditionArgs, FhirStoreIamBindingConditionPtr and FhirStoreIamBindingConditionPtrOutput values.
@@ -1170,7 +1170,7 @@ func (i *fhirStoreIamBindingConditionPtrType) ToFhirStoreIamBindingConditionPtrO
 }
 
 func (i *fhirStoreIamBindingConditionPtrType) ToFhirStoreIamBindingConditionPtrOutputWithContext(ctx context.Context) FhirStoreIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FhirStoreIamBindingConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(FhirStoreIamBindingConditionOutput).ToFhirStoreIamBindingConditionPtrOutput()
 }
 
 type FhirStoreIamBindingConditionOutput struct{ *pulumi.OutputState }
@@ -1293,7 +1293,7 @@ func (i FhirStoreIamMemberConditionArgs) ToFhirStoreIamMemberConditionPtrOutput(
 }
 
 func (i FhirStoreIamMemberConditionArgs) ToFhirStoreIamMemberConditionPtrOutputWithContext(ctx context.Context) FhirStoreIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FhirStoreIamMemberConditionOutput).ToFhirStoreIamMemberConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(FhirStoreIamMemberConditionOutput).ToFhirStoreIamMemberConditionPtrOutput()
 }
 
 // FhirStoreIamMemberConditionPtrInput is an input type that accepts FhirStoreIamMemberConditionArgs, FhirStoreIamMemberConditionPtr and FhirStoreIamMemberConditionPtrOutput values.
@@ -1326,7 +1326,7 @@ func (i *fhirStoreIamMemberConditionPtrType) ToFhirStoreIamMemberConditionPtrOut
 }
 
 func (i *fhirStoreIamMemberConditionPtrType) ToFhirStoreIamMemberConditionPtrOutputWithContext(ctx context.Context) FhirStoreIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FhirStoreIamMemberConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(FhirStoreIamMemberConditionOutput).ToFhirStoreIamMemberConditionPtrOutput()
 }
 
 type FhirStoreIamMemberConditionOutput struct{ *pulumi.OutputState }
@@ -1457,7 +1457,7 @@ func (i FhirStoreNotificationConfigArgs) ToFhirStoreNotificationConfigPtrOutput(
 }
 
 func (i FhirStoreNotificationConfigArgs) ToFhirStoreNotificationConfigPtrOutputWithContext(ctx context.Context) FhirStoreNotificationConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FhirStoreNotificationConfigOutput).ToFhirStoreNotificationConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(FhirStoreNotificationConfigOutput).ToFhirStoreNotificationConfigPtrOutput()
 }
 
 // FhirStoreNotificationConfigPtrInput is an input type that accepts FhirStoreNotificationConfigArgs, FhirStoreNotificationConfigPtr and FhirStoreNotificationConfigPtrOutput values.
@@ -1490,7 +1490,7 @@ func (i *fhirStoreNotificationConfigPtrType) ToFhirStoreNotificationConfigPtrOut
 }
 
 func (i *fhirStoreNotificationConfigPtrType) ToFhirStoreNotificationConfigPtrOutputWithContext(ctx context.Context) FhirStoreNotificationConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FhirStoreNotificationConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(FhirStoreNotificationConfigOutput).ToFhirStoreNotificationConfigPtrOutput()
 }
 
 type FhirStoreNotificationConfigOutput struct{ *pulumi.OutputState }
@@ -1875,7 +1875,7 @@ func (i Hl7StoreIamBindingConditionArgs) ToHl7StoreIamBindingConditionPtrOutput(
 }
 
 func (i Hl7StoreIamBindingConditionArgs) ToHl7StoreIamBindingConditionPtrOutputWithContext(ctx context.Context) Hl7StoreIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(Hl7StoreIamBindingConditionOutput).ToHl7StoreIamBindingConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(Hl7StoreIamBindingConditionOutput).ToHl7StoreIamBindingConditionPtrOutput()
 }
 
 // Hl7StoreIamBindingConditionPtrInput is an input type that accepts Hl7StoreIamBindingConditionArgs, Hl7StoreIamBindingConditionPtr and Hl7StoreIamBindingConditionPtrOutput values.
@@ -1908,7 +1908,7 @@ func (i *hl7StoreIamBindingConditionPtrType) ToHl7StoreIamBindingConditionPtrOut
 }
 
 func (i *hl7StoreIamBindingConditionPtrType) ToHl7StoreIamBindingConditionPtrOutputWithContext(ctx context.Context) Hl7StoreIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(Hl7StoreIamBindingConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(Hl7StoreIamBindingConditionOutput).ToHl7StoreIamBindingConditionPtrOutput()
 }
 
 type Hl7StoreIamBindingConditionOutput struct{ *pulumi.OutputState }
@@ -2031,7 +2031,7 @@ func (i Hl7StoreIamMemberConditionArgs) ToHl7StoreIamMemberConditionPtrOutput() 
 }
 
 func (i Hl7StoreIamMemberConditionArgs) ToHl7StoreIamMemberConditionPtrOutputWithContext(ctx context.Context) Hl7StoreIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(Hl7StoreIamMemberConditionOutput).ToHl7StoreIamMemberConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(Hl7StoreIamMemberConditionOutput).ToHl7StoreIamMemberConditionPtrOutput()
 }
 
 // Hl7StoreIamMemberConditionPtrInput is an input type that accepts Hl7StoreIamMemberConditionArgs, Hl7StoreIamMemberConditionPtr and Hl7StoreIamMemberConditionPtrOutput values.
@@ -2064,7 +2064,7 @@ func (i *hl7StoreIamMemberConditionPtrType) ToHl7StoreIamMemberConditionPtrOutpu
 }
 
 func (i *hl7StoreIamMemberConditionPtrType) ToHl7StoreIamMemberConditionPtrOutputWithContext(ctx context.Context) Hl7StoreIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(Hl7StoreIamMemberConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(Hl7StoreIamMemberConditionOutput).ToHl7StoreIamMemberConditionPtrOutput()
 }
 
 type Hl7StoreIamMemberConditionOutput struct{ *pulumi.OutputState }
@@ -2195,7 +2195,7 @@ func (i Hl7StoreNotificationConfigArgs) ToHl7StoreNotificationConfigPtrOutput() 
 }
 
 func (i Hl7StoreNotificationConfigArgs) ToHl7StoreNotificationConfigPtrOutputWithContext(ctx context.Context) Hl7StoreNotificationConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(Hl7StoreNotificationConfigOutput).ToHl7StoreNotificationConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(Hl7StoreNotificationConfigOutput).ToHl7StoreNotificationConfigPtrOutput()
 }
 
 // Hl7StoreNotificationConfigPtrInput is an input type that accepts Hl7StoreNotificationConfigArgs, Hl7StoreNotificationConfigPtr and Hl7StoreNotificationConfigPtrOutput values.
@@ -2228,7 +2228,7 @@ func (i *hl7StoreNotificationConfigPtrType) ToHl7StoreNotificationConfigPtrOutpu
 }
 
 func (i *hl7StoreNotificationConfigPtrType) ToHl7StoreNotificationConfigPtrOutputWithContext(ctx context.Context) Hl7StoreNotificationConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(Hl7StoreNotificationConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(Hl7StoreNotificationConfigOutput).ToHl7StoreNotificationConfigPtrOutput()
 }
 
 type Hl7StoreNotificationConfigOutput struct{ *pulumi.OutputState }
@@ -2495,7 +2495,7 @@ func (i Hl7StoreParserConfigArgs) ToHl7StoreParserConfigPtrOutput() Hl7StorePars
 }
 
 func (i Hl7StoreParserConfigArgs) ToHl7StoreParserConfigPtrOutputWithContext(ctx context.Context) Hl7StoreParserConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(Hl7StoreParserConfigOutput).ToHl7StoreParserConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(Hl7StoreParserConfigOutput).ToHl7StoreParserConfigPtrOutput()
 }
 
 // Hl7StoreParserConfigPtrInput is an input type that accepts Hl7StoreParserConfigArgs, Hl7StoreParserConfigPtr and Hl7StoreParserConfigPtrOutput values.
@@ -2528,7 +2528,7 @@ func (i *hl7StoreParserConfigPtrType) ToHl7StoreParserConfigPtrOutput() Hl7Store
 }
 
 func (i *hl7StoreParserConfigPtrType) ToHl7StoreParserConfigPtrOutputWithContext(ctx context.Context) Hl7StoreParserConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(Hl7StoreParserConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(Hl7StoreParserConfigOutput).ToHl7StoreParserConfigPtrOutput()
 }
 
 type Hl7StoreParserConfigOutput struct{ *pulumi.OutputState }

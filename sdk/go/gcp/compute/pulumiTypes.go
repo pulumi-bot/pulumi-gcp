@@ -130,7 +130,7 @@ func (i AutoscalarAutoscalingPolicyArgs) ToAutoscalarAutoscalingPolicyPtrOutput(
 }
 
 func (i AutoscalarAutoscalingPolicyArgs) ToAutoscalarAutoscalingPolicyPtrOutputWithContext(ctx context.Context) AutoscalarAutoscalingPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AutoscalarAutoscalingPolicyOutput).ToAutoscalarAutoscalingPolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscalarAutoscalingPolicyOutput).ToAutoscalarAutoscalingPolicyPtrOutput()
 }
 
 // AutoscalarAutoscalingPolicyPtrInput is an input type that accepts AutoscalarAutoscalingPolicyArgs, AutoscalarAutoscalingPolicyPtr and AutoscalarAutoscalingPolicyPtrOutput values.
@@ -163,7 +163,7 @@ func (i *autoscalarAutoscalingPolicyPtrType) ToAutoscalarAutoscalingPolicyPtrOut
 }
 
 func (i *autoscalarAutoscalingPolicyPtrType) ToAutoscalarAutoscalingPolicyPtrOutputWithContext(ctx context.Context) AutoscalarAutoscalingPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AutoscalarAutoscalingPolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscalarAutoscalingPolicyOutput).ToAutoscalarAutoscalingPolicyPtrOutput()
 }
 
 type AutoscalarAutoscalingPolicyOutput struct{ *pulumi.OutputState }
@@ -443,7 +443,7 @@ func (i AutoscalarAutoscalingPolicyCpuUtilizationArgs) ToAutoscalarAutoscalingPo
 }
 
 func (i AutoscalarAutoscalingPolicyCpuUtilizationArgs) ToAutoscalarAutoscalingPolicyCpuUtilizationPtrOutputWithContext(ctx context.Context) AutoscalarAutoscalingPolicyCpuUtilizationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AutoscalarAutoscalingPolicyCpuUtilizationOutput).ToAutoscalarAutoscalingPolicyCpuUtilizationPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscalarAutoscalingPolicyCpuUtilizationOutput).ToAutoscalarAutoscalingPolicyCpuUtilizationPtrOutput()
 }
 
 // AutoscalarAutoscalingPolicyCpuUtilizationPtrInput is an input type that accepts AutoscalarAutoscalingPolicyCpuUtilizationArgs, AutoscalarAutoscalingPolicyCpuUtilizationPtr and AutoscalarAutoscalingPolicyCpuUtilizationPtrOutput values.
@@ -476,7 +476,7 @@ func (i *autoscalarAutoscalingPolicyCpuUtilizationPtrType) ToAutoscalarAutoscali
 }
 
 func (i *autoscalarAutoscalingPolicyCpuUtilizationPtrType) ToAutoscalarAutoscalingPolicyCpuUtilizationPtrOutputWithContext(ctx context.Context) AutoscalarAutoscalingPolicyCpuUtilizationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AutoscalarAutoscalingPolicyCpuUtilizationPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscalarAutoscalingPolicyCpuUtilizationOutput).ToAutoscalarAutoscalingPolicyCpuUtilizationPtrOutput()
 }
 
 type AutoscalarAutoscalingPolicyCpuUtilizationOutput struct{ *pulumi.OutputState }
@@ -584,7 +584,7 @@ func (i AutoscalarAutoscalingPolicyLoadBalancingUtilizationArgs) ToAutoscalarAut
 }
 
 func (i AutoscalarAutoscalingPolicyLoadBalancingUtilizationArgs) ToAutoscalarAutoscalingPolicyLoadBalancingUtilizationPtrOutputWithContext(ctx context.Context) AutoscalarAutoscalingPolicyLoadBalancingUtilizationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AutoscalarAutoscalingPolicyLoadBalancingUtilizationOutput).ToAutoscalarAutoscalingPolicyLoadBalancingUtilizationPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscalarAutoscalingPolicyLoadBalancingUtilizationOutput).ToAutoscalarAutoscalingPolicyLoadBalancingUtilizationPtrOutput()
 }
 
 // AutoscalarAutoscalingPolicyLoadBalancingUtilizationPtrInput is an input type that accepts AutoscalarAutoscalingPolicyLoadBalancingUtilizationArgs, AutoscalarAutoscalingPolicyLoadBalancingUtilizationPtr and AutoscalarAutoscalingPolicyLoadBalancingUtilizationPtrOutput values.
@@ -617,7 +617,7 @@ func (i *autoscalarAutoscalingPolicyLoadBalancingUtilizationPtrType) ToAutoscala
 }
 
 func (i *autoscalarAutoscalingPolicyLoadBalancingUtilizationPtrType) ToAutoscalarAutoscalingPolicyLoadBalancingUtilizationPtrOutputWithContext(ctx context.Context) AutoscalarAutoscalingPolicyLoadBalancingUtilizationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AutoscalarAutoscalingPolicyLoadBalancingUtilizationPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscalarAutoscalingPolicyLoadBalancingUtilizationOutput).ToAutoscalarAutoscalingPolicyLoadBalancingUtilizationPtrOutput()
 }
 
 type AutoscalarAutoscalingPolicyLoadBalancingUtilizationOutput struct{ *pulumi.OutputState }
@@ -997,7 +997,7 @@ func (i AutoscalarAutoscalingPolicyScaleDownControlArgs) ToAutoscalarAutoscaling
 }
 
 func (i AutoscalarAutoscalingPolicyScaleDownControlArgs) ToAutoscalarAutoscalingPolicyScaleDownControlPtrOutputWithContext(ctx context.Context) AutoscalarAutoscalingPolicyScaleDownControlPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AutoscalarAutoscalingPolicyScaleDownControlOutput).ToAutoscalarAutoscalingPolicyScaleDownControlPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscalarAutoscalingPolicyScaleDownControlOutput).ToAutoscalarAutoscalingPolicyScaleDownControlPtrOutput()
 }
 
 // AutoscalarAutoscalingPolicyScaleDownControlPtrInput is an input type that accepts AutoscalarAutoscalingPolicyScaleDownControlArgs, AutoscalarAutoscalingPolicyScaleDownControlPtr and AutoscalarAutoscalingPolicyScaleDownControlPtrOutput values.
@@ -1030,7 +1030,7 @@ func (i *autoscalarAutoscalingPolicyScaleDownControlPtrType) ToAutoscalarAutosca
 }
 
 func (i *autoscalarAutoscalingPolicyScaleDownControlPtrType) ToAutoscalarAutoscalingPolicyScaleDownControlPtrOutputWithContext(ctx context.Context) AutoscalarAutoscalingPolicyScaleDownControlPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AutoscalarAutoscalingPolicyScaleDownControlPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscalarAutoscalingPolicyScaleDownControlOutput).ToAutoscalarAutoscalingPolicyScaleDownControlPtrOutput()
 }
 
 type AutoscalarAutoscalingPolicyScaleDownControlOutput struct{ *pulumi.OutputState }
@@ -1159,7 +1159,7 @@ func (i AutoscalarAutoscalingPolicyScaleDownControlMaxScaledDownReplicasArgs) To
 }
 
 func (i AutoscalarAutoscalingPolicyScaleDownControlMaxScaledDownReplicasArgs) ToAutoscalarAutoscalingPolicyScaleDownControlMaxScaledDownReplicasPtrOutputWithContext(ctx context.Context) AutoscalarAutoscalingPolicyScaleDownControlMaxScaledDownReplicasPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AutoscalarAutoscalingPolicyScaleDownControlMaxScaledDownReplicasOutput).ToAutoscalarAutoscalingPolicyScaleDownControlMaxScaledDownReplicasPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscalarAutoscalingPolicyScaleDownControlMaxScaledDownReplicasOutput).ToAutoscalarAutoscalingPolicyScaleDownControlMaxScaledDownReplicasPtrOutput()
 }
 
 // AutoscalarAutoscalingPolicyScaleDownControlMaxScaledDownReplicasPtrInput is an input type that accepts AutoscalarAutoscalingPolicyScaleDownControlMaxScaledDownReplicasArgs, AutoscalarAutoscalingPolicyScaleDownControlMaxScaledDownReplicasPtr and AutoscalarAutoscalingPolicyScaleDownControlMaxScaledDownReplicasPtrOutput values.
@@ -1192,7 +1192,7 @@ func (i *autoscalarAutoscalingPolicyScaleDownControlMaxScaledDownReplicasPtrType
 }
 
 func (i *autoscalarAutoscalingPolicyScaleDownControlMaxScaledDownReplicasPtrType) ToAutoscalarAutoscalingPolicyScaleDownControlMaxScaledDownReplicasPtrOutputWithContext(ctx context.Context) AutoscalarAutoscalingPolicyScaleDownControlMaxScaledDownReplicasPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AutoscalarAutoscalingPolicyScaleDownControlMaxScaledDownReplicasPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscalarAutoscalingPolicyScaleDownControlMaxScaledDownReplicasOutput).ToAutoscalarAutoscalingPolicyScaleDownControlMaxScaledDownReplicasPtrOutput()
 }
 
 type AutoscalarAutoscalingPolicyScaleDownControlMaxScaledDownReplicasOutput struct{ *pulumi.OutputState }
@@ -1319,7 +1319,7 @@ func (i AutoscalarAutoscalingPolicyScaleInControlArgs) ToAutoscalarAutoscalingPo
 }
 
 func (i AutoscalarAutoscalingPolicyScaleInControlArgs) ToAutoscalarAutoscalingPolicyScaleInControlPtrOutputWithContext(ctx context.Context) AutoscalarAutoscalingPolicyScaleInControlPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AutoscalarAutoscalingPolicyScaleInControlOutput).ToAutoscalarAutoscalingPolicyScaleInControlPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscalarAutoscalingPolicyScaleInControlOutput).ToAutoscalarAutoscalingPolicyScaleInControlPtrOutput()
 }
 
 // AutoscalarAutoscalingPolicyScaleInControlPtrInput is an input type that accepts AutoscalarAutoscalingPolicyScaleInControlArgs, AutoscalarAutoscalingPolicyScaleInControlPtr and AutoscalarAutoscalingPolicyScaleInControlPtrOutput values.
@@ -1352,7 +1352,7 @@ func (i *autoscalarAutoscalingPolicyScaleInControlPtrType) ToAutoscalarAutoscali
 }
 
 func (i *autoscalarAutoscalingPolicyScaleInControlPtrType) ToAutoscalarAutoscalingPolicyScaleInControlPtrOutputWithContext(ctx context.Context) AutoscalarAutoscalingPolicyScaleInControlPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AutoscalarAutoscalingPolicyScaleInControlPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscalarAutoscalingPolicyScaleInControlOutput).ToAutoscalarAutoscalingPolicyScaleInControlPtrOutput()
 }
 
 type AutoscalarAutoscalingPolicyScaleInControlOutput struct{ *pulumi.OutputState }
@@ -1481,7 +1481,7 @@ func (i AutoscalarAutoscalingPolicyScaleInControlMaxScaledInReplicasArgs) ToAuto
 }
 
 func (i AutoscalarAutoscalingPolicyScaleInControlMaxScaledInReplicasArgs) ToAutoscalarAutoscalingPolicyScaleInControlMaxScaledInReplicasPtrOutputWithContext(ctx context.Context) AutoscalarAutoscalingPolicyScaleInControlMaxScaledInReplicasPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AutoscalarAutoscalingPolicyScaleInControlMaxScaledInReplicasOutput).ToAutoscalarAutoscalingPolicyScaleInControlMaxScaledInReplicasPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscalarAutoscalingPolicyScaleInControlMaxScaledInReplicasOutput).ToAutoscalarAutoscalingPolicyScaleInControlMaxScaledInReplicasPtrOutput()
 }
 
 // AutoscalarAutoscalingPolicyScaleInControlMaxScaledInReplicasPtrInput is an input type that accepts AutoscalarAutoscalingPolicyScaleInControlMaxScaledInReplicasArgs, AutoscalarAutoscalingPolicyScaleInControlMaxScaledInReplicasPtr and AutoscalarAutoscalingPolicyScaleInControlMaxScaledInReplicasPtrOutput values.
@@ -1514,7 +1514,7 @@ func (i *autoscalarAutoscalingPolicyScaleInControlMaxScaledInReplicasPtrType) To
 }
 
 func (i *autoscalarAutoscalingPolicyScaleInControlMaxScaledInReplicasPtrType) ToAutoscalarAutoscalingPolicyScaleInControlMaxScaledInReplicasPtrOutputWithContext(ctx context.Context) AutoscalarAutoscalingPolicyScaleInControlMaxScaledInReplicasPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AutoscalarAutoscalingPolicyScaleInControlMaxScaledInReplicasPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscalarAutoscalingPolicyScaleInControlMaxScaledInReplicasOutput).ToAutoscalarAutoscalingPolicyScaleInControlMaxScaledInReplicasPtrOutput()
 }
 
 type AutoscalarAutoscalingPolicyScaleInControlMaxScaledInReplicasOutput struct{ *pulumi.OutputState }
@@ -1715,7 +1715,7 @@ func (i AutoscalerAutoscalingPolicyArgs) ToAutoscalerAutoscalingPolicyPtrOutput(
 }
 
 func (i AutoscalerAutoscalingPolicyArgs) ToAutoscalerAutoscalingPolicyPtrOutputWithContext(ctx context.Context) AutoscalerAutoscalingPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AutoscalerAutoscalingPolicyOutput).ToAutoscalerAutoscalingPolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscalerAutoscalingPolicyOutput).ToAutoscalerAutoscalingPolicyPtrOutput()
 }
 
 // AutoscalerAutoscalingPolicyPtrInput is an input type that accepts AutoscalerAutoscalingPolicyArgs, AutoscalerAutoscalingPolicyPtr and AutoscalerAutoscalingPolicyPtrOutput values.
@@ -1748,7 +1748,7 @@ func (i *autoscalerAutoscalingPolicyPtrType) ToAutoscalerAutoscalingPolicyPtrOut
 }
 
 func (i *autoscalerAutoscalingPolicyPtrType) ToAutoscalerAutoscalingPolicyPtrOutputWithContext(ctx context.Context) AutoscalerAutoscalingPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AutoscalerAutoscalingPolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscalerAutoscalingPolicyOutput).ToAutoscalerAutoscalingPolicyPtrOutput()
 }
 
 type AutoscalerAutoscalingPolicyOutput struct{ *pulumi.OutputState }
@@ -2028,7 +2028,7 @@ func (i AutoscalerAutoscalingPolicyCpuUtilizationArgs) ToAutoscalerAutoscalingPo
 }
 
 func (i AutoscalerAutoscalingPolicyCpuUtilizationArgs) ToAutoscalerAutoscalingPolicyCpuUtilizationPtrOutputWithContext(ctx context.Context) AutoscalerAutoscalingPolicyCpuUtilizationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AutoscalerAutoscalingPolicyCpuUtilizationOutput).ToAutoscalerAutoscalingPolicyCpuUtilizationPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscalerAutoscalingPolicyCpuUtilizationOutput).ToAutoscalerAutoscalingPolicyCpuUtilizationPtrOutput()
 }
 
 // AutoscalerAutoscalingPolicyCpuUtilizationPtrInput is an input type that accepts AutoscalerAutoscalingPolicyCpuUtilizationArgs, AutoscalerAutoscalingPolicyCpuUtilizationPtr and AutoscalerAutoscalingPolicyCpuUtilizationPtrOutput values.
@@ -2061,7 +2061,7 @@ func (i *autoscalerAutoscalingPolicyCpuUtilizationPtrType) ToAutoscalerAutoscali
 }
 
 func (i *autoscalerAutoscalingPolicyCpuUtilizationPtrType) ToAutoscalerAutoscalingPolicyCpuUtilizationPtrOutputWithContext(ctx context.Context) AutoscalerAutoscalingPolicyCpuUtilizationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AutoscalerAutoscalingPolicyCpuUtilizationPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscalerAutoscalingPolicyCpuUtilizationOutput).ToAutoscalerAutoscalingPolicyCpuUtilizationPtrOutput()
 }
 
 type AutoscalerAutoscalingPolicyCpuUtilizationOutput struct{ *pulumi.OutputState }
@@ -2169,7 +2169,7 @@ func (i AutoscalerAutoscalingPolicyLoadBalancingUtilizationArgs) ToAutoscalerAut
 }
 
 func (i AutoscalerAutoscalingPolicyLoadBalancingUtilizationArgs) ToAutoscalerAutoscalingPolicyLoadBalancingUtilizationPtrOutputWithContext(ctx context.Context) AutoscalerAutoscalingPolicyLoadBalancingUtilizationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AutoscalerAutoscalingPolicyLoadBalancingUtilizationOutput).ToAutoscalerAutoscalingPolicyLoadBalancingUtilizationPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscalerAutoscalingPolicyLoadBalancingUtilizationOutput).ToAutoscalerAutoscalingPolicyLoadBalancingUtilizationPtrOutput()
 }
 
 // AutoscalerAutoscalingPolicyLoadBalancingUtilizationPtrInput is an input type that accepts AutoscalerAutoscalingPolicyLoadBalancingUtilizationArgs, AutoscalerAutoscalingPolicyLoadBalancingUtilizationPtr and AutoscalerAutoscalingPolicyLoadBalancingUtilizationPtrOutput values.
@@ -2202,7 +2202,7 @@ func (i *autoscalerAutoscalingPolicyLoadBalancingUtilizationPtrType) ToAutoscale
 }
 
 func (i *autoscalerAutoscalingPolicyLoadBalancingUtilizationPtrType) ToAutoscalerAutoscalingPolicyLoadBalancingUtilizationPtrOutputWithContext(ctx context.Context) AutoscalerAutoscalingPolicyLoadBalancingUtilizationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AutoscalerAutoscalingPolicyLoadBalancingUtilizationPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscalerAutoscalingPolicyLoadBalancingUtilizationOutput).ToAutoscalerAutoscalingPolicyLoadBalancingUtilizationPtrOutput()
 }
 
 type AutoscalerAutoscalingPolicyLoadBalancingUtilizationOutput struct{ *pulumi.OutputState }
@@ -2582,7 +2582,7 @@ func (i AutoscalerAutoscalingPolicyScaleDownControlArgs) ToAutoscalerAutoscaling
 }
 
 func (i AutoscalerAutoscalingPolicyScaleDownControlArgs) ToAutoscalerAutoscalingPolicyScaleDownControlPtrOutputWithContext(ctx context.Context) AutoscalerAutoscalingPolicyScaleDownControlPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AutoscalerAutoscalingPolicyScaleDownControlOutput).ToAutoscalerAutoscalingPolicyScaleDownControlPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscalerAutoscalingPolicyScaleDownControlOutput).ToAutoscalerAutoscalingPolicyScaleDownControlPtrOutput()
 }
 
 // AutoscalerAutoscalingPolicyScaleDownControlPtrInput is an input type that accepts AutoscalerAutoscalingPolicyScaleDownControlArgs, AutoscalerAutoscalingPolicyScaleDownControlPtr and AutoscalerAutoscalingPolicyScaleDownControlPtrOutput values.
@@ -2615,7 +2615,7 @@ func (i *autoscalerAutoscalingPolicyScaleDownControlPtrType) ToAutoscalerAutosca
 }
 
 func (i *autoscalerAutoscalingPolicyScaleDownControlPtrType) ToAutoscalerAutoscalingPolicyScaleDownControlPtrOutputWithContext(ctx context.Context) AutoscalerAutoscalingPolicyScaleDownControlPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AutoscalerAutoscalingPolicyScaleDownControlPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscalerAutoscalingPolicyScaleDownControlOutput).ToAutoscalerAutoscalingPolicyScaleDownControlPtrOutput()
 }
 
 type AutoscalerAutoscalingPolicyScaleDownControlOutput struct{ *pulumi.OutputState }
@@ -2744,7 +2744,7 @@ func (i AutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasArgs) To
 }
 
 func (i AutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasArgs) ToAutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasPtrOutputWithContext(ctx context.Context) AutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasOutput).ToAutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasOutput).ToAutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasPtrOutput()
 }
 
 // AutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasPtrInput is an input type that accepts AutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasArgs, AutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasPtr and AutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasPtrOutput values.
@@ -2777,7 +2777,7 @@ func (i *autoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasPtrType
 }
 
 func (i *autoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasPtrType) ToAutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasPtrOutputWithContext(ctx context.Context) AutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasOutput).ToAutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasPtrOutput()
 }
 
 type AutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasOutput struct{ *pulumi.OutputState }
@@ -2904,7 +2904,7 @@ func (i AutoscalerAutoscalingPolicyScaleInControlArgs) ToAutoscalerAutoscalingPo
 }
 
 func (i AutoscalerAutoscalingPolicyScaleInControlArgs) ToAutoscalerAutoscalingPolicyScaleInControlPtrOutputWithContext(ctx context.Context) AutoscalerAutoscalingPolicyScaleInControlPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AutoscalerAutoscalingPolicyScaleInControlOutput).ToAutoscalerAutoscalingPolicyScaleInControlPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscalerAutoscalingPolicyScaleInControlOutput).ToAutoscalerAutoscalingPolicyScaleInControlPtrOutput()
 }
 
 // AutoscalerAutoscalingPolicyScaleInControlPtrInput is an input type that accepts AutoscalerAutoscalingPolicyScaleInControlArgs, AutoscalerAutoscalingPolicyScaleInControlPtr and AutoscalerAutoscalingPolicyScaleInControlPtrOutput values.
@@ -2937,7 +2937,7 @@ func (i *autoscalerAutoscalingPolicyScaleInControlPtrType) ToAutoscalerAutoscali
 }
 
 func (i *autoscalerAutoscalingPolicyScaleInControlPtrType) ToAutoscalerAutoscalingPolicyScaleInControlPtrOutputWithContext(ctx context.Context) AutoscalerAutoscalingPolicyScaleInControlPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AutoscalerAutoscalingPolicyScaleInControlPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscalerAutoscalingPolicyScaleInControlOutput).ToAutoscalerAutoscalingPolicyScaleInControlPtrOutput()
 }
 
 type AutoscalerAutoscalingPolicyScaleInControlOutput struct{ *pulumi.OutputState }
@@ -3066,7 +3066,7 @@ func (i AutoscalerAutoscalingPolicyScaleInControlMaxScaledInReplicasArgs) ToAuto
 }
 
 func (i AutoscalerAutoscalingPolicyScaleInControlMaxScaledInReplicasArgs) ToAutoscalerAutoscalingPolicyScaleInControlMaxScaledInReplicasPtrOutputWithContext(ctx context.Context) AutoscalerAutoscalingPolicyScaleInControlMaxScaledInReplicasPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AutoscalerAutoscalingPolicyScaleInControlMaxScaledInReplicasOutput).ToAutoscalerAutoscalingPolicyScaleInControlMaxScaledInReplicasPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscalerAutoscalingPolicyScaleInControlMaxScaledInReplicasOutput).ToAutoscalerAutoscalingPolicyScaleInControlMaxScaledInReplicasPtrOutput()
 }
 
 // AutoscalerAutoscalingPolicyScaleInControlMaxScaledInReplicasPtrInput is an input type that accepts AutoscalerAutoscalingPolicyScaleInControlMaxScaledInReplicasArgs, AutoscalerAutoscalingPolicyScaleInControlMaxScaledInReplicasPtr and AutoscalerAutoscalingPolicyScaleInControlMaxScaledInReplicasPtrOutput values.
@@ -3099,7 +3099,7 @@ func (i *autoscalerAutoscalingPolicyScaleInControlMaxScaledInReplicasPtrType) To
 }
 
 func (i *autoscalerAutoscalingPolicyScaleInControlMaxScaledInReplicasPtrType) ToAutoscalerAutoscalingPolicyScaleInControlMaxScaledInReplicasPtrOutputWithContext(ctx context.Context) AutoscalerAutoscalingPolicyScaleInControlMaxScaledInReplicasPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AutoscalerAutoscalingPolicyScaleInControlMaxScaledInReplicasPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscalerAutoscalingPolicyScaleInControlMaxScaledInReplicasOutput).ToAutoscalerAutoscalingPolicyScaleInControlMaxScaledInReplicasPtrOutput()
 }
 
 type AutoscalerAutoscalingPolicyScaleInControlMaxScaledInReplicasOutput struct{ *pulumi.OutputState }
@@ -3246,7 +3246,7 @@ func (i BackendBucketCdnPolicyArgs) ToBackendBucketCdnPolicyPtrOutput() BackendB
 }
 
 func (i BackendBucketCdnPolicyArgs) ToBackendBucketCdnPolicyPtrOutputWithContext(ctx context.Context) BackendBucketCdnPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BackendBucketCdnPolicyOutput).ToBackendBucketCdnPolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(BackendBucketCdnPolicyOutput).ToBackendBucketCdnPolicyPtrOutput()
 }
 
 // BackendBucketCdnPolicyPtrInput is an input type that accepts BackendBucketCdnPolicyArgs, BackendBucketCdnPolicyPtr and BackendBucketCdnPolicyPtrOutput values.
@@ -3279,7 +3279,7 @@ func (i *backendBucketCdnPolicyPtrType) ToBackendBucketCdnPolicyPtrOutput() Back
 }
 
 func (i *backendBucketCdnPolicyPtrType) ToBackendBucketCdnPolicyPtrOutputWithContext(ctx context.Context) BackendBucketCdnPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BackendBucketCdnPolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(BackendBucketCdnPolicyOutput).ToBackendBucketCdnPolicyPtrOutput()
 }
 
 type BackendBucketCdnPolicyOutput struct{ *pulumi.OutputState }
@@ -3947,7 +3947,7 @@ func (i BackendServiceCdnPolicyArgs) ToBackendServiceCdnPolicyPtrOutput() Backen
 }
 
 func (i BackendServiceCdnPolicyArgs) ToBackendServiceCdnPolicyPtrOutputWithContext(ctx context.Context) BackendServiceCdnPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceCdnPolicyOutput).ToBackendServiceCdnPolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceCdnPolicyOutput).ToBackendServiceCdnPolicyPtrOutput()
 }
 
 // BackendServiceCdnPolicyPtrInput is an input type that accepts BackendServiceCdnPolicyArgs, BackendServiceCdnPolicyPtr and BackendServiceCdnPolicyPtrOutput values.
@@ -3980,7 +3980,7 @@ func (i *backendServiceCdnPolicyPtrType) ToBackendServiceCdnPolicyPtrOutput() Ba
 }
 
 func (i *backendServiceCdnPolicyPtrType) ToBackendServiceCdnPolicyPtrOutputWithContext(ctx context.Context) BackendServiceCdnPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceCdnPolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceCdnPolicyOutput).ToBackendServiceCdnPolicyPtrOutput()
 }
 
 type BackendServiceCdnPolicyOutput struct{ *pulumi.OutputState }
@@ -4246,7 +4246,7 @@ func (i BackendServiceCdnPolicyCacheKeyPolicyArgs) ToBackendServiceCdnPolicyCach
 }
 
 func (i BackendServiceCdnPolicyCacheKeyPolicyArgs) ToBackendServiceCdnPolicyCacheKeyPolicyPtrOutputWithContext(ctx context.Context) BackendServiceCdnPolicyCacheKeyPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceCdnPolicyCacheKeyPolicyOutput).ToBackendServiceCdnPolicyCacheKeyPolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceCdnPolicyCacheKeyPolicyOutput).ToBackendServiceCdnPolicyCacheKeyPolicyPtrOutput()
 }
 
 // BackendServiceCdnPolicyCacheKeyPolicyPtrInput is an input type that accepts BackendServiceCdnPolicyCacheKeyPolicyArgs, BackendServiceCdnPolicyCacheKeyPolicyPtr and BackendServiceCdnPolicyCacheKeyPolicyPtrOutput values.
@@ -4279,7 +4279,7 @@ func (i *backendServiceCdnPolicyCacheKeyPolicyPtrType) ToBackendServiceCdnPolicy
 }
 
 func (i *backendServiceCdnPolicyCacheKeyPolicyPtrType) ToBackendServiceCdnPolicyCacheKeyPolicyPtrOutputWithContext(ctx context.Context) BackendServiceCdnPolicyCacheKeyPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceCdnPolicyCacheKeyPolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceCdnPolicyCacheKeyPolicyOutput).ToBackendServiceCdnPolicyCacheKeyPolicyPtrOutput()
 }
 
 type BackendServiceCdnPolicyCacheKeyPolicyOutput struct{ *pulumi.OutputState }
@@ -4597,7 +4597,7 @@ func (i BackendServiceCircuitBreakersArgs) ToBackendServiceCircuitBreakersPtrOut
 }
 
 func (i BackendServiceCircuitBreakersArgs) ToBackendServiceCircuitBreakersPtrOutputWithContext(ctx context.Context) BackendServiceCircuitBreakersPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceCircuitBreakersOutput).ToBackendServiceCircuitBreakersPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceCircuitBreakersOutput).ToBackendServiceCircuitBreakersPtrOutput()
 }
 
 // BackendServiceCircuitBreakersPtrInput is an input type that accepts BackendServiceCircuitBreakersArgs, BackendServiceCircuitBreakersPtr and BackendServiceCircuitBreakersPtrOutput values.
@@ -4630,7 +4630,7 @@ func (i *backendServiceCircuitBreakersPtrType) ToBackendServiceCircuitBreakersPt
 }
 
 func (i *backendServiceCircuitBreakersPtrType) ToBackendServiceCircuitBreakersPtrOutputWithContext(ctx context.Context) BackendServiceCircuitBreakersPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceCircuitBreakersPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceCircuitBreakersOutput).ToBackendServiceCircuitBreakersPtrOutput()
 }
 
 type BackendServiceCircuitBreakersOutput struct{ *pulumi.OutputState }
@@ -4829,7 +4829,7 @@ func (i BackendServiceCircuitBreakersConnectTimeoutArgs) ToBackendServiceCircuit
 }
 
 func (i BackendServiceCircuitBreakersConnectTimeoutArgs) ToBackendServiceCircuitBreakersConnectTimeoutPtrOutputWithContext(ctx context.Context) BackendServiceCircuitBreakersConnectTimeoutPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceCircuitBreakersConnectTimeoutOutput).ToBackendServiceCircuitBreakersConnectTimeoutPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceCircuitBreakersConnectTimeoutOutput).ToBackendServiceCircuitBreakersConnectTimeoutPtrOutput()
 }
 
 // BackendServiceCircuitBreakersConnectTimeoutPtrInput is an input type that accepts BackendServiceCircuitBreakersConnectTimeoutArgs, BackendServiceCircuitBreakersConnectTimeoutPtr and BackendServiceCircuitBreakersConnectTimeoutPtrOutput values.
@@ -4862,7 +4862,7 @@ func (i *backendServiceCircuitBreakersConnectTimeoutPtrType) ToBackendServiceCir
 }
 
 func (i *backendServiceCircuitBreakersConnectTimeoutPtrType) ToBackendServiceCircuitBreakersConnectTimeoutPtrOutputWithContext(ctx context.Context) BackendServiceCircuitBreakersConnectTimeoutPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceCircuitBreakersConnectTimeoutPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceCircuitBreakersConnectTimeoutOutput).ToBackendServiceCircuitBreakersConnectTimeoutPtrOutput()
 }
 
 type BackendServiceCircuitBreakersConnectTimeoutOutput struct{ *pulumi.OutputState }
@@ -5011,7 +5011,7 @@ func (i BackendServiceConsistentHashArgs) ToBackendServiceConsistentHashPtrOutpu
 }
 
 func (i BackendServiceConsistentHashArgs) ToBackendServiceConsistentHashPtrOutputWithContext(ctx context.Context) BackendServiceConsistentHashPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceConsistentHashOutput).ToBackendServiceConsistentHashPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceConsistentHashOutput).ToBackendServiceConsistentHashPtrOutput()
 }
 
 // BackendServiceConsistentHashPtrInput is an input type that accepts BackendServiceConsistentHashArgs, BackendServiceConsistentHashPtr and BackendServiceConsistentHashPtrOutput values.
@@ -5044,7 +5044,7 @@ func (i *backendServiceConsistentHashPtrType) ToBackendServiceConsistentHashPtrO
 }
 
 func (i *backendServiceConsistentHashPtrType) ToBackendServiceConsistentHashPtrOutputWithContext(ctx context.Context) BackendServiceConsistentHashPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceConsistentHashPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceConsistentHashOutput).ToBackendServiceConsistentHashPtrOutput()
 }
 
 type BackendServiceConsistentHashOutput struct{ *pulumi.OutputState }
@@ -5198,7 +5198,7 @@ func (i BackendServiceConsistentHashHttpCookieArgs) ToBackendServiceConsistentHa
 }
 
 func (i BackendServiceConsistentHashHttpCookieArgs) ToBackendServiceConsistentHashHttpCookiePtrOutputWithContext(ctx context.Context) BackendServiceConsistentHashHttpCookiePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceConsistentHashHttpCookieOutput).ToBackendServiceConsistentHashHttpCookiePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceConsistentHashHttpCookieOutput).ToBackendServiceConsistentHashHttpCookiePtrOutput()
 }
 
 // BackendServiceConsistentHashHttpCookiePtrInput is an input type that accepts BackendServiceConsistentHashHttpCookieArgs, BackendServiceConsistentHashHttpCookiePtr and BackendServiceConsistentHashHttpCookiePtrOutput values.
@@ -5231,7 +5231,7 @@ func (i *backendServiceConsistentHashHttpCookiePtrType) ToBackendServiceConsiste
 }
 
 func (i *backendServiceConsistentHashHttpCookiePtrType) ToBackendServiceConsistentHashHttpCookiePtrOutputWithContext(ctx context.Context) BackendServiceConsistentHashHttpCookiePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceConsistentHashHttpCookiePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceConsistentHashHttpCookieOutput).ToBackendServiceConsistentHashHttpCookiePtrOutput()
 }
 
 type BackendServiceConsistentHashHttpCookieOutput struct{ *pulumi.OutputState }
@@ -5369,7 +5369,7 @@ func (i BackendServiceConsistentHashHttpCookieTtlArgs) ToBackendServiceConsisten
 }
 
 func (i BackendServiceConsistentHashHttpCookieTtlArgs) ToBackendServiceConsistentHashHttpCookieTtlPtrOutputWithContext(ctx context.Context) BackendServiceConsistentHashHttpCookieTtlPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceConsistentHashHttpCookieTtlOutput).ToBackendServiceConsistentHashHttpCookieTtlPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceConsistentHashHttpCookieTtlOutput).ToBackendServiceConsistentHashHttpCookieTtlPtrOutput()
 }
 
 // BackendServiceConsistentHashHttpCookieTtlPtrInput is an input type that accepts BackendServiceConsistentHashHttpCookieTtlArgs, BackendServiceConsistentHashHttpCookieTtlPtr and BackendServiceConsistentHashHttpCookieTtlPtrOutput values.
@@ -5402,7 +5402,7 @@ func (i *backendServiceConsistentHashHttpCookieTtlPtrType) ToBackendServiceConsi
 }
 
 func (i *backendServiceConsistentHashHttpCookieTtlPtrType) ToBackendServiceConsistentHashHttpCookieTtlPtrOutputWithContext(ctx context.Context) BackendServiceConsistentHashHttpCookieTtlPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceConsistentHashHttpCookieTtlPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceConsistentHashHttpCookieTtlOutput).ToBackendServiceConsistentHashHttpCookieTtlPtrOutput()
 }
 
 type BackendServiceConsistentHashHttpCookieTtlOutput struct{ *pulumi.OutputState }
@@ -5537,7 +5537,7 @@ func (i BackendServiceIapArgs) ToBackendServiceIapPtrOutput() BackendServiceIapP
 }
 
 func (i BackendServiceIapArgs) ToBackendServiceIapPtrOutputWithContext(ctx context.Context) BackendServiceIapPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceIapOutput).ToBackendServiceIapPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceIapOutput).ToBackendServiceIapPtrOutput()
 }
 
 // BackendServiceIapPtrInput is an input type that accepts BackendServiceIapArgs, BackendServiceIapPtr and BackendServiceIapPtrOutput values.
@@ -5570,7 +5570,7 @@ func (i *backendServiceIapPtrType) ToBackendServiceIapPtrOutput() BackendService
 }
 
 func (i *backendServiceIapPtrType) ToBackendServiceIapPtrOutputWithContext(ctx context.Context) BackendServiceIapPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceIapPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceIapOutput).ToBackendServiceIapPtrOutput()
 }
 
 type BackendServiceIapOutput struct{ *pulumi.OutputState }
@@ -5714,7 +5714,7 @@ func (i BackendServiceLogConfigArgs) ToBackendServiceLogConfigPtrOutput() Backen
 }
 
 func (i BackendServiceLogConfigArgs) ToBackendServiceLogConfigPtrOutputWithContext(ctx context.Context) BackendServiceLogConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceLogConfigOutput).ToBackendServiceLogConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceLogConfigOutput).ToBackendServiceLogConfigPtrOutput()
 }
 
 // BackendServiceLogConfigPtrInput is an input type that accepts BackendServiceLogConfigArgs, BackendServiceLogConfigPtr and BackendServiceLogConfigPtrOutput values.
@@ -5747,7 +5747,7 @@ func (i *backendServiceLogConfigPtrType) ToBackendServiceLogConfigPtrOutput() Ba
 }
 
 func (i *backendServiceLogConfigPtrType) ToBackendServiceLogConfigPtrOutputWithContext(ctx context.Context) BackendServiceLogConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceLogConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceLogConfigOutput).ToBackendServiceLogConfigPtrOutput()
 }
 
 type BackendServiceLogConfigOutput struct{ *pulumi.OutputState }
@@ -5962,7 +5962,7 @@ func (i BackendServiceOutlierDetectionArgs) ToBackendServiceOutlierDetectionPtrO
 }
 
 func (i BackendServiceOutlierDetectionArgs) ToBackendServiceOutlierDetectionPtrOutputWithContext(ctx context.Context) BackendServiceOutlierDetectionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceOutlierDetectionOutput).ToBackendServiceOutlierDetectionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceOutlierDetectionOutput).ToBackendServiceOutlierDetectionPtrOutput()
 }
 
 // BackendServiceOutlierDetectionPtrInput is an input type that accepts BackendServiceOutlierDetectionArgs, BackendServiceOutlierDetectionPtr and BackendServiceOutlierDetectionPtrOutput values.
@@ -5995,7 +5995,7 @@ func (i *backendServiceOutlierDetectionPtrType) ToBackendServiceOutlierDetection
 }
 
 func (i *backendServiceOutlierDetectionPtrType) ToBackendServiceOutlierDetectionPtrOutputWithContext(ctx context.Context) BackendServiceOutlierDetectionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceOutlierDetectionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceOutlierDetectionOutput).ToBackendServiceOutlierDetectionPtrOutput()
 }
 
 type BackendServiceOutlierDetectionOutput struct{ *pulumi.OutputState }
@@ -6311,7 +6311,7 @@ func (i BackendServiceOutlierDetectionBaseEjectionTimeArgs) ToBackendServiceOutl
 }
 
 func (i BackendServiceOutlierDetectionBaseEjectionTimeArgs) ToBackendServiceOutlierDetectionBaseEjectionTimePtrOutputWithContext(ctx context.Context) BackendServiceOutlierDetectionBaseEjectionTimePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceOutlierDetectionBaseEjectionTimeOutput).ToBackendServiceOutlierDetectionBaseEjectionTimePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceOutlierDetectionBaseEjectionTimeOutput).ToBackendServiceOutlierDetectionBaseEjectionTimePtrOutput()
 }
 
 // BackendServiceOutlierDetectionBaseEjectionTimePtrInput is an input type that accepts BackendServiceOutlierDetectionBaseEjectionTimeArgs, BackendServiceOutlierDetectionBaseEjectionTimePtr and BackendServiceOutlierDetectionBaseEjectionTimePtrOutput values.
@@ -6344,7 +6344,7 @@ func (i *backendServiceOutlierDetectionBaseEjectionTimePtrType) ToBackendService
 }
 
 func (i *backendServiceOutlierDetectionBaseEjectionTimePtrType) ToBackendServiceOutlierDetectionBaseEjectionTimePtrOutputWithContext(ctx context.Context) BackendServiceOutlierDetectionBaseEjectionTimePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceOutlierDetectionBaseEjectionTimePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceOutlierDetectionBaseEjectionTimeOutput).ToBackendServiceOutlierDetectionBaseEjectionTimePtrOutput()
 }
 
 type BackendServiceOutlierDetectionBaseEjectionTimeOutput struct{ *pulumi.OutputState }
@@ -6475,7 +6475,7 @@ func (i BackendServiceOutlierDetectionIntervalArgs) ToBackendServiceOutlierDetec
 }
 
 func (i BackendServiceOutlierDetectionIntervalArgs) ToBackendServiceOutlierDetectionIntervalPtrOutputWithContext(ctx context.Context) BackendServiceOutlierDetectionIntervalPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceOutlierDetectionIntervalOutput).ToBackendServiceOutlierDetectionIntervalPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceOutlierDetectionIntervalOutput).ToBackendServiceOutlierDetectionIntervalPtrOutput()
 }
 
 // BackendServiceOutlierDetectionIntervalPtrInput is an input type that accepts BackendServiceOutlierDetectionIntervalArgs, BackendServiceOutlierDetectionIntervalPtr and BackendServiceOutlierDetectionIntervalPtrOutput values.
@@ -6508,7 +6508,7 @@ func (i *backendServiceOutlierDetectionIntervalPtrType) ToBackendServiceOutlierD
 }
 
 func (i *backendServiceOutlierDetectionIntervalPtrType) ToBackendServiceOutlierDetectionIntervalPtrOutputWithContext(ctx context.Context) BackendServiceOutlierDetectionIntervalPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceOutlierDetectionIntervalPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(BackendServiceOutlierDetectionIntervalOutput).ToBackendServiceOutlierDetectionIntervalPtrOutput()
 }
 
 type BackendServiceOutlierDetectionIntervalOutput struct{ *pulumi.OutputState }
@@ -6655,7 +6655,7 @@ func (i DiskDiskEncryptionKeyArgs) ToDiskDiskEncryptionKeyPtrOutput() DiskDiskEn
 }
 
 func (i DiskDiskEncryptionKeyArgs) ToDiskDiskEncryptionKeyPtrOutputWithContext(ctx context.Context) DiskDiskEncryptionKeyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DiskDiskEncryptionKeyOutput).ToDiskDiskEncryptionKeyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(DiskDiskEncryptionKeyOutput).ToDiskDiskEncryptionKeyPtrOutput()
 }
 
 // DiskDiskEncryptionKeyPtrInput is an input type that accepts DiskDiskEncryptionKeyArgs, DiskDiskEncryptionKeyPtr and DiskDiskEncryptionKeyPtrOutput values.
@@ -6688,7 +6688,7 @@ func (i *diskDiskEncryptionKeyPtrType) ToDiskDiskEncryptionKeyPtrOutput() DiskDi
 }
 
 func (i *diskDiskEncryptionKeyPtrType) ToDiskDiskEncryptionKeyPtrOutputWithContext(ctx context.Context) DiskDiskEncryptionKeyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DiskDiskEncryptionKeyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(DiskDiskEncryptionKeyOutput).ToDiskDiskEncryptionKeyPtrOutput()
 }
 
 type DiskDiskEncryptionKeyOutput struct{ *pulumi.OutputState }
@@ -6849,7 +6849,7 @@ func (i DiskIamBindingConditionArgs) ToDiskIamBindingConditionPtrOutput() DiskIa
 }
 
 func (i DiskIamBindingConditionArgs) ToDiskIamBindingConditionPtrOutputWithContext(ctx context.Context) DiskIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DiskIamBindingConditionOutput).ToDiskIamBindingConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(DiskIamBindingConditionOutput).ToDiskIamBindingConditionPtrOutput()
 }
 
 // DiskIamBindingConditionPtrInput is an input type that accepts DiskIamBindingConditionArgs, DiskIamBindingConditionPtr and DiskIamBindingConditionPtrOutput values.
@@ -6882,7 +6882,7 @@ func (i *diskIamBindingConditionPtrType) ToDiskIamBindingConditionPtrOutput() Di
 }
 
 func (i *diskIamBindingConditionPtrType) ToDiskIamBindingConditionPtrOutputWithContext(ctx context.Context) DiskIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DiskIamBindingConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(DiskIamBindingConditionOutput).ToDiskIamBindingConditionPtrOutput()
 }
 
 type DiskIamBindingConditionOutput struct{ *pulumi.OutputState }
@@ -7005,7 +7005,7 @@ func (i DiskIamMemberConditionArgs) ToDiskIamMemberConditionPtrOutput() DiskIamM
 }
 
 func (i DiskIamMemberConditionArgs) ToDiskIamMemberConditionPtrOutputWithContext(ctx context.Context) DiskIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DiskIamMemberConditionOutput).ToDiskIamMemberConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(DiskIamMemberConditionOutput).ToDiskIamMemberConditionPtrOutput()
 }
 
 // DiskIamMemberConditionPtrInput is an input type that accepts DiskIamMemberConditionArgs, DiskIamMemberConditionPtr and DiskIamMemberConditionPtrOutput values.
@@ -7038,7 +7038,7 @@ func (i *diskIamMemberConditionPtrType) ToDiskIamMemberConditionPtrOutput() Disk
 }
 
 func (i *diskIamMemberConditionPtrType) ToDiskIamMemberConditionPtrOutputWithContext(ctx context.Context) DiskIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DiskIamMemberConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(DiskIamMemberConditionOutput).ToDiskIamMemberConditionPtrOutput()
 }
 
 type DiskIamMemberConditionOutput struct{ *pulumi.OutputState }
@@ -7187,7 +7187,7 @@ func (i DiskSourceImageEncryptionKeyArgs) ToDiskSourceImageEncryptionKeyPtrOutpu
 }
 
 func (i DiskSourceImageEncryptionKeyArgs) ToDiskSourceImageEncryptionKeyPtrOutputWithContext(ctx context.Context) DiskSourceImageEncryptionKeyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DiskSourceImageEncryptionKeyOutput).ToDiskSourceImageEncryptionKeyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(DiskSourceImageEncryptionKeyOutput).ToDiskSourceImageEncryptionKeyPtrOutput()
 }
 
 // DiskSourceImageEncryptionKeyPtrInput is an input type that accepts DiskSourceImageEncryptionKeyArgs, DiskSourceImageEncryptionKeyPtr and DiskSourceImageEncryptionKeyPtrOutput values.
@@ -7220,7 +7220,7 @@ func (i *diskSourceImageEncryptionKeyPtrType) ToDiskSourceImageEncryptionKeyPtrO
 }
 
 func (i *diskSourceImageEncryptionKeyPtrType) ToDiskSourceImageEncryptionKeyPtrOutputWithContext(ctx context.Context) DiskSourceImageEncryptionKeyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DiskSourceImageEncryptionKeyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(DiskSourceImageEncryptionKeyOutput).ToDiskSourceImageEncryptionKeyPtrOutput()
 }
 
 type DiskSourceImageEncryptionKeyOutput struct{ *pulumi.OutputState }
@@ -7401,7 +7401,7 @@ func (i DiskSourceSnapshotEncryptionKeyArgs) ToDiskSourceSnapshotEncryptionKeyPt
 }
 
 func (i DiskSourceSnapshotEncryptionKeyArgs) ToDiskSourceSnapshotEncryptionKeyPtrOutputWithContext(ctx context.Context) DiskSourceSnapshotEncryptionKeyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DiskSourceSnapshotEncryptionKeyOutput).ToDiskSourceSnapshotEncryptionKeyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(DiskSourceSnapshotEncryptionKeyOutput).ToDiskSourceSnapshotEncryptionKeyPtrOutput()
 }
 
 // DiskSourceSnapshotEncryptionKeyPtrInput is an input type that accepts DiskSourceSnapshotEncryptionKeyArgs, DiskSourceSnapshotEncryptionKeyPtr and DiskSourceSnapshotEncryptionKeyPtrOutput values.
@@ -7434,7 +7434,7 @@ func (i *diskSourceSnapshotEncryptionKeyPtrType) ToDiskSourceSnapshotEncryptionK
 }
 
 func (i *diskSourceSnapshotEncryptionKeyPtrType) ToDiskSourceSnapshotEncryptionKeyPtrOutputWithContext(ctx context.Context) DiskSourceSnapshotEncryptionKeyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DiskSourceSnapshotEncryptionKeyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(DiskSourceSnapshotEncryptionKeyOutput).ToDiskSourceSnapshotEncryptionKeyPtrOutput()
 }
 
 type DiskSourceSnapshotEncryptionKeyOutput struct{ *pulumi.OutputState }
@@ -7965,7 +7965,7 @@ func (i FirewallLogConfigArgs) ToFirewallLogConfigPtrOutput() FirewallLogConfigP
 }
 
 func (i FirewallLogConfigArgs) ToFirewallLogConfigPtrOutputWithContext(ctx context.Context) FirewallLogConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallLogConfigOutput).ToFirewallLogConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(FirewallLogConfigOutput).ToFirewallLogConfigPtrOutput()
 }
 
 // FirewallLogConfigPtrInput is an input type that accepts FirewallLogConfigArgs, FirewallLogConfigPtr and FirewallLogConfigPtrOutput values.
@@ -7998,7 +7998,7 @@ func (i *firewallLogConfigPtrType) ToFirewallLogConfigPtrOutput() FirewallLogCon
 }
 
 func (i *firewallLogConfigPtrType) ToFirewallLogConfigPtrOutputWithContext(ctx context.Context) FirewallLogConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallLogConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(FirewallLogConfigOutput).ToFirewallLogConfigPtrOutput()
 }
 
 type FirewallLogConfigOutput struct{ *pulumi.OutputState }
@@ -8494,7 +8494,7 @@ func (i HealthCheckGrpcHealthCheckArgs) ToHealthCheckGrpcHealthCheckPtrOutput() 
 }
 
 func (i HealthCheckGrpcHealthCheckArgs) ToHealthCheckGrpcHealthCheckPtrOutputWithContext(ctx context.Context) HealthCheckGrpcHealthCheckPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(HealthCheckGrpcHealthCheckOutput).ToHealthCheckGrpcHealthCheckPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(HealthCheckGrpcHealthCheckOutput).ToHealthCheckGrpcHealthCheckPtrOutput()
 }
 
 // HealthCheckGrpcHealthCheckPtrInput is an input type that accepts HealthCheckGrpcHealthCheckArgs, HealthCheckGrpcHealthCheckPtr and HealthCheckGrpcHealthCheckPtrOutput values.
@@ -8527,7 +8527,7 @@ func (i *healthCheckGrpcHealthCheckPtrType) ToHealthCheckGrpcHealthCheckPtrOutpu
 }
 
 func (i *healthCheckGrpcHealthCheckPtrType) ToHealthCheckGrpcHealthCheckPtrOutputWithContext(ctx context.Context) HealthCheckGrpcHealthCheckPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(HealthCheckGrpcHealthCheckPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(HealthCheckGrpcHealthCheckOutput).ToHealthCheckGrpcHealthCheckPtrOutput()
 }
 
 type HealthCheckGrpcHealthCheckOutput struct{ *pulumi.OutputState }
@@ -8770,7 +8770,7 @@ func (i HealthCheckHttp2HealthCheckArgs) ToHealthCheckHttp2HealthCheckPtrOutput(
 }
 
 func (i HealthCheckHttp2HealthCheckArgs) ToHealthCheckHttp2HealthCheckPtrOutputWithContext(ctx context.Context) HealthCheckHttp2HealthCheckPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(HealthCheckHttp2HealthCheckOutput).ToHealthCheckHttp2HealthCheckPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(HealthCheckHttp2HealthCheckOutput).ToHealthCheckHttp2HealthCheckPtrOutput()
 }
 
 // HealthCheckHttp2HealthCheckPtrInput is an input type that accepts HealthCheckHttp2HealthCheckArgs, HealthCheckHttp2HealthCheckPtr and HealthCheckHttp2HealthCheckPtrOutput values.
@@ -8803,7 +8803,7 @@ func (i *healthCheckHttp2HealthCheckPtrType) ToHealthCheckHttp2HealthCheckPtrOut
 }
 
 func (i *healthCheckHttp2HealthCheckPtrType) ToHealthCheckHttp2HealthCheckPtrOutputWithContext(ctx context.Context) HealthCheckHttp2HealthCheckPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(HealthCheckHttp2HealthCheckPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(HealthCheckHttp2HealthCheckOutput).ToHealthCheckHttp2HealthCheckPtrOutput()
 }
 
 type HealthCheckHttp2HealthCheckOutput struct{ *pulumi.OutputState }
@@ -9099,7 +9099,7 @@ func (i HealthCheckHttpHealthCheckArgs) ToHealthCheckHttpHealthCheckPtrOutput() 
 }
 
 func (i HealthCheckHttpHealthCheckArgs) ToHealthCheckHttpHealthCheckPtrOutputWithContext(ctx context.Context) HealthCheckHttpHealthCheckPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(HealthCheckHttpHealthCheckOutput).ToHealthCheckHttpHealthCheckPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(HealthCheckHttpHealthCheckOutput).ToHealthCheckHttpHealthCheckPtrOutput()
 }
 
 // HealthCheckHttpHealthCheckPtrInput is an input type that accepts HealthCheckHttpHealthCheckArgs, HealthCheckHttpHealthCheckPtr and HealthCheckHttpHealthCheckPtrOutput values.
@@ -9132,7 +9132,7 @@ func (i *healthCheckHttpHealthCheckPtrType) ToHealthCheckHttpHealthCheckPtrOutpu
 }
 
 func (i *healthCheckHttpHealthCheckPtrType) ToHealthCheckHttpHealthCheckPtrOutputWithContext(ctx context.Context) HealthCheckHttpHealthCheckPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(HealthCheckHttpHealthCheckPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(HealthCheckHttpHealthCheckOutput).ToHealthCheckHttpHealthCheckPtrOutput()
 }
 
 type HealthCheckHttpHealthCheckOutput struct{ *pulumi.OutputState }
@@ -9428,7 +9428,7 @@ func (i HealthCheckHttpsHealthCheckArgs) ToHealthCheckHttpsHealthCheckPtrOutput(
 }
 
 func (i HealthCheckHttpsHealthCheckArgs) ToHealthCheckHttpsHealthCheckPtrOutputWithContext(ctx context.Context) HealthCheckHttpsHealthCheckPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(HealthCheckHttpsHealthCheckOutput).ToHealthCheckHttpsHealthCheckPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(HealthCheckHttpsHealthCheckOutput).ToHealthCheckHttpsHealthCheckPtrOutput()
 }
 
 // HealthCheckHttpsHealthCheckPtrInput is an input type that accepts HealthCheckHttpsHealthCheckArgs, HealthCheckHttpsHealthCheckPtr and HealthCheckHttpsHealthCheckPtrOutput values.
@@ -9461,7 +9461,7 @@ func (i *healthCheckHttpsHealthCheckPtrType) ToHealthCheckHttpsHealthCheckPtrOut
 }
 
 func (i *healthCheckHttpsHealthCheckPtrType) ToHealthCheckHttpsHealthCheckPtrOutputWithContext(ctx context.Context) HealthCheckHttpsHealthCheckPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(HealthCheckHttpsHealthCheckPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(HealthCheckHttpsHealthCheckOutput).ToHealthCheckHttpsHealthCheckPtrOutput()
 }
 
 type HealthCheckHttpsHealthCheckOutput struct{ *pulumi.OutputState }
@@ -9693,7 +9693,7 @@ func (i HealthCheckLogConfigArgs) ToHealthCheckLogConfigPtrOutput() HealthCheckL
 }
 
 func (i HealthCheckLogConfigArgs) ToHealthCheckLogConfigPtrOutputWithContext(ctx context.Context) HealthCheckLogConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(HealthCheckLogConfigOutput).ToHealthCheckLogConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(HealthCheckLogConfigOutput).ToHealthCheckLogConfigPtrOutput()
 }
 
 // HealthCheckLogConfigPtrInput is an input type that accepts HealthCheckLogConfigArgs, HealthCheckLogConfigPtr and HealthCheckLogConfigPtrOutput values.
@@ -9726,7 +9726,7 @@ func (i *healthCheckLogConfigPtrType) ToHealthCheckLogConfigPtrOutput() HealthCh
 }
 
 func (i *healthCheckLogConfigPtrType) ToHealthCheckLogConfigPtrOutputWithContext(ctx context.Context) HealthCheckLogConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(HealthCheckLogConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(HealthCheckLogConfigOutput).ToHealthCheckLogConfigPtrOutput()
 }
 
 type HealthCheckLogConfigOutput struct{ *pulumi.OutputState }
@@ -9888,7 +9888,7 @@ func (i HealthCheckSslHealthCheckArgs) ToHealthCheckSslHealthCheckPtrOutput() He
 }
 
 func (i HealthCheckSslHealthCheckArgs) ToHealthCheckSslHealthCheckPtrOutputWithContext(ctx context.Context) HealthCheckSslHealthCheckPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(HealthCheckSslHealthCheckOutput).ToHealthCheckSslHealthCheckPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(HealthCheckSslHealthCheckOutput).ToHealthCheckSslHealthCheckPtrOutput()
 }
 
 // HealthCheckSslHealthCheckPtrInput is an input type that accepts HealthCheckSslHealthCheckArgs, HealthCheckSslHealthCheckPtr and HealthCheckSslHealthCheckPtrOutput values.
@@ -9921,7 +9921,7 @@ func (i *healthCheckSslHealthCheckPtrType) ToHealthCheckSslHealthCheckPtrOutput(
 }
 
 func (i *healthCheckSslHealthCheckPtrType) ToHealthCheckSslHealthCheckPtrOutputWithContext(ctx context.Context) HealthCheckSslHealthCheckPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(HealthCheckSslHealthCheckPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(HealthCheckSslHealthCheckOutput).ToHealthCheckSslHealthCheckPtrOutput()
 }
 
 type HealthCheckSslHealthCheckOutput struct{ *pulumi.OutputState }
@@ -10198,7 +10198,7 @@ func (i HealthCheckTcpHealthCheckArgs) ToHealthCheckTcpHealthCheckPtrOutput() He
 }
 
 func (i HealthCheckTcpHealthCheckArgs) ToHealthCheckTcpHealthCheckPtrOutputWithContext(ctx context.Context) HealthCheckTcpHealthCheckPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(HealthCheckTcpHealthCheckOutput).ToHealthCheckTcpHealthCheckPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(HealthCheckTcpHealthCheckOutput).ToHealthCheckTcpHealthCheckPtrOutput()
 }
 
 // HealthCheckTcpHealthCheckPtrInput is an input type that accepts HealthCheckTcpHealthCheckArgs, HealthCheckTcpHealthCheckPtr and HealthCheckTcpHealthCheckPtrOutput values.
@@ -10231,7 +10231,7 @@ func (i *healthCheckTcpHealthCheckPtrType) ToHealthCheckTcpHealthCheckPtrOutput(
 }
 
 func (i *healthCheckTcpHealthCheckPtrType) ToHealthCheckTcpHealthCheckPtrOutputWithContext(ctx context.Context) HealthCheckTcpHealthCheckPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(HealthCheckTcpHealthCheckPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(HealthCheckTcpHealthCheckOutput).ToHealthCheckTcpHealthCheckPtrOutput()
 }
 
 type HealthCheckTcpHealthCheckOutput struct{ *pulumi.OutputState }
@@ -10554,7 +10554,7 @@ func (i ImageIamBindingConditionArgs) ToImageIamBindingConditionPtrOutput() Imag
 }
 
 func (i ImageIamBindingConditionArgs) ToImageIamBindingConditionPtrOutputWithContext(ctx context.Context) ImageIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ImageIamBindingConditionOutput).ToImageIamBindingConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ImageIamBindingConditionOutput).ToImageIamBindingConditionPtrOutput()
 }
 
 // ImageIamBindingConditionPtrInput is an input type that accepts ImageIamBindingConditionArgs, ImageIamBindingConditionPtr and ImageIamBindingConditionPtrOutput values.
@@ -10587,7 +10587,7 @@ func (i *imageIamBindingConditionPtrType) ToImageIamBindingConditionPtrOutput() 
 }
 
 func (i *imageIamBindingConditionPtrType) ToImageIamBindingConditionPtrOutputWithContext(ctx context.Context) ImageIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ImageIamBindingConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ImageIamBindingConditionOutput).ToImageIamBindingConditionPtrOutput()
 }
 
 type ImageIamBindingConditionOutput struct{ *pulumi.OutputState }
@@ -10723,7 +10723,7 @@ func (i ImageIamMemberConditionArgs) ToImageIamMemberConditionPtrOutput() ImageI
 }
 
 func (i ImageIamMemberConditionArgs) ToImageIamMemberConditionPtrOutputWithContext(ctx context.Context) ImageIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ImageIamMemberConditionOutput).ToImageIamMemberConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ImageIamMemberConditionOutput).ToImageIamMemberConditionPtrOutput()
 }
 
 // ImageIamMemberConditionPtrInput is an input type that accepts ImageIamMemberConditionArgs, ImageIamMemberConditionPtr and ImageIamMemberConditionPtrOutput values.
@@ -10756,7 +10756,7 @@ func (i *imageIamMemberConditionPtrType) ToImageIamMemberConditionPtrOutput() Im
 }
 
 func (i *imageIamMemberConditionPtrType) ToImageIamMemberConditionPtrOutputWithContext(ctx context.Context) ImageIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ImageIamMemberConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ImageIamMemberConditionOutput).ToImageIamMemberConditionPtrOutput()
 }
 
 type ImageIamMemberConditionOutput struct{ *pulumi.OutputState }
@@ -10908,7 +10908,7 @@ func (i ImageRawDiskArgs) ToImageRawDiskPtrOutput() ImageRawDiskPtrOutput {
 }
 
 func (i ImageRawDiskArgs) ToImageRawDiskPtrOutputWithContext(ctx context.Context) ImageRawDiskPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ImageRawDiskOutput).ToImageRawDiskPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ImageRawDiskOutput).ToImageRawDiskPtrOutput()
 }
 
 // ImageRawDiskPtrInput is an input type that accepts ImageRawDiskArgs, ImageRawDiskPtr and ImageRawDiskPtrOutput values.
@@ -10941,7 +10941,7 @@ func (i *imageRawDiskPtrType) ToImageRawDiskPtrOutput() ImageRawDiskPtrOutput {
 }
 
 func (i *imageRawDiskPtrType) ToImageRawDiskPtrOutputWithContext(ctx context.Context) ImageRawDiskPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ImageRawDiskPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ImageRawDiskOutput).ToImageRawDiskPtrOutput()
 }
 
 type ImageRawDiskOutput struct{ *pulumi.OutputState }
@@ -11301,7 +11301,7 @@ func (i InstanceBootDiskArgs) ToInstanceBootDiskPtrOutput() InstanceBootDiskPtrO
 }
 
 func (i InstanceBootDiskArgs) ToInstanceBootDiskPtrOutputWithContext(ctx context.Context) InstanceBootDiskPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceBootDiskOutput).ToInstanceBootDiskPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceBootDiskOutput).ToInstanceBootDiskPtrOutput()
 }
 
 // InstanceBootDiskPtrInput is an input type that accepts InstanceBootDiskArgs, InstanceBootDiskPtr and InstanceBootDiskPtrOutput values.
@@ -11334,7 +11334,7 @@ func (i *instanceBootDiskPtrType) ToInstanceBootDiskPtrOutput() InstanceBootDisk
 }
 
 func (i *instanceBootDiskPtrType) ToInstanceBootDiskPtrOutputWithContext(ctx context.Context) InstanceBootDiskPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceBootDiskPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceBootDiskOutput).ToInstanceBootDiskPtrOutput()
 }
 
 type InstanceBootDiskOutput struct{ *pulumi.OutputState }
@@ -11589,7 +11589,7 @@ func (i InstanceBootDiskInitializeParamsArgs) ToInstanceBootDiskInitializeParams
 }
 
 func (i InstanceBootDiskInitializeParamsArgs) ToInstanceBootDiskInitializeParamsPtrOutputWithContext(ctx context.Context) InstanceBootDiskInitializeParamsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceBootDiskInitializeParamsOutput).ToInstanceBootDiskInitializeParamsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceBootDiskInitializeParamsOutput).ToInstanceBootDiskInitializeParamsPtrOutput()
 }
 
 // InstanceBootDiskInitializeParamsPtrInput is an input type that accepts InstanceBootDiskInitializeParamsArgs, InstanceBootDiskInitializeParamsPtr and InstanceBootDiskInitializeParamsPtrOutput values.
@@ -11622,7 +11622,7 @@ func (i *instanceBootDiskInitializeParamsPtrType) ToInstanceBootDiskInitializePa
 }
 
 func (i *instanceBootDiskInitializeParamsPtrType) ToInstanceBootDiskInitializeParamsPtrOutputWithContext(ctx context.Context) InstanceBootDiskInitializeParamsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceBootDiskInitializeParamsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceBootDiskInitializeParamsOutput).ToInstanceBootDiskInitializeParamsPtrOutput()
 }
 
 type InstanceBootDiskInitializeParamsOutput struct{ *pulumi.OutputState }
@@ -11783,7 +11783,7 @@ func (i InstanceConfidentialInstanceConfigArgs) ToInstanceConfidentialInstanceCo
 }
 
 func (i InstanceConfidentialInstanceConfigArgs) ToInstanceConfidentialInstanceConfigPtrOutputWithContext(ctx context.Context) InstanceConfidentialInstanceConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceConfidentialInstanceConfigOutput).ToInstanceConfidentialInstanceConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceConfidentialInstanceConfigOutput).ToInstanceConfidentialInstanceConfigPtrOutput()
 }
 
 // InstanceConfidentialInstanceConfigPtrInput is an input type that accepts InstanceConfidentialInstanceConfigArgs, InstanceConfidentialInstanceConfigPtr and InstanceConfidentialInstanceConfigPtrOutput values.
@@ -11816,7 +11816,7 @@ func (i *instanceConfidentialInstanceConfigPtrType) ToInstanceConfidentialInstan
 }
 
 func (i *instanceConfidentialInstanceConfigPtrType) ToInstanceConfidentialInstanceConfigPtrOutputWithContext(ctx context.Context) InstanceConfidentialInstanceConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceConfidentialInstanceConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceConfidentialInstanceConfigOutput).ToInstanceConfidentialInstanceConfigPtrOutput()
 }
 
 type InstanceConfidentialInstanceConfigOutput struct{ *pulumi.OutputState }
@@ -12180,7 +12180,7 @@ func (i InstanceFromMachineImageBootDiskInitializeParamsArgs) ToInstanceFromMach
 }
 
 func (i InstanceFromMachineImageBootDiskInitializeParamsArgs) ToInstanceFromMachineImageBootDiskInitializeParamsPtrOutputWithContext(ctx context.Context) InstanceFromMachineImageBootDiskInitializeParamsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromMachineImageBootDiskInitializeParamsOutput).ToInstanceFromMachineImageBootDiskInitializeParamsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromMachineImageBootDiskInitializeParamsOutput).ToInstanceFromMachineImageBootDiskInitializeParamsPtrOutput()
 }
 
 // InstanceFromMachineImageBootDiskInitializeParamsPtrInput is an input type that accepts InstanceFromMachineImageBootDiskInitializeParamsArgs, InstanceFromMachineImageBootDiskInitializeParamsPtr and InstanceFromMachineImageBootDiskInitializeParamsPtrOutput values.
@@ -12213,7 +12213,7 @@ func (i *instanceFromMachineImageBootDiskInitializeParamsPtrType) ToInstanceFrom
 }
 
 func (i *instanceFromMachineImageBootDiskInitializeParamsPtrType) ToInstanceFromMachineImageBootDiskInitializeParamsPtrOutputWithContext(ctx context.Context) InstanceFromMachineImageBootDiskInitializeParamsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromMachineImageBootDiskInitializeParamsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromMachineImageBootDiskInitializeParamsOutput).ToInstanceFromMachineImageBootDiskInitializeParamsPtrOutput()
 }
 
 type InstanceFromMachineImageBootDiskInitializeParamsOutput struct{ *pulumi.OutputState }
@@ -12347,7 +12347,7 @@ func (i InstanceFromMachineImageConfidentialInstanceConfigArgs) ToInstanceFromMa
 }
 
 func (i InstanceFromMachineImageConfidentialInstanceConfigArgs) ToInstanceFromMachineImageConfidentialInstanceConfigPtrOutputWithContext(ctx context.Context) InstanceFromMachineImageConfidentialInstanceConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromMachineImageConfidentialInstanceConfigOutput).ToInstanceFromMachineImageConfidentialInstanceConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromMachineImageConfidentialInstanceConfigOutput).ToInstanceFromMachineImageConfidentialInstanceConfigPtrOutput()
 }
 
 // InstanceFromMachineImageConfidentialInstanceConfigPtrInput is an input type that accepts InstanceFromMachineImageConfidentialInstanceConfigArgs, InstanceFromMachineImageConfidentialInstanceConfigPtr and InstanceFromMachineImageConfidentialInstanceConfigPtrOutput values.
@@ -12380,7 +12380,7 @@ func (i *instanceFromMachineImageConfidentialInstanceConfigPtrType) ToInstanceFr
 }
 
 func (i *instanceFromMachineImageConfidentialInstanceConfigPtrType) ToInstanceFromMachineImageConfidentialInstanceConfigPtrOutputWithContext(ctx context.Context) InstanceFromMachineImageConfidentialInstanceConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromMachineImageConfidentialInstanceConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromMachineImageConfidentialInstanceConfigOutput).ToInstanceFromMachineImageConfidentialInstanceConfigPtrOutput()
 }
 
 type InstanceFromMachineImageConfidentialInstanceConfigOutput struct{ *pulumi.OutputState }
@@ -12929,7 +12929,7 @@ func (i InstanceFromMachineImageSchedulingArgs) ToInstanceFromMachineImageSchedu
 }
 
 func (i InstanceFromMachineImageSchedulingArgs) ToInstanceFromMachineImageSchedulingPtrOutputWithContext(ctx context.Context) InstanceFromMachineImageSchedulingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromMachineImageSchedulingOutput).ToInstanceFromMachineImageSchedulingPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromMachineImageSchedulingOutput).ToInstanceFromMachineImageSchedulingPtrOutput()
 }
 
 // InstanceFromMachineImageSchedulingPtrInput is an input type that accepts InstanceFromMachineImageSchedulingArgs, InstanceFromMachineImageSchedulingPtr and InstanceFromMachineImageSchedulingPtrOutput values.
@@ -12962,7 +12962,7 @@ func (i *instanceFromMachineImageSchedulingPtrType) ToInstanceFromMachineImageSc
 }
 
 func (i *instanceFromMachineImageSchedulingPtrType) ToInstanceFromMachineImageSchedulingPtrOutputWithContext(ctx context.Context) InstanceFromMachineImageSchedulingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromMachineImageSchedulingPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromMachineImageSchedulingOutput).ToInstanceFromMachineImageSchedulingPtrOutput()
 }
 
 type InstanceFromMachineImageSchedulingOutput struct{ *pulumi.OutputState }
@@ -13311,7 +13311,7 @@ func (i InstanceFromMachineImageServiceAccountArgs) ToInstanceFromMachineImageSe
 }
 
 func (i InstanceFromMachineImageServiceAccountArgs) ToInstanceFromMachineImageServiceAccountPtrOutputWithContext(ctx context.Context) InstanceFromMachineImageServiceAccountPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromMachineImageServiceAccountOutput).ToInstanceFromMachineImageServiceAccountPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromMachineImageServiceAccountOutput).ToInstanceFromMachineImageServiceAccountPtrOutput()
 }
 
 // InstanceFromMachineImageServiceAccountPtrInput is an input type that accepts InstanceFromMachineImageServiceAccountArgs, InstanceFromMachineImageServiceAccountPtr and InstanceFromMachineImageServiceAccountPtrOutput values.
@@ -13344,7 +13344,7 @@ func (i *instanceFromMachineImageServiceAccountPtrType) ToInstanceFromMachineIma
 }
 
 func (i *instanceFromMachineImageServiceAccountPtrType) ToInstanceFromMachineImageServiceAccountPtrOutputWithContext(ctx context.Context) InstanceFromMachineImageServiceAccountPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromMachineImageServiceAccountPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromMachineImageServiceAccountOutput).ToInstanceFromMachineImageServiceAccountPtrOutput()
 }
 
 type InstanceFromMachineImageServiceAccountOutput struct{ *pulumi.OutputState }
@@ -13454,7 +13454,7 @@ func (i InstanceFromMachineImageShieldedInstanceConfigArgs) ToInstanceFromMachin
 }
 
 func (i InstanceFromMachineImageShieldedInstanceConfigArgs) ToInstanceFromMachineImageShieldedInstanceConfigPtrOutputWithContext(ctx context.Context) InstanceFromMachineImageShieldedInstanceConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromMachineImageShieldedInstanceConfigOutput).ToInstanceFromMachineImageShieldedInstanceConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromMachineImageShieldedInstanceConfigOutput).ToInstanceFromMachineImageShieldedInstanceConfigPtrOutput()
 }
 
 // InstanceFromMachineImageShieldedInstanceConfigPtrInput is an input type that accepts InstanceFromMachineImageShieldedInstanceConfigArgs, InstanceFromMachineImageShieldedInstanceConfigPtr and InstanceFromMachineImageShieldedInstanceConfigPtrOutput values.
@@ -13487,7 +13487,7 @@ func (i *instanceFromMachineImageShieldedInstanceConfigPtrType) ToInstanceFromMa
 }
 
 func (i *instanceFromMachineImageShieldedInstanceConfigPtrType) ToInstanceFromMachineImageShieldedInstanceConfigPtrOutputWithContext(ctx context.Context) InstanceFromMachineImageShieldedInstanceConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromMachineImageShieldedInstanceConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromMachineImageShieldedInstanceConfigOutput).ToInstanceFromMachineImageShieldedInstanceConfigPtrOutput()
 }
 
 type InstanceFromMachineImageShieldedInstanceConfigOutput struct{ *pulumi.OutputState }
@@ -13746,7 +13746,7 @@ func (i InstanceFromTemplateBootDiskArgs) ToInstanceFromTemplateBootDiskPtrOutpu
 }
 
 func (i InstanceFromTemplateBootDiskArgs) ToInstanceFromTemplateBootDiskPtrOutputWithContext(ctx context.Context) InstanceFromTemplateBootDiskPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromTemplateBootDiskOutput).ToInstanceFromTemplateBootDiskPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromTemplateBootDiskOutput).ToInstanceFromTemplateBootDiskPtrOutput()
 }
 
 // InstanceFromTemplateBootDiskPtrInput is an input type that accepts InstanceFromTemplateBootDiskArgs, InstanceFromTemplateBootDiskPtr and InstanceFromTemplateBootDiskPtrOutput values.
@@ -13779,7 +13779,7 @@ func (i *instanceFromTemplateBootDiskPtrType) ToInstanceFromTemplateBootDiskPtrO
 }
 
 func (i *instanceFromTemplateBootDiskPtrType) ToInstanceFromTemplateBootDiskPtrOutputWithContext(ctx context.Context) InstanceFromTemplateBootDiskPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromTemplateBootDiskPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromTemplateBootDiskOutput).ToInstanceFromTemplateBootDiskPtrOutput()
 }
 
 type InstanceFromTemplateBootDiskOutput struct{ *pulumi.OutputState }
@@ -13971,7 +13971,7 @@ func (i InstanceFromTemplateBootDiskInitializeParamsArgs) ToInstanceFromTemplate
 }
 
 func (i InstanceFromTemplateBootDiskInitializeParamsArgs) ToInstanceFromTemplateBootDiskInitializeParamsPtrOutputWithContext(ctx context.Context) InstanceFromTemplateBootDiskInitializeParamsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromTemplateBootDiskInitializeParamsOutput).ToInstanceFromTemplateBootDiskInitializeParamsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromTemplateBootDiskInitializeParamsOutput).ToInstanceFromTemplateBootDiskInitializeParamsPtrOutput()
 }
 
 // InstanceFromTemplateBootDiskInitializeParamsPtrInput is an input type that accepts InstanceFromTemplateBootDiskInitializeParamsArgs, InstanceFromTemplateBootDiskInitializeParamsPtr and InstanceFromTemplateBootDiskInitializeParamsPtrOutput values.
@@ -14004,7 +14004,7 @@ func (i *instanceFromTemplateBootDiskInitializeParamsPtrType) ToInstanceFromTemp
 }
 
 func (i *instanceFromTemplateBootDiskInitializeParamsPtrType) ToInstanceFromTemplateBootDiskInitializeParamsPtrOutputWithContext(ctx context.Context) InstanceFromTemplateBootDiskInitializeParamsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromTemplateBootDiskInitializeParamsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromTemplateBootDiskInitializeParamsOutput).ToInstanceFromTemplateBootDiskInitializeParamsPtrOutput()
 }
 
 type InstanceFromTemplateBootDiskInitializeParamsOutput struct{ *pulumi.OutputState }
@@ -14138,7 +14138,7 @@ func (i InstanceFromTemplateConfidentialInstanceConfigArgs) ToInstanceFromTempla
 }
 
 func (i InstanceFromTemplateConfidentialInstanceConfigArgs) ToInstanceFromTemplateConfidentialInstanceConfigPtrOutputWithContext(ctx context.Context) InstanceFromTemplateConfidentialInstanceConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromTemplateConfidentialInstanceConfigOutput).ToInstanceFromTemplateConfidentialInstanceConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromTemplateConfidentialInstanceConfigOutput).ToInstanceFromTemplateConfidentialInstanceConfigPtrOutput()
 }
 
 // InstanceFromTemplateConfidentialInstanceConfigPtrInput is an input type that accepts InstanceFromTemplateConfidentialInstanceConfigArgs, InstanceFromTemplateConfidentialInstanceConfigPtr and InstanceFromTemplateConfidentialInstanceConfigPtrOutput values.
@@ -14171,7 +14171,7 @@ func (i *instanceFromTemplateConfidentialInstanceConfigPtrType) ToInstanceFromTe
 }
 
 func (i *instanceFromTemplateConfidentialInstanceConfigPtrType) ToInstanceFromTemplateConfidentialInstanceConfigPtrOutputWithContext(ctx context.Context) InstanceFromTemplateConfidentialInstanceConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromTemplateConfidentialInstanceConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromTemplateConfidentialInstanceConfigOutput).ToInstanceFromTemplateConfidentialInstanceConfigPtrOutput()
 }
 
 type InstanceFromTemplateConfidentialInstanceConfigOutput struct{ *pulumi.OutputState }
@@ -14720,7 +14720,7 @@ func (i InstanceFromTemplateSchedulingArgs) ToInstanceFromTemplateSchedulingPtrO
 }
 
 func (i InstanceFromTemplateSchedulingArgs) ToInstanceFromTemplateSchedulingPtrOutputWithContext(ctx context.Context) InstanceFromTemplateSchedulingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromTemplateSchedulingOutput).ToInstanceFromTemplateSchedulingPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromTemplateSchedulingOutput).ToInstanceFromTemplateSchedulingPtrOutput()
 }
 
 // InstanceFromTemplateSchedulingPtrInput is an input type that accepts InstanceFromTemplateSchedulingArgs, InstanceFromTemplateSchedulingPtr and InstanceFromTemplateSchedulingPtrOutput values.
@@ -14753,7 +14753,7 @@ func (i *instanceFromTemplateSchedulingPtrType) ToInstanceFromTemplateScheduling
 }
 
 func (i *instanceFromTemplateSchedulingPtrType) ToInstanceFromTemplateSchedulingPtrOutputWithContext(ctx context.Context) InstanceFromTemplateSchedulingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromTemplateSchedulingPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromTemplateSchedulingOutput).ToInstanceFromTemplateSchedulingPtrOutput()
 }
 
 type InstanceFromTemplateSchedulingOutput struct{ *pulumi.OutputState }
@@ -15102,7 +15102,7 @@ func (i InstanceFromTemplateServiceAccountArgs) ToInstanceFromTemplateServiceAcc
 }
 
 func (i InstanceFromTemplateServiceAccountArgs) ToInstanceFromTemplateServiceAccountPtrOutputWithContext(ctx context.Context) InstanceFromTemplateServiceAccountPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromTemplateServiceAccountOutput).ToInstanceFromTemplateServiceAccountPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromTemplateServiceAccountOutput).ToInstanceFromTemplateServiceAccountPtrOutput()
 }
 
 // InstanceFromTemplateServiceAccountPtrInput is an input type that accepts InstanceFromTemplateServiceAccountArgs, InstanceFromTemplateServiceAccountPtr and InstanceFromTemplateServiceAccountPtrOutput values.
@@ -15135,7 +15135,7 @@ func (i *instanceFromTemplateServiceAccountPtrType) ToInstanceFromTemplateServic
 }
 
 func (i *instanceFromTemplateServiceAccountPtrType) ToInstanceFromTemplateServiceAccountPtrOutputWithContext(ctx context.Context) InstanceFromTemplateServiceAccountPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromTemplateServiceAccountPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromTemplateServiceAccountOutput).ToInstanceFromTemplateServiceAccountPtrOutput()
 }
 
 type InstanceFromTemplateServiceAccountOutput struct{ *pulumi.OutputState }
@@ -15245,7 +15245,7 @@ func (i InstanceFromTemplateShieldedInstanceConfigArgs) ToInstanceFromTemplateSh
 }
 
 func (i InstanceFromTemplateShieldedInstanceConfigArgs) ToInstanceFromTemplateShieldedInstanceConfigPtrOutputWithContext(ctx context.Context) InstanceFromTemplateShieldedInstanceConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromTemplateShieldedInstanceConfigOutput).ToInstanceFromTemplateShieldedInstanceConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromTemplateShieldedInstanceConfigOutput).ToInstanceFromTemplateShieldedInstanceConfigPtrOutput()
 }
 
 // InstanceFromTemplateShieldedInstanceConfigPtrInput is an input type that accepts InstanceFromTemplateShieldedInstanceConfigArgs, InstanceFromTemplateShieldedInstanceConfigPtr and InstanceFromTemplateShieldedInstanceConfigPtrOutput values.
@@ -15278,7 +15278,7 @@ func (i *instanceFromTemplateShieldedInstanceConfigPtrType) ToInstanceFromTempla
 }
 
 func (i *instanceFromTemplateShieldedInstanceConfigPtrType) ToInstanceFromTemplateShieldedInstanceConfigPtrOutputWithContext(ctx context.Context) InstanceFromTemplateShieldedInstanceConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromTemplateShieldedInstanceConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromTemplateShieldedInstanceConfigOutput).ToInstanceFromTemplateShieldedInstanceConfigPtrOutput()
 }
 
 type InstanceFromTemplateShieldedInstanceConfigOutput struct{ *pulumi.OutputState }
@@ -15407,7 +15407,7 @@ func (i InstanceGroupManagerAutoHealingPoliciesArgs) ToInstanceGroupManagerAutoH
 }
 
 func (i InstanceGroupManagerAutoHealingPoliciesArgs) ToInstanceGroupManagerAutoHealingPoliciesPtrOutputWithContext(ctx context.Context) InstanceGroupManagerAutoHealingPoliciesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceGroupManagerAutoHealingPoliciesOutput).ToInstanceGroupManagerAutoHealingPoliciesPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceGroupManagerAutoHealingPoliciesOutput).ToInstanceGroupManagerAutoHealingPoliciesPtrOutput()
 }
 
 // InstanceGroupManagerAutoHealingPoliciesPtrInput is an input type that accepts InstanceGroupManagerAutoHealingPoliciesArgs, InstanceGroupManagerAutoHealingPoliciesPtr and InstanceGroupManagerAutoHealingPoliciesPtrOutput values.
@@ -15440,7 +15440,7 @@ func (i *instanceGroupManagerAutoHealingPoliciesPtrType) ToInstanceGroupManagerA
 }
 
 func (i *instanceGroupManagerAutoHealingPoliciesPtrType) ToInstanceGroupManagerAutoHealingPoliciesPtrOutputWithContext(ctx context.Context) InstanceGroupManagerAutoHealingPoliciesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceGroupManagerAutoHealingPoliciesPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceGroupManagerAutoHealingPoliciesOutput).ToInstanceGroupManagerAutoHealingPoliciesPtrOutput()
 }
 
 type InstanceGroupManagerAutoHealingPoliciesOutput struct{ *pulumi.OutputState }
@@ -15798,7 +15798,7 @@ func (i InstanceGroupManagerUpdatePolicyArgs) ToInstanceGroupManagerUpdatePolicy
 }
 
 func (i InstanceGroupManagerUpdatePolicyArgs) ToInstanceGroupManagerUpdatePolicyPtrOutputWithContext(ctx context.Context) InstanceGroupManagerUpdatePolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceGroupManagerUpdatePolicyOutput).ToInstanceGroupManagerUpdatePolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceGroupManagerUpdatePolicyOutput).ToInstanceGroupManagerUpdatePolicyPtrOutput()
 }
 
 // InstanceGroupManagerUpdatePolicyPtrInput is an input type that accepts InstanceGroupManagerUpdatePolicyArgs, InstanceGroupManagerUpdatePolicyPtr and InstanceGroupManagerUpdatePolicyPtrOutput values.
@@ -15831,7 +15831,7 @@ func (i *instanceGroupManagerUpdatePolicyPtrType) ToInstanceGroupManagerUpdatePo
 }
 
 func (i *instanceGroupManagerUpdatePolicyPtrType) ToInstanceGroupManagerUpdatePolicyPtrOutputWithContext(ctx context.Context) InstanceGroupManagerUpdatePolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceGroupManagerUpdatePolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceGroupManagerUpdatePolicyOutput).ToInstanceGroupManagerUpdatePolicyPtrOutput()
 }
 
 type InstanceGroupManagerUpdatePolicyOutput struct{ *pulumi.OutputState }
@@ -16157,7 +16157,7 @@ func (i InstanceGroupManagerVersionTargetSizeArgs) ToInstanceGroupManagerVersion
 }
 
 func (i InstanceGroupManagerVersionTargetSizeArgs) ToInstanceGroupManagerVersionTargetSizePtrOutputWithContext(ctx context.Context) InstanceGroupManagerVersionTargetSizePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceGroupManagerVersionTargetSizeOutput).ToInstanceGroupManagerVersionTargetSizePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceGroupManagerVersionTargetSizeOutput).ToInstanceGroupManagerVersionTargetSizePtrOutput()
 }
 
 // InstanceGroupManagerVersionTargetSizePtrInput is an input type that accepts InstanceGroupManagerVersionTargetSizeArgs, InstanceGroupManagerVersionTargetSizePtr and InstanceGroupManagerVersionTargetSizePtrOutput values.
@@ -16190,7 +16190,7 @@ func (i *instanceGroupManagerVersionTargetSizePtrType) ToInstanceGroupManagerVer
 }
 
 func (i *instanceGroupManagerVersionTargetSizePtrType) ToInstanceGroupManagerVersionTargetSizePtrOutputWithContext(ctx context.Context) InstanceGroupManagerVersionTargetSizePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceGroupManagerVersionTargetSizePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceGroupManagerVersionTargetSizeOutput).ToInstanceGroupManagerVersionTargetSizePtrOutput()
 }
 
 type InstanceGroupManagerVersionTargetSizeOutput struct{ *pulumi.OutputState }
@@ -16527,7 +16527,7 @@ func (i InstanceIAMBindingConditionArgs) ToInstanceIAMBindingConditionPtrOutput(
 }
 
 func (i InstanceIAMBindingConditionArgs) ToInstanceIAMBindingConditionPtrOutputWithContext(ctx context.Context) InstanceIAMBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceIAMBindingConditionOutput).ToInstanceIAMBindingConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceIAMBindingConditionOutput).ToInstanceIAMBindingConditionPtrOutput()
 }
 
 // InstanceIAMBindingConditionPtrInput is an input type that accepts InstanceIAMBindingConditionArgs, InstanceIAMBindingConditionPtr and InstanceIAMBindingConditionPtrOutput values.
@@ -16560,7 +16560,7 @@ func (i *instanceIAMBindingConditionPtrType) ToInstanceIAMBindingConditionPtrOut
 }
 
 func (i *instanceIAMBindingConditionPtrType) ToInstanceIAMBindingConditionPtrOutputWithContext(ctx context.Context) InstanceIAMBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceIAMBindingConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceIAMBindingConditionOutput).ToInstanceIAMBindingConditionPtrOutput()
 }
 
 type InstanceIAMBindingConditionOutput struct{ *pulumi.OutputState }
@@ -16696,7 +16696,7 @@ func (i InstanceIAMMemberConditionArgs) ToInstanceIAMMemberConditionPtrOutput() 
 }
 
 func (i InstanceIAMMemberConditionArgs) ToInstanceIAMMemberConditionPtrOutputWithContext(ctx context.Context) InstanceIAMMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceIAMMemberConditionOutput).ToInstanceIAMMemberConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceIAMMemberConditionOutput).ToInstanceIAMMemberConditionPtrOutput()
 }
 
 // InstanceIAMMemberConditionPtrInput is an input type that accepts InstanceIAMMemberConditionArgs, InstanceIAMMemberConditionPtr and InstanceIAMMemberConditionPtrOutput values.
@@ -16729,7 +16729,7 @@ func (i *instanceIAMMemberConditionPtrType) ToInstanceIAMMemberConditionPtrOutpu
 }
 
 func (i *instanceIAMMemberConditionPtrType) ToInstanceIAMMemberConditionPtrOutputWithContext(ctx context.Context) InstanceIAMMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceIAMMemberConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceIAMMemberConditionOutput).ToInstanceIAMMemberConditionPtrOutput()
 }
 
 type InstanceIAMMemberConditionOutput struct{ *pulumi.OutputState }
@@ -17344,7 +17344,7 @@ func (i InstanceSchedulingArgs) ToInstanceSchedulingPtrOutput() InstanceScheduli
 }
 
 func (i InstanceSchedulingArgs) ToInstanceSchedulingPtrOutputWithContext(ctx context.Context) InstanceSchedulingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceSchedulingOutput).ToInstanceSchedulingPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceSchedulingOutput).ToInstanceSchedulingPtrOutput()
 }
 
 // InstanceSchedulingPtrInput is an input type that accepts InstanceSchedulingArgs, InstanceSchedulingPtr and InstanceSchedulingPtrOutput values.
@@ -17377,7 +17377,7 @@ func (i *instanceSchedulingPtrType) ToInstanceSchedulingPtrOutput() InstanceSche
 }
 
 func (i *instanceSchedulingPtrType) ToInstanceSchedulingPtrOutputWithContext(ctx context.Context) InstanceSchedulingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceSchedulingPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceSchedulingOutput).ToInstanceSchedulingPtrOutput()
 }
 
 type InstanceSchedulingOutput struct{ *pulumi.OutputState }
@@ -17782,7 +17782,7 @@ func (i InstanceServiceAccountArgs) ToInstanceServiceAccountPtrOutput() Instance
 }
 
 func (i InstanceServiceAccountArgs) ToInstanceServiceAccountPtrOutputWithContext(ctx context.Context) InstanceServiceAccountPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceServiceAccountOutput).ToInstanceServiceAccountPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceServiceAccountOutput).ToInstanceServiceAccountPtrOutput()
 }
 
 // InstanceServiceAccountPtrInput is an input type that accepts InstanceServiceAccountArgs, InstanceServiceAccountPtr and InstanceServiceAccountPtrOutput values.
@@ -17815,7 +17815,7 @@ func (i *instanceServiceAccountPtrType) ToInstanceServiceAccountPtrOutput() Inst
 }
 
 func (i *instanceServiceAccountPtrType) ToInstanceServiceAccountPtrOutputWithContext(ctx context.Context) InstanceServiceAccountPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceServiceAccountPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceServiceAccountOutput).ToInstanceServiceAccountPtrOutput()
 }
 
 type InstanceServiceAccountOutput struct{ *pulumi.OutputState }
@@ -17952,7 +17952,7 @@ func (i InstanceShieldedInstanceConfigArgs) ToInstanceShieldedInstanceConfigPtrO
 }
 
 func (i InstanceShieldedInstanceConfigArgs) ToInstanceShieldedInstanceConfigPtrOutputWithContext(ctx context.Context) InstanceShieldedInstanceConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceShieldedInstanceConfigOutput).ToInstanceShieldedInstanceConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceShieldedInstanceConfigOutput).ToInstanceShieldedInstanceConfigPtrOutput()
 }
 
 // InstanceShieldedInstanceConfigPtrInput is an input type that accepts InstanceShieldedInstanceConfigArgs, InstanceShieldedInstanceConfigPtr and InstanceShieldedInstanceConfigPtrOutput values.
@@ -17985,7 +17985,7 @@ func (i *instanceShieldedInstanceConfigPtrType) ToInstanceShieldedInstanceConfig
 }
 
 func (i *instanceShieldedInstanceConfigPtrType) ToInstanceShieldedInstanceConfigPtrOutputWithContext(ctx context.Context) InstanceShieldedInstanceConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceShieldedInstanceConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceShieldedInstanceConfigOutput).ToInstanceShieldedInstanceConfigPtrOutput()
 }
 
 type InstanceShieldedInstanceConfigOutput struct{ *pulumi.OutputState }
@@ -18119,7 +18119,7 @@ func (i InstanceTemplateConfidentialInstanceConfigArgs) ToInstanceTemplateConfid
 }
 
 func (i InstanceTemplateConfidentialInstanceConfigArgs) ToInstanceTemplateConfidentialInstanceConfigPtrOutputWithContext(ctx context.Context) InstanceTemplateConfidentialInstanceConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceTemplateConfidentialInstanceConfigOutput).ToInstanceTemplateConfidentialInstanceConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceTemplateConfidentialInstanceConfigOutput).ToInstanceTemplateConfidentialInstanceConfigPtrOutput()
 }
 
 // InstanceTemplateConfidentialInstanceConfigPtrInput is an input type that accepts InstanceTemplateConfidentialInstanceConfigArgs, InstanceTemplateConfidentialInstanceConfigPtr and InstanceTemplateConfidentialInstanceConfigPtrOutput values.
@@ -18152,7 +18152,7 @@ func (i *instanceTemplateConfidentialInstanceConfigPtrType) ToInstanceTemplateCo
 }
 
 func (i *instanceTemplateConfidentialInstanceConfigPtrType) ToInstanceTemplateConfidentialInstanceConfigPtrOutputWithContext(ctx context.Context) InstanceTemplateConfidentialInstanceConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceTemplateConfidentialInstanceConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceTemplateConfidentialInstanceConfigOutput).ToInstanceTemplateConfidentialInstanceConfigPtrOutput()
 }
 
 type InstanceTemplateConfidentialInstanceConfigOutput struct{ *pulumi.OutputState }
@@ -18520,7 +18520,7 @@ func (i InstanceTemplateDiskDiskEncryptionKeyArgs) ToInstanceTemplateDiskDiskEnc
 }
 
 func (i InstanceTemplateDiskDiskEncryptionKeyArgs) ToInstanceTemplateDiskDiskEncryptionKeyPtrOutputWithContext(ctx context.Context) InstanceTemplateDiskDiskEncryptionKeyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceTemplateDiskDiskEncryptionKeyOutput).ToInstanceTemplateDiskDiskEncryptionKeyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceTemplateDiskDiskEncryptionKeyOutput).ToInstanceTemplateDiskDiskEncryptionKeyPtrOutput()
 }
 
 // InstanceTemplateDiskDiskEncryptionKeyPtrInput is an input type that accepts InstanceTemplateDiskDiskEncryptionKeyArgs, InstanceTemplateDiskDiskEncryptionKeyPtr and InstanceTemplateDiskDiskEncryptionKeyPtrOutput values.
@@ -18553,7 +18553,7 @@ func (i *instanceTemplateDiskDiskEncryptionKeyPtrType) ToInstanceTemplateDiskDis
 }
 
 func (i *instanceTemplateDiskDiskEncryptionKeyPtrType) ToInstanceTemplateDiskDiskEncryptionKeyPtrOutputWithContext(ctx context.Context) InstanceTemplateDiskDiskEncryptionKeyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceTemplateDiskDiskEncryptionKeyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceTemplateDiskDiskEncryptionKeyOutput).ToInstanceTemplateDiskDiskEncryptionKeyPtrOutput()
 }
 
 type InstanceTemplateDiskDiskEncryptionKeyOutput struct{ *pulumi.OutputState }
@@ -19231,7 +19231,7 @@ func (i InstanceTemplateSchedulingArgs) ToInstanceTemplateSchedulingPtrOutput() 
 }
 
 func (i InstanceTemplateSchedulingArgs) ToInstanceTemplateSchedulingPtrOutputWithContext(ctx context.Context) InstanceTemplateSchedulingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceTemplateSchedulingOutput).ToInstanceTemplateSchedulingPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceTemplateSchedulingOutput).ToInstanceTemplateSchedulingPtrOutput()
 }
 
 // InstanceTemplateSchedulingPtrInput is an input type that accepts InstanceTemplateSchedulingArgs, InstanceTemplateSchedulingPtr and InstanceTemplateSchedulingPtrOutput values.
@@ -19264,7 +19264,7 @@ func (i *instanceTemplateSchedulingPtrType) ToInstanceTemplateSchedulingPtrOutpu
 }
 
 func (i *instanceTemplateSchedulingPtrType) ToInstanceTemplateSchedulingPtrOutputWithContext(ctx context.Context) InstanceTemplateSchedulingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceTemplateSchedulingPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceTemplateSchedulingOutput).ToInstanceTemplateSchedulingPtrOutput()
 }
 
 type InstanceTemplateSchedulingOutput struct{ *pulumi.OutputState }
@@ -19563,7 +19563,7 @@ func (i InstanceTemplateServiceAccountArgs) ToInstanceTemplateServiceAccountPtrO
 }
 
 func (i InstanceTemplateServiceAccountArgs) ToInstanceTemplateServiceAccountPtrOutputWithContext(ctx context.Context) InstanceTemplateServiceAccountPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceTemplateServiceAccountOutput).ToInstanceTemplateServiceAccountPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceTemplateServiceAccountOutput).ToInstanceTemplateServiceAccountPtrOutput()
 }
 
 // InstanceTemplateServiceAccountPtrInput is an input type that accepts InstanceTemplateServiceAccountArgs, InstanceTemplateServiceAccountPtr and InstanceTemplateServiceAccountPtrOutput values.
@@ -19596,7 +19596,7 @@ func (i *instanceTemplateServiceAccountPtrType) ToInstanceTemplateServiceAccount
 }
 
 func (i *instanceTemplateServiceAccountPtrType) ToInstanceTemplateServiceAccountPtrOutputWithContext(ctx context.Context) InstanceTemplateServiceAccountPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceTemplateServiceAccountPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceTemplateServiceAccountOutput).ToInstanceTemplateServiceAccountPtrOutput()
 }
 
 type InstanceTemplateServiceAccountOutput struct{ *pulumi.OutputState }
@@ -19723,7 +19723,7 @@ func (i InstanceTemplateShieldedInstanceConfigArgs) ToInstanceTemplateShieldedIn
 }
 
 func (i InstanceTemplateShieldedInstanceConfigArgs) ToInstanceTemplateShieldedInstanceConfigPtrOutputWithContext(ctx context.Context) InstanceTemplateShieldedInstanceConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceTemplateShieldedInstanceConfigOutput).ToInstanceTemplateShieldedInstanceConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceTemplateShieldedInstanceConfigOutput).ToInstanceTemplateShieldedInstanceConfigPtrOutput()
 }
 
 // InstanceTemplateShieldedInstanceConfigPtrInput is an input type that accepts InstanceTemplateShieldedInstanceConfigArgs, InstanceTemplateShieldedInstanceConfigPtr and InstanceTemplateShieldedInstanceConfigPtrOutput values.
@@ -19756,7 +19756,7 @@ func (i *instanceTemplateShieldedInstanceConfigPtrType) ToInstanceTemplateShield
 }
 
 func (i *instanceTemplateShieldedInstanceConfigPtrType) ToInstanceTemplateShieldedInstanceConfigPtrOutputWithContext(ctx context.Context) InstanceTemplateShieldedInstanceConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceTemplateShieldedInstanceConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceTemplateShieldedInstanceConfigOutput).ToInstanceTemplateShieldedInstanceConfigPtrOutput()
 }
 
 type InstanceTemplateShieldedInstanceConfigOutput struct{ *pulumi.OutputState }
@@ -19986,7 +19986,7 @@ func (i MachineImageIamBindingConditionArgs) ToMachineImageIamBindingConditionPt
 }
 
 func (i MachineImageIamBindingConditionArgs) ToMachineImageIamBindingConditionPtrOutputWithContext(ctx context.Context) MachineImageIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(MachineImageIamBindingConditionOutput).ToMachineImageIamBindingConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(MachineImageIamBindingConditionOutput).ToMachineImageIamBindingConditionPtrOutput()
 }
 
 // MachineImageIamBindingConditionPtrInput is an input type that accepts MachineImageIamBindingConditionArgs, MachineImageIamBindingConditionPtr and MachineImageIamBindingConditionPtrOutput values.
@@ -20019,7 +20019,7 @@ func (i *machineImageIamBindingConditionPtrType) ToMachineImageIamBindingConditi
 }
 
 func (i *machineImageIamBindingConditionPtrType) ToMachineImageIamBindingConditionPtrOutputWithContext(ctx context.Context) MachineImageIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(MachineImageIamBindingConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(MachineImageIamBindingConditionOutput).ToMachineImageIamBindingConditionPtrOutput()
 }
 
 type MachineImageIamBindingConditionOutput struct{ *pulumi.OutputState }
@@ -20155,7 +20155,7 @@ func (i MachineImageIamMemberConditionArgs) ToMachineImageIamMemberConditionPtrO
 }
 
 func (i MachineImageIamMemberConditionArgs) ToMachineImageIamMemberConditionPtrOutputWithContext(ctx context.Context) MachineImageIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(MachineImageIamMemberConditionOutput).ToMachineImageIamMemberConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(MachineImageIamMemberConditionOutput).ToMachineImageIamMemberConditionPtrOutput()
 }
 
 // MachineImageIamMemberConditionPtrInput is an input type that accepts MachineImageIamMemberConditionArgs, MachineImageIamMemberConditionPtr and MachineImageIamMemberConditionPtrOutput values.
@@ -20188,7 +20188,7 @@ func (i *machineImageIamMemberConditionPtrType) ToMachineImageIamMemberCondition
 }
 
 func (i *machineImageIamMemberConditionPtrType) ToMachineImageIamMemberConditionPtrOutputWithContext(ctx context.Context) MachineImageIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(MachineImageIamMemberConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(MachineImageIamMemberConditionOutput).ToMachineImageIamMemberConditionPtrOutput()
 }
 
 type MachineImageIamMemberConditionOutput struct{ *pulumi.OutputState }
@@ -20338,7 +20338,7 @@ func (i MachineImageMachineImageEncryptionKeyArgs) ToMachineImageMachineImageEnc
 }
 
 func (i MachineImageMachineImageEncryptionKeyArgs) ToMachineImageMachineImageEncryptionKeyPtrOutputWithContext(ctx context.Context) MachineImageMachineImageEncryptionKeyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(MachineImageMachineImageEncryptionKeyOutput).ToMachineImageMachineImageEncryptionKeyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(MachineImageMachineImageEncryptionKeyOutput).ToMachineImageMachineImageEncryptionKeyPtrOutput()
 }
 
 // MachineImageMachineImageEncryptionKeyPtrInput is an input type that accepts MachineImageMachineImageEncryptionKeyArgs, MachineImageMachineImageEncryptionKeyPtr and MachineImageMachineImageEncryptionKeyPtrOutput values.
@@ -20371,7 +20371,7 @@ func (i *machineImageMachineImageEncryptionKeyPtrType) ToMachineImageMachineImag
 }
 
 func (i *machineImageMachineImageEncryptionKeyPtrType) ToMachineImageMachineImageEncryptionKeyPtrOutputWithContext(ctx context.Context) MachineImageMachineImageEncryptionKeyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(MachineImageMachineImageEncryptionKeyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(MachineImageMachineImageEncryptionKeyOutput).ToMachineImageMachineImageEncryptionKeyPtrOutput()
 }
 
 type MachineImageMachineImageEncryptionKeyOutput struct{ *pulumi.OutputState }
@@ -20526,7 +20526,7 @@ func (i ManagedSslCertificateManagedArgs) ToManagedSslCertificateManagedPtrOutpu
 }
 
 func (i ManagedSslCertificateManagedArgs) ToManagedSslCertificateManagedPtrOutputWithContext(ctx context.Context) ManagedSslCertificateManagedPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ManagedSslCertificateManagedOutput).ToManagedSslCertificateManagedPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedSslCertificateManagedOutput).ToManagedSslCertificateManagedPtrOutput()
 }
 
 // ManagedSslCertificateManagedPtrInput is an input type that accepts ManagedSslCertificateManagedArgs, ManagedSslCertificateManagedPtr and ManagedSslCertificateManagedPtrOutput values.
@@ -20559,7 +20559,7 @@ func (i *managedSslCertificateManagedPtrType) ToManagedSslCertificateManagedPtrO
 }
 
 func (i *managedSslCertificateManagedPtrType) ToManagedSslCertificateManagedPtrOutputWithContext(ctx context.Context) ManagedSslCertificateManagedPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ManagedSslCertificateManagedPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedSslCertificateManagedOutput).ToManagedSslCertificateManagedPtrOutput()
 }
 
 type ManagedSslCertificateManagedOutput struct{ *pulumi.OutputState }
@@ -20657,7 +20657,7 @@ func (i MangedSslCertificateManagedArgs) ToMangedSslCertificateManagedPtrOutput(
 }
 
 func (i MangedSslCertificateManagedArgs) ToMangedSslCertificateManagedPtrOutputWithContext(ctx context.Context) MangedSslCertificateManagedPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(MangedSslCertificateManagedOutput).ToMangedSslCertificateManagedPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(MangedSslCertificateManagedOutput).ToMangedSslCertificateManagedPtrOutput()
 }
 
 // MangedSslCertificateManagedPtrInput is an input type that accepts MangedSslCertificateManagedArgs, MangedSslCertificateManagedPtr and MangedSslCertificateManagedPtrOutput values.
@@ -20690,7 +20690,7 @@ func (i *mangedSslCertificateManagedPtrType) ToMangedSslCertificateManagedPtrOut
 }
 
 func (i *mangedSslCertificateManagedPtrType) ToMangedSslCertificateManagedPtrOutputWithContext(ctx context.Context) MangedSslCertificateManagedPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(MangedSslCertificateManagedPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(MangedSslCertificateManagedOutput).ToMangedSslCertificateManagedPtrOutput()
 }
 
 type MangedSslCertificateManagedOutput struct{ *pulumi.OutputState }
@@ -20809,7 +20809,7 @@ func (i NodeGroupAutoscalingPolicyArgs) ToNodeGroupAutoscalingPolicyPtrOutput() 
 }
 
 func (i NodeGroupAutoscalingPolicyArgs) ToNodeGroupAutoscalingPolicyPtrOutputWithContext(ctx context.Context) NodeGroupAutoscalingPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NodeGroupAutoscalingPolicyOutput).ToNodeGroupAutoscalingPolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(NodeGroupAutoscalingPolicyOutput).ToNodeGroupAutoscalingPolicyPtrOutput()
 }
 
 // NodeGroupAutoscalingPolicyPtrInput is an input type that accepts NodeGroupAutoscalingPolicyArgs, NodeGroupAutoscalingPolicyPtr and NodeGroupAutoscalingPolicyPtrOutput values.
@@ -20842,7 +20842,7 @@ func (i *nodeGroupAutoscalingPolicyPtrType) ToNodeGroupAutoscalingPolicyPtrOutpu
 }
 
 func (i *nodeGroupAutoscalingPolicyPtrType) ToNodeGroupAutoscalingPolicyPtrOutputWithContext(ctx context.Context) NodeGroupAutoscalingPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NodeGroupAutoscalingPolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(NodeGroupAutoscalingPolicyOutput).ToNodeGroupAutoscalingPolicyPtrOutput()
 }
 
 type NodeGroupAutoscalingPolicyOutput struct{ *pulumi.OutputState }
@@ -20996,7 +20996,7 @@ func (i NodeTemplateNodeTypeFlexibilityArgs) ToNodeTemplateNodeTypeFlexibilityPt
 }
 
 func (i NodeTemplateNodeTypeFlexibilityArgs) ToNodeTemplateNodeTypeFlexibilityPtrOutputWithContext(ctx context.Context) NodeTemplateNodeTypeFlexibilityPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NodeTemplateNodeTypeFlexibilityOutput).ToNodeTemplateNodeTypeFlexibilityPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(NodeTemplateNodeTypeFlexibilityOutput).ToNodeTemplateNodeTypeFlexibilityPtrOutput()
 }
 
 // NodeTemplateNodeTypeFlexibilityPtrInput is an input type that accepts NodeTemplateNodeTypeFlexibilityArgs, NodeTemplateNodeTypeFlexibilityPtr and NodeTemplateNodeTypeFlexibilityPtrOutput values.
@@ -21029,7 +21029,7 @@ func (i *nodeTemplateNodeTypeFlexibilityPtrType) ToNodeTemplateNodeTypeFlexibili
 }
 
 func (i *nodeTemplateNodeTypeFlexibilityPtrType) ToNodeTemplateNodeTypeFlexibilityPtrOutputWithContext(ctx context.Context) NodeTemplateNodeTypeFlexibilityPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NodeTemplateNodeTypeFlexibilityPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(NodeTemplateNodeTypeFlexibilityOutput).ToNodeTemplateNodeTypeFlexibilityPtrOutput()
 }
 
 type NodeTemplateNodeTypeFlexibilityOutput struct{ *pulumi.OutputState }
@@ -21181,7 +21181,7 @@ func (i NodeTemplateServerBindingArgs) ToNodeTemplateServerBindingPtrOutput() No
 }
 
 func (i NodeTemplateServerBindingArgs) ToNodeTemplateServerBindingPtrOutputWithContext(ctx context.Context) NodeTemplateServerBindingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NodeTemplateServerBindingOutput).ToNodeTemplateServerBindingPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(NodeTemplateServerBindingOutput).ToNodeTemplateServerBindingPtrOutput()
 }
 
 // NodeTemplateServerBindingPtrInput is an input type that accepts NodeTemplateServerBindingArgs, NodeTemplateServerBindingPtr and NodeTemplateServerBindingPtrOutput values.
@@ -21214,7 +21214,7 @@ func (i *nodeTemplateServerBindingPtrType) ToNodeTemplateServerBindingPtrOutput(
 }
 
 func (i *nodeTemplateServerBindingPtrType) ToNodeTemplateServerBindingPtrOutputWithContext(ctx context.Context) NodeTemplateServerBindingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NodeTemplateServerBindingPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(NodeTemplateServerBindingOutput).ToNodeTemplateServerBindingPtrOutput()
 }
 
 type NodeTemplateServerBindingOutput struct{ *pulumi.OutputState }
@@ -21350,7 +21350,7 @@ func (i OrganizationSecurityPolicyRuleMatchArgs) ToOrganizationSecurityPolicyRul
 }
 
 func (i OrganizationSecurityPolicyRuleMatchArgs) ToOrganizationSecurityPolicyRuleMatchPtrOutputWithContext(ctx context.Context) OrganizationSecurityPolicyRuleMatchPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(OrganizationSecurityPolicyRuleMatchOutput).ToOrganizationSecurityPolicyRuleMatchPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationSecurityPolicyRuleMatchOutput).ToOrganizationSecurityPolicyRuleMatchPtrOutput()
 }
 
 // OrganizationSecurityPolicyRuleMatchPtrInput is an input type that accepts OrganizationSecurityPolicyRuleMatchArgs, OrganizationSecurityPolicyRuleMatchPtr and OrganizationSecurityPolicyRuleMatchPtrOutput values.
@@ -21383,7 +21383,7 @@ func (i *organizationSecurityPolicyRuleMatchPtrType) ToOrganizationSecurityPolic
 }
 
 func (i *organizationSecurityPolicyRuleMatchPtrType) ToOrganizationSecurityPolicyRuleMatchPtrOutputWithContext(ctx context.Context) OrganizationSecurityPolicyRuleMatchPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(OrganizationSecurityPolicyRuleMatchPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationSecurityPolicyRuleMatchOutput).ToOrganizationSecurityPolicyRuleMatchPtrOutput()
 }
 
 type OrganizationSecurityPolicyRuleMatchOutput struct{ *pulumi.OutputState }
@@ -21533,7 +21533,7 @@ func (i OrganizationSecurityPolicyRuleMatchConfigArgs) ToOrganizationSecurityPol
 }
 
 func (i OrganizationSecurityPolicyRuleMatchConfigArgs) ToOrganizationSecurityPolicyRuleMatchConfigPtrOutputWithContext(ctx context.Context) OrganizationSecurityPolicyRuleMatchConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(OrganizationSecurityPolicyRuleMatchConfigOutput).ToOrganizationSecurityPolicyRuleMatchConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationSecurityPolicyRuleMatchConfigOutput).ToOrganizationSecurityPolicyRuleMatchConfigPtrOutput()
 }
 
 // OrganizationSecurityPolicyRuleMatchConfigPtrInput is an input type that accepts OrganizationSecurityPolicyRuleMatchConfigArgs, OrganizationSecurityPolicyRuleMatchConfigPtr and OrganizationSecurityPolicyRuleMatchConfigPtrOutput values.
@@ -21566,7 +21566,7 @@ func (i *organizationSecurityPolicyRuleMatchConfigPtrType) ToOrganizationSecurit
 }
 
 func (i *organizationSecurityPolicyRuleMatchConfigPtrType) ToOrganizationSecurityPolicyRuleMatchConfigPtrOutputWithContext(ctx context.Context) OrganizationSecurityPolicyRuleMatchConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(OrganizationSecurityPolicyRuleMatchConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationSecurityPolicyRuleMatchConfigOutput).ToOrganizationSecurityPolicyRuleMatchConfigPtrOutput()
 }
 
 type OrganizationSecurityPolicyRuleMatchConfigOutput struct{ *pulumi.OutputState }
@@ -21837,7 +21837,7 @@ func (i PacketMirroringCollectorIlbArgs) ToPacketMirroringCollectorIlbPtrOutput(
 }
 
 func (i PacketMirroringCollectorIlbArgs) ToPacketMirroringCollectorIlbPtrOutputWithContext(ctx context.Context) PacketMirroringCollectorIlbPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PacketMirroringCollectorIlbOutput).ToPacketMirroringCollectorIlbPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PacketMirroringCollectorIlbOutput).ToPacketMirroringCollectorIlbPtrOutput()
 }
 
 // PacketMirroringCollectorIlbPtrInput is an input type that accepts PacketMirroringCollectorIlbArgs, PacketMirroringCollectorIlbPtr and PacketMirroringCollectorIlbPtrOutput values.
@@ -21870,7 +21870,7 @@ func (i *packetMirroringCollectorIlbPtrType) ToPacketMirroringCollectorIlbPtrOut
 }
 
 func (i *packetMirroringCollectorIlbPtrType) ToPacketMirroringCollectorIlbPtrOutputWithContext(ctx context.Context) PacketMirroringCollectorIlbPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PacketMirroringCollectorIlbPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PacketMirroringCollectorIlbOutput).ToPacketMirroringCollectorIlbPtrOutput()
 }
 
 type PacketMirroringCollectorIlbOutput struct{ *pulumi.OutputState }
@@ -21976,7 +21976,7 @@ func (i PacketMirroringFilterArgs) ToPacketMirroringFilterPtrOutput() PacketMirr
 }
 
 func (i PacketMirroringFilterArgs) ToPacketMirroringFilterPtrOutputWithContext(ctx context.Context) PacketMirroringFilterPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PacketMirroringFilterOutput).ToPacketMirroringFilterPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PacketMirroringFilterOutput).ToPacketMirroringFilterPtrOutput()
 }
 
 // PacketMirroringFilterPtrInput is an input type that accepts PacketMirroringFilterArgs, PacketMirroringFilterPtr and PacketMirroringFilterPtrOutput values.
@@ -22009,7 +22009,7 @@ func (i *packetMirroringFilterPtrType) ToPacketMirroringFilterPtrOutput() Packet
 }
 
 func (i *packetMirroringFilterPtrType) ToPacketMirroringFilterPtrOutputWithContext(ctx context.Context) PacketMirroringFilterPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PacketMirroringFilterPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PacketMirroringFilterOutput).ToPacketMirroringFilterPtrOutput()
 }
 
 type PacketMirroringFilterOutput struct{ *pulumi.OutputState }
@@ -22138,7 +22138,7 @@ func (i PacketMirroringMirroredResourcesArgs) ToPacketMirroringMirroredResources
 }
 
 func (i PacketMirroringMirroredResourcesArgs) ToPacketMirroringMirroredResourcesPtrOutputWithContext(ctx context.Context) PacketMirroringMirroredResourcesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PacketMirroringMirroredResourcesOutput).ToPacketMirroringMirroredResourcesPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PacketMirroringMirroredResourcesOutput).ToPacketMirroringMirroredResourcesPtrOutput()
 }
 
 // PacketMirroringMirroredResourcesPtrInput is an input type that accepts PacketMirroringMirroredResourcesArgs, PacketMirroringMirroredResourcesPtr and PacketMirroringMirroredResourcesPtrOutput values.
@@ -22171,7 +22171,7 @@ func (i *packetMirroringMirroredResourcesPtrType) ToPacketMirroringMirroredResou
 }
 
 func (i *packetMirroringMirroredResourcesPtrType) ToPacketMirroringMirroredResourcesPtrOutputWithContext(ctx context.Context) PacketMirroringMirroredResourcesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PacketMirroringMirroredResourcesPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PacketMirroringMirroredResourcesOutput).ToPacketMirroringMirroredResourcesPtrOutput()
 }
 
 type PacketMirroringMirroredResourcesOutput struct{ *pulumi.OutputState }
@@ -22501,7 +22501,7 @@ func (i PacketMirroringNetworkArgs) ToPacketMirroringNetworkPtrOutput() PacketMi
 }
 
 func (i PacketMirroringNetworkArgs) ToPacketMirroringNetworkPtrOutputWithContext(ctx context.Context) PacketMirroringNetworkPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PacketMirroringNetworkOutput).ToPacketMirroringNetworkPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PacketMirroringNetworkOutput).ToPacketMirroringNetworkPtrOutput()
 }
 
 // PacketMirroringNetworkPtrInput is an input type that accepts PacketMirroringNetworkArgs, PacketMirroringNetworkPtr and PacketMirroringNetworkPtrOutput values.
@@ -22534,7 +22534,7 @@ func (i *packetMirroringNetworkPtrType) ToPacketMirroringNetworkPtrOutput() Pack
 }
 
 func (i *packetMirroringNetworkPtrType) ToPacketMirroringNetworkPtrOutputWithContext(ctx context.Context) PacketMirroringNetworkPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PacketMirroringNetworkPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PacketMirroringNetworkOutput).ToPacketMirroringNetworkPtrOutput()
 }
 
 type PacketMirroringNetworkOutput struct{ *pulumi.OutputState }
@@ -22638,7 +22638,7 @@ func (i PerInstanceConfigPreservedStateArgs) ToPerInstanceConfigPreservedStatePt
 }
 
 func (i PerInstanceConfigPreservedStateArgs) ToPerInstanceConfigPreservedStatePtrOutputWithContext(ctx context.Context) PerInstanceConfigPreservedStatePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PerInstanceConfigPreservedStateOutput).ToPerInstanceConfigPreservedStatePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PerInstanceConfigPreservedStateOutput).ToPerInstanceConfigPreservedStatePtrOutput()
 }
 
 // PerInstanceConfigPreservedStatePtrInput is an input type that accepts PerInstanceConfigPreservedStateArgs, PerInstanceConfigPreservedStatePtr and PerInstanceConfigPreservedStatePtrOutput values.
@@ -22671,7 +22671,7 @@ func (i *perInstanceConfigPreservedStatePtrType) ToPerInstanceConfigPreservedSta
 }
 
 func (i *perInstanceConfigPreservedStatePtrType) ToPerInstanceConfigPreservedStatePtrOutputWithContext(ctx context.Context) PerInstanceConfigPreservedStatePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PerInstanceConfigPreservedStatePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PerInstanceConfigPreservedStateOutput).ToPerInstanceConfigPreservedStatePtrOutput()
 }
 
 type PerInstanceConfigPreservedStateOutput struct{ *pulumi.OutputState }
@@ -23019,7 +23019,7 @@ func (i RegionAutoscalerAutoscalingPolicyArgs) ToRegionAutoscalerAutoscalingPoli
 }
 
 func (i RegionAutoscalerAutoscalingPolicyArgs) ToRegionAutoscalerAutoscalingPolicyPtrOutputWithContext(ctx context.Context) RegionAutoscalerAutoscalingPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionAutoscalerAutoscalingPolicyOutput).ToRegionAutoscalerAutoscalingPolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionAutoscalerAutoscalingPolicyOutput).ToRegionAutoscalerAutoscalingPolicyPtrOutput()
 }
 
 // RegionAutoscalerAutoscalingPolicyPtrInput is an input type that accepts RegionAutoscalerAutoscalingPolicyArgs, RegionAutoscalerAutoscalingPolicyPtr and RegionAutoscalerAutoscalingPolicyPtrOutput values.
@@ -23052,7 +23052,7 @@ func (i *regionAutoscalerAutoscalingPolicyPtrType) ToRegionAutoscalerAutoscaling
 }
 
 func (i *regionAutoscalerAutoscalingPolicyPtrType) ToRegionAutoscalerAutoscalingPolicyPtrOutputWithContext(ctx context.Context) RegionAutoscalerAutoscalingPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionAutoscalerAutoscalingPolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionAutoscalerAutoscalingPolicyOutput).ToRegionAutoscalerAutoscalingPolicyPtrOutput()
 }
 
 type RegionAutoscalerAutoscalingPolicyOutput struct{ *pulumi.OutputState }
@@ -23332,7 +23332,7 @@ func (i RegionAutoscalerAutoscalingPolicyCpuUtilizationArgs) ToRegionAutoscalerA
 }
 
 func (i RegionAutoscalerAutoscalingPolicyCpuUtilizationArgs) ToRegionAutoscalerAutoscalingPolicyCpuUtilizationPtrOutputWithContext(ctx context.Context) RegionAutoscalerAutoscalingPolicyCpuUtilizationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionAutoscalerAutoscalingPolicyCpuUtilizationOutput).ToRegionAutoscalerAutoscalingPolicyCpuUtilizationPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionAutoscalerAutoscalingPolicyCpuUtilizationOutput).ToRegionAutoscalerAutoscalingPolicyCpuUtilizationPtrOutput()
 }
 
 // RegionAutoscalerAutoscalingPolicyCpuUtilizationPtrInput is an input type that accepts RegionAutoscalerAutoscalingPolicyCpuUtilizationArgs, RegionAutoscalerAutoscalingPolicyCpuUtilizationPtr and RegionAutoscalerAutoscalingPolicyCpuUtilizationPtrOutput values.
@@ -23365,7 +23365,7 @@ func (i *regionAutoscalerAutoscalingPolicyCpuUtilizationPtrType) ToRegionAutosca
 }
 
 func (i *regionAutoscalerAutoscalingPolicyCpuUtilizationPtrType) ToRegionAutoscalerAutoscalingPolicyCpuUtilizationPtrOutputWithContext(ctx context.Context) RegionAutoscalerAutoscalingPolicyCpuUtilizationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionAutoscalerAutoscalingPolicyCpuUtilizationPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionAutoscalerAutoscalingPolicyCpuUtilizationOutput).ToRegionAutoscalerAutoscalingPolicyCpuUtilizationPtrOutput()
 }
 
 type RegionAutoscalerAutoscalingPolicyCpuUtilizationOutput struct{ *pulumi.OutputState }
@@ -23473,7 +23473,7 @@ func (i RegionAutoscalerAutoscalingPolicyLoadBalancingUtilizationArgs) ToRegionA
 }
 
 func (i RegionAutoscalerAutoscalingPolicyLoadBalancingUtilizationArgs) ToRegionAutoscalerAutoscalingPolicyLoadBalancingUtilizationPtrOutputWithContext(ctx context.Context) RegionAutoscalerAutoscalingPolicyLoadBalancingUtilizationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionAutoscalerAutoscalingPolicyLoadBalancingUtilizationOutput).ToRegionAutoscalerAutoscalingPolicyLoadBalancingUtilizationPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionAutoscalerAutoscalingPolicyLoadBalancingUtilizationOutput).ToRegionAutoscalerAutoscalingPolicyLoadBalancingUtilizationPtrOutput()
 }
 
 // RegionAutoscalerAutoscalingPolicyLoadBalancingUtilizationPtrInput is an input type that accepts RegionAutoscalerAutoscalingPolicyLoadBalancingUtilizationArgs, RegionAutoscalerAutoscalingPolicyLoadBalancingUtilizationPtr and RegionAutoscalerAutoscalingPolicyLoadBalancingUtilizationPtrOutput values.
@@ -23506,7 +23506,7 @@ func (i *regionAutoscalerAutoscalingPolicyLoadBalancingUtilizationPtrType) ToReg
 }
 
 func (i *regionAutoscalerAutoscalingPolicyLoadBalancingUtilizationPtrType) ToRegionAutoscalerAutoscalingPolicyLoadBalancingUtilizationPtrOutputWithContext(ctx context.Context) RegionAutoscalerAutoscalingPolicyLoadBalancingUtilizationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionAutoscalerAutoscalingPolicyLoadBalancingUtilizationPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionAutoscalerAutoscalingPolicyLoadBalancingUtilizationOutput).ToRegionAutoscalerAutoscalingPolicyLoadBalancingUtilizationPtrOutput()
 }
 
 type RegionAutoscalerAutoscalingPolicyLoadBalancingUtilizationOutput struct{ *pulumi.OutputState }
@@ -23886,7 +23886,7 @@ func (i RegionAutoscalerAutoscalingPolicyScaleDownControlArgs) ToRegionAutoscale
 }
 
 func (i RegionAutoscalerAutoscalingPolicyScaleDownControlArgs) ToRegionAutoscalerAutoscalingPolicyScaleDownControlPtrOutputWithContext(ctx context.Context) RegionAutoscalerAutoscalingPolicyScaleDownControlPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionAutoscalerAutoscalingPolicyScaleDownControlOutput).ToRegionAutoscalerAutoscalingPolicyScaleDownControlPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionAutoscalerAutoscalingPolicyScaleDownControlOutput).ToRegionAutoscalerAutoscalingPolicyScaleDownControlPtrOutput()
 }
 
 // RegionAutoscalerAutoscalingPolicyScaleDownControlPtrInput is an input type that accepts RegionAutoscalerAutoscalingPolicyScaleDownControlArgs, RegionAutoscalerAutoscalingPolicyScaleDownControlPtr and RegionAutoscalerAutoscalingPolicyScaleDownControlPtrOutput values.
@@ -23919,7 +23919,7 @@ func (i *regionAutoscalerAutoscalingPolicyScaleDownControlPtrType) ToRegionAutos
 }
 
 func (i *regionAutoscalerAutoscalingPolicyScaleDownControlPtrType) ToRegionAutoscalerAutoscalingPolicyScaleDownControlPtrOutputWithContext(ctx context.Context) RegionAutoscalerAutoscalingPolicyScaleDownControlPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionAutoscalerAutoscalingPolicyScaleDownControlPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionAutoscalerAutoscalingPolicyScaleDownControlOutput).ToRegionAutoscalerAutoscalingPolicyScaleDownControlPtrOutput()
 }
 
 type RegionAutoscalerAutoscalingPolicyScaleDownControlOutput struct{ *pulumi.OutputState }
@@ -24048,7 +24048,7 @@ func (i RegionAutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasAr
 }
 
 func (i RegionAutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasArgs) ToRegionAutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasPtrOutputWithContext(ctx context.Context) RegionAutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionAutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasOutput).ToRegionAutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionAutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasOutput).ToRegionAutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasPtrOutput()
 }
 
 // RegionAutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasPtrInput is an input type that accepts RegionAutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasArgs, RegionAutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasPtr and RegionAutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasPtrOutput values.
@@ -24081,7 +24081,7 @@ func (i *regionAutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasP
 }
 
 func (i *regionAutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasPtrType) ToRegionAutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasPtrOutputWithContext(ctx context.Context) RegionAutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionAutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionAutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasOutput).ToRegionAutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasPtrOutput()
 }
 
 type RegionAutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicasOutput struct{ *pulumi.OutputState }
@@ -24208,7 +24208,7 @@ func (i RegionAutoscalerAutoscalingPolicyScaleInControlArgs) ToRegionAutoscalerA
 }
 
 func (i RegionAutoscalerAutoscalingPolicyScaleInControlArgs) ToRegionAutoscalerAutoscalingPolicyScaleInControlPtrOutputWithContext(ctx context.Context) RegionAutoscalerAutoscalingPolicyScaleInControlPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionAutoscalerAutoscalingPolicyScaleInControlOutput).ToRegionAutoscalerAutoscalingPolicyScaleInControlPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionAutoscalerAutoscalingPolicyScaleInControlOutput).ToRegionAutoscalerAutoscalingPolicyScaleInControlPtrOutput()
 }
 
 // RegionAutoscalerAutoscalingPolicyScaleInControlPtrInput is an input type that accepts RegionAutoscalerAutoscalingPolicyScaleInControlArgs, RegionAutoscalerAutoscalingPolicyScaleInControlPtr and RegionAutoscalerAutoscalingPolicyScaleInControlPtrOutput values.
@@ -24241,7 +24241,7 @@ func (i *regionAutoscalerAutoscalingPolicyScaleInControlPtrType) ToRegionAutosca
 }
 
 func (i *regionAutoscalerAutoscalingPolicyScaleInControlPtrType) ToRegionAutoscalerAutoscalingPolicyScaleInControlPtrOutputWithContext(ctx context.Context) RegionAutoscalerAutoscalingPolicyScaleInControlPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionAutoscalerAutoscalingPolicyScaleInControlPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionAutoscalerAutoscalingPolicyScaleInControlOutput).ToRegionAutoscalerAutoscalingPolicyScaleInControlPtrOutput()
 }
 
 type RegionAutoscalerAutoscalingPolicyScaleInControlOutput struct{ *pulumi.OutputState }
@@ -24370,7 +24370,7 @@ func (i RegionAutoscalerAutoscalingPolicyScaleInControlMaxScaledInReplicasArgs) 
 }
 
 func (i RegionAutoscalerAutoscalingPolicyScaleInControlMaxScaledInReplicasArgs) ToRegionAutoscalerAutoscalingPolicyScaleInControlMaxScaledInReplicasPtrOutputWithContext(ctx context.Context) RegionAutoscalerAutoscalingPolicyScaleInControlMaxScaledInReplicasPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionAutoscalerAutoscalingPolicyScaleInControlMaxScaledInReplicasOutput).ToRegionAutoscalerAutoscalingPolicyScaleInControlMaxScaledInReplicasPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionAutoscalerAutoscalingPolicyScaleInControlMaxScaledInReplicasOutput).ToRegionAutoscalerAutoscalingPolicyScaleInControlMaxScaledInReplicasPtrOutput()
 }
 
 // RegionAutoscalerAutoscalingPolicyScaleInControlMaxScaledInReplicasPtrInput is an input type that accepts RegionAutoscalerAutoscalingPolicyScaleInControlMaxScaledInReplicasArgs, RegionAutoscalerAutoscalingPolicyScaleInControlMaxScaledInReplicasPtr and RegionAutoscalerAutoscalingPolicyScaleInControlMaxScaledInReplicasPtrOutput values.
@@ -24403,7 +24403,7 @@ func (i *regionAutoscalerAutoscalingPolicyScaleInControlMaxScaledInReplicasPtrTy
 }
 
 func (i *regionAutoscalerAutoscalingPolicyScaleInControlMaxScaledInReplicasPtrType) ToRegionAutoscalerAutoscalingPolicyScaleInControlMaxScaledInReplicasPtrOutputWithContext(ctx context.Context) RegionAutoscalerAutoscalingPolicyScaleInControlMaxScaledInReplicasPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionAutoscalerAutoscalingPolicyScaleInControlMaxScaledInReplicasPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionAutoscalerAutoscalingPolicyScaleInControlMaxScaledInReplicasOutput).ToRegionAutoscalerAutoscalingPolicyScaleInControlMaxScaledInReplicasPtrOutput()
 }
 
 type RegionAutoscalerAutoscalingPolicyScaleInControlMaxScaledInReplicasOutput struct{ *pulumi.OutputState }
@@ -24916,7 +24916,7 @@ func (i RegionBackendServiceCdnPolicyArgs) ToRegionBackendServiceCdnPolicyPtrOut
 }
 
 func (i RegionBackendServiceCdnPolicyArgs) ToRegionBackendServiceCdnPolicyPtrOutputWithContext(ctx context.Context) RegionBackendServiceCdnPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceCdnPolicyOutput).ToRegionBackendServiceCdnPolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceCdnPolicyOutput).ToRegionBackendServiceCdnPolicyPtrOutput()
 }
 
 // RegionBackendServiceCdnPolicyPtrInput is an input type that accepts RegionBackendServiceCdnPolicyArgs, RegionBackendServiceCdnPolicyPtr and RegionBackendServiceCdnPolicyPtrOutput values.
@@ -24949,7 +24949,7 @@ func (i *regionBackendServiceCdnPolicyPtrType) ToRegionBackendServiceCdnPolicyPt
 }
 
 func (i *regionBackendServiceCdnPolicyPtrType) ToRegionBackendServiceCdnPolicyPtrOutputWithContext(ctx context.Context) RegionBackendServiceCdnPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceCdnPolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceCdnPolicyOutput).ToRegionBackendServiceCdnPolicyPtrOutput()
 }
 
 type RegionBackendServiceCdnPolicyOutput struct{ *pulumi.OutputState }
@@ -25217,7 +25217,7 @@ func (i RegionBackendServiceCdnPolicyCacheKeyPolicyArgs) ToRegionBackendServiceC
 }
 
 func (i RegionBackendServiceCdnPolicyCacheKeyPolicyArgs) ToRegionBackendServiceCdnPolicyCacheKeyPolicyPtrOutputWithContext(ctx context.Context) RegionBackendServiceCdnPolicyCacheKeyPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceCdnPolicyCacheKeyPolicyOutput).ToRegionBackendServiceCdnPolicyCacheKeyPolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceCdnPolicyCacheKeyPolicyOutput).ToRegionBackendServiceCdnPolicyCacheKeyPolicyPtrOutput()
 }
 
 // RegionBackendServiceCdnPolicyCacheKeyPolicyPtrInput is an input type that accepts RegionBackendServiceCdnPolicyCacheKeyPolicyArgs, RegionBackendServiceCdnPolicyCacheKeyPolicyPtr and RegionBackendServiceCdnPolicyCacheKeyPolicyPtrOutput values.
@@ -25250,7 +25250,7 @@ func (i *regionBackendServiceCdnPolicyCacheKeyPolicyPtrType) ToRegionBackendServ
 }
 
 func (i *regionBackendServiceCdnPolicyCacheKeyPolicyPtrType) ToRegionBackendServiceCdnPolicyCacheKeyPolicyPtrOutputWithContext(ctx context.Context) RegionBackendServiceCdnPolicyCacheKeyPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceCdnPolicyCacheKeyPolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceCdnPolicyCacheKeyPolicyOutput).ToRegionBackendServiceCdnPolicyCacheKeyPolicyPtrOutput()
 }
 
 type RegionBackendServiceCdnPolicyCacheKeyPolicyOutput struct{ *pulumi.OutputState }
@@ -25570,7 +25570,7 @@ func (i RegionBackendServiceCircuitBreakersArgs) ToRegionBackendServiceCircuitBr
 }
 
 func (i RegionBackendServiceCircuitBreakersArgs) ToRegionBackendServiceCircuitBreakersPtrOutputWithContext(ctx context.Context) RegionBackendServiceCircuitBreakersPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceCircuitBreakersOutput).ToRegionBackendServiceCircuitBreakersPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceCircuitBreakersOutput).ToRegionBackendServiceCircuitBreakersPtrOutput()
 }
 
 // RegionBackendServiceCircuitBreakersPtrInput is an input type that accepts RegionBackendServiceCircuitBreakersArgs, RegionBackendServiceCircuitBreakersPtr and RegionBackendServiceCircuitBreakersPtrOutput values.
@@ -25603,7 +25603,7 @@ func (i *regionBackendServiceCircuitBreakersPtrType) ToRegionBackendServiceCircu
 }
 
 func (i *regionBackendServiceCircuitBreakersPtrType) ToRegionBackendServiceCircuitBreakersPtrOutputWithContext(ctx context.Context) RegionBackendServiceCircuitBreakersPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceCircuitBreakersPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceCircuitBreakersOutput).ToRegionBackendServiceCircuitBreakersPtrOutput()
 }
 
 type RegionBackendServiceCircuitBreakersOutput struct{ *pulumi.OutputState }
@@ -25802,7 +25802,7 @@ func (i RegionBackendServiceCircuitBreakersConnectTimeoutArgs) ToRegionBackendSe
 }
 
 func (i RegionBackendServiceCircuitBreakersConnectTimeoutArgs) ToRegionBackendServiceCircuitBreakersConnectTimeoutPtrOutputWithContext(ctx context.Context) RegionBackendServiceCircuitBreakersConnectTimeoutPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceCircuitBreakersConnectTimeoutOutput).ToRegionBackendServiceCircuitBreakersConnectTimeoutPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceCircuitBreakersConnectTimeoutOutput).ToRegionBackendServiceCircuitBreakersConnectTimeoutPtrOutput()
 }
 
 // RegionBackendServiceCircuitBreakersConnectTimeoutPtrInput is an input type that accepts RegionBackendServiceCircuitBreakersConnectTimeoutArgs, RegionBackendServiceCircuitBreakersConnectTimeoutPtr and RegionBackendServiceCircuitBreakersConnectTimeoutPtrOutput values.
@@ -25835,7 +25835,7 @@ func (i *regionBackendServiceCircuitBreakersConnectTimeoutPtrType) ToRegionBacke
 }
 
 func (i *regionBackendServiceCircuitBreakersConnectTimeoutPtrType) ToRegionBackendServiceCircuitBreakersConnectTimeoutPtrOutputWithContext(ctx context.Context) RegionBackendServiceCircuitBreakersConnectTimeoutPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceCircuitBreakersConnectTimeoutPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceCircuitBreakersConnectTimeoutOutput).ToRegionBackendServiceCircuitBreakersConnectTimeoutPtrOutput()
 }
 
 type RegionBackendServiceCircuitBreakersConnectTimeoutOutput struct{ *pulumi.OutputState }
@@ -25984,7 +25984,7 @@ func (i RegionBackendServiceConsistentHashArgs) ToRegionBackendServiceConsistent
 }
 
 func (i RegionBackendServiceConsistentHashArgs) ToRegionBackendServiceConsistentHashPtrOutputWithContext(ctx context.Context) RegionBackendServiceConsistentHashPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceConsistentHashOutput).ToRegionBackendServiceConsistentHashPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceConsistentHashOutput).ToRegionBackendServiceConsistentHashPtrOutput()
 }
 
 // RegionBackendServiceConsistentHashPtrInput is an input type that accepts RegionBackendServiceConsistentHashArgs, RegionBackendServiceConsistentHashPtr and RegionBackendServiceConsistentHashPtrOutput values.
@@ -26017,7 +26017,7 @@ func (i *regionBackendServiceConsistentHashPtrType) ToRegionBackendServiceConsis
 }
 
 func (i *regionBackendServiceConsistentHashPtrType) ToRegionBackendServiceConsistentHashPtrOutputWithContext(ctx context.Context) RegionBackendServiceConsistentHashPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceConsistentHashPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceConsistentHashOutput).ToRegionBackendServiceConsistentHashPtrOutput()
 }
 
 type RegionBackendServiceConsistentHashOutput struct{ *pulumi.OutputState }
@@ -26173,7 +26173,7 @@ func (i RegionBackendServiceConsistentHashHttpCookieArgs) ToRegionBackendService
 }
 
 func (i RegionBackendServiceConsistentHashHttpCookieArgs) ToRegionBackendServiceConsistentHashHttpCookiePtrOutputWithContext(ctx context.Context) RegionBackendServiceConsistentHashHttpCookiePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceConsistentHashHttpCookieOutput).ToRegionBackendServiceConsistentHashHttpCookiePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceConsistentHashHttpCookieOutput).ToRegionBackendServiceConsistentHashHttpCookiePtrOutput()
 }
 
 // RegionBackendServiceConsistentHashHttpCookiePtrInput is an input type that accepts RegionBackendServiceConsistentHashHttpCookieArgs, RegionBackendServiceConsistentHashHttpCookiePtr and RegionBackendServiceConsistentHashHttpCookiePtrOutput values.
@@ -26206,7 +26206,7 @@ func (i *regionBackendServiceConsistentHashHttpCookiePtrType) ToRegionBackendSer
 }
 
 func (i *regionBackendServiceConsistentHashHttpCookiePtrType) ToRegionBackendServiceConsistentHashHttpCookiePtrOutputWithContext(ctx context.Context) RegionBackendServiceConsistentHashHttpCookiePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceConsistentHashHttpCookiePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceConsistentHashHttpCookieOutput).ToRegionBackendServiceConsistentHashHttpCookiePtrOutput()
 }
 
 type RegionBackendServiceConsistentHashHttpCookieOutput struct{ *pulumi.OutputState }
@@ -26346,7 +26346,7 @@ func (i RegionBackendServiceConsistentHashHttpCookieTtlArgs) ToRegionBackendServ
 }
 
 func (i RegionBackendServiceConsistentHashHttpCookieTtlArgs) ToRegionBackendServiceConsistentHashHttpCookieTtlPtrOutputWithContext(ctx context.Context) RegionBackendServiceConsistentHashHttpCookieTtlPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceConsistentHashHttpCookieTtlOutput).ToRegionBackendServiceConsistentHashHttpCookieTtlPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceConsistentHashHttpCookieTtlOutput).ToRegionBackendServiceConsistentHashHttpCookieTtlPtrOutput()
 }
 
 // RegionBackendServiceConsistentHashHttpCookieTtlPtrInput is an input type that accepts RegionBackendServiceConsistentHashHttpCookieTtlArgs, RegionBackendServiceConsistentHashHttpCookieTtlPtr and RegionBackendServiceConsistentHashHttpCookieTtlPtrOutput values.
@@ -26379,7 +26379,7 @@ func (i *regionBackendServiceConsistentHashHttpCookieTtlPtrType) ToRegionBackend
 }
 
 func (i *regionBackendServiceConsistentHashHttpCookieTtlPtrType) ToRegionBackendServiceConsistentHashHttpCookieTtlPtrOutputWithContext(ctx context.Context) RegionBackendServiceConsistentHashHttpCookieTtlPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceConsistentHashHttpCookieTtlPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceConsistentHashHttpCookieTtlOutput).ToRegionBackendServiceConsistentHashHttpCookieTtlPtrOutput()
 }
 
 type RegionBackendServiceConsistentHashHttpCookieTtlOutput struct{ *pulumi.OutputState }
@@ -26542,7 +26542,7 @@ func (i RegionBackendServiceFailoverPolicyArgs) ToRegionBackendServiceFailoverPo
 }
 
 func (i RegionBackendServiceFailoverPolicyArgs) ToRegionBackendServiceFailoverPolicyPtrOutputWithContext(ctx context.Context) RegionBackendServiceFailoverPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceFailoverPolicyOutput).ToRegionBackendServiceFailoverPolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceFailoverPolicyOutput).ToRegionBackendServiceFailoverPolicyPtrOutput()
 }
 
 // RegionBackendServiceFailoverPolicyPtrInput is an input type that accepts RegionBackendServiceFailoverPolicyArgs, RegionBackendServiceFailoverPolicyPtr and RegionBackendServiceFailoverPolicyPtrOutput values.
@@ -26575,7 +26575,7 @@ func (i *regionBackendServiceFailoverPolicyPtrType) ToRegionBackendServiceFailov
 }
 
 func (i *regionBackendServiceFailoverPolicyPtrType) ToRegionBackendServiceFailoverPolicyPtrOutputWithContext(ctx context.Context) RegionBackendServiceFailoverPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceFailoverPolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceFailoverPolicyOutput).ToRegionBackendServiceFailoverPolicyPtrOutput()
 }
 
 type RegionBackendServiceFailoverPolicyOutput struct{ *pulumi.OutputState }
@@ -26747,7 +26747,7 @@ func (i RegionBackendServiceLogConfigArgs) ToRegionBackendServiceLogConfigPtrOut
 }
 
 func (i RegionBackendServiceLogConfigArgs) ToRegionBackendServiceLogConfigPtrOutputWithContext(ctx context.Context) RegionBackendServiceLogConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceLogConfigOutput).ToRegionBackendServiceLogConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceLogConfigOutput).ToRegionBackendServiceLogConfigPtrOutput()
 }
 
 // RegionBackendServiceLogConfigPtrInput is an input type that accepts RegionBackendServiceLogConfigArgs, RegionBackendServiceLogConfigPtr and RegionBackendServiceLogConfigPtrOutput values.
@@ -26780,7 +26780,7 @@ func (i *regionBackendServiceLogConfigPtrType) ToRegionBackendServiceLogConfigPt
 }
 
 func (i *regionBackendServiceLogConfigPtrType) ToRegionBackendServiceLogConfigPtrOutputWithContext(ctx context.Context) RegionBackendServiceLogConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceLogConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceLogConfigOutput).ToRegionBackendServiceLogConfigPtrOutput()
 }
 
 type RegionBackendServiceLogConfigOutput struct{ *pulumi.OutputState }
@@ -26995,7 +26995,7 @@ func (i RegionBackendServiceOutlierDetectionArgs) ToRegionBackendServiceOutlierD
 }
 
 func (i RegionBackendServiceOutlierDetectionArgs) ToRegionBackendServiceOutlierDetectionPtrOutputWithContext(ctx context.Context) RegionBackendServiceOutlierDetectionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceOutlierDetectionOutput).ToRegionBackendServiceOutlierDetectionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceOutlierDetectionOutput).ToRegionBackendServiceOutlierDetectionPtrOutput()
 }
 
 // RegionBackendServiceOutlierDetectionPtrInput is an input type that accepts RegionBackendServiceOutlierDetectionArgs, RegionBackendServiceOutlierDetectionPtr and RegionBackendServiceOutlierDetectionPtrOutput values.
@@ -27028,7 +27028,7 @@ func (i *regionBackendServiceOutlierDetectionPtrType) ToRegionBackendServiceOutl
 }
 
 func (i *regionBackendServiceOutlierDetectionPtrType) ToRegionBackendServiceOutlierDetectionPtrOutputWithContext(ctx context.Context) RegionBackendServiceOutlierDetectionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceOutlierDetectionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceOutlierDetectionOutput).ToRegionBackendServiceOutlierDetectionPtrOutput()
 }
 
 type RegionBackendServiceOutlierDetectionOutput struct{ *pulumi.OutputState }
@@ -27346,7 +27346,7 @@ func (i RegionBackendServiceOutlierDetectionBaseEjectionTimeArgs) ToRegionBacken
 }
 
 func (i RegionBackendServiceOutlierDetectionBaseEjectionTimeArgs) ToRegionBackendServiceOutlierDetectionBaseEjectionTimePtrOutputWithContext(ctx context.Context) RegionBackendServiceOutlierDetectionBaseEjectionTimePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceOutlierDetectionBaseEjectionTimeOutput).ToRegionBackendServiceOutlierDetectionBaseEjectionTimePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceOutlierDetectionBaseEjectionTimeOutput).ToRegionBackendServiceOutlierDetectionBaseEjectionTimePtrOutput()
 }
 
 // RegionBackendServiceOutlierDetectionBaseEjectionTimePtrInput is an input type that accepts RegionBackendServiceOutlierDetectionBaseEjectionTimeArgs, RegionBackendServiceOutlierDetectionBaseEjectionTimePtr and RegionBackendServiceOutlierDetectionBaseEjectionTimePtrOutput values.
@@ -27379,7 +27379,7 @@ func (i *regionBackendServiceOutlierDetectionBaseEjectionTimePtrType) ToRegionBa
 }
 
 func (i *regionBackendServiceOutlierDetectionBaseEjectionTimePtrType) ToRegionBackendServiceOutlierDetectionBaseEjectionTimePtrOutputWithContext(ctx context.Context) RegionBackendServiceOutlierDetectionBaseEjectionTimePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceOutlierDetectionBaseEjectionTimePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceOutlierDetectionBaseEjectionTimeOutput).ToRegionBackendServiceOutlierDetectionBaseEjectionTimePtrOutput()
 }
 
 type RegionBackendServiceOutlierDetectionBaseEjectionTimeOutput struct{ *pulumi.OutputState }
@@ -27510,7 +27510,7 @@ func (i RegionBackendServiceOutlierDetectionIntervalArgs) ToRegionBackendService
 }
 
 func (i RegionBackendServiceOutlierDetectionIntervalArgs) ToRegionBackendServiceOutlierDetectionIntervalPtrOutputWithContext(ctx context.Context) RegionBackendServiceOutlierDetectionIntervalPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceOutlierDetectionIntervalOutput).ToRegionBackendServiceOutlierDetectionIntervalPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceOutlierDetectionIntervalOutput).ToRegionBackendServiceOutlierDetectionIntervalPtrOutput()
 }
 
 // RegionBackendServiceOutlierDetectionIntervalPtrInput is an input type that accepts RegionBackendServiceOutlierDetectionIntervalArgs, RegionBackendServiceOutlierDetectionIntervalPtr and RegionBackendServiceOutlierDetectionIntervalPtrOutput values.
@@ -27543,7 +27543,7 @@ func (i *regionBackendServiceOutlierDetectionIntervalPtrType) ToRegionBackendSer
 }
 
 func (i *regionBackendServiceOutlierDetectionIntervalPtrType) ToRegionBackendServiceOutlierDetectionIntervalPtrOutputWithContext(ctx context.Context) RegionBackendServiceOutlierDetectionIntervalPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceOutlierDetectionIntervalPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionBackendServiceOutlierDetectionIntervalOutput).ToRegionBackendServiceOutlierDetectionIntervalPtrOutput()
 }
 
 type RegionBackendServiceOutlierDetectionIntervalOutput struct{ *pulumi.OutputState }
@@ -27678,7 +27678,7 @@ func (i RegionDiskDiskEncryptionKeyArgs) ToRegionDiskDiskEncryptionKeyPtrOutput(
 }
 
 func (i RegionDiskDiskEncryptionKeyArgs) ToRegionDiskDiskEncryptionKeyPtrOutputWithContext(ctx context.Context) RegionDiskDiskEncryptionKeyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionDiskDiskEncryptionKeyOutput).ToRegionDiskDiskEncryptionKeyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionDiskDiskEncryptionKeyOutput).ToRegionDiskDiskEncryptionKeyPtrOutput()
 }
 
 // RegionDiskDiskEncryptionKeyPtrInput is an input type that accepts RegionDiskDiskEncryptionKeyArgs, RegionDiskDiskEncryptionKeyPtr and RegionDiskDiskEncryptionKeyPtrOutput values.
@@ -27711,7 +27711,7 @@ func (i *regionDiskDiskEncryptionKeyPtrType) ToRegionDiskDiskEncryptionKeyPtrOut
 }
 
 func (i *regionDiskDiskEncryptionKeyPtrType) ToRegionDiskDiskEncryptionKeyPtrOutputWithContext(ctx context.Context) RegionDiskDiskEncryptionKeyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionDiskDiskEncryptionKeyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionDiskDiskEncryptionKeyOutput).ToRegionDiskDiskEncryptionKeyPtrOutput()
 }
 
 type RegionDiskDiskEncryptionKeyOutput struct{ *pulumi.OutputState }
@@ -27847,7 +27847,7 @@ func (i RegionDiskIamBindingConditionArgs) ToRegionDiskIamBindingConditionPtrOut
 }
 
 func (i RegionDiskIamBindingConditionArgs) ToRegionDiskIamBindingConditionPtrOutputWithContext(ctx context.Context) RegionDiskIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionDiskIamBindingConditionOutput).ToRegionDiskIamBindingConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionDiskIamBindingConditionOutput).ToRegionDiskIamBindingConditionPtrOutput()
 }
 
 // RegionDiskIamBindingConditionPtrInput is an input type that accepts RegionDiskIamBindingConditionArgs, RegionDiskIamBindingConditionPtr and RegionDiskIamBindingConditionPtrOutput values.
@@ -27880,7 +27880,7 @@ func (i *regionDiskIamBindingConditionPtrType) ToRegionDiskIamBindingConditionPt
 }
 
 func (i *regionDiskIamBindingConditionPtrType) ToRegionDiskIamBindingConditionPtrOutputWithContext(ctx context.Context) RegionDiskIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionDiskIamBindingConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionDiskIamBindingConditionOutput).ToRegionDiskIamBindingConditionPtrOutput()
 }
 
 type RegionDiskIamBindingConditionOutput struct{ *pulumi.OutputState }
@@ -28003,7 +28003,7 @@ func (i RegionDiskIamMemberConditionArgs) ToRegionDiskIamMemberConditionPtrOutpu
 }
 
 func (i RegionDiskIamMemberConditionArgs) ToRegionDiskIamMemberConditionPtrOutputWithContext(ctx context.Context) RegionDiskIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionDiskIamMemberConditionOutput).ToRegionDiskIamMemberConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionDiskIamMemberConditionOutput).ToRegionDiskIamMemberConditionPtrOutput()
 }
 
 // RegionDiskIamMemberConditionPtrInput is an input type that accepts RegionDiskIamMemberConditionArgs, RegionDiskIamMemberConditionPtr and RegionDiskIamMemberConditionPtrOutput values.
@@ -28036,7 +28036,7 @@ func (i *regionDiskIamMemberConditionPtrType) ToRegionDiskIamMemberConditionPtrO
 }
 
 func (i *regionDiskIamMemberConditionPtrType) ToRegionDiskIamMemberConditionPtrOutputWithContext(ctx context.Context) RegionDiskIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionDiskIamMemberConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionDiskIamMemberConditionOutput).ToRegionDiskIamMemberConditionPtrOutput()
 }
 
 type RegionDiskIamMemberConditionOutput struct{ *pulumi.OutputState }
@@ -28171,7 +28171,7 @@ func (i RegionDiskSourceSnapshotEncryptionKeyArgs) ToRegionDiskSourceSnapshotEnc
 }
 
 func (i RegionDiskSourceSnapshotEncryptionKeyArgs) ToRegionDiskSourceSnapshotEncryptionKeyPtrOutputWithContext(ctx context.Context) RegionDiskSourceSnapshotEncryptionKeyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionDiskSourceSnapshotEncryptionKeyOutput).ToRegionDiskSourceSnapshotEncryptionKeyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionDiskSourceSnapshotEncryptionKeyOutput).ToRegionDiskSourceSnapshotEncryptionKeyPtrOutput()
 }
 
 // RegionDiskSourceSnapshotEncryptionKeyPtrInput is an input type that accepts RegionDiskSourceSnapshotEncryptionKeyArgs, RegionDiskSourceSnapshotEncryptionKeyPtr and RegionDiskSourceSnapshotEncryptionKeyPtrOutput values.
@@ -28204,7 +28204,7 @@ func (i *regionDiskSourceSnapshotEncryptionKeyPtrType) ToRegionDiskSourceSnapsho
 }
 
 func (i *regionDiskSourceSnapshotEncryptionKeyPtrType) ToRegionDiskSourceSnapshotEncryptionKeyPtrOutputWithContext(ctx context.Context) RegionDiskSourceSnapshotEncryptionKeyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionDiskSourceSnapshotEncryptionKeyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionDiskSourceSnapshotEncryptionKeyOutput).ToRegionDiskSourceSnapshotEncryptionKeyPtrOutput()
 }
 
 type RegionDiskSourceSnapshotEncryptionKeyOutput struct{ *pulumi.OutputState }
@@ -28384,7 +28384,7 @@ func (i RegionHealthCheckGrpcHealthCheckArgs) ToRegionHealthCheckGrpcHealthCheck
 }
 
 func (i RegionHealthCheckGrpcHealthCheckArgs) ToRegionHealthCheckGrpcHealthCheckPtrOutputWithContext(ctx context.Context) RegionHealthCheckGrpcHealthCheckPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionHealthCheckGrpcHealthCheckOutput).ToRegionHealthCheckGrpcHealthCheckPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionHealthCheckGrpcHealthCheckOutput).ToRegionHealthCheckGrpcHealthCheckPtrOutput()
 }
 
 // RegionHealthCheckGrpcHealthCheckPtrInput is an input type that accepts RegionHealthCheckGrpcHealthCheckArgs, RegionHealthCheckGrpcHealthCheckPtr and RegionHealthCheckGrpcHealthCheckPtrOutput values.
@@ -28417,7 +28417,7 @@ func (i *regionHealthCheckGrpcHealthCheckPtrType) ToRegionHealthCheckGrpcHealthC
 }
 
 func (i *regionHealthCheckGrpcHealthCheckPtrType) ToRegionHealthCheckGrpcHealthCheckPtrOutputWithContext(ctx context.Context) RegionHealthCheckGrpcHealthCheckPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionHealthCheckGrpcHealthCheckPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionHealthCheckGrpcHealthCheckOutput).ToRegionHealthCheckGrpcHealthCheckPtrOutput()
 }
 
 type RegionHealthCheckGrpcHealthCheckOutput struct{ *pulumi.OutputState }
@@ -28660,7 +28660,7 @@ func (i RegionHealthCheckHttp2HealthCheckArgs) ToRegionHealthCheckHttp2HealthChe
 }
 
 func (i RegionHealthCheckHttp2HealthCheckArgs) ToRegionHealthCheckHttp2HealthCheckPtrOutputWithContext(ctx context.Context) RegionHealthCheckHttp2HealthCheckPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionHealthCheckHttp2HealthCheckOutput).ToRegionHealthCheckHttp2HealthCheckPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionHealthCheckHttp2HealthCheckOutput).ToRegionHealthCheckHttp2HealthCheckPtrOutput()
 }
 
 // RegionHealthCheckHttp2HealthCheckPtrInput is an input type that accepts RegionHealthCheckHttp2HealthCheckArgs, RegionHealthCheckHttp2HealthCheckPtr and RegionHealthCheckHttp2HealthCheckPtrOutput values.
@@ -28693,7 +28693,7 @@ func (i *regionHealthCheckHttp2HealthCheckPtrType) ToRegionHealthCheckHttp2Healt
 }
 
 func (i *regionHealthCheckHttp2HealthCheckPtrType) ToRegionHealthCheckHttp2HealthCheckPtrOutputWithContext(ctx context.Context) RegionHealthCheckHttp2HealthCheckPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionHealthCheckHttp2HealthCheckPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionHealthCheckHttp2HealthCheckOutput).ToRegionHealthCheckHttp2HealthCheckPtrOutput()
 }
 
 type RegionHealthCheckHttp2HealthCheckOutput struct{ *pulumi.OutputState }
@@ -28989,7 +28989,7 @@ func (i RegionHealthCheckHttpHealthCheckArgs) ToRegionHealthCheckHttpHealthCheck
 }
 
 func (i RegionHealthCheckHttpHealthCheckArgs) ToRegionHealthCheckHttpHealthCheckPtrOutputWithContext(ctx context.Context) RegionHealthCheckHttpHealthCheckPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionHealthCheckHttpHealthCheckOutput).ToRegionHealthCheckHttpHealthCheckPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionHealthCheckHttpHealthCheckOutput).ToRegionHealthCheckHttpHealthCheckPtrOutput()
 }
 
 // RegionHealthCheckHttpHealthCheckPtrInput is an input type that accepts RegionHealthCheckHttpHealthCheckArgs, RegionHealthCheckHttpHealthCheckPtr and RegionHealthCheckHttpHealthCheckPtrOutput values.
@@ -29022,7 +29022,7 @@ func (i *regionHealthCheckHttpHealthCheckPtrType) ToRegionHealthCheckHttpHealthC
 }
 
 func (i *regionHealthCheckHttpHealthCheckPtrType) ToRegionHealthCheckHttpHealthCheckPtrOutputWithContext(ctx context.Context) RegionHealthCheckHttpHealthCheckPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionHealthCheckHttpHealthCheckPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionHealthCheckHttpHealthCheckOutput).ToRegionHealthCheckHttpHealthCheckPtrOutput()
 }
 
 type RegionHealthCheckHttpHealthCheckOutput struct{ *pulumi.OutputState }
@@ -29318,7 +29318,7 @@ func (i RegionHealthCheckHttpsHealthCheckArgs) ToRegionHealthCheckHttpsHealthChe
 }
 
 func (i RegionHealthCheckHttpsHealthCheckArgs) ToRegionHealthCheckHttpsHealthCheckPtrOutputWithContext(ctx context.Context) RegionHealthCheckHttpsHealthCheckPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionHealthCheckHttpsHealthCheckOutput).ToRegionHealthCheckHttpsHealthCheckPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionHealthCheckHttpsHealthCheckOutput).ToRegionHealthCheckHttpsHealthCheckPtrOutput()
 }
 
 // RegionHealthCheckHttpsHealthCheckPtrInput is an input type that accepts RegionHealthCheckHttpsHealthCheckArgs, RegionHealthCheckHttpsHealthCheckPtr and RegionHealthCheckHttpsHealthCheckPtrOutput values.
@@ -29351,7 +29351,7 @@ func (i *regionHealthCheckHttpsHealthCheckPtrType) ToRegionHealthCheckHttpsHealt
 }
 
 func (i *regionHealthCheckHttpsHealthCheckPtrType) ToRegionHealthCheckHttpsHealthCheckPtrOutputWithContext(ctx context.Context) RegionHealthCheckHttpsHealthCheckPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionHealthCheckHttpsHealthCheckPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionHealthCheckHttpsHealthCheckOutput).ToRegionHealthCheckHttpsHealthCheckPtrOutput()
 }
 
 type RegionHealthCheckHttpsHealthCheckOutput struct{ *pulumi.OutputState }
@@ -29583,7 +29583,7 @@ func (i RegionHealthCheckLogConfigArgs) ToRegionHealthCheckLogConfigPtrOutput() 
 }
 
 func (i RegionHealthCheckLogConfigArgs) ToRegionHealthCheckLogConfigPtrOutputWithContext(ctx context.Context) RegionHealthCheckLogConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionHealthCheckLogConfigOutput).ToRegionHealthCheckLogConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionHealthCheckLogConfigOutput).ToRegionHealthCheckLogConfigPtrOutput()
 }
 
 // RegionHealthCheckLogConfigPtrInput is an input type that accepts RegionHealthCheckLogConfigArgs, RegionHealthCheckLogConfigPtr and RegionHealthCheckLogConfigPtrOutput values.
@@ -29616,7 +29616,7 @@ func (i *regionHealthCheckLogConfigPtrType) ToRegionHealthCheckLogConfigPtrOutpu
 }
 
 func (i *regionHealthCheckLogConfigPtrType) ToRegionHealthCheckLogConfigPtrOutputWithContext(ctx context.Context) RegionHealthCheckLogConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionHealthCheckLogConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionHealthCheckLogConfigOutput).ToRegionHealthCheckLogConfigPtrOutput()
 }
 
 type RegionHealthCheckLogConfigOutput struct{ *pulumi.OutputState }
@@ -29778,7 +29778,7 @@ func (i RegionHealthCheckSslHealthCheckArgs) ToRegionHealthCheckSslHealthCheckPt
 }
 
 func (i RegionHealthCheckSslHealthCheckArgs) ToRegionHealthCheckSslHealthCheckPtrOutputWithContext(ctx context.Context) RegionHealthCheckSslHealthCheckPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionHealthCheckSslHealthCheckOutput).ToRegionHealthCheckSslHealthCheckPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionHealthCheckSslHealthCheckOutput).ToRegionHealthCheckSslHealthCheckPtrOutput()
 }
 
 // RegionHealthCheckSslHealthCheckPtrInput is an input type that accepts RegionHealthCheckSslHealthCheckArgs, RegionHealthCheckSslHealthCheckPtr and RegionHealthCheckSslHealthCheckPtrOutput values.
@@ -29811,7 +29811,7 @@ func (i *regionHealthCheckSslHealthCheckPtrType) ToRegionHealthCheckSslHealthChe
 }
 
 func (i *regionHealthCheckSslHealthCheckPtrType) ToRegionHealthCheckSslHealthCheckPtrOutputWithContext(ctx context.Context) RegionHealthCheckSslHealthCheckPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionHealthCheckSslHealthCheckPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionHealthCheckSslHealthCheckOutput).ToRegionHealthCheckSslHealthCheckPtrOutput()
 }
 
 type RegionHealthCheckSslHealthCheckOutput struct{ *pulumi.OutputState }
@@ -30088,7 +30088,7 @@ func (i RegionHealthCheckTcpHealthCheckArgs) ToRegionHealthCheckTcpHealthCheckPt
 }
 
 func (i RegionHealthCheckTcpHealthCheckArgs) ToRegionHealthCheckTcpHealthCheckPtrOutputWithContext(ctx context.Context) RegionHealthCheckTcpHealthCheckPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionHealthCheckTcpHealthCheckOutput).ToRegionHealthCheckTcpHealthCheckPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionHealthCheckTcpHealthCheckOutput).ToRegionHealthCheckTcpHealthCheckPtrOutput()
 }
 
 // RegionHealthCheckTcpHealthCheckPtrInput is an input type that accepts RegionHealthCheckTcpHealthCheckArgs, RegionHealthCheckTcpHealthCheckPtr and RegionHealthCheckTcpHealthCheckPtrOutput values.
@@ -30121,7 +30121,7 @@ func (i *regionHealthCheckTcpHealthCheckPtrType) ToRegionHealthCheckTcpHealthChe
 }
 
 func (i *regionHealthCheckTcpHealthCheckPtrType) ToRegionHealthCheckTcpHealthCheckPtrOutputWithContext(ctx context.Context) RegionHealthCheckTcpHealthCheckPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionHealthCheckTcpHealthCheckPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionHealthCheckTcpHealthCheckOutput).ToRegionHealthCheckTcpHealthCheckPtrOutput()
 }
 
 type RegionHealthCheckTcpHealthCheckOutput struct{ *pulumi.OutputState }
@@ -30342,7 +30342,7 @@ func (i RegionInstanceGroupManagerAutoHealingPoliciesArgs) ToRegionInstanceGroup
 }
 
 func (i RegionInstanceGroupManagerAutoHealingPoliciesArgs) ToRegionInstanceGroupManagerAutoHealingPoliciesPtrOutputWithContext(ctx context.Context) RegionInstanceGroupManagerAutoHealingPoliciesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionInstanceGroupManagerAutoHealingPoliciesOutput).ToRegionInstanceGroupManagerAutoHealingPoliciesPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionInstanceGroupManagerAutoHealingPoliciesOutput).ToRegionInstanceGroupManagerAutoHealingPoliciesPtrOutput()
 }
 
 // RegionInstanceGroupManagerAutoHealingPoliciesPtrInput is an input type that accepts RegionInstanceGroupManagerAutoHealingPoliciesArgs, RegionInstanceGroupManagerAutoHealingPoliciesPtr and RegionInstanceGroupManagerAutoHealingPoliciesPtrOutput values.
@@ -30375,7 +30375,7 @@ func (i *regionInstanceGroupManagerAutoHealingPoliciesPtrType) ToRegionInstanceG
 }
 
 func (i *regionInstanceGroupManagerAutoHealingPoliciesPtrType) ToRegionInstanceGroupManagerAutoHealingPoliciesPtrOutputWithContext(ctx context.Context) RegionInstanceGroupManagerAutoHealingPoliciesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionInstanceGroupManagerAutoHealingPoliciesPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionInstanceGroupManagerAutoHealingPoliciesOutput).ToRegionInstanceGroupManagerAutoHealingPoliciesPtrOutput()
 }
 
 type RegionInstanceGroupManagerAutoHealingPoliciesOutput struct{ *pulumi.OutputState }
@@ -30739,7 +30739,7 @@ func (i RegionInstanceGroupManagerUpdatePolicyArgs) ToRegionInstanceGroupManager
 }
 
 func (i RegionInstanceGroupManagerUpdatePolicyArgs) ToRegionInstanceGroupManagerUpdatePolicyPtrOutputWithContext(ctx context.Context) RegionInstanceGroupManagerUpdatePolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionInstanceGroupManagerUpdatePolicyOutput).ToRegionInstanceGroupManagerUpdatePolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionInstanceGroupManagerUpdatePolicyOutput).ToRegionInstanceGroupManagerUpdatePolicyPtrOutput()
 }
 
 // RegionInstanceGroupManagerUpdatePolicyPtrInput is an input type that accepts RegionInstanceGroupManagerUpdatePolicyArgs, RegionInstanceGroupManagerUpdatePolicyPtr and RegionInstanceGroupManagerUpdatePolicyPtrOutput values.
@@ -30772,7 +30772,7 @@ func (i *regionInstanceGroupManagerUpdatePolicyPtrType) ToRegionInstanceGroupMan
 }
 
 func (i *regionInstanceGroupManagerUpdatePolicyPtrType) ToRegionInstanceGroupManagerUpdatePolicyPtrOutputWithContext(ctx context.Context) RegionInstanceGroupManagerUpdatePolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionInstanceGroupManagerUpdatePolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionInstanceGroupManagerUpdatePolicyOutput).ToRegionInstanceGroupManagerUpdatePolicyPtrOutput()
 }
 
 type RegionInstanceGroupManagerUpdatePolicyOutput struct{ *pulumi.OutputState }
@@ -31115,7 +31115,7 @@ func (i RegionInstanceGroupManagerVersionTargetSizeArgs) ToRegionInstanceGroupMa
 }
 
 func (i RegionInstanceGroupManagerVersionTargetSizeArgs) ToRegionInstanceGroupManagerVersionTargetSizePtrOutputWithContext(ctx context.Context) RegionInstanceGroupManagerVersionTargetSizePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionInstanceGroupManagerVersionTargetSizeOutput).ToRegionInstanceGroupManagerVersionTargetSizePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionInstanceGroupManagerVersionTargetSizeOutput).ToRegionInstanceGroupManagerVersionTargetSizePtrOutput()
 }
 
 // RegionInstanceGroupManagerVersionTargetSizePtrInput is an input type that accepts RegionInstanceGroupManagerVersionTargetSizeArgs, RegionInstanceGroupManagerVersionTargetSizePtr and RegionInstanceGroupManagerVersionTargetSizePtrOutput values.
@@ -31148,7 +31148,7 @@ func (i *regionInstanceGroupManagerVersionTargetSizePtrType) ToRegionInstanceGro
 }
 
 func (i *regionInstanceGroupManagerVersionTargetSizePtrType) ToRegionInstanceGroupManagerVersionTargetSizePtrOutputWithContext(ctx context.Context) RegionInstanceGroupManagerVersionTargetSizePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionInstanceGroupManagerVersionTargetSizePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionInstanceGroupManagerVersionTargetSizeOutput).ToRegionInstanceGroupManagerVersionTargetSizePtrOutput()
 }
 
 type RegionInstanceGroupManagerVersionTargetSizeOutput struct{ *pulumi.OutputState }
@@ -31293,7 +31293,7 @@ func (i RegionNetworkEndpointGroupAppEngineArgs) ToRegionNetworkEndpointGroupApp
 }
 
 func (i RegionNetworkEndpointGroupAppEngineArgs) ToRegionNetworkEndpointGroupAppEnginePtrOutputWithContext(ctx context.Context) RegionNetworkEndpointGroupAppEnginePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionNetworkEndpointGroupAppEngineOutput).ToRegionNetworkEndpointGroupAppEnginePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionNetworkEndpointGroupAppEngineOutput).ToRegionNetworkEndpointGroupAppEnginePtrOutput()
 }
 
 // RegionNetworkEndpointGroupAppEnginePtrInput is an input type that accepts RegionNetworkEndpointGroupAppEngineArgs, RegionNetworkEndpointGroupAppEnginePtr and RegionNetworkEndpointGroupAppEnginePtrOutput values.
@@ -31326,7 +31326,7 @@ func (i *regionNetworkEndpointGroupAppEnginePtrType) ToRegionNetworkEndpointGrou
 }
 
 func (i *regionNetworkEndpointGroupAppEnginePtrType) ToRegionNetworkEndpointGroupAppEnginePtrOutputWithContext(ctx context.Context) RegionNetworkEndpointGroupAppEnginePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionNetworkEndpointGroupAppEnginePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionNetworkEndpointGroupAppEngineOutput).ToRegionNetworkEndpointGroupAppEnginePtrOutput()
 }
 
 type RegionNetworkEndpointGroupAppEngineOutput struct{ *pulumi.OutputState }
@@ -31490,7 +31490,7 @@ func (i RegionNetworkEndpointGroupCloudFunctionArgs) ToRegionNetworkEndpointGrou
 }
 
 func (i RegionNetworkEndpointGroupCloudFunctionArgs) ToRegionNetworkEndpointGroupCloudFunctionPtrOutputWithContext(ctx context.Context) RegionNetworkEndpointGroupCloudFunctionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionNetworkEndpointGroupCloudFunctionOutput).ToRegionNetworkEndpointGroupCloudFunctionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionNetworkEndpointGroupCloudFunctionOutput).ToRegionNetworkEndpointGroupCloudFunctionPtrOutput()
 }
 
 // RegionNetworkEndpointGroupCloudFunctionPtrInput is an input type that accepts RegionNetworkEndpointGroupCloudFunctionArgs, RegionNetworkEndpointGroupCloudFunctionPtr and RegionNetworkEndpointGroupCloudFunctionPtrOutput values.
@@ -31523,7 +31523,7 @@ func (i *regionNetworkEndpointGroupCloudFunctionPtrType) ToRegionNetworkEndpoint
 }
 
 func (i *regionNetworkEndpointGroupCloudFunctionPtrType) ToRegionNetworkEndpointGroupCloudFunctionPtrOutputWithContext(ctx context.Context) RegionNetworkEndpointGroupCloudFunctionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionNetworkEndpointGroupCloudFunctionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionNetworkEndpointGroupCloudFunctionOutput).ToRegionNetworkEndpointGroupCloudFunctionPtrOutput()
 }
 
 type RegionNetworkEndpointGroupCloudFunctionOutput struct{ *pulumi.OutputState }
@@ -31678,7 +31678,7 @@ func (i RegionNetworkEndpointGroupCloudRunArgs) ToRegionNetworkEndpointGroupClou
 }
 
 func (i RegionNetworkEndpointGroupCloudRunArgs) ToRegionNetworkEndpointGroupCloudRunPtrOutputWithContext(ctx context.Context) RegionNetworkEndpointGroupCloudRunPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionNetworkEndpointGroupCloudRunOutput).ToRegionNetworkEndpointGroupCloudRunPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionNetworkEndpointGroupCloudRunOutput).ToRegionNetworkEndpointGroupCloudRunPtrOutput()
 }
 
 // RegionNetworkEndpointGroupCloudRunPtrInput is an input type that accepts RegionNetworkEndpointGroupCloudRunArgs, RegionNetworkEndpointGroupCloudRunPtr and RegionNetworkEndpointGroupCloudRunPtrOutput values.
@@ -31711,7 +31711,7 @@ func (i *regionNetworkEndpointGroupCloudRunPtrType) ToRegionNetworkEndpointGroup
 }
 
 func (i *regionNetworkEndpointGroupCloudRunPtrType) ToRegionNetworkEndpointGroupCloudRunPtrOutputWithContext(ctx context.Context) RegionNetworkEndpointGroupCloudRunPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionNetworkEndpointGroupCloudRunPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionNetworkEndpointGroupCloudRunOutput).ToRegionNetworkEndpointGroupCloudRunPtrOutput()
 }
 
 type RegionNetworkEndpointGroupCloudRunOutput struct{ *pulumi.OutputState }
@@ -31865,7 +31865,7 @@ func (i RegionPerInstanceConfigPreservedStateArgs) ToRegionPerInstanceConfigPres
 }
 
 func (i RegionPerInstanceConfigPreservedStateArgs) ToRegionPerInstanceConfigPreservedStatePtrOutputWithContext(ctx context.Context) RegionPerInstanceConfigPreservedStatePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionPerInstanceConfigPreservedStateOutput).ToRegionPerInstanceConfigPreservedStatePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionPerInstanceConfigPreservedStateOutput).ToRegionPerInstanceConfigPreservedStatePtrOutput()
 }
 
 // RegionPerInstanceConfigPreservedStatePtrInput is an input type that accepts RegionPerInstanceConfigPreservedStateArgs, RegionPerInstanceConfigPreservedStatePtr and RegionPerInstanceConfigPreservedStatePtrOutput values.
@@ -31898,7 +31898,7 @@ func (i *regionPerInstanceConfigPreservedStatePtrType) ToRegionPerInstanceConfig
 }
 
 func (i *regionPerInstanceConfigPreservedStatePtrType) ToRegionPerInstanceConfigPreservedStatePtrOutputWithContext(ctx context.Context) RegionPerInstanceConfigPreservedStatePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionPerInstanceConfigPreservedStatePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionPerInstanceConfigPreservedStateOutput).ToRegionPerInstanceConfigPreservedStatePtrOutput()
 }
 
 type RegionPerInstanceConfigPreservedStateOutput struct{ *pulumi.OutputState }
@@ -32230,7 +32230,7 @@ func (i RegionUrlMapDefaultUrlRedirectArgs) ToRegionUrlMapDefaultUrlRedirectPtrO
 }
 
 func (i RegionUrlMapDefaultUrlRedirectArgs) ToRegionUrlMapDefaultUrlRedirectPtrOutputWithContext(ctx context.Context) RegionUrlMapDefaultUrlRedirectPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapDefaultUrlRedirectOutput).ToRegionUrlMapDefaultUrlRedirectPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapDefaultUrlRedirectOutput).ToRegionUrlMapDefaultUrlRedirectPtrOutput()
 }
 
 // RegionUrlMapDefaultUrlRedirectPtrInput is an input type that accepts RegionUrlMapDefaultUrlRedirectArgs, RegionUrlMapDefaultUrlRedirectPtr and RegionUrlMapDefaultUrlRedirectPtrOutput values.
@@ -32263,7 +32263,7 @@ func (i *regionUrlMapDefaultUrlRedirectPtrType) ToRegionUrlMapDefaultUrlRedirect
 }
 
 func (i *regionUrlMapDefaultUrlRedirectPtrType) ToRegionUrlMapDefaultUrlRedirectPtrOutputWithContext(ctx context.Context) RegionUrlMapDefaultUrlRedirectPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapDefaultUrlRedirectPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapDefaultUrlRedirectOutput).ToRegionUrlMapDefaultUrlRedirectPtrOutput()
 }
 
 type RegionUrlMapDefaultUrlRedirectOutput struct{ *pulumi.OutputState }
@@ -32869,7 +32869,7 @@ func (i RegionUrlMapPathMatcherDefaultUrlRedirectArgs) ToRegionUrlMapPathMatcher
 }
 
 func (i RegionUrlMapPathMatcherDefaultUrlRedirectArgs) ToRegionUrlMapPathMatcherDefaultUrlRedirectPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherDefaultUrlRedirectPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherDefaultUrlRedirectOutput).ToRegionUrlMapPathMatcherDefaultUrlRedirectPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherDefaultUrlRedirectOutput).ToRegionUrlMapPathMatcherDefaultUrlRedirectPtrOutput()
 }
 
 // RegionUrlMapPathMatcherDefaultUrlRedirectPtrInput is an input type that accepts RegionUrlMapPathMatcherDefaultUrlRedirectArgs, RegionUrlMapPathMatcherDefaultUrlRedirectPtr and RegionUrlMapPathMatcherDefaultUrlRedirectPtrOutput values.
@@ -32902,7 +32902,7 @@ func (i *regionUrlMapPathMatcherDefaultUrlRedirectPtrType) ToRegionUrlMapPathMat
 }
 
 func (i *regionUrlMapPathMatcherDefaultUrlRedirectPtrType) ToRegionUrlMapPathMatcherDefaultUrlRedirectPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherDefaultUrlRedirectPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherDefaultUrlRedirectPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherDefaultUrlRedirectOutput).ToRegionUrlMapPathMatcherDefaultUrlRedirectPtrOutput()
 }
 
 type RegionUrlMapPathMatcherDefaultUrlRedirectOutput struct{ *pulumi.OutputState }
@@ -33365,7 +33365,7 @@ func (i RegionUrlMapPathMatcherPathRuleRouteActionArgs) ToRegionUrlMapPathMatche
 }
 
 func (i RegionUrlMapPathMatcherPathRuleRouteActionArgs) ToRegionUrlMapPathMatcherPathRuleRouteActionPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherPathRuleRouteActionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleRouteActionOutput).ToRegionUrlMapPathMatcherPathRuleRouteActionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleRouteActionOutput).ToRegionUrlMapPathMatcherPathRuleRouteActionPtrOutput()
 }
 
 // RegionUrlMapPathMatcherPathRuleRouteActionPtrInput is an input type that accepts RegionUrlMapPathMatcherPathRuleRouteActionArgs, RegionUrlMapPathMatcherPathRuleRouteActionPtr and RegionUrlMapPathMatcherPathRuleRouteActionPtrOutput values.
@@ -33398,7 +33398,7 @@ func (i *regionUrlMapPathMatcherPathRuleRouteActionPtrType) ToRegionUrlMapPathMa
 }
 
 func (i *regionUrlMapPathMatcherPathRuleRouteActionPtrType) ToRegionUrlMapPathMatcherPathRuleRouteActionPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherPathRuleRouteActionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleRouteActionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleRouteActionOutput).ToRegionUrlMapPathMatcherPathRuleRouteActionPtrOutput()
 }
 
 type RegionUrlMapPathMatcherPathRuleRouteActionOutput struct{ *pulumi.OutputState }
@@ -33698,7 +33698,7 @@ func (i RegionUrlMapPathMatcherPathRuleRouteActionCorsPolicyArgs) ToRegionUrlMap
 }
 
 func (i RegionUrlMapPathMatcherPathRuleRouteActionCorsPolicyArgs) ToRegionUrlMapPathMatcherPathRuleRouteActionCorsPolicyPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherPathRuleRouteActionCorsPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleRouteActionCorsPolicyOutput).ToRegionUrlMapPathMatcherPathRuleRouteActionCorsPolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleRouteActionCorsPolicyOutput).ToRegionUrlMapPathMatcherPathRuleRouteActionCorsPolicyPtrOutput()
 }
 
 // RegionUrlMapPathMatcherPathRuleRouteActionCorsPolicyPtrInput is an input type that accepts RegionUrlMapPathMatcherPathRuleRouteActionCorsPolicyArgs, RegionUrlMapPathMatcherPathRuleRouteActionCorsPolicyPtr and RegionUrlMapPathMatcherPathRuleRouteActionCorsPolicyPtrOutput values.
@@ -33731,7 +33731,7 @@ func (i *regionUrlMapPathMatcherPathRuleRouteActionCorsPolicyPtrType) ToRegionUr
 }
 
 func (i *regionUrlMapPathMatcherPathRuleRouteActionCorsPolicyPtrType) ToRegionUrlMapPathMatcherPathRuleRouteActionCorsPolicyPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherPathRuleRouteActionCorsPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleRouteActionCorsPolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleRouteActionCorsPolicyOutput).ToRegionUrlMapPathMatcherPathRuleRouteActionCorsPolicyPtrOutput()
 }
 
 type RegionUrlMapPathMatcherPathRuleRouteActionCorsPolicyOutput struct{ *pulumi.OutputState }
@@ -33960,7 +33960,7 @@ func (i RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyArgs) ToRe
 }
 
 func (i RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyArgs) ToRegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyOutput).ToRegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyOutput).ToRegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyPtrOutput()
 }
 
 // RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyPtrInput is an input type that accepts RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyArgs, RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyPtr and RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyPtrOutput values.
@@ -33993,7 +33993,7 @@ func (i *regionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyPtrType) 
 }
 
 func (i *regionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyPtrType) ToRegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyOutput).ToRegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyPtrOutput()
 }
 
 type RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyOutput struct{ *pulumi.OutputState }
@@ -34130,7 +34130,7 @@ func (i RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortArgs)
 }
 
 func (i RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortArgs) ToRegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortOutput).ToRegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortOutput).ToRegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortPtrOutput()
 }
 
 // RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortPtrInput is an input type that accepts RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortArgs, RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortPtr and RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortPtrOutput values.
@@ -34163,7 +34163,7 @@ func (i *regionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortPtrT
 }
 
 func (i *regionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortPtrType) ToRegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortOutput).ToRegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortPtrOutput()
 }
 
 type RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortOutput struct{ *pulumi.OutputState }
@@ -34296,7 +34296,7 @@ func (i RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayArgs)
 }
 
 func (i RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayArgs) ToRegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayOutput).ToRegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayOutput).ToRegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayPtrOutput()
 }
 
 // RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayPtrInput is an input type that accepts RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayArgs, RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayPtr and RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayPtrOutput values.
@@ -34329,7 +34329,7 @@ func (i *regionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayPtrT
 }
 
 func (i *regionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayPtrType) ToRegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayOutput).ToRegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayPtrOutput()
 }
 
 type RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayOutput struct{ *pulumi.OutputState }
@@ -34464,7 +34464,7 @@ func (i RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixed
 }
 
 func (i RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelayArgs) ToRegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelayOutput).ToRegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelayOutput).ToRegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutput()
 }
 
 // RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelayPtrInput is an input type that accepts RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelayArgs, RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelayPtr and RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutput values.
@@ -34497,7 +34497,7 @@ func (i *regionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixe
 }
 
 func (i *regionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelayPtrType) ToRegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelayOutput).ToRegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutput()
 }
 
 type RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelayOutput struct{ *pulumi.OutputState }
@@ -34626,7 +34626,7 @@ func (i RegionUrlMapPathMatcherPathRuleRouteActionRequestMirrorPolicyArgs) ToReg
 }
 
 func (i RegionUrlMapPathMatcherPathRuleRouteActionRequestMirrorPolicyArgs) ToRegionUrlMapPathMatcherPathRuleRouteActionRequestMirrorPolicyPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherPathRuleRouteActionRequestMirrorPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleRouteActionRequestMirrorPolicyOutput).ToRegionUrlMapPathMatcherPathRuleRouteActionRequestMirrorPolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleRouteActionRequestMirrorPolicyOutput).ToRegionUrlMapPathMatcherPathRuleRouteActionRequestMirrorPolicyPtrOutput()
 }
 
 // RegionUrlMapPathMatcherPathRuleRouteActionRequestMirrorPolicyPtrInput is an input type that accepts RegionUrlMapPathMatcherPathRuleRouteActionRequestMirrorPolicyArgs, RegionUrlMapPathMatcherPathRuleRouteActionRequestMirrorPolicyPtr and RegionUrlMapPathMatcherPathRuleRouteActionRequestMirrorPolicyPtrOutput values.
@@ -34659,7 +34659,7 @@ func (i *regionUrlMapPathMatcherPathRuleRouteActionRequestMirrorPolicyPtrType) T
 }
 
 func (i *regionUrlMapPathMatcherPathRuleRouteActionRequestMirrorPolicyPtrType) ToRegionUrlMapPathMatcherPathRuleRouteActionRequestMirrorPolicyPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherPathRuleRouteActionRequestMirrorPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleRouteActionRequestMirrorPolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleRouteActionRequestMirrorPolicyOutput).ToRegionUrlMapPathMatcherPathRuleRouteActionRequestMirrorPolicyPtrOutput()
 }
 
 type RegionUrlMapPathMatcherPathRuleRouteActionRequestMirrorPolicyOutput struct{ *pulumi.OutputState }
@@ -34813,7 +34813,7 @@ func (i RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyArgs) ToRegionUrlMa
 }
 
 func (i RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyArgs) ToRegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyOutput).ToRegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyOutput).ToRegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPtrOutput()
 }
 
 // RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPtrInput is an input type that accepts RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyArgs, RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPtr and RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPtrOutput values.
@@ -34846,7 +34846,7 @@ func (i *regionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPtrType) ToRegionU
 }
 
 func (i *regionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPtrType) ToRegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyOutput).ToRegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPtrOutput()
 }
 
 type RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyOutput struct{ *pulumi.OutputState }
@@ -35030,7 +35030,7 @@ func (i RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutArgs) 
 }
 
 func (i RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutArgs) ToRegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutOutput).ToRegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutOutput).ToRegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutPtrOutput()
 }
 
 // RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutPtrInput is an input type that accepts RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutArgs, RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutPtr and RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutPtrOutput values.
@@ -35063,7 +35063,7 @@ func (i *regionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutPtrTy
 }
 
 func (i *regionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutPtrType) ToRegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutOutput).ToRegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutPtrOutput()
 }
 
 type RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutOutput struct{ *pulumi.OutputState }
@@ -35194,7 +35194,7 @@ func (i RegionUrlMapPathMatcherPathRuleRouteActionTimeoutArgs) ToRegionUrlMapPat
 }
 
 func (i RegionUrlMapPathMatcherPathRuleRouteActionTimeoutArgs) ToRegionUrlMapPathMatcherPathRuleRouteActionTimeoutPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherPathRuleRouteActionTimeoutPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleRouteActionTimeoutOutput).ToRegionUrlMapPathMatcherPathRuleRouteActionTimeoutPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleRouteActionTimeoutOutput).ToRegionUrlMapPathMatcherPathRuleRouteActionTimeoutPtrOutput()
 }
 
 // RegionUrlMapPathMatcherPathRuleRouteActionTimeoutPtrInput is an input type that accepts RegionUrlMapPathMatcherPathRuleRouteActionTimeoutArgs, RegionUrlMapPathMatcherPathRuleRouteActionTimeoutPtr and RegionUrlMapPathMatcherPathRuleRouteActionTimeoutPtrOutput values.
@@ -35227,7 +35227,7 @@ func (i *regionUrlMapPathMatcherPathRuleRouteActionTimeoutPtrType) ToRegionUrlMa
 }
 
 func (i *regionUrlMapPathMatcherPathRuleRouteActionTimeoutPtrType) ToRegionUrlMapPathMatcherPathRuleRouteActionTimeoutPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherPathRuleRouteActionTimeoutPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleRouteActionTimeoutPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleRouteActionTimeoutOutput).ToRegionUrlMapPathMatcherPathRuleRouteActionTimeoutPtrOutput()
 }
 
 type RegionUrlMapPathMatcherPathRuleRouteActionTimeoutOutput struct{ *pulumi.OutputState }
@@ -35360,7 +35360,7 @@ func (i RegionUrlMapPathMatcherPathRuleRouteActionUrlRewriteArgs) ToRegionUrlMap
 }
 
 func (i RegionUrlMapPathMatcherPathRuleRouteActionUrlRewriteArgs) ToRegionUrlMapPathMatcherPathRuleRouteActionUrlRewritePtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherPathRuleRouteActionUrlRewritePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleRouteActionUrlRewriteOutput).ToRegionUrlMapPathMatcherPathRuleRouteActionUrlRewritePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleRouteActionUrlRewriteOutput).ToRegionUrlMapPathMatcherPathRuleRouteActionUrlRewritePtrOutput()
 }
 
 // RegionUrlMapPathMatcherPathRuleRouteActionUrlRewritePtrInput is an input type that accepts RegionUrlMapPathMatcherPathRuleRouteActionUrlRewriteArgs, RegionUrlMapPathMatcherPathRuleRouteActionUrlRewritePtr and RegionUrlMapPathMatcherPathRuleRouteActionUrlRewritePtrOutput values.
@@ -35393,7 +35393,7 @@ func (i *regionUrlMapPathMatcherPathRuleRouteActionUrlRewritePtrType) ToRegionUr
 }
 
 func (i *regionUrlMapPathMatcherPathRuleRouteActionUrlRewritePtrType) ToRegionUrlMapPathMatcherPathRuleRouteActionUrlRewritePtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherPathRuleRouteActionUrlRewritePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleRouteActionUrlRewritePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleRouteActionUrlRewriteOutput).ToRegionUrlMapPathMatcherPathRuleRouteActionUrlRewritePtrOutput()
 }
 
 type RegionUrlMapPathMatcherPathRuleRouteActionUrlRewriteOutput struct{ *pulumi.OutputState }
@@ -35687,7 +35687,7 @@ func (i RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderAc
 }
 
 func (i RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionArgs) ToRegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionOutput).ToRegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionOutput).ToRegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionPtrOutput()
 }
 
 // RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionPtrInput is an input type that accepts RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionArgs, RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionPtr and RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionPtrOutput values.
@@ -35720,7 +35720,7 @@ func (i *regionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderA
 }
 
 func (i *regionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionPtrType) ToRegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionOutput).ToRegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionPtrOutput()
 }
 
 type RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionOutput struct{ *pulumi.OutputState }
@@ -36201,7 +36201,7 @@ func (i RegionUrlMapPathMatcherPathRuleUrlRedirectArgs) ToRegionUrlMapPathMatche
 }
 
 func (i RegionUrlMapPathMatcherPathRuleUrlRedirectArgs) ToRegionUrlMapPathMatcherPathRuleUrlRedirectPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherPathRuleUrlRedirectPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleUrlRedirectOutput).ToRegionUrlMapPathMatcherPathRuleUrlRedirectPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleUrlRedirectOutput).ToRegionUrlMapPathMatcherPathRuleUrlRedirectPtrOutput()
 }
 
 // RegionUrlMapPathMatcherPathRuleUrlRedirectPtrInput is an input type that accepts RegionUrlMapPathMatcherPathRuleUrlRedirectArgs, RegionUrlMapPathMatcherPathRuleUrlRedirectPtr and RegionUrlMapPathMatcherPathRuleUrlRedirectPtrOutput values.
@@ -36234,7 +36234,7 @@ func (i *regionUrlMapPathMatcherPathRuleUrlRedirectPtrType) ToRegionUrlMapPathMa
 }
 
 func (i *regionUrlMapPathMatcherPathRuleUrlRedirectPtrType) ToRegionUrlMapPathMatcherPathRuleUrlRedirectPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherPathRuleUrlRedirectPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleUrlRedirectPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherPathRuleUrlRedirectOutput).ToRegionUrlMapPathMatcherPathRuleUrlRedirectPtrOutput()
 }
 
 type RegionUrlMapPathMatcherPathRuleUrlRedirectOutput struct{ *pulumi.OutputState }
@@ -36700,7 +36700,7 @@ func (i RegionUrlMapPathMatcherRouteRuleHeaderActionArgs) ToRegionUrlMapPathMatc
 }
 
 func (i RegionUrlMapPathMatcherRouteRuleHeaderActionArgs) ToRegionUrlMapPathMatcherRouteRuleHeaderActionPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherRouteRuleHeaderActionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleHeaderActionOutput).ToRegionUrlMapPathMatcherRouteRuleHeaderActionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleHeaderActionOutput).ToRegionUrlMapPathMatcherRouteRuleHeaderActionPtrOutput()
 }
 
 // RegionUrlMapPathMatcherRouteRuleHeaderActionPtrInput is an input type that accepts RegionUrlMapPathMatcherRouteRuleHeaderActionArgs, RegionUrlMapPathMatcherRouteRuleHeaderActionPtr and RegionUrlMapPathMatcherRouteRuleHeaderActionPtrOutput values.
@@ -36733,7 +36733,7 @@ func (i *regionUrlMapPathMatcherRouteRuleHeaderActionPtrType) ToRegionUrlMapPath
 }
 
 func (i *regionUrlMapPathMatcherRouteRuleHeaderActionPtrType) ToRegionUrlMapPathMatcherRouteRuleHeaderActionPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherRouteRuleHeaderActionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleHeaderActionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleHeaderActionOutput).ToRegionUrlMapPathMatcherRouteRuleHeaderActionPtrOutput()
 }
 
 type RegionUrlMapPathMatcherRouteRuleHeaderActionOutput struct{ *pulumi.OutputState }
@@ -37598,7 +37598,7 @@ func (i RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatchArgs) ToRe
 }
 
 func (i RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatchArgs) ToRegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatchPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatchPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatchOutput).ToRegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatchPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatchOutput).ToRegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatchPtrOutput()
 }
 
 // RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatchPtrInput is an input type that accepts RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatchArgs, RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatchPtr and RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatchPtrOutput values.
@@ -37631,7 +37631,7 @@ func (i *regionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatchPtrType) 
 }
 
 func (i *regionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatchPtrType) ToRegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatchPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatchPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatchPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatchOutput).ToRegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatchPtrOutput()
 }
 
 type RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatchOutput struct{ *pulumi.OutputState }
@@ -38221,7 +38221,7 @@ func (i RegionUrlMapPathMatcherRouteRuleRouteActionArgs) ToRegionUrlMapPathMatch
 }
 
 func (i RegionUrlMapPathMatcherRouteRuleRouteActionArgs) ToRegionUrlMapPathMatcherRouteRuleRouteActionPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherRouteRuleRouteActionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleRouteActionOutput).ToRegionUrlMapPathMatcherRouteRuleRouteActionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleRouteActionOutput).ToRegionUrlMapPathMatcherRouteRuleRouteActionPtrOutput()
 }
 
 // RegionUrlMapPathMatcherRouteRuleRouteActionPtrInput is an input type that accepts RegionUrlMapPathMatcherRouteRuleRouteActionArgs, RegionUrlMapPathMatcherRouteRuleRouteActionPtr and RegionUrlMapPathMatcherRouteRuleRouteActionPtrOutput values.
@@ -38254,7 +38254,7 @@ func (i *regionUrlMapPathMatcherRouteRuleRouteActionPtrType) ToRegionUrlMapPathM
 }
 
 func (i *regionUrlMapPathMatcherRouteRuleRouteActionPtrType) ToRegionUrlMapPathMatcherRouteRuleRouteActionPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherRouteRuleRouteActionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleRouteActionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleRouteActionOutput).ToRegionUrlMapPathMatcherRouteRuleRouteActionPtrOutput()
 }
 
 type RegionUrlMapPathMatcherRouteRuleRouteActionOutput struct{ *pulumi.OutputState }
@@ -38554,7 +38554,7 @@ func (i RegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicyArgs) ToRegionUrlMa
 }
 
 func (i RegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicyArgs) ToRegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicyPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicyOutput).ToRegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicyOutput).ToRegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicyPtrOutput()
 }
 
 // RegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicyPtrInput is an input type that accepts RegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicyArgs, RegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicyPtr and RegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicyPtrOutput values.
@@ -38587,7 +38587,7 @@ func (i *regionUrlMapPathMatcherRouteRuleRouteActionCorsPolicyPtrType) ToRegionU
 }
 
 func (i *regionUrlMapPathMatcherRouteRuleRouteActionCorsPolicyPtrType) ToRegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicyPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicyOutput).ToRegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicyPtrOutput()
 }
 
 type RegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicyOutput struct{ *pulumi.OutputState }
@@ -38816,7 +38816,7 @@ func (i RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyArgs) ToR
 }
 
 func (i RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyArgs) ToRegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyOutput).ToRegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyOutput).ToRegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyPtrOutput()
 }
 
 // RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyPtrInput is an input type that accepts RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyArgs, RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyPtr and RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyPtrOutput values.
@@ -38849,7 +38849,7 @@ func (i *regionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyPtrType)
 }
 
 func (i *regionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyPtrType) ToRegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyOutput).ToRegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyPtrOutput()
 }
 
 type RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyOutput struct{ *pulumi.OutputState }
@@ -38986,7 +38986,7 @@ func (i RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortArgs
 }
 
 func (i RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortArgs) ToRegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortOutput).ToRegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortOutput).ToRegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortPtrOutput()
 }
 
 // RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortPtrInput is an input type that accepts RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortArgs, RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortPtr and RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortPtrOutput values.
@@ -39019,7 +39019,7 @@ func (i *regionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortPtr
 }
 
 func (i *regionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortPtrType) ToRegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortOutput).ToRegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortPtrOutput()
 }
 
 type RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortOutput struct{ *pulumi.OutputState }
@@ -39152,7 +39152,7 @@ func (i RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayArgs
 }
 
 func (i RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayArgs) ToRegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayOutput).ToRegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayOutput).ToRegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayPtrOutput()
 }
 
 // RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayPtrInput is an input type that accepts RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayArgs, RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayPtr and RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayPtrOutput values.
@@ -39185,7 +39185,7 @@ func (i *regionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayPtr
 }
 
 func (i *regionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayPtrType) ToRegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayOutput).ToRegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayPtrOutput()
 }
 
 type RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayOutput struct{ *pulumi.OutputState }
@@ -39320,7 +39320,7 @@ func (i RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixe
 }
 
 func (i RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelayArgs) ToRegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelayOutput).ToRegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelayOutput).ToRegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutput()
 }
 
 // RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelayPtrInput is an input type that accepts RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelayArgs, RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelayPtr and RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutput values.
@@ -39353,7 +39353,7 @@ func (i *regionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFix
 }
 
 func (i *regionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelayPtrType) ToRegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelayOutput).ToRegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutput()
 }
 
 type RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelayOutput struct{ *pulumi.OutputState }
@@ -39482,7 +39482,7 @@ func (i RegionUrlMapPathMatcherRouteRuleRouteActionRequestMirrorPolicyArgs) ToRe
 }
 
 func (i RegionUrlMapPathMatcherRouteRuleRouteActionRequestMirrorPolicyArgs) ToRegionUrlMapPathMatcherRouteRuleRouteActionRequestMirrorPolicyPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherRouteRuleRouteActionRequestMirrorPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleRouteActionRequestMirrorPolicyOutput).ToRegionUrlMapPathMatcherRouteRuleRouteActionRequestMirrorPolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleRouteActionRequestMirrorPolicyOutput).ToRegionUrlMapPathMatcherRouteRuleRouteActionRequestMirrorPolicyPtrOutput()
 }
 
 // RegionUrlMapPathMatcherRouteRuleRouteActionRequestMirrorPolicyPtrInput is an input type that accepts RegionUrlMapPathMatcherRouteRuleRouteActionRequestMirrorPolicyArgs, RegionUrlMapPathMatcherRouteRuleRouteActionRequestMirrorPolicyPtr and RegionUrlMapPathMatcherRouteRuleRouteActionRequestMirrorPolicyPtrOutput values.
@@ -39515,7 +39515,7 @@ func (i *regionUrlMapPathMatcherRouteRuleRouteActionRequestMirrorPolicyPtrType) 
 }
 
 func (i *regionUrlMapPathMatcherRouteRuleRouteActionRequestMirrorPolicyPtrType) ToRegionUrlMapPathMatcherRouteRuleRouteActionRequestMirrorPolicyPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherRouteRuleRouteActionRequestMirrorPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleRouteActionRequestMirrorPolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleRouteActionRequestMirrorPolicyOutput).ToRegionUrlMapPathMatcherRouteRuleRouteActionRequestMirrorPolicyPtrOutput()
 }
 
 type RegionUrlMapPathMatcherRouteRuleRouteActionRequestMirrorPolicyOutput struct{ *pulumi.OutputState }
@@ -39669,7 +39669,7 @@ func (i RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyArgs) ToRegionUrlM
 }
 
 func (i RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyArgs) ToRegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyOutput).ToRegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyOutput).ToRegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPtrOutput()
 }
 
 // RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPtrInput is an input type that accepts RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyArgs, RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPtr and RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPtrOutput values.
@@ -39702,7 +39702,7 @@ func (i *regionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPtrType) ToRegion
 }
 
 func (i *regionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPtrType) ToRegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyOutput).ToRegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPtrOutput()
 }
 
 type RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyOutput struct{ *pulumi.OutputState }
@@ -39886,7 +39886,7 @@ func (i RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutArgs)
 }
 
 func (i RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutArgs) ToRegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutOutput).ToRegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutOutput).ToRegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutPtrOutput()
 }
 
 // RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutPtrInput is an input type that accepts RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutArgs, RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutPtr and RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutPtrOutput values.
@@ -39919,7 +39919,7 @@ func (i *regionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutPtrT
 }
 
 func (i *regionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutPtrType) ToRegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutOutput).ToRegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutPtrOutput()
 }
 
 type RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutOutput struct{ *pulumi.OutputState }
@@ -40050,7 +40050,7 @@ func (i RegionUrlMapPathMatcherRouteRuleRouteActionTimeoutArgs) ToRegionUrlMapPa
 }
 
 func (i RegionUrlMapPathMatcherRouteRuleRouteActionTimeoutArgs) ToRegionUrlMapPathMatcherRouteRuleRouteActionTimeoutPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherRouteRuleRouteActionTimeoutPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleRouteActionTimeoutOutput).ToRegionUrlMapPathMatcherRouteRuleRouteActionTimeoutPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleRouteActionTimeoutOutput).ToRegionUrlMapPathMatcherRouteRuleRouteActionTimeoutPtrOutput()
 }
 
 // RegionUrlMapPathMatcherRouteRuleRouteActionTimeoutPtrInput is an input type that accepts RegionUrlMapPathMatcherRouteRuleRouteActionTimeoutArgs, RegionUrlMapPathMatcherRouteRuleRouteActionTimeoutPtr and RegionUrlMapPathMatcherRouteRuleRouteActionTimeoutPtrOutput values.
@@ -40083,7 +40083,7 @@ func (i *regionUrlMapPathMatcherRouteRuleRouteActionTimeoutPtrType) ToRegionUrlM
 }
 
 func (i *regionUrlMapPathMatcherRouteRuleRouteActionTimeoutPtrType) ToRegionUrlMapPathMatcherRouteRuleRouteActionTimeoutPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherRouteRuleRouteActionTimeoutPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleRouteActionTimeoutPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleRouteActionTimeoutOutput).ToRegionUrlMapPathMatcherRouteRuleRouteActionTimeoutPtrOutput()
 }
 
 type RegionUrlMapPathMatcherRouteRuleRouteActionTimeoutOutput struct{ *pulumi.OutputState }
@@ -40216,7 +40216,7 @@ func (i RegionUrlMapPathMatcherRouteRuleRouteActionUrlRewriteArgs) ToRegionUrlMa
 }
 
 func (i RegionUrlMapPathMatcherRouteRuleRouteActionUrlRewriteArgs) ToRegionUrlMapPathMatcherRouteRuleRouteActionUrlRewritePtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherRouteRuleRouteActionUrlRewritePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleRouteActionUrlRewriteOutput).ToRegionUrlMapPathMatcherRouteRuleRouteActionUrlRewritePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleRouteActionUrlRewriteOutput).ToRegionUrlMapPathMatcherRouteRuleRouteActionUrlRewritePtrOutput()
 }
 
 // RegionUrlMapPathMatcherRouteRuleRouteActionUrlRewritePtrInput is an input type that accepts RegionUrlMapPathMatcherRouteRuleRouteActionUrlRewriteArgs, RegionUrlMapPathMatcherRouteRuleRouteActionUrlRewritePtr and RegionUrlMapPathMatcherRouteRuleRouteActionUrlRewritePtrOutput values.
@@ -40249,7 +40249,7 @@ func (i *regionUrlMapPathMatcherRouteRuleRouteActionUrlRewritePtrType) ToRegionU
 }
 
 func (i *regionUrlMapPathMatcherRouteRuleRouteActionUrlRewritePtrType) ToRegionUrlMapPathMatcherRouteRuleRouteActionUrlRewritePtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherRouteRuleRouteActionUrlRewritePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleRouteActionUrlRewritePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleRouteActionUrlRewriteOutput).ToRegionUrlMapPathMatcherRouteRuleRouteActionUrlRewritePtrOutput()
 }
 
 type RegionUrlMapPathMatcherRouteRuleRouteActionUrlRewriteOutput struct{ *pulumi.OutputState }
@@ -40543,7 +40543,7 @@ func (i RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderA
 }
 
 func (i RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionArgs) ToRegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionOutput).ToRegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionOutput).ToRegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionPtrOutput()
 }
 
 // RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionPtrInput is an input type that accepts RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionArgs, RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionPtr and RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionPtrOutput values.
@@ -40576,7 +40576,7 @@ func (i *regionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeader
 }
 
 func (i *regionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionPtrType) ToRegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionOutput).ToRegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionPtrOutput()
 }
 
 type RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionOutput struct{ *pulumi.OutputState }
@@ -41057,7 +41057,7 @@ func (i RegionUrlMapPathMatcherRouteRuleUrlRedirectArgs) ToRegionUrlMapPathMatch
 }
 
 func (i RegionUrlMapPathMatcherRouteRuleUrlRedirectArgs) ToRegionUrlMapPathMatcherRouteRuleUrlRedirectPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherRouteRuleUrlRedirectPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleUrlRedirectOutput).ToRegionUrlMapPathMatcherRouteRuleUrlRedirectPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleUrlRedirectOutput).ToRegionUrlMapPathMatcherRouteRuleUrlRedirectPtrOutput()
 }
 
 // RegionUrlMapPathMatcherRouteRuleUrlRedirectPtrInput is an input type that accepts RegionUrlMapPathMatcherRouteRuleUrlRedirectArgs, RegionUrlMapPathMatcherRouteRuleUrlRedirectPtr and RegionUrlMapPathMatcherRouteRuleUrlRedirectPtrOutput values.
@@ -41090,7 +41090,7 @@ func (i *regionUrlMapPathMatcherRouteRuleUrlRedirectPtrType) ToRegionUrlMapPathM
 }
 
 func (i *regionUrlMapPathMatcherRouteRuleUrlRedirectPtrType) ToRegionUrlMapPathMatcherRouteRuleUrlRedirectPtrOutputWithContext(ctx context.Context) RegionUrlMapPathMatcherRouteRuleUrlRedirectPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleUrlRedirectPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RegionUrlMapPathMatcherRouteRuleUrlRedirectOutput).ToRegionUrlMapPathMatcherRouteRuleUrlRedirectPtrOutput()
 }
 
 type RegionUrlMapPathMatcherRouteRuleUrlRedirectOutput struct{ *pulumi.OutputState }
@@ -41445,7 +41445,7 @@ func (i ReservationSpecificReservationArgs) ToReservationSpecificReservationPtrO
 }
 
 func (i ReservationSpecificReservationArgs) ToReservationSpecificReservationPtrOutputWithContext(ctx context.Context) ReservationSpecificReservationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ReservationSpecificReservationOutput).ToReservationSpecificReservationPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ReservationSpecificReservationOutput).ToReservationSpecificReservationPtrOutput()
 }
 
 // ReservationSpecificReservationPtrInput is an input type that accepts ReservationSpecificReservationArgs, ReservationSpecificReservationPtr and ReservationSpecificReservationPtrOutput values.
@@ -41478,7 +41478,7 @@ func (i *reservationSpecificReservationPtrType) ToReservationSpecificReservation
 }
 
 func (i *reservationSpecificReservationPtrType) ToReservationSpecificReservationPtrOutputWithContext(ctx context.Context) ReservationSpecificReservationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ReservationSpecificReservationPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ReservationSpecificReservationOutput).ToReservationSpecificReservationPtrOutput()
 }
 
 type ReservationSpecificReservationOutput struct{ *pulumi.OutputState }
@@ -41636,7 +41636,7 @@ func (i ReservationSpecificReservationInstancePropertiesArgs) ToReservationSpeci
 }
 
 func (i ReservationSpecificReservationInstancePropertiesArgs) ToReservationSpecificReservationInstancePropertiesPtrOutputWithContext(ctx context.Context) ReservationSpecificReservationInstancePropertiesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ReservationSpecificReservationInstancePropertiesOutput).ToReservationSpecificReservationInstancePropertiesPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ReservationSpecificReservationInstancePropertiesOutput).ToReservationSpecificReservationInstancePropertiesPtrOutput()
 }
 
 // ReservationSpecificReservationInstancePropertiesPtrInput is an input type that accepts ReservationSpecificReservationInstancePropertiesArgs, ReservationSpecificReservationInstancePropertiesPtr and ReservationSpecificReservationInstancePropertiesPtrOutput values.
@@ -41669,7 +41669,7 @@ func (i *reservationSpecificReservationInstancePropertiesPtrType) ToReservationS
 }
 
 func (i *reservationSpecificReservationInstancePropertiesPtrType) ToReservationSpecificReservationInstancePropertiesPtrOutputWithContext(ctx context.Context) ReservationSpecificReservationInstancePropertiesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ReservationSpecificReservationInstancePropertiesPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ReservationSpecificReservationInstancePropertiesOutput).ToReservationSpecificReservationInstancePropertiesPtrOutput()
 }
 
 type ReservationSpecificReservationInstancePropertiesOutput struct{ *pulumi.OutputState }
@@ -42082,7 +42082,7 @@ func (i ResourcePolicyGroupPlacementPolicyArgs) ToResourcePolicyGroupPlacementPo
 }
 
 func (i ResourcePolicyGroupPlacementPolicyArgs) ToResourcePolicyGroupPlacementPolicyPtrOutputWithContext(ctx context.Context) ResourcePolicyGroupPlacementPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicyGroupPlacementPolicyOutput).ToResourcePolicyGroupPlacementPolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicyGroupPlacementPolicyOutput).ToResourcePolicyGroupPlacementPolicyPtrOutput()
 }
 
 // ResourcePolicyGroupPlacementPolicyPtrInput is an input type that accepts ResourcePolicyGroupPlacementPolicyArgs, ResourcePolicyGroupPlacementPolicyPtr and ResourcePolicyGroupPlacementPolicyPtrOutput values.
@@ -42115,7 +42115,7 @@ func (i *resourcePolicyGroupPlacementPolicyPtrType) ToResourcePolicyGroupPlaceme
 }
 
 func (i *resourcePolicyGroupPlacementPolicyPtrType) ToResourcePolicyGroupPlacementPolicyPtrOutputWithContext(ctx context.Context) ResourcePolicyGroupPlacementPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicyGroupPlacementPolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicyGroupPlacementPolicyOutput).ToResourcePolicyGroupPlacementPolicyPtrOutput()
 }
 
 type ResourcePolicyGroupPlacementPolicyOutput struct{ *pulumi.OutputState }
@@ -42267,7 +42267,7 @@ func (i ResourcePolicySnapshotSchedulePolicyArgs) ToResourcePolicySnapshotSchedu
 }
 
 func (i ResourcePolicySnapshotSchedulePolicyArgs) ToResourcePolicySnapshotSchedulePolicyPtrOutputWithContext(ctx context.Context) ResourcePolicySnapshotSchedulePolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicySnapshotSchedulePolicyOutput).ToResourcePolicySnapshotSchedulePolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicySnapshotSchedulePolicyOutput).ToResourcePolicySnapshotSchedulePolicyPtrOutput()
 }
 
 // ResourcePolicySnapshotSchedulePolicyPtrInput is an input type that accepts ResourcePolicySnapshotSchedulePolicyArgs, ResourcePolicySnapshotSchedulePolicyPtr and ResourcePolicySnapshotSchedulePolicyPtrOutput values.
@@ -42300,7 +42300,7 @@ func (i *resourcePolicySnapshotSchedulePolicyPtrType) ToResourcePolicySnapshotSc
 }
 
 func (i *resourcePolicySnapshotSchedulePolicyPtrType) ToResourcePolicySnapshotSchedulePolicyPtrOutputWithContext(ctx context.Context) ResourcePolicySnapshotSchedulePolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicySnapshotSchedulePolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicySnapshotSchedulePolicyOutput).ToResourcePolicySnapshotSchedulePolicyPtrOutput()
 }
 
 type ResourcePolicySnapshotSchedulePolicyOutput struct{ *pulumi.OutputState }
@@ -42450,7 +42450,7 @@ func (i ResourcePolicySnapshotSchedulePolicyRetentionPolicyArgs) ToResourcePolic
 }
 
 func (i ResourcePolicySnapshotSchedulePolicyRetentionPolicyArgs) ToResourcePolicySnapshotSchedulePolicyRetentionPolicyPtrOutputWithContext(ctx context.Context) ResourcePolicySnapshotSchedulePolicyRetentionPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicySnapshotSchedulePolicyRetentionPolicyOutput).ToResourcePolicySnapshotSchedulePolicyRetentionPolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicySnapshotSchedulePolicyRetentionPolicyOutput).ToResourcePolicySnapshotSchedulePolicyRetentionPolicyPtrOutput()
 }
 
 // ResourcePolicySnapshotSchedulePolicyRetentionPolicyPtrInput is an input type that accepts ResourcePolicySnapshotSchedulePolicyRetentionPolicyArgs, ResourcePolicySnapshotSchedulePolicyRetentionPolicyPtr and ResourcePolicySnapshotSchedulePolicyRetentionPolicyPtrOutput values.
@@ -42483,7 +42483,7 @@ func (i *resourcePolicySnapshotSchedulePolicyRetentionPolicyPtrType) ToResourceP
 }
 
 func (i *resourcePolicySnapshotSchedulePolicyRetentionPolicyPtrType) ToResourcePolicySnapshotSchedulePolicyRetentionPolicyPtrOutputWithContext(ctx context.Context) ResourcePolicySnapshotSchedulePolicyRetentionPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicySnapshotSchedulePolicyRetentionPolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicySnapshotSchedulePolicyRetentionPolicyOutput).ToResourcePolicySnapshotSchedulePolicyRetentionPolicyPtrOutput()
 }
 
 type ResourcePolicySnapshotSchedulePolicyRetentionPolicyOutput struct{ *pulumi.OutputState }
@@ -42618,7 +42618,7 @@ func (i ResourcePolicySnapshotSchedulePolicyScheduleArgs) ToResourcePolicySnapsh
 }
 
 func (i ResourcePolicySnapshotSchedulePolicyScheduleArgs) ToResourcePolicySnapshotSchedulePolicySchedulePtrOutputWithContext(ctx context.Context) ResourcePolicySnapshotSchedulePolicySchedulePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicySnapshotSchedulePolicyScheduleOutput).ToResourcePolicySnapshotSchedulePolicySchedulePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicySnapshotSchedulePolicyScheduleOutput).ToResourcePolicySnapshotSchedulePolicySchedulePtrOutput()
 }
 
 // ResourcePolicySnapshotSchedulePolicySchedulePtrInput is an input type that accepts ResourcePolicySnapshotSchedulePolicyScheduleArgs, ResourcePolicySnapshotSchedulePolicySchedulePtr and ResourcePolicySnapshotSchedulePolicySchedulePtrOutput values.
@@ -42651,7 +42651,7 @@ func (i *resourcePolicySnapshotSchedulePolicySchedulePtrType) ToResourcePolicySn
 }
 
 func (i *resourcePolicySnapshotSchedulePolicySchedulePtrType) ToResourcePolicySnapshotSchedulePolicySchedulePtrOutputWithContext(ctx context.Context) ResourcePolicySnapshotSchedulePolicySchedulePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicySnapshotSchedulePolicySchedulePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicySnapshotSchedulePolicyScheduleOutput).ToResourcePolicySnapshotSchedulePolicySchedulePtrOutput()
 }
 
 type ResourcePolicySnapshotSchedulePolicyScheduleOutput struct{ *pulumi.OutputState }
@@ -42799,7 +42799,7 @@ func (i ResourcePolicySnapshotSchedulePolicyScheduleDailyScheduleArgs) ToResourc
 }
 
 func (i ResourcePolicySnapshotSchedulePolicyScheduleDailyScheduleArgs) ToResourcePolicySnapshotSchedulePolicyScheduleDailySchedulePtrOutputWithContext(ctx context.Context) ResourcePolicySnapshotSchedulePolicyScheduleDailySchedulePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicySnapshotSchedulePolicyScheduleDailyScheduleOutput).ToResourcePolicySnapshotSchedulePolicyScheduleDailySchedulePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicySnapshotSchedulePolicyScheduleDailyScheduleOutput).ToResourcePolicySnapshotSchedulePolicyScheduleDailySchedulePtrOutput()
 }
 
 // ResourcePolicySnapshotSchedulePolicyScheduleDailySchedulePtrInput is an input type that accepts ResourcePolicySnapshotSchedulePolicyScheduleDailyScheduleArgs, ResourcePolicySnapshotSchedulePolicyScheduleDailySchedulePtr and ResourcePolicySnapshotSchedulePolicyScheduleDailySchedulePtrOutput values.
@@ -42832,7 +42832,7 @@ func (i *resourcePolicySnapshotSchedulePolicyScheduleDailySchedulePtrType) ToRes
 }
 
 func (i *resourcePolicySnapshotSchedulePolicyScheduleDailySchedulePtrType) ToResourcePolicySnapshotSchedulePolicyScheduleDailySchedulePtrOutputWithContext(ctx context.Context) ResourcePolicySnapshotSchedulePolicyScheduleDailySchedulePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicySnapshotSchedulePolicyScheduleDailySchedulePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicySnapshotSchedulePolicyScheduleDailyScheduleOutput).ToResourcePolicySnapshotSchedulePolicyScheduleDailySchedulePtrOutput()
 }
 
 type ResourcePolicySnapshotSchedulePolicyScheduleDailyScheduleOutput struct{ *pulumi.OutputState }
@@ -42955,7 +42955,7 @@ func (i ResourcePolicySnapshotSchedulePolicyScheduleHourlyScheduleArgs) ToResour
 }
 
 func (i ResourcePolicySnapshotSchedulePolicyScheduleHourlyScheduleArgs) ToResourcePolicySnapshotSchedulePolicyScheduleHourlySchedulePtrOutputWithContext(ctx context.Context) ResourcePolicySnapshotSchedulePolicyScheduleHourlySchedulePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicySnapshotSchedulePolicyScheduleHourlyScheduleOutput).ToResourcePolicySnapshotSchedulePolicyScheduleHourlySchedulePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicySnapshotSchedulePolicyScheduleHourlyScheduleOutput).ToResourcePolicySnapshotSchedulePolicyScheduleHourlySchedulePtrOutput()
 }
 
 // ResourcePolicySnapshotSchedulePolicyScheduleHourlySchedulePtrInput is an input type that accepts ResourcePolicySnapshotSchedulePolicyScheduleHourlyScheduleArgs, ResourcePolicySnapshotSchedulePolicyScheduleHourlySchedulePtr and ResourcePolicySnapshotSchedulePolicyScheduleHourlySchedulePtrOutput values.
@@ -42988,7 +42988,7 @@ func (i *resourcePolicySnapshotSchedulePolicyScheduleHourlySchedulePtrType) ToRe
 }
 
 func (i *resourcePolicySnapshotSchedulePolicyScheduleHourlySchedulePtrType) ToResourcePolicySnapshotSchedulePolicyScheduleHourlySchedulePtrOutputWithContext(ctx context.Context) ResourcePolicySnapshotSchedulePolicyScheduleHourlySchedulePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicySnapshotSchedulePolicyScheduleHourlySchedulePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicySnapshotSchedulePolicyScheduleHourlyScheduleOutput).ToResourcePolicySnapshotSchedulePolicyScheduleHourlySchedulePtrOutput()
 }
 
 type ResourcePolicySnapshotSchedulePolicyScheduleHourlyScheduleOutput struct{ *pulumi.OutputState }
@@ -43107,7 +43107,7 @@ func (i ResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleArgs) ToResour
 }
 
 func (i ResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleArgs) ToResourcePolicySnapshotSchedulePolicyScheduleWeeklySchedulePtrOutputWithContext(ctx context.Context) ResourcePolicySnapshotSchedulePolicyScheduleWeeklySchedulePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleOutput).ToResourcePolicySnapshotSchedulePolicyScheduleWeeklySchedulePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleOutput).ToResourcePolicySnapshotSchedulePolicyScheduleWeeklySchedulePtrOutput()
 }
 
 // ResourcePolicySnapshotSchedulePolicyScheduleWeeklySchedulePtrInput is an input type that accepts ResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleArgs, ResourcePolicySnapshotSchedulePolicyScheduleWeeklySchedulePtr and ResourcePolicySnapshotSchedulePolicyScheduleWeeklySchedulePtrOutput values.
@@ -43140,7 +43140,7 @@ func (i *resourcePolicySnapshotSchedulePolicyScheduleWeeklySchedulePtrType) ToRe
 }
 
 func (i *resourcePolicySnapshotSchedulePolicyScheduleWeeklySchedulePtrType) ToResourcePolicySnapshotSchedulePolicyScheduleWeeklySchedulePtrOutputWithContext(ctx context.Context) ResourcePolicySnapshotSchedulePolicyScheduleWeeklySchedulePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicySnapshotSchedulePolicyScheduleWeeklySchedulePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleOutput).ToResourcePolicySnapshotSchedulePolicyScheduleWeeklySchedulePtrOutput()
 }
 
 type ResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleOutput struct{ *pulumi.OutputState }
@@ -43366,7 +43366,7 @@ func (i ResourcePolicySnapshotSchedulePolicySnapshotPropertiesArgs) ToResourcePo
 }
 
 func (i ResourcePolicySnapshotSchedulePolicySnapshotPropertiesArgs) ToResourcePolicySnapshotSchedulePolicySnapshotPropertiesPtrOutputWithContext(ctx context.Context) ResourcePolicySnapshotSchedulePolicySnapshotPropertiesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicySnapshotSchedulePolicySnapshotPropertiesOutput).ToResourcePolicySnapshotSchedulePolicySnapshotPropertiesPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicySnapshotSchedulePolicySnapshotPropertiesOutput).ToResourcePolicySnapshotSchedulePolicySnapshotPropertiesPtrOutput()
 }
 
 // ResourcePolicySnapshotSchedulePolicySnapshotPropertiesPtrInput is an input type that accepts ResourcePolicySnapshotSchedulePolicySnapshotPropertiesArgs, ResourcePolicySnapshotSchedulePolicySnapshotPropertiesPtr and ResourcePolicySnapshotSchedulePolicySnapshotPropertiesPtrOutput values.
@@ -43399,7 +43399,7 @@ func (i *resourcePolicySnapshotSchedulePolicySnapshotPropertiesPtrType) ToResour
 }
 
 func (i *resourcePolicySnapshotSchedulePolicySnapshotPropertiesPtrType) ToResourcePolicySnapshotSchedulePolicySnapshotPropertiesPtrOutputWithContext(ctx context.Context) ResourcePolicySnapshotSchedulePolicySnapshotPropertiesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicySnapshotSchedulePolicySnapshotPropertiesPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcePolicySnapshotSchedulePolicySnapshotPropertiesOutput).ToResourcePolicySnapshotSchedulePolicySnapshotPropertiesPtrOutput()
 }
 
 type ResourcePolicySnapshotSchedulePolicySnapshotPropertiesOutput struct{ *pulumi.OutputState }
@@ -43573,7 +43573,7 @@ func (i RouterBgpArgs) ToRouterBgpPtrOutput() RouterBgpPtrOutput {
 }
 
 func (i RouterBgpArgs) ToRouterBgpPtrOutputWithContext(ctx context.Context) RouterBgpPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RouterBgpOutput).ToRouterBgpPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RouterBgpOutput).ToRouterBgpPtrOutput()
 }
 
 // RouterBgpPtrInput is an input type that accepts RouterBgpArgs, RouterBgpPtr and RouterBgpPtrOutput values.
@@ -43606,7 +43606,7 @@ func (i *routerBgpPtrType) ToRouterBgpPtrOutput() RouterBgpPtrOutput {
 }
 
 func (i *routerBgpPtrType) ToRouterBgpPtrOutputWithContext(ctx context.Context) RouterBgpPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RouterBgpPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RouterBgpOutput).ToRouterBgpPtrOutput()
 }
 
 type RouterBgpOutput struct{ *pulumi.OutputState }
@@ -43894,7 +43894,7 @@ func (i RouterNatLogConfigArgs) ToRouterNatLogConfigPtrOutput() RouterNatLogConf
 }
 
 func (i RouterNatLogConfigArgs) ToRouterNatLogConfigPtrOutputWithContext(ctx context.Context) RouterNatLogConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RouterNatLogConfigOutput).ToRouterNatLogConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RouterNatLogConfigOutput).ToRouterNatLogConfigPtrOutput()
 }
 
 // RouterNatLogConfigPtrInput is an input type that accepts RouterNatLogConfigArgs, RouterNatLogConfigPtr and RouterNatLogConfigPtrOutput values.
@@ -43927,7 +43927,7 @@ func (i *routerNatLogConfigPtrType) ToRouterNatLogConfigPtrOutput() RouterNatLog
 }
 
 func (i *routerNatLogConfigPtrType) ToRouterNatLogConfigPtrOutputWithContext(ctx context.Context) RouterNatLogConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RouterNatLogConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RouterNatLogConfigOutput).ToRouterNatLogConfigPtrOutput()
 }
 
 type RouterNatLogConfigOutput struct{ *pulumi.OutputState }
@@ -44524,7 +44524,7 @@ func (i SecurityPolicyRuleMatchConfigArgs) ToSecurityPolicyRuleMatchConfigPtrOut
 }
 
 func (i SecurityPolicyRuleMatchConfigArgs) ToSecurityPolicyRuleMatchConfigPtrOutputWithContext(ctx context.Context) SecurityPolicyRuleMatchConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecurityPolicyRuleMatchConfigOutput).ToSecurityPolicyRuleMatchConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityPolicyRuleMatchConfigOutput).ToSecurityPolicyRuleMatchConfigPtrOutput()
 }
 
 // SecurityPolicyRuleMatchConfigPtrInput is an input type that accepts SecurityPolicyRuleMatchConfigArgs, SecurityPolicyRuleMatchConfigPtr and SecurityPolicyRuleMatchConfigPtrOutput values.
@@ -44557,7 +44557,7 @@ func (i *securityPolicyRuleMatchConfigPtrType) ToSecurityPolicyRuleMatchConfigPt
 }
 
 func (i *securityPolicyRuleMatchConfigPtrType) ToSecurityPolicyRuleMatchConfigPtrOutputWithContext(ctx context.Context) SecurityPolicyRuleMatchConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecurityPolicyRuleMatchConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityPolicyRuleMatchConfigOutput).ToSecurityPolicyRuleMatchConfigPtrOutput()
 }
 
 type SecurityPolicyRuleMatchConfigOutput struct{ *pulumi.OutputState }
@@ -44661,7 +44661,7 @@ func (i SecurityPolicyRuleMatchExprArgs) ToSecurityPolicyRuleMatchExprPtrOutput(
 }
 
 func (i SecurityPolicyRuleMatchExprArgs) ToSecurityPolicyRuleMatchExprPtrOutputWithContext(ctx context.Context) SecurityPolicyRuleMatchExprPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecurityPolicyRuleMatchExprOutput).ToSecurityPolicyRuleMatchExprPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityPolicyRuleMatchExprOutput).ToSecurityPolicyRuleMatchExprPtrOutput()
 }
 
 // SecurityPolicyRuleMatchExprPtrInput is an input type that accepts SecurityPolicyRuleMatchExprArgs, SecurityPolicyRuleMatchExprPtr and SecurityPolicyRuleMatchExprPtrOutput values.
@@ -44694,7 +44694,7 @@ func (i *securityPolicyRuleMatchExprPtrType) ToSecurityPolicyRuleMatchExprPtrOut
 }
 
 func (i *securityPolicyRuleMatchExprPtrType) ToSecurityPolicyRuleMatchExprPtrOutputWithContext(ctx context.Context) SecurityPolicyRuleMatchExprPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecurityPolicyRuleMatchExprPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityPolicyRuleMatchExprOutput).ToSecurityPolicyRuleMatchExprPtrOutput()
 }
 
 type SecurityPolicyRuleMatchExprOutput struct{ *pulumi.OutputState }
@@ -44802,7 +44802,7 @@ func (i SecurityScanConfigAuthenticationArgs) ToSecurityScanConfigAuthentication
 }
 
 func (i SecurityScanConfigAuthenticationArgs) ToSecurityScanConfigAuthenticationPtrOutputWithContext(ctx context.Context) SecurityScanConfigAuthenticationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecurityScanConfigAuthenticationOutput).ToSecurityScanConfigAuthenticationPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityScanConfigAuthenticationOutput).ToSecurityScanConfigAuthenticationPtrOutput()
 }
 
 // SecurityScanConfigAuthenticationPtrInput is an input type that accepts SecurityScanConfigAuthenticationArgs, SecurityScanConfigAuthenticationPtr and SecurityScanConfigAuthenticationPtrOutput values.
@@ -44835,7 +44835,7 @@ func (i *securityScanConfigAuthenticationPtrType) ToSecurityScanConfigAuthentica
 }
 
 func (i *securityScanConfigAuthenticationPtrType) ToSecurityScanConfigAuthenticationPtrOutputWithContext(ctx context.Context) SecurityScanConfigAuthenticationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecurityScanConfigAuthenticationPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityScanConfigAuthenticationOutput).ToSecurityScanConfigAuthenticationPtrOutput()
 }
 
 type SecurityScanConfigAuthenticationOutput struct{ *pulumi.OutputState }
@@ -44968,7 +44968,7 @@ func (i SecurityScanConfigAuthenticationCustomAccountArgs) ToSecurityScanConfigA
 }
 
 func (i SecurityScanConfigAuthenticationCustomAccountArgs) ToSecurityScanConfigAuthenticationCustomAccountPtrOutputWithContext(ctx context.Context) SecurityScanConfigAuthenticationCustomAccountPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecurityScanConfigAuthenticationCustomAccountOutput).ToSecurityScanConfigAuthenticationCustomAccountPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityScanConfigAuthenticationCustomAccountOutput).ToSecurityScanConfigAuthenticationCustomAccountPtrOutput()
 }
 
 // SecurityScanConfigAuthenticationCustomAccountPtrInput is an input type that accepts SecurityScanConfigAuthenticationCustomAccountArgs, SecurityScanConfigAuthenticationCustomAccountPtr and SecurityScanConfigAuthenticationCustomAccountPtrOutput values.
@@ -45001,7 +45001,7 @@ func (i *securityScanConfigAuthenticationCustomAccountPtrType) ToSecurityScanCon
 }
 
 func (i *securityScanConfigAuthenticationCustomAccountPtrType) ToSecurityScanConfigAuthenticationCustomAccountPtrOutputWithContext(ctx context.Context) SecurityScanConfigAuthenticationCustomAccountPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecurityScanConfigAuthenticationCustomAccountPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityScanConfigAuthenticationCustomAccountOutput).ToSecurityScanConfigAuthenticationCustomAccountPtrOutput()
 }
 
 type SecurityScanConfigAuthenticationCustomAccountOutput struct{ *pulumi.OutputState }
@@ -45143,7 +45143,7 @@ func (i SecurityScanConfigAuthenticationGoogleAccountArgs) ToSecurityScanConfigA
 }
 
 func (i SecurityScanConfigAuthenticationGoogleAccountArgs) ToSecurityScanConfigAuthenticationGoogleAccountPtrOutputWithContext(ctx context.Context) SecurityScanConfigAuthenticationGoogleAccountPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecurityScanConfigAuthenticationGoogleAccountOutput).ToSecurityScanConfigAuthenticationGoogleAccountPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityScanConfigAuthenticationGoogleAccountOutput).ToSecurityScanConfigAuthenticationGoogleAccountPtrOutput()
 }
 
 // SecurityScanConfigAuthenticationGoogleAccountPtrInput is an input type that accepts SecurityScanConfigAuthenticationGoogleAccountArgs, SecurityScanConfigAuthenticationGoogleAccountPtr and SecurityScanConfigAuthenticationGoogleAccountPtrOutput values.
@@ -45176,7 +45176,7 @@ func (i *securityScanConfigAuthenticationGoogleAccountPtrType) ToSecurityScanCon
 }
 
 func (i *securityScanConfigAuthenticationGoogleAccountPtrType) ToSecurityScanConfigAuthenticationGoogleAccountPtrOutputWithContext(ctx context.Context) SecurityScanConfigAuthenticationGoogleAccountPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecurityScanConfigAuthenticationGoogleAccountPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityScanConfigAuthenticationGoogleAccountOutput).ToSecurityScanConfigAuthenticationGoogleAccountPtrOutput()
 }
 
 type SecurityScanConfigAuthenticationGoogleAccountOutput struct{ *pulumi.OutputState }
@@ -45303,7 +45303,7 @@ func (i SecurityScanConfigScheduleArgs) ToSecurityScanConfigSchedulePtrOutput() 
 }
 
 func (i SecurityScanConfigScheduleArgs) ToSecurityScanConfigSchedulePtrOutputWithContext(ctx context.Context) SecurityScanConfigSchedulePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecurityScanConfigScheduleOutput).ToSecurityScanConfigSchedulePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityScanConfigScheduleOutput).ToSecurityScanConfigSchedulePtrOutput()
 }
 
 // SecurityScanConfigSchedulePtrInput is an input type that accepts SecurityScanConfigScheduleArgs, SecurityScanConfigSchedulePtr and SecurityScanConfigSchedulePtrOutput values.
@@ -45336,7 +45336,7 @@ func (i *securityScanConfigSchedulePtrType) ToSecurityScanConfigSchedulePtrOutpu
 }
 
 func (i *securityScanConfigSchedulePtrType) ToSecurityScanConfigSchedulePtrOutputWithContext(ctx context.Context) SecurityScanConfigSchedulePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecurityScanConfigSchedulePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SecurityScanConfigScheduleOutput).ToSecurityScanConfigSchedulePtrOutput()
 }
 
 type SecurityScanConfigScheduleOutput struct{ *pulumi.OutputState }
@@ -45475,7 +45475,7 @@ func (i SnapshotSnapshotEncryptionKeyArgs) ToSnapshotSnapshotEncryptionKeyPtrOut
 }
 
 func (i SnapshotSnapshotEncryptionKeyArgs) ToSnapshotSnapshotEncryptionKeyPtrOutputWithContext(ctx context.Context) SnapshotSnapshotEncryptionKeyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SnapshotSnapshotEncryptionKeyOutput).ToSnapshotSnapshotEncryptionKeyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SnapshotSnapshotEncryptionKeyOutput).ToSnapshotSnapshotEncryptionKeyPtrOutput()
 }
 
 // SnapshotSnapshotEncryptionKeyPtrInput is an input type that accepts SnapshotSnapshotEncryptionKeyArgs, SnapshotSnapshotEncryptionKeyPtr and SnapshotSnapshotEncryptionKeyPtrOutput values.
@@ -45508,7 +45508,7 @@ func (i *snapshotSnapshotEncryptionKeyPtrType) ToSnapshotSnapshotEncryptionKeyPt
 }
 
 func (i *snapshotSnapshotEncryptionKeyPtrType) ToSnapshotSnapshotEncryptionKeyPtrOutputWithContext(ctx context.Context) SnapshotSnapshotEncryptionKeyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SnapshotSnapshotEncryptionKeyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SnapshotSnapshotEncryptionKeyOutput).ToSnapshotSnapshotEncryptionKeyPtrOutput()
 }
 
 type SnapshotSnapshotEncryptionKeyOutput struct{ *pulumi.OutputState }
@@ -45671,7 +45671,7 @@ func (i SnapshotSourceDiskEncryptionKeyArgs) ToSnapshotSourceDiskEncryptionKeyPt
 }
 
 func (i SnapshotSourceDiskEncryptionKeyArgs) ToSnapshotSourceDiskEncryptionKeyPtrOutputWithContext(ctx context.Context) SnapshotSourceDiskEncryptionKeyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SnapshotSourceDiskEncryptionKeyOutput).ToSnapshotSourceDiskEncryptionKeyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SnapshotSourceDiskEncryptionKeyOutput).ToSnapshotSourceDiskEncryptionKeyPtrOutput()
 }
 
 // SnapshotSourceDiskEncryptionKeyPtrInput is an input type that accepts SnapshotSourceDiskEncryptionKeyArgs, SnapshotSourceDiskEncryptionKeyPtr and SnapshotSourceDiskEncryptionKeyPtrOutput values.
@@ -45704,7 +45704,7 @@ func (i *snapshotSourceDiskEncryptionKeyPtrType) ToSnapshotSourceDiskEncryptionK
 }
 
 func (i *snapshotSourceDiskEncryptionKeyPtrType) ToSnapshotSourceDiskEncryptionKeyPtrOutputWithContext(ctx context.Context) SnapshotSourceDiskEncryptionKeyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SnapshotSourceDiskEncryptionKeyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SnapshotSourceDiskEncryptionKeyOutput).ToSnapshotSourceDiskEncryptionKeyPtrOutput()
 }
 
 type SnapshotSourceDiskEncryptionKeyOutput struct{ *pulumi.OutputState }
@@ -45831,7 +45831,7 @@ func (i SubnetworkIAMBindingConditionArgs) ToSubnetworkIAMBindingConditionPtrOut
 }
 
 func (i SubnetworkIAMBindingConditionArgs) ToSubnetworkIAMBindingConditionPtrOutputWithContext(ctx context.Context) SubnetworkIAMBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SubnetworkIAMBindingConditionOutput).ToSubnetworkIAMBindingConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SubnetworkIAMBindingConditionOutput).ToSubnetworkIAMBindingConditionPtrOutput()
 }
 
 // SubnetworkIAMBindingConditionPtrInput is an input type that accepts SubnetworkIAMBindingConditionArgs, SubnetworkIAMBindingConditionPtr and SubnetworkIAMBindingConditionPtrOutput values.
@@ -45864,7 +45864,7 @@ func (i *subnetworkIAMBindingConditionPtrType) ToSubnetworkIAMBindingConditionPt
 }
 
 func (i *subnetworkIAMBindingConditionPtrType) ToSubnetworkIAMBindingConditionPtrOutputWithContext(ctx context.Context) SubnetworkIAMBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SubnetworkIAMBindingConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SubnetworkIAMBindingConditionOutput).ToSubnetworkIAMBindingConditionPtrOutput()
 }
 
 type SubnetworkIAMBindingConditionOutput struct{ *pulumi.OutputState }
@@ -46000,7 +46000,7 @@ func (i SubnetworkIAMMemberConditionArgs) ToSubnetworkIAMMemberConditionPtrOutpu
 }
 
 func (i SubnetworkIAMMemberConditionArgs) ToSubnetworkIAMMemberConditionPtrOutputWithContext(ctx context.Context) SubnetworkIAMMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SubnetworkIAMMemberConditionOutput).ToSubnetworkIAMMemberConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SubnetworkIAMMemberConditionOutput).ToSubnetworkIAMMemberConditionPtrOutput()
 }
 
 // SubnetworkIAMMemberConditionPtrInput is an input type that accepts SubnetworkIAMMemberConditionArgs, SubnetworkIAMMemberConditionPtr and SubnetworkIAMMemberConditionPtrOutput values.
@@ -46033,7 +46033,7 @@ func (i *subnetworkIAMMemberConditionPtrType) ToSubnetworkIAMMemberConditionPtrO
 }
 
 func (i *subnetworkIAMMemberConditionPtrType) ToSubnetworkIAMMemberConditionPtrOutputWithContext(ctx context.Context) SubnetworkIAMMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SubnetworkIAMMemberConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SubnetworkIAMMemberConditionOutput).ToSubnetworkIAMMemberConditionPtrOutput()
 }
 
 type SubnetworkIAMMemberConditionOutput struct{ *pulumi.OutputState }
@@ -46209,7 +46209,7 @@ func (i SubnetworkLogConfigArgs) ToSubnetworkLogConfigPtrOutput() SubnetworkLogC
 }
 
 func (i SubnetworkLogConfigArgs) ToSubnetworkLogConfigPtrOutputWithContext(ctx context.Context) SubnetworkLogConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SubnetworkLogConfigOutput).ToSubnetworkLogConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SubnetworkLogConfigOutput).ToSubnetworkLogConfigPtrOutput()
 }
 
 // SubnetworkLogConfigPtrInput is an input type that accepts SubnetworkLogConfigArgs, SubnetworkLogConfigPtr and SubnetworkLogConfigPtrOutput values.
@@ -46242,7 +46242,7 @@ func (i *subnetworkLogConfigPtrType) ToSubnetworkLogConfigPtrOutput() Subnetwork
 }
 
 func (i *subnetworkLogConfigPtrType) ToSubnetworkLogConfigPtrOutputWithContext(ctx context.Context) SubnetworkLogConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SubnetworkLogConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SubnetworkLogConfigOutput).ToSubnetworkLogConfigPtrOutput()
 }
 
 type SubnetworkLogConfigOutput struct{ *pulumi.OutputState }
@@ -46624,7 +46624,7 @@ func (i URLMapDefaultRouteActionArgs) ToURLMapDefaultRouteActionPtrOutput() URLM
 }
 
 func (i URLMapDefaultRouteActionArgs) ToURLMapDefaultRouteActionPtrOutputWithContext(ctx context.Context) URLMapDefaultRouteActionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultRouteActionOutput).ToURLMapDefaultRouteActionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultRouteActionOutput).ToURLMapDefaultRouteActionPtrOutput()
 }
 
 // URLMapDefaultRouteActionPtrInput is an input type that accepts URLMapDefaultRouteActionArgs, URLMapDefaultRouteActionPtr and URLMapDefaultRouteActionPtrOutput values.
@@ -46657,7 +46657,7 @@ func (i *urlmapDefaultRouteActionPtrType) ToURLMapDefaultRouteActionPtrOutput() 
 }
 
 func (i *urlmapDefaultRouteActionPtrType) ToURLMapDefaultRouteActionPtrOutputWithContext(ctx context.Context) URLMapDefaultRouteActionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultRouteActionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultRouteActionOutput).ToURLMapDefaultRouteActionPtrOutput()
 }
 
 type URLMapDefaultRouteActionOutput struct{ *pulumi.OutputState }
@@ -46933,7 +46933,7 @@ func (i URLMapDefaultRouteActionCorsPolicyArgs) ToURLMapDefaultRouteActionCorsPo
 }
 
 func (i URLMapDefaultRouteActionCorsPolicyArgs) ToURLMapDefaultRouteActionCorsPolicyPtrOutputWithContext(ctx context.Context) URLMapDefaultRouteActionCorsPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultRouteActionCorsPolicyOutput).ToURLMapDefaultRouteActionCorsPolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultRouteActionCorsPolicyOutput).ToURLMapDefaultRouteActionCorsPolicyPtrOutput()
 }
 
 // URLMapDefaultRouteActionCorsPolicyPtrInput is an input type that accepts URLMapDefaultRouteActionCorsPolicyArgs, URLMapDefaultRouteActionCorsPolicyPtr and URLMapDefaultRouteActionCorsPolicyPtrOutput values.
@@ -46966,7 +46966,7 @@ func (i *urlmapDefaultRouteActionCorsPolicyPtrType) ToURLMapDefaultRouteActionCo
 }
 
 func (i *urlmapDefaultRouteActionCorsPolicyPtrType) ToURLMapDefaultRouteActionCorsPolicyPtrOutputWithContext(ctx context.Context) URLMapDefaultRouteActionCorsPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultRouteActionCorsPolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultRouteActionCorsPolicyOutput).ToURLMapDefaultRouteActionCorsPolicyPtrOutput()
 }
 
 type URLMapDefaultRouteActionCorsPolicyOutput struct{ *pulumi.OutputState }
@@ -47187,7 +47187,7 @@ func (i URLMapDefaultRouteActionFaultInjectionPolicyArgs) ToURLMapDefaultRouteAc
 }
 
 func (i URLMapDefaultRouteActionFaultInjectionPolicyArgs) ToURLMapDefaultRouteActionFaultInjectionPolicyPtrOutputWithContext(ctx context.Context) URLMapDefaultRouteActionFaultInjectionPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultRouteActionFaultInjectionPolicyOutput).ToURLMapDefaultRouteActionFaultInjectionPolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultRouteActionFaultInjectionPolicyOutput).ToURLMapDefaultRouteActionFaultInjectionPolicyPtrOutput()
 }
 
 // URLMapDefaultRouteActionFaultInjectionPolicyPtrInput is an input type that accepts URLMapDefaultRouteActionFaultInjectionPolicyArgs, URLMapDefaultRouteActionFaultInjectionPolicyPtr and URLMapDefaultRouteActionFaultInjectionPolicyPtrOutput values.
@@ -47220,7 +47220,7 @@ func (i *urlmapDefaultRouteActionFaultInjectionPolicyPtrType) ToURLMapDefaultRou
 }
 
 func (i *urlmapDefaultRouteActionFaultInjectionPolicyPtrType) ToURLMapDefaultRouteActionFaultInjectionPolicyPtrOutputWithContext(ctx context.Context) URLMapDefaultRouteActionFaultInjectionPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultRouteActionFaultInjectionPolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultRouteActionFaultInjectionPolicyOutput).ToURLMapDefaultRouteActionFaultInjectionPolicyPtrOutput()
 }
 
 type URLMapDefaultRouteActionFaultInjectionPolicyOutput struct{ *pulumi.OutputState }
@@ -47351,7 +47351,7 @@ func (i URLMapDefaultRouteActionFaultInjectionPolicyAbortArgs) ToURLMapDefaultRo
 }
 
 func (i URLMapDefaultRouteActionFaultInjectionPolicyAbortArgs) ToURLMapDefaultRouteActionFaultInjectionPolicyAbortPtrOutputWithContext(ctx context.Context) URLMapDefaultRouteActionFaultInjectionPolicyAbortPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultRouteActionFaultInjectionPolicyAbortOutput).ToURLMapDefaultRouteActionFaultInjectionPolicyAbortPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultRouteActionFaultInjectionPolicyAbortOutput).ToURLMapDefaultRouteActionFaultInjectionPolicyAbortPtrOutput()
 }
 
 // URLMapDefaultRouteActionFaultInjectionPolicyAbortPtrInput is an input type that accepts URLMapDefaultRouteActionFaultInjectionPolicyAbortArgs, URLMapDefaultRouteActionFaultInjectionPolicyAbortPtr and URLMapDefaultRouteActionFaultInjectionPolicyAbortPtrOutput values.
@@ -47384,7 +47384,7 @@ func (i *urlmapDefaultRouteActionFaultInjectionPolicyAbortPtrType) ToURLMapDefau
 }
 
 func (i *urlmapDefaultRouteActionFaultInjectionPolicyAbortPtrType) ToURLMapDefaultRouteActionFaultInjectionPolicyAbortPtrOutputWithContext(ctx context.Context) URLMapDefaultRouteActionFaultInjectionPolicyAbortPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultRouteActionFaultInjectionPolicyAbortPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultRouteActionFaultInjectionPolicyAbortOutput).ToURLMapDefaultRouteActionFaultInjectionPolicyAbortPtrOutput()
 }
 
 type URLMapDefaultRouteActionFaultInjectionPolicyAbortOutput struct{ *pulumi.OutputState }
@@ -47511,7 +47511,7 @@ func (i URLMapDefaultRouteActionFaultInjectionPolicyDelayArgs) ToURLMapDefaultRo
 }
 
 func (i URLMapDefaultRouteActionFaultInjectionPolicyDelayArgs) ToURLMapDefaultRouteActionFaultInjectionPolicyDelayPtrOutputWithContext(ctx context.Context) URLMapDefaultRouteActionFaultInjectionPolicyDelayPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultRouteActionFaultInjectionPolicyDelayOutput).ToURLMapDefaultRouteActionFaultInjectionPolicyDelayPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultRouteActionFaultInjectionPolicyDelayOutput).ToURLMapDefaultRouteActionFaultInjectionPolicyDelayPtrOutput()
 }
 
 // URLMapDefaultRouteActionFaultInjectionPolicyDelayPtrInput is an input type that accepts URLMapDefaultRouteActionFaultInjectionPolicyDelayArgs, URLMapDefaultRouteActionFaultInjectionPolicyDelayPtr and URLMapDefaultRouteActionFaultInjectionPolicyDelayPtrOutput values.
@@ -47544,7 +47544,7 @@ func (i *urlmapDefaultRouteActionFaultInjectionPolicyDelayPtrType) ToURLMapDefau
 }
 
 func (i *urlmapDefaultRouteActionFaultInjectionPolicyDelayPtrType) ToURLMapDefaultRouteActionFaultInjectionPolicyDelayPtrOutputWithContext(ctx context.Context) URLMapDefaultRouteActionFaultInjectionPolicyDelayPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultRouteActionFaultInjectionPolicyDelayPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultRouteActionFaultInjectionPolicyDelayOutput).ToURLMapDefaultRouteActionFaultInjectionPolicyDelayPtrOutput()
 }
 
 type URLMapDefaultRouteActionFaultInjectionPolicyDelayOutput struct{ *pulumi.OutputState }
@@ -47673,7 +47673,7 @@ func (i URLMapDefaultRouteActionFaultInjectionPolicyDelayFixedDelayArgs) ToURLMa
 }
 
 func (i URLMapDefaultRouteActionFaultInjectionPolicyDelayFixedDelayArgs) ToURLMapDefaultRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutputWithContext(ctx context.Context) URLMapDefaultRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultRouteActionFaultInjectionPolicyDelayFixedDelayOutput).ToURLMapDefaultRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultRouteActionFaultInjectionPolicyDelayFixedDelayOutput).ToURLMapDefaultRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutput()
 }
 
 // URLMapDefaultRouteActionFaultInjectionPolicyDelayFixedDelayPtrInput is an input type that accepts URLMapDefaultRouteActionFaultInjectionPolicyDelayFixedDelayArgs, URLMapDefaultRouteActionFaultInjectionPolicyDelayFixedDelayPtr and URLMapDefaultRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutput values.
@@ -47706,7 +47706,7 @@ func (i *urlmapDefaultRouteActionFaultInjectionPolicyDelayFixedDelayPtrType) ToU
 }
 
 func (i *urlmapDefaultRouteActionFaultInjectionPolicyDelayFixedDelayPtrType) ToURLMapDefaultRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutputWithContext(ctx context.Context) URLMapDefaultRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultRouteActionFaultInjectionPolicyDelayFixedDelayOutput).ToURLMapDefaultRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutput()
 }
 
 type URLMapDefaultRouteActionFaultInjectionPolicyDelayFixedDelayOutput struct{ *pulumi.OutputState }
@@ -47825,7 +47825,7 @@ func (i URLMapDefaultRouteActionRequestMirrorPolicyArgs) ToURLMapDefaultRouteAct
 }
 
 func (i URLMapDefaultRouteActionRequestMirrorPolicyArgs) ToURLMapDefaultRouteActionRequestMirrorPolicyPtrOutputWithContext(ctx context.Context) URLMapDefaultRouteActionRequestMirrorPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultRouteActionRequestMirrorPolicyOutput).ToURLMapDefaultRouteActionRequestMirrorPolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultRouteActionRequestMirrorPolicyOutput).ToURLMapDefaultRouteActionRequestMirrorPolicyPtrOutput()
 }
 
 // URLMapDefaultRouteActionRequestMirrorPolicyPtrInput is an input type that accepts URLMapDefaultRouteActionRequestMirrorPolicyArgs, URLMapDefaultRouteActionRequestMirrorPolicyPtr and URLMapDefaultRouteActionRequestMirrorPolicyPtrOutput values.
@@ -47858,7 +47858,7 @@ func (i *urlmapDefaultRouteActionRequestMirrorPolicyPtrType) ToURLMapDefaultRout
 }
 
 func (i *urlmapDefaultRouteActionRequestMirrorPolicyPtrType) ToURLMapDefaultRouteActionRequestMirrorPolicyPtrOutputWithContext(ctx context.Context) URLMapDefaultRouteActionRequestMirrorPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultRouteActionRequestMirrorPolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultRouteActionRequestMirrorPolicyOutput).ToURLMapDefaultRouteActionRequestMirrorPolicyPtrOutput()
 }
 
 type URLMapDefaultRouteActionRequestMirrorPolicyOutput struct{ *pulumi.OutputState }
@@ -48000,7 +48000,7 @@ func (i URLMapDefaultRouteActionRetryPolicyArgs) ToURLMapDefaultRouteActionRetry
 }
 
 func (i URLMapDefaultRouteActionRetryPolicyArgs) ToURLMapDefaultRouteActionRetryPolicyPtrOutputWithContext(ctx context.Context) URLMapDefaultRouteActionRetryPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultRouteActionRetryPolicyOutput).ToURLMapDefaultRouteActionRetryPolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultRouteActionRetryPolicyOutput).ToURLMapDefaultRouteActionRetryPolicyPtrOutput()
 }
 
 // URLMapDefaultRouteActionRetryPolicyPtrInput is an input type that accepts URLMapDefaultRouteActionRetryPolicyArgs, URLMapDefaultRouteActionRetryPolicyPtr and URLMapDefaultRouteActionRetryPolicyPtrOutput values.
@@ -48033,7 +48033,7 @@ func (i *urlmapDefaultRouteActionRetryPolicyPtrType) ToURLMapDefaultRouteActionR
 }
 
 func (i *urlmapDefaultRouteActionRetryPolicyPtrType) ToURLMapDefaultRouteActionRetryPolicyPtrOutputWithContext(ctx context.Context) URLMapDefaultRouteActionRetryPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultRouteActionRetryPolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultRouteActionRetryPolicyOutput).ToURLMapDefaultRouteActionRetryPolicyPtrOutput()
 }
 
 type URLMapDefaultRouteActionRetryPolicyOutput struct{ *pulumi.OutputState }
@@ -48205,7 +48205,7 @@ func (i URLMapDefaultRouteActionRetryPolicyPerTryTimeoutArgs) ToURLMapDefaultRou
 }
 
 func (i URLMapDefaultRouteActionRetryPolicyPerTryTimeoutArgs) ToURLMapDefaultRouteActionRetryPolicyPerTryTimeoutPtrOutputWithContext(ctx context.Context) URLMapDefaultRouteActionRetryPolicyPerTryTimeoutPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultRouteActionRetryPolicyPerTryTimeoutOutput).ToURLMapDefaultRouteActionRetryPolicyPerTryTimeoutPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultRouteActionRetryPolicyPerTryTimeoutOutput).ToURLMapDefaultRouteActionRetryPolicyPerTryTimeoutPtrOutput()
 }
 
 // URLMapDefaultRouteActionRetryPolicyPerTryTimeoutPtrInput is an input type that accepts URLMapDefaultRouteActionRetryPolicyPerTryTimeoutArgs, URLMapDefaultRouteActionRetryPolicyPerTryTimeoutPtr and URLMapDefaultRouteActionRetryPolicyPerTryTimeoutPtrOutput values.
@@ -48238,7 +48238,7 @@ func (i *urlmapDefaultRouteActionRetryPolicyPerTryTimeoutPtrType) ToURLMapDefaul
 }
 
 func (i *urlmapDefaultRouteActionRetryPolicyPerTryTimeoutPtrType) ToURLMapDefaultRouteActionRetryPolicyPerTryTimeoutPtrOutputWithContext(ctx context.Context) URLMapDefaultRouteActionRetryPolicyPerTryTimeoutPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultRouteActionRetryPolicyPerTryTimeoutPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultRouteActionRetryPolicyPerTryTimeoutOutput).ToURLMapDefaultRouteActionRetryPolicyPerTryTimeoutPtrOutput()
 }
 
 type URLMapDefaultRouteActionRetryPolicyPerTryTimeoutOutput struct{ *pulumi.OutputState }
@@ -48365,7 +48365,7 @@ func (i URLMapDefaultRouteActionTimeoutArgs) ToURLMapDefaultRouteActionTimeoutPt
 }
 
 func (i URLMapDefaultRouteActionTimeoutArgs) ToURLMapDefaultRouteActionTimeoutPtrOutputWithContext(ctx context.Context) URLMapDefaultRouteActionTimeoutPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultRouteActionTimeoutOutput).ToURLMapDefaultRouteActionTimeoutPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultRouteActionTimeoutOutput).ToURLMapDefaultRouteActionTimeoutPtrOutput()
 }
 
 // URLMapDefaultRouteActionTimeoutPtrInput is an input type that accepts URLMapDefaultRouteActionTimeoutArgs, URLMapDefaultRouteActionTimeoutPtr and URLMapDefaultRouteActionTimeoutPtrOutput values.
@@ -48398,7 +48398,7 @@ func (i *urlmapDefaultRouteActionTimeoutPtrType) ToURLMapDefaultRouteActionTimeo
 }
 
 func (i *urlmapDefaultRouteActionTimeoutPtrType) ToURLMapDefaultRouteActionTimeoutPtrOutputWithContext(ctx context.Context) URLMapDefaultRouteActionTimeoutPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultRouteActionTimeoutPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultRouteActionTimeoutOutput).ToURLMapDefaultRouteActionTimeoutPtrOutput()
 }
 
 type URLMapDefaultRouteActionTimeoutOutput struct{ *pulumi.OutputState }
@@ -48527,7 +48527,7 @@ func (i URLMapDefaultRouteActionUrlRewriteArgs) ToURLMapDefaultRouteActionUrlRew
 }
 
 func (i URLMapDefaultRouteActionUrlRewriteArgs) ToURLMapDefaultRouteActionUrlRewritePtrOutputWithContext(ctx context.Context) URLMapDefaultRouteActionUrlRewritePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultRouteActionUrlRewriteOutput).ToURLMapDefaultRouteActionUrlRewritePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultRouteActionUrlRewriteOutput).ToURLMapDefaultRouteActionUrlRewritePtrOutput()
 }
 
 // URLMapDefaultRouteActionUrlRewritePtrInput is an input type that accepts URLMapDefaultRouteActionUrlRewriteArgs, URLMapDefaultRouteActionUrlRewritePtr and URLMapDefaultRouteActionUrlRewritePtrOutput values.
@@ -48560,7 +48560,7 @@ func (i *urlmapDefaultRouteActionUrlRewritePtrType) ToURLMapDefaultRouteActionUr
 }
 
 func (i *urlmapDefaultRouteActionUrlRewritePtrType) ToURLMapDefaultRouteActionUrlRewritePtrOutputWithContext(ctx context.Context) URLMapDefaultRouteActionUrlRewritePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultRouteActionUrlRewritePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultRouteActionUrlRewriteOutput).ToURLMapDefaultRouteActionUrlRewritePtrOutput()
 }
 
 type URLMapDefaultRouteActionUrlRewriteOutput struct{ *pulumi.OutputState }
@@ -48845,7 +48845,7 @@ func (i URLMapDefaultRouteActionWeightedBackendServiceHeaderActionArgs) ToURLMap
 }
 
 func (i URLMapDefaultRouteActionWeightedBackendServiceHeaderActionArgs) ToURLMapDefaultRouteActionWeightedBackendServiceHeaderActionPtrOutputWithContext(ctx context.Context) URLMapDefaultRouteActionWeightedBackendServiceHeaderActionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultRouteActionWeightedBackendServiceHeaderActionOutput).ToURLMapDefaultRouteActionWeightedBackendServiceHeaderActionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultRouteActionWeightedBackendServiceHeaderActionOutput).ToURLMapDefaultRouteActionWeightedBackendServiceHeaderActionPtrOutput()
 }
 
 // URLMapDefaultRouteActionWeightedBackendServiceHeaderActionPtrInput is an input type that accepts URLMapDefaultRouteActionWeightedBackendServiceHeaderActionArgs, URLMapDefaultRouteActionWeightedBackendServiceHeaderActionPtr and URLMapDefaultRouteActionWeightedBackendServiceHeaderActionPtrOutput values.
@@ -48878,7 +48878,7 @@ func (i *urlmapDefaultRouteActionWeightedBackendServiceHeaderActionPtrType) ToUR
 }
 
 func (i *urlmapDefaultRouteActionWeightedBackendServiceHeaderActionPtrType) ToURLMapDefaultRouteActionWeightedBackendServiceHeaderActionPtrOutputWithContext(ctx context.Context) URLMapDefaultRouteActionWeightedBackendServiceHeaderActionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultRouteActionWeightedBackendServiceHeaderActionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultRouteActionWeightedBackendServiceHeaderActionOutput).ToURLMapDefaultRouteActionWeightedBackendServiceHeaderActionPtrOutput()
 }
 
 type URLMapDefaultRouteActionWeightedBackendServiceHeaderActionOutput struct{ *pulumi.OutputState }
@@ -49351,7 +49351,7 @@ func (i URLMapDefaultUrlRedirectArgs) ToURLMapDefaultUrlRedirectPtrOutput() URLM
 }
 
 func (i URLMapDefaultUrlRedirectArgs) ToURLMapDefaultUrlRedirectPtrOutputWithContext(ctx context.Context) URLMapDefaultUrlRedirectPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultUrlRedirectOutput).ToURLMapDefaultUrlRedirectPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultUrlRedirectOutput).ToURLMapDefaultUrlRedirectPtrOutput()
 }
 
 // URLMapDefaultUrlRedirectPtrInput is an input type that accepts URLMapDefaultUrlRedirectArgs, URLMapDefaultUrlRedirectPtr and URLMapDefaultUrlRedirectPtrOutput values.
@@ -49384,7 +49384,7 @@ func (i *urlmapDefaultUrlRedirectPtrType) ToURLMapDefaultUrlRedirectPtrOutput() 
 }
 
 func (i *urlmapDefaultUrlRedirectPtrType) ToURLMapDefaultUrlRedirectPtrOutputWithContext(ctx context.Context) URLMapDefaultUrlRedirectPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultUrlRedirectPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapDefaultUrlRedirectOutput).ToURLMapDefaultUrlRedirectPtrOutput()
 }
 
 type URLMapDefaultUrlRedirectOutput struct{ *pulumi.OutputState }
@@ -49621,7 +49621,7 @@ func (i URLMapHeaderActionArgs) ToURLMapHeaderActionPtrOutput() URLMapHeaderActi
 }
 
 func (i URLMapHeaderActionArgs) ToURLMapHeaderActionPtrOutputWithContext(ctx context.Context) URLMapHeaderActionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapHeaderActionOutput).ToURLMapHeaderActionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapHeaderActionOutput).ToURLMapHeaderActionPtrOutput()
 }
 
 // URLMapHeaderActionPtrInput is an input type that accepts URLMapHeaderActionArgs, URLMapHeaderActionPtr and URLMapHeaderActionPtrOutput values.
@@ -49654,7 +49654,7 @@ func (i *urlmapHeaderActionPtrType) ToURLMapHeaderActionPtrOutput() URLMapHeader
 }
 
 func (i *urlmapHeaderActionPtrType) ToURLMapHeaderActionPtrOutputWithContext(ctx context.Context) URLMapHeaderActionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapHeaderActionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapHeaderActionOutput).ToURLMapHeaderActionPtrOutput()
 }
 
 type URLMapHeaderActionOutput struct{ *pulumi.OutputState }
@@ -50468,7 +50468,7 @@ func (i URLMapPathMatcherDefaultRouteActionArgs) ToURLMapPathMatcherDefaultRoute
 }
 
 func (i URLMapPathMatcherDefaultRouteActionArgs) ToURLMapPathMatcherDefaultRouteActionPtrOutputWithContext(ctx context.Context) URLMapPathMatcherDefaultRouteActionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultRouteActionOutput).ToURLMapPathMatcherDefaultRouteActionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultRouteActionOutput).ToURLMapPathMatcherDefaultRouteActionPtrOutput()
 }
 
 // URLMapPathMatcherDefaultRouteActionPtrInput is an input type that accepts URLMapPathMatcherDefaultRouteActionArgs, URLMapPathMatcherDefaultRouteActionPtr and URLMapPathMatcherDefaultRouteActionPtrOutput values.
@@ -50501,7 +50501,7 @@ func (i *urlmapPathMatcherDefaultRouteActionPtrType) ToURLMapPathMatcherDefaultR
 }
 
 func (i *urlmapPathMatcherDefaultRouteActionPtrType) ToURLMapPathMatcherDefaultRouteActionPtrOutputWithContext(ctx context.Context) URLMapPathMatcherDefaultRouteActionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultRouteActionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultRouteActionOutput).ToURLMapPathMatcherDefaultRouteActionPtrOutput()
 }
 
 type URLMapPathMatcherDefaultRouteActionOutput struct{ *pulumi.OutputState }
@@ -50785,7 +50785,7 @@ func (i URLMapPathMatcherDefaultRouteActionCorsPolicyArgs) ToURLMapPathMatcherDe
 }
 
 func (i URLMapPathMatcherDefaultRouteActionCorsPolicyArgs) ToURLMapPathMatcherDefaultRouteActionCorsPolicyPtrOutputWithContext(ctx context.Context) URLMapPathMatcherDefaultRouteActionCorsPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultRouteActionCorsPolicyOutput).ToURLMapPathMatcherDefaultRouteActionCorsPolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultRouteActionCorsPolicyOutput).ToURLMapPathMatcherDefaultRouteActionCorsPolicyPtrOutput()
 }
 
 // URLMapPathMatcherDefaultRouteActionCorsPolicyPtrInput is an input type that accepts URLMapPathMatcherDefaultRouteActionCorsPolicyArgs, URLMapPathMatcherDefaultRouteActionCorsPolicyPtr and URLMapPathMatcherDefaultRouteActionCorsPolicyPtrOutput values.
@@ -50818,7 +50818,7 @@ func (i *urlmapPathMatcherDefaultRouteActionCorsPolicyPtrType) ToURLMapPathMatch
 }
 
 func (i *urlmapPathMatcherDefaultRouteActionCorsPolicyPtrType) ToURLMapPathMatcherDefaultRouteActionCorsPolicyPtrOutputWithContext(ctx context.Context) URLMapPathMatcherDefaultRouteActionCorsPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultRouteActionCorsPolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultRouteActionCorsPolicyOutput).ToURLMapPathMatcherDefaultRouteActionCorsPolicyPtrOutput()
 }
 
 type URLMapPathMatcherDefaultRouteActionCorsPolicyOutput struct{ *pulumi.OutputState }
@@ -51041,7 +51041,7 @@ func (i URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyArgs) ToURLMapPat
 }
 
 func (i URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyArgs) ToURLMapPathMatcherDefaultRouteActionFaultInjectionPolicyPtrOutputWithContext(ctx context.Context) URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyOutput).ToURLMapPathMatcherDefaultRouteActionFaultInjectionPolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyOutput).ToURLMapPathMatcherDefaultRouteActionFaultInjectionPolicyPtrOutput()
 }
 
 // URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyPtrInput is an input type that accepts URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyArgs, URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyPtr and URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyPtrOutput values.
@@ -51074,7 +51074,7 @@ func (i *urlmapPathMatcherDefaultRouteActionFaultInjectionPolicyPtrType) ToURLMa
 }
 
 func (i *urlmapPathMatcherDefaultRouteActionFaultInjectionPolicyPtrType) ToURLMapPathMatcherDefaultRouteActionFaultInjectionPolicyPtrOutputWithContext(ctx context.Context) URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyOutput).ToURLMapPathMatcherDefaultRouteActionFaultInjectionPolicyPtrOutput()
 }
 
 type URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyOutput struct{ *pulumi.OutputState }
@@ -51205,7 +51205,7 @@ func (i URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyAbortArgs) ToURLM
 }
 
 func (i URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyAbortArgs) ToURLMapPathMatcherDefaultRouteActionFaultInjectionPolicyAbortPtrOutputWithContext(ctx context.Context) URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyAbortPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyAbortOutput).ToURLMapPathMatcherDefaultRouteActionFaultInjectionPolicyAbortPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyAbortOutput).ToURLMapPathMatcherDefaultRouteActionFaultInjectionPolicyAbortPtrOutput()
 }
 
 // URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyAbortPtrInput is an input type that accepts URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyAbortArgs, URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyAbortPtr and URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyAbortPtrOutput values.
@@ -51238,7 +51238,7 @@ func (i *urlmapPathMatcherDefaultRouteActionFaultInjectionPolicyAbortPtrType) To
 }
 
 func (i *urlmapPathMatcherDefaultRouteActionFaultInjectionPolicyAbortPtrType) ToURLMapPathMatcherDefaultRouteActionFaultInjectionPolicyAbortPtrOutputWithContext(ctx context.Context) URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyAbortPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyAbortPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyAbortOutput).ToURLMapPathMatcherDefaultRouteActionFaultInjectionPolicyAbortPtrOutput()
 }
 
 type URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyAbortOutput struct{ *pulumi.OutputState }
@@ -51365,7 +51365,7 @@ func (i URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayArgs) ToURLM
 }
 
 func (i URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayArgs) ToURLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayPtrOutputWithContext(ctx context.Context) URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayOutput).ToURLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayOutput).ToURLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayPtrOutput()
 }
 
 // URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayPtrInput is an input type that accepts URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayArgs, URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayPtr and URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayPtrOutput values.
@@ -51398,7 +51398,7 @@ func (i *urlmapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayPtrType) To
 }
 
 func (i *urlmapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayPtrType) ToURLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayPtrOutputWithContext(ctx context.Context) URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayOutput).ToURLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayPtrOutput()
 }
 
 type URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayOutput struct{ *pulumi.OutputState }
@@ -51527,7 +51527,7 @@ func (i URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayFixedDelayAr
 }
 
 func (i URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayFixedDelayArgs) ToURLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutputWithContext(ctx context.Context) URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayFixedDelayOutput).ToURLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayFixedDelayOutput).ToURLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutput()
 }
 
 // URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayFixedDelayPtrInput is an input type that accepts URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayFixedDelayArgs, URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayFixedDelayPtr and URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutput values.
@@ -51560,7 +51560,7 @@ func (i *urlmapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayFixedDelayP
 }
 
 func (i *urlmapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayFixedDelayPtrType) ToURLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutputWithContext(ctx context.Context) URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayFixedDelayOutput).ToURLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutput()
 }
 
 type URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayFixedDelayOutput struct{ *pulumi.OutputState }
@@ -51681,7 +51681,7 @@ func (i URLMapPathMatcherDefaultRouteActionRequestMirrorPolicyArgs) ToURLMapPath
 }
 
 func (i URLMapPathMatcherDefaultRouteActionRequestMirrorPolicyArgs) ToURLMapPathMatcherDefaultRouteActionRequestMirrorPolicyPtrOutputWithContext(ctx context.Context) URLMapPathMatcherDefaultRouteActionRequestMirrorPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultRouteActionRequestMirrorPolicyOutput).ToURLMapPathMatcherDefaultRouteActionRequestMirrorPolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultRouteActionRequestMirrorPolicyOutput).ToURLMapPathMatcherDefaultRouteActionRequestMirrorPolicyPtrOutput()
 }
 
 // URLMapPathMatcherDefaultRouteActionRequestMirrorPolicyPtrInput is an input type that accepts URLMapPathMatcherDefaultRouteActionRequestMirrorPolicyArgs, URLMapPathMatcherDefaultRouteActionRequestMirrorPolicyPtr and URLMapPathMatcherDefaultRouteActionRequestMirrorPolicyPtrOutput values.
@@ -51714,7 +51714,7 @@ func (i *urlmapPathMatcherDefaultRouteActionRequestMirrorPolicyPtrType) ToURLMap
 }
 
 func (i *urlmapPathMatcherDefaultRouteActionRequestMirrorPolicyPtrType) ToURLMapPathMatcherDefaultRouteActionRequestMirrorPolicyPtrOutputWithContext(ctx context.Context) URLMapPathMatcherDefaultRouteActionRequestMirrorPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultRouteActionRequestMirrorPolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultRouteActionRequestMirrorPolicyOutput).ToURLMapPathMatcherDefaultRouteActionRequestMirrorPolicyPtrOutput()
 }
 
 type URLMapPathMatcherDefaultRouteActionRequestMirrorPolicyOutput struct{ *pulumi.OutputState }
@@ -51856,7 +51856,7 @@ func (i URLMapPathMatcherDefaultRouteActionRetryPolicyArgs) ToURLMapPathMatcherD
 }
 
 func (i URLMapPathMatcherDefaultRouteActionRetryPolicyArgs) ToURLMapPathMatcherDefaultRouteActionRetryPolicyPtrOutputWithContext(ctx context.Context) URLMapPathMatcherDefaultRouteActionRetryPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultRouteActionRetryPolicyOutput).ToURLMapPathMatcherDefaultRouteActionRetryPolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultRouteActionRetryPolicyOutput).ToURLMapPathMatcherDefaultRouteActionRetryPolicyPtrOutput()
 }
 
 // URLMapPathMatcherDefaultRouteActionRetryPolicyPtrInput is an input type that accepts URLMapPathMatcherDefaultRouteActionRetryPolicyArgs, URLMapPathMatcherDefaultRouteActionRetryPolicyPtr and URLMapPathMatcherDefaultRouteActionRetryPolicyPtrOutput values.
@@ -51889,7 +51889,7 @@ func (i *urlmapPathMatcherDefaultRouteActionRetryPolicyPtrType) ToURLMapPathMatc
 }
 
 func (i *urlmapPathMatcherDefaultRouteActionRetryPolicyPtrType) ToURLMapPathMatcherDefaultRouteActionRetryPolicyPtrOutputWithContext(ctx context.Context) URLMapPathMatcherDefaultRouteActionRetryPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultRouteActionRetryPolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultRouteActionRetryPolicyOutput).ToURLMapPathMatcherDefaultRouteActionRetryPolicyPtrOutput()
 }
 
 type URLMapPathMatcherDefaultRouteActionRetryPolicyOutput struct{ *pulumi.OutputState }
@@ -52063,7 +52063,7 @@ func (i URLMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeoutArgs) ToURLMa
 }
 
 func (i URLMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeoutArgs) ToURLMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeoutPtrOutputWithContext(ctx context.Context) URLMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeoutPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeoutOutput).ToURLMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeoutPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeoutOutput).ToURLMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeoutPtrOutput()
 }
 
 // URLMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeoutPtrInput is an input type that accepts URLMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeoutArgs, URLMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeoutPtr and URLMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeoutPtrOutput values.
@@ -52096,7 +52096,7 @@ func (i *urlmapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeoutPtrType) ToU
 }
 
 func (i *urlmapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeoutPtrType) ToURLMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeoutPtrOutputWithContext(ctx context.Context) URLMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeoutPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeoutPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeoutOutput).ToURLMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeoutPtrOutput()
 }
 
 type URLMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeoutOutput struct{ *pulumi.OutputState }
@@ -52223,7 +52223,7 @@ func (i URLMapPathMatcherDefaultRouteActionTimeoutArgs) ToURLMapPathMatcherDefau
 }
 
 func (i URLMapPathMatcherDefaultRouteActionTimeoutArgs) ToURLMapPathMatcherDefaultRouteActionTimeoutPtrOutputWithContext(ctx context.Context) URLMapPathMatcherDefaultRouteActionTimeoutPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultRouteActionTimeoutOutput).ToURLMapPathMatcherDefaultRouteActionTimeoutPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultRouteActionTimeoutOutput).ToURLMapPathMatcherDefaultRouteActionTimeoutPtrOutput()
 }
 
 // URLMapPathMatcherDefaultRouteActionTimeoutPtrInput is an input type that accepts URLMapPathMatcherDefaultRouteActionTimeoutArgs, URLMapPathMatcherDefaultRouteActionTimeoutPtr and URLMapPathMatcherDefaultRouteActionTimeoutPtrOutput values.
@@ -52256,7 +52256,7 @@ func (i *urlmapPathMatcherDefaultRouteActionTimeoutPtrType) ToURLMapPathMatcherD
 }
 
 func (i *urlmapPathMatcherDefaultRouteActionTimeoutPtrType) ToURLMapPathMatcherDefaultRouteActionTimeoutPtrOutputWithContext(ctx context.Context) URLMapPathMatcherDefaultRouteActionTimeoutPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultRouteActionTimeoutPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultRouteActionTimeoutOutput).ToURLMapPathMatcherDefaultRouteActionTimeoutPtrOutput()
 }
 
 type URLMapPathMatcherDefaultRouteActionTimeoutOutput struct{ *pulumi.OutputState }
@@ -52387,7 +52387,7 @@ func (i URLMapPathMatcherDefaultRouteActionUrlRewriteArgs) ToURLMapPathMatcherDe
 }
 
 func (i URLMapPathMatcherDefaultRouteActionUrlRewriteArgs) ToURLMapPathMatcherDefaultRouteActionUrlRewritePtrOutputWithContext(ctx context.Context) URLMapPathMatcherDefaultRouteActionUrlRewritePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultRouteActionUrlRewriteOutput).ToURLMapPathMatcherDefaultRouteActionUrlRewritePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultRouteActionUrlRewriteOutput).ToURLMapPathMatcherDefaultRouteActionUrlRewritePtrOutput()
 }
 
 // URLMapPathMatcherDefaultRouteActionUrlRewritePtrInput is an input type that accepts URLMapPathMatcherDefaultRouteActionUrlRewriteArgs, URLMapPathMatcherDefaultRouteActionUrlRewritePtr and URLMapPathMatcherDefaultRouteActionUrlRewritePtrOutput values.
@@ -52420,7 +52420,7 @@ func (i *urlmapPathMatcherDefaultRouteActionUrlRewritePtrType) ToURLMapPathMatch
 }
 
 func (i *urlmapPathMatcherDefaultRouteActionUrlRewritePtrType) ToURLMapPathMatcherDefaultRouteActionUrlRewritePtrOutputWithContext(ctx context.Context) URLMapPathMatcherDefaultRouteActionUrlRewritePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultRouteActionUrlRewritePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultRouteActionUrlRewriteOutput).ToURLMapPathMatcherDefaultRouteActionUrlRewritePtrOutput()
 }
 
 type URLMapPathMatcherDefaultRouteActionUrlRewriteOutput struct{ *pulumi.OutputState }
@@ -52707,7 +52707,7 @@ func (i URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionArg
 }
 
 func (i URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionArgs) ToURLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionPtrOutputWithContext(ctx context.Context) URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionOutput).ToURLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionOutput).ToURLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionPtrOutput()
 }
 
 // URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionPtrInput is an input type that accepts URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionArgs, URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionPtr and URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionPtrOutput values.
@@ -52740,7 +52740,7 @@ func (i *urlmapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionPt
 }
 
 func (i *urlmapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionPtrType) ToURLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionPtrOutputWithContext(ctx context.Context) URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionOutput).ToURLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionPtrOutput()
 }
 
 type URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionOutput struct{ *pulumi.OutputState }
@@ -53213,7 +53213,7 @@ func (i URLMapPathMatcherDefaultUrlRedirectArgs) ToURLMapPathMatcherDefaultUrlRe
 }
 
 func (i URLMapPathMatcherDefaultUrlRedirectArgs) ToURLMapPathMatcherDefaultUrlRedirectPtrOutputWithContext(ctx context.Context) URLMapPathMatcherDefaultUrlRedirectPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultUrlRedirectOutput).ToURLMapPathMatcherDefaultUrlRedirectPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultUrlRedirectOutput).ToURLMapPathMatcherDefaultUrlRedirectPtrOutput()
 }
 
 // URLMapPathMatcherDefaultUrlRedirectPtrInput is an input type that accepts URLMapPathMatcherDefaultUrlRedirectArgs, URLMapPathMatcherDefaultUrlRedirectPtr and URLMapPathMatcherDefaultUrlRedirectPtrOutput values.
@@ -53246,7 +53246,7 @@ func (i *urlmapPathMatcherDefaultUrlRedirectPtrType) ToURLMapPathMatcherDefaultU
 }
 
 func (i *urlmapPathMatcherDefaultUrlRedirectPtrType) ToURLMapPathMatcherDefaultUrlRedirectPtrOutputWithContext(ctx context.Context) URLMapPathMatcherDefaultUrlRedirectPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultUrlRedirectPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherDefaultUrlRedirectOutput).ToURLMapPathMatcherDefaultUrlRedirectPtrOutput()
 }
 
 type URLMapPathMatcherDefaultUrlRedirectOutput struct{ *pulumi.OutputState }
@@ -53483,7 +53483,7 @@ func (i URLMapPathMatcherHeaderActionArgs) ToURLMapPathMatcherHeaderActionPtrOut
 }
 
 func (i URLMapPathMatcherHeaderActionArgs) ToURLMapPathMatcherHeaderActionPtrOutputWithContext(ctx context.Context) URLMapPathMatcherHeaderActionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherHeaderActionOutput).ToURLMapPathMatcherHeaderActionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherHeaderActionOutput).ToURLMapPathMatcherHeaderActionPtrOutput()
 }
 
 // URLMapPathMatcherHeaderActionPtrInput is an input type that accepts URLMapPathMatcherHeaderActionArgs, URLMapPathMatcherHeaderActionPtr and URLMapPathMatcherHeaderActionPtrOutput values.
@@ -53516,7 +53516,7 @@ func (i *urlmapPathMatcherHeaderActionPtrType) ToURLMapPathMatcherHeaderActionPt
 }
 
 func (i *urlmapPathMatcherHeaderActionPtrType) ToURLMapPathMatcherHeaderActionPtrOutputWithContext(ctx context.Context) URLMapPathMatcherHeaderActionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherHeaderActionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherHeaderActionOutput).ToURLMapPathMatcherHeaderActionPtrOutput()
 }
 
 type URLMapPathMatcherHeaderActionOutput struct{ *pulumi.OutputState }
@@ -54135,7 +54135,7 @@ func (i URLMapPathMatcherPathRuleRouteActionArgs) ToURLMapPathMatcherPathRuleRou
 }
 
 func (i URLMapPathMatcherPathRuleRouteActionArgs) ToURLMapPathMatcherPathRuleRouteActionPtrOutputWithContext(ctx context.Context) URLMapPathMatcherPathRuleRouteActionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleRouteActionOutput).ToURLMapPathMatcherPathRuleRouteActionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleRouteActionOutput).ToURLMapPathMatcherPathRuleRouteActionPtrOutput()
 }
 
 // URLMapPathMatcherPathRuleRouteActionPtrInput is an input type that accepts URLMapPathMatcherPathRuleRouteActionArgs, URLMapPathMatcherPathRuleRouteActionPtr and URLMapPathMatcherPathRuleRouteActionPtrOutput values.
@@ -54168,7 +54168,7 @@ func (i *urlmapPathMatcherPathRuleRouteActionPtrType) ToURLMapPathMatcherPathRul
 }
 
 func (i *urlmapPathMatcherPathRuleRouteActionPtrType) ToURLMapPathMatcherPathRuleRouteActionPtrOutputWithContext(ctx context.Context) URLMapPathMatcherPathRuleRouteActionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleRouteActionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleRouteActionOutput).ToURLMapPathMatcherPathRuleRouteActionPtrOutput()
 }
 
 type URLMapPathMatcherPathRuleRouteActionOutput struct{ *pulumi.OutputState }
@@ -54452,7 +54452,7 @@ func (i URLMapPathMatcherPathRuleRouteActionCorsPolicyArgs) ToURLMapPathMatcherP
 }
 
 func (i URLMapPathMatcherPathRuleRouteActionCorsPolicyArgs) ToURLMapPathMatcherPathRuleRouteActionCorsPolicyPtrOutputWithContext(ctx context.Context) URLMapPathMatcherPathRuleRouteActionCorsPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleRouteActionCorsPolicyOutput).ToURLMapPathMatcherPathRuleRouteActionCorsPolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleRouteActionCorsPolicyOutput).ToURLMapPathMatcherPathRuleRouteActionCorsPolicyPtrOutput()
 }
 
 // URLMapPathMatcherPathRuleRouteActionCorsPolicyPtrInput is an input type that accepts URLMapPathMatcherPathRuleRouteActionCorsPolicyArgs, URLMapPathMatcherPathRuleRouteActionCorsPolicyPtr and URLMapPathMatcherPathRuleRouteActionCorsPolicyPtrOutput values.
@@ -54485,7 +54485,7 @@ func (i *urlmapPathMatcherPathRuleRouteActionCorsPolicyPtrType) ToURLMapPathMatc
 }
 
 func (i *urlmapPathMatcherPathRuleRouteActionCorsPolicyPtrType) ToURLMapPathMatcherPathRuleRouteActionCorsPolicyPtrOutputWithContext(ctx context.Context) URLMapPathMatcherPathRuleRouteActionCorsPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleRouteActionCorsPolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleRouteActionCorsPolicyOutput).ToURLMapPathMatcherPathRuleRouteActionCorsPolicyPtrOutput()
 }
 
 type URLMapPathMatcherPathRuleRouteActionCorsPolicyOutput struct{ *pulumi.OutputState }
@@ -54708,7 +54708,7 @@ func (i URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyArgs) ToURLMapPa
 }
 
 func (i URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyArgs) ToURLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyPtrOutputWithContext(ctx context.Context) URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyOutput).ToURLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyOutput).ToURLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyPtrOutput()
 }
 
 // URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyPtrInput is an input type that accepts URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyArgs, URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyPtr and URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyPtrOutput values.
@@ -54741,7 +54741,7 @@ func (i *urlmapPathMatcherPathRuleRouteActionFaultInjectionPolicyPtrType) ToURLM
 }
 
 func (i *urlmapPathMatcherPathRuleRouteActionFaultInjectionPolicyPtrType) ToURLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyPtrOutputWithContext(ctx context.Context) URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyOutput).ToURLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyPtrOutput()
 }
 
 type URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyOutput struct{ *pulumi.OutputState }
@@ -54872,7 +54872,7 @@ func (i URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortArgs) ToURL
 }
 
 func (i URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortArgs) ToURLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortPtrOutputWithContext(ctx context.Context) URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortOutput).ToURLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortOutput).ToURLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortPtrOutput()
 }
 
 // URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortPtrInput is an input type that accepts URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortArgs, URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortPtr and URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortPtrOutput values.
@@ -54905,7 +54905,7 @@ func (i *urlmapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortPtrType) T
 }
 
 func (i *urlmapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortPtrType) ToURLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortPtrOutputWithContext(ctx context.Context) URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortOutput).ToURLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortPtrOutput()
 }
 
 type URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortOutput struct{ *pulumi.OutputState }
@@ -55032,7 +55032,7 @@ func (i URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayArgs) ToURL
 }
 
 func (i URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayArgs) ToURLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayPtrOutputWithContext(ctx context.Context) URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayOutput).ToURLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayOutput).ToURLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayPtrOutput()
 }
 
 // URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayPtrInput is an input type that accepts URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayArgs, URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayPtr and URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayPtrOutput values.
@@ -55065,7 +55065,7 @@ func (i *urlmapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayPtrType) T
 }
 
 func (i *urlmapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayPtrType) ToURLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayPtrOutputWithContext(ctx context.Context) URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayOutput).ToURLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayPtrOutput()
 }
 
 type URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayOutput struct{ *pulumi.OutputState }
@@ -55194,7 +55194,7 @@ func (i URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelayA
 }
 
 func (i URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelayArgs) ToURLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutputWithContext(ctx context.Context) URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelayOutput).ToURLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelayOutput).ToURLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutput()
 }
 
 // URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelayPtrInput is an input type that accepts URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelayArgs, URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelayPtr and URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutput values.
@@ -55227,7 +55227,7 @@ func (i *urlmapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelay
 }
 
 func (i *urlmapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelayPtrType) ToURLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutputWithContext(ctx context.Context) URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelayOutput).ToURLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutput()
 }
 
 type URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelayOutput struct{ *pulumi.OutputState }
@@ -55348,7 +55348,7 @@ func (i URLMapPathMatcherPathRuleRouteActionRequestMirrorPolicyArgs) ToURLMapPat
 }
 
 func (i URLMapPathMatcherPathRuleRouteActionRequestMirrorPolicyArgs) ToURLMapPathMatcherPathRuleRouteActionRequestMirrorPolicyPtrOutputWithContext(ctx context.Context) URLMapPathMatcherPathRuleRouteActionRequestMirrorPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleRouteActionRequestMirrorPolicyOutput).ToURLMapPathMatcherPathRuleRouteActionRequestMirrorPolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleRouteActionRequestMirrorPolicyOutput).ToURLMapPathMatcherPathRuleRouteActionRequestMirrorPolicyPtrOutput()
 }
 
 // URLMapPathMatcherPathRuleRouteActionRequestMirrorPolicyPtrInput is an input type that accepts URLMapPathMatcherPathRuleRouteActionRequestMirrorPolicyArgs, URLMapPathMatcherPathRuleRouteActionRequestMirrorPolicyPtr and URLMapPathMatcherPathRuleRouteActionRequestMirrorPolicyPtrOutput values.
@@ -55381,7 +55381,7 @@ func (i *urlmapPathMatcherPathRuleRouteActionRequestMirrorPolicyPtrType) ToURLMa
 }
 
 func (i *urlmapPathMatcherPathRuleRouteActionRequestMirrorPolicyPtrType) ToURLMapPathMatcherPathRuleRouteActionRequestMirrorPolicyPtrOutputWithContext(ctx context.Context) URLMapPathMatcherPathRuleRouteActionRequestMirrorPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleRouteActionRequestMirrorPolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleRouteActionRequestMirrorPolicyOutput).ToURLMapPathMatcherPathRuleRouteActionRequestMirrorPolicyPtrOutput()
 }
 
 type URLMapPathMatcherPathRuleRouteActionRequestMirrorPolicyOutput struct{ *pulumi.OutputState }
@@ -55523,7 +55523,7 @@ func (i URLMapPathMatcherPathRuleRouteActionRetryPolicyArgs) ToURLMapPathMatcher
 }
 
 func (i URLMapPathMatcherPathRuleRouteActionRetryPolicyArgs) ToURLMapPathMatcherPathRuleRouteActionRetryPolicyPtrOutputWithContext(ctx context.Context) URLMapPathMatcherPathRuleRouteActionRetryPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleRouteActionRetryPolicyOutput).ToURLMapPathMatcherPathRuleRouteActionRetryPolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleRouteActionRetryPolicyOutput).ToURLMapPathMatcherPathRuleRouteActionRetryPolicyPtrOutput()
 }
 
 // URLMapPathMatcherPathRuleRouteActionRetryPolicyPtrInput is an input type that accepts URLMapPathMatcherPathRuleRouteActionRetryPolicyArgs, URLMapPathMatcherPathRuleRouteActionRetryPolicyPtr and URLMapPathMatcherPathRuleRouteActionRetryPolicyPtrOutput values.
@@ -55556,7 +55556,7 @@ func (i *urlmapPathMatcherPathRuleRouteActionRetryPolicyPtrType) ToURLMapPathMat
 }
 
 func (i *urlmapPathMatcherPathRuleRouteActionRetryPolicyPtrType) ToURLMapPathMatcherPathRuleRouteActionRetryPolicyPtrOutputWithContext(ctx context.Context) URLMapPathMatcherPathRuleRouteActionRetryPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleRouteActionRetryPolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleRouteActionRetryPolicyOutput).ToURLMapPathMatcherPathRuleRouteActionRetryPolicyPtrOutput()
 }
 
 type URLMapPathMatcherPathRuleRouteActionRetryPolicyOutput struct{ *pulumi.OutputState }
@@ -55730,7 +55730,7 @@ func (i URLMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutArgs) ToURLM
 }
 
 func (i URLMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutArgs) ToURLMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutPtrOutputWithContext(ctx context.Context) URLMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutOutput).ToURLMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutOutput).ToURLMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutPtrOutput()
 }
 
 // URLMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutPtrInput is an input type that accepts URLMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutArgs, URLMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutPtr and URLMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutPtrOutput values.
@@ -55763,7 +55763,7 @@ func (i *urlmapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutPtrType) To
 }
 
 func (i *urlmapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutPtrType) ToURLMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutPtrOutputWithContext(ctx context.Context) URLMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutOutput).ToURLMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutPtrOutput()
 }
 
 type URLMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutOutput struct{ *pulumi.OutputState }
@@ -55890,7 +55890,7 @@ func (i URLMapPathMatcherPathRuleRouteActionTimeoutArgs) ToURLMapPathMatcherPath
 }
 
 func (i URLMapPathMatcherPathRuleRouteActionTimeoutArgs) ToURLMapPathMatcherPathRuleRouteActionTimeoutPtrOutputWithContext(ctx context.Context) URLMapPathMatcherPathRuleRouteActionTimeoutPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleRouteActionTimeoutOutput).ToURLMapPathMatcherPathRuleRouteActionTimeoutPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleRouteActionTimeoutOutput).ToURLMapPathMatcherPathRuleRouteActionTimeoutPtrOutput()
 }
 
 // URLMapPathMatcherPathRuleRouteActionTimeoutPtrInput is an input type that accepts URLMapPathMatcherPathRuleRouteActionTimeoutArgs, URLMapPathMatcherPathRuleRouteActionTimeoutPtr and URLMapPathMatcherPathRuleRouteActionTimeoutPtrOutput values.
@@ -55923,7 +55923,7 @@ func (i *urlmapPathMatcherPathRuleRouteActionTimeoutPtrType) ToURLMapPathMatcher
 }
 
 func (i *urlmapPathMatcherPathRuleRouteActionTimeoutPtrType) ToURLMapPathMatcherPathRuleRouteActionTimeoutPtrOutputWithContext(ctx context.Context) URLMapPathMatcherPathRuleRouteActionTimeoutPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleRouteActionTimeoutPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleRouteActionTimeoutOutput).ToURLMapPathMatcherPathRuleRouteActionTimeoutPtrOutput()
 }
 
 type URLMapPathMatcherPathRuleRouteActionTimeoutOutput struct{ *pulumi.OutputState }
@@ -56054,7 +56054,7 @@ func (i URLMapPathMatcherPathRuleRouteActionUrlRewriteArgs) ToURLMapPathMatcherP
 }
 
 func (i URLMapPathMatcherPathRuleRouteActionUrlRewriteArgs) ToURLMapPathMatcherPathRuleRouteActionUrlRewritePtrOutputWithContext(ctx context.Context) URLMapPathMatcherPathRuleRouteActionUrlRewritePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleRouteActionUrlRewriteOutput).ToURLMapPathMatcherPathRuleRouteActionUrlRewritePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleRouteActionUrlRewriteOutput).ToURLMapPathMatcherPathRuleRouteActionUrlRewritePtrOutput()
 }
 
 // URLMapPathMatcherPathRuleRouteActionUrlRewritePtrInput is an input type that accepts URLMapPathMatcherPathRuleRouteActionUrlRewriteArgs, URLMapPathMatcherPathRuleRouteActionUrlRewritePtr and URLMapPathMatcherPathRuleRouteActionUrlRewritePtrOutput values.
@@ -56087,7 +56087,7 @@ func (i *urlmapPathMatcherPathRuleRouteActionUrlRewritePtrType) ToURLMapPathMatc
 }
 
 func (i *urlmapPathMatcherPathRuleRouteActionUrlRewritePtrType) ToURLMapPathMatcherPathRuleRouteActionUrlRewritePtrOutputWithContext(ctx context.Context) URLMapPathMatcherPathRuleRouteActionUrlRewritePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleRouteActionUrlRewritePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleRouteActionUrlRewriteOutput).ToURLMapPathMatcherPathRuleRouteActionUrlRewritePtrOutput()
 }
 
 type URLMapPathMatcherPathRuleRouteActionUrlRewriteOutput struct{ *pulumi.OutputState }
@@ -56374,7 +56374,7 @@ func (i URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionAr
 }
 
 func (i URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionArgs) ToURLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionPtrOutputWithContext(ctx context.Context) URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionOutput).ToURLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionOutput).ToURLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionPtrOutput()
 }
 
 // URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionPtrInput is an input type that accepts URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionArgs, URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionPtr and URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionPtrOutput values.
@@ -56407,7 +56407,7 @@ func (i *urlmapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionP
 }
 
 func (i *urlmapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionPtrType) ToURLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionPtrOutputWithContext(ctx context.Context) URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionOutput).ToURLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionPtrOutput()
 }
 
 type URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionOutput struct{ *pulumi.OutputState }
@@ -56880,7 +56880,7 @@ func (i URLMapPathMatcherPathRuleUrlRedirectArgs) ToURLMapPathMatcherPathRuleUrl
 }
 
 func (i URLMapPathMatcherPathRuleUrlRedirectArgs) ToURLMapPathMatcherPathRuleUrlRedirectPtrOutputWithContext(ctx context.Context) URLMapPathMatcherPathRuleUrlRedirectPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleUrlRedirectOutput).ToURLMapPathMatcherPathRuleUrlRedirectPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleUrlRedirectOutput).ToURLMapPathMatcherPathRuleUrlRedirectPtrOutput()
 }
 
 // URLMapPathMatcherPathRuleUrlRedirectPtrInput is an input type that accepts URLMapPathMatcherPathRuleUrlRedirectArgs, URLMapPathMatcherPathRuleUrlRedirectPtr and URLMapPathMatcherPathRuleUrlRedirectPtrOutput values.
@@ -56913,7 +56913,7 @@ func (i *urlmapPathMatcherPathRuleUrlRedirectPtrType) ToURLMapPathMatcherPathRul
 }
 
 func (i *urlmapPathMatcherPathRuleUrlRedirectPtrType) ToURLMapPathMatcherPathRuleUrlRedirectPtrOutputWithContext(ctx context.Context) URLMapPathMatcherPathRuleUrlRedirectPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleUrlRedirectPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherPathRuleUrlRedirectOutput).ToURLMapPathMatcherPathRuleUrlRedirectPtrOutput()
 }
 
 type URLMapPathMatcherPathRuleUrlRedirectOutput struct{ *pulumi.OutputState }
@@ -57370,7 +57370,7 @@ func (i URLMapPathMatcherRouteRuleHeaderActionArgs) ToURLMapPathMatcherRouteRule
 }
 
 func (i URLMapPathMatcherRouteRuleHeaderActionArgs) ToURLMapPathMatcherRouteRuleHeaderActionPtrOutputWithContext(ctx context.Context) URLMapPathMatcherRouteRuleHeaderActionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleHeaderActionOutput).ToURLMapPathMatcherRouteRuleHeaderActionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleHeaderActionOutput).ToURLMapPathMatcherRouteRuleHeaderActionPtrOutput()
 }
 
 // URLMapPathMatcherRouteRuleHeaderActionPtrInput is an input type that accepts URLMapPathMatcherRouteRuleHeaderActionArgs, URLMapPathMatcherRouteRuleHeaderActionPtr and URLMapPathMatcherRouteRuleHeaderActionPtrOutput values.
@@ -57403,7 +57403,7 @@ func (i *urlmapPathMatcherRouteRuleHeaderActionPtrType) ToURLMapPathMatcherRoute
 }
 
 func (i *urlmapPathMatcherRouteRuleHeaderActionPtrType) ToURLMapPathMatcherRouteRuleHeaderActionPtrOutputWithContext(ctx context.Context) URLMapPathMatcherRouteRuleHeaderActionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleHeaderActionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleHeaderActionOutput).ToURLMapPathMatcherRouteRuleHeaderActionPtrOutput()
 }
 
 type URLMapPathMatcherRouteRuleHeaderActionOutput struct{ *pulumi.OutputState }
@@ -58249,7 +58249,7 @@ func (i URLMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatchArgs) ToURLMapPa
 }
 
 func (i URLMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatchArgs) ToURLMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatchPtrOutputWithContext(ctx context.Context) URLMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatchPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatchOutput).ToURLMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatchPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatchOutput).ToURLMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatchPtrOutput()
 }
 
 // URLMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatchPtrInput is an input type that accepts URLMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatchArgs, URLMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatchPtr and URLMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatchPtrOutput values.
@@ -58282,7 +58282,7 @@ func (i *urlmapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatchPtrType) ToURLM
 }
 
 func (i *urlmapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatchPtrType) ToURLMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatchPtrOutputWithContext(ctx context.Context) URLMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatchPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatchPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatchOutput).ToURLMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatchPtrOutput()
 }
 
 type URLMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatchOutput struct{ *pulumi.OutputState }
@@ -58860,7 +58860,7 @@ func (i URLMapPathMatcherRouteRuleRouteActionArgs) ToURLMapPathMatcherRouteRuleR
 }
 
 func (i URLMapPathMatcherRouteRuleRouteActionArgs) ToURLMapPathMatcherRouteRuleRouteActionPtrOutputWithContext(ctx context.Context) URLMapPathMatcherRouteRuleRouteActionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleRouteActionOutput).ToURLMapPathMatcherRouteRuleRouteActionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleRouteActionOutput).ToURLMapPathMatcherRouteRuleRouteActionPtrOutput()
 }
 
 // URLMapPathMatcherRouteRuleRouteActionPtrInput is an input type that accepts URLMapPathMatcherRouteRuleRouteActionArgs, URLMapPathMatcherRouteRuleRouteActionPtr and URLMapPathMatcherRouteRuleRouteActionPtrOutput values.
@@ -58893,7 +58893,7 @@ func (i *urlmapPathMatcherRouteRuleRouteActionPtrType) ToURLMapPathMatcherRouteR
 }
 
 func (i *urlmapPathMatcherRouteRuleRouteActionPtrType) ToURLMapPathMatcherRouteRuleRouteActionPtrOutputWithContext(ctx context.Context) URLMapPathMatcherRouteRuleRouteActionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleRouteActionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleRouteActionOutput).ToURLMapPathMatcherRouteRuleRouteActionPtrOutput()
 }
 
 type URLMapPathMatcherRouteRuleRouteActionOutput struct{ *pulumi.OutputState }
@@ -59177,7 +59177,7 @@ func (i URLMapPathMatcherRouteRuleRouteActionCorsPolicyArgs) ToURLMapPathMatcher
 }
 
 func (i URLMapPathMatcherRouteRuleRouteActionCorsPolicyArgs) ToURLMapPathMatcherRouteRuleRouteActionCorsPolicyPtrOutputWithContext(ctx context.Context) URLMapPathMatcherRouteRuleRouteActionCorsPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleRouteActionCorsPolicyOutput).ToURLMapPathMatcherRouteRuleRouteActionCorsPolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleRouteActionCorsPolicyOutput).ToURLMapPathMatcherRouteRuleRouteActionCorsPolicyPtrOutput()
 }
 
 // URLMapPathMatcherRouteRuleRouteActionCorsPolicyPtrInput is an input type that accepts URLMapPathMatcherRouteRuleRouteActionCorsPolicyArgs, URLMapPathMatcherRouteRuleRouteActionCorsPolicyPtr and URLMapPathMatcherRouteRuleRouteActionCorsPolicyPtrOutput values.
@@ -59210,7 +59210,7 @@ func (i *urlmapPathMatcherRouteRuleRouteActionCorsPolicyPtrType) ToURLMapPathMat
 }
 
 func (i *urlmapPathMatcherRouteRuleRouteActionCorsPolicyPtrType) ToURLMapPathMatcherRouteRuleRouteActionCorsPolicyPtrOutputWithContext(ctx context.Context) URLMapPathMatcherRouteRuleRouteActionCorsPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleRouteActionCorsPolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleRouteActionCorsPolicyOutput).ToURLMapPathMatcherRouteRuleRouteActionCorsPolicyPtrOutput()
 }
 
 type URLMapPathMatcherRouteRuleRouteActionCorsPolicyOutput struct{ *pulumi.OutputState }
@@ -59433,7 +59433,7 @@ func (i URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyArgs) ToURLMapP
 }
 
 func (i URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyArgs) ToURLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyPtrOutputWithContext(ctx context.Context) URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyOutput).ToURLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyOutput).ToURLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyPtrOutput()
 }
 
 // URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyPtrInput is an input type that accepts URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyArgs, URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyPtr and URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyPtrOutput values.
@@ -59466,7 +59466,7 @@ func (i *urlmapPathMatcherRouteRuleRouteActionFaultInjectionPolicyPtrType) ToURL
 }
 
 func (i *urlmapPathMatcherRouteRuleRouteActionFaultInjectionPolicyPtrType) ToURLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyPtrOutputWithContext(ctx context.Context) URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyOutput).ToURLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyPtrOutput()
 }
 
 type URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyOutput struct{ *pulumi.OutputState }
@@ -59597,7 +59597,7 @@ func (i URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortArgs) ToUR
 }
 
 func (i URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortArgs) ToURLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortPtrOutputWithContext(ctx context.Context) URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortOutput).ToURLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortOutput).ToURLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortPtrOutput()
 }
 
 // URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortPtrInput is an input type that accepts URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortArgs, URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortPtr and URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortPtrOutput values.
@@ -59630,7 +59630,7 @@ func (i *urlmapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortPtrType) 
 }
 
 func (i *urlmapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortPtrType) ToURLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortPtrOutputWithContext(ctx context.Context) URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortOutput).ToURLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortPtrOutput()
 }
 
 type URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbortOutput struct{ *pulumi.OutputState }
@@ -59757,7 +59757,7 @@ func (i URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayArgs) ToUR
 }
 
 func (i URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayArgs) ToURLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayPtrOutputWithContext(ctx context.Context) URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayOutput).ToURLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayOutput).ToURLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayPtrOutput()
 }
 
 // URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayPtrInput is an input type that accepts URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayArgs, URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayPtr and URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayPtrOutput values.
@@ -59790,7 +59790,7 @@ func (i *urlmapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayPtrType) 
 }
 
 func (i *urlmapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayPtrType) ToURLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayPtrOutputWithContext(ctx context.Context) URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayOutput).ToURLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayPtrOutput()
 }
 
 type URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayOutput struct{ *pulumi.OutputState }
@@ -59919,7 +59919,7 @@ func (i URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelay
 }
 
 func (i URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelayArgs) ToURLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutputWithContext(ctx context.Context) URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelayOutput).ToURLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelayOutput).ToURLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutput()
 }
 
 // URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelayPtrInput is an input type that accepts URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelayArgs, URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelayPtr and URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutput values.
@@ -59952,7 +59952,7 @@ func (i *urlmapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDela
 }
 
 func (i *urlmapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelayPtrType) ToURLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutputWithContext(ctx context.Context) URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelayOutput).ToURLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelayPtrOutput()
 }
 
 type URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelayOutput struct{ *pulumi.OutputState }
@@ -60073,7 +60073,7 @@ func (i URLMapPathMatcherRouteRuleRouteActionRequestMirrorPolicyArgs) ToURLMapPa
 }
 
 func (i URLMapPathMatcherRouteRuleRouteActionRequestMirrorPolicyArgs) ToURLMapPathMatcherRouteRuleRouteActionRequestMirrorPolicyPtrOutputWithContext(ctx context.Context) URLMapPathMatcherRouteRuleRouteActionRequestMirrorPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleRouteActionRequestMirrorPolicyOutput).ToURLMapPathMatcherRouteRuleRouteActionRequestMirrorPolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleRouteActionRequestMirrorPolicyOutput).ToURLMapPathMatcherRouteRuleRouteActionRequestMirrorPolicyPtrOutput()
 }
 
 // URLMapPathMatcherRouteRuleRouteActionRequestMirrorPolicyPtrInput is an input type that accepts URLMapPathMatcherRouteRuleRouteActionRequestMirrorPolicyArgs, URLMapPathMatcherRouteRuleRouteActionRequestMirrorPolicyPtr and URLMapPathMatcherRouteRuleRouteActionRequestMirrorPolicyPtrOutput values.
@@ -60106,7 +60106,7 @@ func (i *urlmapPathMatcherRouteRuleRouteActionRequestMirrorPolicyPtrType) ToURLM
 }
 
 func (i *urlmapPathMatcherRouteRuleRouteActionRequestMirrorPolicyPtrType) ToURLMapPathMatcherRouteRuleRouteActionRequestMirrorPolicyPtrOutputWithContext(ctx context.Context) URLMapPathMatcherRouteRuleRouteActionRequestMirrorPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleRouteActionRequestMirrorPolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleRouteActionRequestMirrorPolicyOutput).ToURLMapPathMatcherRouteRuleRouteActionRequestMirrorPolicyPtrOutput()
 }
 
 type URLMapPathMatcherRouteRuleRouteActionRequestMirrorPolicyOutput struct{ *pulumi.OutputState }
@@ -60248,7 +60248,7 @@ func (i URLMapPathMatcherRouteRuleRouteActionRetryPolicyArgs) ToURLMapPathMatche
 }
 
 func (i URLMapPathMatcherRouteRuleRouteActionRetryPolicyArgs) ToURLMapPathMatcherRouteRuleRouteActionRetryPolicyPtrOutputWithContext(ctx context.Context) URLMapPathMatcherRouteRuleRouteActionRetryPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleRouteActionRetryPolicyOutput).ToURLMapPathMatcherRouteRuleRouteActionRetryPolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleRouteActionRetryPolicyOutput).ToURLMapPathMatcherRouteRuleRouteActionRetryPolicyPtrOutput()
 }
 
 // URLMapPathMatcherRouteRuleRouteActionRetryPolicyPtrInput is an input type that accepts URLMapPathMatcherRouteRuleRouteActionRetryPolicyArgs, URLMapPathMatcherRouteRuleRouteActionRetryPolicyPtr and URLMapPathMatcherRouteRuleRouteActionRetryPolicyPtrOutput values.
@@ -60281,7 +60281,7 @@ func (i *urlmapPathMatcherRouteRuleRouteActionRetryPolicyPtrType) ToURLMapPathMa
 }
 
 func (i *urlmapPathMatcherRouteRuleRouteActionRetryPolicyPtrType) ToURLMapPathMatcherRouteRuleRouteActionRetryPolicyPtrOutputWithContext(ctx context.Context) URLMapPathMatcherRouteRuleRouteActionRetryPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleRouteActionRetryPolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleRouteActionRetryPolicyOutput).ToURLMapPathMatcherRouteRuleRouteActionRetryPolicyPtrOutput()
 }
 
 type URLMapPathMatcherRouteRuleRouteActionRetryPolicyOutput struct{ *pulumi.OutputState }
@@ -60455,7 +60455,7 @@ func (i URLMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutArgs) ToURL
 }
 
 func (i URLMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutArgs) ToURLMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutPtrOutputWithContext(ctx context.Context) URLMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutOutput).ToURLMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutOutput).ToURLMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutPtrOutput()
 }
 
 // URLMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutPtrInput is an input type that accepts URLMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutArgs, URLMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutPtr and URLMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutPtrOutput values.
@@ -60488,7 +60488,7 @@ func (i *urlmapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutPtrType) T
 }
 
 func (i *urlmapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutPtrType) ToURLMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutPtrOutputWithContext(ctx context.Context) URLMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutOutput).ToURLMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutPtrOutput()
 }
 
 type URLMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeoutOutput struct{ *pulumi.OutputState }
@@ -60615,7 +60615,7 @@ func (i URLMapPathMatcherRouteRuleRouteActionTimeoutArgs) ToURLMapPathMatcherRou
 }
 
 func (i URLMapPathMatcherRouteRuleRouteActionTimeoutArgs) ToURLMapPathMatcherRouteRuleRouteActionTimeoutPtrOutputWithContext(ctx context.Context) URLMapPathMatcherRouteRuleRouteActionTimeoutPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleRouteActionTimeoutOutput).ToURLMapPathMatcherRouteRuleRouteActionTimeoutPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleRouteActionTimeoutOutput).ToURLMapPathMatcherRouteRuleRouteActionTimeoutPtrOutput()
 }
 
 // URLMapPathMatcherRouteRuleRouteActionTimeoutPtrInput is an input type that accepts URLMapPathMatcherRouteRuleRouteActionTimeoutArgs, URLMapPathMatcherRouteRuleRouteActionTimeoutPtr and URLMapPathMatcherRouteRuleRouteActionTimeoutPtrOutput values.
@@ -60648,7 +60648,7 @@ func (i *urlmapPathMatcherRouteRuleRouteActionTimeoutPtrType) ToURLMapPathMatche
 }
 
 func (i *urlmapPathMatcherRouteRuleRouteActionTimeoutPtrType) ToURLMapPathMatcherRouteRuleRouteActionTimeoutPtrOutputWithContext(ctx context.Context) URLMapPathMatcherRouteRuleRouteActionTimeoutPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleRouteActionTimeoutPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleRouteActionTimeoutOutput).ToURLMapPathMatcherRouteRuleRouteActionTimeoutPtrOutput()
 }
 
 type URLMapPathMatcherRouteRuleRouteActionTimeoutOutput struct{ *pulumi.OutputState }
@@ -60779,7 +60779,7 @@ func (i URLMapPathMatcherRouteRuleRouteActionUrlRewriteArgs) ToURLMapPathMatcher
 }
 
 func (i URLMapPathMatcherRouteRuleRouteActionUrlRewriteArgs) ToURLMapPathMatcherRouteRuleRouteActionUrlRewritePtrOutputWithContext(ctx context.Context) URLMapPathMatcherRouteRuleRouteActionUrlRewritePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleRouteActionUrlRewriteOutput).ToURLMapPathMatcherRouteRuleRouteActionUrlRewritePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleRouteActionUrlRewriteOutput).ToURLMapPathMatcherRouteRuleRouteActionUrlRewritePtrOutput()
 }
 
 // URLMapPathMatcherRouteRuleRouteActionUrlRewritePtrInput is an input type that accepts URLMapPathMatcherRouteRuleRouteActionUrlRewriteArgs, URLMapPathMatcherRouteRuleRouteActionUrlRewritePtr and URLMapPathMatcherRouteRuleRouteActionUrlRewritePtrOutput values.
@@ -60812,7 +60812,7 @@ func (i *urlmapPathMatcherRouteRuleRouteActionUrlRewritePtrType) ToURLMapPathMat
 }
 
 func (i *urlmapPathMatcherRouteRuleRouteActionUrlRewritePtrType) ToURLMapPathMatcherRouteRuleRouteActionUrlRewritePtrOutputWithContext(ctx context.Context) URLMapPathMatcherRouteRuleRouteActionUrlRewritePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleRouteActionUrlRewritePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleRouteActionUrlRewriteOutput).ToURLMapPathMatcherRouteRuleRouteActionUrlRewritePtrOutput()
 }
 
 type URLMapPathMatcherRouteRuleRouteActionUrlRewriteOutput struct{ *pulumi.OutputState }
@@ -61099,7 +61099,7 @@ func (i URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionA
 }
 
 func (i URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionArgs) ToURLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionPtrOutputWithContext(ctx context.Context) URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionOutput).ToURLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionOutput).ToURLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionPtrOutput()
 }
 
 // URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionPtrInput is an input type that accepts URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionArgs, URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionPtr and URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionPtrOutput values.
@@ -61132,7 +61132,7 @@ func (i *urlmapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderAction
 }
 
 func (i *urlmapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionPtrType) ToURLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionPtrOutputWithContext(ctx context.Context) URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionOutput).ToURLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionPtrOutput()
 }
 
 type URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionOutput struct{ *pulumi.OutputState }
@@ -61605,7 +61605,7 @@ func (i URLMapPathMatcherRouteRuleUrlRedirectArgs) ToURLMapPathMatcherRouteRuleU
 }
 
 func (i URLMapPathMatcherRouteRuleUrlRedirectArgs) ToURLMapPathMatcherRouteRuleUrlRedirectPtrOutputWithContext(ctx context.Context) URLMapPathMatcherRouteRuleUrlRedirectPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleUrlRedirectOutput).ToURLMapPathMatcherRouteRuleUrlRedirectPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleUrlRedirectOutput).ToURLMapPathMatcherRouteRuleUrlRedirectPtrOutput()
 }
 
 // URLMapPathMatcherRouteRuleUrlRedirectPtrInput is an input type that accepts URLMapPathMatcherRouteRuleUrlRedirectArgs, URLMapPathMatcherRouteRuleUrlRedirectPtr and URLMapPathMatcherRouteRuleUrlRedirectPtrOutput values.
@@ -61638,7 +61638,7 @@ func (i *urlmapPathMatcherRouteRuleUrlRedirectPtrType) ToURLMapPathMatcherRouteR
 }
 
 func (i *urlmapPathMatcherRouteRuleUrlRedirectPtrType) ToURLMapPathMatcherRouteRuleUrlRedirectPtrOutputWithContext(ctx context.Context) URLMapPathMatcherRouteRuleUrlRedirectPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleUrlRedirectPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(URLMapPathMatcherRouteRuleUrlRedirectOutput).ToURLMapPathMatcherRouteRuleUrlRedirectPtrOutput()
 }
 
 type URLMapPathMatcherRouteRuleUrlRedirectOutput struct{ *pulumi.OutputState }

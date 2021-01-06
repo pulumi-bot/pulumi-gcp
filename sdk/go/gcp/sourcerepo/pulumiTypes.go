@@ -50,7 +50,7 @@ func (i RepositoryIamBindingConditionArgs) ToRepositoryIamBindingConditionPtrOut
 }
 
 func (i RepositoryIamBindingConditionArgs) ToRepositoryIamBindingConditionPtrOutputWithContext(ctx context.Context) RepositoryIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RepositoryIamBindingConditionOutput).ToRepositoryIamBindingConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RepositoryIamBindingConditionOutput).ToRepositoryIamBindingConditionPtrOutput()
 }
 
 // RepositoryIamBindingConditionPtrInput is an input type that accepts RepositoryIamBindingConditionArgs, RepositoryIamBindingConditionPtr and RepositoryIamBindingConditionPtrOutput values.
@@ -83,7 +83,7 @@ func (i *repositoryIamBindingConditionPtrType) ToRepositoryIamBindingConditionPt
 }
 
 func (i *repositoryIamBindingConditionPtrType) ToRepositoryIamBindingConditionPtrOutputWithContext(ctx context.Context) RepositoryIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RepositoryIamBindingConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RepositoryIamBindingConditionOutput).ToRepositoryIamBindingConditionPtrOutput()
 }
 
 type RepositoryIamBindingConditionOutput struct{ *pulumi.OutputState }
@@ -206,7 +206,7 @@ func (i RepositoryIamMemberConditionArgs) ToRepositoryIamMemberConditionPtrOutpu
 }
 
 func (i RepositoryIamMemberConditionArgs) ToRepositoryIamMemberConditionPtrOutputWithContext(ctx context.Context) RepositoryIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RepositoryIamMemberConditionOutput).ToRepositoryIamMemberConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(RepositoryIamMemberConditionOutput).ToRepositoryIamMemberConditionPtrOutput()
 }
 
 // RepositoryIamMemberConditionPtrInput is an input type that accepts RepositoryIamMemberConditionArgs, RepositoryIamMemberConditionPtr and RepositoryIamMemberConditionPtrOutput values.
@@ -239,7 +239,7 @@ func (i *repositoryIamMemberConditionPtrType) ToRepositoryIamMemberConditionPtrO
 }
 
 func (i *repositoryIamMemberConditionPtrType) ToRepositoryIamMemberConditionPtrOutputWithContext(ctx context.Context) RepositoryIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RepositoryIamMemberConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(RepositoryIamMemberConditionOutput).ToRepositoryIamMemberConditionPtrOutput()
 }
 
 type RepositoryIamMemberConditionOutput struct{ *pulumi.OutputState }

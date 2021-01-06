@@ -420,16 +420,95 @@ type InstanceFromMachineImageInput interface {
 	ToInstanceFromMachineImageOutputWithContext(ctx context.Context) InstanceFromMachineImageOutput
 }
 
-func (InstanceFromMachineImage) ElementType() reflect.Type {
-	return reflect.TypeOf((*InstanceFromMachineImage)(nil)).Elem()
+func (*InstanceFromMachineImage) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceFromMachineImage)(nil))
 }
 
-func (i InstanceFromMachineImage) ToInstanceFromMachineImageOutput() InstanceFromMachineImageOutput {
+func (i *InstanceFromMachineImage) ToInstanceFromMachineImageOutput() InstanceFromMachineImageOutput {
 	return i.ToInstanceFromMachineImageOutputWithContext(context.Background())
 }
 
-func (i InstanceFromMachineImage) ToInstanceFromMachineImageOutputWithContext(ctx context.Context) InstanceFromMachineImageOutput {
+func (i *InstanceFromMachineImage) ToInstanceFromMachineImageOutputWithContext(ctx context.Context) InstanceFromMachineImageOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromMachineImageOutput)
+}
+
+func (i *InstanceFromMachineImage) ToInstanceFromMachineImagePtrOutput() InstanceFromMachineImagePtrOutput {
+	return i.ToInstanceFromMachineImagePtrOutputWithContext(context.Background())
+}
+
+func (i *InstanceFromMachineImage) ToInstanceFromMachineImagePtrOutputWithContext(ctx context.Context) InstanceFromMachineImagePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromMachineImagePtrOutput)
+}
+
+type InstanceFromMachineImagePtrInput interface {
+	pulumi.Input
+
+	ToInstanceFromMachineImagePtrOutput() InstanceFromMachineImagePtrOutput
+	ToInstanceFromMachineImagePtrOutputWithContext(ctx context.Context) InstanceFromMachineImagePtrOutput
+}
+
+type instanceFromMachineImagePtrType InstanceFromMachineImageArgs
+
+func (*instanceFromMachineImagePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**InstanceFromMachineImage)(nil))
+}
+
+func (i *instanceFromMachineImagePtrType) ToInstanceFromMachineImagePtrOutput() InstanceFromMachineImagePtrOutput {
+	return i.ToInstanceFromMachineImagePtrOutputWithContext(context.Background())
+}
+
+func (i *instanceFromMachineImagePtrType) ToInstanceFromMachineImagePtrOutputWithContext(ctx context.Context) InstanceFromMachineImagePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromMachineImageOutput).ToInstanceFromMachineImagePtrOutput()
+}
+
+// InstanceFromMachineImageArrayInput is an input type that accepts InstanceFromMachineImageArray and InstanceFromMachineImageArrayOutput values.
+// You can construct a concrete instance of `InstanceFromMachineImageArrayInput` via:
+//
+//          InstanceFromMachineImageArray{ InstanceFromMachineImageArgs{...} }
+type InstanceFromMachineImageArrayInput interface {
+	pulumi.Input
+
+	ToInstanceFromMachineImageArrayOutput() InstanceFromMachineImageArrayOutput
+	ToInstanceFromMachineImageArrayOutputWithContext(context.Context) InstanceFromMachineImageArrayOutput
+}
+
+type InstanceFromMachineImageArray []InstanceFromMachineImageInput
+
+func (InstanceFromMachineImageArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstanceFromMachineImage)(nil))
+}
+
+func (i InstanceFromMachineImageArray) ToInstanceFromMachineImageArrayOutput() InstanceFromMachineImageArrayOutput {
+	return i.ToInstanceFromMachineImageArrayOutputWithContext(context.Background())
+}
+
+func (i InstanceFromMachineImageArray) ToInstanceFromMachineImageArrayOutputWithContext(ctx context.Context) InstanceFromMachineImageArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromMachineImageArrayOutput)
+}
+
+// InstanceFromMachineImageMapInput is an input type that accepts InstanceFromMachineImageMap and InstanceFromMachineImageMapOutput values.
+// You can construct a concrete instance of `InstanceFromMachineImageMapInput` via:
+//
+//          InstanceFromMachineImageMap{ "key": InstanceFromMachineImageArgs{...} }
+type InstanceFromMachineImageMapInput interface {
+	pulumi.Input
+
+	ToInstanceFromMachineImageMapOutput() InstanceFromMachineImageMapOutput
+	ToInstanceFromMachineImageMapOutputWithContext(context.Context) InstanceFromMachineImageMapOutput
+}
+
+type InstanceFromMachineImageMap map[string]InstanceFromMachineImageInput
+
+func (InstanceFromMachineImageMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]InstanceFromMachineImage)(nil))
+}
+
+func (i InstanceFromMachineImageMap) ToInstanceFromMachineImageMapOutput() InstanceFromMachineImageMapOutput {
+	return i.ToInstanceFromMachineImageMapOutputWithContext(context.Background())
+}
+
+func (i InstanceFromMachineImageMap) ToInstanceFromMachineImageMapOutputWithContext(ctx context.Context) InstanceFromMachineImageMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceFromMachineImageMapOutput)
 }
 
 type InstanceFromMachineImageOutput struct {
@@ -437,7 +516,7 @@ type InstanceFromMachineImageOutput struct {
 }
 
 func (InstanceFromMachineImageOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*InstanceFromMachineImageOutput)(nil)).Elem()
+	return reflect.TypeOf((*InstanceFromMachineImage)(nil))
 }
 
 func (o InstanceFromMachineImageOutput) ToInstanceFromMachineImageOutput() InstanceFromMachineImageOutput {
@@ -448,6 +527,75 @@ func (o InstanceFromMachineImageOutput) ToInstanceFromMachineImageOutputWithCont
 	return o
 }
 
+func (o InstanceFromMachineImageOutput) ToInstanceFromMachineImagePtrOutput() InstanceFromMachineImagePtrOutput {
+	return o.ToInstanceFromMachineImagePtrOutputWithContext(context.Background())
+}
+
+func (o InstanceFromMachineImageOutput) ToInstanceFromMachineImagePtrOutputWithContext(ctx context.Context) InstanceFromMachineImagePtrOutput {
+	return o.ApplyT(func(v InstanceFromMachineImage) *InstanceFromMachineImage {
+		return &v
+	}).(InstanceFromMachineImagePtrOutput)
+}
+
+type InstanceFromMachineImagePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (InstanceFromMachineImagePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**InstanceFromMachineImage)(nil))
+}
+
+func (o InstanceFromMachineImagePtrOutput) ToInstanceFromMachineImagePtrOutput() InstanceFromMachineImagePtrOutput {
+	return o
+}
+
+func (o InstanceFromMachineImagePtrOutput) ToInstanceFromMachineImagePtrOutputWithContext(ctx context.Context) InstanceFromMachineImagePtrOutput {
+	return o
+}
+
+type InstanceFromMachineImageArrayOutput struct{ *pulumi.OutputState }
+
+func (InstanceFromMachineImageArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstanceFromMachineImage)(nil))
+}
+
+func (o InstanceFromMachineImageArrayOutput) ToInstanceFromMachineImageArrayOutput() InstanceFromMachineImageArrayOutput {
+	return o
+}
+
+func (o InstanceFromMachineImageArrayOutput) ToInstanceFromMachineImageArrayOutputWithContext(ctx context.Context) InstanceFromMachineImageArrayOutput {
+	return o
+}
+
+func (o InstanceFromMachineImageArrayOutput) Index(i pulumi.IntInput) InstanceFromMachineImageOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) InstanceFromMachineImage {
+		return vs[0].([]InstanceFromMachineImage)[vs[1].(int)]
+	}).(InstanceFromMachineImageOutput)
+}
+
+type InstanceFromMachineImageMapOutput struct{ *pulumi.OutputState }
+
+func (InstanceFromMachineImageMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]InstanceFromMachineImage)(nil))
+}
+
+func (o InstanceFromMachineImageMapOutput) ToInstanceFromMachineImageMapOutput() InstanceFromMachineImageMapOutput {
+	return o
+}
+
+func (o InstanceFromMachineImageMapOutput) ToInstanceFromMachineImageMapOutputWithContext(ctx context.Context) InstanceFromMachineImageMapOutput {
+	return o
+}
+
+func (o InstanceFromMachineImageMapOutput) MapIndex(k pulumi.StringInput) InstanceFromMachineImageOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) InstanceFromMachineImage {
+		return vs[0].(map[string]InstanceFromMachineImage)[vs[1].(string)]
+	}).(InstanceFromMachineImageOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(InstanceFromMachineImageOutput{})
+	pulumi.RegisterOutputType(InstanceFromMachineImagePtrOutput{})
+	pulumi.RegisterOutputType(InstanceFromMachineImageArrayOutput{})
+	pulumi.RegisterOutputType(InstanceFromMachineImageMapOutput{})
 }

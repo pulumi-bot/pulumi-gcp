@@ -50,7 +50,7 @@ func (i ApiConfigGatewayConfigArgs) ToApiConfigGatewayConfigPtrOutput() ApiConfi
 }
 
 func (i ApiConfigGatewayConfigArgs) ToApiConfigGatewayConfigPtrOutputWithContext(ctx context.Context) ApiConfigGatewayConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ApiConfigGatewayConfigOutput).ToApiConfigGatewayConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ApiConfigGatewayConfigOutput).ToApiConfigGatewayConfigPtrOutput()
 }
 
 // ApiConfigGatewayConfigPtrInput is an input type that accepts ApiConfigGatewayConfigArgs, ApiConfigGatewayConfigPtr and ApiConfigGatewayConfigPtrOutput values.
@@ -83,7 +83,7 @@ func (i *apiConfigGatewayConfigPtrType) ToApiConfigGatewayConfigPtrOutput() ApiC
 }
 
 func (i *apiConfigGatewayConfigPtrType) ToApiConfigGatewayConfigPtrOutputWithContext(ctx context.Context) ApiConfigGatewayConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ApiConfigGatewayConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ApiConfigGatewayConfigOutput).ToApiConfigGatewayConfigPtrOutput()
 }
 
 type ApiConfigGatewayConfigOutput struct{ *pulumi.OutputState }
@@ -185,7 +185,7 @@ func (i ApiConfigGatewayConfigBackendConfigArgs) ToApiConfigGatewayConfigBackend
 }
 
 func (i ApiConfigGatewayConfigBackendConfigArgs) ToApiConfigGatewayConfigBackendConfigPtrOutputWithContext(ctx context.Context) ApiConfigGatewayConfigBackendConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ApiConfigGatewayConfigBackendConfigOutput).ToApiConfigGatewayConfigBackendConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ApiConfigGatewayConfigBackendConfigOutput).ToApiConfigGatewayConfigBackendConfigPtrOutput()
 }
 
 // ApiConfigGatewayConfigBackendConfigPtrInput is an input type that accepts ApiConfigGatewayConfigBackendConfigArgs, ApiConfigGatewayConfigBackendConfigPtr and ApiConfigGatewayConfigBackendConfigPtrOutput values.
@@ -218,7 +218,7 @@ func (i *apiConfigGatewayConfigBackendConfigPtrType) ToApiConfigGatewayConfigBac
 }
 
 func (i *apiConfigGatewayConfigBackendConfigPtrType) ToApiConfigGatewayConfigBackendConfigPtrOutputWithContext(ctx context.Context) ApiConfigGatewayConfigBackendConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ApiConfigGatewayConfigBackendConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ApiConfigGatewayConfigBackendConfigOutput).ToApiConfigGatewayConfigBackendConfigPtrOutput()
 }
 
 type ApiConfigGatewayConfigBackendConfigOutput struct{ *pulumi.OutputState }
@@ -320,7 +320,7 @@ func (i ApiConfigIamBindingConditionArgs) ToApiConfigIamBindingConditionPtrOutpu
 }
 
 func (i ApiConfigIamBindingConditionArgs) ToApiConfigIamBindingConditionPtrOutputWithContext(ctx context.Context) ApiConfigIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ApiConfigIamBindingConditionOutput).ToApiConfigIamBindingConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ApiConfigIamBindingConditionOutput).ToApiConfigIamBindingConditionPtrOutput()
 }
 
 // ApiConfigIamBindingConditionPtrInput is an input type that accepts ApiConfigIamBindingConditionArgs, ApiConfigIamBindingConditionPtr and ApiConfigIamBindingConditionPtrOutput values.
@@ -353,7 +353,7 @@ func (i *apiConfigIamBindingConditionPtrType) ToApiConfigIamBindingConditionPtrO
 }
 
 func (i *apiConfigIamBindingConditionPtrType) ToApiConfigIamBindingConditionPtrOutputWithContext(ctx context.Context) ApiConfigIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ApiConfigIamBindingConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ApiConfigIamBindingConditionOutput).ToApiConfigIamBindingConditionPtrOutput()
 }
 
 type ApiConfigIamBindingConditionOutput struct{ *pulumi.OutputState }
@@ -476,7 +476,7 @@ func (i ApiConfigIamMemberConditionArgs) ToApiConfigIamMemberConditionPtrOutput(
 }
 
 func (i ApiConfigIamMemberConditionArgs) ToApiConfigIamMemberConditionPtrOutputWithContext(ctx context.Context) ApiConfigIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ApiConfigIamMemberConditionOutput).ToApiConfigIamMemberConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ApiConfigIamMemberConditionOutput).ToApiConfigIamMemberConditionPtrOutput()
 }
 
 // ApiConfigIamMemberConditionPtrInput is an input type that accepts ApiConfigIamMemberConditionArgs, ApiConfigIamMemberConditionPtr and ApiConfigIamMemberConditionPtrOutput values.
@@ -509,7 +509,7 @@ func (i *apiConfigIamMemberConditionPtrType) ToApiConfigIamMemberConditionPtrOut
 }
 
 func (i *apiConfigIamMemberConditionPtrType) ToApiConfigIamMemberConditionPtrOutputWithContext(ctx context.Context) ApiConfigIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ApiConfigIamMemberConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ApiConfigIamMemberConditionOutput).ToApiConfigIamMemberConditionPtrOutput()
 }
 
 type ApiConfigIamMemberConditionOutput struct{ *pulumi.OutputState }
@@ -793,7 +793,7 @@ func (i ApiIamBindingConditionArgs) ToApiIamBindingConditionPtrOutput() ApiIamBi
 }
 
 func (i ApiIamBindingConditionArgs) ToApiIamBindingConditionPtrOutputWithContext(ctx context.Context) ApiIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ApiIamBindingConditionOutput).ToApiIamBindingConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ApiIamBindingConditionOutput).ToApiIamBindingConditionPtrOutput()
 }
 
 // ApiIamBindingConditionPtrInput is an input type that accepts ApiIamBindingConditionArgs, ApiIamBindingConditionPtr and ApiIamBindingConditionPtrOutput values.
@@ -826,7 +826,7 @@ func (i *apiIamBindingConditionPtrType) ToApiIamBindingConditionPtrOutput() ApiI
 }
 
 func (i *apiIamBindingConditionPtrType) ToApiIamBindingConditionPtrOutputWithContext(ctx context.Context) ApiIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ApiIamBindingConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ApiIamBindingConditionOutput).ToApiIamBindingConditionPtrOutput()
 }
 
 type ApiIamBindingConditionOutput struct{ *pulumi.OutputState }
@@ -949,7 +949,7 @@ func (i ApiIamMemberConditionArgs) ToApiIamMemberConditionPtrOutput() ApiIamMemb
 }
 
 func (i ApiIamMemberConditionArgs) ToApiIamMemberConditionPtrOutputWithContext(ctx context.Context) ApiIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ApiIamMemberConditionOutput).ToApiIamMemberConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ApiIamMemberConditionOutput).ToApiIamMemberConditionPtrOutput()
 }
 
 // ApiIamMemberConditionPtrInput is an input type that accepts ApiIamMemberConditionArgs, ApiIamMemberConditionPtr and ApiIamMemberConditionPtrOutput values.
@@ -982,7 +982,7 @@ func (i *apiIamMemberConditionPtrType) ToApiIamMemberConditionPtrOutput() ApiIam
 }
 
 func (i *apiIamMemberConditionPtrType) ToApiIamMemberConditionPtrOutputWithContext(ctx context.Context) ApiIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ApiIamMemberConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ApiIamMemberConditionOutput).ToApiIamMemberConditionPtrOutput()
 }
 
 type ApiIamMemberConditionOutput struct{ *pulumi.OutputState }
@@ -1105,7 +1105,7 @@ func (i GatewayIamBindingConditionArgs) ToGatewayIamBindingConditionPtrOutput() 
 }
 
 func (i GatewayIamBindingConditionArgs) ToGatewayIamBindingConditionPtrOutputWithContext(ctx context.Context) GatewayIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GatewayIamBindingConditionOutput).ToGatewayIamBindingConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(GatewayIamBindingConditionOutput).ToGatewayIamBindingConditionPtrOutput()
 }
 
 // GatewayIamBindingConditionPtrInput is an input type that accepts GatewayIamBindingConditionArgs, GatewayIamBindingConditionPtr and GatewayIamBindingConditionPtrOutput values.
@@ -1138,7 +1138,7 @@ func (i *gatewayIamBindingConditionPtrType) ToGatewayIamBindingConditionPtrOutpu
 }
 
 func (i *gatewayIamBindingConditionPtrType) ToGatewayIamBindingConditionPtrOutputWithContext(ctx context.Context) GatewayIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GatewayIamBindingConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(GatewayIamBindingConditionOutput).ToGatewayIamBindingConditionPtrOutput()
 }
 
 type GatewayIamBindingConditionOutput struct{ *pulumi.OutputState }
@@ -1261,7 +1261,7 @@ func (i GatewayIamMemberConditionArgs) ToGatewayIamMemberConditionPtrOutput() Ga
 }
 
 func (i GatewayIamMemberConditionArgs) ToGatewayIamMemberConditionPtrOutputWithContext(ctx context.Context) GatewayIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GatewayIamMemberConditionOutput).ToGatewayIamMemberConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(GatewayIamMemberConditionOutput).ToGatewayIamMemberConditionPtrOutput()
 }
 
 // GatewayIamMemberConditionPtrInput is an input type that accepts GatewayIamMemberConditionArgs, GatewayIamMemberConditionPtr and GatewayIamMemberConditionPtrOutput values.
@@ -1294,7 +1294,7 @@ func (i *gatewayIamMemberConditionPtrType) ToGatewayIamMemberConditionPtrOutput(
 }
 
 func (i *gatewayIamMemberConditionPtrType) ToGatewayIamMemberConditionPtrOutputWithContext(ctx context.Context) GatewayIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GatewayIamMemberConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(GatewayIamMemberConditionOutput).ToGatewayIamMemberConditionPtrOutput()
 }
 
 type GatewayIamMemberConditionOutput struct{ *pulumi.OutputState }

@@ -50,7 +50,7 @@ func (i ApplicationFeatureSettingsArgs) ToApplicationFeatureSettingsPtrOutput() 
 }
 
 func (i ApplicationFeatureSettingsArgs) ToApplicationFeatureSettingsPtrOutputWithContext(ctx context.Context) ApplicationFeatureSettingsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ApplicationFeatureSettingsOutput).ToApplicationFeatureSettingsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ApplicationFeatureSettingsOutput).ToApplicationFeatureSettingsPtrOutput()
 }
 
 // ApplicationFeatureSettingsPtrInput is an input type that accepts ApplicationFeatureSettingsArgs, ApplicationFeatureSettingsPtr and ApplicationFeatureSettingsPtrOutput values.
@@ -83,7 +83,7 @@ func (i *applicationFeatureSettingsPtrType) ToApplicationFeatureSettingsPtrOutpu
 }
 
 func (i *applicationFeatureSettingsPtrType) ToApplicationFeatureSettingsPtrOutputWithContext(ctx context.Context) ApplicationFeatureSettingsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ApplicationFeatureSettingsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ApplicationFeatureSettingsOutput).ToApplicationFeatureSettingsPtrOutput()
 }
 
 type ApplicationFeatureSettingsOutput struct{ *pulumi.OutputState }
@@ -199,7 +199,7 @@ func (i ApplicationIapArgs) ToApplicationIapPtrOutput() ApplicationIapPtrOutput 
 }
 
 func (i ApplicationIapArgs) ToApplicationIapPtrOutputWithContext(ctx context.Context) ApplicationIapPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ApplicationIapOutput).ToApplicationIapPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ApplicationIapOutput).ToApplicationIapPtrOutput()
 }
 
 // ApplicationIapPtrInput is an input type that accepts ApplicationIapArgs, ApplicationIapPtr and ApplicationIapPtrOutput values.
@@ -232,7 +232,7 @@ func (i *applicationIapPtrType) ToApplicationIapPtrOutput() ApplicationIapPtrOut
 }
 
 func (i *applicationIapPtrType) ToApplicationIapPtrOutputWithContext(ctx context.Context) ApplicationIapPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ApplicationIapPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ApplicationIapOutput).ToApplicationIapPtrOutput()
 }
 
 type ApplicationIapOutput struct{ *pulumi.OutputState }
@@ -747,7 +747,7 @@ func (i DomainMappingSslSettingsArgs) ToDomainMappingSslSettingsPtrOutput() Doma
 }
 
 func (i DomainMappingSslSettingsArgs) ToDomainMappingSslSettingsPtrOutputWithContext(ctx context.Context) DomainMappingSslSettingsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DomainMappingSslSettingsOutput).ToDomainMappingSslSettingsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(DomainMappingSslSettingsOutput).ToDomainMappingSslSettingsPtrOutput()
 }
 
 // DomainMappingSslSettingsPtrInput is an input type that accepts DomainMappingSslSettingsArgs, DomainMappingSslSettingsPtr and DomainMappingSslSettingsPtrOutput values.
@@ -780,7 +780,7 @@ func (i *domainMappingSslSettingsPtrType) ToDomainMappingSslSettingsPtrOutput() 
 }
 
 func (i *domainMappingSslSettingsPtrType) ToDomainMappingSslSettingsPtrOutputWithContext(ctx context.Context) DomainMappingSslSettingsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DomainMappingSslSettingsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(DomainMappingSslSettingsOutput).ToDomainMappingSslSettingsPtrOutput()
 }
 
 type DomainMappingSslSettingsOutput struct{ *pulumi.OutputState }
@@ -938,7 +938,7 @@ func (i EngineSplitTrafficSplitArgs) ToEngineSplitTrafficSplitPtrOutput() Engine
 }
 
 func (i EngineSplitTrafficSplitArgs) ToEngineSplitTrafficSplitPtrOutputWithContext(ctx context.Context) EngineSplitTrafficSplitPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EngineSplitTrafficSplitOutput).ToEngineSplitTrafficSplitPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(EngineSplitTrafficSplitOutput).ToEngineSplitTrafficSplitPtrOutput()
 }
 
 // EngineSplitTrafficSplitPtrInput is an input type that accepts EngineSplitTrafficSplitArgs, EngineSplitTrafficSplitPtr and EngineSplitTrafficSplitPtrOutput values.
@@ -971,7 +971,7 @@ func (i *engineSplitTrafficSplitPtrType) ToEngineSplitTrafficSplitPtrOutput() En
 }
 
 func (i *engineSplitTrafficSplitPtrType) ToEngineSplitTrafficSplitPtrOutputWithContext(ctx context.Context) EngineSplitTrafficSplitPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EngineSplitTrafficSplitPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(EngineSplitTrafficSplitOutput).ToEngineSplitTrafficSplitPtrOutput()
 }
 
 type EngineSplitTrafficSplitOutput struct{ *pulumi.OutputState }
@@ -1112,7 +1112,7 @@ func (i FlexibleAppVersionApiConfigArgs) ToFlexibleAppVersionApiConfigPtrOutput(
 }
 
 func (i FlexibleAppVersionApiConfigArgs) ToFlexibleAppVersionApiConfigPtrOutputWithContext(ctx context.Context) FlexibleAppVersionApiConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionApiConfigOutput).ToFlexibleAppVersionApiConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionApiConfigOutput).ToFlexibleAppVersionApiConfigPtrOutput()
 }
 
 // FlexibleAppVersionApiConfigPtrInput is an input type that accepts FlexibleAppVersionApiConfigArgs, FlexibleAppVersionApiConfigPtr and FlexibleAppVersionApiConfigPtrOutput values.
@@ -1145,7 +1145,7 @@ func (i *flexibleAppVersionApiConfigPtrType) ToFlexibleAppVersionApiConfigPtrOut
 }
 
 func (i *flexibleAppVersionApiConfigPtrType) ToFlexibleAppVersionApiConfigPtrOutputWithContext(ctx context.Context) FlexibleAppVersionApiConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionApiConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionApiConfigOutput).ToFlexibleAppVersionApiConfigPtrOutput()
 }
 
 type FlexibleAppVersionApiConfigOutput struct{ *pulumi.OutputState }
@@ -1371,7 +1371,7 @@ func (i FlexibleAppVersionAutomaticScalingArgs) ToFlexibleAppVersionAutomaticSca
 }
 
 func (i FlexibleAppVersionAutomaticScalingArgs) ToFlexibleAppVersionAutomaticScalingPtrOutputWithContext(ctx context.Context) FlexibleAppVersionAutomaticScalingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionAutomaticScalingOutput).ToFlexibleAppVersionAutomaticScalingPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionAutomaticScalingOutput).ToFlexibleAppVersionAutomaticScalingPtrOutput()
 }
 
 // FlexibleAppVersionAutomaticScalingPtrInput is an input type that accepts FlexibleAppVersionAutomaticScalingArgs, FlexibleAppVersionAutomaticScalingPtr and FlexibleAppVersionAutomaticScalingPtrOutput values.
@@ -1404,7 +1404,7 @@ func (i *flexibleAppVersionAutomaticScalingPtrType) ToFlexibleAppVersionAutomati
 }
 
 func (i *flexibleAppVersionAutomaticScalingPtrType) ToFlexibleAppVersionAutomaticScalingPtrOutputWithContext(ctx context.Context) FlexibleAppVersionAutomaticScalingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionAutomaticScalingPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionAutomaticScalingOutput).ToFlexibleAppVersionAutomaticScalingPtrOutput()
 }
 
 type FlexibleAppVersionAutomaticScalingOutput struct{ *pulumi.OutputState }
@@ -1693,7 +1693,7 @@ func (i FlexibleAppVersionAutomaticScalingCpuUtilizationArgs) ToFlexibleAppVersi
 }
 
 func (i FlexibleAppVersionAutomaticScalingCpuUtilizationArgs) ToFlexibleAppVersionAutomaticScalingCpuUtilizationPtrOutputWithContext(ctx context.Context) FlexibleAppVersionAutomaticScalingCpuUtilizationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionAutomaticScalingCpuUtilizationOutput).ToFlexibleAppVersionAutomaticScalingCpuUtilizationPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionAutomaticScalingCpuUtilizationOutput).ToFlexibleAppVersionAutomaticScalingCpuUtilizationPtrOutput()
 }
 
 // FlexibleAppVersionAutomaticScalingCpuUtilizationPtrInput is an input type that accepts FlexibleAppVersionAutomaticScalingCpuUtilizationArgs, FlexibleAppVersionAutomaticScalingCpuUtilizationPtr and FlexibleAppVersionAutomaticScalingCpuUtilizationPtrOutput values.
@@ -1726,7 +1726,7 @@ func (i *flexibleAppVersionAutomaticScalingCpuUtilizationPtrType) ToFlexibleAppV
 }
 
 func (i *flexibleAppVersionAutomaticScalingCpuUtilizationPtrType) ToFlexibleAppVersionAutomaticScalingCpuUtilizationPtrOutputWithContext(ctx context.Context) FlexibleAppVersionAutomaticScalingCpuUtilizationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionAutomaticScalingCpuUtilizationPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionAutomaticScalingCpuUtilizationOutput).ToFlexibleAppVersionAutomaticScalingCpuUtilizationPtrOutput()
 }
 
 type FlexibleAppVersionAutomaticScalingCpuUtilizationOutput struct{ *pulumi.OutputState }
@@ -1853,7 +1853,7 @@ func (i FlexibleAppVersionAutomaticScalingDiskUtilizationArgs) ToFlexibleAppVers
 }
 
 func (i FlexibleAppVersionAutomaticScalingDiskUtilizationArgs) ToFlexibleAppVersionAutomaticScalingDiskUtilizationPtrOutputWithContext(ctx context.Context) FlexibleAppVersionAutomaticScalingDiskUtilizationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionAutomaticScalingDiskUtilizationOutput).ToFlexibleAppVersionAutomaticScalingDiskUtilizationPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionAutomaticScalingDiskUtilizationOutput).ToFlexibleAppVersionAutomaticScalingDiskUtilizationPtrOutput()
 }
 
 // FlexibleAppVersionAutomaticScalingDiskUtilizationPtrInput is an input type that accepts FlexibleAppVersionAutomaticScalingDiskUtilizationArgs, FlexibleAppVersionAutomaticScalingDiskUtilizationPtr and FlexibleAppVersionAutomaticScalingDiskUtilizationPtrOutput values.
@@ -1886,7 +1886,7 @@ func (i *flexibleAppVersionAutomaticScalingDiskUtilizationPtrType) ToFlexibleApp
 }
 
 func (i *flexibleAppVersionAutomaticScalingDiskUtilizationPtrType) ToFlexibleAppVersionAutomaticScalingDiskUtilizationPtrOutputWithContext(ctx context.Context) FlexibleAppVersionAutomaticScalingDiskUtilizationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionAutomaticScalingDiskUtilizationPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionAutomaticScalingDiskUtilizationOutput).ToFlexibleAppVersionAutomaticScalingDiskUtilizationPtrOutput()
 }
 
 type FlexibleAppVersionAutomaticScalingDiskUtilizationOutput struct{ *pulumi.OutputState }
@@ -2043,7 +2043,7 @@ func (i FlexibleAppVersionAutomaticScalingNetworkUtilizationArgs) ToFlexibleAppV
 }
 
 func (i FlexibleAppVersionAutomaticScalingNetworkUtilizationArgs) ToFlexibleAppVersionAutomaticScalingNetworkUtilizationPtrOutputWithContext(ctx context.Context) FlexibleAppVersionAutomaticScalingNetworkUtilizationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionAutomaticScalingNetworkUtilizationOutput).ToFlexibleAppVersionAutomaticScalingNetworkUtilizationPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionAutomaticScalingNetworkUtilizationOutput).ToFlexibleAppVersionAutomaticScalingNetworkUtilizationPtrOutput()
 }
 
 // FlexibleAppVersionAutomaticScalingNetworkUtilizationPtrInput is an input type that accepts FlexibleAppVersionAutomaticScalingNetworkUtilizationArgs, FlexibleAppVersionAutomaticScalingNetworkUtilizationPtr and FlexibleAppVersionAutomaticScalingNetworkUtilizationPtrOutput values.
@@ -2076,7 +2076,7 @@ func (i *flexibleAppVersionAutomaticScalingNetworkUtilizationPtrType) ToFlexible
 }
 
 func (i *flexibleAppVersionAutomaticScalingNetworkUtilizationPtrType) ToFlexibleAppVersionAutomaticScalingNetworkUtilizationPtrOutputWithContext(ctx context.Context) FlexibleAppVersionAutomaticScalingNetworkUtilizationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionAutomaticScalingNetworkUtilizationPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionAutomaticScalingNetworkUtilizationOutput).ToFlexibleAppVersionAutomaticScalingNetworkUtilizationPtrOutput()
 }
 
 type FlexibleAppVersionAutomaticScalingNetworkUtilizationOutput struct{ *pulumi.OutputState }
@@ -2229,7 +2229,7 @@ func (i FlexibleAppVersionAutomaticScalingRequestUtilizationArgs) ToFlexibleAppV
 }
 
 func (i FlexibleAppVersionAutomaticScalingRequestUtilizationArgs) ToFlexibleAppVersionAutomaticScalingRequestUtilizationPtrOutputWithContext(ctx context.Context) FlexibleAppVersionAutomaticScalingRequestUtilizationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionAutomaticScalingRequestUtilizationOutput).ToFlexibleAppVersionAutomaticScalingRequestUtilizationPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionAutomaticScalingRequestUtilizationOutput).ToFlexibleAppVersionAutomaticScalingRequestUtilizationPtrOutput()
 }
 
 // FlexibleAppVersionAutomaticScalingRequestUtilizationPtrInput is an input type that accepts FlexibleAppVersionAutomaticScalingRequestUtilizationArgs, FlexibleAppVersionAutomaticScalingRequestUtilizationPtr and FlexibleAppVersionAutomaticScalingRequestUtilizationPtrOutput values.
@@ -2262,7 +2262,7 @@ func (i *flexibleAppVersionAutomaticScalingRequestUtilizationPtrType) ToFlexible
 }
 
 func (i *flexibleAppVersionAutomaticScalingRequestUtilizationPtrType) ToFlexibleAppVersionAutomaticScalingRequestUtilizationPtrOutputWithContext(ctx context.Context) FlexibleAppVersionAutomaticScalingRequestUtilizationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionAutomaticScalingRequestUtilizationPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionAutomaticScalingRequestUtilizationOutput).ToFlexibleAppVersionAutomaticScalingRequestUtilizationPtrOutput()
 }
 
 type FlexibleAppVersionAutomaticScalingRequestUtilizationOutput struct{ *pulumi.OutputState }
@@ -2403,7 +2403,7 @@ func (i FlexibleAppVersionDeploymentArgs) ToFlexibleAppVersionDeploymentPtrOutpu
 }
 
 func (i FlexibleAppVersionDeploymentArgs) ToFlexibleAppVersionDeploymentPtrOutputWithContext(ctx context.Context) FlexibleAppVersionDeploymentPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionDeploymentOutput).ToFlexibleAppVersionDeploymentPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionDeploymentOutput).ToFlexibleAppVersionDeploymentPtrOutput()
 }
 
 // FlexibleAppVersionDeploymentPtrInput is an input type that accepts FlexibleAppVersionDeploymentArgs, FlexibleAppVersionDeploymentPtr and FlexibleAppVersionDeploymentPtrOutput values.
@@ -2436,7 +2436,7 @@ func (i *flexibleAppVersionDeploymentPtrType) ToFlexibleAppVersionDeploymentPtrO
 }
 
 func (i *flexibleAppVersionDeploymentPtrType) ToFlexibleAppVersionDeploymentPtrOutputWithContext(ctx context.Context) FlexibleAppVersionDeploymentPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionDeploymentPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionDeploymentOutput).ToFlexibleAppVersionDeploymentPtrOutput()
 }
 
 type FlexibleAppVersionDeploymentOutput struct{ *pulumi.OutputState }
@@ -2597,7 +2597,7 @@ func (i FlexibleAppVersionDeploymentCloudBuildOptionsArgs) ToFlexibleAppVersionD
 }
 
 func (i FlexibleAppVersionDeploymentCloudBuildOptionsArgs) ToFlexibleAppVersionDeploymentCloudBuildOptionsPtrOutputWithContext(ctx context.Context) FlexibleAppVersionDeploymentCloudBuildOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionDeploymentCloudBuildOptionsOutput).ToFlexibleAppVersionDeploymentCloudBuildOptionsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionDeploymentCloudBuildOptionsOutput).ToFlexibleAppVersionDeploymentCloudBuildOptionsPtrOutput()
 }
 
 // FlexibleAppVersionDeploymentCloudBuildOptionsPtrInput is an input type that accepts FlexibleAppVersionDeploymentCloudBuildOptionsArgs, FlexibleAppVersionDeploymentCloudBuildOptionsPtr and FlexibleAppVersionDeploymentCloudBuildOptionsPtrOutput values.
@@ -2630,7 +2630,7 @@ func (i *flexibleAppVersionDeploymentCloudBuildOptionsPtrType) ToFlexibleAppVers
 }
 
 func (i *flexibleAppVersionDeploymentCloudBuildOptionsPtrType) ToFlexibleAppVersionDeploymentCloudBuildOptionsPtrOutputWithContext(ctx context.Context) FlexibleAppVersionDeploymentCloudBuildOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionDeploymentCloudBuildOptionsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionDeploymentCloudBuildOptionsOutput).ToFlexibleAppVersionDeploymentCloudBuildOptionsPtrOutput()
 }
 
 type FlexibleAppVersionDeploymentCloudBuildOptionsOutput struct{ *pulumi.OutputState }
@@ -2749,7 +2749,7 @@ func (i FlexibleAppVersionDeploymentContainerArgs) ToFlexibleAppVersionDeploymen
 }
 
 func (i FlexibleAppVersionDeploymentContainerArgs) ToFlexibleAppVersionDeploymentContainerPtrOutputWithContext(ctx context.Context) FlexibleAppVersionDeploymentContainerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionDeploymentContainerOutput).ToFlexibleAppVersionDeploymentContainerPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionDeploymentContainerOutput).ToFlexibleAppVersionDeploymentContainerPtrOutput()
 }
 
 // FlexibleAppVersionDeploymentContainerPtrInput is an input type that accepts FlexibleAppVersionDeploymentContainerArgs, FlexibleAppVersionDeploymentContainerPtr and FlexibleAppVersionDeploymentContainerPtrOutput values.
@@ -2782,7 +2782,7 @@ func (i *flexibleAppVersionDeploymentContainerPtrType) ToFlexibleAppVersionDeplo
 }
 
 func (i *flexibleAppVersionDeploymentContainerPtrType) ToFlexibleAppVersionDeploymentContainerPtrOutputWithContext(ctx context.Context) FlexibleAppVersionDeploymentContainerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionDeploymentContainerPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionDeploymentContainerOutput).ToFlexibleAppVersionDeploymentContainerPtrOutput()
 }
 
 type FlexibleAppVersionDeploymentContainerOutput struct{ *pulumi.OutputState }
@@ -3001,7 +3001,7 @@ func (i FlexibleAppVersionDeploymentZipArgs) ToFlexibleAppVersionDeploymentZipPt
 }
 
 func (i FlexibleAppVersionDeploymentZipArgs) ToFlexibleAppVersionDeploymentZipPtrOutputWithContext(ctx context.Context) FlexibleAppVersionDeploymentZipPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionDeploymentZipOutput).ToFlexibleAppVersionDeploymentZipPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionDeploymentZipOutput).ToFlexibleAppVersionDeploymentZipPtrOutput()
 }
 
 // FlexibleAppVersionDeploymentZipPtrInput is an input type that accepts FlexibleAppVersionDeploymentZipArgs, FlexibleAppVersionDeploymentZipPtr and FlexibleAppVersionDeploymentZipPtrOutput values.
@@ -3034,7 +3034,7 @@ func (i *flexibleAppVersionDeploymentZipPtrType) ToFlexibleAppVersionDeploymentZ
 }
 
 func (i *flexibleAppVersionDeploymentZipPtrType) ToFlexibleAppVersionDeploymentZipPtrOutputWithContext(ctx context.Context) FlexibleAppVersionDeploymentZipPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionDeploymentZipPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionDeploymentZipOutput).ToFlexibleAppVersionDeploymentZipPtrOutput()
 }
 
 type FlexibleAppVersionDeploymentZipOutput struct{ *pulumi.OutputState }
@@ -3173,7 +3173,7 @@ func (i FlexibleAppVersionEndpointsApiServiceArgs) ToFlexibleAppVersionEndpoints
 }
 
 func (i FlexibleAppVersionEndpointsApiServiceArgs) ToFlexibleAppVersionEndpointsApiServicePtrOutputWithContext(ctx context.Context) FlexibleAppVersionEndpointsApiServicePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionEndpointsApiServiceOutput).ToFlexibleAppVersionEndpointsApiServicePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionEndpointsApiServiceOutput).ToFlexibleAppVersionEndpointsApiServicePtrOutput()
 }
 
 // FlexibleAppVersionEndpointsApiServicePtrInput is an input type that accepts FlexibleAppVersionEndpointsApiServiceArgs, FlexibleAppVersionEndpointsApiServicePtr and FlexibleAppVersionEndpointsApiServicePtrOutput values.
@@ -3206,7 +3206,7 @@ func (i *flexibleAppVersionEndpointsApiServicePtrType) ToFlexibleAppVersionEndpo
 }
 
 func (i *flexibleAppVersionEndpointsApiServicePtrType) ToFlexibleAppVersionEndpointsApiServicePtrOutputWithContext(ctx context.Context) FlexibleAppVersionEndpointsApiServicePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionEndpointsApiServicePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionEndpointsApiServiceOutput).ToFlexibleAppVersionEndpointsApiServicePtrOutput()
 }
 
 type FlexibleAppVersionEndpointsApiServiceOutput struct{ *pulumi.OutputState }
@@ -3363,7 +3363,7 @@ func (i FlexibleAppVersionEntrypointArgs) ToFlexibleAppVersionEntrypointPtrOutpu
 }
 
 func (i FlexibleAppVersionEntrypointArgs) ToFlexibleAppVersionEntrypointPtrOutputWithContext(ctx context.Context) FlexibleAppVersionEntrypointPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionEntrypointOutput).ToFlexibleAppVersionEntrypointPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionEntrypointOutput).ToFlexibleAppVersionEntrypointPtrOutput()
 }
 
 // FlexibleAppVersionEntrypointPtrInput is an input type that accepts FlexibleAppVersionEntrypointArgs, FlexibleAppVersionEntrypointPtr and FlexibleAppVersionEntrypointPtrOutput values.
@@ -3396,7 +3396,7 @@ func (i *flexibleAppVersionEntrypointPtrType) ToFlexibleAppVersionEntrypointPtrO
 }
 
 func (i *flexibleAppVersionEntrypointPtrType) ToFlexibleAppVersionEntrypointPtrOutputWithContext(ctx context.Context) FlexibleAppVersionEntrypointPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionEntrypointPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionEntrypointOutput).ToFlexibleAppVersionEntrypointPtrOutput()
 }
 
 type FlexibleAppVersionEntrypointOutput struct{ *pulumi.OutputState }
@@ -3672,7 +3672,7 @@ func (i FlexibleAppVersionHandlerScriptArgs) ToFlexibleAppVersionHandlerScriptPt
 }
 
 func (i FlexibleAppVersionHandlerScriptArgs) ToFlexibleAppVersionHandlerScriptPtrOutputWithContext(ctx context.Context) FlexibleAppVersionHandlerScriptPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionHandlerScriptOutput).ToFlexibleAppVersionHandlerScriptPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionHandlerScriptOutput).ToFlexibleAppVersionHandlerScriptPtrOutput()
 }
 
 // FlexibleAppVersionHandlerScriptPtrInput is an input type that accepts FlexibleAppVersionHandlerScriptArgs, FlexibleAppVersionHandlerScriptPtr and FlexibleAppVersionHandlerScriptPtrOutput values.
@@ -3705,7 +3705,7 @@ func (i *flexibleAppVersionHandlerScriptPtrType) ToFlexibleAppVersionHandlerScri
 }
 
 func (i *flexibleAppVersionHandlerScriptPtrType) ToFlexibleAppVersionHandlerScriptPtrOutputWithContext(ctx context.Context) FlexibleAppVersionHandlerScriptPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionHandlerScriptPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionHandlerScriptOutput).ToFlexibleAppVersionHandlerScriptPtrOutput()
 }
 
 type FlexibleAppVersionHandlerScriptOutput struct{ *pulumi.OutputState }
@@ -3841,7 +3841,7 @@ func (i FlexibleAppVersionHandlerStaticFilesArgs) ToFlexibleAppVersionHandlerSta
 }
 
 func (i FlexibleAppVersionHandlerStaticFilesArgs) ToFlexibleAppVersionHandlerStaticFilesPtrOutputWithContext(ctx context.Context) FlexibleAppVersionHandlerStaticFilesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionHandlerStaticFilesOutput).ToFlexibleAppVersionHandlerStaticFilesPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionHandlerStaticFilesOutput).ToFlexibleAppVersionHandlerStaticFilesPtrOutput()
 }
 
 // FlexibleAppVersionHandlerStaticFilesPtrInput is an input type that accepts FlexibleAppVersionHandlerStaticFilesArgs, FlexibleAppVersionHandlerStaticFilesPtr and FlexibleAppVersionHandlerStaticFilesPtrOutput values.
@@ -3874,7 +3874,7 @@ func (i *flexibleAppVersionHandlerStaticFilesPtrType) ToFlexibleAppVersionHandle
 }
 
 func (i *flexibleAppVersionHandlerStaticFilesPtrType) ToFlexibleAppVersionHandlerStaticFilesPtrOutputWithContext(ctx context.Context) FlexibleAppVersionHandlerStaticFilesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionHandlerStaticFilesPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionHandlerStaticFilesOutput).ToFlexibleAppVersionHandlerStaticFilesPtrOutput()
 }
 
 type FlexibleAppVersionHandlerStaticFilesOutput struct{ *pulumi.OutputState }
@@ -4102,7 +4102,7 @@ func (i FlexibleAppVersionLivenessCheckArgs) ToFlexibleAppVersionLivenessCheckPt
 }
 
 func (i FlexibleAppVersionLivenessCheckArgs) ToFlexibleAppVersionLivenessCheckPtrOutputWithContext(ctx context.Context) FlexibleAppVersionLivenessCheckPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionLivenessCheckOutput).ToFlexibleAppVersionLivenessCheckPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionLivenessCheckOutput).ToFlexibleAppVersionLivenessCheckPtrOutput()
 }
 
 // FlexibleAppVersionLivenessCheckPtrInput is an input type that accepts FlexibleAppVersionLivenessCheckArgs, FlexibleAppVersionLivenessCheckPtr and FlexibleAppVersionLivenessCheckPtrOutput values.
@@ -4135,7 +4135,7 @@ func (i *flexibleAppVersionLivenessCheckPtrType) ToFlexibleAppVersionLivenessChe
 }
 
 func (i *flexibleAppVersionLivenessCheckPtrType) ToFlexibleAppVersionLivenessCheckPtrOutputWithContext(ctx context.Context) FlexibleAppVersionLivenessCheckPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionLivenessCheckPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionLivenessCheckOutput).ToFlexibleAppVersionLivenessCheckPtrOutput()
 }
 
 type FlexibleAppVersionLivenessCheckOutput struct{ *pulumi.OutputState }
@@ -4329,7 +4329,7 @@ func (i FlexibleAppVersionManualScalingArgs) ToFlexibleAppVersionManualScalingPt
 }
 
 func (i FlexibleAppVersionManualScalingArgs) ToFlexibleAppVersionManualScalingPtrOutputWithContext(ctx context.Context) FlexibleAppVersionManualScalingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionManualScalingOutput).ToFlexibleAppVersionManualScalingPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionManualScalingOutput).ToFlexibleAppVersionManualScalingPtrOutput()
 }
 
 // FlexibleAppVersionManualScalingPtrInput is an input type that accepts FlexibleAppVersionManualScalingArgs, FlexibleAppVersionManualScalingPtr and FlexibleAppVersionManualScalingPtrOutput values.
@@ -4362,7 +4362,7 @@ func (i *flexibleAppVersionManualScalingPtrType) ToFlexibleAppVersionManualScali
 }
 
 func (i *flexibleAppVersionManualScalingPtrType) ToFlexibleAppVersionManualScalingPtrOutputWithContext(ctx context.Context) FlexibleAppVersionManualScalingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionManualScalingPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionManualScalingOutput).ToFlexibleAppVersionManualScalingPtrOutput()
 }
 
 type FlexibleAppVersionManualScalingOutput struct{ *pulumi.OutputState }
@@ -4488,7 +4488,7 @@ func (i FlexibleAppVersionNetworkArgs) ToFlexibleAppVersionNetworkPtrOutput() Fl
 }
 
 func (i FlexibleAppVersionNetworkArgs) ToFlexibleAppVersionNetworkPtrOutputWithContext(ctx context.Context) FlexibleAppVersionNetworkPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionNetworkOutput).ToFlexibleAppVersionNetworkPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionNetworkOutput).ToFlexibleAppVersionNetworkPtrOutput()
 }
 
 // FlexibleAppVersionNetworkPtrInput is an input type that accepts FlexibleAppVersionNetworkArgs, FlexibleAppVersionNetworkPtr and FlexibleAppVersionNetworkPtrOutput values.
@@ -4521,7 +4521,7 @@ func (i *flexibleAppVersionNetworkPtrType) ToFlexibleAppVersionNetworkPtrOutput(
 }
 
 func (i *flexibleAppVersionNetworkPtrType) ToFlexibleAppVersionNetworkPtrOutputWithContext(ctx context.Context) FlexibleAppVersionNetworkPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionNetworkPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionNetworkOutput).ToFlexibleAppVersionNetworkPtrOutput()
 }
 
 type FlexibleAppVersionNetworkOutput struct{ *pulumi.OutputState }
@@ -4715,7 +4715,7 @@ func (i FlexibleAppVersionReadinessCheckArgs) ToFlexibleAppVersionReadinessCheck
 }
 
 func (i FlexibleAppVersionReadinessCheckArgs) ToFlexibleAppVersionReadinessCheckPtrOutputWithContext(ctx context.Context) FlexibleAppVersionReadinessCheckPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionReadinessCheckOutput).ToFlexibleAppVersionReadinessCheckPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionReadinessCheckOutput).ToFlexibleAppVersionReadinessCheckPtrOutput()
 }
 
 // FlexibleAppVersionReadinessCheckPtrInput is an input type that accepts FlexibleAppVersionReadinessCheckArgs, FlexibleAppVersionReadinessCheckPtr and FlexibleAppVersionReadinessCheckPtrOutput values.
@@ -4748,7 +4748,7 @@ func (i *flexibleAppVersionReadinessCheckPtrType) ToFlexibleAppVersionReadinessC
 }
 
 func (i *flexibleAppVersionReadinessCheckPtrType) ToFlexibleAppVersionReadinessCheckPtrOutputWithContext(ctx context.Context) FlexibleAppVersionReadinessCheckPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionReadinessCheckPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionReadinessCheckOutput).ToFlexibleAppVersionReadinessCheckPtrOutput()
 }
 
 type FlexibleAppVersionReadinessCheckOutput struct{ *pulumi.OutputState }
@@ -4954,7 +4954,7 @@ func (i FlexibleAppVersionResourcesArgs) ToFlexibleAppVersionResourcesPtrOutput(
 }
 
 func (i FlexibleAppVersionResourcesArgs) ToFlexibleAppVersionResourcesPtrOutputWithContext(ctx context.Context) FlexibleAppVersionResourcesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionResourcesOutput).ToFlexibleAppVersionResourcesPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionResourcesOutput).ToFlexibleAppVersionResourcesPtrOutput()
 }
 
 // FlexibleAppVersionResourcesPtrInput is an input type that accepts FlexibleAppVersionResourcesArgs, FlexibleAppVersionResourcesPtr and FlexibleAppVersionResourcesPtrOutput values.
@@ -4987,7 +4987,7 @@ func (i *flexibleAppVersionResourcesPtrType) ToFlexibleAppVersionResourcesPtrOut
 }
 
 func (i *flexibleAppVersionResourcesPtrType) ToFlexibleAppVersionResourcesPtrOutputWithContext(ctx context.Context) FlexibleAppVersionResourcesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionResourcesPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionResourcesOutput).ToFlexibleAppVersionResourcesPtrOutput()
 }
 
 type FlexibleAppVersionResourcesOutput struct{ *pulumi.OutputState }
@@ -5247,7 +5247,7 @@ func (i FlexibleAppVersionVpcAccessConnectorArgs) ToFlexibleAppVersionVpcAccessC
 }
 
 func (i FlexibleAppVersionVpcAccessConnectorArgs) ToFlexibleAppVersionVpcAccessConnectorPtrOutputWithContext(ctx context.Context) FlexibleAppVersionVpcAccessConnectorPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionVpcAccessConnectorOutput).ToFlexibleAppVersionVpcAccessConnectorPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionVpcAccessConnectorOutput).ToFlexibleAppVersionVpcAccessConnectorPtrOutput()
 }
 
 // FlexibleAppVersionVpcAccessConnectorPtrInput is an input type that accepts FlexibleAppVersionVpcAccessConnectorArgs, FlexibleAppVersionVpcAccessConnectorPtr and FlexibleAppVersionVpcAccessConnectorPtrOutput values.
@@ -5280,7 +5280,7 @@ func (i *flexibleAppVersionVpcAccessConnectorPtrType) ToFlexibleAppVersionVpcAcc
 }
 
 func (i *flexibleAppVersionVpcAccessConnectorPtrType) ToFlexibleAppVersionVpcAccessConnectorPtrOutputWithContext(ctx context.Context) FlexibleAppVersionVpcAccessConnectorPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionVpcAccessConnectorPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(FlexibleAppVersionVpcAccessConnectorOutput).ToFlexibleAppVersionVpcAccessConnectorPtrOutput()
 }
 
 type FlexibleAppVersionVpcAccessConnectorOutput struct{ *pulumi.OutputState }
@@ -5406,7 +5406,7 @@ func (i StandardAppVersionAutomaticScalingArgs) ToStandardAppVersionAutomaticSca
 }
 
 func (i StandardAppVersionAutomaticScalingArgs) ToStandardAppVersionAutomaticScalingPtrOutputWithContext(ctx context.Context) StandardAppVersionAutomaticScalingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(StandardAppVersionAutomaticScalingOutput).ToStandardAppVersionAutomaticScalingPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(StandardAppVersionAutomaticScalingOutput).ToStandardAppVersionAutomaticScalingPtrOutput()
 }
 
 // StandardAppVersionAutomaticScalingPtrInput is an input type that accepts StandardAppVersionAutomaticScalingArgs, StandardAppVersionAutomaticScalingPtr and StandardAppVersionAutomaticScalingPtrOutput values.
@@ -5439,7 +5439,7 @@ func (i *standardAppVersionAutomaticScalingPtrType) ToStandardAppVersionAutomati
 }
 
 func (i *standardAppVersionAutomaticScalingPtrType) ToStandardAppVersionAutomaticScalingPtrOutputWithContext(ctx context.Context) StandardAppVersionAutomaticScalingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(StandardAppVersionAutomaticScalingPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(StandardAppVersionAutomaticScalingOutput).ToStandardAppVersionAutomaticScalingPtrOutput()
 }
 
 type StandardAppVersionAutomaticScalingOutput struct{ *pulumi.OutputState }
@@ -5634,7 +5634,7 @@ func (i StandardAppVersionAutomaticScalingStandardSchedulerSettingsArgs) ToStand
 }
 
 func (i StandardAppVersionAutomaticScalingStandardSchedulerSettingsArgs) ToStandardAppVersionAutomaticScalingStandardSchedulerSettingsPtrOutputWithContext(ctx context.Context) StandardAppVersionAutomaticScalingStandardSchedulerSettingsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(StandardAppVersionAutomaticScalingStandardSchedulerSettingsOutput).ToStandardAppVersionAutomaticScalingStandardSchedulerSettingsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(StandardAppVersionAutomaticScalingStandardSchedulerSettingsOutput).ToStandardAppVersionAutomaticScalingStandardSchedulerSettingsPtrOutput()
 }
 
 // StandardAppVersionAutomaticScalingStandardSchedulerSettingsPtrInput is an input type that accepts StandardAppVersionAutomaticScalingStandardSchedulerSettingsArgs, StandardAppVersionAutomaticScalingStandardSchedulerSettingsPtr and StandardAppVersionAutomaticScalingStandardSchedulerSettingsPtrOutput values.
@@ -5667,7 +5667,7 @@ func (i *standardAppVersionAutomaticScalingStandardSchedulerSettingsPtrType) ToS
 }
 
 func (i *standardAppVersionAutomaticScalingStandardSchedulerSettingsPtrType) ToStandardAppVersionAutomaticScalingStandardSchedulerSettingsPtrOutputWithContext(ctx context.Context) StandardAppVersionAutomaticScalingStandardSchedulerSettingsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(StandardAppVersionAutomaticScalingStandardSchedulerSettingsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(StandardAppVersionAutomaticScalingStandardSchedulerSettingsOutput).ToStandardAppVersionAutomaticScalingStandardSchedulerSettingsPtrOutput()
 }
 
 type StandardAppVersionAutomaticScalingStandardSchedulerSettingsOutput struct{ *pulumi.OutputState }
@@ -5822,7 +5822,7 @@ func (i StandardAppVersionBasicScalingArgs) ToStandardAppVersionBasicScalingPtrO
 }
 
 func (i StandardAppVersionBasicScalingArgs) ToStandardAppVersionBasicScalingPtrOutputWithContext(ctx context.Context) StandardAppVersionBasicScalingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(StandardAppVersionBasicScalingOutput).ToStandardAppVersionBasicScalingPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(StandardAppVersionBasicScalingOutput).ToStandardAppVersionBasicScalingPtrOutput()
 }
 
 // StandardAppVersionBasicScalingPtrInput is an input type that accepts StandardAppVersionBasicScalingArgs, StandardAppVersionBasicScalingPtr and StandardAppVersionBasicScalingPtrOutput values.
@@ -5855,7 +5855,7 @@ func (i *standardAppVersionBasicScalingPtrType) ToStandardAppVersionBasicScaling
 }
 
 func (i *standardAppVersionBasicScalingPtrType) ToStandardAppVersionBasicScalingPtrOutputWithContext(ctx context.Context) StandardAppVersionBasicScalingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(StandardAppVersionBasicScalingPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(StandardAppVersionBasicScalingOutput).ToStandardAppVersionBasicScalingPtrOutput()
 }
 
 type StandardAppVersionBasicScalingOutput struct{ *pulumi.OutputState }
@@ -5980,7 +5980,7 @@ func (i StandardAppVersionDeploymentArgs) ToStandardAppVersionDeploymentPtrOutpu
 }
 
 func (i StandardAppVersionDeploymentArgs) ToStandardAppVersionDeploymentPtrOutputWithContext(ctx context.Context) StandardAppVersionDeploymentPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(StandardAppVersionDeploymentOutput).ToStandardAppVersionDeploymentPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(StandardAppVersionDeploymentOutput).ToStandardAppVersionDeploymentPtrOutput()
 }
 
 // StandardAppVersionDeploymentPtrInput is an input type that accepts StandardAppVersionDeploymentArgs, StandardAppVersionDeploymentPtr and StandardAppVersionDeploymentPtrOutput values.
@@ -6013,7 +6013,7 @@ func (i *standardAppVersionDeploymentPtrType) ToStandardAppVersionDeploymentPtrO
 }
 
 func (i *standardAppVersionDeploymentPtrType) ToStandardAppVersionDeploymentPtrOutputWithContext(ctx context.Context) StandardAppVersionDeploymentPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(StandardAppVersionDeploymentPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(StandardAppVersionDeploymentOutput).ToStandardAppVersionDeploymentPtrOutput()
 }
 
 type StandardAppVersionDeploymentOutput struct{ *pulumi.OutputState }
@@ -6251,7 +6251,7 @@ func (i StandardAppVersionDeploymentZipArgs) ToStandardAppVersionDeploymentZipPt
 }
 
 func (i StandardAppVersionDeploymentZipArgs) ToStandardAppVersionDeploymentZipPtrOutputWithContext(ctx context.Context) StandardAppVersionDeploymentZipPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(StandardAppVersionDeploymentZipOutput).ToStandardAppVersionDeploymentZipPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(StandardAppVersionDeploymentZipOutput).ToStandardAppVersionDeploymentZipPtrOutput()
 }
 
 // StandardAppVersionDeploymentZipPtrInput is an input type that accepts StandardAppVersionDeploymentZipArgs, StandardAppVersionDeploymentZipPtr and StandardAppVersionDeploymentZipPtrOutput values.
@@ -6284,7 +6284,7 @@ func (i *standardAppVersionDeploymentZipPtrType) ToStandardAppVersionDeploymentZ
 }
 
 func (i *standardAppVersionDeploymentZipPtrType) ToStandardAppVersionDeploymentZipPtrOutputWithContext(ctx context.Context) StandardAppVersionDeploymentZipPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(StandardAppVersionDeploymentZipPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(StandardAppVersionDeploymentZipOutput).ToStandardAppVersionDeploymentZipPtrOutput()
 }
 
 type StandardAppVersionDeploymentZipOutput struct{ *pulumi.OutputState }
@@ -6397,7 +6397,7 @@ func (i StandardAppVersionEntrypointArgs) ToStandardAppVersionEntrypointPtrOutpu
 }
 
 func (i StandardAppVersionEntrypointArgs) ToStandardAppVersionEntrypointPtrOutputWithContext(ctx context.Context) StandardAppVersionEntrypointPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(StandardAppVersionEntrypointOutput).ToStandardAppVersionEntrypointPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(StandardAppVersionEntrypointOutput).ToStandardAppVersionEntrypointPtrOutput()
 }
 
 // StandardAppVersionEntrypointPtrInput is an input type that accepts StandardAppVersionEntrypointArgs, StandardAppVersionEntrypointPtr and StandardAppVersionEntrypointPtrOutput values.
@@ -6430,7 +6430,7 @@ func (i *standardAppVersionEntrypointPtrType) ToStandardAppVersionEntrypointPtrO
 }
 
 func (i *standardAppVersionEntrypointPtrType) ToStandardAppVersionEntrypointPtrOutputWithContext(ctx context.Context) StandardAppVersionEntrypointPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(StandardAppVersionEntrypointPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(StandardAppVersionEntrypointOutput).ToStandardAppVersionEntrypointPtrOutput()
 }
 
 type StandardAppVersionEntrypointOutput struct{ *pulumi.OutputState }
@@ -6703,7 +6703,7 @@ func (i StandardAppVersionHandlerScriptArgs) ToStandardAppVersionHandlerScriptPt
 }
 
 func (i StandardAppVersionHandlerScriptArgs) ToStandardAppVersionHandlerScriptPtrOutputWithContext(ctx context.Context) StandardAppVersionHandlerScriptPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(StandardAppVersionHandlerScriptOutput).ToStandardAppVersionHandlerScriptPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(StandardAppVersionHandlerScriptOutput).ToStandardAppVersionHandlerScriptPtrOutput()
 }
 
 // StandardAppVersionHandlerScriptPtrInput is an input type that accepts StandardAppVersionHandlerScriptArgs, StandardAppVersionHandlerScriptPtr and StandardAppVersionHandlerScriptPtrOutput values.
@@ -6736,7 +6736,7 @@ func (i *standardAppVersionHandlerScriptPtrType) ToStandardAppVersionHandlerScri
 }
 
 func (i *standardAppVersionHandlerScriptPtrType) ToStandardAppVersionHandlerScriptPtrOutputWithContext(ctx context.Context) StandardAppVersionHandlerScriptPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(StandardAppVersionHandlerScriptPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(StandardAppVersionHandlerScriptOutput).ToStandardAppVersionHandlerScriptPtrOutput()
 }
 
 type StandardAppVersionHandlerScriptOutput struct{ *pulumi.OutputState }
@@ -6868,7 +6868,7 @@ func (i StandardAppVersionHandlerStaticFilesArgs) ToStandardAppVersionHandlerSta
 }
 
 func (i StandardAppVersionHandlerStaticFilesArgs) ToStandardAppVersionHandlerStaticFilesPtrOutputWithContext(ctx context.Context) StandardAppVersionHandlerStaticFilesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(StandardAppVersionHandlerStaticFilesOutput).ToStandardAppVersionHandlerStaticFilesPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(StandardAppVersionHandlerStaticFilesOutput).ToStandardAppVersionHandlerStaticFilesPtrOutput()
 }
 
 // StandardAppVersionHandlerStaticFilesPtrInput is an input type that accepts StandardAppVersionHandlerStaticFilesArgs, StandardAppVersionHandlerStaticFilesPtr and StandardAppVersionHandlerStaticFilesPtrOutput values.
@@ -6901,7 +6901,7 @@ func (i *standardAppVersionHandlerStaticFilesPtrType) ToStandardAppVersionHandle
 }
 
 func (i *standardAppVersionHandlerStaticFilesPtrType) ToStandardAppVersionHandlerStaticFilesPtrOutputWithContext(ctx context.Context) StandardAppVersionHandlerStaticFilesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(StandardAppVersionHandlerStaticFilesPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(StandardAppVersionHandlerStaticFilesOutput).ToStandardAppVersionHandlerStaticFilesPtrOutput()
 }
 
 type StandardAppVersionHandlerStaticFilesOutput struct{ *pulumi.OutputState }
@@ -7209,7 +7209,7 @@ func (i StandardAppVersionManualScalingArgs) ToStandardAppVersionManualScalingPt
 }
 
 func (i StandardAppVersionManualScalingArgs) ToStandardAppVersionManualScalingPtrOutputWithContext(ctx context.Context) StandardAppVersionManualScalingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(StandardAppVersionManualScalingOutput).ToStandardAppVersionManualScalingPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(StandardAppVersionManualScalingOutput).ToStandardAppVersionManualScalingPtrOutput()
 }
 
 // StandardAppVersionManualScalingPtrInput is an input type that accepts StandardAppVersionManualScalingArgs, StandardAppVersionManualScalingPtr and StandardAppVersionManualScalingPtrOutput values.
@@ -7242,7 +7242,7 @@ func (i *standardAppVersionManualScalingPtrType) ToStandardAppVersionManualScali
 }
 
 func (i *standardAppVersionManualScalingPtrType) ToStandardAppVersionManualScalingPtrOutputWithContext(ctx context.Context) StandardAppVersionManualScalingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(StandardAppVersionManualScalingPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(StandardAppVersionManualScalingOutput).ToStandardAppVersionManualScalingPtrOutput()
 }
 
 type StandardAppVersionManualScalingOutput struct{ *pulumi.OutputState }
@@ -7344,7 +7344,7 @@ func (i StandardAppVersionVpcAccessConnectorArgs) ToStandardAppVersionVpcAccessC
 }
 
 func (i StandardAppVersionVpcAccessConnectorArgs) ToStandardAppVersionVpcAccessConnectorPtrOutputWithContext(ctx context.Context) StandardAppVersionVpcAccessConnectorPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(StandardAppVersionVpcAccessConnectorOutput).ToStandardAppVersionVpcAccessConnectorPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(StandardAppVersionVpcAccessConnectorOutput).ToStandardAppVersionVpcAccessConnectorPtrOutput()
 }
 
 // StandardAppVersionVpcAccessConnectorPtrInput is an input type that accepts StandardAppVersionVpcAccessConnectorArgs, StandardAppVersionVpcAccessConnectorPtr and StandardAppVersionVpcAccessConnectorPtrOutput values.
@@ -7377,7 +7377,7 @@ func (i *standardAppVersionVpcAccessConnectorPtrType) ToStandardAppVersionVpcAcc
 }
 
 func (i *standardAppVersionVpcAccessConnectorPtrType) ToStandardAppVersionVpcAccessConnectorPtrOutputWithContext(ctx context.Context) StandardAppVersionVpcAccessConnectorPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(StandardAppVersionVpcAccessConnectorPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(StandardAppVersionVpcAccessConnectorOutput).ToStandardAppVersionVpcAccessConnectorPtrOutput()
 }
 
 type StandardAppVersionVpcAccessConnectorOutput struct{ *pulumi.OutputState }

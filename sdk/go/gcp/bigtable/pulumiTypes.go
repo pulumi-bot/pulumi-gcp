@@ -383,7 +383,7 @@ func (i InstanceIamBindingConditionArgs) ToInstanceIamBindingConditionPtrOutput(
 }
 
 func (i InstanceIamBindingConditionArgs) ToInstanceIamBindingConditionPtrOutputWithContext(ctx context.Context) InstanceIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceIamBindingConditionOutput).ToInstanceIamBindingConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceIamBindingConditionOutput).ToInstanceIamBindingConditionPtrOutput()
 }
 
 // InstanceIamBindingConditionPtrInput is an input type that accepts InstanceIamBindingConditionArgs, InstanceIamBindingConditionPtr and InstanceIamBindingConditionPtrOutput values.
@@ -416,7 +416,7 @@ func (i *instanceIamBindingConditionPtrType) ToInstanceIamBindingConditionPtrOut
 }
 
 func (i *instanceIamBindingConditionPtrType) ToInstanceIamBindingConditionPtrOutputWithContext(ctx context.Context) InstanceIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceIamBindingConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceIamBindingConditionOutput).ToInstanceIamBindingConditionPtrOutput()
 }
 
 type InstanceIamBindingConditionOutput struct{ *pulumi.OutputState }
@@ -539,7 +539,7 @@ func (i InstanceIamMemberConditionArgs) ToInstanceIamMemberConditionPtrOutput() 
 }
 
 func (i InstanceIamMemberConditionArgs) ToInstanceIamMemberConditionPtrOutputWithContext(ctx context.Context) InstanceIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceIamMemberConditionOutput).ToInstanceIamMemberConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceIamMemberConditionOutput).ToInstanceIamMemberConditionPtrOutput()
 }
 
 // InstanceIamMemberConditionPtrInput is an input type that accepts InstanceIamMemberConditionArgs, InstanceIamMemberConditionPtr and InstanceIamMemberConditionPtrOutput values.
@@ -572,7 +572,7 @@ func (i *instanceIamMemberConditionPtrType) ToInstanceIamMemberConditionPtrOutpu
 }
 
 func (i *instanceIamMemberConditionPtrType) ToInstanceIamMemberConditionPtrOutputWithContext(ctx context.Context) InstanceIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceIamMemberConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceIamMemberConditionOutput).ToInstanceIamMemberConditionPtrOutput()
 }
 
 type InstanceIamMemberConditionOutput struct{ *pulumi.OutputState }
@@ -792,7 +792,7 @@ func (i TableIamBindingConditionArgs) ToTableIamBindingConditionPtrOutput() Tabl
 }
 
 func (i TableIamBindingConditionArgs) ToTableIamBindingConditionPtrOutputWithContext(ctx context.Context) TableIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TableIamBindingConditionOutput).ToTableIamBindingConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TableIamBindingConditionOutput).ToTableIamBindingConditionPtrOutput()
 }
 
 // TableIamBindingConditionPtrInput is an input type that accepts TableIamBindingConditionArgs, TableIamBindingConditionPtr and TableIamBindingConditionPtrOutput values.
@@ -825,7 +825,7 @@ func (i *tableIamBindingConditionPtrType) ToTableIamBindingConditionPtrOutput() 
 }
 
 func (i *tableIamBindingConditionPtrType) ToTableIamBindingConditionPtrOutputWithContext(ctx context.Context) TableIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TableIamBindingConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TableIamBindingConditionOutput).ToTableIamBindingConditionPtrOutput()
 }
 
 type TableIamBindingConditionOutput struct{ *pulumi.OutputState }
@@ -948,7 +948,7 @@ func (i TableIamMemberConditionArgs) ToTableIamMemberConditionPtrOutput() TableI
 }
 
 func (i TableIamMemberConditionArgs) ToTableIamMemberConditionPtrOutputWithContext(ctx context.Context) TableIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TableIamMemberConditionOutput).ToTableIamMemberConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TableIamMemberConditionOutput).ToTableIamMemberConditionPtrOutput()
 }
 
 // TableIamMemberConditionPtrInput is an input type that accepts TableIamMemberConditionArgs, TableIamMemberConditionPtr and TableIamMemberConditionPtrOutput values.
@@ -981,7 +981,7 @@ func (i *tableIamMemberConditionPtrType) ToTableIamMemberConditionPtrOutput() Ta
 }
 
 func (i *tableIamMemberConditionPtrType) ToTableIamMemberConditionPtrOutputWithContext(ctx context.Context) TableIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TableIamMemberConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TableIamMemberConditionOutput).ToTableIamMemberConditionPtrOutput()
 }
 
 type TableIamMemberConditionOutput struct{ *pulumi.OutputState }
