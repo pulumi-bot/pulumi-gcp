@@ -244,6 +244,7 @@ namespace Pulumi.Gcp.Billing
     ///  $ pulumi import gcp:billing/budget:Budget default {{name}}
     /// ```
     /// </summary>
+    [GcpResourceType("gcp:billing/budget:Budget")]
     public partial class Budget : Pulumi.CustomResource
     {
         /// <summary>

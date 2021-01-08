@@ -403,15 +403,15 @@ type AppEngineServiceIamMemberInput interface {
 	ToAppEngineServiceIamMemberOutputWithContext(ctx context.Context) AppEngineServiceIamMemberOutput
 }
 
-func (AppEngineServiceIamMember) ElementType() reflect.Type {
-	return reflect.TypeOf((*AppEngineServiceIamMember)(nil)).Elem()
+func (*AppEngineServiceIamMember) ElementType() reflect.Type {
+	return reflect.TypeOf((*AppEngineServiceIamMember)(nil))
 }
 
-func (i AppEngineServiceIamMember) ToAppEngineServiceIamMemberOutput() AppEngineServiceIamMemberOutput {
+func (i *AppEngineServiceIamMember) ToAppEngineServiceIamMemberOutput() AppEngineServiceIamMemberOutput {
 	return i.ToAppEngineServiceIamMemberOutputWithContext(context.Background())
 }
 
-func (i AppEngineServiceIamMember) ToAppEngineServiceIamMemberOutputWithContext(ctx context.Context) AppEngineServiceIamMemberOutput {
+func (i *AppEngineServiceIamMember) ToAppEngineServiceIamMemberOutputWithContext(ctx context.Context) AppEngineServiceIamMemberOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AppEngineServiceIamMemberOutput)
 }
 
@@ -420,7 +420,7 @@ type AppEngineServiceIamMemberOutput struct {
 }
 
 func (AppEngineServiceIamMemberOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AppEngineServiceIamMemberOutput)(nil)).Elem()
+	return reflect.TypeOf((*AppEngineServiceIamMember)(nil))
 }
 
 func (o AppEngineServiceIamMemberOutput) ToAppEngineServiceIamMemberOutput() AppEngineServiceIamMemberOutput {
