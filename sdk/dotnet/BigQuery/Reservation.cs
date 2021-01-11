@@ -59,6 +59,7 @@ namespace Pulumi.Gcp.BigQuery
     ///  $ pulumi import gcp:bigquery/reservation:Reservation default {{location}}/{{name}}
     /// ```
     /// </summary>
+    [GcpResourceType("gcp:bigquery/reservation:Reservation")]
     public partial class Reservation : Pulumi.CustomResource
     {
         /// <summary>
