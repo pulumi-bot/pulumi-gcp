@@ -50,7 +50,7 @@ func (i LiteSubscriptionDeliveryConfigArgs) ToLiteSubscriptionDeliveryConfigPtrO
 }
 
 func (i LiteSubscriptionDeliveryConfigArgs) ToLiteSubscriptionDeliveryConfigPtrOutputWithContext(ctx context.Context) LiteSubscriptionDeliveryConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LiteSubscriptionDeliveryConfigOutput).ToLiteSubscriptionDeliveryConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(LiteSubscriptionDeliveryConfigOutput).ToLiteSubscriptionDeliveryConfigPtrOutput()
 }
 
 // LiteSubscriptionDeliveryConfigPtrInput is an input type that accepts LiteSubscriptionDeliveryConfigArgs, LiteSubscriptionDeliveryConfigPtr and LiteSubscriptionDeliveryConfigPtrOutput values.
@@ -83,7 +83,7 @@ func (i *liteSubscriptionDeliveryConfigPtrType) ToLiteSubscriptionDeliveryConfig
 }
 
 func (i *liteSubscriptionDeliveryConfigPtrType) ToLiteSubscriptionDeliveryConfigPtrOutputWithContext(ctx context.Context) LiteSubscriptionDeliveryConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LiteSubscriptionDeliveryConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(LiteSubscriptionDeliveryConfigOutput).ToLiteSubscriptionDeliveryConfigPtrOutput()
 }
 
 type LiteSubscriptionDeliveryConfigOutput struct{ *pulumi.OutputState }
@@ -189,7 +189,7 @@ func (i LiteTopicPartitionConfigArgs) ToLiteTopicPartitionConfigPtrOutput() Lite
 }
 
 func (i LiteTopicPartitionConfigArgs) ToLiteTopicPartitionConfigPtrOutputWithContext(ctx context.Context) LiteTopicPartitionConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LiteTopicPartitionConfigOutput).ToLiteTopicPartitionConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(LiteTopicPartitionConfigOutput).ToLiteTopicPartitionConfigPtrOutput()
 }
 
 // LiteTopicPartitionConfigPtrInput is an input type that accepts LiteTopicPartitionConfigArgs, LiteTopicPartitionConfigPtr and LiteTopicPartitionConfigPtrOutput values.
@@ -222,7 +222,7 @@ func (i *liteTopicPartitionConfigPtrType) ToLiteTopicPartitionConfigPtrOutput() 
 }
 
 func (i *liteTopicPartitionConfigPtrType) ToLiteTopicPartitionConfigPtrOutputWithContext(ctx context.Context) LiteTopicPartitionConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LiteTopicPartitionConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(LiteTopicPartitionConfigOutput).ToLiteTopicPartitionConfigPtrOutput()
 }
 
 type LiteTopicPartitionConfigOutput struct{ *pulumi.OutputState }
@@ -341,7 +341,7 @@ func (i LiteTopicPartitionConfigCapacityArgs) ToLiteTopicPartitionConfigCapacity
 }
 
 func (i LiteTopicPartitionConfigCapacityArgs) ToLiteTopicPartitionConfigCapacityPtrOutputWithContext(ctx context.Context) LiteTopicPartitionConfigCapacityPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LiteTopicPartitionConfigCapacityOutput).ToLiteTopicPartitionConfigCapacityPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(LiteTopicPartitionConfigCapacityOutput).ToLiteTopicPartitionConfigCapacityPtrOutput()
 }
 
 // LiteTopicPartitionConfigCapacityPtrInput is an input type that accepts LiteTopicPartitionConfigCapacityArgs, LiteTopicPartitionConfigCapacityPtr and LiteTopicPartitionConfigCapacityPtrOutput values.
@@ -374,7 +374,7 @@ func (i *liteTopicPartitionConfigCapacityPtrType) ToLiteTopicPartitionConfigCapa
 }
 
 func (i *liteTopicPartitionConfigCapacityPtrType) ToLiteTopicPartitionConfigCapacityPtrOutputWithContext(ctx context.Context) LiteTopicPartitionConfigCapacityPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LiteTopicPartitionConfigCapacityPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(LiteTopicPartitionConfigCapacityOutput).ToLiteTopicPartitionConfigCapacityPtrOutput()
 }
 
 type LiteTopicPartitionConfigCapacityOutput struct{ *pulumi.OutputState }
@@ -497,7 +497,7 @@ func (i LiteTopicRetentionConfigArgs) ToLiteTopicRetentionConfigPtrOutput() Lite
 }
 
 func (i LiteTopicRetentionConfigArgs) ToLiteTopicRetentionConfigPtrOutputWithContext(ctx context.Context) LiteTopicRetentionConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LiteTopicRetentionConfigOutput).ToLiteTopicRetentionConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(LiteTopicRetentionConfigOutput).ToLiteTopicRetentionConfigPtrOutput()
 }
 
 // LiteTopicRetentionConfigPtrInput is an input type that accepts LiteTopicRetentionConfigArgs, LiteTopicRetentionConfigPtr and LiteTopicRetentionConfigPtrOutput values.
@@ -530,7 +530,7 @@ func (i *liteTopicRetentionConfigPtrType) ToLiteTopicRetentionConfigPtrOutput() 
 }
 
 func (i *liteTopicRetentionConfigPtrType) ToLiteTopicRetentionConfigPtrOutputWithContext(ctx context.Context) LiteTopicRetentionConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LiteTopicRetentionConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(LiteTopicRetentionConfigOutput).ToLiteTopicRetentionConfigPtrOutput()
 }
 
 type LiteTopicRetentionConfigOutput struct{ *pulumi.OutputState }
@@ -683,7 +683,7 @@ func (i SubscriptionDeadLetterPolicyArgs) ToSubscriptionDeadLetterPolicyPtrOutpu
 }
 
 func (i SubscriptionDeadLetterPolicyArgs) ToSubscriptionDeadLetterPolicyPtrOutputWithContext(ctx context.Context) SubscriptionDeadLetterPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SubscriptionDeadLetterPolicyOutput).ToSubscriptionDeadLetterPolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SubscriptionDeadLetterPolicyOutput).ToSubscriptionDeadLetterPolicyPtrOutput()
 }
 
 // SubscriptionDeadLetterPolicyPtrInput is an input type that accepts SubscriptionDeadLetterPolicyArgs, SubscriptionDeadLetterPolicyPtr and SubscriptionDeadLetterPolicyPtrOutput values.
@@ -716,7 +716,7 @@ func (i *subscriptionDeadLetterPolicyPtrType) ToSubscriptionDeadLetterPolicyPtrO
 }
 
 func (i *subscriptionDeadLetterPolicyPtrType) ToSubscriptionDeadLetterPolicyPtrOutputWithContext(ctx context.Context) SubscriptionDeadLetterPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SubscriptionDeadLetterPolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SubscriptionDeadLetterPolicyOutput).ToSubscriptionDeadLetterPolicyPtrOutput()
 }
 
 type SubscriptionDeadLetterPolicyOutput struct{ *pulumi.OutputState }
@@ -867,7 +867,7 @@ func (i SubscriptionExpirationPolicyArgs) ToSubscriptionExpirationPolicyPtrOutpu
 }
 
 func (i SubscriptionExpirationPolicyArgs) ToSubscriptionExpirationPolicyPtrOutputWithContext(ctx context.Context) SubscriptionExpirationPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SubscriptionExpirationPolicyOutput).ToSubscriptionExpirationPolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SubscriptionExpirationPolicyOutput).ToSubscriptionExpirationPolicyPtrOutput()
 }
 
 // SubscriptionExpirationPolicyPtrInput is an input type that accepts SubscriptionExpirationPolicyArgs, SubscriptionExpirationPolicyPtr and SubscriptionExpirationPolicyPtrOutput values.
@@ -900,7 +900,7 @@ func (i *subscriptionExpirationPolicyPtrType) ToSubscriptionExpirationPolicyPtrO
 }
 
 func (i *subscriptionExpirationPolicyPtrType) ToSubscriptionExpirationPolicyPtrOutputWithContext(ctx context.Context) SubscriptionExpirationPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SubscriptionExpirationPolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SubscriptionExpirationPolicyOutput).ToSubscriptionExpirationPolicyPtrOutput()
 }
 
 type SubscriptionExpirationPolicyOutput struct{ *pulumi.OutputState }
@@ -1008,7 +1008,7 @@ func (i SubscriptionIAMBindingConditionArgs) ToSubscriptionIAMBindingConditionPt
 }
 
 func (i SubscriptionIAMBindingConditionArgs) ToSubscriptionIAMBindingConditionPtrOutputWithContext(ctx context.Context) SubscriptionIAMBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SubscriptionIAMBindingConditionOutput).ToSubscriptionIAMBindingConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SubscriptionIAMBindingConditionOutput).ToSubscriptionIAMBindingConditionPtrOutput()
 }
 
 // SubscriptionIAMBindingConditionPtrInput is an input type that accepts SubscriptionIAMBindingConditionArgs, SubscriptionIAMBindingConditionPtr and SubscriptionIAMBindingConditionPtrOutput values.
@@ -1041,7 +1041,7 @@ func (i *subscriptionIAMBindingConditionPtrType) ToSubscriptionIAMBindingConditi
 }
 
 func (i *subscriptionIAMBindingConditionPtrType) ToSubscriptionIAMBindingConditionPtrOutputWithContext(ctx context.Context) SubscriptionIAMBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SubscriptionIAMBindingConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SubscriptionIAMBindingConditionOutput).ToSubscriptionIAMBindingConditionPtrOutput()
 }
 
 type SubscriptionIAMBindingConditionOutput struct{ *pulumi.OutputState }
@@ -1164,7 +1164,7 @@ func (i SubscriptionIAMMemberConditionArgs) ToSubscriptionIAMMemberConditionPtrO
 }
 
 func (i SubscriptionIAMMemberConditionArgs) ToSubscriptionIAMMemberConditionPtrOutputWithContext(ctx context.Context) SubscriptionIAMMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SubscriptionIAMMemberConditionOutput).ToSubscriptionIAMMemberConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SubscriptionIAMMemberConditionOutput).ToSubscriptionIAMMemberConditionPtrOutput()
 }
 
 // SubscriptionIAMMemberConditionPtrInput is an input type that accepts SubscriptionIAMMemberConditionArgs, SubscriptionIAMMemberConditionPtr and SubscriptionIAMMemberConditionPtrOutput values.
@@ -1197,7 +1197,7 @@ func (i *subscriptionIAMMemberConditionPtrType) ToSubscriptionIAMMemberCondition
 }
 
 func (i *subscriptionIAMMemberConditionPtrType) ToSubscriptionIAMMemberConditionPtrOutputWithContext(ctx context.Context) SubscriptionIAMMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SubscriptionIAMMemberConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SubscriptionIAMMemberConditionOutput).ToSubscriptionIAMMemberConditionPtrOutput()
 }
 
 type SubscriptionIAMMemberConditionOutput struct{ *pulumi.OutputState }
@@ -1368,7 +1368,7 @@ func (i SubscriptionPushConfigArgs) ToSubscriptionPushConfigPtrOutput() Subscrip
 }
 
 func (i SubscriptionPushConfigArgs) ToSubscriptionPushConfigPtrOutputWithContext(ctx context.Context) SubscriptionPushConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SubscriptionPushConfigOutput).ToSubscriptionPushConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SubscriptionPushConfigOutput).ToSubscriptionPushConfigPtrOutput()
 }
 
 // SubscriptionPushConfigPtrInput is an input type that accepts SubscriptionPushConfigArgs, SubscriptionPushConfigPtr and SubscriptionPushConfigPtrOutput values.
@@ -1401,7 +1401,7 @@ func (i *subscriptionPushConfigPtrType) ToSubscriptionPushConfigPtrOutput() Subs
 }
 
 func (i *subscriptionPushConfigPtrType) ToSubscriptionPushConfigPtrOutputWithContext(ctx context.Context) SubscriptionPushConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SubscriptionPushConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SubscriptionPushConfigOutput).ToSubscriptionPushConfigPtrOutput()
 }
 
 type SubscriptionPushConfigOutput struct{ *pulumi.OutputState }
@@ -1591,7 +1591,7 @@ func (i SubscriptionPushConfigOidcTokenArgs) ToSubscriptionPushConfigOidcTokenPt
 }
 
 func (i SubscriptionPushConfigOidcTokenArgs) ToSubscriptionPushConfigOidcTokenPtrOutputWithContext(ctx context.Context) SubscriptionPushConfigOidcTokenPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SubscriptionPushConfigOidcTokenOutput).ToSubscriptionPushConfigOidcTokenPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SubscriptionPushConfigOidcTokenOutput).ToSubscriptionPushConfigOidcTokenPtrOutput()
 }
 
 // SubscriptionPushConfigOidcTokenPtrInput is an input type that accepts SubscriptionPushConfigOidcTokenArgs, SubscriptionPushConfigOidcTokenPtr and SubscriptionPushConfigOidcTokenPtrOutput values.
@@ -1624,7 +1624,7 @@ func (i *subscriptionPushConfigOidcTokenPtrType) ToSubscriptionPushConfigOidcTok
 }
 
 func (i *subscriptionPushConfigOidcTokenPtrType) ToSubscriptionPushConfigOidcTokenPtrOutputWithContext(ctx context.Context) SubscriptionPushConfigOidcTokenPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SubscriptionPushConfigOidcTokenPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SubscriptionPushConfigOidcTokenOutput).ToSubscriptionPushConfigOidcTokenPtrOutput()
 }
 
 type SubscriptionPushConfigOidcTokenOutput struct{ *pulumi.OutputState }
@@ -1761,7 +1761,7 @@ func (i SubscriptionRetryPolicyArgs) ToSubscriptionRetryPolicyPtrOutput() Subscr
 }
 
 func (i SubscriptionRetryPolicyArgs) ToSubscriptionRetryPolicyPtrOutputWithContext(ctx context.Context) SubscriptionRetryPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SubscriptionRetryPolicyOutput).ToSubscriptionRetryPolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SubscriptionRetryPolicyOutput).ToSubscriptionRetryPolicyPtrOutput()
 }
 
 // SubscriptionRetryPolicyPtrInput is an input type that accepts SubscriptionRetryPolicyArgs, SubscriptionRetryPolicyPtr and SubscriptionRetryPolicyPtrOutput values.
@@ -1794,7 +1794,7 @@ func (i *subscriptionRetryPolicyPtrType) ToSubscriptionRetryPolicyPtrOutput() Su
 }
 
 func (i *subscriptionRetryPolicyPtrType) ToSubscriptionRetryPolicyPtrOutputWithContext(ctx context.Context) SubscriptionRetryPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SubscriptionRetryPolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SubscriptionRetryPolicyOutput).ToSubscriptionRetryPolicyPtrOutput()
 }
 
 type SubscriptionRetryPolicyOutput struct{ *pulumi.OutputState }
@@ -1913,7 +1913,7 @@ func (i TopicIAMBindingConditionArgs) ToTopicIAMBindingConditionPtrOutput() Topi
 }
 
 func (i TopicIAMBindingConditionArgs) ToTopicIAMBindingConditionPtrOutputWithContext(ctx context.Context) TopicIAMBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TopicIAMBindingConditionOutput).ToTopicIAMBindingConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TopicIAMBindingConditionOutput).ToTopicIAMBindingConditionPtrOutput()
 }
 
 // TopicIAMBindingConditionPtrInput is an input type that accepts TopicIAMBindingConditionArgs, TopicIAMBindingConditionPtr and TopicIAMBindingConditionPtrOutput values.
@@ -1946,7 +1946,7 @@ func (i *topicIAMBindingConditionPtrType) ToTopicIAMBindingConditionPtrOutput() 
 }
 
 func (i *topicIAMBindingConditionPtrType) ToTopicIAMBindingConditionPtrOutputWithContext(ctx context.Context) TopicIAMBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TopicIAMBindingConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TopicIAMBindingConditionOutput).ToTopicIAMBindingConditionPtrOutput()
 }
 
 type TopicIAMBindingConditionOutput struct{ *pulumi.OutputState }
@@ -2069,7 +2069,7 @@ func (i TopicIAMMemberConditionArgs) ToTopicIAMMemberConditionPtrOutput() TopicI
 }
 
 func (i TopicIAMMemberConditionArgs) ToTopicIAMMemberConditionPtrOutputWithContext(ctx context.Context) TopicIAMMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TopicIAMMemberConditionOutput).ToTopicIAMMemberConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TopicIAMMemberConditionOutput).ToTopicIAMMemberConditionPtrOutput()
 }
 
 // TopicIAMMemberConditionPtrInput is an input type that accepts TopicIAMMemberConditionArgs, TopicIAMMemberConditionPtr and TopicIAMMemberConditionPtrOutput values.
@@ -2102,7 +2102,7 @@ func (i *topicIAMMemberConditionPtrType) ToTopicIAMMemberConditionPtrOutput() To
 }
 
 func (i *topicIAMMemberConditionPtrType) ToTopicIAMMemberConditionPtrOutputWithContext(ctx context.Context) TopicIAMMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TopicIAMMemberConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TopicIAMMemberConditionOutput).ToTopicIAMMemberConditionPtrOutput()
 }
 
 type TopicIAMMemberConditionOutput struct{ *pulumi.OutputState }
@@ -2233,7 +2233,7 @@ func (i TopicMessageStoragePolicyArgs) ToTopicMessageStoragePolicyPtrOutput() To
 }
 
 func (i TopicMessageStoragePolicyArgs) ToTopicMessageStoragePolicyPtrOutputWithContext(ctx context.Context) TopicMessageStoragePolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TopicMessageStoragePolicyOutput).ToTopicMessageStoragePolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TopicMessageStoragePolicyOutput).ToTopicMessageStoragePolicyPtrOutput()
 }
 
 // TopicMessageStoragePolicyPtrInput is an input type that accepts TopicMessageStoragePolicyArgs, TopicMessageStoragePolicyPtr and TopicMessageStoragePolicyPtrOutput values.
@@ -2266,7 +2266,7 @@ func (i *topicMessageStoragePolicyPtrType) ToTopicMessageStoragePolicyPtrOutput(
 }
 
 func (i *topicMessageStoragePolicyPtrType) ToTopicMessageStoragePolicyPtrOutputWithContext(ctx context.Context) TopicMessageStoragePolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TopicMessageStoragePolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TopicMessageStoragePolicyOutput).ToTopicMessageStoragePolicyPtrOutput()
 }
 
 type TopicMessageStoragePolicyOutput struct{ *pulumi.OutputState }

@@ -100,7 +100,7 @@ func (i AttestorAttestationAuthorityNoteArgs) ToAttestorAttestationAuthorityNote
 }
 
 func (i AttestorAttestationAuthorityNoteArgs) ToAttestorAttestationAuthorityNotePtrOutputWithContext(ctx context.Context) AttestorAttestationAuthorityNotePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AttestorAttestationAuthorityNoteOutput).ToAttestorAttestationAuthorityNotePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(AttestorAttestationAuthorityNoteOutput).ToAttestorAttestationAuthorityNotePtrOutput()
 }
 
 // AttestorAttestationAuthorityNotePtrInput is an input type that accepts AttestorAttestationAuthorityNoteArgs, AttestorAttestationAuthorityNotePtr and AttestorAttestationAuthorityNotePtrOutput values.
@@ -133,7 +133,7 @@ func (i *attestorAttestationAuthorityNotePtrType) ToAttestorAttestationAuthority
 }
 
 func (i *attestorAttestationAuthorityNotePtrType) ToAttestorAttestationAuthorityNotePtrOutputWithContext(ctx context.Context) AttestorAttestationAuthorityNotePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AttestorAttestationAuthorityNotePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(AttestorAttestationAuthorityNoteOutput).ToAttestorAttestationAuthorityNotePtrOutput()
 }
 
 type AttestorAttestationAuthorityNoteOutput struct{ *pulumi.OutputState }
@@ -501,7 +501,7 @@ func (i AttestorAttestationAuthorityNotePublicKeyPkixPublicKeyArgs) ToAttestorAt
 }
 
 func (i AttestorAttestationAuthorityNotePublicKeyPkixPublicKeyArgs) ToAttestorAttestationAuthorityNotePublicKeyPkixPublicKeyPtrOutputWithContext(ctx context.Context) AttestorAttestationAuthorityNotePublicKeyPkixPublicKeyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AttestorAttestationAuthorityNotePublicKeyPkixPublicKeyOutput).ToAttestorAttestationAuthorityNotePublicKeyPkixPublicKeyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(AttestorAttestationAuthorityNotePublicKeyPkixPublicKeyOutput).ToAttestorAttestationAuthorityNotePublicKeyPkixPublicKeyPtrOutput()
 }
 
 // AttestorAttestationAuthorityNotePublicKeyPkixPublicKeyPtrInput is an input type that accepts AttestorAttestationAuthorityNotePublicKeyPkixPublicKeyArgs, AttestorAttestationAuthorityNotePublicKeyPkixPublicKeyPtr and AttestorAttestationAuthorityNotePublicKeyPkixPublicKeyPtrOutput values.
@@ -534,7 +534,7 @@ func (i *attestorAttestationAuthorityNotePublicKeyPkixPublicKeyPtrType) ToAttest
 }
 
 func (i *attestorAttestationAuthorityNotePublicKeyPkixPublicKeyPtrType) ToAttestorAttestationAuthorityNotePublicKeyPkixPublicKeyPtrOutputWithContext(ctx context.Context) AttestorAttestationAuthorityNotePublicKeyPkixPublicKeyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AttestorAttestationAuthorityNotePublicKeyPkixPublicKeyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(AttestorAttestationAuthorityNotePublicKeyPkixPublicKeyOutput).ToAttestorAttestationAuthorityNotePublicKeyPkixPublicKeyPtrOutput()
 }
 
 type AttestorAttestationAuthorityNotePublicKeyPkixPublicKeyOutput struct{ *pulumi.OutputState }
@@ -661,7 +661,7 @@ func (i AttestorIamBindingConditionArgs) ToAttestorIamBindingConditionPtrOutput(
 }
 
 func (i AttestorIamBindingConditionArgs) ToAttestorIamBindingConditionPtrOutputWithContext(ctx context.Context) AttestorIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AttestorIamBindingConditionOutput).ToAttestorIamBindingConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(AttestorIamBindingConditionOutput).ToAttestorIamBindingConditionPtrOutput()
 }
 
 // AttestorIamBindingConditionPtrInput is an input type that accepts AttestorIamBindingConditionArgs, AttestorIamBindingConditionPtr and AttestorIamBindingConditionPtrOutput values.
@@ -694,7 +694,7 @@ func (i *attestorIamBindingConditionPtrType) ToAttestorIamBindingConditionPtrOut
 }
 
 func (i *attestorIamBindingConditionPtrType) ToAttestorIamBindingConditionPtrOutputWithContext(ctx context.Context) AttestorIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AttestorIamBindingConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(AttestorIamBindingConditionOutput).ToAttestorIamBindingConditionPtrOutput()
 }
 
 type AttestorIamBindingConditionOutput struct{ *pulumi.OutputState }
@@ -817,7 +817,7 @@ func (i AttestorIamMemberConditionArgs) ToAttestorIamMemberConditionPtrOutput() 
 }
 
 func (i AttestorIamMemberConditionArgs) ToAttestorIamMemberConditionPtrOutputWithContext(ctx context.Context) AttestorIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AttestorIamMemberConditionOutput).ToAttestorIamMemberConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(AttestorIamMemberConditionOutput).ToAttestorIamMemberConditionPtrOutput()
 }
 
 // AttestorIamMemberConditionPtrInput is an input type that accepts AttestorIamMemberConditionArgs, AttestorIamMemberConditionPtr and AttestorIamMemberConditionPtrOutput values.
@@ -850,7 +850,7 @@ func (i *attestorIamMemberConditionPtrType) ToAttestorIamMemberConditionPtrOutpu
 }
 
 func (i *attestorIamMemberConditionPtrType) ToAttestorIamMemberConditionPtrOutputWithContext(ctx context.Context) AttestorIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AttestorIamMemberConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(AttestorIamMemberConditionOutput).ToAttestorIamMemberConditionPtrOutput()
 }
 
 type AttestorIamMemberConditionOutput struct{ *pulumi.OutputState }
@@ -1254,7 +1254,7 @@ func (i PolicyDefaultAdmissionRuleArgs) ToPolicyDefaultAdmissionRulePtrOutput() 
 }
 
 func (i PolicyDefaultAdmissionRuleArgs) ToPolicyDefaultAdmissionRulePtrOutputWithContext(ctx context.Context) PolicyDefaultAdmissionRulePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PolicyDefaultAdmissionRuleOutput).ToPolicyDefaultAdmissionRulePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PolicyDefaultAdmissionRuleOutput).ToPolicyDefaultAdmissionRulePtrOutput()
 }
 
 // PolicyDefaultAdmissionRulePtrInput is an input type that accepts PolicyDefaultAdmissionRuleArgs, PolicyDefaultAdmissionRulePtr and PolicyDefaultAdmissionRulePtrOutput values.
@@ -1287,7 +1287,7 @@ func (i *policyDefaultAdmissionRulePtrType) ToPolicyDefaultAdmissionRulePtrOutpu
 }
 
 func (i *policyDefaultAdmissionRulePtrType) ToPolicyDefaultAdmissionRulePtrOutputWithContext(ctx context.Context) PolicyDefaultAdmissionRulePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PolicyDefaultAdmissionRulePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PolicyDefaultAdmissionRuleOutput).ToPolicyDefaultAdmissionRulePtrOutput()
 }
 
 type PolicyDefaultAdmissionRuleOutput struct{ *pulumi.OutputState }

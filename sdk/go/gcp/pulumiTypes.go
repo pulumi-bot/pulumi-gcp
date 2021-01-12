@@ -48,7 +48,7 @@ func (i ProviderBatchingArgs) ToProviderBatchingPtrOutput() ProviderBatchingPtrO
 }
 
 func (i ProviderBatchingArgs) ToProviderBatchingPtrOutputWithContext(ctx context.Context) ProviderBatchingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ProviderBatchingOutput).ToProviderBatchingPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderBatchingOutput).ToProviderBatchingPtrOutput()
 }
 
 // ProviderBatchingPtrInput is an input type that accepts ProviderBatchingArgs, ProviderBatchingPtr and ProviderBatchingPtrOutput values.
@@ -81,7 +81,7 @@ func (i *providerBatchingPtrType) ToProviderBatchingPtrOutput() ProviderBatching
 }
 
 func (i *providerBatchingPtrType) ToProviderBatchingPtrOutputWithContext(ctx context.Context) ProviderBatchingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ProviderBatchingPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderBatchingOutput).ToProviderBatchingPtrOutput()
 }
 
 type ProviderBatchingOutput struct{ *pulumi.OutputState }

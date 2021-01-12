@@ -74,7 +74,7 @@ func (i ManagedZoneDnssecConfigArgs) ToManagedZoneDnssecConfigPtrOutput() Manage
 }
 
 func (i ManagedZoneDnssecConfigArgs) ToManagedZoneDnssecConfigPtrOutputWithContext(ctx context.Context) ManagedZoneDnssecConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ManagedZoneDnssecConfigOutput).ToManagedZoneDnssecConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedZoneDnssecConfigOutput).ToManagedZoneDnssecConfigPtrOutput()
 }
 
 // ManagedZoneDnssecConfigPtrInput is an input type that accepts ManagedZoneDnssecConfigArgs, ManagedZoneDnssecConfigPtr and ManagedZoneDnssecConfigPtrOutput values.
@@ -107,7 +107,7 @@ func (i *managedZoneDnssecConfigPtrType) ToManagedZoneDnssecConfigPtrOutput() Ma
 }
 
 func (i *managedZoneDnssecConfigPtrType) ToManagedZoneDnssecConfigPtrOutputWithContext(ctx context.Context) ManagedZoneDnssecConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ManagedZoneDnssecConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedZoneDnssecConfigOutput).ToManagedZoneDnssecConfigPtrOutput()
 }
 
 type ManagedZoneDnssecConfigOutput struct{ *pulumi.OutputState }
@@ -415,7 +415,7 @@ func (i ManagedZoneForwardingConfigArgs) ToManagedZoneForwardingConfigPtrOutput(
 }
 
 func (i ManagedZoneForwardingConfigArgs) ToManagedZoneForwardingConfigPtrOutputWithContext(ctx context.Context) ManagedZoneForwardingConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ManagedZoneForwardingConfigOutput).ToManagedZoneForwardingConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedZoneForwardingConfigOutput).ToManagedZoneForwardingConfigPtrOutput()
 }
 
 // ManagedZoneForwardingConfigPtrInput is an input type that accepts ManagedZoneForwardingConfigArgs, ManagedZoneForwardingConfigPtr and ManagedZoneForwardingConfigPtrOutput values.
@@ -448,7 +448,7 @@ func (i *managedZoneForwardingConfigPtrType) ToManagedZoneForwardingConfigPtrOut
 }
 
 func (i *managedZoneForwardingConfigPtrType) ToManagedZoneForwardingConfigPtrOutputWithContext(ctx context.Context) ManagedZoneForwardingConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ManagedZoneForwardingConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedZoneForwardingConfigOutput).ToManagedZoneForwardingConfigPtrOutput()
 }
 
 type ManagedZoneForwardingConfigOutput struct{ *pulumi.OutputState }
@@ -671,7 +671,7 @@ func (i ManagedZonePeeringConfigArgs) ToManagedZonePeeringConfigPtrOutput() Mana
 }
 
 func (i ManagedZonePeeringConfigArgs) ToManagedZonePeeringConfigPtrOutputWithContext(ctx context.Context) ManagedZonePeeringConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ManagedZonePeeringConfigOutput).ToManagedZonePeeringConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedZonePeeringConfigOutput).ToManagedZonePeeringConfigPtrOutput()
 }
 
 // ManagedZonePeeringConfigPtrInput is an input type that accepts ManagedZonePeeringConfigArgs, ManagedZonePeeringConfigPtr and ManagedZonePeeringConfigPtrOutput values.
@@ -704,7 +704,7 @@ func (i *managedZonePeeringConfigPtrType) ToManagedZonePeeringConfigPtrOutput() 
 }
 
 func (i *managedZonePeeringConfigPtrType) ToManagedZonePeeringConfigPtrOutputWithContext(ctx context.Context) ManagedZonePeeringConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ManagedZonePeeringConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedZonePeeringConfigOutput).ToManagedZonePeeringConfigPtrOutput()
 }
 
 type ManagedZonePeeringConfigOutput struct{ *pulumi.OutputState }
@@ -808,7 +808,7 @@ func (i ManagedZonePeeringConfigTargetNetworkArgs) ToManagedZonePeeringConfigTar
 }
 
 func (i ManagedZonePeeringConfigTargetNetworkArgs) ToManagedZonePeeringConfigTargetNetworkPtrOutputWithContext(ctx context.Context) ManagedZonePeeringConfigTargetNetworkPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ManagedZonePeeringConfigTargetNetworkOutput).ToManagedZonePeeringConfigTargetNetworkPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedZonePeeringConfigTargetNetworkOutput).ToManagedZonePeeringConfigTargetNetworkPtrOutput()
 }
 
 // ManagedZonePeeringConfigTargetNetworkPtrInput is an input type that accepts ManagedZonePeeringConfigTargetNetworkArgs, ManagedZonePeeringConfigTargetNetworkPtr and ManagedZonePeeringConfigTargetNetworkPtrOutput values.
@@ -841,7 +841,7 @@ func (i *managedZonePeeringConfigTargetNetworkPtrType) ToManagedZonePeeringConfi
 }
 
 func (i *managedZonePeeringConfigTargetNetworkPtrType) ToManagedZonePeeringConfigTargetNetworkPtrOutputWithContext(ctx context.Context) ManagedZonePeeringConfigTargetNetworkPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ManagedZonePeeringConfigTargetNetworkPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedZonePeeringConfigTargetNetworkOutput).ToManagedZonePeeringConfigTargetNetworkPtrOutput()
 }
 
 type ManagedZonePeeringConfigTargetNetworkOutput struct{ *pulumi.OutputState }
@@ -943,7 +943,7 @@ func (i ManagedZonePrivateVisibilityConfigArgs) ToManagedZonePrivateVisibilityCo
 }
 
 func (i ManagedZonePrivateVisibilityConfigArgs) ToManagedZonePrivateVisibilityConfigPtrOutputWithContext(ctx context.Context) ManagedZonePrivateVisibilityConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ManagedZonePrivateVisibilityConfigOutput).ToManagedZonePrivateVisibilityConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedZonePrivateVisibilityConfigOutput).ToManagedZonePrivateVisibilityConfigPtrOutput()
 }
 
 // ManagedZonePrivateVisibilityConfigPtrInput is an input type that accepts ManagedZonePrivateVisibilityConfigArgs, ManagedZonePrivateVisibilityConfigPtr and ManagedZonePrivateVisibilityConfigPtrOutput values.
@@ -976,7 +976,7 @@ func (i *managedZonePrivateVisibilityConfigPtrType) ToManagedZonePrivateVisibili
 }
 
 func (i *managedZonePrivateVisibilityConfigPtrType) ToManagedZonePrivateVisibilityConfigPtrOutputWithContext(ctx context.Context) ManagedZonePrivateVisibilityConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ManagedZonePrivateVisibilityConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedZonePrivateVisibilityConfigOutput).ToManagedZonePrivateVisibilityConfigPtrOutput()
 }
 
 type ManagedZonePrivateVisibilityConfigOutput struct{ *pulumi.OutputState }
@@ -1181,7 +1181,7 @@ func (i ManagedZoneServiceDirectoryConfigArgs) ToManagedZoneServiceDirectoryConf
 }
 
 func (i ManagedZoneServiceDirectoryConfigArgs) ToManagedZoneServiceDirectoryConfigPtrOutputWithContext(ctx context.Context) ManagedZoneServiceDirectoryConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ManagedZoneServiceDirectoryConfigOutput).ToManagedZoneServiceDirectoryConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedZoneServiceDirectoryConfigOutput).ToManagedZoneServiceDirectoryConfigPtrOutput()
 }
 
 // ManagedZoneServiceDirectoryConfigPtrInput is an input type that accepts ManagedZoneServiceDirectoryConfigArgs, ManagedZoneServiceDirectoryConfigPtr and ManagedZoneServiceDirectoryConfigPtrOutput values.
@@ -1214,7 +1214,7 @@ func (i *managedZoneServiceDirectoryConfigPtrType) ToManagedZoneServiceDirectory
 }
 
 func (i *managedZoneServiceDirectoryConfigPtrType) ToManagedZoneServiceDirectoryConfigPtrOutputWithContext(ctx context.Context) ManagedZoneServiceDirectoryConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ManagedZoneServiceDirectoryConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedZoneServiceDirectoryConfigOutput).ToManagedZoneServiceDirectoryConfigPtrOutput()
 }
 
 type ManagedZoneServiceDirectoryConfigOutput struct{ *pulumi.OutputState }
@@ -1324,7 +1324,7 @@ func (i ManagedZoneServiceDirectoryConfigNamespaceArgs) ToManagedZoneServiceDire
 }
 
 func (i ManagedZoneServiceDirectoryConfigNamespaceArgs) ToManagedZoneServiceDirectoryConfigNamespacePtrOutputWithContext(ctx context.Context) ManagedZoneServiceDirectoryConfigNamespacePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ManagedZoneServiceDirectoryConfigNamespaceOutput).ToManagedZoneServiceDirectoryConfigNamespacePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedZoneServiceDirectoryConfigNamespaceOutput).ToManagedZoneServiceDirectoryConfigNamespacePtrOutput()
 }
 
 // ManagedZoneServiceDirectoryConfigNamespacePtrInput is an input type that accepts ManagedZoneServiceDirectoryConfigNamespaceArgs, ManagedZoneServiceDirectoryConfigNamespacePtr and ManagedZoneServiceDirectoryConfigNamespacePtrOutput values.
@@ -1357,7 +1357,7 @@ func (i *managedZoneServiceDirectoryConfigNamespacePtrType) ToManagedZoneService
 }
 
 func (i *managedZoneServiceDirectoryConfigNamespacePtrType) ToManagedZoneServiceDirectoryConfigNamespacePtrOutputWithContext(ctx context.Context) ManagedZoneServiceDirectoryConfigNamespacePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ManagedZoneServiceDirectoryConfigNamespacePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedZoneServiceDirectoryConfigNamespaceOutput).ToManagedZoneServiceDirectoryConfigNamespacePtrOutput()
 }
 
 type ManagedZoneServiceDirectoryConfigNamespaceOutput struct{ *pulumi.OutputState }
@@ -1471,7 +1471,7 @@ func (i PolicyAlternativeNameServerConfigArgs) ToPolicyAlternativeNameServerConf
 }
 
 func (i PolicyAlternativeNameServerConfigArgs) ToPolicyAlternativeNameServerConfigPtrOutputWithContext(ctx context.Context) PolicyAlternativeNameServerConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PolicyAlternativeNameServerConfigOutput).ToPolicyAlternativeNameServerConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PolicyAlternativeNameServerConfigOutput).ToPolicyAlternativeNameServerConfigPtrOutput()
 }
 
 // PolicyAlternativeNameServerConfigPtrInput is an input type that accepts PolicyAlternativeNameServerConfigArgs, PolicyAlternativeNameServerConfigPtr and PolicyAlternativeNameServerConfigPtrOutput values.
@@ -1504,7 +1504,7 @@ func (i *policyAlternativeNameServerConfigPtrType) ToPolicyAlternativeNameServer
 }
 
 func (i *policyAlternativeNameServerConfigPtrType) ToPolicyAlternativeNameServerConfigPtrOutputWithContext(ctx context.Context) PolicyAlternativeNameServerConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PolicyAlternativeNameServerConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PolicyAlternativeNameServerConfigOutput).ToPolicyAlternativeNameServerConfigPtrOutput()
 }
 
 type PolicyAlternativeNameServerConfigOutput struct{ *pulumi.OutputState }

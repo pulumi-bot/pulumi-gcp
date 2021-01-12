@@ -68,7 +68,7 @@ func (i QueueAppEngineRoutingOverrideArgs) ToQueueAppEngineRoutingOverridePtrOut
 }
 
 func (i QueueAppEngineRoutingOverrideArgs) ToQueueAppEngineRoutingOverridePtrOutputWithContext(ctx context.Context) QueueAppEngineRoutingOverridePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(QueueAppEngineRoutingOverrideOutput).ToQueueAppEngineRoutingOverridePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(QueueAppEngineRoutingOverrideOutput).ToQueueAppEngineRoutingOverridePtrOutput()
 }
 
 // QueueAppEngineRoutingOverridePtrInput is an input type that accepts QueueAppEngineRoutingOverrideArgs, QueueAppEngineRoutingOverridePtr and QueueAppEngineRoutingOverridePtrOutput values.
@@ -101,7 +101,7 @@ func (i *queueAppEngineRoutingOverridePtrType) ToQueueAppEngineRoutingOverridePt
 }
 
 func (i *queueAppEngineRoutingOverridePtrType) ToQueueAppEngineRoutingOverridePtrOutputWithContext(ctx context.Context) QueueAppEngineRoutingOverridePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(QueueAppEngineRoutingOverridePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(QueueAppEngineRoutingOverrideOutput).ToQueueAppEngineRoutingOverridePtrOutput()
 }
 
 type QueueAppEngineRoutingOverrideOutput struct{ *pulumi.OutputState }
@@ -278,7 +278,7 @@ func (i QueueRateLimitsArgs) ToQueueRateLimitsPtrOutput() QueueRateLimitsPtrOutp
 }
 
 func (i QueueRateLimitsArgs) ToQueueRateLimitsPtrOutputWithContext(ctx context.Context) QueueRateLimitsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(QueueRateLimitsOutput).ToQueueRateLimitsPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(QueueRateLimitsOutput).ToQueueRateLimitsPtrOutput()
 }
 
 // QueueRateLimitsPtrInput is an input type that accepts QueueRateLimitsArgs, QueueRateLimitsPtr and QueueRateLimitsPtrOutput values.
@@ -311,7 +311,7 @@ func (i *queueRateLimitsPtrType) ToQueueRateLimitsPtrOutput() QueueRateLimitsPtr
 }
 
 func (i *queueRateLimitsPtrType) ToQueueRateLimitsPtrOutputWithContext(ctx context.Context) QueueRateLimitsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(QueueRateLimitsPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(QueueRateLimitsOutput).ToQueueRateLimitsPtrOutput()
 }
 
 type QueueRateLimitsOutput struct{ *pulumi.OutputState }
@@ -509,7 +509,7 @@ func (i QueueRetryConfigArgs) ToQueueRetryConfigPtrOutput() QueueRetryConfigPtrO
 }
 
 func (i QueueRetryConfigArgs) ToQueueRetryConfigPtrOutputWithContext(ctx context.Context) QueueRetryConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(QueueRetryConfigOutput).ToQueueRetryConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(QueueRetryConfigOutput).ToQueueRetryConfigPtrOutput()
 }
 
 // QueueRetryConfigPtrInput is an input type that accepts QueueRetryConfigArgs, QueueRetryConfigPtr and QueueRetryConfigPtrOutput values.
@@ -542,7 +542,7 @@ func (i *queueRetryConfigPtrType) ToQueueRetryConfigPtrOutput() QueueRetryConfig
 }
 
 func (i *queueRetryConfigPtrType) ToQueueRetryConfigPtrOutputWithContext(ctx context.Context) QueueRetryConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(QueueRetryConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(QueueRetryConfigOutput).ToQueueRetryConfigPtrOutput()
 }
 
 type QueueRetryConfigOutput struct{ *pulumi.OutputState }
@@ -740,7 +740,7 @@ func (i QueueStackdriverLoggingConfigArgs) ToQueueStackdriverLoggingConfigPtrOut
 }
 
 func (i QueueStackdriverLoggingConfigArgs) ToQueueStackdriverLoggingConfigPtrOutputWithContext(ctx context.Context) QueueStackdriverLoggingConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(QueueStackdriverLoggingConfigOutput).ToQueueStackdriverLoggingConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(QueueStackdriverLoggingConfigOutput).ToQueueStackdriverLoggingConfigPtrOutput()
 }
 
 // QueueStackdriverLoggingConfigPtrInput is an input type that accepts QueueStackdriverLoggingConfigArgs, QueueStackdriverLoggingConfigPtr and QueueStackdriverLoggingConfigPtrOutput values.
@@ -773,7 +773,7 @@ func (i *queueStackdriverLoggingConfigPtrType) ToQueueStackdriverLoggingConfigPt
 }
 
 func (i *queueStackdriverLoggingConfigPtrType) ToQueueStackdriverLoggingConfigPtrOutputWithContext(ctx context.Context) QueueStackdriverLoggingConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(QueueStackdriverLoggingConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(QueueStackdriverLoggingConfigOutput).ToQueueStackdriverLoggingConfigPtrOutput()
 }
 
 type QueueStackdriverLoggingConfigOutput struct{ *pulumi.OutputState }

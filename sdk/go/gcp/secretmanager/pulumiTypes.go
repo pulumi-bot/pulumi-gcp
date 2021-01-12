@@ -50,7 +50,7 @@ func (i SecretIamBindingConditionArgs) ToSecretIamBindingConditionPtrOutput() Se
 }
 
 func (i SecretIamBindingConditionArgs) ToSecretIamBindingConditionPtrOutputWithContext(ctx context.Context) SecretIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecretIamBindingConditionOutput).ToSecretIamBindingConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SecretIamBindingConditionOutput).ToSecretIamBindingConditionPtrOutput()
 }
 
 // SecretIamBindingConditionPtrInput is an input type that accepts SecretIamBindingConditionArgs, SecretIamBindingConditionPtr and SecretIamBindingConditionPtrOutput values.
@@ -83,7 +83,7 @@ func (i *secretIamBindingConditionPtrType) ToSecretIamBindingConditionPtrOutput(
 }
 
 func (i *secretIamBindingConditionPtrType) ToSecretIamBindingConditionPtrOutputWithContext(ctx context.Context) SecretIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecretIamBindingConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SecretIamBindingConditionOutput).ToSecretIamBindingConditionPtrOutput()
 }
 
 type SecretIamBindingConditionOutput struct{ *pulumi.OutputState }
@@ -206,7 +206,7 @@ func (i SecretIamMemberConditionArgs) ToSecretIamMemberConditionPtrOutput() Secr
 }
 
 func (i SecretIamMemberConditionArgs) ToSecretIamMemberConditionPtrOutputWithContext(ctx context.Context) SecretIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecretIamMemberConditionOutput).ToSecretIamMemberConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SecretIamMemberConditionOutput).ToSecretIamMemberConditionPtrOutput()
 }
 
 // SecretIamMemberConditionPtrInput is an input type that accepts SecretIamMemberConditionArgs, SecretIamMemberConditionPtr and SecretIamMemberConditionPtrOutput values.
@@ -239,7 +239,7 @@ func (i *secretIamMemberConditionPtrType) ToSecretIamMemberConditionPtrOutput() 
 }
 
 func (i *secretIamMemberConditionPtrType) ToSecretIamMemberConditionPtrOutputWithContext(ctx context.Context) SecretIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecretIamMemberConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SecretIamMemberConditionOutput).ToSecretIamMemberConditionPtrOutput()
 }
 
 type SecretIamMemberConditionOutput struct{ *pulumi.OutputState }
@@ -366,7 +366,7 @@ func (i SecretReplicationArgs) ToSecretReplicationPtrOutput() SecretReplicationP
 }
 
 func (i SecretReplicationArgs) ToSecretReplicationPtrOutputWithContext(ctx context.Context) SecretReplicationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecretReplicationOutput).ToSecretReplicationPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SecretReplicationOutput).ToSecretReplicationPtrOutput()
 }
 
 // SecretReplicationPtrInput is an input type that accepts SecretReplicationArgs, SecretReplicationPtr and SecretReplicationPtrOutput values.
@@ -399,7 +399,7 @@ func (i *secretReplicationPtrType) ToSecretReplicationPtrOutput() SecretReplicat
 }
 
 func (i *secretReplicationPtrType) ToSecretReplicationPtrOutputWithContext(ctx context.Context) SecretReplicationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecretReplicationPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SecretReplicationOutput).ToSecretReplicationPtrOutput()
 }
 
 type SecretReplicationOutput struct{ *pulumi.OutputState }
@@ -516,7 +516,7 @@ func (i SecretReplicationUserManagedArgs) ToSecretReplicationUserManagedPtrOutpu
 }
 
 func (i SecretReplicationUserManagedArgs) ToSecretReplicationUserManagedPtrOutputWithContext(ctx context.Context) SecretReplicationUserManagedPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecretReplicationUserManagedOutput).ToSecretReplicationUserManagedPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(SecretReplicationUserManagedOutput).ToSecretReplicationUserManagedPtrOutput()
 }
 
 // SecretReplicationUserManagedPtrInput is an input type that accepts SecretReplicationUserManagedArgs, SecretReplicationUserManagedPtr and SecretReplicationUserManagedPtrOutput values.
@@ -549,7 +549,7 @@ func (i *secretReplicationUserManagedPtrType) ToSecretReplicationUserManagedPtrO
 }
 
 func (i *secretReplicationUserManagedPtrType) ToSecretReplicationUserManagedPtrOutputWithContext(ctx context.Context) SecretReplicationUserManagedPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecretReplicationUserManagedPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(SecretReplicationUserManagedOutput).ToSecretReplicationUserManagedPtrOutput()
 }
 
 type SecretReplicationUserManagedOutput struct{ *pulumi.OutputState }

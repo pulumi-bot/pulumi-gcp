@@ -60,7 +60,7 @@ func (i InstanceFileSharesArgs) ToInstanceFileSharesPtrOutput() InstanceFileShar
 }
 
 func (i InstanceFileSharesArgs) ToInstanceFileSharesPtrOutputWithContext(ctx context.Context) InstanceFileSharesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceFileSharesOutput).ToInstanceFileSharesPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceFileSharesOutput).ToInstanceFileSharesPtrOutput()
 }
 
 // InstanceFileSharesPtrInput is an input type that accepts InstanceFileSharesArgs, InstanceFileSharesPtr and InstanceFileSharesPtrOutput values.
@@ -93,7 +93,7 @@ func (i *instanceFileSharesPtrType) ToInstanceFileSharesPtrOutput() InstanceFile
 }
 
 func (i *instanceFileSharesPtrType) ToInstanceFileSharesPtrOutputWithContext(ctx context.Context) InstanceFileSharesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceFileSharesPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceFileSharesOutput).ToInstanceFileSharesPtrOutput()
 }
 
 type InstanceFileSharesOutput struct{ *pulumi.OutputState }

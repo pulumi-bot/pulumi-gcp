@@ -62,7 +62,7 @@ func (i InboundSamlConfigIdpConfigArgs) ToInboundSamlConfigIdpConfigPtrOutput() 
 }
 
 func (i InboundSamlConfigIdpConfigArgs) ToInboundSamlConfigIdpConfigPtrOutputWithContext(ctx context.Context) InboundSamlConfigIdpConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InboundSamlConfigIdpConfigOutput).ToInboundSamlConfigIdpConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(InboundSamlConfigIdpConfigOutput).ToInboundSamlConfigIdpConfigPtrOutput()
 }
 
 // InboundSamlConfigIdpConfigPtrInput is an input type that accepts InboundSamlConfigIdpConfigArgs, InboundSamlConfigIdpConfigPtr and InboundSamlConfigIdpConfigPtrOutput values.
@@ -95,7 +95,7 @@ func (i *inboundSamlConfigIdpConfigPtrType) ToInboundSamlConfigIdpConfigPtrOutpu
 }
 
 func (i *inboundSamlConfigIdpConfigPtrType) ToInboundSamlConfigIdpConfigPtrOutputWithContext(ctx context.Context) InboundSamlConfigIdpConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InboundSamlConfigIdpConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(InboundSamlConfigIdpConfigOutput).ToInboundSamlConfigIdpConfigPtrOutput()
 }
 
 type InboundSamlConfigIdpConfigOutput struct{ *pulumi.OutputState }
@@ -354,7 +354,7 @@ func (i InboundSamlConfigSpConfigArgs) ToInboundSamlConfigSpConfigPtrOutput() In
 }
 
 func (i InboundSamlConfigSpConfigArgs) ToInboundSamlConfigSpConfigPtrOutputWithContext(ctx context.Context) InboundSamlConfigSpConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InboundSamlConfigSpConfigOutput).ToInboundSamlConfigSpConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(InboundSamlConfigSpConfigOutput).ToInboundSamlConfigSpConfigPtrOutput()
 }
 
 // InboundSamlConfigSpConfigPtrInput is an input type that accepts InboundSamlConfigSpConfigArgs, InboundSamlConfigSpConfigPtr and InboundSamlConfigSpConfigPtrOutput values.
@@ -387,7 +387,7 @@ func (i *inboundSamlConfigSpConfigPtrType) ToInboundSamlConfigSpConfigPtrOutput(
 }
 
 func (i *inboundSamlConfigSpConfigPtrType) ToInboundSamlConfigSpConfigPtrOutputWithContext(ctx context.Context) InboundSamlConfigSpConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InboundSamlConfigSpConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(InboundSamlConfigSpConfigOutput).ToInboundSamlConfigSpConfigPtrOutput()
 }
 
 type InboundSamlConfigSpConfigOutput struct{ *pulumi.OutputState }
@@ -633,7 +633,7 @@ func (i TenantInboundSamlConfigIdpConfigArgs) ToTenantInboundSamlConfigIdpConfig
 }
 
 func (i TenantInboundSamlConfigIdpConfigArgs) ToTenantInboundSamlConfigIdpConfigPtrOutputWithContext(ctx context.Context) TenantInboundSamlConfigIdpConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TenantInboundSamlConfigIdpConfigOutput).ToTenantInboundSamlConfigIdpConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TenantInboundSamlConfigIdpConfigOutput).ToTenantInboundSamlConfigIdpConfigPtrOutput()
 }
 
 // TenantInboundSamlConfigIdpConfigPtrInput is an input type that accepts TenantInboundSamlConfigIdpConfigArgs, TenantInboundSamlConfigIdpConfigPtr and TenantInboundSamlConfigIdpConfigPtrOutput values.
@@ -666,7 +666,7 @@ func (i *tenantInboundSamlConfigIdpConfigPtrType) ToTenantInboundSamlConfigIdpCo
 }
 
 func (i *tenantInboundSamlConfigIdpConfigPtrType) ToTenantInboundSamlConfigIdpConfigPtrOutputWithContext(ctx context.Context) TenantInboundSamlConfigIdpConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TenantInboundSamlConfigIdpConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TenantInboundSamlConfigIdpConfigOutput).ToTenantInboundSamlConfigIdpConfigPtrOutput()
 }
 
 type TenantInboundSamlConfigIdpConfigOutput struct{ *pulumi.OutputState }
@@ -925,7 +925,7 @@ func (i TenantInboundSamlConfigSpConfigArgs) ToTenantInboundSamlConfigSpConfigPt
 }
 
 func (i TenantInboundSamlConfigSpConfigArgs) ToTenantInboundSamlConfigSpConfigPtrOutputWithContext(ctx context.Context) TenantInboundSamlConfigSpConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TenantInboundSamlConfigSpConfigOutput).ToTenantInboundSamlConfigSpConfigPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(TenantInboundSamlConfigSpConfigOutput).ToTenantInboundSamlConfigSpConfigPtrOutput()
 }
 
 // TenantInboundSamlConfigSpConfigPtrInput is an input type that accepts TenantInboundSamlConfigSpConfigArgs, TenantInboundSamlConfigSpConfigPtr and TenantInboundSamlConfigSpConfigPtrOutput values.
@@ -958,7 +958,7 @@ func (i *tenantInboundSamlConfigSpConfigPtrType) ToTenantInboundSamlConfigSpConf
 }
 
 func (i *tenantInboundSamlConfigSpConfigPtrType) ToTenantInboundSamlConfigSpConfigPtrOutputWithContext(ctx context.Context) TenantInboundSamlConfigSpConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TenantInboundSamlConfigSpConfigPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(TenantInboundSamlConfigSpConfigOutput).ToTenantInboundSamlConfigSpConfigPtrOutput()
 }
 
 type TenantInboundSamlConfigSpConfigOutput struct{ *pulumi.OutputState }

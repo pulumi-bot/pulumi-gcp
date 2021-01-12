@@ -150,7 +150,7 @@ func (i IAMBindingConditionArgs) ToIAMBindingConditionPtrOutput() IAMBindingCond
 }
 
 func (i IAMBindingConditionArgs) ToIAMBindingConditionPtrOutputWithContext(ctx context.Context) IAMBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IAMBindingConditionOutput).ToIAMBindingConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(IAMBindingConditionOutput).ToIAMBindingConditionPtrOutput()
 }
 
 // IAMBindingConditionPtrInput is an input type that accepts IAMBindingConditionArgs, IAMBindingConditionPtr and IAMBindingConditionPtrOutput values.
@@ -183,7 +183,7 @@ func (i *iambindingConditionPtrType) ToIAMBindingConditionPtrOutput() IAMBinding
 }
 
 func (i *iambindingConditionPtrType) ToIAMBindingConditionPtrOutputWithContext(ctx context.Context) IAMBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IAMBindingConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(IAMBindingConditionOutput).ToIAMBindingConditionPtrOutput()
 }
 
 type IAMBindingConditionOutput struct{ *pulumi.OutputState }
@@ -306,7 +306,7 @@ func (i IAMMemberConditionArgs) ToIAMMemberConditionPtrOutput() IAMMemberConditi
 }
 
 func (i IAMMemberConditionArgs) ToIAMMemberConditionPtrOutputWithContext(ctx context.Context) IAMMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IAMMemberConditionOutput).ToIAMMemberConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(IAMMemberConditionOutput).ToIAMMemberConditionPtrOutput()
 }
 
 // IAMMemberConditionPtrInput is an input type that accepts IAMMemberConditionArgs, IAMMemberConditionPtr and IAMMemberConditionPtrOutput values.
@@ -339,7 +339,7 @@ func (i *iammemberConditionPtrType) ToIAMMemberConditionPtrOutput() IAMMemberCon
 }
 
 func (i *iammemberConditionPtrType) ToIAMMemberConditionPtrOutputWithContext(ctx context.Context) IAMMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IAMMemberConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(IAMMemberConditionOutput).ToIAMMemberConditionPtrOutput()
 }
 
 type IAMMemberConditionOutput struct{ *pulumi.OutputState }
@@ -581,7 +581,7 @@ func (i PolicyBooleanPolicyArgs) ToPolicyBooleanPolicyPtrOutput() PolicyBooleanP
 }
 
 func (i PolicyBooleanPolicyArgs) ToPolicyBooleanPolicyPtrOutputWithContext(ctx context.Context) PolicyBooleanPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PolicyBooleanPolicyOutput).ToPolicyBooleanPolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PolicyBooleanPolicyOutput).ToPolicyBooleanPolicyPtrOutput()
 }
 
 // PolicyBooleanPolicyPtrInput is an input type that accepts PolicyBooleanPolicyArgs, PolicyBooleanPolicyPtr and PolicyBooleanPolicyPtrOutput values.
@@ -614,7 +614,7 @@ func (i *policyBooleanPolicyPtrType) ToPolicyBooleanPolicyPtrOutput() PolicyBool
 }
 
 func (i *policyBooleanPolicyPtrType) ToPolicyBooleanPolicyPtrOutputWithContext(ctx context.Context) PolicyBooleanPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PolicyBooleanPolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PolicyBooleanPolicyOutput).ToPolicyBooleanPolicyPtrOutput()
 }
 
 type PolicyBooleanPolicyOutput struct{ *pulumi.OutputState }
@@ -724,7 +724,7 @@ func (i PolicyListPolicyArgs) ToPolicyListPolicyPtrOutput() PolicyListPolicyPtrO
 }
 
 func (i PolicyListPolicyArgs) ToPolicyListPolicyPtrOutputWithContext(ctx context.Context) PolicyListPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PolicyListPolicyOutput).ToPolicyListPolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PolicyListPolicyOutput).ToPolicyListPolicyPtrOutput()
 }
 
 // PolicyListPolicyPtrInput is an input type that accepts PolicyListPolicyArgs, PolicyListPolicyPtr and PolicyListPolicyPtrOutput values.
@@ -757,7 +757,7 @@ func (i *policyListPolicyPtrType) ToPolicyListPolicyPtrOutput() PolicyListPolicy
 }
 
 func (i *policyListPolicyPtrType) ToPolicyListPolicyPtrOutputWithContext(ctx context.Context) PolicyListPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PolicyListPolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PolicyListPolicyOutput).ToPolicyListPolicyPtrOutput()
 }
 
 type PolicyListPolicyOutput struct{ *pulumi.OutputState }
@@ -904,7 +904,7 @@ func (i PolicyListPolicyAllowArgs) ToPolicyListPolicyAllowPtrOutput() PolicyList
 }
 
 func (i PolicyListPolicyAllowArgs) ToPolicyListPolicyAllowPtrOutputWithContext(ctx context.Context) PolicyListPolicyAllowPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PolicyListPolicyAllowOutput).ToPolicyListPolicyAllowPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PolicyListPolicyAllowOutput).ToPolicyListPolicyAllowPtrOutput()
 }
 
 // PolicyListPolicyAllowPtrInput is an input type that accepts PolicyListPolicyAllowArgs, PolicyListPolicyAllowPtr and PolicyListPolicyAllowPtrOutput values.
@@ -937,7 +937,7 @@ func (i *policyListPolicyAllowPtrType) ToPolicyListPolicyAllowPtrOutput() Policy
 }
 
 func (i *policyListPolicyAllowPtrType) ToPolicyListPolicyAllowPtrOutputWithContext(ctx context.Context) PolicyListPolicyAllowPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PolicyListPolicyAllowPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PolicyListPolicyAllowOutput).ToPolicyListPolicyAllowPtrOutput()
 }
 
 type PolicyListPolicyAllowOutput struct{ *pulumi.OutputState }
@@ -1054,7 +1054,7 @@ func (i PolicyListPolicyDenyArgs) ToPolicyListPolicyDenyPtrOutput() PolicyListPo
 }
 
 func (i PolicyListPolicyDenyArgs) ToPolicyListPolicyDenyPtrOutputWithContext(ctx context.Context) PolicyListPolicyDenyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PolicyListPolicyDenyOutput).ToPolicyListPolicyDenyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PolicyListPolicyDenyOutput).ToPolicyListPolicyDenyPtrOutput()
 }
 
 // PolicyListPolicyDenyPtrInput is an input type that accepts PolicyListPolicyDenyArgs, PolicyListPolicyDenyPtr and PolicyListPolicyDenyPtrOutput values.
@@ -1087,7 +1087,7 @@ func (i *policyListPolicyDenyPtrType) ToPolicyListPolicyDenyPtrOutput() PolicyLi
 }
 
 func (i *policyListPolicyDenyPtrType) ToPolicyListPolicyDenyPtrOutputWithContext(ctx context.Context) PolicyListPolicyDenyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PolicyListPolicyDenyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PolicyListPolicyDenyOutput).ToPolicyListPolicyDenyPtrOutput()
 }
 
 type PolicyListPolicyDenyOutput struct{ *pulumi.OutputState }
@@ -1200,7 +1200,7 @@ func (i PolicyRestorePolicyArgs) ToPolicyRestorePolicyPtrOutput() PolicyRestoreP
 }
 
 func (i PolicyRestorePolicyArgs) ToPolicyRestorePolicyPtrOutputWithContext(ctx context.Context) PolicyRestorePolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PolicyRestorePolicyOutput).ToPolicyRestorePolicyPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(PolicyRestorePolicyOutput).ToPolicyRestorePolicyPtrOutput()
 }
 
 // PolicyRestorePolicyPtrInput is an input type that accepts PolicyRestorePolicyArgs, PolicyRestorePolicyPtr and PolicyRestorePolicyPtrOutput values.
@@ -1233,7 +1233,7 @@ func (i *policyRestorePolicyPtrType) ToPolicyRestorePolicyPtrOutput() PolicyRest
 }
 
 func (i *policyRestorePolicyPtrType) ToPolicyRestorePolicyPtrOutputWithContext(ctx context.Context) PolicyRestorePolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PolicyRestorePolicyPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(PolicyRestorePolicyOutput).ToPolicyRestorePolicyPtrOutput()
 }
 
 type PolicyRestorePolicyOutput struct{ *pulumi.OutputState }
@@ -1693,7 +1693,7 @@ func (i GetIAMPolicyBindingConditionArgs) ToGetIAMPolicyBindingConditionPtrOutpu
 }
 
 func (i GetIAMPolicyBindingConditionArgs) ToGetIAMPolicyBindingConditionPtrOutputWithContext(ctx context.Context) GetIAMPolicyBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetIAMPolicyBindingConditionOutput).ToGetIAMPolicyBindingConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(GetIAMPolicyBindingConditionOutput).ToGetIAMPolicyBindingConditionPtrOutput()
 }
 
 // GetIAMPolicyBindingConditionPtrInput is an input type that accepts GetIAMPolicyBindingConditionArgs, GetIAMPolicyBindingConditionPtr and GetIAMPolicyBindingConditionPtrOutput values.
@@ -1726,7 +1726,7 @@ func (i *getIAMPolicyBindingConditionPtrType) ToGetIAMPolicyBindingConditionPtrO
 }
 
 func (i *getIAMPolicyBindingConditionPtrType) ToGetIAMPolicyBindingConditionPtrOutputWithContext(ctx context.Context) GetIAMPolicyBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetIAMPolicyBindingConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(GetIAMPolicyBindingConditionOutput).ToGetIAMPolicyBindingConditionPtrOutput()
 }
 
 type GetIAMPolicyBindingConditionOutput struct{ *pulumi.OutputState }

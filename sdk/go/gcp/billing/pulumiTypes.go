@@ -50,7 +50,7 @@ func (i AccountIamBindingConditionArgs) ToAccountIamBindingConditionPtrOutput() 
 }
 
 func (i AccountIamBindingConditionArgs) ToAccountIamBindingConditionPtrOutputWithContext(ctx context.Context) AccountIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AccountIamBindingConditionOutput).ToAccountIamBindingConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(AccountIamBindingConditionOutput).ToAccountIamBindingConditionPtrOutput()
 }
 
 // AccountIamBindingConditionPtrInput is an input type that accepts AccountIamBindingConditionArgs, AccountIamBindingConditionPtr and AccountIamBindingConditionPtrOutput values.
@@ -83,7 +83,7 @@ func (i *accountIamBindingConditionPtrType) ToAccountIamBindingConditionPtrOutpu
 }
 
 func (i *accountIamBindingConditionPtrType) ToAccountIamBindingConditionPtrOutputWithContext(ctx context.Context) AccountIamBindingConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AccountIamBindingConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(AccountIamBindingConditionOutput).ToAccountIamBindingConditionPtrOutput()
 }
 
 type AccountIamBindingConditionOutput struct{ *pulumi.OutputState }
@@ -206,7 +206,7 @@ func (i AccountIamMemberConditionArgs) ToAccountIamMemberConditionPtrOutput() Ac
 }
 
 func (i AccountIamMemberConditionArgs) ToAccountIamMemberConditionPtrOutputWithContext(ctx context.Context) AccountIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AccountIamMemberConditionOutput).ToAccountIamMemberConditionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(AccountIamMemberConditionOutput).ToAccountIamMemberConditionPtrOutput()
 }
 
 // AccountIamMemberConditionPtrInput is an input type that accepts AccountIamMemberConditionArgs, AccountIamMemberConditionPtr and AccountIamMemberConditionPtrOutput values.
@@ -239,7 +239,7 @@ func (i *accountIamMemberConditionPtrType) ToAccountIamMemberConditionPtrOutput(
 }
 
 func (i *accountIamMemberConditionPtrType) ToAccountIamMemberConditionPtrOutputWithContext(ctx context.Context) AccountIamMemberConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AccountIamMemberConditionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(AccountIamMemberConditionOutput).ToAccountIamMemberConditionPtrOutput()
 }
 
 type AccountIamMemberConditionOutput struct{ *pulumi.OutputState }
@@ -394,7 +394,7 @@ func (i BudgetAllUpdatesRuleArgs) ToBudgetAllUpdatesRulePtrOutput() BudgetAllUpd
 }
 
 func (i BudgetAllUpdatesRuleArgs) ToBudgetAllUpdatesRulePtrOutputWithContext(ctx context.Context) BudgetAllUpdatesRulePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BudgetAllUpdatesRuleOutput).ToBudgetAllUpdatesRulePtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(BudgetAllUpdatesRuleOutput).ToBudgetAllUpdatesRulePtrOutput()
 }
 
 // BudgetAllUpdatesRulePtrInput is an input type that accepts BudgetAllUpdatesRuleArgs, BudgetAllUpdatesRulePtr and BudgetAllUpdatesRulePtrOutput values.
@@ -427,7 +427,7 @@ func (i *budgetAllUpdatesRulePtrType) ToBudgetAllUpdatesRulePtrOutput() BudgetAl
 }
 
 func (i *budgetAllUpdatesRulePtrType) ToBudgetAllUpdatesRulePtrOutputWithContext(ctx context.Context) BudgetAllUpdatesRulePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BudgetAllUpdatesRulePtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(BudgetAllUpdatesRuleOutput).ToBudgetAllUpdatesRulePtrOutput()
 }
 
 type BudgetAllUpdatesRuleOutput struct{ *pulumi.OutputState }
@@ -608,7 +608,7 @@ func (i BudgetAmountArgs) ToBudgetAmountPtrOutput() BudgetAmountPtrOutput {
 }
 
 func (i BudgetAmountArgs) ToBudgetAmountPtrOutputWithContext(ctx context.Context) BudgetAmountPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BudgetAmountOutput).ToBudgetAmountPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(BudgetAmountOutput).ToBudgetAmountPtrOutput()
 }
 
 // BudgetAmountPtrInput is an input type that accepts BudgetAmountArgs, BudgetAmountPtr and BudgetAmountPtrOutput values.
@@ -641,7 +641,7 @@ func (i *budgetAmountPtrType) ToBudgetAmountPtrOutput() BudgetAmountPtrOutput {
 }
 
 func (i *budgetAmountPtrType) ToBudgetAmountPtrOutputWithContext(ctx context.Context) BudgetAmountPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BudgetAmountPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(BudgetAmountOutput).ToBudgetAmountPtrOutput()
 }
 
 type BudgetAmountOutput struct{ *pulumi.OutputState }
@@ -788,7 +788,7 @@ func (i BudgetAmountSpecifiedAmountArgs) ToBudgetAmountSpecifiedAmountPtrOutput(
 }
 
 func (i BudgetAmountSpecifiedAmountArgs) ToBudgetAmountSpecifiedAmountPtrOutputWithContext(ctx context.Context) BudgetAmountSpecifiedAmountPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BudgetAmountSpecifiedAmountOutput).ToBudgetAmountSpecifiedAmountPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(BudgetAmountSpecifiedAmountOutput).ToBudgetAmountSpecifiedAmountPtrOutput()
 }
 
 // BudgetAmountSpecifiedAmountPtrInput is an input type that accepts BudgetAmountSpecifiedAmountArgs, BudgetAmountSpecifiedAmountPtr and BudgetAmountSpecifiedAmountPtrOutput values.
@@ -821,7 +821,7 @@ func (i *budgetAmountSpecifiedAmountPtrType) ToBudgetAmountSpecifiedAmountPtrOut
 }
 
 func (i *budgetAmountSpecifiedAmountPtrType) ToBudgetAmountSpecifiedAmountPtrOutputWithContext(ctx context.Context) BudgetAmountSpecifiedAmountPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BudgetAmountSpecifiedAmountPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(BudgetAmountSpecifiedAmountOutput).ToBudgetAmountSpecifiedAmountPtrOutput()
 }
 
 type BudgetAmountSpecifiedAmountOutput struct{ *pulumi.OutputState }
@@ -1031,7 +1031,7 @@ func (i BudgetBudgetFilterArgs) ToBudgetBudgetFilterPtrOutput() BudgetBudgetFilt
 }
 
 func (i BudgetBudgetFilterArgs) ToBudgetBudgetFilterPtrOutputWithContext(ctx context.Context) BudgetBudgetFilterPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BudgetBudgetFilterOutput).ToBudgetBudgetFilterPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(BudgetBudgetFilterOutput).ToBudgetBudgetFilterPtrOutput()
 }
 
 // BudgetBudgetFilterPtrInput is an input type that accepts BudgetBudgetFilterArgs, BudgetBudgetFilterPtr and BudgetBudgetFilterPtrOutput values.
@@ -1064,7 +1064,7 @@ func (i *budgetBudgetFilterPtrType) ToBudgetBudgetFilterPtrOutput() BudgetBudget
 }
 
 func (i *budgetBudgetFilterPtrType) ToBudgetBudgetFilterPtrOutputWithContext(ctx context.Context) BudgetBudgetFilterPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BudgetBudgetFilterPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(BudgetBudgetFilterOutput).ToBudgetBudgetFilterPtrOutput()
 }
 
 type BudgetBudgetFilterOutput struct{ *pulumi.OutputState }

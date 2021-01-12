@@ -64,7 +64,7 @@ func (i NoteAttestationAuthorityArgs) ToNoteAttestationAuthorityPtrOutput() Note
 }
 
 func (i NoteAttestationAuthorityArgs) ToNoteAttestationAuthorityPtrOutputWithContext(ctx context.Context) NoteAttestationAuthorityPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NoteAttestationAuthorityOutput).ToNoteAttestationAuthorityPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(NoteAttestationAuthorityOutput).ToNoteAttestationAuthorityPtrOutput()
 }
 
 // NoteAttestationAuthorityPtrInput is an input type that accepts NoteAttestationAuthorityArgs, NoteAttestationAuthorityPtr and NoteAttestationAuthorityPtrOutput values.
@@ -97,7 +97,7 @@ func (i *noteAttestationAuthorityPtrType) ToNoteAttestationAuthorityPtrOutput() 
 }
 
 func (i *noteAttestationAuthorityPtrType) ToNoteAttestationAuthorityPtrOutputWithContext(ctx context.Context) NoteAttestationAuthorityPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NoteAttestationAuthorityPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(NoteAttestationAuthorityOutput).ToNoteAttestationAuthorityPtrOutput()
 }
 
 type NoteAttestationAuthorityOutput struct{ *pulumi.OutputState }
@@ -213,7 +213,7 @@ func (i NoteAttestationAuthorityHintArgs) ToNoteAttestationAuthorityHintPtrOutpu
 }
 
 func (i NoteAttestationAuthorityHintArgs) ToNoteAttestationAuthorityHintPtrOutputWithContext(ctx context.Context) NoteAttestationAuthorityHintPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NoteAttestationAuthorityHintOutput).ToNoteAttestationAuthorityHintPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(NoteAttestationAuthorityHintOutput).ToNoteAttestationAuthorityHintPtrOutput()
 }
 
 // NoteAttestationAuthorityHintPtrInput is an input type that accepts NoteAttestationAuthorityHintArgs, NoteAttestationAuthorityHintPtr and NoteAttestationAuthorityHintPtrOutput values.
@@ -246,7 +246,7 @@ func (i *noteAttestationAuthorityHintPtrType) ToNoteAttestationAuthorityHintPtrO
 }
 
 func (i *noteAttestationAuthorityHintPtrType) ToNoteAttestationAuthorityHintPtrOutputWithContext(ctx context.Context) NoteAttestationAuthorityHintPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NoteAttestationAuthorityHintPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(NoteAttestationAuthorityHintOutput).ToNoteAttestationAuthorityHintPtrOutput()
 }
 
 type NoteAttestationAuthorityHintOutput struct{ *pulumi.OutputState }
@@ -468,7 +468,7 @@ func (i OccurenceAttestationArgs) ToOccurenceAttestationPtrOutput() OccurenceAtt
 }
 
 func (i OccurenceAttestationArgs) ToOccurenceAttestationPtrOutputWithContext(ctx context.Context) OccurenceAttestationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(OccurenceAttestationOutput).ToOccurenceAttestationPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(OccurenceAttestationOutput).ToOccurenceAttestationPtrOutput()
 }
 
 // OccurenceAttestationPtrInput is an input type that accepts OccurenceAttestationArgs, OccurenceAttestationPtr and OccurenceAttestationPtrOutput values.
@@ -501,7 +501,7 @@ func (i *occurenceAttestationPtrType) ToOccurenceAttestationPtrOutput() Occurenc
 }
 
 func (i *occurenceAttestationPtrType) ToOccurenceAttestationPtrOutputWithContext(ctx context.Context) OccurenceAttestationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(OccurenceAttestationPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(OccurenceAttestationOutput).ToOccurenceAttestationPtrOutput()
 }
 
 type OccurenceAttestationOutput struct{ *pulumi.OutputState }

@@ -48,7 +48,7 @@ func (i EngineModelDefaultVersionArgs) ToEngineModelDefaultVersionPtrOutput() En
 }
 
 func (i EngineModelDefaultVersionArgs) ToEngineModelDefaultVersionPtrOutputWithContext(ctx context.Context) EngineModelDefaultVersionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EngineModelDefaultVersionOutput).ToEngineModelDefaultVersionPtrOutputWithContext(ctx)
+	return pulumi.ToOutputWithContext(ctx, i).(EngineModelDefaultVersionOutput).ToEngineModelDefaultVersionPtrOutput()
 }
 
 // EngineModelDefaultVersionPtrInput is an input type that accepts EngineModelDefaultVersionArgs, EngineModelDefaultVersionPtr and EngineModelDefaultVersionPtrOutput values.
@@ -81,7 +81,7 @@ func (i *engineModelDefaultVersionPtrType) ToEngineModelDefaultVersionPtrOutput(
 }
 
 func (i *engineModelDefaultVersionPtrType) ToEngineModelDefaultVersionPtrOutputWithContext(ctx context.Context) EngineModelDefaultVersionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EngineModelDefaultVersionPtrOutput)
+	return pulumi.ToOutputWithContext(ctx, i).(EngineModelDefaultVersionOutput).ToEngineModelDefaultVersionPtrOutput()
 }
 
 type EngineModelDefaultVersionOutput struct{ *pulumi.OutputState }
