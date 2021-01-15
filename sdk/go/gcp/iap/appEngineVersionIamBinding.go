@@ -201,16 +201,95 @@ type AppEngineVersionIamBindingInput interface {
 	ToAppEngineVersionIamBindingOutputWithContext(ctx context.Context) AppEngineVersionIamBindingOutput
 }
 
-func (AppEngineVersionIamBinding) ElementType() reflect.Type {
-	return reflect.TypeOf((*AppEngineVersionIamBinding)(nil)).Elem()
+func (*AppEngineVersionIamBinding) ElementType() reflect.Type {
+	return reflect.TypeOf((*AppEngineVersionIamBinding)(nil))
 }
 
-func (i AppEngineVersionIamBinding) ToAppEngineVersionIamBindingOutput() AppEngineVersionIamBindingOutput {
+func (i *AppEngineVersionIamBinding) ToAppEngineVersionIamBindingOutput() AppEngineVersionIamBindingOutput {
 	return i.ToAppEngineVersionIamBindingOutputWithContext(context.Background())
 }
 
-func (i AppEngineVersionIamBinding) ToAppEngineVersionIamBindingOutputWithContext(ctx context.Context) AppEngineVersionIamBindingOutput {
+func (i *AppEngineVersionIamBinding) ToAppEngineVersionIamBindingOutputWithContext(ctx context.Context) AppEngineVersionIamBindingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AppEngineVersionIamBindingOutput)
+}
+
+func (i *AppEngineVersionIamBinding) ToAppEngineVersionIamBindingPtrOutput() AppEngineVersionIamBindingPtrOutput {
+	return i.ToAppEngineVersionIamBindingPtrOutputWithContext(context.Background())
+}
+
+func (i *AppEngineVersionIamBinding) ToAppEngineVersionIamBindingPtrOutputWithContext(ctx context.Context) AppEngineVersionIamBindingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AppEngineVersionIamBindingPtrOutput)
+}
+
+type AppEngineVersionIamBindingPtrInput interface {
+	pulumi.Input
+
+	ToAppEngineVersionIamBindingPtrOutput() AppEngineVersionIamBindingPtrOutput
+	ToAppEngineVersionIamBindingPtrOutputWithContext(ctx context.Context) AppEngineVersionIamBindingPtrOutput
+}
+
+type appEngineVersionIamBindingPtrType AppEngineVersionIamBindingArgs
+
+func (*appEngineVersionIamBindingPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AppEngineVersionIamBinding)(nil))
+}
+
+func (i *appEngineVersionIamBindingPtrType) ToAppEngineVersionIamBindingPtrOutput() AppEngineVersionIamBindingPtrOutput {
+	return i.ToAppEngineVersionIamBindingPtrOutputWithContext(context.Background())
+}
+
+func (i *appEngineVersionIamBindingPtrType) ToAppEngineVersionIamBindingPtrOutputWithContext(ctx context.Context) AppEngineVersionIamBindingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AppEngineVersionIamBindingPtrOutput)
+}
+
+// AppEngineVersionIamBindingArrayInput is an input type that accepts AppEngineVersionIamBindingArray and AppEngineVersionIamBindingArrayOutput values.
+// You can construct a concrete instance of `AppEngineVersionIamBindingArrayInput` via:
+//
+//          AppEngineVersionIamBindingArray{ AppEngineVersionIamBindingArgs{...} }
+type AppEngineVersionIamBindingArrayInput interface {
+	pulumi.Input
+
+	ToAppEngineVersionIamBindingArrayOutput() AppEngineVersionIamBindingArrayOutput
+	ToAppEngineVersionIamBindingArrayOutputWithContext(context.Context) AppEngineVersionIamBindingArrayOutput
+}
+
+type AppEngineVersionIamBindingArray []AppEngineVersionIamBindingInput
+
+func (AppEngineVersionIamBindingArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*AppEngineVersionIamBinding)(nil))
+}
+
+func (i AppEngineVersionIamBindingArray) ToAppEngineVersionIamBindingArrayOutput() AppEngineVersionIamBindingArrayOutput {
+	return i.ToAppEngineVersionIamBindingArrayOutputWithContext(context.Background())
+}
+
+func (i AppEngineVersionIamBindingArray) ToAppEngineVersionIamBindingArrayOutputWithContext(ctx context.Context) AppEngineVersionIamBindingArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AppEngineVersionIamBindingArrayOutput)
+}
+
+// AppEngineVersionIamBindingMapInput is an input type that accepts AppEngineVersionIamBindingMap and AppEngineVersionIamBindingMapOutput values.
+// You can construct a concrete instance of `AppEngineVersionIamBindingMapInput` via:
+//
+//          AppEngineVersionIamBindingMap{ "key": AppEngineVersionIamBindingArgs{...} }
+type AppEngineVersionIamBindingMapInput interface {
+	pulumi.Input
+
+	ToAppEngineVersionIamBindingMapOutput() AppEngineVersionIamBindingMapOutput
+	ToAppEngineVersionIamBindingMapOutputWithContext(context.Context) AppEngineVersionIamBindingMapOutput
+}
+
+type AppEngineVersionIamBindingMap map[string]AppEngineVersionIamBindingInput
+
+func (AppEngineVersionIamBindingMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*AppEngineVersionIamBinding)(nil))
+}
+
+func (i AppEngineVersionIamBindingMap) ToAppEngineVersionIamBindingMapOutput() AppEngineVersionIamBindingMapOutput {
+	return i.ToAppEngineVersionIamBindingMapOutputWithContext(context.Background())
+}
+
+func (i AppEngineVersionIamBindingMap) ToAppEngineVersionIamBindingMapOutputWithContext(ctx context.Context) AppEngineVersionIamBindingMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AppEngineVersionIamBindingMapOutput)
 }
 
 type AppEngineVersionIamBindingOutput struct {
@@ -218,7 +297,7 @@ type AppEngineVersionIamBindingOutput struct {
 }
 
 func (AppEngineVersionIamBindingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AppEngineVersionIamBindingOutput)(nil)).Elem()
+	return reflect.TypeOf((*AppEngineVersionIamBinding)(nil))
 }
 
 func (o AppEngineVersionIamBindingOutput) ToAppEngineVersionIamBindingOutput() AppEngineVersionIamBindingOutput {
@@ -229,6 +308,75 @@ func (o AppEngineVersionIamBindingOutput) ToAppEngineVersionIamBindingOutputWith
 	return o
 }
 
+func (o AppEngineVersionIamBindingOutput) ToAppEngineVersionIamBindingPtrOutput() AppEngineVersionIamBindingPtrOutput {
+	return o.ToAppEngineVersionIamBindingPtrOutputWithContext(context.Background())
+}
+
+func (o AppEngineVersionIamBindingOutput) ToAppEngineVersionIamBindingPtrOutputWithContext(ctx context.Context) AppEngineVersionIamBindingPtrOutput {
+	return o.ApplyT(func(v AppEngineVersionIamBinding) *AppEngineVersionIamBinding {
+		return &v
+	}).(AppEngineVersionIamBindingPtrOutput)
+}
+
+type AppEngineVersionIamBindingPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (AppEngineVersionIamBindingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AppEngineVersionIamBinding)(nil))
+}
+
+func (o AppEngineVersionIamBindingPtrOutput) ToAppEngineVersionIamBindingPtrOutput() AppEngineVersionIamBindingPtrOutput {
+	return o
+}
+
+func (o AppEngineVersionIamBindingPtrOutput) ToAppEngineVersionIamBindingPtrOutputWithContext(ctx context.Context) AppEngineVersionIamBindingPtrOutput {
+	return o
+}
+
+type AppEngineVersionIamBindingArrayOutput struct{ *pulumi.OutputState }
+
+func (AppEngineVersionIamBindingArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AppEngineVersionIamBinding)(nil))
+}
+
+func (o AppEngineVersionIamBindingArrayOutput) ToAppEngineVersionIamBindingArrayOutput() AppEngineVersionIamBindingArrayOutput {
+	return o
+}
+
+func (o AppEngineVersionIamBindingArrayOutput) ToAppEngineVersionIamBindingArrayOutputWithContext(ctx context.Context) AppEngineVersionIamBindingArrayOutput {
+	return o
+}
+
+func (o AppEngineVersionIamBindingArrayOutput) Index(i pulumi.IntInput) AppEngineVersionIamBindingOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AppEngineVersionIamBinding {
+		return vs[0].([]AppEngineVersionIamBinding)[vs[1].(int)]
+	}).(AppEngineVersionIamBindingOutput)
+}
+
+type AppEngineVersionIamBindingMapOutput struct{ *pulumi.OutputState }
+
+func (AppEngineVersionIamBindingMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]AppEngineVersionIamBinding)(nil))
+}
+
+func (o AppEngineVersionIamBindingMapOutput) ToAppEngineVersionIamBindingMapOutput() AppEngineVersionIamBindingMapOutput {
+	return o
+}
+
+func (o AppEngineVersionIamBindingMapOutput) ToAppEngineVersionIamBindingMapOutputWithContext(ctx context.Context) AppEngineVersionIamBindingMapOutput {
+	return o
+}
+
+func (o AppEngineVersionIamBindingMapOutput) MapIndex(k pulumi.StringInput) AppEngineVersionIamBindingOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) AppEngineVersionIamBinding {
+		return vs[0].(map[string]AppEngineVersionIamBinding)[vs[1].(string)]
+	}).(AppEngineVersionIamBindingOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(AppEngineVersionIamBindingOutput{})
+	pulumi.RegisterOutputType(AppEngineVersionIamBindingPtrOutput{})
+	pulumi.RegisterOutputType(AppEngineVersionIamBindingArrayOutput{})
+	pulumi.RegisterOutputType(AppEngineVersionIamBindingMapOutput{})
 }
