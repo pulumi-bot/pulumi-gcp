@@ -4,10 +4,14 @@
 package gcp
 
 import (
+	"fmt"
 	"os"
+	"reflect"
+	"regexp"
 	"strconv"
 	"strings"
 
+	"github.com/blang/semver"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -55,4 +59,19 @@ func getEnvOrDefault(def interface{}, parser envParser, vars ...string) interfac
 		}
 	}
 	return def
+}
+
+// PkgVersion uses reflection to determine the version of the current package.
+func PkgVersion() (semver.Version, error) {
+	type sentinal struct{}
+	pkgPath := reflect.TypeOf(sentinal{}).PkgPath()
+	re := regexp.MustCompile("^.*/pulumi-gcp/sdk/v(\\d+)*")
+	if match := re.FindStringSubmatch(pkgPath); match != nil {
+		vStr := match[1]
+		if len(vStr) == 0 {
+			return semver.Version{Major: 1}, nil
+		}
+		return semver.MustParse(fmt.Sprintf("%s.0.0", vStr)), nil
+	}
+	return semver.Version{}, fmt.Errorf("not found")
 }
