@@ -244,15 +244,15 @@ type GCPolicyInput interface {
 	ToGCPolicyOutputWithContext(ctx context.Context) GCPolicyOutput
 }
 
-func (GCPolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*GCPolicy)(nil)).Elem()
+func (*GCPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*GCPolicy)(nil))
 }
 
-func (i GCPolicy) ToGCPolicyOutput() GCPolicyOutput {
+func (i *GCPolicy) ToGCPolicyOutput() GCPolicyOutput {
 	return i.ToGCPolicyOutputWithContext(context.Background())
 }
 
-func (i GCPolicy) ToGCPolicyOutputWithContext(ctx context.Context) GCPolicyOutput {
+func (i *GCPolicy) ToGCPolicyOutputWithContext(ctx context.Context) GCPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GCPolicyOutput)
 }
 
@@ -261,7 +261,7 @@ type GCPolicyOutput struct {
 }
 
 func (GCPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GCPolicyOutput)(nil)).Elem()
+	return reflect.TypeOf((*GCPolicy)(nil))
 }
 
 func (o GCPolicyOutput) ToGCPolicyOutput() GCPolicyOutput {
