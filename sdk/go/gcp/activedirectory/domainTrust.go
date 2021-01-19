@@ -252,16 +252,95 @@ type DomainTrustInput interface {
 	ToDomainTrustOutputWithContext(ctx context.Context) DomainTrustOutput
 }
 
-func (DomainTrust) ElementType() reflect.Type {
-	return reflect.TypeOf((*DomainTrust)(nil)).Elem()
+func (*DomainTrust) ElementType() reflect.Type {
+	return reflect.TypeOf((*DomainTrust)(nil))
 }
 
-func (i DomainTrust) ToDomainTrustOutput() DomainTrustOutput {
+func (i *DomainTrust) ToDomainTrustOutput() DomainTrustOutput {
 	return i.ToDomainTrustOutputWithContext(context.Background())
 }
 
-func (i DomainTrust) ToDomainTrustOutputWithContext(ctx context.Context) DomainTrustOutput {
+func (i *DomainTrust) ToDomainTrustOutputWithContext(ctx context.Context) DomainTrustOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DomainTrustOutput)
+}
+
+func (i *DomainTrust) ToDomainTrustPtrOutput() DomainTrustPtrOutput {
+	return i.ToDomainTrustPtrOutputWithContext(context.Background())
+}
+
+func (i *DomainTrust) ToDomainTrustPtrOutputWithContext(ctx context.Context) DomainTrustPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DomainTrustPtrOutput)
+}
+
+type DomainTrustPtrInput interface {
+	pulumi.Input
+
+	ToDomainTrustPtrOutput() DomainTrustPtrOutput
+	ToDomainTrustPtrOutputWithContext(ctx context.Context) DomainTrustPtrOutput
+}
+
+type domainTrustPtrType DomainTrustArgs
+
+func (*domainTrustPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DomainTrust)(nil))
+}
+
+func (i *domainTrustPtrType) ToDomainTrustPtrOutput() DomainTrustPtrOutput {
+	return i.ToDomainTrustPtrOutputWithContext(context.Background())
+}
+
+func (i *domainTrustPtrType) ToDomainTrustPtrOutputWithContext(ctx context.Context) DomainTrustPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DomainTrustPtrOutput)
+}
+
+// DomainTrustArrayInput is an input type that accepts DomainTrustArray and DomainTrustArrayOutput values.
+// You can construct a concrete instance of `DomainTrustArrayInput` via:
+//
+//          DomainTrustArray{ DomainTrustArgs{...} }
+type DomainTrustArrayInput interface {
+	pulumi.Input
+
+	ToDomainTrustArrayOutput() DomainTrustArrayOutput
+	ToDomainTrustArrayOutputWithContext(context.Context) DomainTrustArrayOutput
+}
+
+type DomainTrustArray []DomainTrustInput
+
+func (DomainTrustArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*DomainTrust)(nil))
+}
+
+func (i DomainTrustArray) ToDomainTrustArrayOutput() DomainTrustArrayOutput {
+	return i.ToDomainTrustArrayOutputWithContext(context.Background())
+}
+
+func (i DomainTrustArray) ToDomainTrustArrayOutputWithContext(ctx context.Context) DomainTrustArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DomainTrustArrayOutput)
+}
+
+// DomainTrustMapInput is an input type that accepts DomainTrustMap and DomainTrustMapOutput values.
+// You can construct a concrete instance of `DomainTrustMapInput` via:
+//
+//          DomainTrustMap{ "key": DomainTrustArgs{...} }
+type DomainTrustMapInput interface {
+	pulumi.Input
+
+	ToDomainTrustMapOutput() DomainTrustMapOutput
+	ToDomainTrustMapOutputWithContext(context.Context) DomainTrustMapOutput
+}
+
+type DomainTrustMap map[string]DomainTrustInput
+
+func (DomainTrustMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*DomainTrust)(nil))
+}
+
+func (i DomainTrustMap) ToDomainTrustMapOutput() DomainTrustMapOutput {
+	return i.ToDomainTrustMapOutputWithContext(context.Background())
+}
+
+func (i DomainTrustMap) ToDomainTrustMapOutputWithContext(ctx context.Context) DomainTrustMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DomainTrustMapOutput)
 }
 
 type DomainTrustOutput struct {
@@ -269,7 +348,7 @@ type DomainTrustOutput struct {
 }
 
 func (DomainTrustOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DomainTrustOutput)(nil)).Elem()
+	return reflect.TypeOf((*DomainTrust)(nil))
 }
 
 func (o DomainTrustOutput) ToDomainTrustOutput() DomainTrustOutput {
@@ -280,6 +359,75 @@ func (o DomainTrustOutput) ToDomainTrustOutputWithContext(ctx context.Context) D
 	return o
 }
 
+func (o DomainTrustOutput) ToDomainTrustPtrOutput() DomainTrustPtrOutput {
+	return o.ToDomainTrustPtrOutputWithContext(context.Background())
+}
+
+func (o DomainTrustOutput) ToDomainTrustPtrOutputWithContext(ctx context.Context) DomainTrustPtrOutput {
+	return o.ApplyT(func(v DomainTrust) *DomainTrust {
+		return &v
+	}).(DomainTrustPtrOutput)
+}
+
+type DomainTrustPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (DomainTrustPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DomainTrust)(nil))
+}
+
+func (o DomainTrustPtrOutput) ToDomainTrustPtrOutput() DomainTrustPtrOutput {
+	return o
+}
+
+func (o DomainTrustPtrOutput) ToDomainTrustPtrOutputWithContext(ctx context.Context) DomainTrustPtrOutput {
+	return o
+}
+
+type DomainTrustArrayOutput struct{ *pulumi.OutputState }
+
+func (DomainTrustArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DomainTrust)(nil))
+}
+
+func (o DomainTrustArrayOutput) ToDomainTrustArrayOutput() DomainTrustArrayOutput {
+	return o
+}
+
+func (o DomainTrustArrayOutput) ToDomainTrustArrayOutputWithContext(ctx context.Context) DomainTrustArrayOutput {
+	return o
+}
+
+func (o DomainTrustArrayOutput) Index(i pulumi.IntInput) DomainTrustOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DomainTrust {
+		return vs[0].([]DomainTrust)[vs[1].(int)]
+	}).(DomainTrustOutput)
+}
+
+type DomainTrustMapOutput struct{ *pulumi.OutputState }
+
+func (DomainTrustMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]DomainTrust)(nil))
+}
+
+func (o DomainTrustMapOutput) ToDomainTrustMapOutput() DomainTrustMapOutput {
+	return o
+}
+
+func (o DomainTrustMapOutput) ToDomainTrustMapOutputWithContext(ctx context.Context) DomainTrustMapOutput {
+	return o
+}
+
+func (o DomainTrustMapOutput) MapIndex(k pulumi.StringInput) DomainTrustOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) DomainTrust {
+		return vs[0].(map[string]DomainTrust)[vs[1].(string)]
+	}).(DomainTrustOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(DomainTrustOutput{})
+	pulumi.RegisterOutputType(DomainTrustPtrOutput{})
+	pulumi.RegisterOutputType(DomainTrustArrayOutput{})
+	pulumi.RegisterOutputType(DomainTrustMapOutput{})
 }
