@@ -285,6 +285,7 @@ namespace Pulumi.Gcp.Compute
     ///  $ pulumi import gcp:compute/backendService:BackendService default {{name}}
     /// ```
     /// </summary>
+    [GcpResourceType("gcp:compute/backendService:BackendService")]
     public partial class BackendService : Pulumi.CustomResource
     {
         /// <summary>
