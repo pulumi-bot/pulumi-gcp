@@ -259,15 +259,15 @@ type RegionPerInstanceConfigInput interface {
 	ToRegionPerInstanceConfigOutputWithContext(ctx context.Context) RegionPerInstanceConfigOutput
 }
 
-func (RegionPerInstanceConfig) ElementType() reflect.Type {
-	return reflect.TypeOf((*RegionPerInstanceConfig)(nil)).Elem()
+func (*RegionPerInstanceConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionPerInstanceConfig)(nil))
 }
 
-func (i RegionPerInstanceConfig) ToRegionPerInstanceConfigOutput() RegionPerInstanceConfigOutput {
+func (i *RegionPerInstanceConfig) ToRegionPerInstanceConfigOutput() RegionPerInstanceConfigOutput {
 	return i.ToRegionPerInstanceConfigOutputWithContext(context.Background())
 }
 
-func (i RegionPerInstanceConfig) ToRegionPerInstanceConfigOutputWithContext(ctx context.Context) RegionPerInstanceConfigOutput {
+func (i *RegionPerInstanceConfig) ToRegionPerInstanceConfigOutputWithContext(ctx context.Context) RegionPerInstanceConfigOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RegionPerInstanceConfigOutput)
 }
 
@@ -276,7 +276,7 @@ type RegionPerInstanceConfigOutput struct {
 }
 
 func (RegionPerInstanceConfigOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RegionPerInstanceConfigOutput)(nil)).Elem()
+	return reflect.TypeOf((*RegionPerInstanceConfig)(nil))
 }
 
 func (o RegionPerInstanceConfigOutput) ToRegionPerInstanceConfigOutput() RegionPerInstanceConfigOutput {
