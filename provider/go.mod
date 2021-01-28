@@ -14,3 +14,5 @@ replace (
 	github.com/hashicorp/terraform-provider-google-beta/v3 => github.com/pulumi/terraform-provider-google-beta/v3 v3.0.0-20210125224607-31d6fb43d2e0
 	github.com/hashicorp/vault => github.com/hashicorp/vault v1.2.0
 )
+
+replace github.com/pulumi/pulumi-terraform-bridge/v2 => ../../pulumi-terraform-bridge
