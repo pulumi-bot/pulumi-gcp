@@ -146,7 +146,7 @@ namespace Pulumi.Gcp.Compute
     ///                     {
     ///                         var appengineNegBucketName = values.Item1;
     ///                         var appengineNegBucketObjectName = values.Item2;
-    ///                         return $"https://storage.googleapis.com/{appengineNegBucketName}/{appengineNegBucketObjectName}";
+    ///                         return Output.Format($"https://storage.googleapis.com/{appengineNegBucketName}/{appengineNegBucketObjectName}");
     ///                     }),
     ///                 },
     ///             },

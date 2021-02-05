@@ -152,7 +152,7 @@ namespace Pulumi.Gcp.ServiceAccount
     ///         {
     ///             ServiceAccountId = @default.Apply(@default =&gt; @default.Name),
     ///             Role = "roles/iam.serviceAccountUser",
-    ///             Member = sa.Email.Apply(email =&gt; $"serviceAccount:{email}"),
+    ///             Member = sa.Email.Apply(email =&gt; Output.Format($"serviceAccount:{email}")),
     ///         });
     ///     }
     /// 

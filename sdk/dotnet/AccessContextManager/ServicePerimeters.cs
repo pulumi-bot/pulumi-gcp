@@ -38,12 +38,12 @@ namespace Pulumi.Gcp.AccessContextManager
     ///         });
     ///         var service_perimeter = new Gcp.AccessContextManager.ServicePerimeters("service-perimeter", new Gcp.AccessContextManager.ServicePerimetersArgs
     ///         {
-    ///             Parent = access_policy.Name.Apply(name =&gt; $"accessPolicies/{name}"),
+    ///             Parent = access_policy.Name.Apply(name =&gt; Output.Format($"accessPolicies/{name}")),
     ///             ServicePerimeters = 
     ///             {
     ///                 new Gcp.AccessContextManager.Inputs.ServicePerimetersServicePerimeterArgs
     ///                 {
-    ///                     Name = access_policy.Name.Apply(name =&gt; $"accessPolicies/{name}/servicePerimeters/"),
+    ///                     Name = access_policy.Name.Apply(name =&gt; Output.Format($"accessPolicies/{name}/servicePerimeters/")),
     ///                     Status = new Gcp.AccessContextManager.Inputs.ServicePerimetersServicePerimeterStatusArgs
     ///                     {
     ///                         RestrictedServices = 
@@ -55,7 +55,7 @@ namespace Pulumi.Gcp.AccessContextManager
     ///                 },
     ///                 new Gcp.AccessContextManager.Inputs.ServicePerimetersServicePerimeterArgs
     ///                 {
-    ///                     Name = access_policy.Name.Apply(name =&gt; $"accessPolicies/{name}/servicePerimeters/"),
+    ///                     Name = access_policy.Name.Apply(name =&gt; Output.Format($"accessPolicies/{name}/servicePerimeters/")),
     ///                     Status = new Gcp.AccessContextManager.Inputs.ServicePerimetersServicePerimeterStatusArgs
     ///                     {
     ///                         RestrictedServices = 
@@ -95,7 +95,7 @@ namespace Pulumi.Gcp.AccessContextManager
     ///                     },
     ///                 },
     ///             },
-    ///             Parent = access_policy.Name.Apply(name =&gt; $"accessPolicies/{name}"),
+    ///             Parent = access_policy.Name.Apply(name =&gt; Output.Format($"accessPolicies/{name}")),
     ///             Title = "chromeos_no_lock",
     ///         });
     ///     }

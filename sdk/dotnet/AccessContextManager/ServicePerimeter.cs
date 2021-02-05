@@ -50,7 +50,7 @@ namespace Pulumi.Gcp.AccessContextManager
     ///         });
     ///         var service_perimeter = new Gcp.AccessContextManager.ServicePerimeter("service-perimeter", new Gcp.AccessContextManager.ServicePerimeterArgs
     ///         {
-    ///             Parent = access_policy.Name.Apply(name =&gt; $"accessPolicies/{name}"),
+    ///             Parent = access_policy.Name.Apply(name =&gt; Output.Format($"accessPolicies/{name}")),
     ///             Status = new Gcp.AccessContextManager.Inputs.ServicePerimeterStatusArgs
     ///             {
     ///                 RestrictedServices = 
@@ -88,7 +88,7 @@ namespace Pulumi.Gcp.AccessContextManager
     ///                     },
     ///                 },
     ///             },
-    ///             Parent = access_policy.Name.Apply(name =&gt; $"accessPolicies/{name}"),
+    ///             Parent = access_policy.Name.Apply(name =&gt; Output.Format($"accessPolicies/{name}")),
     ///             Title = "chromeos_no_lock",
     ///         });
     ///     }
@@ -112,7 +112,7 @@ namespace Pulumi.Gcp.AccessContextManager
     ///         });
     ///         var service_perimeter = new Gcp.AccessContextManager.ServicePerimeter("service-perimeter", new Gcp.AccessContextManager.ServicePerimeterArgs
     ///         {
-    ///             Parent = access_policy.Name.Apply(name =&gt; $"accessPolicies/{name}"),
+    ///             Parent = access_policy.Name.Apply(name =&gt; Output.Format($"accessPolicies/{name}")),
     ///             Spec = new Gcp.AccessContextManager.Inputs.ServicePerimeterSpecArgs
     ///             {
     ///                 RestrictedServices = 

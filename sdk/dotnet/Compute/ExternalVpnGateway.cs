@@ -87,7 +87,7 @@ namespace Pulumi.Gcp.Compute
     ///             PeerExternalGateway = externalGateway.Id,
     ///             PeerExternalGatewayInterface = 0,
     ///             SharedSecret = "a secret message",
-    ///             Router = router1.Id.Apply(id =&gt; $" {id}"),
+    ///             Router = router1.Id.Apply(id =&gt; Output.Format($" {id}")),
     ///             VpnGatewayInterface = 1,
     ///         });
     ///         var router1Interface1 = new Gcp.Compute.RouterInterface("router1Interface1", new Gcp.Compute.RouterInterfaceArgs

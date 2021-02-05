@@ -37,7 +37,7 @@ namespace Pulumi.Gcp.Compute
         ///             var range = new { Value = rangeIndex };
         ///             cluster.Add(new Gcp.Compute.Subnetwork($"cluster-{range.Value}", new Gcp.Compute.SubnetworkArgs
         ///             {
-        ///                 IpCidrRange = $"10.36.{range.Value}.0/24",
+        ///                 IpCidrRange = Output.Format($"10.36.{range.Value}.0/24"),
         ///                 Network = "my-network",
         ///                 Region = available.Names[range.Value],
         ///             }));

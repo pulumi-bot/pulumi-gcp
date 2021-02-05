@@ -47,7 +47,7 @@ namespace Pulumi.Gcp.Projects
     ///         {
     ///             Project = project.Apply(project =&gt; project.ProjectId),
     ///             Role = "roles/bigquery.jobUser",
-    ///             Member = hcSa.Email.Apply(email =&gt; $"serviceAccount:{email}"),
+    ///             Member = hcSa.Email.Apply(email =&gt; Output.Format($"serviceAccount:{email}")),
     ///         });
     ///     }
     /// 

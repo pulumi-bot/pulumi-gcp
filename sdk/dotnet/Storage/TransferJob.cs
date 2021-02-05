@@ -44,7 +44,7 @@ namespace Pulumi.Gcp.Storage
     ///         {
     ///             Bucket = s3_backup_bucketBucket.Name,
     ///             Role = "roles/storage.admin",
-    ///             Member = @default.Apply(@default =&gt; $"serviceAccount:{@default.Email}"),
+    ///             Member = @default.Apply(@default =&gt; Output.Format($"serviceAccount:{@default.Email}")),
     ///         }, new CustomResourceOptions
     ///         {
     ///             DependsOn = 

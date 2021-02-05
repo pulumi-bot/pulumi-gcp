@@ -64,7 +64,7 @@ namespace Pulumi.Gcp.Dataflow
     ///             TempGcsLocation = "gs://my-bucket/tmp_dir",
     ///             Parameters = 
     ///             {
-    ///                 { "inputFilePattern", bucket1.Url.Apply(url =&gt; $"{url}/*.json") },
+    ///                 { "inputFilePattern", bucket1.Url.Apply(url =&gt; Output.Format($"{url}/*.json")) },
     ///                 { "outputTopic", topic.Id },
     ///             },
     ///             TransformNameMapping = 

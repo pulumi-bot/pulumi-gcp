@@ -56,7 +56,7 @@ namespace Pulumi.Gcp.AppEngine
     ///         {
     ///             Project = service.Project,
     ///             Role = "roles/compute.networkUser",
-    ///             Member = myProject.Number.Apply(number =&gt; $"serviceAccount:service-{number}@gae-api-prod.google.com.iam.gserviceaccount.com"),
+    ///             Member = myProject.Number.Apply(number =&gt; Output.Format($"serviceAccount:service-{number}@gae-api-prod.google.com.iam.gserviceaccount.com")),
     ///         });
     ///         var bucket = new Gcp.Storage.Bucket("bucket", new Gcp.Storage.BucketArgs
     ///         {
@@ -85,7 +85,7 @@ namespace Pulumi.Gcp.AppEngine
     ///                     {
     ///                         var bucketName = values.Item1;
     ///                         var objectName = values.Item2;
-    ///                         return $"https://storage.googleapis.com/{bucketName}/{objectName}";
+    ///                         return Output.Format($"https://storage.googleapis.com/{bucketName}/{objectName}");
     ///                     }),
     ///                 },
     ///             },

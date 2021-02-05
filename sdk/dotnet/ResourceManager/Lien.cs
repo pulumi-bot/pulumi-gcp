@@ -30,7 +30,7 @@ namespace Pulumi.Gcp.ResourceManager
     ///         var lien = new Gcp.ResourceManager.Lien("lien", new Gcp.ResourceManager.LienArgs
     ///         {
     ///             Origin = "machine-readable-explanation",
-    ///             Parent = project.Number.Apply(number =&gt; $"projects/{number}"),
+    ///             Parent = project.Number.Apply(number =&gt; Output.Format($"projects/{number}")),
     ///             Reason = "This project is an important environment",
     ///             Restrictions = 
     ///             {

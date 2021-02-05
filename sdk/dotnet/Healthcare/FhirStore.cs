@@ -106,7 +106,7 @@ namespace Pulumi.Gcp.Healthcare
     ///                         {
     ///                             var project = values.Item1;
     ///                             var datasetId = values.Item2;
-    ///                             return $"bq://{project}.{datasetId}";
+    ///                             return Output.Format($"bq://{project}.{datasetId}");
     ///                         }),
     ///                         SchemaConfig = new Gcp.Healthcare.Inputs.FhirStoreStreamConfigBigqueryDestinationSchemaConfigArgs
     ///                         {

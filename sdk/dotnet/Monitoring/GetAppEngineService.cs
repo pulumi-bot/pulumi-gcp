@@ -66,7 +66,7 @@ namespace Pulumi.Gcp.Monitoring
         ///                     {
         ///                         var bucketName = values.Item1;
         ///                         var objectName = values.Item2;
-        ///                         return $"https://storage.googleapis.com/{bucketName}/{objectName}";
+        ///                         return Output.Format($"https://storage.googleapis.com/{bucketName}/{objectName}");
         ///                     }),
         ///                 },
         ///             },

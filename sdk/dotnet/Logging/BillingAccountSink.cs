@@ -36,7 +36,7 @@ namespace Pulumi.Gcp.Logging
     ///         {
     ///             Description = "some explaination on what this is",
     ///             BillingAccount = "ABCDEF-012345-GHIJKL",
-    ///             Destination = log_bucket.Name.Apply(name =&gt; $"storage.googleapis.com/{name}"),
+    ///             Destination = log_bucket.Name.Apply(name =&gt; Output.Format($"storage.googleapis.com/{name}")),
     ///         });
     ///         var log_writer = new Gcp.Projects.IAMBinding("log-writer", new Gcp.Projects.IAMBindingArgs
     ///         {

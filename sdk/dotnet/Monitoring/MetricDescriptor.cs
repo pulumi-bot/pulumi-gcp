@@ -87,7 +87,7 @@ namespace Pulumi.Gcp.Monitoring
     ///                     {
     ///                         Comparison = "COMPARISON_GT",
     ///                         Duration = "60s",
-    ///                         Filter = withAlert.Type.Apply(type =&gt; $"metric.type=\"{type}\" AND resource.type=\"gce_instance\""),
+    ///                         Filter = withAlert.Type.Apply(type =&gt; Output.Format($"metric.type=\"{type}\" AND resource.type=\"gce_instance\"")),
     ///                     },
     ///                     DisplayName = "test condition",
     ///                 },

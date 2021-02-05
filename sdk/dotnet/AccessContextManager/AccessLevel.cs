@@ -69,7 +69,7 @@ namespace Pulumi.Gcp.AccessContextManager
     ///                     },
     ///                 },
     ///             },
-    ///             Parent = access_policy.Name.Apply(name =&gt; $"accessPolicies/{name}"),
+    ///             Parent = access_policy.Name.Apply(name =&gt; Output.Format($"accessPolicies/{name}")),
     ///             Title = "chromeos_no_lock",
     ///         });
     ///     }

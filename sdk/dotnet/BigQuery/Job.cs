@@ -228,7 +228,7 @@ namespace Pulumi.Gcp.BigQuery
     ///             {
     ///                 DestinationUris = 
     ///                 {
-    ///                     dest.Url.Apply(url =&gt; $"{url}/extract"),
+    ///                     dest.Url.Apply(url =&gt; Output.Format($"{url}/extract")),
     ///                 },
     ///                 SourceTable = new Gcp.BigQuery.Inputs.JobExtractSourceTableArgs
     ///                 {

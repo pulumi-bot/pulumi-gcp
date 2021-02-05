@@ -47,7 +47,7 @@ namespace Pulumi.Gcp.Storage
     ///             Role = "roles/pubsub.publisher",
     ///             Members = 
     ///             {
-    ///                 gcsAccount.Apply(gcsAccount =&gt; $"serviceAccount:{gcsAccount.EmailAddress}"),
+    ///                 gcsAccount.Apply(gcsAccount =&gt; Output.Format($"serviceAccount:{gcsAccount.EmailAddress}")),
     ///             },
     ///         });
     ///         // End enabling notifications

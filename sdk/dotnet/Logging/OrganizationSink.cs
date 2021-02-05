@@ -34,7 +34,7 @@ namespace Pulumi.Gcp.Logging
     ///         {
     ///             Description = "some explaination on what this is",
     ///             OrgId = "123456789",
-    ///             Destination = log_bucket.Name.Apply(name =&gt; $"storage.googleapis.com/{name}"),
+    ///             Destination = log_bucket.Name.Apply(name =&gt; Output.Format($"storage.googleapis.com/{name}")),
     ///             Filter = "resource.type = gce_instance AND severity &gt;= WARNING",
     ///         });
     ///         var log_writer = new Gcp.Projects.IAMMember("log-writer", new Gcp.Projects.IAMMemberArgs

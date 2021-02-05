@@ -43,7 +43,7 @@ namespace Pulumi.Gcp.Compute
     ///             DisplayName = "scan-config",
     ///             StartingUrls = 
     ///             {
-    ///                 scannerStaticIp.IPAddress.Apply(address =&gt; $"http://{address}"),
+    ///                 scannerStaticIp.IPAddress.Apply(address =&gt; Output.Format($"http://{address}")),
     ///             },
     ///             TargetPlatforms = 
     ///             {

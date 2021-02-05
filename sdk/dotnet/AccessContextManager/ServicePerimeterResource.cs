@@ -49,7 +49,7 @@ namespace Pulumi.Gcp.AccessContextManager
     ///         });
     ///         var service_perimeter_resourceServicePerimeter = new Gcp.AccessContextManager.ServicePerimeter("service-perimeter-resourceServicePerimeter", new Gcp.AccessContextManager.ServicePerimeterArgs
     ///         {
-    ///             Parent = access_policy.Name.Apply(name =&gt; $"accessPolicies/{name}"),
+    ///             Parent = access_policy.Name.Apply(name =&gt; Output.Format($"accessPolicies/{name}")),
     ///             Title = "restrict_all",
     ///             Status = new Gcp.AccessContextManager.Inputs.ServicePerimeterStatusArgs
     ///             {

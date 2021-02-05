@@ -68,7 +68,7 @@ namespace Pulumi.Gcp.AccessContextManager
     ///                             },
     ///                         },
     ///                     },
-    ///                     Name = access_policy.Name.Apply(name =&gt; $"accessPolicies/{name}/accessLevels/chromeos_no_lock"),
+    ///                     Name = access_policy.Name.Apply(name =&gt; Output.Format($"accessPolicies/{name}/accessLevels/chromeos_no_lock")),
     ///                     Title = "chromeos_no_lock",
     ///                 },
     ///                 new Gcp.AccessContextManager.Inputs.AccessLevelsAccessLevelArgs
@@ -99,11 +99,11 @@ namespace Pulumi.Gcp.AccessContextManager
     ///                             },
     ///                         },
     ///                     },
-    ///                     Name = access_policy.Name.Apply(name =&gt; $"accessPolicies/{name}/accessLevels/mac_no_lock"),
+    ///                     Name = access_policy.Name.Apply(name =&gt; Output.Format($"accessPolicies/{name}/accessLevels/mac_no_lock")),
     ///                     Title = "mac_no_lock",
     ///                 },
     ///             },
-    ///             Parent = access_policy.Name.Apply(name =&gt; $"accessPolicies/{name}"),
+    ///             Parent = access_policy.Name.Apply(name =&gt; Output.Format($"accessPolicies/{name}")),
     ///         });
     ///     }
     /// 

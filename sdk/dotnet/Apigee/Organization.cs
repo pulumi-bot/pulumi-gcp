@@ -117,7 +117,7 @@ namespace Pulumi.Gcp.Apigee
     ///             Role = "roles/cloudkms.cryptoKeyEncrypterDecrypter",
     ///             Members = 
     ///             {
-    ///                 apigeeSa.Email.Apply(email =&gt; $"serviceAccount:{email}"),
+    ///                 apigeeSa.Email.Apply(email =&gt; Output.Format($"serviceAccount:{email}")),
     ///             },
     ///         });
     ///         var org = new Gcp.Apigee.Organization("org", new Gcp.Apigee.OrganizationArgs

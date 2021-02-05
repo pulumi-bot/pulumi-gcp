@@ -253,7 +253,7 @@ namespace Pulumi.Gcp.Compute
     ///             ConnectionDrainingTimeoutSec = 10,
     ///             CustomRequestHeaders = 
     ///             {
-    ///                 proxy.Fqdn.Apply(fqdn =&gt; $"host: {fqdn}"),
+    ///                 proxy.Fqdn.Apply(fqdn =&gt; Output.Format($"host: {fqdn}")),
     ///             },
     ///             CustomResponseHeaders = 
     ///             {

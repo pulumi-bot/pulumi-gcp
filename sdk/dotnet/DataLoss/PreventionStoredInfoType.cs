@@ -110,12 +110,12 @@ namespace Pulumi.Gcp.DataLoss
     ///                     {
     ///                         var bucketName = values.Item1;
     ///                         var objectName = values.Item2;
-    ///                         return $"gs://{bucketName}/{objectName}";
+    ///                         return Output.Format($"gs://{bucketName}/{objectName}");
     ///                     }),
     ///                 },
     ///                 OutputPath = new Gcp.DataLoss.Inputs.PreventionStoredInfoTypeLargeCustomDictionaryOutputPathArgs
     ///                 {
-    ///                     Path = bucket.Name.Apply(name =&gt; $"gs://{name}/output/dictionary.txt"),
+    ///                     Path = bucket.Name.Apply(name =&gt; Output.Format($"gs://{name}/output/dictionary.txt")),
     ///                 },
     ///             },
     ///         });

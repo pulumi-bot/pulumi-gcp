@@ -101,7 +101,7 @@ namespace Pulumi.Gcp.ArtifactRegistry
     ///             Location = my_repo.Location,
     ///             Repository = my_repo.Name,
     ///             Role = "roles/artifactregistry.reader",
-    ///             Member = test_account.Email.Apply(email =&gt; $"serviceAccount:{email}"),
+    ///             Member = test_account.Email.Apply(email =&gt; Output.Format($"serviceAccount:{email}")),
     ///         }, new CustomResourceOptions
     ///         {
     ///             Provider = google_beta,

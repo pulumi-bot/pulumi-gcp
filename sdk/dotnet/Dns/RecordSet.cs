@@ -58,7 +58,7 @@ namespace Pulumi.Gcp.Dns
     ///         });
     ///         var frontendRecordSet = new Gcp.Dns.RecordSet("frontendRecordSet", new Gcp.Dns.RecordSetArgs
     ///         {
-    ///             Name = prod.DnsName.Apply(dnsName =&gt; $"frontend.{dnsName}"),
+    ///             Name = prod.DnsName.Apply(dnsName =&gt; Output.Format($"frontend.{dnsName}")),
     ///             Type = "A",
     ///             Ttl = 300,
     ///             ManagedZone = prod.Name,
@@ -87,7 +87,7 @@ namespace Pulumi.Gcp.Dns
     ///         });
     ///         var recordSet = new Gcp.Dns.RecordSet("recordSet", new Gcp.Dns.RecordSetArgs
     ///         {
-    ///             Name = prod.DnsName.Apply(dnsName =&gt; $"backend.{dnsName}"),
+    ///             Name = prod.DnsName.Apply(dnsName =&gt; Output.Format($"backend.{dnsName}")),
     ///             ManagedZone = prod.Name,
     ///             Type = "A",
     ///             Ttl = 300,
@@ -151,7 +151,7 @@ namespace Pulumi.Gcp.Dns
     ///         });
     ///         var spf = new Gcp.Dns.RecordSet("spf", new Gcp.Dns.RecordSetArgs
     ///         {
-    ///             Name = prod.DnsName.Apply(dnsName =&gt; $"frontend.{dnsName}"),
+    ///             Name = prod.DnsName.Apply(dnsName =&gt; Output.Format($"frontend.{dnsName}")),
     ///             ManagedZone = prod.Name,
     ///             Type = "TXT",
     ///             Ttl = 300,
@@ -182,7 +182,7 @@ namespace Pulumi.Gcp.Dns
     ///         });
     ///         var cname = new Gcp.Dns.RecordSet("cname", new Gcp.Dns.RecordSetArgs
     ///         {
-    ///             Name = prod.DnsName.Apply(dnsName =&gt; $"frontend.{dnsName}"),
+    ///             Name = prod.DnsName.Apply(dnsName =&gt; Output.Format($"frontend.{dnsName}")),
     ///             ManagedZone = prod.Name,
     ///             Type = "CNAME",
     ///             Ttl = 300,

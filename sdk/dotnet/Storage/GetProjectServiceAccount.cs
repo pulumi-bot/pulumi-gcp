@@ -65,7 +65,7 @@ namespace Pulumi.Gcp.Storage
         ///             Role = "roles/pubsub.publisher",
         ///             Members = 
         ///             {
-        ///                 gcsAccount.Apply(gcsAccount =&gt; $"serviceAccount:{gcsAccount.EmailAddress}"),
+        ///                 gcsAccount.Apply(gcsAccount =&gt; Output.Format($"serviceAccount:{gcsAccount.EmailAddress}")),
         ///             },
         ///         });
         ///     }
@@ -92,7 +92,7 @@ namespace Pulumi.Gcp.Storage
         ///             Role = "roles/cloudkms.cryptoKeyEncrypterDecrypter",
         ///             Members = 
         ///             {
-        ///                 gcsAccount.Apply(gcsAccount =&gt; $"serviceAccount:{gcsAccount.EmailAddress}"),
+        ///                 gcsAccount.Apply(gcsAccount =&gt; Output.Format($"serviceAccount:{gcsAccount.EmailAddress}")),
         ///             },
         ///         });
         ///         var bucket = new Gcp.Storage.Bucket("bucket", new Gcp.Storage.BucketArgs

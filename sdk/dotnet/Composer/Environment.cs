@@ -99,7 +99,7 @@ namespace Pulumi.Gcp.Composer
     ///         var composer_worker = new Gcp.Projects.IAMMember("composer-worker", new Gcp.Projects.IAMMemberArgs
     ///         {
     ///             Role = "roles/composer.worker",
-    ///             Member = testAccount.Email.Apply(email =&gt; $"serviceAccount:{email}"),
+    ///             Member = testAccount.Email.Apply(email =&gt; Output.Format($"serviceAccount:{email}")),
     ///         });
     ///     }
     /// 

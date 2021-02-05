@@ -86,7 +86,7 @@ namespace Pulumi.Gcp.Billing
     ///             {
     ///                 Projects = 
     ///                 {
-    ///                     project.Apply(project =&gt; $"projects/{project.Number}"),
+    ///                     project.Apply(project =&gt; Output.Format($"projects/{project.Number}")),
     ///                 },
     ///             },
     ///             Amount = new Gcp.Billing.Inputs.BudgetAmountArgs
@@ -128,7 +128,7 @@ namespace Pulumi.Gcp.Billing
     ///             {
     ///                 Projects = 
     ///                 {
-    ///                     project.Apply(project =&gt; $"projects/{project.Number}"),
+    ///                     project.Apply(project =&gt; Output.Format($"projects/{project.Number}")),
     ///                 },
     ///                 CreditTypesTreatment = "EXCLUDE_ALL_CREDITS",
     ///                 Services = 
@@ -193,7 +193,7 @@ namespace Pulumi.Gcp.Billing
     ///             {
     ///                 Projects = 
     ///                 {
-    ///                     project.Apply(project =&gt; $"projects/{project.Number}"),
+    ///                     project.Apply(project =&gt; Output.Format($"projects/{project.Number}")),
     ///                 },
     ///             },
     ///             Amount = new Gcp.Billing.Inputs.BudgetAmountArgs

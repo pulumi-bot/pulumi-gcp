@@ -39,7 +39,7 @@ namespace Pulumi.Gcp.BigQuery
         ///         {
         ///             CryptoKeyId = google_kms_crypto_key.Key.Id,
         ///             Role = "roles/cloudkms.cryptoKeyEncrypterDecrypter",
-        ///             Member = bqSa.Apply(bqSa =&gt; $"serviceAccount:{bqSa.Email}"),
+        ///             Member = bqSa.Apply(bqSa =&gt; Output.Format($"serviceAccount:{bqSa.Email}")),
         ///         });
         ///     }
         /// 
