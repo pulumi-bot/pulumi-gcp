@@ -36,6 +36,7 @@ export class Provider extends pulumi.ProviderResource {
      */
     constructor(name: string, args?: ProviderArgs, opts?: pulumi.ResourceOptions) {
         let inputs: pulumi.Inputs = {};
+        opts = opts || {};
         {
             inputs["accessApprovalCustomEndpoint"] = args ? args.accessApprovalCustomEndpoint : undefined;
             inputs["accessContextManagerCustomEndpoint"] = args ? args.accessContextManagerCustomEndpoint : undefined;
@@ -131,12 +132,8 @@ export class Provider extends pulumi.ProviderResource {
             inputs["vpcAccessCustomEndpoint"] = args ? args.vpcAccessCustomEndpoint : undefined;
             inputs["zone"] = (args ? args.zone : undefined) || utilities.getEnv("GOOGLE_ZONE", "GCLOUD_ZONE", "CLOUDSDK_COMPUTE_ZONE");
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(Provider.__pulumiType, name, inputs, opts);
     }
