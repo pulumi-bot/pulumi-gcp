@@ -202,27 +202,27 @@ export interface HttpsHealthCheckState {
      * How often (in seconds) to send a health check. The default value is 5
      * seconds.
      */
-    readonly checkIntervalSec?: pulumi.Input<number>;
+    readonly checkIntervalSec?: pulumi.Input<number | undefined>;
     /**
      * Creation timestamp in RFC3339 text format.
      */
-    readonly creationTimestamp?: pulumi.Input<string>;
+    readonly creationTimestamp?: pulumi.Input<string | undefined>;
     /**
      * An optional description of this resource. Provide this property when
      * you create the resource.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * A so-far unhealthy instance will be marked healthy after this many
      * consecutive successes. The default value is 2.
      */
-    readonly healthyThreshold?: pulumi.Input<number>;
+    readonly healthyThreshold?: pulumi.Input<number | undefined>;
     /**
      * The value of the host header in the HTTPS health check request. If
      * left empty (default value), the public IP on behalf of which this
      * health check is performed will be used.
      */
-    readonly host?: pulumi.Input<string>;
+    readonly host?: pulumi.Input<string | undefined>;
     /**
      * Name of the resource. Provided by the client when the resource is
      * created. The name must be 1-63 characters long, and comply with
@@ -232,37 +232,37 @@ export interface HttpsHealthCheckState {
      * characters must be a dash, lowercase letter, or digit, except the
      * last character, which cannot be a dash.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The TCP port number for the HTTPS health check request.
      * The default value is 80.
      */
-    readonly port?: pulumi.Input<number>;
+    readonly port?: pulumi.Input<number | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The request path of the HTTPS health check request.
      * The default value is /.
      */
-    readonly requestPath?: pulumi.Input<string>;
+    readonly requestPath?: pulumi.Input<string | undefined>;
     /**
      * The URI of the created resource.
      */
-    readonly selfLink?: pulumi.Input<string>;
+    readonly selfLink?: pulumi.Input<string | undefined>;
     /**
      * How long (in seconds) to wait before claiming failure.
      * The default value is 5 seconds.  It is invalid for timeoutSec to have
      * greater value than checkIntervalSec.
      */
-    readonly timeoutSec?: pulumi.Input<number>;
+    readonly timeoutSec?: pulumi.Input<number | undefined>;
     /**
      * A so-far healthy instance will be marked unhealthy after this many
      * consecutive failures. The default value is 2.
      */
-    readonly unhealthyThreshold?: pulumi.Input<number>;
+    readonly unhealthyThreshold?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -273,23 +273,23 @@ export interface HttpsHealthCheckArgs {
      * How often (in seconds) to send a health check. The default value is 5
      * seconds.
      */
-    readonly checkIntervalSec?: pulumi.Input<number>;
+    readonly checkIntervalSec?: pulumi.Input<number | undefined>;
     /**
      * An optional description of this resource. Provide this property when
      * you create the resource.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * A so-far unhealthy instance will be marked healthy after this many
      * consecutive successes. The default value is 2.
      */
-    readonly healthyThreshold?: pulumi.Input<number>;
+    readonly healthyThreshold?: pulumi.Input<number | undefined>;
     /**
      * The value of the host header in the HTTPS health check request. If
      * left empty (default value), the public IP on behalf of which this
      * health check is performed will be used.
      */
-    readonly host?: pulumi.Input<string>;
+    readonly host?: pulumi.Input<string | undefined>;
     /**
      * Name of the resource. Provided by the client when the resource is
      * created. The name must be 1-63 characters long, and comply with
@@ -299,31 +299,31 @@ export interface HttpsHealthCheckArgs {
      * characters must be a dash, lowercase letter, or digit, except the
      * last character, which cannot be a dash.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The TCP port number for the HTTPS health check request.
      * The default value is 80.
      */
-    readonly port?: pulumi.Input<number>;
+    readonly port?: pulumi.Input<number | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The request path of the HTTPS health check request.
      * The default value is /.
      */
-    readonly requestPath?: pulumi.Input<string>;
+    readonly requestPath?: pulumi.Input<string | undefined>;
     /**
      * How long (in seconds) to wait before claiming failure.
      * The default value is 5 seconds.  It is invalid for timeoutSec to have
      * greater value than checkIntervalSec.
      */
-    readonly timeoutSec?: pulumi.Input<number>;
+    readonly timeoutSec?: pulumi.Input<number | undefined>;
     /**
      * A so-far healthy instance will be marked unhealthy after this many
      * consecutive failures. The default value is 2.
      */
-    readonly unhealthyThreshold?: pulumi.Input<number>;
+    readonly unhealthyThreshold?: pulumi.Input<number | undefined>;
 }

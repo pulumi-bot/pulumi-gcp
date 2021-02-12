@@ -170,34 +170,34 @@ export class ServiceIamBinding extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ServiceIamBinding resources.
  */
 export interface ServiceIamBindingState {
-    readonly condition?: pulumi.Input<inputs.servicedirectory.ServiceIamBindingCondition>;
+    readonly condition?: pulumi.Input<inputs.servicedirectory.ServiceIamBindingCondition | undefined>;
     /**
      * (Computed) The etag of the IAM policy.
      */
-    readonly etag?: pulumi.Input<string>;
-    readonly members?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly etag?: pulumi.Input<string | undefined>;
+    readonly members?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Used to find the parent resource to bind the IAM policy to
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The role that should be applied. Only one
      * `gcp.servicedirectory.ServiceIamBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
-    readonly role?: pulumi.Input<string>;
+    readonly role?: pulumi.Input<string | undefined>;
 }
 
 /**
  * The set of arguments for constructing a ServiceIamBinding resource.
  */
 export interface ServiceIamBindingArgs {
-    readonly condition?: pulumi.Input<inputs.servicedirectory.ServiceIamBindingCondition>;
+    readonly condition?: pulumi.Input<inputs.servicedirectory.ServiceIamBindingCondition | undefined>;
     readonly members: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Used to find the parent resource to bind the IAM policy to
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The role that should be applied. Only one
      * `gcp.servicedirectory.ServiceIamBinding` can be used per role. Note that custom roles must be of the format

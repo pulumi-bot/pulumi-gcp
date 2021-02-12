@@ -158,11 +158,11 @@ export interface FirewallRuleState {
      * The action to take if this rule matches.
      * Possible values are `UNSPECIFIED_ACTION`, `ALLOW`, and `DENY`.
      */
-    readonly action?: pulumi.Input<string>;
+    readonly action?: pulumi.Input<string | undefined>;
     /**
      * An optional string description of this rule.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * A positive integer that defines the order of rule evaluation.
      * Rules with the lowest priority are evaluated first.
@@ -170,16 +170,16 @@ export interface FirewallRuleState {
      * IPv6 traffic when no previous rule matches. Only the action of
      * this rule can be modified by the user.
      */
-    readonly priority?: pulumi.Input<number>;
+    readonly priority?: pulumi.Input<number | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * IP address or range, defined using CIDR notation, of requests that this rule applies to.
      */
-    readonly sourceRange?: pulumi.Input<string>;
+    readonly sourceRange?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -194,7 +194,7 @@ export interface FirewallRuleArgs {
     /**
      * An optional string description of this rule.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * A positive integer that defines the order of rule evaluation.
      * Rules with the lowest priority are evaluated first.
@@ -202,12 +202,12 @@ export interface FirewallRuleArgs {
      * IPv6 traffic when no previous rule matches. Only the action of
      * this rule can be modified by the user.
      */
-    readonly priority?: pulumi.Input<number>;
+    readonly priority?: pulumi.Input<number | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * IP address or range, defined using CIDR notation, of requests that this rule applies to.
      */

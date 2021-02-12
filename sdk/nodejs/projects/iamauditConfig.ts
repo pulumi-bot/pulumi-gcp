@@ -284,21 +284,21 @@ export interface IAMAuditConfigState {
     /**
      * The configuration for logging of each type of permission.  This can be specified multiple times.  Structure is documented below.
      */
-    readonly auditLogConfigs?: pulumi.Input<pulumi.Input<inputs.projects.IAMAuditConfigAuditLogConfig>[]>;
+    readonly auditLogConfigs?: pulumi.Input<pulumi.Input<inputs.projects.IAMAuditConfigAuditLogConfig>[] | undefined>;
     /**
      * (Computed) The etag of the project's IAM policy.
      */
-    readonly etag?: pulumi.Input<string>;
+    readonly etag?: pulumi.Input<string | undefined>;
     /**
      * The project ID. If not specified for `gcp.projects.IAMBinding`, `gcp.projects.IAMMember`, or `gcp.projects.IAMAuditConfig`, uses the ID of the project configured with the provider.
      * Required for `gcp.projects.IAMPolicy` - you must explicitly set the project, and it
      * will not be inferred from the provider.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Service which will be enabled for audit logging.  The special value `allServices` covers all services.  Note that if there are google\_project\_iam\_audit\_config resources covering both `allServices` and a specific service then the union of the two AuditConfigs is used for that service: the `logTypes` specified in each `auditLogConfig` are enabled, and the `exemptedMembers` in each `auditLogConfig` are exempted.
      */
-    readonly service?: pulumi.Input<string>;
+    readonly service?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -314,7 +314,7 @@ export interface IAMAuditConfigArgs {
      * Required for `gcp.projects.IAMPolicy` - you must explicitly set the project, and it
      * will not be inferred from the provider.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Service which will be enabled for audit logging.  The special value `allServices` covers all services.  Note that if there are google\_project\_iam\_audit\_config resources covering both `allServices` and a specific service then the union of the two AuditConfigs is used for that service: the `logTypes` specified in each `auditLogConfig` are enabled, and the `exemptedMembers` in each `auditLogConfig` are exempted.
      */

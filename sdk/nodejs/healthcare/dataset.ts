@@ -140,26 +140,26 @@ export interface DatasetState {
     /**
      * The location for the Dataset.
      */
-    readonly location?: pulumi.Input<string>;
+    readonly location?: pulumi.Input<string | undefined>;
     /**
      * The resource name for the Dataset.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The fully qualified name of this dataset
      */
-    readonly selfLink?: pulumi.Input<string>;
+    readonly selfLink?: pulumi.Input<string | undefined>;
     /**
      * The default timezone used by this dataset. Must be a either a valid IANA time zone name such as
      * "America/New_York" or empty, which defaults to UTC. This is used for parsing times in resources
      * (e.g., HL7 messages) where no explicit timezone is specified.
      */
-    readonly timeZone?: pulumi.Input<string>;
+    readonly timeZone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -173,16 +173,16 @@ export interface DatasetArgs {
     /**
      * The resource name for the Dataset.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The default timezone used by this dataset. Must be a either a valid IANA time zone name such as
      * "America/New_York" or empty, which defaults to UTC. This is used for parsing times in resources
      * (e.g., HL7 messages) where no explicit timezone is specified.
      */
-    readonly timeZone?: pulumi.Input<string>;
+    readonly timeZone?: pulumi.Input<string | undefined>;
 }

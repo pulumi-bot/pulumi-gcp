@@ -127,16 +127,16 @@ export interface ServiceIdentityState {
     /**
      * The email address of the Google managed service account.
      */
-    readonly email?: pulumi.Input<string>;
+    readonly email?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The service to generate identity for.
      */
-    readonly service?: pulumi.Input<string>;
+    readonly service?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -147,7 +147,7 @@ export interface ServiceIdentityArgs {
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The service to generate identity for.
      */

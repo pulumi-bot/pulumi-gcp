@@ -159,25 +159,25 @@ export interface DataStoreIndexState {
      * Default value is `NONE`.
      * Possible values are `NONE` and `ALL_ANCESTORS`.
      */
-    readonly ancestor?: pulumi.Input<string>;
+    readonly ancestor?: pulumi.Input<string | undefined>;
     /**
      * The index id.
      */
-    readonly indexId?: pulumi.Input<string>;
+    readonly indexId?: pulumi.Input<string | undefined>;
     /**
      * The entity kind which the index applies to.
      */
-    readonly kind?: pulumi.Input<string>;
+    readonly kind?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * An ordered list of properties to index on.
      * Structure is documented below.
      */
-    readonly properties?: pulumi.Input<pulumi.Input<inputs.datastore.DataStoreIndexProperty>[]>;
+    readonly properties?: pulumi.Input<pulumi.Input<inputs.datastore.DataStoreIndexProperty>[] | undefined>;
 }
 
 /**
@@ -189,7 +189,7 @@ export interface DataStoreIndexArgs {
      * Default value is `NONE`.
      * Possible values are `NONE` and `ALL_ANCESTORS`.
      */
-    readonly ancestor?: pulumi.Input<string>;
+    readonly ancestor?: pulumi.Input<string | undefined>;
     /**
      * The entity kind which the index applies to.
      */
@@ -198,10 +198,10 @@ export interface DataStoreIndexArgs {
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * An ordered list of properties to index on.
      * Structure is documented below.
      */
-    readonly properties?: pulumi.Input<pulumi.Input<inputs.datastore.DataStoreIndexProperty>[]>;
+    readonly properties?: pulumi.Input<pulumi.Input<inputs.datastore.DataStoreIndexProperty>[] | undefined>;
 }

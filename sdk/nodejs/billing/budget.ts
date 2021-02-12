@@ -278,38 +278,38 @@ export interface BudgetState {
      * using threshold rules.
      * Structure is documented below.
      */
-    readonly allUpdatesRule?: pulumi.Input<inputs.billing.BudgetAllUpdatesRule>;
+    readonly allUpdatesRule?: pulumi.Input<inputs.billing.BudgetAllUpdatesRule | undefined>;
     /**
      * The budgeted amount for each usage period.
      * Structure is documented below.
      */
-    readonly amount?: pulumi.Input<inputs.billing.BudgetAmount>;
+    readonly amount?: pulumi.Input<inputs.billing.BudgetAmount | undefined>;
     /**
      * ID of the billing account to set a budget on.
      */
-    readonly billingAccount?: pulumi.Input<string>;
+    readonly billingAccount?: pulumi.Input<string | undefined>;
     /**
      * Filters that define which resources are used to compute the actual
      * spend against the budget.
      * Structure is documented below.
      */
-    readonly budgetFilter?: pulumi.Input<inputs.billing.BudgetBudgetFilter>;
+    readonly budgetFilter?: pulumi.Input<inputs.billing.BudgetBudgetFilter | undefined>;
     /**
      * User data for display name in UI. Must be <= 60 chars.
      */
-    readonly displayName?: pulumi.Input<string>;
+    readonly displayName?: pulumi.Input<string | undefined>;
     /**
      * Resource name of the budget. The resource name implies the scope of a budget. Values are of the form
      * billingAccounts/{billingAccountId}/budgets/{budgetId}.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * Rules that trigger alerts (notifications of thresholds being
      * crossed) when spend exceeds the specified percentages of the
      * budget.
      * Structure is documented below.
      */
-    readonly thresholdRules?: pulumi.Input<pulumi.Input<inputs.billing.BudgetThresholdRule>[]>;
+    readonly thresholdRules?: pulumi.Input<pulumi.Input<inputs.billing.BudgetThresholdRule>[] | undefined>;
 }
 
 /**
@@ -322,7 +322,7 @@ export interface BudgetArgs {
      * using threshold rules.
      * Structure is documented below.
      */
-    readonly allUpdatesRule?: pulumi.Input<inputs.billing.BudgetAllUpdatesRule>;
+    readonly allUpdatesRule?: pulumi.Input<inputs.billing.BudgetAllUpdatesRule | undefined>;
     /**
      * The budgeted amount for each usage period.
      * Structure is documented below.
@@ -337,11 +337,11 @@ export interface BudgetArgs {
      * spend against the budget.
      * Structure is documented below.
      */
-    readonly budgetFilter?: pulumi.Input<inputs.billing.BudgetBudgetFilter>;
+    readonly budgetFilter?: pulumi.Input<inputs.billing.BudgetBudgetFilter | undefined>;
     /**
      * User data for display name in UI. Must be <= 60 chars.
      */
-    readonly displayName?: pulumi.Input<string>;
+    readonly displayName?: pulumi.Input<string | undefined>;
     /**
      * Rules that trigger alerts (notifications of thresholds being
      * crossed) when spend exceeds the specified percentages of the

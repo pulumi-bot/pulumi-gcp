@@ -308,21 +308,21 @@ export interface PreventionInspectTemplateState {
     /**
      * A description of the inspect template.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * User set display name of the inspect template.
      */
-    readonly displayName?: pulumi.Input<string>;
+    readonly displayName?: pulumi.Input<string | undefined>;
     /**
      * The core content of the template.
      * Structure is documented below.
      */
-    readonly inspectConfig?: pulumi.Input<inputs.dataloss.PreventionInspectTemplateInspectConfig>;
+    readonly inspectConfig?: pulumi.Input<inputs.dataloss.PreventionInspectTemplateInspectConfig | undefined>;
     /**
      * Resource name of the requested StoredInfoType, for example `organizations/433245324/storedInfoTypes/432452342`
      * or `projects/project-id/storedInfoTypes/432452342`.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The parent of the inspect template in any of the following formats:
      * * `projects/{{project}}`
@@ -330,7 +330,7 @@ export interface PreventionInspectTemplateState {
      * * `organizations/{{organization_id}}`
      * * `organizations/{{organization_id}}/locations/{{location}}`
      */
-    readonly parent?: pulumi.Input<string>;
+    readonly parent?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -340,16 +340,16 @@ export interface PreventionInspectTemplateArgs {
     /**
      * A description of the inspect template.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * User set display name of the inspect template.
      */
-    readonly displayName?: pulumi.Input<string>;
+    readonly displayName?: pulumi.Input<string | undefined>;
     /**
      * The core content of the template.
      * Structure is documented below.
      */
-    readonly inspectConfig?: pulumi.Input<inputs.dataloss.PreventionInspectTemplateInspectConfig>;
+    readonly inspectConfig?: pulumi.Input<inputs.dataloss.PreventionInspectTemplateInspectConfig | undefined>;
     /**
      * The parent of the inspect template in any of the following formats:
      * * `projects/{{project}}`

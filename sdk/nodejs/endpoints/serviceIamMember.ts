@@ -178,29 +178,29 @@ export class ServiceIamMember extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ServiceIamMember resources.
  */
 export interface ServiceIamMemberState {
-    readonly condition?: pulumi.Input<inputs.endpoints.ServiceIamMemberCondition>;
+    readonly condition?: pulumi.Input<inputs.endpoints.ServiceIamMemberCondition | undefined>;
     /**
      * (Computed) The etag of the IAM policy.
      */
-    readonly etag?: pulumi.Input<string>;
-    readonly member?: pulumi.Input<string>;
+    readonly etag?: pulumi.Input<string | undefined>;
+    readonly member?: pulumi.Input<string | undefined>;
     /**
      * The role that should be applied. Only one
      * `gcp.endpoints.ServiceIamBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
-    readonly role?: pulumi.Input<string>;
+    readonly role?: pulumi.Input<string | undefined>;
     /**
      * The name of the service. Used to find the parent resource to bind the IAM policy to
      */
-    readonly serviceName?: pulumi.Input<string>;
+    readonly serviceName?: pulumi.Input<string | undefined>;
 }
 
 /**
  * The set of arguments for constructing a ServiceIamMember resource.
  */
 export interface ServiceIamMemberArgs {
-    readonly condition?: pulumi.Input<inputs.endpoints.ServiceIamMemberCondition>;
+    readonly condition?: pulumi.Input<inputs.endpoints.ServiceIamMemberCondition | undefined>;
     readonly member: pulumi.Input<string>;
     /**
      * The role that should be applied. Only one

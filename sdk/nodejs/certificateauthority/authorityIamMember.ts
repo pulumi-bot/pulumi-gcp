@@ -88,11 +88,11 @@ export class AuthorityIamMember extends pulumi.CustomResource {
  * Input properties used for looking up and filtering AuthorityIamMember resources.
  */
 export interface AuthorityIamMemberState {
-    readonly certificateAuthority?: pulumi.Input<string>;
-    readonly condition?: pulumi.Input<inputs.certificateauthority.AuthorityIamMemberCondition>;
-    readonly etag?: pulumi.Input<string>;
-    readonly member?: pulumi.Input<string>;
-    readonly role?: pulumi.Input<string>;
+    readonly certificateAuthority?: pulumi.Input<string | undefined>;
+    readonly condition?: pulumi.Input<inputs.certificateauthority.AuthorityIamMemberCondition | undefined>;
+    readonly etag?: pulumi.Input<string | undefined>;
+    readonly member?: pulumi.Input<string | undefined>;
+    readonly role?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -100,7 +100,7 @@ export interface AuthorityIamMemberState {
  */
 export interface AuthorityIamMemberArgs {
     readonly certificateAuthority: pulumi.Input<string>;
-    readonly condition?: pulumi.Input<inputs.certificateauthority.AuthorityIamMemberCondition>;
+    readonly condition?: pulumi.Input<inputs.certificateauthority.AuthorityIamMemberCondition | undefined>;
     readonly member: pulumi.Input<string>;
     readonly role: pulumi.Input<string>;
 }

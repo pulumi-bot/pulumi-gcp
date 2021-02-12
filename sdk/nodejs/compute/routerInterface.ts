@@ -153,39 +153,39 @@ export interface RouterInterfaceState {
      * be created. Only one of `vpnTunnel` and `interconnectAttachment` can be
      * specified.
      */
-    readonly interconnectAttachment?: pulumi.Input<string>;
+    readonly interconnectAttachment?: pulumi.Input<string | undefined>;
     /**
      * IP address and range of the interface. The IP range must be
      * in the RFC3927 link-local IP space. Changing this forces a new interface to be created.
      */
-    readonly ipRange?: pulumi.Input<string>;
+    readonly ipRange?: pulumi.Input<string | undefined>;
     /**
      * A unique name for the interface, required by GCE. Changing
      * this forces a new interface to be created.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which this interface's router belongs. If it
      * is not provided, the provider project is used. Changing this forces a new interface to be created.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The region this interface's router sits in. If not specified,
      * the project region will be used. Changing this forces a new interface to be
      * created.
      */
-    readonly region?: pulumi.Input<string>;
+    readonly region?: pulumi.Input<string | undefined>;
     /**
      * The name of the router this interface will be attached to.
      * Changing this forces a new interface to be created.
      */
-    readonly router?: pulumi.Input<string>;
+    readonly router?: pulumi.Input<string | undefined>;
     /**
      * The name or resource link to the VPN tunnel this
      * interface will be linked to. Changing this forces a new interface to be created. Only
      * one of `vpnTunnel` and `interconnectAttachment` can be specified.
      */
-    readonly vpnTunnel?: pulumi.Input<string>;
+    readonly vpnTunnel?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -198,28 +198,28 @@ export interface RouterInterfaceArgs {
      * be created. Only one of `vpnTunnel` and `interconnectAttachment` can be
      * specified.
      */
-    readonly interconnectAttachment?: pulumi.Input<string>;
+    readonly interconnectAttachment?: pulumi.Input<string | undefined>;
     /**
      * IP address and range of the interface. The IP range must be
      * in the RFC3927 link-local IP space. Changing this forces a new interface to be created.
      */
-    readonly ipRange?: pulumi.Input<string>;
+    readonly ipRange?: pulumi.Input<string | undefined>;
     /**
      * A unique name for the interface, required by GCE. Changing
      * this forces a new interface to be created.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which this interface's router belongs. If it
      * is not provided, the provider project is used. Changing this forces a new interface to be created.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The region this interface's router sits in. If not specified,
      * the project region will be used. Changing this forces a new interface to be
      * created.
      */
-    readonly region?: pulumi.Input<string>;
+    readonly region?: pulumi.Input<string | undefined>;
     /**
      * The name of the router this interface will be attached to.
      * Changing this forces a new interface to be created.
@@ -230,5 +230,5 @@ export interface RouterInterfaceArgs {
      * interface will be linked to. Changing this forces a new interface to be created. Only
      * one of `vpnTunnel` and `interconnectAttachment` can be specified.
      */
-    readonly vpnTunnel?: pulumi.Input<string>;
+    readonly vpnTunnel?: pulumi.Input<string | undefined>;
 }

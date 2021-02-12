@@ -141,16 +141,16 @@ export interface BucketIAMBindingState {
     /**
      * Used to find the parent resource to bind the IAM policy to
      */
-    readonly bucket?: pulumi.Input<string>;
+    readonly bucket?: pulumi.Input<string | undefined>;
     /**
      * ) An [IAM Condition](https://cloud.google.com/iam/docs/conditions-overview) for a given binding.
      * Structure is documented below.
      */
-    readonly condition?: pulumi.Input<inputs.storage.BucketIAMBindingCondition>;
+    readonly condition?: pulumi.Input<inputs.storage.BucketIAMBindingCondition | undefined>;
     /**
      * (Computed) The etag of the IAM policy.
      */
-    readonly etag?: pulumi.Input<string>;
+    readonly etag?: pulumi.Input<string | undefined>;
     /**
      * Identities that will be granted the privilege in `role`.
      * Each entry can have one of the following values:
@@ -161,13 +161,13 @@ export interface BucketIAMBindingState {
      * * **group:{emailid}**: An email address that represents a Google group. For example, admins@example.com.
      * * **domain:{domain}**: A G Suite domain (primary, instead of alias) name that represents all the users of that domain. For example, google.com or example.com.
      */
-    readonly members?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly members?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The role that should be applied. Only one
      * `gcp.storage.BucketIAMBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
-    readonly role?: pulumi.Input<string>;
+    readonly role?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -182,7 +182,7 @@ export interface BucketIAMBindingArgs {
      * ) An [IAM Condition](https://cloud.google.com/iam/docs/conditions-overview) for a given binding.
      * Structure is documented below.
      */
-    readonly condition?: pulumi.Input<inputs.storage.BucketIAMBindingCondition>;
+    readonly condition?: pulumi.Input<inputs.storage.BucketIAMBindingCondition | undefined>;
     /**
      * Identities that will be granted the privilege in `role`.
      * Each entry can have one of the following values:

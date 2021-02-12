@@ -155,48 +155,48 @@ export interface ApiConfigState {
     /**
      * The API to attach the config to.
      */
-    readonly api?: pulumi.Input<string>;
+    readonly api?: pulumi.Input<string | undefined>;
     /**
      * Identifier to assign to the API Config. Must be unique within scope of the parent resource(api).
      */
-    readonly apiConfigId?: pulumi.Input<string>;
+    readonly apiConfigId?: pulumi.Input<string | undefined>;
     /**
      * Creates a unique name beginning with the
      * specified prefix. If this and apiConfigId are unspecified, a random value is chosen for the name.
      */
-    readonly apiConfigIdPrefix?: pulumi.Input<string>;
+    readonly apiConfigIdPrefix?: pulumi.Input<string | undefined>;
     /**
      * A user-visible name for the API.
      */
-    readonly displayName?: pulumi.Input<string>;
+    readonly displayName?: pulumi.Input<string | undefined>;
     /**
      * Immutable. Gateway specific configuration.
      * If not specified, backend authentication will be set to use OIDC authentication using the default compute service account
      * Structure is documented below.
      */
-    readonly gatewayConfig?: pulumi.Input<inputs.apigateway.ApiConfigGatewayConfig>;
+    readonly gatewayConfig?: pulumi.Input<inputs.apigateway.ApiConfigGatewayConfig | undefined>;
     /**
      * Resource labels to represent user-provided metadata.
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The resource name of the API Config.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * An OpenAPI Specification Document describing an API.
      * Structure is documented below.
      */
-    readonly openapiDocuments?: pulumi.Input<pulumi.Input<inputs.apigateway.ApiConfigOpenapiDocument>[]>;
+    readonly openapiDocuments?: pulumi.Input<pulumi.Input<inputs.apigateway.ApiConfigOpenapiDocument>[] | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The ID of the associated Service Config (https://cloud.google.com/service-infrastructure/docs/glossary#config).
      */
-    readonly serviceConfigId?: pulumi.Input<string>;
+    readonly serviceConfigId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -210,26 +210,26 @@ export interface ApiConfigArgs {
     /**
      * Identifier to assign to the API Config. Must be unique within scope of the parent resource(api).
      */
-    readonly apiConfigId?: pulumi.Input<string>;
+    readonly apiConfigId?: pulumi.Input<string | undefined>;
     /**
      * Creates a unique name beginning with the
      * specified prefix. If this and apiConfigId are unspecified, a random value is chosen for the name.
      */
-    readonly apiConfigIdPrefix?: pulumi.Input<string>;
+    readonly apiConfigIdPrefix?: pulumi.Input<string | undefined>;
     /**
      * A user-visible name for the API.
      */
-    readonly displayName?: pulumi.Input<string>;
+    readonly displayName?: pulumi.Input<string | undefined>;
     /**
      * Immutable. Gateway specific configuration.
      * If not specified, backend authentication will be set to use OIDC authentication using the default compute service account
      * Structure is documented below.
      */
-    readonly gatewayConfig?: pulumi.Input<inputs.apigateway.ApiConfigGatewayConfig>;
+    readonly gatewayConfig?: pulumi.Input<inputs.apigateway.ApiConfigGatewayConfig | undefined>;
     /**
      * Resource labels to represent user-provided metadata.
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * An OpenAPI Specification Document describing an API.
      * Structure is documented below.
@@ -239,5 +239,5 @@ export interface ApiConfigArgs {
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
 }

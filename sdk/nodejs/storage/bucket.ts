@@ -264,79 +264,79 @@ export interface BucketState {
      *
      * @deprecated Please use the uniform_bucket_level_access as this field has been renamed by Google.
      */
-    readonly bucketPolicyOnly?: pulumi.Input<boolean>;
+    readonly bucketPolicyOnly?: pulumi.Input<boolean | undefined>;
     /**
      * The bucket's [Cross-Origin Resource Sharing (CORS)](https://www.w3.org/TR/cors/) configuration. Multiple blocks of this type are permitted. Structure is documented below.
      */
-    readonly cors?: pulumi.Input<pulumi.Input<inputs.storage.BucketCor>[]>;
-    readonly defaultEventBasedHold?: pulumi.Input<boolean>;
+    readonly cors?: pulumi.Input<pulumi.Input<inputs.storage.BucketCor>[] | undefined>;
+    readonly defaultEventBasedHold?: pulumi.Input<boolean | undefined>;
     /**
      * The bucket's encryption configuration.
      */
-    readonly encryption?: pulumi.Input<inputs.storage.BucketEncryption>;
+    readonly encryption?: pulumi.Input<inputs.storage.BucketEncryption | undefined>;
     /**
      * When deleting a bucket, this
      * boolean option will delete all contained objects. If you try to delete a
      * bucket that contains objects, the provider will fail that run.
      */
-    readonly forceDestroy?: pulumi.Input<boolean>;
+    readonly forceDestroy?: pulumi.Input<boolean | undefined>;
     /**
      * A map of key/value label pairs to assign to the bucket.
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The bucket's [Lifecycle Rules](https://cloud.google.com/storage/docs/lifecycle#configuration) configuration. Multiple blocks of this type are permitted. Structure is documented below.
      */
-    readonly lifecycleRules?: pulumi.Input<pulumi.Input<inputs.storage.BucketLifecycleRule>[]>;
+    readonly lifecycleRules?: pulumi.Input<pulumi.Input<inputs.storage.BucketLifecycleRule>[] | undefined>;
     /**
      * The [GCS location](https://cloud.google.com/storage/docs/bucket-locations)
      */
-    readonly location?: pulumi.Input<string>;
+    readonly location?: pulumi.Input<string | undefined>;
     /**
      * The bucket's [Access & Storage Logs](https://cloud.google.com/storage/docs/access-logs) configuration.
      */
-    readonly logging?: pulumi.Input<inputs.storage.BucketLogging>;
+    readonly logging?: pulumi.Input<inputs.storage.BucketLogging | undefined>;
     /**
      * The name of the bucket.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs. If it
      * is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Enables [Requester Pays](https://cloud.google.com/storage/docs/requester-pays) on a storage bucket.
      */
-    readonly requesterPays?: pulumi.Input<boolean>;
+    readonly requesterPays?: pulumi.Input<boolean | undefined>;
     /**
      * Configuration of the bucket's data retention policy for how long objects in the bucket should be retained. Structure is documented below.
      */
-    readonly retentionPolicy?: pulumi.Input<inputs.storage.BucketRetentionPolicy>;
+    readonly retentionPolicy?: pulumi.Input<inputs.storage.BucketRetentionPolicy | undefined>;
     /**
      * The URI of the created resource.
      */
-    readonly selfLink?: pulumi.Input<string>;
+    readonly selfLink?: pulumi.Input<string | undefined>;
     /**
      * The target [Storage Class](https://cloud.google.com/storage/docs/storage-classes) of objects affected by this Lifecycle Rule. Supported values include: `MULTI_REGIONAL`, `REGIONAL`, `NEARLINE`, `COLDLINE`, `ARCHIVE`.
      */
-    readonly storageClass?: pulumi.Input<string>;
+    readonly storageClass?: pulumi.Input<string | undefined>;
     /**
      * Enables [Uniform bucket-level access](https://cloud.google.com/storage/docs/uniform-bucket-level-access) access to a bucket.
      */
-    readonly uniformBucketLevelAccess?: pulumi.Input<boolean>;
+    readonly uniformBucketLevelAccess?: pulumi.Input<boolean | undefined>;
     /**
      * The base URL of the bucket, in the format `gs://<bucket-name>`.
      */
-    readonly url?: pulumi.Input<string>;
+    readonly url?: pulumi.Input<string | undefined>;
     /**
      * The bucket's [Versioning](https://cloud.google.com/storage/docs/object-versioning) configuration.
      */
-    readonly versioning?: pulumi.Input<inputs.storage.BucketVersioning>;
+    readonly versioning?: pulumi.Input<inputs.storage.BucketVersioning | undefined>;
     /**
      * Configuration if the bucket acts as a website. Structure is documented below.
      */
-    readonly website?: pulumi.Input<inputs.storage.BucketWebsite>;
+    readonly website?: pulumi.Input<inputs.storage.BucketWebsite | undefined>;
 }
 
 /**
@@ -348,69 +348,69 @@ export interface BucketArgs {
      *
      * @deprecated Please use the uniform_bucket_level_access as this field has been renamed by Google.
      */
-    readonly bucketPolicyOnly?: pulumi.Input<boolean>;
+    readonly bucketPolicyOnly?: pulumi.Input<boolean | undefined>;
     /**
      * The bucket's [Cross-Origin Resource Sharing (CORS)](https://www.w3.org/TR/cors/) configuration. Multiple blocks of this type are permitted. Structure is documented below.
      */
-    readonly cors?: pulumi.Input<pulumi.Input<inputs.storage.BucketCor>[]>;
-    readonly defaultEventBasedHold?: pulumi.Input<boolean>;
+    readonly cors?: pulumi.Input<pulumi.Input<inputs.storage.BucketCor>[] | undefined>;
+    readonly defaultEventBasedHold?: pulumi.Input<boolean | undefined>;
     /**
      * The bucket's encryption configuration.
      */
-    readonly encryption?: pulumi.Input<inputs.storage.BucketEncryption>;
+    readonly encryption?: pulumi.Input<inputs.storage.BucketEncryption | undefined>;
     /**
      * When deleting a bucket, this
      * boolean option will delete all contained objects. If you try to delete a
      * bucket that contains objects, the provider will fail that run.
      */
-    readonly forceDestroy?: pulumi.Input<boolean>;
+    readonly forceDestroy?: pulumi.Input<boolean | undefined>;
     /**
      * A map of key/value label pairs to assign to the bucket.
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The bucket's [Lifecycle Rules](https://cloud.google.com/storage/docs/lifecycle#configuration) configuration. Multiple blocks of this type are permitted. Structure is documented below.
      */
-    readonly lifecycleRules?: pulumi.Input<pulumi.Input<inputs.storage.BucketLifecycleRule>[]>;
+    readonly lifecycleRules?: pulumi.Input<pulumi.Input<inputs.storage.BucketLifecycleRule>[] | undefined>;
     /**
      * The [GCS location](https://cloud.google.com/storage/docs/bucket-locations)
      */
-    readonly location?: pulumi.Input<string>;
+    readonly location?: pulumi.Input<string | undefined>;
     /**
      * The bucket's [Access & Storage Logs](https://cloud.google.com/storage/docs/access-logs) configuration.
      */
-    readonly logging?: pulumi.Input<inputs.storage.BucketLogging>;
+    readonly logging?: pulumi.Input<inputs.storage.BucketLogging | undefined>;
     /**
      * The name of the bucket.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs. If it
      * is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Enables [Requester Pays](https://cloud.google.com/storage/docs/requester-pays) on a storage bucket.
      */
-    readonly requesterPays?: pulumi.Input<boolean>;
+    readonly requesterPays?: pulumi.Input<boolean | undefined>;
     /**
      * Configuration of the bucket's data retention policy for how long objects in the bucket should be retained. Structure is documented below.
      */
-    readonly retentionPolicy?: pulumi.Input<inputs.storage.BucketRetentionPolicy>;
+    readonly retentionPolicy?: pulumi.Input<inputs.storage.BucketRetentionPolicy | undefined>;
     /**
      * The target [Storage Class](https://cloud.google.com/storage/docs/storage-classes) of objects affected by this Lifecycle Rule. Supported values include: `MULTI_REGIONAL`, `REGIONAL`, `NEARLINE`, `COLDLINE`, `ARCHIVE`.
      */
-    readonly storageClass?: pulumi.Input<string>;
+    readonly storageClass?: pulumi.Input<string | undefined>;
     /**
      * Enables [Uniform bucket-level access](https://cloud.google.com/storage/docs/uniform-bucket-level-access) access to a bucket.
      */
-    readonly uniformBucketLevelAccess?: pulumi.Input<boolean>;
+    readonly uniformBucketLevelAccess?: pulumi.Input<boolean | undefined>;
     /**
      * The bucket's [Versioning](https://cloud.google.com/storage/docs/object-versioning) configuration.
      */
-    readonly versioning?: pulumi.Input<inputs.storage.BucketVersioning>;
+    readonly versioning?: pulumi.Input<inputs.storage.BucketVersioning | undefined>;
     /**
      * Configuration if the bucket acts as a website. Structure is documented below.
      */
-    readonly website?: pulumi.Input<inputs.storage.BucketWebsite>;
+    readonly website?: pulumi.Input<inputs.storage.BucketWebsite | undefined>;
 }

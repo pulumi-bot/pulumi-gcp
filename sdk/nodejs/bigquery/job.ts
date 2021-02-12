@@ -342,51 +342,51 @@ export interface JobState {
      * Copies a table.
      * Structure is documented below.
      */
-    readonly copy?: pulumi.Input<inputs.bigquery.JobCopy>;
+    readonly copy?: pulumi.Input<inputs.bigquery.JobCopy | undefined>;
     /**
      * Configures an extract job.
      * Structure is documented below.
      */
-    readonly extract?: pulumi.Input<inputs.bigquery.JobExtract>;
+    readonly extract?: pulumi.Input<inputs.bigquery.JobExtract | undefined>;
     /**
      * The ID of the job. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), or dashes (-). The maximum length is 1,024 characters.
      */
-    readonly jobId?: pulumi.Input<string>;
+    readonly jobId?: pulumi.Input<string | undefined>;
     /**
      * Job timeout in milliseconds. If this time limit is exceeded, BigQuery may attempt to terminate the job.
      */
-    readonly jobTimeoutMs?: pulumi.Input<string>;
+    readonly jobTimeoutMs?: pulumi.Input<string | undefined>;
     /**
      * The type of the job.
      */
-    readonly jobType?: pulumi.Input<string>;
+    readonly jobType?: pulumi.Input<string | undefined>;
     /**
      * The labels associated with this job. You can use these to organize and group your jobs.
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Configures a load job.
      * Structure is documented below.
      */
-    readonly load?: pulumi.Input<inputs.bigquery.JobLoad>;
+    readonly load?: pulumi.Input<inputs.bigquery.JobLoad | undefined>;
     /**
      * The geographic location of the job. The default value is US.
      */
-    readonly location?: pulumi.Input<string>;
+    readonly location?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Configures a query job.
      * Structure is documented below.
      */
-    readonly query?: pulumi.Input<inputs.bigquery.JobQuery>;
+    readonly query?: pulumi.Input<inputs.bigquery.JobQuery | undefined>;
     /**
      * Email address of the user who ran the job.
      */
-    readonly userEmail?: pulumi.Input<string>;
+    readonly userEmail?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -397,12 +397,12 @@ export interface JobArgs {
      * Copies a table.
      * Structure is documented below.
      */
-    readonly copy?: pulumi.Input<inputs.bigquery.JobCopy>;
+    readonly copy?: pulumi.Input<inputs.bigquery.JobCopy | undefined>;
     /**
      * Configures an extract job.
      * Structure is documented below.
      */
-    readonly extract?: pulumi.Input<inputs.bigquery.JobExtract>;
+    readonly extract?: pulumi.Input<inputs.bigquery.JobExtract | undefined>;
     /**
      * The ID of the job. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), or dashes (-). The maximum length is 1,024 characters.
      */
@@ -410,28 +410,28 @@ export interface JobArgs {
     /**
      * Job timeout in milliseconds. If this time limit is exceeded, BigQuery may attempt to terminate the job.
      */
-    readonly jobTimeoutMs?: pulumi.Input<string>;
+    readonly jobTimeoutMs?: pulumi.Input<string | undefined>;
     /**
      * The labels associated with this job. You can use these to organize and group your jobs.
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Configures a load job.
      * Structure is documented below.
      */
-    readonly load?: pulumi.Input<inputs.bigquery.JobLoad>;
+    readonly load?: pulumi.Input<inputs.bigquery.JobLoad | undefined>;
     /**
      * The geographic location of the job. The default value is US.
      */
-    readonly location?: pulumi.Input<string>;
+    readonly location?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Configures a query job.
      * Structure is documented below.
      */
-    readonly query?: pulumi.Input<inputs.bigquery.JobQuery>;
+    readonly query?: pulumi.Input<inputs.bigquery.JobQuery | undefined>;
 }

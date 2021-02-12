@@ -5,8 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "../types";
 
 export interface ProviderBatching {
-    enableBatching?: pulumi.Input<boolean>;
-    sendAfter?: pulumi.Input<string>;
+    enableBatching?: pulumi.Input<boolean | undefined>;
+    sendAfter?: pulumi.Input<string | undefined>;
 }
 export namespace accesscontextmanager {
     export interface AccessLevelBasic {
@@ -19,7 +19,7 @@ export namespace accesscontextmanager {
          * Default value is `AND`.
          * Possible values are `AND` and `OR`.
          */
-        combiningFunction?: pulumi.Input<string>;
+        combiningFunction?: pulumi.Input<string | undefined>;
         /**
          * A set of requirements for the AccessLevel to be granted.
          * Structure is documented below.
@@ -34,7 +34,7 @@ export namespace accesscontextmanager {
          * allowed.
          * Structure is documented below.
          */
-        devicePolicy?: pulumi.Input<inputs.accesscontextmanager.AccessLevelBasicConditionDevicePolicy>;
+        devicePolicy?: pulumi.Input<inputs.accesscontextmanager.AccessLevelBasicConditionDevicePolicy | undefined>;
         /**
          * A list of CIDR block IP subnetwork specification. May be IPv4
          * or IPv6.
@@ -47,7 +47,7 @@ export namespace accesscontextmanager {
          * listed subnets in order for this Condition to be true.
          * If empty, all IP addresses are allowed.
          */
-        ipSubnetworks?: pulumi.Input<pulumi.Input<string>[]>;
+        ipSubnetworks?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * An allowed list of members (users, service accounts).
          * Using groups is not supported yet.
@@ -57,19 +57,19 @@ export namespace accesscontextmanager {
          * groups, etc.).
          * Formats: `user:{emailid}`, `serviceAccount:{emailid}`
          */
-        members?: pulumi.Input<pulumi.Input<string>[]>;
+        members?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Whether to negate the Condition. If true, the Condition becomes
          * a NAND over its non-empty fields, each field must be false for
          * the Condition overall to be satisfied. Defaults to false.
          */
-        negate?: pulumi.Input<boolean>;
+        negate?: pulumi.Input<boolean | undefined>;
         /**
          * The request must originate from one of the provided
          * countries/regions.
          * Format: A valid ISO 3166-1 alpha-2 code.
          */
-        regions?: pulumi.Input<pulumi.Input<string>[]>;
+        regions?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * A list of other access levels defined in the same Policy,
          * referenced by resource name. Referencing an AccessLevel which
@@ -77,7 +77,7 @@ export namespace accesscontextmanager {
          * granted for the Condition to be true.
          * Format: accessPolicies/{policy_id}/accessLevels/{short_name}
          */
-        requiredAccessLevels?: pulumi.Input<pulumi.Input<string>[]>;
+        requiredAccessLevels?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface AccessLevelBasicConditionDevicePolicy {
@@ -86,32 +86,32 @@ export namespace accesscontextmanager {
          * An empty list allows all management levels.
          * Each value may be one of `MANAGEMENT_UNSPECIFIED`, `NONE`, `BASIC`, and `COMPLETE`.
          */
-        allowedDeviceManagementLevels?: pulumi.Input<pulumi.Input<string>[]>;
+        allowedDeviceManagementLevels?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * A list of allowed encryptions statuses.
          * An empty list allows all statuses.
          * Each value may be one of `ENCRYPTION_UNSPECIFIED`, `ENCRYPTION_UNSUPPORTED`, `UNENCRYPTED`, and `ENCRYPTED`.
          */
-        allowedEncryptionStatuses?: pulumi.Input<pulumi.Input<string>[]>;
+        allowedEncryptionStatuses?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * A list of allowed OS versions.
          * An empty list allows all types and all versions.
          * Structure is documented below.
          */
-        osConstraints?: pulumi.Input<pulumi.Input<inputs.accesscontextmanager.AccessLevelBasicConditionDevicePolicyOsConstraint>[]>;
+        osConstraints?: pulumi.Input<pulumi.Input<inputs.accesscontextmanager.AccessLevelBasicConditionDevicePolicyOsConstraint>[] | undefined>;
         /**
          * Whether the device needs to be approved by the customer admin.
          */
-        requireAdminApproval?: pulumi.Input<boolean>;
+        requireAdminApproval?: pulumi.Input<boolean | undefined>;
         /**
          * Whether the device needs to be corp owned.
          */
-        requireCorpOwned?: pulumi.Input<boolean>;
+        requireCorpOwned?: pulumi.Input<boolean | undefined>;
         /**
          * Whether or not screenlock is required for the DevicePolicy
          * to be true. Defaults to false.
          */
-        requireScreenLock?: pulumi.Input<boolean>;
+        requireScreenLock?: pulumi.Input<boolean | undefined>;
     }
 
     export interface AccessLevelBasicConditionDevicePolicyOsConstraint {
@@ -120,7 +120,7 @@ export namespace accesscontextmanager {
          * of this OS satisfies the constraint.
          * Format: "major.minor.patch" such as "10.5.301", "9.2.1".
          */
-        minimumVersion?: pulumi.Input<string>;
+        minimumVersion?: pulumi.Input<string | undefined>;
         /**
          * The operating system type of the device.
          * Possible values are `OS_UNSPECIFIED`, `DESKTOP_MAC`, `DESKTOP_WINDOWS`, `DESKTOP_LINUX`, and `DESKTOP_CHROME_OS`.
@@ -134,32 +134,32 @@ export namespace accesscontextmanager {
          * An empty list allows all management levels.
          * Each value may be one of `MANAGEMENT_UNSPECIFIED`, `NONE`, `BASIC`, and `COMPLETE`.
          */
-        allowedDeviceManagementLevels?: pulumi.Input<pulumi.Input<string>[]>;
+        allowedDeviceManagementLevels?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * A list of allowed encryptions statuses.
          * An empty list allows all statuses.
          * Each value may be one of `ENCRYPTION_UNSPECIFIED`, `ENCRYPTION_UNSUPPORTED`, `UNENCRYPTED`, and `ENCRYPTED`.
          */
-        allowedEncryptionStatuses?: pulumi.Input<pulumi.Input<string>[]>;
+        allowedEncryptionStatuses?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * A list of allowed OS versions.
          * An empty list allows all types and all versions.
          * Structure is documented below.
          */
-        osConstraints?: pulumi.Input<pulumi.Input<inputs.accesscontextmanager.AccessLevelConditionDevicePolicyOsConstraint>[]>;
+        osConstraints?: pulumi.Input<pulumi.Input<inputs.accesscontextmanager.AccessLevelConditionDevicePolicyOsConstraint>[] | undefined>;
         /**
          * Whether the device needs to be approved by the customer admin.
          */
-        requireAdminApproval?: pulumi.Input<boolean>;
+        requireAdminApproval?: pulumi.Input<boolean | undefined>;
         /**
          * Whether the device needs to be corp owned.
          */
-        requireCorpOwned?: pulumi.Input<boolean>;
+        requireCorpOwned?: pulumi.Input<boolean | undefined>;
         /**
          * Whether or not screenlock is required for the DevicePolicy
          * to be true. Defaults to false.
          */
-        requireScreenLock?: pulumi.Input<boolean>;
+        requireScreenLock?: pulumi.Input<boolean | undefined>;
     }
 
     export interface AccessLevelConditionDevicePolicyOsConstraint {
@@ -168,7 +168,7 @@ export namespace accesscontextmanager {
          * of this OS satisfies the constraint.
          * Format: "major.minor.patch" such as "10.5.301", "9.2.1".
          */
-        minimumVersion?: pulumi.Input<string>;
+        minimumVersion?: pulumi.Input<string | undefined>;
         /**
          * The operating system type of the device.
          * Possible values are `OS_UNSPECIFIED`, `DESKTOP_MAC`, `DESKTOP_WINDOWS`, `DESKTOP_LINUX`, and `DESKTOP_CHROME_OS`.
@@ -190,7 +190,7 @@ export namespace accesscontextmanager {
         /**
          * Description of the expression
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * Textual representation of an expression in Common Expression Language syntax.
          */
@@ -198,11 +198,11 @@ export namespace accesscontextmanager {
         /**
          * String indicating the location of the expression for error reporting, e.g. a file name and a position in the file
          */
-        location?: pulumi.Input<string>;
+        location?: pulumi.Input<string | undefined>;
         /**
          * Title for the expression, i.e. a short string describing its purpose.
          */
-        title?: pulumi.Input<string>;
+        title?: pulumi.Input<string | undefined>;
     }
 
     export interface AccessLevelsAccessLevel {
@@ -210,17 +210,17 @@ export namespace accesscontextmanager {
          * A set of predefined conditions for the access level and a combining function.
          * Structure is documented below.
          */
-        basic?: pulumi.Input<inputs.accesscontextmanager.AccessLevelsAccessLevelBasic>;
+        basic?: pulumi.Input<inputs.accesscontextmanager.AccessLevelsAccessLevelBasic | undefined>;
         /**
          * Custom access level conditions are set using the Cloud Common Expression Language to represent the necessary conditions for the level to apply to a request.
          * See CEL spec at: https://github.com/google/cel-spec.
          * Structure is documented below.
          */
-        custom?: pulumi.Input<inputs.accesscontextmanager.AccessLevelsAccessLevelCustom>;
+        custom?: pulumi.Input<inputs.accesscontextmanager.AccessLevelsAccessLevelCustom | undefined>;
         /**
          * Description of the expression
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * Resource name for the Access Level. The shortName component must begin
          * with a letter and only include alphanumeric and '_'.
@@ -243,7 +243,7 @@ export namespace accesscontextmanager {
          * Default value is `AND`.
          * Possible values are `AND` and `OR`.
          */
-        combiningFunction?: pulumi.Input<string>;
+        combiningFunction?: pulumi.Input<string | undefined>;
         /**
          * A set of requirements for the AccessLevel to be granted.
          * Structure is documented below.
@@ -258,7 +258,7 @@ export namespace accesscontextmanager {
          * allowed.
          * Structure is documented below.
          */
-        devicePolicy?: pulumi.Input<inputs.accesscontextmanager.AccessLevelsAccessLevelBasicConditionDevicePolicy>;
+        devicePolicy?: pulumi.Input<inputs.accesscontextmanager.AccessLevelsAccessLevelBasicConditionDevicePolicy | undefined>;
         /**
          * A list of CIDR block IP subnetwork specification. May be IPv4
          * or IPv6.
@@ -271,7 +271,7 @@ export namespace accesscontextmanager {
          * listed subnets in order for this Condition to be true.
          * If empty, all IP addresses are allowed.
          */
-        ipSubnetworks?: pulumi.Input<pulumi.Input<string>[]>;
+        ipSubnetworks?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * An allowed list of members (users, service accounts).
          * Using groups is not supported yet.
@@ -281,19 +281,19 @@ export namespace accesscontextmanager {
          * groups, etc.).
          * Formats: `user:{emailid}`, `serviceAccount:{emailid}`
          */
-        members?: pulumi.Input<pulumi.Input<string>[]>;
+        members?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Whether to negate the Condition. If true, the Condition becomes
          * a NAND over its non-empty fields, each field must be false for
          * the Condition overall to be satisfied. Defaults to false.
          */
-        negate?: pulumi.Input<boolean>;
+        negate?: pulumi.Input<boolean | undefined>;
         /**
          * The request must originate from one of the provided
          * countries/regions.
          * Format: A valid ISO 3166-1 alpha-2 code.
          */
-        regions?: pulumi.Input<pulumi.Input<string>[]>;
+        regions?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * A list of other access levels defined in the same Policy,
          * referenced by resource name. Referencing an AccessLevel which
@@ -301,7 +301,7 @@ export namespace accesscontextmanager {
          * granted for the Condition to be true.
          * Format: accessPolicies/{policy_id}/accessLevels/{short_name}
          */
-        requiredAccessLevels?: pulumi.Input<pulumi.Input<string>[]>;
+        requiredAccessLevels?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface AccessLevelsAccessLevelBasicConditionDevicePolicy {
@@ -310,32 +310,32 @@ export namespace accesscontextmanager {
          * An empty list allows all management levels.
          * Each value may be one of `MANAGEMENT_UNSPECIFIED`, `NONE`, `BASIC`, and `COMPLETE`.
          */
-        allowedDeviceManagementLevels?: pulumi.Input<pulumi.Input<string>[]>;
+        allowedDeviceManagementLevels?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * A list of allowed encryptions statuses.
          * An empty list allows all statuses.
          * Each value may be one of `ENCRYPTION_UNSPECIFIED`, `ENCRYPTION_UNSUPPORTED`, `UNENCRYPTED`, and `ENCRYPTED`.
          */
-        allowedEncryptionStatuses?: pulumi.Input<pulumi.Input<string>[]>;
+        allowedEncryptionStatuses?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * A list of allowed OS versions.
          * An empty list allows all types and all versions.
          * Structure is documented below.
          */
-        osConstraints?: pulumi.Input<pulumi.Input<inputs.accesscontextmanager.AccessLevelsAccessLevelBasicConditionDevicePolicyOsConstraint>[]>;
+        osConstraints?: pulumi.Input<pulumi.Input<inputs.accesscontextmanager.AccessLevelsAccessLevelBasicConditionDevicePolicyOsConstraint>[] | undefined>;
         /**
          * Whether the device needs to be approved by the customer admin.
          */
-        requireAdminApproval?: pulumi.Input<boolean>;
+        requireAdminApproval?: pulumi.Input<boolean | undefined>;
         /**
          * Whether the device needs to be corp owned.
          */
-        requireCorpOwned?: pulumi.Input<boolean>;
+        requireCorpOwned?: pulumi.Input<boolean | undefined>;
         /**
          * Whether or not screenlock is required for the DevicePolicy
          * to be true. Defaults to false.
          */
-        requireScreenLock?: pulumi.Input<boolean>;
+        requireScreenLock?: pulumi.Input<boolean | undefined>;
     }
 
     export interface AccessLevelsAccessLevelBasicConditionDevicePolicyOsConstraint {
@@ -344,7 +344,7 @@ export namespace accesscontextmanager {
          * of this OS satisfies the constraint.
          * Format: "major.minor.patch" such as "10.5.301", "9.2.1".
          */
-        minimumVersion?: pulumi.Input<string>;
+        minimumVersion?: pulumi.Input<string | undefined>;
         /**
          * The operating system type of the device.
          * Possible values are `OS_UNSPECIFIED`, `DESKTOP_MAC`, `DESKTOP_WINDOWS`, `DESKTOP_LINUX`, and `DESKTOP_CHROME_OS`.
@@ -366,7 +366,7 @@ export namespace accesscontextmanager {
         /**
          * Description of the expression
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * Textual representation of an expression in Common Expression Language syntax.
          */
@@ -374,11 +374,11 @@ export namespace accesscontextmanager {
         /**
          * String indicating the location of the expression for error reporting, e.g. a file name and a position in the file
          */
-        location?: pulumi.Input<string>;
+        location?: pulumi.Input<string | undefined>;
         /**
          * Title for the expression, i.e. a short string describing its purpose.
          */
-        title?: pulumi.Input<string>;
+        title?: pulumi.Input<string | undefined>;
     }
 
     export interface ServicePerimeterSpec {
@@ -393,13 +393,13 @@ export namespace accesscontextmanager {
          * be empty.
          * Format: accessPolicies/{policy_id}/accessLevels/{access_level_name}
          */
-        accessLevels?: pulumi.Input<pulumi.Input<string>[]>;
+        accessLevels?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * A list of GCP resources that are inside of the service perimeter.
          * Currently only projects are allowed.
          * Format: projects/{project_number}
          */
-        resources?: pulumi.Input<pulumi.Input<string>[]>;
+        resources?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * GCP services that are subject to the Service Perimeter
          * restrictions. Must contain a list of services. For example, if
@@ -407,13 +407,13 @@ export namespace accesscontextmanager {
          * buckets inside the perimeter must meet the perimeter's access
          * restrictions.
          */
-        restrictedServices?: pulumi.Input<pulumi.Input<string>[]>;
+        restrictedServices?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies how APIs are allowed to communicate within the Service
          * Perimeter.
          * Structure is documented below.
          */
-        vpcAccessibleServices?: pulumi.Input<inputs.accesscontextmanager.ServicePerimeterSpecVpcAccessibleServices>;
+        vpcAccessibleServices?: pulumi.Input<inputs.accesscontextmanager.ServicePerimeterSpecVpcAccessibleServices | undefined>;
     }
 
     export interface ServicePerimeterSpecVpcAccessibleServices {
@@ -421,12 +421,12 @@ export namespace accesscontextmanager {
          * The list of APIs usable within the Service Perimeter.
          * Must be empty unless `enableRestriction` is True.
          */
-        allowedServices?: pulumi.Input<pulumi.Input<string>[]>;
+        allowedServices?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Whether to restrict API calls within the Service Perimeter to the
          * list of APIs specified in 'allowedServices'.
          */
-        enableRestriction?: pulumi.Input<boolean>;
+        enableRestriction?: pulumi.Input<boolean | undefined>;
     }
 
     export interface ServicePerimeterStatus {
@@ -441,13 +441,13 @@ export namespace accesscontextmanager {
          * be empty.
          * Format: accessPolicies/{policy_id}/accessLevels/{access_level_name}
          */
-        accessLevels?: pulumi.Input<pulumi.Input<string>[]>;
+        accessLevels?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * A list of GCP resources that are inside of the service perimeter.
          * Currently only projects are allowed.
          * Format: projects/{project_number}
          */
-        resources?: pulumi.Input<pulumi.Input<string>[]>;
+        resources?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * GCP services that are subject to the Service Perimeter
          * restrictions. Must contain a list of services. For example, if
@@ -455,13 +455,13 @@ export namespace accesscontextmanager {
          * buckets inside the perimeter must meet the perimeter's access
          * restrictions.
          */
-        restrictedServices?: pulumi.Input<pulumi.Input<string>[]>;
+        restrictedServices?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies how APIs are allowed to communicate within the Service
          * Perimeter.
          * Structure is documented below.
          */
-        vpcAccessibleServices?: pulumi.Input<inputs.accesscontextmanager.ServicePerimeterStatusVpcAccessibleServices>;
+        vpcAccessibleServices?: pulumi.Input<inputs.accesscontextmanager.ServicePerimeterStatusVpcAccessibleServices | undefined>;
     }
 
     export interface ServicePerimeterStatusVpcAccessibleServices {
@@ -469,12 +469,12 @@ export namespace accesscontextmanager {
          * The list of APIs usable within the Service Perimeter.
          * Must be empty unless `enableRestriction` is True.
          */
-        allowedServices?: pulumi.Input<pulumi.Input<string>[]>;
+        allowedServices?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Whether to restrict API calls within the Service Perimeter to the
          * list of APIs specified in 'allowedServices'.
          */
-        enableRestriction?: pulumi.Input<boolean>;
+        enableRestriction?: pulumi.Input<boolean | undefined>;
     }
 
     export interface ServicePerimetersServicePerimeter {
@@ -482,12 +482,12 @@ export namespace accesscontextmanager {
          * -
          * Time the AccessPolicy was created in UTC.
          */
-        createTime?: pulumi.Input<string>;
+        createTime?: pulumi.Input<string | undefined>;
         /**
          * Description of the ServicePerimeter and its use. Does not affect
          * behavior.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * Resource name for the ServicePerimeter. The shortName component must
          * begin with a letter and only include alphanumeric and '_'.
@@ -512,7 +512,7 @@ export namespace accesscontextmanager {
          * Default value is `PERIMETER_TYPE_REGULAR`.
          * Possible values are `PERIMETER_TYPE_REGULAR` and `PERIMETER_TYPE_BRIDGE`.
          */
-        perimeterType?: pulumi.Input<string>;
+        perimeterType?: pulumi.Input<string | undefined>;
         /**
          * Proposed (or dry run) ServicePerimeter configuration.
          * This configuration allows to specify and test ServicePerimeter configuration
@@ -520,14 +520,14 @@ export namespace accesscontextmanager {
          * the `useExplicitDryRunSpec` flag is set.
          * Structure is documented below.
          */
-        spec?: pulumi.Input<inputs.accesscontextmanager.ServicePerimetersServicePerimeterSpec>;
+        spec?: pulumi.Input<inputs.accesscontextmanager.ServicePerimetersServicePerimeterSpec | undefined>;
         /**
          * ServicePerimeter configuration. Specifies sets of resources,
          * restricted services and access levels that determine
          * perimeter content and boundaries.
          * Structure is documented below.
          */
-        status?: pulumi.Input<inputs.accesscontextmanager.ServicePerimetersServicePerimeterStatus>;
+        status?: pulumi.Input<inputs.accesscontextmanager.ServicePerimetersServicePerimeterStatus | undefined>;
         /**
          * Human readable title. Must be unique within the Policy.
          */
@@ -536,7 +536,7 @@ export namespace accesscontextmanager {
          * -
          * Time the AccessPolicy was updated in UTC.
          */
-        updateTime?: pulumi.Input<string>;
+        updateTime?: pulumi.Input<string | undefined>;
         /**
          * Use explicit dry run spec flag. Ordinarily, a dry-run spec implicitly exists
          * for all Service Perimeters, and that spec is identical to the status for those
@@ -548,7 +548,7 @@ export namespace accesscontextmanager {
          * between currently enforced and suggested restrictions. useExplicitDryRunSpec must
          * bet set to True if any of the fields in the spec are set to non-default values.
          */
-        useExplicitDryRunSpec?: pulumi.Input<boolean>;
+        useExplicitDryRunSpec?: pulumi.Input<boolean | undefined>;
     }
 
     export interface ServicePerimetersServicePerimeterSpec {
@@ -563,13 +563,13 @@ export namespace accesscontextmanager {
          * be empty.
          * Format: accessPolicies/{policy_id}/accessLevels/{access_level_name}
          */
-        accessLevels?: pulumi.Input<pulumi.Input<string>[]>;
+        accessLevels?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * A list of GCP resources that are inside of the service perimeter.
          * Currently only projects are allowed.
          * Format: projects/{project_number}
          */
-        resources?: pulumi.Input<pulumi.Input<string>[]>;
+        resources?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * GCP services that are subject to the Service Perimeter
          * restrictions. Must contain a list of services. For example, if
@@ -577,13 +577,13 @@ export namespace accesscontextmanager {
          * buckets inside the perimeter must meet the perimeter's access
          * restrictions.
          */
-        restrictedServices?: pulumi.Input<pulumi.Input<string>[]>;
+        restrictedServices?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies how APIs are allowed to communicate within the Service
          * Perimeter.
          * Structure is documented below.
          */
-        vpcAccessibleServices?: pulumi.Input<inputs.accesscontextmanager.ServicePerimetersServicePerimeterSpecVpcAccessibleServices>;
+        vpcAccessibleServices?: pulumi.Input<inputs.accesscontextmanager.ServicePerimetersServicePerimeterSpecVpcAccessibleServices | undefined>;
     }
 
     export interface ServicePerimetersServicePerimeterSpecVpcAccessibleServices {
@@ -591,12 +591,12 @@ export namespace accesscontextmanager {
          * The list of APIs usable within the Service Perimeter.
          * Must be empty unless `enableRestriction` is True.
          */
-        allowedServices?: pulumi.Input<pulumi.Input<string>[]>;
+        allowedServices?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Whether to restrict API calls within the Service Perimeter to the
          * list of APIs specified in 'allowedServices'.
          */
-        enableRestriction?: pulumi.Input<boolean>;
+        enableRestriction?: pulumi.Input<boolean | undefined>;
     }
 
     export interface ServicePerimetersServicePerimeterStatus {
@@ -611,13 +611,13 @@ export namespace accesscontextmanager {
          * be empty.
          * Format: accessPolicies/{policy_id}/accessLevels/{access_level_name}
          */
-        accessLevels?: pulumi.Input<pulumi.Input<string>[]>;
+        accessLevels?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * A list of GCP resources that are inside of the service perimeter.
          * Currently only projects are allowed.
          * Format: projects/{project_number}
          */
-        resources?: pulumi.Input<pulumi.Input<string>[]>;
+        resources?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * GCP services that are subject to the Service Perimeter
          * restrictions. Must contain a list of services. For example, if
@@ -625,13 +625,13 @@ export namespace accesscontextmanager {
          * buckets inside the perimeter must meet the perimeter's access
          * restrictions.
          */
-        restrictedServices?: pulumi.Input<pulumi.Input<string>[]>;
+        restrictedServices?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies how APIs are allowed to communicate within the Service
          * Perimeter.
          * Structure is documented below.
          */
-        vpcAccessibleServices?: pulumi.Input<inputs.accesscontextmanager.ServicePerimetersServicePerimeterStatusVpcAccessibleServices>;
+        vpcAccessibleServices?: pulumi.Input<inputs.accesscontextmanager.ServicePerimetersServicePerimeterStatusVpcAccessibleServices | undefined>;
     }
 
     export interface ServicePerimetersServicePerimeterStatusVpcAccessibleServices {
@@ -639,12 +639,12 @@ export namespace accesscontextmanager {
          * The list of APIs usable within the Service Perimeter.
          * Must be empty unless `enableRestriction` is True.
          */
-        allowedServices?: pulumi.Input<pulumi.Input<string>[]>;
+        allowedServices?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Whether to restrict API calls within the Service Perimeter to the
          * list of APIs specified in 'allowedServices'.
          */
-        enableRestriction?: pulumi.Input<boolean>;
+        enableRestriction?: pulumi.Input<boolean | undefined>;
     }
 }
 
@@ -666,13 +666,13 @@ export namespace apigateway {
     }
 
     export interface ApiConfigIamBindingCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
 
     export interface ApiConfigIamMemberCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
@@ -697,25 +697,25 @@ export namespace apigateway {
     }
 
     export interface ApiIamBindingCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
 
     export interface ApiIamMemberCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
 
     export interface GatewayIamBindingCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
 
     export interface GatewayIamMemberCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
@@ -735,7 +735,7 @@ export namespace appengine {
          * (Optional) Whether the serving infrastructure will authenticate and authorize all incoming requests. 
          * (default is false)
          */
-        enabled?: pulumi.Input<boolean>;
+        enabled?: pulumi.Input<boolean | undefined>;
         /**
          * OAuth2 client ID to use for the authentication flow.
          */
@@ -748,13 +748,13 @@ export namespace appengine {
         /**
          * Hex-encoded SHA-256 hash of the client secret.
          */
-        oauth2ClientSecretSha256?: pulumi.Input<string>;
+        oauth2ClientSecretSha256?: pulumi.Input<string | undefined>;
     }
 
     export interface ApplicationUrlDispatchRule {
-        domain?: pulumi.Input<string>;
-        path?: pulumi.Input<string>;
-        service?: pulumi.Input<string>;
+        domain?: pulumi.Input<string | undefined>;
+        path?: pulumi.Input<string | undefined>;
+        service?: pulumi.Input<string | undefined>;
     }
 
     export interface ApplicationUrlDispatchRulesDispatchRule {
@@ -762,7 +762,7 @@ export namespace appengine {
          * Domain name to match against. The wildcard "*" is supported if specified before a period: "*.".
          * Defaults to matching all domains: "*".
          */
-        domain?: pulumi.Input<string>;
+        domain?: pulumi.Input<string | undefined>;
         /**
          * Pathname within the host. Must start with a "/". A single "*" can be included at the end of the path.
          * The sum of the lengths of the domain and path may not exceed 100 characters.
@@ -776,9 +776,9 @@ export namespace appengine {
     }
 
     export interface DomainMappingResourceRecord {
-        name?: pulumi.Input<string>;
-        rrdata?: pulumi.Input<string>;
-        type?: pulumi.Input<string>;
+        name?: pulumi.Input<string | undefined>;
+        rrdata?: pulumi.Input<string | undefined>;
+        type?: pulumi.Input<string | undefined>;
     }
 
     export interface DomainMappingSslSettings {
@@ -790,7 +790,7 @@ export namespace appengine {
          * authorized to administer the `AuthorizedCertificate` resource to manually map it to a DomainMapping resource.
          * Example: 12345.
          */
-        certificateId?: pulumi.Input<string>;
+        certificateId?: pulumi.Input<string | undefined>;
         /**
          * -
          * ID of the managed `AuthorizedCertificate` resource currently being provisioned, if applicable. Until the new
@@ -799,7 +799,7 @@ export namespace appengine {
          * field will be left empty. To remove SSL support while there is still a pending managed certificate, clear the
          * `certificateId` field with an update request.
          */
-        pendingManagedCertificateId?: pulumi.Input<string>;
+        pendingManagedCertificateId?: pulumi.Input<string | undefined>;
         /**
          * SSL management type for this domain. If `AUTOMATIC`, a managed certificate is automatically provisioned.
          * If `MANUAL`, `certificateId` must be manually specified in order to configure SSL for this domain.
@@ -817,7 +817,7 @@ export namespace appengine {
          * Mechanism used to determine which version a request is sent to. The traffic selection algorithm will be stable for either type until allocations are changed.
          * Possible values are `UNSPECIFIED`, `COOKIE`, `IP`, and `RANDOM`.
          */
-        shardBy?: pulumi.Input<string>;
+        shardBy?: pulumi.Input<string | undefined>;
     }
 
     export interface FlexibleAppVersionApiConfig {
@@ -826,13 +826,13 @@ export namespace appengine {
          * Default value is `AUTH_FAIL_ACTION_REDIRECT`.
          * Possible values are `AUTH_FAIL_ACTION_REDIRECT` and `AUTH_FAIL_ACTION_UNAUTHORIZED`.
          */
-        authFailAction?: pulumi.Input<string>;
+        authFailAction?: pulumi.Input<string | undefined>;
         /**
          * Level of login required to access this resource.
          * Default value is `LOGIN_OPTIONAL`.
          * Possible values are `LOGIN_OPTIONAL`, `LOGIN_ADMIN`, and `LOGIN_REQUIRED`.
          */
-        login?: pulumi.Input<string>;
+        login?: pulumi.Input<string | undefined>;
         /**
          * Path to the script from the application root directory.
          */
@@ -841,11 +841,11 @@ export namespace appengine {
          * Security (HTTPS) enforcement for this URL.
          * Possible values are `SECURE_DEFAULT`, `SECURE_NEVER`, `SECURE_OPTIONAL`, and `SECURE_ALWAYS`.
          */
-        securityLevel?: pulumi.Input<string>;
+        securityLevel?: pulumi.Input<string | undefined>;
         /**
          * URL to serve the endpoint at.
          */
-        url?: pulumi.Input<string>;
+        url?: pulumi.Input<string | undefined>;
     }
 
     export interface FlexibleAppVersionAutomaticScaling {
@@ -854,7 +854,7 @@ export namespace appengine {
          * This prevents the autoscaler from collecting information when the instance is initializing,
          * during which the collected usage would not be reliable. Default: 120s
          */
-        coolDownPeriod?: pulumi.Input<string>;
+        coolDownPeriod?: pulumi.Input<string | undefined>;
         /**
          * Target scaling by CPU usage.
          * Structure is documented below.
@@ -864,53 +864,53 @@ export namespace appengine {
          * Target scaling by disk usage.
          * Structure is documented below.
          */
-        diskUtilization?: pulumi.Input<inputs.appengine.FlexibleAppVersionAutomaticScalingDiskUtilization>;
+        diskUtilization?: pulumi.Input<inputs.appengine.FlexibleAppVersionAutomaticScalingDiskUtilization | undefined>;
         /**
          * Number of concurrent requests an automatic scaling instance can accept before the scheduler spawns a new instance.
          * Defaults to a runtime-specific value.
          */
-        maxConcurrentRequests?: pulumi.Input<number>;
+        maxConcurrentRequests?: pulumi.Input<number | undefined>;
         /**
          * Maximum number of idle instances that should be maintained for this version.
          */
-        maxIdleInstances?: pulumi.Input<number>;
+        maxIdleInstances?: pulumi.Input<number | undefined>;
         /**
          * Maximum amount of time that a request should wait in the pending queue before starting a new instance to handle it.
          */
-        maxPendingLatency?: pulumi.Input<string>;
+        maxPendingLatency?: pulumi.Input<string | undefined>;
         /**
          * Maximum number of instances that should be started to handle requests for this version. Default: 20
          */
-        maxTotalInstances?: pulumi.Input<number>;
+        maxTotalInstances?: pulumi.Input<number | undefined>;
         /**
          * Minimum number of idle instances that should be maintained for this version. Only applicable for the default version of a service.
          */
-        minIdleInstances?: pulumi.Input<number>;
+        minIdleInstances?: pulumi.Input<number | undefined>;
         /**
          * Minimum amount of time a request should wait in the pending queue before starting a new instance to handle it.
          */
-        minPendingLatency?: pulumi.Input<string>;
+        minPendingLatency?: pulumi.Input<string | undefined>;
         /**
          * Minimum number of running instances that should be maintained for this version. Default: 2
          */
-        minTotalInstances?: pulumi.Input<number>;
+        minTotalInstances?: pulumi.Input<number | undefined>;
         /**
          * Target scaling by network usage.
          * Structure is documented below.
          */
-        networkUtilization?: pulumi.Input<inputs.appengine.FlexibleAppVersionAutomaticScalingNetworkUtilization>;
+        networkUtilization?: pulumi.Input<inputs.appengine.FlexibleAppVersionAutomaticScalingNetworkUtilization | undefined>;
         /**
          * Target scaling by request utilization.
          * Structure is documented below.
          */
-        requestUtilization?: pulumi.Input<inputs.appengine.FlexibleAppVersionAutomaticScalingRequestUtilization>;
+        requestUtilization?: pulumi.Input<inputs.appengine.FlexibleAppVersionAutomaticScalingRequestUtilization | undefined>;
     }
 
     export interface FlexibleAppVersionAutomaticScalingCpuUtilization {
         /**
          * Period of time over which CPU utilization is calculated.
          */
-        aggregationWindowLength?: pulumi.Input<string>;
+        aggregationWindowLength?: pulumi.Input<string | undefined>;
         /**
          * Target CPU utilization ratio to maintain when scaling. Must be between 0 and 1.
          */
@@ -921,49 +921,49 @@ export namespace appengine {
         /**
          * Target bytes read per second.
          */
-        targetReadBytesPerSecond?: pulumi.Input<number>;
+        targetReadBytesPerSecond?: pulumi.Input<number | undefined>;
         /**
          * Target ops read per seconds.
          */
-        targetReadOpsPerSecond?: pulumi.Input<number>;
+        targetReadOpsPerSecond?: pulumi.Input<number | undefined>;
         /**
          * Target bytes written per second.
          */
-        targetWriteBytesPerSecond?: pulumi.Input<number>;
+        targetWriteBytesPerSecond?: pulumi.Input<number | undefined>;
         /**
          * Target ops written per second.
          */
-        targetWriteOpsPerSecond?: pulumi.Input<number>;
+        targetWriteOpsPerSecond?: pulumi.Input<number | undefined>;
     }
 
     export interface FlexibleAppVersionAutomaticScalingNetworkUtilization {
         /**
          * Target bytes received per second.
          */
-        targetReceivedBytesPerSecond?: pulumi.Input<number>;
+        targetReceivedBytesPerSecond?: pulumi.Input<number | undefined>;
         /**
          * Target packets received per second.
          */
-        targetReceivedPacketsPerSecond?: pulumi.Input<number>;
+        targetReceivedPacketsPerSecond?: pulumi.Input<number | undefined>;
         /**
          * Target bytes sent per second.
          */
-        targetSentBytesPerSecond?: pulumi.Input<number>;
+        targetSentBytesPerSecond?: pulumi.Input<number | undefined>;
         /**
          * Target packets sent per second.
          */
-        targetSentPacketsPerSecond?: pulumi.Input<number>;
+        targetSentPacketsPerSecond?: pulumi.Input<number | undefined>;
     }
 
     export interface FlexibleAppVersionAutomaticScalingRequestUtilization {
         /**
          * Target number of concurrent requests.
          */
-        targetConcurrentRequests?: pulumi.Input<number>;
+        targetConcurrentRequests?: pulumi.Input<number | undefined>;
         /**
          * Target requests per second.
          */
-        targetRequestCountPerSecond?: pulumi.Input<string>;
+        targetRequestCountPerSecond?: pulumi.Input<string | undefined>;
     }
 
     export interface FlexibleAppVersionDeployment {
@@ -971,23 +971,23 @@ export namespace appengine {
          * Options for the build operations performed as a part of the version deployment. Only applicable when creating a version using source code directly.
          * Structure is documented below.
          */
-        cloudBuildOptions?: pulumi.Input<inputs.appengine.FlexibleAppVersionDeploymentCloudBuildOptions>;
+        cloudBuildOptions?: pulumi.Input<inputs.appengine.FlexibleAppVersionDeploymentCloudBuildOptions | undefined>;
         /**
          * The Docker image for the container that runs the version.
          * Structure is documented below.
          */
-        container?: pulumi.Input<inputs.appengine.FlexibleAppVersionDeploymentContainer>;
+        container?: pulumi.Input<inputs.appengine.FlexibleAppVersionDeploymentContainer | undefined>;
         /**
          * Manifest of the files stored in Google Cloud Storage that are included as part of this version.
          * All files must be readable using the credentials supplied with this call.
          * Structure is documented below.
          */
-        files?: pulumi.Input<pulumi.Input<inputs.appengine.FlexibleAppVersionDeploymentFile>[]>;
+        files?: pulumi.Input<pulumi.Input<inputs.appengine.FlexibleAppVersionDeploymentFile>[] | undefined>;
         /**
          * Zip File
          * Structure is documented below.
          */
-        zip?: pulumi.Input<inputs.appengine.FlexibleAppVersionDeploymentZip>;
+        zip?: pulumi.Input<inputs.appengine.FlexibleAppVersionDeploymentZip | undefined>;
     }
 
     export interface FlexibleAppVersionDeploymentCloudBuildOptions {
@@ -999,7 +999,7 @@ export namespace appengine {
          * The Cloud Build timeout used as part of any dependent builds performed by version creation. Defaults to 10 minutes.
          * A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s".
          */
-        cloudBuildTimeout?: pulumi.Input<string>;
+        cloudBuildTimeout?: pulumi.Input<string | undefined>;
     }
 
     export interface FlexibleAppVersionDeploymentContainer {
@@ -1018,7 +1018,7 @@ export namespace appengine {
         /**
          * SHA1 checksum of the file
          */
-        sha1Sum?: pulumi.Input<string>;
+        sha1Sum?: pulumi.Input<string | undefined>;
         /**
          * Source URL
          */
@@ -1029,7 +1029,7 @@ export namespace appengine {
         /**
          * files count
          */
-        filesCount?: pulumi.Input<number>;
+        filesCount?: pulumi.Input<number | undefined>;
         /**
          * Source URL
          */
@@ -1045,11 +1045,11 @@ export namespace appengine {
          * Endpoints also has a rollout strategy called "MANAGED". When using this, Endpoints fetches the latest configuration and does not need
          * the configuration ID. In this case, configId must be omitted.
          */
-        configId?: pulumi.Input<string>;
+        configId?: pulumi.Input<string | undefined>;
         /**
          * Enable or disable trace sampling. By default, this is set to false for enabled.
          */
-        disableTraceSampling?: pulumi.Input<boolean>;
+        disableTraceSampling?: pulumi.Input<boolean | undefined>;
         /**
          * Full Serverless VPC Access Connector name e.g. /projects/my-project/locations/us-central1/connectors/c1.
          */
@@ -1059,7 +1059,7 @@ export namespace appengine {
          * Default value is `FIXED`.
          * Possible values are `FIXED` and `MANAGED`.
          */
-        rolloutStrategy?: pulumi.Input<string>;
+        rolloutStrategy?: pulumi.Input<string | undefined>;
     }
 
     export interface FlexibleAppVersionEntrypoint {
@@ -1075,38 +1075,38 @@ export namespace appengine {
          * Default value is `AUTH_FAIL_ACTION_REDIRECT`.
          * Possible values are `AUTH_FAIL_ACTION_REDIRECT` and `AUTH_FAIL_ACTION_UNAUTHORIZED`.
          */
-        authFailAction?: pulumi.Input<string>;
+        authFailAction?: pulumi.Input<string | undefined>;
         /**
          * Level of login required to access this resource.
          * Default value is `LOGIN_OPTIONAL`.
          * Possible values are `LOGIN_OPTIONAL`, `LOGIN_ADMIN`, and `LOGIN_REQUIRED`.
          */
-        login?: pulumi.Input<string>;
+        login?: pulumi.Input<string | undefined>;
         /**
          * 30x code to use when performing redirects for the secure field.
          * Possible values are `REDIRECT_HTTP_RESPONSE_CODE_301`, `REDIRECT_HTTP_RESPONSE_CODE_302`, `REDIRECT_HTTP_RESPONSE_CODE_303`, and `REDIRECT_HTTP_RESPONSE_CODE_307`.
          */
-        redirectHttpResponseCode?: pulumi.Input<string>;
+        redirectHttpResponseCode?: pulumi.Input<string | undefined>;
         /**
          * Path to the script from the application root directory.
          */
-        script?: pulumi.Input<inputs.appengine.FlexibleAppVersionHandlerScript>;
+        script?: pulumi.Input<inputs.appengine.FlexibleAppVersionHandlerScript | undefined>;
         /**
          * Security (HTTPS) enforcement for this URL.
          * Possible values are `SECURE_DEFAULT`, `SECURE_NEVER`, `SECURE_OPTIONAL`, and `SECURE_ALWAYS`.
          */
-        securityLevel?: pulumi.Input<string>;
+        securityLevel?: pulumi.Input<string | undefined>;
         /**
          * Files served directly to the user for a given URL, such as images, CSS stylesheets, or JavaScript source files.
          * Static file handlers describe which files in the application directory are static files, and which URLs serve them.
          * Structure is documented below.
          */
-        staticFiles?: pulumi.Input<inputs.appengine.FlexibleAppVersionHandlerStaticFiles>;
+        staticFiles?: pulumi.Input<inputs.appengine.FlexibleAppVersionHandlerStaticFiles | undefined>;
         /**
          * URL prefix. Uses regular expression syntax, which means regexp special characters must be escaped, but should not contain groupings.
          * All URLs that begin with this prefix are handled by this handler, using the portion of the URL after the prefix as part of the file path.
          */
-        urlRegex?: pulumi.Input<string>;
+        urlRegex?: pulumi.Input<string | undefined>;
     }
 
     export interface FlexibleAppVersionHandlerScript {
@@ -1122,55 +1122,55 @@ export namespace appengine {
          * uploaded as static data and are only served to end users; they cannot be read by the application. If enabled,
          * uploads are charged against both your code and static data storage resource quotas.
          */
-        applicationReadable?: pulumi.Input<boolean>;
+        applicationReadable?: pulumi.Input<boolean | undefined>;
         /**
          * Time a static file served by this handler should be cached by web proxies and browsers.
          * A duration in seconds with up to nine fractional digits, terminated by 's'. Example "3.5s".
          * Default is '0s'
          */
-        expiration?: pulumi.Input<string>;
+        expiration?: pulumi.Input<string | undefined>;
         /**
          * HTTP headers to use for all responses from these URLs.
          * An object containing a list of "key:value" value pairs.".
          */
-        httpHeaders?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        httpHeaders?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * MIME type used to serve all files served by this handler.
          * Defaults to file-specific MIME types, which are derived from each file's filename extension.
          */
-        mimeType?: pulumi.Input<string>;
+        mimeType?: pulumi.Input<string | undefined>;
         /**
          * Path to the static files matched by the URL pattern, from the application root directory.
          * The path can refer to text matched in groupings in the URL pattern.
          */
-        path?: pulumi.Input<string>;
+        path?: pulumi.Input<string | undefined>;
         /**
          * Whether this handler should match the request if the file referenced by the handler does not exist.
          */
-        requireMatchingFile?: pulumi.Input<boolean>;
+        requireMatchingFile?: pulumi.Input<boolean | undefined>;
         /**
          * Regular expression that matches the file paths for all files that should be referenced by this handler.
          */
-        uploadPathRegex?: pulumi.Input<string>;
+        uploadPathRegex?: pulumi.Input<string | undefined>;
     }
 
     export interface FlexibleAppVersionLivenessCheck {
         /**
          * Interval between health checks.
          */
-        checkInterval?: pulumi.Input<string>;
+        checkInterval?: pulumi.Input<string | undefined>;
         /**
          * Number of consecutive failed checks required before considering the VM unhealthy. Default: 4.
          */
-        failureThreshold?: pulumi.Input<number>;
+        failureThreshold?: pulumi.Input<number | undefined>;
         /**
          * Host header to send when performing a HTTP Readiness check. Example: "myapp.appspot.com"
          */
-        host?: pulumi.Input<string>;
+        host?: pulumi.Input<string | undefined>;
         /**
          * The initial delay before starting to execute the checks. Default: "300s"
          */
-        initialDelay?: pulumi.Input<string>;
+        initialDelay?: pulumi.Input<string | undefined>;
         /**
          * Path to the static files matched by the URL pattern, from the application root directory.
          * The path can refer to text matched in groupings in the URL pattern.
@@ -1179,11 +1179,11 @@ export namespace appengine {
         /**
          * Number of consecutive successful checks required before considering the VM healthy. Default: 2.
          */
-        successThreshold?: pulumi.Input<number>;
+        successThreshold?: pulumi.Input<number | undefined>;
         /**
          * Time before the check is considered failed. Default: "4s"
          */
-        timeout?: pulumi.Input<string>;
+        timeout?: pulumi.Input<string | undefined>;
     }
 
     export interface FlexibleAppVersionManualScaling {
@@ -1199,11 +1199,11 @@ export namespace appengine {
         /**
          * List of ports, or port pairs, to forward from the virtual machine to the application container.
          */
-        forwardedPorts?: pulumi.Input<pulumi.Input<string>[]>;
+        forwardedPorts?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Tag to apply to the instance during creation.
          */
-        instanceTag?: pulumi.Input<string>;
+        instanceTag?: pulumi.Input<string | undefined>;
         /**
          * Full Serverless VPC Access Connector name e.g. /projects/my-project/locations/us-central1/connectors/c1.
          */
@@ -1211,7 +1211,7 @@ export namespace appengine {
         /**
          * Enable session affinity.
          */
-        sessionAffinity?: pulumi.Input<boolean>;
+        sessionAffinity?: pulumi.Input<boolean | undefined>;
         /**
          * Google Cloud Platform sub-network where the virtual machines are created. Specify the short name, not the resource path.
          * If the network that the instance is being created in is a Legacy network, then the IP address is allocated from the IPv4Range.
@@ -1219,7 +1219,7 @@ export namespace appengine {
          * If the network that the instance is being created in is a custom Subnet Mode Network, then the subnetworkName must be specified and the IP address is created from the IPCidrRange of the subnetwork.
          * If specified, the subnetwork must exist in the same region as the App Engine flexible environment application.
          */
-        subnetwork?: pulumi.Input<string>;
+        subnetwork?: pulumi.Input<string | undefined>;
     }
 
     export interface FlexibleAppVersionReadinessCheck {
@@ -1227,19 +1227,19 @@ export namespace appengine {
          * A maximum time limit on application initialization, measured from moment the application successfully
          * replies to a healthcheck until it is ready to serve traffic. Default: "300s"
          */
-        appStartTimeout?: pulumi.Input<string>;
+        appStartTimeout?: pulumi.Input<string | undefined>;
         /**
          * Interval between health checks.
          */
-        checkInterval?: pulumi.Input<string>;
+        checkInterval?: pulumi.Input<string | undefined>;
         /**
          * Number of consecutive failed checks required before considering the VM unhealthy. Default: 4.
          */
-        failureThreshold?: pulumi.Input<number>;
+        failureThreshold?: pulumi.Input<number | undefined>;
         /**
          * Host header to send when performing a HTTP Readiness check. Example: "myapp.appspot.com"
          */
-        host?: pulumi.Input<string>;
+        host?: pulumi.Input<string | undefined>;
         /**
          * Path to the static files matched by the URL pattern, from the application root directory.
          * The path can refer to text matched in groupings in the URL pattern.
@@ -1248,31 +1248,31 @@ export namespace appengine {
         /**
          * Number of consecutive successful checks required before considering the VM healthy. Default: 2.
          */
-        successThreshold?: pulumi.Input<number>;
+        successThreshold?: pulumi.Input<number | undefined>;
         /**
          * Time before the check is considered failed. Default: "4s"
          */
-        timeout?: pulumi.Input<string>;
+        timeout?: pulumi.Input<string | undefined>;
     }
 
     export interface FlexibleAppVersionResources {
         /**
          * Number of CPU cores needed.
          */
-        cpu?: pulumi.Input<number>;
+        cpu?: pulumi.Input<number | undefined>;
         /**
          * Disk size (GB) needed.
          */
-        diskGb?: pulumi.Input<number>;
+        diskGb?: pulumi.Input<number | undefined>;
         /**
          * Memory (GB) needed.
          */
-        memoryGb?: pulumi.Input<number>;
+        memoryGb?: pulumi.Input<number | undefined>;
         /**
          * List of ports, or port pairs, to forward from the virtual machine to the application container.
          * Structure is documented below.
          */
-        volumes?: pulumi.Input<pulumi.Input<inputs.appengine.FlexibleAppVersionResourcesVolume>[]>;
+        volumes?: pulumi.Input<pulumi.Input<inputs.appengine.FlexibleAppVersionResourcesVolume>[] | undefined>;
     }
 
     export interface FlexibleAppVersionResourcesVolume {
@@ -1302,49 +1302,49 @@ export namespace appengine {
          * Number of concurrent requests an automatic scaling instance can accept before the scheduler spawns a new instance.
          * Defaults to a runtime-specific value.
          */
-        maxConcurrentRequests?: pulumi.Input<number>;
+        maxConcurrentRequests?: pulumi.Input<number | undefined>;
         /**
          * Maximum number of idle instances that should be maintained for this version.
          */
-        maxIdleInstances?: pulumi.Input<number>;
+        maxIdleInstances?: pulumi.Input<number | undefined>;
         /**
          * Maximum amount of time that a request should wait in the pending queue before starting a new instance to handle it.
          * A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s".
          */
-        maxPendingLatency?: pulumi.Input<string>;
+        maxPendingLatency?: pulumi.Input<string | undefined>;
         /**
          * Minimum number of idle instances that should be maintained for this version. Only applicable for the default version of a service.
          */
-        minIdleInstances?: pulumi.Input<number>;
+        minIdleInstances?: pulumi.Input<number | undefined>;
         /**
          * Minimum amount of time a request should wait in the pending queue before starting a new instance to handle it.
          * A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s".
          */
-        minPendingLatency?: pulumi.Input<string>;
+        minPendingLatency?: pulumi.Input<string | undefined>;
         /**
          * Scheduler settings for standard environment.
          * Structure is documented below.
          */
-        standardSchedulerSettings?: pulumi.Input<inputs.appengine.StandardAppVersionAutomaticScalingStandardSchedulerSettings>;
+        standardSchedulerSettings?: pulumi.Input<inputs.appengine.StandardAppVersionAutomaticScalingStandardSchedulerSettings | undefined>;
     }
 
     export interface StandardAppVersionAutomaticScalingStandardSchedulerSettings {
         /**
          * Maximum number of instances to create for this version. Must be in the range [1.0, 200.0].
          */
-        maxInstances?: pulumi.Input<number>;
+        maxInstances?: pulumi.Input<number | undefined>;
         /**
          * Minimum number of instances to run for this version. Set to zero to disable minInstances configuration.
          */
-        minInstances?: pulumi.Input<number>;
+        minInstances?: pulumi.Input<number | undefined>;
         /**
          * Target CPU utilization ratio to maintain when scaling. Should be a value in the range [0.50, 0.95], zero, or a negative value.
          */
-        targetCpuUtilization?: pulumi.Input<number>;
+        targetCpuUtilization?: pulumi.Input<number | undefined>;
         /**
          * Target throughput utilization ratio to maintain when scaling. Should be a value in the range [0.50, 0.95], zero, or a negative value.
          */
-        targetThroughputUtilization?: pulumi.Input<number>;
+        targetThroughputUtilization?: pulumi.Input<number | undefined>;
     }
 
     export interface StandardAppVersionBasicScaling {
@@ -1352,7 +1352,7 @@ export namespace appengine {
          * Duration of time after the last request that an instance must wait before the instance is shut down.
          * A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s". Defaults to 900s.
          */
-        idleTimeout?: pulumi.Input<string>;
+        idleTimeout?: pulumi.Input<string | undefined>;
         /**
          * Maximum number of instances to create for this version. Must be in the range [1.0, 200.0].
          */
@@ -1365,12 +1365,12 @@ export namespace appengine {
          * All files must be readable using the credentials supplied with this call.
          * Structure is documented below.
          */
-        files?: pulumi.Input<pulumi.Input<inputs.appengine.StandardAppVersionDeploymentFile>[]>;
+        files?: pulumi.Input<pulumi.Input<inputs.appengine.StandardAppVersionDeploymentFile>[] | undefined>;
         /**
          * Zip File
          * Structure is documented below.
          */
-        zip?: pulumi.Input<inputs.appengine.StandardAppVersionDeploymentZip>;
+        zip?: pulumi.Input<inputs.appengine.StandardAppVersionDeploymentZip | undefined>;
     }
 
     export interface StandardAppVersionDeploymentFile {
@@ -1381,7 +1381,7 @@ export namespace appengine {
         /**
          * SHA1 checksum of the file
          */
-        sha1Sum?: pulumi.Input<string>;
+        sha1Sum?: pulumi.Input<string | undefined>;
         /**
          * Source URL
          */
@@ -1392,7 +1392,7 @@ export namespace appengine {
         /**
          * files count
          */
-        filesCount?: pulumi.Input<number>;
+        filesCount?: pulumi.Input<number | undefined>;
         /**
          * Source URL
          */
@@ -1411,38 +1411,38 @@ export namespace appengine {
          * Actions to take when the user is not logged in.
          * Possible values are `AUTH_FAIL_ACTION_REDIRECT` and `AUTH_FAIL_ACTION_UNAUTHORIZED`.
          */
-        authFailAction?: pulumi.Input<string>;
+        authFailAction?: pulumi.Input<string | undefined>;
         /**
          * Methods to restrict access to a URL based on login status.
          * Possible values are `LOGIN_OPTIONAL`, `LOGIN_ADMIN`, and `LOGIN_REQUIRED`.
          */
-        login?: pulumi.Input<string>;
+        login?: pulumi.Input<string | undefined>;
         /**
          * 30x code to use when performing redirects for the secure field.
          * Possible values are `REDIRECT_HTTP_RESPONSE_CODE_301`, `REDIRECT_HTTP_RESPONSE_CODE_302`, `REDIRECT_HTTP_RESPONSE_CODE_303`, and `REDIRECT_HTTP_RESPONSE_CODE_307`.
          */
-        redirectHttpResponseCode?: pulumi.Input<string>;
+        redirectHttpResponseCode?: pulumi.Input<string | undefined>;
         /**
          * Executes a script to handle the requests that match this URL pattern.
          * Only the auto value is supported for Node.js in the App Engine standard environment, for example "script:" "auto".
          * Structure is documented below.
          */
-        script?: pulumi.Input<inputs.appengine.StandardAppVersionHandlerScript>;
+        script?: pulumi.Input<inputs.appengine.StandardAppVersionHandlerScript | undefined>;
         /**
          * Security (HTTPS) enforcement for this URL.
          * Possible values are `SECURE_DEFAULT`, `SECURE_NEVER`, `SECURE_OPTIONAL`, and `SECURE_ALWAYS`.
          */
-        securityLevel?: pulumi.Input<string>;
+        securityLevel?: pulumi.Input<string | undefined>;
         /**
          * Files served directly to the user for a given URL, such as images, CSS stylesheets, or JavaScript source files. Static file handlers describe which files in the application directory are static files, and which URLs serve them.
          * Structure is documented below.
          */
-        staticFiles?: pulumi.Input<inputs.appengine.StandardAppVersionHandlerStaticFiles>;
+        staticFiles?: pulumi.Input<inputs.appengine.StandardAppVersionHandlerStaticFiles | undefined>;
         /**
          * URL prefix. Uses regular expression syntax, which means regexp special characters must be escaped, but should not contain groupings.
          * All URLs that begin with this prefix are handled by this handler, using the portion of the URL after the prefix as part of the file path.
          */
-        urlRegex?: pulumi.Input<string>;
+        urlRegex?: pulumi.Input<string | undefined>;
     }
 
     export interface StandardAppVersionHandlerScript {
@@ -1458,45 +1458,45 @@ export namespace appengine {
          * static data and are only served to end users; they cannot be read by the application. If enabled, uploads are charged
          * against both your code and static data storage resource quotas.
          */
-        applicationReadable?: pulumi.Input<boolean>;
+        applicationReadable?: pulumi.Input<boolean | undefined>;
         /**
          * Time a static file served by this handler should be cached by web proxies and browsers.
          * A duration in seconds with up to nine fractional digits, terminated by 's'. Example "3.5s".
          */
-        expiration?: pulumi.Input<string>;
+        expiration?: pulumi.Input<string | undefined>;
         /**
          * HTTP headers to use for all responses from these URLs.
          * An object containing a list of "key:value" value pairs.".
          */
-        httpHeaders?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        httpHeaders?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * MIME type used to serve all files served by this handler.
          * Defaults to file-specific MIME types, which are derived from each file's filename extension.
          */
-        mimeType?: pulumi.Input<string>;
+        mimeType?: pulumi.Input<string | undefined>;
         /**
          * Path to the static files matched by the URL pattern, from the application root directory. The path can refer to text matched in groupings in the URL pattern.
          */
-        path?: pulumi.Input<string>;
+        path?: pulumi.Input<string | undefined>;
         /**
          * Whether this handler should match the request if the file referenced by the handler does not exist.
          */
-        requireMatchingFile?: pulumi.Input<boolean>;
+        requireMatchingFile?: pulumi.Input<boolean | undefined>;
         /**
          * Regular expression that matches the file paths for all files that should be referenced by this handler.
          */
-        uploadPathRegex?: pulumi.Input<string>;
+        uploadPathRegex?: pulumi.Input<string | undefined>;
     }
 
     export interface StandardAppVersionLibrary {
         /**
          * Full Serverless VPC Access Connector name e.g. /projects/my-project/locations/us-central1/connectors/c1.
          */
-        name?: pulumi.Input<string>;
+        name?: pulumi.Input<string | undefined>;
         /**
          * Version of the library to select, or "latest".
          */
-        version?: pulumi.Input<string>;
+        version?: pulumi.Input<string | undefined>;
     }
 
     export interface StandardAppVersionManualScaling {
@@ -1518,13 +1518,13 @@ export namespace appengine {
 
 export namespace artifactregistry {
     export interface RepositoryIamBindingCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
 
     export interface RepositoryIamMemberCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
@@ -1536,7 +1536,7 @@ export namespace bigquery {
          * If true, CheckAndMutateRow and ReadModifyWriteRow requests are allowed by this app profile.
          * It is unsafe to send these requests to the same table/row/column in multiple clusters.
          */
-        allowTransactionalWrites?: pulumi.Input<boolean>;
+        allowTransactionalWrites?: pulumi.Input<boolean | undefined>;
         /**
          * The cluster to which read/write requests should be routed.
          */
@@ -1591,14 +1591,14 @@ export namespace bigquery {
          * scheduling is disabled, the TransferConfig.schedule field will
          * be ignored.
          */
-        disableAutoScheduling?: pulumi.Input<boolean>;
+        disableAutoScheduling?: pulumi.Input<boolean | undefined>;
         /**
          * Defines time to stop scheduling transfer runs. A transfer run cannot be
          * scheduled at or after the end time. The end time can be changed at any
          * moment. The time when a data transfer can be triggered manually is not
          * limited by this option.
          */
-        endTime?: pulumi.Input<string>;
+        endTime?: pulumi.Input<string | undefined>;
         /**
          * Specifies time to start scheduling transfer runs. The first run will be
          * scheduled at or after the start time according to a recurrence pattern
@@ -1606,7 +1606,7 @@ export namespace bigquery {
          * moment. The time when a data transfer can be triggered manually is not
          * limited by this option.
          */
-        startTime?: pulumi.Input<string>;
+        startTime?: pulumi.Input<string | undefined>;
     }
 
     export interface DataTransferConfigSensitiveParams {
@@ -1622,11 +1622,11 @@ export namespace bigquery {
          * A domain to grant access to. Any users signed in with the
          * domain specified will be granted the specified access
          */
-        domain?: pulumi.Input<string>;
+        domain?: pulumi.Input<string | undefined>;
         /**
          * An email address of a Google Group to grant access to.
          */
-        groupByEmail?: pulumi.Input<string>;
+        groupByEmail?: pulumi.Input<string | undefined>;
         /**
          * Describes the rights granted to the user specified by the other
          * member of the access object. Basic, predefined, and custom roles
@@ -1634,16 +1634,16 @@ export namespace bigquery {
          * are swapped by the API to their basic counterparts. See
          * [official docs](https://cloud.google.com/bigquery/docs/access-control).
          */
-        role?: pulumi.Input<string>;
+        role?: pulumi.Input<string | undefined>;
         /**
          * A special group to grant access to. Possible values include:
          */
-        specialGroup?: pulumi.Input<string>;
+        specialGroup?: pulumi.Input<string | undefined>;
         /**
          * An email address of a user to grant access to. For example:
          * fred@example.com
          */
-        userByEmail?: pulumi.Input<string>;
+        userByEmail?: pulumi.Input<string | undefined>;
         /**
          * A view from a different dataset to grant access to. Queries
          * executed against that view will have read access to tables in
@@ -1652,7 +1652,7 @@ export namespace bigquery {
          * needs to be granted again via an update operation.
          * Structure is documented below.
          */
-        view?: pulumi.Input<inputs.bigquery.DatasetAccessView>;
+        view?: pulumi.Input<inputs.bigquery.DatasetAccessView | undefined>;
     }
 
     export interface DatasetAccessView {
@@ -1682,13 +1682,13 @@ export namespace bigquery {
     }
 
     export interface DatasetIamBindingCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
 
     export interface DatasetIamMemberCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
@@ -1697,7 +1697,7 @@ export namespace bigquery {
         /**
          * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * Textual representation of an expression in Common Expression Language syntax.
          */
@@ -1712,7 +1712,7 @@ export namespace bigquery {
         /**
          * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * Textual representation of an expression in Common Expression Language syntax.
          */
@@ -1732,17 +1732,17 @@ export namespace bigquery {
          * Default value is `CREATE_IF_NEEDED`.
          * Possible values are `CREATE_IF_NEEDED` and `CREATE_NEVER`.
          */
-        createDisposition?: pulumi.Input<string>;
+        createDisposition?: pulumi.Input<string | undefined>;
         /**
          * Custom encryption configuration (e.g., Cloud KMS keys)
          * Structure is documented below.
          */
-        destinationEncryptionConfiguration?: pulumi.Input<inputs.bigquery.JobCopyDestinationEncryptionConfiguration>;
+        destinationEncryptionConfiguration?: pulumi.Input<inputs.bigquery.JobCopyDestinationEncryptionConfiguration | undefined>;
         /**
          * The destination table.
          * Structure is documented below.
          */
-        destinationTable?: pulumi.Input<inputs.bigquery.JobCopyDestinationTable>;
+        destinationTable?: pulumi.Input<inputs.bigquery.JobCopyDestinationTable | undefined>;
         /**
          * Source tables to copy.
          * Structure is documented below.
@@ -1758,7 +1758,7 @@ export namespace bigquery {
          * Default value is `WRITE_EMPTY`.
          * Possible values are `WRITE_TRUNCATE`, `WRITE_APPEND`, and `WRITE_EMPTY`.
          */
-        writeDisposition?: pulumi.Input<string>;
+        writeDisposition?: pulumi.Input<string | undefined>;
     }
 
     export interface JobCopyDestinationEncryptionConfiguration {
@@ -1773,11 +1773,11 @@ export namespace bigquery {
         /**
          * The ID of the dataset containing this model.
          */
-        datasetId?: pulumi.Input<string>;
+        datasetId?: pulumi.Input<string | undefined>;
         /**
          * The ID of the project containing this model.
          */
-        projectId?: pulumi.Input<string>;
+        projectId?: pulumi.Input<string | undefined>;
         /**
          * The table. Can be specified `{{table_id}}` if `projectId` and `datasetId` are also set,
          * or of the form `projects/{{project}}/datasets/{{dataset_id}}/tables/{{table_id}}` if not.
@@ -1789,11 +1789,11 @@ export namespace bigquery {
         /**
          * The ID of the dataset containing this model.
          */
-        datasetId?: pulumi.Input<string>;
+        datasetId?: pulumi.Input<string | undefined>;
         /**
          * The ID of the project containing this model.
          */
-        projectId?: pulumi.Input<string>;
+        projectId?: pulumi.Input<string | undefined>;
         /**
          * The table. Can be specified `{{table_id}}` if `projectId` and `datasetId` are also set,
          * or of the form `projects/{{project}}/datasets/{{dataset_id}}/tables/{{table_id}}` if not.
@@ -1806,13 +1806,13 @@ export namespace bigquery {
          * The compression type to use for exported files. Possible values include GZIP, DEFLATE, SNAPPY, and NONE.
          * The default value is NONE. DEFLATE and SNAPPY are only supported for Avro.
          */
-        compression?: pulumi.Input<string>;
+        compression?: pulumi.Input<string | undefined>;
         /**
          * The exported file format. Possible values include CSV, NEWLINE_DELIMITED_JSON and AVRO for tables and SAVED_MODEL for models.
          * The default value for tables is CSV. Tables with nested or repeated fields cannot be exported as CSV.
          * The default value for models is SAVED_MODEL.
          */
-        destinationFormat?: pulumi.Input<string>;
+        destinationFormat?: pulumi.Input<string | undefined>;
         /**
          * A list of fully-qualified Google Cloud Storage URIs where the extracted table should be written.
          */
@@ -1821,25 +1821,25 @@ export namespace bigquery {
          * When extracting data in CSV format, this defines the delimiter to use between fields in the exported data.
          * Default is ','
          */
-        fieldDelimiter?: pulumi.Input<string>;
+        fieldDelimiter?: pulumi.Input<string | undefined>;
         /**
          * Whether to print out a header row in the results. Default is true.
          */
-        printHeader?: pulumi.Input<boolean>;
+        printHeader?: pulumi.Input<boolean | undefined>;
         /**
          * A reference to the model being exported.
          * Structure is documented below.
          */
-        sourceModel?: pulumi.Input<inputs.bigquery.JobExtractSourceModel>;
+        sourceModel?: pulumi.Input<inputs.bigquery.JobExtractSourceModel | undefined>;
         /**
          * A reference to the table being exported.
          * Structure is documented below.
          */
-        sourceTable?: pulumi.Input<inputs.bigquery.JobExtractSourceTable>;
+        sourceTable?: pulumi.Input<inputs.bigquery.JobExtractSourceTable | undefined>;
         /**
          * Whether to use logical types when extracting to AVRO format.
          */
-        useAvroLogicalTypes?: pulumi.Input<boolean>;
+        useAvroLogicalTypes?: pulumi.Input<boolean | undefined>;
     }
 
     export interface JobExtractSourceModel {
@@ -1861,11 +1861,11 @@ export namespace bigquery {
         /**
          * The ID of the dataset containing this model.
          */
-        datasetId?: pulumi.Input<string>;
+        datasetId?: pulumi.Input<string | undefined>;
         /**
          * The ID of the project containing this model.
          */
-        projectId?: pulumi.Input<string>;
+        projectId?: pulumi.Input<string | undefined>;
         /**
          * The table. Can be specified `{{table_id}}` if `projectId` and `datasetId` are also set,
          * or of the form `projects/{{project}}/datasets/{{dataset_id}}/tables/{{table_id}}` if not.
@@ -1879,16 +1879,16 @@ export namespace bigquery {
          * If false, records with missing trailing columns are treated as bad records, and if there are too many bad records,
          * an invalid error is returned in the job result. The default value is false. Only applicable to CSV, ignored for other formats.
          */
-        allowJaggedRows?: pulumi.Input<boolean>;
+        allowJaggedRows?: pulumi.Input<boolean | undefined>;
         /**
          * Indicates if BigQuery should allow quoted data sections that contain newline characters in a CSV file.
          * The default value is false.
          */
-        allowQuotedNewlines?: pulumi.Input<boolean>;
+        allowQuotedNewlines?: pulumi.Input<boolean | undefined>;
         /**
          * Indicates if we should automatically infer the options and schema for CSV and JSON sources.
          */
-        autodetect?: pulumi.Input<boolean>;
+        autodetect?: pulumi.Input<boolean | undefined>;
         /**
          * Specifies whether the job is allowed to create new tables. The following values are supported:
          * CREATE_IF_NEEDED: If the table does not exist, BigQuery creates the table.
@@ -1897,12 +1897,12 @@ export namespace bigquery {
          * Default value is `CREATE_IF_NEEDED`.
          * Possible values are `CREATE_IF_NEEDED` and `CREATE_NEVER`.
          */
-        createDisposition?: pulumi.Input<string>;
+        createDisposition?: pulumi.Input<string | undefined>;
         /**
          * Custom encryption configuration (e.g., Cloud KMS keys)
          * Structure is documented below.
          */
-        destinationEncryptionConfiguration?: pulumi.Input<inputs.bigquery.JobLoadDestinationEncryptionConfiguration>;
+        destinationEncryptionConfiguration?: pulumi.Input<inputs.bigquery.JobLoadDestinationEncryptionConfiguration | undefined>;
         /**
          * The destination table.
          * Structure is documented below.
@@ -1913,12 +1913,12 @@ export namespace bigquery {
          * The default value is UTF-8. BigQuery decodes the data after the raw, binary data
          * has been split using the values of the quote and fieldDelimiter properties.
          */
-        encoding?: pulumi.Input<string>;
+        encoding?: pulumi.Input<string | undefined>;
         /**
          * When extracting data in CSV format, this defines the delimiter to use between fields in the exported data.
          * Default is ','
          */
-        fieldDelimiter?: pulumi.Input<string>;
+        fieldDelimiter?: pulumi.Input<string | undefined>;
         /**
          * Indicates if BigQuery should allow extra values that are not represented in the table schema.
          * If true, the extra values are ignored. If false, records with extra columns are treated as bad records,
@@ -1927,32 +1927,32 @@ export namespace bigquery {
          * CSV: Trailing columns
          * JSON: Named values that don't match any column names
          */
-        ignoreUnknownValues?: pulumi.Input<boolean>;
+        ignoreUnknownValues?: pulumi.Input<boolean | undefined>;
         /**
          * The maximum number of bad records that BigQuery can ignore when running the job. If the number of bad records exceeds this value,
          * an invalid error is returned in the job result. The default value is 0, which requires that all records are valid.
          */
-        maxBadRecords?: pulumi.Input<number>;
+        maxBadRecords?: pulumi.Input<number | undefined>;
         /**
          * Specifies a string that represents a null value in a CSV file. The default value is the empty string. If you set this
          * property to a custom value, BigQuery throws an error if an
          * empty string is present for all data types except for STRING and BYTE. For STRING and BYTE columns, BigQuery interprets the empty string as
          * an empty value.
          */
-        nullMarker?: pulumi.Input<string>;
+        nullMarker?: pulumi.Input<string | undefined>;
         /**
          * If sourceFormat is set to "DATASTORE_BACKUP", indicates which entity properties to load into BigQuery from a Cloud Datastore backup.
          * Property names are case sensitive and must be top-level properties. If no properties are specified, BigQuery loads all properties.
          * If any named property isn't found in the Cloud Datastore backup, an invalid error is returned in the job result.
          */
-        projectionFields?: pulumi.Input<pulumi.Input<string>[]>;
+        projectionFields?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The value that is used to quote data sections in a CSV file. BigQuery converts the string to ISO-8859-1 encoding,
          * and then uses the first byte of the encoded string to split the data in its raw, binary state.
          * The default value is a double-quote ('"'). If your data does not contain quoted sections, set the property value to an empty string.
          * If your data contains quoted newline characters, you must also set the allowQuotedNewlines property to true.
          */
-        quote?: pulumi.Input<string>;
+        quote?: pulumi.Input<string | undefined>;
         /**
          * Allows the schema of the destination table to be updated as a side effect of the load job if a schema is autodetected or
          * supplied in the job configuration. Schema update options are supported in two cases: when writeDisposition is WRITE_APPEND;
@@ -1961,7 +1961,7 @@ export namespace bigquery {
          * ALLOW_FIELD_ADDITION: allow adding a nullable field to the schema.
          * ALLOW_FIELD_RELAXATION: allow relaxing a required field in the original schema to nullable.
          */
-        schemaUpdateOptions?: pulumi.Input<pulumi.Input<string>[]>;
+        schemaUpdateOptions?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The number of rows at the top of a CSV file that BigQuery will skip when loading the data.
          * The default value is 0. This property is useful if you have header rows in the file that should be skipped.
@@ -1972,13 +1972,13 @@ export namespace bigquery {
          * skipLeadingRows = N > 0 - Autodetect skips N-1 rows and tries to detect headers in row N. If headers are not detected,
          * row N is just skipped. Otherwise row N is used to extract column names for the detected schema.
          */
-        skipLeadingRows?: pulumi.Input<number>;
+        skipLeadingRows?: pulumi.Input<number | undefined>;
         /**
          * The format of the data files. For CSV files, specify "CSV". For datastore backups, specify "DATASTORE_BACKUP".
          * For newline-delimited JSON, specify "NEWLINE_DELIMITED_JSON". For Avro, specify "AVRO". For parquet, specify "PARQUET".
          * For orc, specify "ORC". The default value is CSV.
          */
-        sourceFormat?: pulumi.Input<string>;
+        sourceFormat?: pulumi.Input<string | undefined>;
         /**
          * The fully-qualified URIs that point to your data in Google Cloud.
          * For Google Cloud Storage URIs: Each URI can contain one '*' wildcard character
@@ -1992,7 +1992,7 @@ export namespace bigquery {
          * Time-based partitioning specification for the destination table.
          * Structure is documented below.
          */
-        timePartitioning?: pulumi.Input<inputs.bigquery.JobLoadTimePartitioning>;
+        timePartitioning?: pulumi.Input<inputs.bigquery.JobLoadTimePartitioning | undefined>;
         /**
          * Specifies the action that occurs if the destination table already exists. The following values are supported:
          * WRITE_TRUNCATE: If the table already exists, BigQuery overwrites the table data and uses the schema from the query result.
@@ -2003,7 +2003,7 @@ export namespace bigquery {
          * Default value is `WRITE_EMPTY`.
          * Possible values are `WRITE_TRUNCATE`, `WRITE_APPEND`, and `WRITE_EMPTY`.
          */
-        writeDisposition?: pulumi.Input<string>;
+        writeDisposition?: pulumi.Input<string | undefined>;
     }
 
     export interface JobLoadDestinationEncryptionConfiguration {
@@ -2018,11 +2018,11 @@ export namespace bigquery {
         /**
          * The ID of the dataset containing this model.
          */
-        datasetId?: pulumi.Input<string>;
+        datasetId?: pulumi.Input<string | undefined>;
         /**
          * The ID of the project containing this model.
          */
-        projectId?: pulumi.Input<string>;
+        projectId?: pulumi.Input<string | undefined>;
         /**
          * The table. Can be specified `{{table_id}}` if `projectId` and `datasetId` are also set,
          * or of the form `projects/{{project}}/datasets/{{dataset_id}}/tables/{{table_id}}` if not.
@@ -2034,13 +2034,13 @@ export namespace bigquery {
         /**
          * Number of milliseconds for which to keep the storage for a partition. A wrapper is used here because 0 is an invalid value.
          */
-        expirationMs?: pulumi.Input<string>;
+        expirationMs?: pulumi.Input<string | undefined>;
         /**
          * If not set, the table is partitioned by pseudo column '_PARTITIONTIME'; if set, the table is partitioned by this field.
          * The field must be a top-level TIMESTAMP or DATE field. Its mode must be NULLABLE or REQUIRED.
          * A wrapper is used here because an empty string is an invalid value.
          */
-        field?: pulumi.Input<string>;
+        field?: pulumi.Input<string | undefined>;
         /**
          * The only type supported is DAY, which will generate one partition per day. Providing an empty string used to cause an error,
          * but in OnePlatform the field will be treated as unset.
@@ -2054,7 +2054,7 @@ export namespace bigquery {
          * Requires destinationTable to be set. For standard SQL queries, this flag is ignored and large results are always allowed.
          * However, you must still set destinationTable when result size exceeds the allowed maximum response size.
          */
-        allowLargeResults?: pulumi.Input<boolean>;
+        allowLargeResults?: pulumi.Input<boolean | undefined>;
         /**
          * Specifies whether the job is allowed to create new tables. The following values are supported:
          * CREATE_IF_NEEDED: If the table does not exist, BigQuery creates the table.
@@ -2063,47 +2063,47 @@ export namespace bigquery {
          * Default value is `CREATE_IF_NEEDED`.
          * Possible values are `CREATE_IF_NEEDED` and `CREATE_NEVER`.
          */
-        createDisposition?: pulumi.Input<string>;
+        createDisposition?: pulumi.Input<string | undefined>;
         /**
          * Specifies the default dataset to use for unqualified table names in the query. Note that this does not alter behavior of unqualified dataset names.
          * Structure is documented below.
          */
-        defaultDataset?: pulumi.Input<inputs.bigquery.JobQueryDefaultDataset>;
+        defaultDataset?: pulumi.Input<inputs.bigquery.JobQueryDefaultDataset | undefined>;
         /**
          * Custom encryption configuration (e.g., Cloud KMS keys)
          * Structure is documented below.
          */
-        destinationEncryptionConfiguration?: pulumi.Input<inputs.bigquery.JobQueryDestinationEncryptionConfiguration>;
+        destinationEncryptionConfiguration?: pulumi.Input<inputs.bigquery.JobQueryDestinationEncryptionConfiguration | undefined>;
         /**
          * The destination table.
          * Structure is documented below.
          */
-        destinationTable?: pulumi.Input<inputs.bigquery.JobQueryDestinationTable>;
+        destinationTable?: pulumi.Input<inputs.bigquery.JobQueryDestinationTable | undefined>;
         /**
          * If true and query uses legacy SQL dialect, flattens all nested and repeated fields in the query results.
          * allowLargeResults must be true if this is set to false. For standard SQL queries, this flag is ignored and results are never flattened.
          */
-        flattenResults?: pulumi.Input<boolean>;
+        flattenResults?: pulumi.Input<boolean | undefined>;
         /**
          * Limits the billing tier for this job. Queries that have resource usage beyond this tier will fail (without incurring a charge).
          * If unspecified, this will be set to your project default.
          */
-        maximumBillingTier?: pulumi.Input<number>;
+        maximumBillingTier?: pulumi.Input<number | undefined>;
         /**
          * Limits the bytes billed for this job. Queries that will have bytes billed beyond this limit will fail (without incurring a charge).
          * If unspecified, this will be set to your project default.
          */
-        maximumBytesBilled?: pulumi.Input<string>;
+        maximumBytesBilled?: pulumi.Input<string | undefined>;
         /**
          * Standard SQL only. Set to POSITIONAL to use positional (?) query parameters or to NAMED to use named (@myparam) query parameters in this query.
          */
-        parameterMode?: pulumi.Input<string>;
+        parameterMode?: pulumi.Input<string | undefined>;
         /**
          * Specifies a priority for the query.
          * Default value is `INTERACTIVE`.
          * Possible values are `INTERACTIVE` and `BATCH`.
          */
-        priority?: pulumi.Input<string>;
+        priority?: pulumi.Input<string | undefined>;
         /**
          * Configures a query job.
          * Structure is documented below.
@@ -2117,28 +2117,28 @@ export namespace bigquery {
          * ALLOW_FIELD_ADDITION: allow adding a nullable field to the schema.
          * ALLOW_FIELD_RELAXATION: allow relaxing a required field in the original schema to nullable.
          */
-        schemaUpdateOptions?: pulumi.Input<pulumi.Input<string>[]>;
+        schemaUpdateOptions?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Options controlling the execution of scripts.
          * Structure is documented below.
          */
-        scriptOptions?: pulumi.Input<inputs.bigquery.JobQueryScriptOptions>;
+        scriptOptions?: pulumi.Input<inputs.bigquery.JobQueryScriptOptions | undefined>;
         /**
          * Specifies whether to use BigQuery's legacy SQL dialect for this query. The default value is true.
          * If set to false, the query will use BigQuery's standard SQL.
          */
-        useLegacySql?: pulumi.Input<boolean>;
+        useLegacySql?: pulumi.Input<boolean | undefined>;
         /**
          * Whether to look for the result in the query cache. The query cache is a best-effort cache that will be flushed whenever
          * tables in the query are modified. Moreover, the query cache is only available when a query does not have a destination table specified.
          * The default value is true.
          */
-        useQueryCache?: pulumi.Input<boolean>;
+        useQueryCache?: pulumi.Input<boolean | undefined>;
         /**
          * Describes user-defined function resources used in the query.
          * Structure is documented below.
          */
-        userDefinedFunctionResources?: pulumi.Input<pulumi.Input<inputs.bigquery.JobQueryUserDefinedFunctionResource>[]>;
+        userDefinedFunctionResources?: pulumi.Input<pulumi.Input<inputs.bigquery.JobQueryUserDefinedFunctionResource>[] | undefined>;
         /**
          * Specifies the action that occurs if the destination table already exists. The following values are supported:
          * WRITE_TRUNCATE: If the table already exists, BigQuery overwrites the table data and uses the schema from the query result.
@@ -2149,7 +2149,7 @@ export namespace bigquery {
          * Default value is `WRITE_EMPTY`.
          * Possible values are `WRITE_TRUNCATE`, `WRITE_APPEND`, and `WRITE_EMPTY`.
          */
-        writeDisposition?: pulumi.Input<string>;
+        writeDisposition?: pulumi.Input<string | undefined>;
     }
 
     export interface JobQueryDefaultDataset {
@@ -2160,7 +2160,7 @@ export namespace bigquery {
         /**
          * The ID of the project containing this model.
          */
-        projectId?: pulumi.Input<string>;
+        projectId?: pulumi.Input<string | undefined>;
     }
 
     export interface JobQueryDestinationEncryptionConfiguration {
@@ -2175,11 +2175,11 @@ export namespace bigquery {
         /**
          * The ID of the dataset containing this model.
          */
-        datasetId?: pulumi.Input<string>;
+        datasetId?: pulumi.Input<string | undefined>;
         /**
          * The ID of the project containing this model.
          */
-        projectId?: pulumi.Input<string>;
+        projectId?: pulumi.Input<string | undefined>;
         /**
          * The table. Can be specified `{{table_id}}` if `projectId` and `datasetId` are also set,
          * or of the form `projects/{{project}}/datasets/{{dataset_id}}/tables/{{table_id}}` if not.
@@ -2193,15 +2193,15 @@ export namespace bigquery {
          * used to populate the schema and query results of the script job.
          * Possible values are `LAST` and `FIRST_SELECT`.
          */
-        keyResultStatement?: pulumi.Input<string>;
+        keyResultStatement?: pulumi.Input<string | undefined>;
         /**
          * Limit on the number of bytes billed per statement. Exceeding this budget results in an error.
          */
-        statementByteBudget?: pulumi.Input<string>;
+        statementByteBudget?: pulumi.Input<string | undefined>;
         /**
          * Timeout period for each statement in a script.
          */
-        statementTimeoutMs?: pulumi.Input<string>;
+        statementTimeoutMs?: pulumi.Input<string | undefined>;
     }
 
     export interface JobQueryUserDefinedFunctionResource {
@@ -2209,11 +2209,11 @@ export namespace bigquery {
          * An inline resource that contains code for a user-defined function (UDF).
          * Providing a inline code resource is equivalent to providing a URI for a file containing the same code.
          */
-        inlineCode?: pulumi.Input<string>;
+        inlineCode?: pulumi.Input<string | undefined>;
         /**
          * A code resource to load from a Google Cloud Storage URI (gs://bucket/path).
          */
-        resourceUri?: pulumi.Input<string>;
+        resourceUri?: pulumi.Input<string | undefined>;
     }
 
     export interface RoutineArgument {
@@ -2222,7 +2222,7 @@ export namespace bigquery {
          * Default value is `FIXED_TYPE`.
          * Possible values are `FIXED_TYPE` and `ANY_TYPE`.
          */
-        argumentKind?: pulumi.Input<string>;
+        argumentKind?: pulumi.Input<string | undefined>;
         /**
          * A JSON schema for the data type. Required unless argumentKind = ANY_TYPE.
          * ~>**NOTE**: Because this field expects a JSON string, any changes to the string
@@ -2232,16 +2232,16 @@ export namespace bigquery {
          * suppress the recurring diff this causes. As a workaround, we recommend using
          * the schema as returned by the API.
          */
-        dataType?: pulumi.Input<string>;
+        dataType?: pulumi.Input<string | undefined>;
         /**
          * Specifies whether the argument is input or output. Can be set for procedures only.
          * Possible values are `IN`, `OUT`, and `INOUT`.
          */
-        mode?: pulumi.Input<string>;
+        mode?: pulumi.Input<string | undefined>;
         /**
          * The name of this argument. Can be absent for function return argument.
          */
-        name?: pulumi.Input<string>;
+        name?: pulumi.Input<string | undefined>;
     }
 
     export interface TableEncryptionConfiguration {
@@ -2265,25 +2265,25 @@ export namespace bigquery {
          * The compression type of the data source.
          * Valid values are "NONE" or "GZIP".
          */
-        compression?: pulumi.Input<string>;
+        compression?: pulumi.Input<string | undefined>;
         /**
          * Additional properties to set if
          * `sourceFormat` is set to "CSV". Structure is documented below.
          */
-        csvOptions?: pulumi.Input<inputs.bigquery.TableExternalDataConfigurationCsvOptions>;
+        csvOptions?: pulumi.Input<inputs.bigquery.TableExternalDataConfigurationCsvOptions | undefined>;
         /**
          * Additional options if
          * `sourceFormat` is set to "GOOGLE_SHEETS". Structure is
          * documented below.
          */
-        googleSheetsOptions?: pulumi.Input<inputs.bigquery.TableExternalDataConfigurationGoogleSheetsOptions>;
+        googleSheetsOptions?: pulumi.Input<inputs.bigquery.TableExternalDataConfigurationGoogleSheetsOptions | undefined>;
         /**
          * When set, configures hive partitioning
          * support. Not all storage formats support hive partitioning -- requesting hive
          * partitioning on an unsupported format will lead to an error, as will providing
          * an invalid specification.
          */
-        hivePartitioningOptions?: pulumi.Input<inputs.bigquery.TableExternalDataConfigurationHivePartitioningOptions>;
+        hivePartitioningOptions?: pulumi.Input<inputs.bigquery.TableExternalDataConfigurationHivePartitioningOptions | undefined>;
         /**
          * Indicates if BigQuery should
          * allow extra values that are not represented in the table schema.
@@ -2292,12 +2292,12 @@ export namespace bigquery {
          * many bad records, an invalid error is returned in the job result.
          * The default value is false.
          */
-        ignoreUnknownValues?: pulumi.Input<boolean>;
+        ignoreUnknownValues?: pulumi.Input<boolean | undefined>;
         /**
          * The maximum number of bad records that
          * BigQuery can ignore when reading data.
          */
-        maxBadRecords?: pulumi.Input<number>;
+        maxBadRecords?: pulumi.Input<number | undefined>;
         /**
          * A JSON schema for the external table. Schema is required
          * for CSV and JSON formats if autodetect is not on. Schema is disallowed
@@ -2311,7 +2311,7 @@ export namespace bigquery {
          * datasource, after creation the computed schema will be stored in
          * `google_bigquery_table.schema`
          */
-        schema?: pulumi.Input<string>;
+        schema?: pulumi.Input<string | undefined>;
         /**
          * The data format. Supported values are:
          * "CSV", "GOOGLE_SHEETS", "NEWLINE_DELIMITED_JSON", "AVRO", "PARQUET", "ORC"
@@ -2332,22 +2332,22 @@ export namespace bigquery {
          * Indicates if BigQuery should accept rows
          * that are missing trailing optional columns.
          */
-        allowJaggedRows?: pulumi.Input<boolean>;
+        allowJaggedRows?: pulumi.Input<boolean | undefined>;
         /**
          * Indicates if BigQuery should allow
          * quoted data sections that contain newline characters in a CSV file.
          * The default value is false.
          */
-        allowQuotedNewlines?: pulumi.Input<boolean>;
+        allowQuotedNewlines?: pulumi.Input<boolean | undefined>;
         /**
          * The character encoding of the data. The supported
          * values are UTF-8 or ISO-8859-1.
          */
-        encoding?: pulumi.Input<string>;
+        encoding?: pulumi.Input<string | undefined>;
         /**
          * The separator for fields in a CSV file.
          */
-        fieldDelimiter?: pulumi.Input<string>;
+        fieldDelimiter?: pulumi.Input<string | undefined>;
         /**
          * The value that is used to quote data sections in a
          * CSV file. If your data does not contain quoted sections, set the
@@ -2363,7 +2363,7 @@ export namespace bigquery {
          * that BigQuery will skip when reading the data. At least one of `range` or
          * `skipLeadingRows` must be set.
          */
-        skipLeadingRows?: pulumi.Input<number>;
+        skipLeadingRows?: pulumi.Input<number | undefined>;
     }
 
     export interface TableExternalDataConfigurationGoogleSheetsOptions {
@@ -2371,13 +2371,13 @@ export namespace bigquery {
          * Information required to partition based on ranges.
          * Structure is documented below.
          */
-        range?: pulumi.Input<string>;
+        range?: pulumi.Input<string | undefined>;
         /**
          * The number of rows at the top of the sheet
          * that BigQuery will skip when reading the data. At least one of `range` or
          * `skipLeadingRows` must be set.
          */
-        skipLeadingRows?: pulumi.Input<number>;
+        skipLeadingRows?: pulumi.Input<number | undefined>;
     }
 
     export interface TableExternalDataConfigurationHivePartitioningOptions {
@@ -2391,7 +2391,7 @@ export namespace bigquery {
          * Currently supported formats are: JSON, CSV, ORC, Avro and Parquet.
          * * CUSTOM: when set to `CUSTOM`, you must encode the partition key schema within the `sourceUriPrefix` by setting `sourceUriPrefix` to `gs://bucket/path_to_table/{key1:TYPE1}/{key2:TYPE2}/{key3:TYPE3}`.
          */
-        mode?: pulumi.Input<string>;
+        mode?: pulumi.Input<string | undefined>;
         /**
          * When hive partition detection is requested,
          * a common for all source uris must be required. The prefix must end immediately
@@ -2402,7 +2402,7 @@ export namespace bigquery {
          * can be either of `gs://bucket/path_to_table` or `gs://bucket/path_to_table/`.
          * Note that when `mode` is set to `CUSTOM`, you must encode the partition key schema within the `sourceUriPrefix` by setting `sourceUriPrefix` to `gs://bucket/path_to_table/{key1:TYPE1}/{key2:TYPE2}/{key3:TYPE3}`.
          */
-        sourceUriPrefix?: pulumi.Input<string>;
+        sourceUriPrefix?: pulumi.Input<string | undefined>;
     }
 
     export interface TableMaterializedView {
@@ -2410,7 +2410,7 @@ export namespace bigquery {
          * Specifies whether to use BigQuery's automatic refresh for this materialized view when the base table is updated.
          * The default value is true.
          */
-        enableRefresh?: pulumi.Input<boolean>;
+        enableRefresh?: pulumi.Input<boolean | undefined>;
         /**
          * A query whose result is persisted.
          */
@@ -2419,7 +2419,7 @@ export namespace bigquery {
          * The maximum frequency at which this materialized view will be refreshed.
          * The default value is 1800000
          */
-        refreshIntervalMs?: pulumi.Input<number>;
+        refreshIntervalMs?: pulumi.Input<number | undefined>;
     }
 
     export interface TableRangePartitioning {
@@ -2455,18 +2455,18 @@ export namespace bigquery {
          * Number of milliseconds for which to keep the
          * storage for a partition.
          */
-        expirationMs?: pulumi.Input<number>;
+        expirationMs?: pulumi.Input<number | undefined>;
         /**
          * The field used to determine how to create a range-based
          * partition.
          */
-        field?: pulumi.Input<string>;
+        field?: pulumi.Input<string | undefined>;
         /**
          * If set to true, queries over this table
          * require a partition filter that can be used for partition elimination to be
          * specified.
          */
-        requirePartitionFilter?: pulumi.Input<boolean>;
+        requirePartitionFilter?: pulumi.Input<boolean | undefined>;
         /**
          * The supported types are DAY, HOUR, MONTH, and YEAR,
          * which will generate one partition per day, hour, month, and year, respectively.
@@ -2483,7 +2483,7 @@ export namespace bigquery {
          * Specifies whether to use BigQuery's legacy SQL for this view.
          * The default value is true. If set to false, the view will use BigQuery's standard SQL.
          */
-        useLegacySql?: pulumi.Input<boolean>;
+        useLegacySql?: pulumi.Input<boolean | undefined>;
     }
 }
 
@@ -2494,11 +2494,11 @@ export namespace bigtable {
          *
          * @deprecated Deprecated in favor of duration
          */
-        days?: pulumi.Input<number>;
+        days?: pulumi.Input<number | undefined>;
         /**
          * Duration before applying GC policy (ex. "8h"). This is required when `days` isn't set
          */
-        duration?: pulumi.Input<string>;
+        duration?: pulumi.Input<string | undefined>;
     }
 
     export interface GCPolicyMaxVersion {
@@ -2518,28 +2518,28 @@ export namespace bigtable {
          * Required, with a minimum of `1` for a `PRODUCTION` instance. Must be left unset
          * for a `DEVELOPMENT` instance.
          */
-        numNodes?: pulumi.Input<number>;
+        numNodes?: pulumi.Input<number | undefined>;
         /**
          * The storage type to use. One of `"SSD"` or
          * `"HDD"`. Defaults to `"SSD"`.
          */
-        storageType?: pulumi.Input<string>;
+        storageType?: pulumi.Input<string | undefined>;
         /**
          * The zone to create the Cloud Bigtable cluster in. If it not
          * specified, the provider zone is used. Each cluster must have a different zone in the same region. Zones that support
          * Bigtable instances are noted on the [Cloud Bigtable locations page](https://cloud.google.com/bigtable/docs/locations).
          */
-        zone?: pulumi.Input<string>;
+        zone?: pulumi.Input<string | undefined>;
     }
 
     export interface InstanceIamBindingCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
 
     export interface InstanceIamMemberCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
@@ -2552,13 +2552,13 @@ export namespace bigtable {
     }
 
     export interface TableIamBindingCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
 
     export interface TableIamMemberCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
@@ -2566,13 +2566,13 @@ export namespace bigtable {
 
 export namespace billing {
     export interface AccountIamBindingCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
 
     export interface AccountIamMemberCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
@@ -2584,27 +2584,27 @@ export namespace billing {
          * those with Billing Account Administrators and Billing
          * Account Users IAM roles for the target account.
          */
-        disableDefaultIamRecipients?: pulumi.Input<boolean>;
+        disableDefaultIamRecipients?: pulumi.Input<boolean | undefined>;
         /**
          * The full resource name of a monitoring notification
          * channel in the form
          * projects/{project_id}/notificationChannels/{channel_id}.
          * A maximum of 5 channels are allowed.
          */
-        monitoringNotificationChannels?: pulumi.Input<pulumi.Input<string>[]>;
+        monitoringNotificationChannels?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The name of the Cloud Pub/Sub topic where budget related
          * messages will be published, in the form
          * projects/{project_id}/topics/{topic_id}. Updates are sent
          * at regular intervals to the topic.
          */
-        pubsubTopic?: pulumi.Input<string>;
+        pubsubTopic?: pulumi.Input<string | undefined>;
         /**
          * The schema version of the notification. Only "1.0" is
          * accepted. It represents the JSON schema as defined in
          * https://cloud.google.com/billing/docs/how-to/budgets#notification_format.
          */
-        schemaVersion?: pulumi.Input<string>;
+        schemaVersion?: pulumi.Input<string | undefined>;
     }
 
     export interface BudgetAmount {
@@ -2614,21 +2614,21 @@ export namespace billing {
          * Boolean. Set value to true to use. Do not set to false, instead
          * use the `specifiedAmount` block.
          */
-        lastPeriodAmount?: pulumi.Input<boolean>;
+        lastPeriodAmount?: pulumi.Input<boolean | undefined>;
         /**
          * A specified amount to use as the budget. currencyCode is
          * optional. If specified, it must match the currency of the
          * billing account. The currencyCode is provided on output.
          * Structure is documented below.
          */
-        specifiedAmount?: pulumi.Input<inputs.billing.BudgetAmountSpecifiedAmount>;
+        specifiedAmount?: pulumi.Input<inputs.billing.BudgetAmountSpecifiedAmount | undefined>;
     }
 
     export interface BudgetAmountSpecifiedAmount {
         /**
          * The 3-letter currency code defined in ISO 4217.
          */
-        currencyCode?: pulumi.Input<string>;
+        currencyCode?: pulumi.Input<string | undefined>;
         /**
          * Number of nano (10^-9) units of the amount.
          * The value must be between -999,999,999 and +999,999,999
@@ -2638,12 +2638,12 @@ export namespace billing {
          * zero. For example $-1.75 is represented as units=-1 and
          * nanos=-750,000,000.
          */
-        nanos?: pulumi.Input<number>;
+        nanos?: pulumi.Input<number | undefined>;
         /**
          * The whole units of the amount. For example if currencyCode
          * is "USD", then 1 unit is one US dollar.
          */
-        units?: pulumi.Input<string>;
+        units?: pulumi.Input<string | undefined>;
     }
 
     export interface BudgetBudgetFilter {
@@ -2655,19 +2655,19 @@ export namespace billing {
          * If the field is omitted, the report will include usage from the parent
          * account and all subaccounts, if they exist.
          */
-        creditTypes?: pulumi.Input<pulumi.Input<string>[]>;
+        creditTypes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies how credits should be treated when determining spend
          * for threshold calculations.
          * Default value is `INCLUDE_ALL_CREDITS`.
          * Possible values are `INCLUDE_ALL_CREDITS`, `EXCLUDE_ALL_CREDITS`, and `INCLUDE_SPECIFIED_CREDITS`.
          */
-        creditTypesTreatment?: pulumi.Input<string>;
+        creditTypesTreatment?: pulumi.Input<string | undefined>;
         /**
          * A single label and value pair specifying that usage from only
          * this set of labeled resources should be included in the budget.
          */
-        labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * A set of projects of the form projects/{project_number},
          * specifying that usage from only this set of projects should be
@@ -2675,7 +2675,7 @@ export namespace billing {
          * all usage for the billing account, regardless of which project
          * the usage occurred on.
          */
-        projects?: pulumi.Input<pulumi.Input<string>[]>;
+        projects?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * A set of services of the form services/{service_id},
          * specifying that usage from only this set of services should be
@@ -2684,7 +2684,7 @@ export namespace billing {
          * through the Catalog API:
          * https://cloud.google.com/billing/v1/how-tos/catalog-api.
          */
-        services?: pulumi.Input<pulumi.Input<string>[]>;
+        services?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * A set of subaccounts of the form billingAccounts/{account_id},
          * specifying that usage from only this set of subaccounts should
@@ -2693,7 +2693,7 @@ export namespace billing {
          * If the field is omitted, the report will include usage from the parent
          * account and all subaccounts, if they exist.
          */
-        subaccounts?: pulumi.Input<pulumi.Input<string>[]>;
+        subaccounts?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface BudgetThresholdRule {
@@ -2703,7 +2703,7 @@ export namespace billing {
          * Default value is `CURRENT_SPEND`.
          * Possible values are `CURRENT_SPEND` and `FORECASTED_SPEND`.
          */
-        spendBasis?: pulumi.Input<string>;
+        spendBasis?: pulumi.Input<string | undefined>;
         /**
          * Send an alert when this threshold is exceeded. This is a
          * 1.0-based percentage, so 0.5 = 50%. Must be >= 0.
@@ -2726,7 +2726,7 @@ export namespace binaryauthorization {
          * account email; future versions may use an email based on a
          * different naming pattern.
          */
-        delegationServiceAccountEmail?: pulumi.Input<string>;
+        delegationServiceAccountEmail?: pulumi.Input<string | undefined>;
         /**
          * The resource name of a ATTESTATION_AUTHORITY Note, created by the
          * user. If the Note is in a different project from the Attestor, it
@@ -2747,7 +2747,7 @@ export namespace binaryauthorization {
          * attestations exist.
          * Structure is documented below.
          */
-        publicKeys?: pulumi.Input<pulumi.Input<inputs.binaryauthorization.AttestorAttestationAuthorityNotePublicKey>[]>;
+        publicKeys?: pulumi.Input<pulumi.Input<inputs.binaryauthorization.AttestorAttestationAuthorityNotePublicKey>[] | undefined>;
     }
 
     export interface AttestorAttestationAuthorityNotePublicKey {
@@ -2762,11 +2762,11 @@ export namespace binaryauthorization {
          * upper-case hex. If id is provided by the caller, it will
          * be overwritten by the API-calculated ID.
          */
-        asciiArmoredPgpPublicKey?: pulumi.Input<string>;
+        asciiArmoredPgpPublicKey?: pulumi.Input<string | undefined>;
         /**
          * A descriptive comment. This field may be updated.
          */
-        comment?: pulumi.Input<string>;
+        comment?: pulumi.Input<string | undefined>;
         /**
          * The ID of this public key. Signatures verified by BinAuthz
          * must include the ID of the public key that can be used to
@@ -2775,7 +2775,7 @@ export namespace binaryauthorization {
          * be imposed based on which public key type is encapsulated.
          * See the documentation on publicKey cases below for details.
          */
-        id?: pulumi.Input<string>;
+        id?: pulumi.Input<string | undefined>;
         /**
          * A raw PKIX SubjectPublicKeyInfo format public key.
          * NOTE: id may be explicitly provided by the caller when using this
@@ -2784,7 +2784,7 @@ export namespace binaryauthorization {
          * encoding of the public key.
          * Structure is documented below.
          */
-        pkixPublicKey?: pulumi.Input<inputs.binaryauthorization.AttestorAttestationAuthorityNotePublicKeyPkixPublicKey>;
+        pkixPublicKey?: pulumi.Input<inputs.binaryauthorization.AttestorAttestationAuthorityNotePublicKeyPkixPublicKey | undefined>;
     }
 
     export interface AttestorAttestationAuthorityNotePublicKeyPkixPublicKey {
@@ -2792,7 +2792,7 @@ export namespace binaryauthorization {
          * A PEM-encoded public key, as described in
          * `https://tools.ietf.org/html/rfc7468#section-13`
          */
-        publicKeyPem?: pulumi.Input<string>;
+        publicKeyPem?: pulumi.Input<string | undefined>;
         /**
          * The signature algorithm used to verify a message against
          * a signature using this key. These signature algorithm must
@@ -2800,17 +2800,17 @@ export namespace binaryauthorization {
          * publicKeyPem (i.e. this algorithm must match that of the
          * public key).
          */
-        signatureAlgorithm?: pulumi.Input<string>;
+        signatureAlgorithm?: pulumi.Input<string | undefined>;
     }
 
     export interface AttestorIamBindingCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
 
     export interface AttestorIamMemberCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
@@ -2850,7 +2850,7 @@ export namespace binaryauthorization {
          * Note: this field must be non-empty when the evaluationMode field
          * specifies REQUIRE_ATTESTATION, otherwise it must be empty.
          */
-        requireAttestationsBies?: pulumi.Input<pulumi.Input<string>[]>;
+        requireAttestationsBies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface PolicyDefaultAdmissionRule {
@@ -2874,14 +2874,14 @@ export namespace binaryauthorization {
          * Note: this field must be non-empty when the evaluationMode field
          * specifies REQUIRE_ATTESTATION, otherwise it must be empty.
          */
-        requireAttestationsBies?: pulumi.Input<pulumi.Input<string>[]>;
+        requireAttestationsBies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 }
 
 export namespace certificateauthority {
     export interface AuthorityAccessUrl {
-        caCertificateAccessUrl?: pulumi.Input<string>;
-        crlAccessUrl?: pulumi.Input<string>;
+        caCertificateAccessUrl?: pulumi.Input<string | undefined>;
+        crlAccessUrl?: pulumi.Input<string | undefined>;
     }
 
     export interface AuthorityConfig {
@@ -2923,18 +2923,18 @@ export namespace certificateauthority {
          * The subject alternative name fields.
          * Structure is documented below.
          */
-        subjectAltName?: pulumi.Input<inputs.certificateauthority.AuthorityConfigSubjectConfigSubjectAltName>;
+        subjectAltName?: pulumi.Input<inputs.certificateauthority.AuthorityConfigSubjectConfigSubjectAltName | undefined>;
     }
 
     export interface AuthorityConfigSubjectConfigSubject {
         /**
          * The country code of the subject.
          */
-        countryCode?: pulumi.Input<string>;
+        countryCode?: pulumi.Input<string | undefined>;
         /**
          * The locality or city of the subject.
          */
-        locality?: pulumi.Input<string>;
+        locality?: pulumi.Input<string | undefined>;
         /**
          * The organization of the subject.
          */
@@ -2942,48 +2942,48 @@ export namespace certificateauthority {
         /**
          * The organizational unit of the subject.
          */
-        organizationalUnit?: pulumi.Input<string>;
+        organizationalUnit?: pulumi.Input<string | undefined>;
         /**
          * The postal code of the subject.
          */
-        postalCode?: pulumi.Input<string>;
+        postalCode?: pulumi.Input<string | undefined>;
         /**
          * The province, territory, or regional state of the subject.
          */
-        province?: pulumi.Input<string>;
+        province?: pulumi.Input<string | undefined>;
         /**
          * The street address of the subject.
          */
-        streetAddress?: pulumi.Input<string>;
+        streetAddress?: pulumi.Input<string | undefined>;
     }
 
     export interface AuthorityConfigSubjectConfigSubjectAltName {
         /**
          * Contains only valid, fully-qualified host names.
          */
-        dnsNames?: pulumi.Input<pulumi.Input<string>[]>;
+        dnsNames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Contains only valid RFC 2822 E-mail addresses.
          */
-        emailAddresses?: pulumi.Input<pulumi.Input<string>[]>;
+        emailAddresses?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Contains only valid 32-bit IPv4 addresses or RFC 4291 IPv6 addresses.
          */
-        ipAddresses?: pulumi.Input<pulumi.Input<string>[]>;
+        ipAddresses?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Contains only valid RFC 3986 URIs.
          */
-        uris?: pulumi.Input<pulumi.Input<string>[]>;
+        uris?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface AuthorityIamBindingCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
 
     export interface AuthorityIamMemberCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
@@ -2993,13 +2993,13 @@ export namespace certificateauthority {
          * When true, includes a URL to the issuing CA certificate in the "authority
          * information access" X.509 extension.
          */
-        includeCaCertUrl?: pulumi.Input<boolean>;
+        includeCaCertUrl?: pulumi.Input<boolean | undefined>;
         /**
          * When true, includes a URL to the CRL corresponding to certificates issued from a
          * CertificateAuthority. CRLs will expire 7 days from their creation. However, we will
          * rebuild daily. CRLs are also rebuilt shortly after a certificate is revoked.
          */
-        includeCrlAccessUrl?: pulumi.Input<boolean>;
+        includeCrlAccessUrl?: pulumi.Input<boolean | undefined>;
     }
 
     export interface AuthorityKeySpec {
@@ -3008,70 +3008,70 @@ export namespace certificateauthority {
          * experience. All managed keys will be have their ProtectionLevel as HSM.
          * Possible values are `SIGN_HASH_ALGORITHM_UNSPECIFIED`, `RSA_PSS_2048_SHA256`, `RSA_PSS_3072_SHA256`, `RSA_PSS_4096_SHA256`, `RSA_PKCS1_2048_SHA256`, `RSA_PKCS1_3072_SHA256`, `RSA_PKCS1_4096_SHA256`, `EC_P256_SHA256`, and `EC_P384_SHA384`.
          */
-        algorithm?: pulumi.Input<string>;
+        algorithm?: pulumi.Input<string | undefined>;
         /**
          * The resource name for an existing Cloud KMS CryptoKeyVersion in the format
          * `projects/*&#47;locations/*&#47;keyRings/*&#47;cryptoKeys/*&#47;cryptoKeyVersions/*`.
          */
-        cloudKmsKeyVersion?: pulumi.Input<string>;
+        cloudKmsKeyVersion?: pulumi.Input<string | undefined>;
     }
 
     export interface CertificateCertificateDescription {
-        aiaIssuingCertificateUrls?: pulumi.Input<pulumi.Input<string>[]>;
-        authorityKeyId?: pulumi.Input<inputs.certificateauthority.CertificateCertificateDescriptionAuthorityKeyId>;
-        certFingerprint?: pulumi.Input<inputs.certificateauthority.CertificateCertificateDescriptionCertFingerprint>;
-        configValues?: pulumi.Input<inputs.certificateauthority.CertificateCertificateDescriptionConfigValues>;
-        crlDistributionPoints?: pulumi.Input<pulumi.Input<string>[]>;
+        aiaIssuingCertificateUrls?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        authorityKeyId?: pulumi.Input<inputs.certificateauthority.CertificateCertificateDescriptionAuthorityKeyId | undefined>;
+        certFingerprint?: pulumi.Input<inputs.certificateauthority.CertificateCertificateDescriptionCertFingerprint | undefined>;
+        configValues?: pulumi.Input<inputs.certificateauthority.CertificateCertificateDescriptionConfigValues | undefined>;
+        crlDistributionPoints?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * A PublicKey describes a public key.
          * Structure is documented below.
          */
         publicKey: pulumi.Input<inputs.certificateauthority.CertificateCertificateDescriptionPublicKey>;
-        subjectDescription?: pulumi.Input<inputs.certificateauthority.CertificateCertificateDescriptionSubjectDescription>;
-        subjectKeyId?: pulumi.Input<inputs.certificateauthority.CertificateCertificateDescriptionSubjectKeyId>;
+        subjectDescription?: pulumi.Input<inputs.certificateauthority.CertificateCertificateDescriptionSubjectDescription | undefined>;
+        subjectKeyId?: pulumi.Input<inputs.certificateauthority.CertificateCertificateDescriptionSubjectKeyId | undefined>;
     }
 
     export interface CertificateCertificateDescriptionAuthorityKeyId {
-        keyId?: pulumi.Input<string>;
+        keyId?: pulumi.Input<string | undefined>;
     }
 
     export interface CertificateCertificateDescriptionCertFingerprint {
-        sha256Hash?: pulumi.Input<string>;
+        sha256Hash?: pulumi.Input<string | undefined>;
     }
 
     export interface CertificateCertificateDescriptionConfigValues {
-        keyUsage?: pulumi.Input<inputs.certificateauthority.CertificateCertificateDescriptionConfigValuesKeyUsage>;
+        keyUsage?: pulumi.Input<inputs.certificateauthority.CertificateCertificateDescriptionConfigValuesKeyUsage | undefined>;
     }
 
     export interface CertificateCertificateDescriptionConfigValuesKeyUsage {
-        baseKeyUsage?: pulumi.Input<inputs.certificateauthority.CertificateCertificateDescriptionConfigValuesKeyUsageBaseKeyUsage>;
-        extendedKeyUsage?: pulumi.Input<inputs.certificateauthority.CertificateCertificateDescriptionConfigValuesKeyUsageExtendedKeyUsage>;
+        baseKeyUsage?: pulumi.Input<inputs.certificateauthority.CertificateCertificateDescriptionConfigValuesKeyUsageBaseKeyUsage | undefined>;
+        extendedKeyUsage?: pulumi.Input<inputs.certificateauthority.CertificateCertificateDescriptionConfigValuesKeyUsageExtendedKeyUsage | undefined>;
         unknownExtendedKeyUsages: pulumi.Input<pulumi.Input<inputs.certificateauthority.CertificateCertificateDescriptionConfigValuesKeyUsageUnknownExtendedKeyUsage>[]>;
     }
 
     export interface CertificateCertificateDescriptionConfigValuesKeyUsageBaseKeyUsage {
-        keyUsageOptions?: pulumi.Input<inputs.certificateauthority.CertificateCertificateDescriptionConfigValuesKeyUsageBaseKeyUsageKeyUsageOptions>;
+        keyUsageOptions?: pulumi.Input<inputs.certificateauthority.CertificateCertificateDescriptionConfigValuesKeyUsageBaseKeyUsageKeyUsageOptions | undefined>;
     }
 
     export interface CertificateCertificateDescriptionConfigValuesKeyUsageBaseKeyUsageKeyUsageOptions {
-        certSign?: pulumi.Input<boolean>;
-        contentCommitment?: pulumi.Input<boolean>;
-        crlSign?: pulumi.Input<boolean>;
-        dataEncipherment?: pulumi.Input<boolean>;
-        decipherOnly?: pulumi.Input<boolean>;
-        digitalSignature?: pulumi.Input<boolean>;
-        encipherOnly?: pulumi.Input<boolean>;
-        keyAgreement?: pulumi.Input<boolean>;
-        keyEncipherment?: pulumi.Input<boolean>;
+        certSign?: pulumi.Input<boolean | undefined>;
+        contentCommitment?: pulumi.Input<boolean | undefined>;
+        crlSign?: pulumi.Input<boolean | undefined>;
+        dataEncipherment?: pulumi.Input<boolean | undefined>;
+        decipherOnly?: pulumi.Input<boolean | undefined>;
+        digitalSignature?: pulumi.Input<boolean | undefined>;
+        encipherOnly?: pulumi.Input<boolean | undefined>;
+        keyAgreement?: pulumi.Input<boolean | undefined>;
+        keyEncipherment?: pulumi.Input<boolean | undefined>;
     }
 
     export interface CertificateCertificateDescriptionConfigValuesKeyUsageExtendedKeyUsage {
-        clientAuth?: pulumi.Input<boolean>;
-        codeSigning?: pulumi.Input<boolean>;
-        emailProtection?: pulumi.Input<boolean>;
-        ocspSigning?: pulumi.Input<boolean>;
-        serverAuth?: pulumi.Input<boolean>;
-        timeStamping?: pulumi.Input<boolean>;
+        clientAuth?: pulumi.Input<boolean | undefined>;
+        codeSigning?: pulumi.Input<boolean | undefined>;
+        emailProtection?: pulumi.Input<boolean | undefined>;
+        ocspSigning?: pulumi.Input<boolean | undefined>;
+        serverAuth?: pulumi.Input<boolean | undefined>;
+        timeStamping?: pulumi.Input<boolean | undefined>;
     }
 
     export interface CertificateCertificateDescriptionConfigValuesKeyUsageUnknownExtendedKeyUsage {
@@ -3086,7 +3086,7 @@ export namespace certificateauthority {
         /**
          * Required. A public key. When this is specified in a request, the padding and encoding can be any of the options described by the respective 'KeyType' value. When this is generated by the service, it will always be an RFC 5280 SubjectPublicKeyInfo structure containing an algorithm identifier and a key. A base64-encoded string.
          */
-        key?: pulumi.Input<string>;
+        key?: pulumi.Input<string | undefined>;
         /**
          * Types of public keys that are supported. At a minimum, we support RSA and ECDSA, for the key sizes or curves listed: https://cloud.google.com/kms/docs/algorithms#asymmetric_signing_algorithms
          * Possible values are `KEY_TYPE_UNSPECIFIED`, `PEM_RSA_KEY`, and `PEM_EC_KEY`.
@@ -3098,57 +3098,57 @@ export namespace certificateauthority {
         /**
          * The common name of the distinguished name.
          */
-        commonName?: pulumi.Input<string>;
-        hexSerialNumber?: pulumi.Input<string>;
+        commonName?: pulumi.Input<string | undefined>;
+        hexSerialNumber?: pulumi.Input<string | undefined>;
         /**
          * The desired lifetime of the CA certificate. Used to create the "notBeforeTime" and
          * "notAfterTime" fields inside an X.509 certificate. A duration in seconds with up to nine
          * fractional digits, terminated by 's'. Example: "3.5s".
          */
-        lifetime?: pulumi.Input<string>;
-        notAfterTime?: pulumi.Input<string>;
-        notBeforeTime?: pulumi.Input<string>;
+        lifetime?: pulumi.Input<string | undefined>;
+        notAfterTime?: pulumi.Input<string | undefined>;
+        notBeforeTime?: pulumi.Input<string | undefined>;
         /**
          * Contains distinguished name fields such as the location and organization.
          * Structure is documented below.
          */
-        subject?: pulumi.Input<inputs.certificateauthority.CertificateCertificateDescriptionSubjectDescriptionSubject>;
+        subject?: pulumi.Input<inputs.certificateauthority.CertificateCertificateDescriptionSubjectDescriptionSubject | undefined>;
         /**
          * The subject alternative name fields.
          * Structure is documented below.
          */
-        subjectAltName?: pulumi.Input<inputs.certificateauthority.CertificateCertificateDescriptionSubjectDescriptionSubjectAltName>;
+        subjectAltName?: pulumi.Input<inputs.certificateauthority.CertificateCertificateDescriptionSubjectDescriptionSubjectAltName | undefined>;
     }
 
     export interface CertificateCertificateDescriptionSubjectDescriptionSubject {
         /**
          * The country code of the subject.
          */
-        countryCode?: pulumi.Input<string>;
+        countryCode?: pulumi.Input<string | undefined>;
         /**
          * The locality or city of the subject.
          */
-        locality?: pulumi.Input<string>;
+        locality?: pulumi.Input<string | undefined>;
         /**
          * The organization of the subject.
          */
-        organization?: pulumi.Input<string>;
+        organization?: pulumi.Input<string | undefined>;
         /**
          * The organizational unit of the subject.
          */
-        organizationalUnit?: pulumi.Input<string>;
+        organizationalUnit?: pulumi.Input<string | undefined>;
         /**
          * The postal code of the subject.
          */
-        postalCode?: pulumi.Input<string>;
+        postalCode?: pulumi.Input<string | undefined>;
         /**
          * The province, territory, or regional state of the subject.
          */
-        province?: pulumi.Input<string>;
+        province?: pulumi.Input<string | undefined>;
         /**
          * The street address of the subject.
          */
-        streetAddress?: pulumi.Input<string>;
+        streetAddress?: pulumi.Input<string | undefined>;
     }
 
     export interface CertificateCertificateDescriptionSubjectDescriptionSubjectAltName {
@@ -3156,25 +3156,25 @@ export namespace certificateauthority {
         /**
          * Contains only valid, fully-qualified host names.
          */
-        dnsNames?: pulumi.Input<pulumi.Input<string>[]>;
+        dnsNames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Contains only valid RFC 2822 E-mail addresses.
          */
-        emailAddresses?: pulumi.Input<pulumi.Input<string>[]>;
+        emailAddresses?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Contains only valid 32-bit IPv4 addresses or RFC 4291 IPv6 addresses.
          */
-        ipAddresses?: pulumi.Input<pulumi.Input<string>[]>;
+        ipAddresses?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Contains only valid RFC 3986 URIs.
          */
-        uris?: pulumi.Input<pulumi.Input<string>[]>;
+        uris?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface CertificateCertificateDescriptionSubjectDescriptionSubjectAltNameCustomSan {
         critical: pulumi.Input<boolean>;
         obectId: pulumi.Input<inputs.certificateauthority.CertificateCertificateDescriptionSubjectDescriptionSubjectAltNameCustomSanObectId>;
-        value?: pulumi.Input<string>;
+        value?: pulumi.Input<string | undefined>;
     }
 
     export interface CertificateCertificateDescriptionSubjectDescriptionSubjectAltNameCustomSanObectId {
@@ -3182,7 +3182,7 @@ export namespace certificateauthority {
     }
 
     export interface CertificateCertificateDescriptionSubjectKeyId {
-        keyId?: pulumi.Input<string>;
+        keyId?: pulumi.Input<string | undefined>;
     }
 
     export interface CertificateConfig {
@@ -3207,7 +3207,7 @@ export namespace certificateauthority {
         /**
          * Required. A public key. When this is specified in a request, the padding and encoding can be any of the options described by the respective 'KeyType' value. When this is generated by the service, it will always be an RFC 5280 SubjectPublicKeyInfo structure containing an algorithm identifier and a key. A base64-encoded string.
          */
-        key?: pulumi.Input<string>;
+        key?: pulumi.Input<string | undefined>;
         /**
          * Types of public keys that are supported. At a minimum, we support RSA and ECDSA, for the key sizes or curves listed: https://cloud.google.com/kms/docs/algorithms#asymmetric_signing_algorithms
          * Possible values are `KEY_TYPE_UNSPECIFIED`, `PEM_RSA_KEY`, and `PEM_EC_KEY`.
@@ -3237,18 +3237,18 @@ export namespace certificateauthority {
          * The subject alternative name fields.
          * Structure is documented below.
          */
-        subjectAltName?: pulumi.Input<inputs.certificateauthority.CertificateConfigSubjectConfigSubjectAltName>;
+        subjectAltName?: pulumi.Input<inputs.certificateauthority.CertificateConfigSubjectConfigSubjectAltName | undefined>;
     }
 
     export interface CertificateConfigSubjectConfigSubject {
         /**
          * The country code of the subject.
          */
-        countryCode?: pulumi.Input<string>;
+        countryCode?: pulumi.Input<string | undefined>;
         /**
          * The locality or city of the subject.
          */
-        locality?: pulumi.Input<string>;
+        locality?: pulumi.Input<string | undefined>;
         /**
          * The organization of the subject.
          */
@@ -3256,43 +3256,43 @@ export namespace certificateauthority {
         /**
          * The organizational unit of the subject.
          */
-        organizationalUnit?: pulumi.Input<string>;
+        organizationalUnit?: pulumi.Input<string | undefined>;
         /**
          * The postal code of the subject.
          */
-        postalCode?: pulumi.Input<string>;
+        postalCode?: pulumi.Input<string | undefined>;
         /**
          * The province, territory, or regional state of the subject.
          */
-        province?: pulumi.Input<string>;
+        province?: pulumi.Input<string | undefined>;
         /**
          * The street address of the subject.
          */
-        streetAddress?: pulumi.Input<string>;
+        streetAddress?: pulumi.Input<string | undefined>;
     }
 
     export interface CertificateConfigSubjectConfigSubjectAltName {
         /**
          * Contains only valid, fully-qualified host names.
          */
-        dnsNames?: pulumi.Input<pulumi.Input<string>[]>;
+        dnsNames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Contains only valid RFC 2822 E-mail addresses.
          */
-        emailAddresses?: pulumi.Input<pulumi.Input<string>[]>;
+        emailAddresses?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Contains only valid 32-bit IPv4 addresses or RFC 4291 IPv6 addresses.
          */
-        ipAddresses?: pulumi.Input<pulumi.Input<string>[]>;
+        ipAddresses?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Contains only valid RFC 3986 URIs.
          */
-        uris?: pulumi.Input<pulumi.Input<string>[]>;
+        uris?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface CertificateRevocationDetail {
-        revocationState?: pulumi.Input<string>;
-        revocationTime?: pulumi.Input<string>;
+        revocationState?: pulumi.Input<string | undefined>;
+        revocationTime?: pulumi.Input<string | undefined>;
     }
 }
 
@@ -3302,7 +3302,7 @@ export namespace cloudasset {
          * Description of the expression. This is a longer text which describes the expression,
          * e.g. when hovered over it in a UI.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * Textual representation of an expression in Common Expression Language syntax.
          */
@@ -3311,12 +3311,12 @@ export namespace cloudasset {
          * String indicating the location of the expression for error reporting, e.g. a file
          * name and a position in the file.
          */
-        location?: pulumi.Input<string>;
+        location?: pulumi.Input<string | undefined>;
         /**
          * Title for the expression, i.e. a short string describing its purpose.
          * This can be used e.g. in UIs which allow to enter the expression.
          */
-        title?: pulumi.Input<string>;
+        title?: pulumi.Input<string | undefined>;
     }
 
     export interface FolderFeedFeedOutputConfig {
@@ -3339,7 +3339,7 @@ export namespace cloudasset {
          * Description of the expression. This is a longer text which describes the expression,
          * e.g. when hovered over it in a UI.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * Textual representation of an expression in Common Expression Language syntax.
          */
@@ -3348,12 +3348,12 @@ export namespace cloudasset {
          * String indicating the location of the expression for error reporting, e.g. a file
          * name and a position in the file.
          */
-        location?: pulumi.Input<string>;
+        location?: pulumi.Input<string | undefined>;
         /**
          * Title for the expression, i.e. a short string describing its purpose.
          * This can be used e.g. in UIs which allow to enter the expression.
          */
-        title?: pulumi.Input<string>;
+        title?: pulumi.Input<string | undefined>;
     }
 
     export interface OrganizationFeedFeedOutputConfig {
@@ -3376,7 +3376,7 @@ export namespace cloudasset {
          * Description of the expression. This is a longer text which describes the expression,
          * e.g. when hovered over it in a UI.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * Textual representation of an expression in Common Expression Language syntax.
          */
@@ -3385,12 +3385,12 @@ export namespace cloudasset {
          * String indicating the location of the expression for error reporting, e.g. a file
          * name and a position in the file.
          */
-        location?: pulumi.Input<string>;
+        location?: pulumi.Input<string | undefined>;
         /**
          * Title for the expression, i.e. a short string describing its purpose.
          * This can be used e.g. in UIs which allow to enter the expression.
          */
-        title?: pulumi.Input<string>;
+        title?: pulumi.Input<string | undefined>;
     }
 
     export interface ProjectFeedFeedOutputConfig {
@@ -3415,42 +3415,42 @@ export namespace cloudbuild {
          * Artifacts produced by the build that should be uploaded upon successful completion of all build steps.
          * Structure is documented below.
          */
-        artifacts?: pulumi.Input<inputs.cloudbuild.TriggerBuildArtifacts>;
+        artifacts?: pulumi.Input<inputs.cloudbuild.TriggerBuildArtifacts | undefined>;
         /**
          * A list of images to be pushed upon the successful completion of all build steps.
          * The images will be pushed using the builder service account's credentials.
          * The digests of the pushed images will be stored in the Build resource's results field.
          * If any of the images fail to be pushed, the build is marked FAILURE.
          */
-        images?: pulumi.Input<pulumi.Input<string>[]>;
+        images?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Google Cloud Storage bucket where logs should be written.
          * Logs file names will be of the format ${logsBucket}/log-${build_id}.txt.
          */
-        logsBucket?: pulumi.Input<string>;
+        logsBucket?: pulumi.Input<string | undefined>;
         /**
          * Special options for this build.
          * Structure is documented below.
          */
-        options?: pulumi.Input<inputs.cloudbuild.TriggerBuildOptions>;
+        options?: pulumi.Input<inputs.cloudbuild.TriggerBuildOptions | undefined>;
         /**
          * TTL in queue for this build. If provided and the build is enqueued longer than this value,
          * the build will expire and the build status will be EXPIRED.
          * The TTL starts ticking from createTime.
          * A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s".
          */
-        queueTtl?: pulumi.Input<string>;
+        queueTtl?: pulumi.Input<string | undefined>;
         /**
          * Secrets to decrypt using Cloud Key Management Service.
          * Structure is documented below.
          */
-        secrets?: pulumi.Input<pulumi.Input<inputs.cloudbuild.TriggerBuildSecret>[]>;
+        secrets?: pulumi.Input<pulumi.Input<inputs.cloudbuild.TriggerBuildSecret>[] | undefined>;
         /**
          * The location of the source files to build.
          * One of `storageSource` or `repoSource` must be provided.
          * Structure is documented below.
          */
-        source?: pulumi.Input<inputs.cloudbuild.TriggerBuildSource>;
+        source?: pulumi.Input<inputs.cloudbuild.TriggerBuildSource | undefined>;
         /**
          * The operations to be performed on the workspace.
          * Structure is documented below.
@@ -3459,18 +3459,18 @@ export namespace cloudbuild {
         /**
          * Substitutions to use in a triggered build. Should only be used with triggers.run
          */
-        substitutions?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        substitutions?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * Tags for annotation of a Build. These are not docker tags.
          */
-        tags?: pulumi.Input<pulumi.Input<string>[]>;
+        tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Time limit for executing this build step. If not defined,
          * the step has no
          * time limit and will be allowed to continue to run until either it
          * completes or the build itself times out.
          */
-        timeout?: pulumi.Input<string>;
+        timeout?: pulumi.Input<string | undefined>;
     }
 
     export interface TriggerBuildArtifacts {
@@ -3480,7 +3480,7 @@ export namespace cloudbuild {
          * The digests of the pushed images will be stored in the Build resource's results field.
          * If any of the images fail to be pushed, the build is marked FAILURE.
          */
-        images?: pulumi.Input<pulumi.Input<string>[]>;
+        images?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * A list of objects to be uploaded to Cloud Storage upon successful completion of all build steps.
          * Files in the workspace matching specified paths globs will be uploaded to the
@@ -3489,7 +3489,7 @@ export namespace cloudbuild {
          * If any objects fail to be pushed, the build is marked FAILURE.
          * Structure is documented below.
          */
-        objects?: pulumi.Input<inputs.cloudbuild.TriggerBuildArtifactsObjects>;
+        objects?: pulumi.Input<inputs.cloudbuild.TriggerBuildArtifactsObjects | undefined>;
     }
 
     export interface TriggerBuildArtifactsObjects {
@@ -3498,17 +3498,17 @@ export namespace cloudbuild {
          * Files in the workspace matching any path pattern will be uploaded to Cloud Storage with
          * this location as a prefix.
          */
-        location?: pulumi.Input<string>;
+        location?: pulumi.Input<string | undefined>;
         /**
          * Path globs used to match files in the build's workspace.
          */
-        paths?: pulumi.Input<pulumi.Input<string>[]>;
+        paths?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * -
          * Output only. Stores timing information for pushing all artifact objects.
          * Structure is documented below.
          */
-        timings?: pulumi.Input<pulumi.Input<inputs.cloudbuild.TriggerBuildArtifactsObjectsTiming>[]>;
+        timings?: pulumi.Input<pulumi.Input<inputs.cloudbuild.TriggerBuildArtifactsObjectsTiming>[] | undefined>;
     }
 
     export interface TriggerBuildArtifactsObjectsTiming {
@@ -3517,13 +3517,13 @@ export namespace cloudbuild {
          * A timestamp in RFC3339 UTC "Zulu" format, with nanosecond resolution and up to
          * nine fractional digits. Examples: "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z".
          */
-        endTime?: pulumi.Input<string>;
+        endTime?: pulumi.Input<string | undefined>;
         /**
          * Start of time span.
          * A timestamp in RFC3339 UTC "Zulu" format, with nanosecond resolution and up to
          * nine fractional digits. Examples: "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z".
          */
-        startTime?: pulumi.Input<string>;
+        startTime?: pulumi.Input<string | undefined>;
     }
 
     export interface TriggerBuildOptions {
@@ -3534,57 +3534,57 @@ export namespace cloudbuild {
          * the build may run with a larger disk than requested. At present, the maximum disk size
          * is 1000GB; builds that request more than the maximum are rejected with an error.
          */
-        diskSizeGb?: pulumi.Input<number>;
+        diskSizeGb?: pulumi.Input<number | undefined>;
         /**
          * Option to specify whether or not to apply bash style string operations to the substitutions.
          * NOTE this is always enabled for triggered builds and cannot be overridden in the build configuration file.
          */
-        dynamicSubstitutions?: pulumi.Input<boolean>;
+        dynamicSubstitutions?: pulumi.Input<boolean | undefined>;
         /**
          * A list of global environment variable definitions that will exist for all build steps
          * in this build. If a variable is defined in both globally and in a build step,
          * the variable will use the build step value.
          * The elements are of the form "KEY=VALUE" for the environment variable "KEY" being given the value "VALUE".
          */
-        envs?: pulumi.Input<pulumi.Input<string>[]>;
+        envs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Option to define build log streaming behavior to Google Cloud Storage.
          * Possible values are `STREAM_DEFAULT`, `STREAM_ON`, and `STREAM_OFF`.
          */
-        logStreamingOption?: pulumi.Input<string>;
+        logStreamingOption?: pulumi.Input<string | undefined>;
         /**
          * Option to specify the logging mode, which determines if and where build logs are stored.
          * Possible values are `LOGGING_UNSPECIFIED`, `LEGACY`, `GCS_ONLY`, `STACKDRIVER_ONLY`, and `NONE`.
          */
-        logging?: pulumi.Input<string>;
+        logging?: pulumi.Input<string | undefined>;
         /**
          * Compute Engine machine type on which to run the build.
          * Possible values are `UNSPECIFIED`, `N1_HIGHCPU_8`, and `N1_HIGHCPU_32`.
          */
-        machineType?: pulumi.Input<string>;
+        machineType?: pulumi.Input<string | undefined>;
         /**
          * Requested verifiability options.
          * Possible values are `NOT_VERIFIED` and `VERIFIED`.
          */
-        requestedVerifyOption?: pulumi.Input<string>;
+        requestedVerifyOption?: pulumi.Input<string | undefined>;
         /**
          * A list of global environment variables, which are encrypted using a Cloud Key Management
          * Service crypto key. These values must be specified in the build's Secret. These variables
          * will be available to all build steps in this build.
          */
-        secretEnvs?: pulumi.Input<pulumi.Input<string>[]>;
+        secretEnvs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Requested hash for SourceProvenance.
          * Each value may be one of `NONE`, `SHA256`, and `MD5`.
          */
-        sourceProvenanceHashes?: pulumi.Input<pulumi.Input<string>[]>;
+        sourceProvenanceHashes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Option to specify behavior when there is an error in the substitution checks.
          * NOTE this is always set to ALLOW_LOOSE for triggered builds and cannot be overridden
          * in the build configuration file.
          * Possible values are `MUST_MATCH` and `ALLOW_LOOSE`.
          */
-        substitutionOption?: pulumi.Input<string>;
+        substitutionOption?: pulumi.Input<string | undefined>;
         /**
          * Global list of volumes to mount for ALL build steps
          * Each volume is created as an empty volume prior to starting the build process.
@@ -3594,12 +3594,12 @@ export namespace cloudbuild {
          * of a build request with an incorrect configuration.
          * Structure is documented below.
          */
-        volumes?: pulumi.Input<pulumi.Input<inputs.cloudbuild.TriggerBuildOptionsVolume>[]>;
+        volumes?: pulumi.Input<pulumi.Input<inputs.cloudbuild.TriggerBuildOptionsVolume>[] | undefined>;
         /**
          * Option to specify a WorkerPool for the build. Format projects/{project}/workerPools/{workerPool}
          * This field is experimental.
          */
-        workerPool?: pulumi.Input<string>;
+        workerPool?: pulumi.Input<string | undefined>;
     }
 
     export interface TriggerBuildOptionsVolume {
@@ -3608,13 +3608,13 @@ export namespace cloudbuild {
          * Volume names must be unique per build step and must be valid names for Docker volumes.
          * Each named volume must be used by at least two build steps.
          */
-        name?: pulumi.Input<string>;
+        name?: pulumi.Input<string | undefined>;
         /**
          * Path at which to mount the volume.
          * Paths must be absolute and cannot conflict with other volume paths on the same
          * build step or with certain reserved volume paths.
          */
-        path?: pulumi.Input<string>;
+        path?: pulumi.Input<string | undefined>;
     }
 
     export interface TriggerBuildSecret {
@@ -3627,7 +3627,7 @@ export namespace cloudbuild {
          * Service crypto key. These values must be specified in the build's Secret. These variables
          * will be available to all build steps in this build.
          */
-        secretEnv?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        secretEnv?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     }
 
     export interface TriggerBuildSource {
@@ -3635,12 +3635,12 @@ export namespace cloudbuild {
          * Location of the source in a Google Cloud Source Repository.
          * Structure is documented below.
          */
-        repoSource?: pulumi.Input<inputs.cloudbuild.TriggerBuildSourceRepoSource>;
+        repoSource?: pulumi.Input<inputs.cloudbuild.TriggerBuildSourceRepoSource | undefined>;
         /**
          * Location of the source in an archive file in Google Cloud Storage.
          * Structure is documented below.
          */
-        storageSource?: pulumi.Input<inputs.cloudbuild.TriggerBuildSourceStorageSource>;
+        storageSource?: pulumi.Input<inputs.cloudbuild.TriggerBuildSourceStorageSource | undefined>;
     }
 
     export interface TriggerBuildSourceRepoSource {
@@ -3649,11 +3649,11 @@ export namespace cloudbuild {
          * The syntax of the regular expressions accepted is the syntax accepted by RE2 and
          * described at https://github.com/google/re2/wiki/Syntax
          */
-        branchName?: pulumi.Input<string>;
+        branchName?: pulumi.Input<string | undefined>;
         /**
          * Explicit commit SHA to build. Exactly one a of branch name, tag, or commit SHA must be provided.
          */
-        commitSha?: pulumi.Input<string>;
+        commitSha?: pulumi.Input<string | undefined>;
         /**
          * Working directory to use when running this step's container.
          * If this value is a relative path, it is relative to the build's working
@@ -3665,16 +3665,16 @@ export namespace cloudbuild {
          * which specifies an absolute path, the `RepoSource` `dir` is ignored
          * for the step's execution.
          */
-        dir?: pulumi.Input<string>;
+        dir?: pulumi.Input<string | undefined>;
         /**
          * Only trigger a build if the revision regex does NOT match the revision regex.
          */
-        invertRegex?: pulumi.Input<boolean>;
+        invertRegex?: pulumi.Input<boolean | undefined>;
         /**
          * ID of the project that owns the Cloud Source Repository.
          * If omitted, the project ID requesting the build is assumed.
          */
-        projectId?: pulumi.Input<string>;
+        projectId?: pulumi.Input<string | undefined>;
         /**
          * Name of the Cloud Source Repository.
          */
@@ -3682,13 +3682,13 @@ export namespace cloudbuild {
         /**
          * Substitutions to use in a triggered build. Should only be used with triggers.run
          */
-        substitutions?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        substitutions?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * Regex matching tags to build. Exactly one a of branch name, tag, or commit SHA must be provided.
          * The syntax of the regular expressions accepted is the syntax accepted by RE2 and
          * described at https://github.com/google/re2/wiki/Syntax
          */
-        tagName?: pulumi.Input<string>;
+        tagName?: pulumi.Input<string | undefined>;
     }
 
     export interface TriggerBuildSourceStorageSource {
@@ -3700,7 +3700,7 @@ export namespace cloudbuild {
          * Google Cloud Storage generation for the object.
          * If the generation is omitted, the latest generation will be used
          */
-        generation?: pulumi.Input<string>;
+        generation?: pulumi.Input<string | undefined>;
         /**
          * Google Cloud Storage object containing the source.
          * This object must be a gzipped archive file (.tar.gz) containing source to build.
@@ -3716,7 +3716,7 @@ export namespace cloudbuild {
          * entrypoint, the first element in args is used as the entrypoint, and the
          * remainder will be used as arguments.
          */
-        args?: pulumi.Input<pulumi.Input<string>[]>;
+        args?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Working directory to use when running this step's container.
          * If this value is a relative path, it is relative to the build's working
@@ -3728,25 +3728,25 @@ export namespace cloudbuild {
          * which specifies an absolute path, the `RepoSource` `dir` is ignored
          * for the step's execution.
          */
-        dir?: pulumi.Input<string>;
+        dir?: pulumi.Input<string | undefined>;
         /**
          * Entrypoint to be used instead of the build step image's
          * default entrypoint.
          * If unset, the image's default entrypoint is used
          */
-        entrypoint?: pulumi.Input<string>;
+        entrypoint?: pulumi.Input<string | undefined>;
         /**
          * A list of global environment variable definitions that will exist for all build steps
          * in this build. If a variable is defined in both globally and in a build step,
          * the variable will use the build step value.
          * The elements are of the form "KEY=VALUE" for the environment variable "KEY" being given the value "VALUE".
          */
-        envs?: pulumi.Input<pulumi.Input<string>[]>;
+        envs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Unique identifier for this build step, used in `waitFor` to
          * reference this build step as a dependency.
          */
-        id?: pulumi.Input<string>;
+        id?: pulumi.Input<string | undefined>;
         /**
          * Name of the volume to mount.
          * Volume names must be unique per build step and must be valid names for Docker volumes.
@@ -3758,20 +3758,20 @@ export namespace cloudbuild {
          * Service crypto key. These values must be specified in the build's Secret. These variables
          * will be available to all build steps in this build.
          */
-        secretEnvs?: pulumi.Input<pulumi.Input<string>[]>;
+        secretEnvs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Time limit for executing this build step. If not defined,
          * the step has no
          * time limit and will be allowed to continue to run until either it
          * completes or the build itself times out.
          */
-        timeout?: pulumi.Input<string>;
+        timeout?: pulumi.Input<string | undefined>;
         /**
          * -
          * Output only. Stores timing information for pushing all artifact objects.
          * Structure is documented below.
          */
-        timing?: pulumi.Input<string>;
+        timing?: pulumi.Input<string | undefined>;
         /**
          * Global list of volumes to mount for ALL build steps
          * Each volume is created as an empty volume prior to starting the build process.
@@ -3781,7 +3781,7 @@ export namespace cloudbuild {
          * of a build request with an incorrect configuration.
          * Structure is documented below.
          */
-        volumes?: pulumi.Input<pulumi.Input<inputs.cloudbuild.TriggerBuildStepVolume>[]>;
+        volumes?: pulumi.Input<pulumi.Input<inputs.cloudbuild.TriggerBuildStepVolume>[] | undefined>;
         /**
          * The ID(s) of the step(s) that this build step depends on.
          * This build step will not start until all the build steps in `waitFor`
@@ -3789,7 +3789,7 @@ export namespace cloudbuild {
          * will start when all previous build steps in the `Build.Steps` list
          * have completed successfully.
          */
-        waitFors?: pulumi.Input<pulumi.Input<string>[]>;
+        waitFors?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface TriggerBuildStepVolume {
@@ -3813,22 +3813,22 @@ export namespace cloudbuild {
          * Volume names must be unique per build step and must be valid names for Docker volumes.
          * Each named volume must be used by at least two build steps.
          */
-        name?: pulumi.Input<string>;
+        name?: pulumi.Input<string | undefined>;
         /**
          * Owner of the repository. For example: The owner for
          * https://github.com/googlecloudplatform/cloud-builders is "googlecloudplatform".
          */
-        owner?: pulumi.Input<string>;
+        owner?: pulumi.Input<string | undefined>;
         /**
          * filter to match changes in pull requests.  Specify only one of pullRequest or push.
          * Structure is documented below.
          */
-        pullRequest?: pulumi.Input<inputs.cloudbuild.TriggerGithubPullRequest>;
+        pullRequest?: pulumi.Input<inputs.cloudbuild.TriggerGithubPullRequest | undefined>;
         /**
          * filter to match changes in refs, like branches or tags.  Specify only one of pullRequest or push.
          * Structure is documented below.
          */
-        push?: pulumi.Input<inputs.cloudbuild.TriggerGithubPush>;
+        push?: pulumi.Input<inputs.cloudbuild.TriggerGithubPush | undefined>;
     }
 
     export interface TriggerGithubPullRequest {
@@ -3840,26 +3840,26 @@ export namespace cloudbuild {
          * Whether to block builds on a "/gcbrun" comment from a repository owner or collaborator.
          * Possible values are `COMMENTS_DISABLED`, `COMMENTS_ENABLED`, and `COMMENTS_ENABLED_FOR_EXTERNAL_CONTRIBUTORS_ONLY`.
          */
-        commentControl?: pulumi.Input<string>;
+        commentControl?: pulumi.Input<string | undefined>;
         /**
          * Only trigger a build if the revision regex does NOT match the revision regex.
          */
-        invertRegex?: pulumi.Input<boolean>;
+        invertRegex?: pulumi.Input<boolean | undefined>;
     }
 
     export interface TriggerGithubPush {
         /**
          * Regex of branches to match.  Specify only one of branch or tag.
          */
-        branch?: pulumi.Input<string>;
+        branch?: pulumi.Input<string | undefined>;
         /**
          * Only trigger a build if the revision regex does NOT match the revision regex.
          */
-        invertRegex?: pulumi.Input<boolean>;
+        invertRegex?: pulumi.Input<boolean | undefined>;
         /**
          * Regex of tags to match.  Specify only one of branch or tag.
          */
-        tag?: pulumi.Input<string>;
+        tag?: pulumi.Input<string | undefined>;
     }
 
     export interface TriggerTriggerTemplate {
@@ -3868,11 +3868,11 @@ export namespace cloudbuild {
          * The syntax of the regular expressions accepted is the syntax accepted by RE2 and
          * described at https://github.com/google/re2/wiki/Syntax
          */
-        branchName?: pulumi.Input<string>;
+        branchName?: pulumi.Input<string | undefined>;
         /**
          * Explicit commit SHA to build. Exactly one a of branch name, tag, or commit SHA must be provided.
          */
-        commitSha?: pulumi.Input<string>;
+        commitSha?: pulumi.Input<string | undefined>;
         /**
          * Working directory to use when running this step's container.
          * If this value is a relative path, it is relative to the build's working
@@ -3884,26 +3884,26 @@ export namespace cloudbuild {
          * which specifies an absolute path, the `RepoSource` `dir` is ignored
          * for the step's execution.
          */
-        dir?: pulumi.Input<string>;
+        dir?: pulumi.Input<string | undefined>;
         /**
          * Only trigger a build if the revision regex does NOT match the revision regex.
          */
-        invertRegex?: pulumi.Input<boolean>;
+        invertRegex?: pulumi.Input<boolean | undefined>;
         /**
          * ID of the project that owns the Cloud Source Repository.
          * If omitted, the project ID requesting the build is assumed.
          */
-        projectId?: pulumi.Input<string>;
+        projectId?: pulumi.Input<string | undefined>;
         /**
          * Name of the Cloud Source Repository.
          */
-        repoName?: pulumi.Input<string>;
+        repoName?: pulumi.Input<string | undefined>;
         /**
          * Regex matching tags to build. Exactly one a of branch name, tag, or commit SHA must be provided.
          * The syntax of the regular expressions accepted is the syntax accepted by RE2 and
          * described at https://github.com/google/re2/wiki/Syntax
          */
-        tagName?: pulumi.Input<string>;
+        tagName?: pulumi.Input<string | undefined>;
     }
 }
 
@@ -3918,7 +3918,7 @@ export namespace cloudfunctions {
         /**
          * Specifies policy for failed executions. Structure is documented below.
          */
-        failurePolicy?: pulumi.Input<inputs.cloudfunctions.FunctionEventTriggerFailurePolicy>;
+        failurePolicy?: pulumi.Input<inputs.cloudfunctions.FunctionEventTriggerFailurePolicy | undefined>;
         /**
          * Required. The name or partial URI of the resource from
          * which to observe events. For example, `"myBucket"` or `"projects/my-project/topics/my-topic"`
@@ -3934,19 +3934,19 @@ export namespace cloudfunctions {
     }
 
     export interface FunctionIamBindingCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
 
     export interface FunctionIamMemberCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
 
     export interface FunctionSourceRepository {
-        deployedUrl?: pulumi.Input<string>;
+        deployedUrl?: pulumi.Input<string | undefined>;
         /**
          * The URL pointing to the hosted repository where the function is defined. There are supported Cloud Source Repository URLs in the following formats:
          */
@@ -3974,7 +3974,7 @@ export namespace cloudidentity {
          * The namespace must correspond to an identity source created in Admin Console
          * and must be in the form of `identitysources/{identity_source_id}`.
          */
-        namespace?: pulumi.Input<string>;
+        namespace?: pulumi.Input<string | undefined>;
     }
 
     export interface GroupMembershipMemberKey {
@@ -3995,7 +3995,7 @@ export namespace cloudidentity {
          * The namespace must correspond to an identity source created in Admin Console
          * and must be in the form of `identitysources/{identity_source_id}`.
          */
-        namespace?: pulumi.Input<string>;
+        namespace?: pulumi.Input<string | undefined>;
     }
 
     export interface GroupMembershipPreferredMemberKey {
@@ -4016,7 +4016,7 @@ export namespace cloudidentity {
          * The namespace must correspond to an identity source created in Admin Console
          * and must be in the form of `identitysources/{identity_source_id}`.
          */
-        namespace?: pulumi.Input<string>;
+        namespace?: pulumi.Input<string | undefined>;
     }
 
     export interface GroupMembershipRole {
@@ -4030,19 +4030,19 @@ export namespace cloudidentity {
 
 export namespace cloudrun {
     export interface DomainMappingMetadata {
-        annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * -
          * A sequence number representing a specific generation of the desired state.
          */
-        generation?: pulumi.Input<number>;
+        generation?: pulumi.Input<number | undefined>;
         /**
          * Map of string keys and values that can be used to organize and categorize
          * (scope and select) objects. May match selectors of replication controllers
          * and routes.
          * More info: http://kubernetes.io/docs/user-guide/labels
          */
-        labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * In Cloud Run the namespace must be equal to either the
          * project ID or project number.
@@ -4058,19 +4058,19 @@ export namespace cloudrun {
          * More info:
          * https://git.k8s.io/community/contributors/devel/api-conventions.md#concurrency-control-and-consistency
          */
-        resourceVersion?: pulumi.Input<string>;
+        resourceVersion?: pulumi.Input<string | undefined>;
         /**
          * -
          * SelfLink is a URL representing this object.
          */
-        selfLink?: pulumi.Input<string>;
+        selfLink?: pulumi.Input<string | undefined>;
         /**
          * -
          * UID is a unique id generated by the server on successful creation of a resource and is not
          * allowed to change on PUT operations.
          * More info: http://kubernetes.io/docs/user-guide/identifiers#uids
          */
-        uid?: pulumi.Input<string>;
+        uid?: pulumi.Input<string | undefined>;
     }
 
     export interface DomainMappingSpec {
@@ -4079,14 +4079,14 @@ export namespace cloudrun {
          * Default value is `AUTOMATIC`.
          * Possible values are `NONE` and `AUTOMATIC`.
          */
-        certificateMode?: pulumi.Input<string>;
+        certificateMode?: pulumi.Input<string | undefined>;
         /**
          * If set, the mapping will override any mapping set before this spec was set.
          * It is recommended that the user leaves this empty to receive an error
          * warning about a potential conflict and only set it once the respective UI
          * has given such a warning.
          */
-        forceOverride?: pulumi.Input<boolean>;
+        forceOverride?: pulumi.Input<boolean | undefined>;
         /**
          * The name of the Cloud Run Service that this DomainMapping applies to.
          * The route must exist.
@@ -4095,59 +4095,59 @@ export namespace cloudrun {
     }
 
     export interface DomainMappingStatus {
-        conditions?: pulumi.Input<pulumi.Input<inputs.cloudrun.DomainMappingStatusCondition>[]>;
-        mappedRouteName?: pulumi.Input<string>;
-        observedGeneration?: pulumi.Input<number>;
-        resourceRecords?: pulumi.Input<pulumi.Input<inputs.cloudrun.DomainMappingStatusResourceRecord>[]>;
+        conditions?: pulumi.Input<pulumi.Input<inputs.cloudrun.DomainMappingStatusCondition>[] | undefined>;
+        mappedRouteName?: pulumi.Input<string | undefined>;
+        observedGeneration?: pulumi.Input<number | undefined>;
+        resourceRecords?: pulumi.Input<pulumi.Input<inputs.cloudrun.DomainMappingStatusResourceRecord>[] | undefined>;
     }
 
     export interface DomainMappingStatusCondition {
-        message?: pulumi.Input<string>;
-        reason?: pulumi.Input<string>;
-        status?: pulumi.Input<string>;
-        type?: pulumi.Input<string>;
+        message?: pulumi.Input<string | undefined>;
+        reason?: pulumi.Input<string | undefined>;
+        status?: pulumi.Input<string | undefined>;
+        type?: pulumi.Input<string | undefined>;
     }
 
     export interface DomainMappingStatusResourceRecord {
         /**
          * Name should be a verified domain
          */
-        name?: pulumi.Input<string>;
-        rrdata?: pulumi.Input<string>;
-        type?: pulumi.Input<string>;
+        name?: pulumi.Input<string | undefined>;
+        rrdata?: pulumi.Input<string | undefined>;
+        type?: pulumi.Input<string | undefined>;
     }
 
     export interface IamBindingCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
 
     export interface IamMemberCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
 
     export interface ServiceMetadata {
-        annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * -
          * A sequence number representing a specific generation of the desired state.
          */
-        generation?: pulumi.Input<number>;
+        generation?: pulumi.Input<number | undefined>;
         /**
          * Map of string keys and values that can be used to organize and categorize
          * (scope and select) objects. May match selectors of replication controllers
          * and routes.
          * More info: http://kubernetes.io/docs/user-guide/labels
          */
-        labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * In Cloud Run the namespace must be equal to either the
          * project ID or project number.
          */
-        namespace?: pulumi.Input<string>;
+        namespace?: pulumi.Input<string | undefined>;
         /**
          * -
          * An opaque value that represents the internal version of this object that
@@ -4158,34 +4158,34 @@ export namespace cloudrun {
          * More info:
          * https://git.k8s.io/community/contributors/devel/api-conventions.md#concurrency-control-and-consistency
          */
-        resourceVersion?: pulumi.Input<string>;
+        resourceVersion?: pulumi.Input<string | undefined>;
         /**
          * -
          * SelfLink is a URL representing this object.
          */
-        selfLink?: pulumi.Input<string>;
+        selfLink?: pulumi.Input<string | undefined>;
         /**
          * -
          * UID is a unique id generated by the server on successful creation of a resource and is not
          * allowed to change on PUT operations.
          * More info: http://kubernetes.io/docs/user-guide/identifiers#uids
          */
-        uid?: pulumi.Input<string>;
+        uid?: pulumi.Input<string | undefined>;
     }
 
     export interface ServiceStatus {
-        conditions?: pulumi.Input<pulumi.Input<inputs.cloudrun.ServiceStatusCondition>[]>;
-        latestCreatedRevisionName?: pulumi.Input<string>;
-        latestReadyRevisionName?: pulumi.Input<string>;
-        observedGeneration?: pulumi.Input<number>;
-        url?: pulumi.Input<string>;
+        conditions?: pulumi.Input<pulumi.Input<inputs.cloudrun.ServiceStatusCondition>[] | undefined>;
+        latestCreatedRevisionName?: pulumi.Input<string | undefined>;
+        latestReadyRevisionName?: pulumi.Input<string | undefined>;
+        observedGeneration?: pulumi.Input<number | undefined>;
+        url?: pulumi.Input<string | undefined>;
     }
 
     export interface ServiceStatusCondition {
-        message?: pulumi.Input<string>;
-        reason?: pulumi.Input<string>;
-        status?: pulumi.Input<string>;
-        type?: pulumi.Input<string>;
+        message?: pulumi.Input<string | undefined>;
+        reason?: pulumi.Input<string | undefined>;
+        status?: pulumi.Input<string | undefined>;
+        type?: pulumi.Input<string | undefined>;
     }
 
     export interface ServiceTemplate {
@@ -4194,37 +4194,37 @@ export namespace cloudrun {
          * and annotations.
          * Structure is documented below.
          */
-        metadata?: pulumi.Input<inputs.cloudrun.ServiceTemplateMetadata>;
+        metadata?: pulumi.Input<inputs.cloudrun.ServiceTemplateMetadata | undefined>;
         /**
          * RevisionSpec holds the desired state of the Revision (from the client).
          * Structure is documented below.
          */
-        spec?: pulumi.Input<inputs.cloudrun.ServiceTemplateSpec>;
+        spec?: pulumi.Input<inputs.cloudrun.ServiceTemplateSpec | undefined>;
     }
 
     export interface ServiceTemplateMetadata {
-        annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * -
          * A sequence number representing a specific generation of the desired state.
          */
-        generation?: pulumi.Input<number>;
+        generation?: pulumi.Input<number | undefined>;
         /**
          * Map of string keys and values that can be used to organize and categorize
          * (scope and select) objects. May match selectors of replication controllers
          * and routes.
          * More info: http://kubernetes.io/docs/user-guide/labels
          */
-        labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * Name of the port.
          */
-        name?: pulumi.Input<string>;
+        name?: pulumi.Input<string | undefined>;
         /**
          * In Cloud Run the namespace must be equal to either the
          * project ID or project number.
          */
-        namespace?: pulumi.Input<string>;
+        namespace?: pulumi.Input<string | undefined>;
         /**
          * -
          * An opaque value that represents the internal version of this object that
@@ -4235,19 +4235,19 @@ export namespace cloudrun {
          * More info:
          * https://git.k8s.io/community/contributors/devel/api-conventions.md#concurrency-control-and-consistency
          */
-        resourceVersion?: pulumi.Input<string>;
+        resourceVersion?: pulumi.Input<string | undefined>;
         /**
          * -
          * SelfLink is a URL representing this object.
          */
-        selfLink?: pulumi.Input<string>;
+        selfLink?: pulumi.Input<string | undefined>;
         /**
          * -
          * UID is a unique id generated by the server on successful creation of a resource and is not
          * allowed to change on PUT operations.
          * More info: http://kubernetes.io/docs/user-guide/identifiers#uids
          */
-        uid?: pulumi.Input<string>;
+        uid?: pulumi.Input<string | undefined>;
     }
 
     export interface ServiceTemplateSpec {
@@ -4255,7 +4255,7 @@ export namespace cloudrun {
          * ContainerConcurrency specifies the maximum allowed in-flight (concurrent)
          * requests per container of the Revision. Values are:
          */
-        containerConcurrency?: pulumi.Input<number>;
+        containerConcurrency?: pulumi.Input<number | undefined>;
         /**
          * Container defines the unit of execution for this Revision.
          * In the context of a Revision, we disallow a number of the fields of
@@ -4264,14 +4264,14 @@ export namespace cloudrun {
          * https://github.com/knative/serving/blob/master/docs/runtime-contract.md
          * Structure is documented below.
          */
-        containers?: pulumi.Input<pulumi.Input<inputs.cloudrun.ServiceTemplateSpecContainer>[]>;
+        containers?: pulumi.Input<pulumi.Input<inputs.cloudrun.ServiceTemplateSpecContainer>[] | undefined>;
         /**
          * Email address of the IAM service account associated with the revision of the
          * service. The service account represents the identity of the running revision,
          * and determines what permissions the revision has. If not provided, the revision
          * will use the project's default service account.
          */
-        serviceAccountName?: pulumi.Input<string>;
+        serviceAccountName?: pulumi.Input<string | undefined>;
         /**
          * -
          * ServingState holds a value describing the state the resources
@@ -4281,11 +4281,11 @@ export namespace cloudrun {
          *
          * @deprecated Not supported by Cloud Run fully managed
          */
-        servingState?: pulumi.Input<string>;
+        servingState?: pulumi.Input<string | undefined>;
         /**
          * TimeoutSeconds holds the max duration the instance is allowed for responding to a request.
          */
-        timeoutSeconds?: pulumi.Input<number>;
+        timeoutSeconds?: pulumi.Input<number | undefined>;
     }
 
     export interface ServiceTemplateSpecContainer {
@@ -4300,7 +4300,7 @@ export namespace cloudrun {
          * More info:
          * https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
          */
-        args?: pulumi.Input<pulumi.Input<string>[]>;
+        args?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Entrypoint array. Not executed within a shell.
          * The docker image's ENTRYPOINT is used if this is not provided.
@@ -4312,7 +4312,7 @@ export namespace cloudrun {
          * More info:
          * https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
          */
-        commands?: pulumi.Input<pulumi.Input<string>[]>;
+        commands?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * -
          * (Optional, Deprecated)
@@ -4325,12 +4325,12 @@ export namespace cloudrun {
          *
          * @deprecated Not supported by Cloud Run fully managed
          */
-        envFroms?: pulumi.Input<pulumi.Input<inputs.cloudrun.ServiceTemplateSpecContainerEnvFrom>[]>;
+        envFroms?: pulumi.Input<pulumi.Input<inputs.cloudrun.ServiceTemplateSpecContainerEnvFrom>[] | undefined>;
         /**
          * List of environment variables to set in the container.
          * Structure is documented below.
          */
-        envs?: pulumi.Input<pulumi.Input<inputs.cloudrun.ServiceTemplateSpecContainerEnv>[]>;
+        envs?: pulumi.Input<pulumi.Input<inputs.cloudrun.ServiceTemplateSpecContainerEnv>[] | undefined>;
         /**
          * Docker image name. This is most often a reference to a container located
          * in the container registry, such as gcr.io/cloudrun/hello
@@ -4343,14 +4343,14 @@ export namespace cloudrun {
          * https://cloud.google.com/run/docs/reference/rest/v1/RevisionSpec#ContainerPort
          * Structure is documented below.
          */
-        ports?: pulumi.Input<pulumi.Input<inputs.cloudrun.ServiceTemplateSpecContainerPort>[]>;
+        ports?: pulumi.Input<pulumi.Input<inputs.cloudrun.ServiceTemplateSpecContainerPort>[] | undefined>;
         /**
          * Compute Resources required by this container. Used to set values such as max memory
          * More info:
          * https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits
          * Structure is documented below.
          */
-        resources?: pulumi.Input<inputs.cloudrun.ServiceTemplateSpecContainerResources>;
+        resources?: pulumi.Input<inputs.cloudrun.ServiceTemplateSpecContainerResources | undefined>;
         /**
          * -
          * (Optional, Deprecated)
@@ -4360,14 +4360,14 @@ export namespace cloudrun {
          *
          * @deprecated Not supported by Cloud Run fully managed
          */
-        workingDir?: pulumi.Input<string>;
+        workingDir?: pulumi.Input<string | undefined>;
     }
 
     export interface ServiceTemplateSpecContainerEnv {
         /**
          * Name of the port.
          */
-        name?: pulumi.Input<string>;
+        name?: pulumi.Input<string | undefined>;
         /**
          * Variable references $(VAR_NAME) are expanded
          * using the previous defined environment variables in the container and
@@ -4378,7 +4378,7 @@ export namespace cloudrun {
          * exists or not.
          * Defaults to "".
          */
-        value?: pulumi.Input<string>;
+        value?: pulumi.Input<string | undefined>;
     }
 
     export interface ServiceTemplateSpecContainerEnvFrom {
@@ -4386,16 +4386,16 @@ export namespace cloudrun {
          * The ConfigMap to select from.
          * Structure is documented below.
          */
-        configMapRef?: pulumi.Input<inputs.cloudrun.ServiceTemplateSpecContainerEnvFromConfigMapRef>;
+        configMapRef?: pulumi.Input<inputs.cloudrun.ServiceTemplateSpecContainerEnvFromConfigMapRef | undefined>;
         /**
          * An optional identifier to prepend to each key in the ConfigMap.
          */
-        prefix?: pulumi.Input<string>;
+        prefix?: pulumi.Input<string | undefined>;
         /**
          * The Secret to select from.
          * Structure is documented below.
          */
-        secretRef?: pulumi.Input<inputs.cloudrun.ServiceTemplateSpecContainerEnvFromSecretRef>;
+        secretRef?: pulumi.Input<inputs.cloudrun.ServiceTemplateSpecContainerEnvFromSecretRef | undefined>;
     }
 
     export interface ServiceTemplateSpecContainerEnvFromConfigMapRef {
@@ -4403,11 +4403,11 @@ export namespace cloudrun {
          * The Secret to select from.
          * Structure is documented below.
          */
-        localObjectReference?: pulumi.Input<inputs.cloudrun.ServiceTemplateSpecContainerEnvFromConfigMapRefLocalObjectReference>;
+        localObjectReference?: pulumi.Input<inputs.cloudrun.ServiceTemplateSpecContainerEnvFromConfigMapRefLocalObjectReference | undefined>;
         /**
          * Specify whether the Secret must be defined
          */
-        optional?: pulumi.Input<boolean>;
+        optional?: pulumi.Input<boolean | undefined>;
     }
 
     export interface ServiceTemplateSpecContainerEnvFromConfigMapRefLocalObjectReference {
@@ -4422,11 +4422,11 @@ export namespace cloudrun {
          * The Secret to select from.
          * Structure is documented below.
          */
-        localObjectReference?: pulumi.Input<inputs.cloudrun.ServiceTemplateSpecContainerEnvFromSecretRefLocalObjectReference>;
+        localObjectReference?: pulumi.Input<inputs.cloudrun.ServiceTemplateSpecContainerEnvFromSecretRefLocalObjectReference | undefined>;
         /**
          * Specify whether the Secret must be defined
          */
-        optional?: pulumi.Input<boolean>;
+        optional?: pulumi.Input<boolean | undefined>;
     }
 
     export interface ServiceTemplateSpecContainerEnvFromSecretRefLocalObjectReference {
@@ -4444,11 +4444,11 @@ export namespace cloudrun {
         /**
          * Name of the port.
          */
-        name?: pulumi.Input<string>;
+        name?: pulumi.Input<string | undefined>;
         /**
          * Protocol used on port. Defaults to TCP.
          */
-        protocol?: pulumi.Input<string>;
+        protocol?: pulumi.Input<string | undefined>;
     }
 
     export interface ServiceTemplateSpecContainerResources {
@@ -4457,7 +4457,7 @@ export namespace cloudrun {
          * The values of the map is string form of the 'quantity' k8s type:
          * https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go
          */
-        limits?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        limits?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * Requests describes the minimum amount of compute resources required.
          * If Requests is omitted for a container, it defaults to Limits if that is
@@ -4465,7 +4465,7 @@ export namespace cloudrun {
          * The values of the map is string form of the 'quantity' k8s type:
          * https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go
          */
-        requests?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        requests?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     }
 
     export interface ServiceTraffic {
@@ -4475,7 +4475,7 @@ export namespace cloudrun {
          * provided LatestRevision must be true if RevisionName is empty; it must be
          * false when RevisionName is non-empty.
          */
-        latestRevision?: pulumi.Input<boolean>;
+        latestRevision?: pulumi.Input<boolean | undefined>;
         /**
          * Percent specifies percent of the traffic to this Revision or Configuration.
          */
@@ -4483,7 +4483,7 @@ export namespace cloudrun {
         /**
          * RevisionName of a specific revision to which to send this portion of traffic.
          */
-        revisionName?: pulumi.Input<string>;
+        revisionName?: pulumi.Input<string | undefined>;
     }
 }
 
@@ -4493,23 +4493,23 @@ export namespace cloudscheduler {
          * App Engine Routing setting for the job.
          * Structure is documented below.
          */
-        appEngineRouting?: pulumi.Input<inputs.cloudscheduler.JobAppEngineHttpTargetAppEngineRouting>;
+        appEngineRouting?: pulumi.Input<inputs.cloudscheduler.JobAppEngineHttpTargetAppEngineRouting | undefined>;
         /**
          * HTTP request body.
          * A request body is allowed only if the HTTP method is POST, PUT, or PATCH.
          * It is an error to set body on a job with an incompatible HttpMethod.
          * A base64-encoded string.
          */
-        body?: pulumi.Input<string>;
+        body?: pulumi.Input<string | undefined>;
         /**
          * This map contains the header field names and values.
          * Repeated headers are not supported, but a header value can contain commas.
          */
-        headers?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        headers?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * Which HTTP method to use for the request.
          */
-        httpMethod?: pulumi.Input<string>;
+        httpMethod?: pulumi.Input<string | undefined>;
         /**
          * The relative URI.
          * The relative URL must begin with "/" and must be a valid HTTP relative URL.
@@ -4525,17 +4525,17 @@ export namespace cloudscheduler {
          * App instance.
          * By default, the job is sent to an instance which is available when the job is attempted.
          */
-        instance?: pulumi.Input<string>;
+        instance?: pulumi.Input<string | undefined>;
         /**
          * App service.
          * By default, the job is sent to the service which is the default service when the job is attempted.
          */
-        service?: pulumi.Input<string>;
+        service?: pulumi.Input<string | undefined>;
         /**
          * App version.
          * By default, the job is sent to the version which is the default version when the job is attempted.
          */
-        version?: pulumi.Input<string>;
+        version?: pulumi.Input<string | undefined>;
     }
 
     export interface JobHttpTarget {
@@ -4545,28 +4545,28 @@ export namespace cloudscheduler {
          * It is an error to set body on a job with an incompatible HttpMethod.
          * A base64-encoded string.
          */
-        body?: pulumi.Input<string>;
+        body?: pulumi.Input<string | undefined>;
         /**
          * This map contains the header field names and values.
          * Repeated headers are not supported, but a header value can contain commas.
          */
-        headers?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        headers?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * Which HTTP method to use for the request.
          */
-        httpMethod?: pulumi.Input<string>;
+        httpMethod?: pulumi.Input<string | undefined>;
         /**
          * Contains information needed for generating an OAuth token.
          * This type of authorization should be used when sending requests to a GCP endpoint.
          * Structure is documented below.
          */
-        oauthToken?: pulumi.Input<inputs.cloudscheduler.JobHttpTargetOauthToken>;
+        oauthToken?: pulumi.Input<inputs.cloudscheduler.JobHttpTargetOauthToken | undefined>;
         /**
          * Contains information needed for generating an OpenID Connect token.
          * This type of authorization should be used when sending requests to third party endpoints or Cloud Run.
          * Structure is documented below.
          */
-        oidcToken?: pulumi.Input<inputs.cloudscheduler.JobHttpTargetOidcToken>;
+        oidcToken?: pulumi.Input<inputs.cloudscheduler.JobHttpTargetOidcToken | undefined>;
         /**
          * The full URI path that the request will be sent to.
          */
@@ -4578,7 +4578,7 @@ export namespace cloudscheduler {
          * OAuth scope to be used for generating OAuth access token. If not specified,
          * "https://www.googleapis.com/auth/cloud-platform" will be used.
          */
-        scope?: pulumi.Input<string>;
+        scope?: pulumi.Input<string | undefined>;
         /**
          * Service account email to be used for generating OAuth token.
          * The service account must be within the same project as the job.
@@ -4591,7 +4591,7 @@ export namespace cloudscheduler {
          * Audience to be used when generating OIDC token. If not specified,
          * the URI specified in target will be used.
          */
-        audience?: pulumi.Input<string>;
+        audience?: pulumi.Input<string | undefined>;
         /**
          * Service account email to be used for generating OAuth token.
          * The service account must be within the same project as the job.
@@ -4604,13 +4604,13 @@ export namespace cloudscheduler {
          * Attributes for PubsubMessage.
          * Pubsub message must contain either non-empty data, or at least one attribute.
          */
-        attributes?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        attributes?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * The message payload for PubsubMessage.
          * Pubsub message must contain either non-empty data, or at least one attribute.
          * A base64-encoded string.
          */
-        data?: pulumi.Input<string>;
+        data?: pulumi.Input<string | undefined>;
         /**
          * The full resource name for the Cloud Pub/Sub topic to which
          * messages will be published when a job is delivered. ~>**NOTE:**
@@ -4625,31 +4625,31 @@ export namespace cloudscheduler {
          * The maximum amount of time to wait before retrying a job after it fails.
          * A duration in seconds with up to nine fractional digits, terminated by 's'.
          */
-        maxBackoffDuration?: pulumi.Input<string>;
+        maxBackoffDuration?: pulumi.Input<string | undefined>;
         /**
          * The time between retries will double maxDoublings times.
          * A job's retry interval starts at minBackoffDuration,
          * then doubles maxDoublings times, then increases linearly,
          * and finally retries retries at intervals of maxBackoffDuration up to retryCount times.
          */
-        maxDoublings?: pulumi.Input<number>;
+        maxDoublings?: pulumi.Input<number | undefined>;
         /**
          * The time limit for retrying a failed job, measured from time when an execution was first attempted.
          * If specified with retryCount, the job will be retried until both limits are reached.
          * A duration in seconds with up to nine fractional digits, terminated by 's'.
          */
-        maxRetryDuration?: pulumi.Input<string>;
+        maxRetryDuration?: pulumi.Input<string | undefined>;
         /**
          * The minimum amount of time to wait before retrying a job after it fails.
          * A duration in seconds with up to nine fractional digits, terminated by 's'.
          */
-        minBackoffDuration?: pulumi.Input<string>;
+        minBackoffDuration?: pulumi.Input<string | undefined>;
         /**
          * The number of attempts that the system will make to run a
          * job using the exponential backoff procedure described by maxDoublings.
          * Values greater than 5 and negative values are not allowed.
          */
-        retryCount?: pulumi.Input<number>;
+        retryCount?: pulumi.Input<number | undefined>;
     }
 }
 
@@ -4659,22 +4659,22 @@ export namespace cloudtasks {
          * -
          * The host that the task is sent to.
          */
-        host?: pulumi.Input<string>;
+        host?: pulumi.Input<string | undefined>;
         /**
          * App instance.
          * By default, the task is sent to an instance which is available when the task is attempted.
          */
-        instance?: pulumi.Input<string>;
+        instance?: pulumi.Input<string | undefined>;
         /**
          * App service.
          * By default, the task is sent to the service which is the default service when the task is attempted.
          */
-        service?: pulumi.Input<string>;
+        service?: pulumi.Input<string | undefined>;
         /**
          * App version.
          * By default, the task is sent to the version which is the default version when the task is attempted.
          */
-        version?: pulumi.Input<string>;
+        version?: pulumi.Input<string | undefined>;
     }
 
     export interface QueueRateLimits {
@@ -4686,19 +4686,19 @@ export namespace cloudtasks {
          * rate so processing starts shortly after a task is enqueued, but still limits
          * resource usage when many tasks are enqueued in a short period of time.
          */
-        maxBurstSize?: pulumi.Input<number>;
+        maxBurstSize?: pulumi.Input<number | undefined>;
         /**
          * The maximum number of concurrent tasks that Cloud Tasks allows to
          * be dispatched for this queue. After this threshold has been
          * reached, Cloud Tasks stops dispatching tasks until the number of
          * concurrent requests decreases.
          */
-        maxConcurrentDispatches?: pulumi.Input<number>;
+        maxConcurrentDispatches?: pulumi.Input<number | undefined>;
         /**
          * The maximum rate at which tasks are dispatched from this queue.
          * If unspecified when the queue is created, Cloud Tasks will pick the default.
          */
-        maxDispatchesPerSecond?: pulumi.Input<number>;
+        maxDispatchesPerSecond?: pulumi.Input<number | undefined>;
     }
 
     export interface QueueRetryConfig {
@@ -4711,20 +4711,20 @@ export namespace cloudtasks {
          * the default.
          * -1 indicates unlimited attempts.
          */
-        maxAttempts?: pulumi.Input<number>;
+        maxAttempts?: pulumi.Input<number | undefined>;
         /**
          * A task will be scheduled for retry between minBackoff and
          * maxBackoff duration after it fails, if the queue's RetryConfig
          * specifies that the task should be retried.
          */
-        maxBackoff?: pulumi.Input<string>;
+        maxBackoff?: pulumi.Input<string | undefined>;
         /**
          * The time between retries will double maxDoublings times.
          * A task's retry interval starts at minBackoff, then doubles maxDoublings times,
          * then increases linearly, and finally retries retries at intervals of maxBackoff
          * up to maxAttempts times.
          */
-        maxDoublings?: pulumi.Input<number>;
+        maxDoublings?: pulumi.Input<number | undefined>;
         /**
          * If positive, maxRetryDuration specifies the time limit for
          * retrying a failed task, measured from when the task was first
@@ -4733,13 +4733,13 @@ export namespace cloudtasks {
          * made and the task will be deleted.
          * If zero, then the task age is unlimited.
          */
-        maxRetryDuration?: pulumi.Input<string>;
+        maxRetryDuration?: pulumi.Input<string | undefined>;
         /**
          * A task will be scheduled for retry between minBackoff and
          * maxBackoff duration after it fails, if the queue's RetryConfig
          * specifies that the task should be retried.
          */
-        minBackoff?: pulumi.Input<string>;
+        minBackoff?: pulumi.Input<string | undefined>;
     }
 
     export interface QueueStackdriverLoggingConfig {
@@ -4754,38 +4754,38 @@ export namespace cloudtasks {
 
 export namespace composer {
     export interface EnvironmentConfig {
-        airflowUri?: pulumi.Input<string>;
-        dagGcsPrefix?: pulumi.Input<string>;
+        airflowUri?: pulumi.Input<string | undefined>;
+        dagGcsPrefix?: pulumi.Input<string | undefined>;
         /**
          * The configuration settings for Cloud SQL instance used internally by Apache Airflow software.
          */
-        databaseConfig?: pulumi.Input<inputs.composer.EnvironmentConfigDatabaseConfig>;
-        gkeCluster?: pulumi.Input<string>;
+        databaseConfig?: pulumi.Input<inputs.composer.EnvironmentConfigDatabaseConfig | undefined>;
+        gkeCluster?: pulumi.Input<string | undefined>;
         /**
          * The configuration used for the Kubernetes Engine cluster.  Structure is documented below.
          */
-        nodeConfig?: pulumi.Input<inputs.composer.EnvironmentConfigNodeConfig>;
+        nodeConfig?: pulumi.Input<inputs.composer.EnvironmentConfigNodeConfig | undefined>;
         /**
          * The number of nodes in the Kubernetes Engine cluster that
          * will be used to run this environment.
          */
-        nodeCount?: pulumi.Input<number>;
+        nodeCount?: pulumi.Input<number | undefined>;
         /**
          * The configuration used for the Private IP Cloud Composer environment. Structure is documented below.
          */
-        privateEnvironmentConfig?: pulumi.Input<inputs.composer.EnvironmentConfigPrivateEnvironmentConfig>;
+        privateEnvironmentConfig?: pulumi.Input<inputs.composer.EnvironmentConfigPrivateEnvironmentConfig | undefined>;
         /**
          * The configuration settings for software inside the environment.  Structure is documented below.
          */
-        softwareConfig?: pulumi.Input<inputs.composer.EnvironmentConfigSoftwareConfig>;
+        softwareConfig?: pulumi.Input<inputs.composer.EnvironmentConfigSoftwareConfig | undefined>;
         /**
          * The configuration settings for the Airflow web server App Engine instance.
          */
-        webServerConfig?: pulumi.Input<inputs.composer.EnvironmentConfigWebServerConfig>;
+        webServerConfig?: pulumi.Input<inputs.composer.EnvironmentConfigWebServerConfig | undefined>;
         /**
          * The network-level access control policy for the Airflow web server. If unspecified, no network-level access restrictions will be applied.
          */
-        webServerNetworkAccessControl?: pulumi.Input<inputs.composer.EnvironmentConfigWebServerNetworkAccessControl>;
+        webServerNetworkAccessControl?: pulumi.Input<inputs.composer.EnvironmentConfigWebServerNetworkAccessControl | undefined>;
     }
 
     export interface EnvironmentConfigDatabaseConfig {
@@ -4803,32 +4803,32 @@ export namespace composer {
          * The disk size in GB used for node VMs. Minimum size is 20GB.
          * If unspecified, defaults to 100GB. Cannot be updated.
          */
-        diskSizeGb?: pulumi.Input<number>;
+        diskSizeGb?: pulumi.Input<number | undefined>;
         /**
          * Configuration for controlling how IPs are allocated in the GKE cluster.
          * Structure is documented below.
          * Cannot be updated.
          */
-        ipAllocationPolicy?: pulumi.Input<inputs.composer.EnvironmentConfigNodeConfigIpAllocationPolicy>;
+        ipAllocationPolicy?: pulumi.Input<inputs.composer.EnvironmentConfigNodeConfigIpAllocationPolicy | undefined>;
         /**
          * Machine type on which Airflow web server is running. It has to be one of: composer-n1-webserver-2,
          * composer-n1-webserver-4 or composer-n1-webserver-8.
          * Value custom is returned only in response, if Airflow web server parameters were
          * manually changed to a non-standard values.
          */
-        machineType?: pulumi.Input<string>;
+        machineType?: pulumi.Input<string | undefined>;
         /**
          * The Compute Engine network to be used for machine
          * communications, specified as a self-link, relative resource name
          * (e.g. "projects/{project}/global/networks/{network}"), by name.
          */
-        network?: pulumi.Input<string>;
+        network?: pulumi.Input<string | undefined>;
         /**
          * The set of Google API scopes to be made available on all node
          * VMs. Cannot be updated. If empty, defaults to
          * `["https://www.googleapis.com/auth/cloud-platform"]`
          */
-        oauthScopes?: pulumi.Input<pulumi.Input<string>[]>;
+        oauthScopes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The Google Cloud Platform Service Account to be used by the
          * node VMs. If a service account is not specified, the "default"
@@ -4836,21 +4836,21 @@ export namespace composer {
          * note that the service account must have `roles/composer.worker`
          * for any GCP resources created under the Cloud Composer Environment.
          */
-        serviceAccount?: pulumi.Input<string>;
+        serviceAccount?: pulumi.Input<string | undefined>;
         /**
          * The Compute Engine subnetwork to be used for machine
          * communications, , specified as a self-link, relative resource name (e.g.
          * "projects/{project}/regions/{region}/subnetworks/{subnetwork}"), or by name. If subnetwork is provided,
          * network must also be provided and the subnetwork must belong to the enclosing environment's project and region.
          */
-        subnetwork?: pulumi.Input<string>;
+        subnetwork?: pulumi.Input<string | undefined>;
         /**
          * The list of instance tags applied to all node VMs. Tags are
          * used to identify valid sources or targets for network
          * firewalls. Each tag within the list must comply with RFC1035.
          * Cannot be updated.
          */
-        tags?: pulumi.Input<pulumi.Input<string>[]>;
+        tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The Compute Engine zone in which to deploy the VMs running the
          * Apache Airflow software, specified as the zone name or
@@ -4869,13 +4869,13 @@ export namespace composer {
          * (e.g. 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16) to pick a specific range to use.
          * Specify either `clusterSecondaryRangeName` or `clusterIpv4CidrBlock` but not both.
          */
-        clusterIpv4CidrBlock?: pulumi.Input<string>;
+        clusterIpv4CidrBlock?: pulumi.Input<string | undefined>;
         /**
          * The name of the cluster's secondary range used to allocate IP addresses to pods.
          * Specify either `clusterSecondaryRangeName` or `clusterIpv4CidrBlock` but not both.
          * This field is applicable only when `useIpAliases` is true.
          */
-        clusterSecondaryRangeName?: pulumi.Input<string>;
+        clusterSecondaryRangeName?: pulumi.Input<string | undefined>;
         /**
          * The IP address range used to allocate IP addresses in this cluster.
          * Set to blank to have GKE choose a range with the default size.
@@ -4884,13 +4884,13 @@ export namespace composer {
          * (e.g. 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16) to pick a specific range to use.
          * Specify either `servicesSecondaryRangeName` or `servicesIpv4CidrBlock` but not both.
          */
-        servicesIpv4CidrBlock?: pulumi.Input<string>;
+        servicesIpv4CidrBlock?: pulumi.Input<string | undefined>;
         /**
          * The name of the services' secondary range used to allocate IP addresses to the cluster.
          * Specify either `servicesSecondaryRangeName` or `servicesIpv4CidrBlock` but not both.
          * This field is applicable only when `useIpAliases` is true.
          */
-        servicesSecondaryRangeName?: pulumi.Input<string>;
+        servicesSecondaryRangeName?: pulumi.Input<string | undefined>;
         /**
          * Whether or not to enable Alias IPs in the GKE cluster. If true, a VPC-native cluster is created.
          * Defaults to true if the `ipAllocationPolicy` block is present in config.
@@ -4902,12 +4902,12 @@ export namespace composer {
         /**
          * The CIDR block from which IP range in tenant project will be reserved for Cloud SQL. Needs to be disjoint from `webServerIpv4CidrBlock`
          */
-        cloudSqlIpv4CidrBlock?: pulumi.Input<string>;
+        cloudSqlIpv4CidrBlock?: pulumi.Input<string | undefined>;
         /**
          * -
          * If true, access to the public endpoint of the GKE cluster is denied.
          */
-        enablePrivateEndpoint?: pulumi.Input<boolean>;
+        enablePrivateEndpoint?: pulumi.Input<boolean | undefined>;
         /**
          * The IP range in CIDR notation to use for the hosted master network. This range is used
          * for assigning internal IP addresses to the cluster master or set of masters and to the
@@ -4915,11 +4915,11 @@ export namespace composer {
          * in use within the cluster's network.
          * If left blank, the default value of '172.16.0.0/28' is used.
          */
-        masterIpv4CidrBlock?: pulumi.Input<string>;
+        masterIpv4CidrBlock?: pulumi.Input<string | undefined>;
         /**
          * The CIDR block from which IP range for web server will be reserved. Needs to be disjoint from `masterIpv4CidrBlock` and `cloudSqlIpv4CidrBlock`.
          */
-        webServerIpv4CidrBlock?: pulumi.Input<string>;
+        webServerIpv4CidrBlock?: pulumi.Input<string | undefined>;
     }
 
     export interface EnvironmentConfigSoftwareConfig {
@@ -4928,7 +4928,7 @@ export namespace composer {
          * (Optional) Apache Airflow configuration properties to override. Property keys contain the section and property names,
          * separated by a hyphen, for example "core-dags_are_paused_at_creation".
          */
-        airflowConfigOverrides?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        airflowConfigOverrides?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * Additional environment variables to provide to the Apache Airflow scheduler, worker, and webserver processes.
          * Environment variable names must match the regular expression `[a-zA-Z_][a-zA-Z0-9_]*`.
@@ -4938,7 +4938,7 @@ export namespace composer {
          * import * as pulumi from "@pulumi/pulumi";
          * ```
          */
-        envVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        envVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * -
          * The version of the software running in the environment. This encapsulates both the version of Cloud Composer
@@ -4949,20 +4949,20 @@ export namespace composer {
          * See [documentation](https://cloud.google.com/composer/docs/reference/rest/v1beta1/projects.locations.environments#softwareconfig)
          * for allowed release names.
          */
-        imageVersion?: pulumi.Input<string>;
+        imageVersion?: pulumi.Input<string | undefined>;
         /**
          * Custom Python Package Index (PyPI) packages to be installed
          * in the environment. Keys refer to the lowercase package name (e.g. "numpy"). Values are the lowercase extras and
          * version specifier (e.g. "==1.12.0", "[devel,gcp_api]", "[devel]>=1.8.2, <1.9.2"). To specify a package without
          * pinning it to a version specifier, use the empty string as the value.
          */
-        pypiPackages?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        pypiPackages?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * -
          * The major version of Python used to run the Apache Airflow scheduler, worker, and webserver processes.
          * Can be set to '2' or '3'. If not specified, the default is '2'. Cannot be updated.
          */
-        pythonVersion?: pulumi.Input<string>;
+        pythonVersion?: pulumi.Input<string | undefined>;
     }
 
     export interface EnvironmentConfigWebServerConfig {
@@ -4980,14 +4980,14 @@ export namespace composer {
          * -
          * A collection of allowed IP ranges with descriptions. Structure is documented below.
          */
-        allowedIpRanges?: pulumi.Input<pulumi.Input<inputs.composer.EnvironmentConfigWebServerNetworkAccessControlAllowedIpRange>[]>;
+        allowedIpRanges?: pulumi.Input<pulumi.Input<inputs.composer.EnvironmentConfigWebServerNetworkAccessControlAllowedIpRange>[] | undefined>;
     }
 
     export interface EnvironmentConfigWebServerNetworkAccessControlAllowedIpRange {
         /**
          * A description of this ip range.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * IP address or range, defined using CIDR notation, of requests that this rule applies to.
          * Examples: `192.168.1.1` or `192.168.0.0/16` or `2001:db8::/32` or `2001:0db8:0000:0042:0000:8a2e:0370:7334`.
@@ -5012,19 +5012,19 @@ export namespace compute {
          * instance may take to initialize. To do this, create an instance
          * and time the startup process.
          */
-        cooldownPeriod?: pulumi.Input<number>;
+        cooldownPeriod?: pulumi.Input<number | undefined>;
         /**
          * Defines the CPU utilization policy that allows the autoscaler to
          * scale based on the average CPU utilization of a managed instance
          * group.
          * Structure is documented below.
          */
-        cpuUtilization?: pulumi.Input<inputs.compute.AutoscalarAutoscalingPolicyCpuUtilization>;
+        cpuUtilization?: pulumi.Input<inputs.compute.AutoscalarAutoscalingPolicyCpuUtilization | undefined>;
         /**
          * Configuration parameters of autoscaling based on a load balancer.
          * Structure is documented below.
          */
-        loadBalancingUtilization?: pulumi.Input<inputs.compute.AutoscalarAutoscalingPolicyLoadBalancingUtilization>;
+        loadBalancingUtilization?: pulumi.Input<inputs.compute.AutoscalarAutoscalingPolicyLoadBalancingUtilization | undefined>;
         /**
          * The maximum number of instances that the autoscaler can scale up
          * to. This is required when creating or updating an autoscaler. The
@@ -5036,7 +5036,7 @@ export namespace compute {
          * Configuration parameters of autoscaling based on a custom metric.
          * Structure is documented below.
          */
-        metrics?: pulumi.Input<pulumi.Input<inputs.compute.AutoscalarAutoscalingPolicyMetric>[]>;
+        metrics?: pulumi.Input<pulumi.Input<inputs.compute.AutoscalarAutoscalingPolicyMetric>[] | undefined>;
         /**
          * The minimum number of replicas that the autoscaler can scale down
          * to. This cannot be less than 0. If not provided, autoscaler will
@@ -5049,20 +5049,20 @@ export namespace compute {
          * Default value is `ON`.
          * Possible values are `OFF`, `ONLY_UP`, and `ON`.
          */
-        mode?: pulumi.Input<string>;
+        mode?: pulumi.Input<string | undefined>;
         /**
          * Defines scale down controls to reduce the risk of response latency
          * and outages due to abrupt scale-in events
          * Structure is documented below.
          */
-        scaleDownControl?: pulumi.Input<inputs.compute.AutoscalarAutoscalingPolicyScaleDownControl>;
+        scaleDownControl?: pulumi.Input<inputs.compute.AutoscalarAutoscalingPolicyScaleDownControl | undefined>;
         /**
          * Defines scale in controls to reduce the risk of response latency
          * and outages due to abrupt scale-in events
          * Structure is documented below.
          */
-        scaleInControl?: pulumi.Input<inputs.compute.AutoscalarAutoscalingPolicyScaleInControl>;
-        scalingSchedules?: pulumi.Input<pulumi.Input<inputs.compute.AutoscalarAutoscalingPolicyScalingSchedule>[]>;
+        scaleInControl?: pulumi.Input<inputs.compute.AutoscalarAutoscalingPolicyScaleInControl | undefined>;
+        scalingSchedules?: pulumi.Input<pulumi.Input<inputs.compute.AutoscalarAutoscalingPolicyScalingSchedule>[] | undefined>;
     }
 
     export interface AutoscalarAutoscalingPolicyCpuUtilization {
@@ -5113,7 +5113,7 @@ export namespace compute {
          * TimeSeries are returned upon the query execution, the autoscaler
          * will sum their respective values to obtain its scaling value.
          */
-        filter?: pulumi.Input<string>;
+        filter?: pulumi.Input<string | undefined>;
         /**
          * The identifier for this object. Format specified above.
          */
@@ -5134,19 +5134,19 @@ export namespace compute {
          * single instance, it could be better used with utilizationTarget
          * instead.
          */
-        singleInstanceAssignment?: pulumi.Input<number>;
+        singleInstanceAssignment?: pulumi.Input<number | undefined>;
         /**
          * Fraction of backend capacity utilization (set in HTTP(s) load
          * balancing configuration) that autoscaler should maintain. Must
          * be a positive float value. If not defined, the default is 0.8.
          */
-        target?: pulumi.Input<number>;
+        target?: pulumi.Input<number | undefined>;
         /**
          * Defines how target utilization value is expressed for a
          * Stackdriver Monitoring metric.
          * Possible values are `GAUGE`, `DELTA_PER_SECOND`, and `DELTA_PER_MINUTE`.
          */
-        type?: pulumi.Input<string>;
+        type?: pulumi.Input<string | undefined>;
     }
 
     export interface AutoscalarAutoscalingPolicyScaleDownControl {
@@ -5154,12 +5154,12 @@ export namespace compute {
          * A nested object resource
          * Structure is documented below.
          */
-        maxScaledDownReplicas?: pulumi.Input<inputs.compute.AutoscalarAutoscalingPolicyScaleDownControlMaxScaledDownReplicas>;
+        maxScaledDownReplicas?: pulumi.Input<inputs.compute.AutoscalarAutoscalingPolicyScaleDownControlMaxScaledDownReplicas | undefined>;
         /**
          * How long back autoscaling should look when computing recommendations
          * to include directives regarding slower scale down, as described above.
          */
-        timeWindowSec?: pulumi.Input<number>;
+        timeWindowSec?: pulumi.Input<number | undefined>;
     }
 
     export interface AutoscalarAutoscalingPolicyScaleDownControlMaxScaledDownReplicas {
@@ -5167,12 +5167,12 @@ export namespace compute {
          * Specifies a fixed number of VM instances. This must be a positive
          * integer.
          */
-        fixed?: pulumi.Input<number>;
+        fixed?: pulumi.Input<number | undefined>;
         /**
          * Specifies a percentage of instances between 0 to 100%, inclusive.
          * For example, specify 80 for 80%.
          */
-        percent?: pulumi.Input<number>;
+        percent?: pulumi.Input<number | undefined>;
     }
 
     export interface AutoscalarAutoscalingPolicyScaleInControl {
@@ -5180,12 +5180,12 @@ export namespace compute {
          * A nested object resource
          * Structure is documented below.
          */
-        maxScaledInReplicas?: pulumi.Input<inputs.compute.AutoscalarAutoscalingPolicyScaleInControlMaxScaledInReplicas>;
+        maxScaledInReplicas?: pulumi.Input<inputs.compute.AutoscalarAutoscalingPolicyScaleInControlMaxScaledInReplicas | undefined>;
         /**
          * How long back autoscaling should look when computing recommendations
          * to include directives regarding slower scale down, as described above.
          */
-        timeWindowSec?: pulumi.Input<number>;
+        timeWindowSec?: pulumi.Input<number | undefined>;
     }
 
     export interface AutoscalarAutoscalingPolicyScaleInControlMaxScaledInReplicas {
@@ -5193,23 +5193,23 @@ export namespace compute {
          * Specifies a fixed number of VM instances. This must be a positive
          * integer.
          */
-        fixed?: pulumi.Input<number>;
+        fixed?: pulumi.Input<number | undefined>;
         /**
          * Specifies a percentage of instances between 0 to 100%, inclusive.
          * For example, specify 80 for 80%.
          */
-        percent?: pulumi.Input<number>;
+        percent?: pulumi.Input<number | undefined>;
     }
 
     export interface AutoscalarAutoscalingPolicyScalingSchedule {
         /**
          * An optional description of this resource.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * A boolean value that specifies if a scaling schedule can influence autoscaler recommendations. If set to true, then a scaling schedule has no effect.
          */
-        disabled?: pulumi.Input<boolean>;
+        disabled?: pulumi.Input<boolean | undefined>;
         /**
          * The duration of time intervals (in seconds) for which this scaling schedule will be running. The minimum allowed value is 300.
          */
@@ -5229,7 +5229,7 @@ export namespace compute {
         /**
          * The time zone to be used when interpreting the schedule. The value of this field must be a time zone name from the tz database: http://en.wikipedia.org/wiki/Tz_database.
          */
-        timeZone?: pulumi.Input<string>;
+        timeZone?: pulumi.Input<string | undefined>;
     }
 
     export interface AutoscalerAutoscalingPolicy {
@@ -5244,19 +5244,19 @@ export namespace compute {
          * instance may take to initialize. To do this, create an instance
          * and time the startup process.
          */
-        cooldownPeriod?: pulumi.Input<number>;
+        cooldownPeriod?: pulumi.Input<number | undefined>;
         /**
          * Defines the CPU utilization policy that allows the autoscaler to
          * scale based on the average CPU utilization of a managed instance
          * group.
          * Structure is documented below.
          */
-        cpuUtilization?: pulumi.Input<inputs.compute.AutoscalerAutoscalingPolicyCpuUtilization>;
+        cpuUtilization?: pulumi.Input<inputs.compute.AutoscalerAutoscalingPolicyCpuUtilization | undefined>;
         /**
          * Configuration parameters of autoscaling based on a load balancer.
          * Structure is documented below.
          */
-        loadBalancingUtilization?: pulumi.Input<inputs.compute.AutoscalerAutoscalingPolicyLoadBalancingUtilization>;
+        loadBalancingUtilization?: pulumi.Input<inputs.compute.AutoscalerAutoscalingPolicyLoadBalancingUtilization | undefined>;
         /**
          * The maximum number of instances that the autoscaler can scale up
          * to. This is required when creating or updating an autoscaler. The
@@ -5268,7 +5268,7 @@ export namespace compute {
          * Configuration parameters of autoscaling based on a custom metric.
          * Structure is documented below.
          */
-        metrics?: pulumi.Input<pulumi.Input<inputs.compute.AutoscalerAutoscalingPolicyMetric>[]>;
+        metrics?: pulumi.Input<pulumi.Input<inputs.compute.AutoscalerAutoscalingPolicyMetric>[] | undefined>;
         /**
          * The minimum number of replicas that the autoscaler can scale down
          * to. This cannot be less than 0. If not provided, autoscaler will
@@ -5281,20 +5281,20 @@ export namespace compute {
          * Default value is `ON`.
          * Possible values are `OFF`, `ONLY_UP`, and `ON`.
          */
-        mode?: pulumi.Input<string>;
+        mode?: pulumi.Input<string | undefined>;
         /**
          * Defines scale down controls to reduce the risk of response latency
          * and outages due to abrupt scale-in events
          * Structure is documented below.
          */
-        scaleDownControl?: pulumi.Input<inputs.compute.AutoscalerAutoscalingPolicyScaleDownControl>;
+        scaleDownControl?: pulumi.Input<inputs.compute.AutoscalerAutoscalingPolicyScaleDownControl | undefined>;
         /**
          * Defines scale in controls to reduce the risk of response latency
          * and outages due to abrupt scale-in events
          * Structure is documented below.
          */
-        scaleInControl?: pulumi.Input<inputs.compute.AutoscalerAutoscalingPolicyScaleInControl>;
-        scalingSchedules?: pulumi.Input<pulumi.Input<inputs.compute.AutoscalerAutoscalingPolicyScalingSchedule>[]>;
+        scaleInControl?: pulumi.Input<inputs.compute.AutoscalerAutoscalingPolicyScaleInControl | undefined>;
+        scalingSchedules?: pulumi.Input<pulumi.Input<inputs.compute.AutoscalerAutoscalingPolicyScalingSchedule>[] | undefined>;
     }
 
     export interface AutoscalerAutoscalingPolicyCpuUtilization {
@@ -5345,7 +5345,7 @@ export namespace compute {
          * TimeSeries are returned upon the query execution, the autoscaler
          * will sum their respective values to obtain its scaling value.
          */
-        filter?: pulumi.Input<string>;
+        filter?: pulumi.Input<string | undefined>;
         /**
          * The identifier for this object. Format specified above.
          */
@@ -5366,19 +5366,19 @@ export namespace compute {
          * single instance, it could be better used with utilizationTarget
          * instead.
          */
-        singleInstanceAssignment?: pulumi.Input<number>;
+        singleInstanceAssignment?: pulumi.Input<number | undefined>;
         /**
          * Fraction of backend capacity utilization (set in HTTP(s) load
          * balancing configuration) that autoscaler should maintain. Must
          * be a positive float value. If not defined, the default is 0.8.
          */
-        target?: pulumi.Input<number>;
+        target?: pulumi.Input<number | undefined>;
         /**
          * Defines how target utilization value is expressed for a
          * Stackdriver Monitoring metric.
          * Possible values are `GAUGE`, `DELTA_PER_SECOND`, and `DELTA_PER_MINUTE`.
          */
-        type?: pulumi.Input<string>;
+        type?: pulumi.Input<string | undefined>;
     }
 
     export interface AutoscalerAutoscalingPolicyScaleDownControl {
@@ -5386,12 +5386,12 @@ export namespace compute {
          * A nested object resource
          * Structure is documented below.
          */
-        maxScaledDownReplicas?: pulumi.Input<inputs.compute.AutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicas>;
+        maxScaledDownReplicas?: pulumi.Input<inputs.compute.AutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicas | undefined>;
         /**
          * How long back autoscaling should look when computing recommendations
          * to include directives regarding slower scale down, as described above.
          */
-        timeWindowSec?: pulumi.Input<number>;
+        timeWindowSec?: pulumi.Input<number | undefined>;
     }
 
     export interface AutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicas {
@@ -5399,12 +5399,12 @@ export namespace compute {
          * Specifies a fixed number of VM instances. This must be a positive
          * integer.
          */
-        fixed?: pulumi.Input<number>;
+        fixed?: pulumi.Input<number | undefined>;
         /**
          * Specifies a percentage of instances between 0 to 100%, inclusive.
          * For example, specify 80 for 80%.
          */
-        percent?: pulumi.Input<number>;
+        percent?: pulumi.Input<number | undefined>;
     }
 
     export interface AutoscalerAutoscalingPolicyScaleInControl {
@@ -5412,12 +5412,12 @@ export namespace compute {
          * A nested object resource
          * Structure is documented below.
          */
-        maxScaledInReplicas?: pulumi.Input<inputs.compute.AutoscalerAutoscalingPolicyScaleInControlMaxScaledInReplicas>;
+        maxScaledInReplicas?: pulumi.Input<inputs.compute.AutoscalerAutoscalingPolicyScaleInControlMaxScaledInReplicas | undefined>;
         /**
          * How long back autoscaling should look when computing recommendations
          * to include directives regarding slower scale down, as described above.
          */
-        timeWindowSec?: pulumi.Input<number>;
+        timeWindowSec?: pulumi.Input<number | undefined>;
     }
 
     export interface AutoscalerAutoscalingPolicyScaleInControlMaxScaledInReplicas {
@@ -5425,23 +5425,23 @@ export namespace compute {
          * Specifies a fixed number of VM instances. This must be a positive
          * integer.
          */
-        fixed?: pulumi.Input<number>;
+        fixed?: pulumi.Input<number | undefined>;
         /**
          * Specifies a percentage of instances between 0 to 100%, inclusive.
          * For example, specify 80 for 80%.
          */
-        percent?: pulumi.Input<number>;
+        percent?: pulumi.Input<number | undefined>;
     }
 
     export interface AutoscalerAutoscalingPolicyScalingSchedule {
         /**
          * An optional description of this resource.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * A boolean value that specifies if a scaling schedule can influence autoscaler recommendations. If set to true, then a scaling schedule has no effect.
          */
-        disabled?: pulumi.Input<boolean>;
+        disabled?: pulumi.Input<boolean | undefined>;
         /**
          * The duration of time intervals (in seconds) for which this scaling schedule will be running. The minimum allowed value is 300.
          */
@@ -5461,17 +5461,17 @@ export namespace compute {
         /**
          * The time zone to be used when interpreting the schedule. The value of this field must be a time zone name from the tz database: http://en.wikipedia.org/wiki/Tz_database.
          */
-        timeZone?: pulumi.Input<string>;
+        timeZone?: pulumi.Input<string | undefined>;
     }
 
     export interface BackendBucketCdnPolicy {
-        cacheMode?: pulumi.Input<string>;
-        clientTtl?: pulumi.Input<number>;
-        defaultTtl?: pulumi.Input<number>;
-        maxTtl?: pulumi.Input<number>;
-        negativeCaching?: pulumi.Input<boolean>;
-        negativeCachingPolicies?: pulumi.Input<pulumi.Input<inputs.compute.BackendBucketCdnPolicyNegativeCachingPolicy>[]>;
-        serveWhileStale?: pulumi.Input<number>;
+        cacheMode?: pulumi.Input<string | undefined>;
+        clientTtl?: pulumi.Input<number | undefined>;
+        defaultTtl?: pulumi.Input<number | undefined>;
+        maxTtl?: pulumi.Input<number | undefined>;
+        negativeCaching?: pulumi.Input<boolean | undefined>;
+        negativeCachingPolicies?: pulumi.Input<pulumi.Input<inputs.compute.BackendBucketCdnPolicyNegativeCachingPolicy>[] | undefined>;
+        serveWhileStale?: pulumi.Input<number | undefined>;
         /**
          * Maximum number of seconds the response to a signed URL request will
          * be considered fresh. After this time period,
@@ -5482,12 +5482,12 @@ export namespace compute {
          * max-age=[TTL]" header, regardless of any existing Cache-Control
          * header. The actual headers served in responses will not be altered.
          */
-        signedUrlCacheMaxAgeSec?: pulumi.Input<number>;
+        signedUrlCacheMaxAgeSec?: pulumi.Input<number | undefined>;
     }
 
     export interface BackendBucketCdnPolicyNegativeCachingPolicy {
-        code?: pulumi.Input<number>;
-        ttl?: pulumi.Input<number>;
+        code?: pulumi.Input<number | undefined>;
+        ttl?: pulumi.Input<number | undefined>;
     }
 
     export interface BackendServiceBackend {
@@ -5499,7 +5499,7 @@ export namespace compute {
          * Default value is `UTILIZATION`.
          * Possible values are `UTILIZATION`, `RATE`, and `CONNECTION`.
          */
-        balancingMode?: pulumi.Input<string>;
+        balancingMode?: pulumi.Input<string | undefined>;
         /**
          * A multiplier applied to the group's maximum servicing capacity
          * (based on UTILIZATION, RATE or CONNECTION).
@@ -5508,12 +5508,12 @@ export namespace compute {
          * setting of 0 means the group is completely drained, offering
          * 0% of its available Capacity. Valid range is [0.0,1.0].
          */
-        capacityScaler?: pulumi.Input<number>;
+        capacityScaler?: pulumi.Input<number | undefined>;
         /**
          * An optional description of this resource.
          * Provide this property when you create the resource.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * The fully-qualified URL of an Instance Group or Network Endpoint
          * Group resource. In case of instance group this defines the list
@@ -5535,7 +5535,7 @@ export namespace compute {
          * The maximum number of connections to the backend cluster.
          * Defaults to 1024.
          */
-        maxConnections?: pulumi.Input<number>;
+        maxConnections?: pulumi.Input<number | undefined>;
         /**
          * The max number of simultaneous connections that a single backend
          * network endpoint can handle. This is used to calculate the
@@ -5544,7 +5544,7 @@ export namespace compute {
          * For CONNECTION mode, either
          * maxConnections or maxConnectionsPerEndpoint must be set.
          */
-        maxConnectionsPerEndpoint?: pulumi.Input<number>;
+        maxConnectionsPerEndpoint?: pulumi.Input<number | undefined>;
         /**
          * The max number of simultaneous connections that a single
          * backend instance can handle. This is used to calculate the
@@ -5553,7 +5553,7 @@ export namespace compute {
          * For CONNECTION mode, either maxConnections or
          * maxConnectionsPerInstance must be set.
          */
-        maxConnectionsPerInstance?: pulumi.Input<number>;
+        maxConnectionsPerInstance?: pulumi.Input<number | undefined>;
         /**
          * The max requests per second (RPS) of the group.
          * Can be used with either RATE or UTILIZATION balancing modes,
@@ -5561,27 +5561,27 @@ export namespace compute {
          * of maxRatePerInstance or maxRatePerEndpoint, as appropriate for
          * group type, must be set.
          */
-        maxRate?: pulumi.Input<number>;
+        maxRate?: pulumi.Input<number | undefined>;
         /**
          * The max requests per second (RPS) that a single backend network
          * endpoint can handle. This is used to calculate the capacity of
          * the group. Can be used in either balancing mode. For RATE mode,
          * either maxRate or maxRatePerEndpoint must be set.
          */
-        maxRatePerEndpoint?: pulumi.Input<number>;
+        maxRatePerEndpoint?: pulumi.Input<number | undefined>;
         /**
          * The max requests per second (RPS) that a single backend
          * instance can handle. This is used to calculate the capacity of
          * the group. Can be used in either balancing mode. For RATE mode,
          * either maxRate or maxRatePerInstance must be set.
          */
-        maxRatePerInstance?: pulumi.Input<number>;
+        maxRatePerInstance?: pulumi.Input<number | undefined>;
         /**
          * Used when balancingMode is UTILIZATION. This ratio defines the
          * CPU utilization target for the group. The default is 0.8. Valid
          * range is [0.0, 1.0].
          */
-        maxUtilization?: pulumi.Input<number>;
+        maxUtilization?: pulumi.Input<number | undefined>;
     }
 
     export interface BackendServiceCdnPolicy {
@@ -5589,14 +5589,14 @@ export namespace compute {
          * The CacheKeyPolicy for this CdnPolicy.
          * Structure is documented below.
          */
-        cacheKeyPolicy?: pulumi.Input<inputs.compute.BackendServiceCdnPolicyCacheKeyPolicy>;
-        cacheMode?: pulumi.Input<string>;
-        clientTtl?: pulumi.Input<number>;
-        defaultTtl?: pulumi.Input<number>;
-        maxTtl?: pulumi.Input<number>;
-        negativeCaching?: pulumi.Input<boolean>;
-        negativeCachingPolicies?: pulumi.Input<pulumi.Input<inputs.compute.BackendServiceCdnPolicyNegativeCachingPolicy>[]>;
-        serveWhileStale?: pulumi.Input<number>;
+        cacheKeyPolicy?: pulumi.Input<inputs.compute.BackendServiceCdnPolicyCacheKeyPolicy | undefined>;
+        cacheMode?: pulumi.Input<string | undefined>;
+        clientTtl?: pulumi.Input<number | undefined>;
+        defaultTtl?: pulumi.Input<number | undefined>;
+        maxTtl?: pulumi.Input<number | undefined>;
+        negativeCaching?: pulumi.Input<boolean | undefined>;
+        negativeCachingPolicies?: pulumi.Input<pulumi.Input<inputs.compute.BackendServiceCdnPolicyNegativeCachingPolicy>[] | undefined>;
+        serveWhileStale?: pulumi.Input<number | undefined>;
         /**
          * Maximum number of seconds the response to a signed URL request
          * will be considered fresh, defaults to 1hr (3600s). After this
@@ -5608,18 +5608,18 @@ export namespace compute {
          * existing Cache-Control header. The actual headers served in
          * responses will not be altered.
          */
-        signedUrlCacheMaxAgeSec?: pulumi.Input<number>;
+        signedUrlCacheMaxAgeSec?: pulumi.Input<number | undefined>;
     }
 
     export interface BackendServiceCdnPolicyCacheKeyPolicy {
         /**
          * If true requests to different hosts will be cached separately.
          */
-        includeHost?: pulumi.Input<boolean>;
+        includeHost?: pulumi.Input<boolean | undefined>;
         /**
          * If true, http and https requests will be cached separately.
          */
-        includeProtocol?: pulumi.Input<boolean>;
+        includeProtocol?: pulumi.Input<boolean | undefined>;
         /**
          * If true, include query string parameters in the cache key
          * according to queryStringWhitelist and
@@ -5628,7 +5628,7 @@ export namespace compute {
          * If false, the query string will be excluded from the cache
          * key entirely.
          */
-        includeQueryString?: pulumi.Input<boolean>;
+        includeQueryString?: pulumi.Input<boolean | undefined>;
         /**
          * Names of query string parameters to exclude in cache keys.
          * All other parameters will be included. Either specify
@@ -5636,7 +5636,7 @@ export namespace compute {
          * '&' and '=' will be percent encoded and not treated as
          * delimiters.
          */
-        queryStringBlacklists?: pulumi.Input<pulumi.Input<string>[]>;
+        queryStringBlacklists?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Names of query string parameters to include in cache keys.
          * All other parameters will be excluded. Either specify
@@ -5644,46 +5644,46 @@ export namespace compute {
          * '&' and '=' will be percent encoded and not treated as
          * delimiters.
          */
-        queryStringWhitelists?: pulumi.Input<pulumi.Input<string>[]>;
+        queryStringWhitelists?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface BackendServiceCdnPolicyNegativeCachingPolicy {
-        code?: pulumi.Input<number>;
-        ttl?: pulumi.Input<number>;
+        code?: pulumi.Input<number | undefined>;
+        ttl?: pulumi.Input<number | undefined>;
     }
 
     export interface BackendServiceCircuitBreakers {
         /**
          * The timeout for new network connections to hosts.  Structure is documented below.
          */
-        connectTimeout?: pulumi.Input<inputs.compute.BackendServiceCircuitBreakersConnectTimeout>;
+        connectTimeout?: pulumi.Input<inputs.compute.BackendServiceCircuitBreakersConnectTimeout | undefined>;
         /**
          * The maximum number of connections to the backend cluster.
          * Defaults to 1024.
          */
-        maxConnections?: pulumi.Input<number>;
+        maxConnections?: pulumi.Input<number | undefined>;
         /**
          * The maximum number of pending requests to the backend cluster.
          * Defaults to 1024.
          */
-        maxPendingRequests?: pulumi.Input<number>;
+        maxPendingRequests?: pulumi.Input<number | undefined>;
         /**
          * The maximum number of parallel requests to the backend cluster.
          * Defaults to 1024.
          */
-        maxRequests?: pulumi.Input<number>;
+        maxRequests?: pulumi.Input<number | undefined>;
         /**
          * Maximum requests for a single backend connection. This parameter
          * is respected by both the HTTP/1.1 and HTTP/2 implementations. If
          * not specified, there is no limit. Setting this parameter to 1
          * will effectively disable keep alive.
          */
-        maxRequestsPerConnection?: pulumi.Input<number>;
+        maxRequestsPerConnection?: pulumi.Input<number | undefined>;
         /**
          * The maximum number of parallel retries to the backend cluster.
          * Defaults to 3.
          */
-        maxRetries?: pulumi.Input<number>;
+        maxRetries?: pulumi.Input<number | undefined>;
     }
 
     export interface BackendServiceCircuitBreakersConnectTimeout {
@@ -5692,7 +5692,7 @@ export namespace compute {
          * less than one second are represented with a 0 `seconds` field and a positive
          * `nanos` field. Must be from 0 to 999,999,999 inclusive.
          */
-        nanos?: pulumi.Input<number>;
+        nanos?: pulumi.Input<number | undefined>;
         /**
          * Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
          * inclusive.
@@ -5708,12 +5708,12 @@ export namespace compute {
          * This field is applicable if the sessionAffinity is set to HTTP_COOKIE.
          * Structure is documented below.
          */
-        httpCookie?: pulumi.Input<inputs.compute.BackendServiceConsistentHashHttpCookie>;
+        httpCookie?: pulumi.Input<inputs.compute.BackendServiceConsistentHashHttpCookie | undefined>;
         /**
          * The hash based on the value of the specified header field.
          * This field is applicable if the sessionAffinity is set to HEADER_FIELD.
          */
-        httpHeaderName?: pulumi.Input<string>;
+        httpHeaderName?: pulumi.Input<string | undefined>;
         /**
          * The minimum number of virtual nodes to use for the hash ring.
          * Larger ring sizes result in more granular load
@@ -5722,19 +5722,19 @@ export namespace compute {
          * virtual node.
          * Defaults to 1024.
          */
-        minimumRingSize?: pulumi.Input<number>;
+        minimumRingSize?: pulumi.Input<number | undefined>;
     }
 
     export interface BackendServiceConsistentHashHttpCookie {
         /**
          * Name of the cookie.
          */
-        name?: pulumi.Input<string>;
+        name?: pulumi.Input<string | undefined>;
         /**
          * Path to set for the cookie.
          */
-        path?: pulumi.Input<string>;
-        ttl?: pulumi.Input<inputs.compute.BackendServiceConsistentHashHttpCookieTtl>;
+        path?: pulumi.Input<string | undefined>;
+        ttl?: pulumi.Input<inputs.compute.BackendServiceConsistentHashHttpCookieTtl | undefined>;
     }
 
     export interface BackendServiceConsistentHashHttpCookieTtl {
@@ -5743,7 +5743,7 @@ export namespace compute {
          * less than one second are represented with a 0 `seconds` field and a positive
          * `nanos` field. Must be from 0 to 999,999,999 inclusive.
          */
-        nanos?: pulumi.Input<number>;
+        nanos?: pulumi.Input<number | undefined>;
         /**
          * Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
          * inclusive.
@@ -5766,21 +5766,21 @@ export namespace compute {
          * OAuth2 Client Secret SHA-256 for IAP
          * **Note**: This property is sensitive and will not be displayed in the plan.
          */
-        oauth2ClientSecretSha256?: pulumi.Input<string>;
+        oauth2ClientSecretSha256?: pulumi.Input<string | undefined>;
     }
 
     export interface BackendServiceLogConfig {
         /**
          * Whether to enable logging for the load balancer traffic served by this backend service.
          */
-        enable?: pulumi.Input<boolean>;
+        enable?: pulumi.Input<boolean | undefined>;
         /**
          * This field can only be specified if logging is enabled for this backend service. The value of
          * the field must be in [0, 1]. This configures the sampling rate of requests to the load balancer
          * where 1.0 means all logged requests are reported and 0.0 means no logged requests are reported.
          * The default value is 1.0.
          */
-        sampleRate?: pulumi.Input<number>;
+        sampleRate?: pulumi.Input<number | undefined>;
     }
 
     export interface BackendServiceOutlierDetection {
@@ -5790,55 +5790,55 @@ export namespace compute {
          * 30000ms or 30s.
          * Structure is documented below.
          */
-        baseEjectionTime?: pulumi.Input<inputs.compute.BackendServiceOutlierDetectionBaseEjectionTime>;
+        baseEjectionTime?: pulumi.Input<inputs.compute.BackendServiceOutlierDetectionBaseEjectionTime | undefined>;
         /**
          * Number of errors before a host is ejected from the connection pool. When the
          * backend host is accessed over HTTP, a 5xx return code qualifies as an error.
          * Defaults to 5.
          */
-        consecutiveErrors?: pulumi.Input<number>;
+        consecutiveErrors?: pulumi.Input<number | undefined>;
         /**
          * The number of consecutive gateway failures (502, 503, 504 status or connection
          * errors that are mapped to one of those status codes) before a consecutive
          * gateway failure ejection occurs. Defaults to 5.
          */
-        consecutiveGatewayFailure?: pulumi.Input<number>;
+        consecutiveGatewayFailure?: pulumi.Input<number | undefined>;
         /**
          * The percentage chance that a host will be actually ejected when an outlier
          * status is detected through consecutive 5xx. This setting can be used to disable
          * ejection or to ramp it up slowly. Defaults to 100.
          */
-        enforcingConsecutiveErrors?: pulumi.Input<number>;
+        enforcingConsecutiveErrors?: pulumi.Input<number | undefined>;
         /**
          * The percentage chance that a host will be actually ejected when an outlier
          * status is detected through consecutive gateway failures. This setting can be
          * used to disable ejection or to ramp it up slowly. Defaults to 0.
          */
-        enforcingConsecutiveGatewayFailure?: pulumi.Input<number>;
+        enforcingConsecutiveGatewayFailure?: pulumi.Input<number | undefined>;
         /**
          * The percentage chance that a host will be actually ejected when an outlier
          * status is detected through success rate statistics. This setting can be used to
          * disable ejection or to ramp it up slowly. Defaults to 100.
          */
-        enforcingSuccessRate?: pulumi.Input<number>;
+        enforcingSuccessRate?: pulumi.Input<number | undefined>;
         /**
          * Time interval between ejection sweep analysis. This can result in both new
          * ejections as well as hosts being returned to service. Defaults to 10 seconds.
          * Structure is documented below.
          */
-        interval?: pulumi.Input<inputs.compute.BackendServiceOutlierDetectionInterval>;
+        interval?: pulumi.Input<inputs.compute.BackendServiceOutlierDetectionInterval | undefined>;
         /**
          * Maximum percentage of hosts in the load balancing pool for the backend service
          * that can be ejected. Defaults to 10%.
          */
-        maxEjectionPercent?: pulumi.Input<number>;
+        maxEjectionPercent?: pulumi.Input<number | undefined>;
         /**
          * The number of hosts in a cluster that must have enough request volume to detect
          * success rate outliers. If the number of hosts is less than this setting, outlier
          * detection via success rate statistics is not performed for any host in the
          * cluster. Defaults to 5.
          */
-        successRateMinimumHosts?: pulumi.Input<number>;
+        successRateMinimumHosts?: pulumi.Input<number | undefined>;
         /**
          * The minimum number of total requests that must be collected in one interval (as
          * defined by the interval duration above) to include this host in success rate
@@ -5846,7 +5846,7 @@ export namespace compute {
          * detection via success rate statistics is not performed for that host. Defaults
          * to 100.
          */
-        successRateRequestVolume?: pulumi.Input<number>;
+        successRateRequestVolume?: pulumi.Input<number | undefined>;
         /**
          * This factor is used to determine the ejection threshold for success rate outlier
          * ejection. The ejection threshold is the difference between the mean success
@@ -5855,7 +5855,7 @@ export namespace compute {
          * by a thousand to get a double. That is, if the desired factor is 1.9, the
          * runtime value should be 1900. Defaults to 1900.
          */
-        successRateStdevFactor?: pulumi.Input<number>;
+        successRateStdevFactor?: pulumi.Input<number | undefined>;
     }
 
     export interface BackendServiceOutlierDetectionBaseEjectionTime {
@@ -5864,7 +5864,7 @@ export namespace compute {
          * less than one second are represented with a 0 `seconds` field and a positive
          * `nanos` field. Must be from 0 to 999,999,999 inclusive.
          */
-        nanos?: pulumi.Input<number>;
+        nanos?: pulumi.Input<number | undefined>;
         /**
          * Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
          * inclusive.
@@ -5878,7 +5878,7 @@ export namespace compute {
          * less than one second are represented with a 0 `seconds` field and a positive
          * `nanos` field. Must be from 0 to 999,999,999 inclusive.
          */
-        nanos?: pulumi.Input<number>;
+        nanos?: pulumi.Input<number | undefined>;
         /**
          * Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
          * inclusive.
@@ -5894,33 +5894,33 @@ export namespace compute {
          * `roles/cloudkms.cryptoKeyEncrypterDecrypter` to use this feature.
          * See https://cloud.google.com/compute/docs/disks/customer-managed-encryption#encrypt_a_new_persistent_disk_with_your_own_keys
          */
-        kmsKeySelfLink?: pulumi.Input<string>;
+        kmsKeySelfLink?: pulumi.Input<string | undefined>;
         /**
          * The service account used for the encryption request for the given KMS key.
          * If absent, the Compute Engine Service Agent service account is used.
          */
-        kmsKeyServiceAccount?: pulumi.Input<string>;
+        kmsKeyServiceAccount?: pulumi.Input<string | undefined>;
         /**
          * Specifies a 256-bit customer-supplied encryption key, encoded in
          * RFC 4648 base64 to either encrypt or decrypt this resource.
          */
-        rawKey?: pulumi.Input<string>;
+        rawKey?: pulumi.Input<string | undefined>;
         /**
          * -
          * The RFC 4648 base64 encoded SHA-256 hash of the customer-supplied
          * encryption key that protects this resource.
          */
-        sha256?: pulumi.Input<string>;
+        sha256?: pulumi.Input<string | undefined>;
     }
 
     export interface DiskIamBindingCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
 
     export interface DiskIamMemberCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
@@ -5933,23 +5933,23 @@ export namespace compute {
          * `roles/cloudkms.cryptoKeyEncrypterDecrypter` to use this feature.
          * See https://cloud.google.com/compute/docs/disks/customer-managed-encryption#encrypt_a_new_persistent_disk_with_your_own_keys
          */
-        kmsKeySelfLink?: pulumi.Input<string>;
+        kmsKeySelfLink?: pulumi.Input<string | undefined>;
         /**
          * The service account used for the encryption request for the given KMS key.
          * If absent, the Compute Engine Service Agent service account is used.
          */
-        kmsKeyServiceAccount?: pulumi.Input<string>;
+        kmsKeyServiceAccount?: pulumi.Input<string | undefined>;
         /**
          * Specifies a 256-bit customer-supplied encryption key, encoded in
          * RFC 4648 base64 to either encrypt or decrypt this resource.
          */
-        rawKey?: pulumi.Input<string>;
+        rawKey?: pulumi.Input<string | undefined>;
         /**
          * -
          * The RFC 4648 base64 encoded SHA-256 hash of the customer-supplied
          * encryption key that protects this resource.
          */
-        sha256?: pulumi.Input<string>;
+        sha256?: pulumi.Input<string | undefined>;
     }
 
     export interface DiskSourceSnapshotEncryptionKey {
@@ -5960,18 +5960,18 @@ export namespace compute {
          * `roles/cloudkms.cryptoKeyEncrypterDecrypter` to use this feature.
          * See https://cloud.google.com/compute/docs/disks/customer-managed-encryption#encrypt_a_new_persistent_disk_with_your_own_keys
          */
-        kmsKeySelfLink?: pulumi.Input<string>;
+        kmsKeySelfLink?: pulumi.Input<string | undefined>;
         /**
          * Specifies a 256-bit customer-supplied encryption key, encoded in
          * RFC 4648 base64 to either encrypt or decrypt this resource.
          */
-        rawKey?: pulumi.Input<string>;
+        rawKey?: pulumi.Input<string | undefined>;
         /**
          * -
          * The RFC 4648 base64 encoded SHA-256 hash of the customer-supplied
          * encryption key that protects this resource.
          */
-        sha256?: pulumi.Input<string>;
+        sha256?: pulumi.Input<string | undefined>;
     }
 
     export interface ExternalVpnGatewayInterface {
@@ -5982,14 +5982,14 @@ export namespace compute {
          * * `0, 1 - TWO_IPS_REDUNDANCY`
          * * `0, 1, 2, 3 - FOUR_IPS_REDUNDANCY`
          */
-        id?: pulumi.Input<number>;
+        id?: pulumi.Input<number | undefined>;
         /**
          * IP address of the interface in the external VPN gateway.
          * Only IPv4 is supported. This IP address can be either from
          * your on-premise gateway or another Cloud provider's VPN gateway,
          * it cannot be an IP address from Google Compute Engine.
          */
-        ipAddress?: pulumi.Input<string>;
+        ipAddress?: pulumi.Input<string | undefined>;
     }
 
     export interface FirewallAllow {
@@ -6001,7 +6001,7 @@ export namespace compute {
          * Example inputs include: ["22"], ["80","443"], and
          * ["12345-12349"].
          */
-        ports?: pulumi.Input<pulumi.Input<string>[]>;
+        ports?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The IP protocol to which this rule applies. The protocol type is
          * required when creating a firewall rule. This value can either be
@@ -6020,7 +6020,7 @@ export namespace compute {
          * Example inputs include: ["22"], ["80","443"], and
          * ["12345-12349"].
          */
-        ports?: pulumi.Input<pulumi.Input<string>[]>;
+        ports?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The IP protocol to which this rule applies. The protocol type is
          * required when creating a firewall rule. This value can either be
@@ -6075,8 +6075,8 @@ export namespace compute {
         /**
          * an identifier for the resource with format `projects/{{project}}/regions/{{region}}/vpnGateways/{{name}}`
          */
-        id?: pulumi.Input<number>;
-        ipAddress?: pulumi.Input<string>;
+        id?: pulumi.Input<number | undefined>;
+        ipAddress?: pulumi.Input<string | undefined>;
     }
 
     export interface HealthCheckGrpcHealthCheck {
@@ -6087,18 +6087,18 @@ export namespace compute {
          * - Non-empty serviceName means the health of that gRPC service, as defined by the owner of the service.
          * The grpcServiceName can only be ASCII.
          */
-        grpcServiceName?: pulumi.Input<string>;
+        grpcServiceName?: pulumi.Input<string | undefined>;
         /**
          * The port number for the health check request.
          * Must be specified if portName and portSpecification are not set
          * or if portSpecification is USE_FIXED_PORT. Valid values are 1 through 65535.
          */
-        port?: pulumi.Input<number>;
+        port?: pulumi.Input<number | undefined>;
         /**
          * Port name as defined in InstanceGroup#NamedPort#name. If both port and
          * portName are defined, port takes precedence.
          */
-        portName?: pulumi.Input<string>;
+        portName?: pulumi.Input<string | undefined>;
         /**
          * Specifies how port is selected for health checking, can be one of the
          * following values:
@@ -6112,7 +6112,7 @@ export namespace compute {
          * `portName` fields.
          * Possible values are `USE_FIXED_PORT`, `USE_NAMED_PORT`, and `USE_SERVING_PORT`.
          */
-        portSpecification?: pulumi.Input<string>;
+        portSpecification?: pulumi.Input<string | undefined>;
     }
 
     export interface HealthCheckHttp2HealthCheck {
@@ -6121,18 +6121,18 @@ export namespace compute {
          * If left empty (default value), the public IP on behalf of which this health
          * check is performed will be used.
          */
-        host?: pulumi.Input<string>;
+        host?: pulumi.Input<string | undefined>;
         /**
          * The port number for the health check request.
          * Must be specified if portName and portSpecification are not set
          * or if portSpecification is USE_FIXED_PORT. Valid values are 1 through 65535.
          */
-        port?: pulumi.Input<number>;
+        port?: pulumi.Input<number | undefined>;
         /**
          * Port name as defined in InstanceGroup#NamedPort#name. If both port and
          * portName are defined, port takes precedence.
          */
-        portName?: pulumi.Input<string>;
+        portName?: pulumi.Input<string | undefined>;
         /**
          * Specifies how port is selected for health checking, can be one of the
          * following values:
@@ -6146,25 +6146,25 @@ export namespace compute {
          * `portName` fields.
          * Possible values are `USE_FIXED_PORT`, `USE_NAMED_PORT`, and `USE_SERVING_PORT`.
          */
-        portSpecification?: pulumi.Input<string>;
+        portSpecification?: pulumi.Input<string | undefined>;
         /**
          * Specifies the type of proxy header to append before sending data to the
          * backend.
          * Default value is `NONE`.
          * Possible values are `NONE` and `PROXY_V1`.
          */
-        proxyHeader?: pulumi.Input<string>;
+        proxyHeader?: pulumi.Input<string | undefined>;
         /**
          * The request path of the HTTP2 health check request.
          * The default value is /.
          */
-        requestPath?: pulumi.Input<string>;
+        requestPath?: pulumi.Input<string | undefined>;
         /**
          * The bytes to match against the beginning of the response data. If left empty
          * (the default value), any response will indicate health. The response data
          * can only be ASCII.
          */
-        response?: pulumi.Input<string>;
+        response?: pulumi.Input<string | undefined>;
     }
 
     export interface HealthCheckHttpHealthCheck {
@@ -6173,18 +6173,18 @@ export namespace compute {
          * If left empty (default value), the public IP on behalf of which this health
          * check is performed will be used.
          */
-        host?: pulumi.Input<string>;
+        host?: pulumi.Input<string | undefined>;
         /**
          * The port number for the health check request.
          * Must be specified if portName and portSpecification are not set
          * or if portSpecification is USE_FIXED_PORT. Valid values are 1 through 65535.
          */
-        port?: pulumi.Input<number>;
+        port?: pulumi.Input<number | undefined>;
         /**
          * Port name as defined in InstanceGroup#NamedPort#name. If both port and
          * portName are defined, port takes precedence.
          */
-        portName?: pulumi.Input<string>;
+        portName?: pulumi.Input<string | undefined>;
         /**
          * Specifies how port is selected for health checking, can be one of the
          * following values:
@@ -6198,25 +6198,25 @@ export namespace compute {
          * `portName` fields.
          * Possible values are `USE_FIXED_PORT`, `USE_NAMED_PORT`, and `USE_SERVING_PORT`.
          */
-        portSpecification?: pulumi.Input<string>;
+        portSpecification?: pulumi.Input<string | undefined>;
         /**
          * Specifies the type of proxy header to append before sending data to the
          * backend.
          * Default value is `NONE`.
          * Possible values are `NONE` and `PROXY_V1`.
          */
-        proxyHeader?: pulumi.Input<string>;
+        proxyHeader?: pulumi.Input<string | undefined>;
         /**
          * The request path of the HTTP2 health check request.
          * The default value is /.
          */
-        requestPath?: pulumi.Input<string>;
+        requestPath?: pulumi.Input<string | undefined>;
         /**
          * The bytes to match against the beginning of the response data. If left empty
          * (the default value), any response will indicate health. The response data
          * can only be ASCII.
          */
-        response?: pulumi.Input<string>;
+        response?: pulumi.Input<string | undefined>;
     }
 
     export interface HealthCheckHttpsHealthCheck {
@@ -6225,18 +6225,18 @@ export namespace compute {
          * If left empty (default value), the public IP on behalf of which this health
          * check is performed will be used.
          */
-        host?: pulumi.Input<string>;
+        host?: pulumi.Input<string | undefined>;
         /**
          * The port number for the health check request.
          * Must be specified if portName and portSpecification are not set
          * or if portSpecification is USE_FIXED_PORT. Valid values are 1 through 65535.
          */
-        port?: pulumi.Input<number>;
+        port?: pulumi.Input<number | undefined>;
         /**
          * Port name as defined in InstanceGroup#NamedPort#name. If both port and
          * portName are defined, port takes precedence.
          */
-        portName?: pulumi.Input<string>;
+        portName?: pulumi.Input<string | undefined>;
         /**
          * Specifies how port is selected for health checking, can be one of the
          * following values:
@@ -6250,25 +6250,25 @@ export namespace compute {
          * `portName` fields.
          * Possible values are `USE_FIXED_PORT`, `USE_NAMED_PORT`, and `USE_SERVING_PORT`.
          */
-        portSpecification?: pulumi.Input<string>;
+        portSpecification?: pulumi.Input<string | undefined>;
         /**
          * Specifies the type of proxy header to append before sending data to the
          * backend.
          * Default value is `NONE`.
          * Possible values are `NONE` and `PROXY_V1`.
          */
-        proxyHeader?: pulumi.Input<string>;
+        proxyHeader?: pulumi.Input<string | undefined>;
         /**
          * The request path of the HTTP2 health check request.
          * The default value is /.
          */
-        requestPath?: pulumi.Input<string>;
+        requestPath?: pulumi.Input<string | undefined>;
         /**
          * The bytes to match against the beginning of the response data. If left empty
          * (the default value), any response will indicate health. The response data
          * can only be ASCII.
          */
-        response?: pulumi.Input<string>;
+        response?: pulumi.Input<string | undefined>;
     }
 
     export interface HealthCheckLogConfig {
@@ -6276,7 +6276,7 @@ export namespace compute {
          * Indicates whether or not to export logs. This is false by default,
          * which means no health check logging will be done.
          */
-        enable?: pulumi.Input<boolean>;
+        enable?: pulumi.Input<boolean | undefined>;
     }
 
     export interface HealthCheckSslHealthCheck {
@@ -6285,12 +6285,12 @@ export namespace compute {
          * Must be specified if portName and portSpecification are not set
          * or if portSpecification is USE_FIXED_PORT. Valid values are 1 through 65535.
          */
-        port?: pulumi.Input<number>;
+        port?: pulumi.Input<number | undefined>;
         /**
          * Port name as defined in InstanceGroup#NamedPort#name. If both port and
          * portName are defined, port takes precedence.
          */
-        portName?: pulumi.Input<string>;
+        portName?: pulumi.Input<string | undefined>;
         /**
          * Specifies how port is selected for health checking, can be one of the
          * following values:
@@ -6304,27 +6304,27 @@ export namespace compute {
          * `portName` fields.
          * Possible values are `USE_FIXED_PORT`, `USE_NAMED_PORT`, and `USE_SERVING_PORT`.
          */
-        portSpecification?: pulumi.Input<string>;
+        portSpecification?: pulumi.Input<string | undefined>;
         /**
          * Specifies the type of proxy header to append before sending data to the
          * backend.
          * Default value is `NONE`.
          * Possible values are `NONE` and `PROXY_V1`.
          */
-        proxyHeader?: pulumi.Input<string>;
+        proxyHeader?: pulumi.Input<string | undefined>;
         /**
          * The application data to send once the SSL connection has been
          * established (default value is empty). If both request and response are
          * empty, the connection establishment alone will indicate health. The request
          * data can only be ASCII.
          */
-        request?: pulumi.Input<string>;
+        request?: pulumi.Input<string | undefined>;
         /**
          * The bytes to match against the beginning of the response data. If left empty
          * (the default value), any response will indicate health. The response data
          * can only be ASCII.
          */
-        response?: pulumi.Input<string>;
+        response?: pulumi.Input<string | undefined>;
     }
 
     export interface HealthCheckTcpHealthCheck {
@@ -6333,12 +6333,12 @@ export namespace compute {
          * Must be specified if portName and portSpecification are not set
          * or if portSpecification is USE_FIXED_PORT. Valid values are 1 through 65535.
          */
-        port?: pulumi.Input<number>;
+        port?: pulumi.Input<number | undefined>;
         /**
          * Port name as defined in InstanceGroup#NamedPort#name. If both port and
          * portName are defined, port takes precedence.
          */
-        portName?: pulumi.Input<string>;
+        portName?: pulumi.Input<string | undefined>;
         /**
          * Specifies how port is selected for health checking, can be one of the
          * following values:
@@ -6352,27 +6352,27 @@ export namespace compute {
          * `portName` fields.
          * Possible values are `USE_FIXED_PORT`, `USE_NAMED_PORT`, and `USE_SERVING_PORT`.
          */
-        portSpecification?: pulumi.Input<string>;
+        portSpecification?: pulumi.Input<string | undefined>;
         /**
          * Specifies the type of proxy header to append before sending data to the
          * backend.
          * Default value is `NONE`.
          * Possible values are `NONE` and `PROXY_V1`.
          */
-        proxyHeader?: pulumi.Input<string>;
+        proxyHeader?: pulumi.Input<string | undefined>;
         /**
          * The application data to send once the SSL connection has been
          * established (default value is empty). If both request and response are
          * empty, the connection establishment alone will indicate health. The request
          * data can only be ASCII.
          */
-        request?: pulumi.Input<string>;
+        request?: pulumi.Input<string | undefined>;
         /**
          * The bytes to match against the beginning of the response data. If left empty
          * (the default value), any response will indicate health. The response data
          * can only be ASCII.
          */
-        response?: pulumi.Input<string>;
+        response?: pulumi.Input<string | undefined>;
     }
 
     export interface ImageGuestOsFeature {
@@ -6387,7 +6387,7 @@ export namespace compute {
         /**
          * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * Textual representation of an expression in Common Expression Language syntax.
          */
@@ -6402,7 +6402,7 @@ export namespace compute {
         /**
          * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * Textual representation of an expression in Common Expression Language syntax.
          */
@@ -6422,12 +6422,12 @@ export namespace compute {
          * Default value is `TAR`.
          * Possible values are `TAR`.
          */
-        containerType?: pulumi.Input<string>;
+        containerType?: pulumi.Input<string | undefined>;
         /**
          * An optional SHA1 checksum of the disk image before unpackaging.
          * This is provided by the client when the disk image is created.
          */
-        sha1?: pulumi.Input<string>;
+        sha1?: pulumi.Input<string | undefined>;
         /**
          * The full Google Cloud Storage URL where disk storage is stored
          * You must provide either this property or the sourceDisk property
@@ -6441,28 +6441,28 @@ export namespace compute {
          * Name with which the attached disk will be accessible
          * under `/dev/disk/by-id/google-*`
          */
-        deviceName?: pulumi.Input<string>;
+        deviceName?: pulumi.Input<string | undefined>;
         /**
          * A 256-bit [customer-supplied encryption key]
          * (https://cloud.google.com/compute/docs/disks/customer-supplied-encryption),
          * encoded in [RFC 4648 base64](https://tools.ietf.org/html/rfc4648#section-4)
          * to encrypt this disk. Only one of `kmsKeySelfLink` and `diskEncryptionKeyRaw` may be set.
          */
-        diskEncryptionKeyRaw?: pulumi.Input<string>;
-        diskEncryptionKeySha256?: pulumi.Input<string>;
+        diskEncryptionKeyRaw?: pulumi.Input<string | undefined>;
+        diskEncryptionKeySha256?: pulumi.Input<string | undefined>;
         /**
          * The selfLink of the encryption key that is
          * stored in Google Cloud KMS to encrypt this disk. Only one of `kmsKeySelfLink`
          * and `diskEncryptionKeyRaw` may be set.
          */
-        kmsKeySelfLink?: pulumi.Input<string>;
+        kmsKeySelfLink?: pulumi.Input<string | undefined>;
         /**
          * Either "READ_ONLY" or "READ_WRITE", defaults to "READ_WRITE"
          * If you have a persistent disk with data that you want to share
          * between multiple instances, detach it from any read-write instances and
          * attach it to one or more instances in read-only mode.
          */
-        mode?: pulumi.Input<string>;
+        mode?: pulumi.Input<string | undefined>;
         /**
          * The name or selfLink of the disk to attach to this instance.
          */
@@ -6474,43 +6474,43 @@ export namespace compute {
          * Whether the disk will be auto-deleted when the instance
          * is deleted. Defaults to true.
          */
-        autoDelete?: pulumi.Input<boolean>;
+        autoDelete?: pulumi.Input<boolean | undefined>;
         /**
          * Name with which the attached disk will be accessible
          * under `/dev/disk/by-id/google-*`
          */
-        deviceName?: pulumi.Input<string>;
+        deviceName?: pulumi.Input<string | undefined>;
         /**
          * A 256-bit [customer-supplied encryption key]
          * (https://cloud.google.com/compute/docs/disks/customer-supplied-encryption),
          * encoded in [RFC 4648 base64](https://tools.ietf.org/html/rfc4648#section-4)
          * to encrypt this disk. Only one of `kmsKeySelfLink` and `diskEncryptionKeyRaw` may be set.
          */
-        diskEncryptionKeyRaw?: pulumi.Input<string>;
-        diskEncryptionKeySha256?: pulumi.Input<string>;
+        diskEncryptionKeyRaw?: pulumi.Input<string | undefined>;
+        diskEncryptionKeySha256?: pulumi.Input<string | undefined>;
         /**
          * Parameters for a new disk that will be created
          * alongside the new instance. Either `initializeParams` or `source` must be set.
          * Structure is documented below.
          */
-        initializeParams?: pulumi.Input<inputs.compute.InstanceBootDiskInitializeParams>;
+        initializeParams?: pulumi.Input<inputs.compute.InstanceBootDiskInitializeParams | undefined>;
         /**
          * The selfLink of the encryption key that is
          * stored in Google Cloud KMS to encrypt this disk. Only one of `kmsKeySelfLink`
          * and `diskEncryptionKeyRaw` may be set.
          */
-        kmsKeySelfLink?: pulumi.Input<string>;
+        kmsKeySelfLink?: pulumi.Input<string | undefined>;
         /**
          * Either "READ_ONLY" or "READ_WRITE", defaults to "READ_WRITE"
          * If you have a persistent disk with data that you want to share
          * between multiple instances, detach it from any read-write instances and
          * attach it to one or more instances in read-only mode.
          */
-        mode?: pulumi.Input<string>;
+        mode?: pulumi.Input<string | undefined>;
         /**
          * The name or selfLink of the disk to attach to this instance.
          */
-        source?: pulumi.Input<string>;
+        source?: pulumi.Input<string | undefined>;
     }
 
     export interface InstanceBootDiskInitializeParams {
@@ -6525,20 +6525,20 @@ export namespace compute {
          * For instance, the image `centos-6-v20180104` includes its family name `centos-6`.
          * These images can be referred by family name here.
          */
-        image?: pulumi.Input<string>;
+        image?: pulumi.Input<string | undefined>;
         /**
          * A map of key/value label pairs to assign to the instance.
          */
-        labels?: pulumi.Input<{[key: string]: any}>;
+        labels?: pulumi.Input<{[key: string]: any} | undefined>;
         /**
          * The size of the image in gigabytes. If not specified, it
          * will inherit the size of its base image.
          */
-        size?: pulumi.Input<number>;
+        size?: pulumi.Input<number | undefined>;
         /**
          * The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
          */
-        type?: pulumi.Input<string>;
+        type?: pulumi.Input<string | undefined>;
     }
 
     export interface InstanceConfidentialInstanceConfig {
@@ -6549,30 +6549,30 @@ export namespace compute {
     }
 
     export interface InstanceFromMachineImageAttachedDisk {
-        deviceName?: pulumi.Input<string>;
-        diskEncryptionKeyRaw?: pulumi.Input<string>;
-        diskEncryptionKeySha256?: pulumi.Input<string>;
-        kmsKeySelfLink?: pulumi.Input<string>;
-        mode?: pulumi.Input<string>;
+        deviceName?: pulumi.Input<string | undefined>;
+        diskEncryptionKeyRaw?: pulumi.Input<string | undefined>;
+        diskEncryptionKeySha256?: pulumi.Input<string | undefined>;
+        kmsKeySelfLink?: pulumi.Input<string | undefined>;
+        mode?: pulumi.Input<string | undefined>;
         source: pulumi.Input<string>;
     }
 
     export interface InstanceFromMachineImageBootDisk {
-        autoDelete?: pulumi.Input<boolean>;
-        deviceName?: pulumi.Input<string>;
-        diskEncryptionKeyRaw?: pulumi.Input<string>;
-        diskEncryptionKeySha256?: pulumi.Input<string>;
-        initializeParams?: pulumi.Input<inputs.compute.InstanceFromMachineImageBootDiskInitializeParams>;
-        kmsKeySelfLink?: pulumi.Input<string>;
-        mode?: pulumi.Input<string>;
-        source?: pulumi.Input<string>;
+        autoDelete?: pulumi.Input<boolean | undefined>;
+        deviceName?: pulumi.Input<string | undefined>;
+        diskEncryptionKeyRaw?: pulumi.Input<string | undefined>;
+        diskEncryptionKeySha256?: pulumi.Input<string | undefined>;
+        initializeParams?: pulumi.Input<inputs.compute.InstanceFromMachineImageBootDiskInitializeParams | undefined>;
+        kmsKeySelfLink?: pulumi.Input<string | undefined>;
+        mode?: pulumi.Input<string | undefined>;
+        source?: pulumi.Input<string | undefined>;
     }
 
     export interface InstanceFromMachineImageBootDiskInitializeParams {
-        image?: pulumi.Input<string>;
-        labels?: pulumi.Input<{[key: string]: any}>;
-        size?: pulumi.Input<number>;
-        type?: pulumi.Input<string>;
+        image?: pulumi.Input<string | undefined>;
+        labels?: pulumi.Input<{[key: string]: any} | undefined>;
+        size?: pulumi.Input<number | undefined>;
+        type?: pulumi.Input<string | undefined>;
     }
 
     export interface InstanceFromMachineImageConfidentialInstanceConfig {
@@ -6585,36 +6585,36 @@ export namespace compute {
     }
 
     export interface InstanceFromMachineImageNetworkInterface {
-        accessConfigs?: pulumi.Input<pulumi.Input<inputs.compute.InstanceFromMachineImageNetworkInterfaceAccessConfig>[]>;
-        aliasIpRanges?: pulumi.Input<pulumi.Input<inputs.compute.InstanceFromMachineImageNetworkInterfaceAliasIpRange>[]>;
+        accessConfigs?: pulumi.Input<pulumi.Input<inputs.compute.InstanceFromMachineImageNetworkInterfaceAccessConfig>[] | undefined>;
+        aliasIpRanges?: pulumi.Input<pulumi.Input<inputs.compute.InstanceFromMachineImageNetworkInterfaceAliasIpRange>[] | undefined>;
         /**
          * A unique name for the resource, required by GCE.
          * Changing this forces a new resource to be created.
          */
-        name?: pulumi.Input<string>;
-        network?: pulumi.Input<string>;
-        networkIp?: pulumi.Input<string>;
-        subnetwork?: pulumi.Input<string>;
-        subnetworkProject?: pulumi.Input<string>;
+        name?: pulumi.Input<string | undefined>;
+        network?: pulumi.Input<string | undefined>;
+        networkIp?: pulumi.Input<string | undefined>;
+        subnetwork?: pulumi.Input<string | undefined>;
+        subnetworkProject?: pulumi.Input<string | undefined>;
     }
 
     export interface InstanceFromMachineImageNetworkInterfaceAccessConfig {
-        natIp?: pulumi.Input<string>;
-        networkTier?: pulumi.Input<string>;
-        publicPtrDomainName?: pulumi.Input<string>;
+        natIp?: pulumi.Input<string | undefined>;
+        networkTier?: pulumi.Input<string | undefined>;
+        publicPtrDomainName?: pulumi.Input<string | undefined>;
     }
 
     export interface InstanceFromMachineImageNetworkInterfaceAliasIpRange {
         ipCidrRange: pulumi.Input<string>;
-        subnetworkRangeName?: pulumi.Input<string>;
+        subnetworkRangeName?: pulumi.Input<string | undefined>;
     }
 
     export interface InstanceFromMachineImageScheduling {
-        automaticRestart?: pulumi.Input<boolean>;
-        minNodeCpus?: pulumi.Input<number>;
-        nodeAffinities?: pulumi.Input<pulumi.Input<inputs.compute.InstanceFromMachineImageSchedulingNodeAffinity>[]>;
-        onHostMaintenance?: pulumi.Input<string>;
-        preemptible?: pulumi.Input<boolean>;
+        automaticRestart?: pulumi.Input<boolean | undefined>;
+        minNodeCpus?: pulumi.Input<number | undefined>;
+        nodeAffinities?: pulumi.Input<pulumi.Input<inputs.compute.InstanceFromMachineImageSchedulingNodeAffinity>[] | undefined>;
+        onHostMaintenance?: pulumi.Input<string | undefined>;
+        preemptible?: pulumi.Input<boolean | undefined>;
     }
 
     export interface InstanceFromMachineImageSchedulingNodeAffinity {
@@ -6628,41 +6628,41 @@ export namespace compute {
     }
 
     export interface InstanceFromMachineImageServiceAccount {
-        email?: pulumi.Input<string>;
+        email?: pulumi.Input<string | undefined>;
         scopes: pulumi.Input<pulumi.Input<string>[]>;
     }
 
     export interface InstanceFromMachineImageShieldedInstanceConfig {
-        enableIntegrityMonitoring?: pulumi.Input<boolean>;
-        enableSecureBoot?: pulumi.Input<boolean>;
-        enableVtpm?: pulumi.Input<boolean>;
+        enableIntegrityMonitoring?: pulumi.Input<boolean | undefined>;
+        enableSecureBoot?: pulumi.Input<boolean | undefined>;
+        enableVtpm?: pulumi.Input<boolean | undefined>;
     }
 
     export interface InstanceFromTemplateAttachedDisk {
-        deviceName?: pulumi.Input<string>;
-        diskEncryptionKeyRaw?: pulumi.Input<string>;
-        diskEncryptionKeySha256?: pulumi.Input<string>;
-        kmsKeySelfLink?: pulumi.Input<string>;
-        mode?: pulumi.Input<string>;
+        deviceName?: pulumi.Input<string | undefined>;
+        diskEncryptionKeyRaw?: pulumi.Input<string | undefined>;
+        diskEncryptionKeySha256?: pulumi.Input<string | undefined>;
+        kmsKeySelfLink?: pulumi.Input<string | undefined>;
+        mode?: pulumi.Input<string | undefined>;
         source: pulumi.Input<string>;
     }
 
     export interface InstanceFromTemplateBootDisk {
-        autoDelete?: pulumi.Input<boolean>;
-        deviceName?: pulumi.Input<string>;
-        diskEncryptionKeyRaw?: pulumi.Input<string>;
-        diskEncryptionKeySha256?: pulumi.Input<string>;
-        initializeParams?: pulumi.Input<inputs.compute.InstanceFromTemplateBootDiskInitializeParams>;
-        kmsKeySelfLink?: pulumi.Input<string>;
-        mode?: pulumi.Input<string>;
-        source?: pulumi.Input<string>;
+        autoDelete?: pulumi.Input<boolean | undefined>;
+        deviceName?: pulumi.Input<string | undefined>;
+        diskEncryptionKeyRaw?: pulumi.Input<string | undefined>;
+        diskEncryptionKeySha256?: pulumi.Input<string | undefined>;
+        initializeParams?: pulumi.Input<inputs.compute.InstanceFromTemplateBootDiskInitializeParams | undefined>;
+        kmsKeySelfLink?: pulumi.Input<string | undefined>;
+        mode?: pulumi.Input<string | undefined>;
+        source?: pulumi.Input<string | undefined>;
     }
 
     export interface InstanceFromTemplateBootDiskInitializeParams {
-        image?: pulumi.Input<string>;
-        labels?: pulumi.Input<{[key: string]: any}>;
-        size?: pulumi.Input<number>;
-        type?: pulumi.Input<string>;
+        image?: pulumi.Input<string | undefined>;
+        labels?: pulumi.Input<{[key: string]: any} | undefined>;
+        size?: pulumi.Input<number | undefined>;
+        type?: pulumi.Input<string | undefined>;
     }
 
     export interface InstanceFromTemplateConfidentialInstanceConfig {
@@ -6675,36 +6675,36 @@ export namespace compute {
     }
 
     export interface InstanceFromTemplateNetworkInterface {
-        accessConfigs?: pulumi.Input<pulumi.Input<inputs.compute.InstanceFromTemplateNetworkInterfaceAccessConfig>[]>;
-        aliasIpRanges?: pulumi.Input<pulumi.Input<inputs.compute.InstanceFromTemplateNetworkInterfaceAliasIpRange>[]>;
+        accessConfigs?: pulumi.Input<pulumi.Input<inputs.compute.InstanceFromTemplateNetworkInterfaceAccessConfig>[] | undefined>;
+        aliasIpRanges?: pulumi.Input<pulumi.Input<inputs.compute.InstanceFromTemplateNetworkInterfaceAliasIpRange>[] | undefined>;
         /**
          * A unique name for the resource, required by GCE.
          * Changing this forces a new resource to be created.
          */
-        name?: pulumi.Input<string>;
-        network?: pulumi.Input<string>;
-        networkIp?: pulumi.Input<string>;
-        subnetwork?: pulumi.Input<string>;
-        subnetworkProject?: pulumi.Input<string>;
+        name?: pulumi.Input<string | undefined>;
+        network?: pulumi.Input<string | undefined>;
+        networkIp?: pulumi.Input<string | undefined>;
+        subnetwork?: pulumi.Input<string | undefined>;
+        subnetworkProject?: pulumi.Input<string | undefined>;
     }
 
     export interface InstanceFromTemplateNetworkInterfaceAccessConfig {
-        natIp?: pulumi.Input<string>;
-        networkTier?: pulumi.Input<string>;
-        publicPtrDomainName?: pulumi.Input<string>;
+        natIp?: pulumi.Input<string | undefined>;
+        networkTier?: pulumi.Input<string | undefined>;
+        publicPtrDomainName?: pulumi.Input<string | undefined>;
     }
 
     export interface InstanceFromTemplateNetworkInterfaceAliasIpRange {
         ipCidrRange: pulumi.Input<string>;
-        subnetworkRangeName?: pulumi.Input<string>;
+        subnetworkRangeName?: pulumi.Input<string | undefined>;
     }
 
     export interface InstanceFromTemplateScheduling {
-        automaticRestart?: pulumi.Input<boolean>;
-        minNodeCpus?: pulumi.Input<number>;
-        nodeAffinities?: pulumi.Input<pulumi.Input<inputs.compute.InstanceFromTemplateSchedulingNodeAffinity>[]>;
-        onHostMaintenance?: pulumi.Input<string>;
-        preemptible?: pulumi.Input<boolean>;
+        automaticRestart?: pulumi.Input<boolean | undefined>;
+        minNodeCpus?: pulumi.Input<number | undefined>;
+        nodeAffinities?: pulumi.Input<pulumi.Input<inputs.compute.InstanceFromTemplateSchedulingNodeAffinity>[] | undefined>;
+        onHostMaintenance?: pulumi.Input<string | undefined>;
+        preemptible?: pulumi.Input<boolean | undefined>;
     }
 
     export interface InstanceFromTemplateSchedulingNodeAffinity {
@@ -6718,14 +6718,14 @@ export namespace compute {
     }
 
     export interface InstanceFromTemplateServiceAccount {
-        email?: pulumi.Input<string>;
+        email?: pulumi.Input<string | undefined>;
         scopes: pulumi.Input<pulumi.Input<string>[]>;
     }
 
     export interface InstanceFromTemplateShieldedInstanceConfig {
-        enableIntegrityMonitoring?: pulumi.Input<boolean>;
-        enableSecureBoot?: pulumi.Input<boolean>;
-        enableVtpm?: pulumi.Input<boolean>;
+        enableIntegrityMonitoring?: pulumi.Input<boolean | undefined>;
+        enableSecureBoot?: pulumi.Input<boolean | undefined>;
+        enableVtpm?: pulumi.Input<boolean | undefined>;
     }
 
     export interface InstanceGroupManagerAutoHealingPolicies {
@@ -6756,7 +6756,7 @@ export namespace compute {
         /**
          * , A value that prescribes what should happen to the stateful disk when the VM instance is deleted. The available options are `NEVER` and `ON_PERMANENT_INSTANCE_DELETION`. `NEVER` - detach the disk when the VM is deleted, but do not delete the disk. `ON_PERMANENT_INSTANCE_DELETION` will delete the stateful disk when the VM is permanently deleted from the instance group. The default is `NEVER`.
          */
-        deleteRule?: pulumi.Input<string>;
+        deleteRule?: pulumi.Input<string | undefined>;
         /**
          * , The device name of the disk to be attached.
          */
@@ -6767,29 +6767,29 @@ export namespace compute {
         /**
          * , The maximum number of instances that can be created above the specified targetSize during the update process. Conflicts with `maxSurgePercent`. If neither is set, defaults to 1
          */
-        maxSurgeFixed?: pulumi.Input<number>;
+        maxSurgeFixed?: pulumi.Input<number | undefined>;
         /**
          * , The maximum number of instances(calculated as percentage) that can be created above the specified targetSize during the update process. Conflicts with `maxSurgeFixed`.
          */
-        maxSurgePercent?: pulumi.Input<number>;
+        maxSurgePercent?: pulumi.Input<number | undefined>;
         /**
          * , The maximum number of instances that can be unavailable during the update process. Conflicts with `maxUnavailablePercent`. If neither is set, defaults to 1
          */
-        maxUnavailableFixed?: pulumi.Input<number>;
+        maxUnavailableFixed?: pulumi.Input<number | undefined>;
         /**
          * , The maximum number of instances(calculated as percentage) that can be unavailable during the update process. Conflicts with `maxUnavailableFixed`.
          */
-        maxUnavailablePercent?: pulumi.Input<number>;
+        maxUnavailablePercent?: pulumi.Input<number | undefined>;
         /**
          * , Minimum number of seconds to wait for after a newly created instance becomes available. This value must be from range [0, 3600]
          * - - -
          */
-        minReadySec?: pulumi.Input<number>;
+        minReadySec?: pulumi.Input<number | undefined>;
         /**
          * - Minimal action to be taken on an instance. You can specify either `RESTART` to restart existing instances or `REPLACE` to delete and create new instances from the target template. If you specify a `RESTART`, the Updater will attempt to perform that action only. However, if the Updater determines that the minimal action you specify is not enough to perform the update, it might perform a more disruptive action.
          */
         minimalAction: pulumi.Input<string>;
-        replacementMethod?: pulumi.Input<string>;
+        replacementMethod?: pulumi.Input<string | undefined>;
         /**
          * - The type of update process. You can specify either `PROACTIVE` so that the instance group manager proactively executes actions in order to bring instances to their target versions or `OPPORTUNISTIC` so that no action is proactively executed but the update will be performed as part of other actions (for example, resizes or recreateInstances calls).
          */
@@ -6804,24 +6804,24 @@ export namespace compute {
         /**
          * - Version name.
          */
-        name?: pulumi.Input<string>;
+        name?: pulumi.Input<string | undefined>;
         /**
          * - The number of instances calculated as a fixed number or a percentage depending on the settings. Structure is documented below.
          */
-        targetSize?: pulumi.Input<inputs.compute.InstanceGroupManagerVersionTargetSize>;
+        targetSize?: pulumi.Input<inputs.compute.InstanceGroupManagerVersionTargetSize | undefined>;
     }
 
     export interface InstanceGroupManagerVersionTargetSize {
         /**
          * , The number of instances which are managed for this version. Conflicts with `percent`.
          */
-        fixed?: pulumi.Input<number>;
+        fixed?: pulumi.Input<number | undefined>;
         /**
          * , The number of instances (calculated as percentage) which are managed for this version. Conflicts with `fixed`.
          * Note that when using `percent`, rounding will be in favor of explicitly set `targetSize` values; a managed instance group with 2 instances and 2 `version`s,
          * one of which has a `target_size.percent` of `60` will create 2 instances of that `version`.
          */
-        percent?: pulumi.Input<number>;
+        percent?: pulumi.Input<number | undefined>;
     }
 
     export interface InstanceGroupNamedPort {
@@ -6850,7 +6850,7 @@ export namespace compute {
         /**
          * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * Textual representation of an expression in Common Expression Language syntax.
          */
@@ -6865,7 +6865,7 @@ export namespace compute {
         /**
          * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * Textual representation of an expression in Common Expression Language syntax.
          */
@@ -6885,42 +6885,42 @@ export namespace compute {
          * tunnel or because it is running on another cloud instance on that network).
          * This block can be repeated multiple times. Structure documented below.
          */
-        accessConfigs?: pulumi.Input<pulumi.Input<inputs.compute.InstanceNetworkInterfaceAccessConfig>[]>;
+        accessConfigs?: pulumi.Input<pulumi.Input<inputs.compute.InstanceNetworkInterfaceAccessConfig>[] | undefined>;
         /**
          * An
          * array of alias IP ranges for this network interface. Can only be specified for network
          * interfaces on subnet-mode networks. Structure documented below.
          */
-        aliasIpRanges?: pulumi.Input<pulumi.Input<inputs.compute.InstanceNetworkInterfaceAliasIpRange>[]>;
+        aliasIpRanges?: pulumi.Input<pulumi.Input<inputs.compute.InstanceNetworkInterfaceAliasIpRange>[] | undefined>;
         /**
          * A unique name for the resource, required by GCE.
          * Changing this forces a new resource to be created.
          */
-        name?: pulumi.Input<string>;
+        name?: pulumi.Input<string | undefined>;
         /**
          * The name or selfLink of the network to attach this interface to.
          * Either `network` or `subnetwork` must be provided.
          */
-        network?: pulumi.Input<string>;
+        network?: pulumi.Input<string | undefined>;
         /**
          * The private IP address to assign to the instance. If
          * empty, the address will be automatically assigned.
          */
-        networkIp?: pulumi.Input<string>;
+        networkIp?: pulumi.Input<string | undefined>;
         /**
          * The name or selfLink of the subnetwork to attach this
          * interface to. The subnetwork must exist in the same region this instance will be
          * created in. If network isn't provided it will be inferred from the subnetwork.
          * Either `network` or `subnetwork` must be provided.
          */
-        subnetwork?: pulumi.Input<string>;
+        subnetwork?: pulumi.Input<string | undefined>;
         /**
          * The project in which the subnetwork belongs.
          * If the `subnetwork` is a self_link, this field is ignored in favor of the project
          * defined in the subnetwork self_link. If the `subnetwork` is a name and this
          * field is not provided, the provider project is used.
          */
-        subnetworkProject?: pulumi.Input<string>;
+        subnetworkProject?: pulumi.Input<string | undefined>;
     }
 
     export interface InstanceNetworkInterfaceAccessConfig {
@@ -6928,20 +6928,20 @@ export namespace compute {
          * The IP address that will be 1:1 mapped to the instance's
          * network ip. If not given, one will be generated.
          */
-        natIp?: pulumi.Input<string>;
+        natIp?: pulumi.Input<string | undefined>;
         /**
          * The [networking tier][network-tier] used for configuring this instance.
          * This field can take the following values: PREMIUM or STANDARD. If this field is
          * not specified, it is assumed to be PREMIUM.
          */
-        networkTier?: pulumi.Input<string>;
+        networkTier?: pulumi.Input<string | undefined>;
         /**
          * The DNS domain name for the public PTR record.
          * To set this field on an instance, you must be verified as the owner of the domain.
          * See [the docs](https://cloud.google.com/compute/docs/instances/create-ptr-record) for how
          * to become verified as a domain owner.
          */
-        publicPtrDomainName?: pulumi.Input<string>;
+        publicPtrDomainName?: pulumi.Input<string | undefined>;
     }
 
     export interface InstanceNetworkInterfaceAliasIpRange {
@@ -6957,7 +6957,7 @@ export namespace compute {
          * the secondary range from which to allocate the IP CIDR range for this alias IP
          * range. If left unspecified, the primary range of the subnetwork will be used.
          */
-        subnetworkRangeName?: pulumi.Input<string>;
+        subnetworkRangeName?: pulumi.Input<string | undefined>;
     }
 
     export interface InstanceScheduling {
@@ -6966,8 +6966,8 @@ export namespace compute {
          * restarted if it was terminated by Compute Engine (not a user).
          * Defaults to true.
          */
-        automaticRestart?: pulumi.Input<boolean>;
-        minNodeCpus?: pulumi.Input<number>;
+        automaticRestart?: pulumi.Input<boolean | undefined>;
+        minNodeCpus?: pulumi.Input<number | undefined>;
         /**
          * Specifies node affinities or anti-affinities
          * to determine which sole-tenant nodes your instances and managed instance
@@ -6975,19 +6975,19 @@ export namespace compute {
          * [here](https://cloud.google.com/compute/docs/nodes/create-nodes).
          * Structure documented below.
          */
-        nodeAffinities?: pulumi.Input<pulumi.Input<inputs.compute.InstanceSchedulingNodeAffinity>[]>;
+        nodeAffinities?: pulumi.Input<pulumi.Input<inputs.compute.InstanceSchedulingNodeAffinity>[] | undefined>;
         /**
          * Describes maintenance behavior for the
          * instance. Can be MIGRATE or TERMINATE, for more info, read
          * [here](https://cloud.google.com/compute/docs/instances/setting-instance-scheduling-options).
          */
-        onHostMaintenance?: pulumi.Input<string>;
+        onHostMaintenance?: pulumi.Input<string | undefined>;
         /**
          * Specifies if the instance is preemptible.
          * If this field is set to true, then `automaticRestart` must be
          * set to false.  Defaults to false.
          */
-        preemptible?: pulumi.Input<boolean>;
+        preemptible?: pulumi.Input<boolean | undefined>;
     }
 
     export interface InstanceSchedulingNodeAffinity {
@@ -7019,7 +7019,7 @@ export namespace compute {
          * default Google Compute Engine service account is used.
          * **Note**: `allowStoppingForUpdate` must be set to true or your instance must have a `desiredStatus` of `TERMINATED` in order to update this field.
          */
-        email?: pulumi.Input<string>;
+        email?: pulumi.Input<string | undefined>;
         /**
          * A list of service scopes. Both OAuth2 URLs and gcloud
          * short names are supported. To allow full access to all Cloud APIs, use the
@@ -7034,17 +7034,17 @@ export namespace compute {
          * -- Compare the most recent boot measurements to the integrity policy baseline and return a pair of pass/fail results depending on whether they match or not. Defaults to true.
          * **Note**: `allowStoppingForUpdate` must be set to true or your instance must have a `desiredStatus` of `TERMINATED` in order to update this field.
          */
-        enableIntegrityMonitoring?: pulumi.Input<boolean>;
+        enableIntegrityMonitoring?: pulumi.Input<boolean | undefined>;
         /**
          * -- Verify the digital signature of all boot components, and halt the boot process if signature verification fails. Defaults to false.
          * **Note**: `allowStoppingForUpdate` must be set to true or your instance must have a `desiredStatus` of `TERMINATED` in order to update this field.
          */
-        enableSecureBoot?: pulumi.Input<boolean>;
+        enableSecureBoot?: pulumi.Input<boolean | undefined>;
         /**
          * -- Use a virtualized trusted platform module, which is a specialized computer chip you can use to encrypt objects like keys and certificates. Defaults to true.
          * **Note**: `allowStoppingForUpdate` must be set to true or your instance must have a `desiredStatus` of `TERMINATED` in order to update this field.
          */
-        enableVtpm?: pulumi.Input<boolean>;
+        enableVtpm?: pulumi.Input<boolean | undefined>;
     }
 
     export interface InstanceTemplateConfidentialInstanceConfig {
@@ -7059,61 +7059,61 @@ export namespace compute {
          * Whether or not the disk should be auto-deleted.
          * This defaults to true.
          */
-        autoDelete?: pulumi.Input<boolean>;
+        autoDelete?: pulumi.Input<boolean | undefined>;
         /**
          * Indicates that this is a boot disk.
          */
-        boot?: pulumi.Input<boolean>;
+        boot?: pulumi.Input<boolean | undefined>;
         /**
          * A unique device name that is reflected into the
          * /dev/  tree of a Linux operating system running within the instance. If not
          * specified, the server chooses a default device name to apply to this disk.
          */
-        deviceName?: pulumi.Input<string>;
+        deviceName?: pulumi.Input<string | undefined>;
         /**
          * Encrypts or decrypts a disk using a customer-supplied encryption key.
          */
-        diskEncryptionKey?: pulumi.Input<inputs.compute.InstanceTemplateDiskDiskEncryptionKey>;
+        diskEncryptionKey?: pulumi.Input<inputs.compute.InstanceTemplateDiskDiskEncryptionKey | undefined>;
         /**
          * Name of the disk. When not provided, this defaults
          * to the name of the instance.
          */
-        diskName?: pulumi.Input<string>;
+        diskName?: pulumi.Input<string | undefined>;
         /**
          * The size of the image in gigabytes. If not
          * specified, it will inherit the size of its base image. For SCRATCH disks,
          * the size must be exactly 375GB.
          */
-        diskSizeGb?: pulumi.Input<number>;
+        diskSizeGb?: pulumi.Input<number | undefined>;
         /**
          * The GCE disk type. Can be either `"pd-ssd"`,
          * `"local-ssd"`, `"pd-balanced"` or `"pd-standard"`.
          */
-        diskType?: pulumi.Input<string>;
+        diskType?: pulumi.Input<string | undefined>;
         /**
          * Specifies the disk interface to use for attaching this disk, 
          * which is either SCSI or NVME. The default is SCSI. Persistent disks must always use SCSI
          * and the request will fail if you attempt to attach a persistent disk in any other format
          * than SCSI. Local SSDs can use either NVME or SCSI.
          */
-        interface?: pulumi.Input<string>;
+        interface?: pulumi.Input<string | undefined>;
         /**
          * A set of key/value label pairs to assign to instances
          * created from this template,
          */
-        labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * The mode in which to attach this disk, either READ_WRITE
          * or READ_ONLY. If you are attaching or creating a boot disk, this must
          * read-write mode.
          */
-        mode?: pulumi.Input<string>;
+        mode?: pulumi.Input<string | undefined>;
         /**
          * The name (**not self_link**)
          * of the disk (such as those managed by `gcp.compute.Disk`) to attach.
          * > **Note:** Either `source` or `sourceImage` is **required** in a disk block unless the disk type is `local-ssd`. Check the API [docs](https://cloud.google.com/compute/docs/reference/rest/v1/instanceTemplates/insert) for details.
          */
-        source?: pulumi.Input<string>;
+        source?: pulumi.Input<string | undefined>;
         /**
          * The image from which to
          * initialize this disk. This can be one of: the image's `selfLink`,
@@ -7123,11 +7123,11 @@ export namespace compute {
          * `{project}/{image}`, `{family}`, or `{image}`.
          * > **Note:** Either `source` or `sourceImage` is **required** in a disk block unless the disk type is `local-ssd`. Check the API [docs](https://cloud.google.com/compute/docs/reference/rest/v1/instanceTemplates/insert) for details.
          */
-        sourceImage?: pulumi.Input<string>;
+        sourceImage?: pulumi.Input<string | undefined>;
         /**
          * The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
          */
-        type?: pulumi.Input<string>;
+        type?: pulumi.Input<string | undefined>;
     }
 
     export interface InstanceTemplateDiskDiskEncryptionKey {
@@ -7157,40 +7157,40 @@ export namespace compute {
          * network (e.g. via tunnel or because it is running on another cloud instance
          * on that network). This block can be repeated multiple times. Structure documented below.
          */
-        accessConfigs?: pulumi.Input<pulumi.Input<inputs.compute.InstanceTemplateNetworkInterfaceAccessConfig>[]>;
+        accessConfigs?: pulumi.Input<pulumi.Input<inputs.compute.InstanceTemplateNetworkInterfaceAccessConfig>[] | undefined>;
         /**
          * An
          * array of alias IP ranges for this network interface. Can only be specified for network
          * interfaces on subnet-mode networks. Structure documented below.
          */
-        aliasIpRanges?: pulumi.Input<pulumi.Input<inputs.compute.InstanceTemplateNetworkInterfaceAliasIpRange>[]>;
+        aliasIpRanges?: pulumi.Input<pulumi.Input<inputs.compute.InstanceTemplateNetworkInterfaceAliasIpRange>[] | undefined>;
         /**
          * The name of the instance template. If you leave
          * this blank, the provider will auto-generate a unique name.
          */
-        name?: pulumi.Input<string>;
+        name?: pulumi.Input<string | undefined>;
         /**
          * The name or selfLink of the network to attach this interface to.
          * Use `network` attribute for Legacy or Auto subnetted networks and
          * `subnetwork` for custom subnetted networks.
          */
-        network?: pulumi.Input<string>;
+        network?: pulumi.Input<string | undefined>;
         /**
          * The private IP address to assign to the instance. If
          * empty, the address will be automatically assigned.
          */
-        networkIp?: pulumi.Input<string>;
+        networkIp?: pulumi.Input<string | undefined>;
         /**
          * the name of the subnetwork to attach this interface
          * to. The subnetwork must exist in the same `region` this instance will be
          * created in. Either `network` or `subnetwork` must be provided.
          */
-        subnetwork?: pulumi.Input<string>;
+        subnetwork?: pulumi.Input<string | undefined>;
         /**
          * The ID of the project in which the subnetwork belongs.
          * If it is not provided, the provider project is used.
          */
-        subnetworkProject?: pulumi.Input<string>;
+        subnetworkProject?: pulumi.Input<string | undefined>;
     }
 
     export interface InstanceTemplateNetworkInterfaceAccessConfig {
@@ -7198,14 +7198,14 @@ export namespace compute {
          * The IP address that will be 1:1 mapped to the instance's
          * network ip. If not given, one will be generated.
          */
-        natIp?: pulumi.Input<string>;
+        natIp?: pulumi.Input<string | undefined>;
         /**
          * The [networking tier][network-tier] used for configuring
          * this instance template. This field can take the following values: PREMIUM or
          * STANDARD. If this field is not specified, it is assumed to be PREMIUM.
          */
-        networkTier?: pulumi.Input<string>;
-        publicPtrDomainName?: pulumi.Input<string>;
+        networkTier?: pulumi.Input<string | undefined>;
+        publicPtrDomainName?: pulumi.Input<string | undefined>;
     }
 
     export interface InstanceTemplateNetworkInterfaceAliasIpRange {
@@ -7222,7 +7222,7 @@ export namespace compute {
          * the secondary range from which to allocate the IP CIDR range for this alias IP
          * range. If left unspecified, the primary range of the subnetwork will be used.
          */
-        subnetworkRangeName?: pulumi.Input<string>;
+        subnetworkRangeName?: pulumi.Input<string | undefined>;
     }
 
     export interface InstanceTemplateScheduling {
@@ -7231,8 +7231,8 @@ export namespace compute {
          * automatically restarted if it is terminated by Compute Engine (not
          * terminated by a user). This defaults to true.
          */
-        automaticRestart?: pulumi.Input<boolean>;
-        minNodeCpus?: pulumi.Input<number>;
+        automaticRestart?: pulumi.Input<boolean | undefined>;
+        minNodeCpus?: pulumi.Input<number | undefined>;
         /**
          * Specifies node affinities or anti-affinities
          * to determine which sole-tenant nodes your instances and managed instance
@@ -7240,18 +7240,18 @@ export namespace compute {
          * [here](https://cloud.google.com/compute/docs/nodes/create-nodes).
          * Structure documented below.
          */
-        nodeAffinities?: pulumi.Input<pulumi.Input<inputs.compute.InstanceTemplateSchedulingNodeAffinity>[]>;
+        nodeAffinities?: pulumi.Input<pulumi.Input<inputs.compute.InstanceTemplateSchedulingNodeAffinity>[] | undefined>;
         /**
          * Defines the maintenance behavior for this
          * instance.
          */
-        onHostMaintenance?: pulumi.Input<string>;
+        onHostMaintenance?: pulumi.Input<string | undefined>;
         /**
          * Allows instance to be preempted. This defaults to
          * false. Read more on this
          * [here](https://cloud.google.com/compute/docs/instances/preemptible).
          */
-        preemptible?: pulumi.Input<boolean>;
+        preemptible?: pulumi.Input<boolean | undefined>;
     }
 
     export interface InstanceTemplateSchedulingNodeAffinity {
@@ -7272,7 +7272,7 @@ export namespace compute {
          * The service account e-mail address. If not given, the
          * default Google Compute Engine service account is used.
          */
-        email?: pulumi.Input<string>;
+        email?: pulumi.Input<string | undefined>;
         /**
          * A list of service scopes. Both OAuth2 URLs and gcloud
          * short names are supported. To allow full access to all Cloud APIs, use the
@@ -7285,26 +7285,26 @@ export namespace compute {
         /**
          * -- Compare the most recent boot measurements to the integrity policy baseline and return a pair of pass/fail results depending on whether they match or not. Defaults to true.
          */
-        enableIntegrityMonitoring?: pulumi.Input<boolean>;
+        enableIntegrityMonitoring?: pulumi.Input<boolean | undefined>;
         /**
          * -- Verify the digital signature of all boot components, and halt the boot process if signature verification fails. Defaults to false.
          */
-        enableSecureBoot?: pulumi.Input<boolean>;
+        enableSecureBoot?: pulumi.Input<boolean | undefined>;
         /**
          * -- Use a virtualized trusted platform module, which is a specialized computer chip you can use to encrypt objects like keys and certificates. Defaults to true.
          */
-        enableVtpm?: pulumi.Input<boolean>;
+        enableVtpm?: pulumi.Input<boolean | undefined>;
     }
 
     export interface InterconnectAttachmentPrivateInterconnectInfo {
-        tag8021q?: pulumi.Input<number>;
+        tag8021q?: pulumi.Input<number | undefined>;
     }
 
     export interface MachineImageIamBindingCondition {
         /**
          * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * Textual representation of an expression in Common Expression Language syntax.
          */
@@ -7319,7 +7319,7 @@ export namespace compute {
         /**
          * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * Textual representation of an expression in Common Expression Language syntax.
          */
@@ -7335,23 +7335,23 @@ export namespace compute {
          * -
          * The name of the encryption key that is stored in Google Cloud KMS.
          */
-        kmsKeyName?: pulumi.Input<string>;
+        kmsKeyName?: pulumi.Input<string | undefined>;
         /**
          * The service account used for the encryption request for the given KMS key.
          * If absent, the Compute Engine Service Agent service account is used.
          */
-        kmsKeyServiceAccount?: pulumi.Input<string>;
+        kmsKeyServiceAccount?: pulumi.Input<string | undefined>;
         /**
          * Specifies a 256-bit customer-supplied encryption key, encoded in
          * RFC 4648 base64 to either encrypt or decrypt this resource.
          */
-        rawKey?: pulumi.Input<string>;
+        rawKey?: pulumi.Input<string | undefined>;
         /**
          * -
          * The RFC 4648 base64 encoded SHA-256 hash of the
          * customer-supplied encryption key that protects this resource.
          */
-        sha256?: pulumi.Input<string>;
+        sha256?: pulumi.Input<string | undefined>;
     }
 
     export interface ManagedSslCertificateManaged {
@@ -7371,12 +7371,12 @@ export namespace compute {
          * Maximum size of the node group. Set to a value less than or equal
          * to 100 and greater than or equal to min-nodes.
          */
-        maxNodes?: pulumi.Input<number>;
+        maxNodes?: pulumi.Input<number | undefined>;
         /**
          * Minimum size of the node group. Must be less
          * than or equal to max-nodes. The default value is 0.
          */
-        minNodes?: pulumi.Input<number>;
+        minNodes?: pulumi.Input<number | undefined>;
         /**
          * The autoscaling mode. Set to one of the following:
          * - OFF: Disables the autoscaler.
@@ -7386,23 +7386,23 @@ export namespace compute {
          * restart their hosted VMs on minimal servers.
          * Possible values are `OFF`, `ON`, and `ONLY_SCALE_OUT`.
          */
-        mode?: pulumi.Input<string>;
+        mode?: pulumi.Input<string | undefined>;
     }
 
     export interface NodeTemplateNodeTypeFlexibility {
         /**
          * Number of virtual CPUs to use.
          */
-        cpus?: pulumi.Input<string>;
+        cpus?: pulumi.Input<string | undefined>;
         /**
          * -
          * Use local SSD
          */
-        localSsd?: pulumi.Input<string>;
+        localSsd?: pulumi.Input<string | undefined>;
         /**
          * Physical memory available to the node, defined in MB.
          */
-        memory?: pulumi.Input<string>;
+        memory?: pulumi.Input<string | undefined>;
     }
 
     export interface NodeTemplateServerBinding {
@@ -7432,14 +7432,14 @@ export namespace compute {
         /**
          * A description of the rule.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * Preconfigured versioned expression. For organization security policy rules,
          * the only supported type is "FIREWALL".
          * Default value is `FIREWALL`.
          * Possible values are `FIREWALL`.
          */
-        versionedExpr?: pulumi.Input<string>;
+        versionedExpr?: pulumi.Input<string | undefined>;
     }
 
     export interface OrganizationSecurityPolicyRuleMatchConfig {
@@ -7447,7 +7447,7 @@ export namespace compute {
          * Destination IP address range in CIDR format. Required for
          * EGRESS rules.
          */
-        destIpRanges?: pulumi.Input<pulumi.Input<string>[]>;
+        destIpRanges?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Pairs of IP protocols and ports that the rule should match.
          * Structure is documented below.
@@ -7457,7 +7457,7 @@ export namespace compute {
          * Source IP address range in CIDR format. Required for
          * INGRESS rules.
          */
-        srcIpRanges?: pulumi.Input<pulumi.Input<string>[]>;
+        srcIpRanges?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface OrganizationSecurityPolicyRuleMatchConfigLayer4Config {
@@ -7477,7 +7477,7 @@ export namespace compute {
          * Example inputs include: ["22"], ["80","443"], and
          * ["12345-12349"].
          */
-        ports?: pulumi.Input<pulumi.Input<string>[]>;
+        ports?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface PacketMirroringCollectorIlb {
@@ -7492,18 +7492,18 @@ export namespace compute {
          * IP CIDR ranges that apply as a filter on the source (ingress) or
          * destination (egress) IP in the IP header. Only IPv4 is supported.
          */
-        cidrRanges?: pulumi.Input<pulumi.Input<string>[]>;
+        cidrRanges?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Direction of traffic to mirror.
          * Default value is `BOTH`.
          * Possible values are `INGRESS`, `EGRESS`, and `BOTH`.
          */
-        direction?: pulumi.Input<string>;
+        direction?: pulumi.Input<string | undefined>;
         /**
          * Protocols that apply as a filter on mirrored traffic.
          * Each value may be one of `tcp`, `udp`, and `icmp`.
          */
-        ipProtocols?: pulumi.Input<pulumi.Input<string>[]>;
+        ipProtocols?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface PacketMirroringMirroredResources {
@@ -7511,16 +7511,16 @@ export namespace compute {
          * All the listed instances will be mirrored.  Specify at most 50.
          * Structure is documented below.
          */
-        instances?: pulumi.Input<pulumi.Input<inputs.compute.PacketMirroringMirroredResourcesInstance>[]>;
+        instances?: pulumi.Input<pulumi.Input<inputs.compute.PacketMirroringMirroredResourcesInstance>[] | undefined>;
         /**
          * All instances in one of these subnetworks will be mirrored.
          * Structure is documented below.
          */
-        subnetworks?: pulumi.Input<pulumi.Input<inputs.compute.PacketMirroringMirroredResourcesSubnetwork>[]>;
+        subnetworks?: pulumi.Input<pulumi.Input<inputs.compute.PacketMirroringMirroredResourcesSubnetwork>[] | undefined>;
         /**
          * All instances with these tags will be mirrored.
          */
-        tags?: pulumi.Input<pulumi.Input<string>[]>;
+        tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface PacketMirroringMirroredResourcesInstance {
@@ -7549,11 +7549,11 @@ export namespace compute {
          * Stateful disks for the instance.
          * Structure is documented below.
          */
-        disks?: pulumi.Input<pulumi.Input<inputs.compute.PerInstanceConfigPreservedStateDisk>[]>;
+        disks?: pulumi.Input<pulumi.Input<inputs.compute.PerInstanceConfigPreservedStateDisk>[] | undefined>;
         /**
          * Preserved metadata defined for this instance. This is a list of key->value pairs.
          */
-        metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     }
 
     export interface PerInstanceConfigPreservedStateDisk {
@@ -7566,7 +7566,7 @@ export namespace compute {
          * Default value is `NEVER`.
          * Possible values are `NEVER` and `ON_PERMANENT_INSTANCE_DELETION`.
          */
-        deleteRule?: pulumi.Input<string>;
+        deleteRule?: pulumi.Input<string | undefined>;
         /**
          * A unique device name that is reflected into the /dev/ tree of a Linux operating system running within the instance.
          */
@@ -7576,7 +7576,7 @@ export namespace compute {
          * Default value is `READ_WRITE`.
          * Possible values are `READ_ONLY` and `READ_WRITE`.
          */
-        mode?: pulumi.Input<string>;
+        mode?: pulumi.Input<string | undefined>;
         /**
          * The URI of an existing persistent disk to attach under the specified device-name in the format
          * `projects/project-id/zones/zone/disks/disk-name`.
@@ -7596,19 +7596,19 @@ export namespace compute {
          * instance may take to initialize. To do this, create an instance
          * and time the startup process.
          */
-        cooldownPeriod?: pulumi.Input<number>;
+        cooldownPeriod?: pulumi.Input<number | undefined>;
         /**
          * Defines the CPU utilization policy that allows the autoscaler to
          * scale based on the average CPU utilization of a managed instance
          * group.
          * Structure is documented below.
          */
-        cpuUtilization?: pulumi.Input<inputs.compute.RegionAutoscalerAutoscalingPolicyCpuUtilization>;
+        cpuUtilization?: pulumi.Input<inputs.compute.RegionAutoscalerAutoscalingPolicyCpuUtilization | undefined>;
         /**
          * Configuration parameters of autoscaling based on a load balancer.
          * Structure is documented below.
          */
-        loadBalancingUtilization?: pulumi.Input<inputs.compute.RegionAutoscalerAutoscalingPolicyLoadBalancingUtilization>;
+        loadBalancingUtilization?: pulumi.Input<inputs.compute.RegionAutoscalerAutoscalingPolicyLoadBalancingUtilization | undefined>;
         /**
          * The maximum number of instances that the autoscaler can scale up
          * to. This is required when creating or updating an autoscaler. The
@@ -7620,7 +7620,7 @@ export namespace compute {
          * Configuration parameters of autoscaling based on a custom metric.
          * Structure is documented below.
          */
-        metrics?: pulumi.Input<pulumi.Input<inputs.compute.RegionAutoscalerAutoscalingPolicyMetric>[]>;
+        metrics?: pulumi.Input<pulumi.Input<inputs.compute.RegionAutoscalerAutoscalingPolicyMetric>[] | undefined>;
         /**
          * The minimum number of replicas that the autoscaler can scale down
          * to. This cannot be less than 0. If not provided, autoscaler will
@@ -7633,20 +7633,20 @@ export namespace compute {
          * Default value is `ON`.
          * Possible values are `OFF`, `ONLY_UP`, and `ON`.
          */
-        mode?: pulumi.Input<string>;
+        mode?: pulumi.Input<string | undefined>;
         /**
          * Defines scale down controls to reduce the risk of response latency
          * and outages due to abrupt scale-in events
          * Structure is documented below.
          */
-        scaleDownControl?: pulumi.Input<inputs.compute.RegionAutoscalerAutoscalingPolicyScaleDownControl>;
+        scaleDownControl?: pulumi.Input<inputs.compute.RegionAutoscalerAutoscalingPolicyScaleDownControl | undefined>;
         /**
          * Defines scale in controls to reduce the risk of response latency
          * and outages due to abrupt scale-in events
          * Structure is documented below.
          */
-        scaleInControl?: pulumi.Input<inputs.compute.RegionAutoscalerAutoscalingPolicyScaleInControl>;
-        scalingSchedules?: pulumi.Input<pulumi.Input<inputs.compute.RegionAutoscalerAutoscalingPolicyScalingSchedule>[]>;
+        scaleInControl?: pulumi.Input<inputs.compute.RegionAutoscalerAutoscalingPolicyScaleInControl | undefined>;
+        scalingSchedules?: pulumi.Input<pulumi.Input<inputs.compute.RegionAutoscalerAutoscalingPolicyScalingSchedule>[] | undefined>;
     }
 
     export interface RegionAutoscalerAutoscalingPolicyCpuUtilization {
@@ -7697,7 +7697,7 @@ export namespace compute {
          * TimeSeries are returned upon the query execution, the autoscaler
          * will sum their respective values to obtain its scaling value.
          */
-        filter?: pulumi.Input<string>;
+        filter?: pulumi.Input<string | undefined>;
         /**
          * The identifier for this object. Format specified above.
          */
@@ -7718,19 +7718,19 @@ export namespace compute {
          * single instance, it could be better used with utilizationTarget
          * instead.
          */
-        singleInstanceAssignment?: pulumi.Input<number>;
+        singleInstanceAssignment?: pulumi.Input<number | undefined>;
         /**
          * Fraction of backend capacity utilization (set in HTTP(s) load
          * balancing configuration) that autoscaler should maintain. Must
          * be a positive float value. If not defined, the default is 0.8.
          */
-        target?: pulumi.Input<number>;
+        target?: pulumi.Input<number | undefined>;
         /**
          * Defines how target utilization value is expressed for a
          * Stackdriver Monitoring metric.
          * Possible values are `GAUGE`, `DELTA_PER_SECOND`, and `DELTA_PER_MINUTE`.
          */
-        type?: pulumi.Input<string>;
+        type?: pulumi.Input<string | undefined>;
     }
 
     export interface RegionAutoscalerAutoscalingPolicyScaleDownControl {
@@ -7738,12 +7738,12 @@ export namespace compute {
          * A nested object resource
          * Structure is documented below.
          */
-        maxScaledDownReplicas?: pulumi.Input<inputs.compute.RegionAutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicas>;
+        maxScaledDownReplicas?: pulumi.Input<inputs.compute.RegionAutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicas | undefined>;
         /**
          * How long back autoscaling should look when computing recommendations
          * to include directives regarding slower scale down, as described above.
          */
-        timeWindowSec?: pulumi.Input<number>;
+        timeWindowSec?: pulumi.Input<number | undefined>;
     }
 
     export interface RegionAutoscalerAutoscalingPolicyScaleDownControlMaxScaledDownReplicas {
@@ -7751,12 +7751,12 @@ export namespace compute {
          * Specifies a fixed number of VM instances. This must be a positive
          * integer.
          */
-        fixed?: pulumi.Input<number>;
+        fixed?: pulumi.Input<number | undefined>;
         /**
          * Specifies a percentage of instances between 0 to 100%, inclusive.
          * For example, specify 80 for 80%.
          */
-        percent?: pulumi.Input<number>;
+        percent?: pulumi.Input<number | undefined>;
     }
 
     export interface RegionAutoscalerAutoscalingPolicyScaleInControl {
@@ -7764,12 +7764,12 @@ export namespace compute {
          * A nested object resource
          * Structure is documented below.
          */
-        maxScaledInReplicas?: pulumi.Input<inputs.compute.RegionAutoscalerAutoscalingPolicyScaleInControlMaxScaledInReplicas>;
+        maxScaledInReplicas?: pulumi.Input<inputs.compute.RegionAutoscalerAutoscalingPolicyScaleInControlMaxScaledInReplicas | undefined>;
         /**
          * How long back autoscaling should look when computing recommendations
          * to include directives regarding slower scale down, as described above.
          */
-        timeWindowSec?: pulumi.Input<number>;
+        timeWindowSec?: pulumi.Input<number | undefined>;
     }
 
     export interface RegionAutoscalerAutoscalingPolicyScaleInControlMaxScaledInReplicas {
@@ -7777,23 +7777,23 @@ export namespace compute {
          * Specifies a fixed number of VM instances. This must be a positive
          * integer.
          */
-        fixed?: pulumi.Input<number>;
+        fixed?: pulumi.Input<number | undefined>;
         /**
          * Specifies a percentage of instances between 0 to 100%, inclusive.
          * For example, specify 80 for 80%.
          */
-        percent?: pulumi.Input<number>;
+        percent?: pulumi.Input<number | undefined>;
     }
 
     export interface RegionAutoscalerAutoscalingPolicyScalingSchedule {
         /**
          * An optional description of this resource.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * A boolean value that specifies if a scaling schedule can influence autoscaler recommendations. If set to true, then a scaling schedule has no effect.
          */
-        disabled?: pulumi.Input<boolean>;
+        disabled?: pulumi.Input<boolean | undefined>;
         /**
          * The duration of time intervals (in seconds) for which this scaling schedule will be running. The minimum allowed value is 300.
          */
@@ -7813,7 +7813,7 @@ export namespace compute {
         /**
          * The time zone to be used when interpreting the schedule. The value of this field must be a time zone name from the tz database: http://en.wikipedia.org/wiki/Tz_database.
          */
-        timeZone?: pulumi.Input<string>;
+        timeZone?: pulumi.Input<string | undefined>;
     }
 
     export interface RegionBackendServiceBackend {
@@ -7822,7 +7822,7 @@ export namespace compute {
          * Default value is `CONNECTION`.
          * Possible values are `UTILIZATION`, `RATE`, and `CONNECTION`.
          */
-        balancingMode?: pulumi.Input<string>;
+        balancingMode?: pulumi.Input<string | undefined>;
         /**
          * A multiplier applied to the group's maximum servicing capacity
          * (based on UTILIZATION, RATE or CONNECTION).
@@ -7833,17 +7833,17 @@ export namespace compute {
          * A setting of 0 means the group is completely drained, offering
          * 0% of its available Capacity. Valid range is [0.0,1.0].
          */
-        capacityScaler?: pulumi.Input<number>;
+        capacityScaler?: pulumi.Input<number | undefined>;
         /**
          * An optional description of this resource.
          * Provide this property when you create the resource.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * This field designates whether this is a failover backend. More
          * than one failover backend can be configured for a given RegionBackendService.
          */
-        failover?: pulumi.Input<boolean>;
+        failover?: pulumi.Input<boolean | undefined>;
         /**
          * The fully-qualified URL of an Instance Group or Network Endpoint
          * Group resource. In case of instance group this defines the list
@@ -7867,7 +7867,7 @@ export namespace compute {
          * The maximum number of connections to the backend cluster.
          * Defaults to 1024.
          */
-        maxConnections?: pulumi.Input<number>;
+        maxConnections?: pulumi.Input<number | undefined>;
         /**
          * The max number of simultaneous connections that a single backend
          * network endpoint can handle. Cannot be set
@@ -7877,7 +7877,7 @@ export namespace compute {
          * CONNECTION mode, either maxConnections or
          * maxConnectionsPerEndpoint must be set.
          */
-        maxConnectionsPerEndpoint?: pulumi.Input<number>;
+        maxConnectionsPerEndpoint?: pulumi.Input<number | undefined>;
         /**
          * The max number of simultaneous connections that a single
          * backend instance can handle. Cannot be set for INTERNAL backend
@@ -7887,7 +7887,7 @@ export namespace compute {
          * For CONNECTION mode, either maxConnections or
          * maxConnectionsPerInstance must be set.
          */
-        maxConnectionsPerInstance?: pulumi.Input<number>;
+        maxConnectionsPerInstance?: pulumi.Input<number | undefined>;
         /**
          * The max requests per second (RPS) of the group. Cannot be set
          * for INTERNAL backend services.
@@ -7896,7 +7896,7 @@ export namespace compute {
          * of maxRatePerInstance or maxRatePerEndpoint, as appropriate for
          * group type, must be set.
          */
-        maxRate?: pulumi.Input<number>;
+        maxRate?: pulumi.Input<number | undefined>;
         /**
          * The max requests per second (RPS) that a single backend network
          * endpoint can handle. This is used to calculate the capacity of
@@ -7904,7 +7904,7 @@ export namespace compute {
          * either maxRate or maxRatePerEndpoint must be set. Cannot be set
          * for INTERNAL backend services.
          */
-        maxRatePerEndpoint?: pulumi.Input<number>;
+        maxRatePerEndpoint?: pulumi.Input<number | undefined>;
         /**
          * The max requests per second (RPS) that a single backend
          * instance can handle. This is used to calculate the capacity of
@@ -7912,13 +7912,13 @@ export namespace compute {
          * either maxRate or maxRatePerInstance must be set. Cannot be set
          * for INTERNAL backend services.
          */
-        maxRatePerInstance?: pulumi.Input<number>;
+        maxRatePerInstance?: pulumi.Input<number | undefined>;
         /**
          * Used when balancingMode is UTILIZATION. This ratio defines the
          * CPU utilization target for the group. Valid range is [0.0, 1.0].
          * Cannot be set for INTERNAL backend services.
          */
-        maxUtilization?: pulumi.Input<number>;
+        maxUtilization?: pulumi.Input<number | undefined>;
     }
 
     export interface RegionBackendServiceCdnPolicy {
@@ -7926,14 +7926,14 @@ export namespace compute {
          * The CacheKeyPolicy for this CdnPolicy.
          * Structure is documented below.
          */
-        cacheKeyPolicy?: pulumi.Input<inputs.compute.RegionBackendServiceCdnPolicyCacheKeyPolicy>;
-        cacheMode?: pulumi.Input<string>;
-        clientTtl?: pulumi.Input<number>;
-        defaultTtl?: pulumi.Input<number>;
-        maxTtl?: pulumi.Input<number>;
-        negativeCaching?: pulumi.Input<boolean>;
-        negativeCachingPolicies?: pulumi.Input<pulumi.Input<inputs.compute.RegionBackendServiceCdnPolicyNegativeCachingPolicy>[]>;
-        serveWhileStale?: pulumi.Input<number>;
+        cacheKeyPolicy?: pulumi.Input<inputs.compute.RegionBackendServiceCdnPolicyCacheKeyPolicy | undefined>;
+        cacheMode?: pulumi.Input<string | undefined>;
+        clientTtl?: pulumi.Input<number | undefined>;
+        defaultTtl?: pulumi.Input<number | undefined>;
+        maxTtl?: pulumi.Input<number | undefined>;
+        negativeCaching?: pulumi.Input<boolean | undefined>;
+        negativeCachingPolicies?: pulumi.Input<pulumi.Input<inputs.compute.RegionBackendServiceCdnPolicyNegativeCachingPolicy>[] | undefined>;
+        serveWhileStale?: pulumi.Input<number | undefined>;
         /**
          * Maximum number of seconds the response to a signed URL request
          * will be considered fresh, defaults to 1hr (3600s). After this
@@ -7945,18 +7945,18 @@ export namespace compute {
          * existing Cache-Control header. The actual headers served in
          * responses will not be altered.
          */
-        signedUrlCacheMaxAgeSec?: pulumi.Input<number>;
+        signedUrlCacheMaxAgeSec?: pulumi.Input<number | undefined>;
     }
 
     export interface RegionBackendServiceCdnPolicyCacheKeyPolicy {
         /**
          * If true requests to different hosts will be cached separately.
          */
-        includeHost?: pulumi.Input<boolean>;
+        includeHost?: pulumi.Input<boolean | undefined>;
         /**
          * If true, http and https requests will be cached separately.
          */
-        includeProtocol?: pulumi.Input<boolean>;
+        includeProtocol?: pulumi.Input<boolean | undefined>;
         /**
          * If true, include query string parameters in the cache key
          * according to queryStringWhitelist and
@@ -7965,7 +7965,7 @@ export namespace compute {
          * If false, the query string will be excluded from the cache
          * key entirely.
          */
-        includeQueryString?: pulumi.Input<boolean>;
+        includeQueryString?: pulumi.Input<boolean | undefined>;
         /**
          * Names of query string parameters to exclude in cache keys.
          * All other parameters will be included. Either specify
@@ -7973,7 +7973,7 @@ export namespace compute {
          * '&' and '=' will be percent encoded and not treated as
          * delimiters.
          */
-        queryStringBlacklists?: pulumi.Input<pulumi.Input<string>[]>;
+        queryStringBlacklists?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Names of query string parameters to include in cache keys.
          * All other parameters will be excluded. Either specify
@@ -7981,46 +7981,46 @@ export namespace compute {
          * '&' and '=' will be percent encoded and not treated as
          * delimiters.
          */
-        queryStringWhitelists?: pulumi.Input<pulumi.Input<string>[]>;
+        queryStringWhitelists?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface RegionBackendServiceCdnPolicyNegativeCachingPolicy {
-        code?: pulumi.Input<number>;
-        ttl?: pulumi.Input<number>;
+        code?: pulumi.Input<number | undefined>;
+        ttl?: pulumi.Input<number | undefined>;
     }
 
     export interface RegionBackendServiceCircuitBreakers {
         /**
          * The timeout for new network connections to hosts.  Structure is documented below.
          */
-        connectTimeout?: pulumi.Input<inputs.compute.RegionBackendServiceCircuitBreakersConnectTimeout>;
+        connectTimeout?: pulumi.Input<inputs.compute.RegionBackendServiceCircuitBreakersConnectTimeout | undefined>;
         /**
          * The maximum number of connections to the backend cluster.
          * Defaults to 1024.
          */
-        maxConnections?: pulumi.Input<number>;
+        maxConnections?: pulumi.Input<number | undefined>;
         /**
          * The maximum number of pending requests to the backend cluster.
          * Defaults to 1024.
          */
-        maxPendingRequests?: pulumi.Input<number>;
+        maxPendingRequests?: pulumi.Input<number | undefined>;
         /**
          * The maximum number of parallel requests to the backend cluster.
          * Defaults to 1024.
          */
-        maxRequests?: pulumi.Input<number>;
+        maxRequests?: pulumi.Input<number | undefined>;
         /**
          * Maximum requests for a single backend connection. This parameter
          * is respected by both the HTTP/1.1 and HTTP/2 implementations. If
          * not specified, there is no limit. Setting this parameter to 1
          * will effectively disable keep alive.
          */
-        maxRequestsPerConnection?: pulumi.Input<number>;
+        maxRequestsPerConnection?: pulumi.Input<number | undefined>;
         /**
          * The maximum number of parallel retries to the backend cluster.
          * Defaults to 3.
          */
-        maxRetries?: pulumi.Input<number>;
+        maxRetries?: pulumi.Input<number | undefined>;
     }
 
     export interface RegionBackendServiceCircuitBreakersConnectTimeout {
@@ -8029,7 +8029,7 @@ export namespace compute {
          * less than one second are represented with a 0 `seconds` field and a positive
          * `nanos` field. Must be from 0 to 999,999,999 inclusive.
          */
-        nanos?: pulumi.Input<number>;
+        nanos?: pulumi.Input<number | undefined>;
         /**
          * Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
          * inclusive.
@@ -8045,12 +8045,12 @@ export namespace compute {
          * This field is applicable if the sessionAffinity is set to HTTP_COOKIE.
          * Structure is documented below.
          */
-        httpCookie?: pulumi.Input<inputs.compute.RegionBackendServiceConsistentHashHttpCookie>;
+        httpCookie?: pulumi.Input<inputs.compute.RegionBackendServiceConsistentHashHttpCookie | undefined>;
         /**
          * The hash based on the value of the specified header field.
          * This field is applicable if the sessionAffinity is set to HEADER_FIELD.
          */
-        httpHeaderName?: pulumi.Input<string>;
+        httpHeaderName?: pulumi.Input<string | undefined>;
         /**
          * The minimum number of virtual nodes to use for the hash ring.
          * Larger ring sizes result in more granular load
@@ -8059,19 +8059,19 @@ export namespace compute {
          * virtual node.
          * Defaults to 1024.
          */
-        minimumRingSize?: pulumi.Input<number>;
+        minimumRingSize?: pulumi.Input<number | undefined>;
     }
 
     export interface RegionBackendServiceConsistentHashHttpCookie {
         /**
          * Name of the cookie.
          */
-        name?: pulumi.Input<string>;
+        name?: pulumi.Input<string | undefined>;
         /**
          * Path to set for the cookie.
          */
-        path?: pulumi.Input<string>;
-        ttl?: pulumi.Input<inputs.compute.RegionBackendServiceConsistentHashHttpCookieTtl>;
+        path?: pulumi.Input<string | undefined>;
+        ttl?: pulumi.Input<inputs.compute.RegionBackendServiceConsistentHashHttpCookieTtl | undefined>;
     }
 
     export interface RegionBackendServiceConsistentHashHttpCookieTtl {
@@ -8080,7 +8080,7 @@ export namespace compute {
          * less than one second are represented with a 0 `seconds` field and a positive
          * `nanos` field. Must be from 0 to 999,999,999 inclusive.
          */
-        nanos?: pulumi.Input<number>;
+        nanos?: pulumi.Input<number | undefined>;
         /**
          * Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
          * inclusive.
@@ -8099,14 +8099,14 @@ export namespace compute {
          * This can be set to true only if the protocol is TCP.
          * The default is false.
          */
-        disableConnectionDrainOnFailover?: pulumi.Input<boolean>;
+        disableConnectionDrainOnFailover?: pulumi.Input<boolean | undefined>;
         /**
          * This option is used only when no healthy VMs are detected in the primary
          * and backup instance groups. When set to true, traffic is dropped. When
          * set to false, new connections are sent across all VMs in the primary group.
          * The default is false.
          */
-        dropTrafficIfUnhealthy?: pulumi.Input<boolean>;
+        dropTrafficIfUnhealthy?: pulumi.Input<boolean | undefined>;
         /**
          * The value of the field must be in [0, 1]. If the ratio of the healthy
          * VMs in the primary backend is at or below this number, traffic arriving
@@ -8117,21 +8117,21 @@ export namespace compute {
          * VMs with the best effort, or to all VMs when no VM is healthy.
          * This field is only used with l4 load balancing.
          */
-        failoverRatio?: pulumi.Input<number>;
+        failoverRatio?: pulumi.Input<number | undefined>;
     }
 
     export interface RegionBackendServiceLogConfig {
         /**
          * Whether to enable logging for the load balancer traffic served by this backend service.
          */
-        enable?: pulumi.Input<boolean>;
+        enable?: pulumi.Input<boolean | undefined>;
         /**
          * This field can only be specified if logging is enabled for this backend service. The value of
          * the field must be in [0, 1]. This configures the sampling rate of requests to the load balancer
          * where 1.0 means all logged requests are reported and 0.0 means no logged requests are reported.
          * The default value is 1.0.
          */
-        sampleRate?: pulumi.Input<number>;
+        sampleRate?: pulumi.Input<number | undefined>;
     }
 
     export interface RegionBackendServiceOutlierDetection {
@@ -8141,55 +8141,55 @@ export namespace compute {
          * 30000ms or 30s.
          * Structure is documented below.
          */
-        baseEjectionTime?: pulumi.Input<inputs.compute.RegionBackendServiceOutlierDetectionBaseEjectionTime>;
+        baseEjectionTime?: pulumi.Input<inputs.compute.RegionBackendServiceOutlierDetectionBaseEjectionTime | undefined>;
         /**
          * Number of errors before a host is ejected from the connection pool. When the
          * backend host is accessed over HTTP, a 5xx return code qualifies as an error.
          * Defaults to 5.
          */
-        consecutiveErrors?: pulumi.Input<number>;
+        consecutiveErrors?: pulumi.Input<number | undefined>;
         /**
          * The number of consecutive gateway failures (502, 503, 504 status or connection
          * errors that are mapped to one of those status codes) before a consecutive
          * gateway failure ejection occurs. Defaults to 5.
          */
-        consecutiveGatewayFailure?: pulumi.Input<number>;
+        consecutiveGatewayFailure?: pulumi.Input<number | undefined>;
         /**
          * The percentage chance that a host will be actually ejected when an outlier
          * status is detected through consecutive 5xx. This setting can be used to disable
          * ejection or to ramp it up slowly. Defaults to 100.
          */
-        enforcingConsecutiveErrors?: pulumi.Input<number>;
+        enforcingConsecutiveErrors?: pulumi.Input<number | undefined>;
         /**
          * The percentage chance that a host will be actually ejected when an outlier
          * status is detected through consecutive gateway failures. This setting can be
          * used to disable ejection or to ramp it up slowly. Defaults to 0.
          */
-        enforcingConsecutiveGatewayFailure?: pulumi.Input<number>;
+        enforcingConsecutiveGatewayFailure?: pulumi.Input<number | undefined>;
         /**
          * The percentage chance that a host will be actually ejected when an outlier
          * status is detected through success rate statistics. This setting can be used to
          * disable ejection or to ramp it up slowly. Defaults to 100.
          */
-        enforcingSuccessRate?: pulumi.Input<number>;
+        enforcingSuccessRate?: pulumi.Input<number | undefined>;
         /**
          * Time interval between ejection sweep analysis. This can result in both new
          * ejections as well as hosts being returned to service. Defaults to 10 seconds.
          * Structure is documented below.
          */
-        interval?: pulumi.Input<inputs.compute.RegionBackendServiceOutlierDetectionInterval>;
+        interval?: pulumi.Input<inputs.compute.RegionBackendServiceOutlierDetectionInterval | undefined>;
         /**
          * Maximum percentage of hosts in the load balancing pool for the backend service
          * that can be ejected. Defaults to 10%.
          */
-        maxEjectionPercent?: pulumi.Input<number>;
+        maxEjectionPercent?: pulumi.Input<number | undefined>;
         /**
          * The number of hosts in a cluster that must have enough request volume to detect
          * success rate outliers. If the number of hosts is less than this setting, outlier
          * detection via success rate statistics is not performed for any host in the
          * cluster. Defaults to 5.
          */
-        successRateMinimumHosts?: pulumi.Input<number>;
+        successRateMinimumHosts?: pulumi.Input<number | undefined>;
         /**
          * The minimum number of total requests that must be collected in one interval (as
          * defined by the interval duration above) to include this host in success rate
@@ -8197,7 +8197,7 @@ export namespace compute {
          * detection via success rate statistics is not performed for that host. Defaults
          * to 100.
          */
-        successRateRequestVolume?: pulumi.Input<number>;
+        successRateRequestVolume?: pulumi.Input<number | undefined>;
         /**
          * This factor is used to determine the ejection threshold for success rate outlier
          * ejection. The ejection threshold is the difference between the mean success
@@ -8206,7 +8206,7 @@ export namespace compute {
          * by a thousand to get a double. That is, if the desired factor is 1.9, the
          * runtime value should be 1900. Defaults to 1900.
          */
-        successRateStdevFactor?: pulumi.Input<number>;
+        successRateStdevFactor?: pulumi.Input<number | undefined>;
     }
 
     export interface RegionBackendServiceOutlierDetectionBaseEjectionTime {
@@ -8215,7 +8215,7 @@ export namespace compute {
          * less than one second are represented with a 0 `seconds` field and a positive
          * `nanos` field. Must be from 0 to 999,999,999 inclusive.
          */
-        nanos?: pulumi.Input<number>;
+        nanos?: pulumi.Input<number | undefined>;
         /**
          * Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
          * inclusive.
@@ -8229,7 +8229,7 @@ export namespace compute {
          * less than one second are represented with a 0 `seconds` field and a positive
          * `nanos` field. Must be from 0 to 999,999,999 inclusive.
          */
-        nanos?: pulumi.Input<number>;
+        nanos?: pulumi.Input<number | undefined>;
         /**
          * Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
          * inclusive.
@@ -8241,28 +8241,28 @@ export namespace compute {
         /**
          * The name of the encryption key that is stored in Google Cloud KMS.
          */
-        kmsKeyName?: pulumi.Input<string>;
+        kmsKeyName?: pulumi.Input<string | undefined>;
         /**
          * Specifies a 256-bit customer-supplied encryption key, encoded in
          * RFC 4648 base64 to either encrypt or decrypt this resource.
          */
-        rawKey?: pulumi.Input<string>;
+        rawKey?: pulumi.Input<string | undefined>;
         /**
          * -
          * The RFC 4648 base64 encoded SHA-256 hash of the customer-supplied
          * encryption key that protects this resource.
          */
-        sha256?: pulumi.Input<string>;
+        sha256?: pulumi.Input<string | undefined>;
     }
 
     export interface RegionDiskIamBindingCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
 
     export interface RegionDiskIamMemberCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
@@ -8271,18 +8271,18 @@ export namespace compute {
         /**
          * The name of the encryption key that is stored in Google Cloud KMS.
          */
-        kmsKeyName?: pulumi.Input<string>;
+        kmsKeyName?: pulumi.Input<string | undefined>;
         /**
          * Specifies a 256-bit customer-supplied encryption key, encoded in
          * RFC 4648 base64 to either encrypt or decrypt this resource.
          */
-        rawKey?: pulumi.Input<string>;
+        rawKey?: pulumi.Input<string | undefined>;
         /**
          * -
          * The RFC 4648 base64 encoded SHA-256 hash of the customer-supplied
          * encryption key that protects this resource.
          */
-        sha256?: pulumi.Input<string>;
+        sha256?: pulumi.Input<string | undefined>;
     }
 
     export interface RegionHealthCheckGrpcHealthCheck {
@@ -8293,18 +8293,18 @@ export namespace compute {
          * * Non-empty serviceName means the health of that gRPC service, as defined by the owner of the service.
          * The grpcServiceName can only be ASCII.
          */
-        grpcServiceName?: pulumi.Input<string>;
+        grpcServiceName?: pulumi.Input<string | undefined>;
         /**
          * The port number for the health check request.
          * Must be specified if portName and portSpecification are not set
          * or if portSpecification is USE_FIXED_PORT. Valid values are 1 through 65535.
          */
-        port?: pulumi.Input<number>;
+        port?: pulumi.Input<number | undefined>;
         /**
          * Port name as defined in InstanceGroup#NamedPort#name. If both port and
          * portName are defined, port takes precedence.
          */
-        portName?: pulumi.Input<string>;
+        portName?: pulumi.Input<string | undefined>;
         /**
          * Specifies how port is selected for health checking, can be one of the
          * following values:
@@ -8318,7 +8318,7 @@ export namespace compute {
          * `portName` fields.
          * Possible values are `USE_FIXED_PORT`, `USE_NAMED_PORT`, and `USE_SERVING_PORT`.
          */
-        portSpecification?: pulumi.Input<string>;
+        portSpecification?: pulumi.Input<string | undefined>;
     }
 
     export interface RegionHealthCheckHttp2HealthCheck {
@@ -8327,18 +8327,18 @@ export namespace compute {
          * If left empty (default value), the public IP on behalf of which this health
          * check is performed will be used.
          */
-        host?: pulumi.Input<string>;
+        host?: pulumi.Input<string | undefined>;
         /**
          * The port number for the health check request.
          * Must be specified if portName and portSpecification are not set
          * or if portSpecification is USE_FIXED_PORT. Valid values are 1 through 65535.
          */
-        port?: pulumi.Input<number>;
+        port?: pulumi.Input<number | undefined>;
         /**
          * Port name as defined in InstanceGroup#NamedPort#name. If both port and
          * portName are defined, port takes precedence.
          */
-        portName?: pulumi.Input<string>;
+        portName?: pulumi.Input<string | undefined>;
         /**
          * Specifies how port is selected for health checking, can be one of the
          * following values:
@@ -8352,25 +8352,25 @@ export namespace compute {
          * `portName` fields.
          * Possible values are `USE_FIXED_PORT`, `USE_NAMED_PORT`, and `USE_SERVING_PORT`.
          */
-        portSpecification?: pulumi.Input<string>;
+        portSpecification?: pulumi.Input<string | undefined>;
         /**
          * Specifies the type of proxy header to append before sending data to the
          * backend.
          * Default value is `NONE`.
          * Possible values are `NONE` and `PROXY_V1`.
          */
-        proxyHeader?: pulumi.Input<string>;
+        proxyHeader?: pulumi.Input<string | undefined>;
         /**
          * The request path of the HTTP2 health check request.
          * The default value is /.
          */
-        requestPath?: pulumi.Input<string>;
+        requestPath?: pulumi.Input<string | undefined>;
         /**
          * The bytes to match against the beginning of the response data. If left empty
          * (the default value), any response will indicate health. The response data
          * can only be ASCII.
          */
-        response?: pulumi.Input<string>;
+        response?: pulumi.Input<string | undefined>;
     }
 
     export interface RegionHealthCheckHttpHealthCheck {
@@ -8379,18 +8379,18 @@ export namespace compute {
          * If left empty (default value), the public IP on behalf of which this health
          * check is performed will be used.
          */
-        host?: pulumi.Input<string>;
+        host?: pulumi.Input<string | undefined>;
         /**
          * The port number for the health check request.
          * Must be specified if portName and portSpecification are not set
          * or if portSpecification is USE_FIXED_PORT. Valid values are 1 through 65535.
          */
-        port?: pulumi.Input<number>;
+        port?: pulumi.Input<number | undefined>;
         /**
          * Port name as defined in InstanceGroup#NamedPort#name. If both port and
          * portName are defined, port takes precedence.
          */
-        portName?: pulumi.Input<string>;
+        portName?: pulumi.Input<string | undefined>;
         /**
          * Specifies how port is selected for health checking, can be one of the
          * following values:
@@ -8404,25 +8404,25 @@ export namespace compute {
          * `portName` fields.
          * Possible values are `USE_FIXED_PORT`, `USE_NAMED_PORT`, and `USE_SERVING_PORT`.
          */
-        portSpecification?: pulumi.Input<string>;
+        portSpecification?: pulumi.Input<string | undefined>;
         /**
          * Specifies the type of proxy header to append before sending data to the
          * backend.
          * Default value is `NONE`.
          * Possible values are `NONE` and `PROXY_V1`.
          */
-        proxyHeader?: pulumi.Input<string>;
+        proxyHeader?: pulumi.Input<string | undefined>;
         /**
          * The request path of the HTTP2 health check request.
          * The default value is /.
          */
-        requestPath?: pulumi.Input<string>;
+        requestPath?: pulumi.Input<string | undefined>;
         /**
          * The bytes to match against the beginning of the response data. If left empty
          * (the default value), any response will indicate health. The response data
          * can only be ASCII.
          */
-        response?: pulumi.Input<string>;
+        response?: pulumi.Input<string | undefined>;
     }
 
     export interface RegionHealthCheckHttpsHealthCheck {
@@ -8431,18 +8431,18 @@ export namespace compute {
          * If left empty (default value), the public IP on behalf of which this health
          * check is performed will be used.
          */
-        host?: pulumi.Input<string>;
+        host?: pulumi.Input<string | undefined>;
         /**
          * The port number for the health check request.
          * Must be specified if portName and portSpecification are not set
          * or if portSpecification is USE_FIXED_PORT. Valid values are 1 through 65535.
          */
-        port?: pulumi.Input<number>;
+        port?: pulumi.Input<number | undefined>;
         /**
          * Port name as defined in InstanceGroup#NamedPort#name. If both port and
          * portName are defined, port takes precedence.
          */
-        portName?: pulumi.Input<string>;
+        portName?: pulumi.Input<string | undefined>;
         /**
          * Specifies how port is selected for health checking, can be one of the
          * following values:
@@ -8456,25 +8456,25 @@ export namespace compute {
          * `portName` fields.
          * Possible values are `USE_FIXED_PORT`, `USE_NAMED_PORT`, and `USE_SERVING_PORT`.
          */
-        portSpecification?: pulumi.Input<string>;
+        portSpecification?: pulumi.Input<string | undefined>;
         /**
          * Specifies the type of proxy header to append before sending data to the
          * backend.
          * Default value is `NONE`.
          * Possible values are `NONE` and `PROXY_V1`.
          */
-        proxyHeader?: pulumi.Input<string>;
+        proxyHeader?: pulumi.Input<string | undefined>;
         /**
          * The request path of the HTTP2 health check request.
          * The default value is /.
          */
-        requestPath?: pulumi.Input<string>;
+        requestPath?: pulumi.Input<string | undefined>;
         /**
          * The bytes to match against the beginning of the response data. If left empty
          * (the default value), any response will indicate health. The response data
          * can only be ASCII.
          */
-        response?: pulumi.Input<string>;
+        response?: pulumi.Input<string | undefined>;
     }
 
     export interface RegionHealthCheckLogConfig {
@@ -8482,7 +8482,7 @@ export namespace compute {
          * Indicates whether or not to export logs. This is false by default,
          * which means no health check logging will be done.
          */
-        enable?: pulumi.Input<boolean>;
+        enable?: pulumi.Input<boolean | undefined>;
     }
 
     export interface RegionHealthCheckSslHealthCheck {
@@ -8491,12 +8491,12 @@ export namespace compute {
          * Must be specified if portName and portSpecification are not set
          * or if portSpecification is USE_FIXED_PORT. Valid values are 1 through 65535.
          */
-        port?: pulumi.Input<number>;
+        port?: pulumi.Input<number | undefined>;
         /**
          * Port name as defined in InstanceGroup#NamedPort#name. If both port and
          * portName are defined, port takes precedence.
          */
-        portName?: pulumi.Input<string>;
+        portName?: pulumi.Input<string | undefined>;
         /**
          * Specifies how port is selected for health checking, can be one of the
          * following values:
@@ -8510,27 +8510,27 @@ export namespace compute {
          * `portName` fields.
          * Possible values are `USE_FIXED_PORT`, `USE_NAMED_PORT`, and `USE_SERVING_PORT`.
          */
-        portSpecification?: pulumi.Input<string>;
+        portSpecification?: pulumi.Input<string | undefined>;
         /**
          * Specifies the type of proxy header to append before sending data to the
          * backend.
          * Default value is `NONE`.
          * Possible values are `NONE` and `PROXY_V1`.
          */
-        proxyHeader?: pulumi.Input<string>;
+        proxyHeader?: pulumi.Input<string | undefined>;
         /**
          * The application data to send once the SSL connection has been
          * established (default value is empty). If both request and response are
          * empty, the connection establishment alone will indicate health. The request
          * data can only be ASCII.
          */
-        request?: pulumi.Input<string>;
+        request?: pulumi.Input<string | undefined>;
         /**
          * The bytes to match against the beginning of the response data. If left empty
          * (the default value), any response will indicate health. The response data
          * can only be ASCII.
          */
-        response?: pulumi.Input<string>;
+        response?: pulumi.Input<string | undefined>;
     }
 
     export interface RegionHealthCheckTcpHealthCheck {
@@ -8539,12 +8539,12 @@ export namespace compute {
          * Must be specified if portName and portSpecification are not set
          * or if portSpecification is USE_FIXED_PORT. Valid values are 1 through 65535.
          */
-        port?: pulumi.Input<number>;
+        port?: pulumi.Input<number | undefined>;
         /**
          * Port name as defined in InstanceGroup#NamedPort#name. If both port and
          * portName are defined, port takes precedence.
          */
-        portName?: pulumi.Input<string>;
+        portName?: pulumi.Input<string | undefined>;
         /**
          * Specifies how port is selected for health checking, can be one of the
          * following values:
@@ -8558,27 +8558,27 @@ export namespace compute {
          * `portName` fields.
          * Possible values are `USE_FIXED_PORT`, `USE_NAMED_PORT`, and `USE_SERVING_PORT`.
          */
-        portSpecification?: pulumi.Input<string>;
+        portSpecification?: pulumi.Input<string | undefined>;
         /**
          * Specifies the type of proxy header to append before sending data to the
          * backend.
          * Default value is `NONE`.
          * Possible values are `NONE` and `PROXY_V1`.
          */
-        proxyHeader?: pulumi.Input<string>;
+        proxyHeader?: pulumi.Input<string | undefined>;
         /**
          * The application data to send once the SSL connection has been
          * established (default value is empty). If both request and response are
          * empty, the connection establishment alone will indicate health. The request
          * data can only be ASCII.
          */
-        request?: pulumi.Input<string>;
+        request?: pulumi.Input<string | undefined>;
         /**
          * The bytes to match against the beginning of the response data. If left empty
          * (the default value), any response will indicate health. The response data
          * can only be ASCII.
          */
-        response?: pulumi.Input<string>;
+        response?: pulumi.Input<string | undefined>;
     }
 
     export interface RegionInstanceGroupManagerAutoHealingPolicies {
@@ -8609,7 +8609,7 @@ export namespace compute {
         /**
          * , A value that prescribes what should happen to the stateful disk when the VM instance is deleted. The available options are `NEVER` and `ON_PERMANENT_INSTANCE_DELETION`. `NEVER` - detach the disk when the VM is deleted, but do not delete the disk. `ON_PERMANENT_INSTANCE_DELETION` will delete the stateful disk when the VM is permanently deleted from the instance group. The default is `NEVER`.
          */
-        deleteRule?: pulumi.Input<string>;
+        deleteRule?: pulumi.Input<string | undefined>;
         /**
          * , The device name of the disk to be attached.
          */
@@ -8620,33 +8620,33 @@ export namespace compute {
         /**
          * - The instance redistribution policy for regional managed instance groups. Valid values are: `"PROACTIVE"`, `"NONE"`. If `PROACTIVE` (default), the group attempts to maintain an even distribution of VM instances across zones in the region. If `NONE`, proactive redistribution is disabled.
          */
-        instanceRedistributionType?: pulumi.Input<string>;
+        instanceRedistributionType?: pulumi.Input<string | undefined>;
         /**
          * , The maximum number of instances that can be created above the specified targetSize during the update process. Conflicts with `maxSurgePercent`. It has to be either 0 or at least equal to the number of zones.  If fixed values are used, at least one of `maxUnavailableFixed` or `maxSurgeFixed` must be greater than 0.
          */
-        maxSurgeFixed?: pulumi.Input<number>;
+        maxSurgeFixed?: pulumi.Input<number | undefined>;
         /**
          * , The maximum number of instances(calculated as percentage) that can be created above the specified targetSize during the update process. Conflicts with `maxSurgeFixed`. Percent value is only allowed for regional managed instance groups with size at least 10.
          */
-        maxSurgePercent?: pulumi.Input<number>;
+        maxSurgePercent?: pulumi.Input<number | undefined>;
         /**
          * , The maximum number of instances that can be unavailable during the update process. Conflicts with `maxUnavailablePercent`. It has to be either 0 or at least equal to the number of zones. If fixed values are used, at least one of `maxUnavailableFixed` or `maxSurgeFixed` must be greater than 0.
          */
-        maxUnavailableFixed?: pulumi.Input<number>;
+        maxUnavailableFixed?: pulumi.Input<number | undefined>;
         /**
          * , The maximum number of instances(calculated as percentage) that can be unavailable during the update process. Conflicts with `maxUnavailableFixed`. Percent value is only allowed for regional managed instance groups with size at least 10.
          */
-        maxUnavailablePercent?: pulumi.Input<number>;
+        maxUnavailablePercent?: pulumi.Input<number | undefined>;
         /**
          * , Minimum number of seconds to wait for after a newly created instance becomes available. This value must be from range [0, 3600]
          * - - -
          */
-        minReadySec?: pulumi.Input<number>;
+        minReadySec?: pulumi.Input<number | undefined>;
         /**
          * - Minimal action to be taken on an instance. You can specify either `RESTART` to restart existing instances or `REPLACE` to delete and create new instances from the target template. If you specify a `RESTART`, the Updater will attempt to perform that action only. However, if the Updater determines that the minimal action you specify is not enough to perform the update, it might perform a more disruptive action.
          */
         minimalAction: pulumi.Input<string>;
-        replacementMethod?: pulumi.Input<string>;
+        replacementMethod?: pulumi.Input<string | undefined>;
         /**
          * - The type of update process. You can specify either `PROACTIVE` so that the instance group manager proactively executes actions in order to bring instances to their target versions or `OPPORTUNISTIC` so that no action is proactively executed but the update will be performed as part of other actions (for example, resizes or recreateInstances calls).
          */
@@ -8661,24 +8661,24 @@ export namespace compute {
         /**
          * - Version name.
          */
-        name?: pulumi.Input<string>;
+        name?: pulumi.Input<string | undefined>;
         /**
          * - The number of instances calculated as a fixed number or a percentage depending on the settings. Structure is documented below.
          */
-        targetSize?: pulumi.Input<inputs.compute.RegionInstanceGroupManagerVersionTargetSize>;
+        targetSize?: pulumi.Input<inputs.compute.RegionInstanceGroupManagerVersionTargetSize | undefined>;
     }
 
     export interface RegionInstanceGroupManagerVersionTargetSize {
         /**
          * , The number of instances which are managed for this version. Conflicts with `percent`.
          */
-        fixed?: pulumi.Input<number>;
+        fixed?: pulumi.Input<number | undefined>;
         /**
          * , The number of instances (calculated as percentage) which are managed for this version. Conflicts with `fixed`.
          * Note that when using `percent`, rounding will be in favor of explicitly set `targetSize` values; a managed instance group with 2 instances and 2 `version`s,
          * one of which has a `target_size.percent` of `60` will create 2 instances of that `version`.
          */
-        percent?: pulumi.Input<number>;
+        percent?: pulumi.Input<number | undefined>;
     }
 
     export interface RegionNetworkEndpointGroupAppEngine {
@@ -8687,7 +8687,7 @@ export namespace compute {
          * The service name must be 1-63 characters long, and comply with RFC1035.
          * Example value: "default", "my-service".
          */
-        service?: pulumi.Input<string>;
+        service?: pulumi.Input<string | undefined>;
         /**
          * A template to parse function field from a request URL. URL mask allows
          * for routing to multiple Cloud Functions without having to create
@@ -8696,13 +8696,13 @@ export namespace compute {
          * can be backed by the same Serverless NEG with URL mask "/". The URL mask
          * will parse them to { function = "function1" } and { function = "function2" } respectively.
          */
-        urlMask?: pulumi.Input<string>;
+        urlMask?: pulumi.Input<string | undefined>;
         /**
          * Optional serving version.
          * The version must be 1-63 characters long, and comply with RFC1035.
          * Example value: "v1", "v2".
          */
-        version?: pulumi.Input<string>;
+        version?: pulumi.Input<string | undefined>;
     }
 
     export interface RegionNetworkEndpointGroupCloudFunction {
@@ -8711,7 +8711,7 @@ export namespace compute {
          * The function name is case-sensitive and must be 1-63 characters long.
          * Example value: "func1".
          */
-        function?: pulumi.Input<string>;
+        function?: pulumi.Input<string | undefined>;
         /**
          * A template to parse function field from a request URL. URL mask allows
          * for routing to multiple Cloud Functions without having to create
@@ -8720,7 +8720,7 @@ export namespace compute {
          * can be backed by the same Serverless NEG with URL mask "/". The URL mask
          * will parse them to { function = "function1" } and { function = "function2" } respectively.
          */
-        urlMask?: pulumi.Input<string>;
+        urlMask?: pulumi.Input<string | undefined>;
     }
 
     export interface RegionNetworkEndpointGroupCloudRun {
@@ -8729,14 +8729,14 @@ export namespace compute {
          * The service name must be 1-63 characters long, and comply with RFC1035.
          * Example value: "default", "my-service".
          */
-        service?: pulumi.Input<string>;
+        service?: pulumi.Input<string | undefined>;
         /**
          * Cloud Run tag represents the "named-revision" to provide
          * additional fine-grained traffic routing information.
          * The tag must be 1-63 characters long, and comply with RFC1035.
          * Example value: "revision-0010".
          */
-        tag?: pulumi.Input<string>;
+        tag?: pulumi.Input<string | undefined>;
         /**
          * A template to parse function field from a request URL. URL mask allows
          * for routing to multiple Cloud Functions without having to create
@@ -8745,7 +8745,7 @@ export namespace compute {
          * can be backed by the same Serverless NEG with URL mask "/". The URL mask
          * will parse them to { function = "function1" } and { function = "function2" } respectively.
          */
-        urlMask?: pulumi.Input<string>;
+        urlMask?: pulumi.Input<string | undefined>;
     }
 
     export interface RegionPerInstanceConfigPreservedState {
@@ -8753,11 +8753,11 @@ export namespace compute {
          * Stateful disks for the instance.
          * Structure is documented below.
          */
-        disks?: pulumi.Input<pulumi.Input<inputs.compute.RegionPerInstanceConfigPreservedStateDisk>[]>;
+        disks?: pulumi.Input<pulumi.Input<inputs.compute.RegionPerInstanceConfigPreservedStateDisk>[] | undefined>;
         /**
          * Preserved metadata defined for this instance. This is a list of key->value pairs.
          */
-        metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     }
 
     export interface RegionPerInstanceConfigPreservedStateDisk {
@@ -8770,7 +8770,7 @@ export namespace compute {
          * Default value is `NEVER`.
          * Possible values are `NEVER` and `ON_PERMANENT_INSTANCE_DELETION`.
          */
-        deleteRule?: pulumi.Input<string>;
+        deleteRule?: pulumi.Input<string | undefined>;
         /**
          * A unique device name that is reflected into the /dev/ tree of a Linux operating system running within the instance.
          */
@@ -8780,7 +8780,7 @@ export namespace compute {
          * Default value is `READ_WRITE`.
          * Possible values are `READ_ONLY` and `READ_WRITE`.
          */
-        mode?: pulumi.Input<string>;
+        mode?: pulumi.Input<string | undefined>;
         /**
          * The URI of an existing persistent disk to attach under the specified device-name in the format
          * `projects/project-id/zones/zone/disks/disk-name`.
@@ -8793,14 +8793,14 @@ export namespace compute {
          * The host that will be used in the redirect response instead of the one that was
          * supplied in the request. The value must be between 1 and 255 characters.
          */
-        hostRedirect?: pulumi.Input<string>;
+        hostRedirect?: pulumi.Input<string | undefined>;
         /**
          * If set to true, the URL scheme in the redirected request is set to https. If set to
          * false, the URL scheme of the redirected request will remain the same as that of the
          * request. This must only be set for UrlMaps used in TargetHttpProxys. Setting this
          * true for TargetHttpsProxy is not permitted. The default is set to false.
          */
-        httpsRedirect?: pulumi.Input<boolean>;
+        httpsRedirect?: pulumi.Input<boolean | undefined>;
         /**
          * The path that will be used in the redirect response instead of the one that was
          * supplied in the request. pathRedirect cannot be supplied together with
@@ -8808,7 +8808,7 @@ export namespace compute {
          * original request will be used for the redirect. The value must be between 1 and 1024
          * characters.
          */
-        pathRedirect?: pulumi.Input<string>;
+        pathRedirect?: pulumi.Input<string | undefined>;
         /**
          * The prefix that replaces the prefixMatch specified in the HttpRouteRuleMatch,
          * retaining the remaining portion of the URL before redirecting the request.
@@ -8816,7 +8816,7 @@ export namespace compute {
          * neither. If neither is supplied, the path of the original request will be used for
          * the redirect. The value must be between 1 and 1024 characters.
          */
-        prefixRedirect?: pulumi.Input<string>;
+        prefixRedirect?: pulumi.Input<string | undefined>;
         /**
          * The HTTP Status code to use for this RedirectAction. Supported values are:
          * * MOVED_PERMANENTLY_DEFAULT, which is the default value and corresponds to 301.
@@ -8827,7 +8827,7 @@ export namespace compute {
          * * PERMANENT_REDIRECT, which corresponds to 308. In this case,
          * the request method will be retained.
          */
-        redirectResponseCode?: pulumi.Input<string>;
+        redirectResponseCode?: pulumi.Input<string | undefined>;
         /**
          * If set to true, any accompanying query portion of the original URL is removed prior
          * to redirecting the request. If set to false, the query portion of the original URL is
@@ -8841,7 +8841,7 @@ export namespace compute {
         /**
          * Description of this test case.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * The list of host patterns to match. They must be valid
          * hostnames, except * will match any string of ([a-z0-9-.]*). In
@@ -8862,18 +8862,18 @@ export namespace compute {
          * none of the pathRules defined by this PathMatcher is matched by
          * the URL's path portion.
          */
-        defaultService?: pulumi.Input<string>;
+        defaultService?: pulumi.Input<string | undefined>;
         /**
          * When none of the specified hostRules match, the request is redirected to a URL specified
          * by defaultUrlRedirect. If defaultUrlRedirect is specified, defaultService or
          * defaultRouteAction must not be set.
          * Structure is documented below.
          */
-        defaultUrlRedirect?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherDefaultUrlRedirect>;
+        defaultUrlRedirect?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherDefaultUrlRedirect | undefined>;
         /**
          * Description of this test case.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * The name of the query parameter to match. The query parameter must exist in the
          * request, in the absence of which the request match fails.
@@ -8888,7 +8888,7 @@ export namespace compute {
          * given pathMatcher, only one of pathRules or routeRules must be set.
          * Structure is documented below.
          */
-        pathRules?: pulumi.Input<pulumi.Input<inputs.compute.RegionUrlMapPathMatcherPathRule>[]>;
+        pathRules?: pulumi.Input<pulumi.Input<inputs.compute.RegionUrlMapPathMatcherPathRule>[] | undefined>;
         /**
          * The list of ordered HTTP route rules. Use this list instead of pathRules when
          * advanced route matching and routing actions are desired. The order of specifying
@@ -8898,7 +8898,7 @@ export namespace compute {
          * External load balancers.
          * Structure is documented below.
          */
-        routeRules?: pulumi.Input<pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRule>[]>;
+        routeRules?: pulumi.Input<pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRule>[] | undefined>;
     }
 
     export interface RegionUrlMapPathMatcherDefaultUrlRedirect {
@@ -8906,14 +8906,14 @@ export namespace compute {
          * The host that will be used in the redirect response instead of the one that was
          * supplied in the request. The value must be between 1 and 255 characters.
          */
-        hostRedirect?: pulumi.Input<string>;
+        hostRedirect?: pulumi.Input<string | undefined>;
         /**
          * If set to true, the URL scheme in the redirected request is set to https. If set to
          * false, the URL scheme of the redirected request will remain the same as that of the
          * request. This must only be set for UrlMaps used in TargetHttpProxys. Setting this
          * true for TargetHttpsProxy is not permitted. The default is set to false.
          */
-        httpsRedirect?: pulumi.Input<boolean>;
+        httpsRedirect?: pulumi.Input<boolean | undefined>;
         /**
          * The path that will be used in the redirect response instead of the one that was
          * supplied in the request. pathRedirect cannot be supplied together with
@@ -8921,7 +8921,7 @@ export namespace compute {
          * original request will be used for the redirect. The value must be between 1 and 1024
          * characters.
          */
-        pathRedirect?: pulumi.Input<string>;
+        pathRedirect?: pulumi.Input<string | undefined>;
         /**
          * The prefix that replaces the prefixMatch specified in the HttpRouteRuleMatch,
          * retaining the remaining portion of the URL before redirecting the request.
@@ -8929,7 +8929,7 @@ export namespace compute {
          * neither. If neither is supplied, the path of the original request will be used for
          * the redirect. The value must be between 1 and 1024 characters.
          */
-        prefixRedirect?: pulumi.Input<string>;
+        prefixRedirect?: pulumi.Input<string | undefined>;
         /**
          * The HTTP Status code to use for this RedirectAction. Supported values are:
          * * MOVED_PERMANENTLY_DEFAULT, which is the default value and corresponds to 301.
@@ -8940,7 +8940,7 @@ export namespace compute {
          * * PERMANENT_REDIRECT, which corresponds to 308. In this case,
          * the request method will be retained.
          */
-        redirectResponseCode?: pulumi.Input<string>;
+        redirectResponseCode?: pulumi.Input<string | undefined>;
         /**
          * If set to true, any accompanying query portion of the original URL is removed prior
          * to redirecting the request. If set to false, the query portion of the original URL is
@@ -8967,18 +8967,18 @@ export namespace compute {
          * or urlRedirect must be set.
          * Structure is documented below.
          */
-        routeAction?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherPathRuleRouteAction>;
+        routeAction?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherPathRuleRouteAction | undefined>;
         /**
          * A reference to expected RegionBackendService resource the given URL should be mapped to.
          */
-        service?: pulumi.Input<string>;
+        service?: pulumi.Input<string | undefined>;
         /**
          * When a path pattern is matched, the request is redirected to a URL specified
          * by urlRedirect. If urlRedirect is specified, service or routeAction must not
          * be set.
          * Structure is documented below.
          */
-        urlRedirect?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherPathRuleUrlRedirect>;
+        urlRedirect?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherPathRuleUrlRedirect | undefined>;
     }
 
     export interface RegionUrlMapPathMatcherPathRuleRouteAction {
@@ -8987,7 +8987,7 @@ export namespace compute {
          * Recommendation for Cross Origin Resource Sharing
          * Structure is documented below.
          */
-        corsPolicy?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherPathRuleRouteActionCorsPolicy>;
+        corsPolicy?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherPathRuleRouteActionCorsPolicy | undefined>;
         /**
          * The specification for fault injection introduced into traffic to test the
          * resiliency of clients to backend service failure. As part of fault injection,
@@ -8998,7 +8998,7 @@ export namespace compute {
          * ignored by clients that are configured with a fault_injection_policy.
          * Structure is documented below.
          */
-        faultInjectionPolicy?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicy>;
+        faultInjectionPolicy?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicy | undefined>;
         /**
          * Specifies the policy on how requests intended for the route's backends are
          * shadowed to a separate mirrored backend service. Loadbalancer does not wait for
@@ -9006,12 +9006,12 @@ export namespace compute {
          * service, the host / authority header is suffixed with -shadow.
          * Structure is documented below.
          */
-        requestMirrorPolicy?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherPathRuleRouteActionRequestMirrorPolicy>;
+        requestMirrorPolicy?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherPathRuleRouteActionRequestMirrorPolicy | undefined>;
         /**
          * Specifies the retry policy associated with this route.
          * Structure is documented below.
          */
-        retryPolicy?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicy>;
+        retryPolicy?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicy | undefined>;
         /**
          * Specifies the timeout for the selected route. Timeout is computed from the time
          * the request is has been fully processed (i.e. end-of-stream) up until the
@@ -9019,13 +9019,13 @@ export namespace compute {
          * specified, the default value is 15 seconds.
          * Structure is documented below.
          */
-        timeout?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherPathRuleRouteActionTimeout>;
+        timeout?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherPathRuleRouteActionTimeout | undefined>;
         /**
          * The spec to modify the URL of the request, prior to forwarding the request to
          * the matched service
          * Structure is documented below.
          */
-        urlRewrite?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherPathRuleRouteActionUrlRewrite>;
+        urlRewrite?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherPathRuleRouteActionUrlRewrite | undefined>;
         /**
          * A list of weighted backend services to send traffic to when a route match
          * occurs. The weights determine the fraction of traffic that flows to their
@@ -9037,7 +9037,7 @@ export namespace compute {
          * HttpRouteAction.
          * Structure is documented below.
          */
-        weightedBackendServices?: pulumi.Input<pulumi.Input<inputs.compute.RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendService>[]>;
+        weightedBackendServices?: pulumi.Input<pulumi.Input<inputs.compute.RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendService>[] | undefined>;
     }
 
     export interface RegionUrlMapPathMatcherPathRuleRouteActionCorsPolicy {
@@ -9046,26 +9046,26 @@ export namespace compute {
          * actual request can include user credentials. This translates to the Access-
          * Control-Allow-Credentials header. Defaults to false.
          */
-        allowCredentials?: pulumi.Input<boolean>;
+        allowCredentials?: pulumi.Input<boolean | undefined>;
         /**
          * Specifies the content for the Access-Control-Allow-Headers header.
          */
-        allowHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        allowHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies the content for the Access-Control-Allow-Methods header.
          */
-        allowMethods?: pulumi.Input<pulumi.Input<string>[]>;
+        allowMethods?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies the regular expression patterns that match allowed origins. For
          * regular expression grammar please see en.cppreference.com/w/cpp/regex/ecmascript
          * An origin is allowed if it matches either allowOrigins or allow_origin_regex.
          */
-        allowOriginRegexes?: pulumi.Input<pulumi.Input<string>[]>;
+        allowOriginRegexes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies the list of origins that will be allowed to do CORS requests. An
          * origin is allowed if it matches either allowOrigins or allow_origin_regex.
          */
-        allowOrigins?: pulumi.Input<pulumi.Input<string>[]>;
+        allowOrigins?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * If true, specifies the CORS policy is disabled.
          */
@@ -9073,12 +9073,12 @@ export namespace compute {
         /**
          * Specifies the content for the Access-Control-Expose-Headers header.
          */
-        exposeHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        exposeHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies how long the results of a preflight request can be cached. This
          * translates to the content for the Access-Control-Max-Age header.
          */
-        maxAge?: pulumi.Input<number>;
+        maxAge?: pulumi.Input<number | undefined>;
     }
 
     export interface RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicy {
@@ -9087,13 +9087,13 @@ export namespace compute {
          * injection.
          * Structure is documented below.
          */
-        abort?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbort>;
+        abort?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbort | undefined>;
         /**
          * The specification for how client requests are delayed as part of fault
          * injection, before being sent to a backend service.
          * Structure is documented below.
          */
-        delay?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelay>;
+        delay?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelay | undefined>;
     }
 
     export interface RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbort {
@@ -9130,7 +9130,7 @@ export namespace compute {
          * less than one second are represented with a 0 `seconds` field and a positive
          * `nanos` field. Must be from 0 to 999,999,999 inclusive.
          */
-        nanos?: pulumi.Input<number>;
+        nanos?: pulumi.Input<number | undefined>;
         /**
          * Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
          * inclusive.
@@ -9151,12 +9151,12 @@ export namespace compute {
         /**
          * Specifies the allowed number retries. This number must be > 0.
          */
-        numRetries?: pulumi.Input<number>;
+        numRetries?: pulumi.Input<number | undefined>;
         /**
          * Specifies a non-zero timeout per retry attempt.
          * Structure is documented below.
          */
-        perTryTimeout?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeout>;
+        perTryTimeout?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeout | undefined>;
         /**
          * Specifies one or more conditions when this retry rule applies. Valid values are:
          * - 5xx: Loadbalancer will attempt a retry if the backend service responds with
@@ -9180,7 +9180,7 @@ export namespace compute {
          * - unavailable: Loadbalancer will retry if
          * the gRPC status code in the response header is set to unavailable
          */
-        retryConditions?: pulumi.Input<pulumi.Input<string>[]>;
+        retryConditions?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeout {
@@ -9189,7 +9189,7 @@ export namespace compute {
          * less than one second are represented with a 0 `seconds` field and a positive
          * `nanos` field. Must be from 0 to 999,999,999 inclusive.
          */
-        nanos?: pulumi.Input<number>;
+        nanos?: pulumi.Input<number | undefined>;
         /**
          * Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
          * inclusive.
@@ -9203,7 +9203,7 @@ export namespace compute {
          * less than one second are represented with a 0 `seconds` field and a positive
          * `nanos` field. Must be from 0 to 999,999,999 inclusive.
          */
-        nanos?: pulumi.Input<number>;
+        nanos?: pulumi.Input<number | undefined>;
         /**
          * Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
          * inclusive.
@@ -9217,13 +9217,13 @@ export namespace compute {
          * header is replaced with contents of hostRewrite. The value must be between 1 and
          * 255 characters.
          */
-        hostRewrite?: pulumi.Input<string>;
+        hostRewrite?: pulumi.Input<string | undefined>;
         /**
          * Prior to forwarding the request to the selected backend service, the matching
          * portion of the request's path is replaced by pathPrefixRewrite. The value must
          * be between 1 and 1024 characters.
          */
-        pathPrefixRewrite?: pulumi.Input<string>;
+        pathPrefixRewrite?: pulumi.Input<string | undefined>;
     }
 
     export interface RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendService {
@@ -9239,7 +9239,7 @@ export namespace compute {
          * headerAction in the enclosing HttpRouteRule, PathMatcher and UrlMap.
          * Structure is documented below.
          */
-        headerAction?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderAction>;
+        headerAction?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderAction | undefined>;
         /**
          * Specifies the fraction of traffic sent to backendService, computed as weight /
          * (sum of all weightedBackendService weights in routeAction) . The selection of a
@@ -9257,22 +9257,22 @@ export namespace compute {
          * backendService.
          * Structure is documented below.
          */
-        requestHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd>[]>;
+        requestHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd>[] | undefined>;
         /**
          * A list of header names for headers that need to be removed from the request
          * prior to forwarding the request to the backendService.
          */
-        requestHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[]>;
+        requestHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Headers to add the response prior to sending the response back to the client.
          * Structure is documented below.
          */
-        responseHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAdd>[]>;
+        responseHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAdd>[] | undefined>;
         /**
          * A list of header names for headers that need to be removed from the response
          * prior to sending the response back to the client.
          */
-        responseHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[]>;
+        responseHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd {
@@ -9314,14 +9314,14 @@ export namespace compute {
          * The host that will be used in the redirect response instead of the one that was
          * supplied in the request. The value must be between 1 and 255 characters.
          */
-        hostRedirect?: pulumi.Input<string>;
+        hostRedirect?: pulumi.Input<string | undefined>;
         /**
          * If set to true, the URL scheme in the redirected request is set to https. If set to
          * false, the URL scheme of the redirected request will remain the same as that of the
          * request. This must only be set for UrlMaps used in TargetHttpProxys. Setting this
          * true for TargetHttpsProxy is not permitted. The default is set to false.
          */
-        httpsRedirect?: pulumi.Input<boolean>;
+        httpsRedirect?: pulumi.Input<boolean | undefined>;
         /**
          * The path that will be used in the redirect response instead of the one that was
          * supplied in the request. pathRedirect cannot be supplied together with
@@ -9329,7 +9329,7 @@ export namespace compute {
          * original request will be used for the redirect. The value must be between 1 and 1024
          * characters.
          */
-        pathRedirect?: pulumi.Input<string>;
+        pathRedirect?: pulumi.Input<string | undefined>;
         /**
          * The prefix that replaces the prefixMatch specified in the HttpRouteRuleMatch,
          * retaining the remaining portion of the URL before redirecting the request.
@@ -9337,7 +9337,7 @@ export namespace compute {
          * neither. If neither is supplied, the path of the original request will be used for
          * the redirect. The value must be between 1 and 1024 characters.
          */
-        prefixRedirect?: pulumi.Input<string>;
+        prefixRedirect?: pulumi.Input<string | undefined>;
         /**
          * The HTTP Status code to use for this RedirectAction. Supported values are:
          * * MOVED_PERMANENTLY_DEFAULT, which is the default value and corresponds to 301.
@@ -9348,7 +9348,7 @@ export namespace compute {
          * * PERMANENT_REDIRECT, which corresponds to 308. In this case,
          * the request method will be retained.
          */
-        redirectResponseCode?: pulumi.Input<string>;
+        redirectResponseCode?: pulumi.Input<string | undefined>;
         /**
          * If set to true, any accompanying query portion of the original URL is removed prior
          * to redirecting the request. If set to false, the query portion of the original URL is
@@ -9365,12 +9365,12 @@ export namespace compute {
          * headerAction in the enclosing HttpRouteRule, PathMatcher and UrlMap.
          * Structure is documented below.
          */
-        headerAction?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleHeaderAction>;
+        headerAction?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleHeaderAction | undefined>;
         /**
          * The rules for determining a match.
          * Structure is documented below.
          */
-        matchRules?: pulumi.Input<pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleMatchRule>[]>;
+        matchRules?: pulumi.Input<pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleMatchRule>[] | undefined>;
         /**
          * For routeRules within a given pathMatcher, priority determines the order
          * in which load balancer will interpret routeRules. RouteRules are evaluated
@@ -9396,18 +9396,18 @@ export namespace compute {
          * or urlRedirect must be set.
          * Structure is documented below.
          */
-        routeAction?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleRouteAction>;
+        routeAction?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleRouteAction | undefined>;
         /**
          * A reference to expected RegionBackendService resource the given URL should be mapped to.
          */
-        service?: pulumi.Input<string>;
+        service?: pulumi.Input<string | undefined>;
         /**
          * When a path pattern is matched, the request is redirected to a URL specified
          * by urlRedirect. If urlRedirect is specified, service or routeAction must not
          * be set.
          * Structure is documented below.
          */
-        urlRedirect?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleUrlRedirect>;
+        urlRedirect?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleUrlRedirect | undefined>;
     }
 
     export interface RegionUrlMapPathMatcherRouteRuleHeaderAction {
@@ -9416,22 +9416,22 @@ export namespace compute {
          * backendService.
          * Structure is documented below.
          */
-        requestHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleHeaderActionRequestHeadersToAdd>[]>;
+        requestHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleHeaderActionRequestHeadersToAdd>[] | undefined>;
         /**
          * A list of header names for headers that need to be removed from the request
          * prior to forwarding the request to the backendService.
          */
-        requestHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[]>;
+        requestHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Headers to add the response prior to sending the response back to the client.
          * Structure is documented below.
          */
-        responseHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleHeaderActionResponseHeadersToAdd>[]>;
+        responseHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleHeaderActionResponseHeadersToAdd>[] | undefined>;
         /**
          * A list of header names for headers that need to be removed from the response
          * prior to sending the response back to the client.
          */
-        responseHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[]>;
+        responseHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface RegionUrlMapPathMatcherRouteRuleHeaderActionRequestHeadersToAdd {
@@ -9476,18 +9476,18 @@ export namespace compute {
          * and 1024 characters. Only one of prefixMatch, fullPathMatch or regexMatch must
          * be specified.
          */
-        fullPathMatch?: pulumi.Input<string>;
+        fullPathMatch?: pulumi.Input<string | undefined>;
         /**
          * Specifies a list of header match criteria, all of which must match corresponding
          * headers in the request.
          * Structure is documented below.
          */
-        headerMatches?: pulumi.Input<pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatch>[]>;
+        headerMatches?: pulumi.Input<pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatch>[] | undefined>;
         /**
          * Specifies that prefixMatch and fullPathMatch matches are case sensitive.
          * Defaults to false.
          */
-        ignoreCase?: pulumi.Input<boolean>;
+        ignoreCase?: pulumi.Input<boolean | undefined>;
         /**
          * Opaque filter criteria used by Loadbalancer to restrict routing configuration to
          * a limited set xDS compliant clients. In their xDS requests to Loadbalancer, xDS
@@ -9502,26 +9502,26 @@ export namespace compute {
          * loadBalancingScheme set to INTERNAL_SELF_MANAGED.
          * Structure is documented below.
          */
-        metadataFilters?: pulumi.Input<pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilter>[]>;
+        metadataFilters?: pulumi.Input<pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilter>[] | undefined>;
         /**
          * The value of the header must start with the contents of prefixMatch. Only one of
          * exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch
          * must be set.
          */
-        prefixMatch?: pulumi.Input<string>;
+        prefixMatch?: pulumi.Input<string | undefined>;
         /**
          * Specifies a list of query parameter match criteria, all of which must match
          * corresponding query parameters in the request.
          * Structure is documented below.
          */
-        queryParameterMatches?: pulumi.Input<pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleMatchRuleQueryParameterMatch>[]>;
+        queryParameterMatches?: pulumi.Input<pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleMatchRuleQueryParameterMatch>[] | undefined>;
         /**
          * The queryParameterMatch matches if the value of the parameter matches the
          * regular expression specified by regexMatch. For the regular expression grammar,
          * please see en.cppreference.com/w/cpp/regex/ecmascript  Only one of presentMatch,
          * exactMatch and regexMatch must be set.
          */
-        regexMatch?: pulumi.Input<string>;
+        regexMatch?: pulumi.Input<string | undefined>;
     }
 
     export interface RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatch {
@@ -9530,7 +9530,7 @@ export namespace compute {
          * the contents of exactMatch. Only one of presentMatch, exactMatch and regexMatch
          * must be set.
          */
-        exactMatch?: pulumi.Input<string>;
+        exactMatch?: pulumi.Input<string | undefined>;
         /**
          * The name of the header.
          */
@@ -9540,19 +9540,19 @@ export namespace compute {
          * above are met. If set to true, the headerMatch is considered a match if the
          * match criteria above are NOT met. Defaults to false.
          */
-        invertMatch?: pulumi.Input<boolean>;
+        invertMatch?: pulumi.Input<boolean | undefined>;
         /**
          * The value of the header must start with the contents of prefixMatch. Only one of
          * exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch
          * must be set.
          */
-        prefixMatch?: pulumi.Input<string>;
+        prefixMatch?: pulumi.Input<string | undefined>;
         /**
          * Specifies that the queryParameterMatch matches if the request contains the query
          * parameter, irrespective of whether the parameter has a value or not. Only one of
          * presentMatch, exactMatch and regexMatch must be set.
          */
-        presentMatch?: pulumi.Input<boolean>;
+        presentMatch?: pulumi.Input<boolean | undefined>;
         /**
          * The header value must be an integer and its value must be in the range specified
          * in rangeMatch. If the header does not contain an integer, number or is empty,
@@ -9565,20 +9565,20 @@ export namespace compute {
          * rangeMatch must be set.
          * Structure is documented below.
          */
-        rangeMatch?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatch>;
+        rangeMatch?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatch | undefined>;
         /**
          * The queryParameterMatch matches if the value of the parameter matches the
          * regular expression specified by regexMatch. For the regular expression grammar,
          * please see en.cppreference.com/w/cpp/regex/ecmascript  Only one of presentMatch,
          * exactMatch and regexMatch must be set.
          */
-        regexMatch?: pulumi.Input<string>;
+        regexMatch?: pulumi.Input<string | undefined>;
         /**
          * The value of the header must end with the contents of suffixMatch. Only one of
          * exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch
          * must be set.
          */
-        suffixMatch?: pulumi.Input<string>;
+        suffixMatch?: pulumi.Input<string | undefined>;
     }
 
     export interface RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatch {
@@ -9631,7 +9631,7 @@ export namespace compute {
          * the contents of exactMatch. Only one of presentMatch, exactMatch and regexMatch
          * must be set.
          */
-        exactMatch?: pulumi.Input<string>;
+        exactMatch?: pulumi.Input<string | undefined>;
         /**
          * The name of the query parameter to match. The query parameter must exist in the
          * request, in the absence of which the request match fails.
@@ -9642,14 +9642,14 @@ export namespace compute {
          * parameter, irrespective of whether the parameter has a value or not. Only one of
          * presentMatch, exactMatch and regexMatch must be set.
          */
-        presentMatch?: pulumi.Input<boolean>;
+        presentMatch?: pulumi.Input<boolean | undefined>;
         /**
          * The queryParameterMatch matches if the value of the parameter matches the
          * regular expression specified by regexMatch. For the regular expression grammar,
          * please see en.cppreference.com/w/cpp/regex/ecmascript  Only one of presentMatch,
          * exactMatch and regexMatch must be set.
          */
-        regexMatch?: pulumi.Input<string>;
+        regexMatch?: pulumi.Input<string | undefined>;
     }
 
     export interface RegionUrlMapPathMatcherRouteRuleRouteAction {
@@ -9658,7 +9658,7 @@ export namespace compute {
          * Recommendation for Cross Origin Resource Sharing
          * Structure is documented below.
          */
-        corsPolicy?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicy>;
+        corsPolicy?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicy | undefined>;
         /**
          * The specification for fault injection introduced into traffic to test the
          * resiliency of clients to backend service failure. As part of fault injection,
@@ -9669,7 +9669,7 @@ export namespace compute {
          * ignored by clients that are configured with a fault_injection_policy.
          * Structure is documented below.
          */
-        faultInjectionPolicy?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicy>;
+        faultInjectionPolicy?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicy | undefined>;
         /**
          * Specifies the policy on how requests intended for the route's backends are
          * shadowed to a separate mirrored backend service. Loadbalancer does not wait for
@@ -9677,12 +9677,12 @@ export namespace compute {
          * service, the host / authority header is suffixed with -shadow.
          * Structure is documented below.
          */
-        requestMirrorPolicy?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleRouteActionRequestMirrorPolicy>;
+        requestMirrorPolicy?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleRouteActionRequestMirrorPolicy | undefined>;
         /**
          * Specifies the retry policy associated with this route.
          * Structure is documented below.
          */
-        retryPolicy?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicy>;
+        retryPolicy?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicy | undefined>;
         /**
          * Specifies the timeout for the selected route. Timeout is computed from the time
          * the request is has been fully processed (i.e. end-of-stream) up until the
@@ -9690,13 +9690,13 @@ export namespace compute {
          * specified, the default value is 15 seconds.
          * Structure is documented below.
          */
-        timeout?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleRouteActionTimeout>;
+        timeout?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleRouteActionTimeout | undefined>;
         /**
          * The spec to modify the URL of the request, prior to forwarding the request to
          * the matched service
          * Structure is documented below.
          */
-        urlRewrite?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleRouteActionUrlRewrite>;
+        urlRewrite?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleRouteActionUrlRewrite | undefined>;
         /**
          * A list of weighted backend services to send traffic to when a route match
          * occurs. The weights determine the fraction of traffic that flows to their
@@ -9708,7 +9708,7 @@ export namespace compute {
          * HttpRouteAction.
          * Structure is documented below.
          */
-        weightedBackendServices?: pulumi.Input<pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendService>[]>;
+        weightedBackendServices?: pulumi.Input<pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendService>[] | undefined>;
     }
 
     export interface RegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicy {
@@ -9717,39 +9717,39 @@ export namespace compute {
          * actual request can include user credentials. This translates to the Access-
          * Control-Allow-Credentials header. Defaults to false.
          */
-        allowCredentials?: pulumi.Input<boolean>;
+        allowCredentials?: pulumi.Input<boolean | undefined>;
         /**
          * Specifies the content for the Access-Control-Allow-Headers header.
          */
-        allowHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        allowHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies the content for the Access-Control-Allow-Methods header.
          */
-        allowMethods?: pulumi.Input<pulumi.Input<string>[]>;
+        allowMethods?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies the regular expression patterns that match allowed origins. For
          * regular expression grammar please see en.cppreference.com/w/cpp/regex/ecmascript
          * An origin is allowed if it matches either allowOrigins or allow_origin_regex.
          */
-        allowOriginRegexes?: pulumi.Input<pulumi.Input<string>[]>;
+        allowOriginRegexes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies the list of origins that will be allowed to do CORS requests. An
          * origin is allowed if it matches either allowOrigins or allow_origin_regex.
          */
-        allowOrigins?: pulumi.Input<pulumi.Input<string>[]>;
+        allowOrigins?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * If true, specifies the CORS policy is disabled.
          */
-        disabled?: pulumi.Input<boolean>;
+        disabled?: pulumi.Input<boolean | undefined>;
         /**
          * Specifies the content for the Access-Control-Expose-Headers header.
          */
-        exposeHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        exposeHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies how long the results of a preflight request can be cached. This
          * translates to the content for the Access-Control-Max-Age header.
          */
-        maxAge?: pulumi.Input<number>;
+        maxAge?: pulumi.Input<number | undefined>;
     }
 
     export interface RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicy {
@@ -9758,13 +9758,13 @@ export namespace compute {
          * injection.
          * Structure is documented below.
          */
-        abort?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbort>;
+        abort?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbort | undefined>;
         /**
          * The specification for how client requests are delayed as part of fault
          * injection, before being sent to a backend service.
          * Structure is documented below.
          */
-        delay?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelay>;
+        delay?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelay | undefined>;
     }
 
     export interface RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbort {
@@ -9772,13 +9772,13 @@ export namespace compute {
          * The HTTP status code used to abort the request. The value must be between 200
          * and 599 inclusive.
          */
-        httpStatus?: pulumi.Input<number>;
+        httpStatus?: pulumi.Input<number | undefined>;
         /**
          * The percentage of traffic (connections/operations/requests) on which delay will
          * be introduced as part of fault injection. The value must be between 0.0 and
          * 100.0 inclusive.
          */
-        percentage?: pulumi.Input<number>;
+        percentage?: pulumi.Input<number | undefined>;
     }
 
     export interface RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelay {
@@ -9786,13 +9786,13 @@ export namespace compute {
          * Specifies the value of the fixed delay interval.
          * Structure is documented below.
          */
-        fixedDelay?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelay>;
+        fixedDelay?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelay | undefined>;
         /**
          * The percentage of traffic (connections/operations/requests) on which delay will
          * be introduced as part of fault injection. The value must be between 0.0 and
          * 100.0 inclusive.
          */
-        percentage?: pulumi.Input<number>;
+        percentage?: pulumi.Input<number | undefined>;
     }
 
     export interface RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelay {
@@ -9801,7 +9801,7 @@ export namespace compute {
          * less than one second are represented with a 0 `seconds` field and a positive
          * `nanos` field. Must be from 0 to 999,999,999 inclusive.
          */
-        nanos?: pulumi.Input<number>;
+        nanos?: pulumi.Input<number | undefined>;
         /**
          * Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
          * inclusive.
@@ -9827,7 +9827,7 @@ export namespace compute {
          * Specifies a non-zero timeout per retry attempt.
          * Structure is documented below.
          */
-        perTryTimeout?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeout>;
+        perTryTimeout?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeout | undefined>;
         /**
          * Specifies one or more conditions when this retry rule applies. Valid values are:
          * - 5xx: Loadbalancer will attempt a retry if the backend service responds with
@@ -9851,7 +9851,7 @@ export namespace compute {
          * - unavailable: Loadbalancer will retry if
          * the gRPC status code in the response header is set to unavailable
          */
-        retryConditions?: pulumi.Input<pulumi.Input<string>[]>;
+        retryConditions?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeout {
@@ -9860,7 +9860,7 @@ export namespace compute {
          * less than one second are represented with a 0 `seconds` field and a positive
          * `nanos` field. Must be from 0 to 999,999,999 inclusive.
          */
-        nanos?: pulumi.Input<number>;
+        nanos?: pulumi.Input<number | undefined>;
         /**
          * Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
          * inclusive.
@@ -9874,7 +9874,7 @@ export namespace compute {
          * less than one second are represented with a 0 `seconds` field and a positive
          * `nanos` field. Must be from 0 to 999,999,999 inclusive.
          */
-        nanos?: pulumi.Input<number>;
+        nanos?: pulumi.Input<number | undefined>;
         /**
          * Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
          * inclusive.
@@ -9888,13 +9888,13 @@ export namespace compute {
          * header is replaced with contents of hostRewrite. The value must be between 1 and
          * 255 characters.
          */
-        hostRewrite?: pulumi.Input<string>;
+        hostRewrite?: pulumi.Input<string | undefined>;
         /**
          * Prior to forwarding the request to the selected backend service, the matching
          * portion of the request's path is replaced by pathPrefixRewrite. The value must
          * be between 1 and 1024 characters.
          */
-        pathPrefixRewrite?: pulumi.Input<string>;
+        pathPrefixRewrite?: pulumi.Input<string | undefined>;
     }
 
     export interface RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendService {
@@ -9910,7 +9910,7 @@ export namespace compute {
          * headerAction in the enclosing HttpRouteRule, PathMatcher and UrlMap.
          * Structure is documented below.
          */
-        headerAction?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderAction>;
+        headerAction?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderAction | undefined>;
         /**
          * Specifies the fraction of traffic sent to backendService, computed as weight /
          * (sum of all weightedBackendService weights in routeAction) . The selection of a
@@ -9928,22 +9928,22 @@ export namespace compute {
          * backendService.
          * Structure is documented below.
          */
-        requestHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd>[]>;
+        requestHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd>[] | undefined>;
         /**
          * A list of header names for headers that need to be removed from the request
          * prior to forwarding the request to the backendService.
          */
-        requestHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[]>;
+        requestHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Headers to add the response prior to sending the response back to the client.
          * Structure is documented below.
          */
-        responseHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAdd>[]>;
+        responseHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAdd>[] | undefined>;
         /**
          * A list of header names for headers that need to be removed from the response
          * prior to sending the response back to the client.
          */
-        responseHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[]>;
+        responseHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd {
@@ -9985,14 +9985,14 @@ export namespace compute {
          * The host that will be used in the redirect response instead of the one that was
          * supplied in the request. The value must be between 1 and 255 characters.
          */
-        hostRedirect?: pulumi.Input<string>;
+        hostRedirect?: pulumi.Input<string | undefined>;
         /**
          * If set to true, the URL scheme in the redirected request is set to https. If set to
          * false, the URL scheme of the redirected request will remain the same as that of the
          * request. This must only be set for UrlMaps used in TargetHttpProxys. Setting this
          * true for TargetHttpsProxy is not permitted. The default is set to false.
          */
-        httpsRedirect?: pulumi.Input<boolean>;
+        httpsRedirect?: pulumi.Input<boolean | undefined>;
         /**
          * The path that will be used in the redirect response instead of the one that was
          * supplied in the request. pathRedirect cannot be supplied together with
@@ -10000,7 +10000,7 @@ export namespace compute {
          * original request will be used for the redirect. The value must be between 1 and 1024
          * characters.
          */
-        pathRedirect?: pulumi.Input<string>;
+        pathRedirect?: pulumi.Input<string | undefined>;
         /**
          * The prefix that replaces the prefixMatch specified in the HttpRouteRuleMatch,
          * retaining the remaining portion of the URL before redirecting the request.
@@ -10008,7 +10008,7 @@ export namespace compute {
          * neither. If neither is supplied, the path of the original request will be used for
          * the redirect. The value must be between 1 and 1024 characters.
          */
-        prefixRedirect?: pulumi.Input<string>;
+        prefixRedirect?: pulumi.Input<string | undefined>;
         /**
          * The HTTP Status code to use for this RedirectAction. Supported values are:
          * * MOVED_PERMANENTLY_DEFAULT, which is the default value and corresponds to 301.
@@ -10019,21 +10019,21 @@ export namespace compute {
          * * PERMANENT_REDIRECT, which corresponds to 308. In this case,
          * the request method will be retained.
          */
-        redirectResponseCode?: pulumi.Input<string>;
+        redirectResponseCode?: pulumi.Input<string | undefined>;
         /**
          * If set to true, any accompanying query portion of the original URL is removed prior
          * to redirecting the request. If set to false, the query portion of the original URL is
          * retained.
          * This field is required to ensure an empty block is not set. The normal default value is false.
          */
-        stripQuery?: pulumi.Input<boolean>;
+        stripQuery?: pulumi.Input<boolean | undefined>;
     }
 
     export interface RegionUrlMapTest {
         /**
          * Description of this test case.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * Host portion of the URL.
          */
@@ -10057,7 +10057,7 @@ export namespace compute {
          * -
          * How many instances are in use.
          */
-        inUseCount?: pulumi.Input<number>;
+        inUseCount?: pulumi.Input<number | undefined>;
         /**
          * The instance properties for the reservation.
          * Structure is documented below.
@@ -10070,13 +10070,13 @@ export namespace compute {
          * Guest accelerator type and count.
          * Structure is documented below.
          */
-        guestAccelerators?: pulumi.Input<pulumi.Input<inputs.compute.ReservationSpecificReservationInstancePropertiesGuestAccelerator>[]>;
+        guestAccelerators?: pulumi.Input<pulumi.Input<inputs.compute.ReservationSpecificReservationInstancePropertiesGuestAccelerator>[] | undefined>;
         /**
          * The amount of local ssd to reserve with each instance. This
          * reserves disks of type `local-ssd`.
          * Structure is documented below.
          */
-        localSsds?: pulumi.Input<pulumi.Input<inputs.compute.ReservationSpecificReservationInstancePropertiesLocalSsd>[]>;
+        localSsds?: pulumi.Input<pulumi.Input<inputs.compute.ReservationSpecificReservationInstancePropertiesLocalSsd>[] | undefined>;
         /**
          * The name of the machine type to reserve.
          */
@@ -10087,7 +10087,7 @@ export namespace compute {
          * the CPU platform availability reference](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform#availablezones)
          * for information on available CPU platforms.
          */
-        minCpuPlatform?: pulumi.Input<string>;
+        minCpuPlatform?: pulumi.Input<string | undefined>;
     }
 
     export interface ReservationSpecificReservationInstancePropertiesGuestAccelerator {
@@ -10115,7 +10115,7 @@ export namespace compute {
          * Default value is `SCSI`.
          * Possible values are `SCSI` and `NVME`.
          */
-        interface?: pulumi.Input<string>;
+        interface?: pulumi.Input<string | undefined>;
     }
 
     export interface ResourcePolicyGroupPlacementPolicy {
@@ -10123,7 +10123,7 @@ export namespace compute {
          * The number of availability domains instances will be spread across. If two instances are in different
          * availability domain, they will not be put in the same low latency network
          */
-        availabilityDomainCount?: pulumi.Input<number>;
+        availabilityDomainCount?: pulumi.Input<number | undefined>;
         /**
          * Collocation specifies whether to place VMs inside the same availability domain on the same low-latency network.
          * Specify `COLLOCATED` to enable collocation. Can only be specified with `vmCount`. If compute instances are created
@@ -10131,11 +10131,11 @@ export namespace compute {
          * attached.
          * Possible values are `COLLOCATED`.
          */
-        collocation?: pulumi.Input<string>;
+        collocation?: pulumi.Input<string | undefined>;
         /**
          * Number of vms in this placement group.
          */
-        vmCount?: pulumi.Input<number>;
+        vmCount?: pulumi.Input<number | undefined>;
     }
 
     export interface ResourcePolicySnapshotSchedulePolicy {
@@ -10143,7 +10143,7 @@ export namespace compute {
          * Retention policy applied to snapshots created by this resource policy.
          * Structure is documented below.
          */
-        retentionPolicy?: pulumi.Input<inputs.compute.ResourcePolicySnapshotSchedulePolicyRetentionPolicy>;
+        retentionPolicy?: pulumi.Input<inputs.compute.ResourcePolicySnapshotSchedulePolicyRetentionPolicy | undefined>;
         /**
          * Contains one of an `hourlySchedule`, `dailySchedule`, or `weeklySchedule`.
          * Structure is documented below.
@@ -10153,7 +10153,7 @@ export namespace compute {
          * Properties with which the snapshots are created, such as labels.
          * Structure is documented below.
          */
-        snapshotProperties?: pulumi.Input<inputs.compute.ResourcePolicySnapshotSchedulePolicySnapshotProperties>;
+        snapshotProperties?: pulumi.Input<inputs.compute.ResourcePolicySnapshotSchedulePolicySnapshotProperties | undefined>;
     }
 
     export interface ResourcePolicySnapshotSchedulePolicyRetentionPolicy {
@@ -10167,7 +10167,7 @@ export namespace compute {
          * Default value is `KEEP_AUTO_SNAPSHOTS`.
          * Possible values are `KEEP_AUTO_SNAPSHOTS` and `APPLY_RETENTION_POLICY`.
          */
-        onSourceDiskDelete?: pulumi.Input<string>;
+        onSourceDiskDelete?: pulumi.Input<string | undefined>;
     }
 
     export interface ResourcePolicySnapshotSchedulePolicySchedule {
@@ -10175,17 +10175,17 @@ export namespace compute {
          * The policy will execute every nth day at the specified time.
          * Structure is documented below.
          */
-        dailySchedule?: pulumi.Input<inputs.compute.ResourcePolicySnapshotSchedulePolicyScheduleDailySchedule>;
+        dailySchedule?: pulumi.Input<inputs.compute.ResourcePolicySnapshotSchedulePolicyScheduleDailySchedule | undefined>;
         /**
          * The policy will execute every nth hour starting at the specified time.
          * Structure is documented below.
          */
-        hourlySchedule?: pulumi.Input<inputs.compute.ResourcePolicySnapshotSchedulePolicyScheduleHourlySchedule>;
+        hourlySchedule?: pulumi.Input<inputs.compute.ResourcePolicySnapshotSchedulePolicyScheduleHourlySchedule | undefined>;
         /**
          * Allows specifying a snapshot time for each day of the week.
          * Structure is documented below.
          */
-        weeklySchedule?: pulumi.Input<inputs.compute.ResourcePolicySnapshotSchedulePolicyScheduleWeeklySchedule>;
+        weeklySchedule?: pulumi.Input<inputs.compute.ResourcePolicySnapshotSchedulePolicyScheduleWeeklySchedule | undefined>;
     }
 
     export interface ResourcePolicySnapshotSchedulePolicyScheduleDailySchedule {
@@ -10237,16 +10237,16 @@ export namespace compute {
         /**
          * Whether to perform a 'guest aware' snapshot.
          */
-        guestFlush?: pulumi.Input<boolean>;
+        guestFlush?: pulumi.Input<boolean | undefined>;
         /**
          * A set of key-value pairs.
          */
-        labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * Cloud Storage bucket location to store the auto snapshot
          * (regional or multi-regional)
          */
-        storageLocations?: pulumi.Input<string>;
+        storageLocations?: pulumi.Input<string | undefined>;
     }
 
     export interface RouterBgp {
@@ -10255,7 +10255,7 @@ export namespace compute {
          * Default value is `DEFAULT`.
          * Possible values are `DEFAULT` and `CUSTOM`.
          */
-        advertiseMode?: pulumi.Input<string>;
+        advertiseMode?: pulumi.Input<string | undefined>;
         /**
          * User-specified list of prefix groups to advertise in custom mode.
          * This field can only be populated if advertiseMode is CUSTOM and
@@ -10264,7 +10264,7 @@ export namespace compute {
          * blank to advertise no custom groups.
          * This enum field has the one valid value: ALL_SUBNETS
          */
-        advertisedGroups?: pulumi.Input<pulumi.Input<string>[]>;
+        advertisedGroups?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * User-specified list of individual IP ranges to advertise in
          * custom mode. This field can only be populated if advertiseMode
@@ -10273,7 +10273,7 @@ export namespace compute {
          * Leave this field blank to advertise no custom IP ranges.
          * Structure is documented below.
          */
-        advertisedIpRanges?: pulumi.Input<pulumi.Input<inputs.compute.RouterBgpAdvertisedIpRange>[]>;
+        advertisedIpRanges?: pulumi.Input<pulumi.Input<inputs.compute.RouterBgpAdvertisedIpRange>[] | undefined>;
         /**
          * Local BGP Autonomous System Number (ASN). Must be an RFC6996
          * private ASN, either 16-bit or 32-bit. The value will be fixed for
@@ -10287,7 +10287,7 @@ export namespace compute {
         /**
          * User-specified description for the IP range.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * The IP range to advertise. The value must be a
          * CIDR-formatted string.
@@ -10318,7 +10318,7 @@ export namespace compute {
          * `LIST_OF_SECONDARY_IP_RANGES` is one of the values in
          * sourceIpRangesToNat
          */
-        secondaryIpRangeNames?: pulumi.Input<pulumi.Input<string>[]>;
+        secondaryIpRangeNames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * List of options for which source IPs in the subnetwork
          * should have NAT enabled. Supported values include:
@@ -10332,7 +10332,7 @@ export namespace compute {
         /**
          * User-specified description for the IP range.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * The IP range to advertise. The value must be a
          * CIDR-formatted string.
@@ -10350,7 +10350,7 @@ export namespace compute {
         /**
          * An optional description of this rule. Max size is 64.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * A match condition that incoming traffic is evaluated against.
          * If it evaluates to true, the corresponding `action` is enforced. Structure is documented below.
@@ -10360,7 +10360,7 @@ export namespace compute {
          * When set to true, the `action` specified above is not enforced.
          * Stackdriver logs for requests that trigger a preview action are annotated as such.
          */
-        preview?: pulumi.Input<boolean>;
+        preview?: pulumi.Input<boolean | undefined>;
         /**
          * An unique positive integer indicating the priority of evaluation for a rule.
          * Rules are evaluated from highest priority (lowest numerically) to lowest priority (highest numerically) in order.
@@ -10374,19 +10374,19 @@ export namespace compute {
          * This field must be specified if `versionedExpr` is specified and cannot be specified if `versionedExpr` is not specified.
          * Structure is documented below.
          */
-        config?: pulumi.Input<inputs.compute.SecurityPolicyRuleMatchConfig>;
+        config?: pulumi.Input<inputs.compute.SecurityPolicyRuleMatchConfig | undefined>;
         /**
          * User defined CEVAL expression. A CEVAL expression is used to specify match criteria
          * such as origin.ip, source.region_code and contents in the request header.
          * Structure is documented below.
          */
-        expr?: pulumi.Input<inputs.compute.SecurityPolicyRuleMatchExpr>;
+        expr?: pulumi.Input<inputs.compute.SecurityPolicyRuleMatchExpr | undefined>;
         /**
          * Predefined rule expression. If this field is specified, `config` must also be specified.
          * Available options:
          * * SRC_IPS_V1: Must specify the corresponding `srcIpRanges` field in `config`.
          */
-        versionedExpr?: pulumi.Input<string>;
+        versionedExpr?: pulumi.Input<string | undefined>;
     }
 
     export interface SecurityPolicyRuleMatchConfig {
@@ -10411,12 +10411,12 @@ export namespace compute {
          * Describes authentication configuration that uses a custom account.
          * Structure is documented below.
          */
-        customAccount?: pulumi.Input<inputs.compute.SecurityScanConfigAuthenticationCustomAccount>;
+        customAccount?: pulumi.Input<inputs.compute.SecurityScanConfigAuthenticationCustomAccount | undefined>;
         /**
          * Describes authentication configuration that uses a Google account.
          * Structure is documented below.
          */
-        googleAccount?: pulumi.Input<inputs.compute.SecurityScanConfigAuthenticationGoogleAccount>;
+        googleAccount?: pulumi.Input<inputs.compute.SecurityScanConfigAuthenticationGoogleAccount | undefined>;
     }
 
     export interface SecurityScanConfigAuthenticationCustomAccount {
@@ -10459,31 +10459,31 @@ export namespace compute {
          * by the server after each run. If unspecified, it will default to current server time,
          * which means the scan will be scheduled to start immediately.
          */
-        scheduleTime?: pulumi.Input<string>;
+        scheduleTime?: pulumi.Input<string | undefined>;
     }
 
     export interface SnapshotSnapshotEncryptionKey {
         /**
          * The name of the encryption key that is stored in Google Cloud KMS.
          */
-        kmsKeySelfLink?: pulumi.Input<string>;
+        kmsKeySelfLink?: pulumi.Input<string | undefined>;
         /**
          * The service account used for the encryption request for the given KMS key.
          * If absent, the Compute Engine Service Agent service account is used.
          */
-        kmsKeyServiceAccount?: pulumi.Input<string>;
+        kmsKeyServiceAccount?: pulumi.Input<string | undefined>;
         /**
          * Specifies a 256-bit customer-supplied encryption key, encoded in
          * RFC 4648 base64 to either encrypt or decrypt this resource.
          * **Note**: This property is sensitive and will not be displayed in the plan.
          */
-        rawKey?: pulumi.Input<string>;
+        rawKey?: pulumi.Input<string | undefined>;
         /**
          * -
          * The RFC 4648 base64 encoded SHA-256 hash of the customer-supplied
          * encryption key that protects this resource.
          */
-        sha256?: pulumi.Input<string>;
+        sha256?: pulumi.Input<string | undefined>;
     }
 
     export interface SnapshotSourceDiskEncryptionKey {
@@ -10491,20 +10491,20 @@ export namespace compute {
          * The service account used for the encryption request for the given KMS key.
          * If absent, the Compute Engine Service Agent service account is used.
          */
-        kmsKeyServiceAccount?: pulumi.Input<string>;
+        kmsKeyServiceAccount?: pulumi.Input<string | undefined>;
         /**
          * Specifies a 256-bit customer-supplied encryption key, encoded in
          * RFC 4648 base64 to either encrypt or decrypt this resource.
          * **Note**: This property is sensitive and will not be displayed in the plan.
          */
-        rawKey?: pulumi.Input<string>;
+        rawKey?: pulumi.Input<string | undefined>;
     }
 
     export interface SubnetworkIAMBindingCondition {
         /**
          * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * Textual representation of an expression in Common Expression Language syntax.
          */
@@ -10519,7 +10519,7 @@ export namespace compute {
         /**
          * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * Textual representation of an expression in Common Expression Language syntax.
          */
@@ -10539,13 +10539,13 @@ export namespace compute {
          * Default value is `INTERVAL_5_SEC`.
          * Possible values are `INTERVAL_5_SEC`, `INTERVAL_30_SEC`, `INTERVAL_1_MIN`, `INTERVAL_5_MIN`, `INTERVAL_10_MIN`, and `INTERVAL_15_MIN`.
          */
-        aggregationInterval?: pulumi.Input<string>;
+        aggregationInterval?: pulumi.Input<string | undefined>;
         /**
          * Export filter used to define which VPC flow logs should be logged, as as CEL expression. See
          * https://cloud.google.com/vpc/docs/flow-logs#filtering for details on how to format this field.
          * The default value is 'true', which evaluates to include everything.
          */
-        filterExpr?: pulumi.Input<string>;
+        filterExpr?: pulumi.Input<string | undefined>;
         /**
          * Can only be specified if VPC flow logging for this subnetwork is enabled.
          * The value of the field must be in [0, 1]. Set the sampling rate of VPC
@@ -10553,7 +10553,7 @@ export namespace compute {
          * reported and 0.0 means no logs are reported. Default is 0.5 which means
          * half of all collected logs are reported.
          */
-        flowSampling?: pulumi.Input<number>;
+        flowSampling?: pulumi.Input<number | undefined>;
         /**
          * Can only be specified if VPC flow logging for this subnetwork is enabled.
          * Configures whether metadata fields should be added to the reported VPC
@@ -10561,12 +10561,12 @@ export namespace compute {
          * Default value is `INCLUDE_ALL_METADATA`.
          * Possible values are `EXCLUDE_ALL_METADATA`, `INCLUDE_ALL_METADATA`, and `CUSTOM_METADATA`.
          */
-        metadata?: pulumi.Input<string>;
+        metadata?: pulumi.Input<string | undefined>;
         /**
          * List of metadata fields that should be added to reported logs.
          * Can only be specified if VPC flow logs for this subnetwork is enabled and "metadata" is set to CUSTOM_METADATA.
          */
-        metadataFields?: pulumi.Input<pulumi.Input<string>[]>;
+        metadataFields?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface SubnetworkSecondaryIpRange {
@@ -10592,7 +10592,7 @@ export namespace compute {
          * [W3C Recommendation for Cross Origin Resource Sharing](https://www.w3.org/TR/cors/)
          * Structure is documented below.
          */
-        corsPolicy?: pulumi.Input<inputs.compute.URLMapDefaultRouteActionCorsPolicy>;
+        corsPolicy?: pulumi.Input<inputs.compute.URLMapDefaultRouteActionCorsPolicy | undefined>;
         /**
          * The specification for fault injection introduced into traffic to test the resiliency of clients to backend service failure.
          * As part of fault injection, when clients send requests to a backend service, delays can be introduced by Loadbalancer on a
@@ -10601,31 +10601,31 @@ export namespace compute {
          * timeout and retryPolicy will be ignored by clients that are configured with a faultInjectionPolicy.
          * Structure is documented below.
          */
-        faultInjectionPolicy?: pulumi.Input<inputs.compute.URLMapDefaultRouteActionFaultInjectionPolicy>;
+        faultInjectionPolicy?: pulumi.Input<inputs.compute.URLMapDefaultRouteActionFaultInjectionPolicy | undefined>;
         /**
          * Specifies the policy on how requests intended for the route's backends are shadowed to a separate mirrored backend service.
          * Loadbalancer does not wait for responses from the shadow service. Prior to sending traffic to the shadow service,
          * the host / authority header is suffixed with -shadow.
          * Structure is documented below.
          */
-        requestMirrorPolicy?: pulumi.Input<inputs.compute.URLMapDefaultRouteActionRequestMirrorPolicy>;
+        requestMirrorPolicy?: pulumi.Input<inputs.compute.URLMapDefaultRouteActionRequestMirrorPolicy | undefined>;
         /**
          * Specifies the retry policy associated with this route.
          * Structure is documented below.
          */
-        retryPolicy?: pulumi.Input<inputs.compute.URLMapDefaultRouteActionRetryPolicy>;
+        retryPolicy?: pulumi.Input<inputs.compute.URLMapDefaultRouteActionRetryPolicy | undefined>;
         /**
          * Specifies the timeout for the selected route. Timeout is computed from the time the request has been
          * fully processed (i.e. end-of-stream) up until the response has been completely processed. Timeout includes all retries.
          * If not specified, will use the largest timeout among all backend services associated with the route.
          * Structure is documented below.
          */
-        timeout?: pulumi.Input<inputs.compute.URLMapDefaultRouteActionTimeout>;
+        timeout?: pulumi.Input<inputs.compute.URLMapDefaultRouteActionTimeout | undefined>;
         /**
          * The spec to modify the URL of the request, prior to forwarding the request to the matched service.
          * Structure is documented below.
          */
-        urlRewrite?: pulumi.Input<inputs.compute.URLMapDefaultRouteActionUrlRewrite>;
+        urlRewrite?: pulumi.Input<inputs.compute.URLMapDefaultRouteActionUrlRewrite | undefined>;
         /**
          * A list of weighted backend services to send traffic to when a route match occurs.
          * The weights determine the fraction of traffic that flows to their corresponding backend service.
@@ -10636,7 +10636,7 @@ export namespace compute {
          * additional settings specified in this HttpRouteAction.
          * Structure is documented below.
          */
-        weightedBackendServices?: pulumi.Input<pulumi.Input<inputs.compute.URLMapDefaultRouteActionWeightedBackendService>[]>;
+        weightedBackendServices?: pulumi.Input<pulumi.Input<inputs.compute.URLMapDefaultRouteActionWeightedBackendService>[] | undefined>;
     }
 
     export interface URLMapDefaultRouteActionCorsPolicy {
@@ -10644,39 +10644,39 @@ export namespace compute {
          * In response to a preflight request, setting this to true indicates that the actual request can include user credentials.
          * This translates to the Access-Control-Allow-Credentials header.
          */
-        allowCredentials?: pulumi.Input<boolean>;
+        allowCredentials?: pulumi.Input<boolean | undefined>;
         /**
          * Specifies the content for the Access-Control-Allow-Headers header.
          */
-        allowHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        allowHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies the content for the Access-Control-Allow-Methods header.
          */
-        allowMethods?: pulumi.Input<pulumi.Input<string>[]>;
+        allowMethods?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies the regular expression patterns that match allowed origins. For regular expression grammar
          * please see en.cppreference.com/w/cpp/regex/ecmascript
          * An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
          */
-        allowOriginRegexes?: pulumi.Input<pulumi.Input<string>[]>;
+        allowOriginRegexes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies the list of origins that will be allowed to do CORS requests.
          * An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
          */
-        allowOrigins?: pulumi.Input<pulumi.Input<string>[]>;
+        allowOrigins?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * If true, specifies the CORS policy is disabled. The default value is false, which indicates that the CORS policy is in effect.
          */
-        disabled?: pulumi.Input<boolean>;
+        disabled?: pulumi.Input<boolean | undefined>;
         /**
          * Specifies the content for the Access-Control-Expose-Headers header.
          */
-        exposeHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        exposeHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies how long results of a preflight request can be cached in seconds.
          * This translates to the Access-Control-Max-Age header.
          */
-        maxAge?: pulumi.Input<number>;
+        maxAge?: pulumi.Input<number | undefined>;
     }
 
     export interface URLMapDefaultRouteActionFaultInjectionPolicy {
@@ -10684,12 +10684,12 @@ export namespace compute {
          * The specification for how client requests are aborted as part of fault injection.
          * Structure is documented below.
          */
-        abort?: pulumi.Input<inputs.compute.URLMapDefaultRouteActionFaultInjectionPolicyAbort>;
+        abort?: pulumi.Input<inputs.compute.URLMapDefaultRouteActionFaultInjectionPolicyAbort | undefined>;
         /**
          * The specification for how client requests are delayed as part of fault injection, before being sent to a backend service.
          * Structure is documented below.
          */
-        delay?: pulumi.Input<inputs.compute.URLMapDefaultRouteActionFaultInjectionPolicyDelay>;
+        delay?: pulumi.Input<inputs.compute.URLMapDefaultRouteActionFaultInjectionPolicyDelay | undefined>;
     }
 
     export interface URLMapDefaultRouteActionFaultInjectionPolicyAbort {
@@ -10697,12 +10697,12 @@ export namespace compute {
          * The HTTP status code used to abort the request.
          * The value must be between 200 and 599 inclusive.
          */
-        httpStatus?: pulumi.Input<number>;
+        httpStatus?: pulumi.Input<number | undefined>;
         /**
          * The percentage of traffic (connections/operations/requests) which will be aborted as part of fault injection.
          * The value must be between 0.0 and 100.0 inclusive.
          */
-        percentage?: pulumi.Input<number>;
+        percentage?: pulumi.Input<number | undefined>;
     }
 
     export interface URLMapDefaultRouteActionFaultInjectionPolicyDelay {
@@ -10710,12 +10710,12 @@ export namespace compute {
          * Specifies the value of the fixed delay interval.
          * Structure is documented below.
          */
-        fixedDelay?: pulumi.Input<inputs.compute.URLMapDefaultRouteActionFaultInjectionPolicyDelayFixedDelay>;
+        fixedDelay?: pulumi.Input<inputs.compute.URLMapDefaultRouteActionFaultInjectionPolicyDelayFixedDelay | undefined>;
         /**
          * The percentage of traffic (connections/operations/requests) which will be aborted as part of fault injection.
          * The value must be between 0.0 and 100.0 inclusive.
          */
-        percentage?: pulumi.Input<number>;
+        percentage?: pulumi.Input<number | undefined>;
     }
 
     export interface URLMapDefaultRouteActionFaultInjectionPolicyDelayFixedDelay {
@@ -10723,12 +10723,12 @@ export namespace compute {
          * Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
          * represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
          */
-        nanos?: pulumi.Input<number>;
+        nanos?: pulumi.Input<number | undefined>;
         /**
          * Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.
          * Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
          */
-        seconds?: pulumi.Input<string>;
+        seconds?: pulumi.Input<string | undefined>;
     }
 
     export interface URLMapDefaultRouteActionRequestMirrorPolicy {
@@ -10742,14 +10742,14 @@ export namespace compute {
         /**
          * Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
          */
-        numRetries?: pulumi.Input<number>;
+        numRetries?: pulumi.Input<number | undefined>;
         /**
          * Specifies a non-zero timeout per retry attempt.
          * If not specified, will use the timeout set in HttpRouteAction. If timeout in HttpRouteAction is not set,
          * will use the largest timeout among all backend services associated with the route.
          * Structure is documented below.
          */
-        perTryTimeout?: pulumi.Input<inputs.compute.URLMapDefaultRouteActionRetryPolicyPerTryTimeout>;
+        perTryTimeout?: pulumi.Input<inputs.compute.URLMapDefaultRouteActionRetryPolicyPerTryTimeout | undefined>;
         /**
          * Specfies one or more conditions when this retry rule applies. Valid values are:
          * * 5xx: Loadbalancer will attempt a retry if the backend service responds with any 5xx response code,
@@ -10767,7 +10767,7 @@ export namespace compute {
          * * resource-exhausted: Loadbalancer will retry if the gRPC status code in the response header is set to resource-exhausted
          * * unavailable: Loadbalancer will retry if the gRPC status code in the response header is set to unavailable
          */
-        retryConditions?: pulumi.Input<pulumi.Input<string>[]>;
+        retryConditions?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface URLMapDefaultRouteActionRetryPolicyPerTryTimeout {
@@ -10775,12 +10775,12 @@ export namespace compute {
          * Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
          * represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
          */
-        nanos?: pulumi.Input<number>;
+        nanos?: pulumi.Input<number | undefined>;
         /**
          * Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.
          * Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
          */
-        seconds?: pulumi.Input<string>;
+        seconds?: pulumi.Input<string | undefined>;
     }
 
     export interface URLMapDefaultRouteActionTimeout {
@@ -10788,12 +10788,12 @@ export namespace compute {
          * Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
          * represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
          */
-        nanos?: pulumi.Input<number>;
+        nanos?: pulumi.Input<number | undefined>;
         /**
          * Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.
          * Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
          */
-        seconds?: pulumi.Input<string>;
+        seconds?: pulumi.Input<string | undefined>;
     }
 
     export interface URLMapDefaultRouteActionUrlRewrite {
@@ -10802,20 +10802,20 @@ export namespace compute {
          * with contents of hostRewrite.
          * The value must be between 1 and 255 characters.
          */
-        hostRewrite?: pulumi.Input<string>;
+        hostRewrite?: pulumi.Input<string | undefined>;
         /**
          * Prior to forwarding the request to the selected backend service, the matching portion of the
          * request's path is replaced by pathPrefixRewrite.
          * The value must be between 1 and 1024 characters.
          */
-        pathPrefixRewrite?: pulumi.Input<string>;
+        pathPrefixRewrite?: pulumi.Input<string | undefined>;
     }
 
     export interface URLMapDefaultRouteActionWeightedBackendService {
         /**
          * The full or partial URL to the BackendService resource being mirrored to.
          */
-        backendService?: pulumi.Input<string>;
+        backendService?: pulumi.Input<string | undefined>;
         /**
          * Specifies changes to request and response headers that need to take effect for
          * the selected backendService.
@@ -10823,7 +10823,7 @@ export namespace compute {
          * HttpRouteRule, PathMatcher and UrlMap.
          * Structure is documented below.
          */
-        headerAction?: pulumi.Input<inputs.compute.URLMapDefaultRouteActionWeightedBackendServiceHeaderAction>;
+        headerAction?: pulumi.Input<inputs.compute.URLMapDefaultRouteActionWeightedBackendServiceHeaderAction | undefined>;
         /**
          * Specifies the fraction of traffic sent to backendService, computed as
          * weight / (sum of all weightedBackendService weights in routeAction) .
@@ -10832,7 +10832,7 @@ export namespace compute {
          * as determined by the BackendService's session affinity policy.
          * The value must be between 0 and 1000
          */
-        weight?: pulumi.Input<number>;
+        weight?: pulumi.Input<number | undefined>;
     }
 
     export interface URLMapDefaultRouteActionWeightedBackendServiceHeaderAction {
@@ -10840,54 +10840,54 @@ export namespace compute {
          * Headers to add to a matching request prior to forwarding the request to the backendService.
          * Structure is documented below.
          */
-        requestHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.URLMapDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd>[]>;
+        requestHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.URLMapDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd>[] | undefined>;
         /**
          * A list of header names for headers that need to be removed from the request prior to
          * forwarding the request to the backendService.
          */
-        requestHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[]>;
+        requestHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Headers to add the response prior to sending the response back to the client.
          * Structure is documented below.
          */
-        responseHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.URLMapDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAdd>[]>;
+        responseHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.URLMapDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAdd>[] | undefined>;
         /**
          * A list of header names for headers that need to be removed from the response prior to sending the
          * response back to the client.
          */
-        responseHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[]>;
+        responseHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface URLMapDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd {
         /**
          * The name of the header to add.
          */
-        headerName?: pulumi.Input<string>;
+        headerName?: pulumi.Input<string | undefined>;
         /**
          * The value of the header to add.
          */
-        headerValue?: pulumi.Input<string>;
+        headerValue?: pulumi.Input<string | undefined>;
         /**
          * If false, headerValue is appended to any values that already exist for the header.
          * If true, headerValue is set for the header, discarding any values that were set for that header.
          */
-        replace?: pulumi.Input<boolean>;
+        replace?: pulumi.Input<boolean | undefined>;
     }
 
     export interface URLMapDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAdd {
         /**
          * The name of the header to add.
          */
-        headerName?: pulumi.Input<string>;
+        headerName?: pulumi.Input<string | undefined>;
         /**
          * The value of the header to add.
          */
-        headerValue?: pulumi.Input<string>;
+        headerValue?: pulumi.Input<string | undefined>;
         /**
          * If false, headerValue is appended to any values that already exist for the header.
          * If true, headerValue is set for the header, discarding any values that were set for that header.
          */
-        replace?: pulumi.Input<boolean>;
+        replace?: pulumi.Input<boolean | undefined>;
     }
 
     export interface URLMapDefaultUrlRedirect {
@@ -10895,14 +10895,14 @@ export namespace compute {
          * The host that will be used in the redirect response instead of the one that was
          * supplied in the request. The value must be between 1 and 255 characters.
          */
-        hostRedirect?: pulumi.Input<string>;
+        hostRedirect?: pulumi.Input<string | undefined>;
         /**
          * If set to true, the URL scheme in the redirected request is set to https. If set to
          * false, the URL scheme of the redirected request will remain the same as that of the
          * request. This must only be set for UrlMaps used in TargetHttpProxys. Setting this
          * true for TargetHttpsProxy is not permitted. The default is set to false.
          */
-        httpsRedirect?: pulumi.Input<boolean>;
+        httpsRedirect?: pulumi.Input<boolean | undefined>;
         /**
          * The path that will be used in the redirect response instead of the one that was
          * supplied in the request. pathRedirect cannot be supplied together with
@@ -10910,7 +10910,7 @@ export namespace compute {
          * original request will be used for the redirect. The value must be between 1 and 1024
          * characters.
          */
-        pathRedirect?: pulumi.Input<string>;
+        pathRedirect?: pulumi.Input<string | undefined>;
         /**
          * The prefix that replaces the prefixMatch specified in the HttpRouteRuleMatch,
          * retaining the remaining portion of the URL before redirecting the request.
@@ -10918,7 +10918,7 @@ export namespace compute {
          * neither. If neither is supplied, the path of the original request will be used for
          * the redirect. The value must be between 1 and 1024 characters.
          */
-        prefixRedirect?: pulumi.Input<string>;
+        prefixRedirect?: pulumi.Input<string | undefined>;
         /**
          * The HTTP Status code to use for this RedirectAction. Supported values are:
          * * MOVED_PERMANENTLY_DEFAULT, which is the default value and corresponds to 301.
@@ -10929,7 +10929,7 @@ export namespace compute {
          * * PERMANENT_REDIRECT, which corresponds to 308. In this case,
          * the request method will be retained.
          */
-        redirectResponseCode?: pulumi.Input<string>;
+        redirectResponseCode?: pulumi.Input<string | undefined>;
         /**
          * If set to true, any accompanying query portion of the original URL is removed prior
          * to redirecting the request. If set to false, the query portion of the original URL is
@@ -10944,22 +10944,22 @@ export namespace compute {
          * Headers to add to a matching request prior to forwarding the request to the backendService.
          * Structure is documented below.
          */
-        requestHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.URLMapHeaderActionRequestHeadersToAdd>[]>;
+        requestHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.URLMapHeaderActionRequestHeadersToAdd>[] | undefined>;
         /**
          * A list of header names for headers that need to be removed from the request prior to
          * forwarding the request to the backendService.
          */
-        requestHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[]>;
+        requestHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Headers to add the response prior to sending the response back to the client.
          * Structure is documented below.
          */
-        responseHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.URLMapHeaderActionResponseHeadersToAdd>[]>;
+        responseHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.URLMapHeaderActionResponseHeadersToAdd>[] | undefined>;
         /**
          * A list of header names for headers that need to be removed from the response prior to sending the
          * response back to the client.
          */
-        responseHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[]>;
+        responseHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface URLMapHeaderActionRequestHeadersToAdd {
@@ -10998,7 +10998,7 @@ export namespace compute {
         /**
          * Description of this test case.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * The list of host patterns to match. They must be valid hostnames, except * will
          * match any string of ([a-z0-9-.]*). In that case, * must be the first character
@@ -11021,22 +11021,22 @@ export namespace compute {
          * Only one of defaultRouteAction or defaultUrlRedirect must be set.
          * Structure is documented below.
          */
-        defaultRouteAction?: pulumi.Input<inputs.compute.URLMapPathMatcherDefaultRouteAction>;
+        defaultRouteAction?: pulumi.Input<inputs.compute.URLMapPathMatcherDefaultRouteAction | undefined>;
         /**
          * The backend service or backend bucket to use when none of the given paths match.
          */
-        defaultService?: pulumi.Input<string>;
+        defaultService?: pulumi.Input<string | undefined>;
         /**
          * When none of the specified hostRules match, the request is redirected to a URL specified
          * by defaultUrlRedirect. If defaultUrlRedirect is specified, defaultService or
          * defaultRouteAction must not be set.
          * Structure is documented below.
          */
-        defaultUrlRedirect?: pulumi.Input<inputs.compute.URLMapPathMatcherDefaultUrlRedirect>;
+        defaultUrlRedirect?: pulumi.Input<inputs.compute.URLMapPathMatcherDefaultUrlRedirect | undefined>;
         /**
          * Description of this test case.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * Specifies changes to request and response headers that need to take effect for
          * the selected backendService.
@@ -11044,7 +11044,7 @@ export namespace compute {
          * HttpRouteRule, PathMatcher and UrlMap.
          * Structure is documented below.
          */
-        headerAction?: pulumi.Input<inputs.compute.URLMapPathMatcherHeaderAction>;
+        headerAction?: pulumi.Input<inputs.compute.URLMapPathMatcherHeaderAction | undefined>;
         /**
          * The name of the query parameter to match. The query parameter must exist in the
          * request, in the absence of which the request match fails.
@@ -11059,7 +11059,7 @@ export namespace compute {
          * given pathMatcher, only one of pathRules or routeRules must be set.
          * Structure is documented below.
          */
-        pathRules?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherPathRule>[]>;
+        pathRules?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherPathRule>[] | undefined>;
         /**
          * The list of ordered HTTP route rules. Use this list instead of pathRules when
          * advanced route matching and routing actions are desired. The order of specifying
@@ -11069,7 +11069,7 @@ export namespace compute {
          * External load balancers.
          * Structure is documented below.
          */
-        routeRules?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherRouteRule>[]>;
+        routeRules?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherRouteRule>[] | undefined>;
     }
 
     export interface URLMapPathMatcherDefaultRouteAction {
@@ -11078,7 +11078,7 @@ export namespace compute {
          * [W3C Recommendation for Cross Origin Resource Sharing](https://www.w3.org/TR/cors/)
          * Structure is documented below.
          */
-        corsPolicy?: pulumi.Input<inputs.compute.URLMapPathMatcherDefaultRouteActionCorsPolicy>;
+        corsPolicy?: pulumi.Input<inputs.compute.URLMapPathMatcherDefaultRouteActionCorsPolicy | undefined>;
         /**
          * The specification for fault injection introduced into traffic to test the resiliency of clients to backend service failure.
          * As part of fault injection, when clients send requests to a backend service, delays can be introduced by Loadbalancer on a
@@ -11087,31 +11087,31 @@ export namespace compute {
          * timeout and retryPolicy will be ignored by clients that are configured with a faultInjectionPolicy.
          * Structure is documented below.
          */
-        faultInjectionPolicy?: pulumi.Input<inputs.compute.URLMapPathMatcherDefaultRouteActionFaultInjectionPolicy>;
+        faultInjectionPolicy?: pulumi.Input<inputs.compute.URLMapPathMatcherDefaultRouteActionFaultInjectionPolicy | undefined>;
         /**
          * Specifies the policy on how requests intended for the route's backends are shadowed to a separate mirrored backend service.
          * Loadbalancer does not wait for responses from the shadow service. Prior to sending traffic to the shadow service,
          * the host / authority header is suffixed with -shadow.
          * Structure is documented below.
          */
-        requestMirrorPolicy?: pulumi.Input<inputs.compute.URLMapPathMatcherDefaultRouteActionRequestMirrorPolicy>;
+        requestMirrorPolicy?: pulumi.Input<inputs.compute.URLMapPathMatcherDefaultRouteActionRequestMirrorPolicy | undefined>;
         /**
          * Specifies the retry policy associated with this route.
          * Structure is documented below.
          */
-        retryPolicy?: pulumi.Input<inputs.compute.URLMapPathMatcherDefaultRouteActionRetryPolicy>;
+        retryPolicy?: pulumi.Input<inputs.compute.URLMapPathMatcherDefaultRouteActionRetryPolicy | undefined>;
         /**
          * Specifies the timeout for the selected route. Timeout is computed from the time the request has been
          * fully processed (i.e. end-of-stream) up until the response has been completely processed. Timeout includes all retries.
          * If not specified, will use the largest timeout among all backend services associated with the route.
          * Structure is documented below.
          */
-        timeout?: pulumi.Input<inputs.compute.URLMapPathMatcherDefaultRouteActionTimeout>;
+        timeout?: pulumi.Input<inputs.compute.URLMapPathMatcherDefaultRouteActionTimeout | undefined>;
         /**
          * The spec to modify the URL of the request, prior to forwarding the request to the matched service.
          * Structure is documented below.
          */
-        urlRewrite?: pulumi.Input<inputs.compute.URLMapPathMatcherDefaultRouteActionUrlRewrite>;
+        urlRewrite?: pulumi.Input<inputs.compute.URLMapPathMatcherDefaultRouteActionUrlRewrite | undefined>;
         /**
          * A list of weighted backend services to send traffic to when a route match occurs.
          * The weights determine the fraction of traffic that flows to their corresponding backend service.
@@ -11122,7 +11122,7 @@ export namespace compute {
          * additional settings specified in this HttpRouteAction.
          * Structure is documented below.
          */
-        weightedBackendServices?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherDefaultRouteActionWeightedBackendService>[]>;
+        weightedBackendServices?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherDefaultRouteActionWeightedBackendService>[] | undefined>;
     }
 
     export interface URLMapPathMatcherDefaultRouteActionCorsPolicy {
@@ -11130,39 +11130,39 @@ export namespace compute {
          * In response to a preflight request, setting this to true indicates that the actual request can include user credentials.
          * This translates to the Access-Control-Allow-Credentials header.
          */
-        allowCredentials?: pulumi.Input<boolean>;
+        allowCredentials?: pulumi.Input<boolean | undefined>;
         /**
          * Specifies the content for the Access-Control-Allow-Headers header.
          */
-        allowHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        allowHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies the content for the Access-Control-Allow-Methods header.
          */
-        allowMethods?: pulumi.Input<pulumi.Input<string>[]>;
+        allowMethods?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies the regular expression patterns that match allowed origins. For regular expression grammar
          * please see en.cppreference.com/w/cpp/regex/ecmascript
          * An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
          */
-        allowOriginRegexes?: pulumi.Input<pulumi.Input<string>[]>;
+        allowOriginRegexes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies the list of origins that will be allowed to do CORS requests.
          * An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
          */
-        allowOrigins?: pulumi.Input<pulumi.Input<string>[]>;
+        allowOrigins?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * If true, specifies the CORS policy is disabled. The default value is false, which indicates that the CORS policy is in effect.
          */
-        disabled?: pulumi.Input<boolean>;
+        disabled?: pulumi.Input<boolean | undefined>;
         /**
          * Specifies the content for the Access-Control-Expose-Headers header.
          */
-        exposeHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        exposeHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies how long results of a preflight request can be cached in seconds.
          * This translates to the Access-Control-Max-Age header.
          */
-        maxAge?: pulumi.Input<number>;
+        maxAge?: pulumi.Input<number | undefined>;
     }
 
     export interface URLMapPathMatcherDefaultRouteActionFaultInjectionPolicy {
@@ -11170,12 +11170,12 @@ export namespace compute {
          * The specification for how client requests are aborted as part of fault injection.
          * Structure is documented below.
          */
-        abort?: pulumi.Input<inputs.compute.URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyAbort>;
+        abort?: pulumi.Input<inputs.compute.URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyAbort | undefined>;
         /**
          * The specification for how client requests are delayed as part of fault injection, before being sent to a backend service.
          * Structure is documented below.
          */
-        delay?: pulumi.Input<inputs.compute.URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelay>;
+        delay?: pulumi.Input<inputs.compute.URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelay | undefined>;
     }
 
     export interface URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyAbort {
@@ -11183,12 +11183,12 @@ export namespace compute {
          * The HTTP status code used to abort the request.
          * The value must be between 200 and 599 inclusive.
          */
-        httpStatus?: pulumi.Input<number>;
+        httpStatus?: pulumi.Input<number | undefined>;
         /**
          * The percentage of traffic (connections/operations/requests) which will be aborted as part of fault injection.
          * The value must be between 0.0 and 100.0 inclusive.
          */
-        percentage?: pulumi.Input<number>;
+        percentage?: pulumi.Input<number | undefined>;
     }
 
     export interface URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelay {
@@ -11196,12 +11196,12 @@ export namespace compute {
          * Specifies the value of the fixed delay interval.
          * Structure is documented below.
          */
-        fixedDelay?: pulumi.Input<inputs.compute.URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayFixedDelay>;
+        fixedDelay?: pulumi.Input<inputs.compute.URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayFixedDelay | undefined>;
         /**
          * The percentage of traffic (connections/operations/requests) which will be aborted as part of fault injection.
          * The value must be between 0.0 and 100.0 inclusive.
          */
-        percentage?: pulumi.Input<number>;
+        percentage?: pulumi.Input<number | undefined>;
     }
 
     export interface URLMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayFixedDelay {
@@ -11209,12 +11209,12 @@ export namespace compute {
          * Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
          * represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
          */
-        nanos?: pulumi.Input<number>;
+        nanos?: pulumi.Input<number | undefined>;
         /**
          * Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.
          * Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
          */
-        seconds?: pulumi.Input<string>;
+        seconds?: pulumi.Input<string | undefined>;
     }
 
     export interface URLMapPathMatcherDefaultRouteActionRequestMirrorPolicy {
@@ -11228,14 +11228,14 @@ export namespace compute {
         /**
          * Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
          */
-        numRetries?: pulumi.Input<number>;
+        numRetries?: pulumi.Input<number | undefined>;
         /**
          * Specifies a non-zero timeout per retry attempt.
          * If not specified, will use the timeout set in HttpRouteAction. If timeout in HttpRouteAction is not set,
          * will use the largest timeout among all backend services associated with the route.
          * Structure is documented below.
          */
-        perTryTimeout?: pulumi.Input<inputs.compute.URLMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeout>;
+        perTryTimeout?: pulumi.Input<inputs.compute.URLMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeout | undefined>;
         /**
          * Specfies one or more conditions when this retry rule applies. Valid values are:
          * * 5xx: Loadbalancer will attempt a retry if the backend service responds with any 5xx response code,
@@ -11253,7 +11253,7 @@ export namespace compute {
          * * resource-exhausted: Loadbalancer will retry if the gRPC status code in the response header is set to resource-exhausted
          * * unavailable: Loadbalancer will retry if the gRPC status code in the response header is set to unavailable
          */
-        retryConditions?: pulumi.Input<pulumi.Input<string>[]>;
+        retryConditions?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface URLMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeout {
@@ -11261,12 +11261,12 @@ export namespace compute {
          * Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
          * represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
          */
-        nanos?: pulumi.Input<number>;
+        nanos?: pulumi.Input<number | undefined>;
         /**
          * Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.
          * Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
          */
-        seconds?: pulumi.Input<string>;
+        seconds?: pulumi.Input<string | undefined>;
     }
 
     export interface URLMapPathMatcherDefaultRouteActionTimeout {
@@ -11274,12 +11274,12 @@ export namespace compute {
          * Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
          * represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
          */
-        nanos?: pulumi.Input<number>;
+        nanos?: pulumi.Input<number | undefined>;
         /**
          * Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.
          * Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
          */
-        seconds?: pulumi.Input<string>;
+        seconds?: pulumi.Input<string | undefined>;
     }
 
     export interface URLMapPathMatcherDefaultRouteActionUrlRewrite {
@@ -11288,20 +11288,20 @@ export namespace compute {
          * with contents of hostRewrite.
          * The value must be between 1 and 255 characters.
          */
-        hostRewrite?: pulumi.Input<string>;
+        hostRewrite?: pulumi.Input<string | undefined>;
         /**
          * Prior to forwarding the request to the selected backend service, the matching portion of the
          * request's path is replaced by pathPrefixRewrite.
          * The value must be between 1 and 1024 characters.
          */
-        pathPrefixRewrite?: pulumi.Input<string>;
+        pathPrefixRewrite?: pulumi.Input<string | undefined>;
     }
 
     export interface URLMapPathMatcherDefaultRouteActionWeightedBackendService {
         /**
          * The full or partial URL to the BackendService resource being mirrored to.
          */
-        backendService?: pulumi.Input<string>;
+        backendService?: pulumi.Input<string | undefined>;
         /**
          * Specifies changes to request and response headers that need to take effect for
          * the selected backendService.
@@ -11309,7 +11309,7 @@ export namespace compute {
          * HttpRouteRule, PathMatcher and UrlMap.
          * Structure is documented below.
          */
-        headerAction?: pulumi.Input<inputs.compute.URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderAction>;
+        headerAction?: pulumi.Input<inputs.compute.URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderAction | undefined>;
         /**
          * Specifies the fraction of traffic sent to backendService, computed as
          * weight / (sum of all weightedBackendService weights in routeAction) .
@@ -11318,7 +11318,7 @@ export namespace compute {
          * as determined by the BackendService's session affinity policy.
          * The value must be between 0 and 1000
          */
-        weight?: pulumi.Input<number>;
+        weight?: pulumi.Input<number | undefined>;
     }
 
     export interface URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderAction {
@@ -11326,54 +11326,54 @@ export namespace compute {
          * Headers to add to a matching request prior to forwarding the request to the backendService.
          * Structure is documented below.
          */
-        requestHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd>[]>;
+        requestHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd>[] | undefined>;
         /**
          * A list of header names for headers that need to be removed from the request prior to
          * forwarding the request to the backendService.
          */
-        requestHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[]>;
+        requestHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Headers to add the response prior to sending the response back to the client.
          * Structure is documented below.
          */
-        responseHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAdd>[]>;
+        responseHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAdd>[] | undefined>;
         /**
          * A list of header names for headers that need to be removed from the response prior to sending the
          * response back to the client.
          */
-        responseHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[]>;
+        responseHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd {
         /**
          * The name of the header to add.
          */
-        headerName?: pulumi.Input<string>;
+        headerName?: pulumi.Input<string | undefined>;
         /**
          * The value of the header to add.
          */
-        headerValue?: pulumi.Input<string>;
+        headerValue?: pulumi.Input<string | undefined>;
         /**
          * If false, headerValue is appended to any values that already exist for the header.
          * If true, headerValue is set for the header, discarding any values that were set for that header.
          */
-        replace?: pulumi.Input<boolean>;
+        replace?: pulumi.Input<boolean | undefined>;
     }
 
     export interface URLMapPathMatcherDefaultRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAdd {
         /**
          * The name of the header to add.
          */
-        headerName?: pulumi.Input<string>;
+        headerName?: pulumi.Input<string | undefined>;
         /**
          * The value of the header to add.
          */
-        headerValue?: pulumi.Input<string>;
+        headerValue?: pulumi.Input<string | undefined>;
         /**
          * If false, headerValue is appended to any values that already exist for the header.
          * If true, headerValue is set for the header, discarding any values that were set for that header.
          */
-        replace?: pulumi.Input<boolean>;
+        replace?: pulumi.Input<boolean | undefined>;
     }
 
     export interface URLMapPathMatcherDefaultUrlRedirect {
@@ -11381,14 +11381,14 @@ export namespace compute {
          * The host that will be used in the redirect response instead of the one that was
          * supplied in the request. The value must be between 1 and 255 characters.
          */
-        hostRedirect?: pulumi.Input<string>;
+        hostRedirect?: pulumi.Input<string | undefined>;
         /**
          * If set to true, the URL scheme in the redirected request is set to https. If set to
          * false, the URL scheme of the redirected request will remain the same as that of the
          * request. This must only be set for UrlMaps used in TargetHttpProxys. Setting this
          * true for TargetHttpsProxy is not permitted. The default is set to false.
          */
-        httpsRedirect?: pulumi.Input<boolean>;
+        httpsRedirect?: pulumi.Input<boolean | undefined>;
         /**
          * The path that will be used in the redirect response instead of the one that was
          * supplied in the request. pathRedirect cannot be supplied together with
@@ -11396,7 +11396,7 @@ export namespace compute {
          * original request will be used for the redirect. The value must be between 1 and 1024
          * characters.
          */
-        pathRedirect?: pulumi.Input<string>;
+        pathRedirect?: pulumi.Input<string | undefined>;
         /**
          * The prefix that replaces the prefixMatch specified in the HttpRouteRuleMatch,
          * retaining the remaining portion of the URL before redirecting the request.
@@ -11404,7 +11404,7 @@ export namespace compute {
          * neither. If neither is supplied, the path of the original request will be used for
          * the redirect. The value must be between 1 and 1024 characters.
          */
-        prefixRedirect?: pulumi.Input<string>;
+        prefixRedirect?: pulumi.Input<string | undefined>;
         /**
          * The HTTP Status code to use for this RedirectAction. Supported values are:
          * * MOVED_PERMANENTLY_DEFAULT, which is the default value and corresponds to 301.
@@ -11415,7 +11415,7 @@ export namespace compute {
          * * PERMANENT_REDIRECT, which corresponds to 308. In this case,
          * the request method will be retained.
          */
-        redirectResponseCode?: pulumi.Input<string>;
+        redirectResponseCode?: pulumi.Input<string | undefined>;
         /**
          * If set to true, any accompanying query portion of the original URL is removed prior
          * to redirecting the request. If set to false, the query portion of the original URL is
@@ -11430,22 +11430,22 @@ export namespace compute {
          * Headers to add to a matching request prior to forwarding the request to the backendService.
          * Structure is documented below.
          */
-        requestHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherHeaderActionRequestHeadersToAdd>[]>;
+        requestHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherHeaderActionRequestHeadersToAdd>[] | undefined>;
         /**
          * A list of header names for headers that need to be removed from the request prior to
          * forwarding the request to the backendService.
          */
-        requestHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[]>;
+        requestHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Headers to add the response prior to sending the response back to the client.
          * Structure is documented below.
          */
-        responseHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherHeaderActionResponseHeadersToAdd>[]>;
+        responseHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherHeaderActionResponseHeadersToAdd>[] | undefined>;
         /**
          * A list of header names for headers that need to be removed from the response prior to sending the
          * response back to the client.
          */
-        responseHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[]>;
+        responseHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface URLMapPathMatcherHeaderActionRequestHeadersToAdd {
@@ -11497,18 +11497,18 @@ export namespace compute {
          * or urlRedirect must be set.
          * Structure is documented below.
          */
-        routeAction?: pulumi.Input<inputs.compute.URLMapPathMatcherPathRuleRouteAction>;
+        routeAction?: pulumi.Input<inputs.compute.URLMapPathMatcherPathRuleRouteAction | undefined>;
         /**
          * The backend service or backend bucket link that should be matched by this test.
          */
-        service?: pulumi.Input<string>;
+        service?: pulumi.Input<string | undefined>;
         /**
          * When this rule is matched, the request is redirected to a URL specified by
          * urlRedirect. If urlRedirect is specified, service or routeAction must not be
          * set.
          * Structure is documented below.
          */
-        urlRedirect?: pulumi.Input<inputs.compute.URLMapPathMatcherPathRuleUrlRedirect>;
+        urlRedirect?: pulumi.Input<inputs.compute.URLMapPathMatcherPathRuleUrlRedirect | undefined>;
     }
 
     export interface URLMapPathMatcherPathRuleRouteAction {
@@ -11517,7 +11517,7 @@ export namespace compute {
          * [W3C Recommendation for Cross Origin Resource Sharing](https://www.w3.org/TR/cors/)
          * Structure is documented below.
          */
-        corsPolicy?: pulumi.Input<inputs.compute.URLMapPathMatcherPathRuleRouteActionCorsPolicy>;
+        corsPolicy?: pulumi.Input<inputs.compute.URLMapPathMatcherPathRuleRouteActionCorsPolicy | undefined>;
         /**
          * The specification for fault injection introduced into traffic to test the resiliency of clients to backend service failure.
          * As part of fault injection, when clients send requests to a backend service, delays can be introduced by Loadbalancer on a
@@ -11526,31 +11526,31 @@ export namespace compute {
          * timeout and retryPolicy will be ignored by clients that are configured with a faultInjectionPolicy.
          * Structure is documented below.
          */
-        faultInjectionPolicy?: pulumi.Input<inputs.compute.URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicy>;
+        faultInjectionPolicy?: pulumi.Input<inputs.compute.URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicy | undefined>;
         /**
          * Specifies the policy on how requests intended for the route's backends are shadowed to a separate mirrored backend service.
          * Loadbalancer does not wait for responses from the shadow service. Prior to sending traffic to the shadow service,
          * the host / authority header is suffixed with -shadow.
          * Structure is documented below.
          */
-        requestMirrorPolicy?: pulumi.Input<inputs.compute.URLMapPathMatcherPathRuleRouteActionRequestMirrorPolicy>;
+        requestMirrorPolicy?: pulumi.Input<inputs.compute.URLMapPathMatcherPathRuleRouteActionRequestMirrorPolicy | undefined>;
         /**
          * Specifies the retry policy associated with this route.
          * Structure is documented below.
          */
-        retryPolicy?: pulumi.Input<inputs.compute.URLMapPathMatcherPathRuleRouteActionRetryPolicy>;
+        retryPolicy?: pulumi.Input<inputs.compute.URLMapPathMatcherPathRuleRouteActionRetryPolicy | undefined>;
         /**
          * Specifies the timeout for the selected route. Timeout is computed from the time the request has been
          * fully processed (i.e. end-of-stream) up until the response has been completely processed. Timeout includes all retries.
          * If not specified, will use the largest timeout among all backend services associated with the route.
          * Structure is documented below.
          */
-        timeout?: pulumi.Input<inputs.compute.URLMapPathMatcherPathRuleRouteActionTimeout>;
+        timeout?: pulumi.Input<inputs.compute.URLMapPathMatcherPathRuleRouteActionTimeout | undefined>;
         /**
          * The spec to modify the URL of the request, prior to forwarding the request to the matched service.
          * Structure is documented below.
          */
-        urlRewrite?: pulumi.Input<inputs.compute.URLMapPathMatcherPathRuleRouteActionUrlRewrite>;
+        urlRewrite?: pulumi.Input<inputs.compute.URLMapPathMatcherPathRuleRouteActionUrlRewrite | undefined>;
         /**
          * A list of weighted backend services to send traffic to when a route match occurs.
          * The weights determine the fraction of traffic that flows to their corresponding backend service.
@@ -11561,7 +11561,7 @@ export namespace compute {
          * additional settings specified in this HttpRouteAction.
          * Structure is documented below.
          */
-        weightedBackendServices?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherPathRuleRouteActionWeightedBackendService>[]>;
+        weightedBackendServices?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherPathRuleRouteActionWeightedBackendService>[] | undefined>;
     }
 
     export interface URLMapPathMatcherPathRuleRouteActionCorsPolicy {
@@ -11569,26 +11569,26 @@ export namespace compute {
          * In response to a preflight request, setting this to true indicates that the actual request can include user credentials.
          * This translates to the Access-Control-Allow-Credentials header.
          */
-        allowCredentials?: pulumi.Input<boolean>;
+        allowCredentials?: pulumi.Input<boolean | undefined>;
         /**
          * Specifies the content for the Access-Control-Allow-Headers header.
          */
-        allowHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        allowHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies the content for the Access-Control-Allow-Methods header.
          */
-        allowMethods?: pulumi.Input<pulumi.Input<string>[]>;
+        allowMethods?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies the regular expression patterns that match allowed origins. For regular expression grammar
          * please see en.cppreference.com/w/cpp/regex/ecmascript
          * An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
          */
-        allowOriginRegexes?: pulumi.Input<pulumi.Input<string>[]>;
+        allowOriginRegexes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies the list of origins that will be allowed to do CORS requests.
          * An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
          */
-        allowOrigins?: pulumi.Input<pulumi.Input<string>[]>;
+        allowOrigins?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * If true, specifies the CORS policy is disabled. The default value is false, which indicates that the CORS policy is in effect.
          */
@@ -11596,12 +11596,12 @@ export namespace compute {
         /**
          * Specifies the content for the Access-Control-Expose-Headers header.
          */
-        exposeHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        exposeHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies how long results of a preflight request can be cached in seconds.
          * This translates to the Access-Control-Max-Age header.
          */
-        maxAge?: pulumi.Input<number>;
+        maxAge?: pulumi.Input<number | undefined>;
     }
 
     export interface URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicy {
@@ -11609,12 +11609,12 @@ export namespace compute {
          * The specification for how client requests are aborted as part of fault injection.
          * Structure is documented below.
          */
-        abort?: pulumi.Input<inputs.compute.URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbort>;
+        abort?: pulumi.Input<inputs.compute.URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbort | undefined>;
         /**
          * The specification for how client requests are delayed as part of fault injection, before being sent to a backend service.
          * Structure is documented below.
          */
-        delay?: pulumi.Input<inputs.compute.URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelay>;
+        delay?: pulumi.Input<inputs.compute.URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelay | undefined>;
     }
 
     export interface URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbort {
@@ -11648,7 +11648,7 @@ export namespace compute {
          * Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
          * represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
          */
-        nanos?: pulumi.Input<number>;
+        nanos?: pulumi.Input<number | undefined>;
         /**
          * Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.
          * Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
@@ -11667,14 +11667,14 @@ export namespace compute {
         /**
          * Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
          */
-        numRetries?: pulumi.Input<number>;
+        numRetries?: pulumi.Input<number | undefined>;
         /**
          * Specifies a non-zero timeout per retry attempt.
          * If not specified, will use the timeout set in HttpRouteAction. If timeout in HttpRouteAction is not set,
          * will use the largest timeout among all backend services associated with the route.
          * Structure is documented below.
          */
-        perTryTimeout?: pulumi.Input<inputs.compute.URLMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeout>;
+        perTryTimeout?: pulumi.Input<inputs.compute.URLMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeout | undefined>;
         /**
          * Specfies one or more conditions when this retry rule applies. Valid values are:
          * * 5xx: Loadbalancer will attempt a retry if the backend service responds with any 5xx response code,
@@ -11692,7 +11692,7 @@ export namespace compute {
          * * resource-exhausted: Loadbalancer will retry if the gRPC status code in the response header is set to resource-exhausted
          * * unavailable: Loadbalancer will retry if the gRPC status code in the response header is set to unavailable
          */
-        retryConditions?: pulumi.Input<pulumi.Input<string>[]>;
+        retryConditions?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface URLMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeout {
@@ -11700,7 +11700,7 @@ export namespace compute {
          * Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
          * represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
          */
-        nanos?: pulumi.Input<number>;
+        nanos?: pulumi.Input<number | undefined>;
         /**
          * Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.
          * Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
@@ -11713,7 +11713,7 @@ export namespace compute {
          * Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
          * represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
          */
-        nanos?: pulumi.Input<number>;
+        nanos?: pulumi.Input<number | undefined>;
         /**
          * Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.
          * Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
@@ -11727,13 +11727,13 @@ export namespace compute {
          * with contents of hostRewrite.
          * The value must be between 1 and 255 characters.
          */
-        hostRewrite?: pulumi.Input<string>;
+        hostRewrite?: pulumi.Input<string | undefined>;
         /**
          * Prior to forwarding the request to the selected backend service, the matching portion of the
          * request's path is replaced by pathPrefixRewrite.
          * The value must be between 1 and 1024 characters.
          */
-        pathPrefixRewrite?: pulumi.Input<string>;
+        pathPrefixRewrite?: pulumi.Input<string | undefined>;
     }
 
     export interface URLMapPathMatcherPathRuleRouteActionWeightedBackendService {
@@ -11748,7 +11748,7 @@ export namespace compute {
          * HttpRouteRule, PathMatcher and UrlMap.
          * Structure is documented below.
          */
-        headerAction?: pulumi.Input<inputs.compute.URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderAction>;
+        headerAction?: pulumi.Input<inputs.compute.URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderAction | undefined>;
         /**
          * Specifies the fraction of traffic sent to backendService, computed as
          * weight / (sum of all weightedBackendService weights in routeAction) .
@@ -11765,22 +11765,22 @@ export namespace compute {
          * Headers to add to a matching request prior to forwarding the request to the backendService.
          * Structure is documented below.
          */
-        requestHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd>[]>;
+        requestHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd>[] | undefined>;
         /**
          * A list of header names for headers that need to be removed from the request prior to
          * forwarding the request to the backendService.
          */
-        requestHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[]>;
+        requestHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Headers to add the response prior to sending the response back to the client.
          * Structure is documented below.
          */
-        responseHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAdd>[]>;
+        responseHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAdd>[] | undefined>;
         /**
          * A list of header names for headers that need to be removed from the response prior to sending the
          * response back to the client.
          */
-        responseHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[]>;
+        responseHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd {
@@ -11820,14 +11820,14 @@ export namespace compute {
          * The host that will be used in the redirect response instead of the one that was
          * supplied in the request. The value must be between 1 and 255 characters.
          */
-        hostRedirect?: pulumi.Input<string>;
+        hostRedirect?: pulumi.Input<string | undefined>;
         /**
          * If set to true, the URL scheme in the redirected request is set to https. If set to
          * false, the URL scheme of the redirected request will remain the same as that of the
          * request. This must only be set for UrlMaps used in TargetHttpProxys. Setting this
          * true for TargetHttpsProxy is not permitted. The default is set to false.
          */
-        httpsRedirect?: pulumi.Input<boolean>;
+        httpsRedirect?: pulumi.Input<boolean | undefined>;
         /**
          * The path that will be used in the redirect response instead of the one that was
          * supplied in the request. pathRedirect cannot be supplied together with
@@ -11835,7 +11835,7 @@ export namespace compute {
          * original request will be used for the redirect. The value must be between 1 and 1024
          * characters.
          */
-        pathRedirect?: pulumi.Input<string>;
+        pathRedirect?: pulumi.Input<string | undefined>;
         /**
          * The prefix that replaces the prefixMatch specified in the HttpRouteRuleMatch,
          * retaining the remaining portion of the URL before redirecting the request.
@@ -11843,7 +11843,7 @@ export namespace compute {
          * neither. If neither is supplied, the path of the original request will be used for
          * the redirect. The value must be between 1 and 1024 characters.
          */
-        prefixRedirect?: pulumi.Input<string>;
+        prefixRedirect?: pulumi.Input<string | undefined>;
         /**
          * The HTTP Status code to use for this RedirectAction. Supported values are:
          * * MOVED_PERMANENTLY_DEFAULT, which is the default value and corresponds to 301.
@@ -11854,7 +11854,7 @@ export namespace compute {
          * * PERMANENT_REDIRECT, which corresponds to 308. In this case,
          * the request method will be retained.
          */
-        redirectResponseCode?: pulumi.Input<string>;
+        redirectResponseCode?: pulumi.Input<string | undefined>;
         /**
          * If set to true, any accompanying query portion of the original URL is removed prior
          * to redirecting the request. If set to false, the query portion of the original URL is
@@ -11872,12 +11872,12 @@ export namespace compute {
          * HttpRouteRule, PathMatcher and UrlMap.
          * Structure is documented below.
          */
-        headerAction?: pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleHeaderAction>;
+        headerAction?: pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleHeaderAction | undefined>;
         /**
          * The rules for determining a match.
          * Structure is documented below.
          */
-        matchRules?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleMatchRule>[]>;
+        matchRules?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleMatchRule>[] | undefined>;
         /**
          * For routeRules within a given pathMatcher, priority determines the order
          * in which load balancer will interpret routeRules. RouteRules are evaluated
@@ -11903,18 +11903,18 @@ export namespace compute {
          * or urlRedirect must be set.
          * Structure is documented below.
          */
-        routeAction?: pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleRouteAction>;
+        routeAction?: pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleRouteAction | undefined>;
         /**
          * The backend service or backend bucket link that should be matched by this test.
          */
-        service?: pulumi.Input<string>;
+        service?: pulumi.Input<string | undefined>;
         /**
          * When this rule is matched, the request is redirected to a URL specified by
          * urlRedirect. If urlRedirect is specified, service or routeAction must not be
          * set.
          * Structure is documented below.
          */
-        urlRedirect?: pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleUrlRedirect>;
+        urlRedirect?: pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleUrlRedirect | undefined>;
     }
 
     export interface URLMapPathMatcherRouteRuleHeaderAction {
@@ -11922,22 +11922,22 @@ export namespace compute {
          * Headers to add to a matching request prior to forwarding the request to the backendService.
          * Structure is documented below.
          */
-        requestHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleHeaderActionRequestHeadersToAdd>[]>;
+        requestHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleHeaderActionRequestHeadersToAdd>[] | undefined>;
         /**
          * A list of header names for headers that need to be removed from the request prior to
          * forwarding the request to the backendService.
          */
-        requestHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[]>;
+        requestHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Headers to add the response prior to sending the response back to the client.
          * Structure is documented below.
          */
-        responseHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleHeaderActionResponseHeadersToAdd>[]>;
+        responseHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleHeaderActionResponseHeadersToAdd>[] | undefined>;
         /**
          * A list of header names for headers that need to be removed from the response prior to sending the
          * response back to the client.
          */
-        responseHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[]>;
+        responseHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface URLMapPathMatcherRouteRuleHeaderActionRequestHeadersToAdd {
@@ -11980,18 +11980,18 @@ export namespace compute {
          * and 1024 characters. Only one of prefixMatch, fullPathMatch or regexMatch must
          * be specified.
          */
-        fullPathMatch?: pulumi.Input<string>;
+        fullPathMatch?: pulumi.Input<string | undefined>;
         /**
          * Specifies a list of header match criteria, all of which must match corresponding
          * headers in the request.
          * Structure is documented below.
          */
-        headerMatches?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleMatchRuleHeaderMatch>[]>;
+        headerMatches?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleMatchRuleHeaderMatch>[] | undefined>;
         /**
          * Specifies that prefixMatch and fullPathMatch matches are case sensitive.
          * Defaults to false.
          */
-        ignoreCase?: pulumi.Input<boolean>;
+        ignoreCase?: pulumi.Input<boolean | undefined>;
         /**
          * Opaque filter criteria used by Loadbalancer to restrict routing configuration to
          * a limited set xDS compliant clients. In their xDS requests to Loadbalancer, xDS
@@ -12006,26 +12006,26 @@ export namespace compute {
          * loadBalancingScheme set to INTERNAL_SELF_MANAGED.
          * Structure is documented below.
          */
-        metadataFilters?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleMatchRuleMetadataFilter>[]>;
+        metadataFilters?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleMatchRuleMetadataFilter>[] | undefined>;
         /**
          * The value of the header must start with the contents of prefixMatch. Only one of
          * exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch
          * must be set.
          */
-        prefixMatch?: pulumi.Input<string>;
+        prefixMatch?: pulumi.Input<string | undefined>;
         /**
          * Specifies a list of query parameter match criteria, all of which must match
          * corresponding query parameters in the request.
          * Structure is documented below.
          */
-        queryParameterMatches?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleMatchRuleQueryParameterMatch>[]>;
+        queryParameterMatches?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleMatchRuleQueryParameterMatch>[] | undefined>;
         /**
          * The queryParameterMatch matches if the value of the parameter matches the
          * regular expression specified by regexMatch. For the regular expression grammar,
          * please see en.cppreference.com/w/cpp/regex/ecmascript  Only one of presentMatch,
          * exactMatch and regexMatch must be set.
          */
-        regexMatch?: pulumi.Input<string>;
+        regexMatch?: pulumi.Input<string | undefined>;
     }
 
     export interface URLMapPathMatcherRouteRuleMatchRuleHeaderMatch {
@@ -12034,7 +12034,7 @@ export namespace compute {
          * the contents of exactMatch. Only one of presentMatch, exactMatch and regexMatch
          * must be set.
          */
-        exactMatch?: pulumi.Input<string>;
+        exactMatch?: pulumi.Input<string | undefined>;
         /**
          * The name of the header to add.
          */
@@ -12044,19 +12044,19 @@ export namespace compute {
          * above are met. If set to true, the headerMatch is considered a match if the
          * match criteria above are NOT met. Defaults to false.
          */
-        invertMatch?: pulumi.Input<boolean>;
+        invertMatch?: pulumi.Input<boolean | undefined>;
         /**
          * The value of the header must start with the contents of prefixMatch. Only one of
          * exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch
          * must be set.
          */
-        prefixMatch?: pulumi.Input<string>;
+        prefixMatch?: pulumi.Input<string | undefined>;
         /**
          * Specifies that the queryParameterMatch matches if the request contains the query
          * parameter, irrespective of whether the parameter has a value or not. Only one of
          * presentMatch, exactMatch and regexMatch must be set.
          */
-        presentMatch?: pulumi.Input<boolean>;
+        presentMatch?: pulumi.Input<boolean | undefined>;
         /**
          * The header value must be an integer and its value must be in the range specified
          * in rangeMatch. If the header does not contain an integer, number or is empty,
@@ -12066,20 +12066,20 @@ export namespace compute {
          * must be set.
          * Structure is documented below.
          */
-        rangeMatch?: pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatch>;
+        rangeMatch?: pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatch | undefined>;
         /**
          * The queryParameterMatch matches if the value of the parameter matches the
          * regular expression specified by regexMatch. For the regular expression grammar,
          * please see en.cppreference.com/w/cpp/regex/ecmascript  Only one of presentMatch,
          * exactMatch and regexMatch must be set.
          */
-        regexMatch?: pulumi.Input<string>;
+        regexMatch?: pulumi.Input<string | undefined>;
         /**
          * The value of the header must end with the contents of suffixMatch. Only one of
          * exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch
          * must be set.
          */
-        suffixMatch?: pulumi.Input<string>;
+        suffixMatch?: pulumi.Input<string | undefined>;
     }
 
     export interface URLMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatch {
@@ -12132,7 +12132,7 @@ export namespace compute {
          * the contents of exactMatch. Only one of presentMatch, exactMatch and regexMatch
          * must be set.
          */
-        exactMatch?: pulumi.Input<string>;
+        exactMatch?: pulumi.Input<string | undefined>;
         /**
          * The name of the query parameter to match. The query parameter must exist in the
          * request, in the absence of which the request match fails.
@@ -12143,14 +12143,14 @@ export namespace compute {
          * parameter, irrespective of whether the parameter has a value or not. Only one of
          * presentMatch, exactMatch and regexMatch must be set.
          */
-        presentMatch?: pulumi.Input<boolean>;
+        presentMatch?: pulumi.Input<boolean | undefined>;
         /**
          * The queryParameterMatch matches if the value of the parameter matches the
          * regular expression specified by regexMatch. For the regular expression grammar,
          * please see en.cppreference.com/w/cpp/regex/ecmascript  Only one of presentMatch,
          * exactMatch and regexMatch must be set.
          */
-        regexMatch?: pulumi.Input<string>;
+        regexMatch?: pulumi.Input<string | undefined>;
     }
 
     export interface URLMapPathMatcherRouteRuleRouteAction {
@@ -12159,7 +12159,7 @@ export namespace compute {
          * [W3C Recommendation for Cross Origin Resource Sharing](https://www.w3.org/TR/cors/)
          * Structure is documented below.
          */
-        corsPolicy?: pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleRouteActionCorsPolicy>;
+        corsPolicy?: pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleRouteActionCorsPolicy | undefined>;
         /**
          * The specification for fault injection introduced into traffic to test the resiliency of clients to backend service failure.
          * As part of fault injection, when clients send requests to a backend service, delays can be introduced by Loadbalancer on a
@@ -12168,31 +12168,31 @@ export namespace compute {
          * timeout and retryPolicy will be ignored by clients that are configured with a faultInjectionPolicy.
          * Structure is documented below.
          */
-        faultInjectionPolicy?: pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicy>;
+        faultInjectionPolicy?: pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicy | undefined>;
         /**
          * Specifies the policy on how requests intended for the route's backends are shadowed to a separate mirrored backend service.
          * Loadbalancer does not wait for responses from the shadow service. Prior to sending traffic to the shadow service,
          * the host / authority header is suffixed with -shadow.
          * Structure is documented below.
          */
-        requestMirrorPolicy?: pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleRouteActionRequestMirrorPolicy>;
+        requestMirrorPolicy?: pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleRouteActionRequestMirrorPolicy | undefined>;
         /**
          * Specifies the retry policy associated with this route.
          * Structure is documented below.
          */
-        retryPolicy?: pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleRouteActionRetryPolicy>;
+        retryPolicy?: pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleRouteActionRetryPolicy | undefined>;
         /**
          * Specifies the timeout for the selected route. Timeout is computed from the time the request has been
          * fully processed (i.e. end-of-stream) up until the response has been completely processed. Timeout includes all retries.
          * If not specified, will use the largest timeout among all backend services associated with the route.
          * Structure is documented below.
          */
-        timeout?: pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleRouteActionTimeout>;
+        timeout?: pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleRouteActionTimeout | undefined>;
         /**
          * The spec to modify the URL of the request, prior to forwarding the request to the matched service.
          * Structure is documented below.
          */
-        urlRewrite?: pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleRouteActionUrlRewrite>;
+        urlRewrite?: pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleRouteActionUrlRewrite | undefined>;
         /**
          * A list of weighted backend services to send traffic to when a route match occurs.
          * The weights determine the fraction of traffic that flows to their corresponding backend service.
@@ -12203,7 +12203,7 @@ export namespace compute {
          * additional settings specified in this HttpRouteAction.
          * Structure is documented below.
          */
-        weightedBackendServices?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleRouteActionWeightedBackendService>[]>;
+        weightedBackendServices?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleRouteActionWeightedBackendService>[] | undefined>;
     }
 
     export interface URLMapPathMatcherRouteRuleRouteActionCorsPolicy {
@@ -12211,39 +12211,39 @@ export namespace compute {
          * In response to a preflight request, setting this to true indicates that the actual request can include user credentials.
          * This translates to the Access-Control-Allow-Credentials header.
          */
-        allowCredentials?: pulumi.Input<boolean>;
+        allowCredentials?: pulumi.Input<boolean | undefined>;
         /**
          * Specifies the content for the Access-Control-Allow-Headers header.
          */
-        allowHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        allowHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies the content for the Access-Control-Allow-Methods header.
          */
-        allowMethods?: pulumi.Input<pulumi.Input<string>[]>;
+        allowMethods?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies the regular expression patterns that match allowed origins. For regular expression grammar
          * please see en.cppreference.com/w/cpp/regex/ecmascript
          * An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
          */
-        allowOriginRegexes?: pulumi.Input<pulumi.Input<string>[]>;
+        allowOriginRegexes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies the list of origins that will be allowed to do CORS requests.
          * An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
          */
-        allowOrigins?: pulumi.Input<pulumi.Input<string>[]>;
+        allowOrigins?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * If true, specifies the CORS policy is disabled. The default value is false, which indicates that the CORS policy is in effect.
          */
-        disabled?: pulumi.Input<boolean>;
+        disabled?: pulumi.Input<boolean | undefined>;
         /**
          * Specifies the content for the Access-Control-Expose-Headers header.
          */
-        exposeHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        exposeHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies how long results of a preflight request can be cached in seconds.
          * This translates to the Access-Control-Max-Age header.
          */
-        maxAge?: pulumi.Input<number>;
+        maxAge?: pulumi.Input<number | undefined>;
     }
 
     export interface URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicy {
@@ -12251,12 +12251,12 @@ export namespace compute {
          * The specification for how client requests are aborted as part of fault injection.
          * Structure is documented below.
          */
-        abort?: pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbort>;
+        abort?: pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbort | undefined>;
         /**
          * The specification for how client requests are delayed as part of fault injection, before being sent to a backend service.
          * Structure is documented below.
          */
-        delay?: pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelay>;
+        delay?: pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelay | undefined>;
     }
 
     export interface URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbort {
@@ -12264,12 +12264,12 @@ export namespace compute {
          * The HTTP status code used to abort the request.
          * The value must be between 200 and 599 inclusive.
          */
-        httpStatus?: pulumi.Input<number>;
+        httpStatus?: pulumi.Input<number | undefined>;
         /**
          * The percentage of traffic (connections/operations/requests) which will be aborted as part of fault injection.
          * The value must be between 0.0 and 100.0 inclusive.
          */
-        percentage?: pulumi.Input<number>;
+        percentage?: pulumi.Input<number | undefined>;
     }
 
     export interface URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelay {
@@ -12277,12 +12277,12 @@ export namespace compute {
          * Specifies the value of the fixed delay interval.
          * Structure is documented below.
          */
-        fixedDelay?: pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelay>;
+        fixedDelay?: pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelay | undefined>;
         /**
          * The percentage of traffic (connections/operations/requests) which will be aborted as part of fault injection.
          * The value must be between 0.0 and 100.0 inclusive.
          */
-        percentage?: pulumi.Input<number>;
+        percentage?: pulumi.Input<number | undefined>;
     }
 
     export interface URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelay {
@@ -12290,7 +12290,7 @@ export namespace compute {
          * Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
          * represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
          */
-        nanos?: pulumi.Input<number>;
+        nanos?: pulumi.Input<number | undefined>;
         /**
          * Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.
          * Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
@@ -12316,7 +12316,7 @@ export namespace compute {
          * will use the largest timeout among all backend services associated with the route.
          * Structure is documented below.
          */
-        perTryTimeout?: pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeout>;
+        perTryTimeout?: pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeout | undefined>;
         /**
          * Specfies one or more conditions when this retry rule applies. Valid values are:
          * * 5xx: Loadbalancer will attempt a retry if the backend service responds with any 5xx response code,
@@ -12334,7 +12334,7 @@ export namespace compute {
          * * resource-exhausted: Loadbalancer will retry if the gRPC status code in the response header is set to resource-exhausted
          * * unavailable: Loadbalancer will retry if the gRPC status code in the response header is set to unavailable
          */
-        retryConditions?: pulumi.Input<pulumi.Input<string>[]>;
+        retryConditions?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface URLMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeout {
@@ -12342,7 +12342,7 @@ export namespace compute {
          * Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
          * represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
          */
-        nanos?: pulumi.Input<number>;
+        nanos?: pulumi.Input<number | undefined>;
         /**
          * Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.
          * Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
@@ -12355,7 +12355,7 @@ export namespace compute {
          * Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are
          * represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.
          */
-        nanos?: pulumi.Input<number>;
+        nanos?: pulumi.Input<number | undefined>;
         /**
          * Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.
          * Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
@@ -12369,13 +12369,13 @@ export namespace compute {
          * with contents of hostRewrite.
          * The value must be between 1 and 255 characters.
          */
-        hostRewrite?: pulumi.Input<string>;
+        hostRewrite?: pulumi.Input<string | undefined>;
         /**
          * Prior to forwarding the request to the selected backend service, the matching portion of the
          * request's path is replaced by pathPrefixRewrite.
          * The value must be between 1 and 1024 characters.
          */
-        pathPrefixRewrite?: pulumi.Input<string>;
+        pathPrefixRewrite?: pulumi.Input<string | undefined>;
     }
 
     export interface URLMapPathMatcherRouteRuleRouteActionWeightedBackendService {
@@ -12390,7 +12390,7 @@ export namespace compute {
          * HttpRouteRule, PathMatcher and UrlMap.
          * Structure is documented below.
          */
-        headerAction?: pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderAction>;
+        headerAction?: pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderAction | undefined>;
         /**
          * Specifies the fraction of traffic sent to backendService, computed as
          * weight / (sum of all weightedBackendService weights in routeAction) .
@@ -12407,22 +12407,22 @@ export namespace compute {
          * Headers to add to a matching request prior to forwarding the request to the backendService.
          * Structure is documented below.
          */
-        requestHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd>[]>;
+        requestHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd>[] | undefined>;
         /**
          * A list of header names for headers that need to be removed from the request prior to
          * forwarding the request to the backendService.
          */
-        requestHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[]>;
+        requestHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Headers to add the response prior to sending the response back to the client.
          * Structure is documented below.
          */
-        responseHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAdd>[]>;
+        responseHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAdd>[] | undefined>;
         /**
          * A list of header names for headers that need to be removed from the response prior to sending the
          * response back to the client.
          */
-        responseHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[]>;
+        responseHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd {
@@ -12462,14 +12462,14 @@ export namespace compute {
          * The host that will be used in the redirect response instead of the one that was
          * supplied in the request. The value must be between 1 and 255 characters.
          */
-        hostRedirect?: pulumi.Input<string>;
+        hostRedirect?: pulumi.Input<string | undefined>;
         /**
          * If set to true, the URL scheme in the redirected request is set to https. If set to
          * false, the URL scheme of the redirected request will remain the same as that of the
          * request. This must only be set for UrlMaps used in TargetHttpProxys. Setting this
          * true for TargetHttpsProxy is not permitted. The default is set to false.
          */
-        httpsRedirect?: pulumi.Input<boolean>;
+        httpsRedirect?: pulumi.Input<boolean | undefined>;
         /**
          * The path that will be used in the redirect response instead of the one that was
          * supplied in the request. pathRedirect cannot be supplied together with
@@ -12477,7 +12477,7 @@ export namespace compute {
          * original request will be used for the redirect. The value must be between 1 and 1024
          * characters.
          */
-        pathRedirect?: pulumi.Input<string>;
+        pathRedirect?: pulumi.Input<string | undefined>;
         /**
          * The prefix that replaces the prefixMatch specified in the HttpRouteRuleMatch,
          * retaining the remaining portion of the URL before redirecting the request.
@@ -12485,7 +12485,7 @@ export namespace compute {
          * neither. If neither is supplied, the path of the original request will be used for
          * the redirect. The value must be between 1 and 1024 characters.
          */
-        prefixRedirect?: pulumi.Input<string>;
+        prefixRedirect?: pulumi.Input<string | undefined>;
         /**
          * The HTTP Status code to use for this RedirectAction. Supported values are:
          * * MOVED_PERMANENTLY_DEFAULT, which is the default value and corresponds to 301.
@@ -12496,21 +12496,21 @@ export namespace compute {
          * * PERMANENT_REDIRECT, which corresponds to 308. In this case,
          * the request method will be retained.
          */
-        redirectResponseCode?: pulumi.Input<string>;
+        redirectResponseCode?: pulumi.Input<string | undefined>;
         /**
          * If set to true, any accompanying query portion of the original URL is removed prior
          * to redirecting the request. If set to false, the query portion of the original URL is
          * retained. The default is set to false.
          * This field is required to ensure an empty block is not set. The normal default value is false.
          */
-        stripQuery?: pulumi.Input<boolean>;
+        stripQuery?: pulumi.Input<boolean | undefined>;
     }
 
     export interface URLMapTest {
         /**
          * Description of this test case.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * Host portion of the URL.
          */
@@ -12534,23 +12534,23 @@ export namespace container {
         /**
          * . Structure is documented below.
          */
-        cloudrunConfig?: pulumi.Input<inputs.container.ClusterAddonsConfigCloudrunConfig>;
+        cloudrunConfig?: pulumi.Input<inputs.container.ClusterAddonsConfigCloudrunConfig | undefined>;
         /**
          * .
          * The status of the ConfigConnector addon. It is disabled by default; Set `enabled = true` to enable.
          */
-        configConnectorConfig?: pulumi.Input<inputs.container.ClusterAddonsConfigConfigConnectorConfig>;
+        configConnectorConfig?: pulumi.Input<inputs.container.ClusterAddonsConfigConfigConnectorConfig | undefined>;
         /**
          * .
          * The status of the NodeLocal DNSCache addon. It is disabled by default.
          * Set `enabled = true` to enable.
          */
-        dnsCacheConfig?: pulumi.Input<inputs.container.ClusterAddonsConfigDnsCacheConfig>;
+        dnsCacheConfig?: pulumi.Input<inputs.container.ClusterAddonsConfigDnsCacheConfig | undefined>;
         /**
          * .
          * Whether this cluster should enable the Google Compute Engine Persistent Disk Container Storage Interface (CSI) Driver. Defaults to disabled; set `enabled = true` to enable.
          */
-        gcePersistentDiskCsiDriverConfig?: pulumi.Input<inputs.container.ClusterAddonsConfigGcePersistentDiskCsiDriverConfig>;
+        gcePersistentDiskCsiDriverConfig?: pulumi.Input<inputs.container.ClusterAddonsConfigGcePersistentDiskCsiDriverConfig | undefined>;
         /**
          * The status of the Horizontal Pod Autoscaling
          * addon, which increases or decreases the number of replica pods a replication controller
@@ -12559,23 +12559,23 @@ export namespace container {
          * It is enabled by default;
          * set `disabled = true` to disable.
          */
-        horizontalPodAutoscaling?: pulumi.Input<inputs.container.ClusterAddonsConfigHorizontalPodAutoscaling>;
+        horizontalPodAutoscaling?: pulumi.Input<inputs.container.ClusterAddonsConfigHorizontalPodAutoscaling | undefined>;
         /**
          * The status of the HTTP (L7) load balancing
          * controller addon, which makes it easy to set up HTTP load balancers for services in a
          * cluster. It is enabled by default; set `disabled = true` to disable.
          */
-        httpLoadBalancing?: pulumi.Input<inputs.container.ClusterAddonsConfigHttpLoadBalancing>;
+        httpLoadBalancing?: pulumi.Input<inputs.container.ClusterAddonsConfigHttpLoadBalancing | undefined>;
         /**
          * .
          * Structure is documented below.
          */
-        istioConfig?: pulumi.Input<inputs.container.ClusterAddonsConfigIstioConfig>;
+        istioConfig?: pulumi.Input<inputs.container.ClusterAddonsConfigIstioConfig | undefined>;
         /**
          * .
          * Configuration for the KALM addon, which manages the lifecycle of k8s. It is disabled by default; Set `enabled = true` to enable.
          */
-        kalmConfig?: pulumi.Input<inputs.container.ClusterAddonsConfigKalmConfig>;
+        kalmConfig?: pulumi.Input<inputs.container.ClusterAddonsConfigKalmConfig | undefined>;
         /**
          * Whether we should enable the network policy addon
          * for the master.  This must be enabled in order to enable network policy for the nodes.
@@ -12584,7 +12584,7 @@ export namespace container {
          * It can only be disabled if the nodes already do not have network policies enabled.
          * Defaults to disabled; set `disabled = false` to enable.
          */
-        networkPolicyConfig?: pulumi.Input<inputs.container.ClusterAddonsConfigNetworkPolicyConfig>;
+        networkPolicyConfig?: pulumi.Input<inputs.container.ClusterAddonsConfigNetworkPolicyConfig | undefined>;
     }
 
     export interface ClusterAddonsConfigCloudrunConfig {
@@ -12597,7 +12597,7 @@ export namespace container {
          * The load balancer type of CloudRun ingress service. It is external load balancer by default.
          * Set `load_balancer_type=LOAD_BALANCER_TYPE_INTERNAL` to configure it as internal load balancer.
          */
-        loadBalancerType?: pulumi.Input<string>;
+        loadBalancerType?: pulumi.Input<string | undefined>;
     }
 
     export interface ClusterAddonsConfigConfigConnectorConfig {
@@ -12644,7 +12644,7 @@ export namespace container {
         /**
          * The authentication type between services in Istio. Available options include `AUTH_MUTUAL_TLS`.
          */
-        auth?: pulumi.Input<string>;
+        auth?: pulumi.Input<string | undefined>;
         /**
          * The status of the Istio addon, which makes it easy to set up Istio for services in a
          * cluster. It is disabled by default. Set `disabled = false` to enable.
@@ -12680,14 +12680,14 @@ export namespace container {
          * Contains defaults for a node pool created by NAP.
          * Structure is documented below.
          */
-        autoProvisioningDefaults?: pulumi.Input<inputs.container.ClusterClusterAutoscalingAutoProvisioningDefaults>;
+        autoProvisioningDefaults?: pulumi.Input<inputs.container.ClusterClusterAutoscalingAutoProvisioningDefaults | undefined>;
         /**
          * ) Configuration
          * options for the [Autoscaling profile](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-autoscaler#autoscaling_profiles)
          * feature, which lets you choose whether the cluster autoscaler should optimize for resource utilization or resource availability
          * when deciding to remove nodes from a cluster. Can be `BALANCED` or `OPTIMIZE_UTILIZATION`. Defaults to `BALANCED`.
          */
-        autoscalingProfile?: pulumi.Input<string>;
+        autoscalingProfile?: pulumi.Input<string | undefined>;
         /**
          * Enable the PodSecurityPolicy controller for this cluster.
          * If enabled, pods must be valid under a PodSecurityPolicy to be created.
@@ -12699,7 +12699,7 @@ export namespace container {
          * auto-provisioning is enabled. These limits will apply to node pool autoscaling
          * in addition to node auto-provisioning. Structure is documented below.
          */
-        resourceLimits?: pulumi.Input<pulumi.Input<inputs.container.ClusterClusterAutoscalingResourceLimit>[]>;
+        resourceLimits?: pulumi.Input<pulumi.Input<inputs.container.ClusterClusterAutoscalingResourceLimit>[] | undefined>;
     }
 
     export interface ClusterClusterAutoscalingAutoProvisioningDefaults {
@@ -12710,29 +12710,29 @@ export namespace container {
          * [official documentation](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
          * for more information.
          */
-        minCpuPlatform?: pulumi.Input<string>;
+        minCpuPlatform?: pulumi.Input<string | undefined>;
         /**
          * The set of Google API scopes to be made available
          * on all of the node VMs under the "default" service account.
          * Use the "https://www.googleapis.com/auth/cloud-platform" scope to grant access to all APIs. It is recommended that you set `serviceAccount` to a non-default service account and grant IAM roles to that service account for only the resources that it needs.
          */
-        oauthScopes?: pulumi.Input<pulumi.Input<string>[]>;
+        oauthScopes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The service account to be used by the Node VMs.
          * If not specified, the "default" service account is used.
          */
-        serviceAccount?: pulumi.Input<string>;
+        serviceAccount?: pulumi.Input<string | undefined>;
     }
 
     export interface ClusterClusterAutoscalingResourceLimit {
         /**
          * Maximum amount of the resource in the cluster.
          */
-        maximum?: pulumi.Input<number>;
+        maximum?: pulumi.Input<number | undefined>;
         /**
          * Minimum amount of the resource in the cluster.
          */
-        minimum?: pulumi.Input<number>;
+        minimum?: pulumi.Input<number | undefined>;
         /**
          * The type of the resource. For example, `cpu` and
          * `memory`.  See the [guide to using Node Auto-Provisioning](https://cloud.google.com/kubernetes-engine/docs/how-to/node-auto-provisioning)
@@ -12760,7 +12760,7 @@ export namespace container {
         /**
          * the key to use to encrypt/decrypt secrets.  See the [DatabaseEncryption definition](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1beta1/projects.locations.clusters#Cluster.DatabaseEncryption) for more information.
          */
-        keyName?: pulumi.Input<string>;
+        keyName?: pulumi.Input<string | undefined>;
         /**
          * `ENCRYPTED` or `DECRYPTED`
          */
@@ -12783,13 +12783,13 @@ export namespace container {
          * from the RFC-1918 private networks (e.g. 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16) to
          * pick a specific range to use.
          */
-        clusterIpv4CidrBlock?: pulumi.Input<string>;
+        clusterIpv4CidrBlock?: pulumi.Input<string | undefined>;
         /**
          * The name of the existing secondary
          * range in the cluster's subnetwork to use for pod IP addresses. Alternatively,
          * `clusterIpv4CidrBlock` can be used to automatically create a GKE-managed one.
          */
-        clusterSecondaryRangeName?: pulumi.Input<string>;
+        clusterSecondaryRangeName?: pulumi.Input<string | undefined>;
         /**
          * The IP address range of the services IPs in this cluster.
          * Set to blank to have a range chosen with the default size. Set to /netmask (e.g. /14)
@@ -12797,14 +12797,14 @@ export namespace container {
          * from the RFC-1918 private networks (e.g. 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16) to
          * pick a specific range to use.
          */
-        servicesIpv4CidrBlock?: pulumi.Input<string>;
+        servicesIpv4CidrBlock?: pulumi.Input<string | undefined>;
         /**
          * The name of the existing
          * secondary range in the cluster's subnetwork to use for service `ClusterIP`s.
          * Alternatively, `servicesIpv4CidrBlock` can be used to automatically create a
          * GKE-managed one.
          */
-        servicesSecondaryRangeName?: pulumi.Input<string>;
+        servicesSecondaryRangeName?: pulumi.Input<string | undefined>;
     }
 
     export interface ClusterMaintenancePolicy {
@@ -12813,19 +12813,19 @@ export namespace container {
          * Specify `startTime` in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) format "HH:MM”,
          * where HH : \[00-23\] and MM : \[00-59\] GMT. For example:
          */
-        dailyMaintenanceWindow?: pulumi.Input<inputs.container.ClusterMaintenancePolicyDailyMaintenanceWindow>;
+        dailyMaintenanceWindow?: pulumi.Input<inputs.container.ClusterMaintenancePolicyDailyMaintenanceWindow | undefined>;
         /**
          * Exceptions to maintenance window. Non-emergency maintenance should not occur in these windows. A cluster can have up to three maintenance exclusions at a time [Maintenance Window and Exclusions](https://cloud.google.com/kubernetes-engine/docs/concepts/maintenance-windows-and-exclusions)
          */
-        maintenanceExclusions?: pulumi.Input<pulumi.Input<inputs.container.ClusterMaintenancePolicyMaintenanceExclusion>[]>;
+        maintenanceExclusions?: pulumi.Input<pulumi.Input<inputs.container.ClusterMaintenancePolicyMaintenanceExclusion>[] | undefined>;
         /**
          * Time window for recurring maintenance operations.
          */
-        recurringWindow?: pulumi.Input<inputs.container.ClusterMaintenancePolicyRecurringWindow>;
+        recurringWindow?: pulumi.Input<inputs.container.ClusterMaintenancePolicyRecurringWindow | undefined>;
     }
 
     export interface ClusterMaintenancePolicyDailyMaintenanceWindow {
-        duration?: pulumi.Input<string>;
+        duration?: pulumi.Input<string | undefined>;
         startTime: pulumi.Input<string>;
     }
 
@@ -12842,23 +12842,23 @@ export namespace container {
     }
 
     export interface ClusterMasterAuth {
-        clientCertificate?: pulumi.Input<string>;
+        clientCertificate?: pulumi.Input<string | undefined>;
         /**
          * Whether client certificate authorization is enabled for this cluster.  For example:
          */
-        clientCertificateConfig?: pulumi.Input<inputs.container.ClusterMasterAuthClientCertificateConfig>;
-        clientKey?: pulumi.Input<string>;
-        clusterCaCertificate?: pulumi.Input<string>;
+        clientCertificateConfig?: pulumi.Input<inputs.container.ClusterMasterAuthClientCertificateConfig | undefined>;
+        clientKey?: pulumi.Input<string | undefined>;
+        clusterCaCertificate?: pulumi.Input<string | undefined>;
         /**
          * The password to use for HTTP basic authentication when accessing
          * the Kubernetes master endpoint. This has been deprecated as of GKE 1.19.
          */
-        password?: pulumi.Input<string>;
+        password?: pulumi.Input<string | undefined>;
         /**
          * The username to use for HTTP basic authentication when accessing
          * the Kubernetes master endpoint. If not present basic auth will be disabled. This has been deprecated as of GKE 1.19.
          */
-        username?: pulumi.Input<string>;
+        username?: pulumi.Input<string | undefined>;
     }
 
     export interface ClusterMasterAuthClientCertificateConfig {
@@ -12870,7 +12870,7 @@ export namespace container {
          * External networks that can access the
          * Kubernetes cluster master through HTTPS.
          */
-        cidrBlocks?: pulumi.Input<pulumi.Input<inputs.container.ClusterMasterAuthorizedNetworksConfigCidrBlock>[]>;
+        cidrBlocks?: pulumi.Input<pulumi.Input<inputs.container.ClusterMasterAuthorizedNetworksConfigCidrBlock>[] | undefined>;
     }
 
     export interface ClusterMasterAuthorizedNetworksConfigCidrBlock {
@@ -12882,7 +12882,7 @@ export namespace container {
         /**
          * Field for users to identify CIDR blocks.
          */
-        displayName?: pulumi.Input<string>;
+        displayName?: pulumi.Input<string | undefined>;
     }
 
     export interface ClusterNetworkPolicy {
@@ -12894,61 +12894,61 @@ export namespace container {
         /**
          * The selected network policy provider. Defaults to PROVIDER_UNSPECIFIED.
          */
-        provider?: pulumi.Input<string>;
+        provider?: pulumi.Input<string | undefined>;
     }
 
     export interface ClusterNodeConfig {
         /**
          * The Customer Managed Encryption Key used to encrypt the boot disk attached to each node in the node pool. This should be of the form projects/[KEY_PROJECT_ID]/locations/[LOCATION]/keyRings/[RING_NAME]/cryptoKeys/[KEY_NAME]. For more information about protecting resources with Cloud KMS Keys please see: https://cloud.google.com/compute/docs/disks/customer-managed-encryption
          */
-        bootDiskKmsKey?: pulumi.Input<string>;
+        bootDiskKmsKey?: pulumi.Input<string | undefined>;
         /**
          * Size of the disk attached to each node, specified
          * in GB. The smallest allowed disk size is 10GB. Defaults to 100GB.
          */
-        diskSizeGb?: pulumi.Input<number>;
+        diskSizeGb?: pulumi.Input<number | undefined>;
         /**
          * Type of the disk attached to each node
          * (e.g. 'pd-standard', 'pd-balanced' or 'pd-ssd'). If unspecified, the default disk type is 'pd-standard'
          */
-        diskType?: pulumi.Input<string>;
+        diskType?: pulumi.Input<string | undefined>;
         /**
          * List of the type and count of accelerator cards attached to the instance.
          * Structure documented below.
          */
-        guestAccelerators?: pulumi.Input<pulumi.Input<inputs.container.ClusterNodeConfigGuestAccelerator>[]>;
+        guestAccelerators?: pulumi.Input<pulumi.Input<inputs.container.ClusterNodeConfigGuestAccelerator>[] | undefined>;
         /**
          * The image type to use for this node. Note that changing the image type
          * will delete and recreate all nodes in the node pool.
          */
-        imageType?: pulumi.Input<string>;
+        imageType?: pulumi.Input<string | undefined>;
         /**
          * Kubelet configuration, currently supported attributes can be found [here](https://cloud.google.com/sdk/gcloud/reference/beta/container/node-pools/create#--system-config-from-file).
          * Structure is documented below.
          */
-        kubeletConfig?: pulumi.Input<inputs.container.ClusterNodeConfigKubeletConfig>;
+        kubeletConfig?: pulumi.Input<inputs.container.ClusterNodeConfigKubeletConfig | undefined>;
         /**
          * The Kubernetes labels (key/value pairs) to be applied to each node. The kubernetes.io/ and k8s.io/ prefixes are
          * reserved by Kubernetes Core components and cannot be specified.
          */
-        labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * Linux node configuration, currently supported attributes can be found [here](https://cloud.google.com/sdk/gcloud/reference/beta/container/node-pools/create#--system-config-from-file).
          * Note that validations happen all server side. All attributes are optional.
          * Structure is documented below.
          */
-        linuxNodeConfig?: pulumi.Input<inputs.container.ClusterNodeConfigLinuxNodeConfig>;
+        linuxNodeConfig?: pulumi.Input<inputs.container.ClusterNodeConfigLinuxNodeConfig | undefined>;
         /**
          * The amount of local SSD disks that will be
          * attached to each cluster node. Defaults to 0.
          */
-        localSsdCount?: pulumi.Input<number>;
+        localSsdCount?: pulumi.Input<number | undefined>;
         /**
          * The name of a Google Compute Engine machine type.
          * Defaults to `e2-medium`. To create a custom machine type, value should be set as specified
          * [here](https://cloud.google.com/compute/docs/reference/latest/instances#machineType).
          */
-        machineType?: pulumi.Input<string>;
+        machineType?: pulumi.Input<string | undefined>;
         /**
          * The metadata key/value pairs assigned to instances in
          * the cluster. From GKE `1.12` onwards, `disable-legacy-endpoints` is set to
@@ -12956,7 +12956,7 @@ export namespace container {
          * included, the provider will attempt to unset the value. To avoid this, set the
          * value in your config.
          */
-        metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * Minimum CPU platform to be used by this instance.
          * The instance may be scheduled on the specified or newer CPU platform. Applicable
@@ -12964,38 +12964,38 @@ export namespace container {
          * [official documentation](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
          * for more information.
          */
-        minCpuPlatform?: pulumi.Input<string>;
+        minCpuPlatform?: pulumi.Input<string | undefined>;
         /**
          * The set of Google API scopes to be made available
          * on all of the node VMs under the "default" service account.
          * Use the "https://www.googleapis.com/auth/cloud-platform" scope to grant access to all APIs. It is recommended that you set `serviceAccount` to a non-default service account and grant IAM roles to that service account for only the resources that it needs.
          */
-        oauthScopes?: pulumi.Input<pulumi.Input<string>[]>;
+        oauthScopes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * A boolean that represents whether or not the underlying node VMs
          * are preemptible. See the [official documentation](https://cloud.google.com/container-engine/docs/preemptible-vm)
          * for more information. Defaults to false.
          */
-        preemptible?: pulumi.Input<boolean>;
+        preemptible?: pulumi.Input<boolean | undefined>;
         /**
          * [GKE Sandbox](https://cloud.google.com/kubernetes-engine/docs/how-to/sandbox-pods) configuration. When enabling this feature you must specify `imageType = "COS_CONTAINERD"` and `nodeVersion = "1.12.7-gke.17"` or later to use it.
          * Structure is documented below.
          */
-        sandboxConfig?: pulumi.Input<inputs.container.ClusterNodeConfigSandboxConfig>;
+        sandboxConfig?: pulumi.Input<inputs.container.ClusterNodeConfigSandboxConfig | undefined>;
         /**
          * The service account to be used by the Node VMs.
          * If not specified, the "default" service account is used.
          */
-        serviceAccount?: pulumi.Input<string>;
+        serviceAccount?: pulumi.Input<string | undefined>;
         /**
          * Shielded Instance options. Structure is documented below.
          */
-        shieldedInstanceConfig?: pulumi.Input<inputs.container.ClusterNodeConfigShieldedInstanceConfig>;
+        shieldedInstanceConfig?: pulumi.Input<inputs.container.ClusterNodeConfigShieldedInstanceConfig | undefined>;
         /**
          * The list of instance tags applied to all nodes. Tags are used to identify
          * valid sources or targets for network firewalls.
          */
-        tags?: pulumi.Input<pulumi.Input<string>[]>;
+        tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * A list of [Kubernetes taints](https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/)
          * to apply to nodes. GKE's API can only set this field on cluster creation.
@@ -13006,12 +13006,12 @@ export namespace container {
          * this field to manage taints. If you do, `lifecycle.ignore_changes` is
          * recommended. Structure is documented below.
          */
-        taints?: pulumi.Input<pulumi.Input<inputs.container.ClusterNodeConfigTaint>[]>;
+        taints?: pulumi.Input<pulumi.Input<inputs.container.ClusterNodeConfigTaint>[] | undefined>;
         /**
          * Metadata configuration to expose to workloads on the node pool.
          * Structure is documented below.
          */
-        workloadMetadataConfig?: pulumi.Input<inputs.container.ClusterNodeConfigWorkloadMetadataConfig>;
+        workloadMetadataConfig?: pulumi.Input<inputs.container.ClusterNodeConfigWorkloadMetadataConfig | undefined>;
     }
 
     export interface ClusterNodeConfigGuestAccelerator {
@@ -13030,14 +13030,14 @@ export namespace container {
          * If true, enables CPU CFS quota enforcement for
          * containers that specify CPU limits.
          */
-        cpuCfsQuota?: pulumi.Input<boolean>;
+        cpuCfsQuota?: pulumi.Input<boolean | undefined>;
         /**
          * The CPU CFS quota period value. Specified
          * as a sequence of decimal numbers, each with optional fraction and a unit suffix,
          * such as `"300ms"`. Valid time units are "ns", "us" (or "µs"), "ms", "s", "m",
          * "h". The value must be a positive duration.
          */
-        cpuCfsQuotaPeriod?: pulumi.Input<string>;
+        cpuCfsQuotaPeriod?: pulumi.Input<string | undefined>;
         /**
          * The CPU management policy on the node. See
          * [K8S CPU Management Policies](https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/).
@@ -13067,11 +13067,11 @@ export namespace container {
         /**
          * Defines if the instance has integrity monitoring enabled.
          */
-        enableIntegrityMonitoring?: pulumi.Input<boolean>;
+        enableIntegrityMonitoring?: pulumi.Input<boolean | undefined>;
         /**
          * Defines if the instance has Secure Boot enabled.
          */
-        enableSecureBoot?: pulumi.Input<boolean>;
+        enableSecureBoot?: pulumi.Input<boolean | undefined>;
     }
 
     export interface ClusterNodeConfigTaint {
@@ -13102,7 +13102,7 @@ export namespace container {
     }
 
     export interface ClusterNodePool {
-        autoscaling?: pulumi.Input<inputs.container.ClusterNodePoolAutoscaling>;
+        autoscaling?: pulumi.Input<inputs.container.ClusterNodePoolAutoscaling | undefined>;
         /**
          * The number of nodes to create in this
          * cluster's default node pool. In regional or multi-zonal clusters, this is the
@@ -13111,20 +13111,20 @@ export namespace container {
          * set this to a value of at least `1`, alongside setting
          * `removeDefaultNodePool` to `true`.
          */
-        initialNodeCount?: pulumi.Input<number>;
+        initialNodeCount?: pulumi.Input<number | undefined>;
         /**
          * List of instance group URLs which have been assigned
          * to the cluster.
          */
-        instanceGroupUrls?: pulumi.Input<pulumi.Input<string>[]>;
-        management?: pulumi.Input<inputs.container.ClusterNodePoolManagement>;
-        maxPodsPerNode?: pulumi.Input<number>;
+        instanceGroupUrls?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        management?: pulumi.Input<inputs.container.ClusterNodePoolManagement | undefined>;
+        maxPodsPerNode?: pulumi.Input<number | undefined>;
         /**
          * The name of the cluster, unique within the project and
          * location.
          */
-        name?: pulumi.Input<string>;
-        namePrefix?: pulumi.Input<string>;
+        name?: pulumi.Input<string | undefined>;
+        namePrefix?: pulumi.Input<string | undefined>;
         /**
          * Parameters used in creating the default node pool.
          * Generally, this field should not be used at the same time as a
@@ -13132,17 +13132,17 @@ export namespace container {
          * manages the default node pool, which isn't recommended to be used.
          * Structure is documented below.
          */
-        nodeConfig?: pulumi.Input<inputs.container.ClusterNodePoolNodeConfig>;
-        nodeCount?: pulumi.Input<number>;
+        nodeConfig?: pulumi.Input<inputs.container.ClusterNodePoolNodeConfig | undefined>;
+        nodeCount?: pulumi.Input<number | undefined>;
         /**
          * The list of zones in which the cluster's nodes
          * are located. Nodes must be in the region of their regional cluster or in the
          * same region as their cluster's zone for zonal clusters. If this is specified for
          * a zonal cluster, omit the cluster's zone.
          */
-        nodeLocations?: pulumi.Input<pulumi.Input<string>[]>;
-        upgradeSettings?: pulumi.Input<inputs.container.ClusterNodePoolUpgradeSettings>;
-        version?: pulumi.Input<string>;
+        nodeLocations?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        upgradeSettings?: pulumi.Input<inputs.container.ClusterNodePoolUpgradeSettings | undefined>;
+        version?: pulumi.Input<string | undefined>;
     }
 
     export interface ClusterNodePoolAutoscaling {
@@ -13151,62 +13151,62 @@ export namespace container {
     }
 
     export interface ClusterNodePoolManagement {
-        autoRepair?: pulumi.Input<boolean>;
-        autoUpgrade?: pulumi.Input<boolean>;
+        autoRepair?: pulumi.Input<boolean | undefined>;
+        autoUpgrade?: pulumi.Input<boolean | undefined>;
     }
 
     export interface ClusterNodePoolNodeConfig {
         /**
          * The Customer Managed Encryption Key used to encrypt the boot disk attached to each node in the node pool. This should be of the form projects/[KEY_PROJECT_ID]/locations/[LOCATION]/keyRings/[RING_NAME]/cryptoKeys/[KEY_NAME]. For more information about protecting resources with Cloud KMS Keys please see: https://cloud.google.com/compute/docs/disks/customer-managed-encryption
          */
-        bootDiskKmsKey?: pulumi.Input<string>;
+        bootDiskKmsKey?: pulumi.Input<string | undefined>;
         /**
          * Size of the disk attached to each node, specified
          * in GB. The smallest allowed disk size is 10GB. Defaults to 100GB.
          */
-        diskSizeGb?: pulumi.Input<number>;
+        diskSizeGb?: pulumi.Input<number | undefined>;
         /**
          * Type of the disk attached to each node
          * (e.g. 'pd-standard', 'pd-balanced' or 'pd-ssd'). If unspecified, the default disk type is 'pd-standard'
          */
-        diskType?: pulumi.Input<string>;
+        diskType?: pulumi.Input<string | undefined>;
         /**
          * List of the type and count of accelerator cards attached to the instance.
          * Structure documented below.
          */
-        guestAccelerators?: pulumi.Input<pulumi.Input<inputs.container.ClusterNodePoolNodeConfigGuestAccelerator>[]>;
+        guestAccelerators?: pulumi.Input<pulumi.Input<inputs.container.ClusterNodePoolNodeConfigGuestAccelerator>[] | undefined>;
         /**
          * The image type to use for this node. Note that changing the image type
          * will delete and recreate all nodes in the node pool.
          */
-        imageType?: pulumi.Input<string>;
+        imageType?: pulumi.Input<string | undefined>;
         /**
          * Kubelet configuration, currently supported attributes can be found [here](https://cloud.google.com/sdk/gcloud/reference/beta/container/node-pools/create#--system-config-from-file).
          * Structure is documented below.
          */
-        kubeletConfig?: pulumi.Input<inputs.container.ClusterNodePoolNodeConfigKubeletConfig>;
+        kubeletConfig?: pulumi.Input<inputs.container.ClusterNodePoolNodeConfigKubeletConfig | undefined>;
         /**
          * The Kubernetes labels (key/value pairs) to be applied to each node. The kubernetes.io/ and k8s.io/ prefixes are
          * reserved by Kubernetes Core components and cannot be specified.
          */
-        labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * Linux node configuration, currently supported attributes can be found [here](https://cloud.google.com/sdk/gcloud/reference/beta/container/node-pools/create#--system-config-from-file).
          * Note that validations happen all server side. All attributes are optional.
          * Structure is documented below.
          */
-        linuxNodeConfig?: pulumi.Input<inputs.container.ClusterNodePoolNodeConfigLinuxNodeConfig>;
+        linuxNodeConfig?: pulumi.Input<inputs.container.ClusterNodePoolNodeConfigLinuxNodeConfig | undefined>;
         /**
          * The amount of local SSD disks that will be
          * attached to each cluster node. Defaults to 0.
          */
-        localSsdCount?: pulumi.Input<number>;
+        localSsdCount?: pulumi.Input<number | undefined>;
         /**
          * The name of a Google Compute Engine machine type.
          * Defaults to `e2-medium`. To create a custom machine type, value should be set as specified
          * [here](https://cloud.google.com/compute/docs/reference/latest/instances#machineType).
          */
-        machineType?: pulumi.Input<string>;
+        machineType?: pulumi.Input<string | undefined>;
         /**
          * The metadata key/value pairs assigned to instances in
          * the cluster. From GKE `1.12` onwards, `disable-legacy-endpoints` is set to
@@ -13214,7 +13214,7 @@ export namespace container {
          * included, the provider will attempt to unset the value. To avoid this, set the
          * value in your config.
          */
-        metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * Minimum CPU platform to be used by this instance.
          * The instance may be scheduled on the specified or newer CPU platform. Applicable
@@ -13222,38 +13222,38 @@ export namespace container {
          * [official documentation](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
          * for more information.
          */
-        minCpuPlatform?: pulumi.Input<string>;
+        minCpuPlatform?: pulumi.Input<string | undefined>;
         /**
          * The set of Google API scopes to be made available
          * on all of the node VMs under the "default" service account.
          * Use the "https://www.googleapis.com/auth/cloud-platform" scope to grant access to all APIs. It is recommended that you set `serviceAccount` to a non-default service account and grant IAM roles to that service account for only the resources that it needs.
          */
-        oauthScopes?: pulumi.Input<pulumi.Input<string>[]>;
+        oauthScopes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * A boolean that represents whether or not the underlying node VMs
          * are preemptible. See the [official documentation](https://cloud.google.com/container-engine/docs/preemptible-vm)
          * for more information. Defaults to false.
          */
-        preemptible?: pulumi.Input<boolean>;
+        preemptible?: pulumi.Input<boolean | undefined>;
         /**
          * [GKE Sandbox](https://cloud.google.com/kubernetes-engine/docs/how-to/sandbox-pods) configuration. When enabling this feature you must specify `imageType = "COS_CONTAINERD"` and `nodeVersion = "1.12.7-gke.17"` or later to use it.
          * Structure is documented below.
          */
-        sandboxConfig?: pulumi.Input<inputs.container.ClusterNodePoolNodeConfigSandboxConfig>;
+        sandboxConfig?: pulumi.Input<inputs.container.ClusterNodePoolNodeConfigSandboxConfig | undefined>;
         /**
          * The service account to be used by the Node VMs.
          * If not specified, the "default" service account is used.
          */
-        serviceAccount?: pulumi.Input<string>;
+        serviceAccount?: pulumi.Input<string | undefined>;
         /**
          * Shielded Instance options. Structure is documented below.
          */
-        shieldedInstanceConfig?: pulumi.Input<inputs.container.ClusterNodePoolNodeConfigShieldedInstanceConfig>;
+        shieldedInstanceConfig?: pulumi.Input<inputs.container.ClusterNodePoolNodeConfigShieldedInstanceConfig | undefined>;
         /**
          * The list of instance tags applied to all nodes. Tags are used to identify
          * valid sources or targets for network firewalls.
          */
-        tags?: pulumi.Input<pulumi.Input<string>[]>;
+        tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * A list of [Kubernetes taints](https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/)
          * to apply to nodes. GKE's API can only set this field on cluster creation.
@@ -13264,12 +13264,12 @@ export namespace container {
          * this field to manage taints. If you do, `lifecycle.ignore_changes` is
          * recommended. Structure is documented below.
          */
-        taints?: pulumi.Input<pulumi.Input<inputs.container.ClusterNodePoolNodeConfigTaint>[]>;
+        taints?: pulumi.Input<pulumi.Input<inputs.container.ClusterNodePoolNodeConfigTaint>[] | undefined>;
         /**
          * Metadata configuration to expose to workloads on the node pool.
          * Structure is documented below.
          */
-        workloadMetadataConfig?: pulumi.Input<inputs.container.ClusterNodePoolNodeConfigWorkloadMetadataConfig>;
+        workloadMetadataConfig?: pulumi.Input<inputs.container.ClusterNodePoolNodeConfigWorkloadMetadataConfig | undefined>;
     }
 
     export interface ClusterNodePoolNodeConfigGuestAccelerator {
@@ -13288,14 +13288,14 @@ export namespace container {
          * If true, enables CPU CFS quota enforcement for
          * containers that specify CPU limits.
          */
-        cpuCfsQuota?: pulumi.Input<boolean>;
+        cpuCfsQuota?: pulumi.Input<boolean | undefined>;
         /**
          * The CPU CFS quota period value. Specified
          * as a sequence of decimal numbers, each with optional fraction and a unit suffix,
          * such as `"300ms"`. Valid time units are "ns", "us" (or "µs"), "ms", "s", "m",
          * "h". The value must be a positive duration.
          */
-        cpuCfsQuotaPeriod?: pulumi.Input<string>;
+        cpuCfsQuotaPeriod?: pulumi.Input<string | undefined>;
         /**
          * The CPU management policy on the node. See
          * [K8S CPU Management Policies](https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/).
@@ -13325,11 +13325,11 @@ export namespace container {
         /**
          * Defines if the instance has integrity monitoring enabled.
          */
-        enableIntegrityMonitoring?: pulumi.Input<boolean>;
+        enableIntegrityMonitoring?: pulumi.Input<boolean | undefined>;
         /**
          * Defines if the instance has Secure Boot enabled.
          */
-        enableSecureBoot?: pulumi.Input<boolean>;
+        enableSecureBoot?: pulumi.Input<boolean | undefined>;
     }
 
     export interface ClusterNodePoolNodeConfigTaint {
@@ -13374,7 +13374,7 @@ export namespace container {
          * If enabled, pods must be valid under a PodSecurityPolicy to be created.
          */
         enabled: pulumi.Input<boolean>;
-        topic?: pulumi.Input<string>;
+        topic?: pulumi.Input<string | undefined>;
     }
 
     export interface ClusterPodSecurityPolicyConfig {
@@ -13399,8 +13399,8 @@ export namespace container {
          * have RFC 1918 private addresses and communicate with the master's private
          * endpoint via private networking.
          */
-        enablePrivateNodes?: pulumi.Input<boolean>;
-        masterGlobalAccessConfig?: pulumi.Input<inputs.container.ClusterPrivateClusterConfigMasterGlobalAccessConfig>;
+        enablePrivateNodes?: pulumi.Input<boolean | undefined>;
+        masterGlobalAccessConfig?: pulumi.Input<inputs.container.ClusterPrivateClusterConfigMasterGlobalAccessConfig | undefined>;
         /**
          * The IP range in CIDR notation to use for
          * the hosted master network. This range will be used for assigning private IP
@@ -13410,19 +13410,19 @@ export namespace container {
          * for more details. This field only applies to private clusters, when
          * `enablePrivateNodes` is `true`.
          */
-        masterIpv4CidrBlock?: pulumi.Input<string>;
+        masterIpv4CidrBlock?: pulumi.Input<string | undefined>;
         /**
          * The name of the peering between this cluster and the Google owned VPC.
          */
-        peeringName?: pulumi.Input<string>;
+        peeringName?: pulumi.Input<string | undefined>;
         /**
          * The internal IP address of this cluster's master endpoint.
          */
-        privateEndpoint?: pulumi.Input<string>;
+        privateEndpoint?: pulumi.Input<string | undefined>;
         /**
          * The external IP address of this cluster's master endpoint.
          */
-        publicEndpoint?: pulumi.Input<string>;
+        publicEndpoint?: pulumi.Input<string | undefined>;
     }
 
     export interface ClusterPrivateClusterConfigMasterGlobalAccessConfig {
@@ -13454,7 +13454,7 @@ export namespace container {
          * Whether to enable network egress metering for this cluster. If enabled, a daemonset will be created
          * in the cluster to meter network egress traffic.
          */
-        enableNetworkEgressMetering?: pulumi.Input<boolean>;
+        enableNetworkEgressMetering?: pulumi.Input<boolean | undefined>;
         /**
          * Whether to enable resource
          * consumption metering on this cluster. When enabled, a table will be created in
@@ -13462,7 +13462,7 @@ export namespace container {
          * resulting table can be joined with the resource usage table or with BigQuery
          * billing export. Defaults to `true`.
          */
-        enableResourceConsumptionMetering?: pulumi.Input<boolean>;
+        enableResourceConsumptionMetering?: pulumi.Input<boolean | undefined>;
     }
 
     export interface ClusterResourceUsageExportConfigBigqueryDestination {
@@ -13500,34 +13500,34 @@ export namespace container {
         /**
          * Whether the nodes will be automatically repaired.
          */
-        autoRepair?: pulumi.Input<boolean>;
+        autoRepair?: pulumi.Input<boolean | undefined>;
         /**
          * Whether the nodes will be automatically upgraded.
          */
-        autoUpgrade?: pulumi.Input<boolean>;
+        autoUpgrade?: pulumi.Input<boolean | undefined>;
     }
 
     export interface NodePoolNodeConfig {
-        bootDiskKmsKey?: pulumi.Input<string>;
-        diskSizeGb?: pulumi.Input<number>;
-        diskType?: pulumi.Input<string>;
-        guestAccelerators?: pulumi.Input<pulumi.Input<inputs.container.NodePoolNodeConfigGuestAccelerator>[]>;
-        imageType?: pulumi.Input<string>;
-        kubeletConfig?: pulumi.Input<inputs.container.NodePoolNodeConfigKubeletConfig>;
-        labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-        linuxNodeConfig?: pulumi.Input<inputs.container.NodePoolNodeConfigLinuxNodeConfig>;
-        localSsdCount?: pulumi.Input<number>;
-        machineType?: pulumi.Input<string>;
-        metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-        minCpuPlatform?: pulumi.Input<string>;
-        oauthScopes?: pulumi.Input<pulumi.Input<string>[]>;
-        preemptible?: pulumi.Input<boolean>;
-        sandboxConfig?: pulumi.Input<inputs.container.NodePoolNodeConfigSandboxConfig>;
-        serviceAccount?: pulumi.Input<string>;
-        shieldedInstanceConfig?: pulumi.Input<inputs.container.NodePoolNodeConfigShieldedInstanceConfig>;
-        tags?: pulumi.Input<pulumi.Input<string>[]>;
-        taints?: pulumi.Input<pulumi.Input<inputs.container.NodePoolNodeConfigTaint>[]>;
-        workloadMetadataConfig?: pulumi.Input<inputs.container.NodePoolNodeConfigWorkloadMetadataConfig>;
+        bootDiskKmsKey?: pulumi.Input<string | undefined>;
+        diskSizeGb?: pulumi.Input<number | undefined>;
+        diskType?: pulumi.Input<string | undefined>;
+        guestAccelerators?: pulumi.Input<pulumi.Input<inputs.container.NodePoolNodeConfigGuestAccelerator>[] | undefined>;
+        imageType?: pulumi.Input<string | undefined>;
+        kubeletConfig?: pulumi.Input<inputs.container.NodePoolNodeConfigKubeletConfig | undefined>;
+        labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+        linuxNodeConfig?: pulumi.Input<inputs.container.NodePoolNodeConfigLinuxNodeConfig | undefined>;
+        localSsdCount?: pulumi.Input<number | undefined>;
+        machineType?: pulumi.Input<string | undefined>;
+        metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+        minCpuPlatform?: pulumi.Input<string | undefined>;
+        oauthScopes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        preemptible?: pulumi.Input<boolean | undefined>;
+        sandboxConfig?: pulumi.Input<inputs.container.NodePoolNodeConfigSandboxConfig | undefined>;
+        serviceAccount?: pulumi.Input<string | undefined>;
+        shieldedInstanceConfig?: pulumi.Input<inputs.container.NodePoolNodeConfigShieldedInstanceConfig | undefined>;
+        tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        taints?: pulumi.Input<pulumi.Input<inputs.container.NodePoolNodeConfigTaint>[] | undefined>;
+        workloadMetadataConfig?: pulumi.Input<inputs.container.NodePoolNodeConfigWorkloadMetadataConfig | undefined>;
     }
 
     export interface NodePoolNodeConfigGuestAccelerator {
@@ -13536,8 +13536,8 @@ export namespace container {
     }
 
     export interface NodePoolNodeConfigKubeletConfig {
-        cpuCfsQuota?: pulumi.Input<boolean>;
-        cpuCfsQuotaPeriod?: pulumi.Input<string>;
+        cpuCfsQuota?: pulumi.Input<boolean | undefined>;
+        cpuCfsQuotaPeriod?: pulumi.Input<string | undefined>;
         cpuManagerPolicy: pulumi.Input<string>;
     }
 
@@ -13550,8 +13550,8 @@ export namespace container {
     }
 
     export interface NodePoolNodeConfigShieldedInstanceConfig {
-        enableIntegrityMonitoring?: pulumi.Input<boolean>;
-        enableSecureBoot?: pulumi.Input<boolean>;
+        enableIntegrityMonitoring?: pulumi.Input<boolean | undefined>;
+        enableSecureBoot?: pulumi.Input<boolean | undefined>;
     }
 
     export interface NodePoolNodeConfigTaint {
@@ -13608,7 +13608,7 @@ export namespace containeranalysis {
         /**
          * Label to describe usage of the URL
          */
-        label?: pulumi.Input<string>;
+        label?: pulumi.Input<string | undefined>;
         /**
          * Specific URL associated with the resource.
          */
@@ -13655,29 +13655,29 @@ export namespace containeranalysis {
          * have a canonical serialization that can always be
          * unambiguously computed to derive the payload.
          */
-        signature?: pulumi.Input<string>;
+        signature?: pulumi.Input<string | undefined>;
     }
 }
 
 export namespace datacatalog {
     export interface EntryBigqueryDateShardedSpec {
-        dataset?: pulumi.Input<string>;
-        shardCount?: pulumi.Input<number>;
-        tablePrefix?: pulumi.Input<string>;
+        dataset?: pulumi.Input<string | undefined>;
+        shardCount?: pulumi.Input<number | undefined>;
+        tablePrefix?: pulumi.Input<string | undefined>;
     }
 
     export interface EntryBigqueryTableSpec {
-        tableSourceType?: pulumi.Input<string>;
-        tableSpecs?: pulumi.Input<pulumi.Input<inputs.datacatalog.EntryBigqueryTableSpecTableSpec>[]>;
-        viewSpecs?: pulumi.Input<pulumi.Input<inputs.datacatalog.EntryBigqueryTableSpecViewSpec>[]>;
+        tableSourceType?: pulumi.Input<string | undefined>;
+        tableSpecs?: pulumi.Input<pulumi.Input<inputs.datacatalog.EntryBigqueryTableSpecTableSpec>[] | undefined>;
+        viewSpecs?: pulumi.Input<pulumi.Input<inputs.datacatalog.EntryBigqueryTableSpecViewSpec>[] | undefined>;
     }
 
     export interface EntryBigqueryTableSpecTableSpec {
-        groupedEntry?: pulumi.Input<string>;
+        groupedEntry?: pulumi.Input<string | undefined>;
     }
 
     export interface EntryBigqueryTableSpecViewSpec {
-        viewQuery?: pulumi.Input<string>;
+        viewQuery?: pulumi.Input<string | undefined>;
     }
 
     export interface EntryGcsFilesetSpec {
@@ -13700,7 +13700,7 @@ export namespace datacatalog {
          * Sample files contained in this fileset, not all files contained in this fileset are represented here.
          * Structure is documented below.
          */
-        sampleGcsFileSpecs?: pulumi.Input<pulumi.Input<inputs.datacatalog.EntryGcsFilesetSpecSampleGcsFileSpec>[]>;
+        sampleGcsFileSpecs?: pulumi.Input<pulumi.Input<inputs.datacatalog.EntryGcsFilesetSpecSampleGcsFileSpec>[] | undefined>;
     }
 
     export interface EntryGcsFilesetSpecSampleGcsFileSpec {
@@ -13708,34 +13708,34 @@ export namespace datacatalog {
          * -
          * The full file path
          */
-        filePath?: pulumi.Input<string>;
+        filePath?: pulumi.Input<string | undefined>;
         /**
          * -
          * The size of the file, in bytes.
          */
-        sizeBytes?: pulumi.Input<number>;
+        sizeBytes?: pulumi.Input<number | undefined>;
     }
 
     export interface EntryGroupIamBindingCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
 
     export interface EntryGroupIamMemberCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
 
     export interface PolicyTagIamBindingCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
 
     export interface PolicyTagIamMemberCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
@@ -13744,21 +13744,21 @@ export namespace datacatalog {
         /**
          * Holds the value for a tag field with boolean type.
          */
-        boolValue?: pulumi.Input<boolean>;
+        boolValue?: pulumi.Input<boolean | undefined>;
         /**
          * -
          * The display name of this field
          */
-        displayName?: pulumi.Input<string>;
+        displayName?: pulumi.Input<string | undefined>;
         /**
          * Holds the value for a tag field with double type.
          */
-        doubleValue?: pulumi.Input<number>;
+        doubleValue?: pulumi.Input<number | undefined>;
         /**
          * Holds the value for a tag field with enum type. This value must be one of the allowed values in the definition of this enum.
          * Structure is documented below.
          */
-        enumValue?: pulumi.Input<string>;
+        enumValue?: pulumi.Input<string | undefined>;
         /**
          * The identifier for this object. Format specified above.
          */
@@ -13769,22 +13769,22 @@ export namespace datacatalog {
          * a more important field. The value can be negative. Multiple fields can have the same order, and field orders
          * within a tag do not have to be sequential.
          */
-        order?: pulumi.Input<number>;
+        order?: pulumi.Input<number | undefined>;
         /**
          * Holds the value for a tag field with string type.
          */
-        stringValue?: pulumi.Input<string>;
+        stringValue?: pulumi.Input<string | undefined>;
         /**
          * Holds the value for a tag field with timestamp type.
          */
-        timestampValue?: pulumi.Input<string>;
+        timestampValue?: pulumi.Input<string | undefined>;
     }
 
     export interface TagTemplateField {
         /**
          * The display name for this template.
          */
-        displayName?: pulumi.Input<string>;
+        displayName?: pulumi.Input<string | undefined>;
         /**
          * The identifier for this object. Format specified above.
          */
@@ -13792,18 +13792,18 @@ export namespace datacatalog {
         /**
          * Whether this is a required field. Defaults to false.
          */
-        isRequired?: pulumi.Input<boolean>;
+        isRequired?: pulumi.Input<boolean | undefined>;
         /**
          * -
          * The resource name of the tag template field in URL format. Example: projects/{project_id}/locations/{location}/tagTemplates/{tagTemplateId}/fields/{field}
          */
-        name?: pulumi.Input<string>;
+        name?: pulumi.Input<string | undefined>;
         /**
          * The order of this field with respect to other fields in this tag template.
          * A higher value indicates a more important field. The value can be negative.
          * Multiple fields can have the same order, and field orders within a tag do not have to be sequential.
          */
-        order?: pulumi.Input<number>;
+        order?: pulumi.Input<number | undefined>;
         /**
          * The type of value this tag field can contain.
          * Structure is documented below.
@@ -13817,13 +13817,13 @@ export namespace datacatalog {
          * Exactly one of `primitiveType` or `enumType` must be set
          * Structure is documented below.
          */
-        enumType?: pulumi.Input<inputs.datacatalog.TagTemplateFieldTypeEnumType>;
+        enumType?: pulumi.Input<inputs.datacatalog.TagTemplateFieldTypeEnumType | undefined>;
         /**
          * Represents primitive types - string, bool etc.
          * Exactly one of `primitiveType` or `enumType` must be set
          * Possible values are `DOUBLE`, `STRING`, `BOOL`, and `TIMESTAMP`.
          */
-        primitiveType?: pulumi.Input<string>;
+        primitiveType?: pulumi.Input<string | undefined>;
     }
 
     export interface TagTemplateFieldTypeEnumType {
@@ -13846,13 +13846,13 @@ export namespace datacatalog {
     }
 
     export interface TaxonomyIamBindingCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
 
     export interface TaxonomyIamMemberCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
@@ -13897,7 +13897,7 @@ export namespace dataloss {
          * all findings that correspond to infoTypes that were requested in InspectConfig.
          * Structure is documented below.
          */
-        infoTypes?: pulumi.Input<pulumi.Input<inputs.dataloss.PreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationInfoType>[]>;
+        infoTypes?: pulumi.Input<pulumi.Input<inputs.dataloss.PreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationInfoType>[] | undefined>;
         /**
          * Primitive transformation to apply to the infoType.
          * Structure is documented below.
@@ -13918,12 +13918,12 @@ export namespace dataloss {
          * Masking can start from the beginning or end of the string.
          * Structure is documented below.
          */
-        characterMaskConfig?: pulumi.Input<inputs.dataloss.PreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationPrimitiveTransformationCharacterMaskConfig>;
+        characterMaskConfig?: pulumi.Input<inputs.dataloss.PreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationPrimitiveTransformationCharacterMaskConfig | undefined>;
         /**
          * Replace each input value with a given value.
          * Structure is documented below.
          */
-        replaceConfig?: pulumi.Input<inputs.dataloss.PreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationPrimitiveTransformationReplaceConfig>;
+        replaceConfig?: pulumi.Input<inputs.dataloss.PreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationPrimitiveTransformationReplaceConfig | undefined>;
     }
 
     export interface PreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationPrimitiveTransformationCharacterMaskConfig {
@@ -13931,34 +13931,34 @@ export namespace dataloss {
          * Characters to skip when doing de-identification of a value. These will be left alone and skipped.
          * Structure is documented below.
          */
-        charactersToIgnores?: pulumi.Input<pulumi.Input<inputs.dataloss.PreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationPrimitiveTransformationCharacterMaskConfigCharactersToIgnore>[]>;
+        charactersToIgnores?: pulumi.Input<pulumi.Input<inputs.dataloss.PreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationPrimitiveTransformationCharacterMaskConfigCharactersToIgnore>[] | undefined>;
         /**
          * Character to use to mask the sensitive values—for example, * for an alphabetic string such as a name, or 0 for a numeric string
          * such as ZIP code or credit card number. This string must have a length of 1. If not supplied, this value defaults to * for
          * strings, and 0 for digits.
          */
-        maskingCharacter?: pulumi.Input<string>;
+        maskingCharacter?: pulumi.Input<string | undefined>;
         /**
          * Number of characters to mask. If not set, all matching chars will be masked. Skipped characters do not count towards this tally.
          */
-        numberToMask?: pulumi.Input<number>;
+        numberToMask?: pulumi.Input<number | undefined>;
         /**
          * Mask characters in reverse order. For example, if maskingCharacter is 0, numberToMask is 14, and reverseOrder is `false`, then the
          * input string `1234-5678-9012-3456` is masked as `00000000000000-3456`.
          */
-        reverseOrder?: pulumi.Input<boolean>;
+        reverseOrder?: pulumi.Input<boolean | undefined>;
     }
 
     export interface PreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationPrimitiveTransformationCharacterMaskConfigCharactersToIgnore {
         /**
          * Characters to not transform when masking.
          */
-        characterToSkip?: pulumi.Input<string>;
+        characterToSkip?: pulumi.Input<string | undefined>;
         /**
          * Common characters to not transform when masking. Useful to avoid removing punctuation.
          * Possible values are `NUMERIC`, `ALPHA_UPPER_CASE`, `ALPHA_LOWER_CASE`, `PUNCTUATION`, and `WHITESPACE`.
          */
-        commonCharactersToIgnore?: pulumi.Input<string>;
+        commonCharactersToIgnore?: pulumi.Input<string | undefined>;
     }
 
     export interface PreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationPrimitiveTransformationReplaceConfig {
@@ -13973,39 +13973,39 @@ export namespace dataloss {
         /**
          * A boolean value.
          */
-        booleanValue?: pulumi.Input<boolean>;
+        booleanValue?: pulumi.Input<boolean | undefined>;
         /**
          * Represents a whole or partial calendar date.
          * Structure is documented below.
          */
-        dateValue?: pulumi.Input<inputs.dataloss.PreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationPrimitiveTransformationReplaceConfigNewValueDateValue>;
+        dateValue?: pulumi.Input<inputs.dataloss.PreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationPrimitiveTransformationReplaceConfigNewValueDateValue | undefined>;
         /**
          * Represents a day of the week.
          * Possible values are `MONDAY`, `TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`, `SATURDAY`, and `SUNDAY`.
          */
-        dayOfWeekValue?: pulumi.Input<string>;
+        dayOfWeekValue?: pulumi.Input<string | undefined>;
         /**
          * A float value.
          */
-        floatValue?: pulumi.Input<number>;
+        floatValue?: pulumi.Input<number | undefined>;
         /**
          * An integer value.
          */
-        integerValue?: pulumi.Input<number>;
+        integerValue?: pulumi.Input<number | undefined>;
         /**
          * A string value.
          */
-        stringValue?: pulumi.Input<string>;
+        stringValue?: pulumi.Input<string | undefined>;
         /**
          * Represents a time of day.
          * Structure is documented below.
          */
-        timeValue?: pulumi.Input<inputs.dataloss.PreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationPrimitiveTransformationReplaceConfigNewValueTimeValue>;
+        timeValue?: pulumi.Input<inputs.dataloss.PreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationPrimitiveTransformationReplaceConfigNewValueTimeValue | undefined>;
         /**
          * A timestamp in RFC3339 UTC "Zulu" format, with nanosecond resolution and up to nine fractional digits.
          * Examples: "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z".
          */
-        timestampValue?: pulumi.Input<string>;
+        timestampValue?: pulumi.Input<string | undefined>;
     }
 
     export interface PreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationPrimitiveTransformationReplaceConfigNewValueDateValue {
@@ -14013,34 +14013,34 @@ export namespace dataloss {
          * Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a
          * year by itself or a year and month where the day is not significant.
          */
-        day?: pulumi.Input<number>;
+        day?: pulumi.Input<number | undefined>;
         /**
          * Month of year. Must be from 1 to 12, or 0 if specifying a year without a month and day.
          */
-        month?: pulumi.Input<number>;
+        month?: pulumi.Input<number | undefined>;
         /**
          * Year of date. Must be from 1 to 9999, or 0 if specifying a date without a year.
          */
-        year?: pulumi.Input<number>;
+        year?: pulumi.Input<number | undefined>;
     }
 
     export interface PreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransformationsTransformationPrimitiveTransformationReplaceConfigNewValueTimeValue {
         /**
          * Hours of day in 24 hour format. Should be from 0 to 23.
          */
-        hours?: pulumi.Input<number>;
+        hours?: pulumi.Input<number | undefined>;
         /**
          * Minutes of hour of day. Must be from 0 to 59.
          */
-        minutes?: pulumi.Input<number>;
+        minutes?: pulumi.Input<number | undefined>;
         /**
          * Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
          */
-        nanos?: pulumi.Input<number>;
+        nanos?: pulumi.Input<number | undefined>;
         /**
          * Seconds of minutes of the time. Must normally be from 0 to 59.
          */
-        seconds?: pulumi.Input<number>;
+        seconds?: pulumi.Input<number | undefined>;
     }
 
     export interface PreventionInspectTemplateInspectConfig {
@@ -14048,43 +14048,43 @@ export namespace dataloss {
          * List of options defining data content to scan. If empty, text, images, and other content will be included.
          * Each value may be one of `CONTENT_TEXT` and `CONTENT_IMAGE`.
          */
-        contentOptions?: pulumi.Input<pulumi.Input<string>[]>;
+        contentOptions?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Custom info types to be used. See https://cloud.google.com/dlp/docs/creating-custom-infotypes to learn more.
          * Structure is documented below.
          */
-        customInfoTypes?: pulumi.Input<pulumi.Input<inputs.dataloss.PreventionInspectTemplateInspectConfigCustomInfoType>[]>;
+        customInfoTypes?: pulumi.Input<pulumi.Input<inputs.dataloss.PreventionInspectTemplateInspectConfigCustomInfoType>[] | undefined>;
         /**
          * Set of infoTypes for which findings would affect this rule.
          * Structure is documented below.
          */
-        excludeInfoTypes?: pulumi.Input<boolean>;
+        excludeInfoTypes?: pulumi.Input<boolean | undefined>;
         /**
          * When true, a contextual quote from the data that triggered a finding is included in the response.
          */
-        includeQuote?: pulumi.Input<boolean>;
+        includeQuote?: pulumi.Input<boolean | undefined>;
         /**
          * If a finding is matched by any of the infoType detectors listed here, the finding will be excluded from the scan results.
          * Structure is documented below.
          */
-        infoTypes?: pulumi.Input<pulumi.Input<inputs.dataloss.PreventionInspectTemplateInspectConfigInfoType>[]>;
+        infoTypes?: pulumi.Input<pulumi.Input<inputs.dataloss.PreventionInspectTemplateInspectConfigInfoType>[] | undefined>;
         /**
          * Configuration to control the number of findings returned.
          * Structure is documented below.
          */
-        limits?: pulumi.Input<inputs.dataloss.PreventionInspectTemplateInspectConfigLimits>;
+        limits?: pulumi.Input<inputs.dataloss.PreventionInspectTemplateInspectConfigLimits | undefined>;
         /**
          * Only returns findings equal or above this threshold. See https://cloud.google.com/dlp/docs/likelihood for more info
          * Default value is `POSSIBLE`.
          * Possible values are `VERY_UNLIKELY`, `UNLIKELY`, `POSSIBLE`, `LIKELY`, and `VERY_LIKELY`.
          */
-        minLikelihood?: pulumi.Input<string>;
+        minLikelihood?: pulumi.Input<string | undefined>;
         /**
          * Set of rules to apply to the findings for this InspectConfig. Exclusion rules, contained in the set are executed in the end,
          * other rules are executed in the order they are specified for each info type.
          * Structure is documented below.
          */
-        ruleSets?: pulumi.Input<pulumi.Input<inputs.dataloss.PreventionInspectTemplateInspectConfigRuleSet>[]>;
+        ruleSets?: pulumi.Input<pulumi.Input<inputs.dataloss.PreventionInspectTemplateInspectConfigRuleSet>[] | undefined>;
     }
 
     export interface PreventionInspectTemplateInspectConfigCustomInfoType {
@@ -14092,12 +14092,12 @@ export namespace dataloss {
          * Dictionary which defines the rule.
          * Structure is documented below.
          */
-        dictionary?: pulumi.Input<inputs.dataloss.PreventionInspectTemplateInspectConfigCustomInfoTypeDictionary>;
+        dictionary?: pulumi.Input<inputs.dataloss.PreventionInspectTemplateInspectConfigCustomInfoTypeDictionary | undefined>;
         /**
          * If set to EXCLUSION_TYPE_EXCLUDE this infoType will not cause a finding to be returned. It still can be used for rules matching.
          * Possible values are `EXCLUSION_TYPE_EXCLUDE`.
          */
-        exclusionType?: pulumi.Input<string>;
+        exclusionType?: pulumi.Input<string | undefined>;
         /**
          * CustomInfoType can either be a new infoType, or an extension of built-in infoType, when the name matches one of existing
          * infoTypes and that infoType is specified in `infoTypes` field. Specifying the latter adds findings to the
@@ -14112,17 +14112,17 @@ export namespace dataloss {
          * Default value is `VERY_LIKELY`.
          * Possible values are `VERY_UNLIKELY`, `UNLIKELY`, `POSSIBLE`, `LIKELY`, and `VERY_LIKELY`.
          */
-        likelihood?: pulumi.Input<string>;
+        likelihood?: pulumi.Input<string | undefined>;
         /**
          * Regular expression which defines the rule.
          * Structure is documented below.
          */
-        regex?: pulumi.Input<inputs.dataloss.PreventionInspectTemplateInspectConfigCustomInfoTypeRegex>;
+        regex?: pulumi.Input<inputs.dataloss.PreventionInspectTemplateInspectConfigCustomInfoTypeRegex | undefined>;
         /**
          * A reference to a StoredInfoType to use with scanning.
          * Structure is documented below.
          */
-        storedType?: pulumi.Input<inputs.dataloss.PreventionInspectTemplateInspectConfigCustomInfoTypeStoredType>;
+        storedType?: pulumi.Input<inputs.dataloss.PreventionInspectTemplateInspectConfigCustomInfoTypeStoredType | undefined>;
     }
 
     export interface PreventionInspectTemplateInspectConfigCustomInfoTypeDictionary {
@@ -14130,12 +14130,12 @@ export namespace dataloss {
          * Newline-delimited file of words in Cloud Storage. Only a single file is accepted.
          * Structure is documented below.
          */
-        cloudStoragePath?: pulumi.Input<inputs.dataloss.PreventionInspectTemplateInspectConfigCustomInfoTypeDictionaryCloudStoragePath>;
+        cloudStoragePath?: pulumi.Input<inputs.dataloss.PreventionInspectTemplateInspectConfigCustomInfoTypeDictionaryCloudStoragePath | undefined>;
         /**
          * List of words or phrases to search for.
          * Structure is documented below.
          */
-        wordList?: pulumi.Input<inputs.dataloss.PreventionInspectTemplateInspectConfigCustomInfoTypeDictionaryWordList>;
+        wordList?: pulumi.Input<inputs.dataloss.PreventionInspectTemplateInspectConfigCustomInfoTypeDictionaryWordList | undefined>;
     }
 
     export interface PreventionInspectTemplateInspectConfigCustomInfoTypeDictionaryCloudStoragePath {
@@ -14165,7 +14165,7 @@ export namespace dataloss {
         /**
          * The index of the submatch to extract as findings. When not specified, the entire match is returned. No more than 3 may be included.
          */
-        groupIndexes?: pulumi.Input<pulumi.Input<number>[]>;
+        groupIndexes?: pulumi.Input<pulumi.Input<number>[] | undefined>;
         /**
          * Pattern defining the regular expression.
          * Its syntax (https://github.com/google/re2/wiki/Syntax) can be found under the google/re2 repository on GitHub.
@@ -14194,7 +14194,7 @@ export namespace dataloss {
          * Configuration of findings limit given for specified infoTypes.
          * Structure is documented below.
          */
-        maxFindingsPerInfoTypes?: pulumi.Input<pulumi.Input<inputs.dataloss.PreventionInspectTemplateInspectConfigLimitsMaxFindingsPerInfoType>[]>;
+        maxFindingsPerInfoTypes?: pulumi.Input<pulumi.Input<inputs.dataloss.PreventionInspectTemplateInspectConfigLimitsMaxFindingsPerInfoType>[] | undefined>;
         /**
          * Max number of findings that will be returned for each item scanned. The maximum returned is 2000.
          */
@@ -14254,12 +14254,12 @@ export namespace dataloss {
          * The rule that specifies conditions when findings of infoTypes specified in InspectionRuleSet are removed from results.
          * Structure is documented below.
          */
-        exclusionRule?: pulumi.Input<inputs.dataloss.PreventionInspectTemplateInspectConfigRuleSetRuleExclusionRule>;
+        exclusionRule?: pulumi.Input<inputs.dataloss.PreventionInspectTemplateInspectConfigRuleSetRuleExclusionRule | undefined>;
         /**
          * Hotword-based detection rule.
          * Structure is documented below.
          */
-        hotwordRule?: pulumi.Input<inputs.dataloss.PreventionInspectTemplateInspectConfigRuleSetRuleHotwordRule>;
+        hotwordRule?: pulumi.Input<inputs.dataloss.PreventionInspectTemplateInspectConfigRuleSetRuleHotwordRule | undefined>;
     }
 
     export interface PreventionInspectTemplateInspectConfigRuleSetRuleExclusionRule {
@@ -14267,12 +14267,12 @@ export namespace dataloss {
          * Dictionary which defines the rule.
          * Structure is documented below.
          */
-        dictionary?: pulumi.Input<inputs.dataloss.PreventionInspectTemplateInspectConfigRuleSetRuleExclusionRuleDictionary>;
+        dictionary?: pulumi.Input<inputs.dataloss.PreventionInspectTemplateInspectConfigRuleSetRuleExclusionRuleDictionary | undefined>;
         /**
          * Set of infoTypes for which findings would affect this rule.
          * Structure is documented below.
          */
-        excludeInfoTypes?: pulumi.Input<inputs.dataloss.PreventionInspectTemplateInspectConfigRuleSetRuleExclusionRuleExcludeInfoTypes>;
+        excludeInfoTypes?: pulumi.Input<inputs.dataloss.PreventionInspectTemplateInspectConfigRuleSetRuleExclusionRuleExcludeInfoTypes | undefined>;
         /**
          * How the rule is applied. See the documentation for more information: https://cloud.google.com/dlp/docs/reference/rest/v2/InspectConfig#MatchingType
          * Possible values are `MATCHING_TYPE_FULL_MATCH`, `MATCHING_TYPE_PARTIAL_MATCH`, and `MATCHING_TYPE_INVERSE_MATCH`.
@@ -14282,7 +14282,7 @@ export namespace dataloss {
          * Regular expression which defines the rule.
          * Structure is documented below.
          */
-        regex?: pulumi.Input<inputs.dataloss.PreventionInspectTemplateInspectConfigRuleSetRuleExclusionRuleRegex>;
+        regex?: pulumi.Input<inputs.dataloss.PreventionInspectTemplateInspectConfigRuleSetRuleExclusionRuleRegex | undefined>;
     }
 
     export interface PreventionInspectTemplateInspectConfigRuleSetRuleExclusionRuleDictionary {
@@ -14290,12 +14290,12 @@ export namespace dataloss {
          * Newline-delimited file of words in Cloud Storage. Only a single file is accepted.
          * Structure is documented below.
          */
-        cloudStoragePath?: pulumi.Input<inputs.dataloss.PreventionInspectTemplateInspectConfigRuleSetRuleExclusionRuleDictionaryCloudStoragePath>;
+        cloudStoragePath?: pulumi.Input<inputs.dataloss.PreventionInspectTemplateInspectConfigRuleSetRuleExclusionRuleDictionaryCloudStoragePath | undefined>;
         /**
          * List of words or phrases to search for.
          * Structure is documented below.
          */
-        wordList?: pulumi.Input<inputs.dataloss.PreventionInspectTemplateInspectConfigRuleSetRuleExclusionRuleDictionaryWordList>;
+        wordList?: pulumi.Input<inputs.dataloss.PreventionInspectTemplateInspectConfigRuleSetRuleExclusionRuleDictionaryWordList | undefined>;
     }
 
     export interface PreventionInspectTemplateInspectConfigRuleSetRuleExclusionRuleDictionaryCloudStoragePath {
@@ -14333,7 +14333,7 @@ export namespace dataloss {
         /**
          * The index of the submatch to extract as findings. When not specified, the entire match is returned. No more than 3 may be included.
          */
-        groupIndexes?: pulumi.Input<pulumi.Input<number>[]>;
+        groupIndexes?: pulumi.Input<pulumi.Input<number>[] | undefined>;
         /**
          * Pattern defining the regular expression.
          * Its syntax (https://github.com/google/re2/wiki/Syntax) can be found under the google/re2 repository on GitHub.
@@ -14367,7 +14367,7 @@ export namespace dataloss {
         /**
          * The index of the submatch to extract as findings. When not specified, the entire match is returned. No more than 3 may be included.
          */
-        groupIndexes?: pulumi.Input<pulumi.Input<number>[]>;
+        groupIndexes?: pulumi.Input<pulumi.Input<number>[] | undefined>;
         /**
          * Pattern defining the regular expression.
          * Its syntax (https://github.com/google/re2/wiki/Syntax) can be found under the google/re2 repository on GitHub.
@@ -14380,7 +14380,7 @@ export namespace dataloss {
          * Set the likelihood of a finding to a fixed value. Either this or relativeLikelihood can be set.
          * Possible values are `VERY_UNLIKELY`, `UNLIKELY`, `POSSIBLE`, `LIKELY`, and `VERY_LIKELY`.
          */
-        fixedLikelihood?: pulumi.Input<string>;
+        fixedLikelihood?: pulumi.Input<string | undefined>;
         /**
          * Increase or decrease the likelihood by the specified number of levels. For example,
          * if a finding would be POSSIBLE without the detection rule and relativeLikelihood is 1,
@@ -14389,18 +14389,18 @@ export namespace dataloss {
          * adjustment of 1 followed by an adjustment of -1 when base likelihood is VERY_LIKELY
          * will result in a final likelihood of LIKELY. Either this or fixedLikelihood can be set.
          */
-        relativeLikelihood?: pulumi.Input<number>;
+        relativeLikelihood?: pulumi.Input<number | undefined>;
     }
 
     export interface PreventionInspectTemplateInspectConfigRuleSetRuleHotwordRuleProximity {
         /**
          * Number of characters after the finding to consider. Either this or windowBefore must be specified
          */
-        windowAfter?: pulumi.Input<number>;
+        windowAfter?: pulumi.Input<number | undefined>;
         /**
          * Number of characters before the finding to consider. Either this or windowAfter must be specified
          */
-        windowBefore?: pulumi.Input<number>;
+        windowBefore?: pulumi.Input<number | undefined>;
     }
 
     export interface PreventionJobTriggerInspectJob {
@@ -14447,7 +14447,7 @@ export namespace dataloss {
          * Only for use with external storage.
          * Possible values are `BASIC_COLUMNS`, `GCS_COLUMNS`, `DATASTORE_COLUMNS`, `BIG_QUERY_COLUMNS`, and `ALL_COLUMNS`.
          */
-        outputSchema?: pulumi.Input<string>;
+        outputSchema?: pulumi.Input<string | undefined>;
         /**
          * Information on the location of the target BigQuery Table.
          * Structure is documented below.
@@ -14468,7 +14468,7 @@ export namespace dataloss {
          * Name of the table. If is not set a new one will be generated for you with the following format:
          * `dlp_googleapis_yyyy_mm_dd_[dlpJobId]`. Pacific timezone will be used for generating the date details.
          */
-        tableId?: pulumi.Input<string>;
+        tableId?: pulumi.Input<string | undefined>;
     }
 
     export interface PreventionJobTriggerInspectJobStorageConfig {
@@ -14476,22 +14476,22 @@ export namespace dataloss {
          * Options defining BigQuery table and row identifiers.
          * Structure is documented below.
          */
-        bigQueryOptions?: pulumi.Input<inputs.dataloss.PreventionJobTriggerInspectJobStorageConfigBigQueryOptions>;
+        bigQueryOptions?: pulumi.Input<inputs.dataloss.PreventionJobTriggerInspectJobStorageConfigBigQueryOptions | undefined>;
         /**
          * Options defining a file or a set of files within a Google Cloud Storage bucket.
          * Structure is documented below.
          */
-        cloudStorageOptions?: pulumi.Input<inputs.dataloss.PreventionJobTriggerInspectJobStorageConfigCloudStorageOptions>;
+        cloudStorageOptions?: pulumi.Input<inputs.dataloss.PreventionJobTriggerInspectJobStorageConfigCloudStorageOptions | undefined>;
         /**
          * Options defining a data set within Google Cloud Datastore.
          * Structure is documented below.
          */
-        datastoreOptions?: pulumi.Input<inputs.dataloss.PreventionJobTriggerInspectJobStorageConfigDatastoreOptions>;
+        datastoreOptions?: pulumi.Input<inputs.dataloss.PreventionJobTriggerInspectJobStorageConfigDatastoreOptions | undefined>;
         /**
          * Information on where to inspect
          * Structure is documented below.
          */
-        timespanConfig?: pulumi.Input<inputs.dataloss.PreventionJobTriggerInspectJobStorageConfigTimespanConfig>;
+        timespanConfig?: pulumi.Input<inputs.dataloss.PreventionJobTriggerInspectJobStorageConfigTimespanConfig | undefined>;
     }
 
     export interface PreventionJobTriggerInspectJobStorageConfigBigQueryOptions {
@@ -14523,12 +14523,12 @@ export namespace dataloss {
          * Max number of bytes to scan from a file. If a scanned file's size is bigger than this value
          * then the rest of the bytes are omitted.
          */
-        bytesLimitPerFile?: pulumi.Input<number>;
+        bytesLimitPerFile?: pulumi.Input<number | undefined>;
         /**
          * Max percentage of bytes to scan from a file. The rest are omitted. The number of bytes scanned is rounded down.
          * Must be between 0 and 100, inclusively. Both 0 and 100 means no limit.
          */
-        bytesLimitPerFilePercent?: pulumi.Input<number>;
+        bytesLimitPerFilePercent?: pulumi.Input<number | undefined>;
         /**
          * Set of files to scan.
          * Structure is documented below.
@@ -14540,18 +14540,18 @@ export namespace dataloss {
          * Images are scanned only as binary if the specified region does not support image inspection and no fileTypes were specified.
          * Each value may be one of `BINARY_FILE`, `TEXT_FILE`, `IMAGE`, `WORD`, `PDF`, `AVRO`, `CSV`, and `TSV`.
          */
-        fileTypes?: pulumi.Input<pulumi.Input<string>[]>;
+        fileTypes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Limits the number of files to scan to this percentage of the input FileSet. Number of files scanned is rounded down.
          * Must be between 0 and 100, inclusively. Both 0 and 100 means no limit.
          */
-        filesLimitPercent?: pulumi.Input<number>;
+        filesLimitPercent?: pulumi.Input<number | undefined>;
         /**
          * How to sample bytes if not all bytes are scanned. Meaningful only when used in conjunction with bytesLimitPerFile.
          * If not specified, scanning would start from the top.
          * Possible values are `TOP` and `RANDOM_START`.
          */
-        sampleMethod?: pulumi.Input<string>;
+        sampleMethod?: pulumi.Input<string | undefined>;
     }
 
     export interface PreventionJobTriggerInspectJobStorageConfigCloudStorageOptionsFileSet {
@@ -14559,7 +14559,7 @@ export namespace dataloss {
          * The regex-filtered set of files to scan.
          * Structure is documented below.
          */
-        regexFileSet?: pulumi.Input<inputs.dataloss.PreventionJobTriggerInspectJobStorageConfigCloudStorageOptionsFileSetRegexFileSet>;
+        regexFileSet?: pulumi.Input<inputs.dataloss.PreventionJobTriggerInspectJobStorageConfigCloudStorageOptionsFileSetRegexFileSet | undefined>;
         /**
          * The Cloud Storage url of the file(s) to scan, in the format `gs://<bucket>/<path>`. Trailing wildcard
          * in the path is allowed.
@@ -14567,7 +14567,7 @@ export namespace dataloss {
          * non-recursively (content in sub-directories will not be scanned). This means that `gs://mybucket/` is
          * equivalent to `gs://mybucket/*`, and `gs://mybucket/directory/` is equivalent to `gs://mybucket/directory/*`.
          */
-        url?: pulumi.Input<string>;
+        url?: pulumi.Input<string | undefined>;
     }
 
     export interface PreventionJobTriggerInspectJobStorageConfigCloudStorageOptionsFileSetRegexFileSet {
@@ -14579,14 +14579,14 @@ export namespace dataloss {
          * A list of regular expressions matching file paths to exclude. All files in the bucket that match at
          * least one of these regular expressions will be excluded from the scan.
          */
-        excludeRegexes?: pulumi.Input<pulumi.Input<string>[]>;
+        excludeRegexes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * A list of regular expressions matching file paths to include. All files in the bucket
          * that match at least one of these regular expressions will be included in the set of files,
          * except for those that also match an item in excludeRegex. Leaving this field empty will
          * match all files by default (this is equivalent to including .* in the list)
          */
-        includeRegexes?: pulumi.Input<pulumi.Input<string>[]>;
+        includeRegexes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface PreventionJobTriggerInspectJobStorageConfigDatastoreOptions {
@@ -14614,7 +14614,7 @@ export namespace dataloss {
         /**
          * If not empty, the ID of the namespace to which the entities belong.
          */
-        namespaceId?: pulumi.Input<string>;
+        namespaceId?: pulumi.Input<string | undefined>;
         /**
          * The Google Cloud Platform project ID of the project containing the table.
          */
@@ -14627,15 +14627,15 @@ export namespace dataloss {
          * scanning files that have not been modified since the last time the JobTrigger executed. This will
          * be based on the time of the execution of the last run of the JobTrigger.
          */
-        enableAutoPopulationOfTimespanConfig?: pulumi.Input<boolean>;
+        enableAutoPopulationOfTimespanConfig?: pulumi.Input<boolean | undefined>;
         /**
          * Exclude files or rows newer than this value. If set to zero, no upper time limit is applied.
          */
-        endTime?: pulumi.Input<string>;
+        endTime?: pulumi.Input<string | undefined>;
         /**
          * Exclude files or rows older than this value.
          */
-        startTime?: pulumi.Input<string>;
+        startTime?: pulumi.Input<string | undefined>;
         /**
          * Information on where to inspect
          * Structure is documented below.
@@ -14655,7 +14655,7 @@ export namespace dataloss {
          * Schedule for triggered jobs
          * Structure is documented below.
          */
-        schedule?: pulumi.Input<inputs.dataloss.PreventionJobTriggerTriggerSchedule>;
+        schedule?: pulumi.Input<inputs.dataloss.PreventionJobTriggerTriggerSchedule | undefined>;
     }
 
     export interface PreventionJobTriggerTriggerSchedule {
@@ -14665,7 +14665,7 @@ export namespace dataloss {
          * This value must be set to a time duration greater than or equal to 1 day and can be no longer than 60 days.
          * A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s".
          */
-        recurrencePeriodDuration?: pulumi.Input<string>;
+        recurrencePeriodDuration?: pulumi.Input<string | undefined>;
     }
 
     export interface PreventionStoredInfoTypeDictionary {
@@ -14673,12 +14673,12 @@ export namespace dataloss {
          * Newline-delimited file of words in Cloud Storage. Only a single file is accepted.
          * Structure is documented below.
          */
-        cloudStoragePath?: pulumi.Input<inputs.dataloss.PreventionStoredInfoTypeDictionaryCloudStoragePath>;
+        cloudStoragePath?: pulumi.Input<inputs.dataloss.PreventionStoredInfoTypeDictionaryCloudStoragePath | undefined>;
         /**
          * List of words or phrases to search for.
          * Structure is documented below.
          */
-        wordList?: pulumi.Input<inputs.dataloss.PreventionStoredInfoTypeDictionaryWordList>;
+        wordList?: pulumi.Input<inputs.dataloss.PreventionStoredInfoTypeDictionaryWordList | undefined>;
     }
 
     export interface PreventionStoredInfoTypeDictionaryCloudStoragePath {
@@ -14701,12 +14701,12 @@ export namespace dataloss {
          * Field in a BigQuery table where each cell represents a dictionary phrase.
          * Structure is documented below.
          */
-        bigQueryField?: pulumi.Input<inputs.dataloss.PreventionStoredInfoTypeLargeCustomDictionaryBigQueryField>;
+        bigQueryField?: pulumi.Input<inputs.dataloss.PreventionStoredInfoTypeLargeCustomDictionaryBigQueryField | undefined>;
         /**
          * Set of files containing newline-delimited lists of dictionary phrases.
          * Structure is documented below.
          */
-        cloudStorageFileSet?: pulumi.Input<inputs.dataloss.PreventionStoredInfoTypeLargeCustomDictionaryCloudStorageFileSet>;
+        cloudStorageFileSet?: pulumi.Input<inputs.dataloss.PreventionStoredInfoTypeLargeCustomDictionaryCloudStorageFileSet | undefined>;
         /**
          * Location to store dictionary artifacts in Google Cloud Storage. These files will only be accessible by project owners and the DLP API.
          * If any of these artifacts are modified, the dictionary is considered invalid and can no longer be used.
@@ -14768,7 +14768,7 @@ export namespace dataloss {
         /**
          * The index of the submatch to extract as findings. When not specified, the entire match is returned. No more than 3 may be included.
          */
-        groupIndexes?: pulumi.Input<pulumi.Input<number>[]>;
+        groupIndexes?: pulumi.Input<pulumi.Input<number>[] | undefined>;
         /**
          * Pattern defining the regular expression.
          * Its syntax (https://github.com/google/re2/wiki/Syntax) can be found under the google/re2 repository on GitHub.
@@ -14784,7 +14784,7 @@ export namespace dataproc {
          * update operation from the previous event has completed.
          * Bounds: [2m, 1d]. Default: 2m.
          */
-        cooldownPeriod?: pulumi.Input<string>;
+        cooldownPeriod?: pulumi.Input<string | undefined>;
         /**
          * YARN autoscaling configuration.
          * Structure is documented below.
@@ -14816,7 +14816,7 @@ export namespace dataproc {
          * means the autoscaler will scale down on any recommended change.
          * Bounds: [0.0, 1.0]. Default: 0.0.
          */
-        scaleDownMinWorkerFraction?: pulumi.Input<number>;
+        scaleDownMinWorkerFraction?: pulumi.Input<number | undefined>;
         /**
          * Fraction of average pending memory in the last cooldown period for which to
          * add workers. A scale-up factor of 1.0 will result in scaling up so that there
@@ -14833,7 +14833,7 @@ export namespace dataproc {
          * 0 means the autoscaler will scale up on any recommended change.
          * Bounds: [0.0, 1.0]. Default: 0.0.
          */
-        scaleUpMinWorkerFraction?: pulumi.Input<number>;
+        scaleUpMinWorkerFraction?: pulumi.Input<number | undefined>;
     }
 
     export interface AutoscalingPolicySecondaryWorkerConfig {
@@ -14842,11 +14842,11 @@ export namespace dataproc {
          * secondary workers. Required for secondary workers if the minimum secondary instances is set.
          * Bounds: [minInstances, ). Defaults to 0.
          */
-        maxInstances?: pulumi.Input<number>;
+        maxInstances?: pulumi.Input<number | undefined>;
         /**
          * Minimum number of instances for this group. Bounds: [0, maxInstances]. Defaults to 0.
          */
-        minInstances?: pulumi.Input<number>;
+        minInstances?: pulumi.Input<number | undefined>;
         /**
          * Weight for the instance group, which is used to determine the fraction of total workers
          * in the cluster from this instance group. For example, if primary workers have weight 2,
@@ -14861,7 +14861,7 @@ export namespace dataproc {
          * the cluster will default to zero weight on the unset group. For example if weight is set
          * only on primary workers, the cluster will use primary workers only and no secondary workers.
          */
-        weight?: pulumi.Input<number>;
+        weight?: pulumi.Input<number | undefined>;
     }
 
     export interface AutoscalingPolicyWorkerConfig {
@@ -14874,7 +14874,7 @@ export namespace dataproc {
         /**
          * Minimum number of instances for this group. Bounds: [0, maxInstances]. Defaults to 0.
          */
-        minInstances?: pulumi.Input<number>;
+        minInstances?: pulumi.Input<number | undefined>;
         /**
          * Weight for the instance group, which is used to determine the fraction of total workers
          * in the cluster from this instance group. For example, if primary workers have weight 2,
@@ -14889,7 +14889,7 @@ export namespace dataproc {
          * the cluster will default to zero weight on the unset group. For example if weight is set
          * only on primary workers, the cluster will use primary workers only and no secondary workers.
          */
-        weight?: pulumi.Input<number>;
+        weight?: pulumi.Input<number | undefined>;
     }
 
     export interface ClusterClusterConfig {
@@ -14899,53 +14899,53 @@ export namespace dataproc {
          * only be removed by setting `policyUri = ""`, rather than removing the whole block.
          * Structure defined below.
          */
-        autoscalingConfig?: pulumi.Input<inputs.dataproc.ClusterClusterConfigAutoscalingConfig>;
-        bucket?: pulumi.Input<string>;
+        autoscalingConfig?: pulumi.Input<inputs.dataproc.ClusterClusterConfigAutoscalingConfig | undefined>;
+        bucket?: pulumi.Input<string | undefined>;
         /**
          * The Customer managed encryption keys settings for the cluster.
          * Structure defined below.
          */
-        encryptionConfig?: pulumi.Input<inputs.dataproc.ClusterClusterConfigEncryptionConfig>;
+        encryptionConfig?: pulumi.Input<inputs.dataproc.ClusterClusterConfigEncryptionConfig | undefined>;
         /**
          * The config settings for port access on the cluster.
          * Structure defined below.
          * - - -
          */
-        endpointConfig?: pulumi.Input<inputs.dataproc.ClusterClusterConfigEndpointConfig>;
+        endpointConfig?: pulumi.Input<inputs.dataproc.ClusterClusterConfigEndpointConfig | undefined>;
         /**
          * Common config settings for resources of Google Compute Engine cluster
          * instances, applicable to all instances in the cluster. Structure defined below.
          */
-        gceClusterConfig?: pulumi.Input<inputs.dataproc.ClusterClusterConfigGceClusterConfig>;
+        gceClusterConfig?: pulumi.Input<inputs.dataproc.ClusterClusterConfigGceClusterConfig | undefined>;
         /**
          * Commands to execute on each node after config is completed.
          * You can specify multiple versions of these. Structure defined below.
          */
-        initializationActions?: pulumi.Input<pulumi.Input<inputs.dataproc.ClusterClusterConfigInitializationAction>[]>;
+        initializationActions?: pulumi.Input<pulumi.Input<inputs.dataproc.ClusterClusterConfigInitializationAction>[] | undefined>;
         /**
          * The settings for auto deletion cluster schedule.
          * Structure defined below.
          */
-        lifecycleConfig?: pulumi.Input<inputs.dataproc.ClusterClusterConfigLifecycleConfig>;
+        lifecycleConfig?: pulumi.Input<inputs.dataproc.ClusterClusterConfigLifecycleConfig | undefined>;
         /**
          * The Google Compute Engine config settings for the master instances
          * in a cluster.. Structure defined below.
          */
-        masterConfig?: pulumi.Input<inputs.dataproc.ClusterClusterConfigMasterConfig>;
+        masterConfig?: pulumi.Input<inputs.dataproc.ClusterClusterConfigMasterConfig | undefined>;
         /**
          * The Google Compute Engine config settings for the additional (aka
          * preemptible) instances in a cluster. Structure defined below.
          */
-        preemptibleWorkerConfig?: pulumi.Input<inputs.dataproc.ClusterClusterConfigPreemptibleWorkerConfig>;
+        preemptibleWorkerConfig?: pulumi.Input<inputs.dataproc.ClusterClusterConfigPreemptibleWorkerConfig | undefined>;
         /**
          * Security related configuration. Structure defined below.
          */
-        securityConfig?: pulumi.Input<inputs.dataproc.ClusterClusterConfigSecurityConfig>;
+        securityConfig?: pulumi.Input<inputs.dataproc.ClusterClusterConfigSecurityConfig | undefined>;
         /**
          * The config settings for software inside the cluster.
          * Structure defined below.
          */
-        softwareConfig?: pulumi.Input<inputs.dataproc.ClusterClusterConfigSoftwareConfig>;
+        softwareConfig?: pulumi.Input<inputs.dataproc.ClusterClusterConfigSoftwareConfig | undefined>;
         /**
          * The Cloud Storage staging bucket used to stage files,
          * such as Hadoop jars, between client machines and the cluster.
@@ -14955,18 +14955,18 @@ export namespace dataproc {
          * with other clusters in the same region/zone also choosing to use the auto generation
          * option.
          */
-        stagingBucket?: pulumi.Input<string>;
+        stagingBucket?: pulumi.Input<string | undefined>;
         /**
          * The Cloud Storage temp bucket used to store ephemeral cluster
          * and jobs data, such as Spark and MapReduce history files.
          * Note: If you don't explicitly specify a `tempBucket` then GCP will auto create / assign one for you.
          */
-        tempBucket?: pulumi.Input<string>;
+        tempBucket?: pulumi.Input<string | undefined>;
         /**
          * The Google Compute Engine config settings for the worker instances
          * in a cluster.. Structure defined below.
          */
-        workerConfig?: pulumi.Input<inputs.dataproc.ClusterClusterConfigWorkerConfig>;
+        workerConfig?: pulumi.Input<inputs.dataproc.ClusterClusterConfigWorkerConfig | undefined>;
     }
 
     export interface ClusterClusterConfigAutoscalingConfig {
@@ -14990,7 +14990,7 @@ export namespace dataproc {
          * on the cluster from external sources (aka Component Gateway). Defaults to false.
          */
         enableHttpPortAccess: pulumi.Input<boolean>;
-        httpPorts?: pulumi.Input<{[key: string]: any}>;
+        httpPorts?: pulumi.Input<{[key: string]: any} | undefined>;
     }
 
     export interface ClusterClusterConfigGceClusterConfig {
@@ -15001,23 +15001,23 @@ export namespace dataproc {
          * (also known as `privateIpGoogleAccess`) must be enabled on the subnetwork that the cluster
          * will be launched in.
          */
-        internalIpOnly?: pulumi.Input<boolean>;
+        internalIpOnly?: pulumi.Input<boolean | undefined>;
         /**
          * A map of the Compute Engine metadata entries to add to all instances
          * (see [Project and instance metadata](https://cloud.google.com/compute/docs/storing-retrieving-metadata#project_and_instance_metadata)).
          */
-        metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * The name or selfLink of the Google Compute Engine
          * network to the cluster will be part of. Conflicts with `subnetwork`.
          * If neither is specified, this defaults to the "default" network.
          */
-        network?: pulumi.Input<string>;
+        network?: pulumi.Input<string | undefined>;
         /**
          * The service account to be used by the Node VMs.
          * If not specified, the "default" service account is used.
          */
-        serviceAccount?: pulumi.Input<string>;
+        serviceAccount?: pulumi.Input<string | undefined>;
         /**
          * The set of Google API scopes
          * to be made available on all of the node VMs under the `serviceAccount`
@@ -15025,17 +15025,17 @@ export namespace dataproc {
          * short names are supported. To allow full access to all Cloud APIs, use the
          * `cloud-platform` scope. See a complete list of scopes [here](https://cloud.google.com/sdk/gcloud/reference/alpha/compute/instances/set-scopes#--scopes).
          */
-        serviceAccountScopes?: pulumi.Input<pulumi.Input<string>[]>;
+        serviceAccountScopes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The name or selfLink of the Google Compute Engine
          * subnetwork the cluster will be part of. Conflicts with `network`.
          */
-        subnetwork?: pulumi.Input<string>;
+        subnetwork?: pulumi.Input<string | undefined>;
         /**
          * The list of instance tags applied to instances in the cluster.
          * Tags are used to identify valid sources or targets for network firewalls.
          */
-        tags?: pulumi.Input<pulumi.Input<string>[]>;
+        tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The GCP zone where your data is stored and used (i.e. where
          * the master and the worker nodes will be created in). If `region` is set to 'global' (default)
@@ -15045,7 +15045,7 @@ export namespace dataproc {
          * which computing resources are available for use with other configs such as
          * `cluster_config.master_config.machine_type` and `cluster_config.worker_config.machine_type`.
          */
-        zone?: pulumi.Input<string>;
+        zone?: pulumi.Input<string | undefined>;
     }
 
     export interface ClusterClusterConfigInitializationAction {
@@ -15059,7 +15059,7 @@ export namespace dataproc {
          * allowed to take to execute its action. GCP will default to a predetermined
          * computed value if not set (currently 300).
          */
-        timeoutSec?: pulumi.Input<number>;
+        timeoutSec?: pulumi.Input<number | undefined>;
     }
 
     export interface ClusterClusterConfigLifecycleConfig {
@@ -15068,48 +15068,48 @@ export namespace dataproc {
          * A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds.
          * Example: "2014-10-02T15:01:23.045123456Z".
          */
-        autoDeleteTime?: pulumi.Input<string>;
+        autoDeleteTime?: pulumi.Input<string | undefined>;
         /**
          * The duration to keep the cluster alive while idling
          * (no jobs running). After this TTL, the cluster will be deleted. Valid range: [10m, 14d].
          */
-        idleDeleteTtl?: pulumi.Input<string>;
-        idleStartTime?: pulumi.Input<string>;
+        idleDeleteTtl?: pulumi.Input<string | undefined>;
+        idleStartTime?: pulumi.Input<string | undefined>;
     }
 
     export interface ClusterClusterConfigMasterConfig {
         /**
          * The Compute Engine accelerator configuration for these instances. Can be specified multiple times.
          */
-        accelerators?: pulumi.Input<pulumi.Input<inputs.dataproc.ClusterClusterConfigMasterConfigAccelerator>[]>;
+        accelerators?: pulumi.Input<pulumi.Input<inputs.dataproc.ClusterClusterConfigMasterConfigAccelerator>[] | undefined>;
         /**
          * Disk Config
          */
-        diskConfig?: pulumi.Input<inputs.dataproc.ClusterClusterConfigMasterConfigDiskConfig>;
+        diskConfig?: pulumi.Input<inputs.dataproc.ClusterClusterConfigMasterConfigDiskConfig | undefined>;
         /**
          * The URI for the image to use for this worker.  See [the guide](https://cloud.google.com/dataproc/docs/guides/dataproc-images)
          * for more information.
          */
-        imageUri?: pulumi.Input<string>;
-        instanceNames?: pulumi.Input<pulumi.Input<string>[]>;
+        imageUri?: pulumi.Input<string | undefined>;
+        instanceNames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The name of a Google Compute Engine machine type
          * to create for the worker nodes. If not specified, GCP will default to a predetermined
          * computed value (currently `n1-standard-4`).
          */
-        machineType?: pulumi.Input<string>;
+        machineType?: pulumi.Input<string | undefined>;
         /**
          * The name of a minimum generation of CPU family
          * for the master. If not specified, GCP will default to a predetermined computed value
          * for each zone. See [the guide](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
          * for details about which CPU families are available (and defaulted) for each zone.
          */
-        minCpuPlatform?: pulumi.Input<string>;
+        minCpuPlatform?: pulumi.Input<string | undefined>;
         /**
          * Specifies the number of preemptible nodes to create.
          * Defaults to 0.
          */
-        numInstances?: pulumi.Input<number>;
+        numInstances?: pulumi.Input<number | undefined>;
     }
 
     export interface ClusterClusterConfigMasterConfigAccelerator {
@@ -15130,30 +15130,30 @@ export namespace dataproc {
          * computed value if not set (currently 500GB). Note: If SSDs are not
          * attached, it also contains the HDFS data blocks and Hadoop working directories.
          */
-        bootDiskSizeGb?: pulumi.Input<number>;
+        bootDiskSizeGb?: pulumi.Input<number | undefined>;
         /**
          * The disk type of the primary disk attached to each preemptible worker node.
          * One of `"pd-ssd"` or `"pd-standard"`. Defaults to `"pd-standard"`.
          */
-        bootDiskType?: pulumi.Input<string>;
+        bootDiskType?: pulumi.Input<string | undefined>;
         /**
          * The amount of local SSD disks that will be
          * attached to each preemptible worker node. Defaults to 0.
          */
-        numLocalSsds?: pulumi.Input<number>;
+        numLocalSsds?: pulumi.Input<number | undefined>;
     }
 
     export interface ClusterClusterConfigPreemptibleWorkerConfig {
         /**
          * Disk Config
          */
-        diskConfig?: pulumi.Input<inputs.dataproc.ClusterClusterConfigPreemptibleWorkerConfigDiskConfig>;
-        instanceNames?: pulumi.Input<pulumi.Input<string>[]>;
+        diskConfig?: pulumi.Input<inputs.dataproc.ClusterClusterConfigPreemptibleWorkerConfigDiskConfig | undefined>;
+        instanceNames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies the number of preemptible nodes to create.
          * Defaults to 0.
          */
-        numInstances?: pulumi.Input<number>;
+        numInstances?: pulumi.Input<number | undefined>;
     }
 
     export interface ClusterClusterConfigPreemptibleWorkerConfigDiskConfig {
@@ -15163,17 +15163,17 @@ export namespace dataproc {
          * computed value if not set (currently 500GB). Note: If SSDs are not
          * attached, it also contains the HDFS data blocks and Hadoop working directories.
          */
-        bootDiskSizeGb?: pulumi.Input<number>;
+        bootDiskSizeGb?: pulumi.Input<number | undefined>;
         /**
          * The disk type of the primary disk attached to each preemptible worker node.
          * One of `"pd-ssd"` or `"pd-standard"`. Defaults to `"pd-standard"`.
          */
-        bootDiskType?: pulumi.Input<string>;
+        bootDiskType?: pulumi.Input<string | undefined>;
         /**
          * The amount of local SSD disks that will be
          * attached to each preemptible worker node. Defaults to 0.
          */
-        numLocalSsds?: pulumi.Input<number>;
+        numLocalSsds?: pulumi.Input<number | undefined>;
     }
 
     export interface ClusterClusterConfigSecurityConfig {
@@ -15188,49 +15188,49 @@ export namespace dataproc {
          * The admin server (IP or hostname) for the
          * remote trusted realm in a cross realm trust relationship.
          */
-        crossRealmTrustAdminServer?: pulumi.Input<string>;
+        crossRealmTrustAdminServer?: pulumi.Input<string | undefined>;
         /**
          * The KDC (IP or hostname) for the
          * remote trusted realm in a cross realm trust relationship.
          */
-        crossRealmTrustKdc?: pulumi.Input<string>;
+        crossRealmTrustKdc?: pulumi.Input<string | undefined>;
         /**
          * The remote realm the Dataproc on-cluster KDC will
          * trust, should the user enable cross realm trust.
          */
-        crossRealmTrustRealm?: pulumi.Input<string>;
+        crossRealmTrustRealm?: pulumi.Input<string | undefined>;
         /**
          * The Cloud Storage URI of a KMS
          * encrypted file containing the shared password between the on-cluster Kerberos realm
          * and the remote trusted realm, in a cross realm trust relationship.
          */
-        crossRealmTrustSharedPasswordUri?: pulumi.Input<string>;
+        crossRealmTrustSharedPasswordUri?: pulumi.Input<string | undefined>;
         /**
          * Flag to indicate whether to Kerberize the cluster.
          */
-        enableKerberos?: pulumi.Input<boolean>;
+        enableKerberos?: pulumi.Input<boolean | undefined>;
         /**
          * The Cloud Storage URI of a KMS encrypted file containing
          * the master key of the KDC database.
          */
-        kdcDbKeyUri?: pulumi.Input<string>;
+        kdcDbKeyUri?: pulumi.Input<string | undefined>;
         /**
          * The Cloud Storage URI of a KMS encrypted file containing
          * the password to the user provided key. For the self-signed certificate, this password
          * is generated by Dataproc.
          */
-        keyPasswordUri?: pulumi.Input<string>;
+        keyPasswordUri?: pulumi.Input<string | undefined>;
         /**
          * The Cloud Storage URI of a KMS encrypted file containing
          * the password to the user provided keystore. For the self-signed certificated, the password
          * is generated by Dataproc.
          */
-        keystorePasswordUri?: pulumi.Input<string>;
+        keystorePasswordUri?: pulumi.Input<string | undefined>;
         /**
          * The Cloud Storage URI of the keystore file used for SSL encryption.
          * If not provided, Dataproc will provide a self-signed certificate.
          */
-        keystoreUri?: pulumi.Input<string>;
+        keystoreUri?: pulumi.Input<string | undefined>;
         /**
          * The URI of the KMS key used to encrypt various sensitive files.
          */
@@ -15239,7 +15239,7 @@ export namespace dataproc {
          * The name of the on-cluster Kerberos realm. If not specified, the
          * uppercased domain of hostnames will be the realm.
          */
-        realm?: pulumi.Input<string>;
+        realm?: pulumi.Input<string | undefined>;
         /**
          * The Cloud Storage URI of a KMS encrypted file
          * containing the root principal password.
@@ -15248,18 +15248,18 @@ export namespace dataproc {
         /**
          * The lifetime of the ticket granting ticket, in hours.
          */
-        tgtLifetimeHours?: pulumi.Input<number>;
+        tgtLifetimeHours?: pulumi.Input<number | undefined>;
         /**
          * The Cloud Storage URI of a KMS encrypted file
          * containing the password to the user provided truststore. For the self-signed
          * certificate, this password is generated by Dataproc.
          */
-        truststorePasswordUri?: pulumi.Input<string>;
+        truststorePasswordUri?: pulumi.Input<string | undefined>;
         /**
          * The Cloud Storage URI of the truststore file used for
          * SSL encryption. If not provided, Dataproc will provide a self-signed certificate.
          */
-        truststoreUri?: pulumi.Input<string>;
+        truststoreUri?: pulumi.Input<string | undefined>;
     }
 
     export interface ClusterClusterConfigSoftwareConfig {
@@ -15270,7 +15270,7 @@ export namespace dataproc {
          * latest version. For a list of valid versions see
          * [Cloud Dataproc versions](https://cloud.google.com/dataproc/docs/concepts/dataproc-versions)
          */
-        imageVersion?: pulumi.Input<string>;
+        imageVersion?: pulumi.Input<string | undefined>;
         /**
          * The set of optional components to activate on the cluster.
          * Accepted values are:
@@ -15286,50 +15286,50 @@ export namespace dataproc {
          * * ZEPPELIN
          * * ZOOKEEPER
          */
-        optionalComponents?: pulumi.Input<pulumi.Input<string>[]>;
+        optionalComponents?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * A list of override and additional properties (key/value pairs)
          * used to modify various aspects of the common configuration files used when creating
          * a cluster. For a list of valid properties please see
          * [Cluster properties](https://cloud.google.com/dataproc/docs/concepts/cluster-properties)
          */
-        overrideProperties?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-        properties?: pulumi.Input<{[key: string]: any}>;
+        overrideProperties?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+        properties?: pulumi.Input<{[key: string]: any} | undefined>;
     }
 
     export interface ClusterClusterConfigWorkerConfig {
         /**
          * The Compute Engine accelerator configuration for these instances. Can be specified multiple times.
          */
-        accelerators?: pulumi.Input<pulumi.Input<inputs.dataproc.ClusterClusterConfigWorkerConfigAccelerator>[]>;
+        accelerators?: pulumi.Input<pulumi.Input<inputs.dataproc.ClusterClusterConfigWorkerConfigAccelerator>[] | undefined>;
         /**
          * Disk Config
          */
-        diskConfig?: pulumi.Input<inputs.dataproc.ClusterClusterConfigWorkerConfigDiskConfig>;
+        diskConfig?: pulumi.Input<inputs.dataproc.ClusterClusterConfigWorkerConfigDiskConfig | undefined>;
         /**
          * The URI for the image to use for this worker.  See [the guide](https://cloud.google.com/dataproc/docs/guides/dataproc-images)
          * for more information.
          */
-        imageUri?: pulumi.Input<string>;
-        instanceNames?: pulumi.Input<pulumi.Input<string>[]>;
+        imageUri?: pulumi.Input<string | undefined>;
+        instanceNames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The name of a Google Compute Engine machine type
          * to create for the worker nodes. If not specified, GCP will default to a predetermined
          * computed value (currently `n1-standard-4`).
          */
-        machineType?: pulumi.Input<string>;
+        machineType?: pulumi.Input<string | undefined>;
         /**
          * The name of a minimum generation of CPU family
          * for the master. If not specified, GCP will default to a predetermined computed value
          * for each zone. See [the guide](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
          * for details about which CPU families are available (and defaulted) for each zone.
          */
-        minCpuPlatform?: pulumi.Input<string>;
+        minCpuPlatform?: pulumi.Input<string | undefined>;
         /**
          * Specifies the number of preemptible nodes to create.
          * Defaults to 0.
          */
-        numInstances?: pulumi.Input<number>;
+        numInstances?: pulumi.Input<number | undefined>;
     }
 
     export interface ClusterClusterConfigWorkerConfigAccelerator {
@@ -15350,27 +15350,27 @@ export namespace dataproc {
          * computed value if not set (currently 500GB). Note: If SSDs are not
          * attached, it also contains the HDFS data blocks and Hadoop working directories.
          */
-        bootDiskSizeGb?: pulumi.Input<number>;
+        bootDiskSizeGb?: pulumi.Input<number | undefined>;
         /**
          * The disk type of the primary disk attached to each preemptible worker node.
          * One of `"pd-ssd"` or `"pd-standard"`. Defaults to `"pd-standard"`.
          */
-        bootDiskType?: pulumi.Input<string>;
+        bootDiskType?: pulumi.Input<string | undefined>;
         /**
          * The amount of local SSD disks that will be
          * attached to each preemptible worker node. Defaults to 0.
          */
-        numLocalSsds?: pulumi.Input<number>;
+        numLocalSsds?: pulumi.Input<number | undefined>;
     }
 
     export interface ClusterIAMBindingCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
 
     export interface ClusterIAMMemberCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
@@ -15379,32 +15379,32 @@ export namespace dataproc {
         /**
          * HCFS URIs of archives to be extracted in the working directory of .jar, .tar, .tar.gz, .tgz, and .zip.
          */
-        archiveUris?: pulumi.Input<pulumi.Input<string>[]>;
+        archiveUris?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The arguments to pass to the driver. Do not include arguments, such as -libjars or -Dfoo=bar, that can be set as job properties, since a collision may occur that causes an incorrect job submission.
          */
-        args?: pulumi.Input<pulumi.Input<string>[]>;
+        args?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * HCFS URIs of files to be copied to the working directory of Hadoop drivers and distributed tasks. Useful for naively parallel tasks.
          */
-        fileUris?: pulumi.Input<pulumi.Input<string>[]>;
+        fileUris?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * HCFS URIs of jar files to be added to the Spark CLASSPATH.
          */
-        jarFileUris?: pulumi.Input<pulumi.Input<string>[]>;
-        loggingConfig?: pulumi.Input<inputs.dataproc.JobHadoopConfigLoggingConfig>;
+        jarFileUris?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        loggingConfig?: pulumi.Input<inputs.dataproc.JobHadoopConfigLoggingConfig | undefined>;
         /**
          * The name of the driver's main class. The jar file containing the class must be in the default CLASSPATH or specified in `jarFileUris`. Conflicts with `mainJarFileUri`
          */
-        mainClass?: pulumi.Input<string>;
+        mainClass?: pulumi.Input<string | undefined>;
         /**
          * The HCFS URI of the jar file containing the main class. Examples: 'gs://foo-bucket/analytics-binaries/extract-useful-metrics-mr.jar' 'hdfs:/tmp/test-samples/custom-wordcount.jar' 'file:///home/usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples.jar'. Conflicts with `mainClass`
          */
-        mainJarFileUri?: pulumi.Input<string>;
+        mainJarFileUri?: pulumi.Input<string | undefined>;
         /**
          * A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
          */
-        properties?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        properties?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     }
 
     export interface JobHadoopConfigLoggingConfig {
@@ -15415,39 +15415,39 @@ export namespace dataproc {
         /**
          * Whether to continue executing queries if a query fails. The default value is false. Setting to true can be useful when executing independent parallel queries. Defaults to false.
          */
-        continueOnFailure?: pulumi.Input<boolean>;
+        continueOnFailure?: pulumi.Input<boolean | undefined>;
         /**
          * HCFS URIs of jar files to be added to the Spark CLASSPATH.
          */
-        jarFileUris?: pulumi.Input<pulumi.Input<string>[]>;
+        jarFileUris?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
          */
-        properties?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        properties?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * The HCFS URI of the script that contains SQL queries.
          * Conflicts with `queryList`
          */
-        queryFileUri?: pulumi.Input<string>;
+        queryFileUri?: pulumi.Input<string | undefined>;
         /**
          * The list of SQL queries or statements to execute as part of the job.
          * Conflicts with `queryFileUri`
          */
-        queryLists?: pulumi.Input<pulumi.Input<string>[]>;
+        queryLists?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Mapping of query variable names to values (equivalent to the Spark SQL command: `SET name="value";`).
          */
-        scriptVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        scriptVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     }
 
     export interface JobIAMBindingCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
 
     export interface JobIAMMemberCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
@@ -15456,30 +15456,30 @@ export namespace dataproc {
         /**
          * Whether to continue executing queries if a query fails. The default value is false. Setting to true can be useful when executing independent parallel queries. Defaults to false.
          */
-        continueOnFailure?: pulumi.Input<boolean>;
+        continueOnFailure?: pulumi.Input<boolean | undefined>;
         /**
          * HCFS URIs of jar files to be added to the Spark CLASSPATH.
          */
-        jarFileUris?: pulumi.Input<pulumi.Input<string>[]>;
-        loggingConfig?: pulumi.Input<inputs.dataproc.JobPigConfigLoggingConfig>;
+        jarFileUris?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        loggingConfig?: pulumi.Input<inputs.dataproc.JobPigConfigLoggingConfig | undefined>;
         /**
          * A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
          */
-        properties?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        properties?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * The HCFS URI of the script that contains SQL queries.
          * Conflicts with `queryList`
          */
-        queryFileUri?: pulumi.Input<string>;
+        queryFileUri?: pulumi.Input<string | undefined>;
         /**
          * The list of SQL queries or statements to execute as part of the job.
          * Conflicts with `queryFileUri`
          */
-        queryLists?: pulumi.Input<pulumi.Input<string>[]>;
+        queryLists?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Mapping of query variable names to values (equivalent to the Spark SQL command: `SET name="value";`).
          */
-        scriptVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        scriptVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     }
 
     export interface JobPigConfigLoggingConfig {
@@ -15488,27 +15488,27 @@ export namespace dataproc {
 
     export interface JobPlacement {
         clusterName: pulumi.Input<string>;
-        clusterUuid?: pulumi.Input<string>;
+        clusterUuid?: pulumi.Input<string | undefined>;
     }
 
     export interface JobPysparkConfig {
         /**
          * HCFS URIs of archives to be extracted in the working directory of .jar, .tar, .tar.gz, .tgz, and .zip.
          */
-        archiveUris?: pulumi.Input<pulumi.Input<string>[]>;
+        archiveUris?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The arguments to pass to the driver. Do not include arguments, such as -libjars or -Dfoo=bar, that can be set as job properties, since a collision may occur that causes an incorrect job submission.
          */
-        args?: pulumi.Input<pulumi.Input<string>[]>;
+        args?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * HCFS URIs of files to be copied to the working directory of Hadoop drivers and distributed tasks. Useful for naively parallel tasks.
          */
-        fileUris?: pulumi.Input<pulumi.Input<string>[]>;
+        fileUris?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * HCFS URIs of jar files to be added to the Spark CLASSPATH.
          */
-        jarFileUris?: pulumi.Input<pulumi.Input<string>[]>;
-        loggingConfig?: pulumi.Input<inputs.dataproc.JobPysparkConfigLoggingConfig>;
+        jarFileUris?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        loggingConfig?: pulumi.Input<inputs.dataproc.JobPysparkConfigLoggingConfig | undefined>;
         /**
          * The HCFS URI of the main Python file to use as the driver. Must be a .py file.
          */
@@ -15516,11 +15516,11 @@ export namespace dataproc {
         /**
          * A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
          */
-        properties?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        properties?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * HCFS file URIs of Python files to pass to the PySpark framework. Supported file types: .py, .egg, and .zip.
          */
-        pythonFileUris?: pulumi.Input<pulumi.Input<string>[]>;
+        pythonFileUris?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface JobPysparkConfigLoggingConfig {
@@ -15528,7 +15528,7 @@ export namespace dataproc {
     }
 
     export interface JobReference {
-        jobId?: pulumi.Input<string>;
+        jobId?: pulumi.Input<string | undefined>;
     }
 
     export interface JobScheduling {
@@ -15539,32 +15539,32 @@ export namespace dataproc {
         /**
          * HCFS URIs of archives to be extracted in the working directory of .jar, .tar, .tar.gz, .tgz, and .zip.
          */
-        archiveUris?: pulumi.Input<pulumi.Input<string>[]>;
+        archiveUris?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The arguments to pass to the driver. Do not include arguments, such as -libjars or -Dfoo=bar, that can be set as job properties, since a collision may occur that causes an incorrect job submission.
          */
-        args?: pulumi.Input<pulumi.Input<string>[]>;
+        args?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * HCFS URIs of files to be copied to the working directory of Hadoop drivers and distributed tasks. Useful for naively parallel tasks.
          */
-        fileUris?: pulumi.Input<pulumi.Input<string>[]>;
+        fileUris?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * HCFS URIs of jar files to be added to the Spark CLASSPATH.
          */
-        jarFileUris?: pulumi.Input<pulumi.Input<string>[]>;
-        loggingConfig?: pulumi.Input<inputs.dataproc.JobSparkConfigLoggingConfig>;
+        jarFileUris?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        loggingConfig?: pulumi.Input<inputs.dataproc.JobSparkConfigLoggingConfig | undefined>;
         /**
          * The name of the driver's main class. The jar file containing the class must be in the default CLASSPATH or specified in `jarFileUris`. Conflicts with `mainJarFileUri`
          */
-        mainClass?: pulumi.Input<string>;
+        mainClass?: pulumi.Input<string | undefined>;
         /**
          * The HCFS URI of the jar file containing the main class. Examples: 'gs://foo-bucket/analytics-binaries/extract-useful-metrics-mr.jar' 'hdfs:/tmp/test-samples/custom-wordcount.jar' 'file:///home/usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples.jar'. Conflicts with `mainClass`
          */
-        mainJarFileUri?: pulumi.Input<string>;
+        mainJarFileUri?: pulumi.Input<string | undefined>;
         /**
          * A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
          */
-        properties?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        properties?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     }
 
     export interface JobSparkConfigLoggingConfig {
@@ -15575,26 +15575,26 @@ export namespace dataproc {
         /**
          * HCFS URIs of jar files to be added to the Spark CLASSPATH.
          */
-        jarFileUris?: pulumi.Input<pulumi.Input<string>[]>;
-        loggingConfig?: pulumi.Input<inputs.dataproc.JobSparksqlConfigLoggingConfig>;
+        jarFileUris?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        loggingConfig?: pulumi.Input<inputs.dataproc.JobSparksqlConfigLoggingConfig | undefined>;
         /**
          * A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
          */
-        properties?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        properties?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * The HCFS URI of the script that contains SQL queries.
          * Conflicts with `queryList`
          */
-        queryFileUri?: pulumi.Input<string>;
+        queryFileUri?: pulumi.Input<string | undefined>;
         /**
          * The list of SQL queries or statements to execute as part of the job.
          * Conflicts with `queryFileUri`
          */
-        queryLists?: pulumi.Input<pulumi.Input<string>[]>;
+        queryLists?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Mapping of query variable names to values (equivalent to the Spark SQL command: `SET name="value";`).
          */
-        scriptVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        scriptVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     }
 
     export interface JobSparksqlConfigLoggingConfig {
@@ -15602,10 +15602,10 @@ export namespace dataproc {
     }
 
     export interface JobStatus {
-        details?: pulumi.Input<string>;
-        state?: pulumi.Input<string>;
-        stateStartTime?: pulumi.Input<string>;
-        substate?: pulumi.Input<string>;
+        details?: pulumi.Input<string | undefined>;
+        state?: pulumi.Input<string | undefined>;
+        stateStartTime?: pulumi.Input<string | undefined>;
+        substate?: pulumi.Input<string | undefined>;
     }
 }
 
@@ -15628,11 +15628,11 @@ export namespace deploymentmanager {
         /**
          * Key for label.
          */
-        key?: pulumi.Input<string>;
+        key?: pulumi.Input<string | undefined>;
         /**
          * Value of label.
          */
-        value?: pulumi.Input<string>;
+        value?: pulumi.Input<string | undefined>;
     }
 
     export interface DeploymentTarget {
@@ -15647,7 +15647,7 @@ export namespace deploymentmanager {
          * import a text file in order to use the file in a template.
          * Structure is documented below.
          */
-        imports?: pulumi.Input<pulumi.Input<inputs.deploymentmanager.DeploymentTargetImport>[]>;
+        imports?: pulumi.Input<pulumi.Input<inputs.deploymentmanager.DeploymentTargetImport>[] | undefined>;
     }
 
     export interface DeploymentTargetConfig {
@@ -15661,12 +15661,12 @@ export namespace deploymentmanager {
         /**
          * The full contents of the template that you want to import.
          */
-        content?: pulumi.Input<string>;
+        content?: pulumi.Input<string | undefined>;
         /**
          * The name of the template to import, as declared in the YAML
          * configuration.
          */
-        name?: pulumi.Input<string>;
+        name?: pulumi.Input<string | undefined>;
     }
 }
 
@@ -15691,12 +15691,12 @@ export namespace diagflow {
     }
 
     export interface IntentFollowupIntentInfo {
-        followupIntentName?: pulumi.Input<string>;
+        followupIntentName?: pulumi.Input<string | undefined>;
         /**
          * The unique identifier of the parent intent in the chain of followup intents.
          * Format: projects/<Project ID>/agent/intents/<Intent ID>.
          */
-        parentFollowupIntentName?: pulumi.Input<string>;
+        parentFollowupIntentName?: pulumi.Input<string | undefined>;
     }
 }
 
@@ -15709,22 +15709,22 @@ export namespace dns {
          * defaultKeySpecs can only be updated when the state is `off`.
          * Structure is documented below.
          */
-        defaultKeySpecs?: pulumi.Input<pulumi.Input<inputs.dns.ManagedZoneDnssecConfigDefaultKeySpec>[]>;
+        defaultKeySpecs?: pulumi.Input<pulumi.Input<inputs.dns.ManagedZoneDnssecConfigDefaultKeySpec>[] | undefined>;
         /**
          * Identifies what kind of resource this is
          */
-        kind?: pulumi.Input<string>;
+        kind?: pulumi.Input<string | undefined>;
         /**
          * Specifies the mechanism used to provide authenticated denial-of-existence responses.
          * nonExistence can only be updated when the state is `off`.
          * Possible values are `nsec` and `nsec3`.
          */
-        nonExistence?: pulumi.Input<string>;
+        nonExistence?: pulumi.Input<string | undefined>;
         /**
          * Specifies whether DNSSEC is enabled, and what mode it is in
          * Possible values are `off`, `on`, and `transfer`.
          */
-        state?: pulumi.Input<string>;
+        state?: pulumi.Input<string | undefined>;
     }
 
     export interface ManagedZoneDnssecConfigDefaultKeySpec {
@@ -15732,11 +15732,11 @@ export namespace dns {
          * String mnemonic specifying the DNSSEC algorithm of this key
          * Possible values are `ecdsap256sha256`, `ecdsap384sha384`, `rsasha1`, `rsasha256`, and `rsasha512`.
          */
-        algorithm?: pulumi.Input<string>;
+        algorithm?: pulumi.Input<string | undefined>;
         /**
          * Length of the keys in bits
          */
-        keyLength?: pulumi.Input<number>;
+        keyLength?: pulumi.Input<number | undefined>;
         /**
          * Specifies whether this is a key signing key (KSK) or a zone
          * signing key (ZSK). Key signing keys have the Secure Entry
@@ -15746,11 +15746,11 @@ export namespace dns {
          * to sign all other types of resource record sets.
          * Possible values are `keySigning` and `zoneSigning`.
          */
-        keyType?: pulumi.Input<string>;
+        keyType?: pulumi.Input<string | undefined>;
         /**
          * Identifies what kind of resource this is
          */
-        kind?: pulumi.Input<string>;
+        kind?: pulumi.Input<string | undefined>;
     }
 
     export interface ManagedZoneForwardingConfig {
@@ -15770,7 +15770,7 @@ export namespace dns {
          * to the Internet. When set to `private`, Cloud DNS will always send queries through VPC for this target
          * Possible values are `default` and `private`.
          */
-        forwardingPath?: pulumi.Input<string>;
+        forwardingPath?: pulumi.Input<string | undefined>;
         /**
          * IPv4 address of a target name server.
          */
@@ -15846,7 +15846,7 @@ export namespace dns {
          * to the Internet. When set to `private`, Cloud DNS will always send queries through VPC for this target
          * Possible values are `default` and `private`.
          */
-        forwardingPath?: pulumi.Input<string>;
+        forwardingPath?: pulumi.Input<string | undefined>;
         /**
          * IPv4 address to forward to.
          */
@@ -15865,32 +15865,32 @@ export namespace dns {
 
 export namespace endpoints {
     export interface ServiceApi {
-        methods?: pulumi.Input<pulumi.Input<inputs.endpoints.ServiceApiMethod>[]>;
-        name?: pulumi.Input<string>;
-        syntax?: pulumi.Input<string>;
-        version?: pulumi.Input<string>;
+        methods?: pulumi.Input<pulumi.Input<inputs.endpoints.ServiceApiMethod>[] | undefined>;
+        name?: pulumi.Input<string | undefined>;
+        syntax?: pulumi.Input<string | undefined>;
+        version?: pulumi.Input<string | undefined>;
     }
 
     export interface ServiceApiMethod {
-        name?: pulumi.Input<string>;
-        requestType?: pulumi.Input<string>;
-        responseType?: pulumi.Input<string>;
-        syntax?: pulumi.Input<string>;
+        name?: pulumi.Input<string | undefined>;
+        requestType?: pulumi.Input<string | undefined>;
+        responseType?: pulumi.Input<string | undefined>;
+        syntax?: pulumi.Input<string | undefined>;
     }
 
     export interface ServiceEndpoint {
-        address?: pulumi.Input<string>;
-        name?: pulumi.Input<string>;
+        address?: pulumi.Input<string | undefined>;
+        name?: pulumi.Input<string | undefined>;
     }
 
     export interface ServiceIamBindingCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
 
     export interface ServiceIamMemberCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
@@ -15911,7 +15911,7 @@ export namespace filestore {
          * Nfs Export Options. There is a limit of 10 export options per file share.
          * Structure is documented below.
          */
-        nfsExportOptions?: pulumi.Input<pulumi.Input<inputs.filestore.InstanceFileSharesNfsExportOption>[]>;
+        nfsExportOptions?: pulumi.Input<pulumi.Input<inputs.filestore.InstanceFileSharesNfsExportOption>[] | undefined>;
     }
 
     export interface InstanceFileSharesNfsExportOption {
@@ -15921,32 +15921,32 @@ export namespace filestore {
          * Default value is `READ_WRITE`.
          * Possible values are `READ_ONLY` and `READ_WRITE`.
          */
-        accessMode?: pulumi.Input<string>;
+        accessMode?: pulumi.Input<string | undefined>;
         /**
          * An integer representing the anonymous group id with a default value of 65534.
          * Anon_gid may only be set with squashMode of ROOT_SQUASH. An error will be returned
          * if this field is specified for other squashMode settings.
          */
-        anonGid?: pulumi.Input<number>;
+        anonGid?: pulumi.Input<number | undefined>;
         /**
          * An integer representing the anonymous user id with a default value of 65534.
          * Anon_uid may only be set with squashMode of ROOT_SQUASH. An error will be returned
          * if this field is specified for other squashMode settings.
          */
-        anonUid?: pulumi.Input<number>;
+        anonUid?: pulumi.Input<number | undefined>;
         /**
          * List of either IPv4 addresses, or ranges in CIDR notation which may mount the file share.
          * Overlapping IP ranges are not allowed, both within and across NfsExportOptions. An error will be returned.
          * The limit is 64 IP ranges/addresses for each FileShareConfig among all NfsExportOptions.
          */
-        ipRanges?: pulumi.Input<pulumi.Input<string>[]>;
+        ipRanges?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Either NO_ROOT_SQUASH, for allowing root access on the exported directory, or ROOT_SQUASH,
          * for not allowing root access. The default is NO_ROOT_SQUASH.
          * Default value is `NO_ROOT_SQUASH`.
          * Possible values are `NO_ROOT_SQUASH` and `ROOT_SQUASH`.
          */
-        squashMode?: pulumi.Input<string>;
+        squashMode?: pulumi.Input<string | undefined>;
     }
 
     export interface InstanceNetwork {
@@ -15954,7 +15954,7 @@ export namespace filestore {
          * -
          * A list of IPv4 or IPv6 addresses.
          */
-        ipAddresses?: pulumi.Input<pulumi.Input<string>[]>;
+        ipAddresses?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * IP versions for which the instance has
          * IP addresses assigned.
@@ -15970,7 +15970,7 @@ export namespace filestore {
          * A /29 CIDR block that identifies the range of IP
          * addresses reserved for this instance.
          */
-        reservedIpRange?: pulumi.Input<string>;
+        reservedIpRange?: pulumi.Input<string | undefined>;
     }
 }
 
@@ -15981,40 +15981,40 @@ export namespace firestore {
          * be specified.
          * Possible values are `CONTAINS`.
          */
-        arrayConfig?: pulumi.Input<string>;
+        arrayConfig?: pulumi.Input<string | undefined>;
         /**
          * Name of the field.
          */
-        fieldPath?: pulumi.Input<string>;
+        fieldPath?: pulumi.Input<string | undefined>;
         /**
          * Indicates that this field supports ordering by the specified order or comparing using =, <, <=, >, >=.
          * Only one of `order` and `arrayConfig` can be specified.
          * Possible values are `ASCENDING` and `DESCENDING`.
          */
-        order?: pulumi.Input<string>;
+        order?: pulumi.Input<string | undefined>;
     }
 }
 
 export namespace folder {
     export interface AccessApprovalSettingsEnrolledService {
         cloudProduct: pulumi.Input<string>;
-        enrollmentLevel?: pulumi.Input<string>;
+        enrollmentLevel?: pulumi.Input<string | undefined>;
     }
 
     export interface IAMBindingCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
 
     export interface IAMMemberCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
 
     export interface IamAuditConfigAuditLogConfig {
-        exemptedMembers?: pulumi.Input<pulumi.Input<string>[]>;
+        exemptedMembers?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         logType: pulumi.Input<string>;
     }
 
@@ -16029,39 +16029,39 @@ export namespace folder {
         /**
          * or `deny` - (Optional) One or the other must be set.
          */
-        allow?: pulumi.Input<inputs.folder.OrganizationPolicyListPolicyAllow>;
-        deny?: pulumi.Input<inputs.folder.OrganizationPolicyListPolicyDeny>;
+        allow?: pulumi.Input<inputs.folder.OrganizationPolicyListPolicyAllow | undefined>;
+        deny?: pulumi.Input<inputs.folder.OrganizationPolicyListPolicyDeny | undefined>;
         /**
          * If set to true, the values from the effective Policy of the parent resource
          * are inherited, meaning the values set in this Policy are added to the values inherited up the hierarchy.
          */
-        inheritFromParent?: pulumi.Input<boolean>;
+        inheritFromParent?: pulumi.Input<boolean | undefined>;
         /**
          * The Google Cloud Console will try to default to a configuration that matches the value specified in this field.
          */
-        suggestedValue?: pulumi.Input<string>;
+        suggestedValue?: pulumi.Input<string | undefined>;
     }
 
     export interface OrganizationPolicyListPolicyAllow {
         /**
          * The policy allows or denies all values.
          */
-        all?: pulumi.Input<boolean>;
+        all?: pulumi.Input<boolean | undefined>;
         /**
          * The policy can define specific values that are allowed or denied.
          */
-        values?: pulumi.Input<pulumi.Input<string>[]>;
+        values?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface OrganizationPolicyListPolicyDeny {
         /**
          * The policy allows or denies all values.
          */
-        all?: pulumi.Input<boolean>;
+        all?: pulumi.Input<boolean | undefined>;
         /**
          * The policy can define specific values that are allowed or denied.
          */
-        values?: pulumi.Input<pulumi.Input<string>[]>;
+        values?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface OrganizationPolicyRestorePolicy {
@@ -16115,7 +16115,7 @@ export namespace gameservices {
         /**
          * The name of the ScalingConfig
          */
-        name?: pulumi.Input<string>;
+        name?: pulumi.Input<string | undefined>;
     }
 
     export interface GameServerConfigScalingConfig {
@@ -16133,14 +16133,14 @@ export namespace gameservices {
          * The schedules to which this scaling config applies.
          * Structure is documented below.
          */
-        schedules?: pulumi.Input<pulumi.Input<inputs.gameservices.GameServerConfigScalingConfigSchedule>[]>;
+        schedules?: pulumi.Input<pulumi.Input<inputs.gameservices.GameServerConfigScalingConfigSchedule>[] | undefined>;
         /**
          * Labels used to identify the clusters to which this scaling config
          * applies. A cluster is subject to this scaling config if its labels match
          * any of the selector entries.
          * Structure is documented below.
          */
-        selectors?: pulumi.Input<pulumi.Input<inputs.gameservices.GameServerConfigScalingConfigSelector>[]>;
+        selectors?: pulumi.Input<pulumi.Input<inputs.gameservices.GameServerConfigScalingConfigSelector>[] | undefined>;
     }
 
     export interface GameServerConfigScalingConfigSchedule {
@@ -16149,86 +16149,86 @@ export namespace gameservices {
          * after the cron job's start time.
          * A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s".
          */
-        cronJobDuration?: pulumi.Input<string>;
+        cronJobDuration?: pulumi.Input<string | undefined>;
         /**
          * The cron definition of the scheduled event. See
          * https://en.wikipedia.org/wiki/Cron. Cron spec specifies the local time as
          * defined by the realm.
          */
-        cronSpec?: pulumi.Input<string>;
+        cronSpec?: pulumi.Input<string | undefined>;
         /**
          * The end time of the event.
          * A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z".
          */
-        endTime?: pulumi.Input<string>;
+        endTime?: pulumi.Input<string | undefined>;
         /**
          * The start time of the event.
          * A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z".
          */
-        startTime?: pulumi.Input<string>;
+        startTime?: pulumi.Input<string | undefined>;
     }
 
     export interface GameServerConfigScalingConfigSelector {
         /**
          * Set of labels to group by.
          */
-        labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     }
 
     export interface GameServerDeploymentRolloutGameServerConfigOverride {
         /**
          * Version of the configuration.
          */
-        configVersion?: pulumi.Input<string>;
+        configVersion?: pulumi.Input<string | undefined>;
         /**
          * Selection by realms.
          * Structure is documented below.
          */
-        realmsSelector?: pulumi.Input<inputs.gameservices.GameServerDeploymentRolloutGameServerConfigOverrideRealmsSelector>;
+        realmsSelector?: pulumi.Input<inputs.gameservices.GameServerDeploymentRolloutGameServerConfigOverrideRealmsSelector | undefined>;
     }
 
     export interface GameServerDeploymentRolloutGameServerConfigOverrideRealmsSelector {
         /**
          * List of realms to match against.
          */
-        realms?: pulumi.Input<pulumi.Input<string>[]>;
+        realms?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
 }
 
 export namespace healthcare {
     export interface ConsentStoreIamBindingCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
 
     export interface ConsentStoreIamMemberCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
 
     export interface DatasetIamBindingCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
 
     export interface DatasetIamMemberCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
 
     export interface DicomStoreIamBindingCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
 
     export interface DicomStoreIamMemberCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
@@ -16246,13 +16246,13 @@ export namespace healthcare {
     }
 
     export interface FhirStoreIamBindingCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
 
     export interface FhirStoreIamMemberCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
@@ -16284,7 +16284,7 @@ export namespace healthcare {
          * https://www.hl7.org/fhir/valueset-resource-types.html for a list of all FHIR resource types. The server treats
          * an empty list as an intent to stream all the supported resource types in this FHIR store.
          */
-        resourceTypes?: pulumi.Input<pulumi.Input<string>[]>;
+        resourceTypes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface FhirStoreStreamConfigBigqueryDestination {
@@ -16314,17 +16314,17 @@ export namespace healthcare {
          * Default value is `ANALYTICS`.
          * Possible values are `ANALYTICS`.
          */
-        schemaType?: pulumi.Input<string>;
+        schemaType?: pulumi.Input<string | undefined>;
     }
 
     export interface Hl7StoreIamBindingCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
 
     export interface Hl7StoreIamMemberCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
@@ -16353,7 +16353,7 @@ export namespace healthcare {
          * * PatientId(value, type), which matches if the message lists a patient having an ID of the given value and type in the PID-2, PID-3, or PID-4 segments. For example, PatientId("123456", "MRN").
          * * labels.x, a string value of the label with key x as set using the Message.labels map. For example, labels."priority"="high". The operator :* can be used to assert the existence of a label. For example, labels."priority":*.
          */
-        filter?: pulumi.Input<string>;
+        filter?: pulumi.Input<string | undefined>;
         /**
          * The Cloud Pub/Sub topic that notifications of changes are published on. Supplied by the client.
          * PubsubMessage.Data will contain the resource name. PubsubMessage.MessageId is the ID of this message.
@@ -16369,18 +16369,18 @@ export namespace healthcare {
         /**
          * Determines whether messages with no header are allowed.
          */
-        allowNullHeader?: pulumi.Input<boolean>;
+        allowNullHeader?: pulumi.Input<boolean | undefined>;
         /**
          * JSON encoded string for schemas used to parse messages in this
          * store if schematized parsing is desired.
          */
-        schema?: pulumi.Input<string>;
+        schema?: pulumi.Input<string | undefined>;
         /**
          * Byte(s) to be used as the segment terminator. If this is unset, '\r' will be used as segment terminator.
          * A base64-encoded string.
          */
-        segmentTerminator?: pulumi.Input<string>;
-        version?: pulumi.Input<string>;
+        segmentTerminator?: pulumi.Input<string | undefined>;
+        version?: pulumi.Input<string | undefined>;
     }
 }
 
@@ -16405,7 +16405,7 @@ export namespace iam {
          * import * as pulumi from "@pulumi/pulumi";
          * ```
          */
-        allowedAudiences?: pulumi.Input<pulumi.Input<string>[]>;
+        allowedAudiences?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The OIDC issuer URL.
          */
@@ -16418,7 +16418,7 @@ export namespace iap {
         /**
          * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * Textual representation of an expression in Common Expression Language syntax.
          */
@@ -16433,7 +16433,7 @@ export namespace iap {
         /**
          * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * Textual representation of an expression in Common Expression Language syntax.
          */
@@ -16448,7 +16448,7 @@ export namespace iap {
         /**
          * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * Textual representation of an expression in Common Expression Language syntax.
          */
@@ -16463,7 +16463,7 @@ export namespace iap {
         /**
          * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * Textual representation of an expression in Common Expression Language syntax.
          */
@@ -16478,7 +16478,7 @@ export namespace iap {
         /**
          * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * Textual representation of an expression in Common Expression Language syntax.
          */
@@ -16493,7 +16493,7 @@ export namespace iap {
         /**
          * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * Textual representation of an expression in Common Expression Language syntax.
          */
@@ -16508,7 +16508,7 @@ export namespace iap {
         /**
          * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * Textual representation of an expression in Common Expression Language syntax.
          */
@@ -16523,7 +16523,7 @@ export namespace iap {
         /**
          * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * Textual representation of an expression in Common Expression Language syntax.
          */
@@ -16538,7 +16538,7 @@ export namespace iap {
         /**
          * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * Textual representation of an expression in Common Expression Language syntax.
          */
@@ -16553,7 +16553,7 @@ export namespace iap {
         /**
          * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * Textual representation of an expression in Common Expression Language syntax.
          */
@@ -16568,7 +16568,7 @@ export namespace iap {
         /**
          * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * Textual representation of an expression in Common Expression Language syntax.
          */
@@ -16583,7 +16583,7 @@ export namespace iap {
         /**
          * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * Textual representation of an expression in Common Expression Language syntax.
          */
@@ -16598,7 +16598,7 @@ export namespace iap {
         /**
          * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * Textual representation of an expression in Common Expression Language syntax.
          */
@@ -16613,7 +16613,7 @@ export namespace iap {
         /**
          * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * Textual representation of an expression in Common Expression Language syntax.
          */
@@ -16628,7 +16628,7 @@ export namespace iap {
         /**
          * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * Textual representation of an expression in Common Expression Language syntax.
          */
@@ -16643,7 +16643,7 @@ export namespace iap {
         /**
          * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * Textual representation of an expression in Common Expression Language syntax.
          */
@@ -16669,7 +16669,7 @@ export namespace identityplatform {
         /**
          * Indicates if outbounding SAMLRequest should be signed.
          */
-        signRequest?: pulumi.Input<boolean>;
+        signRequest?: pulumi.Input<boolean | undefined>;
         /**
          * URL to send Authentication request to.
          */
@@ -16681,24 +16681,24 @@ export namespace identityplatform {
          * -
          * The x509 certificate
          */
-        x509Certificate?: pulumi.Input<string>;
+        x509Certificate?: pulumi.Input<string | undefined>;
     }
 
     export interface InboundSamlConfigSpConfig {
         /**
          * Callback URI where responses from IDP are handled. Must start with `https://`.
          */
-        callbackUri?: pulumi.Input<string>;
+        callbackUri?: pulumi.Input<string | undefined>;
         /**
          * -
          * The IDP's certificate data to verify the signature in the SAMLResponse issued by the IDP.
          * Structure is documented below.
          */
-        spCertificates?: pulumi.Input<pulumi.Input<inputs.identityplatform.InboundSamlConfigSpConfigSpCertificate>[]>;
+        spCertificates?: pulumi.Input<pulumi.Input<inputs.identityplatform.InboundSamlConfigSpConfigSpCertificate>[] | undefined>;
         /**
          * Unique identifier for all SAML entities.
          */
-        spEntityId?: pulumi.Input<string>;
+        spEntityId?: pulumi.Input<string | undefined>;
     }
 
     export interface InboundSamlConfigSpConfigSpCertificate {
@@ -16706,7 +16706,7 @@ export namespace identityplatform {
          * -
          * The x509 certificate
          */
-        x509Certificate?: pulumi.Input<string>;
+        x509Certificate?: pulumi.Input<string | undefined>;
     }
 
     export interface TenantInboundSamlConfigIdpConfig {
@@ -16722,7 +16722,7 @@ export namespace identityplatform {
         /**
          * Indicates if outbounding SAMLRequest should be signed.
          */
-        signRequest?: pulumi.Input<boolean>;
+        signRequest?: pulumi.Input<boolean | undefined>;
         /**
          * URL to send Authentication request to.
          */
@@ -16734,7 +16734,7 @@ export namespace identityplatform {
          * -
          * The x509 certificate
          */
-        x509Certificate?: pulumi.Input<string>;
+        x509Certificate?: pulumi.Input<string | undefined>;
     }
 
     export interface TenantInboundSamlConfigSpConfig {
@@ -16747,7 +16747,7 @@ export namespace identityplatform {
          * The IDP's certificate data to verify the signature in the SAMLResponse issued by the IDP.
          * Structure is documented below.
          */
-        spCertificates?: pulumi.Input<pulumi.Input<inputs.identityplatform.TenantInboundSamlConfigSpConfigSpCertificate>[]>;
+        spCertificates?: pulumi.Input<pulumi.Input<inputs.identityplatform.TenantInboundSamlConfigSpConfigSpCertificate>[] | undefined>;
         /**
          * Unique identifier for all SAML entities.
          */
@@ -16759,23 +16759,23 @@ export namespace identityplatform {
          * -
          * The x509 certificate
          */
-        x509Certificate?: pulumi.Input<string>;
+        x509Certificate?: pulumi.Input<string | undefined>;
     }
 }
 
 export namespace iot {
     export interface DeviceConfig {
-        binaryData?: pulumi.Input<string>;
-        cloudUpdateTime?: pulumi.Input<string>;
-        deviceAckTime?: pulumi.Input<string>;
-        version?: pulumi.Input<string>;
+        binaryData?: pulumi.Input<string | undefined>;
+        cloudUpdateTime?: pulumi.Input<string | undefined>;
+        deviceAckTime?: pulumi.Input<string | undefined>;
+        version?: pulumi.Input<string | undefined>;
     }
 
     export interface DeviceCredential {
         /**
          * The time at which this credential becomes invalid.
          */
-        expirationTime?: pulumi.Input<string>;
+        expirationTime?: pulumi.Input<string | undefined>;
         /**
          * A public key used to verify the signature of JSON Web Tokens (JWTs).
          * Structure is documented below.
@@ -16800,34 +16800,34 @@ export namespace iot {
          * Indicates whether the device is a gateway.
          * Possible values are `ASSOCIATION_ONLY`, `DEVICE_AUTH_TOKEN_ONLY`, and `ASSOCIATION_AND_DEVICE_AUTH_TOKEN`.
          */
-        gatewayAuthMethod?: pulumi.Input<string>;
+        gatewayAuthMethod?: pulumi.Input<string | undefined>;
         /**
          * Indicates whether the device is a gateway.
          * Default value is `NON_GATEWAY`.
          * Possible values are `GATEWAY` and `NON_GATEWAY`.
          */
-        gatewayType?: pulumi.Input<string>;
+        gatewayType?: pulumi.Input<string | undefined>;
         /**
          * -
          * The ID of the gateway the device accessed most recently.
          */
-        lastAccessedGatewayId?: pulumi.Input<string>;
+        lastAccessedGatewayId?: pulumi.Input<string | undefined>;
         /**
          * -
          * The most recent time at which the device accessed the gateway specified in last_accessed_gateway.
          */
-        lastAccessedGatewayTime?: pulumi.Input<string>;
+        lastAccessedGatewayTime?: pulumi.Input<string | undefined>;
     }
 
     export interface DeviceLastErrorStatus {
-        details?: pulumi.Input<pulumi.Input<{[key: string]: any}>[]>;
-        message?: pulumi.Input<string>;
-        number?: pulumi.Input<number>;
+        details?: pulumi.Input<pulumi.Input<{[key: string]: any}>[] | undefined>;
+        message?: pulumi.Input<string | undefined>;
+        number?: pulumi.Input<number | undefined>;
     }
 
     export interface DeviceState {
-        binaryData?: pulumi.Input<string>;
-        updateTime?: pulumi.Input<string>;
+        binaryData?: pulumi.Input<string | undefined>;
+        updateTime?: pulumi.Input<string | undefined>;
     }
 
     export interface RegistryCredential {
@@ -16849,7 +16849,7 @@ export namespace iot {
          * value can only be used for the last `eventNotificationConfigs`
          * item.
          */
-        subfolderMatches?: pulumi.Input<string>;
+        subfolderMatches?: pulumi.Input<string | undefined>;
     }
 }
 
@@ -16858,7 +16858,7 @@ export namespace kms {
         /**
          * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * Textual representation of an expression in Common Expression Language syntax.
          */
@@ -16873,7 +16873,7 @@ export namespace kms {
         /**
          * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * Textual representation of an expression in Common Expression Language syntax.
          */
@@ -16895,14 +16895,14 @@ export namespace kms {
          * Default value is `SOFTWARE`.
          * Possible values are `SOFTWARE` and `HSM`.
          */
-        protectionLevel?: pulumi.Input<string>;
+        protectionLevel?: pulumi.Input<string | undefined>;
     }
 
     export interface KeyRingIAMBindingCondition {
         /**
          * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * Textual representation of an expression in Common Expression Language syntax.
          */
@@ -16917,7 +16917,7 @@ export namespace kms {
         /**
          * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * Textual representation of an expression in Common Expression Language syntax.
          */
@@ -16929,12 +16929,12 @@ export namespace kms {
     }
 
     export interface KeyRingImportJobAttestation {
-        content?: pulumi.Input<string>;
-        format?: pulumi.Input<string>;
+        content?: pulumi.Input<string | undefined>;
+        format?: pulumi.Input<string | undefined>;
     }
 
     export interface KeyRingImportJobPublicKey {
-        pem?: pulumi.Input<string>;
+        pem?: pulumi.Input<string | undefined>;
     }
 
     export interface RegistryCredential {
@@ -16956,7 +16956,7 @@ export namespace kms {
          * value can only be used for the last `eventNotificationConfigs`
          * item.
          */
-        subfolderMatches?: pulumi.Input<string>;
+        subfolderMatches?: pulumi.Input<string | undefined>;
     }
 }
 
@@ -16975,11 +16975,11 @@ export namespace logging {
         /**
          * A description of this sink. The maximum length of the description is 8000 characters.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * If set to True, then this sink is disabled and it does not export any log entries.
          */
-        disabled?: pulumi.Input<boolean>;
+        disabled?: pulumi.Input<boolean | undefined>;
         /**
          * The filter to apply when exporting logs. Only log entries that match the filter are exported.
          * See [Advanced Log Filters](https://cloud.google.com/logging/docs/view/advanced_filters) for information on how to
@@ -17006,11 +17006,11 @@ export namespace logging {
         /**
          * A description of this sink. The maximum length of the description is 8000 characters.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * If set to True, then this sink is disabled and it does not export any log entries.
          */
-        disabled?: pulumi.Input<boolean>;
+        disabled?: pulumi.Input<boolean | undefined>;
         /**
          * The filter to apply when exporting logs. Only log entries that match the filter are exported.
          * See [Advanced Log Filters](https://cloud.google.com/logging/docs/view/advanced_filters) for information on how to
@@ -17028,19 +17028,19 @@ export namespace logging {
          * Specifies a set of buckets with arbitrary widths.
          * Structure is documented below.
          */
-        explicitBuckets?: pulumi.Input<inputs.logging.MetricBucketOptionsExplicitBuckets>;
+        explicitBuckets?: pulumi.Input<inputs.logging.MetricBucketOptionsExplicitBuckets | undefined>;
         /**
          * Specifies an exponential sequence of buckets that have a width that is proportional to the value of
          * the lower bound. Each bucket represents a constant relative uncertainty on a specific value in the bucket.
          * Structure is documented below.
          */
-        exponentialBuckets?: pulumi.Input<inputs.logging.MetricBucketOptionsExponentialBuckets>;
+        exponentialBuckets?: pulumi.Input<inputs.logging.MetricBucketOptionsExponentialBuckets | undefined>;
         /**
          * Specifies a linear sequence of buckets that all have the same width (except overflow and underflow).
          * Each bucket represents a constant absolute uncertainty on the specific value in the bucket.
          * Structure is documented below.
          */
-        linearBuckets?: pulumi.Input<inputs.logging.MetricBucketOptionsLinearBuckets>;
+        linearBuckets?: pulumi.Input<inputs.logging.MetricBucketOptionsLinearBuckets | undefined>;
     }
 
     export interface MetricBucketOptionsExplicitBuckets {
@@ -17054,30 +17054,30 @@ export namespace logging {
         /**
          * Must be greater than 1.
          */
-        growthFactor?: pulumi.Input<number>;
+        growthFactor?: pulumi.Input<number | undefined>;
         /**
          * Must be greater than 0.
          */
-        numFiniteBuckets?: pulumi.Input<number>;
+        numFiniteBuckets?: pulumi.Input<number | undefined>;
         /**
          * Must be greater than 0.
          */
-        scale?: pulumi.Input<number>;
+        scale?: pulumi.Input<number | undefined>;
     }
 
     export interface MetricBucketOptionsLinearBuckets {
         /**
          * Must be greater than 0.
          */
-        numFiniteBuckets?: pulumi.Input<number>;
+        numFiniteBuckets?: pulumi.Input<number | undefined>;
         /**
          * Lower bound of the first bucket.
          */
-        offset?: pulumi.Input<number>;
+        offset?: pulumi.Input<number | undefined>;
         /**
          * Must be greater than 0.
          */
-        width?: pulumi.Input<number>;
+        width?: pulumi.Input<number | undefined>;
     }
 
     export interface MetricMetricDescriptor {
@@ -17086,7 +17086,7 @@ export namespace logging {
          * without an ending period, for example "Request count". This field is optional but it is
          * recommended to be set for any metrics associated with user-visible concepts, such as Quota.
          */
-        displayName?: pulumi.Input<string>;
+        displayName?: pulumi.Input<string | undefined>;
         /**
          * The set of labels that can be used to describe a specific instance of this metric type. For
          * example, the appengine.googleapis.com/http/server/response_latencies metric type has a label
@@ -17094,7 +17094,7 @@ export namespace logging {
          * or just for responses that failed.
          * Structure is documented below.
          */
-        labels?: pulumi.Input<pulumi.Input<inputs.logging.MetricMetricDescriptorLabel>[]>;
+        labels?: pulumi.Input<pulumi.Input<inputs.logging.MetricMetricDescriptorLabel>[] | undefined>;
         /**
          * Whether the metric records instantaneous values, changes to a value, etc.
          * Some combinations of metricKind and valueType might not be supported.
@@ -17107,7 +17107,7 @@ export namespace logging {
          * `INT64`, `DOUBLE`, or `DISTRIBUTION`. The supported units are a subset of
          * [The Unified Code for Units of Measure](http://unitsofmeasure.org/ucum.html) standard
          */
-        unit?: pulumi.Input<string>;
+        unit?: pulumi.Input<string | undefined>;
         /**
          * The type of data that can be assigned to the label.
          * Default value is `STRING`.
@@ -17121,7 +17121,7 @@ export namespace logging {
          * A description of this metric, which is used in documentation. The maximum length of the
          * description is 8000 characters.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * The label key.
          */
@@ -17131,7 +17131,7 @@ export namespace logging {
          * Default value is `STRING`.
          * Possible values are `BOOL`, `INT64`, and `STRING`.
          */
-        valueType?: pulumi.Input<string>;
+        valueType?: pulumi.Input<string | undefined>;
     }
 
     export interface OrganizationSinkBigqueryOptions {
@@ -17148,11 +17148,11 @@ export namespace logging {
         /**
          * A description of this sink. The maximum length of the description is 8000 characters.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * If set to True, then this sink is disabled and it does not export any log entries.
          */
-        disabled?: pulumi.Input<boolean>;
+        disabled?: pulumi.Input<boolean | undefined>;
         /**
          * The filter to apply when exporting logs. Only log entries that match the filter are exported.
          * See [Advanced Log Filters](https://cloud.google.com/logging/docs/view/advanced_filters) for information on how to
@@ -17179,11 +17179,11 @@ export namespace logging {
         /**
          * A description of this exclusion.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * If set to True, then this exclusion is disabled and it does not exclude any log entries.
          */
-        disabled?: pulumi.Input<boolean>;
+        disabled?: pulumi.Input<boolean | undefined>;
         /**
          * An advanced logs filter that matches the log entries to be excluded. By using the sample function, you can exclude less than 100% of the matching log entries. See [Advanced Log Filters](https://cloud.google.com/logging/docs/view/advanced_filters) for information on how to
          * write a filter.
@@ -17198,11 +17198,11 @@ export namespace logging {
 
 export namespace memcache {
     export interface InstanceMemcacheNode {
-        host?: pulumi.Input<string>;
-        nodeId?: pulumi.Input<string>;
-        port?: pulumi.Input<number>;
-        state?: pulumi.Input<string>;
-        zone?: pulumi.Input<string>;
+        host?: pulumi.Input<string | undefined>;
+        nodeId?: pulumi.Input<string | undefined>;
+        port?: pulumi.Input<number | undefined>;
+        state?: pulumi.Input<string | undefined>;
+        zone?: pulumi.Input<string | undefined>;
     }
 
     export interface InstanceMemcacheParameters {
@@ -17210,11 +17210,11 @@ export namespace memcache {
          * -
          * This is a unique ID associated with this set of parameters.
          */
-        id?: pulumi.Input<string>;
+        id?: pulumi.Input<string | undefined>;
         /**
          * User-defined set of parameters to use in the memcache process.
          */
-        params?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        params?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     }
 
     export interface InstanceNodeConfig {
@@ -17245,18 +17245,18 @@ export namespace monitoring {
          * continues to receive new data points.
          * Structure is documented below.
          */
-        conditionAbsent?: pulumi.Input<inputs.monitoring.AlertPolicyConditionConditionAbsent>;
+        conditionAbsent?: pulumi.Input<inputs.monitoring.AlertPolicyConditionConditionAbsent | undefined>;
         /**
          * A Monitoring Query Language query that outputs a boolean stream
          * Structure is documented below.
          */
-        conditionMonitoringQueryLanguage?: pulumi.Input<inputs.monitoring.AlertPolicyConditionConditionMonitoringQueryLanguage>;
+        conditionMonitoringQueryLanguage?: pulumi.Input<inputs.monitoring.AlertPolicyConditionConditionMonitoringQueryLanguage | undefined>;
         /**
          * A condition that compares a time series against a
          * threshold.
          * Structure is documented below.
          */
-        conditionThreshold?: pulumi.Input<inputs.monitoring.AlertPolicyConditionConditionThreshold>;
+        conditionThreshold?: pulumi.Input<inputs.monitoring.AlertPolicyConditionConditionThreshold | undefined>;
         /**
          * A short name or phrase used to identify the
          * condition in dashboards, notifications, and
@@ -17274,7 +17274,7 @@ export namespace monitoring {
          * the condition is created as part of a new or updated alerting
          * policy.
          */
-        name?: pulumi.Input<string>;
+        name?: pulumi.Input<string | undefined>;
     }
 
     export interface AlertPolicyConditionConditionAbsent {
@@ -17294,7 +17294,7 @@ export namespace monitoring {
          * field.
          * Structure is documented below.
          */
-        aggregations?: pulumi.Input<pulumi.Input<inputs.monitoring.AlertPolicyConditionConditionAbsentAggregation>[]>;
+        aggregations?: pulumi.Input<pulumi.Input<inputs.monitoring.AlertPolicyConditionConditionAbsentAggregation>[] | undefined>;
         /**
          * The amount of time that a time series must
          * violate the threshold to be considered
@@ -17327,7 +17327,7 @@ export namespace monitoring {
          * field may not exceed 2048 Unicode characters
          * in length.
          */
-        filter?: pulumi.Input<string>;
+        filter?: pulumi.Input<string | undefined>;
         /**
          * The number/percent of time series for which
          * the comparison must hold in order for the
@@ -17339,7 +17339,7 @@ export namespace monitoring {
          * denominatorAggregations are specified.
          * Structure is documented below.
          */
-        trigger?: pulumi.Input<inputs.monitoring.AlertPolicyConditionConditionAbsentTrigger>;
+        trigger?: pulumi.Input<inputs.monitoring.AlertPolicyConditionConditionAbsentTrigger | undefined>;
     }
 
     export interface AlertPolicyConditionConditionAbsentAggregation {
@@ -17359,7 +17359,7 @@ export namespace monitoring {
          * this field must be defined;
          * otherwise an error is returned.
          */
-        alignmentPeriod?: pulumi.Input<string>;
+        alignmentPeriod?: pulumi.Input<string | undefined>;
         /**
          * The approach to be used to combine
          * time series. Not all reducer
@@ -17380,7 +17380,7 @@ export namespace monitoring {
          * returned.
          * Possible values are `REDUCE_NONE`, `REDUCE_MEAN`, `REDUCE_MIN`, `REDUCE_MAX`, `REDUCE_SUM`, `REDUCE_STDDEV`, `REDUCE_COUNT`, `REDUCE_COUNT_TRUE`, `REDUCE_COUNT_FALSE`, `REDUCE_FRACTION_TRUE`, `REDUCE_PERCENTILE_99`, `REDUCE_PERCENTILE_95`, `REDUCE_PERCENTILE_50`, and `REDUCE_PERCENTILE_05`.
          */
-        crossSeriesReducer?: pulumi.Input<string>;
+        crossSeriesReducer?: pulumi.Input<string | undefined>;
         /**
          * The set of fields to preserve when
          * crossSeriesReducer is specified.
@@ -17408,7 +17408,7 @@ export namespace monitoring {
          * is not defined, this field is
          * ignored.
          */
-        groupByFields?: pulumi.Input<pulumi.Input<string>[]>;
+        groupByFields?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The approach to be used to align
          * individual time series. Not all
@@ -17429,7 +17429,7 @@ export namespace monitoring {
          * returned.
          * Possible values are `ALIGN_NONE`, `ALIGN_DELTA`, `ALIGN_RATE`, `ALIGN_INTERPOLATE`, `ALIGN_NEXT_OLDER`, `ALIGN_MIN`, `ALIGN_MAX`, `ALIGN_MEAN`, `ALIGN_COUNT`, `ALIGN_SUM`, `ALIGN_STDDEV`, `ALIGN_COUNT_TRUE`, `ALIGN_COUNT_FALSE`, `ALIGN_FRACTION_TRUE`, `ALIGN_PERCENTILE_99`, `ALIGN_PERCENTILE_95`, `ALIGN_PERCENTILE_50`, `ALIGN_PERCENTILE_05`, and `ALIGN_PERCENT_CHANGE`.
          */
-        perSeriesAligner?: pulumi.Input<string>;
+        perSeriesAligner?: pulumi.Input<string | undefined>;
     }
 
     export interface AlertPolicyConditionConditionAbsentTrigger {
@@ -17438,13 +17438,13 @@ export namespace monitoring {
          * that must fail the predicate for the
          * condition to be triggered.
          */
-        count?: pulumi.Input<number>;
+        count?: pulumi.Input<number | undefined>;
         /**
          * The percentage of time series that
          * must fail the predicate for the
          * condition to be triggered.
          */
-        percent?: pulumi.Input<number>;
+        percent?: pulumi.Input<number | undefined>;
     }
 
     export interface AlertPolicyConditionConditionMonitoringQueryLanguage {
@@ -17481,7 +17481,7 @@ export namespace monitoring {
          * denominatorAggregations are specified.
          * Structure is documented below.
          */
-        trigger?: pulumi.Input<inputs.monitoring.AlertPolicyConditionConditionMonitoringQueryLanguageTrigger>;
+        trigger?: pulumi.Input<inputs.monitoring.AlertPolicyConditionConditionMonitoringQueryLanguageTrigger | undefined>;
     }
 
     export interface AlertPolicyConditionConditionMonitoringQueryLanguageTrigger {
@@ -17490,13 +17490,13 @@ export namespace monitoring {
          * that must fail the predicate for the
          * condition to be triggered.
          */
-        count?: pulumi.Input<number>;
+        count?: pulumi.Input<number | undefined>;
         /**
          * The percentage of time series that
          * must fail the predicate for the
          * condition to be triggered.
          */
-        percent?: pulumi.Input<number>;
+        percent?: pulumi.Input<number | undefined>;
     }
 
     export interface AlertPolicyConditionConditionThreshold {
@@ -17516,7 +17516,7 @@ export namespace monitoring {
          * field.
          * Structure is documented below.
          */
-        aggregations?: pulumi.Input<pulumi.Input<inputs.monitoring.AlertPolicyConditionConditionThresholdAggregation>[]>;
+        aggregations?: pulumi.Input<pulumi.Input<inputs.monitoring.AlertPolicyConditionConditionThresholdAggregation>[] | undefined>;
         /**
          * The comparison to apply between the time
          * series (indicated by filter and aggregation)
@@ -17548,7 +17548,7 @@ export namespace monitoring {
          * method when debugging this field.
          * Structure is documented below.
          */
-        denominatorAggregations?: pulumi.Input<pulumi.Input<inputs.monitoring.AlertPolicyConditionConditionThresholdDenominatorAggregation>[]>;
+        denominatorAggregations?: pulumi.Input<pulumi.Input<inputs.monitoring.AlertPolicyConditionConditionThresholdDenominatorAggregation>[] | undefined>;
         /**
          * A filter that identifies a time series that
          * should be used as the denominator of a ratio
@@ -17566,7 +17566,7 @@ export namespace monitoring {
          * field may not exceed 2048 Unicode characters
          * in length.
          */
-        denominatorFilter?: pulumi.Input<string>;
+        denominatorFilter?: pulumi.Input<string | undefined>;
         /**
          * The amount of time that a time series must
          * violate the threshold to be considered
@@ -17599,12 +17599,12 @@ export namespace monitoring {
          * field may not exceed 2048 Unicode characters
          * in length.
          */
-        filter?: pulumi.Input<string>;
+        filter?: pulumi.Input<string | undefined>;
         /**
          * A value against which to compare the time
          * series.
          */
-        thresholdValue?: pulumi.Input<number>;
+        thresholdValue?: pulumi.Input<number | undefined>;
         /**
          * The number/percent of time series for which
          * the comparison must hold in order for the
@@ -17616,7 +17616,7 @@ export namespace monitoring {
          * denominatorAggregations are specified.
          * Structure is documented below.
          */
-        trigger?: pulumi.Input<inputs.monitoring.AlertPolicyConditionConditionThresholdTrigger>;
+        trigger?: pulumi.Input<inputs.monitoring.AlertPolicyConditionConditionThresholdTrigger | undefined>;
     }
 
     export interface AlertPolicyConditionConditionThresholdAggregation {
@@ -17636,7 +17636,7 @@ export namespace monitoring {
          * this field must be defined;
          * otherwise an error is returned.
          */
-        alignmentPeriod?: pulumi.Input<string>;
+        alignmentPeriod?: pulumi.Input<string | undefined>;
         /**
          * The approach to be used to combine
          * time series. Not all reducer
@@ -17657,7 +17657,7 @@ export namespace monitoring {
          * returned.
          * Possible values are `REDUCE_NONE`, `REDUCE_MEAN`, `REDUCE_MIN`, `REDUCE_MAX`, `REDUCE_SUM`, `REDUCE_STDDEV`, `REDUCE_COUNT`, `REDUCE_COUNT_TRUE`, `REDUCE_COUNT_FALSE`, `REDUCE_FRACTION_TRUE`, `REDUCE_PERCENTILE_99`, `REDUCE_PERCENTILE_95`, `REDUCE_PERCENTILE_50`, and `REDUCE_PERCENTILE_05`.
          */
-        crossSeriesReducer?: pulumi.Input<string>;
+        crossSeriesReducer?: pulumi.Input<string | undefined>;
         /**
          * The set of fields to preserve when
          * crossSeriesReducer is specified.
@@ -17685,7 +17685,7 @@ export namespace monitoring {
          * is not defined, this field is
          * ignored.
          */
-        groupByFields?: pulumi.Input<pulumi.Input<string>[]>;
+        groupByFields?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The approach to be used to align
          * individual time series. Not all
@@ -17706,7 +17706,7 @@ export namespace monitoring {
          * returned.
          * Possible values are `ALIGN_NONE`, `ALIGN_DELTA`, `ALIGN_RATE`, `ALIGN_INTERPOLATE`, `ALIGN_NEXT_OLDER`, `ALIGN_MIN`, `ALIGN_MAX`, `ALIGN_MEAN`, `ALIGN_COUNT`, `ALIGN_SUM`, `ALIGN_STDDEV`, `ALIGN_COUNT_TRUE`, `ALIGN_COUNT_FALSE`, `ALIGN_FRACTION_TRUE`, `ALIGN_PERCENTILE_99`, `ALIGN_PERCENTILE_95`, `ALIGN_PERCENTILE_50`, `ALIGN_PERCENTILE_05`, and `ALIGN_PERCENT_CHANGE`.
          */
-        perSeriesAligner?: pulumi.Input<string>;
+        perSeriesAligner?: pulumi.Input<string | undefined>;
     }
 
     export interface AlertPolicyConditionConditionThresholdDenominatorAggregation {
@@ -17726,7 +17726,7 @@ export namespace monitoring {
          * this field must be defined;
          * otherwise an error is returned.
          */
-        alignmentPeriod?: pulumi.Input<string>;
+        alignmentPeriod?: pulumi.Input<string | undefined>;
         /**
          * The approach to be used to combine
          * time series. Not all reducer
@@ -17747,7 +17747,7 @@ export namespace monitoring {
          * returned.
          * Possible values are `REDUCE_NONE`, `REDUCE_MEAN`, `REDUCE_MIN`, `REDUCE_MAX`, `REDUCE_SUM`, `REDUCE_STDDEV`, `REDUCE_COUNT`, `REDUCE_COUNT_TRUE`, `REDUCE_COUNT_FALSE`, `REDUCE_FRACTION_TRUE`, `REDUCE_PERCENTILE_99`, `REDUCE_PERCENTILE_95`, `REDUCE_PERCENTILE_50`, and `REDUCE_PERCENTILE_05`.
          */
-        crossSeriesReducer?: pulumi.Input<string>;
+        crossSeriesReducer?: pulumi.Input<string | undefined>;
         /**
          * The set of fields to preserve when
          * crossSeriesReducer is specified.
@@ -17775,7 +17775,7 @@ export namespace monitoring {
          * is not defined, this field is
          * ignored.
          */
-        groupByFields?: pulumi.Input<pulumi.Input<string>[]>;
+        groupByFields?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The approach to be used to align
          * individual time series. Not all
@@ -17796,7 +17796,7 @@ export namespace monitoring {
          * returned.
          * Possible values are `ALIGN_NONE`, `ALIGN_DELTA`, `ALIGN_RATE`, `ALIGN_INTERPOLATE`, `ALIGN_NEXT_OLDER`, `ALIGN_MIN`, `ALIGN_MAX`, `ALIGN_MEAN`, `ALIGN_COUNT`, `ALIGN_SUM`, `ALIGN_STDDEV`, `ALIGN_COUNT_TRUE`, `ALIGN_COUNT_FALSE`, `ALIGN_FRACTION_TRUE`, `ALIGN_PERCENTILE_99`, `ALIGN_PERCENTILE_95`, `ALIGN_PERCENTILE_50`, `ALIGN_PERCENTILE_05`, and `ALIGN_PERCENT_CHANGE`.
          */
-        perSeriesAligner?: pulumi.Input<string>;
+        perSeriesAligner?: pulumi.Input<string | undefined>;
     }
 
     export interface AlertPolicyConditionConditionThresholdTrigger {
@@ -17805,18 +17805,18 @@ export namespace monitoring {
          * that must fail the predicate for the
          * condition to be triggered.
          */
-        count?: pulumi.Input<number>;
+        count?: pulumi.Input<number | undefined>;
         /**
          * The percentage of time series that
          * must fail the predicate for the
          * condition to be triggered.
          */
-        percent?: pulumi.Input<number>;
+        percent?: pulumi.Input<number | undefined>;
     }
 
     export interface AlertPolicyCreationRecord {
-        mutateTime?: pulumi.Input<string>;
-        mutatedBy?: pulumi.Input<string>;
+        mutateTime?: pulumi.Input<string | undefined>;
+        mutatedBy?: pulumi.Input<string | undefined>;
     }
 
     export interface AlertPolicyDocumentation {
@@ -17826,12 +17826,12 @@ export namespace monitoring {
          * exceed more than 10,240 bytes when encoded in UTF-8 format,
          * whichever is smaller.
          */
-        content?: pulumi.Input<string>;
+        content?: pulumi.Input<string | undefined>;
         /**
          * The format of the content field. Presently, only the value
          * "text/markdown" is supported.
          */
-        mimeType?: pulumi.Input<string>;
+        mimeType?: pulumi.Input<string | undefined>;
     }
 
     export interface CustomServiceTelemetry {
@@ -17840,14 +17840,14 @@ export namespace monitoring {
          * Formatted as described in
          * https://cloud.google.com/apis/design/resource_names.
          */
-        resourceName?: pulumi.Input<string>;
+        resourceName?: pulumi.Input<string | undefined>;
     }
 
     export interface MetricDescriptorLabel {
         /**
          * A human-readable description for the label.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * The key for this label. The key must not exceed 100 characters. The first character of the key must be an upper- or lower-case letter, the remaining characters must be letters, digits or underscores, and the key must match the regular expression [a-zA-Z][a-zA-Z0-9_]*
          */
@@ -17857,18 +17857,18 @@ export namespace monitoring {
          * Default value is `STRING`.
          * Possible values are `STRING`, `BOOL`, and `INT64`.
          */
-        valueType?: pulumi.Input<string>;
+        valueType?: pulumi.Input<string | undefined>;
     }
 
     export interface MetricDescriptorMetadata {
         /**
          * The delay of data points caused by ingestion. Data points older than this age are guaranteed to be ingested and available to be read, excluding data loss due to errors. In `[duration format](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf?&_ga=2.264881487.1507873253.1593446723-935052455.1591817775#google.protobuf.Duration)`.
          */
-        ingestDelay?: pulumi.Input<string>;
+        ingestDelay?: pulumi.Input<string | undefined>;
         /**
          * The sampling period of metric data points. For metrics which are written periodically, consecutive data points are stored at this time interval, excluding data loss due to errors. Metrics with a higher granularity have a smaller sampling period. In `[duration format](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf?&_ga=2.264881487.1507873253.1593446723-935052455.1591817775#google.protobuf.Duration)`.
          */
-        samplePeriod?: pulumi.Input<string>;
+        samplePeriod?: pulumi.Input<string | undefined>;
     }
 
     export interface NotificationChannelSensitiveLabels {
@@ -17876,17 +17876,17 @@ export namespace monitoring {
          * An authorization token for a notification channel. Channel types that support this field include: slack
          * **Note**: This property is sensitive and will not be displayed in the plan.
          */
-        authToken?: pulumi.Input<string>;
+        authToken?: pulumi.Input<string | undefined>;
         /**
          * An password for a notification channel. Channel types that support this field include: webhookBasicauth
          * **Note**: This property is sensitive and will not be displayed in the plan.
          */
-        password?: pulumi.Input<string>;
+        password?: pulumi.Input<string | undefined>;
         /**
          * An servicekey token for a notification channel. Channel types that support this field include: pagerduty
          * **Note**: This property is sensitive and will not be displayed in the plan.
          */
-        serviceKey?: pulumi.Input<string>;
+        serviceKey?: pulumi.Input<string | undefined>;
     }
 
     export interface SloBasicSli {
@@ -17894,12 +17894,12 @@ export namespace monitoring {
          * Availability based SLI, dervied from count of requests made to this service that return successfully.
          * Structure is documented below.
          */
-        availability?: pulumi.Input<inputs.monitoring.SloBasicSliAvailability>;
+        availability?: pulumi.Input<inputs.monitoring.SloBasicSliAvailability | undefined>;
         /**
          * Parameters for a latency threshold SLI.
          * Structure is documented below.
          */
-        latency?: pulumi.Input<inputs.monitoring.SloBasicSliLatency>;
+        latency?: pulumi.Input<inputs.monitoring.SloBasicSliLatency | undefined>;
         /**
          * An optional set of locations to which this SLI is relevant.
          * Telemetry from other locations will not be used to calculate
@@ -17908,7 +17908,7 @@ export namespace monitoring {
          * that don't support breaking down by location, setting this
          * field will result in an error.
          */
-        locations?: pulumi.Input<pulumi.Input<string>[]>;
+        locations?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * An optional set of RPCs to which this SLI is relevant.
          * Telemetry from other methods will not be used to calculate
@@ -17917,7 +17917,7 @@ export namespace monitoring {
          * breaking down by method, setting this field will result in an
          * error.
          */
-        methods?: pulumi.Input<pulumi.Input<string>[]>;
+        methods?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The set of API versions to which this SLI is relevant.
          * Telemetry from other API versions will not be used to
@@ -17926,14 +17926,14 @@ export namespace monitoring {
          * that don't support breaking down by version, setting this
          * field will result in an error.
          */
-        versions?: pulumi.Input<pulumi.Input<string>[]>;
+        versions?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface SloBasicSliAvailability {
         /**
          * Whether an availability SLI is enabled or not. Must be set to `true. Defaults to `true`.
          */
-        enabled?: pulumi.Input<boolean>;
+        enabled?: pulumi.Input<boolean | undefined>;
     }
 
     export interface SloBasicSliLatency {
@@ -17954,7 +17954,7 @@ export namespace monitoring {
          * measuring good service and total service.
          * Structure is documented below.
          */
-        distributionCut?: pulumi.Input<inputs.monitoring.SloRequestBasedSliDistributionCut>;
+        distributionCut?: pulumi.Input<inputs.monitoring.SloRequestBasedSliDistributionCut | undefined>;
         /**
          * A means to compute a ratio of `goodService` to `totalService`.
          * Defines computing this ratio with two TimeSeries [monitoring filters](https://cloud.google.com/monitoring/api/v3/filters)
@@ -17963,7 +17963,7 @@ export namespace monitoring {
          * will be assumed.
          * Structure is documented below.
          */
-        goodTotalRatio?: pulumi.Input<inputs.monitoring.SloRequestBasedSliGoodTotalRatio>;
+        goodTotalRatio?: pulumi.Input<inputs.monitoring.SloRequestBasedSliGoodTotalRatio | undefined>;
     }
 
     export interface SloRequestBasedSliDistributionCut {
@@ -17992,13 +17992,13 @@ export namespace monitoring {
          * will be set to "infinity", defining an open range
          * ">= range.min"
          */
-        max?: pulumi.Input<number>;
+        max?: pulumi.Input<number | undefined>;
         /**
          * Min value for the range (inclusive). If not given,
          * will be set to "-infinity", defining an open range
          * "< range.max"
          */
-        min?: pulumi.Input<number>;
+        min?: pulumi.Input<number | undefined>;
     }
 
     export interface SloRequestBasedSliGoodTotalRatio {
@@ -18012,7 +18012,7 @@ export namespace monitoring {
          * Must have ValueType = DOUBLE or ValueType = INT64 and
          * must have MetricKind = DELTA or MetricKind = CUMULATIVE.
          */
-        badServiceFilter?: pulumi.Input<string>;
+        badServiceFilter?: pulumi.Input<string | undefined>;
         /**
          * A TimeSeries [monitoring filter](https://cloud.google.com/monitoring/api/v3/filters)
          * quantifying good service provided. Exactly two of
@@ -18021,7 +18021,7 @@ export namespace monitoring {
          * Must have ValueType = DOUBLE or ValueType = INT64 and
          * must have MetricKind = DELTA or MetricKind = CUMULATIVE.
          */
-        goodServiceFilter?: pulumi.Input<string>;
+        goodServiceFilter?: pulumi.Input<string | undefined>;
         /**
          * A TimeSeries [monitoring filter](https://cloud.google.com/monitoring/api/v3/filters)
          * quantifying total demanded service. Exactly two of
@@ -18030,7 +18030,7 @@ export namespace monitoring {
          * Must have ValueType = DOUBLE or ValueType = INT64 and
          * must have MetricKind = DELTA or MetricKind = CUMULATIVE.
          */
-        totalServiceFilter?: pulumi.Input<string>;
+        totalServiceFilter?: pulumi.Input<string | undefined>;
     }
 
     export interface SloWindowsBasedSli {
@@ -18041,7 +18041,7 @@ export namespace monitoring {
          * `goodTotalRatioThreshold`, `metricMeanInRange`,
          * `metricSumInRange` must be set for `windowsBasedSli`.
          */
-        goodBadMetricFilter?: pulumi.Input<string>;
+        goodBadMetricFilter?: pulumi.Input<string | undefined>;
         /**
          * Criterion that describes a window as good if its performance is
          * high enough. One of `goodBadMetricFilter`,
@@ -18049,7 +18049,7 @@ export namespace monitoring {
          * `metricSumInRange` must be set for `windowsBasedSli`.
          * Structure is documented below.
          */
-        goodTotalRatioThreshold?: pulumi.Input<inputs.monitoring.SloWindowsBasedSliGoodTotalRatioThreshold>;
+        goodTotalRatioThreshold?: pulumi.Input<inputs.monitoring.SloWindowsBasedSliGoodTotalRatioThreshold | undefined>;
         /**
          * Criterion that describes a window as good if the metric's value
          * is in a good range, *averaged* across returned streams.
@@ -18060,7 +18060,7 @@ export namespace monitoring {
          * `range.min <= X < range.max` for a good window.
          * Structure is documented below.
          */
-        metricMeanInRange?: pulumi.Input<inputs.monitoring.SloWindowsBasedSliMetricMeanInRange>;
+        metricMeanInRange?: pulumi.Input<inputs.monitoring.SloWindowsBasedSliMetricMeanInRange | undefined>;
         /**
          * Criterion that describes a window as good if the metric's value
          * is in a good range, *summed* across returned streams.
@@ -18071,13 +18071,13 @@ export namespace monitoring {
          * `metricSumInRange` must be set for `windowsBasedSli`.
          * Structure is documented below.
          */
-        metricSumInRange?: pulumi.Input<inputs.monitoring.SloWindowsBasedSliMetricSumInRange>;
+        metricSumInRange?: pulumi.Input<inputs.monitoring.SloWindowsBasedSliMetricSumInRange | undefined>;
         /**
          * Duration over which window quality is evaluated, given as a
          * duration string "{X}s" representing X seconds. Must be an
          * integer fraction of a day and at least 60s.
          */
-        windowPeriod?: pulumi.Input<string>;
+        windowPeriod?: pulumi.Input<string | undefined>;
     }
 
     export interface SloWindowsBasedSliGoodTotalRatioThreshold {
@@ -18085,18 +18085,18 @@ export namespace monitoring {
          * Basic SLI to evaluate to judge window quality.
          * Structure is documented below.
          */
-        basicSliPerformance?: pulumi.Input<inputs.monitoring.SloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformance>;
+        basicSliPerformance?: pulumi.Input<inputs.monitoring.SloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformance | undefined>;
         /**
          * Request-based SLI to evaluate to judge window quality.
          * Structure is documented below.
          */
-        performance?: pulumi.Input<inputs.monitoring.SloWindowsBasedSliGoodTotalRatioThresholdPerformance>;
+        performance?: pulumi.Input<inputs.monitoring.SloWindowsBasedSliGoodTotalRatioThresholdPerformance | undefined>;
         /**
          * A duration string, e.g. 10s.
          * Good service is defined to be the count of requests made to
          * this service that return in no more than threshold.
          */
-        threshold?: pulumi.Input<number>;
+        threshold?: pulumi.Input<number | undefined>;
     }
 
     export interface SloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformance {
@@ -18113,7 +18113,7 @@ export namespace monitoring {
          * that don't support breaking down by location, setting this
          * field will result in an error.
          */
-        locations?: pulumi.Input<pulumi.Input<string>[]>;
+        locations?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * An optional set of RPCs to which this SLI is relevant.
          * Telemetry from other methods will not be used to calculate
@@ -18122,7 +18122,7 @@ export namespace monitoring {
          * breaking down by method, setting this field will result in an
          * error.
          */
-        methods?: pulumi.Input<pulumi.Input<string>[]>;
+        methods?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The set of API versions to which this SLI is relevant.
          * Telemetry from other API versions will not be used to
@@ -18131,7 +18131,7 @@ export namespace monitoring {
          * that don't support breaking down by version, setting this
          * field will result in an error.
          */
-        versions?: pulumi.Input<pulumi.Input<string>[]>;
+        versions?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface SloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceLatency {
@@ -18152,7 +18152,7 @@ export namespace monitoring {
          * measuring good service and total service.
          * Structure is documented below.
          */
-        distributionCut?: pulumi.Input<inputs.monitoring.SloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCut>;
+        distributionCut?: pulumi.Input<inputs.monitoring.SloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCut | undefined>;
         /**
          * A means to compute a ratio of `goodService` to `totalService`.
          * Defines computing this ratio with two TimeSeries [monitoring filters](https://cloud.google.com/monitoring/api/v3/filters)
@@ -18161,7 +18161,7 @@ export namespace monitoring {
          * will be assumed.
          * Structure is documented below.
          */
-        goodTotalRatio?: pulumi.Input<inputs.monitoring.SloWindowsBasedSliGoodTotalRatioThresholdPerformanceGoodTotalRatio>;
+        goodTotalRatio?: pulumi.Input<inputs.monitoring.SloWindowsBasedSliGoodTotalRatioThresholdPerformanceGoodTotalRatio | undefined>;
     }
 
     export interface SloWindowsBasedSliGoodTotalRatioThresholdPerformanceDistributionCut {
@@ -18190,13 +18190,13 @@ export namespace monitoring {
          * will be set to "infinity", defining an open range
          * ">= range.min"
          */
-        max?: pulumi.Input<number>;
+        max?: pulumi.Input<number | undefined>;
         /**
          * Min value for the range (inclusive). If not given,
          * will be set to "-infinity", defining an open range
          * "< range.max"
          */
-        min?: pulumi.Input<number>;
+        min?: pulumi.Input<number | undefined>;
     }
 
     export interface SloWindowsBasedSliGoodTotalRatioThresholdPerformanceGoodTotalRatio {
@@ -18210,7 +18210,7 @@ export namespace monitoring {
          * Must have ValueType = DOUBLE or ValueType = INT64 and
          * must have MetricKind = DELTA or MetricKind = CUMULATIVE.
          */
-        badServiceFilter?: pulumi.Input<string>;
+        badServiceFilter?: pulumi.Input<string | undefined>;
         /**
          * A TimeSeries [monitoring filter](https://cloud.google.com/monitoring/api/v3/filters)
          * quantifying good service provided. Exactly two of
@@ -18219,7 +18219,7 @@ export namespace monitoring {
          * Must have ValueType = DOUBLE or ValueType = INT64 and
          * must have MetricKind = DELTA or MetricKind = CUMULATIVE.
          */
-        goodServiceFilter?: pulumi.Input<string>;
+        goodServiceFilter?: pulumi.Input<string | undefined>;
         /**
          * A TimeSeries [monitoring filter](https://cloud.google.com/monitoring/api/v3/filters)
          * quantifying total demanded service. Exactly two of
@@ -18228,7 +18228,7 @@ export namespace monitoring {
          * Must have ValueType = DOUBLE or ValueType = INT64 and
          * must have MetricKind = DELTA or MetricKind = CUMULATIVE.
          */
-        totalServiceFilter?: pulumi.Input<string>;
+        totalServiceFilter?: pulumi.Input<string | undefined>;
     }
 
     export interface SloWindowsBasedSliMetricMeanInRange {
@@ -18260,13 +18260,13 @@ export namespace monitoring {
          * will be set to "infinity", defining an open range
          * ">= range.min"
          */
-        max?: pulumi.Input<number>;
+        max?: pulumi.Input<number | undefined>;
         /**
          * Min value for the range (inclusive). If not given,
          * will be set to "-infinity", defining an open range
          * "< range.max"
          */
-        min?: pulumi.Input<number>;
+        min?: pulumi.Input<number | undefined>;
     }
 
     export interface SloWindowsBasedSliMetricSumInRange {
@@ -18298,13 +18298,13 @@ export namespace monitoring {
          * will be set to "infinity", defining an open range
          * ">= range.min"
          */
-        max?: pulumi.Input<number>;
+        max?: pulumi.Input<number | undefined>;
         /**
          * Min value for the range (inclusive). If not given,
          * will be set to "-infinity", defining an open range
          * "< range.max"
          */
-        min?: pulumi.Input<number>;
+        min?: pulumi.Input<number | undefined>;
     }
 
     export interface UptimeCheckConfigContentMatcher {
@@ -18317,7 +18317,7 @@ export namespace monitoring {
          * Default value is `CONTAINS_STRING`.
          * Possible values are `CONTAINS_STRING`, `NOT_CONTAINS_STRING`, `MATCHES_REGEX`, and `NON_MATCHES_REGEX`.
          */
-        matcher?: pulumi.Input<string>;
+        matcher?: pulumi.Input<string | undefined>;
     }
 
     export interface UptimeCheckConfigHttpCheck {
@@ -18325,46 +18325,46 @@ export namespace monitoring {
          * The authentication information. Optional when creating an HTTP check; defaults to empty.
          * Structure is documented below.
          */
-        authInfo?: pulumi.Input<inputs.monitoring.UptimeCheckConfigHttpCheckAuthInfo>;
+        authInfo?: pulumi.Input<inputs.monitoring.UptimeCheckConfigHttpCheckAuthInfo | undefined>;
         /**
          * The request body associated with the HTTP POST request. If contentType is URL_ENCODED, the body passed in must be URL-encoded. Users can provide a Content-Length header via the headers field or the API will do so. If the requestMethod is GET and body is not empty, the API will return an error. The maximum byte size is 1 megabyte. Note - As with all bytes fields JSON representations are base64 encoded. e.g. "foo=bar" in URL-encoded form is "foo%3Dbar" and in base64 encoding is "Zm9vJTI1M0RiYXI=".
          */
-        body?: pulumi.Input<string>;
+        body?: pulumi.Input<string | undefined>;
         /**
          * The content type to use for the check.
          * Possible values are `TYPE_UNSPECIFIED` and `URL_ENCODED`.
          */
-        contentType?: pulumi.Input<string>;
+        contentType?: pulumi.Input<string | undefined>;
         /**
          * The list of headers to send as part of the uptime check request. If two headers have the same key and different values, they should be entered as a single header, with the value being a comma-separated list of all the desired values as described at https://www.w3.org/Protocols/rfc2616/rfc2616.txt (page 31). Entering two separate headers with the same key in a Create call will cause the first to be overwritten by the second. The maximum number of headers allowed is 100.
          */
-        headers?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        headers?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * Boolean specifying whether to encrypt the header information. Encryption should be specified for any headers related to authentication that you do not wish to be seen when retrieving the configuration. The server will be responsible for encrypting the headers. On Get/List calls, if maskHeaders is set to True then the headers will be obscured with ******.
          */
-        maskHeaders?: pulumi.Input<boolean>;
+        maskHeaders?: pulumi.Input<boolean | undefined>;
         /**
          * The path to the page to run the check against. Will be combined with the host (specified within the MonitoredResource) and port to construct the full URL. Optional (defaults to "/").
          */
-        path?: pulumi.Input<string>;
+        path?: pulumi.Input<string | undefined>;
         /**
          * The port to the page to run the check against. Will be combined with host (specified within the MonitoredResource) to construct the full URL.
          */
-        port?: pulumi.Input<number>;
+        port?: pulumi.Input<number | undefined>;
         /**
          * The HTTP request method to use for the check. If set to METHOD_UNSPECIFIED then requestMethod defaults to GET.
          * Default value is `GET`.
          * Possible values are `METHOD_UNSPECIFIED`, `GET`, and `POST`.
          */
-        requestMethod?: pulumi.Input<string>;
+        requestMethod?: pulumi.Input<string | undefined>;
         /**
          * If true, use HTTPS instead of HTTP to run the check.
          */
-        useSsl?: pulumi.Input<boolean>;
+        useSsl?: pulumi.Input<boolean | undefined>;
         /**
          * Boolean specifying whether to include SSL certificate validation as a part of the Uptime check. Only applies to checks where monitoredResource is set to uptime_url. If useSsl is false, setting validateSsl to true has no effect.
          */
-        validateSsl?: pulumi.Input<boolean>;
+        validateSsl?: pulumi.Input<boolean | undefined>;
     }
 
     export interface UptimeCheckConfigHttpCheckAuthInfo {
@@ -18394,12 +18394,12 @@ export namespace monitoring {
         /**
          * The group of resources being monitored. Should be the `name` of a group
          */
-        groupId?: pulumi.Input<string>;
+        groupId?: pulumi.Input<string | undefined>;
         /**
          * The resource type of the group members.
          * Possible values are `RESOURCE_TYPE_UNSPECIFIED`, `INSTANCE`, and `AWS_ELB_LOAD_BALANCER`.
          */
-        resourceType?: pulumi.Input<string>;
+        resourceType?: pulumi.Input<string | undefined>;
     }
 
     export interface UptimeCheckConfigTcpCheck {
@@ -18415,22 +18415,22 @@ export namespace networkmanagement {
         /**
          * A Compute Engine instance URI.
          */
-        instance?: pulumi.Input<string>;
+        instance?: pulumi.Input<string | undefined>;
         /**
          * The IP address of the endpoint, which can be an external or
          * internal IP. An IPv6 address is only allowed when the test's
          * destination is a global load balancer VIP.
          */
-        ipAddress?: pulumi.Input<string>;
+        ipAddress?: pulumi.Input<string | undefined>;
         /**
          * A Compute Engine network URI.
          */
-        network?: pulumi.Input<string>;
+        network?: pulumi.Input<string | undefined>;
         /**
          * The IP protocol port of the endpoint. Only applicable when
          * protocol is TCP or UDP.
          */
-        port?: pulumi.Input<number>;
+        port?: pulumi.Input<number | undefined>;
         /**
          * Project ID where the endpoint is located. The Project ID can be
          * derived from the URI if you provide a VM instance or network URI.
@@ -18441,34 +18441,34 @@ export namespace networkmanagement {
          * network that the IP address resides in is defined in the host
          * project.
          */
-        projectId?: pulumi.Input<string>;
+        projectId?: pulumi.Input<string | undefined>;
     }
 
     export interface ConnectivityTestSource {
         /**
          * A Compute Engine instance URI.
          */
-        instance?: pulumi.Input<string>;
+        instance?: pulumi.Input<string | undefined>;
         /**
          * The IP address of the endpoint, which can be an external or
          * internal IP. An IPv6 address is only allowed when the test's
          * destination is a global load balancer VIP.
          */
-        ipAddress?: pulumi.Input<string>;
+        ipAddress?: pulumi.Input<string | undefined>;
         /**
          * A Compute Engine network URI.
          */
-        network?: pulumi.Input<string>;
+        network?: pulumi.Input<string | undefined>;
         /**
          * Type of the network where the endpoint is located.
          * Possible values are `GCP_NETWORK` and `NON_GCP_NETWORK`.
          */
-        networkType?: pulumi.Input<string>;
+        networkType?: pulumi.Input<string | undefined>;
         /**
          * The IP protocol port of the endpoint. Only applicable when
          * protocol is TCP or UDP.
          */
-        port?: pulumi.Input<number>;
+        port?: pulumi.Input<number | undefined>;
         /**
          * Project ID where the endpoint is located. The Project ID can be
          * derived from the URI if you provide a VM instance or network URI.
@@ -18479,7 +18479,7 @@ export namespace networkmanagement {
          * network that the IP address resides in is defined in the host
          * project.
          */
-        projectId?: pulumi.Input<string>;
+        projectId?: pulumi.Input<string | undefined>;
     }
 }
 
@@ -18493,18 +18493,18 @@ export namespace notebooks {
         /**
          * The tag of the container image. If not specified, this defaults to the latest tag.
          */
-        tag?: pulumi.Input<string>;
+        tag?: pulumi.Input<string | undefined>;
     }
 
     export interface EnvironmentVmImage {
         /**
          * Use this VM image family to find the image; the newest image in this family will be used.
          */
-        imageFamily?: pulumi.Input<string>;
+        imageFamily?: pulumi.Input<string | undefined>;
         /**
          * Use VM image name to find the image.
          */
-        imageName?: pulumi.Input<string>;
+        imageName?: pulumi.Input<string | undefined>;
         /**
          * The name of the Google Cloud project that this VM image belongs to.
          * Format: projects/{project_id}
@@ -18533,17 +18533,17 @@ export namespace notebooks {
         /**
          * The tag of the container image. If not specified, this defaults to the latest tag.
          */
-        tag?: pulumi.Input<string>;
+        tag?: pulumi.Input<string | undefined>;
     }
 
     export interface InstanceIamBindingCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
 
     export interface InstanceIamMemberCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
@@ -18555,30 +18555,30 @@ export namespace notebooks {
          * This baseline is initially derived from the implicitly trusted boot image when the instance is created.
          * Enabled by default.
          */
-        enableIntegrityMonitoring?: pulumi.Input<boolean>;
+        enableIntegrityMonitoring?: pulumi.Input<boolean | undefined>;
         /**
          * Defines whether the instance has Secure Boot enabled. Secure Boot helps ensure that the system only runs
          * authentic software by verifying the digital signature of all boot components, and halting the boot process
          * if signature verification fails.
          * Disabled by default.
          */
-        enableSecureBoot?: pulumi.Input<boolean>;
+        enableSecureBoot?: pulumi.Input<boolean | undefined>;
         /**
          * Defines whether the instance has the vTPM enabled.
          * Enabled by default.
          */
-        enableVtpm?: pulumi.Input<boolean>;
+        enableVtpm?: pulumi.Input<boolean | undefined>;
     }
 
     export interface InstanceVmImage {
         /**
          * Use this VM image family to find the image; the newest image in this family will be used.
          */
-        imageFamily?: pulumi.Input<string>;
+        imageFamily?: pulumi.Input<string | undefined>;
         /**
          * Use VM image name to find the image.
          */
-        imageName?: pulumi.Input<string>;
+        imageName?: pulumi.Input<string | undefined>;
         /**
          * The name of the Google Cloud project that this VM image belongs to.
          * Format: projects/{project_id}
@@ -18590,7 +18590,7 @@ export namespace notebooks {
 export namespace organizations {
     export interface AccessApprovalSettingsEnrolledService {
         cloudProduct: pulumi.Input<string>;
-        enrollmentLevel?: pulumi.Input<string>;
+        enrollmentLevel?: pulumi.Input<string | undefined>;
     }
 
     export interface GetIAMPolicyAuditConfig {
@@ -18655,13 +18655,13 @@ export namespace organizations {
     }
 
     export interface IAMBindingCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
 
     export interface IAMMemberCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
@@ -18675,7 +18675,7 @@ export namespace organizations {
          * * **group:{emailid}**: An email address that represents a Google group. For example, admins@example.com.
          * * **domain:{domain}**: A G Suite domain (primary, instead of alias) name that represents all the users of that domain. For example, google.com or example.com.
          */
-        exemptedMembers?: pulumi.Input<pulumi.Input<string>[]>;
+        exemptedMembers?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Permission type for which logging is to be configured.  Must be one of `DATA_READ`, `DATA_WRITE`, or `ADMIN_READ`.
          */
@@ -18693,39 +18693,39 @@ export namespace organizations {
         /**
          * or `deny` - (Optional) One or the other must be set.
          */
-        allow?: pulumi.Input<inputs.organizations.PolicyListPolicyAllow>;
-        deny?: pulumi.Input<inputs.organizations.PolicyListPolicyDeny>;
+        allow?: pulumi.Input<inputs.organizations.PolicyListPolicyAllow | undefined>;
+        deny?: pulumi.Input<inputs.organizations.PolicyListPolicyDeny | undefined>;
         /**
          * If set to true, the values from the effective Policy of the parent resource
          * are inherited, meaning the values set in this Policy are added to the values inherited up the hierarchy.
          */
-        inheritFromParent?: pulumi.Input<boolean>;
+        inheritFromParent?: pulumi.Input<boolean | undefined>;
         /**
          * The Google Cloud Console will try to default to a configuration that matches the value specified in this field.
          */
-        suggestedValue?: pulumi.Input<string>;
+        suggestedValue?: pulumi.Input<string | undefined>;
     }
 
     export interface PolicyListPolicyAllow {
         /**
          * The policy allows or denies all values.
          */
-        all?: pulumi.Input<boolean>;
+        all?: pulumi.Input<boolean | undefined>;
         /**
          * The policy can define specific values that are allowed or denied.
          */
-        values?: pulumi.Input<pulumi.Input<string>[]>;
+        values?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface PolicyListPolicyDeny {
         /**
          * The policy allows or denies all values.
          */
-        all?: pulumi.Input<boolean>;
+        all?: pulumi.Input<boolean | undefined>;
         /**
          * The policy can define specific values that are allowed or denied.
          */
-        values?: pulumi.Input<pulumi.Input<string>[]>;
+        values?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface PolicyRestorePolicy {
@@ -18743,14 +18743,14 @@ export namespace osconfig {
          * for example "env=prod or env=staging".
          * Structure is documented below.
          */
-        groupLabels?: pulumi.Input<pulumi.Input<inputs.osconfig.GuestPoliciesAssignmentGroupLabel>[]>;
+        groupLabels?: pulumi.Input<pulumi.Input<inputs.osconfig.GuestPoliciesAssignmentGroupLabel>[] | undefined>;
         /**
          * Targets VM instances whose name starts with one of these prefixes.
          * Like labels, this is another way to group VM instances when targeting configs,
          * for example prefix="prod-".
          * Only supported for project-level policies.
          */
-        instanceNamePrefixes?: pulumi.Input<pulumi.Input<string>[]>;
+        instanceNamePrefixes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Targets any of the instances specified. Instances are specified by their URI in the form
          * zones/[ZONE]/instances/[INSTANCE_NAME].
@@ -18758,18 +18758,18 @@ export namespace osconfig {
          * by the instance or to target specific VM instances for development and testing.
          * Only supported for project-level policies and must reference instances within this project.
          */
-        instances?: pulumi.Input<pulumi.Input<string>[]>;
+        instances?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Targets VM instances matching at least one of the following OS types.
          * VM instances must match all supplied criteria for a given OsType to be included.
          * Structure is documented below.
          */
-        osTypes?: pulumi.Input<pulumi.Input<inputs.osconfig.GuestPoliciesAssignmentOsType>[]>;
+        osTypes?: pulumi.Input<pulumi.Input<inputs.osconfig.GuestPoliciesAssignmentOsType>[] | undefined>;
         /**
          * Targets instances in any of these zones. Leave empty to target instances in any zone.
          * Zonal targeting is uncommon and is supported to facilitate the management of changes by zone.
          */
-        zones?: pulumi.Input<pulumi.Input<string>[]>;
+        zones?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface GuestPoliciesAssignmentGroupLabel {
@@ -18783,15 +18783,15 @@ export namespace osconfig {
         /**
          * Targets VM instances with OS Inventory enabled and having the following OS architecture.
          */
-        osArchitecture?: pulumi.Input<string>;
+        osArchitecture?: pulumi.Input<string | undefined>;
         /**
          * Targets VM instances with OS Inventory enabled and having the following OS short name, for example "debian" or "windows".
          */
-        osShortName?: pulumi.Input<string>;
+        osShortName?: pulumi.Input<string | undefined>;
         /**
          * Targets VM instances with OS Inventory enabled and having the following following OS version.
          */
-        osVersion?: pulumi.Input<string>;
+        osVersion?: pulumi.Input<string | undefined>;
     }
 
     export interface GuestPoliciesPackage {
@@ -18804,7 +18804,7 @@ export namespace osconfig {
          * Default value is `INSTALLED`.
          * Possible values are `INSTALLED`, `UPDATED`, and `REMOVED`.
          */
-        desiredState?: pulumi.Input<string>;
+        desiredState?: pulumi.Input<string | undefined>;
         /**
          * Type of package manager that can be used to install this package. If a system does not have the package manager,
          * the package is not installed or removed no error message is returned. By default, or if you specify ANY,
@@ -18814,7 +18814,7 @@ export namespace osconfig {
          * Default value is `ANY`.
          * Possible values are `ANY`, `APT`, `YUM`, `ZYPPER`, and `GOO`.
          */
-        manager?: pulumi.Input<string>;
+        manager?: pulumi.Input<string | undefined>;
         /**
          * Unique identifier for the recipe. Only one recipe with a given name is installed on an instance.
          * Names are also used to identify resources which helps to determine whether guest policies have conflicts.
@@ -18829,22 +18829,22 @@ export namespace osconfig {
          * An Apt Repository.
          * Structure is documented below.
          */
-        apt?: pulumi.Input<inputs.osconfig.GuestPoliciesPackageRepositoryApt>;
+        apt?: pulumi.Input<inputs.osconfig.GuestPoliciesPackageRepositoryApt | undefined>;
         /**
          * A Goo Repository.
          * Structure is documented below.
          */
-        goo?: pulumi.Input<inputs.osconfig.GuestPoliciesPackageRepositoryGoo>;
+        goo?: pulumi.Input<inputs.osconfig.GuestPoliciesPackageRepositoryGoo | undefined>;
         /**
          * A Yum Repository.
          * Structure is documented below.
          */
-        yum?: pulumi.Input<inputs.osconfig.GuestPoliciesPackageRepositoryYum>;
+        yum?: pulumi.Input<inputs.osconfig.GuestPoliciesPackageRepositoryYum | undefined>;
         /**
          * A Zypper Repository.
          * Structure is documented below.
          */
-        zypper?: pulumi.Input<inputs.osconfig.GuestPoliciesPackageRepositoryZypper>;
+        zypper?: pulumi.Input<inputs.osconfig.GuestPoliciesPackageRepositoryZypper | undefined>;
     }
 
     export interface GuestPoliciesPackageRepositoryApt {
@@ -18853,7 +18853,7 @@ export namespace osconfig {
          * Default value is `DEB`.
          * Possible values are `DEB` and `DEB_SRC`.
          */
-        archiveType?: pulumi.Input<string>;
+        archiveType?: pulumi.Input<string | undefined>;
         /**
          * List of components for this repository. Must contain at least one item.
          */
@@ -18866,7 +18866,7 @@ export namespace osconfig {
          * URI of the key file for this repository. The agent maintains a keyring at
          * /etc/apt/trusted.gpg.d/osconfig_agent_managed.gpg containing all the keys in any applied guest policy.
          */
-        gpgKey?: pulumi.Input<string>;
+        gpgKey?: pulumi.Input<string | undefined>;
         /**
          * URI from which to fetch the object. It should contain both the protocol and path following the format {protocol}://{location}.
          */
@@ -18895,11 +18895,11 @@ export namespace osconfig {
         /**
          * The display name of the repository.
          */
-        displayName?: pulumi.Input<string>;
+        displayName?: pulumi.Input<string | undefined>;
         /**
          * URIs of GPG keys.
          */
-        gpgKeys?: pulumi.Input<pulumi.Input<string>[]>;
+        gpgKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Id of the artifact, which the installation and update steps of this recipe can reference.
          * Artifacts in a recipe cannot have the same id.
@@ -18915,11 +18915,11 @@ export namespace osconfig {
         /**
          * The display name of the repository.
          */
-        displayName?: pulumi.Input<string>;
+        displayName?: pulumi.Input<string | undefined>;
         /**
          * URIs of GPG keys.
          */
-        gpgKeys?: pulumi.Input<pulumi.Input<string>[]>;
+        gpgKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Id of the artifact, which the installation and update steps of this recipe can reference.
          * Artifacts in a recipe cannot have the same id.
@@ -18932,7 +18932,7 @@ export namespace osconfig {
          * Resources available to be used in the steps in the recipe.
          * Structure is documented below.
          */
-        artifacts?: pulumi.Input<pulumi.Input<inputs.osconfig.GuestPoliciesRecipeArtifact>[]>;
+        artifacts?: pulumi.Input<pulumi.Input<inputs.osconfig.GuestPoliciesRecipeArtifact>[] | undefined>;
         /**
          * Default is INSTALLED. The desired state the agent should maintain for this recipe.
          * INSTALLED: The software recipe is installed on the instance but won't be updated to new versions.
@@ -18942,13 +18942,13 @@ export namespace osconfig {
          * Default value is `INSTALLED`.
          * Possible values are `INSTALLED`, `UPDATED`, and `REMOVED`.
          */
-        desiredState?: pulumi.Input<string>;
+        desiredState?: pulumi.Input<string | undefined>;
         /**
          * Actions to be taken for installing this recipe. On failure it stops executing steps and does not attempt another installation.
          * Any steps taken (including partially completed steps) are not rolled back.
          * Structure is documented below.
          */
-        installSteps?: pulumi.Input<pulumi.Input<inputs.osconfig.GuestPoliciesRecipeInstallStep>[]>;
+        installSteps?: pulumi.Input<pulumi.Input<inputs.osconfig.GuestPoliciesRecipeInstallStep>[] | undefined>;
         /**
          * Unique identifier for the recipe. Only one recipe with a given name is installed on an instance.
          * Names are also used to identify resources which helps to determine whether guest policies have conflicts.
@@ -18961,11 +18961,11 @@ export namespace osconfig {
          * Any steps taken (including partially completed steps) are not rolled back.
          * Structure is documented below.
          */
-        updateSteps?: pulumi.Input<pulumi.Input<inputs.osconfig.GuestPoliciesRecipeUpdateStep>[]>;
+        updateSteps?: pulumi.Input<pulumi.Input<inputs.osconfig.GuestPoliciesRecipeUpdateStep>[] | undefined>;
         /**
          * The version of this software recipe. Version can be up to 4 period separated numbers (e.g. 12.34.56.78).
          */
-        version?: pulumi.Input<string>;
+        version?: pulumi.Input<string | undefined>;
     }
 
     export interface GuestPoliciesRecipeArtifact {
@@ -18974,12 +18974,12 @@ export namespace osconfig {
          * Remote: A checksum must be specified, and only protocols with transport-layer security are permitted.
          * GCS: An object generation number must be specified.
          */
-        allowInsecure?: pulumi.Input<boolean>;
+        allowInsecure?: pulumi.Input<boolean | undefined>;
         /**
          * A Google Cloud Storage artifact.
          * Structure is documented below.
          */
-        gcs?: pulumi.Input<inputs.osconfig.GuestPoliciesRecipeArtifactGcs>;
+        gcs?: pulumi.Input<inputs.osconfig.GuestPoliciesRecipeArtifactGcs | undefined>;
         /**
          * Id of the artifact, which the installation and update steps of this recipe can reference.
          * Artifacts in a recipe cannot have the same id.
@@ -18989,7 +18989,7 @@ export namespace osconfig {
          * A generic remote artifact.
          * Structure is documented below.
          */
-        remote?: pulumi.Input<inputs.osconfig.GuestPoliciesRecipeArtifactRemote>;
+        remote?: pulumi.Input<inputs.osconfig.GuestPoliciesRecipeArtifactRemote | undefined>;
     }
 
     export interface GuestPoliciesRecipeArtifactGcs {
@@ -18997,17 +18997,17 @@ export namespace osconfig {
          * Bucket of the Google Cloud Storage object. Given an example URL: https://storage.googleapis.com/my-bucket/foo/bar#1234567
          * this value would be my-bucket.
          */
-        bucket?: pulumi.Input<string>;
+        bucket?: pulumi.Input<string | undefined>;
         /**
          * Must be provided if allowInsecure is false. Generation number of the Google Cloud Storage object.
          * https://storage.googleapis.com/my-bucket/foo/bar#1234567 this value would be 1234567.
          */
-        generation?: pulumi.Input<number>;
+        generation?: pulumi.Input<number | undefined>;
         /**
          * Name of the Google Cloud Storage object. Given an example URL: https://storage.googleapis.com/my-bucket/foo/bar#1234567
          * this value would be foo/bar.
          */
-        object?: pulumi.Input<string>;
+        object?: pulumi.Input<string | undefined>;
     }
 
     export interface GuestPoliciesRecipeArtifactRemote {
@@ -19016,11 +19016,11 @@ export namespace osconfig {
          * If the checksum is not empty and it doesn't match the artifact then the recipe installation fails before running any
          * of the steps.
          */
-        checkSum?: pulumi.Input<string>;
+        checkSum?: pulumi.Input<string | undefined>;
         /**
          * URI from which to fetch the object. It should contain both the protocol and path following the format {protocol}://{location}.
          */
-        uri?: pulumi.Input<string>;
+        uri?: pulumi.Input<string | undefined>;
     }
 
     export interface GuestPoliciesRecipeInstallStep {
@@ -19028,37 +19028,37 @@ export namespace osconfig {
          * Extracts an archive into the specified directory.
          * Structure is documented below.
          */
-        archiveExtraction?: pulumi.Input<inputs.osconfig.GuestPoliciesRecipeInstallStepArchiveExtraction>;
+        archiveExtraction?: pulumi.Input<inputs.osconfig.GuestPoliciesRecipeInstallStepArchiveExtraction | undefined>;
         /**
          * Installs a deb file via dpkg.
          * Structure is documented below.
          */
-        dpkgInstallation?: pulumi.Input<inputs.osconfig.GuestPoliciesRecipeInstallStepDpkgInstallation>;
+        dpkgInstallation?: pulumi.Input<inputs.osconfig.GuestPoliciesRecipeInstallStepDpkgInstallation | undefined>;
         /**
          * Copies a file onto the instance.
          * Structure is documented below.
          */
-        fileCopy?: pulumi.Input<inputs.osconfig.GuestPoliciesRecipeInstallStepFileCopy>;
+        fileCopy?: pulumi.Input<inputs.osconfig.GuestPoliciesRecipeInstallStepFileCopy | undefined>;
         /**
          * Executes an artifact or local file.
          * Structure is documented below.
          */
-        fileExec?: pulumi.Input<inputs.osconfig.GuestPoliciesRecipeInstallStepFileExec>;
+        fileExec?: pulumi.Input<inputs.osconfig.GuestPoliciesRecipeInstallStepFileExec | undefined>;
         /**
          * Installs an MSI file.
          * Structure is documented below.
          */
-        msiInstallation?: pulumi.Input<inputs.osconfig.GuestPoliciesRecipeInstallStepMsiInstallation>;
+        msiInstallation?: pulumi.Input<inputs.osconfig.GuestPoliciesRecipeInstallStepMsiInstallation | undefined>;
         /**
          * Installs an rpm file via the rpm utility.
          * Structure is documented below.
          */
-        rpmInstallation?: pulumi.Input<inputs.osconfig.GuestPoliciesRecipeInstallStepRpmInstallation>;
+        rpmInstallation?: pulumi.Input<inputs.osconfig.GuestPoliciesRecipeInstallStepRpmInstallation | undefined>;
         /**
          * Runs commands in a shell.
          * Structure is documented below.
          */
-        scriptRun?: pulumi.Input<inputs.osconfig.GuestPoliciesRecipeInstallStepScriptRun>;
+        scriptRun?: pulumi.Input<inputs.osconfig.GuestPoliciesRecipeInstallStepScriptRun | undefined>;
     }
 
     export interface GuestPoliciesRecipeInstallStepArchiveExtraction {
@@ -19069,7 +19069,7 @@ export namespace osconfig {
         /**
          * Directory to extract archive to. Defaults to / on Linux or C:\ on Windows.
          */
-        destination?: pulumi.Input<string>;
+        destination?: pulumi.Input<string | undefined>;
         /**
          * The type of the archive to extract.
          * Possible values are `TAR`, `TAR_GZIP`, `TAR_BZIP`, `TAR_LZMA`, `TAR_XZ`, and `ZIP`.
@@ -19097,7 +19097,7 @@ export namespace osconfig {
          * Whether to allow this step to overwrite existing files.If this is false and the file already exists the file
          * is not overwritten and the step is considered a success. Defaults to false.
          */
-        overwrite?: pulumi.Input<boolean>;
+        overwrite?: pulumi.Input<boolean | undefined>;
         /**
          * Consists of three octal digits which represent, in order, the permissions of the owner, group, and other users
          * for the file (similarly to the numeric mode used in the linux chmod utility). Each digit represents a three bit
@@ -19106,33 +19106,33 @@ export namespace osconfig {
          * Below are some examples of permissions and their associated values:
          * read, write, and execute: 7 read and execute: 5 read and write: 6 read only: 4
          */
-        permissions?: pulumi.Input<string>;
+        permissions?: pulumi.Input<string | undefined>;
     }
 
     export interface GuestPoliciesRecipeInstallStepFileExec {
         /**
          * Return codes that indicate that the software installed or updated successfully. Behaviour defaults to [0]
          */
-        allowedExitCodes?: pulumi.Input<string>;
+        allowedExitCodes?: pulumi.Input<string | undefined>;
         /**
          * Arguments to be passed to the provided executable.
          */
-        args?: pulumi.Input<pulumi.Input<string>[]>;
+        args?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The id of the relevant artifact in the recipe.
          */
-        artifactId?: pulumi.Input<string>;
+        artifactId?: pulumi.Input<string | undefined>;
         /**
          * The absolute path of the file on the local filesystem.
          */
-        localPath?: pulumi.Input<string>;
+        localPath?: pulumi.Input<string | undefined>;
     }
 
     export interface GuestPoliciesRecipeInstallStepMsiInstallation {
         /**
          * Return codes that indicate that the software installed or updated successfully. Behaviour defaults to [0]
          */
-        allowedExitCodes?: pulumi.Input<pulumi.Input<number>[]>;
+        allowedExitCodes?: pulumi.Input<pulumi.Input<number>[] | undefined>;
         /**
          * The id of the relevant artifact in the recipe.
          */
@@ -19140,7 +19140,7 @@ export namespace osconfig {
         /**
          * The flags to use when installing the MSI. Defaults to the install flag.
          */
-        flags?: pulumi.Input<pulumi.Input<string>[]>;
+        flags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface GuestPoliciesRecipeInstallStepRpmInstallation {
@@ -19154,13 +19154,13 @@ export namespace osconfig {
         /**
          * Return codes that indicate that the software installed or updated successfully. Behaviour defaults to [0]
          */
-        allowedExitCodes?: pulumi.Input<pulumi.Input<number>[]>;
+        allowedExitCodes?: pulumi.Input<pulumi.Input<number>[] | undefined>;
         /**
          * The script interpreter to use to run the script. If no interpreter is specified the script is executed directly,
          * which likely only succeed for scripts with shebang lines.
          * Possible values are `SHELL` and `POWERSHELL`.
          */
-        interpreter?: pulumi.Input<string>;
+        interpreter?: pulumi.Input<string | undefined>;
         /**
          * The shell script to be executed.
          */
@@ -19172,37 +19172,37 @@ export namespace osconfig {
          * Extracts an archive into the specified directory.
          * Structure is documented below.
          */
-        archiveExtraction?: pulumi.Input<inputs.osconfig.GuestPoliciesRecipeUpdateStepArchiveExtraction>;
+        archiveExtraction?: pulumi.Input<inputs.osconfig.GuestPoliciesRecipeUpdateStepArchiveExtraction | undefined>;
         /**
          * Installs a deb file via dpkg.
          * Structure is documented below.
          */
-        dpkgInstallation?: pulumi.Input<inputs.osconfig.GuestPoliciesRecipeUpdateStepDpkgInstallation>;
+        dpkgInstallation?: pulumi.Input<inputs.osconfig.GuestPoliciesRecipeUpdateStepDpkgInstallation | undefined>;
         /**
          * Copies a file onto the instance.
          * Structure is documented below.
          */
-        fileCopy?: pulumi.Input<inputs.osconfig.GuestPoliciesRecipeUpdateStepFileCopy>;
+        fileCopy?: pulumi.Input<inputs.osconfig.GuestPoliciesRecipeUpdateStepFileCopy | undefined>;
         /**
          * Executes an artifact or local file.
          * Structure is documented below.
          */
-        fileExec?: pulumi.Input<inputs.osconfig.GuestPoliciesRecipeUpdateStepFileExec>;
+        fileExec?: pulumi.Input<inputs.osconfig.GuestPoliciesRecipeUpdateStepFileExec | undefined>;
         /**
          * Installs an MSI file.
          * Structure is documented below.
          */
-        msiInstallation?: pulumi.Input<inputs.osconfig.GuestPoliciesRecipeUpdateStepMsiInstallation>;
+        msiInstallation?: pulumi.Input<inputs.osconfig.GuestPoliciesRecipeUpdateStepMsiInstallation | undefined>;
         /**
          * Installs an rpm file via the rpm utility.
          * Structure is documented below.
          */
-        rpmInstallation?: pulumi.Input<inputs.osconfig.GuestPoliciesRecipeUpdateStepRpmInstallation>;
+        rpmInstallation?: pulumi.Input<inputs.osconfig.GuestPoliciesRecipeUpdateStepRpmInstallation | undefined>;
         /**
          * Runs commands in a shell.
          * Structure is documented below.
          */
-        scriptRun?: pulumi.Input<inputs.osconfig.GuestPoliciesRecipeUpdateStepScriptRun>;
+        scriptRun?: pulumi.Input<inputs.osconfig.GuestPoliciesRecipeUpdateStepScriptRun | undefined>;
     }
 
     export interface GuestPoliciesRecipeUpdateStepArchiveExtraction {
@@ -19213,7 +19213,7 @@ export namespace osconfig {
         /**
          * Directory to extract archive to. Defaults to / on Linux or C:\ on Windows.
          */
-        destination?: pulumi.Input<string>;
+        destination?: pulumi.Input<string | undefined>;
         /**
          * The type of the archive to extract.
          * Possible values are `TAR`, `TAR_GZIP`, `TAR_BZIP`, `TAR_LZMA`, `TAR_XZ`, and `ZIP`.
@@ -19241,7 +19241,7 @@ export namespace osconfig {
          * Whether to allow this step to overwrite existing files.If this is false and the file already exists the file
          * is not overwritten and the step is considered a success. Defaults to false.
          */
-        overwrite?: pulumi.Input<boolean>;
+        overwrite?: pulumi.Input<boolean | undefined>;
         /**
          * Consists of three octal digits which represent, in order, the permissions of the owner, group, and other users
          * for the file (similarly to the numeric mode used in the linux chmod utility). Each digit represents a three bit
@@ -19250,33 +19250,33 @@ export namespace osconfig {
          * Below are some examples of permissions and their associated values:
          * read, write, and execute: 7 read and execute: 5 read and write: 6 read only: 4
          */
-        permissions?: pulumi.Input<string>;
+        permissions?: pulumi.Input<string | undefined>;
     }
 
     export interface GuestPoliciesRecipeUpdateStepFileExec {
         /**
          * Return codes that indicate that the software installed or updated successfully. Behaviour defaults to [0]
          */
-        allowedExitCodes?: pulumi.Input<pulumi.Input<number>[]>;
+        allowedExitCodes?: pulumi.Input<pulumi.Input<number>[] | undefined>;
         /**
          * Arguments to be passed to the provided executable.
          */
-        args?: pulumi.Input<pulumi.Input<string>[]>;
+        args?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The id of the relevant artifact in the recipe.
          */
-        artifactId?: pulumi.Input<string>;
+        artifactId?: pulumi.Input<string | undefined>;
         /**
          * The absolute path of the file on the local filesystem.
          */
-        localPath?: pulumi.Input<string>;
+        localPath?: pulumi.Input<string | undefined>;
     }
 
     export interface GuestPoliciesRecipeUpdateStepMsiInstallation {
         /**
          * Return codes that indicate that the software installed or updated successfully. Behaviour defaults to [0]
          */
-        allowedExitCodes?: pulumi.Input<pulumi.Input<number>[]>;
+        allowedExitCodes?: pulumi.Input<pulumi.Input<number>[] | undefined>;
         /**
          * The id of the relevant artifact in the recipe.
          */
@@ -19284,7 +19284,7 @@ export namespace osconfig {
         /**
          * The flags to use when installing the MSI. Defaults to the install flag.
          */
-        flags?: pulumi.Input<pulumi.Input<string>[]>;
+        flags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface GuestPoliciesRecipeUpdateStepRpmInstallation {
@@ -19298,13 +19298,13 @@ export namespace osconfig {
         /**
          * Return codes that indicate that the software installed or updated successfully. Behaviour defaults to [0]
          */
-        allowedExitCodes?: pulumi.Input<pulumi.Input<number>[]>;
+        allowedExitCodes?: pulumi.Input<pulumi.Input<number>[] | undefined>;
         /**
          * The script interpreter to use to run the script. If no interpreter is specified the script is executed directly,
          * which likely only succeed for scripts with shebang lines.
          * Possible values are `SHELL` and `POWERSHELL`.
          */
-        interpreter?: pulumi.Input<string>;
+        interpreter?: pulumi.Input<string | undefined>;
         /**
          * The shell script to be executed.
          */
@@ -19315,27 +19315,27 @@ export namespace osconfig {
         /**
          * Target all VM instances in the project. If true, no other criteria is permitted.
          */
-        all?: pulumi.Input<boolean>;
+        all?: pulumi.Input<boolean | undefined>;
         /**
          * Targets VM instances matching ANY of these GroupLabels. This allows targeting of disparate groups of VM instances.
          * Structure is documented below.
          */
-        groupLabels?: pulumi.Input<pulumi.Input<inputs.osconfig.PatchDeploymentInstanceFilterGroupLabel>[]>;
+        groupLabels?: pulumi.Input<pulumi.Input<inputs.osconfig.PatchDeploymentInstanceFilterGroupLabel>[] | undefined>;
         /**
          * Targets VMs whose name starts with one of these prefixes. Similar to labels, this is another way to group
          * VMs when targeting configs, for example prefix="prod-".
          */
-        instanceNamePrefixes?: pulumi.Input<pulumi.Input<string>[]>;
+        instanceNamePrefixes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Targets any of the VM instances specified. Instances are specified by their URI in the `form zones/{{zone}}/instances/{{instance_name}}`,
          * `projects/{{project_id}}/zones/{{zone}}/instances/{{instance_name}}`, or
          * `https://www.googleapis.com/compute/v1/projects/{{project_id}}/zones/{{zone}}/instances/{{instance_name}}`
          */
-        instances?: pulumi.Input<pulumi.Input<string>[]>;
+        instances?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Targets VM instances in ANY of these zones. Leave empty to target VM instances in any zone.
          */
-        zones?: pulumi.Input<pulumi.Input<string>[]>;
+        zones?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface PatchDeploymentInstanceFilterGroupLabel {
@@ -19358,60 +19358,60 @@ export namespace osconfig {
          * Apt update settings. Use this setting to override the default apt patch rules.
          * Structure is documented below.
          */
-        apt?: pulumi.Input<inputs.osconfig.PatchDeploymentPatchConfigApt>;
+        apt?: pulumi.Input<inputs.osconfig.PatchDeploymentPatchConfigApt | undefined>;
         /**
          * goo update settings. Use this setting to override the default goo patch rules.
          * Structure is documented below.
          */
-        goo?: pulumi.Input<inputs.osconfig.PatchDeploymentPatchConfigGoo>;
+        goo?: pulumi.Input<inputs.osconfig.PatchDeploymentPatchConfigGoo | undefined>;
         /**
          * The ExecStep to run after the patch update.
          * Structure is documented below.
          */
-        postStep?: pulumi.Input<inputs.osconfig.PatchDeploymentPatchConfigPostStep>;
+        postStep?: pulumi.Input<inputs.osconfig.PatchDeploymentPatchConfigPostStep | undefined>;
         /**
          * The ExecStep to run before the patch update.
          * Structure is documented below.
          */
-        preStep?: pulumi.Input<inputs.osconfig.PatchDeploymentPatchConfigPreStep>;
+        preStep?: pulumi.Input<inputs.osconfig.PatchDeploymentPatchConfigPreStep | undefined>;
         /**
          * Post-patch reboot settings.
          * Possible values are `DEFAULT`, `ALWAYS`, and `NEVER`.
          */
-        rebootConfig?: pulumi.Input<string>;
+        rebootConfig?: pulumi.Input<string | undefined>;
         /**
          * Windows update settings. Use this setting to override the default Windows patch rules.
          * Structure is documented below.
          */
-        windowsUpdate?: pulumi.Input<inputs.osconfig.PatchDeploymentPatchConfigWindowsUpdate>;
+        windowsUpdate?: pulumi.Input<inputs.osconfig.PatchDeploymentPatchConfigWindowsUpdate | undefined>;
         /**
          * Yum update settings. Use this setting to override the default yum patch rules.
          * Structure is documented below.
          */
-        yum?: pulumi.Input<inputs.osconfig.PatchDeploymentPatchConfigYum>;
+        yum?: pulumi.Input<inputs.osconfig.PatchDeploymentPatchConfigYum | undefined>;
         /**
          * zypper update settings. Use this setting to override the default zypper patch rules.
          * Structure is documented below.
          */
-        zypper?: pulumi.Input<inputs.osconfig.PatchDeploymentPatchConfigZypper>;
+        zypper?: pulumi.Input<inputs.osconfig.PatchDeploymentPatchConfigZypper | undefined>;
     }
 
     export interface PatchDeploymentPatchConfigApt {
         /**
          * List of KBs to exclude from update.
          */
-        excludes?: pulumi.Input<pulumi.Input<string>[]>;
+        excludes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * An exclusive list of packages to be updated. These are the only packages that will be updated.
          * If these packages are not installed, they will be ignored. This field cannot be specified with
          * any other patch configuration fields.
          */
-        exclusivePackages?: pulumi.Input<pulumi.Input<string>[]>;
+        exclusivePackages?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * By changing the type to DIST, the patching is performed using apt-get dist-upgrade instead.
          * Possible values are `DIST` and `UPGRADE`.
          */
-        type?: pulumi.Input<string>;
+        type?: pulumi.Input<string | undefined>;
     }
 
     export interface PatchDeploymentPatchConfigGoo {
@@ -19426,34 +19426,34 @@ export namespace osconfig {
          * The ExecStepConfig for all Linux VMs targeted by the PatchJob.
          * Structure is documented below.
          */
-        linuxExecStepConfig?: pulumi.Input<inputs.osconfig.PatchDeploymentPatchConfigPostStepLinuxExecStepConfig>;
+        linuxExecStepConfig?: pulumi.Input<inputs.osconfig.PatchDeploymentPatchConfigPostStepLinuxExecStepConfig | undefined>;
         /**
          * The ExecStepConfig for all Windows VMs targeted by the PatchJob.
          * Structure is documented below.
          */
-        windowsExecStepConfig?: pulumi.Input<inputs.osconfig.PatchDeploymentPatchConfigPostStepWindowsExecStepConfig>;
+        windowsExecStepConfig?: pulumi.Input<inputs.osconfig.PatchDeploymentPatchConfigPostStepWindowsExecStepConfig | undefined>;
     }
 
     export interface PatchDeploymentPatchConfigPostStepLinuxExecStepConfig {
         /**
          * Defaults to [0]. A list of possible return values that the execution can return to indicate a success.
          */
-        allowedSuccessCodes?: pulumi.Input<pulumi.Input<number>[]>;
+        allowedSuccessCodes?: pulumi.Input<pulumi.Input<number>[] | undefined>;
         /**
          * A Cloud Storage object containing the executable.
          * Structure is documented below.
          */
-        gcsObject?: pulumi.Input<inputs.osconfig.PatchDeploymentPatchConfigPostStepLinuxExecStepConfigGcsObject>;
+        gcsObject?: pulumi.Input<inputs.osconfig.PatchDeploymentPatchConfigPostStepLinuxExecStepConfigGcsObject | undefined>;
         /**
          * The script interpreter to use to run the script. If no interpreter is specified the script will
          * be executed directly, which will likely only succeed for scripts with shebang lines.
          * Possible values are `SHELL` and `POWERSHELL`.
          */
-        interpreter?: pulumi.Input<string>;
+        interpreter?: pulumi.Input<string | undefined>;
         /**
          * An absolute path to the executable on the VM.
          */
-        localPath?: pulumi.Input<string>;
+        localPath?: pulumi.Input<string | undefined>;
     }
 
     export interface PatchDeploymentPatchConfigPostStepLinuxExecStepConfigGcsObject {
@@ -19475,22 +19475,22 @@ export namespace osconfig {
         /**
          * Defaults to [0]. A list of possible return values that the execution can return to indicate a success.
          */
-        allowedSuccessCodes?: pulumi.Input<pulumi.Input<number>[]>;
+        allowedSuccessCodes?: pulumi.Input<pulumi.Input<number>[] | undefined>;
         /**
          * A Cloud Storage object containing the executable.
          * Structure is documented below.
          */
-        gcsObject?: pulumi.Input<inputs.osconfig.PatchDeploymentPatchConfigPostStepWindowsExecStepConfigGcsObject>;
+        gcsObject?: pulumi.Input<inputs.osconfig.PatchDeploymentPatchConfigPostStepWindowsExecStepConfigGcsObject | undefined>;
         /**
          * The script interpreter to use to run the script. If no interpreter is specified the script will
          * be executed directly, which will likely only succeed for scripts with shebang lines.
          * Possible values are `SHELL` and `POWERSHELL`.
          */
-        interpreter?: pulumi.Input<string>;
+        interpreter?: pulumi.Input<string | undefined>;
         /**
          * An absolute path to the executable on the VM.
          */
-        localPath?: pulumi.Input<string>;
+        localPath?: pulumi.Input<string | undefined>;
     }
 
     export interface PatchDeploymentPatchConfigPostStepWindowsExecStepConfigGcsObject {
@@ -19513,34 +19513,34 @@ export namespace osconfig {
          * The ExecStepConfig for all Linux VMs targeted by the PatchJob.
          * Structure is documented below.
          */
-        linuxExecStepConfig?: pulumi.Input<inputs.osconfig.PatchDeploymentPatchConfigPreStepLinuxExecStepConfig>;
+        linuxExecStepConfig?: pulumi.Input<inputs.osconfig.PatchDeploymentPatchConfigPreStepLinuxExecStepConfig | undefined>;
         /**
          * The ExecStepConfig for all Windows VMs targeted by the PatchJob.
          * Structure is documented below.
          */
-        windowsExecStepConfig?: pulumi.Input<inputs.osconfig.PatchDeploymentPatchConfigPreStepWindowsExecStepConfig>;
+        windowsExecStepConfig?: pulumi.Input<inputs.osconfig.PatchDeploymentPatchConfigPreStepWindowsExecStepConfig | undefined>;
     }
 
     export interface PatchDeploymentPatchConfigPreStepLinuxExecStepConfig {
         /**
          * Defaults to [0]. A list of possible return values that the execution can return to indicate a success.
          */
-        allowedSuccessCodes?: pulumi.Input<pulumi.Input<number>[]>;
+        allowedSuccessCodes?: pulumi.Input<pulumi.Input<number>[] | undefined>;
         /**
          * A Cloud Storage object containing the executable.
          * Structure is documented below.
          */
-        gcsObject?: pulumi.Input<inputs.osconfig.PatchDeploymentPatchConfigPreStepLinuxExecStepConfigGcsObject>;
+        gcsObject?: pulumi.Input<inputs.osconfig.PatchDeploymentPatchConfigPreStepLinuxExecStepConfigGcsObject | undefined>;
         /**
          * The script interpreter to use to run the script. If no interpreter is specified the script will
          * be executed directly, which will likely only succeed for scripts with shebang lines.
          * Possible values are `SHELL` and `POWERSHELL`.
          */
-        interpreter?: pulumi.Input<string>;
+        interpreter?: pulumi.Input<string | undefined>;
         /**
          * An absolute path to the executable on the VM.
          */
-        localPath?: pulumi.Input<string>;
+        localPath?: pulumi.Input<string | undefined>;
     }
 
     export interface PatchDeploymentPatchConfigPreStepLinuxExecStepConfigGcsObject {
@@ -19562,22 +19562,22 @@ export namespace osconfig {
         /**
          * Defaults to [0]. A list of possible return values that the execution can return to indicate a success.
          */
-        allowedSuccessCodes?: pulumi.Input<pulumi.Input<number>[]>;
+        allowedSuccessCodes?: pulumi.Input<pulumi.Input<number>[] | undefined>;
         /**
          * A Cloud Storage object containing the executable.
          * Structure is documented below.
          */
-        gcsObject?: pulumi.Input<inputs.osconfig.PatchDeploymentPatchConfigPreStepWindowsExecStepConfigGcsObject>;
+        gcsObject?: pulumi.Input<inputs.osconfig.PatchDeploymentPatchConfigPreStepWindowsExecStepConfigGcsObject | undefined>;
         /**
          * The script interpreter to use to run the script. If no interpreter is specified the script will
          * be executed directly, which will likely only succeed for scripts with shebang lines.
          * Possible values are `SHELL` and `POWERSHELL`.
          */
-        interpreter?: pulumi.Input<string>;
+        interpreter?: pulumi.Input<string | undefined>;
         /**
          * An absolute path to the executable on the VM.
          */
-        localPath?: pulumi.Input<string>;
+        localPath?: pulumi.Input<string | undefined>;
     }
 
     export interface PatchDeploymentPatchConfigPreStepWindowsExecStepConfigGcsObject {
@@ -19600,65 +19600,65 @@ export namespace osconfig {
          * Only apply updates of these windows update classifications. If empty, all updates are applied.
          * Each value may be one of `CRITICAL`, `SECURITY`, `DEFINITION`, `DRIVER`, `FEATURE_PACK`, `SERVICE_PACK`, `TOOL`, `UPDATE_ROLLUP`, and `UPDATE`.
          */
-        classifications?: pulumi.Input<pulumi.Input<string>[]>;
+        classifications?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * List of KBs to exclude from update.
          */
-        excludes?: pulumi.Input<pulumi.Input<string>[]>;
+        excludes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * An exclusive list of kbs to be updated. These are the only patches that will be updated.
          * This field must not be used with other patch configurations.
          */
-        exclusivePatches?: pulumi.Input<pulumi.Input<string>[]>;
+        exclusivePatches?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface PatchDeploymentPatchConfigYum {
         /**
          * List of KBs to exclude from update.
          */
-        excludes?: pulumi.Input<pulumi.Input<string>[]>;
+        excludes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * An exclusive list of packages to be updated. These are the only packages that will be updated.
          * If these packages are not installed, they will be ignored. This field cannot be specified with
          * any other patch configuration fields.
          */
-        exclusivePackages?: pulumi.Input<pulumi.Input<string>[]>;
+        exclusivePackages?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Will cause patch to run yum update-minimal instead.
          */
-        minimal?: pulumi.Input<boolean>;
+        minimal?: pulumi.Input<boolean | undefined>;
         /**
          * Adds the --security flag to yum update. Not supported on all platforms.
          */
-        security?: pulumi.Input<boolean>;
+        security?: pulumi.Input<boolean | undefined>;
     }
 
     export interface PatchDeploymentPatchConfigZypper {
         /**
          * Install only patches with these categories. Common categories include security, recommended, and feature.
          */
-        categories?: pulumi.Input<pulumi.Input<string>[]>;
+        categories?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * List of KBs to exclude from update.
          */
-        excludes?: pulumi.Input<pulumi.Input<string>[]>;
+        excludes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * An exclusive list of kbs to be updated. These are the only patches that will be updated.
          * This field must not be used with other patch configurations.
          */
-        exclusivePatches?: pulumi.Input<pulumi.Input<string>[]>;
+        exclusivePatches?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Install only patches with these severities. Common severities include critical, important, moderate, and low.
          */
-        severities?: pulumi.Input<pulumi.Input<string>[]>;
+        severities?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Adds the --with-optional flag to zypper patch.
          */
-        withOptional?: pulumi.Input<boolean>;
+        withOptional?: pulumi.Input<boolean | undefined>;
         /**
          * Adds the --with-update flag, to zypper patch.
          */
-        withUpdate?: pulumi.Input<boolean>;
+        withUpdate?: pulumi.Input<boolean | undefined>;
     }
 
     export interface PatchDeploymentRecurringSchedule {
@@ -19666,29 +19666,29 @@ export namespace osconfig {
          * The end time at which a recurring patch deployment schedule is no longer active.
          * A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z".
          */
-        endTime?: pulumi.Input<string>;
+        endTime?: pulumi.Input<string | undefined>;
         /**
          * -
          * The time the last patch job ran successfully.
          * A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z".
          */
-        lastExecuteTime?: pulumi.Input<string>;
+        lastExecuteTime?: pulumi.Input<string | undefined>;
         /**
          * Schedule with monthly executions.
          * Structure is documented below.
          */
-        monthly?: pulumi.Input<inputs.osconfig.PatchDeploymentRecurringScheduleMonthly>;
+        monthly?: pulumi.Input<inputs.osconfig.PatchDeploymentRecurringScheduleMonthly | undefined>;
         /**
          * -
          * The time the next patch job is scheduled to run.
          * A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z".
          */
-        nextExecuteTime?: pulumi.Input<string>;
+        nextExecuteTime?: pulumi.Input<string | undefined>;
         /**
          * The time that the recurring schedule becomes effective. Defaults to createTime of the patch deployment.
          * A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z".
          */
-        startTime?: pulumi.Input<string>;
+        startTime?: pulumi.Input<string | undefined>;
         /**
          * Time of the day to run a recurring deployment.
          * Structure is documented below.
@@ -19704,7 +19704,7 @@ export namespace osconfig {
          * Schedule with weekly executions.
          * Structure is documented below.
          */
-        weekly?: pulumi.Input<inputs.osconfig.PatchDeploymentRecurringScheduleWeekly>;
+        weekly?: pulumi.Input<inputs.osconfig.PatchDeploymentRecurringScheduleWeekly | undefined>;
     }
 
     export interface PatchDeploymentRecurringScheduleMonthly {
@@ -19713,12 +19713,12 @@ export namespace osconfig {
          * Months without the target day will be skipped. For example, a schedule to run "every month on the 31st"
          * will not run in February, April, June, etc.
          */
-        monthDay?: pulumi.Input<number>;
+        monthDay?: pulumi.Input<number | undefined>;
         /**
          * Week day in a month.
          * Structure is documented below.
          */
-        weekDayOfMonth?: pulumi.Input<inputs.osconfig.PatchDeploymentRecurringScheduleMonthlyWeekDayOfMonth>;
+        weekDayOfMonth?: pulumi.Input<inputs.osconfig.PatchDeploymentRecurringScheduleMonthlyWeekDayOfMonth | undefined>;
     }
 
     export interface PatchDeploymentRecurringScheduleMonthlyWeekDayOfMonth {
@@ -19738,19 +19738,19 @@ export namespace osconfig {
          * Hours of day in 24 hour format. Should be from 0 to 23.
          * An API may choose to allow the value "24:00:00" for scenarios like business closing time.
          */
-        hours?: pulumi.Input<number>;
+        hours?: pulumi.Input<number | undefined>;
         /**
          * Minutes of hour of day. Must be from 0 to 59.
          */
-        minutes?: pulumi.Input<number>;
+        minutes?: pulumi.Input<number | undefined>;
         /**
          * Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
          */
-        nanos?: pulumi.Input<number>;
+        nanos?: pulumi.Input<number | undefined>;
         /**
          * Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.
          */
-        seconds?: pulumi.Input<number>;
+        seconds?: pulumi.Input<number | undefined>;
     }
 
     export interface PatchDeploymentRecurringScheduleTimeZone {
@@ -19761,7 +19761,7 @@ export namespace osconfig {
         /**
          * IANA Time Zone Database version number, e.g. "2019a".
          */
-        version?: pulumi.Input<string>;
+        version?: pulumi.Input<string | undefined>;
     }
 
     export interface PatchDeploymentRecurringScheduleWeekly {
@@ -19793,25 +19793,25 @@ export namespace osconfig {
         /**
          * Specifies a fixed value.
          */
-        fixed?: pulumi.Input<number>;
+        fixed?: pulumi.Input<number | undefined>;
         /**
          * Specifies the relative value defined as a percentage, which will be multiplied by a reference value.
          */
-        percentage?: pulumi.Input<number>;
+        percentage?: pulumi.Input<number | undefined>;
     }
 }
 
 export namespace projects {
     export interface AccessApprovalSettingsEnrolledService {
         cloudProduct: pulumi.Input<string>;
-        enrollmentLevel?: pulumi.Input<string>;
+        enrollmentLevel?: pulumi.Input<string | undefined>;
     }
 
     export interface IAMAuditConfigAuditLogConfig {
         /**
          * Identities that do not cause logging for this type of permission.  The format is the same as that for `members`.
          */
-        exemptedMembers?: pulumi.Input<pulumi.Input<string>[]>;
+        exemptedMembers?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Permission type for which logging is to be configured.  Must be one of `DATA_READ`, `DATA_WRITE`, or `ADMIN_READ`.
          */
@@ -19822,7 +19822,7 @@ export namespace projects {
         /**
          * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * Textual representation of an expression in Common Expression Language syntax.
          */
@@ -19837,7 +19837,7 @@ export namespace projects {
         /**
          * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * Textual representation of an expression in Common Expression Language syntax.
          */
@@ -19859,39 +19859,39 @@ export namespace projects {
         /**
          * or `deny` - (Optional) One or the other must be set.
          */
-        allow?: pulumi.Input<inputs.projects.OrganizationPolicyListPolicyAllow>;
-        deny?: pulumi.Input<inputs.projects.OrganizationPolicyListPolicyDeny>;
+        allow?: pulumi.Input<inputs.projects.OrganizationPolicyListPolicyAllow | undefined>;
+        deny?: pulumi.Input<inputs.projects.OrganizationPolicyListPolicyDeny | undefined>;
         /**
          * If set to true, the values from the effective Policy of the parent resource
          * are inherited, meaning the values set in this Policy are added to the values inherited up the hierarchy.
          */
-        inheritFromParent?: pulumi.Input<boolean>;
+        inheritFromParent?: pulumi.Input<boolean | undefined>;
         /**
          * The Google Cloud Console will try to default to a configuration that matches the value specified in this field.
          */
-        suggestedValue?: pulumi.Input<string>;
+        suggestedValue?: pulumi.Input<string | undefined>;
     }
 
     export interface OrganizationPolicyListPolicyAllow {
         /**
          * The policy allows or denies all values.
          */
-        all?: pulumi.Input<boolean>;
+        all?: pulumi.Input<boolean | undefined>;
         /**
          * The policy can define specific values that are allowed or denied.
          */
-        values?: pulumi.Input<pulumi.Input<string>[]>;
+        values?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface OrganizationPolicyListPolicyDeny {
         /**
          * The policy allows or denies all values.
          */
-        all?: pulumi.Input<boolean>;
+        all?: pulumi.Input<boolean | undefined>;
         /**
          * The policy can define specific values that are allowed or denied.
          */
-        values?: pulumi.Input<pulumi.Input<string>[]>;
+        values?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface OrganizationPolicyRestorePolicy {
@@ -19916,7 +19916,7 @@ export namespace pubsub {
          * The capacity configuration.
          * Structure is documented below.
          */
-        capacity?: pulumi.Input<inputs.pubsub.LiteTopicPartitionConfigCapacity>;
+        capacity?: pulumi.Input<inputs.pubsub.LiteTopicPartitionConfigCapacity | undefined>;
         /**
          * The number of partitions in the topic. Must be at least 1.
          */
@@ -19945,7 +19945,7 @@ export namespace pubsub {
          * How long a published message is retained. If unset, messages will be retained as
          * long as the bytes retained for each partition is below perPartitionBytes.
          */
-        period?: pulumi.Input<string>;
+        period?: pulumi.Input<string | undefined>;
     }
 
     export interface SubscriptionDeadLetterPolicy {
@@ -19960,7 +19960,7 @@ export namespace pubsub {
          * Users should ensure that there is a subscription attached to this topic
          * since messages published to a topic with no subscriptions are lost.
          */
-        deadLetterTopic?: pulumi.Input<string>;
+        deadLetterTopic?: pulumi.Input<string | undefined>;
         /**
          * The maximum number of delivery attempts for any message. The value must be
          * between 5 and 100.
@@ -19971,7 +19971,7 @@ export namespace pubsub {
          * This field will be honored on a best effort basis.
          * If this parameter is 0, a default value of 5 is used.
          */
-        maxDeliveryAttempts?: pulumi.Input<number>;
+        maxDeliveryAttempts?: pulumi.Input<number | undefined>;
     }
 
     export interface SubscriptionExpirationPolicy {
@@ -19986,13 +19986,13 @@ export namespace pubsub {
     }
 
     export interface SubscriptionIAMBindingCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
 
     export interface SubscriptionIAMMemberCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
@@ -20018,13 +20018,13 @@ export namespace pubsub {
          * - v1beta1: uses the push format defined in the v1beta1 Pub/Sub API.
          * - v1 or v1beta2: uses the push format defined in the v1 Pub/Sub API.
          */
-        attributes?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        attributes?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * If specified, Pub/Sub will generate and attach an OIDC JWT token as
          * an Authorization header in the HTTP request for every pushed message.
          * Structure is documented below.
          */
-        oidcToken?: pulumi.Input<inputs.pubsub.SubscriptionPushConfigOidcToken>;
+        oidcToken?: pulumi.Input<inputs.pubsub.SubscriptionPushConfigOidcToken | undefined>;
         /**
          * A URL locating the endpoint to which messages should be pushed.
          * For example, a Webhook endpoint might use
@@ -20042,7 +20042,7 @@ export namespace pubsub {
          * token audience here: https://tools.ietf.org/html/rfc7519#section-4.1.3
          * Note: if not specified, the Push endpoint URL will be used.
          */
-        audience?: pulumi.Input<string>;
+        audience?: pulumi.Input<string | undefined>;
         /**
          * Service account email to be used for generating the OIDC token.
          * The caller (for subscriptions.create, subscriptions.patch, and
@@ -20057,22 +20057,22 @@ export namespace pubsub {
          * The maximum delay between consecutive deliveries of a given message. Value should be between 0 and 600 seconds. Defaults to 600 seconds.
          * A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s".
          */
-        maximumBackoff?: pulumi.Input<string>;
+        maximumBackoff?: pulumi.Input<string | undefined>;
         /**
          * The minimum delay between consecutive deliveries of a given message. Value should be between 0 and 600 seconds. Defaults to 10 seconds.
          * A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s".
          */
-        minimumBackoff?: pulumi.Input<string>;
+        minimumBackoff?: pulumi.Input<string | undefined>;
     }
 
     export interface TopicIAMBindingCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
 
     export interface TopicIAMMemberCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
@@ -20092,13 +20092,13 @@ export namespace pubsub {
 
 export namespace runtimeconfig {
     export interface ConfigIamBindingCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
 
     export interface ConfigIamMemberCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
@@ -20106,13 +20106,13 @@ export namespace runtimeconfig {
 
 export namespace secretmanager {
     export interface SecretIamBindingCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
 
     export interface SecretIamMemberCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
@@ -20121,12 +20121,12 @@ export namespace secretmanager {
         /**
          * The Secret will automatically be replicated without any restrictions.
          */
-        automatic?: pulumi.Input<boolean>;
+        automatic?: pulumi.Input<boolean | undefined>;
         /**
          * The Secret will automatically be replicated without any restrictions.
          * Structure is documented below.
          */
-        userManaged?: pulumi.Input<inputs.secretmanager.SecretReplicationUserManaged>;
+        userManaged?: pulumi.Input<inputs.secretmanager.SecretReplicationUserManaged | undefined>;
     }
 
     export interface SecretReplicationUserManaged {
@@ -20150,7 +20150,7 @@ export namespace serviceAccount {
         /**
          * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * Textual representation of an expression in Common Expression Language syntax.
          */
@@ -20165,7 +20165,7 @@ export namespace serviceAccount {
         /**
          * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * Textual representation of an expression in Common Expression Language syntax.
          */
@@ -20179,25 +20179,25 @@ export namespace serviceAccount {
 
 export namespace servicedirectory {
     export interface NamespaceIamBindingCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
 
     export interface NamespaceIamMemberCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
 
     export interface ServiceIamBindingCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
 
     export interface ServiceIamMemberCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
@@ -20205,13 +20205,13 @@ export namespace servicedirectory {
 
 export namespace sourcerepo {
     export interface RepositoryIamBindingCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
 
     export interface RepositoryIamMemberCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
@@ -20230,7 +20230,7 @@ export namespace sourcerepo {
          * the caller needs to have iam.serviceAccounts.actAs permission on this service account.
          * If unspecified, it defaults to the compute engine default service account.
          */
-        serviceAccountEmail?: pulumi.Input<string>;
+        serviceAccountEmail?: pulumi.Input<string | undefined>;
         /**
          * The identifier for this object. Format specified above.
          */
@@ -20240,25 +20240,25 @@ export namespace sourcerepo {
 
 export namespace spanner {
     export interface DatabaseIAMBindingCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
 
     export interface DatabaseIAMMemberCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
 
     export interface InstanceIAMBindingCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
 
     export interface InstanceIAMMemberCondition {
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         expression: pulumi.Input<string>;
         title: pulumi.Input<string>;
     }
@@ -20277,9 +20277,9 @@ export namespace sql {
     }
 
     export interface DatabaseInstanceIpAddress {
-        ipAddress?: pulumi.Input<string>;
-        timeToRetire?: pulumi.Input<string>;
-        type?: pulumi.Input<string>;
+        ipAddress?: pulumi.Input<string | undefined>;
+        timeToRetire?: pulumi.Input<string | undefined>;
+        type?: pulumi.Input<string | undefined>;
     }
 
     export interface DatabaseInstanceReplicaConfiguration {
@@ -20287,53 +20287,53 @@ export namespace sql {
          * PEM representation of the trusted CA's x509
          * certificate.
          */
-        caCertificate?: pulumi.Input<string>;
+        caCertificate?: pulumi.Input<string | undefined>;
         /**
          * PEM representation of the replica's x509
          * certificate.
          */
-        clientCertificate?: pulumi.Input<string>;
+        clientCertificate?: pulumi.Input<string | undefined>;
         /**
          * PEM representation of the replica's private key. The
          * corresponding public key in encoded in the `clientCertificate`.
          */
-        clientKey?: pulumi.Input<string>;
+        clientKey?: pulumi.Input<string | undefined>;
         /**
          * The number of seconds
          * between connect retries.
          */
-        connectRetryInterval?: pulumi.Input<number>;
+        connectRetryInterval?: pulumi.Input<number | undefined>;
         /**
          * Path to a SQL file in GCS from which replica
          * instances are created. Format is `gs://bucket/filename`.
          */
-        dumpFilePath?: pulumi.Input<string>;
+        dumpFilePath?: pulumi.Input<string | undefined>;
         /**
          * Specifies if the replica is the failover target.
          * If the field is set to true the replica will be designated as a failover replica.
          * If the master instance fails, the replica instance will be promoted as
          * the new master instance.
          */
-        failoverTarget?: pulumi.Input<boolean>;
+        failoverTarget?: pulumi.Input<boolean | undefined>;
         /**
          * Time in ms between replication
          * heartbeats.
          */
-        masterHeartbeatPeriod?: pulumi.Input<number>;
+        masterHeartbeatPeriod?: pulumi.Input<number | undefined>;
         /**
          * Password for the replication connection.
          */
-        password?: pulumi.Input<string>;
-        sslCipher?: pulumi.Input<string>;
+        password?: pulumi.Input<string | undefined>;
+        sslCipher?: pulumi.Input<string | undefined>;
         /**
          * Username for replication connection.
          */
-        username?: pulumi.Input<string>;
+        username?: pulumi.Input<string | undefined>;
         /**
          * True if the master's common name
          * value is checked during the SSL handshake.
          */
-        verifyServerCertificate?: pulumi.Input<boolean>;
+        verifyServerCertificate?: pulumi.Input<boolean | undefined>;
     }
 
     export interface DatabaseInstanceRestoreBackupContext {
@@ -20345,23 +20345,23 @@ export namespace sql {
          * The ID of the instance that the backup was taken from. If left empty,
          * this instance's ID will be used.
          */
-        instanceId?: pulumi.Input<string>;
+        instanceId?: pulumi.Input<string | undefined>;
         /**
          * The full project ID of the source instance.`
          */
-        project?: pulumi.Input<string>;
+        project?: pulumi.Input<string | undefined>;
     }
 
     export interface DatabaseInstanceServerCaCert {
-        cert?: pulumi.Input<string>;
-        commonName?: pulumi.Input<string>;
-        createTime?: pulumi.Input<string>;
+        cert?: pulumi.Input<string | undefined>;
+        commonName?: pulumi.Input<string | undefined>;
+        createTime?: pulumi.Input<string | undefined>;
         /**
          * The [RFC 3339](https://tools.ietf.org/html/rfc3339)
          * formatted date time string indicating when this whitelist expires.
          */
-        expirationTime?: pulumi.Input<string>;
-        sha1Fingerprint?: pulumi.Input<string>;
+        expirationTime?: pulumi.Input<string | undefined>;
+        sha1Fingerprint?: pulumi.Input<string | undefined>;
     }
 
     export interface DatabaseInstanceSettings {
@@ -20369,7 +20369,7 @@ export namespace sql {
          * This specifies when the instance should be
          * active. Can be either `ALWAYS`, `NEVER` or `ON_DEMAND`.
          */
-        activationPolicy?: pulumi.Input<string>;
+        activationPolicy?: pulumi.Input<string | undefined>;
         /**
          * This property is only applicable to First Generation instances.
          * First Generation instances are now deprecated, see [here](https://cloud.google.com/sql/docs/mysql/upgrade-2nd-gen)
@@ -20378,15 +20378,15 @@ export namespace sql {
          *
          * @deprecated This property is only applicable to First Generation instances, and First Generation instances are now deprecated.
          */
-        authorizedGaeApplications?: pulumi.Input<pulumi.Input<string>[]>;
+        authorizedGaeApplications?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The availability type of the Cloud SQL
          * instance, high availability (`REGIONAL`) or single zone (`ZONAL`).' For MySQL
          * instances, ensure that `settings.backup_configuration.enabled` and
          * `settings.backup_configuration.binary_log_enabled` are both set to `true`.
          */
-        availabilityType?: pulumi.Input<string>;
-        backupConfiguration?: pulumi.Input<inputs.sql.DatabaseInstanceSettingsBackupConfiguration>;
+        availabilityType?: pulumi.Input<string | undefined>;
+        backupConfiguration?: pulumi.Input<inputs.sql.DatabaseInstanceSettingsBackupConfiguration | undefined>;
         /**
          * This property is only applicable to First Generation instances.
          * First Generation instances are now deprecated, see [here](https://cloud.google.com/sql/docs/mysql/upgrade-2nd-gen)
@@ -20396,27 +20396,27 @@ export namespace sql {
          *
          * @deprecated This property is only applicable to First Generation instances, and First Generation instances are now deprecated.
          */
-        crashSafeReplication?: pulumi.Input<boolean>;
-        databaseFlags?: pulumi.Input<pulumi.Input<inputs.sql.DatabaseInstanceSettingsDatabaseFlag>[]>;
+        crashSafeReplication?: pulumi.Input<boolean | undefined>;
+        databaseFlags?: pulumi.Input<pulumi.Input<inputs.sql.DatabaseInstanceSettingsDatabaseFlag>[] | undefined>;
         /**
          * Configuration to increase storage size automatically.  Note that future `pulumi apply` calls will attempt to resize the disk to the value specified in `diskSize` - if this is set, do not set `diskSize`.
          */
-        diskAutoresize?: pulumi.Input<boolean>;
+        diskAutoresize?: pulumi.Input<boolean | undefined>;
         /**
          * The size of data disk, in GB. Size of a running instance cannot be reduced but can be increased.
          */
-        diskSize?: pulumi.Input<number>;
+        diskSize?: pulumi.Input<number | undefined>;
         /**
          * The type of data disk: PD_SSD or PD_HDD.
          */
-        diskType?: pulumi.Input<string>;
-        ipConfiguration?: pulumi.Input<inputs.sql.DatabaseInstanceSettingsIpConfiguration>;
-        locationPreference?: pulumi.Input<inputs.sql.DatabaseInstanceSettingsLocationPreference>;
-        maintenanceWindow?: pulumi.Input<inputs.sql.DatabaseInstanceSettingsMaintenanceWindow>;
+        diskType?: pulumi.Input<string | undefined>;
+        ipConfiguration?: pulumi.Input<inputs.sql.DatabaseInstanceSettingsIpConfiguration | undefined>;
+        locationPreference?: pulumi.Input<inputs.sql.DatabaseInstanceSettingsLocationPreference | undefined>;
+        maintenanceWindow?: pulumi.Input<inputs.sql.DatabaseInstanceSettingsMaintenanceWindow | undefined>;
         /**
          * Pricing plan for this instance, can only be `PER_USE`.
          */
-        pricingPlan?: pulumi.Input<string>;
+        pricingPlan?: pulumi.Input<string | undefined>;
         /**
          * This property is only applicable to First Generation instances.
          * First Generation instances are now deprecated, see [here](https://cloud.google.com/sql/docs/mysql/upgrade-2nd-gen)
@@ -20425,7 +20425,7 @@ export namespace sql {
          *
          * @deprecated This property is only applicable to First Generation instances, and First Generation instances are now deprecated.
          */
-        replicationType?: pulumi.Input<string>;
+        replicationType?: pulumi.Input<string | undefined>;
         /**
          * The machine type to use. See [tiers](https://cloud.google.com/sql/docs/admin-api/v1beta4/tiers)
          * for more details and supported versions. Postgres supports only shared-core machine types such as `db-f1-micro`,
@@ -20435,8 +20435,8 @@ export namespace sql {
         /**
          * A set of key/value user label pairs to assign to the instance.
          */
-        userLabels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-        version?: pulumi.Input<number>;
+        userLabels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+        version?: pulumi.Input<number | undefined>;
     }
 
     export interface DatabaseInstanceSettingsBackupConfiguration {
@@ -20445,24 +20445,24 @@ export namespace sql {
          * `settings.backup_configuration.enabled` is false, this must be as well.
          * Cannot be used with Postgres.
          */
-        binaryLogEnabled?: pulumi.Input<boolean>;
+        binaryLogEnabled?: pulumi.Input<boolean | undefined>;
         /**
          * True if backup configuration is enabled.
          */
-        enabled?: pulumi.Input<boolean>;
+        enabled?: pulumi.Input<boolean | undefined>;
         /**
          * The region where the backup will be stored
          */
-        location?: pulumi.Input<string>;
+        location?: pulumi.Input<string | undefined>;
         /**
          * True if Point-in-time recovery is enabled. Will restart database if enabled after instance creation. Valid only for PostgreSQL instances.
          */
-        pointInTimeRecoveryEnabled?: pulumi.Input<boolean>;
+        pointInTimeRecoveryEnabled?: pulumi.Input<boolean | undefined>;
         /**
          * `HH:MM` format time indicating when backup
          * configuration starts.
          */
-        startTime?: pulumi.Input<string>;
+        startTime?: pulumi.Input<string | undefined>;
     }
 
     export interface DatabaseInstanceSettingsDatabaseFlag {
@@ -20479,13 +20479,13 @@ export namespace sql {
     }
 
     export interface DatabaseInstanceSettingsIpConfiguration {
-        authorizedNetworks?: pulumi.Input<pulumi.Input<inputs.sql.DatabaseInstanceSettingsIpConfigurationAuthorizedNetwork>[]>;
+        authorizedNetworks?: pulumi.Input<pulumi.Input<inputs.sql.DatabaseInstanceSettingsIpConfigurationAuthorizedNetwork>[] | undefined>;
         /**
          * Whether this Cloud SQL instance should be assigned
          * a public IPV4 address. Either `ipv4Enabled` must be enabled or a
          * `privateNetwork` must be configured.
          */
-        ipv4Enabled?: pulumi.Input<boolean>;
+        ipv4Enabled?: pulumi.Input<boolean | undefined>;
         /**
          * The VPC network from which the Cloud SQL
          * instance is accessible for private IP. For example, projects/myProject/global/networks/default.
@@ -20493,11 +20493,11 @@ export namespace sql {
          * Either `ipv4Enabled` must be enabled or a `privateNetwork` must be configured.
          * This setting can be updated, but it cannot be removed after it is set.
          */
-        privateNetwork?: pulumi.Input<string>;
+        privateNetwork?: pulumi.Input<string | undefined>;
         /**
          * Whether SSL connections over IP are enforced or not.
          */
-        requireSsl?: pulumi.Input<boolean>;
+        requireSsl?: pulumi.Input<boolean | undefined>;
     }
 
     export interface DatabaseInstanceSettingsIpConfigurationAuthorizedNetwork {
@@ -20505,11 +20505,11 @@ export namespace sql {
          * The [RFC 3339](https://tools.ietf.org/html/rfc3339)
          * formatted date time string indicating when this whitelist expires.
          */
-        expirationTime?: pulumi.Input<string>;
+        expirationTime?: pulumi.Input<string | undefined>;
         /**
          * A name for this whitelist entry.
          */
-        name?: pulumi.Input<string>;
+        name?: pulumi.Input<string | undefined>;
         /**
          * A CIDR notation IPv4 or IPv6 address that is allowed to
          * access this instance. Must be set even if other two attributes are not for
@@ -20523,28 +20523,28 @@ export namespace sql {
          * A GAE application whose zone to remain
          * in. Must be in the same region as this instance.
          */
-        followGaeApplication?: pulumi.Input<string>;
+        followGaeApplication?: pulumi.Input<string | undefined>;
         /**
          * The preferred compute engine
          * [zone](https://cloud.google.com/compute/docs/zones?hl=en).
          */
-        zone?: pulumi.Input<string>;
+        zone?: pulumi.Input<string | undefined>;
     }
 
     export interface DatabaseInstanceSettingsMaintenanceWindow {
         /**
          * Day of week (`1-7`), starting on Monday
          */
-        day?: pulumi.Input<number>;
+        day?: pulumi.Input<number | undefined>;
         /**
          * Hour of day (`0-23`), ignored if `day` not set
          */
-        hour?: pulumi.Input<number>;
+        hour?: pulumi.Input<number | undefined>;
         /**
          * Receive updates earlier (`canary`) or later
          * (`stable`)
          */
-        updateTrack?: pulumi.Input<string>;
+        updateTrack?: pulumi.Input<string | undefined>;
     }
 
 }
@@ -20554,19 +20554,19 @@ export namespace storage {
         /**
          * The value, in seconds, to return in the [Access-Control-Max-Age header](https://www.w3.org/TR/cors/#access-control-max-age-response-header) used in preflight responses.
          */
-        maxAgeSeconds?: pulumi.Input<number>;
+        maxAgeSeconds?: pulumi.Input<number | undefined>;
         /**
          * The list of HTTP methods on which to include CORS response headers, (GET, OPTIONS, POST, etc) Note: "*" is permitted in the list of methods, and means "any method".
          */
-        methods?: pulumi.Input<pulumi.Input<string>[]>;
+        methods?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The list of [Origins](https://tools.ietf.org/html/rfc6454) eligible to receive CORS response headers. Note: "*" is permitted in the list of origins, and means "any Origin".
          */
-        origins?: pulumi.Input<pulumi.Input<string>[]>;
+        origins?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The list of HTTP headers other than the [simple response headers](https://www.w3.org/TR/cors/#simple-response-header) to give permission for the user-agent to share across domains.
          */
-        responseHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        responseHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface BucketEncryption {
@@ -20577,7 +20577,7 @@ export namespace storage {
         /**
          * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * Textual representation of an expression in Common Expression Language syntax.
          */
@@ -20592,7 +20592,7 @@ export namespace storage {
         /**
          * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * Textual representation of an expression in Common Expression Language syntax.
          */
@@ -20618,7 +20618,7 @@ export namespace storage {
         /**
          * The target [Storage Class](https://cloud.google.com/storage/docs/storage-classes) of objects affected by this Lifecycle Rule. Supported values include: `MULTI_REGIONAL`, `REGIONAL`, `NEARLINE`, `COLDLINE`, `ARCHIVE`.
          */
-        storageClass?: pulumi.Input<string>;
+        storageClass?: pulumi.Input<string | undefined>;
         /**
          * The type of the action of this Lifecycle Rule. Supported values include: `Delete` and `SetStorageClass`.
          */
@@ -20629,39 +20629,39 @@ export namespace storage {
         /**
          * Minimum age of an object in days to satisfy this condition.
          */
-        age?: pulumi.Input<number>;
+        age?: pulumi.Input<number | undefined>;
         /**
          * Creation date of an object in RFC 3339 (e.g. `2017-06-13`) to satisfy this condition.
          */
-        createdBefore?: pulumi.Input<string>;
+        createdBefore?: pulumi.Input<string | undefined>;
         /**
          * Creation date of an object in RFC 3339 (e.g. `2017-06-13`) to satisfy this condition.
          */
-        customTimeBefore?: pulumi.Input<string>;
+        customTimeBefore?: pulumi.Input<string | undefined>;
         /**
          * Date in RFC 3339 (e.g. `2017-06-13`) when an object's Custom-Time metadata is earlier than the date specified in this condition.
          */
-        daysSinceCustomTime?: pulumi.Input<number>;
+        daysSinceCustomTime?: pulumi.Input<number | undefined>;
         /**
          * Relevant only for versioned objects. Number of days elapsed since the noncurrent timestamp of an object.
          */
-        daysSinceNoncurrentTime?: pulumi.Input<number>;
+        daysSinceNoncurrentTime?: pulumi.Input<number | undefined>;
         /**
          * [Storage Class](https://cloud.google.com/storage/docs/storage-classes) of objects to satisfy this condition. Supported values include: `MULTI_REGIONAL`, `REGIONAL`, `NEARLINE`, `COLDLINE`, `ARCHIVE`, `STANDARD`, `DURABLE_REDUCED_AVAILABILITY`.
          */
-        matchesStorageClasses?: pulumi.Input<pulumi.Input<string>[]>;
+        matchesStorageClasses?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Relevant only for versioned objects. The date in RFC 3339 (e.g. `2017-06-13`) when the object became nonconcurrent.
          */
-        noncurrentTimeBefore?: pulumi.Input<string>;
+        noncurrentTimeBefore?: pulumi.Input<string | undefined>;
         /**
          * Relevant only for versioned objects. The number of newer versions of an object to satisfy this condition.
          */
-        numNewerVersions?: pulumi.Input<number>;
+        numNewerVersions?: pulumi.Input<number | undefined>;
         /**
          * Match to live and/or archived objects. Unversioned buckets have only live objects. Supported values include: `"LIVE"`, `"ARCHIVED"`, `"ANY"`.
          */
-        withState?: pulumi.Input<string>;
+        withState?: pulumi.Input<string | undefined>;
     }
 
     export interface BucketLogging {
@@ -20673,14 +20673,14 @@ export namespace storage {
          * The object prefix for log objects. If it's not provided,
          * by default GCS sets this to this bucket's name.
          */
-        logObjectPrefix?: pulumi.Input<string>;
+        logObjectPrefix?: pulumi.Input<string | undefined>;
     }
 
     export interface BucketRetentionPolicy {
         /**
          * If set to `true`, the bucket will be [locked](https://cloud.google.com/storage/docs/using-bucket-lock#lock-bucket) and permanently restrict edits to the bucket's retention policy.  Caution: Locking a bucket is an irreversible action.
          */
-        isLocked?: pulumi.Input<boolean>;
+        isLocked?: pulumi.Input<boolean | undefined>;
         /**
          * The period of time, in seconds, that objects in the bucket must be retained and cannot be deleted, overwritten, or archived. The value must be less than 2,147,483,647 seconds.
          */
@@ -20699,29 +20699,29 @@ export namespace storage {
          * Behaves as the bucket's directory index where
          * missing objects are treated as potential directories.
          */
-        mainPageSuffix?: pulumi.Input<string>;
+        mainPageSuffix?: pulumi.Input<string | undefined>;
         /**
          * The custom object to return when a requested
          * resource is not found.
          */
-        notFoundPage?: pulumi.Input<string>;
+        notFoundPage?: pulumi.Input<string | undefined>;
     }
 
     export interface DefaultObjectAccessControlProjectTeam {
-        projectNumber?: pulumi.Input<string>;
-        team?: pulumi.Input<string>;
+        projectNumber?: pulumi.Input<string | undefined>;
+        team?: pulumi.Input<string | undefined>;
     }
 
     export interface ObjectAccessControlProjectTeam {
-        projectNumber?: pulumi.Input<string>;
-        team?: pulumi.Input<string>;
+        projectNumber?: pulumi.Input<string | undefined>;
+        team?: pulumi.Input<string | undefined>;
     }
 
     export interface TransferJobSchedule {
         /**
          * The last day the recurring transfer will be run. If `scheduleEndDate` is the same as `scheduleStartDate`, the transfer will be executed only once. Structure documented below.
          */
-        scheduleEndDate?: pulumi.Input<inputs.storage.TransferJobScheduleScheduleEndDate>;
+        scheduleEndDate?: pulumi.Input<inputs.storage.TransferJobScheduleScheduleEndDate | undefined>;
         /**
          * The first day the recurring transfer is scheduled to run. If `scheduleStartDate` is in the past, the transfer will run for the first time on the following day. Structure documented below.
          */
@@ -20729,7 +20729,7 @@ export namespace storage {
         /**
          * The time in UTC at which the transfer will be scheduled to start in a day. Transfers may start later than this time. If not specified, recurring and one-time transfers that are scheduled to run today will run immediately; recurring transfers that are scheduled to run on a future date will start at approximately midnight UTC on that date. Note that when configuring a transfer with the Cloud Platform Console, the transfer's start time in a day is specified in your local timezone. Structure documented below.
          */
-        startTimeOfDay?: pulumi.Input<inputs.storage.TransferJobScheduleStartTimeOfDay>;
+        startTimeOfDay?: pulumi.Input<inputs.storage.TransferJobScheduleStartTimeOfDay | undefined>;
     }
 
     export interface TransferJobScheduleScheduleEndDate {
@@ -20785,27 +20785,27 @@ export namespace storage {
         /**
          * An AWS S3 data source. Structure documented below.
          */
-        awsS3DataSource?: pulumi.Input<inputs.storage.TransferJobTransferSpecAwsS3DataSource>;
+        awsS3DataSource?: pulumi.Input<inputs.storage.TransferJobTransferSpecAwsS3DataSource | undefined>;
         /**
          * A Google Cloud Storage data sink. Structure documented below.
          */
-        gcsDataSink?: pulumi.Input<inputs.storage.TransferJobTransferSpecGcsDataSink>;
+        gcsDataSink?: pulumi.Input<inputs.storage.TransferJobTransferSpecGcsDataSink | undefined>;
         /**
          * A Google Cloud Storage data source. Structure documented below.
          */
-        gcsDataSource?: pulumi.Input<inputs.storage.TransferJobTransferSpecGcsDataSource>;
+        gcsDataSource?: pulumi.Input<inputs.storage.TransferJobTransferSpecGcsDataSource | undefined>;
         /**
          * An HTTP URL data source. Structure documented below.
          */
-        httpDataSource?: pulumi.Input<inputs.storage.TransferJobTransferSpecHttpDataSource>;
+        httpDataSource?: pulumi.Input<inputs.storage.TransferJobTransferSpecHttpDataSource | undefined>;
         /**
          * Only objects that satisfy these object conditions are included in the set of data source and data sink objects. Object conditions based on objects' `lastModificationTime` do not exclude objects in a data sink. Structure documented below.
          */
-        objectConditions?: pulumi.Input<inputs.storage.TransferJobTransferSpecObjectConditions>;
+        objectConditions?: pulumi.Input<inputs.storage.TransferJobTransferSpecObjectConditions | undefined>;
         /**
          * Characteristics of how to treat files from datasource and sink during job. If the option `deleteObjectsUniqueInSink` is true, object conditions based on objects' `lastModificationTime` are ignored and do not exclude objects in a data source or a data sink. Structure documented below.
          */
-        transferOptions?: pulumi.Input<inputs.storage.TransferJobTransferSpecTransferOptions>;
+        transferOptions?: pulumi.Input<inputs.storage.TransferJobTransferSpecTransferOptions | undefined>;
     }
 
     export interface TransferJobTransferSpecAwsS3DataSource {
@@ -20855,42 +20855,42 @@ export namespace storage {
         /**
          * `excludePrefixes` must follow the requirements described for `includePrefixes`. See [Requirements](https://cloud.google.com/storage-transfer/docs/reference/rest/v1/TransferSpec#ObjectConditions).
          */
-        excludePrefixes?: pulumi.Input<pulumi.Input<string>[]>;
+        excludePrefixes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * If `includeRefixes` is specified, objects that satisfy the object conditions must have names that start with one of the `includePrefixes` and that do not start with any of the `excludePrefixes`. If `includePrefixes` is not specified, all objects except those that have names starting with one of the `excludePrefixes` must satisfy the object conditions. See [Requirements](https://cloud.google.com/storage-transfer/docs/reference/rest/v1/TransferSpec#ObjectConditions).
          */
-        includePrefixes?: pulumi.Input<pulumi.Input<string>[]>;
+        includePrefixes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s".
          */
-        maxTimeElapsedSinceLastModification?: pulumi.Input<string>;
+        maxTimeElapsedSinceLastModification?: pulumi.Input<string | undefined>;
         /**
          * A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s".
          */
-        minTimeElapsedSinceLastModification?: pulumi.Input<string>;
+        minTimeElapsedSinceLastModification?: pulumi.Input<string | undefined>;
     }
 
     export interface TransferJobTransferSpecTransferOptions {
         /**
          * Whether objects should be deleted from the source after they are transferred to the sink. Note that this option and `deleteObjectsUniqueInSink` are mutually exclusive.
          */
-        deleteObjectsFromSourceAfterTransfer?: pulumi.Input<boolean>;
+        deleteObjectsFromSourceAfterTransfer?: pulumi.Input<boolean | undefined>;
         /**
          * Whether objects that exist only in the sink should be deleted. Note that this option and
          * `deleteObjectsFromSourceAfterTransfer` are mutually exclusive.
          */
-        deleteObjectsUniqueInSink?: pulumi.Input<boolean>;
+        deleteObjectsUniqueInSink?: pulumi.Input<boolean | undefined>;
         /**
          * Whether overwriting objects that already exist in the sink is allowed.
          */
-        overwriteObjectsAlreadyExistingInSink?: pulumi.Input<boolean>;
+        overwriteObjectsAlreadyExistingInSink?: pulumi.Input<boolean | undefined>;
     }
 }
 
 export namespace tpu {
     export interface NodeNetworkEndpoint {
-        ipAddress?: pulumi.Input<string>;
-        port?: pulumi.Input<number>;
+        ipAddress?: pulumi.Input<string | undefined>;
+        port?: pulumi.Input<number | undefined>;
     }
 
     export interface NodeSchedulingConfig {

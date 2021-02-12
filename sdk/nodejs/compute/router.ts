@@ -181,15 +181,15 @@ export interface RouterState {
      * BGP information specific to this router.
      * Structure is documented below.
      */
-    readonly bgp?: pulumi.Input<inputs.compute.RouterBgp>;
+    readonly bgp?: pulumi.Input<inputs.compute.RouterBgp | undefined>;
     /**
      * Creation timestamp in RFC3339 text format.
      */
-    readonly creationTimestamp?: pulumi.Input<string>;
+    readonly creationTimestamp?: pulumi.Input<string | undefined>;
     /**
      * User-specified description for the IP range.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * Name of the resource. The name must be 1-63 characters long, and
      * comply with RFC1035. Specifically, the name must be 1-63 characters
@@ -198,24 +198,24 @@ export interface RouterState {
      * following characters must be a dash, lowercase letter, or digit,
      * except the last character, which cannot be a dash.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * A reference to the network to which this router belongs.
      */
-    readonly network?: pulumi.Input<string>;
+    readonly network?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Region where the router resides.
      */
-    readonly region?: pulumi.Input<string>;
+    readonly region?: pulumi.Input<string | undefined>;
     /**
      * The URI of the created resource.
      */
-    readonly selfLink?: pulumi.Input<string>;
+    readonly selfLink?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -226,11 +226,11 @@ export interface RouterArgs {
      * BGP information specific to this router.
      * Structure is documented below.
      */
-    readonly bgp?: pulumi.Input<inputs.compute.RouterBgp>;
+    readonly bgp?: pulumi.Input<inputs.compute.RouterBgp | undefined>;
     /**
      * User-specified description for the IP range.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * Name of the resource. The name must be 1-63 characters long, and
      * comply with RFC1035. Specifically, the name must be 1-63 characters
@@ -239,7 +239,7 @@ export interface RouterArgs {
      * following characters must be a dash, lowercase letter, or digit,
      * except the last character, which cannot be a dash.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * A reference to the network to which this router belongs.
      */
@@ -248,9 +248,9 @@ export interface RouterArgs {
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Region where the router resides.
      */
-    readonly region?: pulumi.Input<string>;
+    readonly region?: pulumi.Input<string | undefined>;
 }

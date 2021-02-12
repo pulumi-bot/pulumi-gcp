@@ -249,40 +249,40 @@ export interface ConnectionState {
      * Cloud SQL properties.
      * Structure is documented below.
      */
-    readonly cloudSql?: pulumi.Input<inputs.bigquery.ConnectionCloudSql>;
+    readonly cloudSql?: pulumi.Input<inputs.bigquery.ConnectionCloudSql | undefined>;
     /**
      * Optional connection id that should be assigned to the created connection.
      */
-    readonly connectionId?: pulumi.Input<string>;
+    readonly connectionId?: pulumi.Input<string | undefined>;
     /**
      * A descriptive description for the connection
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * A descriptive name for the connection
      */
-    readonly friendlyName?: pulumi.Input<string>;
+    readonly friendlyName?: pulumi.Input<string | undefined>;
     /**
      * True if the connection has credential assigned.
      */
-    readonly hasCredential?: pulumi.Input<boolean>;
+    readonly hasCredential?: pulumi.Input<boolean | undefined>;
     /**
      * The geographic location where the connection should reside.
      * Cloud SQL instance must be in the same location as the connection
      * with following exceptions: Cloud SQL us-central1 maps to BigQuery US, Cloud SQL europe-west1 maps to BigQuery EU.
      * Examples: US, EU, asia-northeast1, us-central1, europe-west1. The default value is US.
      */
-    readonly location?: pulumi.Input<string>;
+    readonly location?: pulumi.Input<string | undefined>;
     /**
      * The resource name of the connection in the form of:
      * "projects/{project_id}/locations/{location_id}/connections/{connectionId}"
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -297,25 +297,25 @@ export interface ConnectionArgs {
     /**
      * Optional connection id that should be assigned to the created connection.
      */
-    readonly connectionId?: pulumi.Input<string>;
+    readonly connectionId?: pulumi.Input<string | undefined>;
     /**
      * A descriptive description for the connection
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * A descriptive name for the connection
      */
-    readonly friendlyName?: pulumi.Input<string>;
+    readonly friendlyName?: pulumi.Input<string | undefined>;
     /**
      * The geographic location where the connection should reside.
      * Cloud SQL instance must be in the same location as the connection
      * with following exceptions: Cloud SQL us-central1 maps to BigQuery US, Cloud SQL europe-west1 maps to BigQuery EU.
      * Examples: US, EU, asia-northeast1, us-central1, europe-west1. The default value is US.
      */
-    readonly location?: pulumi.Input<string>;
+    readonly location?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
 }

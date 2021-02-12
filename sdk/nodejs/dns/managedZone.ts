@@ -328,74 +328,74 @@ export interface ManagedZoneState {
     /**
      * A textual description field. Defaults to 'Managed by Pulumi'.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * The DNS name of this managed zone, for instance "example.com.".
      */
-    readonly dnsName?: pulumi.Input<string>;
+    readonly dnsName?: pulumi.Input<string | undefined>;
     /**
      * DNSSEC configuration
      * Structure is documented below.
      */
-    readonly dnssecConfig?: pulumi.Input<inputs.dns.ManagedZoneDnssecConfig>;
+    readonly dnssecConfig?: pulumi.Input<inputs.dns.ManagedZoneDnssecConfig | undefined>;
     /**
      * Set this true to delete all records in the zone.
      */
-    readonly forceDestroy?: pulumi.Input<boolean>;
+    readonly forceDestroy?: pulumi.Input<boolean | undefined>;
     /**
      * The presence for this field indicates that outbound forwarding is enabled
      * for this zone. The value of this field contains the set of destinations
      * to forward to.
      * Structure is documented below.
      */
-    readonly forwardingConfig?: pulumi.Input<inputs.dns.ManagedZoneForwardingConfig>;
+    readonly forwardingConfig?: pulumi.Input<inputs.dns.ManagedZoneForwardingConfig | undefined>;
     /**
      * A set of key/value label pairs to assign to this ManagedZone.
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * User assigned name for this resource.
      * Must be unique within the project.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * Delegate your managed_zone to these virtual name servers; defined by the server
      */
-    readonly nameServers?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly nameServers?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The presence of this field indicates that DNS Peering is enabled for this
      * zone. The value of this field contains the network to peer with.
      * Structure is documented below.
      */
-    readonly peeringConfig?: pulumi.Input<inputs.dns.ManagedZonePeeringConfig>;
+    readonly peeringConfig?: pulumi.Input<inputs.dns.ManagedZonePeeringConfig | undefined>;
     /**
      * For privately visible zones, the set of Virtual Private Cloud
      * resources that the zone is visible from.
      * Structure is documented below.
      */
-    readonly privateVisibilityConfig?: pulumi.Input<inputs.dns.ManagedZonePrivateVisibilityConfig>;
+    readonly privateVisibilityConfig?: pulumi.Input<inputs.dns.ManagedZonePrivateVisibilityConfig | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Specifies if this is a managed reverse lookup zone. If true, Cloud DNS will resolve reverse
      * lookup queries using automatically configured records for VPC resources. This only applies
      * to networks listed under `privateVisibilityConfig`.
      */
-    readonly reverseLookup?: pulumi.Input<boolean>;
+    readonly reverseLookup?: pulumi.Input<boolean | undefined>;
     /**
      * The presence of this field indicates that this zone is backed by Service Directory. The value of this field contains information related to the namespace associated with the zone.  Structure is documented below.
      */
-    readonly serviceDirectoryConfig?: pulumi.Input<inputs.dns.ManagedZoneServiceDirectoryConfig>;
+    readonly serviceDirectoryConfig?: pulumi.Input<inputs.dns.ManagedZoneServiceDirectoryConfig | undefined>;
     /**
      * The zone's visibility: public zones are exposed to the Internet,
      * while private zones are visible only to Virtual Private Cloud resources.
      * Default value is `public`.
      * Possible values are `private` and `public`.
      */
-    readonly visibility?: pulumi.Input<string>;
+    readonly visibility?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -405,7 +405,7 @@ export interface ManagedZoneArgs {
     /**
      * A textual description field. Defaults to 'Managed by Pulumi'.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * The DNS name of this managed zone, for instance "example.com.".
      */
@@ -414,59 +414,59 @@ export interface ManagedZoneArgs {
      * DNSSEC configuration
      * Structure is documented below.
      */
-    readonly dnssecConfig?: pulumi.Input<inputs.dns.ManagedZoneDnssecConfig>;
+    readonly dnssecConfig?: pulumi.Input<inputs.dns.ManagedZoneDnssecConfig | undefined>;
     /**
      * Set this true to delete all records in the zone.
      */
-    readonly forceDestroy?: pulumi.Input<boolean>;
+    readonly forceDestroy?: pulumi.Input<boolean | undefined>;
     /**
      * The presence for this field indicates that outbound forwarding is enabled
      * for this zone. The value of this field contains the set of destinations
      * to forward to.
      * Structure is documented below.
      */
-    readonly forwardingConfig?: pulumi.Input<inputs.dns.ManagedZoneForwardingConfig>;
+    readonly forwardingConfig?: pulumi.Input<inputs.dns.ManagedZoneForwardingConfig | undefined>;
     /**
      * A set of key/value label pairs to assign to this ManagedZone.
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * User assigned name for this resource.
      * Must be unique within the project.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The presence of this field indicates that DNS Peering is enabled for this
      * zone. The value of this field contains the network to peer with.
      * Structure is documented below.
      */
-    readonly peeringConfig?: pulumi.Input<inputs.dns.ManagedZonePeeringConfig>;
+    readonly peeringConfig?: pulumi.Input<inputs.dns.ManagedZonePeeringConfig | undefined>;
     /**
      * For privately visible zones, the set of Virtual Private Cloud
      * resources that the zone is visible from.
      * Structure is documented below.
      */
-    readonly privateVisibilityConfig?: pulumi.Input<inputs.dns.ManagedZonePrivateVisibilityConfig>;
+    readonly privateVisibilityConfig?: pulumi.Input<inputs.dns.ManagedZonePrivateVisibilityConfig | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Specifies if this is a managed reverse lookup zone. If true, Cloud DNS will resolve reverse
      * lookup queries using automatically configured records for VPC resources. This only applies
      * to networks listed under `privateVisibilityConfig`.
      */
-    readonly reverseLookup?: pulumi.Input<boolean>;
+    readonly reverseLookup?: pulumi.Input<boolean | undefined>;
     /**
      * The presence of this field indicates that this zone is backed by Service Directory. The value of this field contains information related to the namespace associated with the zone.  Structure is documented below.
      */
-    readonly serviceDirectoryConfig?: pulumi.Input<inputs.dns.ManagedZoneServiceDirectoryConfig>;
+    readonly serviceDirectoryConfig?: pulumi.Input<inputs.dns.ManagedZoneServiceDirectoryConfig | undefined>;
     /**
      * The zone's visibility: public zones are exposed to the Internet,
      * while private zones are visible only to Virtual Private Cloud resources.
      * Default value is `public`.
      * Possible values are `private` and `public`.
      */
-    readonly visibility?: pulumi.Input<string>;
+    readonly visibility?: pulumi.Input<string | undefined>;
 }

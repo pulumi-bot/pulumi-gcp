@@ -119,19 +119,19 @@ export interface OrganizationSecurityPolicyAssociationState {
     /**
      * The resource that the security policy is attached to.
      */
-    readonly attachmentId?: pulumi.Input<string>;
+    readonly attachmentId?: pulumi.Input<string | undefined>;
     /**
      * The display name of the security policy of the association.
      */
-    readonly displayName?: pulumi.Input<string>;
+    readonly displayName?: pulumi.Input<string | undefined>;
     /**
      * The name for an association.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The security policy ID of the association.
      */
-    readonly policyId?: pulumi.Input<string>;
+    readonly policyId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -145,7 +145,7 @@ export interface OrganizationSecurityPolicyAssociationArgs {
     /**
      * The name for an association.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The security policy ID of the association.
      */

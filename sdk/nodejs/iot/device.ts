@@ -230,75 +230,75 @@ export interface DeviceState {
     /**
      * If a device is blocked, connections or requests from this device will fail.
      */
-    readonly blocked?: pulumi.Input<boolean>;
+    readonly blocked?: pulumi.Input<boolean | undefined>;
     /**
      * The most recent device configuration, which is eventually sent from Cloud IoT Core to the device.
      */
-    readonly configs?: pulumi.Input<pulumi.Input<inputs.iot.DeviceConfig>[]>;
+    readonly configs?: pulumi.Input<pulumi.Input<inputs.iot.DeviceConfig>[] | undefined>;
     /**
      * The credentials used to authenticate this device.
      * Structure is documented below.
      */
-    readonly credentials?: pulumi.Input<pulumi.Input<inputs.iot.DeviceCredential>[]>;
+    readonly credentials?: pulumi.Input<pulumi.Input<inputs.iot.DeviceCredential>[] | undefined>;
     /**
      * Gateway-related configuration and state.
      * Structure is documented below.
      */
-    readonly gatewayConfig?: pulumi.Input<inputs.iot.DeviceGatewayConfig>;
+    readonly gatewayConfig?: pulumi.Input<inputs.iot.DeviceGatewayConfig | undefined>;
     /**
      * The last time a cloud-to-device config version acknowledgment was received from the device.
      */
-    readonly lastConfigAckTime?: pulumi.Input<string>;
+    readonly lastConfigAckTime?: pulumi.Input<string | undefined>;
     /**
      * The last time a cloud-to-device config version was sent to the device.
      */
-    readonly lastConfigSendTime?: pulumi.Input<string>;
+    readonly lastConfigSendTime?: pulumi.Input<string | undefined>;
     /**
      * The error message of the most recent error, such as a failure to publish to Cloud Pub/Sub.
      */
-    readonly lastErrorStatuses?: pulumi.Input<pulumi.Input<inputs.iot.DeviceLastErrorStatus>[]>;
+    readonly lastErrorStatuses?: pulumi.Input<pulumi.Input<inputs.iot.DeviceLastErrorStatus>[] | undefined>;
     /**
      * The time the most recent error occurred, such as a failure to publish to Cloud Pub/Sub.
      */
-    readonly lastErrorTime?: pulumi.Input<string>;
+    readonly lastErrorTime?: pulumi.Input<string | undefined>;
     /**
      * The last time a telemetry event was received.
      */
-    readonly lastEventTime?: pulumi.Input<string>;
+    readonly lastEventTime?: pulumi.Input<string | undefined>;
     /**
      * The last time an MQTT PINGREQ was received.
      */
-    readonly lastHeartbeatTime?: pulumi.Input<string>;
+    readonly lastHeartbeatTime?: pulumi.Input<string | undefined>;
     /**
      * The last time a state event was received.
      */
-    readonly lastStateTime?: pulumi.Input<string>;
+    readonly lastStateTime?: pulumi.Input<string | undefined>;
     /**
      * The logging verbosity for device activity.
      * Possible values are `NONE`, `ERROR`, `INFO`, and `DEBUG`.
      */
-    readonly logLevel?: pulumi.Input<string>;
+    readonly logLevel?: pulumi.Input<string | undefined>;
     /**
      * The metadata key-value pairs assigned to the device.
      */
-    readonly metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * A unique name for the resource.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * A server-defined unique numeric ID for the device. This is a more compact way to identify devices, and it is globally
      * unique.
      */
-    readonly numId?: pulumi.Input<string>;
+    readonly numId?: pulumi.Input<string | undefined>;
     /**
      * The name of the device registry where this device should be created.
      */
-    readonly registry?: pulumi.Input<string>;
+    readonly registry?: pulumi.Input<string | undefined>;
     /**
      * The state most recently received from the device.
      */
-    readonly states?: pulumi.Input<pulumi.Input<inputs.iot.DeviceState>[]>;
+    readonly states?: pulumi.Input<pulumi.Input<inputs.iot.DeviceState>[] | undefined>;
 }
 
 /**
@@ -308,30 +308,30 @@ export interface DeviceArgs {
     /**
      * If a device is blocked, connections or requests from this device will fail.
      */
-    readonly blocked?: pulumi.Input<boolean>;
+    readonly blocked?: pulumi.Input<boolean | undefined>;
     /**
      * The credentials used to authenticate this device.
      * Structure is documented below.
      */
-    readonly credentials?: pulumi.Input<pulumi.Input<inputs.iot.DeviceCredential>[]>;
+    readonly credentials?: pulumi.Input<pulumi.Input<inputs.iot.DeviceCredential>[] | undefined>;
     /**
      * Gateway-related configuration and state.
      * Structure is documented below.
      */
-    readonly gatewayConfig?: pulumi.Input<inputs.iot.DeviceGatewayConfig>;
+    readonly gatewayConfig?: pulumi.Input<inputs.iot.DeviceGatewayConfig | undefined>;
     /**
      * The logging verbosity for device activity.
      * Possible values are `NONE`, `ERROR`, `INFO`, and `DEBUG`.
      */
-    readonly logLevel?: pulumi.Input<string>;
+    readonly logLevel?: pulumi.Input<string | undefined>;
     /**
      * The metadata key-value pairs assigned to the device.
      */
-    readonly metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * A unique name for the resource.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The name of the device registry where this device should be created.
      */

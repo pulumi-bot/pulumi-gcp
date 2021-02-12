@@ -153,20 +153,20 @@ export interface ServiceState {
      * up to 2000 characters, spread across all key-value pairs.
      * Metadata that goes beyond any these limits will be rejected.
      */
-    readonly metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The resource name for the service in the format 'projects/*&#47;locations/*&#47;namespaces/*&#47;services/*'.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The resource name of the namespace this service will belong to.
      */
-    readonly namespace?: pulumi.Input<string>;
+    readonly namespace?: pulumi.Input<string | undefined>;
     /**
      * The Resource ID must be 1-63 characters long, including digits,
      * lowercase letters or the hyphen character.
      */
-    readonly serviceId?: pulumi.Input<string>;
+    readonly serviceId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -179,7 +179,7 @@ export interface ServiceArgs {
      * up to 2000 characters, spread across all key-value pairs.
      * Metadata that goes beyond any these limits will be rejected.
      */
-    readonly metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The resource name of the namespace this service will belong to.
      */

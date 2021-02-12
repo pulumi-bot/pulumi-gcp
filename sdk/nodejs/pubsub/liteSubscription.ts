@@ -168,28 +168,28 @@ export interface LiteSubscriptionState {
      * The settings for this subscription's message delivery.
      * Structure is documented below.
      */
-    readonly deliveryConfig?: pulumi.Input<inputs.pubsub.LiteSubscriptionDeliveryConfig>;
+    readonly deliveryConfig?: pulumi.Input<inputs.pubsub.LiteSubscriptionDeliveryConfig | undefined>;
     /**
      * Name of the subscription.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The region of the pubsub lite topic.
      */
-    readonly region?: pulumi.Input<string>;
+    readonly region?: pulumi.Input<string | undefined>;
     /**
      * A reference to a Topic resource.
      */
-    readonly topic?: pulumi.Input<string>;
+    readonly topic?: pulumi.Input<string | undefined>;
     /**
      * The zone of the pubsub lite topic.
      */
-    readonly zone?: pulumi.Input<string>;
+    readonly zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -200,20 +200,20 @@ export interface LiteSubscriptionArgs {
      * The settings for this subscription's message delivery.
      * Structure is documented below.
      */
-    readonly deliveryConfig?: pulumi.Input<inputs.pubsub.LiteSubscriptionDeliveryConfig>;
+    readonly deliveryConfig?: pulumi.Input<inputs.pubsub.LiteSubscriptionDeliveryConfig | undefined>;
     /**
      * Name of the subscription.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The region of the pubsub lite topic.
      */
-    readonly region?: pulumi.Input<string>;
+    readonly region?: pulumi.Input<string | undefined>;
     /**
      * A reference to a Topic resource.
      */
@@ -221,5 +221,5 @@ export interface LiteSubscriptionArgs {
     /**
      * The zone of the pubsub lite topic.
      */
-    readonly zone?: pulumi.Input<string>;
+    readonly zone?: pulumi.Input<string | undefined>;
 }

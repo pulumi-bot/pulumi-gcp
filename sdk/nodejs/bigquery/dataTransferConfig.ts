@@ -257,54 +257,54 @@ export interface DataTransferConfigState {
      * just [today-1]. Only valid if the data source supports the feature.
      * Set the value to 0 to use the default value.
      */
-    readonly dataRefreshWindowDays?: pulumi.Input<number>;
+    readonly dataRefreshWindowDays?: pulumi.Input<number | undefined>;
     /**
      * The data source id. Cannot be changed once the transfer config is created.
      */
-    readonly dataSourceId?: pulumi.Input<string>;
+    readonly dataSourceId?: pulumi.Input<string | undefined>;
     /**
      * The BigQuery target dataset id.
      */
-    readonly destinationDatasetId?: pulumi.Input<string>;
+    readonly destinationDatasetId?: pulumi.Input<string | undefined>;
     /**
      * When set to true, no runs are scheduled for a given transfer.
      */
-    readonly disabled?: pulumi.Input<boolean>;
+    readonly disabled?: pulumi.Input<boolean | undefined>;
     /**
      * The user specified display name for the transfer config.
      */
-    readonly displayName?: pulumi.Input<string>;
+    readonly displayName?: pulumi.Input<string | undefined>;
     /**
      * Email notifications will be sent according to these preferences to the
      * email address of the user who owns this transfer config.
      * Structure is documented below.
      */
-    readonly emailPreferences?: pulumi.Input<inputs.bigquery.DataTransferConfigEmailPreferences>;
+    readonly emailPreferences?: pulumi.Input<inputs.bigquery.DataTransferConfigEmailPreferences | undefined>;
     /**
      * The geographic location where the transfer config should reside.
      * Examples: US, EU, asia-northeast1. The default value is US.
      */
-    readonly location?: pulumi.Input<string>;
+    readonly location?: pulumi.Input<string | undefined>;
     /**
      * The resource name of the transfer config. Transfer config names have the form
      * projects/{projectId}/locations/{location}/transferConfigs/{configId}. Where configId is usually a uuid, but this is not
      * required. The name is ignored when creating a transfer config.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * Pub/Sub topic where notifications will be sent after transfer runs
      * associated with this transfer config finish.
      */
-    readonly notificationPubsubTopic?: pulumi.Input<string>;
+    readonly notificationPubsubTopic?: pulumi.Input<string | undefined>;
     /**
      * These parameters are specific to each data source.
      */
-    readonly params?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly params?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Data transfer schedule. If the data source does not support a custom
      * schedule, this should be empty. If it is empty, the default value for
@@ -315,12 +315,12 @@ export interface DataTransferConfigState {
      * https://cloud.google.com/appengine/docs/flexible/python/scheduling-jobs-with-cron-yaml#the_schedule_format
      * NOTE: the granularity should be at least 8 hours, or less frequent.
      */
-    readonly schedule?: pulumi.Input<string>;
+    readonly schedule?: pulumi.Input<string | undefined>;
     /**
      * Options customizing the data transfer schedule.
      * Structure is documented below.
      */
-    readonly scheduleOptions?: pulumi.Input<inputs.bigquery.DataTransferConfigScheduleOptions>;
+    readonly scheduleOptions?: pulumi.Input<inputs.bigquery.DataTransferConfigScheduleOptions | undefined>;
     /**
      * Different parameters are configured primarily using the the `params` field on this
      * resource. This block contains the parameters which contain secrets or passwords so that they can be marked
@@ -330,13 +330,13 @@ export interface DataTransferConfigState {
      * to a different credential configuration in the config will require an apply to update state.
      * Structure is documented below.
      */
-    readonly sensitiveParams?: pulumi.Input<inputs.bigquery.DataTransferConfigSensitiveParams>;
+    readonly sensitiveParams?: pulumi.Input<inputs.bigquery.DataTransferConfigSensitiveParams | undefined>;
     /**
      * Optional service account name. If this field is set, transfer config will
      * be created with this service account credentials. It requires that
      * requesting user calling this API has permissions to act as this service account.
      */
-    readonly serviceAccountName?: pulumi.Input<string>;
+    readonly serviceAccountName?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -350,7 +350,7 @@ export interface DataTransferConfigArgs {
      * just [today-1]. Only valid if the data source supports the feature.
      * Set the value to 0 to use the default value.
      */
-    readonly dataRefreshWindowDays?: pulumi.Input<number>;
+    readonly dataRefreshWindowDays?: pulumi.Input<number | undefined>;
     /**
      * The data source id. Cannot be changed once the transfer config is created.
      */
@@ -362,7 +362,7 @@ export interface DataTransferConfigArgs {
     /**
      * When set to true, no runs are scheduled for a given transfer.
      */
-    readonly disabled?: pulumi.Input<boolean>;
+    readonly disabled?: pulumi.Input<boolean | undefined>;
     /**
      * The user specified display name for the transfer config.
      */
@@ -372,17 +372,17 @@ export interface DataTransferConfigArgs {
      * email address of the user who owns this transfer config.
      * Structure is documented below.
      */
-    readonly emailPreferences?: pulumi.Input<inputs.bigquery.DataTransferConfigEmailPreferences>;
+    readonly emailPreferences?: pulumi.Input<inputs.bigquery.DataTransferConfigEmailPreferences | undefined>;
     /**
      * The geographic location where the transfer config should reside.
      * Examples: US, EU, asia-northeast1. The default value is US.
      */
-    readonly location?: pulumi.Input<string>;
+    readonly location?: pulumi.Input<string | undefined>;
     /**
      * Pub/Sub topic where notifications will be sent after transfer runs
      * associated with this transfer config finish.
      */
-    readonly notificationPubsubTopic?: pulumi.Input<string>;
+    readonly notificationPubsubTopic?: pulumi.Input<string | undefined>;
     /**
      * These parameters are specific to each data source.
      */
@@ -391,7 +391,7 @@ export interface DataTransferConfigArgs {
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Data transfer schedule. If the data source does not support a custom
      * schedule, this should be empty. If it is empty, the default value for
@@ -402,12 +402,12 @@ export interface DataTransferConfigArgs {
      * https://cloud.google.com/appengine/docs/flexible/python/scheduling-jobs-with-cron-yaml#the_schedule_format
      * NOTE: the granularity should be at least 8 hours, or less frequent.
      */
-    readonly schedule?: pulumi.Input<string>;
+    readonly schedule?: pulumi.Input<string | undefined>;
     /**
      * Options customizing the data transfer schedule.
      * Structure is documented below.
      */
-    readonly scheduleOptions?: pulumi.Input<inputs.bigquery.DataTransferConfigScheduleOptions>;
+    readonly scheduleOptions?: pulumi.Input<inputs.bigquery.DataTransferConfigScheduleOptions | undefined>;
     /**
      * Different parameters are configured primarily using the the `params` field on this
      * resource. This block contains the parameters which contain secrets or passwords so that they can be marked
@@ -417,11 +417,11 @@ export interface DataTransferConfigArgs {
      * to a different credential configuration in the config will require an apply to update state.
      * Structure is documented below.
      */
-    readonly sensitiveParams?: pulumi.Input<inputs.bigquery.DataTransferConfigSensitiveParams>;
+    readonly sensitiveParams?: pulumi.Input<inputs.bigquery.DataTransferConfigSensitiveParams | undefined>;
     /**
      * Optional service account name. If this field is set, transfer config will
      * be created with this service account credentials. It requires that
      * requesting user calling this API has permissions to act as this service account.
      */
-    readonly serviceAccountName?: pulumi.Input<string>;
+    readonly serviceAccountName?: pulumi.Input<string | undefined>;
 }

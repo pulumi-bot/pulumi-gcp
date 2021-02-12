@@ -191,24 +191,24 @@ export interface AttestorIamBindingState {
     /**
      * Used to find the parent resource to bind the IAM policy to
      */
-    readonly attestor?: pulumi.Input<string>;
-    readonly condition?: pulumi.Input<inputs.binaryauthorization.AttestorIamBindingCondition>;
+    readonly attestor?: pulumi.Input<string | undefined>;
+    readonly condition?: pulumi.Input<inputs.binaryauthorization.AttestorIamBindingCondition | undefined>;
     /**
      * (Computed) The etag of the IAM policy.
      */
-    readonly etag?: pulumi.Input<string>;
-    readonly members?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly etag?: pulumi.Input<string | undefined>;
+    readonly members?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the project will be parsed from the identifier of the parent resource. If no project is provided in the parent identifier and no project is specified, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The role that should be applied. Only one
      * `gcp.binaryauthorization.AttestorIamBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
-    readonly role?: pulumi.Input<string>;
+    readonly role?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -219,13 +219,13 @@ export interface AttestorIamBindingArgs {
      * Used to find the parent resource to bind the IAM policy to
      */
     readonly attestor: pulumi.Input<string>;
-    readonly condition?: pulumi.Input<inputs.binaryauthorization.AttestorIamBindingCondition>;
+    readonly condition?: pulumi.Input<inputs.binaryauthorization.AttestorIamBindingCondition | undefined>;
     readonly members: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the project will be parsed from the identifier of the parent resource. If no project is provided in the parent identifier and no project is specified, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The role that should be applied. Only one
      * `gcp.binaryauthorization.AttestorIamBinding` can be used per role. Note that custom roles must be of the format

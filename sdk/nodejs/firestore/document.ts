@@ -195,41 +195,41 @@ export interface DocumentState {
     /**
      * The collection ID, relative to database. For example: chatrooms or chatrooms/my-document/private-messages.
      */
-    readonly collection?: pulumi.Input<string>;
+    readonly collection?: pulumi.Input<string | undefined>;
     /**
      * Creation timestamp in RFC3339 format.
      */
-    readonly createTime?: pulumi.Input<string>;
+    readonly createTime?: pulumi.Input<string | undefined>;
     /**
      * The Firestore database id. Defaults to `"(default)"`.
      */
-    readonly database?: pulumi.Input<string>;
+    readonly database?: pulumi.Input<string | undefined>;
     /**
      * The client-assigned document ID to use for this document during creation.
      */
-    readonly documentId?: pulumi.Input<string>;
+    readonly documentId?: pulumi.Input<string | undefined>;
     /**
      * The document's [fields](https://cloud.google.com/firestore/docs/reference/rest/v1/projects.databases.documents) formated as a json string.
      */
-    readonly fields?: pulumi.Input<string>;
+    readonly fields?: pulumi.Input<string | undefined>;
     /**
      * A server defined name for this index. Format:
      * 'projects/{{project_id}}/databases/{{database_id}}/documents/{{path}}/{{document_id}}'
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * A relative path to the collection this document exists within
      */
-    readonly path?: pulumi.Input<string>;
+    readonly path?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Last update timestamp in RFC3339 format.
      */
-    readonly updateTime?: pulumi.Input<string>;
+    readonly updateTime?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -243,7 +243,7 @@ export interface DocumentArgs {
     /**
      * The Firestore database id. Defaults to `"(default)"`.
      */
-    readonly database?: pulumi.Input<string>;
+    readonly database?: pulumi.Input<string | undefined>;
     /**
      * The client-assigned document ID to use for this document during creation.
      */
@@ -256,5 +256,5 @@ export interface DocumentArgs {
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
 }

@@ -176,43 +176,43 @@ export interface FlexTemplateJobState {
      * The GCS path to the Dataflow job Flex
      * Template.
      */
-    readonly containerSpecGcsPath?: pulumi.Input<string>;
+    readonly containerSpecGcsPath?: pulumi.Input<string | undefined>;
     /**
      * The unique ID of this job.
      */
-    readonly jobId?: pulumi.Input<string>;
+    readonly jobId?: pulumi.Input<string | undefined>;
     /**
      * @deprecated Deprecated until the API supports this field
      */
-    readonly labels?: pulumi.Input<{[key: string]: any}>;
+    readonly labels?: pulumi.Input<{[key: string]: any} | undefined>;
     /**
      * A unique name for the resource, required by Dataflow.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * One of "drain" or "cancel". Specifies behavior of
      * deletion during `pulumi destroy`.  See above note.
      */
-    readonly onDelete?: pulumi.Input<string>;
+    readonly onDelete?: pulumi.Input<string | undefined>;
     /**
      * Key/Value pairs to be passed to the Dataflow job (as
      * used in the template). Additional [pipeline options](https://cloud.google.com/dataflow/docs/guides/specifying-exec-params#setting-other-cloud-dataflow-pipeline-options)
      * such as `serviceAccount`, `workerMachineType`, etc can be specified here.
      */
-    readonly parameters?: pulumi.Input<{[key: string]: any}>;
+    readonly parameters?: pulumi.Input<{[key: string]: any} | undefined>;
     /**
      * The project in which the resource belongs. If it is not
      * provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The region in which the created job should run.
      */
-    readonly region?: pulumi.Input<string>;
+    readonly region?: pulumi.Input<string | undefined>;
     /**
      * The current state of the resource, selected from the [JobState enum](https://cloud.google.com/dataflow/docs/reference/rest/v1b3/projects.jobs#Job.JobState)
      */
-    readonly state?: pulumi.Input<string>;
+    readonly state?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -227,29 +227,29 @@ export interface FlexTemplateJobArgs {
     /**
      * @deprecated Deprecated until the API supports this field
      */
-    readonly labels?: pulumi.Input<{[key: string]: any}>;
+    readonly labels?: pulumi.Input<{[key: string]: any} | undefined>;
     /**
      * A unique name for the resource, required by Dataflow.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * One of "drain" or "cancel". Specifies behavior of
      * deletion during `pulumi destroy`.  See above note.
      */
-    readonly onDelete?: pulumi.Input<string>;
+    readonly onDelete?: pulumi.Input<string | undefined>;
     /**
      * Key/Value pairs to be passed to the Dataflow job (as
      * used in the template). Additional [pipeline options](https://cloud.google.com/dataflow/docs/guides/specifying-exec-params#setting-other-cloud-dataflow-pipeline-options)
      * such as `serviceAccount`, `workerMachineType`, etc can be specified here.
      */
-    readonly parameters?: pulumi.Input<{[key: string]: any}>;
+    readonly parameters?: pulumi.Input<{[key: string]: any} | undefined>;
     /**
      * The project in which the resource belongs. If it is not
      * provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The region in which the created job should run.
      */
-    readonly region?: pulumi.Input<string>;
+    readonly region?: pulumi.Input<string | undefined>;
 }

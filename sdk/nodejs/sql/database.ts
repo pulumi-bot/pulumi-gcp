@@ -165,7 +165,7 @@ export interface DatabaseState {
      * for more details and supported values. Postgres databases only support
      * a value of `UTF8` at creation time.
      */
-    readonly charset?: pulumi.Input<string>;
+    readonly charset?: pulumi.Input<string | undefined>;
     /**
      * The collation value. See MySQL's
      * [Supported Character Sets and Collations](https://dev.mysql.com/doc/refman/5.7/en/charset-charsets.html)
@@ -173,26 +173,26 @@ export interface DatabaseState {
      * for more details and supported values. Postgres databases only support
      * a value of `en_US.UTF8` at creation time.
      */
-    readonly collation?: pulumi.Input<string>;
+    readonly collation?: pulumi.Input<string | undefined>;
     /**
      * The name of the Cloud SQL instance. This does not include the project
      * ID.
      */
-    readonly instance?: pulumi.Input<string>;
+    readonly instance?: pulumi.Input<string | undefined>;
     /**
      * The name of the database in the Cloud SQL instance.
      * This does not include the project ID or instance name.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The URI of the created resource.
      */
-    readonly selfLink?: pulumi.Input<string>;
+    readonly selfLink?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -206,7 +206,7 @@ export interface DatabaseArgs {
      * for more details and supported values. Postgres databases only support
      * a value of `UTF8` at creation time.
      */
-    readonly charset?: pulumi.Input<string>;
+    readonly charset?: pulumi.Input<string | undefined>;
     /**
      * The collation value. See MySQL's
      * [Supported Character Sets and Collations](https://dev.mysql.com/doc/refman/5.7/en/charset-charsets.html)
@@ -214,7 +214,7 @@ export interface DatabaseArgs {
      * for more details and supported values. Postgres databases only support
      * a value of `en_US.UTF8` at creation time.
      */
-    readonly collation?: pulumi.Input<string>;
+    readonly collation?: pulumi.Input<string | undefined>;
     /**
      * The name of the Cloud SQL instance. This does not include the project
      * ID.
@@ -224,10 +224,10 @@ export interface DatabaseArgs {
      * The name of the database in the Cloud SQL instance.
      * This does not include the project ID or instance name.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
 }

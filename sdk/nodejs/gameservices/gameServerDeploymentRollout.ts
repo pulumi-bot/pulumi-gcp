@@ -189,11 +189,11 @@ export interface GameServerDeploymentRolloutState {
      * applied by default to all realms and clusters. For example,
      * `projects/my-project/locations/global/gameServerDeployments/my-game/configs/my-config`.
      */
-    readonly defaultGameServerConfig?: pulumi.Input<string>;
+    readonly defaultGameServerConfig?: pulumi.Input<string | undefined>;
     /**
      * The deployment to rollout the new config to. Only 1 rollout must be associated with each deployment.
      */
-    readonly deploymentId?: pulumi.Input<string>;
+    readonly deploymentId?: pulumi.Input<string | undefined>;
     /**
      * The gameServerConfigOverrides contains the per game server config
      * overrides. The overrides are processed in the order they are listed. As
@@ -201,17 +201,17 @@ export interface GameServerDeploymentRolloutState {
      * processed.
      * Structure is documented below.
      */
-    readonly gameServerConfigOverrides?: pulumi.Input<pulumi.Input<inputs.gameservices.GameServerDeploymentRolloutGameServerConfigOverride>[]>;
+    readonly gameServerConfigOverrides?: pulumi.Input<pulumi.Input<inputs.gameservices.GameServerDeploymentRolloutGameServerConfigOverride>[] | undefined>;
     /**
      * The resource id of the game server deployment eg:
      * 'projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout'.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -235,10 +235,10 @@ export interface GameServerDeploymentRolloutArgs {
      * processed.
      * Structure is documented below.
      */
-    readonly gameServerConfigOverrides?: pulumi.Input<pulumi.Input<inputs.gameservices.GameServerDeploymentRolloutGameServerConfigOverride>[]>;
+    readonly gameServerConfigOverrides?: pulumi.Input<pulumi.Input<inputs.gameservices.GameServerDeploymentRolloutGameServerConfigOverride>[] | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
 }

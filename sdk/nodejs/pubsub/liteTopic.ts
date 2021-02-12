@@ -158,30 +158,30 @@ export interface LiteTopicState {
     /**
      * Name of the topic.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The settings for this topic's partitions.
      * Structure is documented below.
      */
-    readonly partitionConfig?: pulumi.Input<inputs.pubsub.LiteTopicPartitionConfig>;
+    readonly partitionConfig?: pulumi.Input<inputs.pubsub.LiteTopicPartitionConfig | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The region of the pubsub lite topic.
      */
-    readonly region?: pulumi.Input<string>;
+    readonly region?: pulumi.Input<string | undefined>;
     /**
      * The settings for a topic's message retention.
      * Structure is documented below.
      */
-    readonly retentionConfig?: pulumi.Input<inputs.pubsub.LiteTopicRetentionConfig>;
+    readonly retentionConfig?: pulumi.Input<inputs.pubsub.LiteTopicRetentionConfig | undefined>;
     /**
      * The zone of the pubsub lite topic.
      */
-    readonly zone?: pulumi.Input<string>;
+    readonly zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -191,28 +191,28 @@ export interface LiteTopicArgs {
     /**
      * Name of the topic.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The settings for this topic's partitions.
      * Structure is documented below.
      */
-    readonly partitionConfig?: pulumi.Input<inputs.pubsub.LiteTopicPartitionConfig>;
+    readonly partitionConfig?: pulumi.Input<inputs.pubsub.LiteTopicPartitionConfig | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The region of the pubsub lite topic.
      */
-    readonly region?: pulumi.Input<string>;
+    readonly region?: pulumi.Input<string | undefined>;
     /**
      * The settings for a topic's message retention.
      * Structure is documented below.
      */
-    readonly retentionConfig?: pulumi.Input<inputs.pubsub.LiteTopicRetentionConfig>;
+    readonly retentionConfig?: pulumi.Input<inputs.pubsub.LiteTopicRetentionConfig | undefined>;
     /**
      * The zone of the pubsub lite topic.
      */
-    readonly zone?: pulumi.Input<string>;
+    readonly zone?: pulumi.Input<string | undefined>;
 }

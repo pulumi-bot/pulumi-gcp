@@ -288,54 +288,54 @@ export interface RouterNatState {
      * A list of URLs of the IP resources to be drained. These IPs must be
      * valid static external IPs that have been assigned to the NAT.
      */
-    readonly drainNatIps?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly drainNatIps?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies if endpoint independent mapping is enabled. This is enabled by default. For more information
      * see the [official documentation](https://cloud.google.com/nat/docs/overview#specs-rfcs).
      */
-    readonly enableEndpointIndependentMapping?: pulumi.Input<boolean>;
+    readonly enableEndpointIndependentMapping?: pulumi.Input<boolean | undefined>;
     /**
      * Timeout (in seconds) for ICMP connections. Defaults to 30s if not set.
      */
-    readonly icmpIdleTimeoutSec?: pulumi.Input<number>;
+    readonly icmpIdleTimeoutSec?: pulumi.Input<number | undefined>;
     /**
      * Configuration for logging on NAT
      * Structure is documented below.
      */
-    readonly logConfig?: pulumi.Input<inputs.compute.RouterNatLogConfig>;
+    readonly logConfig?: pulumi.Input<inputs.compute.RouterNatLogConfig | undefined>;
     /**
      * Minimum number of ports allocated to a VM from this NAT.
      */
-    readonly minPortsPerVm?: pulumi.Input<number>;
+    readonly minPortsPerVm?: pulumi.Input<number | undefined>;
     /**
      * Self-link of subnetwork to NAT
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * How external IPs should be allocated for this NAT. Valid values are
      * `AUTO_ONLY` for only allowing NAT IPs allocated by Google Cloud
      * Platform, or `MANUAL_ONLY` for only user-allocated NAT IP addresses.
      * Possible values are `MANUAL_ONLY` and `AUTO_ONLY`.
      */
-    readonly natIpAllocateOption?: pulumi.Input<string>;
+    readonly natIpAllocateOption?: pulumi.Input<string | undefined>;
     /**
      * Self-links of NAT IPs. Only valid if natIpAllocateOption
      * is set to MANUAL_ONLY.
      */
-    readonly natIps?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly natIps?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Region where the router and NAT reside.
      */
-    readonly region?: pulumi.Input<string>;
+    readonly region?: pulumi.Input<string | undefined>;
     /**
      * The name of the Cloud Router in which this NAT will be configured.
      */
-    readonly router?: pulumi.Input<string>;
+    readonly router?: pulumi.Input<string | undefined>;
     /**
      * How NAT should be configured per Subnetwork.
      * If `ALL_SUBNETWORKS_ALL_IP_RANGES`, all of the
@@ -349,27 +349,27 @@ export interface RouterNatState {
      * other RouterNat section in any Router for this network in this region.
      * Possible values are `ALL_SUBNETWORKS_ALL_IP_RANGES`, `ALL_SUBNETWORKS_ALL_PRIMARY_IP_RANGES`, and `LIST_OF_SUBNETWORKS`.
      */
-    readonly sourceSubnetworkIpRangesToNat?: pulumi.Input<string>;
+    readonly sourceSubnetworkIpRangesToNat?: pulumi.Input<string | undefined>;
     /**
      * One or more subnetwork NAT configurations. Only used if
      * `sourceSubnetworkIpRangesToNat` is set to `LIST_OF_SUBNETWORKS`
      * Structure is documented below.
      */
-    readonly subnetworks?: pulumi.Input<pulumi.Input<inputs.compute.RouterNatSubnetwork>[]>;
+    readonly subnetworks?: pulumi.Input<pulumi.Input<inputs.compute.RouterNatSubnetwork>[] | undefined>;
     /**
      * Timeout (in seconds) for TCP established connections.
      * Defaults to 1200s if not set.
      */
-    readonly tcpEstablishedIdleTimeoutSec?: pulumi.Input<number>;
+    readonly tcpEstablishedIdleTimeoutSec?: pulumi.Input<number | undefined>;
     /**
      * Timeout (in seconds) for TCP transitory connections.
      * Defaults to 30s if not set.
      */
-    readonly tcpTransitoryIdleTimeoutSec?: pulumi.Input<number>;
+    readonly tcpTransitoryIdleTimeoutSec?: pulumi.Input<number | undefined>;
     /**
      * Timeout (in seconds) for UDP connections. Defaults to 30s if not set.
      */
-    readonly udpIdleTimeoutSec?: pulumi.Input<number>;
+    readonly udpIdleTimeoutSec?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -380,29 +380,29 @@ export interface RouterNatArgs {
      * A list of URLs of the IP resources to be drained. These IPs must be
      * valid static external IPs that have been assigned to the NAT.
      */
-    readonly drainNatIps?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly drainNatIps?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies if endpoint independent mapping is enabled. This is enabled by default. For more information
      * see the [official documentation](https://cloud.google.com/nat/docs/overview#specs-rfcs).
      */
-    readonly enableEndpointIndependentMapping?: pulumi.Input<boolean>;
+    readonly enableEndpointIndependentMapping?: pulumi.Input<boolean | undefined>;
     /**
      * Timeout (in seconds) for ICMP connections. Defaults to 30s if not set.
      */
-    readonly icmpIdleTimeoutSec?: pulumi.Input<number>;
+    readonly icmpIdleTimeoutSec?: pulumi.Input<number | undefined>;
     /**
      * Configuration for logging on NAT
      * Structure is documented below.
      */
-    readonly logConfig?: pulumi.Input<inputs.compute.RouterNatLogConfig>;
+    readonly logConfig?: pulumi.Input<inputs.compute.RouterNatLogConfig | undefined>;
     /**
      * Minimum number of ports allocated to a VM from this NAT.
      */
-    readonly minPortsPerVm?: pulumi.Input<number>;
+    readonly minPortsPerVm?: pulumi.Input<number | undefined>;
     /**
      * Self-link of subnetwork to NAT
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * How external IPs should be allocated for this NAT. Valid values are
      * `AUTO_ONLY` for only allowing NAT IPs allocated by Google Cloud
@@ -414,16 +414,16 @@ export interface RouterNatArgs {
      * Self-links of NAT IPs. Only valid if natIpAllocateOption
      * is set to MANUAL_ONLY.
      */
-    readonly natIps?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly natIps?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Region where the router and NAT reside.
      */
-    readonly region?: pulumi.Input<string>;
+    readonly region?: pulumi.Input<string | undefined>;
     /**
      * The name of the Cloud Router in which this NAT will be configured.
      */
@@ -447,19 +447,19 @@ export interface RouterNatArgs {
      * `sourceSubnetworkIpRangesToNat` is set to `LIST_OF_SUBNETWORKS`
      * Structure is documented below.
      */
-    readonly subnetworks?: pulumi.Input<pulumi.Input<inputs.compute.RouterNatSubnetwork>[]>;
+    readonly subnetworks?: pulumi.Input<pulumi.Input<inputs.compute.RouterNatSubnetwork>[] | undefined>;
     /**
      * Timeout (in seconds) for TCP established connections.
      * Defaults to 1200s if not set.
      */
-    readonly tcpEstablishedIdleTimeoutSec?: pulumi.Input<number>;
+    readonly tcpEstablishedIdleTimeoutSec?: pulumi.Input<number | undefined>;
     /**
      * Timeout (in seconds) for TCP transitory connections.
      * Defaults to 30s if not set.
      */
-    readonly tcpTransitoryIdleTimeoutSec?: pulumi.Input<number>;
+    readonly tcpTransitoryIdleTimeoutSec?: pulumi.Input<number | undefined>;
     /**
      * Timeout (in seconds) for UDP connections. Defaults to 30s if not set.
      */
-    readonly udpIdleTimeoutSec?: pulumi.Input<number>;
+    readonly udpIdleTimeoutSec?: pulumi.Input<number | undefined>;
 }

@@ -142,25 +142,25 @@ export interface ApiConfigIamBindingState {
      * The API to attach the config to.
      * Used to find the parent resource to bind the IAM policy to
      */
-    readonly api?: pulumi.Input<string>;
-    readonly apiConfig?: pulumi.Input<string>;
-    readonly condition?: pulumi.Input<inputs.apigateway.ApiConfigIamBindingCondition>;
+    readonly api?: pulumi.Input<string | undefined>;
+    readonly apiConfig?: pulumi.Input<string | undefined>;
+    readonly condition?: pulumi.Input<inputs.apigateway.ApiConfigIamBindingCondition | undefined>;
     /**
      * (Computed) The etag of the IAM policy.
      */
-    readonly etag?: pulumi.Input<string>;
-    readonly members?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly etag?: pulumi.Input<string | undefined>;
+    readonly members?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the project will be parsed from the identifier of the parent resource. If no project is provided in the parent identifier and no project is specified, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The role that should be applied. Only one
      * `gcp.apigateway.ApiConfigIamBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
-    readonly role?: pulumi.Input<string>;
+    readonly role?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -173,13 +173,13 @@ export interface ApiConfigIamBindingArgs {
      */
     readonly api: pulumi.Input<string>;
     readonly apiConfig: pulumi.Input<string>;
-    readonly condition?: pulumi.Input<inputs.apigateway.ApiConfigIamBindingCondition>;
+    readonly condition?: pulumi.Input<inputs.apigateway.ApiConfigIamBindingCondition | undefined>;
     readonly members: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the project will be parsed from the identifier of the parent resource. If no project is provided in the parent identifier and no project is specified, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The role that should be applied. Only one
      * `gcp.apigateway.ApiConfigIamBinding` can be used per role. Note that custom roles must be of the format

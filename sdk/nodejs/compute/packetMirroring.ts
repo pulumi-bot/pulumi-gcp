@@ -244,48 +244,48 @@ export interface PacketMirroringState {
      * set to true.
      * Structure is documented below.
      */
-    readonly collectorIlb?: pulumi.Input<inputs.compute.PacketMirroringCollectorIlb>;
+    readonly collectorIlb?: pulumi.Input<inputs.compute.PacketMirroringCollectorIlb | undefined>;
     /**
      * A human-readable description of the rule.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * A filter for mirrored traffic.  If unset, all traffic is mirrored.
      * Structure is documented below.
      */
-    readonly filter?: pulumi.Input<inputs.compute.PacketMirroringFilter>;
+    readonly filter?: pulumi.Input<inputs.compute.PacketMirroringFilter | undefined>;
     /**
      * A means of specifying which resources to mirror.
      * Structure is documented below.
      */
-    readonly mirroredResources?: pulumi.Input<inputs.compute.PacketMirroringMirroredResources>;
+    readonly mirroredResources?: pulumi.Input<inputs.compute.PacketMirroringMirroredResources | undefined>;
     /**
      * The name of the packet mirroring rule
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * Specifies the mirrored VPC network. Only packets in this network
      * will be mirrored. All mirrored VMs should have a NIC in the given
      * network. All mirrored subnetworks should belong to the given network.
      * Structure is documented below.
      */
-    readonly network?: pulumi.Input<inputs.compute.PacketMirroringNetwork>;
+    readonly network?: pulumi.Input<inputs.compute.PacketMirroringNetwork | undefined>;
     /**
      * Since only one rule can be active at a time, priority is
      * used to break ties in the case of two rules that apply to
      * the same instances.
      */
-    readonly priority?: pulumi.Input<number>;
+    readonly priority?: pulumi.Input<number | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The Region in which the created address should reside.
      * If it is not provided, the provider region is used.
      */
-    readonly region?: pulumi.Input<string>;
+    readonly region?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -303,12 +303,12 @@ export interface PacketMirroringArgs {
     /**
      * A human-readable description of the rule.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * A filter for mirrored traffic.  If unset, all traffic is mirrored.
      * Structure is documented below.
      */
-    readonly filter?: pulumi.Input<inputs.compute.PacketMirroringFilter>;
+    readonly filter?: pulumi.Input<inputs.compute.PacketMirroringFilter | undefined>;
     /**
      * A means of specifying which resources to mirror.
      * Structure is documented below.
@@ -317,7 +317,7 @@ export interface PacketMirroringArgs {
     /**
      * The name of the packet mirroring rule
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * Specifies the mirrored VPC network. Only packets in this network
      * will be mirrored. All mirrored VMs should have a NIC in the given
@@ -330,15 +330,15 @@ export interface PacketMirroringArgs {
      * used to break ties in the case of two rules that apply to
      * the same instances.
      */
-    readonly priority?: pulumi.Input<number>;
+    readonly priority?: pulumi.Input<number | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The Region in which the created address should reside.
      * If it is not provided, the provider region is used.
      */
-    readonly region?: pulumi.Input<string>;
+    readonly region?: pulumi.Input<string | undefined>;
 }

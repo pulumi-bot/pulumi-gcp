@@ -181,7 +181,7 @@ export interface FolderFeedState {
      * exported to the feed. For example: //compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1.
      * See https://cloud.google.com/apis/design/resourceNames#fullResourceName for more info.
      */
-    readonly assetNames?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly assetNames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * A list of types of the assets to receive updates. You must specify either or both of assetNames
      * and assetTypes. Only asset updates matching specified assetNames and assetTypes are exported to
@@ -189,13 +189,13 @@ export interface FolderFeedState {
      * See https://cloud.google.com/asset-inventory/docs/supported-asset-types for a list of all
      * supported asset types.
      */
-    readonly assetTypes?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly assetTypes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The project whose identity will be used when sending messages to the
      * destination pubsub topic. It also specifies the project for API
      * enablement check, quota, and billing.
      */
-    readonly billingProject?: pulumi.Input<string>;
+    readonly billingProject?: pulumi.Input<string | undefined>;
     /**
      * A condition which determines whether an asset update should be published. If specified, an asset
      * will be returned only when the expression evaluates to true. When set, expression field
@@ -204,33 +204,33 @@ export interface FolderFeedState {
      * condition are optional.
      * Structure is documented below.
      */
-    readonly condition?: pulumi.Input<inputs.cloudasset.FolderFeedCondition>;
+    readonly condition?: pulumi.Input<inputs.cloudasset.FolderFeedCondition | undefined>;
     /**
      * Asset content type. If not specified, no content but the asset name and type will be returned.
      * Possible values are `CONTENT_TYPE_UNSPECIFIED`, `RESOURCE`, `IAM_POLICY`, `ORG_POLICY`, and `ACCESS_POLICY`.
      */
-    readonly contentType?: pulumi.Input<string>;
+    readonly contentType?: pulumi.Input<string | undefined>;
     /**
      * This is the client-assigned asset feed identifier and it needs to be unique under a specific parent.
      */
-    readonly feedId?: pulumi.Input<string>;
+    readonly feedId?: pulumi.Input<string | undefined>;
     /**
      * Output configuration for asset feed destination.
      * Structure is documented below.
      */
-    readonly feedOutputConfig?: pulumi.Input<inputs.cloudasset.FolderFeedFeedOutputConfig>;
+    readonly feedOutputConfig?: pulumi.Input<inputs.cloudasset.FolderFeedFeedOutputConfig | undefined>;
     /**
      * The folder this feed should be created in.
      */
-    readonly folder?: pulumi.Input<string>;
+    readonly folder?: pulumi.Input<string | undefined>;
     /**
      * The ID of the folder where this feed has been created. Both [FOLDER_NUMBER] and folders/[FOLDER_NUMBER] are accepted.
      */
-    readonly folderId?: pulumi.Input<string>;
+    readonly folderId?: pulumi.Input<string | undefined>;
     /**
      * The format will be folders/{folder_number}/feeds/{client-assigned_feed_identifier}.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -243,7 +243,7 @@ export interface FolderFeedArgs {
      * exported to the feed. For example: //compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1.
      * See https://cloud.google.com/apis/design/resourceNames#fullResourceName for more info.
      */
-    readonly assetNames?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly assetNames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * A list of types of the assets to receive updates. You must specify either or both of assetNames
      * and assetTypes. Only asset updates matching specified assetNames and assetTypes are exported to
@@ -251,7 +251,7 @@ export interface FolderFeedArgs {
      * See https://cloud.google.com/asset-inventory/docs/supported-asset-types for a list of all
      * supported asset types.
      */
-    readonly assetTypes?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly assetTypes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The project whose identity will be used when sending messages to the
      * destination pubsub topic. It also specifies the project for API
@@ -266,12 +266,12 @@ export interface FolderFeedArgs {
      * condition are optional.
      * Structure is documented below.
      */
-    readonly condition?: pulumi.Input<inputs.cloudasset.FolderFeedCondition>;
+    readonly condition?: pulumi.Input<inputs.cloudasset.FolderFeedCondition | undefined>;
     /**
      * Asset content type. If not specified, no content but the asset name and type will be returned.
      * Possible values are `CONTENT_TYPE_UNSPECIFIED`, `RESOURCE`, `IAM_POLICY`, `ORG_POLICY`, and `ACCESS_POLICY`.
      */
-    readonly contentType?: pulumi.Input<string>;
+    readonly contentType?: pulumi.Input<string | undefined>;
     /**
      * This is the client-assigned asset feed identifier and it needs to be unique under a specific parent.
      */

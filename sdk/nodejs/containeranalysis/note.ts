@@ -225,49 +225,49 @@ export interface NoteState {
      * project.
      * Structure is documented below.
      */
-    readonly attestationAuthority?: pulumi.Input<inputs.containeranalysis.NoteAttestationAuthority>;
+    readonly attestationAuthority?: pulumi.Input<inputs.containeranalysis.NoteAttestationAuthority | undefined>;
     /**
      * The time this note was created.
      */
-    readonly createTime?: pulumi.Input<string>;
+    readonly createTime?: pulumi.Input<string | undefined>;
     /**
      * Time of expiration for this note. Leave empty if note does not expire.
      */
-    readonly expirationTime?: pulumi.Input<string>;
+    readonly expirationTime?: pulumi.Input<string | undefined>;
     /**
      * The type of analysis this note describes
      */
-    readonly kind?: pulumi.Input<string>;
+    readonly kind?: pulumi.Input<string | undefined>;
     /**
      * A detailed description of the note
      */
-    readonly longDescription?: pulumi.Input<string>;
+    readonly longDescription?: pulumi.Input<string | undefined>;
     /**
      * The name of the note.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Names of other notes related to this note.
      */
-    readonly relatedNoteNames?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly relatedNoteNames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * URLs associated with this note and related metadata.
      * Structure is documented below.
      */
-    readonly relatedUrls?: pulumi.Input<pulumi.Input<inputs.containeranalysis.NoteRelatedUrl>[]>;
+    readonly relatedUrls?: pulumi.Input<pulumi.Input<inputs.containeranalysis.NoteRelatedUrl>[] | undefined>;
     /**
      * A one sentence description of the note.
      */
-    readonly shortDescription?: pulumi.Input<string>;
+    readonly shortDescription?: pulumi.Input<string | undefined>;
     /**
      * The time this note was last updated.
      */
-    readonly updateTime?: pulumi.Input<string>;
+    readonly updateTime?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -290,31 +290,31 @@ export interface NoteArgs {
     /**
      * Time of expiration for this note. Leave empty if note does not expire.
      */
-    readonly expirationTime?: pulumi.Input<string>;
+    readonly expirationTime?: pulumi.Input<string | undefined>;
     /**
      * A detailed description of the note
      */
-    readonly longDescription?: pulumi.Input<string>;
+    readonly longDescription?: pulumi.Input<string | undefined>;
     /**
      * The name of the note.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Names of other notes related to this note.
      */
-    readonly relatedNoteNames?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly relatedNoteNames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * URLs associated with this note and related metadata.
      * Structure is documented below.
      */
-    readonly relatedUrls?: pulumi.Input<pulumi.Input<inputs.containeranalysis.NoteRelatedUrl>[]>;
+    readonly relatedUrls?: pulumi.Input<pulumi.Input<inputs.containeranalysis.NoteRelatedUrl>[] | undefined>;
     /**
      * A one sentence description of the note.
      */
-    readonly shortDescription?: pulumi.Input<string>;
+    readonly shortDescription?: pulumi.Input<string | undefined>;
 }

@@ -159,34 +159,34 @@ export interface HmacKeyState {
     /**
      * The access ID of the HMAC Key.
      */
-    readonly accessId?: pulumi.Input<string>;
+    readonly accessId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * HMAC secret key material.
      */
-    readonly secret?: pulumi.Input<string>;
+    readonly secret?: pulumi.Input<string | undefined>;
     /**
      * The email address of the key's associated service account.
      */
-    readonly serviceAccountEmail?: pulumi.Input<string>;
+    readonly serviceAccountEmail?: pulumi.Input<string | undefined>;
     /**
      * The state of the key. Can be set to one of ACTIVE, INACTIVE.
      * Default value is `ACTIVE`.
      * Possible values are `ACTIVE` and `INACTIVE`.
      */
-    readonly state?: pulumi.Input<string>;
+    readonly state?: pulumi.Input<string | undefined>;
     /**
      * 'The creation time of the HMAC key in RFC 3339 format. '
      */
-    readonly timeCreated?: pulumi.Input<string>;
+    readonly timeCreated?: pulumi.Input<string | undefined>;
     /**
      * 'The last modification time of the HMAC key metadata in RFC 3339 format.'
      */
-    readonly updated?: pulumi.Input<string>;
+    readonly updated?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -197,7 +197,7 @@ export interface HmacKeyArgs {
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The email address of the key's associated service account.
      */
@@ -207,5 +207,5 @@ export interface HmacKeyArgs {
      * Default value is `ACTIVE`.
      * Possible values are `ACTIVE` and `INACTIVE`.
      */
-    readonly state?: pulumi.Input<string>;
+    readonly state?: pulumi.Input<string | undefined>;
 }

@@ -187,32 +187,32 @@ export class DatasetIamBinding extends pulumi.CustomResource {
  * Input properties used for looking up and filtering DatasetIamBinding resources.
  */
 export interface DatasetIamBindingState {
-    readonly condition?: pulumi.Input<inputs.healthcare.DatasetIamBindingCondition>;
+    readonly condition?: pulumi.Input<inputs.healthcare.DatasetIamBindingCondition | undefined>;
     /**
      * The dataset ID, in the form
      * `{project_id}/{location_name}/{dataset_name}` or
      * `{location_name}/{dataset_name}`. In the second form, the provider's
      * project setting will be used as a fallback.
      */
-    readonly datasetId?: pulumi.Input<string>;
+    readonly datasetId?: pulumi.Input<string | undefined>;
     /**
      * (Computed) The etag of the dataset's IAM policy.
      */
-    readonly etag?: pulumi.Input<string>;
-    readonly members?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly etag?: pulumi.Input<string | undefined>;
+    readonly members?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The role that should be applied. Only one
      * `gcp.healthcare.DatasetIamBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
-    readonly role?: pulumi.Input<string>;
+    readonly role?: pulumi.Input<string | undefined>;
 }
 
 /**
  * The set of arguments for constructing a DatasetIamBinding resource.
  */
 export interface DatasetIamBindingArgs {
-    readonly condition?: pulumi.Input<inputs.healthcare.DatasetIamBindingCondition>;
+    readonly condition?: pulumi.Input<inputs.healthcare.DatasetIamBindingCondition | undefined>;
     /**
      * The dataset ID, in the form
      * `{project_id}/{location_name}/{dataset_name}` or

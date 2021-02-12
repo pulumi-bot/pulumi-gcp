@@ -165,41 +165,41 @@ export interface NetworkPeeringState {
     /**
      * Whether to export the custom routes to the peer network. Defaults to `false`.
      */
-    readonly exportCustomRoutes?: pulumi.Input<boolean>;
+    readonly exportCustomRoutes?: pulumi.Input<boolean | undefined>;
     /**
      * Whether subnet routes with public IP range are exported. The default value is true, all subnet routes are exported. The IPv4 special-use ranges (https://en.wikipedia.org/wiki/IPv4#Special_addresses) are always exported to peers and are not controlled by this field.
      */
-    readonly exportSubnetRoutesWithPublicIp?: pulumi.Input<boolean>;
+    readonly exportSubnetRoutesWithPublicIp?: pulumi.Input<boolean | undefined>;
     /**
      * Whether to import the custom routes from the peer network. Defaults to `false`.
      */
-    readonly importCustomRoutes?: pulumi.Input<boolean>;
+    readonly importCustomRoutes?: pulumi.Input<boolean | undefined>;
     /**
      * Whether subnet routes with public IP range are imported. The default value is false. The IPv4 special-use ranges (https://en.wikipedia.org/wiki/IPv4#Special_addresses) are always imported from peers and are not controlled by this field.
      */
-    readonly importSubnetRoutesWithPublicIp?: pulumi.Input<boolean>;
+    readonly importSubnetRoutesWithPublicIp?: pulumi.Input<boolean | undefined>;
     /**
      * Name of the peering.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The primary network of the peering.
      */
-    readonly network?: pulumi.Input<string>;
+    readonly network?: pulumi.Input<string | undefined>;
     /**
      * The peer network in the peering. The peer network
      * may belong to a different project.
      */
-    readonly peerNetwork?: pulumi.Input<string>;
+    readonly peerNetwork?: pulumi.Input<string | undefined>;
     /**
      * State for the peering, either `ACTIVE` or `INACTIVE`. The peering is
      * `ACTIVE` when there's a matching configuration in the peer network.
      */
-    readonly state?: pulumi.Input<string>;
+    readonly state?: pulumi.Input<string | undefined>;
     /**
      * Details about the current state of the peering.
      */
-    readonly stateDetails?: pulumi.Input<string>;
+    readonly stateDetails?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -209,23 +209,23 @@ export interface NetworkPeeringArgs {
     /**
      * Whether to export the custom routes to the peer network. Defaults to `false`.
      */
-    readonly exportCustomRoutes?: pulumi.Input<boolean>;
+    readonly exportCustomRoutes?: pulumi.Input<boolean | undefined>;
     /**
      * Whether subnet routes with public IP range are exported. The default value is true, all subnet routes are exported. The IPv4 special-use ranges (https://en.wikipedia.org/wiki/IPv4#Special_addresses) are always exported to peers and are not controlled by this field.
      */
-    readonly exportSubnetRoutesWithPublicIp?: pulumi.Input<boolean>;
+    readonly exportSubnetRoutesWithPublicIp?: pulumi.Input<boolean | undefined>;
     /**
      * Whether to import the custom routes from the peer network. Defaults to `false`.
      */
-    readonly importCustomRoutes?: pulumi.Input<boolean>;
+    readonly importCustomRoutes?: pulumi.Input<boolean | undefined>;
     /**
      * Whether subnet routes with public IP range are imported. The default value is false. The IPv4 special-use ranges (https://en.wikipedia.org/wiki/IPv4#Special_addresses) are always imported from peers and are not controlled by this field.
      */
-    readonly importSubnetRoutesWithPublicIp?: pulumi.Input<boolean>;
+    readonly importSubnetRoutesWithPublicIp?: pulumi.Input<boolean | undefined>;
     /**
      * Name of the peering.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The primary network of the peering.
      */

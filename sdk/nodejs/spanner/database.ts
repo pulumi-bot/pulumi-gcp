@@ -162,26 +162,26 @@ export interface DatabaseState {
      * execute atomically with the creation of the database: if there is an
      * error in any statement, the database is not created.
      */
-    readonly ddls?: pulumi.Input<pulumi.Input<string>[]>;
-    readonly deletionProtection?: pulumi.Input<boolean>;
+    readonly ddls?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    readonly deletionProtection?: pulumi.Input<boolean | undefined>;
     /**
      * The instance to create the database on.
      */
-    readonly instance?: pulumi.Input<string>;
+    readonly instance?: pulumi.Input<string | undefined>;
     /**
      * A unique identifier for the database, which cannot be changed after
      * the instance is created. Values are of the form [a-z][-a-z0-9]*[a-z0-9].
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * An explanation of the status of the database.
      */
-    readonly state?: pulumi.Input<string>;
+    readonly state?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -194,8 +194,8 @@ export interface DatabaseArgs {
      * execute atomically with the creation of the database: if there is an
      * error in any statement, the database is not created.
      */
-    readonly ddls?: pulumi.Input<pulumi.Input<string>[]>;
-    readonly deletionProtection?: pulumi.Input<boolean>;
+    readonly ddls?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    readonly deletionProtection?: pulumi.Input<boolean | undefined>;
     /**
      * The instance to create the database on.
      */
@@ -204,10 +204,10 @@ export interface DatabaseArgs {
      * A unique identifier for the database, which cannot be changed after
      * the instance is created. Values are of the form [a-z][-a-z0-9]*[a-z0-9].
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
 }

@@ -135,26 +135,26 @@ export interface OrganizationExclusionState {
     /**
      * A human-readable description.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * Whether this exclusion rule should be disabled or not. This defaults to
      * false.
      */
-    readonly disabled?: pulumi.Input<boolean>;
+    readonly disabled?: pulumi.Input<boolean | undefined>;
     /**
      * The filter to apply when excluding logs. Only log entries that match the filter are excluded.
      * See [Advanced Log Filters](https://cloud.google.com/logging/docs/view/advanced-filters) for information on how to
      * write a filter.
      */
-    readonly filter?: pulumi.Input<string>;
+    readonly filter?: pulumi.Input<string | undefined>;
     /**
      * The name of the logging exclusion.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The organization to create the exclusion in.
      */
-    readonly orgId?: pulumi.Input<string>;
+    readonly orgId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -164,12 +164,12 @@ export interface OrganizationExclusionArgs {
     /**
      * A human-readable description.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * Whether this exclusion rule should be disabled or not. This defaults to
      * false.
      */
-    readonly disabled?: pulumi.Input<boolean>;
+    readonly disabled?: pulumi.Input<boolean | undefined>;
     /**
      * The filter to apply when excluding logs. Only log entries that match the filter are excluded.
      * See [Advanced Log Filters](https://cloud.google.com/logging/docs/view/advanced-filters) for information on how to
@@ -179,7 +179,7 @@ export interface OrganizationExclusionArgs {
     /**
      * The name of the logging exclusion.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The organization to create the exclusion in.
      */

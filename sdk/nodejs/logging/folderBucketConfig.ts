@@ -150,31 +150,31 @@ export interface FolderBucketConfigState {
     /**
      * The name of the logging bucket. Logging automatically creates two log buckets: `_Required` and `_Default`.
      */
-    readonly bucketId?: pulumi.Input<string>;
+    readonly bucketId?: pulumi.Input<string | undefined>;
     /**
      * Describes this bucket.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * The parent resource that contains the logging bucket.
      */
-    readonly folder?: pulumi.Input<string>;
+    readonly folder?: pulumi.Input<string | undefined>;
     /**
      * The bucket's lifecycle such as active or deleted. See [LifecycleState](https://cloud.google.com/logging/docs/reference/v2/rest/v2/billingAccounts.buckets#LogBucket.LifecycleState).
      */
-    readonly lifecycleState?: pulumi.Input<string>;
+    readonly lifecycleState?: pulumi.Input<string | undefined>;
     /**
      * The location of the bucket.
      */
-    readonly location?: pulumi.Input<string>;
+    readonly location?: pulumi.Input<string | undefined>;
     /**
      * The resource name of the bucket. For example: "folders/my-folder-id/locations/my-location/buckets/my-bucket-id"
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * Logs will be retained by default for this amount of time, after which they will automatically be deleted. The minimum retention period is 1 day. If this value is set to zero at bucket creation time, the default time of 30 days will be used.
      */
-    readonly retentionDays?: pulumi.Input<number>;
+    readonly retentionDays?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -188,7 +188,7 @@ export interface FolderBucketConfigArgs {
     /**
      * Describes this bucket.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * The parent resource that contains the logging bucket.
      */
@@ -200,5 +200,5 @@ export interface FolderBucketConfigArgs {
     /**
      * Logs will be retained by default for this amount of time, after which they will automatically be deleted. The minimum retention period is 1 day. If this value is set to zero at bucket creation time, the default time of 30 days will be used.
      */
-    readonly retentionDays?: pulumi.Input<number>;
+    readonly retentionDays?: pulumi.Input<number | undefined>;
 }

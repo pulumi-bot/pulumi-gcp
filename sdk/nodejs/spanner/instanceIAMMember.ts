@@ -188,34 +188,34 @@ export class InstanceIAMMember extends pulumi.CustomResource {
  * Input properties used for looking up and filtering InstanceIAMMember resources.
  */
 export interface InstanceIAMMemberState {
-    readonly condition?: pulumi.Input<inputs.spanner.InstanceIAMMemberCondition>;
+    readonly condition?: pulumi.Input<inputs.spanner.InstanceIAMMemberCondition | undefined>;
     /**
      * (Computed) The etag of the instance's IAM policy.
      */
-    readonly etag?: pulumi.Input<string>;
+    readonly etag?: pulumi.Input<string | undefined>;
     /**
      * The name of the instance.
      */
-    readonly instance?: pulumi.Input<string>;
-    readonly member?: pulumi.Input<string>;
+    readonly instance?: pulumi.Input<string | undefined>;
+    readonly member?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs. If it
      * is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The role that should be applied. Only one
      * `gcp.spanner.InstanceIAMBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
-    readonly role?: pulumi.Input<string>;
+    readonly role?: pulumi.Input<string | undefined>;
 }
 
 /**
  * The set of arguments for constructing a InstanceIAMMember resource.
  */
 export interface InstanceIAMMemberArgs {
-    readonly condition?: pulumi.Input<inputs.spanner.InstanceIAMMemberCondition>;
+    readonly condition?: pulumi.Input<inputs.spanner.InstanceIAMMemberCondition | undefined>;
     /**
      * The name of the instance.
      */
@@ -225,7 +225,7 @@ export interface InstanceIAMMemberArgs {
      * The ID of the project in which the resource belongs. If it
      * is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The role that should be applied. Only one
      * `gcp.spanner.InstanceIAMBinding` can be used per role. Note that custom roles must be of the format

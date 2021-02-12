@@ -188,34 +188,34 @@ export class ConfigIamBinding extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ConfigIamBinding resources.
  */
 export interface ConfigIamBindingState {
-    readonly condition?: pulumi.Input<inputs.runtimeconfig.ConfigIamBindingCondition>;
+    readonly condition?: pulumi.Input<inputs.runtimeconfig.ConfigIamBindingCondition | undefined>;
     /**
      * Used to find the parent resource to bind the IAM policy to
      */
-    readonly config?: pulumi.Input<string>;
+    readonly config?: pulumi.Input<string | undefined>;
     /**
      * (Computed) The etag of the IAM policy.
      */
-    readonly etag?: pulumi.Input<string>;
-    readonly members?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly etag?: pulumi.Input<string | undefined>;
+    readonly members?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the project will be parsed from the identifier of the parent resource. If no project is provided in the parent identifier and no project is specified, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The role that should be applied. Only one
      * `gcp.runtimeconfig.ConfigIamBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
-    readonly role?: pulumi.Input<string>;
+    readonly role?: pulumi.Input<string | undefined>;
 }
 
 /**
  * The set of arguments for constructing a ConfigIamBinding resource.
  */
 export interface ConfigIamBindingArgs {
-    readonly condition?: pulumi.Input<inputs.runtimeconfig.ConfigIamBindingCondition>;
+    readonly condition?: pulumi.Input<inputs.runtimeconfig.ConfigIamBindingCondition | undefined>;
     /**
      * Used to find the parent resource to bind the IAM policy to
      */
@@ -225,7 +225,7 @@ export interface ConfigIamBindingArgs {
      * The ID of the project in which the resource belongs.
      * If it is not provided, the project will be parsed from the identifier of the parent resource. If no project is provided in the parent identifier and no project is specified, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The role that should be applied. Only one
      * `gcp.runtimeconfig.ConfigIamBinding` can be used per role. Note that custom roles must be of the format

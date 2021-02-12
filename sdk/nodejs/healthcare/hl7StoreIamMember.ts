@@ -183,32 +183,32 @@ export class Hl7StoreIamMember extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Hl7StoreIamMember resources.
  */
 export interface Hl7StoreIamMemberState {
-    readonly condition?: pulumi.Input<inputs.healthcare.Hl7StoreIamMemberCondition>;
+    readonly condition?: pulumi.Input<inputs.healthcare.Hl7StoreIamMemberCondition | undefined>;
     /**
      * (Computed) The etag of the HL7v2 store's IAM policy.
      */
-    readonly etag?: pulumi.Input<string>;
+    readonly etag?: pulumi.Input<string | undefined>;
     /**
      * The HL7v2 store ID, in the form
      * `{project_id}/{location_name}/{dataset_name}/{hl7_v2_store_name}` or
      * `{location_name}/{dataset_name}/{hl7_v2_store_name}`. In the second form, the provider's
      * project setting will be used as a fallback.
      */
-    readonly hl7V2StoreId?: pulumi.Input<string>;
-    readonly member?: pulumi.Input<string>;
+    readonly hl7V2StoreId?: pulumi.Input<string | undefined>;
+    readonly member?: pulumi.Input<string | undefined>;
     /**
      * The role that should be applied. Only one
      * `gcp.healthcare.Hl7StoreIamBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
-    readonly role?: pulumi.Input<string>;
+    readonly role?: pulumi.Input<string | undefined>;
 }
 
 /**
  * The set of arguments for constructing a Hl7StoreIamMember resource.
  */
 export interface Hl7StoreIamMemberArgs {
-    readonly condition?: pulumi.Input<inputs.healthcare.Hl7StoreIamMemberCondition>;
+    readonly condition?: pulumi.Input<inputs.healthcare.Hl7StoreIamMemberCondition | undefined>;
     /**
      * The HL7v2 store ID, in the form
      * `{project_id}/{location_name}/{dataset_name}/{hl7_v2_store_name}` or

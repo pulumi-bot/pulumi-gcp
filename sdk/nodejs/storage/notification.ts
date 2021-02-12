@@ -184,38 +184,38 @@ export interface NotificationState {
     /**
      * The name of the bucket.
      */
-    readonly bucket?: pulumi.Input<string>;
+    readonly bucket?: pulumi.Input<string | undefined>;
     /**
      * A set of key/value attribute pairs to attach to each Cloud PubSub message published for this notification subscription
      */
-    readonly customAttributes?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly customAttributes?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * List of event type filters for this notification config. If not specified, Cloud Storage will send notifications for all event types. The valid types are: `"OBJECT_FINALIZE"`, `"OBJECT_METADATA_UPDATE"`, `"OBJECT_DELETE"`, `"OBJECT_ARCHIVE"`
      */
-    readonly eventTypes?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly eventTypes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The ID of the created notification.
      */
-    readonly notificationId?: pulumi.Input<string>;
+    readonly notificationId?: pulumi.Input<string | undefined>;
     /**
      * Specifies a prefix path filter for this notification config. Cloud Storage will only send notifications for objects in this bucket whose names begin with the specified prefix.
      */
-    readonly objectNamePrefix?: pulumi.Input<string>;
+    readonly objectNamePrefix?: pulumi.Input<string | undefined>;
     /**
      * The desired content of the Payload. One of `"JSON_API_V1"` or `"NONE"`.
      */
-    readonly payloadFormat?: pulumi.Input<string>;
+    readonly payloadFormat?: pulumi.Input<string | undefined>;
     /**
      * The URI of the created resource.
      */
-    readonly selfLink?: pulumi.Input<string>;
+    readonly selfLink?: pulumi.Input<string | undefined>;
     /**
      * The Cloud PubSub topic to which this subscription publishes. Expects either the
      * topic name, assumed to belong to the default GCP provider project, or the project-level name,
      * i.e. `projects/my-gcp-project/topics/my-topic` or `my-topic`. If the project is not set in the provider,
      * you will need to use the project-level name.
      */
-    readonly topic?: pulumi.Input<string>;
+    readonly topic?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -229,15 +229,15 @@ export interface NotificationArgs {
     /**
      * A set of key/value attribute pairs to attach to each Cloud PubSub message published for this notification subscription
      */
-    readonly customAttributes?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly customAttributes?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * List of event type filters for this notification config. If not specified, Cloud Storage will send notifications for all event types. The valid types are: `"OBJECT_FINALIZE"`, `"OBJECT_METADATA_UPDATE"`, `"OBJECT_DELETE"`, `"OBJECT_ARCHIVE"`
      */
-    readonly eventTypes?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly eventTypes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies a prefix path filter for this notification config. Cloud Storage will only send notifications for objects in this bucket whose names begin with the specified prefix.
      */
-    readonly objectNamePrefix?: pulumi.Input<string>;
+    readonly objectNamePrefix?: pulumi.Input<string | undefined>;
     /**
      * The desired content of the Payload. One of `"JSON_API_V1"` or `"NONE"`.
      */

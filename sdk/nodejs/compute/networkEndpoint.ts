@@ -197,30 +197,30 @@ export interface NetworkEndpointState {
      * This is required for network endpoints of type GCE_VM_IP_PORT.
      * The instance must be in the same zone of network endpoint group.
      */
-    readonly instance?: pulumi.Input<string>;
+    readonly instance?: pulumi.Input<string | undefined>;
     /**
      * IPv4 address of network endpoint. The IP address must belong
      * to a VM in GCE (either the primary IP or as part of an aliased IP
      * range).
      */
-    readonly ipAddress?: pulumi.Input<string>;
+    readonly ipAddress?: pulumi.Input<string | undefined>;
     /**
      * The network endpoint group this endpoint is part of.
      */
-    readonly networkEndpointGroup?: pulumi.Input<string>;
+    readonly networkEndpointGroup?: pulumi.Input<string | undefined>;
     /**
      * Port number of network endpoint.
      */
-    readonly port?: pulumi.Input<number>;
+    readonly port?: pulumi.Input<number | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Zone where the containing network endpoint group is located.
      */
-    readonly zone?: pulumi.Input<string>;
+    readonly zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -251,9 +251,9 @@ export interface NetworkEndpointArgs {
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Zone where the containing network endpoint group is located.
      */
-    readonly zone?: pulumi.Input<string>;
+    readonly zone?: pulumi.Input<string | undefined>;
 }

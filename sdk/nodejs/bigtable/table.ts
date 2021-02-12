@@ -148,26 +148,26 @@ export interface TableState {
     /**
      * A group of columns within a table which share a common configuration. This can be specified multiple times. Structure is documented below.
      */
-    readonly columnFamilies?: pulumi.Input<pulumi.Input<inputs.bigtable.TableColumnFamily>[]>;
+    readonly columnFamilies?: pulumi.Input<pulumi.Input<inputs.bigtable.TableColumnFamily>[] | undefined>;
     /**
      * The name of the Bigtable instance.
      */
-    readonly instanceName?: pulumi.Input<string>;
+    readonly instanceName?: pulumi.Input<string | undefined>;
     /**
      * The name of the table.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs. If it
      * is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * A list of predefined keys to split the table on.
      * !> **Warning:** Modifying the `splitKeys` of an existing table will cause the provider
      * to delete/recreate the entire `gcp.bigtable.Table` resource.
      */
-    readonly splitKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly splitKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 /**
@@ -177,7 +177,7 @@ export interface TableArgs {
     /**
      * A group of columns within a table which share a common configuration. This can be specified multiple times. Structure is documented below.
      */
-    readonly columnFamilies?: pulumi.Input<pulumi.Input<inputs.bigtable.TableColumnFamily>[]>;
+    readonly columnFamilies?: pulumi.Input<pulumi.Input<inputs.bigtable.TableColumnFamily>[] | undefined>;
     /**
      * The name of the Bigtable instance.
      */
@@ -185,16 +185,16 @@ export interface TableArgs {
     /**
      * The name of the table.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs. If it
      * is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * A list of predefined keys to split the table on.
      * !> **Warning:** Modifying the `splitKeys` of an existing table will cause the provider
      * to delete/recreate the entire `gcp.bigtable.Table` resource.
      */
-    readonly splitKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly splitKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

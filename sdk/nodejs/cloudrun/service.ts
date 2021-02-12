@@ -330,30 +330,30 @@ export interface ServiceState {
      * (For legacy support, if `template.metadata.name` is unset in state while
      * this field is set to false, the revision name will still autogenerate.)
      */
-    readonly autogenerateRevisionName?: pulumi.Input<boolean>;
+    readonly autogenerateRevisionName?: pulumi.Input<boolean | undefined>;
     /**
      * The location of the cloud run instance. eg us-central1
      */
-    readonly location?: pulumi.Input<string>;
+    readonly location?: pulumi.Input<string | undefined>;
     /**
      * Metadata associated with this Service, including name, namespace, labels,
      * and annotations.
      * Structure is documented below.
      */
-    readonly metadata?: pulumi.Input<inputs.cloudrun.ServiceMetadata>;
+    readonly metadata?: pulumi.Input<inputs.cloudrun.ServiceMetadata | undefined>;
     /**
      * Name of the port.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The current status of the Service.
      */
-    readonly statuses?: pulumi.Input<pulumi.Input<inputs.cloudrun.ServiceStatus>[]>;
+    readonly statuses?: pulumi.Input<pulumi.Input<inputs.cloudrun.ServiceStatus>[] | undefined>;
     /**
      * template holds the latest specification for the Revision to
      * be stamped out. The template references the container image, and may also
@@ -366,13 +366,13 @@ export interface ServiceState {
      * responsible for materializing the container image from source.
      * Structure is documented below.
      */
-    readonly template?: pulumi.Input<inputs.cloudrun.ServiceTemplate>;
+    readonly template?: pulumi.Input<inputs.cloudrun.ServiceTemplate | undefined>;
     /**
      * Traffic specifies how to distribute traffic over a collection of Knative Revisions
      * and Configurations
      * Structure is documented below.
      */
-    readonly traffics?: pulumi.Input<pulumi.Input<inputs.cloudrun.ServiceTraffic>[]>;
+    readonly traffics?: pulumi.Input<pulumi.Input<inputs.cloudrun.ServiceTraffic>[] | undefined>;
 }
 
 /**
@@ -386,7 +386,7 @@ export interface ServiceArgs {
      * (For legacy support, if `template.metadata.name` is unset in state while
      * this field is set to false, the revision name will still autogenerate.)
      */
-    readonly autogenerateRevisionName?: pulumi.Input<boolean>;
+    readonly autogenerateRevisionName?: pulumi.Input<boolean | undefined>;
     /**
      * The location of the cloud run instance. eg us-central1
      */
@@ -396,16 +396,16 @@ export interface ServiceArgs {
      * and annotations.
      * Structure is documented below.
      */
-    readonly metadata?: pulumi.Input<inputs.cloudrun.ServiceMetadata>;
+    readonly metadata?: pulumi.Input<inputs.cloudrun.ServiceMetadata | undefined>;
     /**
      * Name of the port.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * template holds the latest specification for the Revision to
      * be stamped out. The template references the container image, and may also
@@ -418,11 +418,11 @@ export interface ServiceArgs {
      * responsible for materializing the container image from source.
      * Structure is documented below.
      */
-    readonly template?: pulumi.Input<inputs.cloudrun.ServiceTemplate>;
+    readonly template?: pulumi.Input<inputs.cloudrun.ServiceTemplate | undefined>;
     /**
      * Traffic specifies how to distribute traffic over a collection of Knative Revisions
      * and Configurations
      * Structure is documented below.
      */
-    readonly traffics?: pulumi.Input<pulumi.Input<inputs.cloudrun.ServiceTraffic>[]>;
+    readonly traffics?: pulumi.Input<pulumi.Input<inputs.cloudrun.ServiceTraffic>[] | undefined>;
 }

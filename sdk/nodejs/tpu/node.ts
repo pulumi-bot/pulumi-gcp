@@ -213,7 +213,7 @@ export interface NodeState {
     /**
      * The type of hardware accelerators associated with this node.
      */
-    readonly acceleratorType?: pulumi.Input<string>;
+    readonly acceleratorType?: pulumi.Input<string | undefined>;
     /**
      * The CIDR block that the TPU node will use when selecting an IP
      * address. This CIDR block must be a /29 block; the Compute Engine
@@ -224,61 +224,61 @@ export interface NodeState {
      * subnetworks in the user's provided network, or the provided network
      * is peered with another network that is using that CIDR block.
      */
-    readonly cidrBlock?: pulumi.Input<string>;
+    readonly cidrBlock?: pulumi.Input<string | undefined>;
     /**
      * The user-supplied description of the TPU. Maximum of 512 characters.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * Resource labels to represent user provided metadata.
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The immutable name of the TPU.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The name of a network to peer the TPU node to. It must be a
      * preexisting Compute Engine network inside of the project on which
      * this API has been activated. If none is provided, "default" will be
      * used.
      */
-    readonly network?: pulumi.Input<string>;
+    readonly network?: pulumi.Input<string | undefined>;
     /**
      * The network endpoints where TPU workers can be accessed and sent work. It is recommended that Tensorflow clients of the
      * node first reach out to the first (index 0) entry.
      */
-    readonly networkEndpoints?: pulumi.Input<pulumi.Input<inputs.tpu.NodeNetworkEndpoint>[]>;
+    readonly networkEndpoints?: pulumi.Input<pulumi.Input<inputs.tpu.NodeNetworkEndpoint>[] | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Sets the scheduling options for this TPU instance.
      * Structure is documented below.
      */
-    readonly schedulingConfig?: pulumi.Input<inputs.tpu.NodeSchedulingConfig>;
+    readonly schedulingConfig?: pulumi.Input<inputs.tpu.NodeSchedulingConfig | undefined>;
     /**
      * The service account used to run the tensor flow services within the node. To share resources, including Google Cloud
      * Storage data, with the Tensorflow job running in the Node, this account must have permissions to that data.
      */
-    readonly serviceAccount?: pulumi.Input<string>;
+    readonly serviceAccount?: pulumi.Input<string | undefined>;
     /**
      * The version of Tensorflow running in the Node.
      */
-    readonly tensorflowVersion?: pulumi.Input<string>;
+    readonly tensorflowVersion?: pulumi.Input<string | undefined>;
     /**
      * Whether the VPC peering for the node is set up through Service Networking API.
      * The VPC Peering should be set up before provisioning the node. If this field is set,
      * cidrBlock field should not be specified. If the network that you want to peer the
      * TPU Node to is a Shared VPC network, the node must be created with this this field enabled.
      */
-    readonly useServiceNetworking?: pulumi.Input<boolean>;
+    readonly useServiceNetworking?: pulumi.Input<boolean | undefined>;
     /**
      * The GCP location for the TPU. If it is not provided, the provider zone is used.
      */
-    readonly zone?: pulumi.Input<string>;
+    readonly zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -299,36 +299,36 @@ export interface NodeArgs {
      * subnetworks in the user's provided network, or the provided network
      * is peered with another network that is using that CIDR block.
      */
-    readonly cidrBlock?: pulumi.Input<string>;
+    readonly cidrBlock?: pulumi.Input<string | undefined>;
     /**
      * The user-supplied description of the TPU. Maximum of 512 characters.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * Resource labels to represent user provided metadata.
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The immutable name of the TPU.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The name of a network to peer the TPU node to. It must be a
      * preexisting Compute Engine network inside of the project on which
      * this API has been activated. If none is provided, "default" will be
      * used.
      */
-    readonly network?: pulumi.Input<string>;
+    readonly network?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Sets the scheduling options for this TPU instance.
      * Structure is documented below.
      */
-    readonly schedulingConfig?: pulumi.Input<inputs.tpu.NodeSchedulingConfig>;
+    readonly schedulingConfig?: pulumi.Input<inputs.tpu.NodeSchedulingConfig | undefined>;
     /**
      * The version of Tensorflow running in the Node.
      */
@@ -339,9 +339,9 @@ export interface NodeArgs {
      * cidrBlock field should not be specified. If the network that you want to peer the
      * TPU Node to is a Shared VPC network, the node must be created with this this field enabled.
      */
-    readonly useServiceNetworking?: pulumi.Input<boolean>;
+    readonly useServiceNetworking?: pulumi.Input<boolean | undefined>;
     /**
      * The GCP location for the TPU. If it is not provided, the provider zone is used.
      */
-    readonly zone?: pulumi.Input<string>;
+    readonly zone?: pulumi.Input<string | undefined>;
 }

@@ -118,34 +118,34 @@ export interface AccessApprovalSettingsState {
      * If the field is true, that indicates that at least one service is enrolled for Access Approval in one or more ancestors
      * of the Project.
      */
-    readonly enrolledAncestor?: pulumi.Input<boolean>;
+    readonly enrolledAncestor?: pulumi.Input<boolean | undefined>;
     /**
      * A list of Google Cloud Services for which the given resource has Access Approval enrolled. Access requests for the
      * resource given by name against any of these services contained here will be required to have explicit approval.
      * Enrollment can only be done on an all or nothing basis. A maximum of 10 enrolled services will be enforced, to be
      * expanded as the set of supported services is expanded.
      */
-    readonly enrolledServices?: pulumi.Input<pulumi.Input<inputs.projects.AccessApprovalSettingsEnrolledService>[]>;
+    readonly enrolledServices?: pulumi.Input<pulumi.Input<inputs.projects.AccessApprovalSettingsEnrolledService>[] | undefined>;
     /**
      * The resource name of the settings. Format is "projects/{project_id}/accessApprovalSettings"
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * A list of email addresses to which notifications relating to approval requests should be sent. Notifications relating to
      * a resource will be sent to all emails in the settings of ancestor resources of that resource. A maximum of 50 email
      * addresses are allowed.
      */
-    readonly notificationEmails?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly notificationEmails?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Deprecated in favor of 'project_id'
      *
      * @deprecated Deprecated in favor of `project_id`
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * ID of the project of the access approval settings.
      */
-    readonly projectId?: pulumi.Input<string>;
+    readonly projectId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -164,13 +164,13 @@ export interface AccessApprovalSettingsArgs {
      * a resource will be sent to all emails in the settings of ancestor resources of that resource. A maximum of 50 email
      * addresses are allowed.
      */
-    readonly notificationEmails?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly notificationEmails?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Deprecated in favor of 'project_id'
      *
      * @deprecated Deprecated in favor of `project_id`
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * ID of the project of the access approval settings.
      */

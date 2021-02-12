@@ -176,15 +176,15 @@ export interface TargetTCPProxyState {
     /**
      * A reference to the BackendService resource.
      */
-    readonly backendService?: pulumi.Input<string>;
+    readonly backendService?: pulumi.Input<string | undefined>;
     /**
      * Creation timestamp in RFC3339 text format.
      */
-    readonly creationTimestamp?: pulumi.Input<string>;
+    readonly creationTimestamp?: pulumi.Input<string | undefined>;
     /**
      * An optional description of this resource.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * Name of the resource. Provided by the client when the resource is
      * created. The name must be 1-63 characters long, and comply with
@@ -194,27 +194,27 @@ export interface TargetTCPProxyState {
      * characters must be a dash, lowercase letter, or digit, except the last
      * character, which cannot be a dash.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Specifies the type of proxy header to append before sending data to
      * the backend.
      * Default value is `NONE`.
      * Possible values are `NONE` and `PROXY_V1`.
      */
-    readonly proxyHeader?: pulumi.Input<string>;
+    readonly proxyHeader?: pulumi.Input<string | undefined>;
     /**
      * The unique identifier for the resource.
      */
-    readonly proxyId?: pulumi.Input<number>;
+    readonly proxyId?: pulumi.Input<number | undefined>;
     /**
      * The URI of the created resource.
      */
-    readonly selfLink?: pulumi.Input<string>;
+    readonly selfLink?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -228,7 +228,7 @@ export interface TargetTCPProxyArgs {
     /**
      * An optional description of this resource.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * Name of the resource. Provided by the client when the resource is
      * created. The name must be 1-63 characters long, and comply with
@@ -238,17 +238,17 @@ export interface TargetTCPProxyArgs {
      * characters must be a dash, lowercase letter, or digit, except the last
      * character, which cannot be a dash.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Specifies the type of proxy header to append before sending data to
      * the backend.
      * Default value is `NONE`.
      * Possible values are `NONE` and `PROXY_V1`.
      */
-    readonly proxyHeader?: pulumi.Input<string>;
+    readonly proxyHeader?: pulumi.Input<string | undefined>;
 }

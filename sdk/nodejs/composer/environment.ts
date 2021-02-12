@@ -218,7 +218,7 @@ export interface EnvironmentState {
     /**
      * Configuration parameters for this environment  Structure is documented below.
      */
-    readonly config?: pulumi.Input<inputs.composer.EnvironmentConfig>;
+    readonly config?: pulumi.Input<inputs.composer.EnvironmentConfig | undefined>;
     /**
      * User-defined labels for this environment. The labels map can contain
      * no more than 64 entries. Entries of the labels map are UTF8 strings
@@ -230,20 +230,20 @@ export interface EnvironmentState {
      * No more than 64 labels can be associated with a given environment.
      * Both keys and values must be <= 128 bytes in size.
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Name of the environment
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The location or Compute Engine region for the environment.
      */
-    readonly region?: pulumi.Input<string>;
+    readonly region?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -253,7 +253,7 @@ export interface EnvironmentArgs {
     /**
      * Configuration parameters for this environment  Structure is documented below.
      */
-    readonly config?: pulumi.Input<inputs.composer.EnvironmentConfig>;
+    readonly config?: pulumi.Input<inputs.composer.EnvironmentConfig | undefined>;
     /**
      * User-defined labels for this environment. The labels map can contain
      * no more than 64 entries. Entries of the labels map are UTF8 strings
@@ -265,18 +265,18 @@ export interface EnvironmentArgs {
      * No more than 64 labels can be associated with a given environment.
      * Both keys and values must be <= 128 bytes in size.
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Name of the environment
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The location or Compute Engine region for the environment.
      */
-    readonly region?: pulumi.Input<string>;
+    readonly region?: pulumi.Input<string | undefined>;
 }

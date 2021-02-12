@@ -232,49 +232,49 @@ export interface InstanceState {
     /**
      * Creation timestamp in RFC3339 text format.
      */
-    readonly createTime?: pulumi.Input<string>;
+    readonly createTime?: pulumi.Input<string | undefined>;
     /**
      * A description of the instance.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * Server-specified ETag for the instance resource to prevent simultaneous updates from overwriting each other.
      */
-    readonly etag?: pulumi.Input<string>;
+    readonly etag?: pulumi.Input<string | undefined>;
     /**
      * File system shares on the instance. For this version, only a
      * single file share is supported.
      * Structure is documented below.
      */
-    readonly fileShares?: pulumi.Input<inputs.filestore.InstanceFileShares>;
+    readonly fileShares?: pulumi.Input<inputs.filestore.InstanceFileShares | undefined>;
     /**
      * Resource labels to represent user-provided metadata.
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The name of the fileshare (16 characters or less)
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * VPC networks to which the instance is connected. For this version,
      * only a single network is supported.
      * Structure is documented below.
      */
-    readonly networks?: pulumi.Input<pulumi.Input<inputs.filestore.InstanceNetwork>[]>;
+    readonly networks?: pulumi.Input<pulumi.Input<inputs.filestore.InstanceNetwork>[] | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The service tier of the instance.
      * Possible values are `TIER_UNSPECIFIED`, `STANDARD`, `PREMIUM`, `BASIC_HDD`, `BASIC_SSD`, and `HIGH_SCALE_SSD`.
      */
-    readonly tier?: pulumi.Input<string>;
+    readonly tier?: pulumi.Input<string | undefined>;
     /**
      * The name of the Filestore zone of the instance.
      */
-    readonly zone?: pulumi.Input<string>;
+    readonly zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -284,7 +284,7 @@ export interface InstanceArgs {
     /**
      * A description of the instance.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * File system shares on the instance. For this version, only a
      * single file share is supported.
@@ -294,11 +294,11 @@ export interface InstanceArgs {
     /**
      * Resource labels to represent user-provided metadata.
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The name of the fileshare (16 characters or less)
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * VPC networks to which the instance is connected. For this version,
      * only a single network is supported.
@@ -309,7 +309,7 @@ export interface InstanceArgs {
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The service tier of the instance.
      * Possible values are `TIER_UNSPECIFIED`, `STANDARD`, `PREMIUM`, `BASIC_HDD`, `BASIC_SSD`, and `HIGH_SCALE_SSD`.

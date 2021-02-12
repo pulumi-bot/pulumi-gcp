@@ -165,33 +165,33 @@ export interface GroupState {
      * A user-assigned name for this group, used only for display
      * purposes.
      */
-    readonly displayName?: pulumi.Input<string>;
+    readonly displayName?: pulumi.Input<string | undefined>;
     /**
      * The filter used to determine which monitored resources
      * belong to this group.
      */
-    readonly filter?: pulumi.Input<string>;
+    readonly filter?: pulumi.Input<string | undefined>;
     /**
      * If true, the members of this group are considered to be a
      * cluster. The system can perform additional analysis on
      * groups that are clusters.
      */
-    readonly isCluster?: pulumi.Input<boolean>;
+    readonly isCluster?: pulumi.Input<boolean | undefined>;
     /**
      * A unique identifier for this group. The format is "projects/{project_id_or_number}/groups/{group_id}".
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The name of the group's parent, if it has one. The format is
      * "projects/{project_id_or_number}/groups/{group_id}". For
      * groups with no parent, parentName is the empty string, "".
      */
-    readonly parentName?: pulumi.Input<string>;
+    readonly parentName?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -213,16 +213,16 @@ export interface GroupArgs {
      * cluster. The system can perform additional analysis on
      * groups that are clusters.
      */
-    readonly isCluster?: pulumi.Input<boolean>;
+    readonly isCluster?: pulumi.Input<boolean | undefined>;
     /**
      * The name of the group's parent, if it has one. The format is
      * "projects/{project_id_or_number}/groups/{group_id}". For
      * groups with no parent, parentName is the empty string, "".
      */
-    readonly parentName?: pulumi.Input<string>;
+    readonly parentName?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
 }

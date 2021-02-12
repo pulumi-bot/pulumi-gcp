@@ -142,36 +142,36 @@ export interface GatewayState {
     /**
      * Resource name of the API Config for this Gateway. Format: projects/{project}/locations/global/apis/{api}/configs/{apiConfig}
      */
-    readonly apiConfig?: pulumi.Input<string>;
+    readonly apiConfig?: pulumi.Input<string | undefined>;
     /**
      * The default API Gateway host name of the form {gatewayId}-{hash}.{region_code}.gateway.dev.
      */
-    readonly defaultHostname?: pulumi.Input<string>;
+    readonly defaultHostname?: pulumi.Input<string | undefined>;
     /**
      * A user-visible name for the API.
      */
-    readonly displayName?: pulumi.Input<string>;
+    readonly displayName?: pulumi.Input<string | undefined>;
     /**
      * Identifier to assign to the Gateway. Must be unique within scope of the parent resource(project).
      */
-    readonly gatewayId?: pulumi.Input<string>;
+    readonly gatewayId?: pulumi.Input<string | undefined>;
     /**
      * Resource labels to represent user-provided metadata.
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Resource name of the Gateway. Format: projects/{project}/locations/{region}/gateways/{gateway}
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The region of the gateway for the API.
      */
-    readonly region?: pulumi.Input<string>;
+    readonly region?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -185,7 +185,7 @@ export interface GatewayArgs {
     /**
      * A user-visible name for the API.
      */
-    readonly displayName?: pulumi.Input<string>;
+    readonly displayName?: pulumi.Input<string | undefined>;
     /**
      * Identifier to assign to the Gateway. Must be unique within scope of the parent resource(project).
      */
@@ -193,14 +193,14 @@ export interface GatewayArgs {
     /**
      * Resource labels to represent user-provided metadata.
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The region of the gateway for the API.
      */
-    readonly region?: pulumi.Input<string>;
+    readonly region?: pulumi.Input<string | undefined>;
 }

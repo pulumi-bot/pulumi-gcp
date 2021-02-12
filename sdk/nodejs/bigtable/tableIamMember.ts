@@ -190,40 +190,40 @@ export class TableIamMember extends pulumi.CustomResource {
  * Input properties used for looking up and filtering TableIamMember resources.
  */
 export interface TableIamMemberState {
-    readonly condition?: pulumi.Input<inputs.bigtable.TableIamMemberCondition>;
+    readonly condition?: pulumi.Input<inputs.bigtable.TableIamMemberCondition | undefined>;
     /**
      * (Computed) The etag of the tables's IAM policy.
      */
-    readonly etag?: pulumi.Input<string>;
+    readonly etag?: pulumi.Input<string | undefined>;
     /**
      * The name or relative resource id of the instance that owns the table.
      */
-    readonly instance?: pulumi.Input<string>;
-    readonly member?: pulumi.Input<string>;
-    readonly project?: pulumi.Input<string>;
+    readonly instance?: pulumi.Input<string | undefined>;
+    readonly member?: pulumi.Input<string | undefined>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The role that should be applied. Only one
      * `gcp.bigtable.TableIamBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`. Read more about roles [here](https://cloud.google.com/bigtable/docs/access-control#roles).
      */
-    readonly role?: pulumi.Input<string>;
+    readonly role?: pulumi.Input<string | undefined>;
     /**
      * The name or relative resource id of the table to manage IAM policies for.
      */
-    readonly table?: pulumi.Input<string>;
+    readonly table?: pulumi.Input<string | undefined>;
 }
 
 /**
  * The set of arguments for constructing a TableIamMember resource.
  */
 export interface TableIamMemberArgs {
-    readonly condition?: pulumi.Input<inputs.bigtable.TableIamMemberCondition>;
+    readonly condition?: pulumi.Input<inputs.bigtable.TableIamMemberCondition | undefined>;
     /**
      * The name or relative resource id of the instance that owns the table.
      */
     readonly instance: pulumi.Input<string>;
     readonly member: pulumi.Input<string>;
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The role that should be applied. Only one
      * `gcp.bigtable.TableIamBinding` can be used per role. Note that custom roles must be of the format

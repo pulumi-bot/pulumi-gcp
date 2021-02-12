@@ -256,19 +256,19 @@ export interface RegionSslCertificateState {
      * The chain must include at least one intermediate cert.
      * **Note**: This property is sensitive and will not be displayed in the plan.
      */
-    readonly certificate?: pulumi.Input<string>;
+    readonly certificate?: pulumi.Input<string | undefined>;
     /**
      * The unique identifier for the resource.
      */
-    readonly certificateId?: pulumi.Input<number>;
+    readonly certificateId?: pulumi.Input<number | undefined>;
     /**
      * Creation timestamp in RFC3339 text format.
      */
-    readonly creationTimestamp?: pulumi.Input<string>;
+    readonly creationTimestamp?: pulumi.Input<string | undefined>;
     /**
      * An optional description of this resource.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * Name of the resource. Provided by the client when the resource is
      * created. The name must be 1-63 characters long, and comply with
@@ -278,31 +278,31 @@ export interface RegionSslCertificateState {
      * characters must be a dash, lowercase letter, or digit, except the last
      * character, which cannot be a dash.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * Creates a unique name beginning with the
      * specified prefix. Conflicts with `name`.
      */
-    readonly namePrefix?: pulumi.Input<string>;
+    readonly namePrefix?: pulumi.Input<string | undefined>;
     /**
      * The write-only private key in PEM format.
      * **Note**: This property is sensitive and will not be displayed in the plan.
      */
-    readonly privateKey?: pulumi.Input<string>;
+    readonly privateKey?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The Region in which the created regional ssl certificate should reside.
      * If it is not provided, the provider region is used.
      */
-    readonly region?: pulumi.Input<string>;
+    readonly region?: pulumi.Input<string | undefined>;
     /**
      * The URI of the created resource.
      */
-    readonly selfLink?: pulumi.Input<string>;
+    readonly selfLink?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -319,7 +319,7 @@ export interface RegionSslCertificateArgs {
     /**
      * An optional description of this resource.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * Name of the resource. Provided by the client when the resource is
      * created. The name must be 1-63 characters long, and comply with
@@ -329,12 +329,12 @@ export interface RegionSslCertificateArgs {
      * characters must be a dash, lowercase letter, or digit, except the last
      * character, which cannot be a dash.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * Creates a unique name beginning with the
      * specified prefix. Conflicts with `name`.
      */
-    readonly namePrefix?: pulumi.Input<string>;
+    readonly namePrefix?: pulumi.Input<string | undefined>;
     /**
      * The write-only private key in PEM format.
      * **Note**: This property is sensitive and will not be displayed in the plan.
@@ -344,10 +344,10 @@ export interface RegionSslCertificateArgs {
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The Region in which the created regional ssl certificate should reside.
      * If it is not provided, the provider region is used.
      */
-    readonly region?: pulumi.Input<string>;
+    readonly region?: pulumi.Input<string | undefined>;
 }

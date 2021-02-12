@@ -221,11 +221,11 @@ export interface TargetHttpsProxyState {
     /**
      * Creation timestamp in RFC3339 text format.
      */
-    readonly creationTimestamp?: pulumi.Input<string>;
+    readonly creationTimestamp?: pulumi.Input<string | undefined>;
     /**
      * An optional description of this resource.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * Name of the resource. Provided by the client when the resource is
      * created. The name must be 1-63 characters long, and comply with
@@ -235,16 +235,16 @@ export interface TargetHttpsProxyState {
      * characters must be a dash, lowercase letter, or digit, except the last
      * character, which cannot be a dash.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The unique identifier for the resource.
      */
-    readonly proxyId?: pulumi.Input<number>;
+    readonly proxyId?: pulumi.Input<number | undefined>;
     /**
      * Specifies the QUIC override policy for this resource. This determines
      * whether the load balancer will attempt to negotiate QUIC with clients
@@ -254,28 +254,28 @@ export interface TargetHttpsProxyState {
      * Default value is `NONE`.
      * Possible values are `NONE`, `ENABLE`, and `DISABLE`.
      */
-    readonly quicOverride?: pulumi.Input<string>;
+    readonly quicOverride?: pulumi.Input<string | undefined>;
     /**
      * The URI of the created resource.
      */
-    readonly selfLink?: pulumi.Input<string>;
+    readonly selfLink?: pulumi.Input<string | undefined>;
     /**
      * A list of SslCertificate resources that are used to authenticate
      * connections between users and the load balancer. At least one SSL
      * certificate must be specified.
      */
-    readonly sslCertificates?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly sslCertificates?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * A reference to the SslPolicy resource that will be associated with
      * the TargetHttpsProxy resource. If not set, the TargetHttpsProxy
      * resource will not have any SSL policy configured.
      */
-    readonly sslPolicy?: pulumi.Input<string>;
+    readonly sslPolicy?: pulumi.Input<string | undefined>;
     /**
      * A reference to the UrlMap resource that defines the mapping from URL
      * to the BackendService.
      */
-    readonly urlMap?: pulumi.Input<string>;
+    readonly urlMap?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -285,7 +285,7 @@ export interface TargetHttpsProxyArgs {
     /**
      * An optional description of this resource.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * Name of the resource. Provided by the client when the resource is
      * created. The name must be 1-63 characters long, and comply with
@@ -295,12 +295,12 @@ export interface TargetHttpsProxyArgs {
      * characters must be a dash, lowercase letter, or digit, except the last
      * character, which cannot be a dash.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Specifies the QUIC override policy for this resource. This determines
      * whether the load balancer will attempt to negotiate QUIC with clients
@@ -310,7 +310,7 @@ export interface TargetHttpsProxyArgs {
      * Default value is `NONE`.
      * Possible values are `NONE`, `ENABLE`, and `DISABLE`.
      */
-    readonly quicOverride?: pulumi.Input<string>;
+    readonly quicOverride?: pulumi.Input<string | undefined>;
     /**
      * A list of SslCertificate resources that are used to authenticate
      * connections between users and the load balancer. At least one SSL
@@ -322,7 +322,7 @@ export interface TargetHttpsProxyArgs {
      * the TargetHttpsProxy resource. If not set, the TargetHttpsProxy
      * resource will not have any SSL policy configured.
      */
-    readonly sslPolicy?: pulumi.Input<string>;
+    readonly sslPolicy?: pulumi.Input<string | undefined>;
     /**
      * A reference to the UrlMap resource that defines the mapping from URL
      * to the BackendService.

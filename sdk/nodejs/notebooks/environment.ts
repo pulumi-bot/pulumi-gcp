@@ -170,43 +170,43 @@ export interface EnvironmentState {
      * Use a container image to start the notebook instance.
      * Structure is documented below.
      */
-    readonly containerImage?: pulumi.Input<inputs.notebooks.EnvironmentContainerImage>;
+    readonly containerImage?: pulumi.Input<inputs.notebooks.EnvironmentContainerImage | undefined>;
     /**
      * Instance creation time
      */
-    readonly createTime?: pulumi.Input<string>;
+    readonly createTime?: pulumi.Input<string | undefined>;
     /**
      * A brief description of this environment.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * Display name of this environment for the UI.
      */
-    readonly displayName?: pulumi.Input<string>;
+    readonly displayName?: pulumi.Input<string | undefined>;
     /**
      * A reference to the zone where the machine resides.
      */
-    readonly location?: pulumi.Input<string>;
+    readonly location?: pulumi.Input<string | undefined>;
     /**
      * The name specified for the Environment instance.
      * Format: projects/{project_id}/locations/{location}/environments/{environmentId}
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * Path to a Bash script that automatically runs after a notebook instance fully boots up.
      * The path must be a URL or Cloud Storage path. Example: "gs://path-to-file/file-name"
      */
-    readonly postStartupScript?: pulumi.Input<string>;
+    readonly postStartupScript?: pulumi.Input<string | undefined>;
     /**
      * The name of the Google Cloud project that this VM image belongs to.
      * Format: projects/{project_id}
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Use a Compute Engine VM image to start the notebook instance.
      * Structure is documented below.
      */
-    readonly vmImage?: pulumi.Input<inputs.notebooks.EnvironmentVmImage>;
+    readonly vmImage?: pulumi.Input<inputs.notebooks.EnvironmentVmImage | undefined>;
 }
 
 /**
@@ -217,15 +217,15 @@ export interface EnvironmentArgs {
      * Use a container image to start the notebook instance.
      * Structure is documented below.
      */
-    readonly containerImage?: pulumi.Input<inputs.notebooks.EnvironmentContainerImage>;
+    readonly containerImage?: pulumi.Input<inputs.notebooks.EnvironmentContainerImage | undefined>;
     /**
      * A brief description of this environment.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * Display name of this environment for the UI.
      */
-    readonly displayName?: pulumi.Input<string>;
+    readonly displayName?: pulumi.Input<string | undefined>;
     /**
      * A reference to the zone where the machine resides.
      */
@@ -234,20 +234,20 @@ export interface EnvironmentArgs {
      * The name specified for the Environment instance.
      * Format: projects/{project_id}/locations/{location}/environments/{environmentId}
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * Path to a Bash script that automatically runs after a notebook instance fully boots up.
      * The path must be a URL or Cloud Storage path. Example: "gs://path-to-file/file-name"
      */
-    readonly postStartupScript?: pulumi.Input<string>;
+    readonly postStartupScript?: pulumi.Input<string | undefined>;
     /**
      * The name of the Google Cloud project that this VM image belongs to.
      * Format: projects/{project_id}
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Use a Compute Engine VM image to start the notebook instance.
      * Structure is documented below.
      */
-    readonly vmImage?: pulumi.Input<inputs.notebooks.EnvironmentVmImage>;
+    readonly vmImage?: pulumi.Input<inputs.notebooks.EnvironmentVmImage | undefined>;
 }

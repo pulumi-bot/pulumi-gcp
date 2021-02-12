@@ -279,7 +279,7 @@ export interface InstanceGroupManagerState {
      * The autohealing policies for this managed instance
      * group. You can specify only one value. Structure is documented below. For more information, see the [official documentation](https://cloud.google.com/compute/docs/instance-groups/creating-groups-of-managed-instances#monitoring_groups).
      */
-    readonly autoHealingPolicies?: pulumi.Input<inputs.compute.InstanceGroupManagerAutoHealingPolicies>;
+    readonly autoHealingPolicies?: pulumi.Input<inputs.compute.InstanceGroupManagerAutoHealingPolicies | undefined>;
     /**
      * The base instance name to use for
      * instances in this group. The value must be a valid
@@ -288,74 +288,74 @@ export interface InstanceGroupManagerState {
      * appending a hyphen and a random four-character string to the base instance
      * name.
      */
-    readonly baseInstanceName?: pulumi.Input<string>;
+    readonly baseInstanceName?: pulumi.Input<string | undefined>;
     /**
      * An optional textual description of the instance
      * group manager.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * The fingerprint of the instance group manager.
      */
-    readonly fingerprint?: pulumi.Input<string>;
+    readonly fingerprint?: pulumi.Input<string | undefined>;
     /**
      * The full URL of the instance group created by the manager.
      */
-    readonly instanceGroup?: pulumi.Input<string>;
+    readonly instanceGroup?: pulumi.Input<string | undefined>;
     /**
      * - Version name.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The named port configuration. See the section below
      * for details on configuration.
      */
-    readonly namedPorts?: pulumi.Input<pulumi.Input<inputs.compute.InstanceGroupManagerNamedPort>[]>;
-    readonly operation?: pulumi.Input<string>;
+    readonly namedPorts?: pulumi.Input<pulumi.Input<inputs.compute.InstanceGroupManagerNamedPort>[] | undefined>;
+    readonly operation?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs. If it
      * is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The URL of the created resource.
      */
-    readonly selfLink?: pulumi.Input<string>;
+    readonly selfLink?: pulumi.Input<string | undefined>;
     /**
      * Disks created on the instances that will be preserved on instance delete, update, etc. Structure is documented below. For more information see the [official documentation](https://cloud.google.com/compute/docs/instance-groups/configuring-stateful-disks-in-migs).
      */
-    readonly statefulDisks?: pulumi.Input<pulumi.Input<inputs.compute.InstanceGroupManagerStatefulDisk>[]>;
+    readonly statefulDisks?: pulumi.Input<pulumi.Input<inputs.compute.InstanceGroupManagerStatefulDisk>[] | undefined>;
     /**
      * The full URL of all target pools to which new
      * instances in the group are added. Updating the target pools attribute does
      * not affect existing instances.
      */
-    readonly targetPools?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly targetPools?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * - The number of instances calculated as a fixed number or a percentage depending on the settings. Structure is documented below.
      */
-    readonly targetSize?: pulumi.Input<number>;
+    readonly targetSize?: pulumi.Input<number | undefined>;
     /**
      * The update policy for this managed instance group. Structure is documented below. For more information, see the [official documentation](https://cloud.google.com/compute/docs/instance-groups/updating-managed-instance-groups) and [API](https://cloud.google.com/compute/docs/reference/rest/v1/instanceGroupManagers/patch)
      */
-    readonly updatePolicy?: pulumi.Input<inputs.compute.InstanceGroupManagerUpdatePolicy>;
+    readonly updatePolicy?: pulumi.Input<inputs.compute.InstanceGroupManagerUpdatePolicy | undefined>;
     /**
      * Application versions managed by this instance group. Each
      * version deals with a specific instance template, allowing canary release scenarios.
      * Structure is documented below.
      */
-    readonly versions?: pulumi.Input<pulumi.Input<inputs.compute.InstanceGroupManagerVersion>[]>;
+    readonly versions?: pulumi.Input<pulumi.Input<inputs.compute.InstanceGroupManagerVersion>[] | undefined>;
     /**
      * Whether to wait for all instances to be created/updated before
      * returning. Note that if this is set to true and the operation does not succeed, this provider will
      * continue trying until it times out.
      */
-    readonly waitForInstances?: pulumi.Input<boolean>;
+    readonly waitForInstances?: pulumi.Input<boolean | undefined>;
     /**
      * The zone that instances in this group should be created
      * in.
      */
-    readonly zone?: pulumi.Input<string>;
+    readonly zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -366,7 +366,7 @@ export interface InstanceGroupManagerArgs {
      * The autohealing policies for this managed instance
      * group. You can specify only one value. Structure is documented below. For more information, see the [official documentation](https://cloud.google.com/compute/docs/instance-groups/creating-groups-of-managed-instances#monitoring_groups).
      */
-    readonly autoHealingPolicies?: pulumi.Input<inputs.compute.InstanceGroupManagerAutoHealingPolicies>;
+    readonly autoHealingPolicies?: pulumi.Input<inputs.compute.InstanceGroupManagerAutoHealingPolicies | undefined>;
     /**
      * The base instance name to use for
      * instances in this group. The value must be a valid
@@ -380,39 +380,39 @@ export interface InstanceGroupManagerArgs {
      * An optional textual description of the instance
      * group manager.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * - Version name.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The named port configuration. See the section below
      * for details on configuration.
      */
-    readonly namedPorts?: pulumi.Input<pulumi.Input<inputs.compute.InstanceGroupManagerNamedPort>[]>;
+    readonly namedPorts?: pulumi.Input<pulumi.Input<inputs.compute.InstanceGroupManagerNamedPort>[] | undefined>;
     /**
      * The ID of the project in which the resource belongs. If it
      * is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Disks created on the instances that will be preserved on instance delete, update, etc. Structure is documented below. For more information see the [official documentation](https://cloud.google.com/compute/docs/instance-groups/configuring-stateful-disks-in-migs).
      */
-    readonly statefulDisks?: pulumi.Input<pulumi.Input<inputs.compute.InstanceGroupManagerStatefulDisk>[]>;
+    readonly statefulDisks?: pulumi.Input<pulumi.Input<inputs.compute.InstanceGroupManagerStatefulDisk>[] | undefined>;
     /**
      * The full URL of all target pools to which new
      * instances in the group are added. Updating the target pools attribute does
      * not affect existing instances.
      */
-    readonly targetPools?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly targetPools?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * - The number of instances calculated as a fixed number or a percentage depending on the settings. Structure is documented below.
      */
-    readonly targetSize?: pulumi.Input<number>;
+    readonly targetSize?: pulumi.Input<number | undefined>;
     /**
      * The update policy for this managed instance group. Structure is documented below. For more information, see the [official documentation](https://cloud.google.com/compute/docs/instance-groups/updating-managed-instance-groups) and [API](https://cloud.google.com/compute/docs/reference/rest/v1/instanceGroupManagers/patch)
      */
-    readonly updatePolicy?: pulumi.Input<inputs.compute.InstanceGroupManagerUpdatePolicy>;
+    readonly updatePolicy?: pulumi.Input<inputs.compute.InstanceGroupManagerUpdatePolicy | undefined>;
     /**
      * Application versions managed by this instance group. Each
      * version deals with a specific instance template, allowing canary release scenarios.
@@ -424,10 +424,10 @@ export interface InstanceGroupManagerArgs {
      * returning. Note that if this is set to true and the operation does not succeed, this provider will
      * continue trying until it times out.
      */
-    readonly waitForInstances?: pulumi.Input<boolean>;
+    readonly waitForInstances?: pulumi.Input<boolean | undefined>;
     /**
      * The zone that instances in this group should be created
      * in.
      */
-    readonly zone?: pulumi.Input<string>;
+    readonly zone?: pulumi.Input<string | undefined>;
 }

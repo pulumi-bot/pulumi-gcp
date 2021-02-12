@@ -160,15 +160,15 @@ export interface DefaultSupportedIdpConfigState {
     /**
      * OAuth client ID
      */
-    readonly clientId?: pulumi.Input<string>;
+    readonly clientId?: pulumi.Input<string | undefined>;
     /**
      * OAuth client secret
      */
-    readonly clientSecret?: pulumi.Input<string>;
+    readonly clientSecret?: pulumi.Input<string | undefined>;
     /**
      * If this IDP allows the user to sign in
      */
-    readonly enabled?: pulumi.Input<boolean>;
+    readonly enabled?: pulumi.Input<boolean | undefined>;
     /**
      * ID of the IDP. Possible values include:
      * * `apple.com`
@@ -182,16 +182,16 @@ export interface DefaultSupportedIdpConfigState {
      * * `twitter.com`
      * * `yahoo.com`
      */
-    readonly idpId?: pulumi.Input<string>;
+    readonly idpId?: pulumi.Input<string | undefined>;
     /**
      * The name of the DefaultSupportedIdpConfig resource
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -209,7 +209,7 @@ export interface DefaultSupportedIdpConfigArgs {
     /**
      * If this IDP allows the user to sign in
      */
-    readonly enabled?: pulumi.Input<boolean>;
+    readonly enabled?: pulumi.Input<boolean | undefined>;
     /**
      * ID of the IDP. Possible values include:
      * * `apple.com`
@@ -228,5 +228,5 @@ export interface DefaultSupportedIdpConfigArgs {
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
 }

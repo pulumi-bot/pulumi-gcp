@@ -169,7 +169,7 @@ export interface SecretState {
     /**
      * The time at which the Secret was created.
      */
-    readonly createTime?: pulumi.Input<string>;
+    readonly createTime?: pulumi.Input<string | undefined>;
     /**
      * The labels assigned to this Secret.
      * Label keys must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes,
@@ -180,26 +180,26 @@ export interface SecretState {
      * An object containing a list of "key": value pairs. Example:
      * { "name": "wrench", "mass": "1.3kg", "count": "3" }.
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The resource name of the Secret. Format: 'projects/{{project}}/secrets/{{secret_id}}'
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The replication policy of the secret data attached to the Secret. It cannot be changed
      * after the Secret has been created.
      * Structure is documented below.
      */
-    readonly replication?: pulumi.Input<inputs.secretmanager.SecretReplication>;
+    readonly replication?: pulumi.Input<inputs.secretmanager.SecretReplication | undefined>;
     /**
      * This must be unique within the project.
      */
-    readonly secretId?: pulumi.Input<string>;
+    readonly secretId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -216,12 +216,12 @@ export interface SecretArgs {
      * An object containing a list of "key": value pairs. Example:
      * { "name": "wrench", "mass": "1.3kg", "count": "3" }.
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The replication policy of the secret data attached to the Secret. It cannot be changed
      * after the Secret has been created.

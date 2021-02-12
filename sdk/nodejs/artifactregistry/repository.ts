@@ -233,23 +233,23 @@ export interface RepositoryState {
     /**
      * The time when the repository was created.
      */
-    readonly createTime?: pulumi.Input<string>;
+    readonly createTime?: pulumi.Input<string | undefined>;
     /**
      * The user-provided description of the repository.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * The format of packages that are stored in the repository.
      * Possible values are `DOCKER`.
      */
-    readonly format?: pulumi.Input<string>;
+    readonly format?: pulumi.Input<string | undefined>;
     /**
      * The Cloud KMS resource name of the customer managed encryption key that’s
      * used to encrypt the contents of the Repository. Has the form:
      * `projects/my-project/locations/my-region/keyRings/my-kr/cryptoKeys/my-key`.
      * This value may not be changed after the Repository has been created.
      */
-    readonly kmsKeyName?: pulumi.Input<string>;
+    readonly kmsKeyName?: pulumi.Input<string | undefined>;
     /**
      * Labels with user-defined metadata.
      * This field may contain up to 64 entries. Label keys and values may be no
@@ -257,29 +257,29 @@ export interface RepositoryState {
      * and may only contain lowercase letters, numeric characters, underscores,
      * and dashes.
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The name of the location this repository is located in.
      */
-    readonly location?: pulumi.Input<string>;
+    readonly location?: pulumi.Input<string | undefined>;
     /**
      * The name of the repository, for example: "projects/p1/locations/us-central1/repositories/repo1"
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The last part of the repository name, for example:
      * "repo1"
      */
-    readonly repositoryId?: pulumi.Input<string>;
+    readonly repositoryId?: pulumi.Input<string | undefined>;
     /**
      * The time when the repository was last updated.
      */
-    readonly updateTime?: pulumi.Input<string>;
+    readonly updateTime?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -289,7 +289,7 @@ export interface RepositoryArgs {
     /**
      * The user-provided description of the repository.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * The format of packages that are stored in the repository.
      * Possible values are `DOCKER`.
@@ -301,7 +301,7 @@ export interface RepositoryArgs {
      * `projects/my-project/locations/my-region/keyRings/my-kr/cryptoKeys/my-key`.
      * This value may not be changed after the Repository has been created.
      */
-    readonly kmsKeyName?: pulumi.Input<string>;
+    readonly kmsKeyName?: pulumi.Input<string | undefined>;
     /**
      * Labels with user-defined metadata.
      * This field may contain up to 64 entries. Label keys and values may be no
@@ -309,16 +309,16 @@ export interface RepositoryArgs {
      * and may only contain lowercase letters, numeric characters, underscores,
      * and dashes.
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The name of the location this repository is located in.
      */
-    readonly location?: pulumi.Input<string>;
+    readonly location?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The last part of the repository name, for example:
      * "repo1"

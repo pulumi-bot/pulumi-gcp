@@ -78,9 +78,9 @@ export class AuthorityIamPolicy extends pulumi.CustomResource {
  * Input properties used for looking up and filtering AuthorityIamPolicy resources.
  */
 export interface AuthorityIamPolicyState {
-    readonly certificateAuthority?: pulumi.Input<string>;
-    readonly etag?: pulumi.Input<string>;
-    readonly policyData?: pulumi.Input<string>;
+    readonly certificateAuthority?: pulumi.Input<string | undefined>;
+    readonly etag?: pulumi.Input<string | undefined>;
+    readonly policyData?: pulumi.Input<string | undefined>;
 }
 
 /**

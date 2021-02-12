@@ -139,27 +139,27 @@ export interface FolderExclusionState {
     /**
      * A human-readable description.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * Whether this exclusion rule should be disabled or not. This defaults to
      * false.
      */
-    readonly disabled?: pulumi.Input<boolean>;
+    readonly disabled?: pulumi.Input<boolean | undefined>;
     /**
      * The filter to apply when excluding logs. Only log entries that match the filter are excluded.
      * See [Advanced Log Filters](https://cloud.google.com/logging/docs/view/advanced-filters) for information on how to
      * write a filter.
      */
-    readonly filter?: pulumi.Input<string>;
+    readonly filter?: pulumi.Input<string | undefined>;
     /**
      * The folder to be exported to the sink. Note that either [FOLDER_ID] or "folders/[FOLDER_ID]" is
      * accepted.
      */
-    readonly folder?: pulumi.Input<string>;
+    readonly folder?: pulumi.Input<string | undefined>;
     /**
      * The name of the logging exclusion.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -169,12 +169,12 @@ export interface FolderExclusionArgs {
     /**
      * A human-readable description.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * Whether this exclusion rule should be disabled or not. This defaults to
      * false.
      */
-    readonly disabled?: pulumi.Input<boolean>;
+    readonly disabled?: pulumi.Input<boolean | undefined>;
     /**
      * The filter to apply when excluding logs. Only log entries that match the filter are excluded.
      * See [Advanced Log Filters](https://cloud.google.com/logging/docs/view/advanced-filters) for information on how to
@@ -189,5 +189,5 @@ export interface FolderExclusionArgs {
     /**
      * The name of the logging exclusion.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
 }

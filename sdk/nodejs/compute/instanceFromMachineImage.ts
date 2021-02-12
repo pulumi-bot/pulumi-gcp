@@ -284,147 +284,147 @@ export interface InstanceFromMachineImageState {
      * If true, allows Terraform to stop the instance to update its properties. If you try to update a property that requires
      * stopping the instance without setting this field, the update will fail.
      */
-    readonly allowStoppingForUpdate?: pulumi.Input<boolean>;
+    readonly allowStoppingForUpdate?: pulumi.Input<boolean | undefined>;
     /**
      * List of disks attached to the instance
      */
-    readonly attachedDisks?: pulumi.Input<pulumi.Input<inputs.compute.InstanceFromMachineImageAttachedDisk>[]>;
+    readonly attachedDisks?: pulumi.Input<pulumi.Input<inputs.compute.InstanceFromMachineImageAttachedDisk>[] | undefined>;
     /**
      * The boot disk for the instance.
      */
-    readonly bootDisks?: pulumi.Input<pulumi.Input<inputs.compute.InstanceFromMachineImageBootDisk>[]>;
+    readonly bootDisks?: pulumi.Input<pulumi.Input<inputs.compute.InstanceFromMachineImageBootDisk>[] | undefined>;
     /**
      * Whether sending and receiving of packets with non-matching source or destination IPs is allowed.
      */
-    readonly canIpForward?: pulumi.Input<boolean>;
+    readonly canIpForward?: pulumi.Input<boolean | undefined>;
     /**
      * The Confidential VM config being used by the instance. on_host_maintenance has to be set to TERMINATE or this will fail
      * to create.
      */
-    readonly confidentialInstanceConfig?: pulumi.Input<inputs.compute.InstanceFromMachineImageConfidentialInstanceConfig>;
+    readonly confidentialInstanceConfig?: pulumi.Input<inputs.compute.InstanceFromMachineImageConfidentialInstanceConfig | undefined>;
     /**
      * The CPU platform used by this instance.
      */
-    readonly cpuPlatform?: pulumi.Input<string>;
+    readonly cpuPlatform?: pulumi.Input<string | undefined>;
     /**
      * Current status of the instance.
      */
-    readonly currentStatus?: pulumi.Input<string>;
+    readonly currentStatus?: pulumi.Input<string | undefined>;
     /**
      * Whether deletion protection is enabled on this instance.
      */
-    readonly deletionProtection?: pulumi.Input<boolean>;
+    readonly deletionProtection?: pulumi.Input<boolean | undefined>;
     /**
      * A brief description of the resource.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * Desired status of the instance. Either "RUNNING" or "TERMINATED".
      */
-    readonly desiredStatus?: pulumi.Input<string>;
+    readonly desiredStatus?: pulumi.Input<string | undefined>;
     /**
      * Whether the instance has virtual displays enabled.
      */
-    readonly enableDisplay?: pulumi.Input<boolean>;
+    readonly enableDisplay?: pulumi.Input<boolean | undefined>;
     /**
      * List of the type and count of accelerator cards attached to the instance.
      */
-    readonly guestAccelerators?: pulumi.Input<pulumi.Input<inputs.compute.InstanceFromMachineImageGuestAccelerator>[]>;
+    readonly guestAccelerators?: pulumi.Input<pulumi.Input<inputs.compute.InstanceFromMachineImageGuestAccelerator>[] | undefined>;
     /**
      * A custom hostname for the instance. Must be a fully qualified DNS name and RFC-1035-valid. Valid format is a series of
      * labels 1-63 characters long matching the regular expression [a-z]([-a-z0-9]*[a-z0-9]), concatenated with periods. The
      * entire hostname must not exceed 253 characters. Changing this forces a new resource to be created.
      */
-    readonly hostname?: pulumi.Input<string>;
+    readonly hostname?: pulumi.Input<string | undefined>;
     /**
      * The server-assigned unique identifier of this instance.
      */
-    readonly instanceId?: pulumi.Input<string>;
+    readonly instanceId?: pulumi.Input<string | undefined>;
     /**
      * The unique fingerprint of the labels.
      */
-    readonly labelFingerprint?: pulumi.Input<string>;
+    readonly labelFingerprint?: pulumi.Input<string | undefined>;
     /**
      * A set of key/value label pairs assigned to the instance.
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The machine type to create.
      */
-    readonly machineType?: pulumi.Input<string>;
+    readonly machineType?: pulumi.Input<string | undefined>;
     /**
      * Metadata key/value pairs made available within the instance.
      */
-    readonly metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The unique fingerprint of the metadata.
      */
-    readonly metadataFingerprint?: pulumi.Input<string>;
+    readonly metadataFingerprint?: pulumi.Input<string | undefined>;
     /**
      * Metadata startup scripts made available within the instance.
      */
-    readonly metadataStartupScript?: pulumi.Input<string>;
+    readonly metadataStartupScript?: pulumi.Input<string | undefined>;
     /**
      * The minimum CPU platform specified for the VM instance.
      */
-    readonly minCpuPlatform?: pulumi.Input<string>;
+    readonly minCpuPlatform?: pulumi.Input<string | undefined>;
     /**
      * A unique name for the resource, required by GCE.
      * Changing this forces a new resource to be created.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The networks attached to the instance.
      */
-    readonly networkInterfaces?: pulumi.Input<pulumi.Input<inputs.compute.InstanceFromMachineImageNetworkInterface>[]>;
+    readonly networkInterfaces?: pulumi.Input<pulumi.Input<inputs.compute.InstanceFromMachineImageNetworkInterface>[] | undefined>;
     /**
      * The ID of the project in which the resource belongs. If self_link is provided, this value is ignored. If neither
      * self_link nor project are provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * A list of short names or self_links of resource policies to attach to the instance. Modifying this list will cause the
      * instance to recreate. Currently a max of 1 resource policy is supported.
      */
-    readonly resourcePolicies?: pulumi.Input<string>;
+    readonly resourcePolicies?: pulumi.Input<string | undefined>;
     /**
      * The scheduling strategy being used by the instance.
      */
-    readonly scheduling?: pulumi.Input<inputs.compute.InstanceFromMachineImageScheduling>;
+    readonly scheduling?: pulumi.Input<inputs.compute.InstanceFromMachineImageScheduling | undefined>;
     /**
      * The scratch disks attached to the instance.
      */
-    readonly scratchDisks?: pulumi.Input<pulumi.Input<inputs.compute.InstanceFromMachineImageScratchDisk>[]>;
+    readonly scratchDisks?: pulumi.Input<pulumi.Input<inputs.compute.InstanceFromMachineImageScratchDisk>[] | undefined>;
     /**
      * The URI of the created resource.
      */
-    readonly selfLink?: pulumi.Input<string>;
+    readonly selfLink?: pulumi.Input<string | undefined>;
     /**
      * The service account to attach to the instance.
      */
-    readonly serviceAccount?: pulumi.Input<inputs.compute.InstanceFromMachineImageServiceAccount>;
+    readonly serviceAccount?: pulumi.Input<inputs.compute.InstanceFromMachineImageServiceAccount | undefined>;
     /**
      * The shielded vm config being used by the instance.
      */
-    readonly shieldedInstanceConfig?: pulumi.Input<inputs.compute.InstanceFromMachineImageShieldedInstanceConfig>;
+    readonly shieldedInstanceConfig?: pulumi.Input<inputs.compute.InstanceFromMachineImageShieldedInstanceConfig | undefined>;
     /**
      * Name or self link of a machine
      * image to create the instance based on.
      */
-    readonly sourceMachineImage?: pulumi.Input<string>;
+    readonly sourceMachineImage?: pulumi.Input<string | undefined>;
     /**
      * The list of tags attached to the instance.
      */
-    readonly tags?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The unique fingerprint of the tags.
      */
-    readonly tagsFingerprint?: pulumi.Input<string>;
+    readonly tagsFingerprint?: pulumi.Input<string | undefined>;
     /**
      * The zone that the machine should be created in. If not
      * set, the provider zone is used.
      */
-    readonly zone?: pulumi.Input<string>;
+    readonly zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -435,93 +435,93 @@ export interface InstanceFromMachineImageArgs {
      * If true, allows Terraform to stop the instance to update its properties. If you try to update a property that requires
      * stopping the instance without setting this field, the update will fail.
      */
-    readonly allowStoppingForUpdate?: pulumi.Input<boolean>;
+    readonly allowStoppingForUpdate?: pulumi.Input<boolean | undefined>;
     /**
      * Whether sending and receiving of packets with non-matching source or destination IPs is allowed.
      */
-    readonly canIpForward?: pulumi.Input<boolean>;
+    readonly canIpForward?: pulumi.Input<boolean | undefined>;
     /**
      * The Confidential VM config being used by the instance. on_host_maintenance has to be set to TERMINATE or this will fail
      * to create.
      */
-    readonly confidentialInstanceConfig?: pulumi.Input<inputs.compute.InstanceFromMachineImageConfidentialInstanceConfig>;
+    readonly confidentialInstanceConfig?: pulumi.Input<inputs.compute.InstanceFromMachineImageConfidentialInstanceConfig | undefined>;
     /**
      * Whether deletion protection is enabled on this instance.
      */
-    readonly deletionProtection?: pulumi.Input<boolean>;
+    readonly deletionProtection?: pulumi.Input<boolean | undefined>;
     /**
      * A brief description of the resource.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * Desired status of the instance. Either "RUNNING" or "TERMINATED".
      */
-    readonly desiredStatus?: pulumi.Input<string>;
+    readonly desiredStatus?: pulumi.Input<string | undefined>;
     /**
      * Whether the instance has virtual displays enabled.
      */
-    readonly enableDisplay?: pulumi.Input<boolean>;
+    readonly enableDisplay?: pulumi.Input<boolean | undefined>;
     /**
      * List of the type and count of accelerator cards attached to the instance.
      */
-    readonly guestAccelerators?: pulumi.Input<pulumi.Input<inputs.compute.InstanceFromMachineImageGuestAccelerator>[]>;
+    readonly guestAccelerators?: pulumi.Input<pulumi.Input<inputs.compute.InstanceFromMachineImageGuestAccelerator>[] | undefined>;
     /**
      * A custom hostname for the instance. Must be a fully qualified DNS name and RFC-1035-valid. Valid format is a series of
      * labels 1-63 characters long matching the regular expression [a-z]([-a-z0-9]*[a-z0-9]), concatenated with periods. The
      * entire hostname must not exceed 253 characters. Changing this forces a new resource to be created.
      */
-    readonly hostname?: pulumi.Input<string>;
+    readonly hostname?: pulumi.Input<string | undefined>;
     /**
      * A set of key/value label pairs assigned to the instance.
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The machine type to create.
      */
-    readonly machineType?: pulumi.Input<string>;
+    readonly machineType?: pulumi.Input<string | undefined>;
     /**
      * Metadata key/value pairs made available within the instance.
      */
-    readonly metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Metadata startup scripts made available within the instance.
      */
-    readonly metadataStartupScript?: pulumi.Input<string>;
+    readonly metadataStartupScript?: pulumi.Input<string | undefined>;
     /**
      * The minimum CPU platform specified for the VM instance.
      */
-    readonly minCpuPlatform?: pulumi.Input<string>;
+    readonly minCpuPlatform?: pulumi.Input<string | undefined>;
     /**
      * A unique name for the resource, required by GCE.
      * Changing this forces a new resource to be created.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The networks attached to the instance.
      */
-    readonly networkInterfaces?: pulumi.Input<pulumi.Input<inputs.compute.InstanceFromMachineImageNetworkInterface>[]>;
+    readonly networkInterfaces?: pulumi.Input<pulumi.Input<inputs.compute.InstanceFromMachineImageNetworkInterface>[] | undefined>;
     /**
      * The ID of the project in which the resource belongs. If self_link is provided, this value is ignored. If neither
      * self_link nor project are provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * A list of short names or self_links of resource policies to attach to the instance. Modifying this list will cause the
      * instance to recreate. Currently a max of 1 resource policy is supported.
      */
-    readonly resourcePolicies?: pulumi.Input<string>;
+    readonly resourcePolicies?: pulumi.Input<string | undefined>;
     /**
      * The scheduling strategy being used by the instance.
      */
-    readonly scheduling?: pulumi.Input<inputs.compute.InstanceFromMachineImageScheduling>;
+    readonly scheduling?: pulumi.Input<inputs.compute.InstanceFromMachineImageScheduling | undefined>;
     /**
      * The service account to attach to the instance.
      */
-    readonly serviceAccount?: pulumi.Input<inputs.compute.InstanceFromMachineImageServiceAccount>;
+    readonly serviceAccount?: pulumi.Input<inputs.compute.InstanceFromMachineImageServiceAccount | undefined>;
     /**
      * The shielded vm config being used by the instance.
      */
-    readonly shieldedInstanceConfig?: pulumi.Input<inputs.compute.InstanceFromMachineImageShieldedInstanceConfig>;
+    readonly shieldedInstanceConfig?: pulumi.Input<inputs.compute.InstanceFromMachineImageShieldedInstanceConfig | undefined>;
     /**
      * Name or self link of a machine
      * image to create the instance based on.
@@ -530,10 +530,10 @@ export interface InstanceFromMachineImageArgs {
     /**
      * The list of tags attached to the instance.
      */
-    readonly tags?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The zone that the machine should be created in. If not
      * set, the provider zone is used.
      */
-    readonly zone?: pulumi.Input<string>;
+    readonly zone?: pulumi.Input<string | undefined>;
 }

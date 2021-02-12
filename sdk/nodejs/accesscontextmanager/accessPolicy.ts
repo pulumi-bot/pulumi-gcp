@@ -143,24 +143,24 @@ export interface AccessPolicyState {
     /**
      * Time the AccessPolicy was created in UTC.
      */
-    readonly createTime?: pulumi.Input<string>;
+    readonly createTime?: pulumi.Input<string | undefined>;
     /**
      * Resource name of the AccessPolicy. Format: {policy_id}
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The parent of this AccessPolicy in the Cloud Resource Hierarchy.
      * Format: organizations/{organization_id}
      */
-    readonly parent?: pulumi.Input<string>;
+    readonly parent?: pulumi.Input<string | undefined>;
     /**
      * Human readable title. Does not affect behavior.
      */
-    readonly title?: pulumi.Input<string>;
+    readonly title?: pulumi.Input<string | undefined>;
     /**
      * Time the AccessPolicy was updated in UTC.
      */
-    readonly updateTime?: pulumi.Input<string>;
+    readonly updateTime?: pulumi.Input<string | undefined>;
 }
 
 /**

@@ -171,30 +171,30 @@ export interface DomainMappingState {
     /**
      * The location of the cloud run instance. eg us-central1
      */
-    readonly location?: pulumi.Input<string>;
+    readonly location?: pulumi.Input<string | undefined>;
     /**
      * Metadata associated with this DomainMapping.
      * Structure is documented below.
      */
-    readonly metadata?: pulumi.Input<inputs.cloudrun.DomainMappingMetadata>;
+    readonly metadata?: pulumi.Input<inputs.cloudrun.DomainMappingMetadata | undefined>;
     /**
      * Name should be a verified domain
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The spec for this DomainMapping.
      * Structure is documented below.
      */
-    readonly spec?: pulumi.Input<inputs.cloudrun.DomainMappingSpec>;
+    readonly spec?: pulumi.Input<inputs.cloudrun.DomainMappingSpec | undefined>;
     /**
      * The current status of the DomainMapping.
      */
-    readonly statuses?: pulumi.Input<pulumi.Input<inputs.cloudrun.DomainMappingStatus>[]>;
+    readonly statuses?: pulumi.Input<pulumi.Input<inputs.cloudrun.DomainMappingStatus>[] | undefined>;
 }
 
 /**
@@ -213,12 +213,12 @@ export interface DomainMappingArgs {
     /**
      * Name should be a verified domain
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The spec for this DomainMapping.
      * Structure is documented below.

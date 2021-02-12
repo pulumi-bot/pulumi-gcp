@@ -88,11 +88,11 @@ export class AccountIamBinding extends pulumi.CustomResource {
  * Input properties used for looking up and filtering AccountIamBinding resources.
  */
 export interface AccountIamBindingState {
-    readonly billingAccountId?: pulumi.Input<string>;
-    readonly condition?: pulumi.Input<inputs.billing.AccountIamBindingCondition>;
-    readonly etag?: pulumi.Input<string>;
-    readonly members?: pulumi.Input<pulumi.Input<string>[]>;
-    readonly role?: pulumi.Input<string>;
+    readonly billingAccountId?: pulumi.Input<string | undefined>;
+    readonly condition?: pulumi.Input<inputs.billing.AccountIamBindingCondition | undefined>;
+    readonly etag?: pulumi.Input<string | undefined>;
+    readonly members?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    readonly role?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -100,7 +100,7 @@ export interface AccountIamBindingState {
  */
 export interface AccountIamBindingArgs {
     readonly billingAccountId: pulumi.Input<string>;
-    readonly condition?: pulumi.Input<inputs.billing.AccountIamBindingCondition>;
+    readonly condition?: pulumi.Input<inputs.billing.AccountIamBindingCondition | undefined>;
     readonly members: pulumi.Input<pulumi.Input<string>[]>;
     readonly role: pulumi.Input<string>;
 }

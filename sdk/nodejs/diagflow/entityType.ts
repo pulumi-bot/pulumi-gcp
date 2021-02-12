@@ -169,16 +169,16 @@ export interface EntityTypeState {
     /**
      * The name of this entity type to be displayed on the console.
      */
-    readonly displayName?: pulumi.Input<string>;
+    readonly displayName?: pulumi.Input<string | undefined>;
     /**
      * Enables fuzzy entity extraction during classification.
      */
-    readonly enableFuzzyExtraction?: pulumi.Input<boolean>;
+    readonly enableFuzzyExtraction?: pulumi.Input<boolean | undefined>;
     /**
      * The collection of entity entries associated with the entity type.
      * Structure is documented below.
      */
-    readonly entities?: pulumi.Input<pulumi.Input<inputs.diagflow.EntityTypeEntity>[]>;
+    readonly entities?: pulumi.Input<pulumi.Input<inputs.diagflow.EntityTypeEntity>[] | undefined>;
     /**
      * Indicates the kind of entity type.
      * * KIND_MAP: Map entity types allow mapping of a group of synonyms to a reference value.
@@ -187,16 +187,16 @@ export interface EntityTypeState {
      * * KIND_REGEXP: Regexp entity types allow to specify regular expressions in entries values.
      * Possible values are `KIND_MAP`, `KIND_LIST`, and `KIND_REGEXP`.
      */
-    readonly kind?: pulumi.Input<string>;
+    readonly kind?: pulumi.Input<string | undefined>;
     /**
      * The unique identifier of the entity type. Format: projects/<Project ID>/agent/entityTypes/<Entity type ID>.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -210,12 +210,12 @@ export interface EntityTypeArgs {
     /**
      * Enables fuzzy entity extraction during classification.
      */
-    readonly enableFuzzyExtraction?: pulumi.Input<boolean>;
+    readonly enableFuzzyExtraction?: pulumi.Input<boolean | undefined>;
     /**
      * The collection of entity entries associated with the entity type.
      * Structure is documented below.
      */
-    readonly entities?: pulumi.Input<pulumi.Input<inputs.diagflow.EntityTypeEntity>[]>;
+    readonly entities?: pulumi.Input<pulumi.Input<inputs.diagflow.EntityTypeEntity>[] | undefined>;
     /**
      * Indicates the kind of entity type.
      * * KIND_MAP: Map entity types allow mapping of a group of synonyms to a reference value.
@@ -229,5 +229,5 @@ export interface EntityTypeArgs {
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
 }

@@ -169,40 +169,40 @@ export interface ConnectorState {
     /**
      * The range of internal addresses that follows RFC 4632 notation. Example: `10.132.0.0/28`.
      */
-    readonly ipCidrRange?: pulumi.Input<string>;
+    readonly ipCidrRange?: pulumi.Input<string | undefined>;
     /**
      * Maximum throughput of the connector in Mbps, must be greater than `minThroughput`. Default is 1000.
      */
-    readonly maxThroughput?: pulumi.Input<number>;
+    readonly maxThroughput?: pulumi.Input<number | undefined>;
     /**
      * Minimum throughput of the connector in Mbps. Default and min is 200.
      */
-    readonly minThroughput?: pulumi.Input<number>;
+    readonly minThroughput?: pulumi.Input<number | undefined>;
     /**
      * The name of the resource (Max 25 characters).
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * Name of a VPC network.
      */
-    readonly network?: pulumi.Input<string>;
+    readonly network?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Region where the VPC Access connector resides. If it is not provided, the provider region is used.
      */
-    readonly region?: pulumi.Input<string>;
+    readonly region?: pulumi.Input<string | undefined>;
     /**
      * The fully qualified name of this VPC connector
      */
-    readonly selfLink?: pulumi.Input<string>;
+    readonly selfLink?: pulumi.Input<string | undefined>;
     /**
      * State of the VPC access connector.
      */
-    readonly state?: pulumi.Input<string>;
+    readonly state?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -216,15 +216,15 @@ export interface ConnectorArgs {
     /**
      * Maximum throughput of the connector in Mbps, must be greater than `minThroughput`. Default is 1000.
      */
-    readonly maxThroughput?: pulumi.Input<number>;
+    readonly maxThroughput?: pulumi.Input<number | undefined>;
     /**
      * Minimum throughput of the connector in Mbps. Default and min is 200.
      */
-    readonly minThroughput?: pulumi.Input<number>;
+    readonly minThroughput?: pulumi.Input<number | undefined>;
     /**
      * The name of the resource (Max 25 characters).
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * Name of a VPC network.
      */
@@ -233,9 +233,9 @@ export interface ConnectorArgs {
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Region where the VPC Access connector resides. If it is not provided, the provider region is used.
      */
-    readonly region?: pulumi.Input<string>;
+    readonly region?: pulumi.Input<string | undefined>;
 }

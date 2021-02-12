@@ -164,24 +164,24 @@ export interface NetworkPeeringRoutesConfigState {
     /**
      * Whether to export the custom routes to the peer network.
      */
-    readonly exportCustomRoutes?: pulumi.Input<boolean>;
+    readonly exportCustomRoutes?: pulumi.Input<boolean | undefined>;
     /**
      * Whether to import the custom routes to the peer network.
      */
-    readonly importCustomRoutes?: pulumi.Input<boolean>;
+    readonly importCustomRoutes?: pulumi.Input<boolean | undefined>;
     /**
      * The name of the primary network for the peering.
      */
-    readonly network?: pulumi.Input<string>;
+    readonly network?: pulumi.Input<string | undefined>;
     /**
      * Name of the peering.
      */
-    readonly peering?: pulumi.Input<string>;
+    readonly peering?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -208,5 +208,5 @@ export interface NetworkPeeringRoutesConfigArgs {
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
 }

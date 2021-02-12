@@ -333,12 +333,12 @@ export interface DiskState {
     /**
      * Creation timestamp in RFC3339 text format.
      */
-    readonly creationTimestamp?: pulumi.Input<string>;
+    readonly creationTimestamp?: pulumi.Input<string | undefined>;
     /**
      * An optional description of this resource. Provide this property when
      * you create the resource.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * Encrypts the disk using a customer-supplied encryption key.
      * After you encrypt a disk with a customer-supplied key, you must
@@ -351,7 +351,7 @@ export interface DiskState {
      * you do not need to provide a key to use the disk later.
      * Structure is documented below.
      */
-    readonly diskEncryptionKey?: pulumi.Input<inputs.compute.DiskDiskEncryptionKey>;
+    readonly diskEncryptionKey?: pulumi.Input<inputs.compute.DiskDiskEncryptionKey | undefined>;
     /**
      * The image from which to initialize this disk. This can be
      * one of: the image's `selfLink`, `projects/{project}/global/images/{image}`,
@@ -363,32 +363,32 @@ export interface DiskState {
      * For instance, the image `centos-6-v20180104` includes its family name `centos-6`.
      * These images can be referred by family name here.
      */
-    readonly image?: pulumi.Input<string>;
+    readonly image?: pulumi.Input<string | undefined>;
     /**
      * Specifies the disk interface to use for attaching this disk, which is either SCSI or NVME. The default is SCSI. Default
      * value: "SCSI" Possible values: ["SCSI", "NVME"]
      */
-    readonly interface?: pulumi.Input<string>;
+    readonly interface?: pulumi.Input<string | undefined>;
     /**
      * The fingerprint used for optimistic locking of this resource. Used internally during updates.
      */
-    readonly labelFingerprint?: pulumi.Input<string>;
+    readonly labelFingerprint?: pulumi.Input<string | undefined>;
     /**
      * Labels to apply to this disk.  A list of key->value pairs.
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Last attach timestamp in RFC3339 text format.
      */
-    readonly lastAttachTimestamp?: pulumi.Input<string>;
+    readonly lastAttachTimestamp?: pulumi.Input<string | undefined>;
     /**
      * Last detach timestamp in RFC3339 text format.
      */
-    readonly lastDetachTimestamp?: pulumi.Input<string>;
+    readonly lastDetachTimestamp?: pulumi.Input<string | undefined>;
     /**
      * Indicates whether or not the disk can be read/write attached to more than one instance.
      */
-    readonly multiWriter?: pulumi.Input<boolean>;
+    readonly multiWriter?: pulumi.Input<boolean | undefined>;
     /**
      * Name of the resource. Provided by the client when the resource is
      * created. The name must be 1-63 characters long, and comply with
@@ -398,7 +398,7 @@ export interface DiskState {
      * characters must be a dash, lowercase letter, or digit, except the last
      * character, which cannot be a dash.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * Physical block size of the persistent disk, in bytes. If not present
      * in a request, a default value is used. Currently supported sizes
@@ -406,12 +406,12 @@ export interface DiskState {
      * If an unsupported value is requested, the error message will list
      * the supported values for the caller's project.
      */
-    readonly physicalBlockSizeBytes?: pulumi.Input<number>;
+    readonly physicalBlockSizeBytes?: pulumi.Input<number | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Resource policies applied to this disk for automatic snapshot creations.
      * ~>**NOTE** This value does not support updating the
@@ -420,11 +420,11 @@ export interface DiskState {
      * `gcp.compute.DiskResourcePolicyAttachment`
      * to allow for updating the resource policy attached to the disk.
      */
-    readonly resourcePolicies?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly resourcePolicies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The URI of the created resource.
      */
-    readonly selfLink?: pulumi.Input<string>;
+    readonly selfLink?: pulumi.Input<string | undefined>;
     /**
      * Size of the persistent disk, specified in GB. You can specify this
      * field when creating a persistent disk using the `image` or
@@ -434,7 +434,7 @@ export interface DiskState {
      * the value must not be less than the size of the image
      * or the size of the snapshot.
      */
-    readonly size?: pulumi.Input<number>;
+    readonly size?: pulumi.Input<number | undefined>;
     /**
      * The source snapshot used to create this disk. You can provide this as
      * a partial or full URL to the resource. If the snapshot is in another
@@ -445,45 +445,45 @@ export interface DiskState {
      * * `global/snapshots/snapshot`
      * * `snapshot`
      */
-    readonly snapshot?: pulumi.Input<string>;
+    readonly snapshot?: pulumi.Input<string | undefined>;
     /**
      * The customer-supplied encryption key of the source image. Required if
      * the source image is protected by a customer-supplied encryption key.
      * Structure is documented below.
      */
-    readonly sourceImageEncryptionKey?: pulumi.Input<inputs.compute.DiskSourceImageEncryptionKey>;
+    readonly sourceImageEncryptionKey?: pulumi.Input<inputs.compute.DiskSourceImageEncryptionKey | undefined>;
     /**
      * The ID value of the image used to create this disk. This value identifies the exact image that was used to create this
      * persistent disk. For example, if you created the persistent disk from an image that was later deleted and recreated
      * under the same name, the source image ID would identify the exact version of the image that was used.
      */
-    readonly sourceImageId?: pulumi.Input<string>;
+    readonly sourceImageId?: pulumi.Input<string | undefined>;
     /**
      * The customer-supplied encryption key of the source snapshot. Required
      * if the source snapshot is protected by a customer-supplied encryption
      * key.
      * Structure is documented below.
      */
-    readonly sourceSnapshotEncryptionKey?: pulumi.Input<inputs.compute.DiskSourceSnapshotEncryptionKey>;
+    readonly sourceSnapshotEncryptionKey?: pulumi.Input<inputs.compute.DiskSourceSnapshotEncryptionKey | undefined>;
     /**
      * The unique ID of the snapshot used to create this disk. This value identifies the exact snapshot that was used to create
      * this persistent disk. For example, if you created the persistent disk from a snapshot that was later deleted and
      * recreated under the same name, the source snapshot ID would identify the exact version of the snapshot that was used.
      */
-    readonly sourceSnapshotId?: pulumi.Input<string>;
+    readonly sourceSnapshotId?: pulumi.Input<string | undefined>;
     /**
      * URL of the disk type resource describing which disk type to use to
      * create the disk. Provide this when creating the disk.
      */
-    readonly type?: pulumi.Input<string>;
+    readonly type?: pulumi.Input<string | undefined>;
     /**
      * Links to the users of the disk (attached instances) in form: project/zones/zone/instances/instance
      */
-    readonly users?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly users?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * A reference to the zone where the disk resides.
      */
-    readonly zone?: pulumi.Input<string>;
+    readonly zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -494,7 +494,7 @@ export interface DiskArgs {
      * An optional description of this resource. Provide this property when
      * you create the resource.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * Encrypts the disk using a customer-supplied encryption key.
      * After you encrypt a disk with a customer-supplied key, you must
@@ -507,7 +507,7 @@ export interface DiskArgs {
      * you do not need to provide a key to use the disk later.
      * Structure is documented below.
      */
-    readonly diskEncryptionKey?: pulumi.Input<inputs.compute.DiskDiskEncryptionKey>;
+    readonly diskEncryptionKey?: pulumi.Input<inputs.compute.DiskDiskEncryptionKey | undefined>;
     /**
      * The image from which to initialize this disk. This can be
      * one of: the image's `selfLink`, `projects/{project}/global/images/{image}`,
@@ -519,20 +519,20 @@ export interface DiskArgs {
      * For instance, the image `centos-6-v20180104` includes its family name `centos-6`.
      * These images can be referred by family name here.
      */
-    readonly image?: pulumi.Input<string>;
+    readonly image?: pulumi.Input<string | undefined>;
     /**
      * Specifies the disk interface to use for attaching this disk, which is either SCSI or NVME. The default is SCSI. Default
      * value: "SCSI" Possible values: ["SCSI", "NVME"]
      */
-    readonly interface?: pulumi.Input<string>;
+    readonly interface?: pulumi.Input<string | undefined>;
     /**
      * Labels to apply to this disk.  A list of key->value pairs.
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Indicates whether or not the disk can be read/write attached to more than one instance.
      */
-    readonly multiWriter?: pulumi.Input<boolean>;
+    readonly multiWriter?: pulumi.Input<boolean | undefined>;
     /**
      * Name of the resource. Provided by the client when the resource is
      * created. The name must be 1-63 characters long, and comply with
@@ -542,7 +542,7 @@ export interface DiskArgs {
      * characters must be a dash, lowercase letter, or digit, except the last
      * character, which cannot be a dash.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * Physical block size of the persistent disk, in bytes. If not present
      * in a request, a default value is used. Currently supported sizes
@@ -550,12 +550,12 @@ export interface DiskArgs {
      * If an unsupported value is requested, the error message will list
      * the supported values for the caller's project.
      */
-    readonly physicalBlockSizeBytes?: pulumi.Input<number>;
+    readonly physicalBlockSizeBytes?: pulumi.Input<number | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Resource policies applied to this disk for automatic snapshot creations.
      * ~>**NOTE** This value does not support updating the
@@ -564,7 +564,7 @@ export interface DiskArgs {
      * `gcp.compute.DiskResourcePolicyAttachment`
      * to allow for updating the resource policy attached to the disk.
      */
-    readonly resourcePolicies?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly resourcePolicies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Size of the persistent disk, specified in GB. You can specify this
      * field when creating a persistent disk using the `image` or
@@ -574,7 +574,7 @@ export interface DiskArgs {
      * the value must not be less than the size of the image
      * or the size of the snapshot.
      */
-    readonly size?: pulumi.Input<number>;
+    readonly size?: pulumi.Input<number | undefined>;
     /**
      * The source snapshot used to create this disk. You can provide this as
      * a partial or full URL to the resource. If the snapshot is in another
@@ -585,27 +585,27 @@ export interface DiskArgs {
      * * `global/snapshots/snapshot`
      * * `snapshot`
      */
-    readonly snapshot?: pulumi.Input<string>;
+    readonly snapshot?: pulumi.Input<string | undefined>;
     /**
      * The customer-supplied encryption key of the source image. Required if
      * the source image is protected by a customer-supplied encryption key.
      * Structure is documented below.
      */
-    readonly sourceImageEncryptionKey?: pulumi.Input<inputs.compute.DiskSourceImageEncryptionKey>;
+    readonly sourceImageEncryptionKey?: pulumi.Input<inputs.compute.DiskSourceImageEncryptionKey | undefined>;
     /**
      * The customer-supplied encryption key of the source snapshot. Required
      * if the source snapshot is protected by a customer-supplied encryption
      * key.
      * Structure is documented below.
      */
-    readonly sourceSnapshotEncryptionKey?: pulumi.Input<inputs.compute.DiskSourceSnapshotEncryptionKey>;
+    readonly sourceSnapshotEncryptionKey?: pulumi.Input<inputs.compute.DiskSourceSnapshotEncryptionKey | undefined>;
     /**
      * URL of the disk type resource describing which disk type to use to
      * create the disk. Provide this when creating the disk.
      */
-    readonly type?: pulumi.Input<string>;
+    readonly type?: pulumi.Input<string | undefined>;
     /**
      * A reference to the zone where the disk resides.
      */
-    readonly zone?: pulumi.Input<string>;
+    readonly zone?: pulumi.Input<string | undefined>;
 }

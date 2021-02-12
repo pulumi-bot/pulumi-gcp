@@ -167,43 +167,43 @@ export interface KeyRingImportJobState {
      * statement to verify attributes of the key as stored on the HSM, independently of Google. Only present if the chosen
      * ImportMethod is one with a protection level of HSM.
      */
-    readonly attestations?: pulumi.Input<pulumi.Input<inputs.kms.KeyRingImportJobAttestation>[]>;
+    readonly attestations?: pulumi.Input<pulumi.Input<inputs.kms.KeyRingImportJobAttestation>[] | undefined>;
     /**
      * The time at which this resource is scheduled for expiration and can no longer be used. This is in RFC3339 text format.
      */
-    readonly expireTime?: pulumi.Input<string>;
+    readonly expireTime?: pulumi.Input<string | undefined>;
     /**
      * It must be unique within a KeyRing and match the regular expression [a-zA-Z0-9_-]{1,63}
      */
-    readonly importJobId?: pulumi.Input<string>;
+    readonly importJobId?: pulumi.Input<string | undefined>;
     /**
      * The wrapping method to be used for incoming key material.
      * Possible values are `RSA_OAEP_3072_SHA1_AES_256` and `RSA_OAEP_4096_SHA1_AES_256`.
      */
-    readonly importMethod?: pulumi.Input<string>;
+    readonly importMethod?: pulumi.Input<string | undefined>;
     /**
      * The KeyRing that this import job belongs to.
      * Format: `'projects/{{project}}/locations/{{location}}/keyRings/{{keyRing}}'`.
      */
-    readonly keyRing?: pulumi.Input<string>;
+    readonly keyRing?: pulumi.Input<string | undefined>;
     /**
      * The resource name for this ImportJob in the format projects/*&#47;locations/*&#47;keyRings/*&#47;importJobs/*.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The protection level of the ImportJob. This must match the protectionLevel of the
      * versionTemplate on the CryptoKey you attempt to import into.
      * Possible values are `SOFTWARE`, `HSM`, and `EXTERNAL`.
      */
-    readonly protectionLevel?: pulumi.Input<string>;
+    readonly protectionLevel?: pulumi.Input<string | undefined>;
     /**
      * The public key with which to wrap key material prior to import. Only returned if state is 'ACTIVE'.
      */
-    readonly publicKeys?: pulumi.Input<pulumi.Input<inputs.kms.KeyRingImportJobPublicKey>[]>;
+    readonly publicKeys?: pulumi.Input<pulumi.Input<inputs.kms.KeyRingImportJobPublicKey>[] | undefined>;
     /**
      * The current state of the ImportJob, indicating if it can be used.
      */
-    readonly state?: pulumi.Input<string>;
+    readonly state?: pulumi.Input<string | undefined>;
 }
 
 /**

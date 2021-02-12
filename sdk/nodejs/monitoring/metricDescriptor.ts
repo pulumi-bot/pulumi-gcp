@@ -251,51 +251,51 @@ export interface MetricDescriptorState {
     /**
      * A human-readable description for the label.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * A concise name for the metric, which can be displayed in user interfaces. Use sentence case without an ending period, for example "Request count".
      */
-    readonly displayName?: pulumi.Input<string>;
+    readonly displayName?: pulumi.Input<string | undefined>;
     /**
      * The set of labels that can be used to describe a specific instance of this metric type. In order to delete a label, the entire resource must be deleted, then created with the desired labels.
      * Structure is documented below.
      */
-    readonly labels?: pulumi.Input<pulumi.Input<inputs.monitoring.MetricDescriptorLabel>[]>;
+    readonly labels?: pulumi.Input<pulumi.Input<inputs.monitoring.MetricDescriptorLabel>[] | undefined>;
     /**
      * The launch stage of the metric definition.
      * Possible values are `LAUNCH_STAGE_UNSPECIFIED`, `UNIMPLEMENTED`, `PRELAUNCH`, `EARLY_ACCESS`, `ALPHA`, `BETA`, `GA`, and `DEPRECATED`.
      */
-    readonly launchStage?: pulumi.Input<string>;
+    readonly launchStage?: pulumi.Input<string | undefined>;
     /**
      * Metadata which can be used to guide usage of the metric.
      * Structure is documented below.
      */
-    readonly metadata?: pulumi.Input<inputs.monitoring.MetricDescriptorMetadata>;
+    readonly metadata?: pulumi.Input<inputs.monitoring.MetricDescriptorMetadata | undefined>;
     /**
      * Whether the metric records instantaneous values, changes to a value, etc. Some combinations of metricKind and valueType might not be supported.
      * Possible values are `METRIC_KIND_UNSPECIFIED`, `GAUGE`, `DELTA`, and `CUMULATIVE`.
      */
-    readonly metricKind?: pulumi.Input<string>;
+    readonly metricKind?: pulumi.Input<string | undefined>;
     /**
      * If present, then a time series, which is identified partially by a metric type and a MonitoredResourceDescriptor, that
      * is associated with this metric type can only be associated with one of the monitored resource types listed here. This
      * field allows time series to be associated with the intersection of this metric type and the monitored resource types in
      * this list.
      */
-    readonly monitoredResourceTypes?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly monitoredResourceTypes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The resource name of the metric descriptor.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The metric type, including its DNS name prefix. The type is not URL-encoded. All service defined metrics must be prefixed with the service name, in the format of {service name}/{relative metric name}, such as cloudsql.googleapis.com/database/cpu/utilization. The relative metric name must have only upper and lower-case letters, digits, '/' and underscores '_' are allowed. Additionally, the maximum number of characters allowed for the relativeMetricName is 100. All user-defined metric types have the DNS name custom.googleapis.com, external.googleapis.com, or logging.googleapis.com/user/.
      */
-    readonly type?: pulumi.Input<string>;
+    readonly type?: pulumi.Input<string | undefined>;
     /**
      * The units in which the metric value is reported. It is only applicable if the
      * valueType is INT64, DOUBLE, or DISTRIBUTION. The unit defines the representation of
@@ -315,13 +315,13 @@ export interface MetricDescriptorState {
      * More info can be found in the API documentation
      * (https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.metricDescriptors).
      */
-    readonly unit?: pulumi.Input<string>;
+    readonly unit?: pulumi.Input<string | undefined>;
     /**
      * The type of data that can be assigned to the label.
      * Default value is `STRING`.
      * Possible values are `STRING`, `BOOL`, and `INT64`.
      */
-    readonly valueType?: pulumi.Input<string>;
+    readonly valueType?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -340,17 +340,17 @@ export interface MetricDescriptorArgs {
      * The set of labels that can be used to describe a specific instance of this metric type. In order to delete a label, the entire resource must be deleted, then created with the desired labels.
      * Structure is documented below.
      */
-    readonly labels?: pulumi.Input<pulumi.Input<inputs.monitoring.MetricDescriptorLabel>[]>;
+    readonly labels?: pulumi.Input<pulumi.Input<inputs.monitoring.MetricDescriptorLabel>[] | undefined>;
     /**
      * The launch stage of the metric definition.
      * Possible values are `LAUNCH_STAGE_UNSPECIFIED`, `UNIMPLEMENTED`, `PRELAUNCH`, `EARLY_ACCESS`, `ALPHA`, `BETA`, `GA`, and `DEPRECATED`.
      */
-    readonly launchStage?: pulumi.Input<string>;
+    readonly launchStage?: pulumi.Input<string | undefined>;
     /**
      * Metadata which can be used to guide usage of the metric.
      * Structure is documented below.
      */
-    readonly metadata?: pulumi.Input<inputs.monitoring.MetricDescriptorMetadata>;
+    readonly metadata?: pulumi.Input<inputs.monitoring.MetricDescriptorMetadata | undefined>;
     /**
      * Whether the metric records instantaneous values, changes to a value, etc. Some combinations of metricKind and valueType might not be supported.
      * Possible values are `METRIC_KIND_UNSPECIFIED`, `GAUGE`, `DELTA`, and `CUMULATIVE`.
@@ -360,7 +360,7 @@ export interface MetricDescriptorArgs {
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The metric type, including its DNS name prefix. The type is not URL-encoded. All service defined metrics must be prefixed with the service name, in the format of {service name}/{relative metric name}, such as cloudsql.googleapis.com/database/cpu/utilization. The relative metric name must have only upper and lower-case letters, digits, '/' and underscores '_' are allowed. Additionally, the maximum number of characters allowed for the relativeMetricName is 100. All user-defined metric types have the DNS name custom.googleapis.com, external.googleapis.com, or logging.googleapis.com/user/.
      */
@@ -384,7 +384,7 @@ export interface MetricDescriptorArgs {
      * More info can be found in the API documentation
      * (https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.metricDescriptors).
      */
-    readonly unit?: pulumi.Input<string>;
+    readonly unit?: pulumi.Input<string | undefined>;
     /**
      * The type of data that can be assigned to the label.
      * Default value is `STRING`.

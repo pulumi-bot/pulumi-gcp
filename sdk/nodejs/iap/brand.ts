@@ -134,21 +134,21 @@ export interface BrandState {
     /**
      * Application name displayed on OAuth consent screen.
      */
-    readonly applicationTitle?: pulumi.Input<string>;
+    readonly applicationTitle?: pulumi.Input<string | undefined>;
     /**
      * Output only. Identifier of the brand, in the format 'projects/{project_number}/brands/{brand_id}'. NOTE: The brand
      * identification corresponds to the project number as only one brand per project can be created.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * Whether the brand is only intended for usage inside the GSuite organization only.
      */
-    readonly orgInternalOnly?: pulumi.Input<boolean>;
+    readonly orgInternalOnly?: pulumi.Input<boolean | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Support email displayed on the OAuth consent screen. Can be either a
      * user or group email. When a user email is specified, the caller must
@@ -156,7 +156,7 @@ export interface BrandState {
      * specified, the caller can be either a user or a service account which
      * is an owner of the specified group in Cloud Identity.
      */
-    readonly supportEmail?: pulumi.Input<string>;
+    readonly supportEmail?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -171,7 +171,7 @@ export interface BrandArgs {
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Support email displayed on the OAuth consent screen. Can be either a
      * user or group email. When a user email is specified, the caller must

@@ -181,66 +181,66 @@ export interface CertificateState {
     /**
      * Certificate Authority name.
      */
-    readonly certificateAuthority?: pulumi.Input<string>;
+    readonly certificateAuthority?: pulumi.Input<string | undefined>;
     /**
      * Output only. Details regarding the revocation of this Certificate. This Certificate is considered revoked if and only if
      * this field is present.
      */
-    readonly certificateDescriptions?: pulumi.Input<pulumi.Input<inputs.certificateauthority.CertificateCertificateDescription>[]>;
+    readonly certificateDescriptions?: pulumi.Input<pulumi.Input<inputs.certificateauthority.CertificateCertificateDescription>[] | undefined>;
     /**
      * The config used to create a self-signed X.509 certificate or CSR.
      * Structure is documented below.
      */
-    readonly config?: pulumi.Input<inputs.certificateauthority.CertificateConfig>;
+    readonly config?: pulumi.Input<inputs.certificateauthority.CertificateConfig | undefined>;
     /**
      * The time that this resource was created on the server. This is in RFC3339 text format.
      */
-    readonly createTime?: pulumi.Input<string>;
+    readonly createTime?: pulumi.Input<string | undefined>;
     /**
      * Labels with user-defined metadata to apply to this resource.
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The desired lifetime of the CA certificate. Used to create the "notBeforeTime" and
      * "notAfterTime" fields inside an X.509 certificate. A duration in seconds with up to nine
      * fractional digits, terminated by 's'. Example: "3.5s".
      */
-    readonly lifetime?: pulumi.Input<string>;
+    readonly lifetime?: pulumi.Input<string | undefined>;
     /**
      * Location of the CertificateAuthority. A full list of valid locations can be found by
      * running `gcloud beta privateca locations list`.
      */
-    readonly location?: pulumi.Input<string>;
+    readonly location?: pulumi.Input<string | undefined>;
     /**
      * The name for this Certificate .
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * Output only. The pem-encoded, signed X.509 certificate.
      */
-    readonly pemCertificate?: pulumi.Input<string>;
+    readonly pemCertificate?: pulumi.Input<string | undefined>;
     /**
      * Required. Expected to be in leaf-to-root order according to RFC 5246.
      */
-    readonly pemCertificates?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly pemCertificates?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Immutable. A pem-encoded X.509 certificate signing request (CSR).
      */
-    readonly pemCsr?: pulumi.Input<string>;
+    readonly pemCsr?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Output only. Details regarding the revocation of this Certificate. This Certificate is considered revoked if and only if
      * this field is present.
      */
-    readonly revocationDetails?: pulumi.Input<pulumi.Input<inputs.certificateauthority.CertificateRevocationDetail>[]>;
+    readonly revocationDetails?: pulumi.Input<pulumi.Input<inputs.certificateauthority.CertificateRevocationDetail>[] | undefined>;
     /**
      * Output only. The time at which this CertificateAuthority was updated. This is in RFC3339 text format.
      */
-    readonly updateTime?: pulumi.Input<string>;
+    readonly updateTime?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -255,17 +255,17 @@ export interface CertificateArgs {
      * The config used to create a self-signed X.509 certificate or CSR.
      * Structure is documented below.
      */
-    readonly config?: pulumi.Input<inputs.certificateauthority.CertificateConfig>;
+    readonly config?: pulumi.Input<inputs.certificateauthority.CertificateConfig | undefined>;
     /**
      * Labels with user-defined metadata to apply to this resource.
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The desired lifetime of the CA certificate. Used to create the "notBeforeTime" and
      * "notAfterTime" fields inside an X.509 certificate. A duration in seconds with up to nine
      * fractional digits, terminated by 's'. Example: "3.5s".
      */
-    readonly lifetime?: pulumi.Input<string>;
+    readonly lifetime?: pulumi.Input<string | undefined>;
     /**
      * Location of the CertificateAuthority. A full list of valid locations can be found by
      * running `gcloud beta privateca locations list`.
@@ -274,14 +274,14 @@ export interface CertificateArgs {
     /**
      * The name for this Certificate .
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * Immutable. A pem-encoded X.509 certificate signing request (CSR).
      */
-    readonly pemCsr?: pulumi.Input<string>;
+    readonly pemCsr?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
 }

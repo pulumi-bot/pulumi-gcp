@@ -155,21 +155,21 @@ export interface DiskResourcePolicyAttachmentState {
     /**
      * The name of the disk in which the resource policies are attached to.
      */
-    readonly disk?: pulumi.Input<string>;
+    readonly disk?: pulumi.Input<string | undefined>;
     /**
      * The resource policy to be attached to the disk for scheduling snapshot
      * creation. Do not specify the self link.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * A reference to the zone where the disk resides.
      */
-    readonly zone?: pulumi.Input<string>;
+    readonly zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -184,14 +184,14 @@ export interface DiskResourcePolicyAttachmentArgs {
      * The resource policy to be attached to the disk for scheduling snapshot
      * creation. Do not specify the self link.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * A reference to the zone where the disk resides.
      */
-    readonly zone?: pulumi.Input<string>;
+    readonly zone?: pulumi.Input<string | undefined>;
 }

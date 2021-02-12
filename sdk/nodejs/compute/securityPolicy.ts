@@ -161,30 +161,30 @@ export interface SecurityPolicyState {
     /**
      * An optional description of this rule. Max size is 64.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * Fingerprint of this resource.
      */
-    readonly fingerprint?: pulumi.Input<string>;
+    readonly fingerprint?: pulumi.Input<string | undefined>;
     /**
      * The name of the security policy.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The project in which the resource belongs. If it
      * is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The set of rules that belong to this policy. There must always be a default
      * rule (rule with priority 2147483647 and match "\*"). If no rules are provided when creating a
      * security policy, a default rule with action "allow" will be added. Structure is documented below.
      */
-    readonly rules?: pulumi.Input<pulumi.Input<inputs.compute.SecurityPolicyRule>[]>;
+    readonly rules?: pulumi.Input<pulumi.Input<inputs.compute.SecurityPolicyRule>[] | undefined>;
     /**
      * The URI of the created resource.
      */
-    readonly selfLink?: pulumi.Input<string>;
+    readonly selfLink?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -194,20 +194,20 @@ export interface SecurityPolicyArgs {
     /**
      * An optional description of this rule. Max size is 64.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * The name of the security policy.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The project in which the resource belongs. If it
      * is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The set of rules that belong to this policy. There must always be a default
      * rule (rule with priority 2147483647 and match "\*"). If no rules are provided when creating a
      * security policy, a default rule with action "allow" will be added. Structure is documented below.
      */
-    readonly rules?: pulumi.Input<pulumi.Input<inputs.compute.SecurityPolicyRule>[]>;
+    readonly rules?: pulumi.Input<pulumi.Input<inputs.compute.SecurityPolicyRule>[] | undefined>;
 }

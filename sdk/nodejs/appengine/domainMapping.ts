@@ -152,33 +152,33 @@ export interface DomainMappingState {
     /**
      * Relative name of the domain serving the application. Example: example.com.
      */
-    readonly domainName?: pulumi.Input<string>;
+    readonly domainName?: pulumi.Input<string | undefined>;
     /**
      * Full path to the DomainMapping resource in the API. Example: apps/myapp/domainMapping/example.com.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * Whether the domain creation should override any existing mappings for this domain.
      * By default, overrides are rejected.
      * Default value is `STRICT`.
      * Possible values are `STRICT` and `OVERRIDE`.
      */
-    readonly overrideStrategy?: pulumi.Input<string>;
+    readonly overrideStrategy?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The resource records required to configure this domain mapping. These records must be added to the domain's DNS
      * configuration in order to serve the application via this domain mapping.
      */
-    readonly resourceRecords?: pulumi.Input<pulumi.Input<inputs.appengine.DomainMappingResourceRecord>[]>;
+    readonly resourceRecords?: pulumi.Input<pulumi.Input<inputs.appengine.DomainMappingResourceRecord>[] | undefined>;
     /**
      * SSL configuration for this domain. If unconfigured, this domain will not serve with SSL.
      * Structure is documented below.
      */
-    readonly sslSettings?: pulumi.Input<inputs.appengine.DomainMappingSslSettings>;
+    readonly sslSettings?: pulumi.Input<inputs.appengine.DomainMappingSslSettings | undefined>;
 }
 
 /**
@@ -195,15 +195,15 @@ export interface DomainMappingArgs {
      * Default value is `STRICT`.
      * Possible values are `STRICT` and `OVERRIDE`.
      */
-    readonly overrideStrategy?: pulumi.Input<string>;
+    readonly overrideStrategy?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * SSL configuration for this domain. If unconfigured, this domain will not serve with SSL.
      * Structure is documented below.
      */
-    readonly sslSettings?: pulumi.Input<inputs.appengine.DomainMappingSslSettings>;
+    readonly sslSettings?: pulumi.Input<inputs.appengine.DomainMappingSslSettings | undefined>;
 }

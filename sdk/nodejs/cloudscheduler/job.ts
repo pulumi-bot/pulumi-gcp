@@ -264,7 +264,7 @@ export interface JobState {
      * send a request to the service instance
      * Structure is documented below.
      */
-    readonly appEngineHttpTarget?: pulumi.Input<inputs.cloudscheduler.JobAppEngineHttpTarget>;
+    readonly appEngineHttpTarget?: pulumi.Input<inputs.cloudscheduler.JobAppEngineHttpTarget | undefined>;
     /**
      * The deadline for job attempts. If the request handler does not respond by this deadline then the request is
      * cancelled and the attempt is marked as a DEADLINE_EXCEEDED failure. The failed attempt can be viewed in
@@ -275,55 +275,55 @@ export interface JobState {
      * * **Note**: For PubSub targets, this field is ignored - setting it will introduce an unresolvable diff.
      * A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s"
      */
-    readonly attemptDeadline?: pulumi.Input<string>;
+    readonly attemptDeadline?: pulumi.Input<string | undefined>;
     /**
      * A human-readable description for the job.
      * This string must not contain more than 500 characters.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * HTTP target.
      * If the job providers a httpTarget the cron will
      * send a request to the targeted url
      * Structure is documented below.
      */
-    readonly httpTarget?: pulumi.Input<inputs.cloudscheduler.JobHttpTarget>;
+    readonly httpTarget?: pulumi.Input<inputs.cloudscheduler.JobHttpTarget | undefined>;
     /**
      * The name of the job.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Pub/Sub target
      * If the job providers a Pub/Sub target the cron will publish
      * a message to the provided topic
      * Structure is documented below.
      */
-    readonly pubsubTarget?: pulumi.Input<inputs.cloudscheduler.JobPubsubTarget>;
+    readonly pubsubTarget?: pulumi.Input<inputs.cloudscheduler.JobPubsubTarget | undefined>;
     /**
      * Region where the scheduler job resides. If it is not provided, this provider will use the provider default.
      */
-    readonly region?: pulumi.Input<string>;
+    readonly region?: pulumi.Input<string | undefined>;
     /**
      * By default, if a job does not complete successfully,
      * meaning that an acknowledgement is not received from the handler,
      * then it will be retried with exponential backoff according to the settings
      * Structure is documented below.
      */
-    readonly retryConfig?: pulumi.Input<inputs.cloudscheduler.JobRetryConfig>;
+    readonly retryConfig?: pulumi.Input<inputs.cloudscheduler.JobRetryConfig | undefined>;
     /**
      * Describes the schedule on which the job will be executed.
      */
-    readonly schedule?: pulumi.Input<string>;
+    readonly schedule?: pulumi.Input<string | undefined>;
     /**
      * Specifies the time zone to be used in interpreting schedule.
      * The value of this field must be a time zone name from the tz database.
      */
-    readonly timeZone?: pulumi.Input<string>;
+    readonly timeZone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -336,7 +336,7 @@ export interface JobArgs {
      * send a request to the service instance
      * Structure is documented below.
      */
-    readonly appEngineHttpTarget?: pulumi.Input<inputs.cloudscheduler.JobAppEngineHttpTarget>;
+    readonly appEngineHttpTarget?: pulumi.Input<inputs.cloudscheduler.JobAppEngineHttpTarget | undefined>;
     /**
      * The deadline for job attempts. If the request handler does not respond by this deadline then the request is
      * cancelled and the attempt is marked as a DEADLINE_EXCEEDED failure. The failed attempt can be viewed in
@@ -347,53 +347,53 @@ export interface JobArgs {
      * * **Note**: For PubSub targets, this field is ignored - setting it will introduce an unresolvable diff.
      * A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s"
      */
-    readonly attemptDeadline?: pulumi.Input<string>;
+    readonly attemptDeadline?: pulumi.Input<string | undefined>;
     /**
      * A human-readable description for the job.
      * This string must not contain more than 500 characters.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * HTTP target.
      * If the job providers a httpTarget the cron will
      * send a request to the targeted url
      * Structure is documented below.
      */
-    readonly httpTarget?: pulumi.Input<inputs.cloudscheduler.JobHttpTarget>;
+    readonly httpTarget?: pulumi.Input<inputs.cloudscheduler.JobHttpTarget | undefined>;
     /**
      * The name of the job.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Pub/Sub target
      * If the job providers a Pub/Sub target the cron will publish
      * a message to the provided topic
      * Structure is documented below.
      */
-    readonly pubsubTarget?: pulumi.Input<inputs.cloudscheduler.JobPubsubTarget>;
+    readonly pubsubTarget?: pulumi.Input<inputs.cloudscheduler.JobPubsubTarget | undefined>;
     /**
      * Region where the scheduler job resides. If it is not provided, this provider will use the provider default.
      */
-    readonly region?: pulumi.Input<string>;
+    readonly region?: pulumi.Input<string | undefined>;
     /**
      * By default, if a job does not complete successfully,
      * meaning that an acknowledgement is not received from the handler,
      * then it will be retried with exponential backoff according to the settings
      * Structure is documented below.
      */
-    readonly retryConfig?: pulumi.Input<inputs.cloudscheduler.JobRetryConfig>;
+    readonly retryConfig?: pulumi.Input<inputs.cloudscheduler.JobRetryConfig | undefined>;
     /**
      * Describes the schedule on which the job will be executed.
      */
-    readonly schedule?: pulumi.Input<string>;
+    readonly schedule?: pulumi.Input<string | undefined>;
     /**
      * Specifies the time zone to be used in interpreting schedule.
      * The value of this field must be a time zone name from the tz database.
      */
-    readonly timeZone?: pulumi.Input<string>;
+    readonly timeZone?: pulumi.Input<string | undefined>;
 }

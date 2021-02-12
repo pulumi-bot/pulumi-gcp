@@ -203,19 +203,19 @@ export interface PreventionDeidentifyTemplateState {
      * Configuration of the deidentify template
      * Structure is documented below.
      */
-    readonly deidentifyConfig?: pulumi.Input<inputs.dataloss.PreventionDeidentifyTemplateDeidentifyConfig>;
+    readonly deidentifyConfig?: pulumi.Input<inputs.dataloss.PreventionDeidentifyTemplateDeidentifyConfig | undefined>;
     /**
      * A description of the template.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * User set display name of the template.
      */
-    readonly displayName?: pulumi.Input<string>;
+    readonly displayName?: pulumi.Input<string | undefined>;
     /**
      * Name of the information type.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The parent of the template in any of the following formats:
      * * `projects/{{project}}`
@@ -223,7 +223,7 @@ export interface PreventionDeidentifyTemplateState {
      * * `organizations/{{organization_id}}`
      * * `organizations/{{organization_id}}/locations/{{location}}`
      */
-    readonly parent?: pulumi.Input<string>;
+    readonly parent?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -238,11 +238,11 @@ export interface PreventionDeidentifyTemplateArgs {
     /**
      * A description of the template.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * User set display name of the template.
      */
-    readonly displayName?: pulumi.Input<string>;
+    readonly displayName?: pulumi.Input<string | undefined>;
     /**
      * The parent of the template in any of the following formats:
      * * `projects/{{project}}`

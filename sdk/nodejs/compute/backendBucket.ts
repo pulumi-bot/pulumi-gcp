@@ -179,29 +179,29 @@ export interface BackendBucketState {
     /**
      * Cloud Storage bucket name.
      */
-    readonly bucketName?: pulumi.Input<string>;
+    readonly bucketName?: pulumi.Input<string | undefined>;
     /**
      * Cloud CDN configuration for this Backend Bucket.
      * Structure is documented below.
      */
-    readonly cdnPolicy?: pulumi.Input<inputs.compute.BackendBucketCdnPolicy>;
+    readonly cdnPolicy?: pulumi.Input<inputs.compute.BackendBucketCdnPolicy | undefined>;
     /**
      * Creation timestamp in RFC3339 text format.
      */
-    readonly creationTimestamp?: pulumi.Input<string>;
+    readonly creationTimestamp?: pulumi.Input<string | undefined>;
     /**
      * Headers that the HTTP/S load balancer should add to proxied responses.
      */
-    readonly customResponseHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly customResponseHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * An optional textual description of the resource; provided by the
      * client when the resource is created.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * If true, enable Cloud CDN for this BackendBucket.
      */
-    readonly enableCdn?: pulumi.Input<boolean>;
+    readonly enableCdn?: pulumi.Input<boolean | undefined>;
     /**
      * Name of the resource. Provided by the client when the resource is
      * created. The name must be 1-63 characters long, and comply with
@@ -211,16 +211,16 @@ export interface BackendBucketState {
      * characters must be a dash, lowercase letter, or digit, except the
      * last character, which cannot be a dash.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The URI of the created resource.
      */
-    readonly selfLink?: pulumi.Input<string>;
+    readonly selfLink?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -235,20 +235,20 @@ export interface BackendBucketArgs {
      * Cloud CDN configuration for this Backend Bucket.
      * Structure is documented below.
      */
-    readonly cdnPolicy?: pulumi.Input<inputs.compute.BackendBucketCdnPolicy>;
+    readonly cdnPolicy?: pulumi.Input<inputs.compute.BackendBucketCdnPolicy | undefined>;
     /**
      * Headers that the HTTP/S load balancer should add to proxied responses.
      */
-    readonly customResponseHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly customResponseHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * An optional textual description of the resource; provided by the
      * client when the resource is created.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * If true, enable Cloud CDN for this BackendBucket.
      */
-    readonly enableCdn?: pulumi.Input<boolean>;
+    readonly enableCdn?: pulumi.Input<boolean | undefined>;
     /**
      * Name of the resource. Provided by the client when the resource is
      * created. The name must be 1-63 characters long, and comply with
@@ -258,10 +258,10 @@ export interface BackendBucketArgs {
      * characters must be a dash, lowercase letter, or digit, except the
      * last character, which cannot be a dash.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
 }

@@ -200,38 +200,38 @@ export class DatabaseIAMMember extends pulumi.CustomResource {
  * Input properties used for looking up and filtering DatabaseIAMMember resources.
  */
 export interface DatabaseIAMMemberState {
-    readonly condition?: pulumi.Input<inputs.spanner.DatabaseIAMMemberCondition>;
+    readonly condition?: pulumi.Input<inputs.spanner.DatabaseIAMMemberCondition | undefined>;
     /**
      * The name of the Spanner database.
      */
-    readonly database?: pulumi.Input<string>;
+    readonly database?: pulumi.Input<string | undefined>;
     /**
      * (Computed) The etag of the database's IAM policy.
      */
-    readonly etag?: pulumi.Input<string>;
+    readonly etag?: pulumi.Input<string | undefined>;
     /**
      * The name of the Spanner instance the database belongs to.
      */
-    readonly instance?: pulumi.Input<string>;
-    readonly member?: pulumi.Input<string>;
+    readonly instance?: pulumi.Input<string | undefined>;
+    readonly member?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs. If it
      * is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The role that should be applied. Only one
      * `gcp.spanner.DatabaseIAMBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
-    readonly role?: pulumi.Input<string>;
+    readonly role?: pulumi.Input<string | undefined>;
 }
 
 /**
  * The set of arguments for constructing a DatabaseIAMMember resource.
  */
 export interface DatabaseIAMMemberArgs {
-    readonly condition?: pulumi.Input<inputs.spanner.DatabaseIAMMemberCondition>;
+    readonly condition?: pulumi.Input<inputs.spanner.DatabaseIAMMemberCondition | undefined>;
     /**
      * The name of the Spanner database.
      */
@@ -245,7 +245,7 @@ export interface DatabaseIAMMemberArgs {
      * The ID of the project in which the resource belongs. If it
      * is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The role that should be applied. Only one
      * `gcp.spanner.DatabaseIAMBinding` can be used per role. Note that custom roles must be of the format

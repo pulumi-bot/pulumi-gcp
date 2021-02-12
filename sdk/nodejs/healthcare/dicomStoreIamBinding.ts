@@ -183,32 +183,32 @@ export class DicomStoreIamBinding extends pulumi.CustomResource {
  * Input properties used for looking up and filtering DicomStoreIamBinding resources.
  */
 export interface DicomStoreIamBindingState {
-    readonly condition?: pulumi.Input<inputs.healthcare.DicomStoreIamBindingCondition>;
+    readonly condition?: pulumi.Input<inputs.healthcare.DicomStoreIamBindingCondition | undefined>;
     /**
      * The DICOM store ID, in the form
      * `{project_id}/{location_name}/{dataset_name}/{dicom_store_name}` or
      * `{location_name}/{dataset_name}/{dicom_store_name}`. In the second form, the provider's
      * project setting will be used as a fallback.
      */
-    readonly dicomStoreId?: pulumi.Input<string>;
+    readonly dicomStoreId?: pulumi.Input<string | undefined>;
     /**
      * (Computed) The etag of the DICOM store's IAM policy.
      */
-    readonly etag?: pulumi.Input<string>;
-    readonly members?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly etag?: pulumi.Input<string | undefined>;
+    readonly members?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The role that should be applied. Only one
      * `gcp.healthcare.DicomStoreIamBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
-    readonly role?: pulumi.Input<string>;
+    readonly role?: pulumi.Input<string | undefined>;
 }
 
 /**
  * The set of arguments for constructing a DicomStoreIamBinding resource.
  */
 export interface DicomStoreIamBindingArgs {
-    readonly condition?: pulumi.Input<inputs.healthcare.DicomStoreIamBindingCondition>;
+    readonly condition?: pulumi.Input<inputs.healthcare.DicomStoreIamBindingCondition | undefined>;
     /**
      * The DICOM store ID, in the form
      * `{project_id}/{location_name}/{dataset_name}/{dicom_store_name}` or

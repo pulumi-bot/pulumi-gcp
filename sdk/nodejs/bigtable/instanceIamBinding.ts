@@ -182,34 +182,34 @@ export class InstanceIamBinding extends pulumi.CustomResource {
  * Input properties used for looking up and filtering InstanceIamBinding resources.
  */
 export interface InstanceIamBindingState {
-    readonly condition?: pulumi.Input<inputs.bigtable.InstanceIamBindingCondition>;
+    readonly condition?: pulumi.Input<inputs.bigtable.InstanceIamBindingCondition | undefined>;
     /**
      * (Computed) The etag of the instances's IAM policy.
      */
-    readonly etag?: pulumi.Input<string>;
+    readonly etag?: pulumi.Input<string | undefined>;
     /**
      * The name or relative resource id of the instance to manage IAM policies for.
      */
-    readonly instance?: pulumi.Input<string>;
-    readonly members?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly instance?: pulumi.Input<string | undefined>;
+    readonly members?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The project in which the instance belongs. If it
      * is not provided, a default will be supplied.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The role that should be applied. Only one
      * `gcp.bigtable.InstanceIamBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`. Read more about roles [here](https://cloud.google.com/bigtable/docs/access-control#roles).
      */
-    readonly role?: pulumi.Input<string>;
+    readonly role?: pulumi.Input<string | undefined>;
 }
 
 /**
  * The set of arguments for constructing a InstanceIamBinding resource.
  */
 export interface InstanceIamBindingArgs {
-    readonly condition?: pulumi.Input<inputs.bigtable.InstanceIamBindingCondition>;
+    readonly condition?: pulumi.Input<inputs.bigtable.InstanceIamBindingCondition | undefined>;
     /**
      * The name or relative resource id of the instance to manage IAM policies for.
      */
@@ -219,7 +219,7 @@ export interface InstanceIamBindingArgs {
      * The project in which the instance belongs. If it
      * is not provided, a default will be supplied.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The role that should be applied. Only one
      * `gcp.bigtable.InstanceIamBinding` can be used per role. Note that custom roles must be of the format

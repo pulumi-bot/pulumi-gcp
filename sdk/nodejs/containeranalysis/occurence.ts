@@ -180,45 +180,45 @@ export interface OccurenceState {
      * which authority this attestation was intended to sign.
      * Structure is documented below.
      */
-    readonly attestation?: pulumi.Input<inputs.containeranalysis.OccurenceAttestation>;
+    readonly attestation?: pulumi.Input<inputs.containeranalysis.OccurenceAttestation | undefined>;
     /**
      * The time when the repository was created.
      */
-    readonly createTime?: pulumi.Input<string>;
+    readonly createTime?: pulumi.Input<string | undefined>;
     /**
      * The note kind which explicitly denotes which of the occurrence details are specified. This field can be used as a filter
      * in list requests.
      */
-    readonly kind?: pulumi.Input<string>;
+    readonly kind?: pulumi.Input<string | undefined>;
     /**
      * The name of the occurrence.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The analysis note associated with this occurrence, in the form of
      * projects/[PROJECT]/notes/[NOTE_ID]. This field can be used as a
      * filter in list requests.
      */
-    readonly noteName?: pulumi.Input<string>;
+    readonly noteName?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * A description of actions that can be taken to remedy the note.
      */
-    readonly remediation?: pulumi.Input<string>;
+    readonly remediation?: pulumi.Input<string | undefined>;
     /**
      * Required. Immutable. A URI that represents the resource for which
      * the occurrence applies. For example,
      * https://gcr.io/project/image@sha256:123abc for a Docker image.
      */
-    readonly resourceUri?: pulumi.Input<string>;
+    readonly resourceUri?: pulumi.Input<string | undefined>;
     /**
      * The time when the repository was last updated.
      */
-    readonly updateTime?: pulumi.Input<string>;
+    readonly updateTime?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -247,11 +247,11 @@ export interface OccurenceArgs {
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * A description of actions that can be taken to remedy the note.
      */
-    readonly remediation?: pulumi.Input<string>;
+    readonly remediation?: pulumi.Input<string | undefined>;
     /**
      * Required. Immutable. A URI that represents the resource for which
      * the occurrence applies. For example,

@@ -294,12 +294,12 @@ export interface RouteState {
      * An optional description of this resource. Provide this property
      * when you create the resource.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * The destination range of outgoing packets that this route applies to.
      * Only IPv4 is supported.
      */
-    readonly destRange?: pulumi.Input<string>;
+    readonly destRange?: pulumi.Input<string | undefined>;
     /**
      * Name of the resource. Provided by the client when the resource is
      * created. The name must be 1-63 characters long, and comply with
@@ -309,11 +309,11 @@ export interface RouteState {
      * characters must be a dash, lowercase letter, or digit, except the
      * last character, which cannot be a dash.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The network that this route applies to.
      */
-    readonly network?: pulumi.Input<string>;
+    readonly network?: pulumi.Input<string | undefined>;
     /**
      * URL to a gateway that should handle matching packets.
      * Currently, you can only specify the internet gateway, using a full or
@@ -323,7 +323,7 @@ export interface RouteState {
      * * `global/gateways/default-internet-gateway`
      * * The string `default-internet-gateway`.
      */
-    readonly nextHopGateway?: pulumi.Input<string>;
+    readonly nextHopGateway?: pulumi.Input<string | undefined>;
     /**
      * The URL to a forwarding rule of type loadBalancingScheme=INTERNAL that should handle matching packets.
      * You can only specify the forwarding rule as a partial or full URL. For example, the following are all valid URLs:
@@ -331,7 +331,7 @@ export interface RouteState {
      * regions/region/forwardingRules/forwardingRule
      * Note that this can only be used when the destinationRange is a public (non-RFC 1918) IP CIDR range.
      */
-    readonly nextHopIlb?: pulumi.Input<string>;
+    readonly nextHopIlb?: pulumi.Input<string | undefined>;
     /**
      * URL to an instance that should handle matching packets.
      * You can specify this as a full or partial URL. For example:
@@ -340,26 +340,26 @@ export interface RouteState {
      * * `zones/zone/instances/instance`
      * * Just the instance name, with the zone in `nextHopInstanceZone`.
      */
-    readonly nextHopInstance?: pulumi.Input<string>;
+    readonly nextHopInstance?: pulumi.Input<string | undefined>;
     /**
      * (Optional when `nextHopInstance` is
      * specified)  The zone of the instance specified in
      * `nextHopInstance`.  Omit if `nextHopInstance` is specified as
      * a URL.
      */
-    readonly nextHopInstanceZone?: pulumi.Input<string>;
+    readonly nextHopInstanceZone?: pulumi.Input<string | undefined>;
     /**
      * Network IP address of an instance that should handle matching packets.
      */
-    readonly nextHopIp?: pulumi.Input<string>;
+    readonly nextHopIp?: pulumi.Input<string | undefined>;
     /**
      * URL to a Network that should handle matching packets.
      */
-    readonly nextHopNetwork?: pulumi.Input<string>;
+    readonly nextHopNetwork?: pulumi.Input<string | undefined>;
     /**
      * URL to a VpnTunnel that should handle matching packets.
      */
-    readonly nextHopVpnTunnel?: pulumi.Input<string>;
+    readonly nextHopVpnTunnel?: pulumi.Input<string | undefined>;
     /**
      * The priority of this route. Priority is used to break ties in cases
      * where there is more than one matching route of equal prefix length.
@@ -367,20 +367,20 @@ export interface RouteState {
      * lowest-numbered priority value wins.
      * Default value is 1000. Valid range is 0 through 65535.
      */
-    readonly priority?: pulumi.Input<number>;
+    readonly priority?: pulumi.Input<number | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The URI of the created resource.
      */
-    readonly selfLink?: pulumi.Input<string>;
+    readonly selfLink?: pulumi.Input<string | undefined>;
     /**
      * A list of instance tags to which this route applies.
      */
-    readonly tags?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 /**
@@ -391,7 +391,7 @@ export interface RouteArgs {
      * An optional description of this resource. Provide this property
      * when you create the resource.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * The destination range of outgoing packets that this route applies to.
      * Only IPv4 is supported.
@@ -406,7 +406,7 @@ export interface RouteArgs {
      * characters must be a dash, lowercase letter, or digit, except the
      * last character, which cannot be a dash.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The network that this route applies to.
      */
@@ -420,7 +420,7 @@ export interface RouteArgs {
      * * `global/gateways/default-internet-gateway`
      * * The string `default-internet-gateway`.
      */
-    readonly nextHopGateway?: pulumi.Input<string>;
+    readonly nextHopGateway?: pulumi.Input<string | undefined>;
     /**
      * The URL to a forwarding rule of type loadBalancingScheme=INTERNAL that should handle matching packets.
      * You can only specify the forwarding rule as a partial or full URL. For example, the following are all valid URLs:
@@ -428,7 +428,7 @@ export interface RouteArgs {
      * regions/region/forwardingRules/forwardingRule
      * Note that this can only be used when the destinationRange is a public (non-RFC 1918) IP CIDR range.
      */
-    readonly nextHopIlb?: pulumi.Input<string>;
+    readonly nextHopIlb?: pulumi.Input<string | undefined>;
     /**
      * URL to an instance that should handle matching packets.
      * You can specify this as a full or partial URL. For example:
@@ -437,22 +437,22 @@ export interface RouteArgs {
      * * `zones/zone/instances/instance`
      * * Just the instance name, with the zone in `nextHopInstanceZone`.
      */
-    readonly nextHopInstance?: pulumi.Input<string>;
+    readonly nextHopInstance?: pulumi.Input<string | undefined>;
     /**
      * (Optional when `nextHopInstance` is
      * specified)  The zone of the instance specified in
      * `nextHopInstance`.  Omit if `nextHopInstance` is specified as
      * a URL.
      */
-    readonly nextHopInstanceZone?: pulumi.Input<string>;
+    readonly nextHopInstanceZone?: pulumi.Input<string | undefined>;
     /**
      * Network IP address of an instance that should handle matching packets.
      */
-    readonly nextHopIp?: pulumi.Input<string>;
+    readonly nextHopIp?: pulumi.Input<string | undefined>;
     /**
      * URL to a VpnTunnel that should handle matching packets.
      */
-    readonly nextHopVpnTunnel?: pulumi.Input<string>;
+    readonly nextHopVpnTunnel?: pulumi.Input<string | undefined>;
     /**
      * The priority of this route. Priority is used to break ties in cases
      * where there is more than one matching route of equal prefix length.
@@ -460,14 +460,14 @@ export interface RouteArgs {
      * lowest-numbered priority value wins.
      * Default value is 1000. Valid range is 0 through 65535.
      */
-    readonly priority?: pulumi.Input<number>;
+    readonly priority?: pulumi.Input<number | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * A list of instance tags to which this route applies.
      */
-    readonly tags?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

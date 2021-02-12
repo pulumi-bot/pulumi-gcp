@@ -215,73 +215,73 @@ export interface IntentState {
      * The name of the action associated with the intent.
      * Note: The action name must not contain whitespaces.
      */
-    readonly action?: pulumi.Input<string>;
+    readonly action?: pulumi.Input<string | undefined>;
     /**
      * The list of platforms for which the first responses will be copied from the messages in PLATFORM_UNSPECIFIED
      * (i.e. default platform).
      * Each value may be one of `FACEBOOK`, `SLACK`, `TELEGRAM`, `KIK`, `SKYPE`, `LINE`, `VIBER`, `ACTIONS_ON_GOOGLE`, and `GOOGLE_HANGOUTS`.
      */
-    readonly defaultResponsePlatforms?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly defaultResponsePlatforms?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The name of this intent to be displayed on the console.
      */
-    readonly displayName?: pulumi.Input<string>;
+    readonly displayName?: pulumi.Input<string | undefined>;
     /**
      * The collection of event names that trigger the intent. If the collection of input contexts is not empty, all of
      * the contexts must be present in the active user session for an event to trigger this intent. See the
      * [events reference](https://cloud.google.com/dialogflow/docs/events-overview) for more details.
      */
-    readonly events?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly events?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Information about all followup intents that have this intent as a direct or indirect parent. We populate this field only
      * in the output.
      */
-    readonly followupIntentInfos?: pulumi.Input<pulumi.Input<inputs.diagflow.IntentFollowupIntentInfo>[]>;
+    readonly followupIntentInfos?: pulumi.Input<pulumi.Input<inputs.diagflow.IntentFollowupIntentInfo>[] | undefined>;
     /**
      * The list of context names required for this intent to be triggered.
      * Format: projects/<Project ID>/agent/sessions/-/contexts/<Context ID>.
      */
-    readonly inputContextNames?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly inputContextNames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Indicates whether this is a fallback intent.
      */
-    readonly isFallback?: pulumi.Input<boolean>;
+    readonly isFallback?: pulumi.Input<boolean | undefined>;
     /**
      * Indicates whether Machine Learning is disabled for the intent.
      * Note: If mlDisabled setting is set to true, then this intent is not taken into account during inference in ML
      * ONLY match mode. Also, auto-markup in the UI is turned off.
      */
-    readonly mlDisabled?: pulumi.Input<boolean>;
+    readonly mlDisabled?: pulumi.Input<boolean | undefined>;
     /**
      * The unique identifier of this intent. Format: projects/<Project ID>/agent/intents/<Intent ID>.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The unique identifier of the parent intent in the chain of followup intents.
      * Format: projects/<Project ID>/agent/intents/<Intent ID>.
      */
-    readonly parentFollowupIntentName?: pulumi.Input<string>;
+    readonly parentFollowupIntentName?: pulumi.Input<string | undefined>;
     /**
      * The priority of this intent. Higher numbers represent higher priorities.
      * - If the supplied value is unspecified or 0, the service translates the value to 500,000, which corresponds
      * to the Normal priority in the console.
      * - If the supplied value is negative, the intent is ignored in runtime detect intent requests.
      */
-    readonly priority?: pulumi.Input<number>;
+    readonly priority?: pulumi.Input<number | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Indicates whether to delete all contexts in the current session when this intent is matched.
      */
-    readonly resetContexts?: pulumi.Input<boolean>;
+    readonly resetContexts?: pulumi.Input<boolean | undefined>;
     /**
      * The unique identifier of the root intent in the chain of followup intents. It identifies the correct followup intents
      * chain for this intent. Format: projects/<Project ID>/agent/intents/<Intent ID>.
      */
-    readonly rootFollowupIntentName?: pulumi.Input<string>;
+    readonly rootFollowupIntentName?: pulumi.Input<string | undefined>;
     /**
      * Indicates whether webhooks are enabled for the intent.
      * * WEBHOOK_STATE_ENABLED: Webhook is enabled in the agent and in the intent.
@@ -289,7 +289,7 @@ export interface IntentState {
      * filling prompt is forwarded to the webhook.
      * Possible values are `WEBHOOK_STATE_ENABLED` and `WEBHOOK_STATE_ENABLED_FOR_SLOT_FILLING`.
      */
-    readonly webhookState?: pulumi.Input<string>;
+    readonly webhookState?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -300,13 +300,13 @@ export interface IntentArgs {
      * The name of the action associated with the intent.
      * Note: The action name must not contain whitespaces.
      */
-    readonly action?: pulumi.Input<string>;
+    readonly action?: pulumi.Input<string | undefined>;
     /**
      * The list of platforms for which the first responses will be copied from the messages in PLATFORM_UNSPECIFIED
      * (i.e. default platform).
      * Each value may be one of `FACEBOOK`, `SLACK`, `TELEGRAM`, `KIK`, `SKYPE`, `LINE`, `VIBER`, `ACTIONS_ON_GOOGLE`, and `GOOGLE_HANGOUTS`.
      */
-    readonly defaultResponsePlatforms?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly defaultResponsePlatforms?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The name of this intent to be displayed on the console.
      */
@@ -316,43 +316,43 @@ export interface IntentArgs {
      * the contexts must be present in the active user session for an event to trigger this intent. See the
      * [events reference](https://cloud.google.com/dialogflow/docs/events-overview) for more details.
      */
-    readonly events?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly events?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The list of context names required for this intent to be triggered.
      * Format: projects/<Project ID>/agent/sessions/-/contexts/<Context ID>.
      */
-    readonly inputContextNames?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly inputContextNames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Indicates whether this is a fallback intent.
      */
-    readonly isFallback?: pulumi.Input<boolean>;
+    readonly isFallback?: pulumi.Input<boolean | undefined>;
     /**
      * Indicates whether Machine Learning is disabled for the intent.
      * Note: If mlDisabled setting is set to true, then this intent is not taken into account during inference in ML
      * ONLY match mode. Also, auto-markup in the UI is turned off.
      */
-    readonly mlDisabled?: pulumi.Input<boolean>;
+    readonly mlDisabled?: pulumi.Input<boolean | undefined>;
     /**
      * The unique identifier of the parent intent in the chain of followup intents.
      * Format: projects/<Project ID>/agent/intents/<Intent ID>.
      */
-    readonly parentFollowupIntentName?: pulumi.Input<string>;
+    readonly parentFollowupIntentName?: pulumi.Input<string | undefined>;
     /**
      * The priority of this intent. Higher numbers represent higher priorities.
      * - If the supplied value is unspecified or 0, the service translates the value to 500,000, which corresponds
      * to the Normal priority in the console.
      * - If the supplied value is negative, the intent is ignored in runtime detect intent requests.
      */
-    readonly priority?: pulumi.Input<number>;
+    readonly priority?: pulumi.Input<number | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Indicates whether to delete all contexts in the current session when this intent is matched.
      */
-    readonly resetContexts?: pulumi.Input<boolean>;
+    readonly resetContexts?: pulumi.Input<boolean | undefined>;
     /**
      * Indicates whether webhooks are enabled for the intent.
      * * WEBHOOK_STATE_ENABLED: Webhook is enabled in the agent and in the intent.
@@ -360,5 +360,5 @@ export interface IntentArgs {
      * filling prompt is forwarded to the webhook.
      * Possible values are `WEBHOOK_STATE_ENABLED` and `WEBHOOK_STATE_ENABLED_FOR_SLOT_FILLING`.
      */
-    readonly webhookState?: pulumi.Input<string>;
+    readonly webhookState?: pulumi.Input<string | undefined>;
 }

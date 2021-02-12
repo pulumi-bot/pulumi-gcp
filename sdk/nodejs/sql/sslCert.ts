@@ -163,48 +163,48 @@ export interface SslCertState {
     /**
      * The actual certificate data for this client certificate.
      */
-    readonly cert?: pulumi.Input<string>;
+    readonly cert?: pulumi.Input<string | undefined>;
     /**
      * The serial number extracted from the certificate data.
      */
-    readonly certSerialNumber?: pulumi.Input<string>;
+    readonly certSerialNumber?: pulumi.Input<string | undefined>;
     /**
      * The common name to be used in the certificate to identify the
      * client. Constrained to [a-zA-Z.-_ ]+. Changing this forces a new resource to be created.
      */
-    readonly commonName?: pulumi.Input<string>;
+    readonly commonName?: pulumi.Input<string | undefined>;
     /**
      * The time when the certificate was created in RFC 3339 format,
      * for example 2012-11-15T16:19:00.094Z.
      */
-    readonly createTime?: pulumi.Input<string>;
+    readonly createTime?: pulumi.Input<string | undefined>;
     /**
      * The time when the certificate expires in RFC 3339 format,
      * for example 2012-11-15T16:19:00.094Z.
      */
-    readonly expirationTime?: pulumi.Input<string>;
+    readonly expirationTime?: pulumi.Input<string | undefined>;
     /**
      * The name of the Cloud SQL instance. Changing this
      * forces a new resource to be created.
      */
-    readonly instance?: pulumi.Input<string>;
+    readonly instance?: pulumi.Input<string | undefined>;
     /**
      * The private key associated with the client certificate.
      */
-    readonly privateKey?: pulumi.Input<string>;
+    readonly privateKey?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs. If it
      * is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The CA cert of the server this client cert was generated from.
      */
-    readonly serverCaCert?: pulumi.Input<string>;
+    readonly serverCaCert?: pulumi.Input<string | undefined>;
     /**
      * The SHA1 Fingerprint of the certificate.
      */
-    readonly sha1Fingerprint?: pulumi.Input<string>;
+    readonly sha1Fingerprint?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -225,5 +225,5 @@ export interface SslCertArgs {
      * The ID of the project in which the resource belongs. If it
      * is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
 }

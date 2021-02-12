@@ -160,11 +160,11 @@ export interface ProjectSinkState {
     /**
      * Options that affect sinks exporting data to BigQuery. Structure documented below.
      */
-    readonly bigqueryOptions?: pulumi.Input<inputs.logging.ProjectSinkBigqueryOptions>;
+    readonly bigqueryOptions?: pulumi.Input<inputs.logging.ProjectSinkBigqueryOptions | undefined>;
     /**
      * A description of this exclusion.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * The destination of the sink (or, in other words, where logs are written to). Can be a
      * Cloud Storage bucket, a PubSub topic, a BigQuery dataset or a Cloud Logging bucket . Examples:
@@ -173,41 +173,41 @@ export interface ProjectSinkState {
      * ```
      * The writer associated with the sink must have access to write to the above resource.
      */
-    readonly destination?: pulumi.Input<string>;
+    readonly destination?: pulumi.Input<string | undefined>;
     /**
      * If set to True, then this exclusion is disabled and it does not exclude any log entries.
      */
-    readonly disabled?: pulumi.Input<boolean>;
+    readonly disabled?: pulumi.Input<boolean | undefined>;
     /**
      * Log entries that match any of the exclusion filters will not be exported. If a log entry is matched by both filter and one of exclusionFilters it will not be exported.  Can be repeated multiple times for multiple exclusions. Structure is documented below.
      */
-    readonly exclusions?: pulumi.Input<pulumi.Input<inputs.logging.ProjectSinkExclusion>[]>;
+    readonly exclusions?: pulumi.Input<pulumi.Input<inputs.logging.ProjectSinkExclusion>[] | undefined>;
     /**
      * An advanced logs filter that matches the log entries to be excluded. By using the sample function, you can exclude less than 100% of the matching log entries. See [Advanced Log Filters](https://cloud.google.com/logging/docs/view/advanced_filters) for information on how to
      * write a filter.
      */
-    readonly filter?: pulumi.Input<string>;
+    readonly filter?: pulumi.Input<string | undefined>;
     /**
      * A client-assigned identifier, such as `load-balancer-exclusion`. Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. First character has to be alphanumeric.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project to create the sink in. If omitted, the project associated with the provider is
      * used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Whether or not to create a unique identity associated with this sink. If `false`
      * (the default), then the `writerIdentity` used is `serviceAccount:cloud-logs@system.gserviceaccount.com`. If `true`,
      * then a unique service account is created and used for this sink. If you wish to publish logs across projects or utilize
      * `bigqueryOptions`, you must set `uniqueWriterIdentity` to true.
      */
-    readonly uniqueWriterIdentity?: pulumi.Input<boolean>;
+    readonly uniqueWriterIdentity?: pulumi.Input<boolean | undefined>;
     /**
      * The identity associated with this sink. This identity must be granted write access to the
      * configured `destination`.
      */
-    readonly writerIdentity?: pulumi.Input<string>;
+    readonly writerIdentity?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -217,11 +217,11 @@ export interface ProjectSinkArgs {
     /**
      * Options that affect sinks exporting data to BigQuery. Structure documented below.
      */
-    readonly bigqueryOptions?: pulumi.Input<inputs.logging.ProjectSinkBigqueryOptions>;
+    readonly bigqueryOptions?: pulumi.Input<inputs.logging.ProjectSinkBigqueryOptions | undefined>;
     /**
      * A description of this exclusion.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * The destination of the sink (or, in other words, where logs are written to). Can be a
      * Cloud Storage bucket, a PubSub topic, a BigQuery dataset or a Cloud Logging bucket . Examples:
@@ -234,30 +234,30 @@ export interface ProjectSinkArgs {
     /**
      * If set to True, then this exclusion is disabled and it does not exclude any log entries.
      */
-    readonly disabled?: pulumi.Input<boolean>;
+    readonly disabled?: pulumi.Input<boolean | undefined>;
     /**
      * Log entries that match any of the exclusion filters will not be exported. If a log entry is matched by both filter and one of exclusionFilters it will not be exported.  Can be repeated multiple times for multiple exclusions. Structure is documented below.
      */
-    readonly exclusions?: pulumi.Input<pulumi.Input<inputs.logging.ProjectSinkExclusion>[]>;
+    readonly exclusions?: pulumi.Input<pulumi.Input<inputs.logging.ProjectSinkExclusion>[] | undefined>;
     /**
      * An advanced logs filter that matches the log entries to be excluded. By using the sample function, you can exclude less than 100% of the matching log entries. See [Advanced Log Filters](https://cloud.google.com/logging/docs/view/advanced_filters) for information on how to
      * write a filter.
      */
-    readonly filter?: pulumi.Input<string>;
+    readonly filter?: pulumi.Input<string | undefined>;
     /**
      * A client-assigned identifier, such as `load-balancer-exclusion`. Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. First character has to be alphanumeric.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project to create the sink in. If omitted, the project associated with the provider is
      * used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Whether or not to create a unique identity associated with this sink. If `false`
      * (the default), then the `writerIdentity` used is `serviceAccount:cloud-logs@system.gserviceaccount.com`. If `true`,
      * then a unique service account is created and used for this sink. If you wish to publish logs across projects or utilize
      * `bigqueryOptions`, you must set `uniqueWriterIdentity` to true.
      */
-    readonly uniqueWriterIdentity?: pulumi.Input<boolean>;
+    readonly uniqueWriterIdentity?: pulumi.Input<boolean | undefined>;
 }

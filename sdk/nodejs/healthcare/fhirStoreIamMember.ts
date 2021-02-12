@@ -183,32 +183,32 @@ export class FhirStoreIamMember extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FhirStoreIamMember resources.
  */
 export interface FhirStoreIamMemberState {
-    readonly condition?: pulumi.Input<inputs.healthcare.FhirStoreIamMemberCondition>;
+    readonly condition?: pulumi.Input<inputs.healthcare.FhirStoreIamMemberCondition | undefined>;
     /**
      * (Computed) The etag of the FHIR store's IAM policy.
      */
-    readonly etag?: pulumi.Input<string>;
+    readonly etag?: pulumi.Input<string | undefined>;
     /**
      * The FHIR store ID, in the form
      * `{project_id}/{location_name}/{dataset_name}/{fhir_store_name}` or
      * `{location_name}/{dataset_name}/{fhir_store_name}`. In the second form, the provider's
      * project setting will be used as a fallback.
      */
-    readonly fhirStoreId?: pulumi.Input<string>;
-    readonly member?: pulumi.Input<string>;
+    readonly fhirStoreId?: pulumi.Input<string | undefined>;
+    readonly member?: pulumi.Input<string | undefined>;
     /**
      * The role that should be applied. Only one
      * `gcp.healthcare.FhirStoreIamBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
-    readonly role?: pulumi.Input<string>;
+    readonly role?: pulumi.Input<string | undefined>;
 }
 
 /**
  * The set of arguments for constructing a FhirStoreIamMember resource.
  */
 export interface FhirStoreIamMemberArgs {
-    readonly condition?: pulumi.Input<inputs.healthcare.FhirStoreIamMemberCondition>;
+    readonly condition?: pulumi.Input<inputs.healthcare.FhirStoreIamMemberCondition | undefined>;
     /**
      * The FHIR store ID, in the form
      * `{project_id}/{location_name}/{dataset_name}/{fhir_store_name}` or

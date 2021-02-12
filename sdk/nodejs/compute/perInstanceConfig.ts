@@ -164,7 +164,7 @@ export interface PerInstanceConfigState {
     /**
      * The instance group manager this instance config is part of.
      */
-    readonly instanceGroupManager?: pulumi.Input<string>;
+    readonly instanceGroupManager?: pulumi.Input<string | undefined>;
     /**
      * The minimal action to perform on the instance during an update.
      * Default is `NONE`. Possible values are:
@@ -173,7 +173,7 @@ export interface PerInstanceConfigState {
      * * REFRESH
      * * NONE
      */
-    readonly minimalAction?: pulumi.Input<string>;
+    readonly minimalAction?: pulumi.Input<string | undefined>;
     /**
      * The most disruptive action to perform on the instance during an update.
      * Default is `REPLACE`. Possible values are:
@@ -182,31 +182,31 @@ export interface PerInstanceConfigState {
      * * REFRESH
      * * NONE
      */
-    readonly mostDisruptiveAllowedAction?: pulumi.Input<string>;
+    readonly mostDisruptiveAllowedAction?: pulumi.Input<string | undefined>;
     /**
      * The name for this per-instance config and its corresponding instance.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The preserved state for this instance.
      * Structure is documented below.
      */
-    readonly preservedState?: pulumi.Input<inputs.compute.PerInstanceConfigPreservedState>;
+    readonly preservedState?: pulumi.Input<inputs.compute.PerInstanceConfigPreservedState | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * When true, deleting this config will immediately remove any specified state from the underlying instance.
      * When false, deleting this config will *not* immediately remove any state from the underlying instance.
      * State will be removed on the next instance recreation or update.
      */
-    readonly removeInstanceStateOnDestroy?: pulumi.Input<boolean>;
+    readonly removeInstanceStateOnDestroy?: pulumi.Input<boolean | undefined>;
     /**
      * Zone where the containing instance group manager is located
      */
-    readonly zone?: pulumi.Input<string>;
+    readonly zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -225,7 +225,7 @@ export interface PerInstanceConfigArgs {
      * * REFRESH
      * * NONE
      */
-    readonly minimalAction?: pulumi.Input<string>;
+    readonly minimalAction?: pulumi.Input<string | undefined>;
     /**
      * The most disruptive action to perform on the instance during an update.
      * Default is `REPLACE`. Possible values are:
@@ -234,29 +234,29 @@ export interface PerInstanceConfigArgs {
      * * REFRESH
      * * NONE
      */
-    readonly mostDisruptiveAllowedAction?: pulumi.Input<string>;
+    readonly mostDisruptiveAllowedAction?: pulumi.Input<string | undefined>;
     /**
      * The name for this per-instance config and its corresponding instance.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The preserved state for this instance.
      * Structure is documented below.
      */
-    readonly preservedState?: pulumi.Input<inputs.compute.PerInstanceConfigPreservedState>;
+    readonly preservedState?: pulumi.Input<inputs.compute.PerInstanceConfigPreservedState | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * When true, deleting this config will immediately remove any specified state from the underlying instance.
      * When false, deleting this config will *not* immediately remove any state from the underlying instance.
      * State will be removed on the next instance recreation or update.
      */
-    readonly removeInstanceStateOnDestroy?: pulumi.Input<boolean>;
+    readonly removeInstanceStateOnDestroy?: pulumi.Input<boolean | undefined>;
     /**
      * Zone where the containing instance group manager is located
      */
-    readonly zone?: pulumi.Input<string>;
+    readonly zone?: pulumi.Input<string | undefined>;
 }

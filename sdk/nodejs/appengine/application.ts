@@ -195,65 +195,65 @@ export interface ApplicationState {
     /**
      * Identifier of the app, usually `{PROJECT_ID}`
      */
-    readonly appId?: pulumi.Input<string>;
+    readonly appId?: pulumi.Input<string | undefined>;
     /**
      * The domain to authenticate users with when using App Engine's User API.
      */
-    readonly authDomain?: pulumi.Input<string>;
+    readonly authDomain?: pulumi.Input<string | undefined>;
     /**
      * The GCS bucket code is being stored in for this app.
      */
-    readonly codeBucket?: pulumi.Input<string>;
+    readonly codeBucket?: pulumi.Input<string | undefined>;
     /**
      * The type of the Cloud Firestore or Cloud Datastore database associated with this application.
      * Can be `CLOUD_FIRESTORE` or `CLOUD_DATASTORE_COMPATIBILITY` for new
      * instances.  To support old instances, the value `CLOUD_DATASTORE` is accepted
      * by the provider, but will be rejected by the API.
      */
-    readonly databaseType?: pulumi.Input<string>;
+    readonly databaseType?: pulumi.Input<string | undefined>;
     /**
      * The GCS bucket content is being stored in for this app.
      */
-    readonly defaultBucket?: pulumi.Input<string>;
+    readonly defaultBucket?: pulumi.Input<string | undefined>;
     /**
      * The default hostname for this app.
      */
-    readonly defaultHostname?: pulumi.Input<string>;
+    readonly defaultHostname?: pulumi.Input<string | undefined>;
     /**
      * A block of optional settings to configure specific App Engine features:
      */
-    readonly featureSettings?: pulumi.Input<inputs.appengine.ApplicationFeatureSettings>;
+    readonly featureSettings?: pulumi.Input<inputs.appengine.ApplicationFeatureSettings | undefined>;
     /**
      * The GCR domain used for storing managed Docker images for this app.
      */
-    readonly gcrDomain?: pulumi.Input<string>;
+    readonly gcrDomain?: pulumi.Input<string | undefined>;
     /**
      * Settings for enabling Cloud Identity Aware Proxy
      */
-    readonly iap?: pulumi.Input<inputs.appengine.ApplicationIap>;
+    readonly iap?: pulumi.Input<inputs.appengine.ApplicationIap | undefined>;
     /**
      * The [location](https://cloud.google.com/appengine/docs/locations)
      * to serve the app from.
      */
-    readonly locationId?: pulumi.Input<string>;
+    readonly locationId?: pulumi.Input<string | undefined>;
     /**
      * Unique name of the app, usually `apps/{PROJECT_ID}`
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The project ID to create the application under.
      * ~>**NOTE:** GCP only accepts project ID, not project number. If you are using number,
      * you may get a "Permission denied" error.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The serving status of the app.
      */
-    readonly servingStatus?: pulumi.Input<string>;
+    readonly servingStatus?: pulumi.Input<string | undefined>;
     /**
      * A list of dispatch rule blocks. Each block has a `domain`, `path`, and `service` field.
      */
-    readonly urlDispatchRules?: pulumi.Input<pulumi.Input<inputs.appengine.ApplicationUrlDispatchRule>[]>;
+    readonly urlDispatchRules?: pulumi.Input<pulumi.Input<inputs.appengine.ApplicationUrlDispatchRule>[] | undefined>;
 }
 
 /**
@@ -263,22 +263,22 @@ export interface ApplicationArgs {
     /**
      * The domain to authenticate users with when using App Engine's User API.
      */
-    readonly authDomain?: pulumi.Input<string>;
+    readonly authDomain?: pulumi.Input<string | undefined>;
     /**
      * The type of the Cloud Firestore or Cloud Datastore database associated with this application.
      * Can be `CLOUD_FIRESTORE` or `CLOUD_DATASTORE_COMPATIBILITY` for new
      * instances.  To support old instances, the value `CLOUD_DATASTORE` is accepted
      * by the provider, but will be rejected by the API.
      */
-    readonly databaseType?: pulumi.Input<string>;
+    readonly databaseType?: pulumi.Input<string | undefined>;
     /**
      * A block of optional settings to configure specific App Engine features:
      */
-    readonly featureSettings?: pulumi.Input<inputs.appengine.ApplicationFeatureSettings>;
+    readonly featureSettings?: pulumi.Input<inputs.appengine.ApplicationFeatureSettings | undefined>;
     /**
      * Settings for enabling Cloud Identity Aware Proxy
      */
-    readonly iap?: pulumi.Input<inputs.appengine.ApplicationIap>;
+    readonly iap?: pulumi.Input<inputs.appengine.ApplicationIap | undefined>;
     /**
      * The [location](https://cloud.google.com/appengine/docs/locations)
      * to serve the app from.
@@ -289,9 +289,9 @@ export interface ApplicationArgs {
      * ~>**NOTE:** GCP only accepts project ID, not project number. If you are using number,
      * you may get a "Permission denied" error.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The serving status of the app.
      */
-    readonly servingStatus?: pulumi.Input<string>;
+    readonly servingStatus?: pulumi.Input<string | undefined>;
 }

@@ -239,46 +239,46 @@ export interface InstanceGroupState {
      * An optional textual description of the instance
      * group.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * List of instances in the group. They should be given
      * as either selfLink or id. When adding instances they must all be in the same
      * network and zone as the instance group.
      */
-    readonly instances?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly instances?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The name which the port will be mapped to.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The named port configuration. See the section below
      * for details on configuration.
      */
-    readonly namedPorts?: pulumi.Input<pulumi.Input<inputs.compute.InstanceGroupNamedPort>[]>;
+    readonly namedPorts?: pulumi.Input<pulumi.Input<inputs.compute.InstanceGroupNamedPort>[] | undefined>;
     /**
      * The URL of the network the instance group is in. If
      * this is different from the network where the instances are in, the creation
      * fails. Defaults to the network where the instances are in (if neither
      * `network` nor `instances` is specified, this field will be blank).
      */
-    readonly network?: pulumi.Input<string>;
+    readonly network?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs. If it
      * is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The URI of the created resource.
      */
-    readonly selfLink?: pulumi.Input<string>;
+    readonly selfLink?: pulumi.Input<string | undefined>;
     /**
      * The number of instances in the group.
      */
-    readonly size?: pulumi.Input<number>;
+    readonly size?: pulumi.Input<number | undefined>;
     /**
      * The zone that this instance group should be created in.
      */
-    readonly zone?: pulumi.Input<string>;
+    readonly zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -289,36 +289,36 @@ export interface InstanceGroupArgs {
      * An optional textual description of the instance
      * group.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * List of instances in the group. They should be given
      * as either selfLink or id. When adding instances they must all be in the same
      * network and zone as the instance group.
      */
-    readonly instances?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly instances?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The name which the port will be mapped to.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The named port configuration. See the section below
      * for details on configuration.
      */
-    readonly namedPorts?: pulumi.Input<pulumi.Input<inputs.compute.InstanceGroupNamedPort>[]>;
+    readonly namedPorts?: pulumi.Input<pulumi.Input<inputs.compute.InstanceGroupNamedPort>[] | undefined>;
     /**
      * The URL of the network the instance group is in. If
      * this is different from the network where the instances are in, the creation
      * fails. Defaults to the network where the instances are in (if neither
      * `network` nor `instances` is specified, this field will be blank).
      */
-    readonly network?: pulumi.Input<string>;
+    readonly network?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs. If it
      * is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The zone that this instance group should be created in.
      */
-    readonly zone?: pulumi.Input<string>;
+    readonly zone?: pulumi.Input<string | undefined>;
 }

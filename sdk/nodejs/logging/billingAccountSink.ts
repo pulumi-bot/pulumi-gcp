@@ -172,15 +172,15 @@ export interface BillingAccountSinkState {
     /**
      * Options that affect sinks exporting data to BigQuery. Structure documented below.
      */
-    readonly bigqueryOptions?: pulumi.Input<inputs.logging.BillingAccountSinkBigqueryOptions>;
+    readonly bigqueryOptions?: pulumi.Input<inputs.logging.BillingAccountSinkBigqueryOptions | undefined>;
     /**
      * The billing account exported to the sink.
      */
-    readonly billingAccount?: pulumi.Input<string>;
+    readonly billingAccount?: pulumi.Input<string | undefined>;
     /**
      * A description of this sink. The maximum length of the description is 8000 characters.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * The destination of the sink (or, in other words, where logs are written to). Can be a
      * Cloud Storage bucket, a PubSub topic, a BigQuery dataset or a Cloud Logging bucket. Examples:
@@ -189,31 +189,31 @@ export interface BillingAccountSinkState {
      * ```
      * The writer associated with the sink must have access to write to the above resource.
      */
-    readonly destination?: pulumi.Input<string>;
+    readonly destination?: pulumi.Input<string | undefined>;
     /**
      * If set to True, then this sink is disabled and it does not export any log entries.
      */
-    readonly disabled?: pulumi.Input<boolean>;
+    readonly disabled?: pulumi.Input<boolean | undefined>;
     /**
      * Log entries that match any of the exclusion filters will not be exported. If a log entry is matched by both filter and
      * one of exclusion_filters it will not be exported.
      */
-    readonly exclusions?: pulumi.Input<pulumi.Input<inputs.logging.BillingAccountSinkExclusion>[]>;
+    readonly exclusions?: pulumi.Input<pulumi.Input<inputs.logging.BillingAccountSinkExclusion>[] | undefined>;
     /**
      * The filter to apply when exporting logs. Only log entries that match the filter are exported.
      * See [Advanced Log Filters](https://cloud.google.com/logging/docs/view/advanced_filters) for information on how to
      * write a filter.
      */
-    readonly filter?: pulumi.Input<string>;
+    readonly filter?: pulumi.Input<string | undefined>;
     /**
      * The name of the logging sink.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The identity associated with this sink. This identity must be granted write access to the
      * configured `destination`.
      */
-    readonly writerIdentity?: pulumi.Input<string>;
+    readonly writerIdentity?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -223,7 +223,7 @@ export interface BillingAccountSinkArgs {
     /**
      * Options that affect sinks exporting data to BigQuery. Structure documented below.
      */
-    readonly bigqueryOptions?: pulumi.Input<inputs.logging.BillingAccountSinkBigqueryOptions>;
+    readonly bigqueryOptions?: pulumi.Input<inputs.logging.BillingAccountSinkBigqueryOptions | undefined>;
     /**
      * The billing account exported to the sink.
      */
@@ -231,7 +231,7 @@ export interface BillingAccountSinkArgs {
     /**
      * A description of this sink. The maximum length of the description is 8000 characters.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * The destination of the sink (or, in other words, where logs are written to). Can be a
      * Cloud Storage bucket, a PubSub topic, a BigQuery dataset or a Cloud Logging bucket. Examples:
@@ -244,20 +244,20 @@ export interface BillingAccountSinkArgs {
     /**
      * If set to True, then this sink is disabled and it does not export any log entries.
      */
-    readonly disabled?: pulumi.Input<boolean>;
+    readonly disabled?: pulumi.Input<boolean | undefined>;
     /**
      * Log entries that match any of the exclusion filters will not be exported. If a log entry is matched by both filter and
      * one of exclusion_filters it will not be exported.
      */
-    readonly exclusions?: pulumi.Input<pulumi.Input<inputs.logging.BillingAccountSinkExclusion>[]>;
+    readonly exclusions?: pulumi.Input<pulumi.Input<inputs.logging.BillingAccountSinkExclusion>[] | undefined>;
     /**
      * The filter to apply when exporting logs. Only log entries that match the filter are exported.
      * See [Advanced Log Filters](https://cloud.google.com/logging/docs/view/advanced_filters) for information on how to
      * write a filter.
      */
-    readonly filter?: pulumi.Input<string>;
+    readonly filter?: pulumi.Input<string | undefined>;
     /**
      * The name of the logging sink.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
 }

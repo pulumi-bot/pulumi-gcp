@@ -193,50 +193,50 @@ export class DiskIamBinding extends pulumi.CustomResource {
  * Input properties used for looking up and filtering DiskIamBinding resources.
  */
 export interface DiskIamBindingState {
-    readonly condition?: pulumi.Input<inputs.compute.DiskIamBindingCondition>;
+    readonly condition?: pulumi.Input<inputs.compute.DiskIamBindingCondition | undefined>;
     /**
      * (Computed) The etag of the IAM policy.
      */
-    readonly etag?: pulumi.Input<string>;
-    readonly members?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly etag?: pulumi.Input<string | undefined>;
+    readonly members?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Used to find the parent resource to bind the IAM policy to
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the project will be parsed from the identifier of the parent resource. If no project is provided in the parent identifier and no project is specified, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The role that should be applied. Only one
      * `gcp.compute.DiskIamBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
-    readonly role?: pulumi.Input<string>;
+    readonly role?: pulumi.Input<string | undefined>;
     /**
      * A reference to the zone where the disk resides. Used to find the parent resource to bind the IAM policy to. If not specified,
      * the value will be parsed from the identifier of the parent resource. If no zone is provided in the parent identifier and no
      * zone is specified, it is taken from the provider configuration.
      */
-    readonly zone?: pulumi.Input<string>;
+    readonly zone?: pulumi.Input<string | undefined>;
 }
 
 /**
  * The set of arguments for constructing a DiskIamBinding resource.
  */
 export interface DiskIamBindingArgs {
-    readonly condition?: pulumi.Input<inputs.compute.DiskIamBindingCondition>;
+    readonly condition?: pulumi.Input<inputs.compute.DiskIamBindingCondition | undefined>;
     readonly members: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Used to find the parent resource to bind the IAM policy to
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the project will be parsed from the identifier of the parent resource. If no project is provided in the parent identifier and no project is specified, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The role that should be applied. Only one
      * `gcp.compute.DiskIamBinding` can be used per role. Note that custom roles must be of the format
@@ -248,5 +248,5 @@ export interface DiskIamBindingArgs {
      * the value will be parsed from the identifier of the parent resource. If no zone is provided in the parent identifier and no
      * zone is specified, it is taken from the provider configuration.
      */
-    readonly zone?: pulumi.Input<string>;
+    readonly zone?: pulumi.Input<string | undefined>;
 }

@@ -319,7 +319,7 @@ export interface SubscriptionState {
      * If the subscriber never acknowledges the message, the Pub/Sub system
      * will eventually redeliver the message.
      */
-    readonly ackDeadlineSeconds?: pulumi.Input<number>;
+    readonly ackDeadlineSeconds?: pulumi.Input<number | undefined>;
     /**
      * A policy that specifies the conditions for dead lettering messages in
      * this subscription. If deadLetterPolicy is not set, dead lettering
@@ -330,13 +330,13 @@ export interface SubscriptionState {
      * permission to Acknowledge() messages on this subscription.
      * Structure is documented below.
      */
-    readonly deadLetterPolicy?: pulumi.Input<inputs.pubsub.SubscriptionDeadLetterPolicy>;
+    readonly deadLetterPolicy?: pulumi.Input<inputs.pubsub.SubscriptionDeadLetterPolicy | undefined>;
     /**
      * If `true`, messages published with the same orderingKey in PubsubMessage will be delivered to
      * the subscribers in the order in which they are received by the Pub/Sub system. Otherwise, they
      * may be delivered in any order.
      */
-    readonly enableMessageOrdering?: pulumi.Input<boolean>;
+    readonly enableMessageOrdering?: pulumi.Input<boolean | undefined>;
     /**
      * A policy that specifies the conditions for this subscription's expiration.
      * A subscription is considered active as long as any connected subscriber
@@ -347,18 +347,18 @@ export interface SubscriptionState {
      * is 1 day.
      * Structure is documented below.
      */
-    readonly expirationPolicy?: pulumi.Input<inputs.pubsub.SubscriptionExpirationPolicy>;
+    readonly expirationPolicy?: pulumi.Input<inputs.pubsub.SubscriptionExpirationPolicy | undefined>;
     /**
      * The subscription only delivers the messages that match the filter.
      * Pub/Sub automatically acknowledges the messages that don't match the filter. You can filter messages
      * by their attributes. The maximum length of a filter is 256 bytes. After creating the subscription,
      * you can't modify the filter.
      */
-    readonly filter?: pulumi.Input<string>;
+    readonly filter?: pulumi.Input<string | undefined>;
     /**
      * A set of key/value label pairs to assign to this Subscription.
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * How long to retain unacknowledged messages in the subscription's
      * backlog, from the moment a message is published. If
@@ -369,42 +369,42 @@ export interface SubscriptionState {
      * A duration in seconds with up to nine fractional digits, terminated
      * by 's'. Example: `"600.5s"`.
      */
-    readonly messageRetentionDuration?: pulumi.Input<string>;
+    readonly messageRetentionDuration?: pulumi.Input<string | undefined>;
     /**
      * Name of the subscription.
      */
-    readonly name?: pulumi.Input<string>;
-    readonly path?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
+    readonly path?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * If push delivery is used with this subscription, this field is used to
      * configure it. An empty pushConfig signifies that the subscriber will
      * pull and ack messages using API methods.
      * Structure is documented below.
      */
-    readonly pushConfig?: pulumi.Input<inputs.pubsub.SubscriptionPushConfig>;
+    readonly pushConfig?: pulumi.Input<inputs.pubsub.SubscriptionPushConfig | undefined>;
     /**
      * Indicates whether to retain acknowledged messages. If `true`, then
      * messages are not expunged from the subscription's backlog, even if
      * they are acknowledged, until they fall out of the
      * messageRetentionDuration window.
      */
-    readonly retainAckedMessages?: pulumi.Input<boolean>;
+    readonly retainAckedMessages?: pulumi.Input<boolean | undefined>;
     /**
      * A policy that specifies how Pub/Sub retries message delivery for this subscription.
      * If not set, the default retry policy is applied. This generally implies that messages will be retried as soon as possible for healthy subscribers.
      * RetryPolicy will be triggered on NACKs or acknowledgement deadline exceeded events for a given message
      * Structure is documented below.
      */
-    readonly retryPolicy?: pulumi.Input<inputs.pubsub.SubscriptionRetryPolicy>;
+    readonly retryPolicy?: pulumi.Input<inputs.pubsub.SubscriptionRetryPolicy | undefined>;
     /**
      * A reference to a Topic resource.
      */
-    readonly topic?: pulumi.Input<string>;
+    readonly topic?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -428,7 +428,7 @@ export interface SubscriptionArgs {
      * If the subscriber never acknowledges the message, the Pub/Sub system
      * will eventually redeliver the message.
      */
-    readonly ackDeadlineSeconds?: pulumi.Input<number>;
+    readonly ackDeadlineSeconds?: pulumi.Input<number | undefined>;
     /**
      * A policy that specifies the conditions for dead lettering messages in
      * this subscription. If deadLetterPolicy is not set, dead lettering
@@ -439,13 +439,13 @@ export interface SubscriptionArgs {
      * permission to Acknowledge() messages on this subscription.
      * Structure is documented below.
      */
-    readonly deadLetterPolicy?: pulumi.Input<inputs.pubsub.SubscriptionDeadLetterPolicy>;
+    readonly deadLetterPolicy?: pulumi.Input<inputs.pubsub.SubscriptionDeadLetterPolicy | undefined>;
     /**
      * If `true`, messages published with the same orderingKey in PubsubMessage will be delivered to
      * the subscribers in the order in which they are received by the Pub/Sub system. Otherwise, they
      * may be delivered in any order.
      */
-    readonly enableMessageOrdering?: pulumi.Input<boolean>;
+    readonly enableMessageOrdering?: pulumi.Input<boolean | undefined>;
     /**
      * A policy that specifies the conditions for this subscription's expiration.
      * A subscription is considered active as long as any connected subscriber
@@ -456,18 +456,18 @@ export interface SubscriptionArgs {
      * is 1 day.
      * Structure is documented below.
      */
-    readonly expirationPolicy?: pulumi.Input<inputs.pubsub.SubscriptionExpirationPolicy>;
+    readonly expirationPolicy?: pulumi.Input<inputs.pubsub.SubscriptionExpirationPolicy | undefined>;
     /**
      * The subscription only delivers the messages that match the filter.
      * Pub/Sub automatically acknowledges the messages that don't match the filter. You can filter messages
      * by their attributes. The maximum length of a filter is 256 bytes. After creating the subscription,
      * you can't modify the filter.
      */
-    readonly filter?: pulumi.Input<string>;
+    readonly filter?: pulumi.Input<string | undefined>;
     /**
      * A set of key/value label pairs to assign to this Subscription.
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * How long to retain unacknowledged messages in the subscription's
      * backlog, from the moment a message is published. If
@@ -478,37 +478,37 @@ export interface SubscriptionArgs {
      * A duration in seconds with up to nine fractional digits, terminated
      * by 's'. Example: `"600.5s"`.
      */
-    readonly messageRetentionDuration?: pulumi.Input<string>;
+    readonly messageRetentionDuration?: pulumi.Input<string | undefined>;
     /**
      * Name of the subscription.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * If push delivery is used with this subscription, this field is used to
      * configure it. An empty pushConfig signifies that the subscriber will
      * pull and ack messages using API methods.
      * Structure is documented below.
      */
-    readonly pushConfig?: pulumi.Input<inputs.pubsub.SubscriptionPushConfig>;
+    readonly pushConfig?: pulumi.Input<inputs.pubsub.SubscriptionPushConfig | undefined>;
     /**
      * Indicates whether to retain acknowledged messages. If `true`, then
      * messages are not expunged from the subscription's backlog, even if
      * they are acknowledged, until they fall out of the
      * messageRetentionDuration window.
      */
-    readonly retainAckedMessages?: pulumi.Input<boolean>;
+    readonly retainAckedMessages?: pulumi.Input<boolean | undefined>;
     /**
      * A policy that specifies how Pub/Sub retries message delivery for this subscription.
      * If not set, the default retry policy is applied. This generally implies that messages will be retried as soon as possible for healthy subscribers.
      * RetryPolicy will be triggered on NACKs or acknowledgement deadline exceeded events for a given message
      * Structure is documented below.
      */
-    readonly retryPolicy?: pulumi.Input<inputs.pubsub.SubscriptionRetryPolicy>;
+    readonly retryPolicy?: pulumi.Input<inputs.pubsub.SubscriptionRetryPolicy | undefined>;
     /**
      * A reference to a Topic resource.
      */

@@ -115,32 +115,32 @@ export interface SubAccountState {
     /**
      * The billing account id.
      */
-    readonly billingAccountId?: pulumi.Input<string>;
-    readonly deletionPolicy?: pulumi.Input<string>;
+    readonly billingAccountId?: pulumi.Input<string | undefined>;
+    readonly deletionPolicy?: pulumi.Input<string | undefined>;
     /**
      * The display name of the billing account.
      */
-    readonly displayName?: pulumi.Input<string>;
+    readonly displayName?: pulumi.Input<string | undefined>;
     /**
      * The name of the master billing account that the subaccount
      * will be created under in the form `{billing_account_id}` or `billingAccounts/{billing_account_id}`.
      */
-    readonly masterBillingAccount?: pulumi.Input<string>;
+    readonly masterBillingAccount?: pulumi.Input<string | undefined>;
     /**
      * The resource name of the billing account in the form `billingAccounts/{billing_account_id}`.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * `true` if the billing account is open, `false` if the billing account is closed.
      */
-    readonly open?: pulumi.Input<boolean>;
+    readonly open?: pulumi.Input<boolean | undefined>;
 }
 
 /**
  * The set of arguments for constructing a SubAccount resource.
  */
 export interface SubAccountArgs {
-    readonly deletionPolicy?: pulumi.Input<string>;
+    readonly deletionPolicy?: pulumi.Input<string | undefined>;
     /**
      * The display name of the billing account.
      */

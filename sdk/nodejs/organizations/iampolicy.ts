@@ -81,12 +81,12 @@ export class IAMPolicy extends pulumi.CustomResource {
  * Input properties used for looking up and filtering IAMPolicy resources.
  */
 export interface IAMPolicyState {
-    readonly etag?: pulumi.Input<string>;
+    readonly etag?: pulumi.Input<string | undefined>;
     /**
      * The numeric ID of the organization in which you want to manage the audit logging config.
      */
-    readonly orgId?: pulumi.Input<string>;
-    readonly policyData?: pulumi.Input<string>;
+    readonly orgId?: pulumi.Input<string | undefined>;
+    readonly policyData?: pulumi.Input<string | undefined>;
 }
 
 /**

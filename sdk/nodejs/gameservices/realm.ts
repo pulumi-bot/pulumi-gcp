@@ -164,39 +164,39 @@ export interface RealmState {
     /**
      * Human readable description of the realm.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * ETag of the resource.
      */
-    readonly etag?: pulumi.Input<string>;
+    readonly etag?: pulumi.Input<string | undefined>;
     /**
      * The labels associated with this realm. Each label is a key-value pair.
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Location of the Realm.
      */
-    readonly location?: pulumi.Input<string>;
+    readonly location?: pulumi.Input<string | undefined>;
     /**
      * The resource id of the realm, of the form: 'projects/{project_id}/locations/{location}/realms/{realm_id}'. For example,
      * 'projects/my-project/locations/{location}/realms/my-realm'.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * GCP region of the Realm.
      */
-    readonly realmId?: pulumi.Input<string>;
+    readonly realmId?: pulumi.Input<string | undefined>;
     /**
      * Required. Time zone where all realm-specific policies are evaluated. The value of
      * this field must be from the IANA time zone database:
      * https://www.iana.org/time-zones.
      */
-    readonly timeZone?: pulumi.Input<string>;
+    readonly timeZone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -206,20 +206,20 @@ export interface RealmArgs {
     /**
      * Human readable description of the realm.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * The labels associated with this realm. Each label is a key-value pair.
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Location of the Realm.
      */
-    readonly location?: pulumi.Input<string>;
+    readonly location?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * GCP region of the Realm.
      */

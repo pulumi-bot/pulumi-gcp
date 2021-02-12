@@ -137,26 +137,26 @@ export interface CustomServiceState {
     /**
      * Name used for UI elements listing this Service.
      */
-    readonly displayName?: pulumi.Input<string>;
+    readonly displayName?: pulumi.Input<string | undefined>;
     /**
      * The full resource name for this service. The syntax is: projects/[PROJECT_ID]/services/[SERVICE_ID].
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * An optional service ID to use. If not given, the server will generate a
      * service ID.
      */
-    readonly serviceId?: pulumi.Input<string>;
+    readonly serviceId?: pulumi.Input<string | undefined>;
     /**
      * Configuration for how to query telemetry on a Service.
      * Structure is documented below.
      */
-    readonly telemetry?: pulumi.Input<inputs.monitoring.CustomServiceTelemetry>;
+    readonly telemetry?: pulumi.Input<inputs.monitoring.CustomServiceTelemetry | undefined>;
 }
 
 /**
@@ -166,20 +166,20 @@ export interface CustomServiceArgs {
     /**
      * Name used for UI elements listing this Service.
      */
-    readonly displayName?: pulumi.Input<string>;
+    readonly displayName?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * An optional service ID to use. If not given, the server will generate a
      * service ID.
      */
-    readonly serviceId?: pulumi.Input<string>;
+    readonly serviceId?: pulumi.Input<string | undefined>;
     /**
      * Configuration for how to query telemetry on a Service.
      * Structure is documented below.
      */
-    readonly telemetry?: pulumi.Input<inputs.monitoring.CustomServiceTelemetry>;
+    readonly telemetry?: pulumi.Input<inputs.monitoring.CustomServiceTelemetry | undefined>;
 }

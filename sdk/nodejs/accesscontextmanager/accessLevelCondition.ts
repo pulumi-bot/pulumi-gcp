@@ -166,14 +166,14 @@ export interface AccessLevelConditionState {
     /**
      * The name of the Access Level to add this condition to.
      */
-    readonly accessLevel?: pulumi.Input<string>;
+    readonly accessLevel?: pulumi.Input<string | undefined>;
     /**
      * Device specific restrictions, all restrictions must hold for
      * the Condition to be true. If not specified, all devices are
      * allowed.
      * Structure is documented below.
      */
-    readonly devicePolicy?: pulumi.Input<inputs.accesscontextmanager.AccessLevelConditionDevicePolicy>;
+    readonly devicePolicy?: pulumi.Input<inputs.accesscontextmanager.AccessLevelConditionDevicePolicy | undefined>;
     /**
      * A list of CIDR block IP subnetwork specification. May be IPv4
      * or IPv6.
@@ -186,7 +186,7 @@ export interface AccessLevelConditionState {
      * listed subnets in order for this Condition to be true.
      * If empty, all IP addresses are allowed.
      */
-    readonly ipSubnetworks?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly ipSubnetworks?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * An allowed list of members (users, service accounts).
      * Using groups is not supported yet.
@@ -196,19 +196,19 @@ export interface AccessLevelConditionState {
      * groups, etc.).
      * Formats: `user:{emailid}`, `serviceAccount:{emailid}`
      */
-    readonly members?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly members?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Whether to negate the Condition. If true, the Condition becomes
      * a NAND over its non-empty fields, each field must be false for
      * the Condition overall to be satisfied. Defaults to false.
      */
-    readonly negate?: pulumi.Input<boolean>;
+    readonly negate?: pulumi.Input<boolean | undefined>;
     /**
      * The request must originate from one of the provided
      * countries/regions.
      * Format: A valid ISO 3166-1 alpha-2 code.
      */
-    readonly regions?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly regions?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * A list of other access levels defined in the same Policy,
      * referenced by resource name. Referencing an AccessLevel which
@@ -216,7 +216,7 @@ export interface AccessLevelConditionState {
      * granted for the Condition to be true.
      * Format: accessPolicies/{policy_id}/accessLevels/{short_name}
      */
-    readonly requiredAccessLevels?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly requiredAccessLevels?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 /**
@@ -233,7 +233,7 @@ export interface AccessLevelConditionArgs {
      * allowed.
      * Structure is documented below.
      */
-    readonly devicePolicy?: pulumi.Input<inputs.accesscontextmanager.AccessLevelConditionDevicePolicy>;
+    readonly devicePolicy?: pulumi.Input<inputs.accesscontextmanager.AccessLevelConditionDevicePolicy | undefined>;
     /**
      * A list of CIDR block IP subnetwork specification. May be IPv4
      * or IPv6.
@@ -246,7 +246,7 @@ export interface AccessLevelConditionArgs {
      * listed subnets in order for this Condition to be true.
      * If empty, all IP addresses are allowed.
      */
-    readonly ipSubnetworks?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly ipSubnetworks?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * An allowed list of members (users, service accounts).
      * Using groups is not supported yet.
@@ -256,19 +256,19 @@ export interface AccessLevelConditionArgs {
      * groups, etc.).
      * Formats: `user:{emailid}`, `serviceAccount:{emailid}`
      */
-    readonly members?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly members?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Whether to negate the Condition. If true, the Condition becomes
      * a NAND over its non-empty fields, each field must be false for
      * the Condition overall to be satisfied. Defaults to false.
      */
-    readonly negate?: pulumi.Input<boolean>;
+    readonly negate?: pulumi.Input<boolean | undefined>;
     /**
      * The request must originate from one of the provided
      * countries/regions.
      * Format: A valid ISO 3166-1 alpha-2 code.
      */
-    readonly regions?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly regions?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * A list of other access levels defined in the same Policy,
      * referenced by resource name. Referencing an AccessLevel which
@@ -276,5 +276,5 @@ export interface AccessLevelConditionArgs {
      * granted for the Condition to be true.
      * Format: accessPolicies/{policy_id}/accessLevels/{short_name}
      */
-    readonly requiredAccessLevels?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly requiredAccessLevels?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

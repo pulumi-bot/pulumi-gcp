@@ -174,31 +174,31 @@ export interface GCPolicyState {
     /**
      * The name of the column family.
      */
-    readonly columnFamily?: pulumi.Input<string>;
+    readonly columnFamily?: pulumi.Input<string | undefined>;
     /**
      * The name of the Bigtable instance.
      */
-    readonly instanceName?: pulumi.Input<string>;
+    readonly instanceName?: pulumi.Input<string | undefined>;
     /**
      * GC policy that applies to all cells older than the given age.
      */
-    readonly maxAge?: pulumi.Input<inputs.bigtable.GCPolicyMaxAge>;
+    readonly maxAge?: pulumi.Input<inputs.bigtable.GCPolicyMaxAge | undefined>;
     /**
      * GC policy that applies to all versions of a cell except for the most recent.
      */
-    readonly maxVersions?: pulumi.Input<pulumi.Input<inputs.bigtable.GCPolicyMaxVersion>[]>;
+    readonly maxVersions?: pulumi.Input<pulumi.Input<inputs.bigtable.GCPolicyMaxVersion>[] | undefined>;
     /**
      * If multiple policies are set, you should choose between `UNION` OR `INTERSECTION`.
      */
-    readonly mode?: pulumi.Input<string>;
+    readonly mode?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs. If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The name of the table.
      */
-    readonly table?: pulumi.Input<string>;
+    readonly table?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -216,19 +216,19 @@ export interface GCPolicyArgs {
     /**
      * GC policy that applies to all cells older than the given age.
      */
-    readonly maxAge?: pulumi.Input<inputs.bigtable.GCPolicyMaxAge>;
+    readonly maxAge?: pulumi.Input<inputs.bigtable.GCPolicyMaxAge | undefined>;
     /**
      * GC policy that applies to all versions of a cell except for the most recent.
      */
-    readonly maxVersions?: pulumi.Input<pulumi.Input<inputs.bigtable.GCPolicyMaxVersion>[]>;
+    readonly maxVersions?: pulumi.Input<pulumi.Input<inputs.bigtable.GCPolicyMaxVersion>[] | undefined>;
     /**
      * If multiple policies are set, you should choose between `UNION` OR `INTERSECTION`.
      */
-    readonly mode?: pulumi.Input<string>;
+    readonly mode?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs. If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The name of the table.
      */

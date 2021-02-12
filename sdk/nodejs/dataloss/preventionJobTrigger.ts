@@ -186,40 +186,40 @@ export interface PreventionJobTriggerState {
     /**
      * A description of the job trigger.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * User set display name of the job trigger.
      */
-    readonly displayName?: pulumi.Input<string>;
+    readonly displayName?: pulumi.Input<string | undefined>;
     /**
      * Controls what and how to inspect for findings.
      * Structure is documented below.
      */
-    readonly inspectJob?: pulumi.Input<inputs.dataloss.PreventionJobTriggerInspectJob>;
+    readonly inspectJob?: pulumi.Input<inputs.dataloss.PreventionJobTriggerInspectJob | undefined>;
     /**
      * The timestamp of the last time this trigger executed.
      */
-    readonly lastRunTime?: pulumi.Input<string>;
+    readonly lastRunTime?: pulumi.Input<string | undefined>;
     /**
      * The name of the Datastore kind.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The parent of the trigger, either in the format `projects/{{project}}`
      * or `projects/{{project}}/locations/{{location}}`
      */
-    readonly parent?: pulumi.Input<string>;
+    readonly parent?: pulumi.Input<string | undefined>;
     /**
      * Whether the trigger is currently active.
      * Default value is `HEALTHY`.
      * Possible values are `PAUSED`, `HEALTHY`, and `CANCELLED`.
      */
-    readonly status?: pulumi.Input<string>;
+    readonly status?: pulumi.Input<string | undefined>;
     /**
      * What event needs to occur for a new job to be started.
      * Structure is documented below.
      */
-    readonly triggers?: pulumi.Input<pulumi.Input<inputs.dataloss.PreventionJobTriggerTrigger>[]>;
+    readonly triggers?: pulumi.Input<pulumi.Input<inputs.dataloss.PreventionJobTriggerTrigger>[] | undefined>;
 }
 
 /**
@@ -229,16 +229,16 @@ export interface PreventionJobTriggerArgs {
     /**
      * A description of the job trigger.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * User set display name of the job trigger.
      */
-    readonly displayName?: pulumi.Input<string>;
+    readonly displayName?: pulumi.Input<string | undefined>;
     /**
      * Controls what and how to inspect for findings.
      * Structure is documented below.
      */
-    readonly inspectJob?: pulumi.Input<inputs.dataloss.PreventionJobTriggerInspectJob>;
+    readonly inspectJob?: pulumi.Input<inputs.dataloss.PreventionJobTriggerInspectJob | undefined>;
     /**
      * The parent of the trigger, either in the format `projects/{{project}}`
      * or `projects/{{project}}/locations/{{location}}`
@@ -249,7 +249,7 @@ export interface PreventionJobTriggerArgs {
      * Default value is `HEALTHY`.
      * Possible values are `PAUSED`, `HEALTHY`, and `CANCELLED`.
      */
-    readonly status?: pulumi.Input<string>;
+    readonly status?: pulumi.Input<string | undefined>;
     /**
      * What event needs to occur for a new job to be started.
      * Structure is documented below.

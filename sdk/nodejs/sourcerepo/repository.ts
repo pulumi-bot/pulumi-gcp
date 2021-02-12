@@ -150,26 +150,26 @@ export interface RepositoryState {
      * Resource name of the repository, of the form `{{repo}}`.
      * The repo name may contain slashes. eg, `name/with/slash`
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * How this repository publishes a change in the repository through Cloud Pub/Sub.
      * Keyed by the topic names.
      * Structure is documented below.
      */
-    readonly pubsubConfigs?: pulumi.Input<pulumi.Input<inputs.sourcerepo.RepositoryPubsubConfig>[]>;
+    readonly pubsubConfigs?: pulumi.Input<pulumi.Input<inputs.sourcerepo.RepositoryPubsubConfig>[] | undefined>;
     /**
      * The disk usage of the repo, in bytes.
      */
-    readonly size?: pulumi.Input<number>;
+    readonly size?: pulumi.Input<number | undefined>;
     /**
      * URL to clone the repository from Google Cloud Source Repositories.
      */
-    readonly url?: pulumi.Input<string>;
+    readonly url?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -180,16 +180,16 @@ export interface RepositoryArgs {
      * Resource name of the repository, of the form `{{repo}}`.
      * The repo name may contain slashes. eg, `name/with/slash`
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * How this repository publishes a change in the repository through Cloud Pub/Sub.
      * Keyed by the topic names.
      * Structure is documented below.
      */
-    readonly pubsubConfigs?: pulumi.Input<pulumi.Input<inputs.sourcerepo.RepositoryPubsubConfig>[]>;
+    readonly pubsubConfigs?: pulumi.Input<pulumi.Input<inputs.sourcerepo.RepositoryPubsubConfig>[] | undefined>;
 }

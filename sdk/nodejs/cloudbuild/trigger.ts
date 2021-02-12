@@ -294,29 +294,29 @@ export interface TriggerState {
      * Contents of the build template. Either a filename or build template must be provided.
      * Structure is documented below.
      */
-    readonly build?: pulumi.Input<inputs.cloudbuild.TriggerBuild>;
+    readonly build?: pulumi.Input<inputs.cloudbuild.TriggerBuild | undefined>;
     /**
      * Time when the trigger was created.
      */
-    readonly createTime?: pulumi.Input<string>;
+    readonly createTime?: pulumi.Input<string | undefined>;
     /**
      * Human-readable description of the trigger.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * Whether the trigger is disabled or not. If true, the trigger will never result in a build.
      */
-    readonly disabled?: pulumi.Input<boolean>;
+    readonly disabled?: pulumi.Input<boolean | undefined>;
     /**
      * Path, from the source root, to a file whose contents is used for the template. Either a filename or build template must be provided.
      */
-    readonly filename?: pulumi.Input<string>;
+    readonly filename?: pulumi.Input<string | undefined>;
     /**
      * Describes the configuration of a trigger that creates a build whenever a GitHub event is received.
      * One of `triggerTemplate` or `github` must be provided.
      * Structure is documented below.
      */
-    readonly github?: pulumi.Input<inputs.cloudbuild.TriggerGithub>;
+    readonly github?: pulumi.Input<inputs.cloudbuild.TriggerGithub | undefined>;
     /**
      * ignoredFiles and includedFiles are file glob matches using https://golang.org/pkg/path/filepath/#Match
      * extended with support for `**`.
@@ -326,7 +326,7 @@ export interface TriggerState {
      * of the ignoredFile globs. If the change has no files that are outside
      * of the ignoredFiles globs, then we do not trigger a build.
      */
-    readonly ignoredFiles?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly ignoredFiles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * ignoredFiles and includedFiles are file glob matches using https://golang.org/pkg/path/filepath/#Match
      * extended with support for `**`.
@@ -338,30 +338,30 @@ export interface TriggerState {
      * those files matches a includedFiles glob. If not, then we do not trigger
      * a build.
      */
-    readonly includedFiles?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly includedFiles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Name of the volume to mount.
      * Volume names must be unique per build step and must be valid names for Docker volumes.
      * Each named volume must be used by at least two build steps.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Substitutions to use in a triggered build. Should only be used with triggers.run
      */
-    readonly substitutions?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly substitutions?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Tags for annotation of a Build. These are not docker tags.
      */
-    readonly tags?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The unique identifier for the trigger.
      */
-    readonly triggerId?: pulumi.Input<string>;
+    readonly triggerId?: pulumi.Input<string | undefined>;
     /**
      * Template describing the types of source changes to trigger a build.
      * Branch and tag names in trigger templates are interpreted as regular
@@ -370,7 +370,7 @@ export interface TriggerState {
      * One of `triggerTemplate` or `github` must be provided.
      * Structure is documented below.
      */
-    readonly triggerTemplate?: pulumi.Input<inputs.cloudbuild.TriggerTriggerTemplate>;
+    readonly triggerTemplate?: pulumi.Input<inputs.cloudbuild.TriggerTriggerTemplate | undefined>;
 }
 
 /**
@@ -381,25 +381,25 @@ export interface TriggerArgs {
      * Contents of the build template. Either a filename or build template must be provided.
      * Structure is documented below.
      */
-    readonly build?: pulumi.Input<inputs.cloudbuild.TriggerBuild>;
+    readonly build?: pulumi.Input<inputs.cloudbuild.TriggerBuild | undefined>;
     /**
      * Human-readable description of the trigger.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * Whether the trigger is disabled or not. If true, the trigger will never result in a build.
      */
-    readonly disabled?: pulumi.Input<boolean>;
+    readonly disabled?: pulumi.Input<boolean | undefined>;
     /**
      * Path, from the source root, to a file whose contents is used for the template. Either a filename or build template must be provided.
      */
-    readonly filename?: pulumi.Input<string>;
+    readonly filename?: pulumi.Input<string | undefined>;
     /**
      * Describes the configuration of a trigger that creates a build whenever a GitHub event is received.
      * One of `triggerTemplate` or `github` must be provided.
      * Structure is documented below.
      */
-    readonly github?: pulumi.Input<inputs.cloudbuild.TriggerGithub>;
+    readonly github?: pulumi.Input<inputs.cloudbuild.TriggerGithub | undefined>;
     /**
      * ignoredFiles and includedFiles are file glob matches using https://golang.org/pkg/path/filepath/#Match
      * extended with support for `**`.
@@ -409,7 +409,7 @@ export interface TriggerArgs {
      * of the ignoredFile globs. If the change has no files that are outside
      * of the ignoredFiles globs, then we do not trigger a build.
      */
-    readonly ignoredFiles?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly ignoredFiles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * ignoredFiles and includedFiles are file glob matches using https://golang.org/pkg/path/filepath/#Match
      * extended with support for `**`.
@@ -421,26 +421,26 @@ export interface TriggerArgs {
      * those files matches a includedFiles glob. If not, then we do not trigger
      * a build.
      */
-    readonly includedFiles?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly includedFiles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Name of the volume to mount.
      * Volume names must be unique per build step and must be valid names for Docker volumes.
      * Each named volume must be used by at least two build steps.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Substitutions to use in a triggered build. Should only be used with triggers.run
      */
-    readonly substitutions?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly substitutions?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Tags for annotation of a Build. These are not docker tags.
      */
-    readonly tags?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Template describing the types of source changes to trigger a build.
      * Branch and tag names in trigger templates are interpreted as regular
@@ -449,5 +449,5 @@ export interface TriggerArgs {
      * One of `triggerTemplate` or `github` must be provided.
      * Structure is documented below.
      */
-    readonly triggerTemplate?: pulumi.Input<inputs.cloudbuild.TriggerTriggerTemplate>;
+    readonly triggerTemplate?: pulumi.Input<inputs.cloudbuild.TriggerTriggerTemplate | undefined>;
 }

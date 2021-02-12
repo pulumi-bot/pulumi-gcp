@@ -151,30 +151,30 @@ export interface SourceRepresentationInstanceState {
      * The MySQL version running on your source database server.
      * Possible values are `MYSQL_5_6`, `MYSQL_5_7`, and `MYSQL_8_0`.
      */
-    readonly databaseVersion?: pulumi.Input<string>;
+    readonly databaseVersion?: pulumi.Input<string | undefined>;
     /**
      * The externally accessible IPv4 address for the source database server.
      */
-    readonly host?: pulumi.Input<string>;
+    readonly host?: pulumi.Input<string | undefined>;
     /**
      * The name of the source representation instance. Use any valid Cloud SQL instance name.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The externally accessible port for the source database server.
      * Defaults to 3306.
      */
-    readonly port?: pulumi.Input<number>;
+    readonly port?: pulumi.Input<number | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The Region in which the created instance should reside.
      * If it is not provided, the provider region is used.
      */
-    readonly region?: pulumi.Input<string>;
+    readonly region?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -193,20 +193,20 @@ export interface SourceRepresentationInstanceArgs {
     /**
      * The name of the source representation instance. Use any valid Cloud SQL instance name.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The externally accessible port for the source database server.
      * Defaults to 3306.
      */
-    readonly port?: pulumi.Input<number>;
+    readonly port?: pulumi.Input<number | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The Region in which the created instance should reside.
      * If it is not provided, the provider region is used.
      */
-    readonly region?: pulumi.Input<string>;
+    readonly region?: pulumi.Input<string | undefined>;
 }

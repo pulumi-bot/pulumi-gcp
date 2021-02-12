@@ -140,13 +140,13 @@ export interface ServicePerimeterResourceState {
     /**
      * The name of the Service Perimeter to add this resource to.
      */
-    readonly perimeterName?: pulumi.Input<string>;
+    readonly perimeterName?: pulumi.Input<string | undefined>;
     /**
      * A GCP resource that is inside of the service perimeter.
      * Currently only projects are allowed.
      * Format: projects/{project_number}
      */
-    readonly resource?: pulumi.Input<string>;
+    readonly resource?: pulumi.Input<string | undefined>;
 }
 
 /**

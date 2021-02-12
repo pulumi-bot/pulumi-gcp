@@ -168,43 +168,43 @@ export interface GroupState {
     /**
      * The time when the Group was created.
      */
-    readonly createTime?: pulumi.Input<string>;
+    readonly createTime?: pulumi.Input<string | undefined>;
     /**
      * An extended description to help users determine the purpose of a Group.
      * Must not be longer than 4,096 characters.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * The display name of the Group.
      */
-    readonly displayName?: pulumi.Input<string>;
+    readonly displayName?: pulumi.Input<string | undefined>;
     /**
      * EntityKey of the Group.
      * Structure is documented below.
      */
-    readonly groupKey?: pulumi.Input<inputs.cloudidentity.GroupGroupKey>;
+    readonly groupKey?: pulumi.Input<inputs.cloudidentity.GroupGroupKey | undefined>;
     /**
      * The labels that apply to the Group.
      * Must not contain more than one entry. Must contain the entry
      * 'cloudidentity.googleapis.com/groups.discussion_forum': '' if the Group is a Google Group or
      * 'system/groups/external': '' if the Group is an external-identity-mapped group.
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Resource name of the Group in the format: groups/{group_id}, where group_id is the unique ID assigned to the Group.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The resource name of the entity under which this Group resides in the
      * Cloud Identity resource hierarchy.
      * Must be of the form identitysources/{identity_source_id} for external-identity-mapped
      * groups or customers/{customer_id} for Google Groups.
      */
-    readonly parent?: pulumi.Input<string>;
+    readonly parent?: pulumi.Input<string | undefined>;
     /**
      * The time when the Group was last updated.
      */
-    readonly updateTime?: pulumi.Input<string>;
+    readonly updateTime?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -215,11 +215,11 @@ export interface GroupArgs {
      * An extended description to help users determine the purpose of a Group.
      * Must not be longer than 4,096 characters.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * The display name of the Group.
      */
-    readonly displayName?: pulumi.Input<string>;
+    readonly displayName?: pulumi.Input<string | undefined>;
     /**
      * EntityKey of the Group.
      * Structure is documented below.

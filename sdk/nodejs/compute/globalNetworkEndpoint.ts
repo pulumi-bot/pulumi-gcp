@@ -150,24 +150,24 @@ export interface GlobalNetworkEndpointState {
      * Fully qualified domain name of network endpoint.
      * This can only be specified when networkEndpointType of the NEG is INTERNET_FQDN_PORT.
      */
-    readonly fqdn?: pulumi.Input<string>;
+    readonly fqdn?: pulumi.Input<string | undefined>;
     /**
      * The global network endpoint group this endpoint is part of.
      */
-    readonly globalNetworkEndpointGroup?: pulumi.Input<string>;
+    readonly globalNetworkEndpointGroup?: pulumi.Input<string | undefined>;
     /**
      * IPv4 address external endpoint.
      */
-    readonly ipAddress?: pulumi.Input<string>;
+    readonly ipAddress?: pulumi.Input<string | undefined>;
     /**
      * Port number of the external endpoint.
      */
-    readonly port?: pulumi.Input<number>;
+    readonly port?: pulumi.Input<number | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -178,7 +178,7 @@ export interface GlobalNetworkEndpointArgs {
      * Fully qualified domain name of network endpoint.
      * This can only be specified when networkEndpointType of the NEG is INTERNET_FQDN_PORT.
      */
-    readonly fqdn?: pulumi.Input<string>;
+    readonly fqdn?: pulumi.Input<string | undefined>;
     /**
      * The global network endpoint group this endpoint is part of.
      */
@@ -186,7 +186,7 @@ export interface GlobalNetworkEndpointArgs {
     /**
      * IPv4 address external endpoint.
      */
-    readonly ipAddress?: pulumi.Input<string>;
+    readonly ipAddress?: pulumi.Input<string | undefined>;
     /**
      * Port number of the external endpoint.
      */
@@ -195,5 +195,5 @@ export interface GlobalNetworkEndpointArgs {
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
 }

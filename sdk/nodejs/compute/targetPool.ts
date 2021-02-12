@@ -186,21 +186,21 @@ export interface TargetPoolState {
      * URL to the backup target pool. Must also set
      * failover\_ratio.
      */
-    readonly backupPool?: pulumi.Input<string>;
+    readonly backupPool?: pulumi.Input<string | undefined>;
     /**
      * Textual description field.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * Ratio (0 to 1) of failed nodes before using the
      * backup pool (which must also be set).
      */
-    readonly failoverRatio?: pulumi.Input<number>;
+    readonly failoverRatio?: pulumi.Input<number | undefined>;
     /**
      * List of zero or one health check name or self_link. Only
      * legacy `gcp.compute.HttpHealthCheck` is supported.
      */
-    readonly healthChecks?: pulumi.Input<string>;
+    readonly healthChecks?: pulumi.Input<string | undefined>;
     /**
      * List of instances in the pool. They can be given as
      * URLs, or in the form of "zone/name". Note that the instances need not exist
@@ -208,32 +208,32 @@ export interface TargetPoolState {
      * interpolation to create a dependency on the instances from the
      * target pool.
      */
-    readonly instances?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly instances?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * A unique name for the resource, required by GCE. Changing
      * this forces a new resource to be created.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs. If it
      * is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Where the target pool resides. Defaults to project
      * region.
      */
-    readonly region?: pulumi.Input<string>;
+    readonly region?: pulumi.Input<string | undefined>;
     /**
      * The URI of the created resource.
      */
-    readonly selfLink?: pulumi.Input<string>;
+    readonly selfLink?: pulumi.Input<string | undefined>;
     /**
      * How to distribute load. Options are "NONE" (no
      * affinity). "CLIENT\_IP" (hash of the source/dest addresses / ports), and
      * "CLIENT\_IP\_PROTO" also includes the protocol (default "NONE").
      */
-    readonly sessionAffinity?: pulumi.Input<string>;
+    readonly sessionAffinity?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -244,21 +244,21 @@ export interface TargetPoolArgs {
      * URL to the backup target pool. Must also set
      * failover\_ratio.
      */
-    readonly backupPool?: pulumi.Input<string>;
+    readonly backupPool?: pulumi.Input<string | undefined>;
     /**
      * Textual description field.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * Ratio (0 to 1) of failed nodes before using the
      * backup pool (which must also be set).
      */
-    readonly failoverRatio?: pulumi.Input<number>;
+    readonly failoverRatio?: pulumi.Input<number | undefined>;
     /**
      * List of zero or one health check name or self_link. Only
      * legacy `gcp.compute.HttpHealthCheck` is supported.
      */
-    readonly healthChecks?: pulumi.Input<string>;
+    readonly healthChecks?: pulumi.Input<string | undefined>;
     /**
      * List of instances in the pool. They can be given as
      * URLs, or in the form of "zone/name". Note that the instances need not exist
@@ -266,26 +266,26 @@ export interface TargetPoolArgs {
      * interpolation to create a dependency on the instances from the
      * target pool.
      */
-    readonly instances?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly instances?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * A unique name for the resource, required by GCE. Changing
      * this forces a new resource to be created.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs. If it
      * is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Where the target pool resides. Defaults to project
      * region.
      */
-    readonly region?: pulumi.Input<string>;
+    readonly region?: pulumi.Input<string | undefined>;
     /**
      * How to distribute load. Options are "NONE" (no
      * affinity). "CLIENT\_IP" (hash of the source/dest addresses / ports), and
      * "CLIENT\_IP\_PROTO" also includes the protocol (default "NONE").
      */
-    readonly sessionAffinity?: pulumi.Input<string>;
+    readonly sessionAffinity?: pulumi.Input<string | undefined>;
 }

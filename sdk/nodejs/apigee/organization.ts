@@ -234,52 +234,52 @@ export interface OrganizationState {
     /**
      * Primary GCP region for analytics data storage. For valid values, see [Create an Apigee organization](https://cloud.google.com/apigee/docs/api-platform/get-started/create-org).
      */
-    readonly analyticsRegion?: pulumi.Input<string>;
+    readonly analyticsRegion?: pulumi.Input<string | undefined>;
     /**
      * Compute Engine network used for Service Networking to be peered with Apigee runtime instances.
      * See [Getting started with the Service Networking API](https://cloud.google.com/service-infrastructure/docs/service-networking/getting-started).
      * Valid only when `RuntimeType` is set to CLOUD. The value can be updated only when there are no runtime instances. For example: "default".
      */
-    readonly authorizedNetwork?: pulumi.Input<string>;
+    readonly authorizedNetwork?: pulumi.Input<string | undefined>;
     /**
      * Output only. Base64-encoded public certificate for the root CA of the Apigee organization. Valid only when 'RuntimeType'
      * is CLOUD. A base64-encoded string.
      */
-    readonly caCertificate?: pulumi.Input<string>;
+    readonly caCertificate?: pulumi.Input<string | undefined>;
     /**
      * Description of the Apigee organization.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * The display name of the Apigee organization.
      */
-    readonly displayName?: pulumi.Input<string>;
+    readonly displayName?: pulumi.Input<string | undefined>;
     /**
      * Output only. Name of the Apigee organization.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The project ID associated with the Apigee organization.
      */
-    readonly projectId?: pulumi.Input<string>;
+    readonly projectId?: pulumi.Input<string | undefined>;
     /**
      * Cloud KMS key name used for encrypting the data that is stored and replicated across runtime instances.
      * Update is not allowed after the organization is created.
      * If not specified, a Google-Managed encryption key will be used.
      * Valid only when `RuntimeType` is CLOUD. For example: `projects/foo/locations/us/keyRings/bar/cryptoKeys/baz`.
      */
-    readonly runtimeDatabaseEncryptionKeyName?: pulumi.Input<string>;
+    readonly runtimeDatabaseEncryptionKeyName?: pulumi.Input<string | undefined>;
     /**
      * Runtime type of the Apigee organization based on the Apigee subscription purchased.
      * Default value is `CLOUD`.
      * Possible values are `CLOUD` and `HYBRID`.
      */
-    readonly runtimeType?: pulumi.Input<string>;
+    readonly runtimeType?: pulumi.Input<string | undefined>;
     /**
      * Output only. Subscription type of the Apigee organization. Valid values include trial (free, limited, and for evaluation
      * purposes only) or paid (full subscription has been purchased).
      */
-    readonly subscriptionType?: pulumi.Input<string>;
+    readonly subscriptionType?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -289,21 +289,21 @@ export interface OrganizationArgs {
     /**
      * Primary GCP region for analytics data storage. For valid values, see [Create an Apigee organization](https://cloud.google.com/apigee/docs/api-platform/get-started/create-org).
      */
-    readonly analyticsRegion?: pulumi.Input<string>;
+    readonly analyticsRegion?: pulumi.Input<string | undefined>;
     /**
      * Compute Engine network used for Service Networking to be peered with Apigee runtime instances.
      * See [Getting started with the Service Networking API](https://cloud.google.com/service-infrastructure/docs/service-networking/getting-started).
      * Valid only when `RuntimeType` is set to CLOUD. The value can be updated only when there are no runtime instances. For example: "default".
      */
-    readonly authorizedNetwork?: pulumi.Input<string>;
+    readonly authorizedNetwork?: pulumi.Input<string | undefined>;
     /**
      * Description of the Apigee organization.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * The display name of the Apigee organization.
      */
-    readonly displayName?: pulumi.Input<string>;
+    readonly displayName?: pulumi.Input<string | undefined>;
     /**
      * The project ID associated with the Apigee organization.
      */
@@ -314,11 +314,11 @@ export interface OrganizationArgs {
      * If not specified, a Google-Managed encryption key will be used.
      * Valid only when `RuntimeType` is CLOUD. For example: `projects/foo/locations/us/keyRings/bar/cryptoKeys/baz`.
      */
-    readonly runtimeDatabaseEncryptionKeyName?: pulumi.Input<string>;
+    readonly runtimeDatabaseEncryptionKeyName?: pulumi.Input<string | undefined>;
     /**
      * Runtime type of the Apigee organization based on the Apigee subscription purchased.
      * Default value is `CLOUD`.
      * Possible values are `CLOUD` and `HYBRID`.
      */
-    readonly runtimeType?: pulumi.Input<string>;
+    readonly runtimeType?: pulumi.Input<string | undefined>;
 }

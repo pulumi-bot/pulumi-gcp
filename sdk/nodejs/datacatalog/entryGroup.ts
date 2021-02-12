@@ -149,30 +149,30 @@ export interface EntryGroupState {
     /**
      * Entry group description, which can consist of several sentences or paragraphs that describe entry group contents.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * A short name to identify the entry group, for example, "analytics data - jan 2011".
      */
-    readonly displayName?: pulumi.Input<string>;
+    readonly displayName?: pulumi.Input<string | undefined>;
     /**
      * The id of the entry group to create. The id must begin with a letter or underscore,
      * contain only English letters, numbers and underscores, and be at most 64 characters.
      */
-    readonly entryGroupId?: pulumi.Input<string>;
+    readonly entryGroupId?: pulumi.Input<string | undefined>;
     /**
      * The resource name of the entry group in URL format. Example:
      * projects/{project}/locations/{location}/entryGroups/{entryGroupId}
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * EntryGroup location region.
      */
-    readonly region?: pulumi.Input<string>;
+    readonly region?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -182,11 +182,11 @@ export interface EntryGroupArgs {
     /**
      * Entry group description, which can consist of several sentences or paragraphs that describe entry group contents.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * A short name to identify the entry group, for example, "analytics data - jan 2011".
      */
-    readonly displayName?: pulumi.Input<string>;
+    readonly displayName?: pulumi.Input<string | undefined>;
     /**
      * The id of the entry group to create. The id must begin with a letter or underscore,
      * contain only English letters, numbers and underscores, and be at most 64 characters.
@@ -196,9 +196,9 @@ export interface EntryGroupArgs {
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * EntryGroup location region.
      */
-    readonly region?: pulumi.Input<string>;
+    readonly region?: pulumi.Input<string | undefined>;
 }

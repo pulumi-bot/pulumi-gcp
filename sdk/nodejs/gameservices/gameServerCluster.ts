@@ -181,41 +181,41 @@ export interface GameServerClusterState {
     /**
      * Required. The resource name of the game server cluster
      */
-    readonly clusterId?: pulumi.Input<string>;
+    readonly clusterId?: pulumi.Input<string | undefined>;
     /**
      * Game server cluster connection information. This information is used to
      * manage game server clusters.
      * Structure is documented below.
      */
-    readonly connectionInfo?: pulumi.Input<inputs.gameservices.GameServerClusterConnectionInfo>;
+    readonly connectionInfo?: pulumi.Input<inputs.gameservices.GameServerClusterConnectionInfo | undefined>;
     /**
      * Human readable description of the cluster.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * The labels associated with this game server cluster. Each label is a
      * key-value pair.
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Location of the Cluster.
      */
-    readonly location?: pulumi.Input<string>;
+    readonly location?: pulumi.Input<string | undefined>;
     /**
      * The resource id of the game server cluster, eg:
      * 'projects/{project_id}/locations/{location}/realms/{realm_id}/gameServerClusters/{cluster_id}'. For example,
      * 'projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster'.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The realm id of the game server realm.
      */
-    readonly realmId?: pulumi.Input<string>;
+    readonly realmId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -235,21 +235,21 @@ export interface GameServerClusterArgs {
     /**
      * Human readable description of the cluster.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * The labels associated with this game server cluster. Each label is a
      * key-value pair.
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Location of the Cluster.
      */
-    readonly location?: pulumi.Input<string>;
+    readonly location?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The realm id of the game server realm.
      */

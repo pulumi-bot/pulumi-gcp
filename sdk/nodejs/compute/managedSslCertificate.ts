@@ -239,25 +239,25 @@ export interface ManagedSslCertificateState {
     /**
      * The unique identifier for the resource.
      */
-    readonly certificateId?: pulumi.Input<number>;
+    readonly certificateId?: pulumi.Input<number | undefined>;
     /**
      * Creation timestamp in RFC3339 text format.
      */
-    readonly creationTimestamp?: pulumi.Input<string>;
+    readonly creationTimestamp?: pulumi.Input<string | undefined>;
     /**
      * An optional description of this resource.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * Expire time of the certificate.
      */
-    readonly expireTime?: pulumi.Input<string>;
+    readonly expireTime?: pulumi.Input<string | undefined>;
     /**
      * Properties relevant to a managed certificate.  These will be used if the
      * certificate is managed (as indicated by a value of `MANAGED` in `type`).
      * Structure is documented below.
      */
-    readonly managed?: pulumi.Input<inputs.compute.ManagedSslCertificateManaged>;
+    readonly managed?: pulumi.Input<inputs.compute.ManagedSslCertificateManaged | undefined>;
     /**
      * Name of the resource. Provided by the client when the resource is
      * created. The name must be 1-63 characters long, and comply with
@@ -267,27 +267,27 @@ export interface ManagedSslCertificateState {
      * characters must be a dash, lowercase letter, or digit, except the last
      * character, which cannot be a dash.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The URI of the created resource.
      */
-    readonly selfLink?: pulumi.Input<string>;
+    readonly selfLink?: pulumi.Input<string | undefined>;
     /**
      * Domains associated with the certificate via Subject Alternative Name.
      */
-    readonly subjectAlternativeNames?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly subjectAlternativeNames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Enum field whose value is always `MANAGED` - used to signal to the API
      * which type this is.
      * Default value is `MANAGED`.
      * Possible values are `MANAGED`.
      */
-    readonly type?: pulumi.Input<string>;
+    readonly type?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -297,17 +297,17 @@ export interface ManagedSslCertificateArgs {
     /**
      * The unique identifier for the resource.
      */
-    readonly certificateId?: pulumi.Input<number>;
+    readonly certificateId?: pulumi.Input<number | undefined>;
     /**
      * An optional description of this resource.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * Properties relevant to a managed certificate.  These will be used if the
      * certificate is managed (as indicated by a value of `MANAGED` in `type`).
      * Structure is documented below.
      */
-    readonly managed?: pulumi.Input<inputs.compute.ManagedSslCertificateManaged>;
+    readonly managed?: pulumi.Input<inputs.compute.ManagedSslCertificateManaged | undefined>;
     /**
      * Name of the resource. Provided by the client when the resource is
      * created. The name must be 1-63 characters long, and comply with
@@ -317,17 +317,17 @@ export interface ManagedSslCertificateArgs {
      * characters must be a dash, lowercase letter, or digit, except the last
      * character, which cannot be a dash.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Enum field whose value is always `MANAGED` - used to signal to the API
      * which type this is.
      * Default value is `MANAGED`.
      * Possible values are `MANAGED`.
      */
-    readonly type?: pulumi.Input<string>;
+    readonly type?: pulumi.Input<string | undefined>;
 }

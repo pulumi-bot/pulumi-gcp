@@ -199,56 +199,56 @@ export interface SecurityScanConfigState {
      * If specified, service will use the authentication configuration during scanning.
      * Structure is documented below.
      */
-    readonly authentication?: pulumi.Input<inputs.compute.SecurityScanConfigAuthentication>;
+    readonly authentication?: pulumi.Input<inputs.compute.SecurityScanConfigAuthentication | undefined>;
     /**
      * The blacklist URL patterns as described in
      * https://cloud.google.com/security-scanner/docs/excluded-urls
      */
-    readonly blacklistPatterns?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly blacklistPatterns?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The user provider display name of the ScanConfig.
      */
-    readonly displayName?: pulumi.Input<string>;
+    readonly displayName?: pulumi.Input<string | undefined>;
     /**
      * Controls export of scan configurations and results to Cloud Security Command Center.
      * Default value is `ENABLED`.
      * Possible values are `ENABLED` and `DISABLED`.
      */
-    readonly exportToSecurityCommandCenter?: pulumi.Input<string>;
+    readonly exportToSecurityCommandCenter?: pulumi.Input<string | undefined>;
     /**
      * The maximum QPS during scanning. A valid value ranges from 5 to 20 inclusively.
      * Defaults to 15.
      */
-    readonly maxQps?: pulumi.Input<number>;
+    readonly maxQps?: pulumi.Input<number | undefined>;
     /**
      * A server defined name for this index. Format: 'projects/{{project}}/scanConfigs/{{server_generated_id}}'
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The schedule of the ScanConfig
      * Structure is documented below.
      */
-    readonly schedule?: pulumi.Input<inputs.compute.SecurityScanConfigSchedule>;
+    readonly schedule?: pulumi.Input<inputs.compute.SecurityScanConfigSchedule | undefined>;
     /**
      * The starting URLs from which the scanner finds site pages.
      */
-    readonly startingUrls?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly startingUrls?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Set of Cloud Platforms targeted by the scan. If empty, APP_ENGINE will be used as a default.
      * Each value may be one of `APP_ENGINE` and `COMPUTE`.
      */
-    readonly targetPlatforms?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly targetPlatforms?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Type of the user agents used for scanning
      * Default value is `CHROME_LINUX`.
      * Possible values are `USER_AGENT_UNSPECIFIED`, `CHROME_LINUX`, `CHROME_ANDROID`, and `SAFARI_IPHONE`.
      */
-    readonly userAgent?: pulumi.Input<string>;
+    readonly userAgent?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -260,12 +260,12 @@ export interface SecurityScanConfigArgs {
      * If specified, service will use the authentication configuration during scanning.
      * Structure is documented below.
      */
-    readonly authentication?: pulumi.Input<inputs.compute.SecurityScanConfigAuthentication>;
+    readonly authentication?: pulumi.Input<inputs.compute.SecurityScanConfigAuthentication | undefined>;
     /**
      * The blacklist URL patterns as described in
      * https://cloud.google.com/security-scanner/docs/excluded-urls
      */
-    readonly blacklistPatterns?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly blacklistPatterns?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The user provider display name of the ScanConfig.
      */
@@ -275,22 +275,22 @@ export interface SecurityScanConfigArgs {
      * Default value is `ENABLED`.
      * Possible values are `ENABLED` and `DISABLED`.
      */
-    readonly exportToSecurityCommandCenter?: pulumi.Input<string>;
+    readonly exportToSecurityCommandCenter?: pulumi.Input<string | undefined>;
     /**
      * The maximum QPS during scanning. A valid value ranges from 5 to 20 inclusively.
      * Defaults to 15.
      */
-    readonly maxQps?: pulumi.Input<number>;
+    readonly maxQps?: pulumi.Input<number | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The schedule of the ScanConfig
      * Structure is documented below.
      */
-    readonly schedule?: pulumi.Input<inputs.compute.SecurityScanConfigSchedule>;
+    readonly schedule?: pulumi.Input<inputs.compute.SecurityScanConfigSchedule | undefined>;
     /**
      * The starting URLs from which the scanner finds site pages.
      */
@@ -299,11 +299,11 @@ export interface SecurityScanConfigArgs {
      * Set of Cloud Platforms targeted by the scan. If empty, APP_ENGINE will be used as a default.
      * Each value may be one of `APP_ENGINE` and `COMPUTE`.
      */
-    readonly targetPlatforms?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly targetPlatforms?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Type of the user agents used for scanning
      * Default value is `CHROME_LINUX`.
      * Possible values are `USER_AGENT_UNSPECIFIED`, `CHROME_LINUX`, `CHROME_ANDROID`, and `SAFARI_IPHONE`.
      */
-    readonly userAgent?: pulumi.Input<string>;
+    readonly userAgent?: pulumi.Input<string | undefined>;
 }

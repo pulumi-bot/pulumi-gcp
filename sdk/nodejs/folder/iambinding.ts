@@ -151,15 +151,15 @@ export class IAMBinding extends pulumi.CustomResource {
  * Input properties used for looking up and filtering IAMBinding resources.
  */
 export interface IAMBindingState {
-    readonly condition?: pulumi.Input<inputs.folder.IAMBindingCondition>;
+    readonly condition?: pulumi.Input<inputs.folder.IAMBindingCondition | undefined>;
     /**
      * (Computed) The etag of the folder's IAM policy.
      */
-    readonly etag?: pulumi.Input<string>;
+    readonly etag?: pulumi.Input<string | undefined>;
     /**
      * The resource name of the folder the policy is attached to. Its format is folders/{folder_id}.
      */
-    readonly folder?: pulumi.Input<string>;
+    readonly folder?: pulumi.Input<string | undefined>;
     /**
      * An array of identities that will be granted the privilege in the `role`.
      * Each entry can have one of the following values:
@@ -169,20 +169,20 @@ export interface IAMBindingState {
      * * **domain:{domain}**: A G Suite domain (primary, instead of alias) name that represents all the users of that domain. For example, google.com or example.com.
      * * For more details on format and restrictions see https://cloud.google.com/billing/reference/rest/v1/Policy#Binding
      */
-    readonly members?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly members?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The role that should be applied. Only one
      * `gcp.folder.IAMBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
-    readonly role?: pulumi.Input<string>;
+    readonly role?: pulumi.Input<string | undefined>;
 }
 
 /**
  * The set of arguments for constructing a IAMBinding resource.
  */
 export interface IAMBindingArgs {
-    readonly condition?: pulumi.Input<inputs.folder.IAMBindingCondition>;
+    readonly condition?: pulumi.Input<inputs.folder.IAMBindingCondition | undefined>;
     /**
      * The resource name of the folder the policy is attached to. Its format is folders/{folder_id}.
      */

@@ -250,29 +250,29 @@ export interface SnapshotState {
     /**
      * Creation timestamp in RFC3339 text format.
      */
-    readonly creationTimestamp?: pulumi.Input<string>;
+    readonly creationTimestamp?: pulumi.Input<string | undefined>;
     /**
      * An optional description of this resource.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * Size of the snapshot, specified in GB.
      */
-    readonly diskSizeGb?: pulumi.Input<number>;
+    readonly diskSizeGb?: pulumi.Input<number | undefined>;
     /**
      * The fingerprint used for optimistic locking of this resource. Used internally during updates.
      */
-    readonly labelFingerprint?: pulumi.Input<string>;
+    readonly labelFingerprint?: pulumi.Input<string | undefined>;
     /**
      * Labels to apply to this Snapshot.
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * A list of public visible licenses that apply to this snapshot. This can be because the original image had licenses
      * attached (such as a Windows image). snapshotEncryptionKey nested object Encrypts the snapshot using a customer-supplied
      * encryption key.
      */
-    readonly licenses?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly licenses?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Name of the resource; provided by the client when the resource is
      * created. The name must be 1-63 characters long, and comply with
@@ -282,51 +282,51 @@ export interface SnapshotState {
      * characters must be a dash, lowercase letter, or digit, except the last
      * character, which cannot be a dash.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The URI of the created resource.
      */
-    readonly selfLink?: pulumi.Input<string>;
+    readonly selfLink?: pulumi.Input<string | undefined>;
     /**
      * The customer-supplied encryption key of the snapshot. Required if the
      * source snapshot is protected by a customer-supplied encryption key.
      * Structure is documented below.
      */
-    readonly snapshotEncryptionKey?: pulumi.Input<inputs.compute.SnapshotSnapshotEncryptionKey>;
+    readonly snapshotEncryptionKey?: pulumi.Input<inputs.compute.SnapshotSnapshotEncryptionKey | undefined>;
     /**
      * The unique identifier for the resource.
      */
-    readonly snapshotId?: pulumi.Input<number>;
+    readonly snapshotId?: pulumi.Input<number | undefined>;
     /**
      * A reference to the disk used to create this snapshot.
      */
-    readonly sourceDisk?: pulumi.Input<string>;
+    readonly sourceDisk?: pulumi.Input<string | undefined>;
     /**
      * The customer-supplied encryption key of the source snapshot. Required
      * if the source snapshot is protected by a customer-supplied encryption
      * key.
      * Structure is documented below.
      */
-    readonly sourceDiskEncryptionKey?: pulumi.Input<inputs.compute.SnapshotSourceDiskEncryptionKey>;
-    readonly sourceDiskLink?: pulumi.Input<string>;
+    readonly sourceDiskEncryptionKey?: pulumi.Input<inputs.compute.SnapshotSourceDiskEncryptionKey | undefined>;
+    readonly sourceDiskLink?: pulumi.Input<string | undefined>;
     /**
      * A size of the storage used by the snapshot. As snapshots share storage, this number is expected to change with snapshot
      * creation/deletion.
      */
-    readonly storageBytes?: pulumi.Input<number>;
+    readonly storageBytes?: pulumi.Input<number | undefined>;
     /**
      * Cloud Storage bucket storage location of the snapshot (regional or multi-regional).
      */
-    readonly storageLocations?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly storageLocations?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * A reference to the zone where the disk is hosted.
      */
-    readonly zone?: pulumi.Input<string>;
+    readonly zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -336,11 +336,11 @@ export interface SnapshotArgs {
     /**
      * An optional description of this resource.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * Labels to apply to this Snapshot.
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Name of the resource; provided by the client when the resource is
      * created. The name must be 1-63 characters long, and comply with
@@ -350,18 +350,18 @@ export interface SnapshotArgs {
      * characters must be a dash, lowercase letter, or digit, except the last
      * character, which cannot be a dash.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The customer-supplied encryption key of the snapshot. Required if the
      * source snapshot is protected by a customer-supplied encryption key.
      * Structure is documented below.
      */
-    readonly snapshotEncryptionKey?: pulumi.Input<inputs.compute.SnapshotSnapshotEncryptionKey>;
+    readonly snapshotEncryptionKey?: pulumi.Input<inputs.compute.SnapshotSnapshotEncryptionKey | undefined>;
     /**
      * A reference to the disk used to create this snapshot.
      */
@@ -372,13 +372,13 @@ export interface SnapshotArgs {
      * key.
      * Structure is documented below.
      */
-    readonly sourceDiskEncryptionKey?: pulumi.Input<inputs.compute.SnapshotSourceDiskEncryptionKey>;
+    readonly sourceDiskEncryptionKey?: pulumi.Input<inputs.compute.SnapshotSourceDiskEncryptionKey | undefined>;
     /**
      * Cloud Storage bucket storage location of the snapshot (regional or multi-regional).
      */
-    readonly storageLocations?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly storageLocations?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * A reference to the zone where the disk is hosted.
      */
-    readonly zone?: pulumi.Input<string>;
+    readonly zone?: pulumi.Input<string | undefined>;
 }

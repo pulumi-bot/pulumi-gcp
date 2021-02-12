@@ -155,27 +155,27 @@ export interface NamespaceState {
      * labels can be associated with a given resource. Label keys and values can
      * be no longer than 63 characters.
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The location for the Namespace.
      * A full list of valid locations can be found by running
      * `gcloud beta service-directory locations list`.
      */
-    readonly location?: pulumi.Input<string>;
+    readonly location?: pulumi.Input<string | undefined>;
     /**
      * The resource name for the namespace in the format 'projects/*&#47;locations/*&#47;namespaces/*'.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The Resource ID must be 1-63 characters long, including digits,
      * lowercase letters or the hyphen character.
      */
-    readonly namespaceId?: pulumi.Input<string>;
+    readonly namespaceId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -187,7 +187,7 @@ export interface NamespaceArgs {
      * labels can be associated with a given resource. Label keys and values can
      * be no longer than 63 characters.
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The location for the Namespace.
      * A full list of valid locations can be found by running
@@ -203,5 +203,5 @@ export interface NamespaceArgs {
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
 }

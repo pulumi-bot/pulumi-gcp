@@ -187,48 +187,48 @@ export class JobIAMBinding extends pulumi.CustomResource {
  * Input properties used for looking up and filtering JobIAMBinding resources.
  */
 export interface JobIAMBindingState {
-    readonly condition?: pulumi.Input<inputs.dataproc.JobIAMBindingCondition>;
+    readonly condition?: pulumi.Input<inputs.dataproc.JobIAMBindingCondition | undefined>;
     /**
      * (Computed) The etag of the jobs's IAM policy.
      */
-    readonly etag?: pulumi.Input<string>;
-    readonly jobId?: pulumi.Input<string>;
-    readonly members?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly etag?: pulumi.Input<string | undefined>;
+    readonly jobId?: pulumi.Input<string | undefined>;
+    readonly members?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The project in which the job belongs. If it
      * is not provided, the provider will use a default.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The region in which the job belongs. If it
      * is not provided, the provider will use a default.
      */
-    readonly region?: pulumi.Input<string>;
+    readonly region?: pulumi.Input<string | undefined>;
     /**
      * The role that should be applied. Only one
      * `gcp.dataproc.JobIAMBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
-    readonly role?: pulumi.Input<string>;
+    readonly role?: pulumi.Input<string | undefined>;
 }
 
 /**
  * The set of arguments for constructing a JobIAMBinding resource.
  */
 export interface JobIAMBindingArgs {
-    readonly condition?: pulumi.Input<inputs.dataproc.JobIAMBindingCondition>;
+    readonly condition?: pulumi.Input<inputs.dataproc.JobIAMBindingCondition | undefined>;
     readonly jobId: pulumi.Input<string>;
     readonly members: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The project in which the job belongs. If it
      * is not provided, the provider will use a default.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The region in which the job belongs. If it
      * is not provided, the provider will use a default.
      */
-    readonly region?: pulumi.Input<string>;
+    readonly region?: pulumi.Input<string | undefined>;
     /**
      * The role that should be applied. Only one
      * `gcp.dataproc.JobIAMBinding` can be used per role. Note that custom roles must be of the format

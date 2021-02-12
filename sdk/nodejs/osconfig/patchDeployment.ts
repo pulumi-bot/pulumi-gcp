@@ -377,42 +377,42 @@ export interface PatchDeploymentState {
      * Time the patch deployment was created. Timestamp is in RFC3339 text format. A timestamp in RFC3339 UTC "Zulu" format,
      * accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z".
      */
-    readonly createTime?: pulumi.Input<string>;
+    readonly createTime?: pulumi.Input<string | undefined>;
     /**
      * Description of the patch deployment. Length of the description is limited to 1024 characters.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * Duration of the patch. After the duration ends, the patch times out.
      * A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s"
      */
-    readonly duration?: pulumi.Input<string>;
+    readonly duration?: pulumi.Input<string | undefined>;
     /**
      * VM instances to patch.
      * Structure is documented below.
      */
-    readonly instanceFilter?: pulumi.Input<inputs.osconfig.PatchDeploymentInstanceFilter>;
+    readonly instanceFilter?: pulumi.Input<inputs.osconfig.PatchDeploymentInstanceFilter | undefined>;
     /**
      * -
      * The time the last patch job ran successfully.
      * A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z".
      */
-    readonly lastExecuteTime?: pulumi.Input<string>;
+    readonly lastExecuteTime?: pulumi.Input<string | undefined>;
     /**
      * Unique name for the patch deployment resource in a project. The patch deployment name is in the form:
      * projects/{project_id}/patchDeployments/{patchDeploymentId}.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * Schedule a one-time execution.
      * Structure is documented below.
      */
-    readonly oneTimeSchedule?: pulumi.Input<inputs.osconfig.PatchDeploymentOneTimeSchedule>;
+    readonly oneTimeSchedule?: pulumi.Input<inputs.osconfig.PatchDeploymentOneTimeSchedule | undefined>;
     /**
      * Patch configuration that is applied.
      * Structure is documented below.
      */
-    readonly patchConfig?: pulumi.Input<inputs.osconfig.PatchDeploymentPatchConfig>;
+    readonly patchConfig?: pulumi.Input<inputs.osconfig.PatchDeploymentPatchConfig | undefined>;
     /**
      * A name for the patch deployment in the project. When creating a name the following rules apply:
      * * Must contain only lowercase letters, numbers, and hyphens.
@@ -421,27 +421,27 @@ export interface PatchDeploymentState {
      * * Must end with a number or a letter.
      * * Must be unique within the project.
      */
-    readonly patchDeploymentId?: pulumi.Input<string>;
+    readonly patchDeploymentId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Schedule recurring executions.
      * Structure is documented below.
      */
-    readonly recurringSchedule?: pulumi.Input<inputs.osconfig.PatchDeploymentRecurringSchedule>;
+    readonly recurringSchedule?: pulumi.Input<inputs.osconfig.PatchDeploymentRecurringSchedule | undefined>;
     /**
      * Rollout strategy of the patch job.
      * Structure is documented below.
      */
-    readonly rollout?: pulumi.Input<inputs.osconfig.PatchDeploymentRollout>;
+    readonly rollout?: pulumi.Input<inputs.osconfig.PatchDeploymentRollout | undefined>;
     /**
      * Time the patch deployment was last updated. Timestamp is in RFC3339 text format. A timestamp in RFC3339 UTC "Zulu"
      * format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z".
      */
-    readonly updateTime?: pulumi.Input<string>;
+    readonly updateTime?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -451,12 +451,12 @@ export interface PatchDeploymentArgs {
     /**
      * Description of the patch deployment. Length of the description is limited to 1024 characters.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * Duration of the patch. After the duration ends, the patch times out.
      * A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s"
      */
-    readonly duration?: pulumi.Input<string>;
+    readonly duration?: pulumi.Input<string | undefined>;
     /**
      * VM instances to patch.
      * Structure is documented below.
@@ -466,12 +466,12 @@ export interface PatchDeploymentArgs {
      * Schedule a one-time execution.
      * Structure is documented below.
      */
-    readonly oneTimeSchedule?: pulumi.Input<inputs.osconfig.PatchDeploymentOneTimeSchedule>;
+    readonly oneTimeSchedule?: pulumi.Input<inputs.osconfig.PatchDeploymentOneTimeSchedule | undefined>;
     /**
      * Patch configuration that is applied.
      * Structure is documented below.
      */
-    readonly patchConfig?: pulumi.Input<inputs.osconfig.PatchDeploymentPatchConfig>;
+    readonly patchConfig?: pulumi.Input<inputs.osconfig.PatchDeploymentPatchConfig | undefined>;
     /**
      * A name for the patch deployment in the project. When creating a name the following rules apply:
      * * Must contain only lowercase letters, numbers, and hyphens.
@@ -485,15 +485,15 @@ export interface PatchDeploymentArgs {
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Schedule recurring executions.
      * Structure is documented below.
      */
-    readonly recurringSchedule?: pulumi.Input<inputs.osconfig.PatchDeploymentRecurringSchedule>;
+    readonly recurringSchedule?: pulumi.Input<inputs.osconfig.PatchDeploymentRecurringSchedule | undefined>;
     /**
      * Rollout strategy of the patch job.
      * Structure is documented below.
      */
-    readonly rollout?: pulumi.Input<inputs.osconfig.PatchDeploymentRollout>;
+    readonly rollout?: pulumi.Input<inputs.osconfig.PatchDeploymentRollout | undefined>;
 }

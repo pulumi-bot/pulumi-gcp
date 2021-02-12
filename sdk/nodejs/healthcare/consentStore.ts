@@ -127,16 +127,16 @@ export interface ConsentStoreState {
      * Identifies the dataset addressed by this request. Must be in the format
      * 'projects/{project}/locations/{location}/datasets/{dataset}'
      */
-    readonly dataset?: pulumi.Input<string>;
+    readonly dataset?: pulumi.Input<string | undefined>;
     /**
      * Default time to live for consents in this store. Must be at least 24 hours. Updating this field will not affect the expiration time of existing consents.
      * A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s".
      */
-    readonly defaultConsentTtl?: pulumi.Input<string>;
+    readonly defaultConsentTtl?: pulumi.Input<string | undefined>;
     /**
      * If true, [consents.patch] [google.cloud.healthcare.v1beta1.consent.UpdateConsent] creates the consent if it does not already exist.
      */
-    readonly enableConsentCreateOnUpdate?: pulumi.Input<boolean>;
+    readonly enableConsentCreateOnUpdate?: pulumi.Input<boolean | undefined>;
     /**
      * User-supplied key-value pairs used to organize Consent stores.
      * Label keys must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must
@@ -147,12 +147,12 @@ export interface ConsentStoreState {
      * An object containing a list of "key": value pairs.
      * Example: { "name": "wrench", "mass": "1.3kg", "count": "3" }.
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The name of this ConsentStore, for example:
      * "consent1"
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -168,11 +168,11 @@ export interface ConsentStoreArgs {
      * Default time to live for consents in this store. Must be at least 24 hours. Updating this field will not affect the expiration time of existing consents.
      * A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s".
      */
-    readonly defaultConsentTtl?: pulumi.Input<string>;
+    readonly defaultConsentTtl?: pulumi.Input<string | undefined>;
     /**
      * If true, [consents.patch] [google.cloud.healthcare.v1beta1.consent.UpdateConsent] creates the consent if it does not already exist.
      */
-    readonly enableConsentCreateOnUpdate?: pulumi.Input<boolean>;
+    readonly enableConsentCreateOnUpdate?: pulumi.Input<boolean | undefined>;
     /**
      * User-supplied key-value pairs used to organize Consent stores.
      * Label keys must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must
@@ -183,10 +183,10 @@ export interface ConsentStoreArgs {
      * An object containing a list of "key": value pairs.
      * Example: { "name": "wrench", "mass": "1.3kg", "count": "3" }.
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The name of this ConsentStore, for example:
      * "consent1"
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
 }

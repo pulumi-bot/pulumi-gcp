@@ -284,29 +284,29 @@ export interface AddressState {
      * address types. The IP address must be inside the specified subnetwork,
      * if any.
      */
-    readonly address?: pulumi.Input<string>;
+    readonly address?: pulumi.Input<string | undefined>;
     /**
      * The type of address to reserve.
      * Default value is `EXTERNAL`.
      * Possible values are `INTERNAL` and `EXTERNAL`.
      */
-    readonly addressType?: pulumi.Input<string>;
+    readonly addressType?: pulumi.Input<string | undefined>;
     /**
      * Creation timestamp in RFC3339 text format.
      */
-    readonly creationTimestamp?: pulumi.Input<string>;
+    readonly creationTimestamp?: pulumi.Input<string | undefined>;
     /**
      * An optional description of this resource.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * The fingerprint used for optimistic locking of this resource. Used internally during updates.
      */
-    readonly labelFingerprint?: pulumi.Input<string>;
+    readonly labelFingerprint?: pulumi.Input<string | undefined>;
     /**
      * Labels to apply to this address.  A list of key->value pairs.
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Name of the resource. The name must be 1-63 characters long, and
      * comply with RFC1035. Specifically, the name must be 1-63 characters
@@ -315,18 +315,18 @@ export interface AddressState {
      * following characters must be a dash, lowercase letter, or digit,
      * except the last character, which cannot be a dash.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The networking tier used for configuring this address. If this field is not
      * specified, it is assumed to be PREMIUM.
      * Possible values are `PREMIUM` and `STANDARD`.
      */
-    readonly networkTier?: pulumi.Input<string>;
+    readonly networkTier?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The purpose of this resource, which can be one of the following values:
      * * GCE_ENDPOINT for addresses that are used by VM instances, alias IP ranges, internal load balancers, and similar resources.
@@ -335,27 +335,27 @@ export interface AddressState {
      * This should only be set when using an Internal address.
      * Possible values are `GCE_ENDPOINT`, `VPC_PEERING`, and `SHARED_LOADBALANCER_VIP`.
      */
-    readonly purpose?: pulumi.Input<string>;
+    readonly purpose?: pulumi.Input<string | undefined>;
     /**
      * The Region in which the created address should reside.
      * If it is not provided, the provider region is used.
      */
-    readonly region?: pulumi.Input<string>;
+    readonly region?: pulumi.Input<string | undefined>;
     /**
      * The URI of the created resource.
      */
-    readonly selfLink?: pulumi.Input<string>;
+    readonly selfLink?: pulumi.Input<string | undefined>;
     /**
      * The URL of the subnetwork in which to reserve the address. If an IP
      * address is specified, it must be within the subnetwork's IP range.
      * This field can only be used with INTERNAL type with
      * GCE_ENDPOINT/DNS_RESOLVER purposes.
      */
-    readonly subnetwork?: pulumi.Input<string>;
+    readonly subnetwork?: pulumi.Input<string | undefined>;
     /**
      * The URLs of the resources that are using this address.
      */
-    readonly users?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly users?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 /**
@@ -368,21 +368,21 @@ export interface AddressArgs {
      * address types. The IP address must be inside the specified subnetwork,
      * if any.
      */
-    readonly address?: pulumi.Input<string>;
+    readonly address?: pulumi.Input<string | undefined>;
     /**
      * The type of address to reserve.
      * Default value is `EXTERNAL`.
      * Possible values are `INTERNAL` and `EXTERNAL`.
      */
-    readonly addressType?: pulumi.Input<string>;
+    readonly addressType?: pulumi.Input<string | undefined>;
     /**
      * An optional description of this resource.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * Labels to apply to this address.  A list of key->value pairs.
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Name of the resource. The name must be 1-63 characters long, and
      * comply with RFC1035. Specifically, the name must be 1-63 characters
@@ -391,18 +391,18 @@ export interface AddressArgs {
      * following characters must be a dash, lowercase letter, or digit,
      * except the last character, which cannot be a dash.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The networking tier used for configuring this address. If this field is not
      * specified, it is assumed to be PREMIUM.
      * Possible values are `PREMIUM` and `STANDARD`.
      */
-    readonly networkTier?: pulumi.Input<string>;
+    readonly networkTier?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The purpose of this resource, which can be one of the following values:
      * * GCE_ENDPOINT for addresses that are used by VM instances, alias IP ranges, internal load balancers, and similar resources.
@@ -411,17 +411,17 @@ export interface AddressArgs {
      * This should only be set when using an Internal address.
      * Possible values are `GCE_ENDPOINT`, `VPC_PEERING`, and `SHARED_LOADBALANCER_VIP`.
      */
-    readonly purpose?: pulumi.Input<string>;
+    readonly purpose?: pulumi.Input<string | undefined>;
     /**
      * The Region in which the created address should reside.
      * If it is not provided, the provider region is used.
      */
-    readonly region?: pulumi.Input<string>;
+    readonly region?: pulumi.Input<string | undefined>;
     /**
      * The URL of the subnetwork in which to reserve the address. If an IP
      * address is specified, it must be within the subnetwork's IP range.
      * This field can only be used with INTERNAL type with
      * GCE_ENDPOINT/DNS_RESOLVER purposes.
      */
-    readonly subnetwork?: pulumi.Input<string>;
+    readonly subnetwork?: pulumi.Input<string | undefined>;
 }

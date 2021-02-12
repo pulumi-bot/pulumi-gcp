@@ -693,7 +693,7 @@ export interface URLMapState {
     /**
      * Creation timestamp in RFC3339 text format.
      */
-    readonly creationTimestamp?: pulumi.Input<string>;
+    readonly creationTimestamp?: pulumi.Input<string | undefined>;
     /**
      * defaultRouteAction takes effect when none of the pathRules or routeRules match. The load balancer performs
      * advanced routing actions like URL rewrites, header transformations, etc. prior to forwarding the request
@@ -702,26 +702,26 @@ export interface URLMapState {
      * Only one of defaultRouteAction or defaultUrlRedirect must be set.
      * Structure is documented below.
      */
-    readonly defaultRouteAction?: pulumi.Input<inputs.compute.URLMapDefaultRouteAction>;
+    readonly defaultRouteAction?: pulumi.Input<inputs.compute.URLMapDefaultRouteAction | undefined>;
     /**
      * The backend service or backend bucket to use when none of the given paths match.
      */
-    readonly defaultService?: pulumi.Input<string>;
+    readonly defaultService?: pulumi.Input<string | undefined>;
     /**
      * When none of the specified hostRules match, the request is redirected to a URL specified
      * by defaultUrlRedirect. If defaultUrlRedirect is specified, defaultService or
      * defaultRouteAction must not be set.
      * Structure is documented below.
      */
-    readonly defaultUrlRedirect?: pulumi.Input<inputs.compute.URLMapDefaultUrlRedirect>;
+    readonly defaultUrlRedirect?: pulumi.Input<inputs.compute.URLMapDefaultUrlRedirect | undefined>;
     /**
      * Description of this test case.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking.
      */
-    readonly fingerprint?: pulumi.Input<string>;
+    readonly fingerprint?: pulumi.Input<string | undefined>;
     /**
      * Specifies changes to request and response headers that need to take effect for
      * the selected backendService.
@@ -729,42 +729,42 @@ export interface URLMapState {
      * HttpRouteRule, PathMatcher and UrlMap.
      * Structure is documented below.
      */
-    readonly headerAction?: pulumi.Input<inputs.compute.URLMapHeaderAction>;
+    readonly headerAction?: pulumi.Input<inputs.compute.URLMapHeaderAction | undefined>;
     /**
      * The list of HostRules to use against the URL.
      * Structure is documented below.
      */
-    readonly hostRules?: pulumi.Input<pulumi.Input<inputs.compute.URLMapHostRule>[]>;
+    readonly hostRules?: pulumi.Input<pulumi.Input<inputs.compute.URLMapHostRule>[] | undefined>;
     /**
      * The unique identifier for the resource.
      */
-    readonly mapId?: pulumi.Input<number>;
+    readonly mapId?: pulumi.Input<number | undefined>;
     /**
      * The name of the query parameter to match. The query parameter must exist in the
      * request, in the absence of which the request match fails.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The name of the PathMatcher to use to match the path portion of the URL if the
      * hostRule matches the URL's host portion.
      */
-    readonly pathMatchers?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcher>[]>;
+    readonly pathMatchers?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcher>[] | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The URI of the created resource.
      */
-    readonly selfLink?: pulumi.Input<string>;
+    readonly selfLink?: pulumi.Input<string | undefined>;
     /**
      * The list of expected URL mapping tests. Request to update this UrlMap will
      * succeed only if all of the test cases pass. You can specify a maximum of 100
      * tests per UrlMap.
      * Structure is documented below.
      */
-    readonly tests?: pulumi.Input<pulumi.Input<inputs.compute.URLMapTest>[]>;
+    readonly tests?: pulumi.Input<pulumi.Input<inputs.compute.URLMapTest>[] | undefined>;
 }
 
 /**
@@ -779,22 +779,22 @@ export interface URLMapArgs {
      * Only one of defaultRouteAction or defaultUrlRedirect must be set.
      * Structure is documented below.
      */
-    readonly defaultRouteAction?: pulumi.Input<inputs.compute.URLMapDefaultRouteAction>;
+    readonly defaultRouteAction?: pulumi.Input<inputs.compute.URLMapDefaultRouteAction | undefined>;
     /**
      * The backend service or backend bucket to use when none of the given paths match.
      */
-    readonly defaultService?: pulumi.Input<string>;
+    readonly defaultService?: pulumi.Input<string | undefined>;
     /**
      * When none of the specified hostRules match, the request is redirected to a URL specified
      * by defaultUrlRedirect. If defaultUrlRedirect is specified, defaultService or
      * defaultRouteAction must not be set.
      * Structure is documented below.
      */
-    readonly defaultUrlRedirect?: pulumi.Input<inputs.compute.URLMapDefaultUrlRedirect>;
+    readonly defaultUrlRedirect?: pulumi.Input<inputs.compute.URLMapDefaultUrlRedirect | undefined>;
     /**
      * Description of this test case.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * Specifies changes to request and response headers that need to take effect for
      * the selected backendService.
@@ -802,32 +802,32 @@ export interface URLMapArgs {
      * HttpRouteRule, PathMatcher and UrlMap.
      * Structure is documented below.
      */
-    readonly headerAction?: pulumi.Input<inputs.compute.URLMapHeaderAction>;
+    readonly headerAction?: pulumi.Input<inputs.compute.URLMapHeaderAction | undefined>;
     /**
      * The list of HostRules to use against the URL.
      * Structure is documented below.
      */
-    readonly hostRules?: pulumi.Input<pulumi.Input<inputs.compute.URLMapHostRule>[]>;
+    readonly hostRules?: pulumi.Input<pulumi.Input<inputs.compute.URLMapHostRule>[] | undefined>;
     /**
      * The name of the query parameter to match. The query parameter must exist in the
      * request, in the absence of which the request match fails.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The name of the PathMatcher to use to match the path portion of the URL if the
      * hostRule matches the URL's host portion.
      */
-    readonly pathMatchers?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcher>[]>;
+    readonly pathMatchers?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcher>[] | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The list of expected URL mapping tests. Request to update this UrlMap will
      * succeed only if all of the test cases pass. You can specify a maximum of 100
      * tests per UrlMap.
      * Structure is documented below.
      */
-    readonly tests?: pulumi.Input<pulumi.Input<inputs.compute.URLMapTest>[]>;
+    readonly tests?: pulumi.Input<pulumi.Input<inputs.compute.URLMapTest>[] | undefined>;
 }

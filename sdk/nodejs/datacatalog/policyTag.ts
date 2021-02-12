@@ -125,35 +125,35 @@ export interface PolicyTagState {
     /**
      * Resource names of child policy tags of this policy tag.
      */
-    readonly childPolicyTags?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly childPolicyTags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Description of this policy tag. It must: contain only unicode characters, tabs,
      * newlines, carriage returns and page breaks; and be at most 2000 bytes long when
      * encoded in UTF-8. If not set, defaults to an empty description.
      * If not set, defaults to an empty description.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * User defined name of this policy tag. It must: be unique within the parent
      * taxonomy; contain only unicode letters, numbers, underscores, dashes and spaces;
      * not start or end with spaces; and be at most 200 bytes long when encoded in UTF-8.
      */
-    readonly displayName?: pulumi.Input<string>;
+    readonly displayName?: pulumi.Input<string | undefined>;
     /**
      * Resource name of this policy tag, whose format is:
      * "projects/{project}/locations/{region}/taxonomies/{taxonomy}/policyTags/{policytag}"
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * Resource name of this policy tag's parent policy tag.
      * If empty, it means this policy tag is a top level policy tag.
      * If not set, defaults to an empty string.
      */
-    readonly parentPolicyTag?: pulumi.Input<string>;
+    readonly parentPolicyTag?: pulumi.Input<string | undefined>;
     /**
      * Taxonomy the policy tag is associated with
      */
-    readonly taxonomy?: pulumi.Input<string>;
+    readonly taxonomy?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -166,7 +166,7 @@ export interface PolicyTagArgs {
      * encoded in UTF-8. If not set, defaults to an empty description.
      * If not set, defaults to an empty description.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * User defined name of this policy tag. It must: be unique within the parent
      * taxonomy; contain only unicode letters, numbers, underscores, dashes and spaces;
@@ -178,7 +178,7 @@ export interface PolicyTagArgs {
      * If empty, it means this policy tag is a top level policy tag.
      * If not set, defaults to an empty string.
      */
-    readonly parentPolicyTag?: pulumi.Input<string>;
+    readonly parentPolicyTag?: pulumi.Input<string | undefined>;
     /**
      * Taxonomy the policy tag is associated with
      */

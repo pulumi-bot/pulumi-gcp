@@ -292,24 +292,24 @@ export interface RegionNetworkEndpointGroupState {
      * Only one of cloud_run, appEngine or cloudFunction may be set.
      * Structure is documented below.
      */
-    readonly appEngine?: pulumi.Input<inputs.compute.RegionNetworkEndpointGroupAppEngine>;
+    readonly appEngine?: pulumi.Input<inputs.compute.RegionNetworkEndpointGroupAppEngine | undefined>;
     /**
      * Only valid when networkEndpointType is "SERVERLESS".
      * Only one of cloud_run, appEngine or cloudFunction may be set.
      * Structure is documented below.
      */
-    readonly cloudFunction?: pulumi.Input<inputs.compute.RegionNetworkEndpointGroupCloudFunction>;
+    readonly cloudFunction?: pulumi.Input<inputs.compute.RegionNetworkEndpointGroupCloudFunction | undefined>;
     /**
      * Only valid when networkEndpointType is "SERVERLESS".
      * Only one of cloud_run, appEngine or cloudFunction may be set.
      * Structure is documented below.
      */
-    readonly cloudRun?: pulumi.Input<inputs.compute.RegionNetworkEndpointGroupCloudRun>;
+    readonly cloudRun?: pulumi.Input<inputs.compute.RegionNetworkEndpointGroupCloudRun | undefined>;
     /**
      * An optional description of this resource. Provide this property when
      * you create the resource.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * Name of the resource; provided by the client when the resource is
      * created. The name must be 1-63 characters long, and comply with
@@ -319,26 +319,26 @@ export interface RegionNetworkEndpointGroupState {
      * characters must be a dash, lowercase letter, or digit, except the last
      * character, which cannot be a dash.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * Type of network endpoints in this network endpoint group. Defaults to SERVERLESS
      * Default value is `SERVERLESS`.
      * Possible values are `SERVERLESS`.
      */
-    readonly networkEndpointType?: pulumi.Input<string>;
+    readonly networkEndpointType?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * A reference to the region where the Serverless NEGs Reside.
      */
-    readonly region?: pulumi.Input<string>;
+    readonly region?: pulumi.Input<string | undefined>;
     /**
      * The URI of the created resource.
      */
-    readonly selfLink?: pulumi.Input<string>;
+    readonly selfLink?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -350,24 +350,24 @@ export interface RegionNetworkEndpointGroupArgs {
      * Only one of cloud_run, appEngine or cloudFunction may be set.
      * Structure is documented below.
      */
-    readonly appEngine?: pulumi.Input<inputs.compute.RegionNetworkEndpointGroupAppEngine>;
+    readonly appEngine?: pulumi.Input<inputs.compute.RegionNetworkEndpointGroupAppEngine | undefined>;
     /**
      * Only valid when networkEndpointType is "SERVERLESS".
      * Only one of cloud_run, appEngine or cloudFunction may be set.
      * Structure is documented below.
      */
-    readonly cloudFunction?: pulumi.Input<inputs.compute.RegionNetworkEndpointGroupCloudFunction>;
+    readonly cloudFunction?: pulumi.Input<inputs.compute.RegionNetworkEndpointGroupCloudFunction | undefined>;
     /**
      * Only valid when networkEndpointType is "SERVERLESS".
      * Only one of cloud_run, appEngine or cloudFunction may be set.
      * Structure is documented below.
      */
-    readonly cloudRun?: pulumi.Input<inputs.compute.RegionNetworkEndpointGroupCloudRun>;
+    readonly cloudRun?: pulumi.Input<inputs.compute.RegionNetworkEndpointGroupCloudRun | undefined>;
     /**
      * An optional description of this resource. Provide this property when
      * you create the resource.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * Name of the resource; provided by the client when the resource is
      * created. The name must be 1-63 characters long, and comply with
@@ -377,18 +377,18 @@ export interface RegionNetworkEndpointGroupArgs {
      * characters must be a dash, lowercase letter, or digit, except the last
      * character, which cannot be a dash.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * Type of network endpoints in this network endpoint group. Defaults to SERVERLESS
      * Default value is `SERVERLESS`.
      * Possible values are `SERVERLESS`.
      */
-    readonly networkEndpointType?: pulumi.Input<string>;
+    readonly networkEndpointType?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * A reference to the region where the Serverless NEGs Reside.
      */

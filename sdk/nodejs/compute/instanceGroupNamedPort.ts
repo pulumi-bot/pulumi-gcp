@@ -171,25 +171,25 @@ export interface InstanceGroupNamedPortState {
     /**
      * The name of the instance group.
      */
-    readonly group?: pulumi.Input<string>;
+    readonly group?: pulumi.Input<string | undefined>;
     /**
      * The name for this named port. The name must be 1-63 characters
      * long, and comply with RFC1035.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The port number, which can be a value between 1 and 65535.
      */
-    readonly port?: pulumi.Input<number>;
+    readonly port?: pulumi.Input<number | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The zone of the instance group.
      */
-    readonly zone?: pulumi.Input<string>;
+    readonly zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -204,7 +204,7 @@ export interface InstanceGroupNamedPortArgs {
      * The name for this named port. The name must be 1-63 characters
      * long, and comply with RFC1035.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The port number, which can be a value between 1 and 65535.
      */
@@ -213,9 +213,9 @@ export interface InstanceGroupNamedPortArgs {
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The zone of the instance group.
      */
-    readonly zone?: pulumi.Input<string>;
+    readonly zone?: pulumi.Input<string | undefined>;
 }

@@ -96,15 +96,15 @@ export interface UsageExportBucketState {
     /**
      * The bucket to store reports in.
      */
-    readonly bucketName?: pulumi.Input<string>;
+    readonly bucketName?: pulumi.Input<string | undefined>;
     /**
      * A prefix for the reports, for instance, the project name.
      */
-    readonly prefix?: pulumi.Input<string>;
+    readonly prefix?: pulumi.Input<string | undefined>;
     /**
      * The project to set the export bucket on. If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -118,9 +118,9 @@ export interface UsageExportBucketArgs {
     /**
      * A prefix for the reports, for instance, the project name.
      */
-    readonly prefix?: pulumi.Input<string>;
+    readonly prefix?: pulumi.Input<string | undefined>;
     /**
      * The project to set the export bucket on. If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
 }

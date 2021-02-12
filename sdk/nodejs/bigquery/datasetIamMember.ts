@@ -195,36 +195,36 @@ export class DatasetIamMember extends pulumi.CustomResource {
  * Input properties used for looking up and filtering DatasetIamMember resources.
  */
 export interface DatasetIamMemberState {
-    readonly condition?: pulumi.Input<inputs.bigquery.DatasetIamMemberCondition>;
+    readonly condition?: pulumi.Input<inputs.bigquery.DatasetIamMemberCondition | undefined>;
     /**
      * The dataset ID.
      */
-    readonly datasetId?: pulumi.Input<string>;
+    readonly datasetId?: pulumi.Input<string | undefined>;
     /**
      * (Computed) The etag of the dataset's IAM policy.
      */
-    readonly etag?: pulumi.Input<string>;
-    readonly member?: pulumi.Input<string>;
-    readonly project?: pulumi.Input<string>;
+    readonly etag?: pulumi.Input<string | undefined>;
+    readonly member?: pulumi.Input<string | undefined>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The role that should be applied. Only one
      * `gcp.bigquery.DatasetIamBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
-    readonly role?: pulumi.Input<string>;
+    readonly role?: pulumi.Input<string | undefined>;
 }
 
 /**
  * The set of arguments for constructing a DatasetIamMember resource.
  */
 export interface DatasetIamMemberArgs {
-    readonly condition?: pulumi.Input<inputs.bigquery.DatasetIamMemberCondition>;
+    readonly condition?: pulumi.Input<inputs.bigquery.DatasetIamMemberCondition | undefined>;
     /**
      * The dataset ID.
      */
     readonly datasetId: pulumi.Input<string>;
     readonly member: pulumi.Input<string>;
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The role that should be applied. Only one
      * `gcp.bigquery.DatasetIamBinding` can be used per role. Note that custom roles must be of the format

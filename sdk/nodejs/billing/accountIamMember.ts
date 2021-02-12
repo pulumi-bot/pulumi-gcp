@@ -88,11 +88,11 @@ export class AccountIamMember extends pulumi.CustomResource {
  * Input properties used for looking up and filtering AccountIamMember resources.
  */
 export interface AccountIamMemberState {
-    readonly billingAccountId?: pulumi.Input<string>;
-    readonly condition?: pulumi.Input<inputs.billing.AccountIamMemberCondition>;
-    readonly etag?: pulumi.Input<string>;
-    readonly member?: pulumi.Input<string>;
-    readonly role?: pulumi.Input<string>;
+    readonly billingAccountId?: pulumi.Input<string | undefined>;
+    readonly condition?: pulumi.Input<inputs.billing.AccountIamMemberCondition | undefined>;
+    readonly etag?: pulumi.Input<string | undefined>;
+    readonly member?: pulumi.Input<string | undefined>;
+    readonly role?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -100,7 +100,7 @@ export interface AccountIamMemberState {
  */
 export interface AccountIamMemberArgs {
     readonly billingAccountId: pulumi.Input<string>;
-    readonly condition?: pulumi.Input<inputs.billing.AccountIamMemberCondition>;
+    readonly condition?: pulumi.Input<inputs.billing.AccountIamMemberCondition | undefined>;
     readonly member: pulumi.Input<string>;
     readonly role: pulumi.Input<string>;
 }

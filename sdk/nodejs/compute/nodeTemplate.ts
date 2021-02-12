@@ -213,29 +213,29 @@ export interface NodeTemplateState {
      * Default value is `NONE`.
      * Possible values are `ENABLED` and `NONE`.
      */
-    readonly cpuOvercommitType?: pulumi.Input<string>;
+    readonly cpuOvercommitType?: pulumi.Input<string | undefined>;
     /**
      * Creation timestamp in RFC3339 text format.
      */
-    readonly creationTimestamp?: pulumi.Input<string>;
+    readonly creationTimestamp?: pulumi.Input<string | undefined>;
     /**
      * An optional textual description of the resource.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * Name of the resource.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * Labels to use for node affinity, which will be used in
      * instance scheduling.
      */
-    readonly nodeAffinityLabels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly nodeAffinityLabels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Node type to use for nodes group that are created from this template.
      * Only one of nodeTypeFlexibility and nodeType can be specified.
      */
-    readonly nodeType?: pulumi.Input<string>;
+    readonly nodeType?: pulumi.Input<string | undefined>;
     /**
      * Flexible properties for the desired node type. Node groups that
      * use this node template will create nodes of a type that matches
@@ -243,27 +243,27 @@ export interface NodeTemplateState {
      * be specified.
      * Structure is documented below.
      */
-    readonly nodeTypeFlexibility?: pulumi.Input<inputs.compute.NodeTemplateNodeTypeFlexibility>;
+    readonly nodeTypeFlexibility?: pulumi.Input<inputs.compute.NodeTemplateNodeTypeFlexibility | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Region where nodes using the node template will be created.
      * If it is not provided, the provider region is used.
      */
-    readonly region?: pulumi.Input<string>;
+    readonly region?: pulumi.Input<string | undefined>;
     /**
      * The URI of the created resource.
      */
-    readonly selfLink?: pulumi.Input<string>;
+    readonly selfLink?: pulumi.Input<string | undefined>;
     /**
      * The server binding policy for nodes using this template. Determines
      * where the nodes should restart following a maintenance event.
      * Structure is documented below.
      */
-    readonly serverBinding?: pulumi.Input<inputs.compute.NodeTemplateServerBinding>;
+    readonly serverBinding?: pulumi.Input<inputs.compute.NodeTemplateServerBinding | undefined>;
 }
 
 /**
@@ -275,25 +275,25 @@ export interface NodeTemplateArgs {
      * Default value is `NONE`.
      * Possible values are `ENABLED` and `NONE`.
      */
-    readonly cpuOvercommitType?: pulumi.Input<string>;
+    readonly cpuOvercommitType?: pulumi.Input<string | undefined>;
     /**
      * An optional textual description of the resource.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * Name of the resource.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * Labels to use for node affinity, which will be used in
      * instance scheduling.
      */
-    readonly nodeAffinityLabels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly nodeAffinityLabels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Node type to use for nodes group that are created from this template.
      * Only one of nodeTypeFlexibility and nodeType can be specified.
      */
-    readonly nodeType?: pulumi.Input<string>;
+    readonly nodeType?: pulumi.Input<string | undefined>;
     /**
      * Flexible properties for the desired node type. Node groups that
      * use this node template will create nodes of a type that matches
@@ -301,21 +301,21 @@ export interface NodeTemplateArgs {
      * be specified.
      * Structure is documented below.
      */
-    readonly nodeTypeFlexibility?: pulumi.Input<inputs.compute.NodeTemplateNodeTypeFlexibility>;
+    readonly nodeTypeFlexibility?: pulumi.Input<inputs.compute.NodeTemplateNodeTypeFlexibility | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Region where nodes using the node template will be created.
      * If it is not provided, the provider region is used.
      */
-    readonly region?: pulumi.Input<string>;
+    readonly region?: pulumi.Input<string | undefined>;
     /**
      * The server binding policy for nodes using this template. Determines
      * where the nodes should restart following a maintenance event.
      * Structure is documented below.
      */
-    readonly serverBinding?: pulumi.Input<inputs.compute.NodeTemplateServerBinding>;
+    readonly serverBinding?: pulumi.Input<inputs.compute.NodeTemplateServerBinding | undefined>;
 }

@@ -117,16 +117,16 @@ export interface ProjectMetadataItemState {
     /**
      * The metadata key to set.
      */
-    readonly key?: pulumi.Input<string>;
+    readonly key?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs. If it
      * is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The value to set for the given metadata key.
      */
-    readonly value?: pulumi.Input<string>;
+    readonly value?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -141,7 +141,7 @@ export interface ProjectMetadataItemArgs {
      * The ID of the project in which the resource belongs. If it
      * is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The value to set for the given metadata key.
      */

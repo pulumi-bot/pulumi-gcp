@@ -342,20 +342,20 @@ export interface GuestPoliciesState {
      * [handles assignment conflicts](https://cloud.google.com/compute/docs/os-config-management/create-guest-policy#handle-conflicts).
      * Structure is documented below.
      */
-    readonly assignment?: pulumi.Input<inputs.osconfig.GuestPoliciesAssignment>;
+    readonly assignment?: pulumi.Input<inputs.osconfig.GuestPoliciesAssignment | undefined>;
     /**
      * Time this guest policy was created. A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example:
      * "2014-10-02T15:01:23.045123456Z".
      */
-    readonly createTime?: pulumi.Input<string>;
+    readonly createTime?: pulumi.Input<string | undefined>;
     /**
      * Description of the guest policy. Length of the description is limited to 1024 characters.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * The etag for this guest policy. If this is provided on update, it must match the server's etag.
      */
-    readonly etag?: pulumi.Input<string>;
+    readonly etag?: pulumi.Input<string | undefined>;
     /**
      * The logical name of the guest policy in the project with the following restrictions:
      * * Must contain only lowercase letters, numbers, and hyphens.
@@ -364,41 +364,41 @@ export interface GuestPoliciesState {
      * * Must end with a number or a letter.
      * * Must be unique within the project.
      */
-    readonly guestPolicyId?: pulumi.Input<string>;
+    readonly guestPolicyId?: pulumi.Input<string | undefined>;
     /**
      * Unique identifier for the recipe. Only one recipe with a given name is installed on an instance.
      * Names are also used to identify resources which helps to determine whether guest policies have conflicts.
      * This means that requests to create multiple recipes with the same name and version are rejected since they
      * could potentially have conflicting assignments.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * A list of package repositories to configure on the VM instance.
      * This is done before any other configs are applied so they can use these repos.
      * Package repositories are only configured if the corresponding package manager(s) are available.
      * Structure is documented below.
      */
-    readonly packageRepositories?: pulumi.Input<pulumi.Input<inputs.osconfig.GuestPoliciesPackageRepository>[]>;
+    readonly packageRepositories?: pulumi.Input<pulumi.Input<inputs.osconfig.GuestPoliciesPackageRepository>[] | undefined>;
     /**
      * The software packages to be managed by this policy.
      * Structure is documented below.
      */
-    readonly packages?: pulumi.Input<pulumi.Input<inputs.osconfig.GuestPoliciesPackage>[]>;
+    readonly packages?: pulumi.Input<pulumi.Input<inputs.osconfig.GuestPoliciesPackage>[] | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * A list of Recipes to install on the VM instance.
      * Structure is documented below.
      */
-    readonly recipes?: pulumi.Input<pulumi.Input<inputs.osconfig.GuestPoliciesRecipe>[]>;
+    readonly recipes?: pulumi.Input<pulumi.Input<inputs.osconfig.GuestPoliciesRecipe>[] | undefined>;
     /**
      * Last time this guest policy was updated. A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example:
      * "2014-10-02T15:01:23.045123456Z".
      */
-    readonly updateTime?: pulumi.Input<string>;
+    readonly updateTime?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -419,11 +419,11 @@ export interface GuestPoliciesArgs {
     /**
      * Description of the guest policy. Length of the description is limited to 1024 characters.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * The etag for this guest policy. If this is provided on update, it must match the server's etag.
      */
-    readonly etag?: pulumi.Input<string>;
+    readonly etag?: pulumi.Input<string | undefined>;
     /**
      * The logical name of the guest policy in the project with the following restrictions:
      * * Must contain only lowercase letters, numbers, and hyphens.
@@ -439,20 +439,20 @@ export interface GuestPoliciesArgs {
      * Package repositories are only configured if the corresponding package manager(s) are available.
      * Structure is documented below.
      */
-    readonly packageRepositories?: pulumi.Input<pulumi.Input<inputs.osconfig.GuestPoliciesPackageRepository>[]>;
+    readonly packageRepositories?: pulumi.Input<pulumi.Input<inputs.osconfig.GuestPoliciesPackageRepository>[] | undefined>;
     /**
      * The software packages to be managed by this policy.
      * Structure is documented below.
      */
-    readonly packages?: pulumi.Input<pulumi.Input<inputs.osconfig.GuestPoliciesPackage>[]>;
+    readonly packages?: pulumi.Input<pulumi.Input<inputs.osconfig.GuestPoliciesPackage>[] | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * A list of Recipes to install on the VM instance.
      * Structure is documented below.
      */
-    readonly recipes?: pulumi.Input<pulumi.Input<inputs.osconfig.GuestPoliciesRecipe>[]>;
+    readonly recipes?: pulumi.Input<pulumi.Input<inputs.osconfig.GuestPoliciesRecipe>[] | undefined>;
 }

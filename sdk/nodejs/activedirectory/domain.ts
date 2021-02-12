@@ -168,45 +168,45 @@ export interface DomainState {
      * The name of delegated administrator account used to perform Active Directory operations.
      * If not specified, setupadmin will be used.
      */
-    readonly admin?: pulumi.Input<string>;
+    readonly admin?: pulumi.Input<string | undefined>;
     /**
      * The full names of the Google Compute Engine networks the domain instance is connected to. The domain is only available on networks listed in authorizedNetworks.
      * If CIDR subnets overlap between networks, domain creation will fail.
      */
-    readonly authorizedNetworks?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly authorizedNetworks?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The fully qualified domain name. e.g. mydomain.myorganization.com, with the restrictions,
      * https://cloud.google.com/managed-microsoft-ad/reference/rest/v1/projects.locations.global.domains.
      */
-    readonly domainName?: pulumi.Input<string>;
+    readonly domainName?: pulumi.Input<string | undefined>;
     /**
      * The fully-qualified domain name of the exposed domain used by clients to connect to the service. Similar to what would
      * be chosen for an Active Directory set up on an internal network.
      */
-    readonly fqdn?: pulumi.Input<string>;
+    readonly fqdn?: pulumi.Input<string | undefined>;
     /**
      * Resource labels that can contain user-provided metadata
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Locations where domain needs to be provisioned. [regions][compute/docs/regions-zones/]
      * e.g. us-west1 or us-east4 Service supports up to 4 locations at once. Each location will use a /26 block.
      */
-    readonly locations?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly locations?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The unique name of the domain using the format: 'projects/{project}/locations/global/domains/{domainName}'.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The CIDR range of internal addresses that are reserved for this domain. Reserved networks must be /24 or larger.
      * Ranges must be unique and non-overlapping with existing subnets in authorizedNetworks
      */
-    readonly reservedIpRange?: pulumi.Input<string>;
+    readonly reservedIpRange?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -217,12 +217,12 @@ export interface DomainArgs {
      * The name of delegated administrator account used to perform Active Directory operations.
      * If not specified, setupadmin will be used.
      */
-    readonly admin?: pulumi.Input<string>;
+    readonly admin?: pulumi.Input<string | undefined>;
     /**
      * The full names of the Google Compute Engine networks the domain instance is connected to. The domain is only available on networks listed in authorizedNetworks.
      * If CIDR subnets overlap between networks, domain creation will fail.
      */
-    readonly authorizedNetworks?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly authorizedNetworks?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The fully qualified domain name. e.g. mydomain.myorganization.com, with the restrictions,
      * https://cloud.google.com/managed-microsoft-ad/reference/rest/v1/projects.locations.global.domains.
@@ -231,7 +231,7 @@ export interface DomainArgs {
     /**
      * Resource labels that can contain user-provided metadata
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Locations where domain needs to be provisioned. [regions][compute/docs/regions-zones/]
      * e.g. us-west1 or us-east4 Service supports up to 4 locations at once. Each location will use a /26 block.
@@ -241,7 +241,7 @@ export interface DomainArgs {
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The CIDR range of internal addresses that are reserved for this domain. Reserved networks must be /24 or larger.
      * Ranges must be unique and non-overlapping with existing subnets in authorizedNetworks

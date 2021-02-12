@@ -172,37 +172,37 @@ export interface EngineModelState {
      * prediction requests that do not specify a version.
      * Structure is documented below.
      */
-    readonly defaultVersion?: pulumi.Input<inputs.ml.EngineModelDefaultVersion>;
+    readonly defaultVersion?: pulumi.Input<inputs.ml.EngineModelDefaultVersion | undefined>;
     /**
      * The description specified for the model when it was created.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * One or more labels that you can add, to organize your models.
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The name specified for the version when it was created.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * If true, online prediction nodes send stderr and stdout streams to Stackdriver Logging
      */
-    readonly onlinePredictionConsoleLogging?: pulumi.Input<boolean>;
+    readonly onlinePredictionConsoleLogging?: pulumi.Input<boolean | undefined>;
     /**
      * If true, online prediction access logs are sent to StackDriver Logging.
      */
-    readonly onlinePredictionLogging?: pulumi.Input<boolean>;
+    readonly onlinePredictionLogging?: pulumi.Input<boolean | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The list of regions where the model is going to be deployed.
      * Currently only one region per model is supported
      */
-    readonly regions?: pulumi.Input<string>;
+    readonly regions?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -214,35 +214,35 @@ export interface EngineModelArgs {
      * prediction requests that do not specify a version.
      * Structure is documented below.
      */
-    readonly defaultVersion?: pulumi.Input<inputs.ml.EngineModelDefaultVersion>;
+    readonly defaultVersion?: pulumi.Input<inputs.ml.EngineModelDefaultVersion | undefined>;
     /**
      * The description specified for the model when it was created.
      */
-    readonly description?: pulumi.Input<string>;
+    readonly description?: pulumi.Input<string | undefined>;
     /**
      * One or more labels that you can add, to organize your models.
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The name specified for the version when it was created.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * If true, online prediction nodes send stderr and stdout streams to Stackdriver Logging
      */
-    readonly onlinePredictionConsoleLogging?: pulumi.Input<boolean>;
+    readonly onlinePredictionConsoleLogging?: pulumi.Input<boolean | undefined>;
     /**
      * If true, online prediction access logs are sent to StackDriver Logging.
      */
-    readonly onlinePredictionLogging?: pulumi.Input<boolean>;
+    readonly onlinePredictionLogging?: pulumi.Input<boolean | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * The list of regions where the model is going to be deployed.
      * Currently only one region per model is supported
      */
-    readonly regions?: pulumi.Input<string>;
+    readonly regions?: pulumi.Input<string | undefined>;
 }

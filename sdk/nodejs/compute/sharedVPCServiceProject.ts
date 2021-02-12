@@ -117,11 +117,11 @@ export interface SharedVPCServiceProjectState {
     /**
      * The ID of a host project to associate.
      */
-    readonly hostProject?: pulumi.Input<string>;
+    readonly hostProject?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project that will serve as a Shared VPC service project.
      */
-    readonly serviceProject?: pulumi.Input<string>;
+    readonly serviceProject?: pulumi.Input<string | undefined>;
 }
 
 /**

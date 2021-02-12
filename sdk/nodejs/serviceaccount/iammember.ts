@@ -253,22 +253,22 @@ export interface IAMMemberState {
      * An [IAM Condition](https://cloud.google.com/iam/docs/conditions-overview) for a given binding.
      * Structure is documented below.
      */
-    readonly condition?: pulumi.Input<inputs.serviceAccount.IAMMemberCondition>;
+    readonly condition?: pulumi.Input<inputs.serviceAccount.IAMMemberCondition | undefined>;
     /**
      * (Computed) The etag of the service account IAM policy.
      */
-    readonly etag?: pulumi.Input<string>;
-    readonly member?: pulumi.Input<string>;
+    readonly etag?: pulumi.Input<string | undefined>;
+    readonly member?: pulumi.Input<string | undefined>;
     /**
      * The role that should be applied. Only one
      * `gcp.serviceAccount.IAMBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
-    readonly role?: pulumi.Input<string>;
+    readonly role?: pulumi.Input<string | undefined>;
     /**
      * The fully-qualified name of the service account to apply policy to.
      */
-    readonly serviceAccountId?: pulumi.Input<string>;
+    readonly serviceAccountId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -279,7 +279,7 @@ export interface IAMMemberArgs {
      * An [IAM Condition](https://cloud.google.com/iam/docs/conditions-overview) for a given binding.
      * Structure is documented below.
      */
-    readonly condition?: pulumi.Input<inputs.serviceAccount.IAMMemberCondition>;
+    readonly condition?: pulumi.Input<inputs.serviceAccount.IAMMemberCondition | undefined>;
     readonly member: pulumi.Input<string>;
     /**
      * The role that should be applied. Only one

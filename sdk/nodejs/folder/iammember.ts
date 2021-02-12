@@ -88,18 +88,18 @@ export class IAMMember extends pulumi.CustomResource {
  * Input properties used for looking up and filtering IAMMember resources.
  */
 export interface IAMMemberState {
-    readonly condition?: pulumi.Input<inputs.folder.IAMMemberCondition>;
-    readonly etag?: pulumi.Input<string>;
-    readonly folder?: pulumi.Input<string>;
-    readonly member?: pulumi.Input<string>;
-    readonly role?: pulumi.Input<string>;
+    readonly condition?: pulumi.Input<inputs.folder.IAMMemberCondition | undefined>;
+    readonly etag?: pulumi.Input<string | undefined>;
+    readonly folder?: pulumi.Input<string | undefined>;
+    readonly member?: pulumi.Input<string | undefined>;
+    readonly role?: pulumi.Input<string | undefined>;
 }
 
 /**
  * The set of arguments for constructing a IAMMember resource.
  */
 export interface IAMMemberArgs {
-    readonly condition?: pulumi.Input<inputs.folder.IAMMemberCondition>;
+    readonly condition?: pulumi.Input<inputs.folder.IAMMemberCondition | undefined>;
     readonly folder: pulumi.Input<string>;
     readonly member: pulumi.Input<string>;
     readonly role: pulumi.Input<string>;

@@ -166,54 +166,54 @@ export interface KeyState {
     /**
      * Arbitrary map of values that, when changed, will trigger a new key to be generated.
      */
-    readonly keepers?: pulumi.Input<{[key: string]: any}>;
+    readonly keepers?: pulumi.Input<{[key: string]: any} | undefined>;
     /**
      * The algorithm used to generate the key. KEY_ALG_RSA_2048 is the default algorithm.
      * Valid values are listed at
      * [ServiceAccountPrivateKeyType](https://cloud.google.com/iam/reference/rest/v1/projects.serviceAccounts.keys#ServiceAccountKeyAlgorithm)
      * (only used on create)
      */
-    readonly keyAlgorithm?: pulumi.Input<string>;
+    readonly keyAlgorithm?: pulumi.Input<string | undefined>;
     /**
      * The name used for this key pair
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name?: pulumi.Input<string | undefined>;
     /**
      * The private key in JSON format, base64 encoded. This is what you normally get as a file when creating
      * service account keys through the CLI or web console. This is only populated when creating a new key.
      */
-    readonly privateKey?: pulumi.Input<string>;
+    readonly privateKey?: pulumi.Input<string | undefined>;
     /**
      * The output format of the private key. TYPE_GOOGLE_CREDENTIALS_FILE is the default output format.
      */
-    readonly privateKeyType?: pulumi.Input<string>;
+    readonly privateKeyType?: pulumi.Input<string | undefined>;
     /**
      * The public key, base64 encoded
      */
-    readonly publicKey?: pulumi.Input<string>;
+    readonly publicKey?: pulumi.Input<string | undefined>;
     /**
      * Public key data to create a service account key for given service account. The expected format for this field is a base64 encoded X509_PEM and it conflicts with `publicKeyType` and `privateKeyType`.
      */
-    readonly publicKeyData?: pulumi.Input<string>;
+    readonly publicKeyData?: pulumi.Input<string | undefined>;
     /**
      * The output format of the public key requested. TYPE_X509_PEM_FILE is the default output format.
      */
-    readonly publicKeyType?: pulumi.Input<string>;
+    readonly publicKeyType?: pulumi.Input<string | undefined>;
     /**
      * The Service account id of the Key Pair. This can be a string in the format
      * `{ACCOUNT}` or `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`, where `{ACCOUNT}` is the email address or
      * unique id of the service account. If the `{ACCOUNT}` syntax is used, the project will be inferred from the account.
      */
-    readonly serviceAccountId?: pulumi.Input<string>;
+    readonly serviceAccountId?: pulumi.Input<string | undefined>;
     /**
      * The key can be used after this timestamp. A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z".
      */
-    readonly validAfter?: pulumi.Input<string>;
+    readonly validAfter?: pulumi.Input<string | undefined>;
     /**
      * The key can be used before this timestamp.
      * A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z".
      */
-    readonly validBefore?: pulumi.Input<string>;
+    readonly validBefore?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -223,26 +223,26 @@ export interface KeyArgs {
     /**
      * Arbitrary map of values that, when changed, will trigger a new key to be generated.
      */
-    readonly keepers?: pulumi.Input<{[key: string]: any}>;
+    readonly keepers?: pulumi.Input<{[key: string]: any} | undefined>;
     /**
      * The algorithm used to generate the key. KEY_ALG_RSA_2048 is the default algorithm.
      * Valid values are listed at
      * [ServiceAccountPrivateKeyType](https://cloud.google.com/iam/reference/rest/v1/projects.serviceAccounts.keys#ServiceAccountKeyAlgorithm)
      * (only used on create)
      */
-    readonly keyAlgorithm?: pulumi.Input<string>;
+    readonly keyAlgorithm?: pulumi.Input<string | undefined>;
     /**
      * The output format of the private key. TYPE_GOOGLE_CREDENTIALS_FILE is the default output format.
      */
-    readonly privateKeyType?: pulumi.Input<string>;
+    readonly privateKeyType?: pulumi.Input<string | undefined>;
     /**
      * Public key data to create a service account key for given service account. The expected format for this field is a base64 encoded X509_PEM and it conflicts with `publicKeyType` and `privateKeyType`.
      */
-    readonly publicKeyData?: pulumi.Input<string>;
+    readonly publicKeyData?: pulumi.Input<string | undefined>;
     /**
      * The output format of the public key requested. TYPE_X509_PEM_FILE is the default output format.
      */
-    readonly publicKeyType?: pulumi.Input<string>;
+    readonly publicKeyType?: pulumi.Input<string | undefined>;
     /**
      * The Service account id of the Key Pair. This can be a string in the format
      * `{ACCOUNT}` or `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`, where `{ACCOUNT}` is the email address or

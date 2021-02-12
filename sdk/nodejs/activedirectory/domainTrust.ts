@@ -183,39 +183,39 @@ export interface DomainTrustState {
      * The fully qualified domain name. e.g. mydomain.myorganization.com, with the restrictions,
      * https://cloud.google.com/managed-microsoft-ad/reference/rest/v1/projects.locations.global.domains.
      */
-    readonly domain?: pulumi.Input<string>;
+    readonly domain?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Whether the trusted side has forest/domain wide access or selective access to an approved set of resources.
      */
-    readonly selectiveAuthentication?: pulumi.Input<boolean>;
+    readonly selectiveAuthentication?: pulumi.Input<boolean | undefined>;
     /**
      * The target DNS server IP addresses which can resolve the remote domain involved in the trust.
      */
-    readonly targetDnsIpAddresses?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly targetDnsIpAddresses?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The fully qualified target domain name which will be in trust with the current domain.
      */
-    readonly targetDomainName?: pulumi.Input<string>;
+    readonly targetDomainName?: pulumi.Input<string | undefined>;
     /**
      * The trust direction, which decides if the current domain is trusted, trusting, or both.
      * Possible values are `INBOUND`, `OUTBOUND`, and `BIDIRECTIONAL`.
      */
-    readonly trustDirection?: pulumi.Input<string>;
+    readonly trustDirection?: pulumi.Input<string | undefined>;
     /**
      * The trust secret used for the handshake with the target domain. This will not be stored.
      * **Note**: This property is sensitive and will not be displayed in the plan.
      */
-    readonly trustHandshakeSecret?: pulumi.Input<string>;
+    readonly trustHandshakeSecret?: pulumi.Input<string | undefined>;
     /**
      * The type of trust represented by the trust resource.
      * Possible values are `FOREST` and `EXTERNAL`.
      */
-    readonly trustType?: pulumi.Input<string>;
+    readonly trustType?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -231,11 +231,11 @@ export interface DomainTrustArgs {
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    readonly project?: pulumi.Input<string | undefined>;
     /**
      * Whether the trusted side has forest/domain wide access or selective access to an approved set of resources.
      */
-    readonly selectiveAuthentication?: pulumi.Input<boolean>;
+    readonly selectiveAuthentication?: pulumi.Input<boolean | undefined>;
     /**
      * The target DNS server IP addresses which can resolve the remote domain involved in the trust.
      */
