@@ -151,7 +151,53 @@ func (o ProviderBatchingPtrOutput) SendAfter() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type AnyMapArray []AnyMapInput
+
+func (AnyMapArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*AnyMap)(nil)).Elem()
+}
+
+func (i AnyMapArray) ToAnyMapArrayOutput() AnyMapArrayOutput {
+	return i.ToAnyMapArrayOutputWithContext(context.Background())
+}
+
+func (i AnyMapArray) ToAnyMapArrayOutputWithContext(ctx context.Context) AnyMapArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AnyMapArrayOutput)
+}
+
+type AnyMapArrayOutput struct{ *pulumi.OutputState }
+
+func (AnyMapArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AnyMap)(nil)).Elem()
+}
+
+func (o AnyMapArrayOutput) ToAnyMapArrayOutput() AnyMapArrayOutput {
+	return o
+}
+
+func (o AnyMapArrayOutput) ToAnyMapArrayOutputWithContext(ctx context.Context) AnyMapArrayOutput {
+	return o
+}
+
+func (o AnyMapArrayOutput) Index(i pulumi.IntInput) AnyMapOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AnyMap {
+		return vs[0].([]AnyMap)[vs[1].(int)]
+	}).(AnyMapOutput)
+}
+
+// AnyMapArrayInput is an input type that accepts AnyMapArray and AnyMapArrayOutput values.
+// You can construct a concrete instance of `AnyMapArrayInput` via:
+//
+//          AnyMapArray{ AnyMapArgs{...} }
+type AnyMapArrayInput interface {
+	pulumi.Input
+
+	ToAnyMapArrayOutput() AnyMapArrayOutput
+	ToAnyMapArrayOutputWithContext(context.Context) AnyMapArrayOutput
+}
+
 func init() {
 	pulumi.RegisterOutputType(ProviderBatchingOutput{})
 	pulumi.RegisterOutputType(ProviderBatchingPtrOutput{})
+	pulumi.RegisterOutputType(AnyMapArrayOutput{})
 }
