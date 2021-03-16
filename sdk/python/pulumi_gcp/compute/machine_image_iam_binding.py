@@ -5,15 +5,104 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
-__all__ = ['MachineImageIamBinding']
+__all__ = ['MachineImageIamBindingArgs', 'MachineImageIamBinding']
+
+@pulumi.input_type
+class MachineImageIamBindingArgs:
+    def __init__(__self__, *,
+                 machine_image: pulumi.Input[str],
+                 members: pulumi.Input[Sequence[pulumi.Input[str]]],
+                 role: pulumi.Input[str],
+                 condition: Optional[pulumi.Input['MachineImageIamBindingConditionArgs']] = None,
+                 project: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a MachineImageIamBinding resource.
+        :param pulumi.Input[str] machine_image: Used to find the parent resource to bind the IAM policy to
+        :param pulumi.Input[str] role: The role that should be applied. Only one
+               `compute.MachineImageIamBinding` can be used per role. Note that custom roles must be of the format
+               `[projects|organizations]/{parent-name}/roles/{role-name}`.
+        :param pulumi.Input['MachineImageIamBindingConditionArgs'] condition: ) An [IAM Condition](https://cloud.google.com/iam/docs/conditions-overview) for a given binding.
+               Structure is documented below.
+        :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
+               If it is not provided, the project will be parsed from the identifier of the parent resource. If no project is provided in the parent identifier and no project is specified, the provider project is used.
+        """
+        pulumi.set(__self__, "machine_image", machine_image)
+        pulumi.set(__self__, "members", members)
+        pulumi.set(__self__, "role", role)
+        if condition is not None:
+            pulumi.set(__self__, "condition", condition)
+        if project is not None:
+            pulumi.set(__self__, "project", project)
+
+    @property
+    @pulumi.getter(name="machineImage")
+    def machine_image(self) -> pulumi.Input[str]:
+        """
+        Used to find the parent resource to bind the IAM policy to
+        """
+        return pulumi.get(self, "machine_image")
+
+    @machine_image.setter
+    def machine_image(self, value: pulumi.Input[str]):
+        pulumi.set(self, "machine_image", value)
+
+    @property
+    @pulumi.getter
+    def members(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        return pulumi.get(self, "members")
+
+    @members.setter
+    def members(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        pulumi.set(self, "members", value)
+
+    @property
+    @pulumi.getter
+    def role(self) -> pulumi.Input[str]:
+        """
+        The role that should be applied. Only one
+        `compute.MachineImageIamBinding` can be used per role. Note that custom roles must be of the format
+        `[projects|organizations]/{parent-name}/roles/{role-name}`.
+        """
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: pulumi.Input[str]):
+        pulumi.set(self, "role", value)
+
+    @property
+    @pulumi.getter
+    def condition(self) -> Optional[pulumi.Input['MachineImageIamBindingConditionArgs']]:
+        """
+        ) An [IAM Condition](https://cloud.google.com/iam/docs/conditions-overview) for a given binding.
+        Structure is documented below.
+        """
+        return pulumi.get(self, "condition")
+
+    @condition.setter
+    def condition(self, value: Optional[pulumi.Input['MachineImageIamBindingConditionArgs']]):
+        pulumi.set(self, "condition", value)
+
+    @property
+    @pulumi.getter
+    def project(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the project in which the resource belongs.
+        If it is not provided, the project will be parsed from the identifier of the parent resource. If no project is provided in the parent identifier and no project is specified, the provider project is used.
+        """
+        return pulumi.get(self, "project")
+
+    @project.setter
+    def project(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project", value)
 
 
 class MachineImageIamBinding(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -61,6 +150,60 @@ class MachineImageIamBinding(pulumi.CustomResource):
                `compute.MachineImageIamBinding` can be used per role. Note that custom roles must be of the format
                `[projects|organizations]/{parent-name}/roles/{role-name}`.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: MachineImageIamBindingArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        ## Import
+
+        For all import syntaxes, the "resource in question" can take any of the following forms* projects/{{project}}/global/machineImages/{{name}} * {{project}}/{{name}} * {{name}} Any variables not passed in the import command will be taken from the provider configuration. Compute Engine machineimage IAM resources can be imported using the resource identifiers, role, and member. IAM member imports use space-delimited identifiersthe resource in question, the role, and the member identity, e.g.
+
+        ```sh
+         $ pulumi import gcp:compute/machineImageIamBinding:MachineImageIamBinding editor "projects/{{project}}/global/machineImages/{{machine_image}} roles/compute.admin user:jane@example.com"
+        ```
+
+         IAM binding imports use space-delimited identifiersthe resource in question and the role, e.g.
+
+        ```sh
+         $ pulumi import gcp:compute/machineImageIamBinding:MachineImageIamBinding editor "projects/{{project}}/global/machineImages/{{machine_image}} roles/compute.admin"
+        ```
+
+         IAM policy imports use the identifier of the resource in question, e.g.
+
+        ```sh
+         $ pulumi import gcp:compute/machineImageIamBinding:MachineImageIamBinding editor projects/{{project}}/global/machineImages/{{machine_image}}
+        ```
+
+         -> **Custom Roles**If you're importing a IAM resource with a custom role, make sure to use the
+
+        full name of the custom role, e.g. `[projects/my-project|organizations/my-org]/roles/my-custom-role`.
+
+        :param str resource_name: The name of the resource.
+        :param MachineImageIamBindingArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(MachineImageIamBindingArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 condition: Optional[pulumi.Input[pulumi.InputType['MachineImageIamBindingConditionArgs']]] = None,
+                 machine_image: Optional[pulumi.Input[str]] = None,
+                 members: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 role: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

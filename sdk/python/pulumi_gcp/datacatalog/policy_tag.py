@@ -5,13 +5,97 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities, _tables
 
-__all__ = ['PolicyTag']
+__all__ = ['PolicyTagArgs', 'PolicyTag']
+
+@pulumi.input_type
+class PolicyTagArgs:
+    def __init__(__self__, *,
+                 display_name: pulumi.Input[str],
+                 taxonomy: pulumi.Input[str],
+                 description: Optional[pulumi.Input[str]] = None,
+                 parent_policy_tag: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a PolicyTag resource.
+        :param pulumi.Input[str] display_name: User defined name of this policy tag. It must: be unique within the parent
+               taxonomy; contain only unicode letters, numbers, underscores, dashes and spaces;
+               not start or end with spaces; and be at most 200 bytes long when encoded in UTF-8.
+        :param pulumi.Input[str] taxonomy: Taxonomy the policy tag is associated with
+        :param pulumi.Input[str] description: Description of this policy tag. It must: contain only unicode characters, tabs,
+               newlines, carriage returns and page breaks; and be at most 2000 bytes long when
+               encoded in UTF-8. If not set, defaults to an empty description.
+               If not set, defaults to an empty description.
+        :param pulumi.Input[str] parent_policy_tag: Resource name of this policy tag's parent policy tag.
+               If empty, it means this policy tag is a top level policy tag.
+               If not set, defaults to an empty string.
+        """
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "taxonomy", taxonomy)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if parent_policy_tag is not None:
+            pulumi.set(__self__, "parent_policy_tag", parent_policy_tag)
+
+    @property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> pulumi.Input[str]:
+        """
+        User defined name of this policy tag. It must: be unique within the parent
+        taxonomy; contain only unicode letters, numbers, underscores, dashes and spaces;
+        not start or end with spaces; and be at most 200 bytes long when encoded in UTF-8.
+        """
+        return pulumi.get(self, "display_name")
+
+    @display_name.setter
+    def display_name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "display_name", value)
+
+    @property
+    @pulumi.getter
+    def taxonomy(self) -> pulumi.Input[str]:
+        """
+        Taxonomy the policy tag is associated with
+        """
+        return pulumi.get(self, "taxonomy")
+
+    @taxonomy.setter
+    def taxonomy(self, value: pulumi.Input[str]):
+        pulumi.set(self, "taxonomy", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of this policy tag. It must: contain only unicode characters, tabs,
+        newlines, carriage returns and page breaks; and be at most 2000 bytes long when
+        encoded in UTF-8. If not set, defaults to an empty description.
+        If not set, defaults to an empty description.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="parentPolicyTag")
+    def parent_policy_tag(self) -> Optional[pulumi.Input[str]]:
+        """
+        Resource name of this policy tag's parent policy tag.
+        If empty, it means this policy tag is a top level policy tag.
+        If not set, defaults to an empty string.
+        """
+        return pulumi.get(self, "parent_policy_tag")
+
+    @parent_policy_tag.setter
+    def parent_policy_tag(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "parent_policy_tag", value)
 
 
 class PolicyTag(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -45,6 +129,43 @@ class PolicyTag(pulumi.CustomResource):
                If not set, defaults to an empty string.
         :param pulumi.Input[str] taxonomy: Taxonomy the policy tag is associated with
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: PolicyTagArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        ## Import
+
+        PolicyTag can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import gcp:datacatalog/policyTag:PolicyTag default {{name}}
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param PolicyTagArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(PolicyTagArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 display_name: Optional[pulumi.Input[str]] = None,
+                 parent_policy_tag: Optional[pulumi.Input[str]] = None,
+                 taxonomy: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

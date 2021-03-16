@@ -5,15 +5,86 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
-__all__ = ['BucketIAMMember']
+__all__ = ['BucketIAMMemberArgs', 'BucketIAMMember']
+
+@pulumi.input_type
+class BucketIAMMemberArgs:
+    def __init__(__self__, *,
+                 bucket: pulumi.Input[str],
+                 member: pulumi.Input[str],
+                 role: pulumi.Input[str],
+                 condition: Optional[pulumi.Input['BucketIAMMemberConditionArgs']] = None):
+        """
+        The set of arguments for constructing a BucketIAMMember resource.
+        :param pulumi.Input[str] bucket: Used to find the parent resource to bind the IAM policy to
+        :param pulumi.Input[str] role: The role that should be applied. Only one
+               `storage.BucketIAMBinding` can be used per role. Note that custom roles must be of the format
+               `[projects|organizations]/{parent-name}/roles/{role-name}`.
+        :param pulumi.Input['BucketIAMMemberConditionArgs'] condition: ) An [IAM Condition](https://cloud.google.com/iam/docs/conditions-overview) for a given binding.
+               Structure is documented below.
+        """
+        pulumi.set(__self__, "bucket", bucket)
+        pulumi.set(__self__, "member", member)
+        pulumi.set(__self__, "role", role)
+        if condition is not None:
+            pulumi.set(__self__, "condition", condition)
+
+    @property
+    @pulumi.getter
+    def bucket(self) -> pulumi.Input[str]:
+        """
+        Used to find the parent resource to bind the IAM policy to
+        """
+        return pulumi.get(self, "bucket")
+
+    @bucket.setter
+    def bucket(self, value: pulumi.Input[str]):
+        pulumi.set(self, "bucket", value)
+
+    @property
+    @pulumi.getter
+    def member(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "member")
+
+    @member.setter
+    def member(self, value: pulumi.Input[str]):
+        pulumi.set(self, "member", value)
+
+    @property
+    @pulumi.getter
+    def role(self) -> pulumi.Input[str]:
+        """
+        The role that should be applied. Only one
+        `storage.BucketIAMBinding` can be used per role. Note that custom roles must be of the format
+        `[projects|organizations]/{parent-name}/roles/{role-name}`.
+        """
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: pulumi.Input[str]):
+        pulumi.set(self, "role", value)
+
+    @property
+    @pulumi.getter
+    def condition(self) -> Optional[pulumi.Input['BucketIAMMemberConditionArgs']]:
+        """
+        ) An [IAM Condition](https://cloud.google.com/iam/docs/conditions-overview) for a given binding.
+        Structure is documented below.
+        """
+        return pulumi.get(self, "condition")
+
+    @condition.setter
+    def condition(self, value: Optional[pulumi.Input['BucketIAMMemberConditionArgs']]):
+        pulumi.set(self, "condition", value)
 
 
 class BucketIAMMember(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -58,6 +129,59 @@ class BucketIAMMember(pulumi.CustomResource):
                `storage.BucketIAMBinding` can be used per role. Note that custom roles must be of the format
                `[projects|organizations]/{parent-name}/roles/{role-name}`.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: BucketIAMMemberArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        ## Import
+
+        For all import syntaxes, the "resource in question" can take any of the following forms* b/{{name}} * {{name}} Any variables not passed in the import command will be taken from the provider configuration. Cloud Storage bucket IAM resources can be imported using the resource identifiers, role, and member. IAM member imports use space-delimited identifiersthe resource in question, the role, and the member identity, e.g.
+
+        ```sh
+         $ pulumi import gcp:storage/bucketIAMMember:BucketIAMMember editor "b/{{bucket}} roles/storage.objectViewer user:jane@example.com"
+        ```
+
+         IAM binding imports use space-delimited identifiersthe resource in question and the role, e.g.
+
+        ```sh
+         $ pulumi import gcp:storage/bucketIAMMember:BucketIAMMember editor "b/{{bucket}} roles/storage.objectViewer"
+        ```
+
+         IAM policy imports use the identifier of the resource in question, e.g.
+
+        ```sh
+         $ pulumi import gcp:storage/bucketIAMMember:BucketIAMMember editor b/{{bucket}}
+        ```
+
+         -> **Custom Roles**If you're importing a IAM resource with a custom role, make sure to use the
+
+        full name of the custom role, e.g. `[projects/my-project|organizations/my-org]/roles/my-custom-role`.
+
+        :param str resource_name: The name of the resource.
+        :param BucketIAMMemberArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(BucketIAMMemberArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 bucket: Optional[pulumi.Input[str]] = None,
+                 condition: Optional[pulumi.Input[pulumi.InputType['BucketIAMMemberConditionArgs']]] = None,
+                 member: Optional[pulumi.Input[str]] = None,
+                 role: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__
