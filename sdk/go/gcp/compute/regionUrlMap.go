@@ -881,7 +881,7 @@ func (i *regionUrlMapPtrType) ToRegionUrlMapPtrOutputWithContext(ctx context.Con
 // RegionUrlMapArrayInput is an input type that accepts RegionUrlMapArray and RegionUrlMapArrayOutput values.
 // You can construct a concrete instance of `RegionUrlMapArrayInput` via:
 //
-//          RegionUrlMapArray{ RegionUrlMapArgs{...} }
+//          RegionUrlMapArray{ RegionUrlMap{ "key": RegionUrlArgs{...} } }
 type RegionUrlMapArrayInput interface {
 	pulumi.Input
 
@@ -906,7 +906,7 @@ func (i RegionUrlMapArray) ToRegionUrlMapArrayOutputWithContext(ctx context.Cont
 // RegionUrlMapMapInput is an input type that accepts RegionUrlMapMap and RegionUrlMapMapOutput values.
 // You can construct a concrete instance of `RegionUrlMapMapInput` via:
 //
-//          RegionUrlMapMap{ "key": RegionUrlMapArgs{...} }
+//          RegionUrlMapMap{ "key": RegionUrlMap{ "key": RegionUrlArgs{...} } }
 type RegionUrlMapMapInput interface {
 	pulumi.Input
 

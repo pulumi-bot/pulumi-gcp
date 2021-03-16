@@ -1178,7 +1178,7 @@ func (i *urlmapPtrType) ToURLMapPtrOutputWithContext(ctx context.Context) URLMap
 // URLMapArrayInput is an input type that accepts URLMapArray and URLMapArrayOutput values.
 // You can construct a concrete instance of `URLMapArrayInput` via:
 //
-//          URLMapArray{ URLMapArgs{...} }
+//          URLMapArray{ URLMap{ "key": URLArgs{...} } }
 type URLMapArrayInput interface {
 	pulumi.Input
 
@@ -1203,7 +1203,7 @@ func (i URLMapArray) ToURLMapArrayOutputWithContext(ctx context.Context) URLMapA
 // URLMapMapInput is an input type that accepts URLMapMap and URLMapMapOutput values.
 // You can construct a concrete instance of `URLMapMapInput` via:
 //
-//          URLMapMap{ "key": URLMapArgs{...} }
+//          URLMapMap{ "key": URLMap{ "key": URLArgs{...} } }
 type URLMapMapInput interface {
 	pulumi.Input
 
