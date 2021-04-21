@@ -4,6 +4,8 @@
 
 
 import os
+import sys
+import importlib.util
 import pkg_resources
 
 from semver import VersionInfo as SemverVersion
@@ -115,3 +117,19 @@ def get_resource_args_opts(resource_args_type, resource_options_type, *args, **k
         opts = kwargs.get("opts")
 
     return resource_args, opts
+
+
+# https://github.com/python/cpython/blob/master/Doc/library/importlib.rst#implementing-lazy-imports
+def lazy_import(fullname):
+    module = sys.modules.get(fullname, None)
+
+    if module is not None:
+        return module
+
+    spec = importlib.util.find_spec(fullname)
+    loader = importlib.util.LazyLoader(spec.loader)
+    spec.loader = loader
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[fullname] = module
+    loader.exec_module(module)
+    return module
