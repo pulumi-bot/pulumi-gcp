@@ -283,35 +283,35 @@ export interface NoteArgs {
      * project.
      * Structure is documented below.
      */
-    readonly attestationAuthority: pulumi.Input<inputs.containeranalysis.NoteAttestationAuthority>;
+    attestationAuthority: pulumi.Input<inputs.containeranalysis.NoteAttestationAuthority>;
     /**
      * Time of expiration for this note. Leave empty if note does not expire.
      */
-    readonly expirationTime?: pulumi.Input<string>;
+    expirationTime?: pulumi.Input<string>;
     /**
      * A detailed description of the note
      */
-    readonly longDescription?: pulumi.Input<string>;
+    longDescription?: pulumi.Input<string>;
     /**
      * The name of the note.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    project?: pulumi.Input<string>;
     /**
      * Names of other notes related to this note.
      */
-    readonly relatedNoteNames?: pulumi.Input<pulumi.Input<string>[]>;
+    relatedNoteNames?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * URLs associated with this note and related metadata.
      * Structure is documented below.
      */
-    readonly relatedUrls?: pulumi.Input<pulumi.Input<inputs.containeranalysis.NoteRelatedUrl>[]>;
+    relatedUrls?: pulumi.Input<pulumi.Input<inputs.containeranalysis.NoteRelatedUrl>[]>;
     /**
      * A one sentence description of the note.
      */
-    readonly shortDescription?: pulumi.Input<string>;
+    shortDescription?: pulumi.Input<string>;
 }

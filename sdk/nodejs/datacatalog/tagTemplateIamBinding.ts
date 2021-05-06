@@ -104,10 +104,10 @@ export interface TagTemplateIamBindingState {
  * The set of arguments for constructing a TagTemplateIamBinding resource.
  */
 export interface TagTemplateIamBindingArgs {
-    readonly condition?: pulumi.Input<inputs.datacatalog.TagTemplateIamBindingCondition>;
-    readonly members: pulumi.Input<pulumi.Input<string>[]>;
-    readonly project?: pulumi.Input<string>;
-    readonly region?: pulumi.Input<string>;
-    readonly role: pulumi.Input<string>;
-    readonly tagTemplate: pulumi.Input<string>;
+    condition?: pulumi.Input<inputs.datacatalog.TagTemplateIamBindingCondition>;
+    members: pulumi.Input<pulumi.Input<string>[]>;
+    project?: pulumi.Input<string>;
+    region?: pulumi.Input<string>;
+    role: pulumi.Input<string>;
+    tagTemplate: pulumi.Input<string>;
 }

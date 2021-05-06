@@ -96,8 +96,8 @@ export interface AccountIamBindingState {
  * The set of arguments for constructing a AccountIamBinding resource.
  */
 export interface AccountIamBindingArgs {
-    readonly billingAccountId: pulumi.Input<string>;
-    readonly condition?: pulumi.Input<inputs.billing.AccountIamBindingCondition>;
-    readonly members: pulumi.Input<pulumi.Input<string>[]>;
-    readonly role: pulumi.Input<string>;
+    billingAccountId: pulumi.Input<string>;
+    condition?: pulumi.Input<inputs.billing.AccountIamBindingCondition>;
+    members: pulumi.Input<pulumi.Input<string>[]>;
+    role: pulumi.Input<string>;
 }

@@ -197,16 +197,16 @@ export interface PolicyTagIamMemberState {
  * The set of arguments for constructing a PolicyTagIamMember resource.
  */
 export interface PolicyTagIamMemberArgs {
-    readonly condition?: pulumi.Input<inputs.datacatalog.PolicyTagIamMemberCondition>;
-    readonly member: pulumi.Input<string>;
+    condition?: pulumi.Input<inputs.datacatalog.PolicyTagIamMemberCondition>;
+    member: pulumi.Input<string>;
     /**
      * Used to find the parent resource to bind the IAM policy to
      */
-    readonly policyTag: pulumi.Input<string>;
+    policyTag: pulumi.Input<string>;
     /**
      * The role that should be applied. Only one
      * `gcp.datacatalog.PolicyTagIamBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
-    readonly role: pulumi.Input<string>;
+    role: pulumi.Input<string>;
 }

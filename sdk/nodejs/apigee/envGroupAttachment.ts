@@ -131,9 +131,9 @@ export interface EnvGroupAttachmentArgs {
      * The Apigee environment group associated with the Apigee environment,
      * in the format `organizations/{{org_name}}/envgroups/{{envgroup_name}}`.
      */
-    readonly envgroupId: pulumi.Input<string>;
+    envgroupId: pulumi.Input<string>;
     /**
      * The resource ID of the environment.
      */
-    readonly environment: pulumi.Input<string>;
+    environment: pulumi.Input<string>;
 }

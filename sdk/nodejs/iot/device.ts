@@ -305,32 +305,32 @@ export interface DeviceArgs {
     /**
      * If a device is blocked, connections or requests from this device will fail.
      */
-    readonly blocked?: pulumi.Input<boolean>;
+    blocked?: pulumi.Input<boolean>;
     /**
      * The credentials used to authenticate this device.
      * Structure is documented below.
      */
-    readonly credentials?: pulumi.Input<pulumi.Input<inputs.iot.DeviceCredential>[]>;
+    credentials?: pulumi.Input<pulumi.Input<inputs.iot.DeviceCredential>[]>;
     /**
      * Gateway-related configuration and state.
      * Structure is documented below.
      */
-    readonly gatewayConfig?: pulumi.Input<inputs.iot.DeviceGatewayConfig>;
+    gatewayConfig?: pulumi.Input<inputs.iot.DeviceGatewayConfig>;
     /**
      * The logging verbosity for device activity.
      * Possible values are `NONE`, `ERROR`, `INFO`, and `DEBUG`.
      */
-    readonly logLevel?: pulumi.Input<string>;
+    logLevel?: pulumi.Input<string>;
     /**
      * The metadata key-value pairs assigned to the device.
      */
-    readonly metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * A unique name for the resource.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The name of the device registry where this device should be created.
      */
-    readonly registry: pulumi.Input<string>;
+    registry: pulumi.Input<string>;
 }

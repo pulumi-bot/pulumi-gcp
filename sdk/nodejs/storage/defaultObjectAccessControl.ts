@@ -231,7 +231,7 @@ export interface DefaultObjectAccessControlArgs {
     /**
      * The name of the bucket.
      */
-    readonly bucket: pulumi.Input<string>;
+    bucket: pulumi.Input<string>;
     /**
      * The entity holding the permission, in one of the following forms:
      * * user-{{userId}}
@@ -243,14 +243,14 @@ export interface DefaultObjectAccessControlArgs {
      * * allUsers
      * * allAuthenticatedUsers
      */
-    readonly entity: pulumi.Input<string>;
+    entity: pulumi.Input<string>;
     /**
      * The name of the object, if applied to an object.
      */
-    readonly object?: pulumi.Input<string>;
+    object?: pulumi.Input<string>;
     /**
      * The access permission for the entity.
      * Possible values are `OWNER` and `READER`.
      */
-    readonly role: pulumi.Input<string>;
+    role: pulumi.Input<string>;
 }

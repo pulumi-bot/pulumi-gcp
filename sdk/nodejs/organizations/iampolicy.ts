@@ -93,6 +93,6 @@ export interface IAMPolicyArgs {
     /**
      * The numeric ID of the organization in which you want to manage the audit logging config.
      */
-    readonly orgId: pulumi.Input<string>;
-    readonly policyData: pulumi.Input<string>;
+    orgId: pulumi.Input<string>;
+    policyData: pulumi.Input<string>;
 }

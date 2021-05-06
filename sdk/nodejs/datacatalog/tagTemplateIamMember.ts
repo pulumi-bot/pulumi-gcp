@@ -104,10 +104,10 @@ export interface TagTemplateIamMemberState {
  * The set of arguments for constructing a TagTemplateIamMember resource.
  */
 export interface TagTemplateIamMemberArgs {
-    readonly condition?: pulumi.Input<inputs.datacatalog.TagTemplateIamMemberCondition>;
-    readonly member: pulumi.Input<string>;
-    readonly project?: pulumi.Input<string>;
-    readonly region?: pulumi.Input<string>;
-    readonly role: pulumi.Input<string>;
-    readonly tagTemplate: pulumi.Input<string>;
+    condition?: pulumi.Input<inputs.datacatalog.TagTemplateIamMemberCondition>;
+    member: pulumi.Input<string>;
+    project?: pulumi.Input<string>;
+    region?: pulumi.Input<string>;
+    role: pulumi.Input<string>;
+    tagTemplate: pulumi.Input<string>;
 }

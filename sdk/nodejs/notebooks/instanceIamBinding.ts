@@ -225,25 +225,25 @@ export interface InstanceIamBindingState {
  * The set of arguments for constructing a InstanceIamBinding resource.
  */
 export interface InstanceIamBindingArgs {
-    readonly condition?: pulumi.Input<inputs.notebooks.InstanceIamBindingCondition>;
+    condition?: pulumi.Input<inputs.notebooks.InstanceIamBindingCondition>;
     /**
      * Used to find the parent resource to bind the IAM policy to
      */
-    readonly instanceName: pulumi.Input<string>;
+    instanceName: pulumi.Input<string>;
     /**
      * A reference to the zone where the machine resides. Used to find the parent resource to bind the IAM policy to
      */
-    readonly location?: pulumi.Input<string>;
-    readonly members: pulumi.Input<pulumi.Input<string>[]>;
+    location?: pulumi.Input<string>;
+    members: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the project will be parsed from the identifier of the parent resource. If no project is provided in the parent identifier and no project is specified, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    project?: pulumi.Input<string>;
     /**
      * The role that should be applied. Only one
      * `gcp.notebooks.InstanceIamBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
-    readonly role: pulumi.Input<string>;
+    role: pulumi.Input<string>;
 }

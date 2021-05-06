@@ -205,19 +205,19 @@ export interface DicomStoreIamMemberState {
  * The set of arguments for constructing a DicomStoreIamMember resource.
  */
 export interface DicomStoreIamMemberArgs {
-    readonly condition?: pulumi.Input<inputs.healthcare.DicomStoreIamMemberCondition>;
+    condition?: pulumi.Input<inputs.healthcare.DicomStoreIamMemberCondition>;
     /**
      * The DICOM store ID, in the form
      * `{project_id}/{location_name}/{dataset_name}/{dicom_store_name}` or
      * `{location_name}/{dataset_name}/{dicom_store_name}`. In the second form, the provider's
      * project setting will be used as a fallback.
      */
-    readonly dicomStoreId: pulumi.Input<string>;
-    readonly member: pulumi.Input<string>;
+    dicomStoreId: pulumi.Input<string>;
+    member: pulumi.Input<string>;
     /**
      * The role that should be applied. Only one
      * `gcp.healthcare.DicomStoreIamBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
-    readonly role: pulumi.Input<string>;
+    role: pulumi.Input<string>;
 }

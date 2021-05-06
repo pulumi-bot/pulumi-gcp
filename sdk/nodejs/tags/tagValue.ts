@@ -191,14 +191,14 @@ export interface TagValueArgs {
     /**
      * User-assigned description of the TagValue. Must not exceed 256 characters.
      */
-    readonly description?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
      * Input only. The resource name of the new TagValue's parent. Must be of the form tagKeys/{tag_key_id}.
      */
-    readonly parent: pulumi.Input<string>;
+    parent: pulumi.Input<string>;
     /**
      * Input only. User-assigned short name for TagValue. The short name should be unique for TagValues within the same parent TagKey.
      * The short name must be 63 characters or less, beginning and ending with an alphanumeric character ([a-z0-9A-Z]) with dashes (-), underscores (_), dots (.), and alphanumerics between.
      */
-    readonly shortName: pulumi.Input<string>;
+    shortName: pulumi.Input<string>;
 }

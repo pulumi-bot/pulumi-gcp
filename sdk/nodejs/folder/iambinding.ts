@@ -179,11 +179,11 @@ export interface IAMBindingState {
  * The set of arguments for constructing a IAMBinding resource.
  */
 export interface IAMBindingArgs {
-    readonly condition?: pulumi.Input<inputs.folder.IAMBindingCondition>;
+    condition?: pulumi.Input<inputs.folder.IAMBindingCondition>;
     /**
      * The resource name of the folder the policy is attached to. Its format is folders/{folder_id}.
      */
-    readonly folder: pulumi.Input<string>;
+    folder: pulumi.Input<string>;
     /**
      * An array of identities that will be granted the privilege in the `role`.
      * Each entry can have one of the following values:
@@ -193,11 +193,11 @@ export interface IAMBindingArgs {
      * * **domain:{domain}**: A G Suite domain (primary, instead of alias) name that represents all the users of that domain. For example, google.com or example.com.
      * * For more details on format and restrictions see https://cloud.google.com/billing/reference/rest/v1/Policy#Binding
      */
-    readonly members: pulumi.Input<pulumi.Input<string>[]>;
+    members: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The role that should be applied. Only one
      * `gcp.folder.IAMBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
-    readonly role: pulumi.Input<string>;
+    role: pulumi.Input<string>;
 }

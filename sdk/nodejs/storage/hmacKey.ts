@@ -194,15 +194,15 @@ export interface HmacKeyArgs {
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    project?: pulumi.Input<string>;
     /**
      * The email address of the key's associated service account.
      */
-    readonly serviceAccountEmail: pulumi.Input<string>;
+    serviceAccountEmail: pulumi.Input<string>;
     /**
      * The state of the key. Can be set to one of ACTIVE, INACTIVE.
      * Default value is `ACTIVE`.
      * Possible values are `ACTIVE` and `INACTIVE`.
      */
-    readonly state?: pulumi.Input<string>;
+    state?: pulumi.Input<string>;
 }

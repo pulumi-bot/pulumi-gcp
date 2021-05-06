@@ -186,7 +186,7 @@ export interface DicomStoreArgs {
      * Identifies the dataset addressed by this request. Must be in the format
      * 'projects/{project}/locations/{location}/datasets/{dataset}'
      */
-    readonly dataset: pulumi.Input<string>;
+    dataset: pulumi.Input<string>;
     /**
      * User-supplied key-value pairs used to organize DICOM stores.
      * Label keys must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must
@@ -197,15 +197,15 @@ export interface DicomStoreArgs {
      * An object containing a list of "key": value pairs.
      * Example: { "name": "wrench", "mass": "1.3kg", "count": "3" }.
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The resource name for the DicomStore.
      * ** Changing this property may recreate the Dicom store (removing all data) **
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * A nested object resource
      * Structure is documented below.
      */
-    readonly notificationConfig?: pulumi.Input<inputs.healthcare.DicomStoreNotificationConfig>;
+    notificationConfig?: pulumi.Input<inputs.healthcare.DicomStoreNotificationConfig>;
 }

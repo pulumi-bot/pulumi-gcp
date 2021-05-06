@@ -236,22 +236,22 @@ export interface DocumentArgs {
     /**
      * The collection ID, relative to database. For example: chatrooms or chatrooms/my-document/private-messages.
      */
-    readonly collection: pulumi.Input<string>;
+    collection: pulumi.Input<string>;
     /**
      * The Firestore database id. Defaults to `"(default)"`.
      */
-    readonly database?: pulumi.Input<string>;
+    database?: pulumi.Input<string>;
     /**
      * The client-assigned document ID to use for this document during creation.
      */
-    readonly documentId: pulumi.Input<string>;
+    documentId: pulumi.Input<string>;
     /**
      * The document's [fields](https://cloud.google.com/firestore/docs/reference/rest/v1/projects.databases.documents) formated as a json string.
      */
-    readonly fields: pulumi.Input<string>;
+    fields: pulumi.Input<string>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    project?: pulumi.Input<string>;
 }

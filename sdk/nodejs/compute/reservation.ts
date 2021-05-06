@@ -251,7 +251,7 @@ export interface ReservationArgs {
     /**
      * An optional description of this resource.
      */
-    readonly description?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
      * Name of the resource. Provided by the client when the resource is
      * created. The name must be 1-63 characters long, and comply with
@@ -261,25 +261,25 @@ export interface ReservationArgs {
      * characters must be a dash, lowercase letter, or digit, except the last
      * character, which cannot be a dash.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    project?: pulumi.Input<string>;
     /**
      * Reservation for instances with specific machine shapes.
      * Structure is documented below.
      */
-    readonly specificReservation: pulumi.Input<inputs.compute.ReservationSpecificReservation>;
+    specificReservation: pulumi.Input<inputs.compute.ReservationSpecificReservation>;
     /**
      * When set to true, only VMs that target this reservation by name can
      * consume this reservation. Otherwise, it can be consumed by VMs with
      * affinity for any reservation. Defaults to false.
      */
-    readonly specificReservationRequired?: pulumi.Input<boolean>;
+    specificReservationRequired?: pulumi.Input<boolean>;
     /**
      * The zone where the reservation is made.
      */
-    readonly zone: pulumi.Input<string>;
+    zone: pulumi.Input<string>;
 }

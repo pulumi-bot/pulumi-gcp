@@ -163,12 +163,12 @@ export interface BrandArgs {
     /**
      * Application name displayed on OAuth consent screen.
      */
-    readonly applicationTitle: pulumi.Input<string>;
+    applicationTitle: pulumi.Input<string>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    project?: pulumi.Input<string>;
     /**
      * Support email displayed on the OAuth consent screen. Can be either a
      * user or group email. When a user email is specified, the caller must
@@ -176,5 +176,5 @@ export interface BrandArgs {
      * specified, the caller can be either a user or a service account which
      * is an owner of the specified group in Cloud Identity.
      */
-    readonly supportEmail: pulumi.Input<string>;
+    supportEmail: pulumi.Input<string>;
 }

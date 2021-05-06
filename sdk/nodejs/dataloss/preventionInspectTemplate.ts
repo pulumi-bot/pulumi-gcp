@@ -337,16 +337,16 @@ export interface PreventionInspectTemplateArgs {
     /**
      * A description of the inspect template.
      */
-    readonly description?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
      * User set display name of the inspect template.
      */
-    readonly displayName?: pulumi.Input<string>;
+    displayName?: pulumi.Input<string>;
     /**
      * The core content of the template.
      * Structure is documented below.
      */
-    readonly inspectConfig?: pulumi.Input<inputs.dataloss.PreventionInspectTemplateInspectConfig>;
+    inspectConfig?: pulumi.Input<inputs.dataloss.PreventionInspectTemplateInspectConfig>;
     /**
      * The parent of the inspect template in any of the following formats:
      * * `projects/{{project}}`
@@ -354,5 +354,5 @@ export interface PreventionInspectTemplateArgs {
      * * `organizations/{{organization_id}}`
      * * `organizations/{{organization_id}}/locations/{{location}}`
      */
-    readonly parent: pulumi.Input<string>;
+    parent: pulumi.Input<string>;
 }

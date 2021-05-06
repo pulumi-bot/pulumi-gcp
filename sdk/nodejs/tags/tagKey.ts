@@ -186,14 +186,14 @@ export interface TagKeyArgs {
     /**
      * User-assigned description of the TagKey. Must not exceed 256 characters.
      */
-    readonly description?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
      * Input only. The resource name of the new TagKey's parent. Must be of the form organizations/{org_id}.
      */
-    readonly parent: pulumi.Input<string>;
+    parent: pulumi.Input<string>;
     /**
      * Input only. The user friendly name for a TagKey. The short name should be unique for TagKeys within the same tag namespace.
      * The short name must be 1-63 characters, beginning and ending with an alphanumeric character ([a-z0-9A-Z]) with dashes (-), underscores (_), dots (.), and alphanumerics between.
      */
-    readonly shortName: pulumi.Input<string>;
+    shortName: pulumi.Input<string>;
 }

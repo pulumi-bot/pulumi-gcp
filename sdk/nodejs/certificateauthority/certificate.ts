@@ -300,38 +300,38 @@ export interface CertificateArgs {
     /**
      * Certificate Authority name.
      */
-    readonly certificateAuthority: pulumi.Input<string>;
+    certificateAuthority: pulumi.Input<string>;
     /**
      * The config used to create a self-signed X.509 certificate or CSR.
      * Structure is documented below.
      */
-    readonly config?: pulumi.Input<inputs.certificateauthority.CertificateConfig>;
+    config?: pulumi.Input<inputs.certificateauthority.CertificateConfig>;
     /**
      * Labels with user-defined metadata to apply to this resource.
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The desired lifetime of the CA certificate. Used to create the "notBeforeTime" and
      * "notAfterTime" fields inside an X.509 certificate. A duration in seconds with up to nine
      * fractional digits, terminated by 's'. Example: "3.5s".
      */
-    readonly lifetime?: pulumi.Input<string>;
+    lifetime?: pulumi.Input<string>;
     /**
      * Location of the CertificateAuthority. A full list of valid locations can be found by
      * running `gcloud beta privateca locations list`.
      */
-    readonly location: pulumi.Input<string>;
+    location: pulumi.Input<string>;
     /**
      * The name for this Certificate .
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * Immutable. A pem-encoded X.509 certificate signing request (CSR).
      */
-    readonly pemCsr?: pulumi.Input<string>;
+    pemCsr?: pulumi.Input<string>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    project?: pulumi.Input<string>;
 }

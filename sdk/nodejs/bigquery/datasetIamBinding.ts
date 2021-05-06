@@ -215,17 +215,17 @@ export interface DatasetIamBindingState {
  * The set of arguments for constructing a DatasetIamBinding resource.
  */
 export interface DatasetIamBindingArgs {
-    readonly condition?: pulumi.Input<inputs.bigquery.DatasetIamBindingCondition>;
+    condition?: pulumi.Input<inputs.bigquery.DatasetIamBindingCondition>;
     /**
      * The dataset ID.
      */
-    readonly datasetId: pulumi.Input<string>;
-    readonly members: pulumi.Input<pulumi.Input<string>[]>;
-    readonly project?: pulumi.Input<string>;
+    datasetId: pulumi.Input<string>;
+    members: pulumi.Input<pulumi.Input<string>[]>;
+    project?: pulumi.Input<string>;
     /**
      * The role that should be applied. Only one
      * `gcp.bigquery.DatasetIamBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
-    readonly role: pulumi.Input<string>;
+    role: pulumi.Input<string>;
 }

@@ -432,7 +432,7 @@ export interface DatabaseInstanceArgs {
      * resource creation, the provider will attempt to clone another instance as indicated in the context. The
      * configuration is detailed below.
      */
-    readonly clone?: pulumi.Input<inputs.sql.DatabaseInstanceClone>;
+    clone?: pulumi.Input<inputs.sql.DatabaseInstanceClone>;
     /**
      * The MySQL, PostgreSQL or
      * SQL Server (beta) version to use. Supported values include `MYSQL_5_6`,
@@ -442,12 +442,12 @@ export interface DatabaseInstanceArgs {
      * [Database Version Policies](https://cloud.google.com/sql/docs/db-versions)
      * includes an up-to-date reference of supported versions.
      */
-    readonly databaseVersion?: pulumi.Input<string>;
+    databaseVersion?: pulumi.Input<string>;
     /**
      * Whether or not to allow he provider to destroy the instance. Unless this field is set to false
      * in state, a `destroy` or `update` command that deletes the instance will fail.
      */
-    readonly deletionProtection?: pulumi.Input<boolean>;
+    deletionProtection?: pulumi.Input<boolean>;
     /**
      * The full path to the encryption key used for the CMEK disk encryption.  Setting
      * up disk encryption currently requires manual steps outside of this provider.
@@ -458,21 +458,21 @@ export interface DatabaseInstanceArgs {
      * That service account needs the `Cloud KMS > Cloud KMS CryptoKey Encrypter/Decrypter` role on your
      * key - please see [this step](https://cloud.google.com/sql/docs/mysql/configure-cmek#grantkey).
      */
-    readonly encryptionKeyName?: pulumi.Input<string>;
+    encryptionKeyName?: pulumi.Input<string>;
     /**
      * The name of the instance that will act as
      * the master in the replication setup. Note, this requires the master to have
      * `binaryLogEnabled` set, as well as existing backups.
      */
-    readonly masterInstanceName?: pulumi.Input<string>;
+    masterInstanceName?: pulumi.Input<string>;
     /**
      * A name for this whitelist entry.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The full project ID of the source instance.`
      */
-    readonly project?: pulumi.Input<string>;
+    project?: pulumi.Input<string>;
     /**
      * The region the instance will sit in. Note, Cloud SQL is not
      * available in all regions - choose from one of the options listed [here](https://cloud.google.com/sql/docs/mysql/instance-locations).
@@ -481,26 +481,26 @@ export interface DatabaseInstanceArgs {
      * region is not supported with Cloud SQL. If you choose not to provide the `region` argument for this resource,
      * make sure you understand this.
      */
-    readonly region?: pulumi.Input<string>;
+    region?: pulumi.Input<string>;
     /**
      * The configuration for replication. The
      * configuration is detailed below. Valid only for MySQL instances.
      */
-    readonly replicaConfiguration?: pulumi.Input<inputs.sql.DatabaseInstanceReplicaConfiguration>;
+    replicaConfiguration?: pulumi.Input<inputs.sql.DatabaseInstanceReplicaConfiguration>;
     /**
      * The context needed to restore the database to a backup run. This field will
      * cause the provider to trigger the database to restore from the backup run indicated. The configuration is detailed below.
      * **NOTE:** Restoring from a backup is an imperative action and not recommended via the provider. Adding or modifying this
      * block during resource creation/update will trigger the restore action after the resource is created/updated.
      */
-    readonly restoreBackupContext?: pulumi.Input<inputs.sql.DatabaseInstanceRestoreBackupContext>;
+    restoreBackupContext?: pulumi.Input<inputs.sql.DatabaseInstanceRestoreBackupContext>;
     /**
      * Initial root password. Required for MS SQL Server, ignored by MySQL and PostgreSQL.
      */
-    readonly rootPassword?: pulumi.Input<string>;
+    rootPassword?: pulumi.Input<string>;
     /**
      * The settings to use for the database. The
      * configuration is detailed below. Required if `clone` is not set.
      */
-    readonly settings?: pulumi.Input<inputs.sql.DatabaseInstanceSettings>;
+    settings?: pulumi.Input<inputs.sql.DatabaseInstanceSettings>;
 }

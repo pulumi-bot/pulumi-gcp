@@ -173,14 +173,14 @@ export interface SecretVersionArgs {
     /**
      * The current state of the SecretVersion.
      */
-    readonly enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean>;
     /**
      * Secret Manager secret resource
      */
-    readonly secret: pulumi.Input<string>;
+    secret: pulumi.Input<string>;
     /**
      * The secret data. Must be no larger than 64KiB.
      * **Note**: This property is sensitive and will not be displayed in the plan.
      */
-    readonly secretData: pulumi.Input<string>;
+    secretData: pulumi.Input<string>;
 }

@@ -153,9 +153,9 @@ export interface TagBindingArgs {
     /**
      * The full resource name of the resource the TagValue is bound to. E.g. //cloudresourcemanager.googleapis.com/projects/123
      */
-    readonly parent: pulumi.Input<string>;
+    parent: pulumi.Input<string>;
     /**
      * The TagValue of the TagBinding. Must be of the form tagValues/456.
      */
-    readonly tagValue: pulumi.Input<string>;
+    tagValue: pulumi.Input<string>;
 }

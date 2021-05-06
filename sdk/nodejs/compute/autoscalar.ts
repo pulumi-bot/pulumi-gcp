@@ -342,28 +342,28 @@ export interface AutoscalarArgs {
      * on cpuUtilization to 0.6 or 60%.
      * Structure is documented below.
      */
-    readonly autoscalingPolicy: pulumi.Input<inputs.compute.AutoscalarAutoscalingPolicy>;
+    autoscalingPolicy: pulumi.Input<inputs.compute.AutoscalarAutoscalingPolicy>;
     /**
      * An optional description of this resource.
      */
-    readonly description?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
      * The identifier for this object. Format specified above.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    project?: pulumi.Input<string>;
     /**
      * Fraction of backend capacity utilization (set in HTTP(s) load
      * balancing configuration) that autoscaler should maintain. Must
      * be a positive float value. If not defined, the default is 0.8.
      */
-    readonly target: pulumi.Input<string>;
+    target: pulumi.Input<string>;
     /**
      * URL of the zone where the instance group resides.
      */
-    readonly zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string>;
 }

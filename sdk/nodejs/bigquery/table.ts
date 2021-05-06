@@ -458,64 +458,64 @@ export interface TableArgs {
      * Up to four top-level columns are allowed, and should be specified in
      * descending priority order.
      */
-    readonly clusterings?: pulumi.Input<pulumi.Input<string>[]>;
+    clusterings?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The dataset ID to create the table in.
      * Changing this forces a new resource to be created.
      */
-    readonly datasetId: pulumi.Input<string>;
+    datasetId: pulumi.Input<string>;
     /**
      * Whether or not to allow the provider to destroy the instance. Unless this field is set to false
      * in state, a `=destroy` or `=update` that would delete the instance will fail.
      */
-    readonly deletionProtection?: pulumi.Input<boolean>;
+    deletionProtection?: pulumi.Input<boolean>;
     /**
      * The field description.
      */
-    readonly description?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
      * Specifies how the table should be encrypted.
      * If left blank, the table will be encrypted with a Google-managed key; that process
      * is transparent to the user.  Structure is documented below.
      */
-    readonly encryptionConfiguration?: pulumi.Input<inputs.bigquery.TableEncryptionConfiguration>;
+    encryptionConfiguration?: pulumi.Input<inputs.bigquery.TableEncryptionConfiguration>;
     /**
      * The time when this table expires, in
      * milliseconds since the epoch. If not present, the table will persist
      * indefinitely. Expired tables will be deleted and their storage
      * reclaimed.
      */
-    readonly expirationTime?: pulumi.Input<number>;
+    expirationTime?: pulumi.Input<number>;
     /**
      * Describes the data format,
      * location, and other properties of a table stored outside of BigQuery.
      * By defining these properties, the data source can then be queried as
      * if it were a standard BigQuery table. Structure is documented below.
      */
-    readonly externalDataConfiguration?: pulumi.Input<inputs.bigquery.TableExternalDataConfiguration>;
+    externalDataConfiguration?: pulumi.Input<inputs.bigquery.TableExternalDataConfiguration>;
     /**
      * A descriptive name for the table.
      */
-    readonly friendlyName?: pulumi.Input<string>;
+    friendlyName?: pulumi.Input<string>;
     /**
      * A mapping of labels to assign to the resource.
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * If specified, configures this table as a materialized view.
      * Structure is documented below.
      */
-    readonly materializedView?: pulumi.Input<inputs.bigquery.TableMaterializedView>;
+    materializedView?: pulumi.Input<inputs.bigquery.TableMaterializedView>;
     /**
      * The ID of the project in which the resource belongs. If it
      * is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    project?: pulumi.Input<string>;
     /**
      * If specified, configures range-based
      * partitioning for this table. Structure is documented below.
      */
-    readonly rangePartitioning?: pulumi.Input<inputs.bigquery.TableRangePartitioning>;
+    rangePartitioning?: pulumi.Input<inputs.bigquery.TableRangePartitioning>;
     /**
      * A JSON schema for the external table. Schema is required
      * for CSV and JSON formats if autodetect is not on. Schema is disallowed
@@ -529,20 +529,20 @@ export interface TableArgs {
      * datasource, after creation the computed schema will be stored in
      * `google_bigquery_table.schema`
      */
-    readonly schema?: pulumi.Input<string>;
+    schema?: pulumi.Input<string>;
     /**
      * A unique ID for the resource.
      * Changing this forces a new resource to be created.
      */
-    readonly tableId: pulumi.Input<string>;
+    tableId: pulumi.Input<string>;
     /**
      * If specified, configures time-based
      * partitioning for this table. Structure is documented below.
      */
-    readonly timePartitioning?: pulumi.Input<inputs.bigquery.TableTimePartitioning>;
+    timePartitioning?: pulumi.Input<inputs.bigquery.TableTimePartitioning>;
     /**
      * If specified, configures this table as a view.
      * Structure is documented below.
      */
-    readonly view?: pulumi.Input<inputs.bigquery.TableView>;
+    view?: pulumi.Input<inputs.bigquery.TableView>;
 }

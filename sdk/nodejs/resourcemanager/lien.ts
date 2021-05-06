@@ -192,19 +192,19 @@ export interface LienArgs {
      * of the Lien, intended to be inspected programmatically. Maximum length of
      * 200 characters.
      */
-    readonly origin: pulumi.Input<string>;
+    origin: pulumi.Input<string>;
     /**
      * A reference to the resource this Lien is attached to.
      * The server will validate the parent against those for which Liens are supported.
      * Since a variety of objects can have Liens against them, you must provide the type
      * prefix (e.g. "projects/my-project-name").
      */
-    readonly parent: pulumi.Input<string>;
+    parent: pulumi.Input<string>;
     /**
      * Concise user-visible strings indicating why an action cannot be performed
      * on a resource. Maximum length of 200 characters.
      */
-    readonly reason: pulumi.Input<string>;
+    reason: pulumi.Input<string>;
     /**
      * The types of operations which should be blocked as a result of this Lien.
      * Each value should correspond to an IAM permission. The server will validate
@@ -212,5 +212,5 @@ export interface LienArgs {
      * list is meaningless and will be rejected.
      * e.g. ['resourcemanager.projects.delete']
      */
-    readonly restrictions: pulumi.Input<pulumi.Input<string>[]>;
+    restrictions: pulumi.Input<pulumi.Input<string>[]>;
 }

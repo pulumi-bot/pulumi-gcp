@@ -176,14 +176,14 @@ export interface ServiceArgs {
      * up to 2000 characters, spread across all key-value pairs.
      * Metadata that goes beyond any these limits will be rejected.
      */
-    readonly metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The resource name of the namespace this service will belong to.
      */
-    readonly namespace: pulumi.Input<string>;
+    namespace: pulumi.Input<string>;
     /**
      * The Resource ID must be 1-63 characters long, including digits,
      * lowercase letters or the hyphen character.
      */
-    readonly serviceId: pulumi.Input<string>;
+    serviceId: pulumi.Input<string>;
 }

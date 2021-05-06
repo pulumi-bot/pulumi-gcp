@@ -183,23 +183,23 @@ export interface ApiArgs {
     /**
      * Identifier to assign to the API. Must be unique within scope of the parent resource(project)
      */
-    readonly apiId: pulumi.Input<string>;
+    apiId: pulumi.Input<string>;
     /**
      * A user-visible name for the API.
      */
-    readonly displayName?: pulumi.Input<string>;
+    displayName?: pulumi.Input<string>;
     /**
      * Resource labels to represent user-provided metadata.
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Immutable. The name of a Google Managed Service ( https://cloud.google.com/service-infrastructure/docs/glossary#managed).
      * If not specified, a new Service will automatically be created in the same project as this API.
      */
-    readonly managedService?: pulumi.Input<string>;
+    managedService?: pulumi.Input<string>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    project?: pulumi.Input<string>;
 }

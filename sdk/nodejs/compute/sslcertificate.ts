@@ -287,11 +287,11 @@ export interface SSLCertificateArgs {
      * The chain must include at least one intermediate cert.
      * **Note**: This property is sensitive and will not be displayed in the plan.
      */
-    readonly certificate: pulumi.Input<string>;
+    certificate: pulumi.Input<string>;
     /**
      * An optional description of this resource.
      */
-    readonly description?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
      * Name of the resource. Provided by the client when the resource is
      * created. The name must be 1-63 characters long, and comply with
@@ -301,20 +301,20 @@ export interface SSLCertificateArgs {
      * characters must be a dash, lowercase letter, or digit, except the last
      * character, which cannot be a dash.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * Creates a unique name beginning with the
      * specified prefix. Conflicts with `name`.
      */
-    readonly namePrefix?: pulumi.Input<string>;
+    namePrefix?: pulumi.Input<string>;
     /**
      * The write-only private key in PEM format.
      * **Note**: This property is sensitive and will not be displayed in the plan.
      */
-    readonly privateKey: pulumi.Input<string>;
+    privateKey: pulumi.Input<string>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    project?: pulumi.Input<string>;
 }

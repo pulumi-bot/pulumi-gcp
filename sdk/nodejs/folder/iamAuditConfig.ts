@@ -113,10 +113,10 @@ export interface IamAuditConfigArgs {
     /**
      * The configuration for logging of each type of permission. This can be specified multiple times.
      */
-    readonly auditLogConfigs: pulumi.Input<pulumi.Input<inputs.folder.IamAuditConfigAuditLogConfig>[]>;
-    readonly folder: pulumi.Input<string>;
+    auditLogConfigs: pulumi.Input<pulumi.Input<inputs.folder.IamAuditConfigAuditLogConfig>[]>;
+    folder: pulumi.Input<string>;
     /**
      * Service which will be enabled for audit logging. The special value allServices covers all services.
      */
-    readonly service: pulumi.Input<string>;
+    service: pulumi.Input<string>;
 }

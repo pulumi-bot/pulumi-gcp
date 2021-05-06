@@ -212,15 +212,15 @@ export interface SslCertArgs {
      * The common name to be used in the certificate to identify the
      * client. Constrained to [a-zA-Z.-_ ]+. Changing this forces a new resource to be created.
      */
-    readonly commonName: pulumi.Input<string>;
+    commonName: pulumi.Input<string>;
     /**
      * The name of the Cloud SQL instance. Changing this
      * forces a new resource to be created.
      */
-    readonly instance: pulumi.Input<string>;
+    instance: pulumi.Input<string>;
     /**
      * The ID of the project in which the resource belongs. If it
      * is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    project?: pulumi.Input<string>;
 }

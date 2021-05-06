@@ -84,6 +84,6 @@ export interface AccountIamPolicyState {
  * The set of arguments for constructing a AccountIamPolicy resource.
  */
 export interface AccountIamPolicyArgs {
-    readonly billingAccountId: pulumi.Input<string>;
-    readonly policyData: pulumi.Input<string>;
+    billingAccountId: pulumi.Input<string>;
+    policyData: pulumi.Input<string>;
 }

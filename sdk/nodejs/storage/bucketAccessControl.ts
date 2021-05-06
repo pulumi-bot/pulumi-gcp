@@ -202,7 +202,7 @@ export interface BucketAccessControlArgs {
     /**
      * The name of the bucket.
      */
-    readonly bucket: pulumi.Input<string>;
+    bucket: pulumi.Input<string>;
     /**
      * The entity holding the permission, in one of the following forms:
      * user-userId
@@ -220,10 +220,10 @@ export interface BucketAccessControlArgs {
      * To refer to all members of the Google Apps for Business domain
      * example.com, the entity would be domain-example.com.
      */
-    readonly entity: pulumi.Input<string>;
+    entity: pulumi.Input<string>;
     /**
      * The access permission for the entity.
      * Possible values are `OWNER`, `READER`, and `WRITER`.
      */
-    readonly role?: pulumi.Input<string>;
+    role?: pulumi.Input<string>;
 }

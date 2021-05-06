@@ -197,16 +197,16 @@ export interface TagKeyIamMemberState {
  * The set of arguments for constructing a TagKeyIamMember resource.
  */
 export interface TagKeyIamMemberArgs {
-    readonly condition?: pulumi.Input<inputs.tags.TagKeyIamMemberCondition>;
-    readonly member: pulumi.Input<string>;
+    condition?: pulumi.Input<inputs.tags.TagKeyIamMemberCondition>;
+    member: pulumi.Input<string>;
     /**
      * The role that should be applied. Only one
      * `gcp.tags.TagKeyIamBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
-    readonly role: pulumi.Input<string>;
+    role: pulumi.Input<string>;
     /**
      * Used to find the parent resource to bind the IAM policy to
      */
-    readonly tagKey: pulumi.Input<string>;
+    tagKey: pulumi.Input<string>;
 }

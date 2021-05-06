@@ -268,27 +268,27 @@ export interface RecordSetArgs {
      * The name of the zone in which this record set will
      * reside.
      */
-    readonly managedZone: pulumi.Input<string>;
+    managedZone: pulumi.Input<string>;
     /**
      * The DNS name this record set will apply to.
      */
-    readonly name: pulumi.Input<string>;
+    name: pulumi.Input<string>;
     /**
      * The ID of the project in which the resource belongs. If it
      * is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    project?: pulumi.Input<string>;
     /**
      * The string data for the records in this record set
      * whose meaning depends on the DNS type. For TXT record, if the string data contains spaces, add surrounding `\"` if you don't want your string to get split on spaces. To specify a single record value longer than 255 characters such as a TXT record for DKIM, add `\" \"` inside the provider configuration string (e.g. `"first255characters\" \"morecharacters"`).
      */
-    readonly rrdatas?: pulumi.Input<pulumi.Input<string>[]>;
+    rrdatas?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The time-to-live of this record set (seconds).
      */
-    readonly ttl?: pulumi.Input<number>;
+    ttl?: pulumi.Input<number>;
     /**
      * The DNS record set type.
      */
-    readonly type: pulumi.Input<string>;
+    type: pulumi.Input<string>;
 }

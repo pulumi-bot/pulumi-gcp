@@ -177,16 +177,16 @@ export interface MangedSslCertificateArgs {
     /**
      * The unique identifier for the resource.
      */
-    readonly certificateId?: pulumi.Input<number>;
+    certificateId?: pulumi.Input<number>;
     /**
      * An optional description of this resource.
      */
-    readonly description?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
      * Properties relevant to a managed certificate. These will be used if the certificate is managed (as indicated by a value
      * of 'MANAGED' in 'type').
      */
-    readonly managed?: pulumi.Input<inputs.compute.MangedSslCertificateManaged>;
+    managed?: pulumi.Input<inputs.compute.MangedSslCertificateManaged>;
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and
      * comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
@@ -194,11 +194,11 @@ export interface MangedSslCertificateArgs {
      * must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash. These are in the same
      * namespace as the managed SSL certificates.
      */
-    readonly name?: pulumi.Input<string>;
-    readonly project?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
+    project?: pulumi.Input<string>;
     /**
      * Enum field whose value is always 'MANAGED' - used to signal to the API which type this is. Default value: "MANAGED"
      * Possible values: ["MANAGED"]
      */
-    readonly type?: pulumi.Input<string>;
+    type?: pulumi.Input<string>;
 }

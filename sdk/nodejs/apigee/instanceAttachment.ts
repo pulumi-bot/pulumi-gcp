@@ -130,10 +130,10 @@ export interface InstanceAttachmentArgs {
     /**
      * The resource ID of the environment.
      */
-    readonly environment: pulumi.Input<string>;
+    environment: pulumi.Input<string>;
     /**
      * The Apigee instance associated with the Apigee environment,
      * in the format `organisations/{{org_name}}/instances/{{instance_name}}`.
      */
-    readonly instanceId: pulumi.Input<string>;
+    instanceId: pulumi.Input<string>;
 }

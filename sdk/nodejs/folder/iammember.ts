@@ -96,8 +96,8 @@ export interface IAMMemberState {
  * The set of arguments for constructing a IAMMember resource.
  */
 export interface IAMMemberArgs {
-    readonly condition?: pulumi.Input<inputs.folder.IAMMemberCondition>;
-    readonly folder: pulumi.Input<string>;
-    readonly member: pulumi.Input<string>;
-    readonly role: pulumi.Input<string>;
+    condition?: pulumi.Input<inputs.folder.IAMMemberCondition>;
+    folder: pulumi.Input<string>;
+    member: pulumi.Input<string>;
+    role: pulumi.Input<string>;
 }

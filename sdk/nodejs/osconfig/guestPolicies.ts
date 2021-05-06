@@ -412,15 +412,15 @@ export interface GuestPoliciesArgs {
      * [handles assignment conflicts](https://cloud.google.com/compute/docs/os-config-management/create-guest-policy#handle-conflicts).
      * Structure is documented below.
      */
-    readonly assignment: pulumi.Input<inputs.osconfig.GuestPoliciesAssignment>;
+    assignment: pulumi.Input<inputs.osconfig.GuestPoliciesAssignment>;
     /**
      * Description of the guest policy. Length of the description is limited to 1024 characters.
      */
-    readonly description?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
      * The etag for this guest policy. If this is provided on update, it must match the server's etag.
      */
-    readonly etag?: pulumi.Input<string>;
+    etag?: pulumi.Input<string>;
     /**
      * The logical name of the guest policy in the project with the following restrictions:
      * * Must contain only lowercase letters, numbers, and hyphens.
@@ -429,27 +429,27 @@ export interface GuestPoliciesArgs {
      * * Must end with a number or a letter.
      * * Must be unique within the project.
      */
-    readonly guestPolicyId: pulumi.Input<string>;
+    guestPolicyId: pulumi.Input<string>;
     /**
      * A list of package repositories to configure on the VM instance.
      * This is done before any other configs are applied so they can use these repos.
      * Package repositories are only configured if the corresponding package manager(s) are available.
      * Structure is documented below.
      */
-    readonly packageRepositories?: pulumi.Input<pulumi.Input<inputs.osconfig.GuestPoliciesPackageRepository>[]>;
+    packageRepositories?: pulumi.Input<pulumi.Input<inputs.osconfig.GuestPoliciesPackageRepository>[]>;
     /**
      * The software packages to be managed by this policy.
      * Structure is documented below.
      */
-    readonly packages?: pulumi.Input<pulumi.Input<inputs.osconfig.GuestPoliciesPackage>[]>;
+    packages?: pulumi.Input<pulumi.Input<inputs.osconfig.GuestPoliciesPackage>[]>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    project?: pulumi.Input<string>;
     /**
      * A list of Recipes to install on the VM instance.
      * Structure is documented below.
      */
-    readonly recipes?: pulumi.Input<pulumi.Input<inputs.osconfig.GuestPoliciesRecipe>[]>;
+    recipes?: pulumi.Input<pulumi.Input<inputs.osconfig.GuestPoliciesRecipe>[]>;
 }

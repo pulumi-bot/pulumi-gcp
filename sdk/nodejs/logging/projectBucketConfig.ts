@@ -195,21 +195,21 @@ export interface ProjectBucketConfigArgs {
     /**
      * The name of the logging bucket. Logging automatically creates two log buckets: `_Required` and `_Default`.
      */
-    readonly bucketId: pulumi.Input<string>;
+    bucketId: pulumi.Input<string>;
     /**
      * Describes this bucket.
      */
-    readonly description?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
      * The location of the bucket.
      */
-    readonly location: pulumi.Input<string>;
+    location: pulumi.Input<string>;
     /**
      * The parent resource that contains the logging bucket.
      */
-    readonly project: pulumi.Input<string>;
+    project: pulumi.Input<string>;
     /**
      * Logs will be retained by default for this amount of time, after which they will automatically be deleted. The minimum retention period is 1 day. If this value is set to zero at bucket creation time, the default time of 30 days will be used.
      */
-    readonly retentionDays?: pulumi.Input<number>;
+    retentionDays?: pulumi.Input<number>;
 }

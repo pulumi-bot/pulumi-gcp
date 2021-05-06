@@ -84,6 +84,6 @@ export interface IAMPolicyState {
  * The set of arguments for constructing a IAMPolicy resource.
  */
 export interface IAMPolicyArgs {
-    readonly folder: pulumi.Input<string>;
-    readonly policyData: pulumi.Input<string>;
+    folder: pulumi.Input<string>;
+    policyData: pulumi.Input<string>;
 }

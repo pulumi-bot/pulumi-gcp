@@ -190,13 +190,13 @@ export interface AuthorityIamMemberState {
  * The set of arguments for constructing a AuthorityIamMember resource.
  */
 export interface AuthorityIamMemberArgs {
-    readonly certificateAuthority: pulumi.Input<string>;
-    readonly condition?: pulumi.Input<inputs.certificateauthority.AuthorityIamMemberCondition>;
-    readonly member: pulumi.Input<string>;
+    certificateAuthority: pulumi.Input<string>;
+    condition?: pulumi.Input<inputs.certificateauthority.AuthorityIamMemberCondition>;
+    member: pulumi.Input<string>;
     /**
      * The role that should be applied. Only one
      * `gcp.certificateauthority.AuthorityIamBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
-    readonly role: pulumi.Input<string>;
+    role: pulumi.Input<string>;
 }

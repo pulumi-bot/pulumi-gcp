@@ -258,37 +258,37 @@ export interface WorkflowArgs {
     /**
      * Description of the workflow provided by the user. Must be at most 1000 unicode characters long.
      */
-    readonly description?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
      * A set of key/value label pairs to assign to this Workflow.
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Name of the Workflow.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * Creates a unique name beginning with the
      * specified prefix. If this and name are unspecified, a random value is chosen for the name.
      */
-    readonly namePrefix?: pulumi.Input<string>;
+    namePrefix?: pulumi.Input<string>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    project?: pulumi.Input<string>;
     /**
      * The region of the workflow.
      */
-    readonly region?: pulumi.Input<string>;
+    region?: pulumi.Input<string>;
     /**
      * Name of the service account associated with the latest workflow version. This service
      * account represents the identity of the workflow and determines what permissions the workflow has.
      * Format: projects/{project}/serviceAccounts/{account}.
      */
-    readonly serviceAccount?: pulumi.Input<string>;
+    serviceAccount?: pulumi.Input<string>;
     /**
      * Workflow code to be executed. The size limit is 32KB.
      */
-    readonly sourceContents?: pulumi.Input<string>;
+    sourceContents?: pulumi.Input<string>;
 }

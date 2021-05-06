@@ -213,23 +213,23 @@ export interface JobIAMBindingState {
  * The set of arguments for constructing a JobIAMBinding resource.
  */
 export interface JobIAMBindingArgs {
-    readonly condition?: pulumi.Input<inputs.dataproc.JobIAMBindingCondition>;
-    readonly jobId: pulumi.Input<string>;
-    readonly members: pulumi.Input<pulumi.Input<string>[]>;
+    condition?: pulumi.Input<inputs.dataproc.JobIAMBindingCondition>;
+    jobId: pulumi.Input<string>;
+    members: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The project in which the job belongs. If it
      * is not provided, the provider will use a default.
      */
-    readonly project?: pulumi.Input<string>;
+    project?: pulumi.Input<string>;
     /**
      * The region in which the job belongs. If it
      * is not provided, the provider will use a default.
      */
-    readonly region?: pulumi.Input<string>;
+    region?: pulumi.Input<string>;
     /**
      * The role that should be applied. Only one
      * `gcp.dataproc.JobIAMBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
-    readonly role: pulumi.Input<string>;
+    role: pulumi.Input<string>;
 }

@@ -155,21 +155,21 @@ export interface AccessApprovalSettingsArgs {
      * Enrollment can only be done on an all or nothing basis. A maximum of 10 enrolled services will be enforced, to be
      * expanded as the set of supported services is expanded.
      */
-    readonly enrolledServices: pulumi.Input<pulumi.Input<inputs.projects.AccessApprovalSettingsEnrolledService>[]>;
+    enrolledServices: pulumi.Input<pulumi.Input<inputs.projects.AccessApprovalSettingsEnrolledService>[]>;
     /**
      * A list of email addresses to which notifications relating to approval requests should be sent. Notifications relating to
      * a resource will be sent to all emails in the settings of ancestor resources of that resource. A maximum of 50 email
      * addresses are allowed.
      */
-    readonly notificationEmails?: pulumi.Input<pulumi.Input<string>[]>;
+    notificationEmails?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Deprecated in favor of 'project_id'
      *
      * @deprecated Deprecated in favor of `project_id`
      */
-    readonly project?: pulumi.Input<string>;
+    project?: pulumi.Input<string>;
     /**
      * ID of the project of the access approval settings.
      */
-    readonly projectId: pulumi.Input<string>;
+    projectId: pulumi.Input<string>;
 }

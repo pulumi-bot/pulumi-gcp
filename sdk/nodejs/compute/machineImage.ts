@@ -217,12 +217,12 @@ export interface MachineImageArgs {
     /**
      * A text description of the resource.
      */
-    readonly description?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
      * Specify this to create an application consistent machine image by informing the OS to prepare for the snapshot process.
      * Currently only supported on Windows instances using the Volume Shadow Copy Service (VSS).
      */
-    readonly guestFlush?: pulumi.Input<boolean>;
+    guestFlush?: pulumi.Input<boolean>;
     /**
      * Encrypts the machine image using a customer-supplied encryption key.
      * After you encrypt a machine image with a customer-supplied key, you must
@@ -230,18 +230,18 @@ export interface MachineImageArgs {
      * instance from the image)
      * Structure is documented below.
      */
-    readonly machineImageEncryptionKey?: pulumi.Input<inputs.compute.MachineImageMachineImageEncryptionKey>;
+    machineImageEncryptionKey?: pulumi.Input<inputs.compute.MachineImageMachineImageEncryptionKey>;
     /**
      * Name of the resource.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    project?: pulumi.Input<string>;
     /**
      * The source instance used to create the machine image. You can provide this as a partial or full URL to the resource.
      */
-    readonly sourceInstance: pulumi.Input<string>;
+    sourceInstance: pulumi.Input<string>;
 }

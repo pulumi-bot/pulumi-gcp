@@ -96,8 +96,8 @@ export interface AccountIamMemberState {
  * The set of arguments for constructing a AccountIamMember resource.
  */
 export interface AccountIamMemberArgs {
-    readonly billingAccountId: pulumi.Input<string>;
-    readonly condition?: pulumi.Input<inputs.billing.AccountIamMemberCondition>;
-    readonly member: pulumi.Input<string>;
-    readonly role: pulumi.Input<string>;
+    billingAccountId: pulumi.Input<string>;
+    condition?: pulumi.Input<inputs.billing.AccountIamMemberCondition>;
+    member: pulumi.Input<string>;
+    role: pulumi.Input<string>;
 }

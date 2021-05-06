@@ -203,28 +203,28 @@ export interface RealmArgs {
     /**
      * Human readable description of the realm.
      */
-    readonly description?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
      * The labels associated with this realm. Each label is a key-value pair.
      */
-    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Location of the Realm.
      */
-    readonly location?: pulumi.Input<string>;
+    location?: pulumi.Input<string>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    project?: pulumi.Input<string>;
     /**
      * GCP region of the Realm.
      */
-    readonly realmId: pulumi.Input<string>;
+    realmId: pulumi.Input<string>;
     /**
      * Required. Time zone where all realm-specific policies are evaluated. The value of
      * this field must be from the IANA time zone database:
      * https://www.iana.org/time-zones.
      */
-    readonly timeZone: pulumi.Input<string>;
+    timeZone: pulumi.Input<string>;
 }

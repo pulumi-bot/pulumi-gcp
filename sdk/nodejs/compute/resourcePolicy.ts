@@ -235,7 +235,7 @@ export interface ResourcePolicyArgs {
      * Resource policy for instances used for placement configuration.
      * Structure is documented below.
      */
-    readonly groupPlacementPolicy?: pulumi.Input<inputs.compute.ResourcePolicyGroupPlacementPolicy>;
+    groupPlacementPolicy?: pulumi.Input<inputs.compute.ResourcePolicyGroupPlacementPolicy>;
     /**
      * The name of the resource, provided by the client when initially creating
      * the resource. The resource name must be 1-63 characters long, and comply
@@ -245,19 +245,19 @@ export interface ResourcePolicyArgs {
      * must be a dash, lowercase letter, or digit, except the last character,
      * which cannot be a dash.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    project?: pulumi.Input<string>;
     /**
      * Region where resource policy resides.
      */
-    readonly region?: pulumi.Input<string>;
+    region?: pulumi.Input<string>;
     /**
      * Policy for creating snapshots of persistent disks.
      * Structure is documented below.
      */
-    readonly snapshotSchedulePolicy?: pulumi.Input<inputs.compute.ResourcePolicySnapshotSchedulePolicy>;
+    snapshotSchedulePolicy?: pulumi.Input<inputs.compute.ResourcePolicySnapshotSchedulePolicy>;
 }

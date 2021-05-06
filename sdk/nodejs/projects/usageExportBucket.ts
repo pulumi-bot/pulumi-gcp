@@ -157,13 +157,13 @@ export interface UsageExportBucketArgs {
     /**
      * The bucket to store reports in.
      */
-    readonly bucketName: pulumi.Input<string>;
+    bucketName: pulumi.Input<string>;
     /**
      * A prefix for the reports, for instance, the project name.
      */
-    readonly prefix?: pulumi.Input<string>;
+    prefix?: pulumi.Input<string>;
     /**
      * The project to set the export bucket on. If it is not provided, the provider project is used.
      */
-    readonly project?: pulumi.Input<string>;
+    project?: pulumi.Input<string>;
 }

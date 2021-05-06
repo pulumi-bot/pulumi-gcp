@@ -168,9 +168,9 @@ export interface AccessPolicyArgs {
      * The parent of this AccessPolicy in the Cloud Resource Hierarchy.
      * Format: organizations/{organization_id}
      */
-    readonly parent: pulumi.Input<string>;
+    parent: pulumi.Input<string>;
     /**
      * Human readable title. Does not affect behavior.
      */
-    readonly title: pulumi.Input<string>;
+    title: pulumi.Input<string>;
 }

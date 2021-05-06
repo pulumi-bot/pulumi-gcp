@@ -218,28 +218,28 @@ export interface GroupArgs {
      * An extended description to help users determine the purpose of a Group.
      * Must not be longer than 4,096 characters.
      */
-    readonly description?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
      * The display name of the Group.
      */
-    readonly displayName?: pulumi.Input<string>;
+    displayName?: pulumi.Input<string>;
     /**
      * EntityKey of the Group.
      * Structure is documented below.
      */
-    readonly groupKey: pulumi.Input<inputs.cloudidentity.GroupGroupKey>;
+    groupKey: pulumi.Input<inputs.cloudidentity.GroupGroupKey>;
     /**
      * The labels that apply to the Group.
      * Must not contain more than one entry. Must contain the entry
      * 'cloudidentity.googleapis.com/groups.discussion_forum': '' if the Group is a Google Group or
      * 'system/groups/external': '' if the Group is an external-identity-mapped group.
      */
-    readonly labels: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    labels: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The resource name of the entity under which this Group resides in the
      * Cloud Identity resource hierarchy.
      * Must be of the form identitysources/{identity_source_id} for external-identity-mapped
      * groups or customers/{customer_id} for Google Groups.
      */
-    readonly parent: pulumi.Input<string>;
+    parent: pulumi.Input<string>;
 }
