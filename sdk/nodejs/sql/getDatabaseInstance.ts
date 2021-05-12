@@ -40,11 +40,11 @@ export interface GetDatabaseInstanceArgs {
     /**
      * The name of the instance.
      */
-    readonly name: string;
+    name: string;
     /**
      * The ID of the project in which the resource belongs.
      */
-    readonly project?: string;
+    project?: string;
 }
 
 /**
