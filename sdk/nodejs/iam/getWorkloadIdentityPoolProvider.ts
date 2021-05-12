@@ -43,17 +43,17 @@ export interface GetWorkloadIdentityPoolProviderArgs {
      * The project in which the resource belongs. If it
      * is not provided, the provider project is used.
      */
-    readonly project?: string;
+    project?: string;
     /**
      * The id of the pool which is the
      * final component of the pool resource name.
      */
-    readonly workloadIdentityPoolId: string;
+    workloadIdentityPoolId: string;
     /**
      * The id of the provider which is the
      * final component of the resource name.
      */
-    readonly workloadIdentityPoolProviderId: string;
+    workloadIdentityPoolProviderId: string;
 }
 
 /**
