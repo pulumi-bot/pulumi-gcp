@@ -41,17 +41,17 @@ export interface GetForwardingRuleArgs {
     /**
      * The name of the forwarding rule.
      */
-    readonly name: string;
+    name: string;
     /**
      * The project in which the resource belongs. If it
      * is not provided, the provider project is used.
      */
-    readonly project?: string;
+    project?: string;
     /**
      * The region in which the resource belongs. If it
      * is not provided, the project region is used.
      */
-    readonly region?: string;
+    region?: string;
 }
 
 /**
@@ -85,4 +85,28 @@ export interface GetForwardingRuleResult {
     readonly serviceName: string;
     readonly subnetwork: string;
     readonly target: string;
+}
+
+export function getForwardingRuleOutput(args: GetForwardingRuleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetForwardingRuleResult> {
+    return pulumi.output(args).apply(a => getForwardingRule(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getForwardingRule.
+ */
+export interface GetForwardingRuleOutputArgs {
+    /**
+     * The name of the forwarding rule.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The project in which the resource belongs. If it
+     * is not provided, the provider project is used.
+     */
+    project?: pulumi.Input<string>;
+    /**
+     * The region in which the resource belongs. If it
+     * is not provided, the project region is used.
+     */
+    region?: pulumi.Input<string>;
 }

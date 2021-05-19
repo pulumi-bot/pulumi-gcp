@@ -39,7 +39,7 @@ export interface GetDefaultServiceAccountArgs {
     /**
      * The project ID. If it is not provided, the provider project is used.
      */
-    readonly project?: string;
+    project?: string;
 }
 
 /**
@@ -67,4 +67,18 @@ export interface GetDefaultServiceAccountResult {
      * The unique id of the service account.
      */
     readonly uniqueId: string;
+}
+
+export function getDefaultServiceAccountOutput(args?: GetDefaultServiceAccountOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDefaultServiceAccountResult> {
+    return pulumi.output(args).apply(a => getDefaultServiceAccount(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getDefaultServiceAccount.
+ */
+export interface GetDefaultServiceAccountOutputArgs {
+    /**
+     * The project ID. If it is not provided, the provider project is used.
+     */
+    project?: pulumi.Input<string>;
 }

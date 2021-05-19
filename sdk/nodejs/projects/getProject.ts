@@ -45,7 +45,7 @@ export interface GetProjectArgs {
     /**
      * A string filter as defined in the [REST API](https://cloud.google.com/resource-manager/reference/rest/v1/projects/list#query-parameters).
      */
-    readonly filter: string;
+    filter: string;
 }
 
 /**
@@ -61,4 +61,18 @@ export interface GetProjectResult {
      * A list of projects matching the provided filter. Structure is defined below.
      */
     readonly projects: outputs.projects.GetProjectProject[];
+}
+
+export function getProjectOutput(args: GetProjectOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetProjectResult> {
+    return pulumi.output(args).apply(a => getProject(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getProject.
+ */
+export interface GetProjectOutputArgs {
+    /**
+     * A string filter as defined in the [REST API](https://cloud.google.com/resource-manager/reference/rest/v1/projects/list#query-parameters).
+     */
+    filter: pulumi.Input<string>;
 }
