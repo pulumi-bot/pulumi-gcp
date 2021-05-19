@@ -164,3 +164,10 @@ def get_backend_bucket(name: Optional[str] = None,
         name=__ret__.name,
         project=__ret__.project,
         self_link=__ret__.self_link)
+
+
+@_utilities.lift_output_func(get_backend_bucket)
+def get_backend_bucket_output(name: Optional[pulumi.Input[str]] = None,
+                              project: Optional[pulumi.Input[str]] = None,
+                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetBackendBucketResult]:
+    ...

@@ -120,3 +120,10 @@ def get_tensorflow_versions(project: Optional[str] = None,
         project=__ret__.project,
         versions=__ret__.versions,
         zone=__ret__.zone)
+
+
+@_utilities.lift_output_func(get_tensorflow_versions)
+def get_tensorflow_versions_output(project: Optional[pulumi.Input[str]] = None,
+                                   zone: Optional[pulumi.Input[str]] = None,
+                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTensorflowVersionsResult]:
+    ...

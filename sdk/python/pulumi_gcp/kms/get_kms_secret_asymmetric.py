@@ -113,3 +113,11 @@ def get_kms_secret_asymmetric(ciphertext: Optional[str] = None,
         crypto_key_version=__ret__.crypto_key_version,
         id=__ret__.id,
         plaintext=__ret__.plaintext)
+
+
+@_utilities.lift_output_func(get_kms_secret_asymmetric)
+def get_kms_secret_asymmetric_output(ciphertext: Optional[pulumi.Input[str]] = None,
+                                     crc32: Optional[pulumi.Input[str]] = None,
+                                     crypto_key_version: Optional[pulumi.Input[str]] = None,
+                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetKMSSecretAsymmetricResult]:
+    ...

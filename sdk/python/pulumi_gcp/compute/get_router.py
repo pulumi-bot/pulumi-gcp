@@ -162,3 +162,12 @@ def get_router(name: Optional[str] = None,
         project=__ret__.project,
         region=__ret__.region,
         self_link=__ret__.self_link)
+
+
+@_utilities.lift_output_func(get_router)
+def get_router_output(name: Optional[pulumi.Input[str]] = None,
+                      network: Optional[pulumi.Input[str]] = None,
+                      project: Optional[pulumi.Input[str]] = None,
+                      region: Optional[pulumi.Input[str]] = None,
+                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRouterResult]:
+    ...

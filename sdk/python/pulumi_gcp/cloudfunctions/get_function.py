@@ -354,3 +354,11 @@ def get_function(name: Optional[str] = None,
         trigger_http=__ret__.trigger_http,
         vpc_connector=__ret__.vpc_connector,
         vpc_connector_egress_settings=__ret__.vpc_connector_egress_settings)
+
+
+@_utilities.lift_output_func(get_function)
+def get_function_output(name: Optional[pulumi.Input[str]] = None,
+                        project: Optional[pulumi.Input[str]] = None,
+                        region: Optional[pulumi.Input[str]] = None,
+                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFunctionResult]:
+    ...

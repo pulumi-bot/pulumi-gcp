@@ -145,3 +145,10 @@ def get_network(name: Optional[str] = None,
         project=__ret__.project,
         self_link=__ret__.self_link,
         subnetworks_self_links=__ret__.subnetworks_self_links)
+
+
+@_utilities.lift_output_func(get_network)
+def get_network_output(name: Optional[pulumi.Input[str]] = None,
+                       project: Optional[pulumi.Input[str]] = None,
+                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNetworkResult]:
+    ...

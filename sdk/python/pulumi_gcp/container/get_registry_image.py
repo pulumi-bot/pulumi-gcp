@@ -137,3 +137,13 @@ def get_registry_image(digest: Optional[str] = None,
         project=__ret__.project,
         region=__ret__.region,
         tag=__ret__.tag)
+
+
+@_utilities.lift_output_func(get_registry_image)
+def get_registry_image_output(digest: Optional[pulumi.Input[str]] = None,
+                              name: Optional[pulumi.Input[str]] = None,
+                              project: Optional[pulumi.Input[str]] = None,
+                              region: Optional[pulumi.Input[str]] = None,
+                              tag: Optional[pulumi.Input[str]] = None,
+                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRegistryImageResult]:
+    ...

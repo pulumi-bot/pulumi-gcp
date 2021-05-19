@@ -291,3 +291,10 @@ def get_bucket_object(bucket: Optional[str] = None,
         self_link=__ret__.self_link,
         source=__ret__.source,
         storage_class=__ret__.storage_class)
+
+
+@_utilities.lift_output_func(get_bucket_object)
+def get_bucket_object_output(bucket: Optional[pulumi.Input[str]] = None,
+                             name: Optional[pulumi.Input[str]] = None,
+                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetBucketObjectResult]:
+    ...

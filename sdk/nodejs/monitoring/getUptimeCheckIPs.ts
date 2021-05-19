@@ -44,3 +44,7 @@ export interface GetUptimeCheckIPsResult {
      */
     readonly uptimeCheckIps: outputs.monitoring.GetUptimeCheckIPsUptimeCheckIp[];
 }
+
+export function getUptimeCheckIPsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetUptimeCheckIPsResult> {
+    return pulumi.output(getUptimeCheckIPs(opts))
+}

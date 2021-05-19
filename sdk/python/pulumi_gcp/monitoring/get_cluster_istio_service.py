@@ -193,3 +193,13 @@ def get_cluster_istio_service(cluster_name: Optional[str] = None,
         service_name=__ret__.service_name,
         service_namespace=__ret__.service_namespace,
         telemetries=__ret__.telemetries)
+
+
+@_utilities.lift_output_func(get_cluster_istio_service)
+def get_cluster_istio_service_output(cluster_name: Optional[pulumi.Input[str]] = None,
+                                     location: Optional[pulumi.Input[str]] = None,
+                                     project: Optional[pulumi.Input[str]] = None,
+                                     service_name: Optional[pulumi.Input[str]] = None,
+                                     service_namespace: Optional[pulumi.Input[str]] = None,
+                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetClusterIstioServiceResult]:
+    ...

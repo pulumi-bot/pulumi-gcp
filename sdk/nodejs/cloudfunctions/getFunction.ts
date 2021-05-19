@@ -43,17 +43,17 @@ export interface GetFunctionArgs {
     /**
      * The name of a Cloud Function.
      */
-    readonly name: string;
+    name: string;
     /**
      * The project in which the resource belongs. If it
      * is not provided, the provider project is used.
      */
-    readonly project?: string;
+    project?: string;
     /**
      * The region in which the resource belongs. If it
      * is not provided, the provider region is used.
      */
-    readonly region?: string;
+    region?: string;
 }
 
 /**
@@ -140,4 +140,28 @@ export interface GetFunctionResult {
      * The egress settings for the connector, controlling what traffic is diverted through it.
      */
     readonly vpcConnectorEgressSettings: string;
+}
+
+export function getFunctionOutput(args: GetFunctionOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFunctionResult> {
+    return pulumi.output(args).apply(a => getFunction(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getFunction.
+ */
+export interface GetFunctionOutputArgs {
+    /**
+     * The name of a Cloud Function.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The project in which the resource belongs. If it
+     * is not provided, the provider project is used.
+     */
+    project?: pulumi.Input<string>;
+    /**
+     * The region in which the resource belongs. If it
+     * is not provided, the provider region is used.
+     */
+    region?: pulumi.Input<string>;
 }

@@ -244,3 +244,10 @@ def get_health_check(name: Optional[str] = None,
         timeout_sec=__ret__.timeout_sec,
         type=__ret__.type,
         unhealthy_threshold=__ret__.unhealthy_threshold)
+
+
+@_utilities.lift_output_func(get_health_check)
+def get_health_check_output(name: Optional[pulumi.Input[str]] = None,
+                            project: Optional[pulumi.Input[str]] = None,
+                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetHealthCheckResult]:
+    ...

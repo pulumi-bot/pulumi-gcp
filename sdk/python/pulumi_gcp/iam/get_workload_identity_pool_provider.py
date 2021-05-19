@@ -200,3 +200,11 @@ def get_workload_identity_pool_provider(project: Optional[str] = None,
         state=__ret__.state,
         workload_identity_pool_id=__ret__.workload_identity_pool_id,
         workload_identity_pool_provider_id=__ret__.workload_identity_pool_provider_id)
+
+
+@_utilities.lift_output_func(get_workload_identity_pool_provider)
+def get_workload_identity_pool_provider_output(project: Optional[pulumi.Input[str]] = None,
+                                               workload_identity_pool_id: Optional[pulumi.Input[str]] = None,
+                                               workload_identity_pool_provider_id: Optional[pulumi.Input[str]] = None,
+                                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetWorkloadIdentityPoolProviderResult]:
+    ...

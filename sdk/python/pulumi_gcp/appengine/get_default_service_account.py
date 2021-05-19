@@ -132,3 +132,9 @@ def get_default_service_account(project: Optional[str] = None,
         name=__ret__.name,
         project=__ret__.project,
         unique_id=__ret__.unique_id)
+
+
+@_utilities.lift_output_func(get_default_service_account)
+def get_default_service_account_output(project: Optional[pulumi.Input[str]] = None,
+                                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDefaultServiceAccountResult]:
+    ...

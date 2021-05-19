@@ -174,3 +174,10 @@ def get_kms_crypto_key(key_ring: Optional[str] = None,
         self_link=__ret__.self_link,
         skip_initial_version_creation=__ret__.skip_initial_version_creation,
         version_templates=__ret__.version_templates)
+
+
+@_utilities.lift_output_func(get_kms_crypto_key)
+def get_kms_crypto_key_output(key_ring: Optional[pulumi.Input[str]] = None,
+                              name: Optional[pulumi.Input[str]] = None,
+                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetKMSCryptoKeyResult]:
+    ...

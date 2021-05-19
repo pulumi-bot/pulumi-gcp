@@ -163,3 +163,15 @@ def get_instance(config: Optional[str] = None,
         num_nodes=__ret__.num_nodes,
         project=__ret__.project,
         state=__ret__.state)
+
+
+@_utilities.lift_output_func(get_instance)
+def get_instance_output(config: Optional[pulumi.Input[str]] = None,
+                        display_name: Optional[pulumi.Input[str]] = None,
+                        force_destroy: Optional[pulumi.Input[bool]] = None,
+                        labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                        name: Optional[pulumi.Input[str]] = None,
+                        num_nodes: Optional[pulumi.Input[int]] = None,
+                        project: Optional[pulumi.Input[str]] = None,
+                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetInstanceResult]:
+    ...

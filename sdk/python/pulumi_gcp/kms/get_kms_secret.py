@@ -120,3 +120,11 @@ def get_kms_secret(additional_authenticated_data: Optional[str] = None,
         crypto_key=__ret__.crypto_key,
         id=__ret__.id,
         plaintext=__ret__.plaintext)
+
+
+@_utilities.lift_output_func(get_kms_secret)
+def get_kms_secret_output(additional_authenticated_data: Optional[pulumi.Input[str]] = None,
+                          ciphertext: Optional[pulumi.Input[str]] = None,
+                          crypto_key: Optional[pulumi.Input[str]] = None,
+                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetKMSSecretResult]:
+    ...

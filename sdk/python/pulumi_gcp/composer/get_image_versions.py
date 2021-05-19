@@ -115,3 +115,10 @@ def get_image_versions(project: Optional[str] = None,
         image_versions=__ret__.image_versions,
         project=__ret__.project,
         region=__ret__.region)
+
+
+@_utilities.lift_output_func(get_image_versions)
+def get_image_versions_output(project: Optional[pulumi.Input[str]] = None,
+                              region: Optional[pulumi.Input[str]] = None,
+                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetImageVersionsResult]:
+    ...

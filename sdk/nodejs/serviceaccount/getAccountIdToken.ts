@@ -45,19 +45,19 @@ export interface GetAccountIdTokenArgs {
     /**
      * Delegate chain of approvals needed to perform full impersonation. Specify the fully qualified service account name.   Used only when using impersonation mode.
      */
-    readonly delegates?: string[];
+    delegates?: string[];
     /**
      * Include the verified email in the claim. Used only when using impersonation mode.
      */
-    readonly includeEmail?: boolean;
+    includeEmail?: boolean;
     /**
      * The audience claim for the `idToken`.
      */
-    readonly targetAudience: string;
+    targetAudience: string;
     /**
      * The email of the service account being impersonated.  Used only when using impersonation mode.
      */
-    readonly targetServiceAccount?: string;
+    targetServiceAccount?: string;
 }
 
 /**
@@ -76,4 +76,30 @@ export interface GetAccountIdTokenResult {
     readonly includeEmail?: boolean;
     readonly targetAudience: string;
     readonly targetServiceAccount?: string;
+}
+
+export function getAccountIdTokenOutput(args: GetAccountIdTokenOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAccountIdTokenResult> {
+    return pulumi.output(args).apply(a => getAccountIdToken(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getAccountIdToken.
+ */
+export interface GetAccountIdTokenOutputArgs {
+    /**
+     * Delegate chain of approvals needed to perform full impersonation. Specify the fully qualified service account name.   Used only when using impersonation mode.
+     */
+    delegates?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Include the verified email in the claim. Used only when using impersonation mode.
+     */
+    includeEmail?: pulumi.Input<boolean>;
+    /**
+     * The audience claim for the `idToken`.
+     */
+    targetAudience: pulumi.Input<string>;
+    /**
+     * The email of the service account being impersonated.  Used only when using impersonation mode.
+     */
+    targetServiceAccount?: pulumi.Input<string>;
 }

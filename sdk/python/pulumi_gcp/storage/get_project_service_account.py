@@ -159,3 +159,10 @@ def get_project_service_account(project: Optional[str] = None,
         id=__ret__.id,
         project=__ret__.project,
         user_project=__ret__.user_project)
+
+
+@_utilities.lift_output_func(get_project_service_account)
+def get_project_service_account_output(project: Optional[pulumi.Input[str]] = None,
+                                       user_project: Optional[pulumi.Input[str]] = None,
+                                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetProjectServiceAccountResult]:
+    ...

@@ -208,3 +208,16 @@ def get_object_signed_url(bucket: Optional[str] = None,
         id=__ret__.id,
         path=__ret__.path,
         signed_url=__ret__.signed_url)
+
+
+@_utilities.lift_output_func(get_object_signed_url)
+def get_object_signed_url_output(bucket: Optional[pulumi.Input[str]] = None,
+                                 content_md5: Optional[pulumi.Input[str]] = None,
+                                 content_type: Optional[pulumi.Input[str]] = None,
+                                 credentials: Optional[pulumi.Input[str]] = None,
+                                 duration: Optional[pulumi.Input[str]] = None,
+                                 extension_headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                                 http_method: Optional[pulumi.Input[str]] = None,
+                                 path: Optional[pulumi.Input[str]] = None,
+                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetObjectSignedUrlResult]:
+    ...

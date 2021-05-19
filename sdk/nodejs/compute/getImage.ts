@@ -51,18 +51,18 @@ export interface GetImageArgs {
     /**
      * The family name of the image.
      */
-    readonly family?: string;
-    readonly filter?: string;
+    family?: string;
+    filter?: string;
     /**
      * The name of the image.
      */
-    readonly name?: string;
+    name?: string;
     /**
      * The project in which the resource belongs. If it is not
      * provided, the provider project is used. If you are using a
      * [public base image][pubimg], be sure to specify the correct Image Project.
      */
-    readonly project?: string;
+    project?: string;
 }
 
 /**
@@ -147,4 +147,29 @@ export interface GetImageResult {
      * The status of the image. Possible values are **FAILED**, **PENDING**, or **READY**.
      */
     readonly status: string;
+}
+
+export function getImageOutput(args?: GetImageOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetImageResult> {
+    return pulumi.output(args).apply(a => getImage(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getImage.
+ */
+export interface GetImageOutputArgs {
+    /**
+     * The family name of the image.
+     */
+    family?: pulumi.Input<string>;
+    filter?: pulumi.Input<string>;
+    /**
+     * The name of the image.
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * The project in which the resource belongs. If it is not
+     * provided, the provider project is used. If you are using a
+     * [public base image][pubimg], be sure to specify the correct Image Project.
+     */
+    project?: pulumi.Input<string>;
 }

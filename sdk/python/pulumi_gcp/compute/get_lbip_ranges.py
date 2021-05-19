@@ -100,3 +100,8 @@ def get_lbip_ranges(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGet
         http_ssl_tcp_internals=__ret__.http_ssl_tcp_internals,
         id=__ret__.id,
         networks=__ret__.networks)
+
+
+@_utilities.lift_output_func(get_lbip_ranges)
+def get_lbip_ranges_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetLBIPRangesResult]:
+    ...

@@ -148,3 +148,11 @@ def get_hc_vpn_gateway(name: Optional[str] = None,
         region=__ret__.region,
         self_link=__ret__.self_link,
         vpn_interfaces=__ret__.vpn_interfaces)
+
+
+@_utilities.lift_output_func(get_hc_vpn_gateway)
+def get_hc_vpn_gateway_output(name: Optional[pulumi.Input[str]] = None,
+                              project: Optional[pulumi.Input[str]] = None,
+                              region: Optional[pulumi.Input[str]] = None,
+                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetHcVpnGatewayResult]:
+    ...
