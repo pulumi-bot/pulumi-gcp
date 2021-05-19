@@ -47,11 +47,11 @@ export interface GetBucketObjectArgs {
     /**
      * The name of the containing bucket.
      */
-    readonly bucket?: string;
+    bucket?: string;
     /**
      * The name of the object.
      */
-    readonly name?: string;
+    name?: string;
 }
 
 /**
@@ -113,4 +113,22 @@ export interface GetBucketObjectResult {
      * storage class or to a [standard](https://cloud.google.com/storage/docs/storage-classes#standard) class.
      */
     readonly storageClass: string;
+}
+
+export function getBucketObjectOutput(args?: GetBucketObjectOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBucketObjectResult> {
+    return pulumi.output(args).apply(a => getBucketObject(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getBucketObject.
+ */
+export interface GetBucketObjectOutputArgs {
+    /**
+     * The name of the containing bucket.
+     */
+    bucket?: pulumi.Input<string>;
+    /**
+     * The name of the object.
+     */
+    name?: pulumi.Input<string>;
 }

@@ -41,12 +41,12 @@ export interface GetAccountArgs {
     /**
      * The Google service account ID. This be one of:
      */
-    readonly accountId: string;
+    accountId: string;
     /**
      * The ID of the project that the service account is present in.
      * Defaults to the provider project configuration.
      */
-    readonly project?: string;
+    project?: string;
 }
 
 /**
@@ -77,4 +77,23 @@ export interface GetAccountResult {
      * The unique id of the service account.
      */
     readonly uniqueId: string;
+}
+
+export function getAccountOutput(args: GetAccountOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAccountResult> {
+    return pulumi.output(args).apply(a => getAccount(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getAccount.
+ */
+export interface GetAccountOutputArgs {
+    /**
+     * The Google service account ID. This be one of:
+     */
+    accountId: pulumi.Input<string>;
+    /**
+     * The ID of the project that the service account is present in.
+     * Defaults to the provider project configuration.
+     */
+    project?: pulumi.Input<string>;
 }

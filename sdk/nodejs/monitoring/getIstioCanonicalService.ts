@@ -59,22 +59,22 @@ export interface GetIstioCanonicalServiceArgs {
      * The name of the canonical service underlying this service.
      * Corresponds to the destinationCanonicalServiceName metric label in label in Istio metrics.
      */
-    readonly canonicalService: string;
+    canonicalService: string;
     /**
      * The namespace of the canonical service underlying this service.
      * Corresponds to the destinationCanonicalServiceNamespace metric label in Istio metrics.
      */
-    readonly canonicalServiceNamespace: string;
+    canonicalServiceNamespace: string;
     /**
      * Identifier for the mesh in which this Istio service is defined.
      * Corresponds to the meshUid metric label in Istio metrics.
      */
-    readonly meshUid: string;
+    meshUid: string;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: string;
+    project?: string;
 }
 
 /**
@@ -93,4 +93,34 @@ export interface GetIstioCanonicalServiceResult {
     readonly project?: string;
     readonly serviceId: string;
     readonly telemetries: outputs.monitoring.GetIstioCanonicalServiceTelemetry[];
+}
+
+export function getIstioCanonicalServiceOutput(args: GetIstioCanonicalServiceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetIstioCanonicalServiceResult> {
+    return pulumi.output(args).apply(a => getIstioCanonicalService(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getIstioCanonicalService.
+ */
+export interface GetIstioCanonicalServiceOutputArgs {
+    /**
+     * The name of the canonical service underlying this service.
+     * Corresponds to the destinationCanonicalServiceName metric label in label in Istio metrics.
+     */
+    canonicalService: pulumi.Input<string>;
+    /**
+     * The namespace of the canonical service underlying this service.
+     * Corresponds to the destinationCanonicalServiceNamespace metric label in Istio metrics.
+     */
+    canonicalServiceNamespace: pulumi.Input<string>;
+    /**
+     * Identifier for the mesh in which this Istio service is defined.
+     * Corresponds to the meshUid metric label in Istio metrics.
+     */
+    meshUid: pulumi.Input<string>;
+    /**
+     * The ID of the project in which the resource belongs.
+     * If it is not provided, the provider project is used.
+     */
+    project?: pulumi.Input<string>;
 }

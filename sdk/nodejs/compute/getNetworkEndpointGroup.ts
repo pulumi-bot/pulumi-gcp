@@ -50,20 +50,20 @@ export interface GetNetworkEndpointGroupArgs {
      * The Network Endpoint Group name.
      * Provide either this or a `selfLink`.
      */
-    readonly name?: string;
+    name?: string;
     /**
      * The ID of the project to list versions in.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: string;
+    project?: string;
     /**
      * The Network Endpoint Group self\_link.
      */
-    readonly selfLink?: string;
+    selfLink?: string;
     /**
      * The Network Endpoint Group availability zone.
      */
-    readonly zone?: string;
+    zone?: string;
 }
 
 /**
@@ -102,4 +102,32 @@ export interface GetNetworkEndpointGroupResult {
      */
     readonly subnetwork: string;
     readonly zone?: string;
+}
+
+export function getNetworkEndpointGroupOutput(args?: GetNetworkEndpointGroupOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNetworkEndpointGroupResult> {
+    return pulumi.output(args).apply(a => getNetworkEndpointGroup(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getNetworkEndpointGroup.
+ */
+export interface GetNetworkEndpointGroupOutputArgs {
+    /**
+     * The Network Endpoint Group name.
+     * Provide either this or a `selfLink`.
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * The ID of the project to list versions in.
+     * If it is not provided, the provider project is used.
+     */
+    project?: pulumi.Input<string>;
+    /**
+     * The Network Endpoint Group self\_link.
+     */
+    selfLink?: pulumi.Input<string>;
+    /**
+     * The Network Endpoint Group availability zone.
+     */
+    zone?: pulumi.Input<string>;
 }

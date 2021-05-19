@@ -44,12 +44,12 @@ export interface GetConfigArgs {
     /**
      * The name of the Runtime Configurator configuration.
      */
-    readonly name: string;
+    name: string;
     /**
      * The project in which the resource belongs. If it
      * is not provided, the provider project is used.
      */
-    readonly project?: string;
+    project?: string;
 }
 
 /**
@@ -63,4 +63,23 @@ export interface GetConfigResult {
     readonly id: string;
     readonly name: string;
     readonly project?: string;
+}
+
+export function getConfigOutput(args: GetConfigOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetConfigResult> {
+    return pulumi.output(args).apply(a => getConfig(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getConfig.
+ */
+export interface GetConfigOutputArgs {
+    /**
+     * The name of the Runtime Configurator configuration.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The project in which the resource belongs. If it
+     * is not provided, the provider project is used.
+     */
+    project?: pulumi.Input<string>;
 }
