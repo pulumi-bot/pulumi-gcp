@@ -47,23 +47,23 @@ export interface GetInstanceArgs {
     /**
      * The name of the instance. One of `name` or `selfLink` must be provided.
      */
-    readonly name?: string;
+    name?: string;
     /**
      * The ID of the project in which the resource belongs.
      * If `selfLink` is provided, this value is ignored.  If neither `selfLink`
      * nor `project` are provided, the provider project is used.
      */
-    readonly project?: string;
+    project?: string;
     /**
      * The self link of the instance. One of `name` or `selfLink` must be provided.
      */
-    readonly selfLink?: string;
+    selfLink?: string;
     /**
      * The zone of the instance. If `selfLink` is provided, this
      * value is ignored.  If neither `selfLink` nor `zone` are provided, the
      * provider zone is used.
      */
-    readonly zone?: string;
+    zone?: string;
 }
 
 /**
@@ -173,4 +173,34 @@ export interface GetInstanceResult {
      */
     readonly tagsFingerprint: string;
     readonly zone?: string;
+}
+
+export function getInstanceOutput(args?: GetInstanceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstanceResult> {
+    return pulumi.output(args).apply(a => getInstance(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getInstance.
+ */
+export interface GetInstanceOutputArgs {
+    /**
+     * The name of the instance. One of `name` or `selfLink` must be provided.
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * The ID of the project in which the resource belongs.
+     * If `selfLink` is provided, this value is ignored.  If neither `selfLink`
+     * nor `project` are provided, the provider project is used.
+     */
+    project?: pulumi.Input<string>;
+    /**
+     * The self link of the instance. One of `name` or `selfLink` must be provided.
+     */
+    selfLink?: pulumi.Input<string>;
+    /**
+     * The zone of the instance. If `selfLink` is provided, this
+     * value is ignored.  If neither `selfLink` nor `zone` are provided, the
+     * provider zone is used.
+     */
+    zone?: pulumi.Input<string>;
 }

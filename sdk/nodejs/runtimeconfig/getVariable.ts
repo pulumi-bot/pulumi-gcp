@@ -46,16 +46,16 @@ export interface GetVariableArgs {
     /**
      * The name of the Runtime Configurator configuration.
      */
-    readonly name: string;
+    name: string;
     /**
      * The name of the RuntimeConfig resource containing this variable.
      */
-    readonly parent: string;
+    parent: string;
     /**
      * The project in which the resource belongs. If it
      * is not provided, the provider project is used.
      */
-    readonly project?: string;
+    project?: string;
 }
 
 /**
@@ -72,4 +72,27 @@ export interface GetVariableResult {
     readonly text: string;
     readonly updateTime: string;
     readonly value: string;
+}
+
+export function getVariableOutput(args: GetVariableOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVariableResult> {
+    return pulumi.output(args).apply(a => getVariable(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getVariable.
+ */
+export interface GetVariableOutputArgs {
+    /**
+     * The name of the Runtime Configurator configuration.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The name of the RuntimeConfig resource containing this variable.
+     */
+    parent: pulumi.Input<string>;
+    /**
+     * The project in which the resource belongs. If it
+     * is not provided, the provider project is used.
+     */
+    project?: pulumi.Input<string>;
 }
