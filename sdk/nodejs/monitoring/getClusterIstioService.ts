@@ -33,7 +33,7 @@ import * as utilities from "../utilities";
  *     location: "us-west2-a",
  *     serviceName: "istio-policy",
  *     serviceNamespace: "istio-system",
- * }, { async: true }));
+ * }));
  * ```
  */
 export function getClusterIstioService(args: GetClusterIstioServiceArgs, opts?: pulumi.InvokeOptions): Promise<GetClusterIstioServiceResult> {

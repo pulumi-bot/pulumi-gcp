@@ -41,7 +41,7 @@ import * as utilities from "../utilities";
  *             role: "roles/storage.objectViewer",
  *         },
  *     ],
- * }, { async: true }));
+ * }));
  * ```
  *
  * This data source is used to define IAM policies to apply to other resources.

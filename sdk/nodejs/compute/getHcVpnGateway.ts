@@ -16,7 +16,7 @@ import * as utilities from "../utilities";
  *
  * const gateway = pulumi.output(gcp.compute.getHcVpnGateway({
  *     name: "foobar",
- * }, { async: true }));
+ * }));
  * ```
  */
 export function getHcVpnGateway(args: GetHcVpnGatewayArgs, opts?: pulumi.InvokeOptions): Promise<GetHcVpnGatewayResult> {

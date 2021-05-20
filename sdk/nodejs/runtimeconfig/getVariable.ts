@@ -21,7 +21,7 @@ import * as utilities from "../utilities";
  * const run_service = pulumi.output(gcp.runtimeconfig.getVariable({
  *     name: "prod-variables/hostname",
  *     parent: "my-service",
- * }, { async: true }));
+ * }));
  * ```
  */
 export function getVariable(args: GetVariableArgs, opts?: pulumi.InvokeOptions): Promise<GetVariableResult> {

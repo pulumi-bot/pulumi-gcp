@@ -16,7 +16,7 @@ import * as utilities from "../utilities";
  *
  * const foo = pulumi.output(gcp.spanner.getInstance({
  *     name: "bar",
- * }, { async: true }));
+ * }));
  * ```
  */
 export function getInstance(args: GetInstanceArgs, opts?: pulumi.InvokeOptions): Promise<GetInstanceResult> {

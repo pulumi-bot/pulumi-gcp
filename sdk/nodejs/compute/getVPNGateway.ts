@@ -16,7 +16,7 @@ import * as utilities from "../utilities";
  *
  * const my_vpn_gateway = pulumi.output(gcp.compute.getVPNGateway({
  *     name: "vpn-gateway-us-east1",
- * }, { async: true }));
+ * }));
  * ```
  */
 export function getVPNGateway(args: GetVPNGatewayArgs, opts?: pulumi.InvokeOptions): Promise<GetVPNGatewayResult> {

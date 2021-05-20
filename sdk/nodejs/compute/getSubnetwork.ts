@@ -17,7 +17,7 @@ import * as utilities from "../utilities";
  * const my_subnetwork = pulumi.output(gcp.compute.getSubnetwork({
  *     name: "default-us-east1",
  *     region: "us-east1",
- * }, { async: true }));
+ * }));
  * ```
  */
 export function getSubnetwork(args?: GetSubnetworkArgs, opts?: pulumi.InvokeOptions): Promise<GetSubnetworkResult> {

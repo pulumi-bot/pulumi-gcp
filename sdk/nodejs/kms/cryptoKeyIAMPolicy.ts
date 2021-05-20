@@ -52,7 +52,7 @@ import * as utilities from "../utilities";
  *         members: ["user:jane@example.com"],
  *         role: "roles/cloudkms.cryptoKeyEncrypter",
  *     }],
- * }, { async: true }));
+ * }));
  * ```
  *
  * ```typescript

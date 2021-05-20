@@ -32,7 +32,7 @@ import * as utilities from "../utilities";
  *     canonicalService: "prometheus",
  *     canonicalServiceNamespace: "istio-system",
  *     meshUid: "proj-573164786102",
- * }, { async: true }));
+ * }));
  * ```
  */
 export function getIstioCanonicalService(args: GetIstioCanonicalServiceArgs, opts?: pulumi.InvokeOptions): Promise<GetIstioCanonicalServiceResult> {

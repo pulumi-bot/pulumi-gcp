@@ -20,7 +20,7 @@ import * as utilities from "../utilities";
  * const appserver = pulumi.output(gcp.compute.getInstance({
  *     name: "primary-application-server",
  *     zone: "us-central1-a",
- * }, { async: true }));
+ * }));
  * ```
  */
 export function getInstance(args?: GetInstanceArgs, opts?: pulumi.InvokeOptions): Promise<GetInstanceResult> {

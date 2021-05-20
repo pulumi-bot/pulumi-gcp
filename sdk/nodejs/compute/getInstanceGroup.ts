@@ -17,7 +17,7 @@ import * as utilities from "../utilities";
  * const all = pulumi.output(gcp.compute.getInstanceGroup({
  *     name: "instance-group-name",
  *     zone: "us-central1-a",
- * }, { async: true }));
+ * }));
  * ```
  */
 export function getInstanceGroup(args?: GetInstanceGroupArgs, opts?: pulumi.InvokeOptions): Promise<GetInstanceGroupResult> {

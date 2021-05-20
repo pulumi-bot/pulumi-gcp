@@ -18,7 +18,7 @@ import * as utilities from "../utilities";
  *
  * const my_pubsub_topic = pulumi.output(gcp.pubsub.getTopic({
  *     name: "my-pubsub-topic",
- * }, { async: true }));
+ * }));
  * ```
  */
 export function getTopic(args: GetTopicArgs, opts?: pulumi.InvokeOptions): Promise<GetTopicResult> {

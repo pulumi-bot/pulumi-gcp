@@ -19,10 +19,10 @@ import * as utilities from "../utilities";
  * const neg1 = pulumi.output(gcp.compute.getNetworkEndpointGroup({
  *     name: "k8s1-abcdef01-myns-mysvc-8080-4b6bac43",
  *     zone: "us-central1-a",
- * }, { async: true }));
+ * }));
  * const neg2 = pulumi.output(gcp.compute.getNetworkEndpointGroup({
  *     selfLink: "https://www.googleapis.com/compute/v1/projects/myproject/zones/us-central1-a/networkEndpointGroups/k8s1-abcdef01-myns-mysvc-8080-4b6bac43",
- * }, { async: true }));
+ * }));
  * ```
  */
 export function getNetworkEndpointGroup(args?: GetNetworkEndpointGroupArgs, opts?: pulumi.InvokeOptions): Promise<GetNetworkEndpointGroupResult> {

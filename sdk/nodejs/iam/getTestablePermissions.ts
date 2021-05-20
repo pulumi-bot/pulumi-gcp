@@ -22,7 +22,7 @@ import * as utilities from "../utilities";
  *         "GA",
  *         "BETA",
  *     ],
- * }, { async: true }));
+ * }));
  * ```
  */
 export function getTestablePermissions(args: GetTestablePermissionsArgs, opts?: pulumi.InvokeOptions): Promise<GetTestablePermissionsResult> {

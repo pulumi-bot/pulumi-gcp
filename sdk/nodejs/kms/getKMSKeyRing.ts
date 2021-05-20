@@ -23,7 +23,7 @@ import * as utilities from "../utilities";
  * const myKeyRing = pulumi.output(gcp.kms.getKMSKeyRing({
  *     location: "us-central1",
  *     name: "my-key-ring",
- * }, { async: true }));
+ * }));
  * ```
  */
 export function getKMSKeyRing(args: GetKMSKeyRingArgs, opts?: pulumi.InvokeOptions): Promise<GetKMSKeyRingResult> {

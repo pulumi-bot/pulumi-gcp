@@ -16,7 +16,7 @@ import * as utilities from "../utilities";
  *
  * const qa = pulumi.output(gcp.sql.getDatabaseInstance({
  *     name: "test-sql-instance",
- * }, { async: true }));
+ * }));
  * ```
  */
 export function getDatabaseInstance(args: GetDatabaseInstanceArgs, opts?: pulumi.InvokeOptions): Promise<GetDatabaseInstanceResult> {

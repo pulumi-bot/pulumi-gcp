@@ -18,7 +18,7 @@ import * as utilities from "../utilities";
  *
  * const my_function = pulumi.output(gcp.cloudfunctions.getFunction({
  *     name: "function",
- * }, { async: true }));
+ * }));
  * ```
  */
 export function getFunction(args: GetFunctionArgs, opts?: pulumi.InvokeOptions): Promise<GetFunctionResult> {

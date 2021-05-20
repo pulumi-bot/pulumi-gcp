@@ -17,7 +17,7 @@ import * as utilities from "../utilities";
  *
  * const objectViewer = pulumi.output(gcp.serviceAccount.getAccount({
  *     accountId: "object-viewer",
- * }, { async: true }));
+ * }));
  * ```
  */
 export function getAccount(args: GetAccountArgs, opts?: pulumi.InvokeOptions): Promise<GetAccountResult> {

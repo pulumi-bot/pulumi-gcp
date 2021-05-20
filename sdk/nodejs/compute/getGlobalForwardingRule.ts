@@ -16,7 +16,7 @@ import * as utilities from "../utilities";
  *
  * const my_forwarding_rule = pulumi.output(gcp.compute.getGlobalForwardingRule({
  *     name: "forwarding-rule-global",
- * }, { async: true }));
+ * }));
  * ```
  */
 export function getGlobalForwardingRule(args: GetGlobalForwardingRuleArgs, opts?: pulumi.InvokeOptions): Promise<GetGlobalForwardingRuleResult> {

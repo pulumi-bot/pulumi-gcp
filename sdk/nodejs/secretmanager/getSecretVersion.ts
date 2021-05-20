@@ -16,7 +16,7 @@ import * as utilities from "../utilities";
  *
  * const basic = pulumi.output(gcp.secretmanager.getSecretVersion({
  *     secret: "my-secret",
- * }, { async: true }));
+ * }));
  * ```
  */
 export function getSecretVersion(args: GetSecretVersionArgs, opts?: pulumi.InvokeOptions): Promise<GetSecretVersionResult> {

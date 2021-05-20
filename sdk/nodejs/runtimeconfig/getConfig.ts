@@ -20,7 +20,7 @@ import * as utilities from "../utilities";
  *
  * const run_service = pulumi.output(gcp.runtimeconfig.getConfig({
  *     name: "my-service",
- * }, { async: true }));
+ * }));
  * ```
  */
 export function getConfig(args: GetConfigArgs, opts?: pulumi.InvokeOptions): Promise<GetConfigResult> {

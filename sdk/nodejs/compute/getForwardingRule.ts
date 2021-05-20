@@ -16,7 +16,7 @@ import * as utilities from "../utilities";
  *
  * const my_forwarding_rule = pulumi.output(gcp.compute.getForwardingRule({
  *     name: "forwarding-rule-us-east1",
- * }, { async: true }));
+ * }));
  * ```
  */
 export function getForwardingRule(args: GetForwardingRuleArgs, opts?: pulumi.InvokeOptions): Promise<GetForwardingRuleResult> {

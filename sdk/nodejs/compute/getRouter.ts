@@ -17,7 +17,7 @@ import * as utilities from "../utilities";
  * const my_router = pulumi.output(gcp.compute.getRouter({
  *     name: "myrouter-us-east1",
  *     network: "my-network",
- * }, { async: true }));
+ * }));
  * ```
  */
 export function getRouter(args: GetRouterArgs, opts?: pulumi.InvokeOptions): Promise<GetRouterResult> {

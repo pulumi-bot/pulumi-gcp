@@ -18,7 +18,7 @@ import * as utilities from "../utilities";
  *
  * const members = pulumi.output(gcp.cloudidentity.getGroupMemberships({
  *     group: "groups/123eab45c6defghi",
- * }, { async: true }));
+ * }));
  * ```
  */
 export function getGroupMemberships(args: GetGroupMembershipsArgs, opts?: pulumi.InvokeOptions): Promise<GetGroupMembershipsResult> {

@@ -19,7 +19,7 @@ import * as utilities from "../utilities";
  * const run_service = pulumi.output(gcp.cloudrun.getService({
  *     location: "us-central1",
  *     name: "my-service",
- * }, { async: true }));
+ * }));
  * ```
  */
 export function getService(args: GetServiceArgs, opts?: pulumi.InvokeOptions): Promise<GetServiceResult> {
