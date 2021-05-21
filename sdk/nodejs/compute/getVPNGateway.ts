@@ -41,17 +41,17 @@ export interface GetVPNGatewayArgs {
     /**
      * The name of the VPN gateway.
      */
-    readonly name: string;
+    name: string;
     /**
      * The project in which the resource belongs. If it
      * is not provided, the provider project is used.
      */
-    readonly project?: string;
+    project?: string;
     /**
      * The region in which the resource belongs. If it
      * is not provided, the project region is used.
      */
-    readonly region?: string;
+    region?: string;
 }
 
 /**
