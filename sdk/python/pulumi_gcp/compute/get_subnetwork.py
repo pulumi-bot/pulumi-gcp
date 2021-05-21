@@ -207,3 +207,12 @@ def get_subnetwork(name: Optional[str] = None,
         region=__ret__.region,
         secondary_ip_ranges=__ret__.secondary_ip_ranges,
         self_link=__ret__.self_link)
+
+
+@_utilities.lift_output_func(get_subnetwork)
+def get_subnetwork_output(name: Optional[pulumi.Input[str]] = None,
+                          project: Optional[pulumi.Input[str]] = None,
+                          region: Optional[pulumi.Input[str]] = None,
+                          self_link: Optional[pulumi.Input[str]] = None,
+                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSubnetworkResult]:
+    ...

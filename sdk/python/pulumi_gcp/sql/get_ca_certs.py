@@ -113,3 +113,10 @@ def get_ca_certs(instance: Optional[str] = None,
         id=__ret__.id,
         instance=__ret__.instance,
         project=__ret__.project)
+
+
+@_utilities.lift_output_func(get_ca_certs)
+def get_ca_certs_output(instance: Optional[pulumi.Input[str]] = None,
+                        project: Optional[pulumi.Input[str]] = None,
+                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCaCertsResult]:
+    ...

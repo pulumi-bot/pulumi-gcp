@@ -43,11 +43,11 @@ export function getRegistryImage(args: GetRegistryImageArgs, opts?: pulumi.Invok
  * A collection of arguments for invoking getRegistryImage.
  */
 export interface GetRegistryImageArgs {
-    readonly digest?: string;
-    readonly name: string;
-    readonly project?: string;
-    readonly region?: string;
-    readonly tag?: string;
+    digest?: string;
+    name: string;
+    project?: string;
+    region?: string;
+    tag?: string;
 }
 
 /**
@@ -64,4 +64,19 @@ export interface GetRegistryImageResult {
     readonly project: string;
     readonly region?: string;
     readonly tag?: string;
+}
+
+export function getRegistryImageOutput(args: GetRegistryImageOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRegistryImageResult> {
+    return pulumi.output(args).apply(a => getRegistryImage(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getRegistryImage.
+ */
+export interface GetRegistryImageOutputArgs {
+    digest?: pulumi.Input<string>;
+    name: pulumi.Input<string>;
+    project?: pulumi.Input<string>;
+    region?: pulumi.Input<string>;
+    tag?: pulumi.Input<string>;
 }

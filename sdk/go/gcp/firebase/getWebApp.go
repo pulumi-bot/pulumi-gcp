@@ -4,6 +4,9 @@
 package firebase
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -31,4 +34,102 @@ type LookupWebAppResult struct {
 	Id      string `pulumi:"id"`
 	Name    string `pulumi:"name"`
 	Project string `pulumi:"project"`
+}
+
+func LookupWebAppApply(ctx *pulumi.Context, args LookupWebAppApplyInput, opts ...pulumi.InvokeOption) LookupWebAppResultOutput {
+	return args.ToLookupWebAppApplyOutput().ApplyT(func(v LookupWebAppArgs) (LookupWebAppResult, error) {
+		r, err := LookupWebApp(ctx, &v, opts...)
+		return *r, err
+
+	}).(LookupWebAppResultOutput)
+}
+
+// LookupWebAppApplyInput is an input type that accepts LookupWebAppApplyArgs and LookupWebAppApplyOutput values.
+// You can construct a concrete instance of `LookupWebAppApplyInput` via:
+//
+//          LookupWebAppApplyArgs{...}
+type LookupWebAppApplyInput interface {
+	pulumi.Input
+
+	ToLookupWebAppApplyOutput() LookupWebAppApplyOutput
+	ToLookupWebAppApplyOutputWithContext(context.Context) LookupWebAppApplyOutput
+}
+
+// A collection of arguments for invoking getWebApp.
+type LookupWebAppApplyArgs struct {
+	// The appIp of name of the Firebase webApp.
+	AppId pulumi.StringInput `pulumi:"appId"`
+}
+
+func (LookupWebAppApplyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupWebAppArgs)(nil)).Elem()
+}
+
+func (i LookupWebAppApplyArgs) ToLookupWebAppApplyOutput() LookupWebAppApplyOutput {
+	return i.ToLookupWebAppApplyOutputWithContext(context.Background())
+}
+
+func (i LookupWebAppApplyArgs) ToLookupWebAppApplyOutputWithContext(ctx context.Context) LookupWebAppApplyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LookupWebAppApplyOutput)
+}
+
+// A collection of arguments for invoking getWebApp.
+type LookupWebAppApplyOutput struct{ *pulumi.OutputState }
+
+func (LookupWebAppApplyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupWebAppArgs)(nil)).Elem()
+}
+
+func (o LookupWebAppApplyOutput) ToLookupWebAppApplyOutput() LookupWebAppApplyOutput {
+	return o
+}
+
+func (o LookupWebAppApplyOutput) ToLookupWebAppApplyOutputWithContext(ctx context.Context) LookupWebAppApplyOutput {
+	return o
+}
+
+// The appIp of name of the Firebase webApp.
+func (o LookupWebAppApplyOutput) AppId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupWebAppArgs) string { return v.AppId }).(pulumi.StringOutput)
+}
+
+// A collection of values returned by getWebApp.
+type LookupWebAppResultOutput struct{ *pulumi.OutputState }
+
+func (LookupWebAppResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupWebAppResult)(nil)).Elem()
+}
+
+func (o LookupWebAppResultOutput) ToLookupWebAppResultOutput() LookupWebAppResultOutput {
+	return o
+}
+
+func (o LookupWebAppResultOutput) ToLookupWebAppResultOutputWithContext(ctx context.Context) LookupWebAppResultOutput {
+	return o
+}
+
+func (o LookupWebAppResultOutput) AppId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupWebAppResult) string { return v.AppId }).(pulumi.StringOutput)
+}
+
+func (o LookupWebAppResultOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupWebAppResult) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupWebAppResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupWebAppResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupWebAppResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupWebAppResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o LookupWebAppResultOutput) Project() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupWebAppResult) string { return v.Project }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupWebAppApplyOutput{})
+	pulumi.RegisterOutputType(LookupWebAppResultOutput{})
 }

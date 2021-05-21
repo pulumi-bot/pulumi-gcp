@@ -111,3 +111,11 @@ def get_zones(project: Optional[str] = None,
         project=__ret__.project,
         region=__ret__.region,
         status=__ret__.status)
+
+
+@_utilities.lift_output_func(get_zones)
+def get_zones_output(project: Optional[pulumi.Input[str]] = None,
+                     region: Optional[pulumi.Input[str]] = None,
+                     status: Optional[pulumi.Input[str]] = None,
+                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetZonesResult]:
+    ...

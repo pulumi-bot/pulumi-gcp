@@ -307,3 +307,11 @@ def get_forwarding_rule(name: Optional[str] = None,
         service_name=__ret__.service_name,
         subnetwork=__ret__.subnetwork,
         target=__ret__.target)
+
+
+@_utilities.lift_output_func(get_forwarding_rule)
+def get_forwarding_rule_output(name: Optional[pulumi.Input[str]] = None,
+                               project: Optional[pulumi.Input[str]] = None,
+                               region: Optional[pulumi.Input[str]] = None,
+                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetForwardingRuleResult]:
+    ...

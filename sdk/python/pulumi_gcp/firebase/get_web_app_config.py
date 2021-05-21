@@ -160,3 +160,10 @@ def get_web_app_config(project: Optional[str] = None,
         project=__ret__.project,
         storage_bucket=__ret__.storage_bucket,
         web_app_id=__ret__.web_app_id)
+
+
+@_utilities.lift_output_func(get_web_app_config)
+def get_web_app_config_output(project: Optional[pulumi.Input[str]] = None,
+                              web_app_id: Optional[pulumi.Input[str]] = None,
+                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetWebAppConfigResult]:
+    ...

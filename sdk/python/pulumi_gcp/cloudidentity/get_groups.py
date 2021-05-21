@@ -95,3 +95,9 @@ def get_groups(parent: Optional[str] = None,
         groups=__ret__.groups,
         id=__ret__.id,
         parent=__ret__.parent)
+
+
+@_utilities.lift_output_func(get_groups)
+def get_groups_output(parent: Optional[pulumi.Input[str]] = None,
+                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetGroupsResult]:
+    ...

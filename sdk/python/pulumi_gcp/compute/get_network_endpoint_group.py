@@ -202,3 +202,12 @@ def get_network_endpoint_group(name: Optional[str] = None,
         size=__ret__.size,
         subnetwork=__ret__.subnetwork,
         zone=__ret__.zone)
+
+
+@_utilities.lift_output_func(get_network_endpoint_group)
+def get_network_endpoint_group_output(name: Optional[pulumi.Input[str]] = None,
+                                      project: Optional[pulumi.Input[str]] = None,
+                                      self_link: Optional[pulumi.Input[str]] = None,
+                                      zone: Optional[pulumi.Input[str]] = None,
+                                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNetworkEndpointGroupResult]:
+    ...

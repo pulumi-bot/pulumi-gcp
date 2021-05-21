@@ -144,3 +144,11 @@ def get_secret_version(project: Optional[str] = None,
         secret=__ret__.secret,
         secret_data=__ret__.secret_data,
         version=__ret__.version)
+
+
+@_utilities.lift_output_func(get_secret_version)
+def get_secret_version_output(project: Optional[pulumi.Input[str]] = None,
+                              secret: Optional[pulumi.Input[str]] = None,
+                              version: Optional[pulumi.Input[str]] = None,
+                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSecretVersionResult]:
+    ...

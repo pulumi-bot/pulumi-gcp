@@ -4,6 +4,9 @@
 package storage
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -82,4 +85,173 @@ type GetBucketObjectContentResult struct {
 	SelfLink     string            `pulumi:"selfLink"`
 	Source       string            `pulumi:"source"`
 	StorageClass string            `pulumi:"storageClass"`
+}
+
+func GetBucketObjectContentApply(ctx *pulumi.Context, args GetBucketObjectContentApplyInput, opts ...pulumi.InvokeOption) GetBucketObjectContentResultOutput {
+	return args.ToGetBucketObjectContentApplyOutput().ApplyT(func(v GetBucketObjectContentArgs) (GetBucketObjectContentResult, error) {
+		r, err := GetBucketObjectContent(ctx, &v, opts...)
+		return *r, err
+
+	}).(GetBucketObjectContentResultOutput)
+}
+
+// GetBucketObjectContentApplyInput is an input type that accepts GetBucketObjectContentApplyArgs and GetBucketObjectContentApplyOutput values.
+// You can construct a concrete instance of `GetBucketObjectContentApplyInput` via:
+//
+//          GetBucketObjectContentApplyArgs{...}
+type GetBucketObjectContentApplyInput interface {
+	pulumi.Input
+
+	ToGetBucketObjectContentApplyOutput() GetBucketObjectContentApplyOutput
+	ToGetBucketObjectContentApplyOutputWithContext(context.Context) GetBucketObjectContentApplyOutput
+}
+
+// A collection of arguments for invoking getBucketObjectContent.
+type GetBucketObjectContentApplyArgs struct {
+	// The name of the containing bucket.
+	Bucket pulumi.StringInput `pulumi:"bucket"`
+	// (Computed) [Content-Language](https://tools.ietf.org/html/rfc7231#section-3.1.3.2) of the object content.
+	Content pulumi.StringPtrInput `pulumi:"content"`
+	// The name of the object.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetBucketObjectContentApplyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBucketObjectContentArgs)(nil)).Elem()
+}
+
+func (i GetBucketObjectContentApplyArgs) ToGetBucketObjectContentApplyOutput() GetBucketObjectContentApplyOutput {
+	return i.ToGetBucketObjectContentApplyOutputWithContext(context.Background())
+}
+
+func (i GetBucketObjectContentApplyArgs) ToGetBucketObjectContentApplyOutputWithContext(ctx context.Context) GetBucketObjectContentApplyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBucketObjectContentApplyOutput)
+}
+
+// A collection of arguments for invoking getBucketObjectContent.
+type GetBucketObjectContentApplyOutput struct{ *pulumi.OutputState }
+
+func (GetBucketObjectContentApplyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBucketObjectContentArgs)(nil)).Elem()
+}
+
+func (o GetBucketObjectContentApplyOutput) ToGetBucketObjectContentApplyOutput() GetBucketObjectContentApplyOutput {
+	return o
+}
+
+func (o GetBucketObjectContentApplyOutput) ToGetBucketObjectContentApplyOutputWithContext(ctx context.Context) GetBucketObjectContentApplyOutput {
+	return o
+}
+
+// The name of the containing bucket.
+func (o GetBucketObjectContentApplyOutput) Bucket() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBucketObjectContentArgs) string { return v.Bucket }).(pulumi.StringOutput)
+}
+
+// (Computed) [Content-Language](https://tools.ietf.org/html/rfc7231#section-3.1.3.2) of the object content.
+func (o GetBucketObjectContentApplyOutput) Content() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetBucketObjectContentArgs) *string { return v.Content }).(pulumi.StringPtrOutput)
+}
+
+// The name of the object.
+func (o GetBucketObjectContentApplyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBucketObjectContentArgs) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// A collection of values returned by getBucketObjectContent.
+type GetBucketObjectContentResultOutput struct{ *pulumi.OutputState }
+
+func (GetBucketObjectContentResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBucketObjectContentResult)(nil)).Elem()
+}
+
+func (o GetBucketObjectContentResultOutput) ToGetBucketObjectContentResultOutput() GetBucketObjectContentResultOutput {
+	return o
+}
+
+func (o GetBucketObjectContentResultOutput) ToGetBucketObjectContentResultOutputWithContext(ctx context.Context) GetBucketObjectContentResultOutput {
+	return o
+}
+
+func (o GetBucketObjectContentResultOutput) Bucket() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBucketObjectContentResult) string { return v.Bucket }).(pulumi.StringOutput)
+}
+
+func (o GetBucketObjectContentResultOutput) CacheControl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBucketObjectContentResult) string { return v.CacheControl }).(pulumi.StringOutput)
+}
+
+// (Computed) [Content-Language](https://tools.ietf.org/html/rfc7231#section-3.1.3.2) of the object content.
+func (o GetBucketObjectContentResultOutput) Content() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetBucketObjectContentResult) *string { return v.Content }).(pulumi.StringPtrOutput)
+}
+
+func (o GetBucketObjectContentResultOutput) ContentDisposition() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBucketObjectContentResult) string { return v.ContentDisposition }).(pulumi.StringOutput)
+}
+
+func (o GetBucketObjectContentResultOutput) ContentEncoding() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBucketObjectContentResult) string { return v.ContentEncoding }).(pulumi.StringOutput)
+}
+
+func (o GetBucketObjectContentResultOutput) ContentLanguage() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBucketObjectContentResult) string { return v.ContentLanguage }).(pulumi.StringOutput)
+}
+
+func (o GetBucketObjectContentResultOutput) ContentType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBucketObjectContentResult) string { return v.ContentType }).(pulumi.StringOutput)
+}
+
+func (o GetBucketObjectContentResultOutput) Crc32c() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBucketObjectContentResult) string { return v.Crc32c }).(pulumi.StringOutput)
+}
+
+func (o GetBucketObjectContentResultOutput) DetectMd5hash() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBucketObjectContentResult) string { return v.DetectMd5hash }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetBucketObjectContentResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBucketObjectContentResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetBucketObjectContentResultOutput) KmsKeyName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBucketObjectContentResult) string { return v.KmsKeyName }).(pulumi.StringOutput)
+}
+
+func (o GetBucketObjectContentResultOutput) Md5hash() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBucketObjectContentResult) string { return v.Md5hash }).(pulumi.StringOutput)
+}
+
+func (o GetBucketObjectContentResultOutput) MediaLink() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBucketObjectContentResult) string { return v.MediaLink }).(pulumi.StringOutput)
+}
+
+func (o GetBucketObjectContentResultOutput) Metadata() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetBucketObjectContentResult) map[string]string { return v.Metadata }).(pulumi.StringMapOutput)
+}
+
+func (o GetBucketObjectContentResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBucketObjectContentResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetBucketObjectContentResultOutput) OutputName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBucketObjectContentResult) string { return v.OutputName }).(pulumi.StringOutput)
+}
+
+func (o GetBucketObjectContentResultOutput) SelfLink() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBucketObjectContentResult) string { return v.SelfLink }).(pulumi.StringOutput)
+}
+
+func (o GetBucketObjectContentResultOutput) Source() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBucketObjectContentResult) string { return v.Source }).(pulumi.StringOutput)
+}
+
+func (o GetBucketObjectContentResultOutput) StorageClass() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBucketObjectContentResult) string { return v.StorageClass }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetBucketObjectContentApplyOutput{})
+	pulumi.RegisterOutputType(GetBucketObjectContentResultOutput{})
 }

@@ -4,6 +4,9 @@
 package runtimeconfig
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -60,4 +63,107 @@ type LookupConfigResult struct {
 	Id      string  `pulumi:"id"`
 	Name    string  `pulumi:"name"`
 	Project *string `pulumi:"project"`
+}
+
+func LookupConfigApply(ctx *pulumi.Context, args LookupConfigApplyInput, opts ...pulumi.InvokeOption) LookupConfigResultOutput {
+	return args.ToLookupConfigApplyOutput().ApplyT(func(v LookupConfigArgs) (LookupConfigResult, error) {
+		r, err := LookupConfig(ctx, &v, opts...)
+		return *r, err
+
+	}).(LookupConfigResultOutput)
+}
+
+// LookupConfigApplyInput is an input type that accepts LookupConfigApplyArgs and LookupConfigApplyOutput values.
+// You can construct a concrete instance of `LookupConfigApplyInput` via:
+//
+//          LookupConfigApplyArgs{...}
+type LookupConfigApplyInput interface {
+	pulumi.Input
+
+	ToLookupConfigApplyOutput() LookupConfigApplyOutput
+	ToLookupConfigApplyOutputWithContext(context.Context) LookupConfigApplyOutput
+}
+
+// A collection of arguments for invoking getConfig.
+type LookupConfigApplyArgs struct {
+	// The name of the Runtime Configurator configuration.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The project in which the resource belongs. If it
+	// is not provided, the provider project is used.
+	Project pulumi.StringPtrInput `pulumi:"project"`
+}
+
+func (LookupConfigApplyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupConfigArgs)(nil)).Elem()
+}
+
+func (i LookupConfigApplyArgs) ToLookupConfigApplyOutput() LookupConfigApplyOutput {
+	return i.ToLookupConfigApplyOutputWithContext(context.Background())
+}
+
+func (i LookupConfigApplyArgs) ToLookupConfigApplyOutputWithContext(ctx context.Context) LookupConfigApplyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LookupConfigApplyOutput)
+}
+
+// A collection of arguments for invoking getConfig.
+type LookupConfigApplyOutput struct{ *pulumi.OutputState }
+
+func (LookupConfigApplyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupConfigArgs)(nil)).Elem()
+}
+
+func (o LookupConfigApplyOutput) ToLookupConfigApplyOutput() LookupConfigApplyOutput {
+	return o
+}
+
+func (o LookupConfigApplyOutput) ToLookupConfigApplyOutputWithContext(ctx context.Context) LookupConfigApplyOutput {
+	return o
+}
+
+// The name of the Runtime Configurator configuration.
+func (o LookupConfigApplyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupConfigArgs) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The project in which the resource belongs. If it
+// is not provided, the provider project is used.
+func (o LookupConfigApplyOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupConfigArgs) *string { return v.Project }).(pulumi.StringPtrOutput)
+}
+
+// A collection of values returned by getConfig.
+type LookupConfigResultOutput struct{ *pulumi.OutputState }
+
+func (LookupConfigResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupConfigResult)(nil)).Elem()
+}
+
+func (o LookupConfigResultOutput) ToLookupConfigResultOutput() LookupConfigResultOutput {
+	return o
+}
+
+func (o LookupConfigResultOutput) ToLookupConfigResultOutputWithContext(ctx context.Context) LookupConfigResultOutput {
+	return o
+}
+
+func (o LookupConfigResultOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupConfigResult) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupConfigResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupConfigResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupConfigResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupConfigResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o LookupConfigResultOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupConfigResult) *string { return v.Project }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupConfigApplyOutput{})
+	pulumi.RegisterOutputType(LookupConfigResultOutput{})
 }

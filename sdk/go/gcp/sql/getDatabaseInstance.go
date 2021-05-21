@@ -4,6 +4,9 @@
 package sql
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -88,4 +91,193 @@ type LookupDatabaseInstanceResult struct {
 	// The settings to use for the database. The
 	// configuration is detailed below.
 	Settings []GetDatabaseInstanceSetting `pulumi:"settings"`
+}
+
+func LookupDatabaseInstanceApply(ctx *pulumi.Context, args LookupDatabaseInstanceApplyInput, opts ...pulumi.InvokeOption) LookupDatabaseInstanceResultOutput {
+	return args.ToLookupDatabaseInstanceApplyOutput().ApplyT(func(v LookupDatabaseInstanceArgs) (LookupDatabaseInstanceResult, error) {
+		r, err := LookupDatabaseInstance(ctx, &v, opts...)
+		return *r, err
+
+	}).(LookupDatabaseInstanceResultOutput)
+}
+
+// LookupDatabaseInstanceApplyInput is an input type that accepts LookupDatabaseInstanceApplyArgs and LookupDatabaseInstanceApplyOutput values.
+// You can construct a concrete instance of `LookupDatabaseInstanceApplyInput` via:
+//
+//          LookupDatabaseInstanceApplyArgs{...}
+type LookupDatabaseInstanceApplyInput interface {
+	pulumi.Input
+
+	ToLookupDatabaseInstanceApplyOutput() LookupDatabaseInstanceApplyOutput
+	ToLookupDatabaseInstanceApplyOutputWithContext(context.Context) LookupDatabaseInstanceApplyOutput
+}
+
+// A collection of arguments for invoking getDatabaseInstance.
+type LookupDatabaseInstanceApplyArgs struct {
+	// The name of the instance.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The ID of the project in which the resource belongs.
+	Project pulumi.StringPtrInput `pulumi:"project"`
+}
+
+func (LookupDatabaseInstanceApplyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupDatabaseInstanceArgs)(nil)).Elem()
+}
+
+func (i LookupDatabaseInstanceApplyArgs) ToLookupDatabaseInstanceApplyOutput() LookupDatabaseInstanceApplyOutput {
+	return i.ToLookupDatabaseInstanceApplyOutputWithContext(context.Background())
+}
+
+func (i LookupDatabaseInstanceApplyArgs) ToLookupDatabaseInstanceApplyOutputWithContext(ctx context.Context) LookupDatabaseInstanceApplyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LookupDatabaseInstanceApplyOutput)
+}
+
+// A collection of arguments for invoking getDatabaseInstance.
+type LookupDatabaseInstanceApplyOutput struct{ *pulumi.OutputState }
+
+func (LookupDatabaseInstanceApplyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupDatabaseInstanceArgs)(nil)).Elem()
+}
+
+func (o LookupDatabaseInstanceApplyOutput) ToLookupDatabaseInstanceApplyOutput() LookupDatabaseInstanceApplyOutput {
+	return o
+}
+
+func (o LookupDatabaseInstanceApplyOutput) ToLookupDatabaseInstanceApplyOutputWithContext(ctx context.Context) LookupDatabaseInstanceApplyOutput {
+	return o
+}
+
+// The name of the instance.
+func (o LookupDatabaseInstanceApplyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDatabaseInstanceArgs) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The ID of the project in which the resource belongs.
+func (o LookupDatabaseInstanceApplyOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupDatabaseInstanceArgs) *string { return v.Project }).(pulumi.StringPtrOutput)
+}
+
+// A collection of values returned by getDatabaseInstance.
+type LookupDatabaseInstanceResultOutput struct{ *pulumi.OutputState }
+
+func (LookupDatabaseInstanceResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupDatabaseInstanceResult)(nil)).Elem()
+}
+
+func (o LookupDatabaseInstanceResultOutput) ToLookupDatabaseInstanceResultOutput() LookupDatabaseInstanceResultOutput {
+	return o
+}
+
+func (o LookupDatabaseInstanceResultOutput) ToLookupDatabaseInstanceResultOutputWithContext(ctx context.Context) LookupDatabaseInstanceResultOutput {
+	return o
+}
+
+func (o LookupDatabaseInstanceResultOutput) Clones() GetDatabaseInstanceCloneArrayOutput {
+	return o.ApplyT(func(v LookupDatabaseInstanceResult) []GetDatabaseInstanceClone { return v.Clones }).(GetDatabaseInstanceCloneArrayOutput)
+}
+
+// The connection name of the instance to be used in connection strings.
+func (o LookupDatabaseInstanceResultOutput) ConnectionName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDatabaseInstanceResult) string { return v.ConnectionName }).(pulumi.StringOutput)
+}
+
+// The MySQL, PostgreSQL or SQL Server (beta) version to use.
+func (o LookupDatabaseInstanceResultOutput) DatabaseVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDatabaseInstanceResult) string { return v.DatabaseVersion }).(pulumi.StringOutput)
+}
+
+func (o LookupDatabaseInstanceResultOutput) DeletionProtection() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupDatabaseInstanceResult) bool { return v.DeletionProtection }).(pulumi.BoolOutput)
+}
+
+// The full path to the encryption key used for the CMEK disk encryption.
+func (o LookupDatabaseInstanceResultOutput) EncryptionKeyName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDatabaseInstanceResult) string { return v.EncryptionKeyName }).(pulumi.StringOutput)
+}
+
+// The first IPv4 address of any type assigned.
+func (o LookupDatabaseInstanceResultOutput) FirstIpAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDatabaseInstanceResult) string { return v.FirstIpAddress }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupDatabaseInstanceResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDatabaseInstanceResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupDatabaseInstanceResultOutput) IpAddresses() GetDatabaseInstanceIpAddressArrayOutput {
+	return o.ApplyT(func(v LookupDatabaseInstanceResult) []GetDatabaseInstanceIpAddress { return v.IpAddresses }).(GetDatabaseInstanceIpAddressArrayOutput)
+}
+
+// The name of the instance that will act as
+// the master in the replication setup.
+func (o LookupDatabaseInstanceResultOutput) MasterInstanceName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDatabaseInstanceResult) string { return v.MasterInstanceName }).(pulumi.StringOutput)
+}
+
+// A name for this whitelist entry.
+func (o LookupDatabaseInstanceResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDatabaseInstanceResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The first private (`PRIVATE`) IPv4 address assigned.
+func (o LookupDatabaseInstanceResultOutput) PrivateIpAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDatabaseInstanceResult) string { return v.PrivateIpAddress }).(pulumi.StringOutput)
+}
+
+func (o LookupDatabaseInstanceResultOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupDatabaseInstanceResult) *string { return v.Project }).(pulumi.StringPtrOutput)
+}
+
+// The first public (`PRIMARY`) IPv4 address assigned.
+func (o LookupDatabaseInstanceResultOutput) PublicIpAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDatabaseInstanceResult) string { return v.PublicIpAddress }).(pulumi.StringOutput)
+}
+
+func (o LookupDatabaseInstanceResultOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDatabaseInstanceResult) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// The configuration for replication. The
+// configuration is detailed below.
+func (o LookupDatabaseInstanceResultOutput) ReplicaConfigurations() GetDatabaseInstanceReplicaConfigurationArrayOutput {
+	return o.ApplyT(func(v LookupDatabaseInstanceResult) []GetDatabaseInstanceReplicaConfiguration {
+		return v.ReplicaConfigurations
+	}).(GetDatabaseInstanceReplicaConfigurationArrayOutput)
+}
+
+func (o LookupDatabaseInstanceResultOutput) RestoreBackupContexts() GetDatabaseInstanceRestoreBackupContextArrayOutput {
+	return o.ApplyT(func(v LookupDatabaseInstanceResult) []GetDatabaseInstanceRestoreBackupContext {
+		return v.RestoreBackupContexts
+	}).(GetDatabaseInstanceRestoreBackupContextArrayOutput)
+}
+
+// Initial root password. Required for MS SQL Server, ignored by MySQL and PostgreSQL.
+func (o LookupDatabaseInstanceResultOutput) RootPassword() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDatabaseInstanceResult) string { return v.RootPassword }).(pulumi.StringOutput)
+}
+
+// The URI of the created resource.
+func (o LookupDatabaseInstanceResultOutput) SelfLink() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDatabaseInstanceResult) string { return v.SelfLink }).(pulumi.StringOutput)
+}
+
+func (o LookupDatabaseInstanceResultOutput) ServerCaCerts() GetDatabaseInstanceServerCaCertArrayOutput {
+	return o.ApplyT(func(v LookupDatabaseInstanceResult) []GetDatabaseInstanceServerCaCert { return v.ServerCaCerts }).(GetDatabaseInstanceServerCaCertArrayOutput)
+}
+
+// The service account email address assigned to the instance.
+func (o LookupDatabaseInstanceResultOutput) ServiceAccountEmailAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDatabaseInstanceResult) string { return v.ServiceAccountEmailAddress }).(pulumi.StringOutput)
+}
+
+// The settings to use for the database. The
+// configuration is detailed below.
+func (o LookupDatabaseInstanceResultOutput) Settings() GetDatabaseInstanceSettingArrayOutput {
+	return o.ApplyT(func(v LookupDatabaseInstanceResult) []GetDatabaseInstanceSetting { return v.Settings }).(GetDatabaseInstanceSettingArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupDatabaseInstanceApplyOutput{})
+	pulumi.RegisterOutputType(LookupDatabaseInstanceResultOutput{})
 }

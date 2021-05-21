@@ -149,3 +149,11 @@ def get_vpn_gateway(name: Optional[str] = None,
         project=__ret__.project,
         region=__ret__.region,
         self_link=__ret__.self_link)
+
+
+@_utilities.lift_output_func(get_vpn_gateway)
+def get_vpn_gateway_output(name: Optional[pulumi.Input[str]] = None,
+                           project: Optional[pulumi.Input[str]] = None,
+                           region: Optional[pulumi.Input[str]] = None,
+                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVPNGatewayResult]:
+    ...

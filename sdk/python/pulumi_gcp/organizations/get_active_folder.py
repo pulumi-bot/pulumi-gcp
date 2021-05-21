@@ -106,3 +106,10 @@ def get_active_folder(display_name: Optional[str] = None,
         id=__ret__.id,
         name=__ret__.name,
         parent=__ret__.parent)
+
+
+@_utilities.lift_output_func(get_active_folder)
+def get_active_folder_output(display_name: Optional[pulumi.Input[str]] = None,
+                             parent: Optional[pulumi.Input[str]] = None,
+                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetActiveFolderResult]:
+    ...

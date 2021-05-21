@@ -31,11 +31,11 @@ export interface GetBackendServiceArgs {
     /**
      * The name of the Backend Service.
      */
-    readonly name: string;
+    name: string;
     /**
      * The project in which the resource belongs. If it is not provided, the provider project is used.
      */
-    readonly project?: string;
+    project?: string;
 }
 
 /**
@@ -105,4 +105,22 @@ export interface GetBackendServiceResult {
      * The number of seconds to wait for a backend to respond to a request before considering the request failed.
      */
     readonly timeoutSec: number;
+}
+
+export function getBackendServiceOutput(args: GetBackendServiceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBackendServiceResult> {
+    return pulumi.output(args).apply(a => getBackendService(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getBackendService.
+ */
+export interface GetBackendServiceOutputArgs {
+    /**
+     * The name of the Backend Service.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The project in which the resource belongs. If it is not provided, the provider project is used.
+     */
+    project?: pulumi.Input<string>;
 }

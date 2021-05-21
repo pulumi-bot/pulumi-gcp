@@ -4,6 +4,9 @@
 package projects
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -64,4 +67,125 @@ type LookupOrganizationPolicyResult struct {
 	RestorePolicies []GetOrganizationPolicyRestorePolicy `pulumi:"restorePolicies"`
 	UpdateTime      string                               `pulumi:"updateTime"`
 	Version         int                                  `pulumi:"version"`
+}
+
+func LookupOrganizationPolicyApply(ctx *pulumi.Context, args LookupOrganizationPolicyApplyInput, opts ...pulumi.InvokeOption) LookupOrganizationPolicyResultOutput {
+	return args.ToLookupOrganizationPolicyApplyOutput().ApplyT(func(v LookupOrganizationPolicyArgs) (LookupOrganizationPolicyResult, error) {
+		r, err := LookupOrganizationPolicy(ctx, &v, opts...)
+		return *r, err
+
+	}).(LookupOrganizationPolicyResultOutput)
+}
+
+// LookupOrganizationPolicyApplyInput is an input type that accepts LookupOrganizationPolicyApplyArgs and LookupOrganizationPolicyApplyOutput values.
+// You can construct a concrete instance of `LookupOrganizationPolicyApplyInput` via:
+//
+//          LookupOrganizationPolicyApplyArgs{...}
+type LookupOrganizationPolicyApplyInput interface {
+	pulumi.Input
+
+	ToLookupOrganizationPolicyApplyOutput() LookupOrganizationPolicyApplyOutput
+	ToLookupOrganizationPolicyApplyOutputWithContext(context.Context) LookupOrganizationPolicyApplyOutput
+}
+
+// A collection of arguments for invoking getOrganizationPolicy.
+type LookupOrganizationPolicyApplyArgs struct {
+	// (Required) The name of the Constraint the Policy is configuring, for example, `serviceuser.services`. Check out the [complete list of available constraints](https://cloud.google.com/resource-manager/docs/organization-policy/understanding-constraints#available_constraints).
+	Constraint pulumi.StringInput `pulumi:"constraint"`
+	// The project ID.
+	Project pulumi.StringInput `pulumi:"project"`
+}
+
+func (LookupOrganizationPolicyApplyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupOrganizationPolicyArgs)(nil)).Elem()
+}
+
+func (i LookupOrganizationPolicyApplyArgs) ToLookupOrganizationPolicyApplyOutput() LookupOrganizationPolicyApplyOutput {
+	return i.ToLookupOrganizationPolicyApplyOutputWithContext(context.Background())
+}
+
+func (i LookupOrganizationPolicyApplyArgs) ToLookupOrganizationPolicyApplyOutputWithContext(ctx context.Context) LookupOrganizationPolicyApplyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LookupOrganizationPolicyApplyOutput)
+}
+
+// A collection of arguments for invoking getOrganizationPolicy.
+type LookupOrganizationPolicyApplyOutput struct{ *pulumi.OutputState }
+
+func (LookupOrganizationPolicyApplyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupOrganizationPolicyArgs)(nil)).Elem()
+}
+
+func (o LookupOrganizationPolicyApplyOutput) ToLookupOrganizationPolicyApplyOutput() LookupOrganizationPolicyApplyOutput {
+	return o
+}
+
+func (o LookupOrganizationPolicyApplyOutput) ToLookupOrganizationPolicyApplyOutputWithContext(ctx context.Context) LookupOrganizationPolicyApplyOutput {
+	return o
+}
+
+// (Required) The name of the Constraint the Policy is configuring, for example, `serviceuser.services`. Check out the [complete list of available constraints](https://cloud.google.com/resource-manager/docs/organization-policy/understanding-constraints#available_constraints).
+func (o LookupOrganizationPolicyApplyOutput) Constraint() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupOrganizationPolicyArgs) string { return v.Constraint }).(pulumi.StringOutput)
+}
+
+// The project ID.
+func (o LookupOrganizationPolicyApplyOutput) Project() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupOrganizationPolicyArgs) string { return v.Project }).(pulumi.StringOutput)
+}
+
+// A collection of values returned by getOrganizationPolicy.
+type LookupOrganizationPolicyResultOutput struct{ *pulumi.OutputState }
+
+func (LookupOrganizationPolicyResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupOrganizationPolicyResult)(nil)).Elem()
+}
+
+func (o LookupOrganizationPolicyResultOutput) ToLookupOrganizationPolicyResultOutput() LookupOrganizationPolicyResultOutput {
+	return o
+}
+
+func (o LookupOrganizationPolicyResultOutput) ToLookupOrganizationPolicyResultOutputWithContext(ctx context.Context) LookupOrganizationPolicyResultOutput {
+	return o
+}
+
+func (o LookupOrganizationPolicyResultOutput) BooleanPolicies() GetOrganizationPolicyBooleanPolicyArrayOutput {
+	return o.ApplyT(func(v LookupOrganizationPolicyResult) []GetOrganizationPolicyBooleanPolicy { return v.BooleanPolicies }).(GetOrganizationPolicyBooleanPolicyArrayOutput)
+}
+
+func (o LookupOrganizationPolicyResultOutput) Constraint() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupOrganizationPolicyResult) string { return v.Constraint }).(pulumi.StringOutput)
+}
+
+func (o LookupOrganizationPolicyResultOutput) Etag() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupOrganizationPolicyResult) string { return v.Etag }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupOrganizationPolicyResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupOrganizationPolicyResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupOrganizationPolicyResultOutput) ListPolicies() GetOrganizationPolicyListPolicyArrayOutput {
+	return o.ApplyT(func(v LookupOrganizationPolicyResult) []GetOrganizationPolicyListPolicy { return v.ListPolicies }).(GetOrganizationPolicyListPolicyArrayOutput)
+}
+
+func (o LookupOrganizationPolicyResultOutput) Project() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupOrganizationPolicyResult) string { return v.Project }).(pulumi.StringOutput)
+}
+
+func (o LookupOrganizationPolicyResultOutput) RestorePolicies() GetOrganizationPolicyRestorePolicyArrayOutput {
+	return o.ApplyT(func(v LookupOrganizationPolicyResult) []GetOrganizationPolicyRestorePolicy { return v.RestorePolicies }).(GetOrganizationPolicyRestorePolicyArrayOutput)
+}
+
+func (o LookupOrganizationPolicyResultOutput) UpdateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupOrganizationPolicyResult) string { return v.UpdateTime }).(pulumi.StringOutput)
+}
+
+func (o LookupOrganizationPolicyResultOutput) Version() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupOrganizationPolicyResult) int { return v.Version }).(pulumi.IntOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupOrganizationPolicyApplyOutput{})
+	pulumi.RegisterOutputType(LookupOrganizationPolicyResultOutput{})
 }

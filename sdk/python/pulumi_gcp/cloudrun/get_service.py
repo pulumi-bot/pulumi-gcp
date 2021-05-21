@@ -160,3 +160,11 @@ def get_service(location: Optional[str] = None,
         statuses=__ret__.statuses,
         templates=__ret__.templates,
         traffics=__ret__.traffics)
+
+
+@_utilities.lift_output_func(get_service)
+def get_service_output(location: Optional[pulumi.Input[str]] = None,
+                       name: Optional[pulumi.Input[str]] = None,
+                       project: Optional[pulumi.Input[str]] = None,
+                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetServiceResult]:
+    ...

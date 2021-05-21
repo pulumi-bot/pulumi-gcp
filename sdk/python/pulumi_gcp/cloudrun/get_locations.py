@@ -99,3 +99,9 @@ def get_locations(project: Optional[str] = None,
         id=__ret__.id,
         locations=__ret__.locations,
         project=__ret__.project)
+
+
+@_utilities.lift_output_func(get_locations)
+def get_locations_output(project: Optional[pulumi.Input[str]] = None,
+                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetLocationsResult]:
+    ...

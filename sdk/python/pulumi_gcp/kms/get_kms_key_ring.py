@@ -128,3 +128,11 @@ def get_kms_key_ring(location: Optional[str] = None,
         name=__ret__.name,
         project=__ret__.project,
         self_link=__ret__.self_link)
+
+
+@_utilities.lift_output_func(get_kms_key_ring)
+def get_kms_key_ring_output(location: Optional[pulumi.Input[str]] = None,
+                            name: Optional[pulumi.Input[str]] = None,
+                            project: Optional[pulumi.Input[str]] = None,
+                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetKMSKeyRingResult]:
+    ...

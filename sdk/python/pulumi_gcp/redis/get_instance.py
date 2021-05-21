@@ -311,3 +311,11 @@ def get_instance(name: Optional[str] = None,
         server_ca_certs=__ret__.server_ca_certs,
         tier=__ret__.tier,
         transit_encryption_mode=__ret__.transit_encryption_mode)
+
+
+@_utilities.lift_output_func(get_instance)
+def get_instance_output(name: Optional[pulumi.Input[str]] = None,
+                        project: Optional[pulumi.Input[str]] = None,
+                        region: Optional[pulumi.Input[str]] = None,
+                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetInstanceResult]:
+    ...

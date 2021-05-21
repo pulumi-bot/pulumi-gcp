@@ -134,3 +134,11 @@ def get_billing_account(billing_account: Optional[str] = None,
         name=__ret__.name,
         open=__ret__.open,
         project_ids=__ret__.project_ids)
+
+
+@_utilities.lift_output_func(get_billing_account)
+def get_billing_account_output(billing_account: Optional[pulumi.Input[str]] = None,
+                               display_name: Optional[pulumi.Input[str]] = None,
+                               open: Optional[pulumi.Input[bool]] = None,
+                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetBillingAccountResult]:
+    ...

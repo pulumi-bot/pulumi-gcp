@@ -168,3 +168,10 @@ def get_app_engine_service(module_id: Optional[str] = None,
         project=__ret__.project,
         service_id=__ret__.service_id,
         telemetries=__ret__.telemetries)
+
+
+@_utilities.lift_output_func(get_app_engine_service)
+def get_app_engine_service_output(module_id: Optional[pulumi.Input[str]] = None,
+                                  project: Optional[pulumi.Input[str]] = None,
+                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAppEngineServiceResult]:
+    ...

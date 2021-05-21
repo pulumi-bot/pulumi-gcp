@@ -97,3 +97,9 @@ def get_project(filter: Optional[str] = None,
         filter=__ret__.filter,
         id=__ret__.id,
         projects=__ret__.projects)
+
+
+@_utilities.lift_output_func(get_project)
+def get_project_output(filter: Optional[pulumi.Input[str]] = None,
+                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetProjectResult]:
+    ...

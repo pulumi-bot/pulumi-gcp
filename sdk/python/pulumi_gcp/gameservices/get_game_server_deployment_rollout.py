@@ -126,3 +126,9 @@ def get_game_server_deployment_rollout(deployment_id: Optional[str] = None,
         id=__ret__.id,
         name=__ret__.name,
         project=__ret__.project)
+
+
+@_utilities.lift_output_func(get_game_server_deployment_rollout)
+def get_game_server_deployment_rollout_output(deployment_id: Optional[pulumi.Input[str]] = None,
+                                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetGameServerDeploymentRolloutResult]:
+    ...
