@@ -4,6 +4,9 @@
 package composer
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -38,4 +41,123 @@ type LookupEnvironmentResult struct {
 	Name    string            `pulumi:"name"`
 	Project *string           `pulumi:"project"`
 	Region  *string           `pulumi:"region"`
+}
+
+func LookupEnvironmentApply(ctx *pulumi.Context, args LookupEnvironmentApplyInput, opts ...pulumi.InvokeOption) LookupEnvironmentResultOutput {
+	return args.ToLookupEnvironmentApplyOutput().ApplyT(func(v LookupEnvironmentArgs) (LookupEnvironmentResult, error) {
+		r, err := LookupEnvironment(ctx, &v, opts...)
+		return *r, err
+
+	}).(LookupEnvironmentResultOutput)
+}
+
+// LookupEnvironmentApplyInput is an input type that accepts LookupEnvironmentApplyArgs and LookupEnvironmentApplyOutput values.
+// You can construct a concrete instance of `LookupEnvironmentApplyInput` via:
+//
+//          LookupEnvironmentApplyArgs{...}
+type LookupEnvironmentApplyInput interface {
+	pulumi.Input
+
+	ToLookupEnvironmentApplyOutput() LookupEnvironmentApplyOutput
+	ToLookupEnvironmentApplyOutputWithContext(context.Context) LookupEnvironmentApplyOutput
+}
+
+// A collection of arguments for invoking getEnvironment.
+type LookupEnvironmentApplyArgs struct {
+	// Name of the environment.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
+	Project pulumi.StringPtrInput `pulumi:"project"`
+	// The location or Compute Engine region of the environment.
+	Region pulumi.StringPtrInput `pulumi:"region"`
+}
+
+func (LookupEnvironmentApplyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupEnvironmentArgs)(nil)).Elem()
+}
+
+func (i LookupEnvironmentApplyArgs) ToLookupEnvironmentApplyOutput() LookupEnvironmentApplyOutput {
+	return i.ToLookupEnvironmentApplyOutputWithContext(context.Background())
+}
+
+func (i LookupEnvironmentApplyArgs) ToLookupEnvironmentApplyOutputWithContext(ctx context.Context) LookupEnvironmentApplyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LookupEnvironmentApplyOutput)
+}
+
+// A collection of arguments for invoking getEnvironment.
+type LookupEnvironmentApplyOutput struct{ *pulumi.OutputState }
+
+func (LookupEnvironmentApplyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupEnvironmentArgs)(nil)).Elem()
+}
+
+func (o LookupEnvironmentApplyOutput) ToLookupEnvironmentApplyOutput() LookupEnvironmentApplyOutput {
+	return o
+}
+
+func (o LookupEnvironmentApplyOutput) ToLookupEnvironmentApplyOutputWithContext(ctx context.Context) LookupEnvironmentApplyOutput {
+	return o
+}
+
+// Name of the environment.
+func (o LookupEnvironmentApplyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupEnvironmentArgs) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The ID of the project in which the resource belongs.
+// If it is not provided, the provider project is used.
+func (o LookupEnvironmentApplyOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupEnvironmentArgs) *string { return v.Project }).(pulumi.StringPtrOutput)
+}
+
+// The location or Compute Engine region of the environment.
+func (o LookupEnvironmentApplyOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupEnvironmentArgs) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+// A collection of values returned by getEnvironment.
+type LookupEnvironmentResultOutput struct{ *pulumi.OutputState }
+
+func (LookupEnvironmentResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupEnvironmentResult)(nil)).Elem()
+}
+
+func (o LookupEnvironmentResultOutput) ToLookupEnvironmentResultOutput() LookupEnvironmentResultOutput {
+	return o
+}
+
+func (o LookupEnvironmentResultOutput) ToLookupEnvironmentResultOutputWithContext(ctx context.Context) LookupEnvironmentResultOutput {
+	return o
+}
+
+// Configuration parameters for the environment.
+func (o LookupEnvironmentResultOutput) Configs() GetEnvironmentConfigArrayOutput {
+	return o.ApplyT(func(v LookupEnvironmentResult) []GetEnvironmentConfig { return v.Configs }).(GetEnvironmentConfigArrayOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupEnvironmentResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupEnvironmentResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupEnvironmentResultOutput) Labels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LookupEnvironmentResult) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
+}
+
+func (o LookupEnvironmentResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupEnvironmentResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o LookupEnvironmentResultOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupEnvironmentResult) *string { return v.Project }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupEnvironmentResultOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupEnvironmentResult) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupEnvironmentApplyOutput{})
+	pulumi.RegisterOutputType(LookupEnvironmentResultOutput{})
 }

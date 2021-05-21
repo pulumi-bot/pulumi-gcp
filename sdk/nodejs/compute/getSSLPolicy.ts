@@ -41,12 +41,12 @@ export interface GetSSLPolicyArgs {
     /**
      * The name of the SSL Policy.
      */
-    readonly name: string;
+    name: string;
     /**
      * The ID of the project in which the resource belongs. If it
      * is not provided, the provider project is used.
      */
-    readonly project?: string;
+    project?: string;
 }
 
 /**
@@ -90,4 +90,23 @@ export interface GetSSLPolicyResult {
      * The URI of the created resource.
      */
     readonly selfLink: string;
+}
+
+export function getSSLPolicyApply(args: GetSSLPolicyApplyArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSSLPolicyResult> {
+    return pulumi.output(args).apply(a => getSSLPolicy(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getSSLPolicy.
+ */
+export interface GetSSLPolicyApplyArgs {
+    /**
+     * The name of the SSL Policy.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The ID of the project in which the resource belongs. If it
+     * is not provided, the provider project is used.
+     */
+    project?: pulumi.Input<string>;
 }

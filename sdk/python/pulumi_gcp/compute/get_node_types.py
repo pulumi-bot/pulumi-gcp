@@ -112,3 +112,10 @@ def get_node_types(project: Optional[str] = None,
         names=__ret__.names,
         project=__ret__.project,
         zone=__ret__.zone)
+
+
+@_utilities.lift_output_func(get_node_types)
+def get_node_types_apply(project: Optional[pulumi.Input[str]] = None,
+                         zone: Optional[pulumi.Input[str]] = None,
+                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNodeTypesResult]:
+    ...

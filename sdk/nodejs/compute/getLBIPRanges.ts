@@ -57,3 +57,7 @@ export interface GetLBIPRangesResult {
      */
     readonly networks: string[];
 }
+
+export function getLBIPRangesApply(opts?: pulumi.InvokeOptions): pulumi.Output<GetLBIPRangesResult> {
+    return pulumi.output(getLBIPRanges(opts))
+}

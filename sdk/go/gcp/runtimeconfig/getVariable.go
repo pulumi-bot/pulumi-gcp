@@ -4,6 +4,9 @@
 package runtimeconfig
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -66,4 +69,126 @@ type LookupVariableResult struct {
 	Text       string  `pulumi:"text"`
 	UpdateTime string  `pulumi:"updateTime"`
 	Value      string  `pulumi:"value"`
+}
+
+func LookupVariableApply(ctx *pulumi.Context, args LookupVariableApplyInput, opts ...pulumi.InvokeOption) LookupVariableResultOutput {
+	return args.ToLookupVariableApplyOutput().ApplyT(func(v LookupVariableArgs) (LookupVariableResult, error) {
+		r, err := LookupVariable(ctx, &v, opts...)
+		return *r, err
+
+	}).(LookupVariableResultOutput)
+}
+
+// LookupVariableApplyInput is an input type that accepts LookupVariableApplyArgs and LookupVariableApplyOutput values.
+// You can construct a concrete instance of `LookupVariableApplyInput` via:
+//
+//          LookupVariableApplyArgs{...}
+type LookupVariableApplyInput interface {
+	pulumi.Input
+
+	ToLookupVariableApplyOutput() LookupVariableApplyOutput
+	ToLookupVariableApplyOutputWithContext(context.Context) LookupVariableApplyOutput
+}
+
+// A collection of arguments for invoking getVariable.
+type LookupVariableApplyArgs struct {
+	// The name of the Runtime Configurator configuration.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The name of the RuntimeConfig resource containing this variable.
+	Parent pulumi.StringInput `pulumi:"parent"`
+	// The project in which the resource belongs. If it
+	// is not provided, the provider project is used.
+	Project pulumi.StringPtrInput `pulumi:"project"`
+}
+
+func (LookupVariableApplyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupVariableArgs)(nil)).Elem()
+}
+
+func (i LookupVariableApplyArgs) ToLookupVariableApplyOutput() LookupVariableApplyOutput {
+	return i.ToLookupVariableApplyOutputWithContext(context.Background())
+}
+
+func (i LookupVariableApplyArgs) ToLookupVariableApplyOutputWithContext(ctx context.Context) LookupVariableApplyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LookupVariableApplyOutput)
+}
+
+// A collection of arguments for invoking getVariable.
+type LookupVariableApplyOutput struct{ *pulumi.OutputState }
+
+func (LookupVariableApplyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupVariableArgs)(nil)).Elem()
+}
+
+func (o LookupVariableApplyOutput) ToLookupVariableApplyOutput() LookupVariableApplyOutput {
+	return o
+}
+
+func (o LookupVariableApplyOutput) ToLookupVariableApplyOutputWithContext(ctx context.Context) LookupVariableApplyOutput {
+	return o
+}
+
+// The name of the Runtime Configurator configuration.
+func (o LookupVariableApplyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupVariableArgs) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The name of the RuntimeConfig resource containing this variable.
+func (o LookupVariableApplyOutput) Parent() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupVariableArgs) string { return v.Parent }).(pulumi.StringOutput)
+}
+
+// The project in which the resource belongs. If it
+// is not provided, the provider project is used.
+func (o LookupVariableApplyOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupVariableArgs) *string { return v.Project }).(pulumi.StringPtrOutput)
+}
+
+// A collection of values returned by getVariable.
+type LookupVariableResultOutput struct{ *pulumi.OutputState }
+
+func (LookupVariableResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupVariableResult)(nil)).Elem()
+}
+
+func (o LookupVariableResultOutput) ToLookupVariableResultOutput() LookupVariableResultOutput {
+	return o
+}
+
+func (o LookupVariableResultOutput) ToLookupVariableResultOutputWithContext(ctx context.Context) LookupVariableResultOutput {
+	return o
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupVariableResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupVariableResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupVariableResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupVariableResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o LookupVariableResultOutput) Parent() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupVariableResult) string { return v.Parent }).(pulumi.StringOutput)
+}
+
+func (o LookupVariableResultOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupVariableResult) *string { return v.Project }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupVariableResultOutput) Text() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupVariableResult) string { return v.Text }).(pulumi.StringOutput)
+}
+
+func (o LookupVariableResultOutput) UpdateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupVariableResult) string { return v.UpdateTime }).(pulumi.StringOutput)
+}
+
+func (o LookupVariableResultOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupVariableResult) string { return v.Value }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupVariableApplyOutput{})
+	pulumi.RegisterOutputType(LookupVariableResultOutput{})
 }

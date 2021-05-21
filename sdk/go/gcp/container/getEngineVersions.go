@@ -4,6 +4,9 @@
 package container
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -100,4 +103,160 @@ type GetEngineVersionsResult struct {
 	// A list of versions available in the given zone for use with node instances.
 	ValidNodeVersions []string `pulumi:"validNodeVersions"`
 	VersionPrefix     *string  `pulumi:"versionPrefix"`
+}
+
+func GetEngineVersionsApply(ctx *pulumi.Context, args GetEngineVersionsApplyInput, opts ...pulumi.InvokeOption) GetEngineVersionsResultOutput {
+	return args.ToGetEngineVersionsApplyOutput().ApplyT(func(v GetEngineVersionsArgs) (GetEngineVersionsResult, error) {
+		r, err := GetEngineVersions(ctx, &v, opts...)
+		return *r, err
+
+	}).(GetEngineVersionsResultOutput)
+}
+
+// GetEngineVersionsApplyInput is an input type that accepts GetEngineVersionsApplyArgs and GetEngineVersionsApplyOutput values.
+// You can construct a concrete instance of `GetEngineVersionsApplyInput` via:
+//
+//          GetEngineVersionsApplyArgs{...}
+type GetEngineVersionsApplyInput interface {
+	pulumi.Input
+
+	ToGetEngineVersionsApplyOutput() GetEngineVersionsApplyOutput
+	ToGetEngineVersionsApplyOutputWithContext(context.Context) GetEngineVersionsApplyOutput
+}
+
+// A collection of arguments for invoking getEngineVersions.
+type GetEngineVersionsApplyArgs struct {
+	// The location (region or zone) to list versions for.
+	// Must exactly match the location the cluster will be deployed in, or listed
+	// versions may not be available. If `location`, `region`, and `zone` are not
+	// specified, the provider-level zone must be set and is used instead.
+	Location pulumi.StringPtrInput `pulumi:"location"`
+	// ID of the project to list available cluster versions for. Should match the project the cluster will be deployed to.
+	// Defaults to the project that the provider is authenticated with.
+	Project pulumi.StringPtrInput `pulumi:"project"`
+	// If provided, the provider will only return versions
+	// that match the string prefix. For example, `1.11.` will match all `1.11` series
+	// releases. Since this is just a string match, it's recommended that you append a
+	// `.` after minor versions to ensure that prefixes such as `1.1` don't match
+	// versions like `1.12.5-gke.10` accidentally. See [the docs on versioning schema](https://cloud.google.com/kubernetes-engine/versioning-and-upgrades#versioning_scheme)
+	// for full details on how version strings are formatted.
+	VersionPrefix pulumi.StringPtrInput `pulumi:"versionPrefix"`
+}
+
+func (GetEngineVersionsApplyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEngineVersionsArgs)(nil)).Elem()
+}
+
+func (i GetEngineVersionsApplyArgs) ToGetEngineVersionsApplyOutput() GetEngineVersionsApplyOutput {
+	return i.ToGetEngineVersionsApplyOutputWithContext(context.Background())
+}
+
+func (i GetEngineVersionsApplyArgs) ToGetEngineVersionsApplyOutputWithContext(ctx context.Context) GetEngineVersionsApplyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEngineVersionsApplyOutput)
+}
+
+// A collection of arguments for invoking getEngineVersions.
+type GetEngineVersionsApplyOutput struct{ *pulumi.OutputState }
+
+func (GetEngineVersionsApplyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEngineVersionsArgs)(nil)).Elem()
+}
+
+func (o GetEngineVersionsApplyOutput) ToGetEngineVersionsApplyOutput() GetEngineVersionsApplyOutput {
+	return o
+}
+
+func (o GetEngineVersionsApplyOutput) ToGetEngineVersionsApplyOutputWithContext(ctx context.Context) GetEngineVersionsApplyOutput {
+	return o
+}
+
+// The location (region or zone) to list versions for.
+// Must exactly match the location the cluster will be deployed in, or listed
+// versions may not be available. If `location`, `region`, and `zone` are not
+// specified, the provider-level zone must be set and is used instead.
+func (o GetEngineVersionsApplyOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetEngineVersionsArgs) *string { return v.Location }).(pulumi.StringPtrOutput)
+}
+
+// ID of the project to list available cluster versions for. Should match the project the cluster will be deployed to.
+// Defaults to the project that the provider is authenticated with.
+func (o GetEngineVersionsApplyOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetEngineVersionsArgs) *string { return v.Project }).(pulumi.StringPtrOutput)
+}
+
+// If provided, the provider will only return versions
+// that match the string prefix. For example, `1.11.` will match all `1.11` series
+// releases. Since this is just a string match, it's recommended that you append a
+// `.` after minor versions to ensure that prefixes such as `1.1` don't match
+// versions like `1.12.5-gke.10` accidentally. See [the docs on versioning schema](https://cloud.google.com/kubernetes-engine/versioning-and-upgrades#versioning_scheme)
+// for full details on how version strings are formatted.
+func (o GetEngineVersionsApplyOutput) VersionPrefix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetEngineVersionsArgs) *string { return v.VersionPrefix }).(pulumi.StringPtrOutput)
+}
+
+// A collection of values returned by getEngineVersions.
+type GetEngineVersionsResultOutput struct{ *pulumi.OutputState }
+
+func (GetEngineVersionsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEngineVersionsResult)(nil)).Elem()
+}
+
+func (o GetEngineVersionsResultOutput) ToGetEngineVersionsResultOutput() GetEngineVersionsResultOutput {
+	return o
+}
+
+func (o GetEngineVersionsResultOutput) ToGetEngineVersionsResultOutputWithContext(ctx context.Context) GetEngineVersionsResultOutput {
+	return o
+}
+
+// Version of Kubernetes the service deploys by default.
+func (o GetEngineVersionsResultOutput) DefaultClusterVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEngineVersionsResult) string { return v.DefaultClusterVersion }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetEngineVersionsResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEngineVersionsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The latest version available in the given zone for use with master instances.
+func (o GetEngineVersionsResultOutput) LatestMasterVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEngineVersionsResult) string { return v.LatestMasterVersion }).(pulumi.StringOutput)
+}
+
+// The latest version available in the given zone for use with node instances.
+func (o GetEngineVersionsResultOutput) LatestNodeVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEngineVersionsResult) string { return v.LatestNodeVersion }).(pulumi.StringOutput)
+}
+
+func (o GetEngineVersionsResultOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetEngineVersionsResult) *string { return v.Location }).(pulumi.StringPtrOutput)
+}
+
+func (o GetEngineVersionsResultOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetEngineVersionsResult) *string { return v.Project }).(pulumi.StringPtrOutput)
+}
+
+// A map from a release channel name to the channel's default version.
+func (o GetEngineVersionsResultOutput) ReleaseChannelDefaultVersion() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetEngineVersionsResult) map[string]string { return v.ReleaseChannelDefaultVersion }).(pulumi.StringMapOutput)
+}
+
+// A list of versions available in the given zone for use with master instances.
+func (o GetEngineVersionsResultOutput) ValidMasterVersions() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetEngineVersionsResult) []string { return v.ValidMasterVersions }).(pulumi.StringArrayOutput)
+}
+
+// A list of versions available in the given zone for use with node instances.
+func (o GetEngineVersionsResultOutput) ValidNodeVersions() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetEngineVersionsResult) []string { return v.ValidNodeVersions }).(pulumi.StringArrayOutput)
+}
+
+func (o GetEngineVersionsResultOutput) VersionPrefix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetEngineVersionsResult) *string { return v.VersionPrefix }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetEngineVersionsApplyOutput{})
+	pulumi.RegisterOutputType(GetEngineVersionsResultOutput{})
 }

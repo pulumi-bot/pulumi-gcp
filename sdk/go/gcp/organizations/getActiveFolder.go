@@ -4,6 +4,9 @@
 package organizations
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -57,4 +60,106 @@ type GetActiveFolderResult struct {
 	// The resource name of the Folder. This uniquely identifies the folder.
 	Name   string `pulumi:"name"`
 	Parent string `pulumi:"parent"`
+}
+
+func GetActiveFolderApply(ctx *pulumi.Context, args GetActiveFolderApplyInput, opts ...pulumi.InvokeOption) GetActiveFolderResultOutput {
+	return args.ToGetActiveFolderApplyOutput().ApplyT(func(v GetActiveFolderArgs) (GetActiveFolderResult, error) {
+		r, err := GetActiveFolder(ctx, &v, opts...)
+		return *r, err
+
+	}).(GetActiveFolderResultOutput)
+}
+
+// GetActiveFolderApplyInput is an input type that accepts GetActiveFolderApplyArgs and GetActiveFolderApplyOutput values.
+// You can construct a concrete instance of `GetActiveFolderApplyInput` via:
+//
+//          GetActiveFolderApplyArgs{...}
+type GetActiveFolderApplyInput interface {
+	pulumi.Input
+
+	ToGetActiveFolderApplyOutput() GetActiveFolderApplyOutput
+	ToGetActiveFolderApplyOutputWithContext(context.Context) GetActiveFolderApplyOutput
+}
+
+// A collection of arguments for invoking getActiveFolder.
+type GetActiveFolderApplyArgs struct {
+	// The folder's display name.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The resource name of the parent Folder or Organization.
+	Parent pulumi.StringInput `pulumi:"parent"`
+}
+
+func (GetActiveFolderApplyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetActiveFolderArgs)(nil)).Elem()
+}
+
+func (i GetActiveFolderApplyArgs) ToGetActiveFolderApplyOutput() GetActiveFolderApplyOutput {
+	return i.ToGetActiveFolderApplyOutputWithContext(context.Background())
+}
+
+func (i GetActiveFolderApplyArgs) ToGetActiveFolderApplyOutputWithContext(ctx context.Context) GetActiveFolderApplyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetActiveFolderApplyOutput)
+}
+
+// A collection of arguments for invoking getActiveFolder.
+type GetActiveFolderApplyOutput struct{ *pulumi.OutputState }
+
+func (GetActiveFolderApplyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetActiveFolderArgs)(nil)).Elem()
+}
+
+func (o GetActiveFolderApplyOutput) ToGetActiveFolderApplyOutput() GetActiveFolderApplyOutput {
+	return o
+}
+
+func (o GetActiveFolderApplyOutput) ToGetActiveFolderApplyOutputWithContext(ctx context.Context) GetActiveFolderApplyOutput {
+	return o
+}
+
+// The folder's display name.
+func (o GetActiveFolderApplyOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetActiveFolderArgs) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The resource name of the parent Folder or Organization.
+func (o GetActiveFolderApplyOutput) Parent() pulumi.StringOutput {
+	return o.ApplyT(func(v GetActiveFolderArgs) string { return v.Parent }).(pulumi.StringOutput)
+}
+
+// A collection of values returned by getActiveFolder.
+type GetActiveFolderResultOutput struct{ *pulumi.OutputState }
+
+func (GetActiveFolderResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetActiveFolderResult)(nil)).Elem()
+}
+
+func (o GetActiveFolderResultOutput) ToGetActiveFolderResultOutput() GetActiveFolderResultOutput {
+	return o
+}
+
+func (o GetActiveFolderResultOutput) ToGetActiveFolderResultOutputWithContext(ctx context.Context) GetActiveFolderResultOutput {
+	return o
+}
+
+func (o GetActiveFolderResultOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetActiveFolderResult) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetActiveFolderResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetActiveFolderResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The resource name of the Folder. This uniquely identifies the folder.
+func (o GetActiveFolderResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetActiveFolderResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetActiveFolderResultOutput) Parent() pulumi.StringOutput {
+	return o.ApplyT(func(v GetActiveFolderResult) string { return v.Parent }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetActiveFolderApplyOutput{})
+	pulumi.RegisterOutputType(GetActiveFolderResultOutput{})
 }

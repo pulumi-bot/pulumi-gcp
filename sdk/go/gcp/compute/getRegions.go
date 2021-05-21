@@ -4,6 +4,9 @@
 package compute
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -35,4 +38,108 @@ type GetRegionsResult struct {
 	Names   []string `pulumi:"names"`
 	Project string   `pulumi:"project"`
 	Status  *string  `pulumi:"status"`
+}
+
+func GetRegionsApply(ctx *pulumi.Context, args GetRegionsApplyInput, opts ...pulumi.InvokeOption) GetRegionsResultOutput {
+	return args.ToGetRegionsApplyOutput().ApplyT(func(v GetRegionsArgs) (GetRegionsResult, error) {
+		r, err := GetRegions(ctx, &v, opts...)
+		return *r, err
+
+	}).(GetRegionsResultOutput)
+}
+
+// GetRegionsApplyInput is an input type that accepts GetRegionsApplyArgs and GetRegionsApplyOutput values.
+// You can construct a concrete instance of `GetRegionsApplyInput` via:
+//
+//          GetRegionsApplyArgs{...}
+type GetRegionsApplyInput interface {
+	pulumi.Input
+
+	ToGetRegionsApplyOutput() GetRegionsApplyOutput
+	ToGetRegionsApplyOutputWithContext(context.Context) GetRegionsApplyOutput
+}
+
+// A collection of arguments for invoking getRegions.
+type GetRegionsApplyArgs struct {
+	// Project from which to list available regions. Defaults to project declared in the provider.
+	Project pulumi.StringPtrInput `pulumi:"project"`
+	// Allows to filter list of regions based on their current status. Status can be either `UP` or `DOWN`.
+	// Defaults to no filtering (all available regions - both `UP` and `DOWN`).
+	Status pulumi.StringPtrInput `pulumi:"status"`
+}
+
+func (GetRegionsApplyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegionsArgs)(nil)).Elem()
+}
+
+func (i GetRegionsApplyArgs) ToGetRegionsApplyOutput() GetRegionsApplyOutput {
+	return i.ToGetRegionsApplyOutputWithContext(context.Background())
+}
+
+func (i GetRegionsApplyArgs) ToGetRegionsApplyOutputWithContext(ctx context.Context) GetRegionsApplyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegionsApplyOutput)
+}
+
+// A collection of arguments for invoking getRegions.
+type GetRegionsApplyOutput struct{ *pulumi.OutputState }
+
+func (GetRegionsApplyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegionsArgs)(nil)).Elem()
+}
+
+func (o GetRegionsApplyOutput) ToGetRegionsApplyOutput() GetRegionsApplyOutput {
+	return o
+}
+
+func (o GetRegionsApplyOutput) ToGetRegionsApplyOutputWithContext(ctx context.Context) GetRegionsApplyOutput {
+	return o
+}
+
+// Project from which to list available regions. Defaults to project declared in the provider.
+func (o GetRegionsApplyOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetRegionsArgs) *string { return v.Project }).(pulumi.StringPtrOutput)
+}
+
+// Allows to filter list of regions based on their current status. Status can be either `UP` or `DOWN`.
+// Defaults to no filtering (all available regions - both `UP` and `DOWN`).
+func (o GetRegionsApplyOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetRegionsArgs) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+// A collection of values returned by getRegions.
+type GetRegionsResultOutput struct{ *pulumi.OutputState }
+
+func (GetRegionsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegionsResult)(nil)).Elem()
+}
+
+func (o GetRegionsResultOutput) ToGetRegionsResultOutput() GetRegionsResultOutput {
+	return o
+}
+
+func (o GetRegionsResultOutput) ToGetRegionsResultOutputWithContext(ctx context.Context) GetRegionsResultOutput {
+	return o
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetRegionsResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegionsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// A list of regions available in the given project
+func (o GetRegionsResultOutput) Names() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetRegionsResult) []string { return v.Names }).(pulumi.StringArrayOutput)
+}
+
+func (o GetRegionsResultOutput) Project() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegionsResult) string { return v.Project }).(pulumi.StringOutput)
+}
+
+func (o GetRegionsResultOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetRegionsResult) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetRegionsApplyOutput{})
+	pulumi.RegisterOutputType(GetRegionsResultOutput{})
 }

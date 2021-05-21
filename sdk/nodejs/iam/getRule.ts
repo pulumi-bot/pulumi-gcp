@@ -38,7 +38,7 @@ export interface GetRuleArgs {
     /**
      * The name of the Role to lookup in the form `roles/{ROLE_NAME}`, `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}` or `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
      */
-    readonly name: string;
+    name: string;
 }
 
 /**
@@ -62,4 +62,18 @@ export interface GetRuleResult {
      * is a friendly title for the role, such as "Role Viewer"
      */
     readonly title: string;
+}
+
+export function getRuleApply(args: GetRuleApplyArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRuleResult> {
+    return pulumi.output(args).apply(a => getRule(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getRule.
+ */
+export interface GetRuleApplyArgs {
+    /**
+     * The name of the Role to lookup in the form `roles/{ROLE_NAME}`, `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}` or `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
+     */
+    name: pulumi.Input<string>;
 }

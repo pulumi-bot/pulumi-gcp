@@ -138,3 +138,11 @@ def get_resource_policy(name: Optional[str] = None,
         region=__ret__.region,
         self_link=__ret__.self_link,
         snapshot_schedule_policies=__ret__.snapshot_schedule_policies)
+
+
+@_utilities.lift_output_func(get_resource_policy)
+def get_resource_policy_apply(name: Optional[pulumi.Input[str]] = None,
+                              project: Optional[pulumi.Input[str]] = None,
+                              region: Optional[pulumi.Input[str]] = None,
+                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetResourcePolicyResult]:
+    ...

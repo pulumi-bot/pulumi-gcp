@@ -43,21 +43,21 @@ export interface GetRouterArgs {
     /**
      * The name of the router.
      */
-    readonly name: string;
+    name: string;
     /**
      * The VPC network on which this router lives.
      */
-    readonly network: string;
+    network: string;
     /**
      * The ID of the project in which the resource
      * belongs. If it is not provided, the provider project is used.
      */
-    readonly project?: string;
+    project?: string;
     /**
      * The region this router has been created in. If
      * unspecified, this defaults to the region configured in the provider.
      */
-    readonly region?: string;
+    region?: string;
 }
 
 /**
@@ -76,4 +76,32 @@ export interface GetRouterResult {
     readonly project?: string;
     readonly region?: string;
     readonly selfLink: string;
+}
+
+export function getRouterApply(args: GetRouterApplyArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRouterResult> {
+    return pulumi.output(args).apply(a => getRouter(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getRouter.
+ */
+export interface GetRouterApplyArgs {
+    /**
+     * The name of the router.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The VPC network on which this router lives.
+     */
+    network: pulumi.Input<string>;
+    /**
+     * The ID of the project in which the resource
+     * belongs. If it is not provided, the provider project is used.
+     */
+    project?: pulumi.Input<string>;
+    /**
+     * The region this router has been created in. If
+     * unspecified, this defaults to the region configured in the provider.
+     */
+    region?: pulumi.Input<string>;
 }

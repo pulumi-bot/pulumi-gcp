@@ -4,6 +4,9 @@
 package serviceaccount
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -66,4 +69,125 @@ type LookupAccountResult struct {
 	Project *string `pulumi:"project"`
 	// The unique id of the service account.
 	UniqueId string `pulumi:"uniqueId"`
+}
+
+func LookupAccountApply(ctx *pulumi.Context, args LookupAccountApplyInput, opts ...pulumi.InvokeOption) LookupAccountResultOutput {
+	return args.ToLookupAccountApplyOutput().ApplyT(func(v LookupAccountArgs) (LookupAccountResult, error) {
+		r, err := LookupAccount(ctx, &v, opts...)
+		return *r, err
+
+	}).(LookupAccountResultOutput)
+}
+
+// LookupAccountApplyInput is an input type that accepts LookupAccountApplyArgs and LookupAccountApplyOutput values.
+// You can construct a concrete instance of `LookupAccountApplyInput` via:
+//
+//          LookupAccountApplyArgs{...}
+type LookupAccountApplyInput interface {
+	pulumi.Input
+
+	ToLookupAccountApplyOutput() LookupAccountApplyOutput
+	ToLookupAccountApplyOutputWithContext(context.Context) LookupAccountApplyOutput
+}
+
+// A collection of arguments for invoking getAccount.
+type LookupAccountApplyArgs struct {
+	// The Google service account ID. This be one of:
+	AccountId pulumi.StringInput `pulumi:"accountId"`
+	// The ID of the project that the service account is present in.
+	// Defaults to the provider project configuration.
+	Project pulumi.StringPtrInput `pulumi:"project"`
+}
+
+func (LookupAccountApplyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupAccountArgs)(nil)).Elem()
+}
+
+func (i LookupAccountApplyArgs) ToLookupAccountApplyOutput() LookupAccountApplyOutput {
+	return i.ToLookupAccountApplyOutputWithContext(context.Background())
+}
+
+func (i LookupAccountApplyArgs) ToLookupAccountApplyOutputWithContext(ctx context.Context) LookupAccountApplyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LookupAccountApplyOutput)
+}
+
+// A collection of arguments for invoking getAccount.
+type LookupAccountApplyOutput struct{ *pulumi.OutputState }
+
+func (LookupAccountApplyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupAccountArgs)(nil)).Elem()
+}
+
+func (o LookupAccountApplyOutput) ToLookupAccountApplyOutput() LookupAccountApplyOutput {
+	return o
+}
+
+func (o LookupAccountApplyOutput) ToLookupAccountApplyOutputWithContext(ctx context.Context) LookupAccountApplyOutput {
+	return o
+}
+
+// The Google service account ID. This be one of:
+func (o LookupAccountApplyOutput) AccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAccountArgs) string { return v.AccountId }).(pulumi.StringOutput)
+}
+
+// The ID of the project that the service account is present in.
+// Defaults to the provider project configuration.
+func (o LookupAccountApplyOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupAccountArgs) *string { return v.Project }).(pulumi.StringPtrOutput)
+}
+
+// A collection of values returned by getAccount.
+type LookupAccountResultOutput struct{ *pulumi.OutputState }
+
+func (LookupAccountResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupAccountResult)(nil)).Elem()
+}
+
+func (o LookupAccountResultOutput) ToLookupAccountResultOutput() LookupAccountResultOutput {
+	return o
+}
+
+func (o LookupAccountResultOutput) ToLookupAccountResultOutputWithContext(ctx context.Context) LookupAccountResultOutput {
+	return o
+}
+
+func (o LookupAccountResultOutput) AccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAccountResult) string { return v.AccountId }).(pulumi.StringOutput)
+}
+
+// The display name for the service account.
+func (o LookupAccountResultOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAccountResult) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The e-mail address of the service account. This value
+// should be referenced from any `organizations.getIAMPolicy` data sources
+// that would grant the service account privileges.
+func (o LookupAccountResultOutput) Email() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAccountResult) string { return v.Email }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupAccountResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAccountResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The fully-qualified name of the service account.
+func (o LookupAccountResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAccountResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o LookupAccountResultOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupAccountResult) *string { return v.Project }).(pulumi.StringPtrOutput)
+}
+
+// The unique id of the service account.
+func (o LookupAccountResultOutput) UniqueId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAccountResult) string { return v.UniqueId }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupAccountApplyOutput{})
+	pulumi.RegisterOutputType(LookupAccountResultOutput{})
 }

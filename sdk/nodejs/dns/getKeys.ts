@@ -50,11 +50,11 @@ export interface GetKeysArgs {
     /**
      * The name or id of the Cloud DNS managed zone.
      */
-    readonly managedZone: string;
+    managedZone: string;
     /**
      * The ID of the project in which the resource belongs. If `project` is not provided, the provider project is used.
      */
-    readonly project?: string;
+    project?: string;
 }
 
 /**
@@ -75,4 +75,22 @@ export interface GetKeysResult {
      * A list of Zone-signing key (ZSK) records. Structure is documented below.
      */
     readonly zoneSigningKeys: outputs.dns.GetKeysZoneSigningKey[];
+}
+
+export function getKeysApply(args: GetKeysApplyArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetKeysResult> {
+    return pulumi.output(args).apply(a => getKeys(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getKeys.
+ */
+export interface GetKeysApplyArgs {
+    /**
+     * The name or id of the Cloud DNS managed zone.
+     */
+    managedZone: pulumi.Input<string>;
+    /**
+     * The ID of the project in which the resource belongs. If `project` is not provided, the provider project is used.
+     */
+    project?: pulumi.Input<string>;
 }

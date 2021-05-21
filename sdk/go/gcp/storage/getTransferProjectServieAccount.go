@@ -4,6 +4,9 @@
 package storage
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -52,4 +55,95 @@ type GetTransferProjectServieAccountResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id      string `pulumi:"id"`
 	Project string `pulumi:"project"`
+}
+
+func GetTransferProjectServieAccountApply(ctx *pulumi.Context, args GetTransferProjectServieAccountApplyInput, opts ...pulumi.InvokeOption) GetTransferProjectServieAccountResultOutput {
+	return args.ToGetTransferProjectServieAccountApplyOutput().ApplyT(func(v GetTransferProjectServieAccountArgs) (GetTransferProjectServieAccountResult, error) {
+		r, err := GetTransferProjectServieAccount(ctx, &v, opts...)
+		return *r, err
+
+	}).(GetTransferProjectServieAccountResultOutput)
+}
+
+// GetTransferProjectServieAccountApplyInput is an input type that accepts GetTransferProjectServieAccountApplyArgs and GetTransferProjectServieAccountApplyOutput values.
+// You can construct a concrete instance of `GetTransferProjectServieAccountApplyInput` via:
+//
+//          GetTransferProjectServieAccountApplyArgs{...}
+type GetTransferProjectServieAccountApplyInput interface {
+	pulumi.Input
+
+	ToGetTransferProjectServieAccountApplyOutput() GetTransferProjectServieAccountApplyOutput
+	ToGetTransferProjectServieAccountApplyOutputWithContext(context.Context) GetTransferProjectServieAccountApplyOutput
+}
+
+// A collection of arguments for invoking getTransferProjectServieAccount.
+type GetTransferProjectServieAccountApplyArgs struct {
+	// The project ID. If it is not provided, the provider project is used.
+	Project pulumi.StringPtrInput `pulumi:"project"`
+}
+
+func (GetTransferProjectServieAccountApplyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTransferProjectServieAccountArgs)(nil)).Elem()
+}
+
+func (i GetTransferProjectServieAccountApplyArgs) ToGetTransferProjectServieAccountApplyOutput() GetTransferProjectServieAccountApplyOutput {
+	return i.ToGetTransferProjectServieAccountApplyOutputWithContext(context.Background())
+}
+
+func (i GetTransferProjectServieAccountApplyArgs) ToGetTransferProjectServieAccountApplyOutputWithContext(ctx context.Context) GetTransferProjectServieAccountApplyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTransferProjectServieAccountApplyOutput)
+}
+
+// A collection of arguments for invoking getTransferProjectServieAccount.
+type GetTransferProjectServieAccountApplyOutput struct{ *pulumi.OutputState }
+
+func (GetTransferProjectServieAccountApplyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTransferProjectServieAccountArgs)(nil)).Elem()
+}
+
+func (o GetTransferProjectServieAccountApplyOutput) ToGetTransferProjectServieAccountApplyOutput() GetTransferProjectServieAccountApplyOutput {
+	return o
+}
+
+func (o GetTransferProjectServieAccountApplyOutput) ToGetTransferProjectServieAccountApplyOutputWithContext(ctx context.Context) GetTransferProjectServieAccountApplyOutput {
+	return o
+}
+
+// The project ID. If it is not provided, the provider project is used.
+func (o GetTransferProjectServieAccountApplyOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetTransferProjectServieAccountArgs) *string { return v.Project }).(pulumi.StringPtrOutput)
+}
+
+// A collection of values returned by getTransferProjectServieAccount.
+type GetTransferProjectServieAccountResultOutput struct{ *pulumi.OutputState }
+
+func (GetTransferProjectServieAccountResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTransferProjectServieAccountResult)(nil)).Elem()
+}
+
+func (o GetTransferProjectServieAccountResultOutput) ToGetTransferProjectServieAccountResultOutput() GetTransferProjectServieAccountResultOutput {
+	return o
+}
+
+func (o GetTransferProjectServieAccountResultOutput) ToGetTransferProjectServieAccountResultOutputWithContext(ctx context.Context) GetTransferProjectServieAccountResultOutput {
+	return o
+}
+
+// Email address of the default service account used by Storage Transfer Jobs running in this project
+func (o GetTransferProjectServieAccountResultOutput) Email() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTransferProjectServieAccountResult) string { return v.Email }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetTransferProjectServieAccountResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTransferProjectServieAccountResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetTransferProjectServieAccountResultOutput) Project() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTransferProjectServieAccountResult) string { return v.Project }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetTransferProjectServieAccountApplyOutput{})
+	pulumi.RegisterOutputType(GetTransferProjectServieAccountResultOutput{})
 }

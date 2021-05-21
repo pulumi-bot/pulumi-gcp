@@ -59,22 +59,22 @@ export interface GetMeshIstioServiceArgs {
      * Identifier for the mesh in which this Istio service is defined.
      * Corresponds to the meshUid metric label in Istio metrics.
      */
-    readonly meshUid: string;
+    meshUid: string;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: string;
+    project?: string;
     /**
      * The name of the Istio service underlying this service.
      * Corresponds to the destinationServiceName metric label in Istio metrics.
      */
-    readonly serviceName: string;
+    serviceName: string;
     /**
      * The namespace of the Istio service underlying this service.
      * Corresponds to the destinationServiceNamespace metric label in Istio metrics.
      */
-    readonly serviceNamespace: string;
+    serviceNamespace: string;
 }
 
 /**
@@ -93,4 +93,34 @@ export interface GetMeshIstioServiceResult {
     readonly serviceName: string;
     readonly serviceNamespace: string;
     readonly telemetries: outputs.monitoring.GetMeshIstioServiceTelemetry[];
+}
+
+export function getMeshIstioServiceApply(args: GetMeshIstioServiceApplyArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetMeshIstioServiceResult> {
+    return pulumi.output(args).apply(a => getMeshIstioService(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getMeshIstioService.
+ */
+export interface GetMeshIstioServiceApplyArgs {
+    /**
+     * Identifier for the mesh in which this Istio service is defined.
+     * Corresponds to the meshUid metric label in Istio metrics.
+     */
+    meshUid: pulumi.Input<string>;
+    /**
+     * The ID of the project in which the resource belongs.
+     * If it is not provided, the provider project is used.
+     */
+    project?: pulumi.Input<string>;
+    /**
+     * The name of the Istio service underlying this service.
+     * Corresponds to the destinationServiceName metric label in Istio metrics.
+     */
+    serviceName: pulumi.Input<string>;
+    /**
+     * The namespace of the Istio service underlying this service.
+     * Corresponds to the destinationServiceNamespace metric label in Istio metrics.
+     */
+    serviceNamespace: pulumi.Input<string>;
 }

@@ -40,12 +40,12 @@ export interface GetNetworkArgs {
     /**
      * The name of the network.
      */
-    readonly name: string;
+    name: string;
     /**
      * The ID of the project in which the resource belongs. If it
      * is not provided, the provider project is used.
      */
-    readonly project?: string;
+    project?: string;
 }
 
 /**
@@ -74,4 +74,23 @@ export interface GetNetworkResult {
      * the list of subnetworks which belong to the network
      */
     readonly subnetworksSelfLinks: string[];
+}
+
+export function getNetworkApply(args: GetNetworkApplyArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNetworkResult> {
+    return pulumi.output(args).apply(a => getNetwork(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getNetwork.
+ */
+export interface GetNetworkApplyArgs {
+    /**
+     * The name of the network.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The ID of the project in which the resource belongs. If it
+     * is not provided, the provider project is used.
+     */
+    project?: pulumi.Input<string>;
 }

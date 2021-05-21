@@ -4,6 +4,9 @@
 package cloudrun
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -66,4 +69,134 @@ type LookupServiceResult struct {
 	Statuses  []GetServiceStatus   `pulumi:"statuses"`
 	Templates []GetServiceTemplate `pulumi:"templates"`
 	Traffics  []GetServiceTraffic  `pulumi:"traffics"`
+}
+
+func LookupServiceApply(ctx *pulumi.Context, args LookupServiceApplyInput, opts ...pulumi.InvokeOption) LookupServiceResultOutput {
+	return args.ToLookupServiceApplyOutput().ApplyT(func(v LookupServiceArgs) (LookupServiceResult, error) {
+		r, err := LookupService(ctx, &v, opts...)
+		return *r, err
+
+	}).(LookupServiceResultOutput)
+}
+
+// LookupServiceApplyInput is an input type that accepts LookupServiceApplyArgs and LookupServiceApplyOutput values.
+// You can construct a concrete instance of `LookupServiceApplyInput` via:
+//
+//          LookupServiceApplyArgs{...}
+type LookupServiceApplyInput interface {
+	pulumi.Input
+
+	ToLookupServiceApplyOutput() LookupServiceApplyOutput
+	ToLookupServiceApplyOutputWithContext(context.Context) LookupServiceApplyOutput
+}
+
+// A collection of arguments for invoking getService.
+type LookupServiceApplyArgs struct {
+	// The location of the cloud run instance. eg us-central1
+	Location pulumi.StringInput `pulumi:"location"`
+	// The name of the Cloud Run Service.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The project in which the resource belongs. If it
+	// is not provided, the provider project is used.
+	Project pulumi.StringPtrInput `pulumi:"project"`
+}
+
+func (LookupServiceApplyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupServiceArgs)(nil)).Elem()
+}
+
+func (i LookupServiceApplyArgs) ToLookupServiceApplyOutput() LookupServiceApplyOutput {
+	return i.ToLookupServiceApplyOutputWithContext(context.Background())
+}
+
+func (i LookupServiceApplyArgs) ToLookupServiceApplyOutputWithContext(ctx context.Context) LookupServiceApplyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LookupServiceApplyOutput)
+}
+
+// A collection of arguments for invoking getService.
+type LookupServiceApplyOutput struct{ *pulumi.OutputState }
+
+func (LookupServiceApplyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupServiceArgs)(nil)).Elem()
+}
+
+func (o LookupServiceApplyOutput) ToLookupServiceApplyOutput() LookupServiceApplyOutput {
+	return o
+}
+
+func (o LookupServiceApplyOutput) ToLookupServiceApplyOutputWithContext(ctx context.Context) LookupServiceApplyOutput {
+	return o
+}
+
+// The location of the cloud run instance. eg us-central1
+func (o LookupServiceApplyOutput) Location() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupServiceArgs) string { return v.Location }).(pulumi.StringOutput)
+}
+
+// The name of the Cloud Run Service.
+func (o LookupServiceApplyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupServiceArgs) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The project in which the resource belongs. If it
+// is not provided, the provider project is used.
+func (o LookupServiceApplyOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupServiceArgs) *string { return v.Project }).(pulumi.StringPtrOutput)
+}
+
+// A collection of values returned by getService.
+type LookupServiceResultOutput struct{ *pulumi.OutputState }
+
+func (LookupServiceResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupServiceResult)(nil)).Elem()
+}
+
+func (o LookupServiceResultOutput) ToLookupServiceResultOutput() LookupServiceResultOutput {
+	return o
+}
+
+func (o LookupServiceResultOutput) ToLookupServiceResultOutputWithContext(ctx context.Context) LookupServiceResultOutput {
+	return o
+}
+
+func (o LookupServiceResultOutput) AutogenerateRevisionName() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupServiceResult) bool { return v.AutogenerateRevisionName }).(pulumi.BoolOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupServiceResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupServiceResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupServiceResultOutput) Location() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupServiceResult) string { return v.Location }).(pulumi.StringOutput)
+}
+
+func (o LookupServiceResultOutput) Metadatas() GetServiceMetadataArrayOutput {
+	return o.ApplyT(func(v LookupServiceResult) []GetServiceMetadata { return v.Metadatas }).(GetServiceMetadataArrayOutput)
+}
+
+func (o LookupServiceResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupServiceResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o LookupServiceResultOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupServiceResult) *string { return v.Project }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupServiceResultOutput) Statuses() GetServiceStatusArrayOutput {
+	return o.ApplyT(func(v LookupServiceResult) []GetServiceStatus { return v.Statuses }).(GetServiceStatusArrayOutput)
+}
+
+func (o LookupServiceResultOutput) Templates() GetServiceTemplateArrayOutput {
+	return o.ApplyT(func(v LookupServiceResult) []GetServiceTemplate { return v.Templates }).(GetServiceTemplateArrayOutput)
+}
+
+func (o LookupServiceResultOutput) Traffics() GetServiceTrafficArrayOutput {
+	return o.ApplyT(func(v LookupServiceResult) []GetServiceTraffic { return v.Traffics }).(GetServiceTrafficArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupServiceApplyOutput{})
+	pulumi.RegisterOutputType(LookupServiceResultOutput{})
 }

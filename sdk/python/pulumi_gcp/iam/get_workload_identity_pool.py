@@ -144,3 +144,10 @@ def get_workload_identity_pool(project: Optional[str] = None,
         project=__ret__.project,
         state=__ret__.state,
         workload_identity_pool_id=__ret__.workload_identity_pool_id)
+
+
+@_utilities.lift_output_func(get_workload_identity_pool)
+def get_workload_identity_pool_apply(project: Optional[pulumi.Input[str]] = None,
+                                     workload_identity_pool_id: Optional[pulumi.Input[str]] = None,
+                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetWorkloadIdentityPoolResult]:
+    ...

@@ -4,6 +4,9 @@
 package spanner
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -66,4 +69,152 @@ type LookupInstanceResult struct {
 	NumNodes *int              `pulumi:"numNodes"`
 	Project  *string           `pulumi:"project"`
 	State    string            `pulumi:"state"`
+}
+
+func LookupInstanceApply(ctx *pulumi.Context, args LookupInstanceApplyInput, opts ...pulumi.InvokeOption) LookupInstanceResultOutput {
+	return args.ToLookupInstanceApplyOutput().ApplyT(func(v LookupInstanceArgs) (LookupInstanceResult, error) {
+		r, err := LookupInstance(ctx, &v, opts...)
+		return *r, err
+
+	}).(LookupInstanceResultOutput)
+}
+
+// LookupInstanceApplyInput is an input type that accepts LookupInstanceApplyArgs and LookupInstanceApplyOutput values.
+// You can construct a concrete instance of `LookupInstanceApplyInput` via:
+//
+//          LookupInstanceApplyArgs{...}
+type LookupInstanceApplyInput interface {
+	pulumi.Input
+
+	ToLookupInstanceApplyOutput() LookupInstanceApplyOutput
+	ToLookupInstanceApplyOutputWithContext(context.Context) LookupInstanceApplyOutput
+}
+
+// A collection of arguments for invoking getInstance.
+type LookupInstanceApplyArgs struct {
+	Config       pulumi.StringPtrInput `pulumi:"config"`
+	DisplayName  pulumi.StringPtrInput `pulumi:"displayName"`
+	ForceDestroy pulumi.BoolPtrInput   `pulumi:"forceDestroy"`
+	Labels       pulumi.StringMapInput `pulumi:"labels"`
+	// The name of the spanner instance.
+	Name     pulumi.StringInput `pulumi:"name"`
+	NumNodes pulumi.IntPtrInput `pulumi:"numNodes"`
+	// The project in which the resource belongs. If it
+	// is not provided, the provider project is used.
+	Project pulumi.StringPtrInput `pulumi:"project"`
+}
+
+func (LookupInstanceApplyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupInstanceArgs)(nil)).Elem()
+}
+
+func (i LookupInstanceApplyArgs) ToLookupInstanceApplyOutput() LookupInstanceApplyOutput {
+	return i.ToLookupInstanceApplyOutputWithContext(context.Background())
+}
+
+func (i LookupInstanceApplyArgs) ToLookupInstanceApplyOutputWithContext(ctx context.Context) LookupInstanceApplyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LookupInstanceApplyOutput)
+}
+
+// A collection of arguments for invoking getInstance.
+type LookupInstanceApplyOutput struct{ *pulumi.OutputState }
+
+func (LookupInstanceApplyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupInstanceArgs)(nil)).Elem()
+}
+
+func (o LookupInstanceApplyOutput) ToLookupInstanceApplyOutput() LookupInstanceApplyOutput {
+	return o
+}
+
+func (o LookupInstanceApplyOutput) ToLookupInstanceApplyOutputWithContext(ctx context.Context) LookupInstanceApplyOutput {
+	return o
+}
+
+func (o LookupInstanceApplyOutput) Config() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupInstanceArgs) *string { return v.Config }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupInstanceApplyOutput) DisplayName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupInstanceArgs) *string { return v.DisplayName }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupInstanceApplyOutput) ForceDestroy() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LookupInstanceArgs) *bool { return v.ForceDestroy }).(pulumi.BoolPtrOutput)
+}
+
+func (o LookupInstanceApplyOutput) Labels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LookupInstanceArgs) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
+}
+
+// The name of the spanner instance.
+func (o LookupInstanceApplyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupInstanceArgs) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o LookupInstanceApplyOutput) NumNodes() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v LookupInstanceArgs) *int { return v.NumNodes }).(pulumi.IntPtrOutput)
+}
+
+// The project in which the resource belongs. If it
+// is not provided, the provider project is used.
+func (o LookupInstanceApplyOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupInstanceArgs) *string { return v.Project }).(pulumi.StringPtrOutput)
+}
+
+// A collection of values returned by getInstance.
+type LookupInstanceResultOutput struct{ *pulumi.OutputState }
+
+func (LookupInstanceResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupInstanceResult)(nil)).Elem()
+}
+
+func (o LookupInstanceResultOutput) ToLookupInstanceResultOutput() LookupInstanceResultOutput {
+	return o
+}
+
+func (o LookupInstanceResultOutput) ToLookupInstanceResultOutputWithContext(ctx context.Context) LookupInstanceResultOutput {
+	return o
+}
+
+func (o LookupInstanceResultOutput) Config() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupInstanceResult) *string { return v.Config }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupInstanceResultOutput) DisplayName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupInstanceResult) *string { return v.DisplayName }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupInstanceResultOutput) ForceDestroy() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LookupInstanceResult) *bool { return v.ForceDestroy }).(pulumi.BoolPtrOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupInstanceResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupInstanceResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupInstanceResultOutput) Labels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LookupInstanceResult) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
+}
+
+func (o LookupInstanceResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupInstanceResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o LookupInstanceResultOutput) NumNodes() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v LookupInstanceResult) *int { return v.NumNodes }).(pulumi.IntPtrOutput)
+}
+
+func (o LookupInstanceResultOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupInstanceResult) *string { return v.Project }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupInstanceResultOutput) State() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupInstanceResult) string { return v.State }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupInstanceApplyOutput{})
+	pulumi.RegisterOutputType(LookupInstanceResultOutput{})
 }

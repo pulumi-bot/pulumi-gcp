@@ -4,6 +4,9 @@
 package organizations
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -51,4 +54,56 @@ type GetClientConfigResult struct {
 	Region string `pulumi:"region"`
 	// The zone to operate under.
 	Zone string `pulumi:"zone"`
+}
+
+func GetClientConfigApply(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetClientConfigResultOutput {
+	return pulumi.Any(opts).ApplyT(func(v interface{}) (GetClientConfigResult, error) {
+		r, err := GetClientConfig(ctx, opts...)
+		return *r, err
+
+	}).(GetClientConfigResultOutput)
+}
+
+// A collection of values returned by getClientConfig.
+type GetClientConfigResultOutput struct{ *pulumi.OutputState }
+
+func (GetClientConfigResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClientConfigResult)(nil)).Elem()
+}
+
+func (o GetClientConfigResultOutput) ToGetClientConfigResultOutput() GetClientConfigResultOutput {
+	return o
+}
+
+func (o GetClientConfigResultOutput) ToGetClientConfigResultOutputWithContext(ctx context.Context) GetClientConfigResultOutput {
+	return o
+}
+
+// The OAuth2 access token used by the client to authenticate against the Google Cloud API.
+func (o GetClientConfigResultOutput) AccessToken() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClientConfigResult) string { return v.AccessToken }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetClientConfigResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClientConfigResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The ID of the project to apply any resources to.
+func (o GetClientConfigResultOutput) Project() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClientConfigResult) string { return v.Project }).(pulumi.StringOutput)
+}
+
+// The region to operate under.
+func (o GetClientConfigResultOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClientConfigResult) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// The zone to operate under.
+func (o GetClientConfigResultOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClientConfigResult) string { return v.Zone }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetClientConfigResultOutput{})
 }

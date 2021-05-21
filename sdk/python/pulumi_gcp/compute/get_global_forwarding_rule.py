@@ -214,3 +214,10 @@ def get_global_forwarding_rule(name: Optional[str] = None,
         project=__ret__.project,
         self_link=__ret__.self_link,
         target=__ret__.target)
+
+
+@_utilities.lift_output_func(get_global_forwarding_rule)
+def get_global_forwarding_rule_apply(name: Optional[pulumi.Input[str]] = None,
+                                     project: Optional[pulumi.Input[str]] = None,
+                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetGlobalForwardingRuleResult]:
+    ...

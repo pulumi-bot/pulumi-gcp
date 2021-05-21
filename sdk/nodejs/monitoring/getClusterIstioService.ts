@@ -61,27 +61,27 @@ export interface GetClusterIstioServiceArgs {
      * The name of the Kubernetes cluster in which this Istio service 
      * is defined. Corresponds to the clusterName resource label in k8sCluster resources.
      */
-    readonly clusterName: string;
+    clusterName: string;
     /**
      * The location of the Kubernetes cluster in which this Istio service 
      * is defined. Corresponds to the location resource label in k8sCluster resources.
      */
-    readonly location: string;
+    location: string;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: string;
+    project?: string;
     /**
      * The name of the Istio service underlying this service.
      * Corresponds to the destinationServiceName metric label in Istio metrics.
      */
-    readonly serviceName: string;
+    serviceName: string;
     /**
      * The namespace of the Istio service underlying this service.
      * Corresponds to the destinationServiceNamespace metric label in Istio metrics.
      */
-    readonly serviceNamespace: string;
+    serviceNamespace: string;
 }
 
 /**
@@ -101,4 +101,39 @@ export interface GetClusterIstioServiceResult {
     readonly serviceName: string;
     readonly serviceNamespace: string;
     readonly telemetries: outputs.monitoring.GetClusterIstioServiceTelemetry[];
+}
+
+export function getClusterIstioServiceApply(args: GetClusterIstioServiceApplyArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClusterIstioServiceResult> {
+    return pulumi.output(args).apply(a => getClusterIstioService(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getClusterIstioService.
+ */
+export interface GetClusterIstioServiceApplyArgs {
+    /**
+     * The name of the Kubernetes cluster in which this Istio service 
+     * is defined. Corresponds to the clusterName resource label in k8sCluster resources.
+     */
+    clusterName: pulumi.Input<string>;
+    /**
+     * The location of the Kubernetes cluster in which this Istio service 
+     * is defined. Corresponds to the location resource label in k8sCluster resources.
+     */
+    location: pulumi.Input<string>;
+    /**
+     * The ID of the project in which the resource belongs.
+     * If it is not provided, the provider project is used.
+     */
+    project?: pulumi.Input<string>;
+    /**
+     * The name of the Istio service underlying this service.
+     * Corresponds to the destinationServiceName metric label in Istio metrics.
+     */
+    serviceName: pulumi.Input<string>;
+    /**
+     * The namespace of the Istio service underlying this service.
+     * Corresponds to the destinationServiceNamespace metric label in Istio metrics.
+     */
+    serviceNamespace: pulumi.Input<string>;
 }

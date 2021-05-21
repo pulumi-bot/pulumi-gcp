@@ -40,11 +40,11 @@ export interface GetDatabaseInstanceArgs {
     /**
      * The name of the instance.
      */
-    readonly name: string;
+    name: string;
     /**
      * The ID of the project in which the resource belongs.
      */
-    readonly project?: string;
+    project?: string;
 }
 
 /**
@@ -117,4 +117,22 @@ export interface GetDatabaseInstanceResult {
      * configuration is detailed below.
      */
     readonly settings: outputs.sql.GetDatabaseInstanceSetting[];
+}
+
+export function getDatabaseInstanceApply(args: GetDatabaseInstanceApplyArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDatabaseInstanceResult> {
+    return pulumi.output(args).apply(a => getDatabaseInstance(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getDatabaseInstance.
+ */
+export interface GetDatabaseInstanceApplyArgs {
+    /**
+     * The name of the instance.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The ID of the project in which the resource belongs.
+     */
+    project?: pulumi.Input<string>;
 }

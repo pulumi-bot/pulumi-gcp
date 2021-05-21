@@ -4,6 +4,9 @@
 package monitoring
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -83,4 +86,147 @@ type GetIstioCanonicalServiceResult struct {
 	Project     *string                             `pulumi:"project"`
 	ServiceId   string                              `pulumi:"serviceId"`
 	Telemetries []GetIstioCanonicalServiceTelemetry `pulumi:"telemetries"`
+}
+
+func GetIstioCanonicalServiceApply(ctx *pulumi.Context, args GetIstioCanonicalServiceApplyInput, opts ...pulumi.InvokeOption) GetIstioCanonicalServiceResultOutput {
+	return args.ToGetIstioCanonicalServiceApplyOutput().ApplyT(func(v GetIstioCanonicalServiceArgs) (GetIstioCanonicalServiceResult, error) {
+		r, err := GetIstioCanonicalService(ctx, &v, opts...)
+		return *r, err
+
+	}).(GetIstioCanonicalServiceResultOutput)
+}
+
+// GetIstioCanonicalServiceApplyInput is an input type that accepts GetIstioCanonicalServiceApplyArgs and GetIstioCanonicalServiceApplyOutput values.
+// You can construct a concrete instance of `GetIstioCanonicalServiceApplyInput` via:
+//
+//          GetIstioCanonicalServiceApplyArgs{...}
+type GetIstioCanonicalServiceApplyInput interface {
+	pulumi.Input
+
+	ToGetIstioCanonicalServiceApplyOutput() GetIstioCanonicalServiceApplyOutput
+	ToGetIstioCanonicalServiceApplyOutputWithContext(context.Context) GetIstioCanonicalServiceApplyOutput
+}
+
+// A collection of arguments for invoking getIstioCanonicalService.
+type GetIstioCanonicalServiceApplyArgs struct {
+	// The name of the canonical service underlying this service.
+	// Corresponds to the destinationCanonicalServiceName metric label in label in Istio metrics.
+	CanonicalService pulumi.StringInput `pulumi:"canonicalService"`
+	// The namespace of the canonical service underlying this service.
+	// Corresponds to the destinationCanonicalServiceNamespace metric label in Istio metrics.
+	CanonicalServiceNamespace pulumi.StringInput `pulumi:"canonicalServiceNamespace"`
+	// Identifier for the mesh in which this Istio service is defined.
+	// Corresponds to the meshUid metric label in Istio metrics.
+	MeshUid pulumi.StringInput `pulumi:"meshUid"`
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
+	Project pulumi.StringPtrInput `pulumi:"project"`
+}
+
+func (GetIstioCanonicalServiceApplyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetIstioCanonicalServiceArgs)(nil)).Elem()
+}
+
+func (i GetIstioCanonicalServiceApplyArgs) ToGetIstioCanonicalServiceApplyOutput() GetIstioCanonicalServiceApplyOutput {
+	return i.ToGetIstioCanonicalServiceApplyOutputWithContext(context.Background())
+}
+
+func (i GetIstioCanonicalServiceApplyArgs) ToGetIstioCanonicalServiceApplyOutputWithContext(ctx context.Context) GetIstioCanonicalServiceApplyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetIstioCanonicalServiceApplyOutput)
+}
+
+// A collection of arguments for invoking getIstioCanonicalService.
+type GetIstioCanonicalServiceApplyOutput struct{ *pulumi.OutputState }
+
+func (GetIstioCanonicalServiceApplyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetIstioCanonicalServiceArgs)(nil)).Elem()
+}
+
+func (o GetIstioCanonicalServiceApplyOutput) ToGetIstioCanonicalServiceApplyOutput() GetIstioCanonicalServiceApplyOutput {
+	return o
+}
+
+func (o GetIstioCanonicalServiceApplyOutput) ToGetIstioCanonicalServiceApplyOutputWithContext(ctx context.Context) GetIstioCanonicalServiceApplyOutput {
+	return o
+}
+
+// The name of the canonical service underlying this service.
+// Corresponds to the destinationCanonicalServiceName metric label in label in Istio metrics.
+func (o GetIstioCanonicalServiceApplyOutput) CanonicalService() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIstioCanonicalServiceArgs) string { return v.CanonicalService }).(pulumi.StringOutput)
+}
+
+// The namespace of the canonical service underlying this service.
+// Corresponds to the destinationCanonicalServiceNamespace metric label in Istio metrics.
+func (o GetIstioCanonicalServiceApplyOutput) CanonicalServiceNamespace() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIstioCanonicalServiceArgs) string { return v.CanonicalServiceNamespace }).(pulumi.StringOutput)
+}
+
+// Identifier for the mesh in which this Istio service is defined.
+// Corresponds to the meshUid metric label in Istio metrics.
+func (o GetIstioCanonicalServiceApplyOutput) MeshUid() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIstioCanonicalServiceArgs) string { return v.MeshUid }).(pulumi.StringOutput)
+}
+
+// The ID of the project in which the resource belongs.
+// If it is not provided, the provider project is used.
+func (o GetIstioCanonicalServiceApplyOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetIstioCanonicalServiceArgs) *string { return v.Project }).(pulumi.StringPtrOutput)
+}
+
+// A collection of values returned by getIstioCanonicalService.
+type GetIstioCanonicalServiceResultOutput struct{ *pulumi.OutputState }
+
+func (GetIstioCanonicalServiceResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetIstioCanonicalServiceResult)(nil)).Elem()
+}
+
+func (o GetIstioCanonicalServiceResultOutput) ToGetIstioCanonicalServiceResultOutput() GetIstioCanonicalServiceResultOutput {
+	return o
+}
+
+func (o GetIstioCanonicalServiceResultOutput) ToGetIstioCanonicalServiceResultOutputWithContext(ctx context.Context) GetIstioCanonicalServiceResultOutput {
+	return o
+}
+
+func (o GetIstioCanonicalServiceResultOutput) CanonicalService() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIstioCanonicalServiceResult) string { return v.CanonicalService }).(pulumi.StringOutput)
+}
+
+func (o GetIstioCanonicalServiceResultOutput) CanonicalServiceNamespace() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIstioCanonicalServiceResult) string { return v.CanonicalServiceNamespace }).(pulumi.StringOutput)
+}
+
+func (o GetIstioCanonicalServiceResultOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIstioCanonicalServiceResult) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetIstioCanonicalServiceResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIstioCanonicalServiceResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetIstioCanonicalServiceResultOutput) MeshUid() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIstioCanonicalServiceResult) string { return v.MeshUid }).(pulumi.StringOutput)
+}
+
+func (o GetIstioCanonicalServiceResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIstioCanonicalServiceResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetIstioCanonicalServiceResultOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetIstioCanonicalServiceResult) *string { return v.Project }).(pulumi.StringPtrOutput)
+}
+
+func (o GetIstioCanonicalServiceResultOutput) ServiceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIstioCanonicalServiceResult) string { return v.ServiceId }).(pulumi.StringOutput)
+}
+
+func (o GetIstioCanonicalServiceResultOutput) Telemetries() GetIstioCanonicalServiceTelemetryArrayOutput {
+	return o.ApplyT(func(v GetIstioCanonicalServiceResult) []GetIstioCanonicalServiceTelemetry { return v.Telemetries }).(GetIstioCanonicalServiceTelemetryArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetIstioCanonicalServiceApplyOutput{})
+	pulumi.RegisterOutputType(GetIstioCanonicalServiceResultOutput{})
 }

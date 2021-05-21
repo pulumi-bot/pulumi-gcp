@@ -4,6 +4,9 @@
 package composer
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -67,4 +70,110 @@ type GetImageVersionsResult struct {
 	ImageVersions []GetImageVersionsImageVersion `pulumi:"imageVersions"`
 	Project       string                         `pulumi:"project"`
 	Region        string                         `pulumi:"region"`
+}
+
+func GetImageVersionsApply(ctx *pulumi.Context, args GetImageVersionsApplyInput, opts ...pulumi.InvokeOption) GetImageVersionsResultOutput {
+	return args.ToGetImageVersionsApplyOutput().ApplyT(func(v GetImageVersionsArgs) (GetImageVersionsResult, error) {
+		r, err := GetImageVersions(ctx, &v, opts...)
+		return *r, err
+
+	}).(GetImageVersionsResultOutput)
+}
+
+// GetImageVersionsApplyInput is an input type that accepts GetImageVersionsApplyArgs and GetImageVersionsApplyOutput values.
+// You can construct a concrete instance of `GetImageVersionsApplyInput` via:
+//
+//          GetImageVersionsApplyArgs{...}
+type GetImageVersionsApplyInput interface {
+	pulumi.Input
+
+	ToGetImageVersionsApplyOutput() GetImageVersionsApplyOutput
+	ToGetImageVersionsApplyOutputWithContext(context.Context) GetImageVersionsApplyOutput
+}
+
+// A collection of arguments for invoking getImageVersions.
+type GetImageVersionsApplyArgs struct {
+	// The ID of the project to list versions in.
+	// If it is not provided, the provider project is used.
+	Project pulumi.StringPtrInput `pulumi:"project"`
+	// The location to list versions in.
+	// If it is not provider, the provider region is used.
+	Region pulumi.StringPtrInput `pulumi:"region"`
+}
+
+func (GetImageVersionsApplyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetImageVersionsArgs)(nil)).Elem()
+}
+
+func (i GetImageVersionsApplyArgs) ToGetImageVersionsApplyOutput() GetImageVersionsApplyOutput {
+	return i.ToGetImageVersionsApplyOutputWithContext(context.Background())
+}
+
+func (i GetImageVersionsApplyArgs) ToGetImageVersionsApplyOutputWithContext(ctx context.Context) GetImageVersionsApplyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetImageVersionsApplyOutput)
+}
+
+// A collection of arguments for invoking getImageVersions.
+type GetImageVersionsApplyOutput struct{ *pulumi.OutputState }
+
+func (GetImageVersionsApplyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetImageVersionsArgs)(nil)).Elem()
+}
+
+func (o GetImageVersionsApplyOutput) ToGetImageVersionsApplyOutput() GetImageVersionsApplyOutput {
+	return o
+}
+
+func (o GetImageVersionsApplyOutput) ToGetImageVersionsApplyOutputWithContext(ctx context.Context) GetImageVersionsApplyOutput {
+	return o
+}
+
+// The ID of the project to list versions in.
+// If it is not provided, the provider project is used.
+func (o GetImageVersionsApplyOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetImageVersionsArgs) *string { return v.Project }).(pulumi.StringPtrOutput)
+}
+
+// The location to list versions in.
+// If it is not provider, the provider region is used.
+func (o GetImageVersionsApplyOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetImageVersionsArgs) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+// A collection of values returned by getImageVersions.
+type GetImageVersionsResultOutput struct{ *pulumi.OutputState }
+
+func (GetImageVersionsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetImageVersionsResult)(nil)).Elem()
+}
+
+func (o GetImageVersionsResultOutput) ToGetImageVersionsResultOutput() GetImageVersionsResultOutput {
+	return o
+}
+
+func (o GetImageVersionsResultOutput) ToGetImageVersionsResultOutputWithContext(ctx context.Context) GetImageVersionsResultOutput {
+	return o
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetImageVersionsResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetImageVersionsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// A list of composer image versions available in the given project and location. Each `imageVersion` contains:
+func (o GetImageVersionsResultOutput) ImageVersions() GetImageVersionsImageVersionArrayOutput {
+	return o.ApplyT(func(v GetImageVersionsResult) []GetImageVersionsImageVersion { return v.ImageVersions }).(GetImageVersionsImageVersionArrayOutput)
+}
+
+func (o GetImageVersionsResultOutput) Project() pulumi.StringOutput {
+	return o.ApplyT(func(v GetImageVersionsResult) string { return v.Project }).(pulumi.StringOutput)
+}
+
+func (o GetImageVersionsResultOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetImageVersionsResult) string { return v.Region }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetImageVersionsApplyOutput{})
+	pulumi.RegisterOutputType(GetImageVersionsResultOutput{})
 }
