@@ -59,22 +59,22 @@ export interface GetIstioCanonicalServiceArgs {
      * The name of the canonical service underlying this service.
      * Corresponds to the destinationCanonicalServiceName metric label in label in Istio metrics.
      */
-    readonly canonicalService: string;
+    canonicalService: string;
     /**
      * The namespace of the canonical service underlying this service.
      * Corresponds to the destinationCanonicalServiceNamespace metric label in Istio metrics.
      */
-    readonly canonicalServiceNamespace: string;
+    canonicalServiceNamespace: string;
     /**
      * Identifier for the mesh in which this Istio service is defined.
      * Corresponds to the meshUid metric label in Istio metrics.
      */
-    readonly meshUid: string;
+    meshUid: string;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: string;
+    project?: string;
 }
 
 /**

@@ -45,7 +45,7 @@ export interface GetLocationsArgs {
      * The project to list versions for. If it
      * is not provided, the provider project is used.
      */
-    readonly project?: string;
+    project?: string;
 }
 
 /**
