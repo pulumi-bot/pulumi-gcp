@@ -4,6 +4,9 @@
 package serviceaccount
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -69,4 +72,127 @@ type GetAccountKeyResult struct {
 	// The public key, base64 encoded
 	PublicKey     string  `pulumi:"publicKey"`
 	PublicKeyType *string `pulumi:"publicKeyType"`
+}
+
+func GetAccountKeyApply(ctx *pulumi.Context, args GetAccountKeyApplyInput, opts ...pulumi.InvokeOption) GetAccountKeyResultOutput {
+	return args.ToGetAccountKeyApplyOutput().ApplyT(func(v GetAccountKeyArgs) (GetAccountKeyResult, error) {
+		r, err := GetAccountKey(ctx, &v, opts...)
+		return *r, err
+
+	}).(GetAccountKeyResultOutput)
+}
+
+// GetAccountKeyApplyInput is an input type that accepts GetAccountKeyApplyArgs and GetAccountKeyApplyOutput values.
+// You can construct a concrete instance of `GetAccountKeyApplyInput` via:
+//
+//          GetAccountKeyApplyArgs{...}
+type GetAccountKeyApplyInput interface {
+	pulumi.Input
+
+	ToGetAccountKeyApplyOutput() GetAccountKeyApplyOutput
+	ToGetAccountKeyApplyOutputWithContext(context.Context) GetAccountKeyApplyOutput
+}
+
+// A collection of arguments for invoking getAccountKey.
+type GetAccountKeyApplyArgs struct {
+	// The name of the service account key. This must have format
+	// `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{KEYID}`, where `{ACCOUNT}`
+	// is the email address or unique id of the service account.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The ID of the project that the service account will be created in.
+	// Defaults to the provider project configuration.
+	Project pulumi.StringPtrInput `pulumi:"project"`
+	// The output format of the public key requested. TYPE_X509_PEM_FILE is the default output format.
+	PublicKeyType pulumi.StringPtrInput `pulumi:"publicKeyType"`
+}
+
+func (GetAccountKeyApplyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccountKeyArgs)(nil)).Elem()
+}
+
+func (i GetAccountKeyApplyArgs) ToGetAccountKeyApplyOutput() GetAccountKeyApplyOutput {
+	return i.ToGetAccountKeyApplyOutputWithContext(context.Background())
+}
+
+func (i GetAccountKeyApplyArgs) ToGetAccountKeyApplyOutputWithContext(ctx context.Context) GetAccountKeyApplyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAccountKeyApplyOutput)
+}
+
+// A collection of arguments for invoking getAccountKey.
+type GetAccountKeyApplyOutput struct{ *pulumi.OutputState }
+
+func (GetAccountKeyApplyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccountKeyArgs)(nil)).Elem()
+}
+
+func (o GetAccountKeyApplyOutput) ToGetAccountKeyApplyOutput() GetAccountKeyApplyOutput {
+	return o
+}
+
+func (o GetAccountKeyApplyOutput) ToGetAccountKeyApplyOutputWithContext(ctx context.Context) GetAccountKeyApplyOutput {
+	return o
+}
+
+// The name of the service account key. This must have format
+// `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{KEYID}`, where `{ACCOUNT}`
+// is the email address or unique id of the service account.
+func (o GetAccountKeyApplyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountKeyArgs) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The ID of the project that the service account will be created in.
+// Defaults to the provider project configuration.
+func (o GetAccountKeyApplyOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAccountKeyArgs) *string { return v.Project }).(pulumi.StringPtrOutput)
+}
+
+// The output format of the public key requested. TYPE_X509_PEM_FILE is the default output format.
+func (o GetAccountKeyApplyOutput) PublicKeyType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAccountKeyArgs) *string { return v.PublicKeyType }).(pulumi.StringPtrOutput)
+}
+
+// A collection of values returned by getAccountKey.
+type GetAccountKeyResultOutput struct{ *pulumi.OutputState }
+
+func (GetAccountKeyResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccountKeyResult)(nil)).Elem()
+}
+
+func (o GetAccountKeyResultOutput) ToGetAccountKeyResultOutput() GetAccountKeyResultOutput {
+	return o
+}
+
+func (o GetAccountKeyResultOutput) ToGetAccountKeyResultOutputWithContext(ctx context.Context) GetAccountKeyResultOutput {
+	return o
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetAccountKeyResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountKeyResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetAccountKeyResultOutput) KeyAlgorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountKeyResult) string { return v.KeyAlgorithm }).(pulumi.StringOutput)
+}
+
+func (o GetAccountKeyResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountKeyResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetAccountKeyResultOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAccountKeyResult) *string { return v.Project }).(pulumi.StringPtrOutput)
+}
+
+// The public key, base64 encoded
+func (o GetAccountKeyResultOutput) PublicKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountKeyResult) string { return v.PublicKey }).(pulumi.StringOutput)
+}
+
+func (o GetAccountKeyResultOutput) PublicKeyType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAccountKeyResult) *string { return v.PublicKeyType }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetAccountKeyApplyOutput{})
+	pulumi.RegisterOutputType(GetAccountKeyResultOutput{})
 }

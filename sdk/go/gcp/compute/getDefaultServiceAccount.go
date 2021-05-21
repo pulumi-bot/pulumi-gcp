@@ -4,6 +4,9 @@
 package compute
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -58,4 +61,110 @@ type GetDefaultServiceAccountResult struct {
 	Project string `pulumi:"project"`
 	// The unique id of the service account.
 	UniqueId string `pulumi:"uniqueId"`
+}
+
+func GetDefaultServiceAccountApply(ctx *pulumi.Context, args GetDefaultServiceAccountApplyInput, opts ...pulumi.InvokeOption) GetDefaultServiceAccountResultOutput {
+	return args.ToGetDefaultServiceAccountApplyOutput().ApplyT(func(v GetDefaultServiceAccountArgs) (GetDefaultServiceAccountResult, error) {
+		r, err := GetDefaultServiceAccount(ctx, &v, opts...)
+		return *r, err
+
+	}).(GetDefaultServiceAccountResultOutput)
+}
+
+// GetDefaultServiceAccountApplyInput is an input type that accepts GetDefaultServiceAccountApplyArgs and GetDefaultServiceAccountApplyOutput values.
+// You can construct a concrete instance of `GetDefaultServiceAccountApplyInput` via:
+//
+//          GetDefaultServiceAccountApplyArgs{...}
+type GetDefaultServiceAccountApplyInput interface {
+	pulumi.Input
+
+	ToGetDefaultServiceAccountApplyOutput() GetDefaultServiceAccountApplyOutput
+	ToGetDefaultServiceAccountApplyOutputWithContext(context.Context) GetDefaultServiceAccountApplyOutput
+}
+
+// A collection of arguments for invoking getDefaultServiceAccount.
+type GetDefaultServiceAccountApplyArgs struct {
+	// The project ID. If it is not provided, the provider project is used.
+	Project pulumi.StringPtrInput `pulumi:"project"`
+}
+
+func (GetDefaultServiceAccountApplyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDefaultServiceAccountArgs)(nil)).Elem()
+}
+
+func (i GetDefaultServiceAccountApplyArgs) ToGetDefaultServiceAccountApplyOutput() GetDefaultServiceAccountApplyOutput {
+	return i.ToGetDefaultServiceAccountApplyOutputWithContext(context.Background())
+}
+
+func (i GetDefaultServiceAccountApplyArgs) ToGetDefaultServiceAccountApplyOutputWithContext(ctx context.Context) GetDefaultServiceAccountApplyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDefaultServiceAccountApplyOutput)
+}
+
+// A collection of arguments for invoking getDefaultServiceAccount.
+type GetDefaultServiceAccountApplyOutput struct{ *pulumi.OutputState }
+
+func (GetDefaultServiceAccountApplyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDefaultServiceAccountArgs)(nil)).Elem()
+}
+
+func (o GetDefaultServiceAccountApplyOutput) ToGetDefaultServiceAccountApplyOutput() GetDefaultServiceAccountApplyOutput {
+	return o
+}
+
+func (o GetDefaultServiceAccountApplyOutput) ToGetDefaultServiceAccountApplyOutputWithContext(ctx context.Context) GetDefaultServiceAccountApplyOutput {
+	return o
+}
+
+// The project ID. If it is not provided, the provider project is used.
+func (o GetDefaultServiceAccountApplyOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetDefaultServiceAccountArgs) *string { return v.Project }).(pulumi.StringPtrOutput)
+}
+
+// A collection of values returned by getDefaultServiceAccount.
+type GetDefaultServiceAccountResultOutput struct{ *pulumi.OutputState }
+
+func (GetDefaultServiceAccountResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDefaultServiceAccountResult)(nil)).Elem()
+}
+
+func (o GetDefaultServiceAccountResultOutput) ToGetDefaultServiceAccountResultOutput() GetDefaultServiceAccountResultOutput {
+	return o
+}
+
+func (o GetDefaultServiceAccountResultOutput) ToGetDefaultServiceAccountResultOutputWithContext(ctx context.Context) GetDefaultServiceAccountResultOutput {
+	return o
+}
+
+// The display name for the service account.
+func (o GetDefaultServiceAccountResultOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDefaultServiceAccountResult) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// Email address of the default service account used by VMs running in this project
+func (o GetDefaultServiceAccountResultOutput) Email() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDefaultServiceAccountResult) string { return v.Email }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetDefaultServiceAccountResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDefaultServiceAccountResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The fully-qualified name of the service account.
+func (o GetDefaultServiceAccountResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDefaultServiceAccountResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetDefaultServiceAccountResultOutput) Project() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDefaultServiceAccountResult) string { return v.Project }).(pulumi.StringOutput)
+}
+
+// The unique id of the service account.
+func (o GetDefaultServiceAccountResultOutput) UniqueId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDefaultServiceAccountResult) string { return v.UniqueId }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetDefaultServiceAccountApplyOutput{})
+	pulumi.RegisterOutputType(GetDefaultServiceAccountResultOutput{})
 }

@@ -54,3 +54,7 @@ export interface GetClientOpenIdUserInfoResult {
      */
     readonly id: string;
 }
+
+export function getClientOpenIdUserInfoOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetClientOpenIdUserInfoResult> {
+    return pulumi.output(getClientOpenIdUserInfo(opts))
+}

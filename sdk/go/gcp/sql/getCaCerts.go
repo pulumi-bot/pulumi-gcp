@@ -4,6 +4,9 @@
 package sql
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -38,4 +41,111 @@ type GetCaCertsResult struct {
 	Id       string `pulumi:"id"`
 	Instance string `pulumi:"instance"`
 	Project  string `pulumi:"project"`
+}
+
+func GetCaCertsApply(ctx *pulumi.Context, args GetCaCertsApplyInput, opts ...pulumi.InvokeOption) GetCaCertsResultOutput {
+	return args.ToGetCaCertsApplyOutput().ApplyT(func(v GetCaCertsArgs) (GetCaCertsResult, error) {
+		r, err := GetCaCerts(ctx, &v, opts...)
+		return *r, err
+
+	}).(GetCaCertsResultOutput)
+}
+
+// GetCaCertsApplyInput is an input type that accepts GetCaCertsApplyArgs and GetCaCertsApplyOutput values.
+// You can construct a concrete instance of `GetCaCertsApplyInput` via:
+//
+//          GetCaCertsApplyArgs{...}
+type GetCaCertsApplyInput interface {
+	pulumi.Input
+
+	ToGetCaCertsApplyOutput() GetCaCertsApplyOutput
+	ToGetCaCertsApplyOutputWithContext(context.Context) GetCaCertsApplyOutput
+}
+
+// A collection of arguments for invoking getCaCerts.
+type GetCaCertsApplyArgs struct {
+	// The name or self link of the instance.
+	Instance pulumi.StringInput `pulumi:"instance"`
+	// The ID of the project in which the resource belongs. If `project` is not provided, the provider project is used.
+	Project pulumi.StringPtrInput `pulumi:"project"`
+}
+
+func (GetCaCertsApplyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCaCertsArgs)(nil)).Elem()
+}
+
+func (i GetCaCertsApplyArgs) ToGetCaCertsApplyOutput() GetCaCertsApplyOutput {
+	return i.ToGetCaCertsApplyOutputWithContext(context.Background())
+}
+
+func (i GetCaCertsApplyArgs) ToGetCaCertsApplyOutputWithContext(ctx context.Context) GetCaCertsApplyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCaCertsApplyOutput)
+}
+
+// A collection of arguments for invoking getCaCerts.
+type GetCaCertsApplyOutput struct{ *pulumi.OutputState }
+
+func (GetCaCertsApplyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCaCertsArgs)(nil)).Elem()
+}
+
+func (o GetCaCertsApplyOutput) ToGetCaCertsApplyOutput() GetCaCertsApplyOutput {
+	return o
+}
+
+func (o GetCaCertsApplyOutput) ToGetCaCertsApplyOutputWithContext(ctx context.Context) GetCaCertsApplyOutput {
+	return o
+}
+
+// The name or self link of the instance.
+func (o GetCaCertsApplyOutput) Instance() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCaCertsArgs) string { return v.Instance }).(pulumi.StringOutput)
+}
+
+// The ID of the project in which the resource belongs. If `project` is not provided, the provider project is used.
+func (o GetCaCertsApplyOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetCaCertsArgs) *string { return v.Project }).(pulumi.StringPtrOutput)
+}
+
+// A collection of values returned by getCaCerts.
+type GetCaCertsResultOutput struct{ *pulumi.OutputState }
+
+func (GetCaCertsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCaCertsResult)(nil)).Elem()
+}
+
+func (o GetCaCertsResultOutput) ToGetCaCertsResultOutput() GetCaCertsResultOutput {
+	return o
+}
+
+func (o GetCaCertsResultOutput) ToGetCaCertsResultOutputWithContext(ctx context.Context) GetCaCertsResultOutput {
+	return o
+}
+
+// SHA1 fingerprint of the currently active CA certificate.
+func (o GetCaCertsResultOutput) ActiveVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCaCertsResult) string { return v.ActiveVersion }).(pulumi.StringOutput)
+}
+
+// A list of server CA certificates for the instance. Each contains:
+func (o GetCaCertsResultOutput) Certs() GetCaCertsCertArrayOutput {
+	return o.ApplyT(func(v GetCaCertsResult) []GetCaCertsCert { return v.Certs }).(GetCaCertsCertArrayOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetCaCertsResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCaCertsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetCaCertsResultOutput) Instance() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCaCertsResult) string { return v.Instance }).(pulumi.StringOutput)
+}
+
+func (o GetCaCertsResultOutput) Project() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCaCertsResult) string { return v.Project }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetCaCertsApplyOutput{})
+	pulumi.RegisterOutputType(GetCaCertsResultOutput{})
 }

@@ -48,12 +48,12 @@ export interface GetImageVersionsArgs {
      * The ID of the project to list versions in.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: string;
+    project?: string;
     /**
      * The location to list versions in.
      * If it is not provider, the provider region is used.
      */
-    readonly region?: string;
+    region?: string;
 }
 
 /**
@@ -70,4 +70,24 @@ export interface GetImageVersionsResult {
     readonly imageVersions: outputs.composer.GetImageVersionsImageVersion[];
     readonly project: string;
     readonly region: string;
+}
+
+export function getImageVersionsOutput(args?: GetImageVersionsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetImageVersionsResult> {
+    return pulumi.output(args).apply(a => getImageVersions(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getImageVersions.
+ */
+export interface GetImageVersionsOutputArgs {
+    /**
+     * The ID of the project to list versions in.
+     * If it is not provided, the provider project is used.
+     */
+    project?: pulumi.Input<string>;
+    /**
+     * The location to list versions in.
+     * If it is not provider, the provider region is used.
+     */
+    region?: pulumi.Input<string>;
 }

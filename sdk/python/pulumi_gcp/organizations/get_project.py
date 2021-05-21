@@ -162,3 +162,9 @@ def get_project(project_id: Optional[str] = None,
         org_id=__ret__.org_id,
         project_id=__ret__.project_id,
         skip_delete=__ret__.skip_delete)
+
+
+@_utilities.lift_output_func(get_project)
+def get_project_output(project_id: Optional[pulumi.Input[str]] = None,
+                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetProjectResult]:
+    ...

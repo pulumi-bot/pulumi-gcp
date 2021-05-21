@@ -100,3 +100,9 @@ def get_web_app(app_id: Optional[str] = None,
         id=__ret__.id,
         name=__ret__.name,
         project=__ret__.project)
+
+
+@_utilities.lift_output_func(get_web_app)
+def get_web_app_output(app_id: Optional[pulumi.Input[str]] = None,
+                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetWebAppResult]:
+    ...

@@ -182,3 +182,10 @@ def get_folder(folder: Optional[str] = None,
         name=__ret__.name,
         organization=__ret__.organization,
         parent=__ret__.parent)
+
+
+@_utilities.lift_output_func(get_folder)
+def get_folder_output(folder: Optional[pulumi.Input[str]] = None,
+                      lookup_organization: Optional[pulumi.Input[bool]] = None,
+                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFolderResult]:
+    ...

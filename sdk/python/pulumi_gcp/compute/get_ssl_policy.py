@@ -197,3 +197,10 @@ def get_ssl_policy(name: Optional[str] = None,
         profile=__ret__.profile,
         project=__ret__.project,
         self_link=__ret__.self_link)
+
+
+@_utilities.lift_output_func(get_ssl_policy)
+def get_ssl_policy_output(name: Optional[pulumi.Input[str]] = None,
+                          project: Optional[pulumi.Input[str]] = None,
+                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSSLPolicyResult]:
+    ...

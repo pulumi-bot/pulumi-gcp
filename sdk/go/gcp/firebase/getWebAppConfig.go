@@ -4,6 +4,9 @@
 package firebase
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -45,4 +48,131 @@ type GetWebAppConfigResult struct {
 	Project           *string `pulumi:"project"`
 	StorageBucket     string  `pulumi:"storageBucket"`
 	WebAppId          string  `pulumi:"webAppId"`
+}
+
+func GetWebAppConfigApply(ctx *pulumi.Context, args GetWebAppConfigApplyInput, opts ...pulumi.InvokeOption) GetWebAppConfigResultOutput {
+	return args.ToGetWebAppConfigApplyOutput().ApplyT(func(v GetWebAppConfigArgs) (GetWebAppConfigResult, error) {
+		r, err := GetWebAppConfig(ctx, &v, opts...)
+		return *r, err
+
+	}).(GetWebAppConfigResultOutput)
+}
+
+// GetWebAppConfigApplyInput is an input type that accepts GetWebAppConfigApplyArgs and GetWebAppConfigApplyOutput values.
+// You can construct a concrete instance of `GetWebAppConfigApplyInput` via:
+//
+//          GetWebAppConfigApplyArgs{...}
+type GetWebAppConfigApplyInput interface {
+	pulumi.Input
+
+	ToGetWebAppConfigApplyOutput() GetWebAppConfigApplyOutput
+	ToGetWebAppConfigApplyOutputWithContext(context.Context) GetWebAppConfigApplyOutput
+}
+
+// A collection of arguments for invoking getWebAppConfig.
+type GetWebAppConfigApplyArgs struct {
+	// The ID of the project in which the resource belongs. If it
+	// is not provided, the provider project is used.
+	Project pulumi.StringPtrInput `pulumi:"project"`
+	// the id of the firebase web app
+	WebAppId pulumi.StringInput `pulumi:"webAppId"`
+}
+
+func (GetWebAppConfigApplyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWebAppConfigArgs)(nil)).Elem()
+}
+
+func (i GetWebAppConfigApplyArgs) ToGetWebAppConfigApplyOutput() GetWebAppConfigApplyOutput {
+	return i.ToGetWebAppConfigApplyOutputWithContext(context.Background())
+}
+
+func (i GetWebAppConfigApplyArgs) ToGetWebAppConfigApplyOutputWithContext(ctx context.Context) GetWebAppConfigApplyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetWebAppConfigApplyOutput)
+}
+
+// A collection of arguments for invoking getWebAppConfig.
+type GetWebAppConfigApplyOutput struct{ *pulumi.OutputState }
+
+func (GetWebAppConfigApplyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWebAppConfigArgs)(nil)).Elem()
+}
+
+func (o GetWebAppConfigApplyOutput) ToGetWebAppConfigApplyOutput() GetWebAppConfigApplyOutput {
+	return o
+}
+
+func (o GetWebAppConfigApplyOutput) ToGetWebAppConfigApplyOutputWithContext(ctx context.Context) GetWebAppConfigApplyOutput {
+	return o
+}
+
+// The ID of the project in which the resource belongs. If it
+// is not provided, the provider project is used.
+func (o GetWebAppConfigApplyOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetWebAppConfigArgs) *string { return v.Project }).(pulumi.StringPtrOutput)
+}
+
+// the id of the firebase web app
+func (o GetWebAppConfigApplyOutput) WebAppId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWebAppConfigArgs) string { return v.WebAppId }).(pulumi.StringOutput)
+}
+
+// A collection of values returned by getWebAppConfig.
+type GetWebAppConfigResultOutput struct{ *pulumi.OutputState }
+
+func (GetWebAppConfigResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWebAppConfigResult)(nil)).Elem()
+}
+
+func (o GetWebAppConfigResultOutput) ToGetWebAppConfigResultOutput() GetWebAppConfigResultOutput {
+	return o
+}
+
+func (o GetWebAppConfigResultOutput) ToGetWebAppConfigResultOutputWithContext(ctx context.Context) GetWebAppConfigResultOutput {
+	return o
+}
+
+func (o GetWebAppConfigResultOutput) ApiKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWebAppConfigResult) string { return v.ApiKey }).(pulumi.StringOutput)
+}
+
+func (o GetWebAppConfigResultOutput) AuthDomain() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWebAppConfigResult) string { return v.AuthDomain }).(pulumi.StringOutput)
+}
+
+func (o GetWebAppConfigResultOutput) DatabaseUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWebAppConfigResult) string { return v.DatabaseUrl }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetWebAppConfigResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWebAppConfigResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetWebAppConfigResultOutput) LocationId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWebAppConfigResult) string { return v.LocationId }).(pulumi.StringOutput)
+}
+
+func (o GetWebAppConfigResultOutput) MeasurementId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWebAppConfigResult) string { return v.MeasurementId }).(pulumi.StringOutput)
+}
+
+func (o GetWebAppConfigResultOutput) MessagingSenderId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWebAppConfigResult) string { return v.MessagingSenderId }).(pulumi.StringOutput)
+}
+
+func (o GetWebAppConfigResultOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetWebAppConfigResult) *string { return v.Project }).(pulumi.StringPtrOutput)
+}
+
+func (o GetWebAppConfigResultOutput) StorageBucket() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWebAppConfigResult) string { return v.StorageBucket }).(pulumi.StringOutput)
+}
+
+func (o GetWebAppConfigResultOutput) WebAppId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWebAppConfigResult) string { return v.WebAppId }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetWebAppConfigApplyOutput{})
+	pulumi.RegisterOutputType(GetWebAppConfigResultOutput{})
 }

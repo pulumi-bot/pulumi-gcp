@@ -4,6 +4,9 @@
 package compute
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -66,4 +69,132 @@ type LookupVPNGatewayResult struct {
 	Region string `pulumi:"region"`
 	// The URI of the resource.
 	SelfLink string `pulumi:"selfLink"`
+}
+
+func LookupVPNGatewayApply(ctx *pulumi.Context, args LookupVPNGatewayApplyInput, opts ...pulumi.InvokeOption) LookupVPNGatewayResultOutput {
+	return args.ToLookupVPNGatewayApplyOutput().ApplyT(func(v LookupVPNGatewayArgs) (LookupVPNGatewayResult, error) {
+		r, err := LookupVPNGateway(ctx, &v, opts...)
+		return *r, err
+
+	}).(LookupVPNGatewayResultOutput)
+}
+
+// LookupVPNGatewayApplyInput is an input type that accepts LookupVPNGatewayApplyArgs and LookupVPNGatewayApplyOutput values.
+// You can construct a concrete instance of `LookupVPNGatewayApplyInput` via:
+//
+//          LookupVPNGatewayApplyArgs{...}
+type LookupVPNGatewayApplyInput interface {
+	pulumi.Input
+
+	ToLookupVPNGatewayApplyOutput() LookupVPNGatewayApplyOutput
+	ToLookupVPNGatewayApplyOutputWithContext(context.Context) LookupVPNGatewayApplyOutput
+}
+
+// A collection of arguments for invoking getVPNGateway.
+type LookupVPNGatewayApplyArgs struct {
+	// The name of the VPN gateway.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The project in which the resource belongs. If it
+	// is not provided, the provider project is used.
+	Project pulumi.StringPtrInput `pulumi:"project"`
+	// The region in which the resource belongs. If it
+	// is not provided, the project region is used.
+	Region pulumi.StringPtrInput `pulumi:"region"`
+}
+
+func (LookupVPNGatewayApplyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupVPNGatewayArgs)(nil)).Elem()
+}
+
+func (i LookupVPNGatewayApplyArgs) ToLookupVPNGatewayApplyOutput() LookupVPNGatewayApplyOutput {
+	return i.ToLookupVPNGatewayApplyOutputWithContext(context.Background())
+}
+
+func (i LookupVPNGatewayApplyArgs) ToLookupVPNGatewayApplyOutputWithContext(ctx context.Context) LookupVPNGatewayApplyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LookupVPNGatewayApplyOutput)
+}
+
+// A collection of arguments for invoking getVPNGateway.
+type LookupVPNGatewayApplyOutput struct{ *pulumi.OutputState }
+
+func (LookupVPNGatewayApplyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupVPNGatewayArgs)(nil)).Elem()
+}
+
+func (o LookupVPNGatewayApplyOutput) ToLookupVPNGatewayApplyOutput() LookupVPNGatewayApplyOutput {
+	return o
+}
+
+func (o LookupVPNGatewayApplyOutput) ToLookupVPNGatewayApplyOutputWithContext(ctx context.Context) LookupVPNGatewayApplyOutput {
+	return o
+}
+
+// The name of the VPN gateway.
+func (o LookupVPNGatewayApplyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupVPNGatewayArgs) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The project in which the resource belongs. If it
+// is not provided, the provider project is used.
+func (o LookupVPNGatewayApplyOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupVPNGatewayArgs) *string { return v.Project }).(pulumi.StringPtrOutput)
+}
+
+// The region in which the resource belongs. If it
+// is not provided, the project region is used.
+func (o LookupVPNGatewayApplyOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupVPNGatewayArgs) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+// A collection of values returned by getVPNGateway.
+type LookupVPNGatewayResultOutput struct{ *pulumi.OutputState }
+
+func (LookupVPNGatewayResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupVPNGatewayResult)(nil)).Elem()
+}
+
+func (o LookupVPNGatewayResultOutput) ToLookupVPNGatewayResultOutput() LookupVPNGatewayResultOutput {
+	return o
+}
+
+func (o LookupVPNGatewayResultOutput) ToLookupVPNGatewayResultOutputWithContext(ctx context.Context) LookupVPNGatewayResultOutput {
+	return o
+}
+
+// Description of this VPN gateway.
+func (o LookupVPNGatewayResultOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupVPNGatewayResult) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupVPNGatewayResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupVPNGatewayResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupVPNGatewayResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupVPNGatewayResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The network of this VPN gateway.
+func (o LookupVPNGatewayResultOutput) Network() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupVPNGatewayResult) string { return v.Network }).(pulumi.StringOutput)
+}
+
+func (o LookupVPNGatewayResultOutput) Project() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupVPNGatewayResult) string { return v.Project }).(pulumi.StringOutput)
+}
+
+// Region of this VPN gateway.
+func (o LookupVPNGatewayResultOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupVPNGatewayResult) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// The URI of the resource.
+func (o LookupVPNGatewayResultOutput) SelfLink() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupVPNGatewayResult) string { return v.SelfLink }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupVPNGatewayApplyOutput{})
+	pulumi.RegisterOutputType(LookupVPNGatewayResultOutput{})
 }

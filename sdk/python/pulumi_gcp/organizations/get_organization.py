@@ -158,3 +158,10 @@ def get_organization(domain: Optional[str] = None,
         name=__ret__.name,
         org_id=__ret__.org_id,
         organization=__ret__.organization)
+
+
+@_utilities.lift_output_func(get_organization)
+def get_organization_output(domain: Optional[pulumi.Input[str]] = None,
+                            organization: Optional[pulumi.Input[str]] = None,
+                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOrganizationResult]:
+    ...

@@ -315,3 +315,10 @@ def get_database_instance(name: Optional[str] = None,
         server_ca_certs=__ret__.server_ca_certs,
         service_account_email_address=__ret__.service_account_email_address,
         settings=__ret__.settings)
+
+
+@_utilities.lift_output_func(get_database_instance)
+def get_database_instance_output(name: Optional[pulumi.Input[str]] = None,
+                                 project: Optional[pulumi.Input[str]] = None,
+                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDatabaseInstanceResult]:
+    ...

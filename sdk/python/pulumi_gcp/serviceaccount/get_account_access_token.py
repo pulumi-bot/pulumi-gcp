@@ -125,3 +125,12 @@ def get_account_access_token(delegates: Optional[Sequence[str]] = None,
         lifetime=__ret__.lifetime,
         scopes=__ret__.scopes,
         target_service_account=__ret__.target_service_account)
+
+
+@_utilities.lift_output_func(get_account_access_token)
+def get_account_access_token_output(delegates: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                                    lifetime: Optional[pulumi.Input[str]] = None,
+                                    scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                                    target_service_account: Optional[pulumi.Input[str]] = None,
+                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAccountAccessTokenResult]:
+    ...

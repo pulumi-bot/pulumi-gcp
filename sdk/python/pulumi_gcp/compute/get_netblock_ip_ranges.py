@@ -138,3 +138,9 @@ def get_netblock_ip_ranges(range_type: Optional[str] = None,
         cidr_blocks_ipv6s=__ret__.cidr_blocks_ipv6s,
         id=__ret__.id,
         range_type=__ret__.range_type)
+
+
+@_utilities.lift_output_func(get_netblock_ip_ranges)
+def get_netblock_ip_ranges_output(range_type: Optional[pulumi.Input[str]] = None,
+                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNetblockIPRangesResult]:
+    ...

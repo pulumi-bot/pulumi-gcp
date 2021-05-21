@@ -4,6 +4,9 @@
 package compute
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -61,4 +64,129 @@ type LookupResourcePolicyResult struct {
 	// The URI of the resource.
 	SelfLink                 string                                    `pulumi:"selfLink"`
 	SnapshotSchedulePolicies []GetResourcePolicySnapshotSchedulePolicy `pulumi:"snapshotSchedulePolicies"`
+}
+
+func LookupResourcePolicyApply(ctx *pulumi.Context, args LookupResourcePolicyApplyInput, opts ...pulumi.InvokeOption) LookupResourcePolicyResultOutput {
+	return args.ToLookupResourcePolicyApplyOutput().ApplyT(func(v LookupResourcePolicyArgs) (LookupResourcePolicyResult, error) {
+		r, err := LookupResourcePolicy(ctx, &v, opts...)
+		return *r, err
+
+	}).(LookupResourcePolicyResultOutput)
+}
+
+// LookupResourcePolicyApplyInput is an input type that accepts LookupResourcePolicyApplyArgs and LookupResourcePolicyApplyOutput values.
+// You can construct a concrete instance of `LookupResourcePolicyApplyInput` via:
+//
+//          LookupResourcePolicyApplyArgs{...}
+type LookupResourcePolicyApplyInput interface {
+	pulumi.Input
+
+	ToLookupResourcePolicyApplyOutput() LookupResourcePolicyApplyOutput
+	ToLookupResourcePolicyApplyOutputWithContext(context.Context) LookupResourcePolicyApplyOutput
+}
+
+// A collection of arguments for invoking getResourcePolicy.
+type LookupResourcePolicyApplyArgs struct {
+	// The name of the Resource Policy.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Project from which to list the Resource Policy. Defaults to project declared in the provider.
+	Project pulumi.StringPtrInput `pulumi:"project"`
+	// Region where the Resource Policy resides.
+	Region pulumi.StringPtrInput `pulumi:"region"`
+}
+
+func (LookupResourcePolicyApplyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupResourcePolicyArgs)(nil)).Elem()
+}
+
+func (i LookupResourcePolicyApplyArgs) ToLookupResourcePolicyApplyOutput() LookupResourcePolicyApplyOutput {
+	return i.ToLookupResourcePolicyApplyOutputWithContext(context.Background())
+}
+
+func (i LookupResourcePolicyApplyArgs) ToLookupResourcePolicyApplyOutputWithContext(ctx context.Context) LookupResourcePolicyApplyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LookupResourcePolicyApplyOutput)
+}
+
+// A collection of arguments for invoking getResourcePolicy.
+type LookupResourcePolicyApplyOutput struct{ *pulumi.OutputState }
+
+func (LookupResourcePolicyApplyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupResourcePolicyArgs)(nil)).Elem()
+}
+
+func (o LookupResourcePolicyApplyOutput) ToLookupResourcePolicyApplyOutput() LookupResourcePolicyApplyOutput {
+	return o
+}
+
+func (o LookupResourcePolicyApplyOutput) ToLookupResourcePolicyApplyOutputWithContext(ctx context.Context) LookupResourcePolicyApplyOutput {
+	return o
+}
+
+// The name of the Resource Policy.
+func (o LookupResourcePolicyApplyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupResourcePolicyArgs) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Project from which to list the Resource Policy. Defaults to project declared in the provider.
+func (o LookupResourcePolicyApplyOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupResourcePolicyArgs) *string { return v.Project }).(pulumi.StringPtrOutput)
+}
+
+// Region where the Resource Policy resides.
+func (o LookupResourcePolicyApplyOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupResourcePolicyArgs) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+// A collection of values returned by getResourcePolicy.
+type LookupResourcePolicyResultOutput struct{ *pulumi.OutputState }
+
+func (LookupResourcePolicyResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupResourcePolicyResult)(nil)).Elem()
+}
+
+func (o LookupResourcePolicyResultOutput) ToLookupResourcePolicyResultOutput() LookupResourcePolicyResultOutput {
+	return o
+}
+
+func (o LookupResourcePolicyResultOutput) ToLookupResourcePolicyResultOutputWithContext(ctx context.Context) LookupResourcePolicyResultOutput {
+	return o
+}
+
+func (o LookupResourcePolicyResultOutput) GroupPlacementPolicies() GetResourcePolicyGroupPlacementPolicyArrayOutput {
+	return o.ApplyT(func(v LookupResourcePolicyResult) []GetResourcePolicyGroupPlacementPolicy {
+		return v.GroupPlacementPolicies
+	}).(GetResourcePolicyGroupPlacementPolicyArrayOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupResourcePolicyResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupResourcePolicyResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupResourcePolicyResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupResourcePolicyResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o LookupResourcePolicyResultOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupResourcePolicyResult) *string { return v.Project }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupResourcePolicyResultOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupResourcePolicyResult) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+// The URI of the resource.
+func (o LookupResourcePolicyResultOutput) SelfLink() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupResourcePolicyResult) string { return v.SelfLink }).(pulumi.StringOutput)
+}
+
+func (o LookupResourcePolicyResultOutput) SnapshotSchedulePolicies() GetResourcePolicySnapshotSchedulePolicyArrayOutput {
+	return o.ApplyT(func(v LookupResourcePolicyResult) []GetResourcePolicySnapshotSchedulePolicy {
+		return v.SnapshotSchedulePolicies
+	}).(GetResourcePolicySnapshotSchedulePolicyArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupResourcePolicyApplyOutput{})
+	pulumi.RegisterOutputType(LookupResourcePolicyResultOutput{})
 }

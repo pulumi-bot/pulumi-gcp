@@ -178,3 +178,12 @@ def get_istio_canonical_service(canonical_service: Optional[str] = None,
         project=__ret__.project,
         service_id=__ret__.service_id,
         telemetries=__ret__.telemetries)
+
+
+@_utilities.lift_output_func(get_istio_canonical_service)
+def get_istio_canonical_service_output(canonical_service: Optional[pulumi.Input[str]] = None,
+                                       canonical_service_namespace: Optional[pulumi.Input[str]] = None,
+                                       mesh_uid: Optional[pulumi.Input[str]] = None,
+                                       project: Optional[pulumi.Input[str]] = None,
+                                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetIstioCanonicalServiceResult]:
+    ...

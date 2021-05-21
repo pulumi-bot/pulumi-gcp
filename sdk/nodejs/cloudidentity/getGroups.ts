@@ -41,7 +41,7 @@ export interface GetGroupsArgs {
     /**
      * The parent resource under which to list all Groups. Must be of the form identitysources/{identity_source_id} for external- identity-mapped groups or customers/{customer_id} for Google Groups.
      */
-    readonly parent: string;
+    parent: string;
 }
 
 /**
@@ -57,4 +57,18 @@ export interface GetGroupsResult {
      */
     readonly id: string;
     readonly parent: string;
+}
+
+export function getGroupsOutput(args: GetGroupsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetGroupsResult> {
+    return pulumi.output(args).apply(a => getGroups(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getGroups.
+ */
+export interface GetGroupsOutputArgs {
+    /**
+     * The parent resource under which to list all Groups. Must be of the form identitysources/{identity_source_id} for external- identity-mapped groups or customers/{customer_id} for Google Groups.
+     */
+    parent: pulumi.Input<string>;
 }

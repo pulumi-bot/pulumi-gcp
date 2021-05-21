@@ -101,3 +101,10 @@ def get_registry_repository(project: Optional[str] = None,
         project=__ret__.project,
         region=__ret__.region,
         repository_url=__ret__.repository_url)
+
+
+@_utilities.lift_output_func(get_registry_repository)
+def get_registry_repository_output(project: Optional[pulumi.Input[str]] = None,
+                                   region: Optional[pulumi.Input[str]] = None,
+                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRegistryRepositoryResult]:
+    ...
