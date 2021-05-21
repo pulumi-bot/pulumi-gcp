@@ -59,22 +59,22 @@ export interface GetMeshIstioServiceArgs {
      * Identifier for the mesh in which this Istio service is defined.
      * Corresponds to the meshUid metric label in Istio metrics.
      */
-    readonly meshUid: string;
+    meshUid: string;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: string;
+    project?: string;
     /**
      * The name of the Istio service underlying this service.
      * Corresponds to the destinationServiceName metric label in Istio metrics.
      */
-    readonly serviceName: string;
+    serviceName: string;
     /**
      * The namespace of the Istio service underlying this service.
      * Corresponds to the destinationServiceNamespace metric label in Istio metrics.
      */
-    readonly serviceNamespace: string;
+    serviceNamespace: string;
 }
 
 /**
