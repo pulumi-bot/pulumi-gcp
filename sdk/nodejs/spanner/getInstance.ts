@@ -42,20 +42,20 @@ export function getInstance(args: GetInstanceArgs, opts?: pulumi.InvokeOptions):
  * A collection of arguments for invoking getInstance.
  */
 export interface GetInstanceArgs {
-    readonly config?: string;
-    readonly displayName?: string;
-    readonly forceDestroy?: boolean;
-    readonly labels?: {[key: string]: string};
+    config?: string;
+    displayName?: string;
+    forceDestroy?: boolean;
+    labels?: {[key: string]: string};
     /**
      * The name of the spanner instance.
      */
-    readonly name: string;
-    readonly numNodes?: number;
+    name: string;
+    numNodes?: number;
     /**
      * The project in which the resource belongs. If it
      * is not provided, the provider project is used.
      */
-    readonly project?: string;
+    project?: string;
 }
 
 /**

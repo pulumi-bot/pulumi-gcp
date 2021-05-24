@@ -41,11 +41,11 @@ export interface GetActiveFolderArgs {
     /**
      * The folder's display name.
      */
-    readonly displayName: string;
+    displayName: string;
     /**
      * The resource name of the parent Folder or Organization.
      */
-    readonly parent: string;
+    parent: string;
 }
 
 /**
