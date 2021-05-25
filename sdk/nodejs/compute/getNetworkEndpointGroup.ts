@@ -50,20 +50,20 @@ export interface GetNetworkEndpointGroupArgs {
      * The Network Endpoint Group name.
      * Provide either this or a `selfLink`.
      */
-    readonly name?: string;
+    name?: string;
     /**
      * The ID of the project to list versions in.
      * If it is not provided, the provider project is used.
      */
-    readonly project?: string;
+    project?: string;
     /**
      * The Network Endpoint Group self\_link.
      */
-    readonly selfLink?: string;
+    selfLink?: string;
     /**
      * The Network Endpoint Group availability zone.
      */
-    readonly zone?: string;
+    zone?: string;
 }
 
 /**
