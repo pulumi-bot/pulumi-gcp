@@ -105,28 +105,28 @@ export interface AccessApprovalSettingsState {
     /**
      * This field will always be unset for the organization since organizations do not have ancestors.
      */
-    readonly enrolledAncestor?: pulumi.Input<boolean>;
+    enrolledAncestor?: pulumi.Input<boolean>;
     /**
      * A list of Google Cloud Services for which the given resource has Access Approval enrolled. Access requests for the
      * resource given by name against any of these services contained here will be required to have explicit approval.
      * Enrollment can be done for individual services. A maximum of 10 enrolled services will be enforced, to be expanded as
      * the set of supported services is expanded.
      */
-    readonly enrolledServices?: pulumi.Input<pulumi.Input<inputs.organizations.AccessApprovalSettingsEnrolledService>[]>;
+    enrolledServices?: pulumi.Input<pulumi.Input<inputs.organizations.AccessApprovalSettingsEnrolledService>[]>;
     /**
      * The resource name of the settings. Format is "organizations/{organization_id}/accessApprovalSettings"
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * A list of email addresses to which notifications relating to approval requests should be sent. Notifications relating to
      * a resource will be sent to all emails in the settings of ancestor resources of that resource. A maximum of 50 email
      * addresses are allowed.
      */
-    readonly notificationEmails?: pulumi.Input<pulumi.Input<string>[]>;
+    notificationEmails?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * ID of the organization of the access approval settings.
      */
-    readonly organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string>;
 }
 
 /**
@@ -139,15 +139,15 @@ export interface AccessApprovalSettingsArgs {
      * Enrollment can be done for individual services. A maximum of 10 enrolled services will be enforced, to be expanded as
      * the set of supported services is expanded.
      */
-    readonly enrolledServices: pulumi.Input<pulumi.Input<inputs.organizations.AccessApprovalSettingsEnrolledService>[]>;
+    enrolledServices: pulumi.Input<pulumi.Input<inputs.organizations.AccessApprovalSettingsEnrolledService>[]>;
     /**
      * A list of email addresses to which notifications relating to approval requests should be sent. Notifications relating to
      * a resource will be sent to all emails in the settings of ancestor resources of that resource. A maximum of 50 email
      * addresses are allowed.
      */
-    readonly notificationEmails?: pulumi.Input<pulumi.Input<string>[]>;
+    notificationEmails?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * ID of the organization of the access approval settings.
      */
-    readonly organizationId: pulumi.Input<string>;
+    organizationId: pulumi.Input<string>;
 }
