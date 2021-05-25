@@ -42,16 +42,16 @@ export interface GetSecretVersionArgs {
      * The project to get the secret version for. If it
      * is not provided, the provider project is used.
      */
-    readonly project?: string;
+    project?: string;
     /**
      * The secret to get the secret version for.
      */
-    readonly secret: string;
+    secret: string;
     /**
      * The version of the secret to get. If it
      * is not provided, the latest version is retrieved.
      */
-    readonly version?: string;
+    version?: string;
 }
 
 /**
