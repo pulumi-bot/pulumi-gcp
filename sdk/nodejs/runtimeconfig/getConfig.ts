@@ -44,12 +44,12 @@ export interface GetConfigArgs {
     /**
      * The name of the Runtime Configurator configuration.
      */
-    readonly name: string;
+    name: string;
     /**
      * The project in which the resource belongs. If it
      * is not provided, the provider project is used.
      */
-    readonly project?: string;
+    project?: string;
 }
 
 /**

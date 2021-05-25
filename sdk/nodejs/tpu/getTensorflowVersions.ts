@@ -54,12 +54,12 @@ export interface GetTensorflowVersionsArgs {
      * The project to list versions for. If it
      * is not provided, the provider project is used.
      */
-    readonly project?: string;
+    project?: string;
     /**
      * The zone to list versions for. If it
      * is not provided, the provider zone is used.
      */
-    readonly zone?: string;
+    zone?: string;
 }
 
 /**
