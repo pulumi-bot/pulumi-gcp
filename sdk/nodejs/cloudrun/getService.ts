@@ -44,16 +44,16 @@ export interface GetServiceArgs {
     /**
      * The location of the cloud run instance. eg us-central1
      */
-    readonly location: string;
+    location: string;
     /**
      * The name of the Cloud Run Service.
      */
-    readonly name: string;
+    name: string;
     /**
      * The project in which the resource belongs. If it
      * is not provided, the provider project is used.
      */
-    readonly project?: string;
+    project?: string;
 }
 
 /**
