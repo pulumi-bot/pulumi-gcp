@@ -40,12 +40,12 @@ export interface GetGlobalForwardingRuleArgs {
     /**
      * The name of the global forwarding rule.
      */
-    readonly name: string;
+    name: string;
     /**
      * The project in which the resource belongs. If it
      * is not provided, the provider project is used.
      */
-    readonly project?: string;
+    project?: string;
 }
 
 /**
