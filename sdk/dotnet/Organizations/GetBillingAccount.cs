@@ -40,6 +40,22 @@ namespace Pulumi.Gcp.Organizations
         /// </summary>
         public static Task<GetBillingAccountResult> InvokeAsync(GetBillingAccountArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetBillingAccountResult>("gcp:organizations/getBillingAccount:getBillingAccount", args ?? new GetBillingAccountArgs(), options.WithVersion());
+
+        public static Output<GetBillingAccountResult> Apply(GetBillingAccountApplyArgs? args = null, InvokeOptions? options = null)
+        {
+            args = args ?? new GetBillingAccountApplyArgs();
+            return Pulumi.Output.All(
+                args.BillingAccount.Box(),
+                args.DisplayName.Box(),
+                args.Open.Box()
+            ).Apply(a => {
+                    var args = new GetBillingAccountArgs();
+                    a[0].Set(args, nameof(args.BillingAccount));
+                    a[1].Set(args, nameof(args.DisplayName));
+                    a[2].Set(args, nameof(args.Open));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -64,6 +80,31 @@ namespace Pulumi.Gcp.Organizations
         public bool? Open { get; set; }
 
         public GetBillingAccountArgs()
+        {
+        }
+    }
+
+    public sealed class GetBillingAccountApplyArgs
+    {
+        /// <summary>
+        /// The name of the billing account in the form `{billing_account_id}` or `billingAccounts/{billing_account_id}`.
+        /// </summary>
+        [Input("billingAccount")]
+        public Input<string>? BillingAccount { get; set; }
+
+        /// <summary>
+        /// The display name of the billing account.
+        /// </summary>
+        [Input("displayName")]
+        public Input<string>? DisplayName { get; set; }
+
+        /// <summary>
+        /// `true` if the billing account is open, `false` if the billing account is closed.
+        /// </summary>
+        [Input("open")]
+        public Input<bool>? Open { get; set; }
+
+        public GetBillingAccountApplyArgs()
         {
         }
     }

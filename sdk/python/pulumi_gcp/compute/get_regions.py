@@ -111,3 +111,10 @@ def get_regions(project: Optional[str] = None,
         names=__ret__.names,
         project=__ret__.project,
         status=__ret__.status)
+
+
+@_utilities.lift_output_func(get_regions)
+def get_regions_apply(project: Optional[pulumi.Input[str]] = None,
+                      status: Optional[pulumi.Input[str]] = None,
+                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRegionsResult]:
+    ...

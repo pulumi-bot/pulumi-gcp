@@ -190,3 +190,12 @@ def get_instance_group(name: Optional[str] = None,
         self_link=__ret__.self_link,
         size=__ret__.size,
         zone=__ret__.zone)
+
+
+@_utilities.lift_output_func(get_instance_group)
+def get_instance_group_apply(name: Optional[pulumi.Input[str]] = None,
+                             project: Optional[pulumi.Input[str]] = None,
+                             self_link: Optional[pulumi.Input[str]] = None,
+                             zone: Optional[pulumi.Input[str]] = None,
+                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetInstanceGroupResult]:
+    ...

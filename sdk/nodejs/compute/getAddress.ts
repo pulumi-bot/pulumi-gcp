@@ -50,17 +50,17 @@ export interface GetAddressArgs {
     /**
      * A unique name for the resource, required by GCE.
      */
-    readonly name: string;
+    name: string;
     /**
      * The project in which the resource belongs. If it
      * is not provided, the provider project is used.
      */
-    readonly project?: string;
+    project?: string;
     /**
      * The Region in which the created address reside.
      * If it is not provided, the provider region is used.
      */
-    readonly region?: string;
+    region?: string;
 }
 
 /**
@@ -86,4 +86,28 @@ export interface GetAddressResult {
      * Indicates if the address is used. Possible values are: RESERVED or IN_USE.
      */
     readonly status: string;
+}
+
+export function getAddressApply(args: GetAddressApplyArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAddressResult> {
+    return pulumi.output(args).apply(a => getAddress(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getAddress.
+ */
+export interface GetAddressApplyArgs {
+    /**
+     * A unique name for the resource, required by GCE.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The project in which the resource belongs. If it
+     * is not provided, the provider project is used.
+     */
+    project?: pulumi.Input<string>;
+    /**
+     * The Region in which the created address reside.
+     * If it is not provided, the provider region is used.
+     */
+    region?: pulumi.Input<string>;
 }

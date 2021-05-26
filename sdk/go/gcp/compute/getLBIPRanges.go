@@ -4,6 +4,9 @@
 package compute
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -73,4 +76,46 @@ type GetLBIPRangesResult struct {
 	Id string `pulumi:"id"`
 	// The IP ranges used for health checks when **Network load balancing** is used
 	Networks []string `pulumi:"networks"`
+}
+
+func GetLBIPRangesApply(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetLBIPRangesResultOutput {
+	return pulumi.Any(opts).ApplyT(func(v interface{}) (GetLBIPRangesResult, error) {
+		r, err := GetLBIPRanges(ctx, opts...)
+		return *r, err
+
+	}).(GetLBIPRangesResultOutput)
+}
+
+// A collection of values returned by getLBIPRanges.
+type GetLBIPRangesResultOutput struct{ *pulumi.OutputState }
+
+func (GetLBIPRangesResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLBIPRangesResult)(nil)).Elem()
+}
+
+func (o GetLBIPRangesResultOutput) ToGetLBIPRangesResultOutput() GetLBIPRangesResultOutput {
+	return o
+}
+
+func (o GetLBIPRangesResultOutput) ToGetLBIPRangesResultOutputWithContext(ctx context.Context) GetLBIPRangesResultOutput {
+	return o
+}
+
+// The IP ranges used for health checks when **HTTP(S), SSL proxy, TCP proxy, and Internal load balancing** is used
+func (o GetLBIPRangesResultOutput) HttpSslTcpInternals() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetLBIPRangesResult) []string { return v.HttpSslTcpInternals }).(pulumi.StringArrayOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetLBIPRangesResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLBIPRangesResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The IP ranges used for health checks when **Network load balancing** is used
+func (o GetLBIPRangesResultOutput) Networks() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetLBIPRangesResult) []string { return v.Networks }).(pulumi.StringArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetLBIPRangesResultOutput{})
 }

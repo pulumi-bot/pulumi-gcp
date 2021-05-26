@@ -4,6 +4,9 @@
 package tpu
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -85,4 +88,110 @@ type GetTensorflowVersionsResult struct {
 	// The list of TensorFlow versions available for the given project and zone.
 	Versions []string `pulumi:"versions"`
 	Zone     string   `pulumi:"zone"`
+}
+
+func GetTensorflowVersionsApply(ctx *pulumi.Context, args GetTensorflowVersionsApplyInput, opts ...pulumi.InvokeOption) GetTensorflowVersionsResultOutput {
+	return args.ToGetTensorflowVersionsApplyOutput().ApplyT(func(v GetTensorflowVersionsArgs) (GetTensorflowVersionsResult, error) {
+		r, err := GetTensorflowVersions(ctx, &v, opts...)
+		return *r, err
+
+	}).(GetTensorflowVersionsResultOutput)
+}
+
+// GetTensorflowVersionsApplyInput is an input type that accepts GetTensorflowVersionsApplyArgs and GetTensorflowVersionsApplyOutput values.
+// You can construct a concrete instance of `GetTensorflowVersionsApplyInput` via:
+//
+//          GetTensorflowVersionsApplyArgs{...}
+type GetTensorflowVersionsApplyInput interface {
+	pulumi.Input
+
+	ToGetTensorflowVersionsApplyOutput() GetTensorflowVersionsApplyOutput
+	ToGetTensorflowVersionsApplyOutputWithContext(context.Context) GetTensorflowVersionsApplyOutput
+}
+
+// A collection of arguments for invoking getTensorflowVersions.
+type GetTensorflowVersionsApplyArgs struct {
+	// The project to list versions for. If it
+	// is not provided, the provider project is used.
+	Project pulumi.StringPtrInput `pulumi:"project"`
+	// The zone to list versions for. If it
+	// is not provided, the provider zone is used.
+	Zone pulumi.StringPtrInput `pulumi:"zone"`
+}
+
+func (GetTensorflowVersionsApplyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTensorflowVersionsArgs)(nil)).Elem()
+}
+
+func (i GetTensorflowVersionsApplyArgs) ToGetTensorflowVersionsApplyOutput() GetTensorflowVersionsApplyOutput {
+	return i.ToGetTensorflowVersionsApplyOutputWithContext(context.Background())
+}
+
+func (i GetTensorflowVersionsApplyArgs) ToGetTensorflowVersionsApplyOutputWithContext(ctx context.Context) GetTensorflowVersionsApplyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTensorflowVersionsApplyOutput)
+}
+
+// A collection of arguments for invoking getTensorflowVersions.
+type GetTensorflowVersionsApplyOutput struct{ *pulumi.OutputState }
+
+func (GetTensorflowVersionsApplyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTensorflowVersionsArgs)(nil)).Elem()
+}
+
+func (o GetTensorflowVersionsApplyOutput) ToGetTensorflowVersionsApplyOutput() GetTensorflowVersionsApplyOutput {
+	return o
+}
+
+func (o GetTensorflowVersionsApplyOutput) ToGetTensorflowVersionsApplyOutputWithContext(ctx context.Context) GetTensorflowVersionsApplyOutput {
+	return o
+}
+
+// The project to list versions for. If it
+// is not provided, the provider project is used.
+func (o GetTensorflowVersionsApplyOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetTensorflowVersionsArgs) *string { return v.Project }).(pulumi.StringPtrOutput)
+}
+
+// The zone to list versions for. If it
+// is not provided, the provider zone is used.
+func (o GetTensorflowVersionsApplyOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetTensorflowVersionsArgs) *string { return v.Zone }).(pulumi.StringPtrOutput)
+}
+
+// A collection of values returned by getTensorflowVersions.
+type GetTensorflowVersionsResultOutput struct{ *pulumi.OutputState }
+
+func (GetTensorflowVersionsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTensorflowVersionsResult)(nil)).Elem()
+}
+
+func (o GetTensorflowVersionsResultOutput) ToGetTensorflowVersionsResultOutput() GetTensorflowVersionsResultOutput {
+	return o
+}
+
+func (o GetTensorflowVersionsResultOutput) ToGetTensorflowVersionsResultOutputWithContext(ctx context.Context) GetTensorflowVersionsResultOutput {
+	return o
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetTensorflowVersionsResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTensorflowVersionsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetTensorflowVersionsResultOutput) Project() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTensorflowVersionsResult) string { return v.Project }).(pulumi.StringOutput)
+}
+
+// The list of TensorFlow versions available for the given project and zone.
+func (o GetTensorflowVersionsResultOutput) Versions() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetTensorflowVersionsResult) []string { return v.Versions }).(pulumi.StringArrayOutput)
+}
+
+func (o GetTensorflowVersionsResultOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTensorflowVersionsResult) string { return v.Zone }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetTensorflowVersionsApplyOutput{})
+	pulumi.RegisterOutputType(GetTensorflowVersionsResultOutput{})
 }

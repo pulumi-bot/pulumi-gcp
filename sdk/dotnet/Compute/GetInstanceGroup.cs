@@ -36,6 +36,24 @@ namespace Pulumi.Gcp.Compute
         /// </summary>
         public static Task<GetInstanceGroupResult> InvokeAsync(GetInstanceGroupArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetInstanceGroupResult>("gcp:compute/getInstanceGroup:getInstanceGroup", args ?? new GetInstanceGroupArgs(), options.WithVersion());
+
+        public static Output<GetInstanceGroupResult> Apply(GetInstanceGroupApplyArgs? args = null, InvokeOptions? options = null)
+        {
+            args = args ?? new GetInstanceGroupApplyArgs();
+            return Pulumi.Output.All(
+                args.Name.Box(),
+                args.Project.Box(),
+                args.SelfLink.Box(),
+                args.Zone.Box()
+            ).Apply(a => {
+                    var args = new GetInstanceGroupArgs();
+                    a[0].Set(args, nameof(args.Name));
+                    a[1].Set(args, nameof(args.Project));
+                    a[2].Set(args, nameof(args.SelfLink));
+                    a[3].Set(args, nameof(args.Zone));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -68,6 +86,39 @@ namespace Pulumi.Gcp.Compute
         public string? Zone { get; set; }
 
         public GetInstanceGroupArgs()
+        {
+        }
+    }
+
+    public sealed class GetInstanceGroupApplyArgs
+    {
+        /// <summary>
+        /// The name of the instance group. Either `name` or `self_link` must be provided.
+        /// </summary>
+        [Input("name")]
+        public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The ID of the project in which the resource belongs. If it
+        /// is not provided, the provider project is used.
+        /// </summary>
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
+        /// <summary>
+        /// The self link of the instance group. Either `name` or `self_link` must be provided.
+        /// </summary>
+        [Input("selfLink")]
+        public Input<string>? SelfLink { get; set; }
+
+        /// <summary>
+        /// The zone of the instance group. If referencing the instance group by name
+        /// and `zone` is not provided, the provider zone is used.
+        /// </summary>
+        [Input("zone")]
+        public Input<string>? Zone { get; set; }
+
+        public GetInstanceGroupApplyArgs()
         {
         }
     }

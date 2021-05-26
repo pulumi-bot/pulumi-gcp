@@ -34,6 +34,21 @@ namespace Pulumi.Gcp.Compute
         /// </summary>
         public static Task<GetResourcePolicyResult> InvokeAsync(GetResourcePolicyArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetResourcePolicyResult>("gcp:compute/getResourcePolicy:getResourcePolicy", args ?? new GetResourcePolicyArgs(), options.WithVersion());
+
+        public static Output<GetResourcePolicyResult> Apply(GetResourcePolicyApplyArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.Name.Box(),
+                args.Project.Box(),
+                args.Region.Box()
+            ).Apply(a => {
+                    var args = new GetResourcePolicyArgs();
+                    a[0].Set(args, nameof(args.Name));
+                    a[1].Set(args, nameof(args.Project));
+                    a[2].Set(args, nameof(args.Region));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -58,6 +73,31 @@ namespace Pulumi.Gcp.Compute
         public string? Region { get; set; }
 
         public GetResourcePolicyArgs()
+        {
+        }
+    }
+
+    public sealed class GetResourcePolicyApplyArgs
+    {
+        /// <summary>
+        /// The name of the Resource Policy.
+        /// </summary>
+        [Input("name", required: true)]
+        public Input<string> Name { get; set; } = null!;
+
+        /// <summary>
+        /// Project from which to list the Resource Policy. Defaults to project declared in the provider.
+        /// </summary>
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
+        /// <summary>
+        /// Region where the Resource Policy resides.
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
+
+        public GetResourcePolicyApplyArgs()
         {
         }
     }

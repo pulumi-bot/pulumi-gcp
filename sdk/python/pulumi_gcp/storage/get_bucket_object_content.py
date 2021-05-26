@@ -267,3 +267,11 @@ def get_bucket_object_content(bucket: Optional[str] = None,
         self_link=__ret__.self_link,
         source=__ret__.source,
         storage_class=__ret__.storage_class)
+
+
+@_utilities.lift_output_func(get_bucket_object_content)
+def get_bucket_object_content_apply(bucket: Optional[pulumi.Input[str]] = None,
+                                    content: Optional[pulumi.Input[str]] = None,
+                                    name: Optional[pulumi.Input[str]] = None,
+                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetBucketObjectContentResult]:
+    ...

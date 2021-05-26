@@ -148,3 +148,11 @@ def get_backup_run(backup_id: Optional[int] = None,
         most_recent=__ret__.most_recent,
         start_time=__ret__.start_time,
         status=__ret__.status)
+
+
+@_utilities.lift_output_func(get_backup_run)
+def get_backup_run_apply(backup_id: Optional[pulumi.Input[int]] = None,
+                         instance: Optional[pulumi.Input[str]] = None,
+                         most_recent: Optional[pulumi.Input[bool]] = None,
+                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetBackupRunResult]:
+    ...

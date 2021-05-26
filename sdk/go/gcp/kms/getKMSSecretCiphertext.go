@@ -4,6 +4,9 @@
 package kms
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -46,4 +49,110 @@ type GetKMSSecretCiphertextResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id        string `pulumi:"id"`
 	Plaintext string `pulumi:"plaintext"`
+}
+
+func GetKMSSecretCiphertextApply(ctx *pulumi.Context, args GetKMSSecretCiphertextApplyInput, opts ...pulumi.InvokeOption) GetKMSSecretCiphertextResultOutput {
+	return args.ToGetKMSSecretCiphertextApplyOutput().ApplyT(func(v GetKMSSecretCiphertextArgs) (GetKMSSecretCiphertextResult, error) {
+		r, err := GetKMSSecretCiphertext(ctx, &v, opts...)
+		return *r, err
+
+	}).(GetKMSSecretCiphertextResultOutput)
+}
+
+// GetKMSSecretCiphertextApplyInput is an input type that accepts GetKMSSecretCiphertextApplyArgs and GetKMSSecretCiphertextApplyOutput values.
+// You can construct a concrete instance of `GetKMSSecretCiphertextApplyInput` via:
+//
+//          GetKMSSecretCiphertextApplyArgs{...}
+type GetKMSSecretCiphertextApplyInput interface {
+	pulumi.Input
+
+	ToGetKMSSecretCiphertextApplyOutput() GetKMSSecretCiphertextApplyOutput
+	ToGetKMSSecretCiphertextApplyOutputWithContext(context.Context) GetKMSSecretCiphertextApplyOutput
+}
+
+// A collection of arguments for invoking getKMSSecretCiphertext.
+type GetKMSSecretCiphertextApplyArgs struct {
+	// The id of the CryptoKey that will be used to
+	// encrypt the provided plaintext. This is represented by the format
+	// `{projectId}/{location}/{keyRingName}/{cryptoKeyName}`.
+	CryptoKey pulumi.StringInput `pulumi:"cryptoKey"`
+	// The plaintext to be encrypted
+	Plaintext pulumi.StringInput `pulumi:"plaintext"`
+}
+
+func (GetKMSSecretCiphertextApplyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKMSSecretCiphertextArgs)(nil)).Elem()
+}
+
+func (i GetKMSSecretCiphertextApplyArgs) ToGetKMSSecretCiphertextApplyOutput() GetKMSSecretCiphertextApplyOutput {
+	return i.ToGetKMSSecretCiphertextApplyOutputWithContext(context.Background())
+}
+
+func (i GetKMSSecretCiphertextApplyArgs) ToGetKMSSecretCiphertextApplyOutputWithContext(ctx context.Context) GetKMSSecretCiphertextApplyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKMSSecretCiphertextApplyOutput)
+}
+
+// A collection of arguments for invoking getKMSSecretCiphertext.
+type GetKMSSecretCiphertextApplyOutput struct{ *pulumi.OutputState }
+
+func (GetKMSSecretCiphertextApplyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKMSSecretCiphertextArgs)(nil)).Elem()
+}
+
+func (o GetKMSSecretCiphertextApplyOutput) ToGetKMSSecretCiphertextApplyOutput() GetKMSSecretCiphertextApplyOutput {
+	return o
+}
+
+func (o GetKMSSecretCiphertextApplyOutput) ToGetKMSSecretCiphertextApplyOutputWithContext(ctx context.Context) GetKMSSecretCiphertextApplyOutput {
+	return o
+}
+
+// The id of the CryptoKey that will be used to
+// encrypt the provided plaintext. This is represented by the format
+// `{projectId}/{location}/{keyRingName}/{cryptoKeyName}`.
+func (o GetKMSSecretCiphertextApplyOutput) CryptoKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKMSSecretCiphertextArgs) string { return v.CryptoKey }).(pulumi.StringOutput)
+}
+
+// The plaintext to be encrypted
+func (o GetKMSSecretCiphertextApplyOutput) Plaintext() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKMSSecretCiphertextArgs) string { return v.Plaintext }).(pulumi.StringOutput)
+}
+
+// A collection of values returned by getKMSSecretCiphertext.
+type GetKMSSecretCiphertextResultOutput struct{ *pulumi.OutputState }
+
+func (GetKMSSecretCiphertextResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKMSSecretCiphertextResult)(nil)).Elem()
+}
+
+func (o GetKMSSecretCiphertextResultOutput) ToGetKMSSecretCiphertextResultOutput() GetKMSSecretCiphertextResultOutput {
+	return o
+}
+
+func (o GetKMSSecretCiphertextResultOutput) ToGetKMSSecretCiphertextResultOutputWithContext(ctx context.Context) GetKMSSecretCiphertextResultOutput {
+	return o
+}
+
+// Contains the result of encrypting the provided plaintext, encoded in base64.
+func (o GetKMSSecretCiphertextResultOutput) Ciphertext() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKMSSecretCiphertextResult) string { return v.Ciphertext }).(pulumi.StringOutput)
+}
+
+func (o GetKMSSecretCiphertextResultOutput) CryptoKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKMSSecretCiphertextResult) string { return v.CryptoKey }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetKMSSecretCiphertextResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKMSSecretCiphertextResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetKMSSecretCiphertextResultOutput) Plaintext() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKMSSecretCiphertextResult) string { return v.Plaintext }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetKMSSecretCiphertextApplyOutput{})
+	pulumi.RegisterOutputType(GetKMSSecretCiphertextResultOutput{})
 }

@@ -42,12 +42,12 @@ export interface GetTopicArgs {
     /**
      * The name of the Cloud Pub/Sub Topic.
      */
-    readonly name: string;
+    name: string;
     /**
      * The project in which the resource belongs. If it
      * is not provided, the provider project is used.
      */
-    readonly project?: string;
+    project?: string;
 }
 
 /**
@@ -64,4 +64,23 @@ export interface GetTopicResult {
     readonly name: string;
     readonly project?: string;
     readonly schemaSettings: outputs.pubsub.GetTopicSchemaSetting[];
+}
+
+export function getTopicApply(args: GetTopicApplyArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTopicResult> {
+    return pulumi.output(args).apply(a => getTopic(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getTopic.
+ */
+export interface GetTopicApplyArgs {
+    /**
+     * The name of the Cloud Pub/Sub Topic.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The project in which the resource belongs. If it
+     * is not provided, the provider project is used.
+     */
+    project?: pulumi.Input<string>;
 }

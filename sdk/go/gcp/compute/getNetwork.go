@@ -4,6 +4,9 @@
 package compute
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -63,4 +66,123 @@ type LookupNetworkResult struct {
 	SelfLink string `pulumi:"selfLink"`
 	// the list of subnetworks which belong to the network
 	SubnetworksSelfLinks []string `pulumi:"subnetworksSelfLinks"`
+}
+
+func LookupNetworkApply(ctx *pulumi.Context, args LookupNetworkApplyInput, opts ...pulumi.InvokeOption) LookupNetworkResultOutput {
+	return args.ToLookupNetworkApplyOutput().ApplyT(func(v LookupNetworkArgs) (LookupNetworkResult, error) {
+		r, err := LookupNetwork(ctx, &v, opts...)
+		return *r, err
+
+	}).(LookupNetworkResultOutput)
+}
+
+// LookupNetworkApplyInput is an input type that accepts LookupNetworkApplyArgs and LookupNetworkApplyOutput values.
+// You can construct a concrete instance of `LookupNetworkApplyInput` via:
+//
+//          LookupNetworkApplyArgs{...}
+type LookupNetworkApplyInput interface {
+	pulumi.Input
+
+	ToLookupNetworkApplyOutput() LookupNetworkApplyOutput
+	ToLookupNetworkApplyOutputWithContext(context.Context) LookupNetworkApplyOutput
+}
+
+// A collection of arguments for invoking getNetwork.
+type LookupNetworkApplyArgs struct {
+	// The name of the network.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The ID of the project in which the resource belongs. If it
+	// is not provided, the provider project is used.
+	Project pulumi.StringPtrInput `pulumi:"project"`
+}
+
+func (LookupNetworkApplyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupNetworkArgs)(nil)).Elem()
+}
+
+func (i LookupNetworkApplyArgs) ToLookupNetworkApplyOutput() LookupNetworkApplyOutput {
+	return i.ToLookupNetworkApplyOutputWithContext(context.Background())
+}
+
+func (i LookupNetworkApplyArgs) ToLookupNetworkApplyOutputWithContext(ctx context.Context) LookupNetworkApplyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LookupNetworkApplyOutput)
+}
+
+// A collection of arguments for invoking getNetwork.
+type LookupNetworkApplyOutput struct{ *pulumi.OutputState }
+
+func (LookupNetworkApplyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupNetworkArgs)(nil)).Elem()
+}
+
+func (o LookupNetworkApplyOutput) ToLookupNetworkApplyOutput() LookupNetworkApplyOutput {
+	return o
+}
+
+func (o LookupNetworkApplyOutput) ToLookupNetworkApplyOutputWithContext(ctx context.Context) LookupNetworkApplyOutput {
+	return o
+}
+
+// The name of the network.
+func (o LookupNetworkApplyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNetworkArgs) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The ID of the project in which the resource belongs. If it
+// is not provided, the provider project is used.
+func (o LookupNetworkApplyOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupNetworkArgs) *string { return v.Project }).(pulumi.StringPtrOutput)
+}
+
+// A collection of values returned by getNetwork.
+type LookupNetworkResultOutput struct{ *pulumi.OutputState }
+
+func (LookupNetworkResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupNetworkResult)(nil)).Elem()
+}
+
+func (o LookupNetworkResultOutput) ToLookupNetworkResultOutput() LookupNetworkResultOutput {
+	return o
+}
+
+func (o LookupNetworkResultOutput) ToLookupNetworkResultOutputWithContext(ctx context.Context) LookupNetworkResultOutput {
+	return o
+}
+
+// Description of this network.
+func (o LookupNetworkResultOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNetworkResult) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The IP address of the gateway.
+func (o LookupNetworkResultOutput) GatewayIpv4() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNetworkResult) string { return v.GatewayIpv4 }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupNetworkResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNetworkResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupNetworkResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNetworkResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o LookupNetworkResultOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupNetworkResult) *string { return v.Project }).(pulumi.StringPtrOutput)
+}
+
+// The URI of the resource.
+func (o LookupNetworkResultOutput) SelfLink() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNetworkResult) string { return v.SelfLink }).(pulumi.StringOutput)
+}
+
+// the list of subnetworks which belong to the network
+func (o LookupNetworkResultOutput) SubnetworksSelfLinks() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupNetworkResult) []string { return v.SubnetworksSelfLinks }).(pulumi.StringArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupNetworkApplyOutput{})
+	pulumi.RegisterOutputType(LookupNetworkResultOutput{})
 }

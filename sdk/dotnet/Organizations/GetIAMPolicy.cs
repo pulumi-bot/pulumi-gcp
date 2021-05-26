@@ -24,6 +24,20 @@ namespace Pulumi.Gcp.Organizations
         /// </summary>
         public static Task<GetIAMPolicyResult> InvokeAsync(GetIAMPolicyArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetIAMPolicyResult>("gcp:organizations/getIAMPolicy:getIAMPolicy", args ?? new GetIAMPolicyArgs(), options.WithVersion());
+
+        public static Output<GetIAMPolicyResult> Apply(GetIAMPolicyApplyArgs? args = null, InvokeOptions? options = null)
+        {
+            args = args ?? new GetIAMPolicyApplyArgs();
+            return Pulumi.Output.All(
+                args.AuditConfigs.Box(),
+                args.Bindings.Box()
+            ).Apply(a => {
+                    var args = new GetIAMPolicyArgs();
+                    a[0].Set(args, nameof(args.AuditConfigs));
+                    a[1].Set(args, nameof(args.Bindings));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -56,6 +70,39 @@ namespace Pulumi.Gcp.Organizations
         }
 
         public GetIAMPolicyArgs()
+        {
+        }
+    }
+
+    public sealed class GetIAMPolicyApplyArgs
+    {
+        [Input("auditConfigs")]
+        private InputList<Inputs.GetIAMPolicyAuditConfigArgs>? _auditConfigs;
+
+        /// <summary>
+        /// A nested configuration block that defines logging additional configuration for your project. This field is only supported on `gcp.projects.IAMPolicy`, `gcp.folder.IAMPolicy` and `gcp.organizations.IAMPolicy`.
+        /// </summary>
+        public InputList<Inputs.GetIAMPolicyAuditConfigArgs> AuditConfigs
+        {
+            get => _auditConfigs ?? (_auditConfigs = new InputList<Inputs.GetIAMPolicyAuditConfigArgs>());
+            set => _auditConfigs = value;
+        }
+
+        [Input("bindings")]
+        private InputList<Inputs.GetIAMPolicyBindingArgs>? _bindings;
+
+        /// <summary>
+        /// A nested configuration block (described below)
+        /// defining a binding to be included in the policy document. Multiple
+        /// `binding` arguments are supported.
+        /// </summary>
+        public InputList<Inputs.GetIAMPolicyBindingArgs> Bindings
+        {
+            get => _bindings ?? (_bindings = new InputList<Inputs.GetIAMPolicyBindingArgs>());
+            set => _bindings = value;
+        }
+
+        public GetIAMPolicyApplyArgs()
         {
         }
     }

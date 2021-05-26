@@ -93,3 +93,9 @@ def get_transfer_project_servie_account(project: Optional[str] = None,
         email=__ret__.email,
         id=__ret__.id,
         project=__ret__.project)
+
+
+@_utilities.lift_output_func(get_transfer_project_servie_account)
+def get_transfer_project_servie_account_apply(project: Optional[pulumi.Input[str]] = None,
+                                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTransferProjectServieAccountResult]:
+    ...

@@ -44,17 +44,17 @@ export interface GetRegionSslCertificateArgs {
     /**
      * The name of the certificate.
      */
-    readonly name: string;
+    name: string;
     /**
      * The project in which the resource belongs. If it
      * is not provided, the provider project is used.
      */
-    readonly project?: string;
+    project?: string;
     /**
      * The region in which the resource belongs. If it
      * is not provided, the provider region is used.
      */
-    readonly region?: string;
+    region?: string;
 }
 
 /**
@@ -75,4 +75,28 @@ export interface GetRegionSslCertificateResult {
     readonly project?: string;
     readonly region?: string;
     readonly selfLink: string;
+}
+
+export function getRegionSslCertificateApply(args: GetRegionSslCertificateApplyArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRegionSslCertificateResult> {
+    return pulumi.output(args).apply(a => getRegionSslCertificate(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getRegionSslCertificate.
+ */
+export interface GetRegionSslCertificateApplyArgs {
+    /**
+     * The name of the certificate.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The project in which the resource belongs. If it
+     * is not provided, the provider project is used.
+     */
+    project?: pulumi.Input<string>;
+    /**
+     * The region in which the resource belongs. If it
+     * is not provided, the provider region is used.
+     */
+    region?: pulumi.Input<string>;
 }

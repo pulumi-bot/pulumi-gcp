@@ -40,6 +40,19 @@ namespace Pulumi.Gcp.Organizations
         /// </summary>
         public static Task<GetActiveFolderResult> InvokeAsync(GetActiveFolderArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetActiveFolderResult>("gcp:organizations/getActiveFolder:getActiveFolder", args ?? new GetActiveFolderArgs(), options.WithVersion());
+
+        public static Output<GetActiveFolderResult> Apply(GetActiveFolderApplyArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.DisplayName.Box(),
+                args.Parent.Box()
+            ).Apply(a => {
+                    var args = new GetActiveFolderArgs();
+                    a[0].Set(args, nameof(args.DisplayName));
+                    a[1].Set(args, nameof(args.Parent));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -58,6 +71,25 @@ namespace Pulumi.Gcp.Organizations
         public string Parent { get; set; } = null!;
 
         public GetActiveFolderArgs()
+        {
+        }
+    }
+
+    public sealed class GetActiveFolderApplyArgs
+    {
+        /// <summary>
+        /// The folder's display name.
+        /// </summary>
+        [Input("displayName", required: true)]
+        public Input<string> DisplayName { get; set; } = null!;
+
+        /// <summary>
+        /// The resource name of the parent Folder or Organization.
+        /// </summary>
+        [Input("parent", required: true)]
+        public Input<string> Parent { get; set; } = null!;
+
+        public GetActiveFolderApplyArgs()
         {
         }
     }

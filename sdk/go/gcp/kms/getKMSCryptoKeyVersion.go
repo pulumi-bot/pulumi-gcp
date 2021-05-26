@@ -4,6 +4,9 @@
 package kms
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -81,4 +84,121 @@ type GetKMSCryptoKeyVersionResult struct {
 	// The current state of the CryptoKeyVersion. See the [state reference](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys.cryptoKeyVersions#CryptoKeyVersion.CryptoKeyVersionState) for possible outputs.
 	State   string `pulumi:"state"`
 	Version *int   `pulumi:"version"`
+}
+
+func GetKMSCryptoKeyVersionApply(ctx *pulumi.Context, args GetKMSCryptoKeyVersionApplyInput, opts ...pulumi.InvokeOption) GetKMSCryptoKeyVersionResultOutput {
+	return args.ToGetKMSCryptoKeyVersionApplyOutput().ApplyT(func(v GetKMSCryptoKeyVersionArgs) (GetKMSCryptoKeyVersionResult, error) {
+		r, err := GetKMSCryptoKeyVersion(ctx, &v, opts...)
+		return *r, err
+
+	}).(GetKMSCryptoKeyVersionResultOutput)
+}
+
+// GetKMSCryptoKeyVersionApplyInput is an input type that accepts GetKMSCryptoKeyVersionApplyArgs and GetKMSCryptoKeyVersionApplyOutput values.
+// You can construct a concrete instance of `GetKMSCryptoKeyVersionApplyInput` via:
+//
+//          GetKMSCryptoKeyVersionApplyArgs{...}
+type GetKMSCryptoKeyVersionApplyInput interface {
+	pulumi.Input
+
+	ToGetKMSCryptoKeyVersionApplyOutput() GetKMSCryptoKeyVersionApplyOutput
+	ToGetKMSCryptoKeyVersionApplyOutputWithContext(context.Context) GetKMSCryptoKeyVersionApplyOutput
+}
+
+// A collection of arguments for invoking getKMSCryptoKeyVersion.
+type GetKMSCryptoKeyVersionApplyArgs struct {
+	// The `selfLink` of the Google Cloud Platform CryptoKey to which the key version belongs.
+	CryptoKey pulumi.StringInput `pulumi:"cryptoKey"`
+	// The version number for this CryptoKeyVersion. Defaults to `1`.
+	Version pulumi.IntPtrInput `pulumi:"version"`
+}
+
+func (GetKMSCryptoKeyVersionApplyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKMSCryptoKeyVersionArgs)(nil)).Elem()
+}
+
+func (i GetKMSCryptoKeyVersionApplyArgs) ToGetKMSCryptoKeyVersionApplyOutput() GetKMSCryptoKeyVersionApplyOutput {
+	return i.ToGetKMSCryptoKeyVersionApplyOutputWithContext(context.Background())
+}
+
+func (i GetKMSCryptoKeyVersionApplyArgs) ToGetKMSCryptoKeyVersionApplyOutputWithContext(ctx context.Context) GetKMSCryptoKeyVersionApplyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKMSCryptoKeyVersionApplyOutput)
+}
+
+// A collection of arguments for invoking getKMSCryptoKeyVersion.
+type GetKMSCryptoKeyVersionApplyOutput struct{ *pulumi.OutputState }
+
+func (GetKMSCryptoKeyVersionApplyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKMSCryptoKeyVersionArgs)(nil)).Elem()
+}
+
+func (o GetKMSCryptoKeyVersionApplyOutput) ToGetKMSCryptoKeyVersionApplyOutput() GetKMSCryptoKeyVersionApplyOutput {
+	return o
+}
+
+func (o GetKMSCryptoKeyVersionApplyOutput) ToGetKMSCryptoKeyVersionApplyOutputWithContext(ctx context.Context) GetKMSCryptoKeyVersionApplyOutput {
+	return o
+}
+
+// The `selfLink` of the Google Cloud Platform CryptoKey to which the key version belongs.
+func (o GetKMSCryptoKeyVersionApplyOutput) CryptoKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKMSCryptoKeyVersionArgs) string { return v.CryptoKey }).(pulumi.StringOutput)
+}
+
+// The version number for this CryptoKeyVersion. Defaults to `1`.
+func (o GetKMSCryptoKeyVersionApplyOutput) Version() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetKMSCryptoKeyVersionArgs) *int { return v.Version }).(pulumi.IntPtrOutput)
+}
+
+// A collection of values returned by getKMSCryptoKeyVersion.
+type GetKMSCryptoKeyVersionResultOutput struct{ *pulumi.OutputState }
+
+func (GetKMSCryptoKeyVersionResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKMSCryptoKeyVersionResult)(nil)).Elem()
+}
+
+func (o GetKMSCryptoKeyVersionResultOutput) ToGetKMSCryptoKeyVersionResultOutput() GetKMSCryptoKeyVersionResultOutput {
+	return o
+}
+
+func (o GetKMSCryptoKeyVersionResultOutput) ToGetKMSCryptoKeyVersionResultOutputWithContext(ctx context.Context) GetKMSCryptoKeyVersionResultOutput {
+	return o
+}
+
+// The CryptoKeyVersionAlgorithm that this CryptoKeyVersion supports.
+func (o GetKMSCryptoKeyVersionResultOutput) Algorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKMSCryptoKeyVersionResult) string { return v.Algorithm }).(pulumi.StringOutput)
+}
+
+func (o GetKMSCryptoKeyVersionResultOutput) CryptoKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKMSCryptoKeyVersionResult) string { return v.CryptoKey }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetKMSCryptoKeyVersionResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKMSCryptoKeyVersionResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The ProtectionLevel describing how crypto operations are performed with this CryptoKeyVersion. See the [protectionLevel reference](https://cloud.google.com/kms/docs/reference/rest/v1/ProtectionLevel) for possible outputs.
+func (o GetKMSCryptoKeyVersionResultOutput) ProtectionLevel() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKMSCryptoKeyVersionResult) string { return v.ProtectionLevel }).(pulumi.StringOutput)
+}
+
+// If the enclosing CryptoKey has purpose `ASYMMETRIC_SIGN` or `ASYMMETRIC_DECRYPT`, this block contains details about the public key associated to this CryptoKeyVersion. Structure is documented below.
+func (o GetKMSCryptoKeyVersionResultOutput) PublicKeys() GetKMSCryptoKeyVersionPublicKeyArrayOutput {
+	return o.ApplyT(func(v GetKMSCryptoKeyVersionResult) []GetKMSCryptoKeyVersionPublicKey { return v.PublicKeys }).(GetKMSCryptoKeyVersionPublicKeyArrayOutput)
+}
+
+// The current state of the CryptoKeyVersion. See the [state reference](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys.cryptoKeyVersions#CryptoKeyVersion.CryptoKeyVersionState) for possible outputs.
+func (o GetKMSCryptoKeyVersionResultOutput) State() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKMSCryptoKeyVersionResult) string { return v.State }).(pulumi.StringOutput)
+}
+
+func (o GetKMSCryptoKeyVersionResultOutput) Version() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetKMSCryptoKeyVersionResult) *int { return v.Version }).(pulumi.IntPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetKMSCryptoKeyVersionApplyOutput{})
+	pulumi.RegisterOutputType(GetKMSCryptoKeyVersionResultOutput{})
 }

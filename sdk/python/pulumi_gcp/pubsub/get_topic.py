@@ -136,3 +136,10 @@ def get_topic(name: Optional[str] = None,
         name=__ret__.name,
         project=__ret__.project,
         schema_settings=__ret__.schema_settings)
+
+
+@_utilities.lift_output_func(get_topic)
+def get_topic_apply(name: Optional[pulumi.Input[str]] = None,
+                    project: Optional[pulumi.Input[str]] = None,
+                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTopicResult]:
+    ...

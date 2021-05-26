@@ -19,6 +19,19 @@ namespace Pulumi.Gcp.Sql
         /// </summary>
         public static Task<GetCaCertsResult> InvokeAsync(GetCaCertsArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetCaCertsResult>("gcp:sql/getCaCerts:getCaCerts", args ?? new GetCaCertsArgs(), options.WithVersion());
+
+        public static Output<GetCaCertsResult> Apply(GetCaCertsApplyArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.Instance.Box(),
+                args.Project.Box()
+            ).Apply(a => {
+                    var args = new GetCaCertsArgs();
+                    a[0].Set(args, nameof(args.Instance));
+                    a[1].Set(args, nameof(args.Project));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -37,6 +50,25 @@ namespace Pulumi.Gcp.Sql
         public string? Project { get; set; }
 
         public GetCaCertsArgs()
+        {
+        }
+    }
+
+    public sealed class GetCaCertsApplyArgs
+    {
+        /// <summary>
+        /// The name or self link of the instance.
+        /// </summary>
+        [Input("instance", required: true)]
+        public Input<string> Instance { get; set; } = null!;
+
+        /// <summary>
+        /// The ID of the project in which the resource belongs. If `project` is not provided, the provider project is used.
+        /// </summary>
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
+        public GetCaCertsApplyArgs()
         {
         }
     }

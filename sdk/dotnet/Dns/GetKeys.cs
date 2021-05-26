@@ -54,6 +54,19 @@ namespace Pulumi.Gcp.Dns
         /// </summary>
         public static Task<GetKeysResult> InvokeAsync(GetKeysArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetKeysResult>("gcp:dns/getKeys:getKeys", args ?? new GetKeysArgs(), options.WithVersion());
+
+        public static Output<GetKeysResult> Apply(GetKeysApplyArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.ManagedZone.Box(),
+                args.Project.Box()
+            ).Apply(a => {
+                    var args = new GetKeysArgs();
+                    a[0].Set(args, nameof(args.ManagedZone));
+                    a[1].Set(args, nameof(args.Project));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -72,6 +85,25 @@ namespace Pulumi.Gcp.Dns
         public string? Project { get; set; }
 
         public GetKeysArgs()
+        {
+        }
+    }
+
+    public sealed class GetKeysApplyArgs
+    {
+        /// <summary>
+        /// The name or id of the Cloud DNS managed zone.
+        /// </summary>
+        [Input("managedZone", required: true)]
+        public Input<string> ManagedZone { get; set; } = null!;
+
+        /// <summary>
+        /// The ID of the project in which the resource belongs. If `project` is not provided, the provider project is used.
+        /// </summary>
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
+        public GetKeysApplyArgs()
         {
         }
     }

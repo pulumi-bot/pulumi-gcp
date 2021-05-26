@@ -4,6 +4,9 @@
 package organizations
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -70,4 +73,122 @@ type GetBillingAccountResult struct {
 	Open bool   `pulumi:"open"`
 	// The IDs of any projects associated with the billing account.
 	ProjectIds []string `pulumi:"projectIds"`
+}
+
+func GetBillingAccountApply(ctx *pulumi.Context, args GetBillingAccountApplyInput, opts ...pulumi.InvokeOption) GetBillingAccountResultOutput {
+	return args.ToGetBillingAccountApplyOutput().ApplyT(func(v GetBillingAccountArgs) (GetBillingAccountResult, error) {
+		r, err := GetBillingAccount(ctx, &v, opts...)
+		return *r, err
+
+	}).(GetBillingAccountResultOutput)
+}
+
+// GetBillingAccountApplyInput is an input type that accepts GetBillingAccountApplyArgs and GetBillingAccountApplyOutput values.
+// You can construct a concrete instance of `GetBillingAccountApplyInput` via:
+//
+//          GetBillingAccountApplyArgs{...}
+type GetBillingAccountApplyInput interface {
+	pulumi.Input
+
+	ToGetBillingAccountApplyOutput() GetBillingAccountApplyOutput
+	ToGetBillingAccountApplyOutputWithContext(context.Context) GetBillingAccountApplyOutput
+}
+
+// A collection of arguments for invoking getBillingAccount.
+type GetBillingAccountApplyArgs struct {
+	// The name of the billing account in the form `{billing_account_id}` or `billingAccounts/{billing_account_id}`.
+	BillingAccount pulumi.StringPtrInput `pulumi:"billingAccount"`
+	// The display name of the billing account.
+	DisplayName pulumi.StringPtrInput `pulumi:"displayName"`
+	// `true` if the billing account is open, `false` if the billing account is closed.
+	Open pulumi.BoolPtrInput `pulumi:"open"`
+}
+
+func (GetBillingAccountApplyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBillingAccountArgs)(nil)).Elem()
+}
+
+func (i GetBillingAccountApplyArgs) ToGetBillingAccountApplyOutput() GetBillingAccountApplyOutput {
+	return i.ToGetBillingAccountApplyOutputWithContext(context.Background())
+}
+
+func (i GetBillingAccountApplyArgs) ToGetBillingAccountApplyOutputWithContext(ctx context.Context) GetBillingAccountApplyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBillingAccountApplyOutput)
+}
+
+// A collection of arguments for invoking getBillingAccount.
+type GetBillingAccountApplyOutput struct{ *pulumi.OutputState }
+
+func (GetBillingAccountApplyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBillingAccountArgs)(nil)).Elem()
+}
+
+func (o GetBillingAccountApplyOutput) ToGetBillingAccountApplyOutput() GetBillingAccountApplyOutput {
+	return o
+}
+
+func (o GetBillingAccountApplyOutput) ToGetBillingAccountApplyOutputWithContext(ctx context.Context) GetBillingAccountApplyOutput {
+	return o
+}
+
+// The name of the billing account in the form `{billing_account_id}` or `billingAccounts/{billing_account_id}`.
+func (o GetBillingAccountApplyOutput) BillingAccount() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetBillingAccountArgs) *string { return v.BillingAccount }).(pulumi.StringPtrOutput)
+}
+
+// The display name of the billing account.
+func (o GetBillingAccountApplyOutput) DisplayName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetBillingAccountArgs) *string { return v.DisplayName }).(pulumi.StringPtrOutput)
+}
+
+// `true` if the billing account is open, `false` if the billing account is closed.
+func (o GetBillingAccountApplyOutput) Open() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetBillingAccountArgs) *bool { return v.Open }).(pulumi.BoolPtrOutput)
+}
+
+// A collection of values returned by getBillingAccount.
+type GetBillingAccountResultOutput struct{ *pulumi.OutputState }
+
+func (GetBillingAccountResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBillingAccountResult)(nil)).Elem()
+}
+
+func (o GetBillingAccountResultOutput) ToGetBillingAccountResultOutput() GetBillingAccountResultOutput {
+	return o
+}
+
+func (o GetBillingAccountResultOutput) ToGetBillingAccountResultOutputWithContext(ctx context.Context) GetBillingAccountResultOutput {
+	return o
+}
+
+func (o GetBillingAccountResultOutput) BillingAccount() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetBillingAccountResult) *string { return v.BillingAccount }).(pulumi.StringPtrOutput)
+}
+
+func (o GetBillingAccountResultOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBillingAccountResult) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetBillingAccountResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBillingAccountResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The resource name of the billing account in the form `billingAccounts/{billing_account_id}`.
+func (o GetBillingAccountResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBillingAccountResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetBillingAccountResultOutput) Open() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetBillingAccountResult) bool { return v.Open }).(pulumi.BoolOutput)
+}
+
+// The IDs of any projects associated with the billing account.
+func (o GetBillingAccountResultOutput) ProjectIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetBillingAccountResult) []string { return v.ProjectIds }).(pulumi.StringArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetBillingAccountApplyOutput{})
+	pulumi.RegisterOutputType(GetBillingAccountResultOutput{})
 }

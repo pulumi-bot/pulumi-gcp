@@ -4,6 +4,9 @@
 package cloudidentity
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -55,4 +58,95 @@ type GetGroupsResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id     string `pulumi:"id"`
 	Parent string `pulumi:"parent"`
+}
+
+func GetGroupsApply(ctx *pulumi.Context, args GetGroupsApplyInput, opts ...pulumi.InvokeOption) GetGroupsResultOutput {
+	return args.ToGetGroupsApplyOutput().ApplyT(func(v GetGroupsArgs) (GetGroupsResult, error) {
+		r, err := GetGroups(ctx, &v, opts...)
+		return *r, err
+
+	}).(GetGroupsResultOutput)
+}
+
+// GetGroupsApplyInput is an input type that accepts GetGroupsApplyArgs and GetGroupsApplyOutput values.
+// You can construct a concrete instance of `GetGroupsApplyInput` via:
+//
+//          GetGroupsApplyArgs{...}
+type GetGroupsApplyInput interface {
+	pulumi.Input
+
+	ToGetGroupsApplyOutput() GetGroupsApplyOutput
+	ToGetGroupsApplyOutputWithContext(context.Context) GetGroupsApplyOutput
+}
+
+// A collection of arguments for invoking getGroups.
+type GetGroupsApplyArgs struct {
+	// The parent resource under which to list all Groups. Must be of the form identitysources/{identity_source_id} for external- identity-mapped groups or customers/{customer_id} for Google Groups.
+	Parent pulumi.StringInput `pulumi:"parent"`
+}
+
+func (GetGroupsApplyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGroupsArgs)(nil)).Elem()
+}
+
+func (i GetGroupsApplyArgs) ToGetGroupsApplyOutput() GetGroupsApplyOutput {
+	return i.ToGetGroupsApplyOutputWithContext(context.Background())
+}
+
+func (i GetGroupsApplyArgs) ToGetGroupsApplyOutputWithContext(ctx context.Context) GetGroupsApplyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGroupsApplyOutput)
+}
+
+// A collection of arguments for invoking getGroups.
+type GetGroupsApplyOutput struct{ *pulumi.OutputState }
+
+func (GetGroupsApplyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGroupsArgs)(nil)).Elem()
+}
+
+func (o GetGroupsApplyOutput) ToGetGroupsApplyOutput() GetGroupsApplyOutput {
+	return o
+}
+
+func (o GetGroupsApplyOutput) ToGetGroupsApplyOutputWithContext(ctx context.Context) GetGroupsApplyOutput {
+	return o
+}
+
+// The parent resource under which to list all Groups. Must be of the form identitysources/{identity_source_id} for external- identity-mapped groups or customers/{customer_id} for Google Groups.
+func (o GetGroupsApplyOutput) Parent() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupsArgs) string { return v.Parent }).(pulumi.StringOutput)
+}
+
+// A collection of values returned by getGroups.
+type GetGroupsResultOutput struct{ *pulumi.OutputState }
+
+func (GetGroupsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGroupsResult)(nil)).Elem()
+}
+
+func (o GetGroupsResultOutput) ToGetGroupsResultOutput() GetGroupsResultOutput {
+	return o
+}
+
+func (o GetGroupsResultOutput) ToGetGroupsResultOutputWithContext(ctx context.Context) GetGroupsResultOutput {
+	return o
+}
+
+// The list of groups under the provided customer or namespace. Structure is documented below.
+func (o GetGroupsResultOutput) Groups() GetGroupsGroupArrayOutput {
+	return o.ApplyT(func(v GetGroupsResult) []GetGroupsGroup { return v.Groups }).(GetGroupsGroupArrayOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetGroupsResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetGroupsResultOutput) Parent() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupsResult) string { return v.Parent }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetGroupsApplyOutput{})
+	pulumi.RegisterOutputType(GetGroupsResultOutput{})
 }

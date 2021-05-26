@@ -43,11 +43,11 @@ export interface GetOrganizationArgs {
     /**
      * The domain name of the Organization.
      */
-    readonly domain?: string;
+    domain?: string;
     /**
      * The Organization's numeric ID, including an optional `organizations/` prefix.
      */
-    readonly organization?: string;
+    organization?: string;
 }
 
 /**
@@ -80,4 +80,22 @@ export interface GetOrganizationResult {
      */
     readonly orgId: string;
     readonly organization?: string;
+}
+
+export function getOrganizationApply(args?: GetOrganizationApplyArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOrganizationResult> {
+    return pulumi.output(args).apply(a => getOrganization(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getOrganization.
+ */
+export interface GetOrganizationApplyArgs {
+    /**
+     * The domain name of the Organization.
+     */
+    domain?: pulumi.Input<string>;
+    /**
+     * The Organization's numeric ID, including an optional `organizations/` prefix.
+     */
+    organization?: pulumi.Input<string>;
 }
