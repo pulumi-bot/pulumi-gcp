@@ -41,6 +41,17 @@ namespace Pulumi.Gcp.GameServices
         /// </summary>
         public static Task<GetGameServerDeploymentRolloutResult> InvokeAsync(GetGameServerDeploymentRolloutArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetGameServerDeploymentRolloutResult>("gcp:gameservices/getGameServerDeploymentRollout:getGameServerDeploymentRollout", args ?? new GetGameServerDeploymentRolloutArgs(), options.WithVersion());
+
+        public static Output<GetGameServerDeploymentRolloutResult> Apply(GetGameServerDeploymentRolloutApplyArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.DeploymentId.Box()
+            ).Apply(a => {
+                    var args = new GetGameServerDeploymentRolloutArgs();
+                    a[0].Set(args, nameof(args.DeploymentId));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -53,6 +64,19 @@ namespace Pulumi.Gcp.GameServices
         public string DeploymentId { get; set; } = null!;
 
         public GetGameServerDeploymentRolloutArgs()
+        {
+        }
+    }
+
+    public sealed class GetGameServerDeploymentRolloutApplyArgs
+    {
+        /// <summary>
+        /// The deployment to get the rollout state from. Only 1 rollout must be associated with each deployment.
+        /// </summary>
+        [Input("deploymentId", required: true)]
+        public Input<string> DeploymentId { get; set; } = null!;
+
+        public GetGameServerDeploymentRolloutApplyArgs()
         {
         }
     }

@@ -154,3 +154,10 @@ def get_kms_crypto_key_version(crypto_key: Optional[str] = None,
         public_keys=__ret__.public_keys,
         state=__ret__.state,
         version=__ret__.version)
+
+
+@_utilities.lift_output_func(get_kms_crypto_key_version)
+def get_kms_crypto_key_version_apply(crypto_key: Optional[pulumi.Input[str]] = None,
+                                     version: Optional[pulumi.Input[int]] = None,
+                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetKMSCryptoKeyVersionResult]:
+    ...

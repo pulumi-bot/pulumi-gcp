@@ -85,6 +85,18 @@ namespace Pulumi.Gcp.Compute
         /// </summary>
         public static Task<GetNetblockIPRangesResult> InvokeAsync(GetNetblockIPRangesArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetNetblockIPRangesResult>("gcp:compute/getNetblockIPRanges:getNetblockIPRanges", args ?? new GetNetblockIPRangesArgs(), options.WithVersion());
+
+        public static Output<GetNetblockIPRangesResult> Apply(GetNetblockIPRangesApplyArgs? args = null, InvokeOptions? options = null)
+        {
+            args = args ?? new GetNetblockIPRangesApplyArgs();
+            return Pulumi.Output.All(
+                args.RangeType.Box()
+            ).Apply(a => {
+                    var args = new GetNetblockIPRangesArgs();
+                    a[0].Set(args, nameof(args.RangeType));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -97,6 +109,19 @@ namespace Pulumi.Gcp.Compute
         public string? RangeType { get; set; }
 
         public GetNetblockIPRangesArgs()
+        {
+        }
+    }
+
+    public sealed class GetNetblockIPRangesApplyArgs
+    {
+        /// <summary>
+        /// The type of range for which to provide results.
+        /// </summary>
+        [Input("rangeType")]
+        public Input<string>? RangeType { get; set; }
+
+        public GetNetblockIPRangesApplyArgs()
         {
         }
     }

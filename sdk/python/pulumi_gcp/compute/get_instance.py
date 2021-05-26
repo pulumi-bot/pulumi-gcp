@@ -483,3 +483,12 @@ def get_instance(name: Optional[str] = None,
         tags=__ret__.tags,
         tags_fingerprint=__ret__.tags_fingerprint,
         zone=__ret__.zone)
+
+
+@_utilities.lift_output_func(get_instance)
+def get_instance_apply(name: Optional[pulumi.Input[str]] = None,
+                       project: Optional[pulumi.Input[str]] = None,
+                       self_link: Optional[pulumi.Input[str]] = None,
+                       zone: Optional[pulumi.Input[str]] = None,
+                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetInstanceResult]:
+    ...

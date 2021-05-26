@@ -50,15 +50,15 @@ export interface GetBucketObjectContentArgs {
     /**
      * The name of the containing bucket.
      */
-    readonly bucket: string;
+    bucket: string;
     /**
      * (Computed) [Content-Language](https://tools.ietf.org/html/rfc7231#section-3.1.3.2) of the object content.
      */
-    readonly content?: string;
+    content?: string;
     /**
      * The name of the object.
      */
-    readonly name: string;
+    name: string;
 }
 
 /**
@@ -90,4 +90,26 @@ export interface GetBucketObjectContentResult {
     readonly selfLink: string;
     readonly source: string;
     readonly storageClass: string;
+}
+
+export function getBucketObjectContentApply(args: GetBucketObjectContentApplyArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBucketObjectContentResult> {
+    return pulumi.output(args).apply(a => getBucketObjectContent(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getBucketObjectContent.
+ */
+export interface GetBucketObjectContentApplyArgs {
+    /**
+     * The name of the containing bucket.
+     */
+    bucket: pulumi.Input<string>;
+    /**
+     * (Computed) [Content-Language](https://tools.ietf.org/html/rfc7231#section-3.1.3.2) of the object content.
+     */
+    content?: pulumi.Input<string>;
+    /**
+     * The name of the object.
+     */
+    name: pulumi.Input<string>;
 }

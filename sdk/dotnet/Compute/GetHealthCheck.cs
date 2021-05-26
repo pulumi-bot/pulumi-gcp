@@ -39,6 +39,19 @@ namespace Pulumi.Gcp.Compute
         /// </summary>
         public static Task<GetHealthCheckResult> InvokeAsync(GetHealthCheckArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetHealthCheckResult>("gcp:compute/getHealthCheck:getHealthCheck", args ?? new GetHealthCheckArgs(), options.WithVersion());
+
+        public static Output<GetHealthCheckResult> Apply(GetHealthCheckApplyArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.Name.Box(),
+                args.Project.Box()
+            ).Apply(a => {
+                    var args = new GetHealthCheckArgs();
+                    a[0].Set(args, nameof(args.Name));
+                    a[1].Set(args, nameof(args.Project));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -58,6 +71,26 @@ namespace Pulumi.Gcp.Compute
         public string? Project { get; set; }
 
         public GetHealthCheckArgs()
+        {
+        }
+    }
+
+    public sealed class GetHealthCheckApplyArgs
+    {
+        /// <summary>
+        /// Name of the resource.
+        /// </summary>
+        [Input("name", required: true)]
+        public Input<string> Name { get; set; } = null!;
+
+        /// <summary>
+        /// The ID of the project in which the resource belongs. If it
+        /// is not provided, the provider project is used.
+        /// </summary>
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
+        public GetHealthCheckApplyArgs()
         {
         }
     }

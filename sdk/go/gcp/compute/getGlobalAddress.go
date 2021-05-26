@@ -4,6 +4,9 @@
 package compute
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -85,4 +88,118 @@ type LookupGlobalAddressResult struct {
 	SelfLink string `pulumi:"selfLink"`
 	// Indicates if the address is used. Possible values are: RESERVED or IN_USE.
 	Status string `pulumi:"status"`
+}
+
+func LookupGlobalAddressApply(ctx *pulumi.Context, args LookupGlobalAddressApplyInput, opts ...pulumi.InvokeOption) LookupGlobalAddressResultOutput {
+	return args.ToLookupGlobalAddressApplyOutput().ApplyT(func(v LookupGlobalAddressArgs) (LookupGlobalAddressResult, error) {
+		r, err := LookupGlobalAddress(ctx, &v, opts...)
+		return *r, err
+
+	}).(LookupGlobalAddressResultOutput)
+}
+
+// LookupGlobalAddressApplyInput is an input type that accepts LookupGlobalAddressApplyArgs and LookupGlobalAddressApplyOutput values.
+// You can construct a concrete instance of `LookupGlobalAddressApplyInput` via:
+//
+//          LookupGlobalAddressApplyArgs{...}
+type LookupGlobalAddressApplyInput interface {
+	pulumi.Input
+
+	ToLookupGlobalAddressApplyOutput() LookupGlobalAddressApplyOutput
+	ToLookupGlobalAddressApplyOutputWithContext(context.Context) LookupGlobalAddressApplyOutput
+}
+
+// A collection of arguments for invoking getGlobalAddress.
+type LookupGlobalAddressApplyArgs struct {
+	// A unique name for the resource, required by GCE.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The project in which the resource belongs. If it
+	// is not provided, the provider project is used.
+	Project pulumi.StringPtrInput `pulumi:"project"`
+}
+
+func (LookupGlobalAddressApplyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupGlobalAddressArgs)(nil)).Elem()
+}
+
+func (i LookupGlobalAddressApplyArgs) ToLookupGlobalAddressApplyOutput() LookupGlobalAddressApplyOutput {
+	return i.ToLookupGlobalAddressApplyOutputWithContext(context.Background())
+}
+
+func (i LookupGlobalAddressApplyArgs) ToLookupGlobalAddressApplyOutputWithContext(ctx context.Context) LookupGlobalAddressApplyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LookupGlobalAddressApplyOutput)
+}
+
+// A collection of arguments for invoking getGlobalAddress.
+type LookupGlobalAddressApplyOutput struct{ *pulumi.OutputState }
+
+func (LookupGlobalAddressApplyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupGlobalAddressArgs)(nil)).Elem()
+}
+
+func (o LookupGlobalAddressApplyOutput) ToLookupGlobalAddressApplyOutput() LookupGlobalAddressApplyOutput {
+	return o
+}
+
+func (o LookupGlobalAddressApplyOutput) ToLookupGlobalAddressApplyOutputWithContext(ctx context.Context) LookupGlobalAddressApplyOutput {
+	return o
+}
+
+// A unique name for the resource, required by GCE.
+func (o LookupGlobalAddressApplyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGlobalAddressArgs) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The project in which the resource belongs. If it
+// is not provided, the provider project is used.
+func (o LookupGlobalAddressApplyOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupGlobalAddressArgs) *string { return v.Project }).(pulumi.StringPtrOutput)
+}
+
+// A collection of values returned by getGlobalAddress.
+type LookupGlobalAddressResultOutput struct{ *pulumi.OutputState }
+
+func (LookupGlobalAddressResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupGlobalAddressResult)(nil)).Elem()
+}
+
+func (o LookupGlobalAddressResultOutput) ToLookupGlobalAddressResultOutput() LookupGlobalAddressResultOutput {
+	return o
+}
+
+func (o LookupGlobalAddressResultOutput) ToLookupGlobalAddressResultOutputWithContext(ctx context.Context) LookupGlobalAddressResultOutput {
+	return o
+}
+
+// The IP of the created resource.
+func (o LookupGlobalAddressResultOutput) Address() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGlobalAddressResult) string { return v.Address }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupGlobalAddressResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGlobalAddressResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupGlobalAddressResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGlobalAddressResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o LookupGlobalAddressResultOutput) Project() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGlobalAddressResult) string { return v.Project }).(pulumi.StringOutput)
+}
+
+// The URI of the created resource.
+func (o LookupGlobalAddressResultOutput) SelfLink() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGlobalAddressResult) string { return v.SelfLink }).(pulumi.StringOutput)
+}
+
+// Indicates if the address is used. Possible values are: RESERVED or IN_USE.
+func (o LookupGlobalAddressResultOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGlobalAddressResult) string { return v.Status }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupGlobalAddressApplyOutput{})
+	pulumi.RegisterOutputType(LookupGlobalAddressResultOutput{})
 }

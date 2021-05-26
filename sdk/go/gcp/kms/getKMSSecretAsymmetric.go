@@ -4,6 +4,9 @@
 package kms
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -38,4 +41,122 @@ type GetKMSSecretAsymmetricResult struct {
 	Id string `pulumi:"id"`
 	// Contains the result of decrypting the provided ciphertext.
 	Plaintext string `pulumi:"plaintext"`
+}
+
+func GetKMSSecretAsymmetricApply(ctx *pulumi.Context, args GetKMSSecretAsymmetricApplyInput, opts ...pulumi.InvokeOption) GetKMSSecretAsymmetricResultOutput {
+	return args.ToGetKMSSecretAsymmetricApplyOutput().ApplyT(func(v GetKMSSecretAsymmetricArgs) (GetKMSSecretAsymmetricResult, error) {
+		r, err := GetKMSSecretAsymmetric(ctx, &v, opts...)
+		return *r, err
+
+	}).(GetKMSSecretAsymmetricResultOutput)
+}
+
+// GetKMSSecretAsymmetricApplyInput is an input type that accepts GetKMSSecretAsymmetricApplyArgs and GetKMSSecretAsymmetricApplyOutput values.
+// You can construct a concrete instance of `GetKMSSecretAsymmetricApplyInput` via:
+//
+//          GetKMSSecretAsymmetricApplyArgs{...}
+type GetKMSSecretAsymmetricApplyInput interface {
+	pulumi.Input
+
+	ToGetKMSSecretAsymmetricApplyOutput() GetKMSSecretAsymmetricApplyOutput
+	ToGetKMSSecretAsymmetricApplyOutputWithContext(context.Context) GetKMSSecretAsymmetricApplyOutput
+}
+
+// A collection of arguments for invoking getKMSSecretAsymmetric.
+type GetKMSSecretAsymmetricApplyArgs struct {
+	// The ciphertext to be decrypted, encoded in base64
+	Ciphertext pulumi.StringInput `pulumi:"ciphertext"`
+	// The crc32 checksum of the `ciphertext` in hexadecimal notation. If not specified, it will be computed.
+	Crc32 pulumi.StringPtrInput `pulumi:"crc32"`
+	// The id of the CryptoKey version that will be used to
+	// decrypt the provided ciphertext. This is represented by the format
+	// `projects/{project}/locations/{location}/keyRings/{keyring}/cryptoKeys/{key}/cryptoKeyVersions/{version}`.
+	CryptoKeyVersion pulumi.StringInput `pulumi:"cryptoKeyVersion"`
+}
+
+func (GetKMSSecretAsymmetricApplyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKMSSecretAsymmetricArgs)(nil)).Elem()
+}
+
+func (i GetKMSSecretAsymmetricApplyArgs) ToGetKMSSecretAsymmetricApplyOutput() GetKMSSecretAsymmetricApplyOutput {
+	return i.ToGetKMSSecretAsymmetricApplyOutputWithContext(context.Background())
+}
+
+func (i GetKMSSecretAsymmetricApplyArgs) ToGetKMSSecretAsymmetricApplyOutputWithContext(ctx context.Context) GetKMSSecretAsymmetricApplyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKMSSecretAsymmetricApplyOutput)
+}
+
+// A collection of arguments for invoking getKMSSecretAsymmetric.
+type GetKMSSecretAsymmetricApplyOutput struct{ *pulumi.OutputState }
+
+func (GetKMSSecretAsymmetricApplyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKMSSecretAsymmetricArgs)(nil)).Elem()
+}
+
+func (o GetKMSSecretAsymmetricApplyOutput) ToGetKMSSecretAsymmetricApplyOutput() GetKMSSecretAsymmetricApplyOutput {
+	return o
+}
+
+func (o GetKMSSecretAsymmetricApplyOutput) ToGetKMSSecretAsymmetricApplyOutputWithContext(ctx context.Context) GetKMSSecretAsymmetricApplyOutput {
+	return o
+}
+
+// The ciphertext to be decrypted, encoded in base64
+func (o GetKMSSecretAsymmetricApplyOutput) Ciphertext() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKMSSecretAsymmetricArgs) string { return v.Ciphertext }).(pulumi.StringOutput)
+}
+
+// The crc32 checksum of the `ciphertext` in hexadecimal notation. If not specified, it will be computed.
+func (o GetKMSSecretAsymmetricApplyOutput) Crc32() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetKMSSecretAsymmetricArgs) *string { return v.Crc32 }).(pulumi.StringPtrOutput)
+}
+
+// The id of the CryptoKey version that will be used to
+// decrypt the provided ciphertext. This is represented by the format
+// `projects/{project}/locations/{location}/keyRings/{keyring}/cryptoKeys/{key}/cryptoKeyVersions/{version}`.
+func (o GetKMSSecretAsymmetricApplyOutput) CryptoKeyVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKMSSecretAsymmetricArgs) string { return v.CryptoKeyVersion }).(pulumi.StringOutput)
+}
+
+// A collection of values returned by getKMSSecretAsymmetric.
+type GetKMSSecretAsymmetricResultOutput struct{ *pulumi.OutputState }
+
+func (GetKMSSecretAsymmetricResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKMSSecretAsymmetricResult)(nil)).Elem()
+}
+
+func (o GetKMSSecretAsymmetricResultOutput) ToGetKMSSecretAsymmetricResultOutput() GetKMSSecretAsymmetricResultOutput {
+	return o
+}
+
+func (o GetKMSSecretAsymmetricResultOutput) ToGetKMSSecretAsymmetricResultOutputWithContext(ctx context.Context) GetKMSSecretAsymmetricResultOutput {
+	return o
+}
+
+func (o GetKMSSecretAsymmetricResultOutput) Ciphertext() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKMSSecretAsymmetricResult) string { return v.Ciphertext }).(pulumi.StringOutput)
+}
+
+// Contains the crc32 checksum of the provided ciphertext.
+func (o GetKMSSecretAsymmetricResultOutput) Crc32() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetKMSSecretAsymmetricResult) *string { return v.Crc32 }).(pulumi.StringPtrOutput)
+}
+
+func (o GetKMSSecretAsymmetricResultOutput) CryptoKeyVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKMSSecretAsymmetricResult) string { return v.CryptoKeyVersion }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetKMSSecretAsymmetricResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKMSSecretAsymmetricResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Contains the result of decrypting the provided ciphertext.
+func (o GetKMSSecretAsymmetricResultOutput) Plaintext() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKMSSecretAsymmetricResult) string { return v.Plaintext }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetKMSSecretAsymmetricApplyOutput{})
+	pulumi.RegisterOutputType(GetKMSSecretAsymmetricResultOutput{})
 }

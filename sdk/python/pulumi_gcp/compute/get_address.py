@@ -154,3 +154,11 @@ def get_address(name: Optional[str] = None,
         region=__ret__.region,
         self_link=__ret__.self_link,
         status=__ret__.status)
+
+
+@_utilities.lift_output_func(get_address)
+def get_address_apply(name: Optional[pulumi.Input[str]] = None,
+                      project: Optional[pulumi.Input[str]] = None,
+                      region: Optional[pulumi.Input[str]] = None,
+                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAddressResult]:
+    ...

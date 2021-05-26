@@ -43,16 +43,16 @@ export interface GetBackupRunArgs {
      * The identifier for this backup run. Unique only for a specific Cloud SQL instance.
      * If left empty and multiple backups exist for the instance, `mostRecent` must be set to `true`.
      */
-    readonly backupId?: number;
+    backupId?: number;
     /**
      * The name of the instance the backup is taken from.
      */
-    readonly instance: string;
+    instance: string;
     /**
      * Toggles use of the most recent backup run if multiple backups exist for a 
      * Cloud SQL instance.
      */
-    readonly mostRecent?: boolean;
+    mostRecent?: boolean;
 }
 
 /**
@@ -79,4 +79,28 @@ export interface GetBackupRunResult {
      * The status of this run. Refer to [API reference](https://cloud.google.com/sql/docs/mysql/admin-api/rest/v1beta4/backupRuns#SqlBackupRunStatus) for possible status values.
      */
     readonly status: string;
+}
+
+export function getBackupRunApply(args: GetBackupRunApplyArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBackupRunResult> {
+    return pulumi.output(args).apply(a => getBackupRun(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getBackupRun.
+ */
+export interface GetBackupRunApplyArgs {
+    /**
+     * The identifier for this backup run. Unique only for a specific Cloud SQL instance.
+     * If left empty and multiple backups exist for the instance, `mostRecent` must be set to `true`.
+     */
+    backupId?: pulumi.Input<number>;
+    /**
+     * The name of the instance the backup is taken from.
+     */
+    instance: pulumi.Input<string>;
+    /**
+     * Toggles use of the most recent backup run if multiple backups exist for a 
+     * Cloud SQL instance.
+     */
+    mostRecent?: pulumi.Input<boolean>;
 }

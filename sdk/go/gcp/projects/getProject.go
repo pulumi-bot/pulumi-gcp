@@ -4,6 +4,9 @@
 package projects
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -64,4 +67,95 @@ type GetProjectResult struct {
 	Id string `pulumi:"id"`
 	// A list of projects matching the provided filter. Structure is defined below.
 	Projects []GetProjectProject `pulumi:"projects"`
+}
+
+func GetProjectApply(ctx *pulumi.Context, args GetProjectApplyInput, opts ...pulumi.InvokeOption) GetProjectResultOutput {
+	return args.ToGetProjectApplyOutput().ApplyT(func(v GetProjectArgs) (GetProjectResult, error) {
+		r, err := GetProject(ctx, &v, opts...)
+		return *r, err
+
+	}).(GetProjectResultOutput)
+}
+
+// GetProjectApplyInput is an input type that accepts GetProjectApplyArgs and GetProjectApplyOutput values.
+// You can construct a concrete instance of `GetProjectApplyInput` via:
+//
+//          GetProjectApplyArgs{...}
+type GetProjectApplyInput interface {
+	pulumi.Input
+
+	ToGetProjectApplyOutput() GetProjectApplyOutput
+	ToGetProjectApplyOutputWithContext(context.Context) GetProjectApplyOutput
+}
+
+// A collection of arguments for invoking getProject.
+type GetProjectApplyArgs struct {
+	// A string filter as defined in the [REST API](https://cloud.google.com/resource-manager/reference/rest/v1/projects/list#query-parameters).
+	Filter pulumi.StringInput `pulumi:"filter"`
+}
+
+func (GetProjectApplyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProjectArgs)(nil)).Elem()
+}
+
+func (i GetProjectApplyArgs) ToGetProjectApplyOutput() GetProjectApplyOutput {
+	return i.ToGetProjectApplyOutputWithContext(context.Background())
+}
+
+func (i GetProjectApplyArgs) ToGetProjectApplyOutputWithContext(ctx context.Context) GetProjectApplyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProjectApplyOutput)
+}
+
+// A collection of arguments for invoking getProject.
+type GetProjectApplyOutput struct{ *pulumi.OutputState }
+
+func (GetProjectApplyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProjectArgs)(nil)).Elem()
+}
+
+func (o GetProjectApplyOutput) ToGetProjectApplyOutput() GetProjectApplyOutput {
+	return o
+}
+
+func (o GetProjectApplyOutput) ToGetProjectApplyOutputWithContext(ctx context.Context) GetProjectApplyOutput {
+	return o
+}
+
+// A string filter as defined in the [REST API](https://cloud.google.com/resource-manager/reference/rest/v1/projects/list#query-parameters).
+func (o GetProjectApplyOutput) Filter() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectArgs) string { return v.Filter }).(pulumi.StringOutput)
+}
+
+// A collection of values returned by getProject.
+type GetProjectResultOutput struct{ *pulumi.OutputState }
+
+func (GetProjectResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProjectResult)(nil)).Elem()
+}
+
+func (o GetProjectResultOutput) ToGetProjectResultOutput() GetProjectResultOutput {
+	return o
+}
+
+func (o GetProjectResultOutput) ToGetProjectResultOutputWithContext(ctx context.Context) GetProjectResultOutput {
+	return o
+}
+
+func (o GetProjectResultOutput) Filter() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectResult) string { return v.Filter }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetProjectResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// A list of projects matching the provided filter. Structure is defined below.
+func (o GetProjectResultOutput) Projects() GetProjectProjectArrayOutput {
+	return o.ApplyT(func(v GetProjectResult) []GetProjectProject { return v.Projects }).(GetProjectProjectArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetProjectApplyOutput{})
+	pulumi.RegisterOutputType(GetProjectResultOutput{})
 }

@@ -80,3 +80,8 @@ def get_uptime_check_i_ps(opts: Optional[pulumi.InvokeOptions] = None) -> Awaita
     return AwaitableGetUptimeCheckIPsResult(
         id=__ret__.id,
         uptime_check_ips=__ret__.uptime_check_ips)
+
+
+@_utilities.lift_output_func(get_uptime_check_i_ps)
+def get_uptime_check_i_ps_apply(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetUptimeCheckIPsResult]:
+    ...

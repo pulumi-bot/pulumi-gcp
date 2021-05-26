@@ -141,3 +141,11 @@ def get_variable(name: Optional[str] = None,
         text=__ret__.text,
         update_time=__ret__.update_time,
         value=__ret__.value)
+
+
+@_utilities.lift_output_func(get_variable)
+def get_variable_apply(name: Optional[pulumi.Input[str]] = None,
+                       parent: Optional[pulumi.Input[str]] = None,
+                       project: Optional[pulumi.Input[str]] = None,
+                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVariableResult]:
+    ...

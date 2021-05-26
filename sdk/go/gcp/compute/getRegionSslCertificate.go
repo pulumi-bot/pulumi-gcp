@@ -4,6 +4,9 @@
 package compute
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -69,4 +72,144 @@ type LookupRegionSslCertificateResult struct {
 	Project    *string `pulumi:"project"`
 	Region     *string `pulumi:"region"`
 	SelfLink   string  `pulumi:"selfLink"`
+}
+
+func LookupRegionSslCertificateApply(ctx *pulumi.Context, args LookupRegionSslCertificateApplyInput, opts ...pulumi.InvokeOption) LookupRegionSslCertificateResultOutput {
+	return args.ToLookupRegionSslCertificateApplyOutput().ApplyT(func(v LookupRegionSslCertificateArgs) (LookupRegionSslCertificateResult, error) {
+		r, err := LookupRegionSslCertificate(ctx, &v, opts...)
+		return *r, err
+
+	}).(LookupRegionSslCertificateResultOutput)
+}
+
+// LookupRegionSslCertificateApplyInput is an input type that accepts LookupRegionSslCertificateApplyArgs and LookupRegionSslCertificateApplyOutput values.
+// You can construct a concrete instance of `LookupRegionSslCertificateApplyInput` via:
+//
+//          LookupRegionSslCertificateApplyArgs{...}
+type LookupRegionSslCertificateApplyInput interface {
+	pulumi.Input
+
+	ToLookupRegionSslCertificateApplyOutput() LookupRegionSslCertificateApplyOutput
+	ToLookupRegionSslCertificateApplyOutputWithContext(context.Context) LookupRegionSslCertificateApplyOutput
+}
+
+// A collection of arguments for invoking getRegionSslCertificate.
+type LookupRegionSslCertificateApplyArgs struct {
+	// The name of the certificate.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The project in which the resource belongs. If it
+	// is not provided, the provider project is used.
+	Project pulumi.StringPtrInput `pulumi:"project"`
+	// The region in which the resource belongs. If it
+	// is not provided, the provider region is used.
+	Region pulumi.StringPtrInput `pulumi:"region"`
+}
+
+func (LookupRegionSslCertificateApplyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupRegionSslCertificateArgs)(nil)).Elem()
+}
+
+func (i LookupRegionSslCertificateApplyArgs) ToLookupRegionSslCertificateApplyOutput() LookupRegionSslCertificateApplyOutput {
+	return i.ToLookupRegionSslCertificateApplyOutputWithContext(context.Background())
+}
+
+func (i LookupRegionSslCertificateApplyArgs) ToLookupRegionSslCertificateApplyOutputWithContext(ctx context.Context) LookupRegionSslCertificateApplyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LookupRegionSslCertificateApplyOutput)
+}
+
+// A collection of arguments for invoking getRegionSslCertificate.
+type LookupRegionSslCertificateApplyOutput struct{ *pulumi.OutputState }
+
+func (LookupRegionSslCertificateApplyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupRegionSslCertificateArgs)(nil)).Elem()
+}
+
+func (o LookupRegionSslCertificateApplyOutput) ToLookupRegionSslCertificateApplyOutput() LookupRegionSslCertificateApplyOutput {
+	return o
+}
+
+func (o LookupRegionSslCertificateApplyOutput) ToLookupRegionSslCertificateApplyOutputWithContext(ctx context.Context) LookupRegionSslCertificateApplyOutput {
+	return o
+}
+
+// The name of the certificate.
+func (o LookupRegionSslCertificateApplyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRegionSslCertificateArgs) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The project in which the resource belongs. If it
+// is not provided, the provider project is used.
+func (o LookupRegionSslCertificateApplyOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupRegionSslCertificateArgs) *string { return v.Project }).(pulumi.StringPtrOutput)
+}
+
+// The region in which the resource belongs. If it
+// is not provided, the provider region is used.
+func (o LookupRegionSslCertificateApplyOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupRegionSslCertificateArgs) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+// A collection of values returned by getRegionSslCertificate.
+type LookupRegionSslCertificateResultOutput struct{ *pulumi.OutputState }
+
+func (LookupRegionSslCertificateResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupRegionSslCertificateResult)(nil)).Elem()
+}
+
+func (o LookupRegionSslCertificateResultOutput) ToLookupRegionSslCertificateResultOutput() LookupRegionSslCertificateResultOutput {
+	return o
+}
+
+func (o LookupRegionSslCertificateResultOutput) ToLookupRegionSslCertificateResultOutputWithContext(ctx context.Context) LookupRegionSslCertificateResultOutput {
+	return o
+}
+
+func (o LookupRegionSslCertificateResultOutput) Certificate() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRegionSslCertificateResult) string { return v.Certificate }).(pulumi.StringOutput)
+}
+
+func (o LookupRegionSslCertificateResultOutput) CertificateId() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupRegionSslCertificateResult) int { return v.CertificateId }).(pulumi.IntOutput)
+}
+
+func (o LookupRegionSslCertificateResultOutput) CreationTimestamp() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRegionSslCertificateResult) string { return v.CreationTimestamp }).(pulumi.StringOutput)
+}
+
+func (o LookupRegionSslCertificateResultOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRegionSslCertificateResult) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupRegionSslCertificateResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRegionSslCertificateResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupRegionSslCertificateResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRegionSslCertificateResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o LookupRegionSslCertificateResultOutput) NamePrefix() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRegionSslCertificateResult) string { return v.NamePrefix }).(pulumi.StringOutput)
+}
+
+func (o LookupRegionSslCertificateResultOutput) PrivateKey() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRegionSslCertificateResult) string { return v.PrivateKey }).(pulumi.StringOutput)
+}
+
+func (o LookupRegionSslCertificateResultOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupRegionSslCertificateResult) *string { return v.Project }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupRegionSslCertificateResultOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupRegionSslCertificateResult) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupRegionSslCertificateResultOutput) SelfLink() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRegionSslCertificateResult) string { return v.SelfLink }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupRegionSslCertificateApplyOutput{})
+	pulumi.RegisterOutputType(LookupRegionSslCertificateResultOutput{})
 }

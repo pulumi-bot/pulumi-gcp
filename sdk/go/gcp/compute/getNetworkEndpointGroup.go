@@ -4,6 +4,9 @@
 package compute
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -86,4 +89,157 @@ type LookupNetworkEndpointGroupResult struct {
 	// subnetwork to which all network endpoints in the NEG belong.
 	Subnetwork string  `pulumi:"subnetwork"`
 	Zone       *string `pulumi:"zone"`
+}
+
+func LookupNetworkEndpointGroupApply(ctx *pulumi.Context, args LookupNetworkEndpointGroupApplyInput, opts ...pulumi.InvokeOption) LookupNetworkEndpointGroupResultOutput {
+	return args.ToLookupNetworkEndpointGroupApplyOutput().ApplyT(func(v LookupNetworkEndpointGroupArgs) (LookupNetworkEndpointGroupResult, error) {
+		r, err := LookupNetworkEndpointGroup(ctx, &v, opts...)
+		return *r, err
+
+	}).(LookupNetworkEndpointGroupResultOutput)
+}
+
+// LookupNetworkEndpointGroupApplyInput is an input type that accepts LookupNetworkEndpointGroupApplyArgs and LookupNetworkEndpointGroupApplyOutput values.
+// You can construct a concrete instance of `LookupNetworkEndpointGroupApplyInput` via:
+//
+//          LookupNetworkEndpointGroupApplyArgs{...}
+type LookupNetworkEndpointGroupApplyInput interface {
+	pulumi.Input
+
+	ToLookupNetworkEndpointGroupApplyOutput() LookupNetworkEndpointGroupApplyOutput
+	ToLookupNetworkEndpointGroupApplyOutputWithContext(context.Context) LookupNetworkEndpointGroupApplyOutput
+}
+
+// A collection of arguments for invoking getNetworkEndpointGroup.
+type LookupNetworkEndpointGroupApplyArgs struct {
+	// The Network Endpoint Group name.
+	// Provide either this or a `selfLink`.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The ID of the project to list versions in.
+	// If it is not provided, the provider project is used.
+	Project pulumi.StringPtrInput `pulumi:"project"`
+	// The Network Endpoint Group self\_link.
+	SelfLink pulumi.StringPtrInput `pulumi:"selfLink"`
+	// The Network Endpoint Group availability zone.
+	Zone pulumi.StringPtrInput `pulumi:"zone"`
+}
+
+func (LookupNetworkEndpointGroupApplyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupNetworkEndpointGroupArgs)(nil)).Elem()
+}
+
+func (i LookupNetworkEndpointGroupApplyArgs) ToLookupNetworkEndpointGroupApplyOutput() LookupNetworkEndpointGroupApplyOutput {
+	return i.ToLookupNetworkEndpointGroupApplyOutputWithContext(context.Background())
+}
+
+func (i LookupNetworkEndpointGroupApplyArgs) ToLookupNetworkEndpointGroupApplyOutputWithContext(ctx context.Context) LookupNetworkEndpointGroupApplyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LookupNetworkEndpointGroupApplyOutput)
+}
+
+// A collection of arguments for invoking getNetworkEndpointGroup.
+type LookupNetworkEndpointGroupApplyOutput struct{ *pulumi.OutputState }
+
+func (LookupNetworkEndpointGroupApplyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupNetworkEndpointGroupArgs)(nil)).Elem()
+}
+
+func (o LookupNetworkEndpointGroupApplyOutput) ToLookupNetworkEndpointGroupApplyOutput() LookupNetworkEndpointGroupApplyOutput {
+	return o
+}
+
+func (o LookupNetworkEndpointGroupApplyOutput) ToLookupNetworkEndpointGroupApplyOutputWithContext(ctx context.Context) LookupNetworkEndpointGroupApplyOutput {
+	return o
+}
+
+// The Network Endpoint Group name.
+// Provide either this or a `selfLink`.
+func (o LookupNetworkEndpointGroupApplyOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupNetworkEndpointGroupArgs) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the project to list versions in.
+// If it is not provided, the provider project is used.
+func (o LookupNetworkEndpointGroupApplyOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupNetworkEndpointGroupArgs) *string { return v.Project }).(pulumi.StringPtrOutput)
+}
+
+// The Network Endpoint Group self\_link.
+func (o LookupNetworkEndpointGroupApplyOutput) SelfLink() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupNetworkEndpointGroupArgs) *string { return v.SelfLink }).(pulumi.StringPtrOutput)
+}
+
+// The Network Endpoint Group availability zone.
+func (o LookupNetworkEndpointGroupApplyOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupNetworkEndpointGroupArgs) *string { return v.Zone }).(pulumi.StringPtrOutput)
+}
+
+// A collection of values returned by getNetworkEndpointGroup.
+type LookupNetworkEndpointGroupResultOutput struct{ *pulumi.OutputState }
+
+func (LookupNetworkEndpointGroupResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupNetworkEndpointGroupResult)(nil)).Elem()
+}
+
+func (o LookupNetworkEndpointGroupResultOutput) ToLookupNetworkEndpointGroupResultOutput() LookupNetworkEndpointGroupResultOutput {
+	return o
+}
+
+func (o LookupNetworkEndpointGroupResultOutput) ToLookupNetworkEndpointGroupResultOutputWithContext(ctx context.Context) LookupNetworkEndpointGroupResultOutput {
+	return o
+}
+
+// The NEG default port.
+func (o LookupNetworkEndpointGroupResultOutput) DefaultPort() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupNetworkEndpointGroupResult) int { return v.DefaultPort }).(pulumi.IntOutput)
+}
+
+// The NEG description.
+func (o LookupNetworkEndpointGroupResultOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNetworkEndpointGroupResult) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupNetworkEndpointGroupResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNetworkEndpointGroupResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupNetworkEndpointGroupResultOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupNetworkEndpointGroupResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+// The network to which all network endpoints in the NEG belong.
+func (o LookupNetworkEndpointGroupResultOutput) Network() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNetworkEndpointGroupResult) string { return v.Network }).(pulumi.StringOutput)
+}
+
+// Type of network endpoints in this network endpoint group.
+func (o LookupNetworkEndpointGroupResultOutput) NetworkEndpointType() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNetworkEndpointGroupResult) string { return v.NetworkEndpointType }).(pulumi.StringOutput)
+}
+
+func (o LookupNetworkEndpointGroupResultOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupNetworkEndpointGroupResult) *string { return v.Project }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupNetworkEndpointGroupResultOutput) SelfLink() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupNetworkEndpointGroupResult) *string { return v.SelfLink }).(pulumi.StringPtrOutput)
+}
+
+// Number of network endpoints in the network endpoint group.
+func (o LookupNetworkEndpointGroupResultOutput) Size() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupNetworkEndpointGroupResult) int { return v.Size }).(pulumi.IntOutput)
+}
+
+// subnetwork to which all network endpoints in the NEG belong.
+func (o LookupNetworkEndpointGroupResultOutput) Subnetwork() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNetworkEndpointGroupResult) string { return v.Subnetwork }).(pulumi.StringOutput)
+}
+
+func (o LookupNetworkEndpointGroupResultOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupNetworkEndpointGroupResult) *string { return v.Zone }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupNetworkEndpointGroupApplyOutput{})
+	pulumi.RegisterOutputType(LookupNetworkEndpointGroupResultOutput{})
 }

@@ -166,3 +166,10 @@ def get_certificate(name: Optional[str] = None,
         private_key=__ret__.private_key,
         project=__ret__.project,
         self_link=__ret__.self_link)
+
+
+@_utilities.lift_output_func(get_certificate)
+def get_certificate_apply(name: Optional[pulumi.Input[str]] = None,
+                          project: Optional[pulumi.Input[str]] = None,
+                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCertificateResult]:
+    ...

@@ -4,6 +4,9 @@
 package compute
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -71,4 +74,142 @@ type GetRegionInstanceGroupResult struct {
 	SelfLink string `pulumi:"selfLink"`
 	// The number of instances in the group.
 	Size int `pulumi:"size"`
+}
+
+func GetRegionInstanceGroupApply(ctx *pulumi.Context, args GetRegionInstanceGroupApplyInput, opts ...pulumi.InvokeOption) GetRegionInstanceGroupResultOutput {
+	return args.ToGetRegionInstanceGroupApplyOutput().ApplyT(func(v GetRegionInstanceGroupArgs) (GetRegionInstanceGroupResult, error) {
+		r, err := GetRegionInstanceGroup(ctx, &v, opts...)
+		return *r, err
+
+	}).(GetRegionInstanceGroupResultOutput)
+}
+
+// GetRegionInstanceGroupApplyInput is an input type that accepts GetRegionInstanceGroupApplyArgs and GetRegionInstanceGroupApplyOutput values.
+// You can construct a concrete instance of `GetRegionInstanceGroupApplyInput` via:
+//
+//          GetRegionInstanceGroupApplyArgs{...}
+type GetRegionInstanceGroupApplyInput interface {
+	pulumi.Input
+
+	ToGetRegionInstanceGroupApplyOutput() GetRegionInstanceGroupApplyOutput
+	ToGetRegionInstanceGroupApplyOutputWithContext(context.Context) GetRegionInstanceGroupApplyOutput
+}
+
+// A collection of arguments for invoking getRegionInstanceGroup.
+type GetRegionInstanceGroupApplyArgs struct {
+	// The name of the instance group.  One of `name` or `selfLink` must be provided.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The ID of the project in which the resource belongs.
+	// If `selfLink` is provided, this value is ignored.  If neither `selfLink`
+	// nor `project` are provided, the provider project is used.
+	Project pulumi.StringPtrInput `pulumi:"project"`
+	// The region in which the resource belongs.  If `selfLink`
+	// is provided, this value is ignored.  If neither `selfLink` nor `region` are
+	// provided, the provider region is used.
+	Region pulumi.StringPtrInput `pulumi:"region"`
+	// The link to the instance group.  One of `name` or `selfLink` must be provided.
+	SelfLink pulumi.StringPtrInput `pulumi:"selfLink"`
+}
+
+func (GetRegionInstanceGroupApplyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegionInstanceGroupArgs)(nil)).Elem()
+}
+
+func (i GetRegionInstanceGroupApplyArgs) ToGetRegionInstanceGroupApplyOutput() GetRegionInstanceGroupApplyOutput {
+	return i.ToGetRegionInstanceGroupApplyOutputWithContext(context.Background())
+}
+
+func (i GetRegionInstanceGroupApplyArgs) ToGetRegionInstanceGroupApplyOutputWithContext(ctx context.Context) GetRegionInstanceGroupApplyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegionInstanceGroupApplyOutput)
+}
+
+// A collection of arguments for invoking getRegionInstanceGroup.
+type GetRegionInstanceGroupApplyOutput struct{ *pulumi.OutputState }
+
+func (GetRegionInstanceGroupApplyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegionInstanceGroupArgs)(nil)).Elem()
+}
+
+func (o GetRegionInstanceGroupApplyOutput) ToGetRegionInstanceGroupApplyOutput() GetRegionInstanceGroupApplyOutput {
+	return o
+}
+
+func (o GetRegionInstanceGroupApplyOutput) ToGetRegionInstanceGroupApplyOutputWithContext(ctx context.Context) GetRegionInstanceGroupApplyOutput {
+	return o
+}
+
+// The name of the instance group.  One of `name` or `selfLink` must be provided.
+func (o GetRegionInstanceGroupApplyOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetRegionInstanceGroupArgs) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the project in which the resource belongs.
+// If `selfLink` is provided, this value is ignored.  If neither `selfLink`
+// nor `project` are provided, the provider project is used.
+func (o GetRegionInstanceGroupApplyOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetRegionInstanceGroupArgs) *string { return v.Project }).(pulumi.StringPtrOutput)
+}
+
+// The region in which the resource belongs.  If `selfLink`
+// is provided, this value is ignored.  If neither `selfLink` nor `region` are
+// provided, the provider region is used.
+func (o GetRegionInstanceGroupApplyOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetRegionInstanceGroupArgs) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+// The link to the instance group.  One of `name` or `selfLink` must be provided.
+func (o GetRegionInstanceGroupApplyOutput) SelfLink() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetRegionInstanceGroupArgs) *string { return v.SelfLink }).(pulumi.StringPtrOutput)
+}
+
+// A collection of values returned by getRegionInstanceGroup.
+type GetRegionInstanceGroupResultOutput struct{ *pulumi.OutputState }
+
+func (GetRegionInstanceGroupResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegionInstanceGroupResult)(nil)).Elem()
+}
+
+func (o GetRegionInstanceGroupResultOutput) ToGetRegionInstanceGroupResultOutput() GetRegionInstanceGroupResultOutput {
+	return o
+}
+
+func (o GetRegionInstanceGroupResultOutput) ToGetRegionInstanceGroupResultOutputWithContext(ctx context.Context) GetRegionInstanceGroupResultOutput {
+	return o
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetRegionInstanceGroupResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegionInstanceGroupResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// List of instances in the group, as a list of resources, each containing:
+func (o GetRegionInstanceGroupResultOutput) Instances() GetRegionInstanceGroupInstanceArrayOutput {
+	return o.ApplyT(func(v GetRegionInstanceGroupResult) []GetRegionInstanceGroupInstance { return v.Instances }).(GetRegionInstanceGroupInstanceArrayOutput)
+}
+
+// String port name
+func (o GetRegionInstanceGroupResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegionInstanceGroupResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetRegionInstanceGroupResultOutput) Project() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegionInstanceGroupResult) string { return v.Project }).(pulumi.StringOutput)
+}
+
+func (o GetRegionInstanceGroupResultOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegionInstanceGroupResult) string { return v.Region }).(pulumi.StringOutput)
+}
+
+func (o GetRegionInstanceGroupResultOutput) SelfLink() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegionInstanceGroupResult) string { return v.SelfLink }).(pulumi.StringOutput)
+}
+
+// The number of instances in the group.
+func (o GetRegionInstanceGroupResultOutput) Size() pulumi.IntOutput {
+	return o.ApplyT(func(v GetRegionInstanceGroupResult) int { return v.Size }).(pulumi.IntOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetRegionInstanceGroupApplyOutput{})
+	pulumi.RegisterOutputType(GetRegionInstanceGroupResultOutput{})
 }

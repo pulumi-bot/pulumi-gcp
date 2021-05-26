@@ -120,6 +120,23 @@ namespace Pulumi.Gcp.Compute
         /// </summary>
         public static Task<GetInstanceSerialPortResult> InvokeAsync(GetInstanceSerialPortArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetInstanceSerialPortResult>("gcp:compute/getInstanceSerialPort:getInstanceSerialPort", args ?? new GetInstanceSerialPortArgs(), options.WithVersion());
+
+        public static Output<GetInstanceSerialPortResult> Apply(GetInstanceSerialPortApplyArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.Instance.Box(),
+                args.Port.Box(),
+                args.Project.Box(),
+                args.Zone.Box()
+            ).Apply(a => {
+                    var args = new GetInstanceSerialPortArgs();
+                    a[0].Set(args, nameof(args.Instance));
+                    a[1].Set(args, nameof(args.Port));
+                    a[2].Set(args, nameof(args.Project));
+                    a[3].Set(args, nameof(args.Zone));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -152,6 +169,39 @@ namespace Pulumi.Gcp.Compute
         public string? Zone { get; set; }
 
         public GetInstanceSerialPortArgs()
+        {
+        }
+    }
+
+    public sealed class GetInstanceSerialPortApplyArgs
+    {
+        /// <summary>
+        /// The name of the Compute Instance to read output from.
+        /// </summary>
+        [Input("instance", required: true)]
+        public Input<string> Instance { get; set; } = null!;
+
+        /// <summary>
+        /// The number of the serial port to read output from. Possible values are 1-4.
+        /// </summary>
+        [Input("port", required: true)]
+        public Input<int> Port { get; set; } = null!;
+
+        /// <summary>
+        /// The project in which the Compute Instance exists. If it
+        /// is not provided, the provider project is used.
+        /// </summary>
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
+        /// <summary>
+        /// The zone in which the Compute Instance exists.
+        /// If it is not provided, the provider zone is used.
+        /// </summary>
+        [Input("zone")]
+        public Input<string>? Zone { get; set; }
+
+        public GetInstanceSerialPortApplyArgs()
         {
         }
     }

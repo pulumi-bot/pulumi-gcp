@@ -39,6 +39,18 @@ namespace Pulumi.Gcp.Storage
         /// </summary>
         public static Task<GetTransferProjectServieAccountResult> InvokeAsync(GetTransferProjectServieAccountArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetTransferProjectServieAccountResult>("gcp:storage/getTransferProjectServieAccount:getTransferProjectServieAccount", args ?? new GetTransferProjectServieAccountArgs(), options.WithVersion());
+
+        public static Output<GetTransferProjectServieAccountResult> Apply(GetTransferProjectServieAccountApplyArgs? args = null, InvokeOptions? options = null)
+        {
+            args = args ?? new GetTransferProjectServieAccountApplyArgs();
+            return Pulumi.Output.All(
+                args.Project.Box()
+            ).Apply(a => {
+                    var args = new GetTransferProjectServieAccountArgs();
+                    a[0].Set(args, nameof(args.Project));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -51,6 +63,19 @@ namespace Pulumi.Gcp.Storage
         public string? Project { get; set; }
 
         public GetTransferProjectServieAccountArgs()
+        {
+        }
+    }
+
+    public sealed class GetTransferProjectServieAccountApplyArgs
+    {
+        /// <summary>
+        /// The project ID. If it is not provided, the provider project is used.
+        /// </summary>
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
+        public GetTransferProjectServieAccountApplyArgs()
         {
         }
     }

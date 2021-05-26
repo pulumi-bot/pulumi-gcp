@@ -17,6 +17,22 @@ namespace Pulumi.Gcp.Compute
         /// </summary>
         public static Task<GetZonesResult> InvokeAsync(GetZonesArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetZonesResult>("gcp:compute/getZones:getZones", args ?? new GetZonesArgs(), options.WithVersion());
+
+        public static Output<GetZonesResult> Apply(GetZonesApplyArgs? args = null, InvokeOptions? options = null)
+        {
+            args = args ?? new GetZonesApplyArgs();
+            return Pulumi.Output.All(
+                args.Project.Box(),
+                args.Region.Box(),
+                args.Status.Box()
+            ).Apply(a => {
+                    var args = new GetZonesArgs();
+                    a[0].Set(args, nameof(args.Project));
+                    a[1].Set(args, nameof(args.Region));
+                    a[2].Set(args, nameof(args.Status));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -42,6 +58,32 @@ namespace Pulumi.Gcp.Compute
         public string? Status { get; set; }
 
         public GetZonesArgs()
+        {
+        }
+    }
+
+    public sealed class GetZonesApplyArgs
+    {
+        /// <summary>
+        /// Project from which to list available zones. Defaults to project declared in the provider.
+        /// </summary>
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
+        /// <summary>
+        /// Region from which to list available zones. Defaults to region declared in the provider.
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
+
+        /// <summary>
+        /// Allows to filter list of zones based on their current status. Status can be either `UP` or `DOWN`.
+        /// Defaults to no filtering (all available zones - both `UP` and `DOWN`).
+        /// </summary>
+        [Input("status")]
+        public Input<string>? Status { get; set; }
+
+        public GetZonesApplyArgs()
         {
         }
     }

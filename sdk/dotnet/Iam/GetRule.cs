@@ -36,6 +36,17 @@ namespace Pulumi.Gcp.Iam
         /// </summary>
         public static Task<GetRuleResult> InvokeAsync(GetRuleArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetRuleResult>("gcp:iam/getRule:getRule", args ?? new GetRuleArgs(), options.WithVersion());
+
+        public static Output<GetRuleResult> Apply(GetRuleApplyArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.Name.Box()
+            ).Apply(a => {
+                    var args = new GetRuleArgs();
+                    a[0].Set(args, nameof(args.Name));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -48,6 +59,19 @@ namespace Pulumi.Gcp.Iam
         public string Name { get; set; } = null!;
 
         public GetRuleArgs()
+        {
+        }
+    }
+
+    public sealed class GetRuleApplyArgs
+    {
+        /// <summary>
+        /// The name of the Role to lookup in the form `roles/{ROLE_NAME}`, `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}` or `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
+        /// </summary>
+        [Input("name", required: true)]
+        public Input<string> Name { get; set; } = null!;
+
+        public GetRuleApplyArgs()
         {
         }
     }

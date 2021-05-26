@@ -41,12 +41,12 @@ export interface GetWorkloadIdentityPoolArgs {
      * The project in which the resource belongs. If it
      * is not provided, the provider project is used.
      */
-    readonly project?: string;
+    project?: string;
     /**
      * The id of the pool which is the
      * final component of the resource name.
      */
-    readonly workloadIdentityPoolId: string;
+    workloadIdentityPoolId: string;
 }
 
 /**
@@ -64,4 +64,24 @@ export interface GetWorkloadIdentityPoolResult {
     readonly project?: string;
     readonly state: string;
     readonly workloadIdentityPoolId: string;
+}
+
+export function getWorkloadIdentityPoolApply(args: GetWorkloadIdentityPoolApplyArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetWorkloadIdentityPoolResult> {
+    return pulumi.output(args).apply(a => getWorkloadIdentityPool(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getWorkloadIdentityPool.
+ */
+export interface GetWorkloadIdentityPoolApplyArgs {
+    /**
+     * The project in which the resource belongs. If it
+     * is not provided, the provider project is used.
+     */
+    project?: pulumi.Input<string>;
+    /**
+     * The id of the pool which is the
+     * final component of the resource name.
+     */
+    workloadIdentityPoolId: pulumi.Input<string>;
 }

@@ -4,6 +4,9 @@
 package serviceaccount
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -42,4 +45,128 @@ type GetAccountAccessTokenResult struct {
 	Lifetime             *string  `pulumi:"lifetime"`
 	Scopes               []string `pulumi:"scopes"`
 	TargetServiceAccount string   `pulumi:"targetServiceAccount"`
+}
+
+func GetAccountAccessTokenApply(ctx *pulumi.Context, args GetAccountAccessTokenApplyInput, opts ...pulumi.InvokeOption) GetAccountAccessTokenResultOutput {
+	return args.ToGetAccountAccessTokenApplyOutput().ApplyT(func(v GetAccountAccessTokenArgs) (GetAccountAccessTokenResult, error) {
+		r, err := GetAccountAccessToken(ctx, &v, opts...)
+		return *r, err
+
+	}).(GetAccountAccessTokenResultOutput)
+}
+
+// GetAccountAccessTokenApplyInput is an input type that accepts GetAccountAccessTokenApplyArgs and GetAccountAccessTokenApplyOutput values.
+// You can construct a concrete instance of `GetAccountAccessTokenApplyInput` via:
+//
+//          GetAccountAccessTokenApplyArgs{...}
+type GetAccountAccessTokenApplyInput interface {
+	pulumi.Input
+
+	ToGetAccountAccessTokenApplyOutput() GetAccountAccessTokenApplyOutput
+	ToGetAccountAccessTokenApplyOutputWithContext(context.Context) GetAccountAccessTokenApplyOutput
+}
+
+// A collection of arguments for invoking getAccountAccessToken.
+type GetAccountAccessTokenApplyArgs struct {
+	// Delegate chain of approvals needed to perform full impersonation. Specify the fully qualified service account name.  (e.g. `["projects/-/serviceAccounts/delegate-svc-account@project-id.iam.gserviceaccount.com"]`)
+	Delegates pulumi.StringArrayInput `pulumi:"delegates"`
+	// Lifetime of the impersonated token (defaults to its max: `3600s`).
+	Lifetime pulumi.StringPtrInput `pulumi:"lifetime"`
+	// The scopes the new credential should have (e.g. `["cloud-platform"]`)
+	Scopes pulumi.StringArrayInput `pulumi:"scopes"`
+	// The service account _to_ impersonate (e.g. `service_B@your-project-id.iam.gserviceaccount.com`)
+	TargetServiceAccount pulumi.StringInput `pulumi:"targetServiceAccount"`
+}
+
+func (GetAccountAccessTokenApplyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccountAccessTokenArgs)(nil)).Elem()
+}
+
+func (i GetAccountAccessTokenApplyArgs) ToGetAccountAccessTokenApplyOutput() GetAccountAccessTokenApplyOutput {
+	return i.ToGetAccountAccessTokenApplyOutputWithContext(context.Background())
+}
+
+func (i GetAccountAccessTokenApplyArgs) ToGetAccountAccessTokenApplyOutputWithContext(ctx context.Context) GetAccountAccessTokenApplyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAccountAccessTokenApplyOutput)
+}
+
+// A collection of arguments for invoking getAccountAccessToken.
+type GetAccountAccessTokenApplyOutput struct{ *pulumi.OutputState }
+
+func (GetAccountAccessTokenApplyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccountAccessTokenArgs)(nil)).Elem()
+}
+
+func (o GetAccountAccessTokenApplyOutput) ToGetAccountAccessTokenApplyOutput() GetAccountAccessTokenApplyOutput {
+	return o
+}
+
+func (o GetAccountAccessTokenApplyOutput) ToGetAccountAccessTokenApplyOutputWithContext(ctx context.Context) GetAccountAccessTokenApplyOutput {
+	return o
+}
+
+// Delegate chain of approvals needed to perform full impersonation. Specify the fully qualified service account name.  (e.g. `["projects/-/serviceAccounts/delegate-svc-account@project-id.iam.gserviceaccount.com"]`)
+func (o GetAccountAccessTokenApplyOutput) Delegates() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetAccountAccessTokenArgs) []string { return v.Delegates }).(pulumi.StringArrayOutput)
+}
+
+// Lifetime of the impersonated token (defaults to its max: `3600s`).
+func (o GetAccountAccessTokenApplyOutput) Lifetime() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAccountAccessTokenArgs) *string { return v.Lifetime }).(pulumi.StringPtrOutput)
+}
+
+// The scopes the new credential should have (e.g. `["cloud-platform"]`)
+func (o GetAccountAccessTokenApplyOutput) Scopes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetAccountAccessTokenArgs) []string { return v.Scopes }).(pulumi.StringArrayOutput)
+}
+
+// The service account _to_ impersonate (e.g. `service_B@your-project-id.iam.gserviceaccount.com`)
+func (o GetAccountAccessTokenApplyOutput) TargetServiceAccount() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountAccessTokenArgs) string { return v.TargetServiceAccount }).(pulumi.StringOutput)
+}
+
+// A collection of values returned by getAccountAccessToken.
+type GetAccountAccessTokenResultOutput struct{ *pulumi.OutputState }
+
+func (GetAccountAccessTokenResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccountAccessTokenResult)(nil)).Elem()
+}
+
+func (o GetAccountAccessTokenResultOutput) ToGetAccountAccessTokenResultOutput() GetAccountAccessTokenResultOutput {
+	return o
+}
+
+func (o GetAccountAccessTokenResultOutput) ToGetAccountAccessTokenResultOutputWithContext(ctx context.Context) GetAccountAccessTokenResultOutput {
+	return o
+}
+
+// The `accessToken` representing the new generated identity.
+func (o GetAccountAccessTokenResultOutput) AccessToken() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountAccessTokenResult) string { return v.AccessToken }).(pulumi.StringOutput)
+}
+
+func (o GetAccountAccessTokenResultOutput) Delegates() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetAccountAccessTokenResult) []string { return v.Delegates }).(pulumi.StringArrayOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetAccountAccessTokenResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountAccessTokenResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetAccountAccessTokenResultOutput) Lifetime() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAccountAccessTokenResult) *string { return v.Lifetime }).(pulumi.StringPtrOutput)
+}
+
+func (o GetAccountAccessTokenResultOutput) Scopes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetAccountAccessTokenResult) []string { return v.Scopes }).(pulumi.StringArrayOutput)
+}
+
+func (o GetAccountAccessTokenResultOutput) TargetServiceAccount() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountAccessTokenResult) string { return v.TargetServiceAccount }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetAccountAccessTokenApplyOutput{})
+	pulumi.RegisterOutputType(GetAccountAccessTokenResultOutput{})
 }

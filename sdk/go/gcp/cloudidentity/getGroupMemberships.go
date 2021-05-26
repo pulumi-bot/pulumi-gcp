@@ -4,6 +4,9 @@
 package cloudidentity
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -55,4 +58,95 @@ type GetGroupMembershipsResult struct {
 	Id string `pulumi:"id"`
 	// The list of memberships under the given group. Structure is documented below.
 	Memberships []GetGroupMembershipsMembership `pulumi:"memberships"`
+}
+
+func GetGroupMembershipsApply(ctx *pulumi.Context, args GetGroupMembershipsApplyInput, opts ...pulumi.InvokeOption) GetGroupMembershipsResultOutput {
+	return args.ToGetGroupMembershipsApplyOutput().ApplyT(func(v GetGroupMembershipsArgs) (GetGroupMembershipsResult, error) {
+		r, err := GetGroupMemberships(ctx, &v, opts...)
+		return *r, err
+
+	}).(GetGroupMembershipsResultOutput)
+}
+
+// GetGroupMembershipsApplyInput is an input type that accepts GetGroupMembershipsApplyArgs and GetGroupMembershipsApplyOutput values.
+// You can construct a concrete instance of `GetGroupMembershipsApplyInput` via:
+//
+//          GetGroupMembershipsApplyArgs{...}
+type GetGroupMembershipsApplyInput interface {
+	pulumi.Input
+
+	ToGetGroupMembershipsApplyOutput() GetGroupMembershipsApplyOutput
+	ToGetGroupMembershipsApplyOutputWithContext(context.Context) GetGroupMembershipsApplyOutput
+}
+
+// A collection of arguments for invoking getGroupMemberships.
+type GetGroupMembershipsApplyArgs struct {
+	// The parent Group resource under which to lookup the Membership names. Must be of the form groups/{group_id}.
+	Group pulumi.StringInput `pulumi:"group"`
+}
+
+func (GetGroupMembershipsApplyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGroupMembershipsArgs)(nil)).Elem()
+}
+
+func (i GetGroupMembershipsApplyArgs) ToGetGroupMembershipsApplyOutput() GetGroupMembershipsApplyOutput {
+	return i.ToGetGroupMembershipsApplyOutputWithContext(context.Background())
+}
+
+func (i GetGroupMembershipsApplyArgs) ToGetGroupMembershipsApplyOutputWithContext(ctx context.Context) GetGroupMembershipsApplyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGroupMembershipsApplyOutput)
+}
+
+// A collection of arguments for invoking getGroupMemberships.
+type GetGroupMembershipsApplyOutput struct{ *pulumi.OutputState }
+
+func (GetGroupMembershipsApplyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGroupMembershipsArgs)(nil)).Elem()
+}
+
+func (o GetGroupMembershipsApplyOutput) ToGetGroupMembershipsApplyOutput() GetGroupMembershipsApplyOutput {
+	return o
+}
+
+func (o GetGroupMembershipsApplyOutput) ToGetGroupMembershipsApplyOutputWithContext(ctx context.Context) GetGroupMembershipsApplyOutput {
+	return o
+}
+
+// The parent Group resource under which to lookup the Membership names. Must be of the form groups/{group_id}.
+func (o GetGroupMembershipsApplyOutput) Group() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupMembershipsArgs) string { return v.Group }).(pulumi.StringOutput)
+}
+
+// A collection of values returned by getGroupMemberships.
+type GetGroupMembershipsResultOutput struct{ *pulumi.OutputState }
+
+func (GetGroupMembershipsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGroupMembershipsResult)(nil)).Elem()
+}
+
+func (o GetGroupMembershipsResultOutput) ToGetGroupMembershipsResultOutput() GetGroupMembershipsResultOutput {
+	return o
+}
+
+func (o GetGroupMembershipsResultOutput) ToGetGroupMembershipsResultOutputWithContext(ctx context.Context) GetGroupMembershipsResultOutput {
+	return o
+}
+
+func (o GetGroupMembershipsResultOutput) Group() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupMembershipsResult) string { return v.Group }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetGroupMembershipsResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupMembershipsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The list of memberships under the given group. Structure is documented below.
+func (o GetGroupMembershipsResultOutput) Memberships() GetGroupMembershipsMembershipArrayOutput {
+	return o.ApplyT(func(v GetGroupMembershipsResult) []GetGroupMembershipsMembership { return v.Memberships }).(GetGroupMembershipsMembershipArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetGroupMembershipsApplyOutput{})
+	pulumi.RegisterOutputType(GetGroupMembershipsResultOutput{})
 }

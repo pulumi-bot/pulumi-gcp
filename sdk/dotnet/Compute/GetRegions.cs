@@ -53,6 +53,20 @@ namespace Pulumi.Gcp.Compute
         /// </summary>
         public static Task<GetRegionsResult> InvokeAsync(GetRegionsArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetRegionsResult>("gcp:compute/getRegions:getRegions", args ?? new GetRegionsArgs(), options.WithVersion());
+
+        public static Output<GetRegionsResult> Apply(GetRegionsApplyArgs? args = null, InvokeOptions? options = null)
+        {
+            args = args ?? new GetRegionsApplyArgs();
+            return Pulumi.Output.All(
+                args.Project.Box(),
+                args.Status.Box()
+            ).Apply(a => {
+                    var args = new GetRegionsArgs();
+                    a[0].Set(args, nameof(args.Project));
+                    a[1].Set(args, nameof(args.Status));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -72,6 +86,26 @@ namespace Pulumi.Gcp.Compute
         public string? Status { get; set; }
 
         public GetRegionsArgs()
+        {
+        }
+    }
+
+    public sealed class GetRegionsApplyArgs
+    {
+        /// <summary>
+        /// Project from which to list available regions. Defaults to project declared in the provider.
+        /// </summary>
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
+        /// <summary>
+        /// Allows to filter list of regions based on their current status. Status can be either `UP` or `DOWN`.
+        /// Defaults to no filtering (all available regions - both `UP` and `DOWN`).
+        /// </summary>
+        [Input("status")]
+        public Input<string>? Status { get; set; }
+
+        public GetRegionsApplyArgs()
         {
         }
     }

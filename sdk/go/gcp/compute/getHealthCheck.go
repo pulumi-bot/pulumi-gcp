@@ -4,6 +4,9 @@
 package compute
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -70,4 +73,163 @@ type LookupHealthCheckResult struct {
 	TimeoutSec         int                            `pulumi:"timeoutSec"`
 	Type               string                         `pulumi:"type"`
 	UnhealthyThreshold int                            `pulumi:"unhealthyThreshold"`
+}
+
+func LookupHealthCheckApply(ctx *pulumi.Context, args LookupHealthCheckApplyInput, opts ...pulumi.InvokeOption) LookupHealthCheckResultOutput {
+	return args.ToLookupHealthCheckApplyOutput().ApplyT(func(v LookupHealthCheckArgs) (LookupHealthCheckResult, error) {
+		r, err := LookupHealthCheck(ctx, &v, opts...)
+		return *r, err
+
+	}).(LookupHealthCheckResultOutput)
+}
+
+// LookupHealthCheckApplyInput is an input type that accepts LookupHealthCheckApplyArgs and LookupHealthCheckApplyOutput values.
+// You can construct a concrete instance of `LookupHealthCheckApplyInput` via:
+//
+//          LookupHealthCheckApplyArgs{...}
+type LookupHealthCheckApplyInput interface {
+	pulumi.Input
+
+	ToLookupHealthCheckApplyOutput() LookupHealthCheckApplyOutput
+	ToLookupHealthCheckApplyOutputWithContext(context.Context) LookupHealthCheckApplyOutput
+}
+
+// A collection of arguments for invoking getHealthCheck.
+type LookupHealthCheckApplyArgs struct {
+	// Name of the resource.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The ID of the project in which the resource belongs. If it
+	// is not provided, the provider project is used.
+	Project pulumi.StringPtrInput `pulumi:"project"`
+}
+
+func (LookupHealthCheckApplyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupHealthCheckArgs)(nil)).Elem()
+}
+
+func (i LookupHealthCheckApplyArgs) ToLookupHealthCheckApplyOutput() LookupHealthCheckApplyOutput {
+	return i.ToLookupHealthCheckApplyOutputWithContext(context.Background())
+}
+
+func (i LookupHealthCheckApplyArgs) ToLookupHealthCheckApplyOutputWithContext(ctx context.Context) LookupHealthCheckApplyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LookupHealthCheckApplyOutput)
+}
+
+// A collection of arguments for invoking getHealthCheck.
+type LookupHealthCheckApplyOutput struct{ *pulumi.OutputState }
+
+func (LookupHealthCheckApplyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupHealthCheckArgs)(nil)).Elem()
+}
+
+func (o LookupHealthCheckApplyOutput) ToLookupHealthCheckApplyOutput() LookupHealthCheckApplyOutput {
+	return o
+}
+
+func (o LookupHealthCheckApplyOutput) ToLookupHealthCheckApplyOutputWithContext(ctx context.Context) LookupHealthCheckApplyOutput {
+	return o
+}
+
+// Name of the resource.
+func (o LookupHealthCheckApplyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupHealthCheckArgs) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The ID of the project in which the resource belongs. If it
+// is not provided, the provider project is used.
+func (o LookupHealthCheckApplyOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupHealthCheckArgs) *string { return v.Project }).(pulumi.StringPtrOutput)
+}
+
+// A collection of values returned by getHealthCheck.
+type LookupHealthCheckResultOutput struct{ *pulumi.OutputState }
+
+func (LookupHealthCheckResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupHealthCheckResult)(nil)).Elem()
+}
+
+func (o LookupHealthCheckResultOutput) ToLookupHealthCheckResultOutput() LookupHealthCheckResultOutput {
+	return o
+}
+
+func (o LookupHealthCheckResultOutput) ToLookupHealthCheckResultOutputWithContext(ctx context.Context) LookupHealthCheckResultOutput {
+	return o
+}
+
+func (o LookupHealthCheckResultOutput) CheckIntervalSec() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupHealthCheckResult) int { return v.CheckIntervalSec }).(pulumi.IntOutput)
+}
+
+func (o LookupHealthCheckResultOutput) CreationTimestamp() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupHealthCheckResult) string { return v.CreationTimestamp }).(pulumi.StringOutput)
+}
+
+func (o LookupHealthCheckResultOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupHealthCheckResult) string { return v.Description }).(pulumi.StringOutput)
+}
+
+func (o LookupHealthCheckResultOutput) GrpcHealthChecks() GetHealthCheckGrpcHealthCheckArrayOutput {
+	return o.ApplyT(func(v LookupHealthCheckResult) []GetHealthCheckGrpcHealthCheck { return v.GrpcHealthChecks }).(GetHealthCheckGrpcHealthCheckArrayOutput)
+}
+
+func (o LookupHealthCheckResultOutput) HealthyThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupHealthCheckResult) int { return v.HealthyThreshold }).(pulumi.IntOutput)
+}
+
+func (o LookupHealthCheckResultOutput) Http2HealthChecks() GetHealthCheckHttp2HealthCheckArrayOutput {
+	return o.ApplyT(func(v LookupHealthCheckResult) []GetHealthCheckHttp2HealthCheck { return v.Http2HealthChecks }).(GetHealthCheckHttp2HealthCheckArrayOutput)
+}
+
+func (o LookupHealthCheckResultOutput) HttpHealthChecks() GetHealthCheckHttpHealthCheckArrayOutput {
+	return o.ApplyT(func(v LookupHealthCheckResult) []GetHealthCheckHttpHealthCheck { return v.HttpHealthChecks }).(GetHealthCheckHttpHealthCheckArrayOutput)
+}
+
+func (o LookupHealthCheckResultOutput) HttpsHealthChecks() GetHealthCheckHttpsHealthCheckArrayOutput {
+	return o.ApplyT(func(v LookupHealthCheckResult) []GetHealthCheckHttpsHealthCheck { return v.HttpsHealthChecks }).(GetHealthCheckHttpsHealthCheckArrayOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupHealthCheckResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupHealthCheckResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupHealthCheckResultOutput) LogConfigs() GetHealthCheckLogConfigArrayOutput {
+	return o.ApplyT(func(v LookupHealthCheckResult) []GetHealthCheckLogConfig { return v.LogConfigs }).(GetHealthCheckLogConfigArrayOutput)
+}
+
+func (o LookupHealthCheckResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupHealthCheckResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o LookupHealthCheckResultOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupHealthCheckResult) *string { return v.Project }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupHealthCheckResultOutput) SelfLink() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupHealthCheckResult) string { return v.SelfLink }).(pulumi.StringOutput)
+}
+
+func (o LookupHealthCheckResultOutput) SslHealthChecks() GetHealthCheckSslHealthCheckArrayOutput {
+	return o.ApplyT(func(v LookupHealthCheckResult) []GetHealthCheckSslHealthCheck { return v.SslHealthChecks }).(GetHealthCheckSslHealthCheckArrayOutput)
+}
+
+func (o LookupHealthCheckResultOutput) TcpHealthChecks() GetHealthCheckTcpHealthCheckArrayOutput {
+	return o.ApplyT(func(v LookupHealthCheckResult) []GetHealthCheckTcpHealthCheck { return v.TcpHealthChecks }).(GetHealthCheckTcpHealthCheckArrayOutput)
+}
+
+func (o LookupHealthCheckResultOutput) TimeoutSec() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupHealthCheckResult) int { return v.TimeoutSec }).(pulumi.IntOutput)
+}
+
+func (o LookupHealthCheckResultOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupHealthCheckResult) string { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o LookupHealthCheckResultOutput) UnhealthyThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupHealthCheckResult) int { return v.UnhealthyThreshold }).(pulumi.IntOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupHealthCheckApplyOutput{})
+	pulumi.RegisterOutputType(LookupHealthCheckResultOutput{})
 }

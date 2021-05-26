@@ -45,7 +45,7 @@ export interface GetLocationsArgs {
      * The project to list versions for. If it
      * is not provided, the provider project is used.
      */
-    readonly project?: string;
+    project?: string;
 }
 
 /**
@@ -61,4 +61,19 @@ export interface GetLocationsResult {
      */
     readonly locations: string[];
     readonly project: string;
+}
+
+export function getLocationsApply(args?: GetLocationsApplyArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLocationsResult> {
+    return pulumi.output(args).apply(a => getLocations(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getLocations.
+ */
+export interface GetLocationsApplyArgs {
+    /**
+     * The project to list versions for. If it
+     * is not provided, the provider project is used.
+     */
+    project?: pulumi.Input<string>;
 }
