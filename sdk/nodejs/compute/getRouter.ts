@@ -43,21 +43,21 @@ export interface GetRouterArgs {
     /**
      * The name of the router.
      */
-    readonly name: string;
+    name: string;
     /**
      * The VPC network on which this router lives.
      */
-    readonly network: string;
+    network: string;
     /**
      * The ID of the project in which the resource
      * belongs. If it is not provided, the provider project is used.
      */
-    readonly project?: string;
+    project?: string;
     /**
      * The region this router has been created in. If
      * unspecified, this defaults to the region configured in the provider.
      */
-    readonly region?: string;
+    region?: string;
 }
 
 /**
