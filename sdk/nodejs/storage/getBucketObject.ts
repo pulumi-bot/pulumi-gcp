@@ -47,11 +47,11 @@ export interface GetBucketObjectArgs {
     /**
      * The name of the containing bucket.
      */
-    readonly bucket?: string;
+    bucket?: string;
     /**
      * The name of the object.
      */
-    readonly name?: string;
+    name?: string;
 }
 
 /**
