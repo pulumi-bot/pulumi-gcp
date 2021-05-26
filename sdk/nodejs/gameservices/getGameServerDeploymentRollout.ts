@@ -41,7 +41,7 @@ export interface GetGameServerDeploymentRolloutArgs {
     /**
      * The deployment to get the rollout state from. Only 1 rollout must be associated with each deployment.
      */
-    readonly deploymentId: string;
+    deploymentId: string;
 }
 
 /**

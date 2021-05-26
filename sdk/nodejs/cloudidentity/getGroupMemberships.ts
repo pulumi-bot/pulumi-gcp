@@ -41,7 +41,7 @@ export interface GetGroupMembershipsArgs {
     /**
      * The parent Group resource under which to lookup the Membership names. Must be of the form groups/{group_id}.
      */
-    readonly group: string;
+    group: string;
 }
 
 /**
