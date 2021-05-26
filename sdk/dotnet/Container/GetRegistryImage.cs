@@ -44,6 +44,25 @@ namespace Pulumi.Gcp.Container
         /// </summary>
         public static Task<GetRegistryImageResult> InvokeAsync(GetRegistryImageArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetRegistryImageResult>("gcp:container/getRegistryImage:getRegistryImage", args ?? new GetRegistryImageArgs(), options.WithVersion());
+
+        public static Output<GetRegistryImageResult> Apply(GetRegistryImageApplyArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.Digest.Box(),
+                args.Name.Box(),
+                args.Project.Box(),
+                args.Region.Box(),
+                args.Tag.Box()
+            ).Apply(a => {
+                    var args = new GetRegistryImageArgs();
+                    a[0].Set(args, nameof(args.Digest));
+                    a[1].Set(args, nameof(args.Name));
+                    a[2].Set(args, nameof(args.Project));
+                    a[3].Set(args, nameof(args.Region));
+                    a[4].Set(args, nameof(args.Tag));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -65,6 +84,28 @@ namespace Pulumi.Gcp.Container
         public string? Tag { get; set; }
 
         public GetRegistryImageArgs()
+        {
+        }
+    }
+
+    public sealed class GetRegistryImageApplyArgs
+    {
+        [Input("digest")]
+        public Input<string>? Digest { get; set; }
+
+        [Input("name", required: true)]
+        public Input<string> Name { get; set; } = null!;
+
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
+        [Input("region")]
+        public Input<string>? Region { get; set; }
+
+        [Input("tag")]
+        public Input<string>? Tag { get; set; }
+
+        public GetRegistryImageApplyArgs()
         {
         }
     }

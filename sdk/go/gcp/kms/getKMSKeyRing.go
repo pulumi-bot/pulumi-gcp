@@ -4,6 +4,9 @@
 package kms
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -69,4 +72,123 @@ type GetKMSKeyRingResult struct {
 	Project  *string `pulumi:"project"`
 	// The self link of the created KeyRing. Its format is `projects/{projectId}/locations/{location}/keyRings/{keyRingName}`.
 	SelfLink string `pulumi:"selfLink"`
+}
+
+func GetKMSKeyRingApply(ctx *pulumi.Context, args GetKMSKeyRingApplyInput, opts ...pulumi.InvokeOption) GetKMSKeyRingResultOutput {
+	return args.ToGetKMSKeyRingApplyOutput().ApplyT(func(v GetKMSKeyRingArgs) (GetKMSKeyRingResult, error) {
+		r, err := GetKMSKeyRing(ctx, &v, opts...)
+		return *r, err
+
+	}).(GetKMSKeyRingResultOutput)
+}
+
+// GetKMSKeyRingApplyInput is an input type that accepts GetKMSKeyRingApplyArgs and GetKMSKeyRingApplyOutput values.
+// You can construct a concrete instance of `GetKMSKeyRingApplyInput` via:
+//
+//          GetKMSKeyRingApplyArgs{...}
+type GetKMSKeyRingApplyInput interface {
+	pulumi.Input
+
+	ToGetKMSKeyRingApplyOutput() GetKMSKeyRingApplyOutput
+	ToGetKMSKeyRingApplyOutputWithContext(context.Context) GetKMSKeyRingApplyOutput
+}
+
+// A collection of arguments for invoking getKMSKeyRing.
+type GetKMSKeyRingApplyArgs struct {
+	// The Google Cloud Platform location for the KeyRing.
+	// A full list of valid locations can be found by running `gcloud kms locations list`.
+	Location pulumi.StringInput `pulumi:"location"`
+	// The KeyRing's name.
+	// A KeyRing name must exist within the provided location and match the regular expression `[a-zA-Z0-9_-]{1,63}`
+	Name pulumi.StringInput `pulumi:"name"`
+	// The project in which the resource belongs. If it
+	// is not provided, the provider project is used.
+	Project pulumi.StringPtrInput `pulumi:"project"`
+}
+
+func (GetKMSKeyRingApplyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKMSKeyRingArgs)(nil)).Elem()
+}
+
+func (i GetKMSKeyRingApplyArgs) ToGetKMSKeyRingApplyOutput() GetKMSKeyRingApplyOutput {
+	return i.ToGetKMSKeyRingApplyOutputWithContext(context.Background())
+}
+
+func (i GetKMSKeyRingApplyArgs) ToGetKMSKeyRingApplyOutputWithContext(ctx context.Context) GetKMSKeyRingApplyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKMSKeyRingApplyOutput)
+}
+
+// A collection of arguments for invoking getKMSKeyRing.
+type GetKMSKeyRingApplyOutput struct{ *pulumi.OutputState }
+
+func (GetKMSKeyRingApplyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKMSKeyRingArgs)(nil)).Elem()
+}
+
+func (o GetKMSKeyRingApplyOutput) ToGetKMSKeyRingApplyOutput() GetKMSKeyRingApplyOutput {
+	return o
+}
+
+func (o GetKMSKeyRingApplyOutput) ToGetKMSKeyRingApplyOutputWithContext(ctx context.Context) GetKMSKeyRingApplyOutput {
+	return o
+}
+
+// The Google Cloud Platform location for the KeyRing.
+// A full list of valid locations can be found by running `gcloud kms locations list`.
+func (o GetKMSKeyRingApplyOutput) Location() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKMSKeyRingArgs) string { return v.Location }).(pulumi.StringOutput)
+}
+
+// The KeyRing's name.
+// A KeyRing name must exist within the provided location and match the regular expression `[a-zA-Z0-9_-]{1,63}`
+func (o GetKMSKeyRingApplyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKMSKeyRingArgs) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The project in which the resource belongs. If it
+// is not provided, the provider project is used.
+func (o GetKMSKeyRingApplyOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetKMSKeyRingArgs) *string { return v.Project }).(pulumi.StringPtrOutput)
+}
+
+// A collection of values returned by getKMSKeyRing.
+type GetKMSKeyRingResultOutput struct{ *pulumi.OutputState }
+
+func (GetKMSKeyRingResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKMSKeyRingResult)(nil)).Elem()
+}
+
+func (o GetKMSKeyRingResultOutput) ToGetKMSKeyRingResultOutput() GetKMSKeyRingResultOutput {
+	return o
+}
+
+func (o GetKMSKeyRingResultOutput) ToGetKMSKeyRingResultOutputWithContext(ctx context.Context) GetKMSKeyRingResultOutput {
+	return o
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetKMSKeyRingResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKMSKeyRingResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetKMSKeyRingResultOutput) Location() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKMSKeyRingResult) string { return v.Location }).(pulumi.StringOutput)
+}
+
+func (o GetKMSKeyRingResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKMSKeyRingResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetKMSKeyRingResultOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetKMSKeyRingResult) *string { return v.Project }).(pulumi.StringPtrOutput)
+}
+
+// The self link of the created KeyRing. Its format is `projects/{projectId}/locations/{location}/keyRings/{keyRingName}`.
+func (o GetKMSKeyRingResultOutput) SelfLink() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKMSKeyRingResult) string { return v.SelfLink }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetKMSKeyRingApplyOutput{})
+	pulumi.RegisterOutputType(GetKMSKeyRingResultOutput{})
 }

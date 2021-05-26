@@ -41,6 +41,17 @@ namespace Pulumi.Gcp.CloudIdentity
         /// </summary>
         public static Task<GetGroupsResult> InvokeAsync(GetGroupsArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetGroupsResult>("gcp:cloudidentity/getGroups:getGroups", args ?? new GetGroupsArgs(), options.WithVersion());
+
+        public static Output<GetGroupsResult> Apply(GetGroupsApplyArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.Parent.Box()
+            ).Apply(a => {
+                    var args = new GetGroupsArgs();
+                    a[0].Set(args, nameof(args.Parent));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -53,6 +64,19 @@ namespace Pulumi.Gcp.CloudIdentity
         public string Parent { get; set; } = null!;
 
         public GetGroupsArgs()
+        {
+        }
+    }
+
+    public sealed class GetGroupsApplyArgs
+    {
+        /// <summary>
+        /// The parent resource under which to list all Groups. Must be of the form identitysources/{identity_source_id} for external- identity-mapped groups or customers/{customer_id} for Google Groups.
+        /// </summary>
+        [Input("parent", required: true)]
+        public Input<string> Parent { get; set; } = null!;
+
+        public GetGroupsApplyArgs()
         {
         }
     }

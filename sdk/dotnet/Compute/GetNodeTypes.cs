@@ -45,6 +45,20 @@ namespace Pulumi.Gcp.Compute
         /// </summary>
         public static Task<GetNodeTypesResult> InvokeAsync(GetNodeTypesArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetNodeTypesResult>("gcp:compute/getNodeTypes:getNodeTypes", args ?? new GetNodeTypesArgs(), options.WithVersion());
+
+        public static Output<GetNodeTypesResult> Apply(GetNodeTypesApplyArgs? args = null, InvokeOptions? options = null)
+        {
+            args = args ?? new GetNodeTypesApplyArgs();
+            return Pulumi.Output.All(
+                args.Project.Box(),
+                args.Zone.Box()
+            ).Apply(a => {
+                    var args = new GetNodeTypesArgs();
+                    a[0].Set(args, nameof(args.Project));
+                    a[1].Set(args, nameof(args.Zone));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -66,6 +80,28 @@ namespace Pulumi.Gcp.Compute
         public string? Zone { get; set; }
 
         public GetNodeTypesArgs()
+        {
+        }
+    }
+
+    public sealed class GetNodeTypesApplyArgs
+    {
+        /// <summary>
+        /// ID of the project to list available node types for.
+        /// Should match the project the nodes of this type will be deployed to.
+        /// Defaults to the project that the provider is authenticated with.
+        /// </summary>
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
+        /// <summary>
+        /// The zone to list node types for. Should be in zone of intended node groups and region of referencing node template. If `zone` is not specified, the provider-level zone must be set and is used
+        /// instead.
+        /// </summary>
+        [Input("zone")]
+        public Input<string>? Zone { get; set; }
+
+        public GetNodeTypesApplyArgs()
         {
         }
     }

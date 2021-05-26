@@ -41,7 +41,7 @@ export interface GetGroupMembershipsArgs {
     /**
      * The parent Group resource under which to lookup the Membership names. Must be of the form groups/{group_id}.
      */
-    readonly group: string;
+    group: string;
 }
 
 /**
@@ -57,4 +57,18 @@ export interface GetGroupMembershipsResult {
      * The list of memberships under the given group. Structure is documented below.
      */
     readonly memberships: outputs.cloudidentity.GetGroupMembershipsMembership[];
+}
+
+export function getGroupMembershipsApply(args: GetGroupMembershipsApplyArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetGroupMembershipsResult> {
+    return pulumi.output(args).apply(a => getGroupMemberships(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getGroupMemberships.
+ */
+export interface GetGroupMembershipsApplyArgs {
+    /**
+     * The parent Group resource under which to lookup the Membership names. Must be of the form groups/{group_id}.
+     */
+    group: pulumi.Input<string>;
 }

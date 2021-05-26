@@ -25,6 +25,21 @@ namespace Pulumi.Gcp.Kms
         /// </summary>
         public static Task<GetKMSSecretResult> InvokeAsync(GetKMSSecretArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetKMSSecretResult>("gcp:kms/getKMSSecret:getKMSSecret", args ?? new GetKMSSecretArgs(), options.WithVersion());
+
+        public static Output<GetKMSSecretResult> Apply(GetKMSSecretApplyArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.AdditionalAuthenticatedData.Box(),
+                args.Ciphertext.Box(),
+                args.CryptoKey.Box()
+            ).Apply(a => {
+                    var args = new GetKMSSecretArgs();
+                    a[0].Set(args, nameof(args.AdditionalAuthenticatedData));
+                    a[1].Set(args, nameof(args.Ciphertext));
+                    a[2].Set(args, nameof(args.CryptoKey));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -51,6 +66,33 @@ namespace Pulumi.Gcp.Kms
         public string CryptoKey { get; set; } = null!;
 
         public GetKMSSecretArgs()
+        {
+        }
+    }
+
+    public sealed class GetKMSSecretApplyArgs
+    {
+        /// <summary>
+        /// The [additional authenticated data](https://cloud.google.com/kms/docs/additional-authenticated-data) used for integrity checks during encryption and decryption.
+        /// </summary>
+        [Input("additionalAuthenticatedData")]
+        public Input<string>? AdditionalAuthenticatedData { get; set; }
+
+        /// <summary>
+        /// The ciphertext to be decrypted, encoded in base64
+        /// </summary>
+        [Input("ciphertext", required: true)]
+        public Input<string> Ciphertext { get; set; } = null!;
+
+        /// <summary>
+        /// The id of the CryptoKey that will be used to
+        /// decrypt the provided ciphertext. This is represented by the format
+        /// `{projectId}/{location}/{keyRingName}/{cryptoKeyName}`.
+        /// </summary>
+        [Input("cryptoKey", required: true)]
+        public Input<string> CryptoKey { get; set; } = null!;
+
+        public GetKMSSecretApplyArgs()
         {
         }
     }

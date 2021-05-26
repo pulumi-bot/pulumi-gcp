@@ -4,6 +4,9 @@
 package compute
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -62,4 +65,131 @@ type LookupBackendBucketResult struct {
 	Name     string  `pulumi:"name"`
 	Project  *string `pulumi:"project"`
 	SelfLink string  `pulumi:"selfLink"`
+}
+
+func LookupBackendBucketApply(ctx *pulumi.Context, args LookupBackendBucketApplyInput, opts ...pulumi.InvokeOption) LookupBackendBucketResultOutput {
+	return args.ToLookupBackendBucketApplyOutput().ApplyT(func(v LookupBackendBucketArgs) (LookupBackendBucketResult, error) {
+		r, err := LookupBackendBucket(ctx, &v, opts...)
+		return *r, err
+
+	}).(LookupBackendBucketResultOutput)
+}
+
+// LookupBackendBucketApplyInput is an input type that accepts LookupBackendBucketApplyArgs and LookupBackendBucketApplyOutput values.
+// You can construct a concrete instance of `LookupBackendBucketApplyInput` via:
+//
+//          LookupBackendBucketApplyArgs{...}
+type LookupBackendBucketApplyInput interface {
+	pulumi.Input
+
+	ToLookupBackendBucketApplyOutput() LookupBackendBucketApplyOutput
+	ToLookupBackendBucketApplyOutputWithContext(context.Context) LookupBackendBucketApplyOutput
+}
+
+// A collection of arguments for invoking getBackendBucket.
+type LookupBackendBucketApplyArgs struct {
+	// Name of the resource.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The ID of the project in which the resource belongs. If it
+	// is not provided, the provider project is used.
+	Project pulumi.StringPtrInput `pulumi:"project"`
+}
+
+func (LookupBackendBucketApplyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupBackendBucketArgs)(nil)).Elem()
+}
+
+func (i LookupBackendBucketApplyArgs) ToLookupBackendBucketApplyOutput() LookupBackendBucketApplyOutput {
+	return i.ToLookupBackendBucketApplyOutputWithContext(context.Background())
+}
+
+func (i LookupBackendBucketApplyArgs) ToLookupBackendBucketApplyOutputWithContext(ctx context.Context) LookupBackendBucketApplyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LookupBackendBucketApplyOutput)
+}
+
+// A collection of arguments for invoking getBackendBucket.
+type LookupBackendBucketApplyOutput struct{ *pulumi.OutputState }
+
+func (LookupBackendBucketApplyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupBackendBucketArgs)(nil)).Elem()
+}
+
+func (o LookupBackendBucketApplyOutput) ToLookupBackendBucketApplyOutput() LookupBackendBucketApplyOutput {
+	return o
+}
+
+func (o LookupBackendBucketApplyOutput) ToLookupBackendBucketApplyOutputWithContext(ctx context.Context) LookupBackendBucketApplyOutput {
+	return o
+}
+
+// Name of the resource.
+func (o LookupBackendBucketApplyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBackendBucketArgs) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The ID of the project in which the resource belongs. If it
+// is not provided, the provider project is used.
+func (o LookupBackendBucketApplyOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupBackendBucketArgs) *string { return v.Project }).(pulumi.StringPtrOutput)
+}
+
+// A collection of values returned by getBackendBucket.
+type LookupBackendBucketResultOutput struct{ *pulumi.OutputState }
+
+func (LookupBackendBucketResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupBackendBucketResult)(nil)).Elem()
+}
+
+func (o LookupBackendBucketResultOutput) ToLookupBackendBucketResultOutput() LookupBackendBucketResultOutput {
+	return o
+}
+
+func (o LookupBackendBucketResultOutput) ToLookupBackendBucketResultOutputWithContext(ctx context.Context) LookupBackendBucketResultOutput {
+	return o
+}
+
+func (o LookupBackendBucketResultOutput) BucketName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBackendBucketResult) string { return v.BucketName }).(pulumi.StringOutput)
+}
+
+func (o LookupBackendBucketResultOutput) CdnPolicies() GetBackendBucketCdnPolicyArrayOutput {
+	return o.ApplyT(func(v LookupBackendBucketResult) []GetBackendBucketCdnPolicy { return v.CdnPolicies }).(GetBackendBucketCdnPolicyArrayOutput)
+}
+
+func (o LookupBackendBucketResultOutput) CreationTimestamp() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBackendBucketResult) string { return v.CreationTimestamp }).(pulumi.StringOutput)
+}
+
+func (o LookupBackendBucketResultOutput) CustomResponseHeaders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupBackendBucketResult) []string { return v.CustomResponseHeaders }).(pulumi.StringArrayOutput)
+}
+
+func (o LookupBackendBucketResultOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBackendBucketResult) string { return v.Description }).(pulumi.StringOutput)
+}
+
+func (o LookupBackendBucketResultOutput) EnableCdn() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupBackendBucketResult) bool { return v.EnableCdn }).(pulumi.BoolOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupBackendBucketResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBackendBucketResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupBackendBucketResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBackendBucketResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o LookupBackendBucketResultOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupBackendBucketResult) *string { return v.Project }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupBackendBucketResultOutput) SelfLink() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBackendBucketResult) string { return v.SelfLink }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupBackendBucketApplyOutput{})
+	pulumi.RegisterOutputType(LookupBackendBucketResultOutput{})
 }

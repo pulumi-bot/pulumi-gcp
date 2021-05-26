@@ -114,3 +114,10 @@ def get_client(brand: Optional[str] = None,
         display_name=__ret__.display_name,
         id=__ret__.id,
         secret=__ret__.secret)
+
+
+@_utilities.lift_output_func(get_client)
+def get_client_apply(brand: Optional[pulumi.Input[str]] = None,
+                     client_id: Optional[pulumi.Input[str]] = None,
+                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetClientResult]:
+    ...

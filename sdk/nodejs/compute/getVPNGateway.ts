@@ -41,17 +41,17 @@ export interface GetVPNGatewayArgs {
     /**
      * The name of the VPN gateway.
      */
-    readonly name: string;
+    name: string;
     /**
      * The project in which the resource belongs. If it
      * is not provided, the provider project is used.
      */
-    readonly project?: string;
+    project?: string;
     /**
      * The region in which the resource belongs. If it
      * is not provided, the project region is used.
      */
-    readonly region?: string;
+    region?: string;
 }
 
 /**
@@ -80,4 +80,28 @@ export interface GetVPNGatewayResult {
      * The URI of the resource.
      */
     readonly selfLink: string;
+}
+
+export function getVPNGatewayApply(args: GetVPNGatewayApplyArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVPNGatewayResult> {
+    return pulumi.output(args).apply(a => getVPNGateway(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getVPNGateway.
+ */
+export interface GetVPNGatewayApplyArgs {
+    /**
+     * The name of the VPN gateway.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The project in which the resource belongs. If it
+     * is not provided, the provider project is used.
+     */
+    project?: pulumi.Input<string>;
+    /**
+     * The region in which the resource belongs. If it
+     * is not provided, the project region is used.
+     */
+    region?: pulumi.Input<string>;
 }

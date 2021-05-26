@@ -39,6 +39,19 @@ namespace Pulumi.Gcp.Iam
         /// </summary>
         public static Task<GetWorkloadIdentityPoolResult> InvokeAsync(GetWorkloadIdentityPoolArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetWorkloadIdentityPoolResult>("gcp:iam/getWorkloadIdentityPool:getWorkloadIdentityPool", args ?? new GetWorkloadIdentityPoolArgs(), options.WithVersion());
+
+        public static Output<GetWorkloadIdentityPoolResult> Apply(GetWorkloadIdentityPoolApplyArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.Project.Box(),
+                args.WorkloadIdentityPoolId.Box()
+            ).Apply(a => {
+                    var args = new GetWorkloadIdentityPoolArgs();
+                    a[0].Set(args, nameof(args.Project));
+                    a[1].Set(args, nameof(args.WorkloadIdentityPoolId));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -59,6 +72,27 @@ namespace Pulumi.Gcp.Iam
         public string WorkloadIdentityPoolId { get; set; } = null!;
 
         public GetWorkloadIdentityPoolArgs()
+        {
+        }
+    }
+
+    public sealed class GetWorkloadIdentityPoolApplyArgs
+    {
+        /// <summary>
+        /// The project in which the resource belongs. If it
+        /// is not provided, the provider project is used.
+        /// </summary>
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
+        /// <summary>
+        /// The id of the pool which is the
+        /// final component of the resource name.
+        /// </summary>
+        [Input("workloadIdentityPoolId", required: true)]
+        public Input<string> WorkloadIdentityPoolId { get; set; } = null!;
+
+        public GetWorkloadIdentityPoolApplyArgs()
         {
         }
     }

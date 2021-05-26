@@ -4,6 +4,9 @@
 package container
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -62,4 +65,128 @@ type GetRegistryImageResult struct {
 	Project  string  `pulumi:"project"`
 	Region   *string `pulumi:"region"`
 	Tag      *string `pulumi:"tag"`
+}
+
+func GetRegistryImageApply(ctx *pulumi.Context, args GetRegistryImageApplyInput, opts ...pulumi.InvokeOption) GetRegistryImageResultOutput {
+	return args.ToGetRegistryImageApplyOutput().ApplyT(func(v GetRegistryImageArgs) (GetRegistryImageResult, error) {
+		r, err := GetRegistryImage(ctx, &v, opts...)
+		return *r, err
+
+	}).(GetRegistryImageResultOutput)
+}
+
+// GetRegistryImageApplyInput is an input type that accepts GetRegistryImageApplyArgs and GetRegistryImageApplyOutput values.
+// You can construct a concrete instance of `GetRegistryImageApplyInput` via:
+//
+//          GetRegistryImageApplyArgs{...}
+type GetRegistryImageApplyInput interface {
+	pulumi.Input
+
+	ToGetRegistryImageApplyOutput() GetRegistryImageApplyOutput
+	ToGetRegistryImageApplyOutputWithContext(context.Context) GetRegistryImageApplyOutput
+}
+
+// A collection of arguments for invoking getRegistryImage.
+type GetRegistryImageApplyArgs struct {
+	Digest  pulumi.StringPtrInput `pulumi:"digest"`
+	Name    pulumi.StringInput    `pulumi:"name"`
+	Project pulumi.StringPtrInput `pulumi:"project"`
+	Region  pulumi.StringPtrInput `pulumi:"region"`
+	Tag     pulumi.StringPtrInput `pulumi:"tag"`
+}
+
+func (GetRegistryImageApplyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistryImageArgs)(nil)).Elem()
+}
+
+func (i GetRegistryImageApplyArgs) ToGetRegistryImageApplyOutput() GetRegistryImageApplyOutput {
+	return i.ToGetRegistryImageApplyOutputWithContext(context.Background())
+}
+
+func (i GetRegistryImageApplyArgs) ToGetRegistryImageApplyOutputWithContext(ctx context.Context) GetRegistryImageApplyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistryImageApplyOutput)
+}
+
+// A collection of arguments for invoking getRegistryImage.
+type GetRegistryImageApplyOutput struct{ *pulumi.OutputState }
+
+func (GetRegistryImageApplyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistryImageArgs)(nil)).Elem()
+}
+
+func (o GetRegistryImageApplyOutput) ToGetRegistryImageApplyOutput() GetRegistryImageApplyOutput {
+	return o
+}
+
+func (o GetRegistryImageApplyOutput) ToGetRegistryImageApplyOutputWithContext(ctx context.Context) GetRegistryImageApplyOutput {
+	return o
+}
+
+func (o GetRegistryImageApplyOutput) Digest() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetRegistryImageArgs) *string { return v.Digest }).(pulumi.StringPtrOutput)
+}
+
+func (o GetRegistryImageApplyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistryImageArgs) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetRegistryImageApplyOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetRegistryImageArgs) *string { return v.Project }).(pulumi.StringPtrOutput)
+}
+
+func (o GetRegistryImageApplyOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetRegistryImageArgs) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+func (o GetRegistryImageApplyOutput) Tag() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetRegistryImageArgs) *string { return v.Tag }).(pulumi.StringPtrOutput)
+}
+
+// A collection of values returned by getRegistryImage.
+type GetRegistryImageResultOutput struct{ *pulumi.OutputState }
+
+func (GetRegistryImageResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistryImageResult)(nil)).Elem()
+}
+
+func (o GetRegistryImageResultOutput) ToGetRegistryImageResultOutput() GetRegistryImageResultOutput {
+	return o
+}
+
+func (o GetRegistryImageResultOutput) ToGetRegistryImageResultOutputWithContext(ctx context.Context) GetRegistryImageResultOutput {
+	return o
+}
+
+func (o GetRegistryImageResultOutput) Digest() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetRegistryImageResult) *string { return v.Digest }).(pulumi.StringPtrOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetRegistryImageResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistryImageResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetRegistryImageResultOutput) ImageUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistryImageResult) string { return v.ImageUrl }).(pulumi.StringOutput)
+}
+
+func (o GetRegistryImageResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistryImageResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetRegistryImageResultOutput) Project() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistryImageResult) string { return v.Project }).(pulumi.StringOutput)
+}
+
+func (o GetRegistryImageResultOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetRegistryImageResult) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+func (o GetRegistryImageResultOutput) Tag() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetRegistryImageResult) *string { return v.Tag }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetRegistryImageApplyOutput{})
+	pulumi.RegisterOutputType(GetRegistryImageResultOutput{})
 }

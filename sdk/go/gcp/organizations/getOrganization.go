@@ -4,6 +4,9 @@
 package organizations
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -70,4 +73,126 @@ type GetOrganizationResult struct {
 	// The Organization ID.
 	OrgId        string  `pulumi:"orgId"`
 	Organization *string `pulumi:"organization"`
+}
+
+func GetOrganizationApply(ctx *pulumi.Context, args GetOrganizationApplyInput, opts ...pulumi.InvokeOption) GetOrganizationResultOutput {
+	return args.ToGetOrganizationApplyOutput().ApplyT(func(v GetOrganizationArgs) (GetOrganizationResult, error) {
+		r, err := GetOrganization(ctx, &v, opts...)
+		return *r, err
+
+	}).(GetOrganizationResultOutput)
+}
+
+// GetOrganizationApplyInput is an input type that accepts GetOrganizationApplyArgs and GetOrganizationApplyOutput values.
+// You can construct a concrete instance of `GetOrganizationApplyInput` via:
+//
+//          GetOrganizationApplyArgs{...}
+type GetOrganizationApplyInput interface {
+	pulumi.Input
+
+	ToGetOrganizationApplyOutput() GetOrganizationApplyOutput
+	ToGetOrganizationApplyOutputWithContext(context.Context) GetOrganizationApplyOutput
+}
+
+// A collection of arguments for invoking getOrganization.
+type GetOrganizationApplyArgs struct {
+	// The domain name of the Organization.
+	Domain pulumi.StringPtrInput `pulumi:"domain"`
+	// The Organization's numeric ID, including an optional `organizations/` prefix.
+	Organization pulumi.StringPtrInput `pulumi:"organization"`
+}
+
+func (GetOrganizationApplyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetOrganizationArgs)(nil)).Elem()
+}
+
+func (i GetOrganizationApplyArgs) ToGetOrganizationApplyOutput() GetOrganizationApplyOutput {
+	return i.ToGetOrganizationApplyOutputWithContext(context.Background())
+}
+
+func (i GetOrganizationApplyArgs) ToGetOrganizationApplyOutputWithContext(ctx context.Context) GetOrganizationApplyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetOrganizationApplyOutput)
+}
+
+// A collection of arguments for invoking getOrganization.
+type GetOrganizationApplyOutput struct{ *pulumi.OutputState }
+
+func (GetOrganizationApplyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetOrganizationArgs)(nil)).Elem()
+}
+
+func (o GetOrganizationApplyOutput) ToGetOrganizationApplyOutput() GetOrganizationApplyOutput {
+	return o
+}
+
+func (o GetOrganizationApplyOutput) ToGetOrganizationApplyOutputWithContext(ctx context.Context) GetOrganizationApplyOutput {
+	return o
+}
+
+// The domain name of the Organization.
+func (o GetOrganizationApplyOutput) Domain() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetOrganizationArgs) *string { return v.Domain }).(pulumi.StringPtrOutput)
+}
+
+// The Organization's numeric ID, including an optional `organizations/` prefix.
+func (o GetOrganizationApplyOutput) Organization() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetOrganizationArgs) *string { return v.Organization }).(pulumi.StringPtrOutput)
+}
+
+// A collection of values returned by getOrganization.
+type GetOrganizationResultOutput struct{ *pulumi.OutputState }
+
+func (GetOrganizationResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetOrganizationResult)(nil)).Elem()
+}
+
+func (o GetOrganizationResultOutput) ToGetOrganizationResultOutput() GetOrganizationResultOutput {
+	return o
+}
+
+func (o GetOrganizationResultOutput) ToGetOrganizationResultOutputWithContext(ctx context.Context) GetOrganizationResultOutput {
+	return o
+}
+
+// Timestamp when the Organization was created. A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z".
+func (o GetOrganizationResultOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOrganizationResult) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The Google for Work customer ID of the Organization.
+func (o GetOrganizationResultOutput) DirectoryCustomerId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOrganizationResult) string { return v.DirectoryCustomerId }).(pulumi.StringOutput)
+}
+
+func (o GetOrganizationResultOutput) Domain() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOrganizationResult) string { return v.Domain }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetOrganizationResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOrganizationResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The Organization's current lifecycle state.
+func (o GetOrganizationResultOutput) LifecycleState() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOrganizationResult) string { return v.LifecycleState }).(pulumi.StringOutput)
+}
+
+// The resource name of the Organization in the form `organizations/{organization_id}`.
+func (o GetOrganizationResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOrganizationResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The Organization ID.
+func (o GetOrganizationResultOutput) OrgId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOrganizationResult) string { return v.OrgId }).(pulumi.StringOutput)
+}
+
+func (o GetOrganizationResultOutput) Organization() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetOrganizationResult) *string { return v.Organization }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetOrganizationApplyOutput{})
+	pulumi.RegisterOutputType(GetOrganizationResultOutput{})
 }

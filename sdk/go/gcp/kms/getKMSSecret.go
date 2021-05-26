@@ -4,6 +4,9 @@
 package kms
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -47,4 +50,121 @@ type GetKMSSecretResult struct {
 	Id string `pulumi:"id"`
 	// Contains the result of decrypting the provided ciphertext.
 	Plaintext string `pulumi:"plaintext"`
+}
+
+func GetKMSSecretApply(ctx *pulumi.Context, args GetKMSSecretApplyInput, opts ...pulumi.InvokeOption) GetKMSSecretResultOutput {
+	return args.ToGetKMSSecretApplyOutput().ApplyT(func(v GetKMSSecretArgs) (GetKMSSecretResult, error) {
+		r, err := GetKMSSecret(ctx, &v, opts...)
+		return *r, err
+
+	}).(GetKMSSecretResultOutput)
+}
+
+// GetKMSSecretApplyInput is an input type that accepts GetKMSSecretApplyArgs and GetKMSSecretApplyOutput values.
+// You can construct a concrete instance of `GetKMSSecretApplyInput` via:
+//
+//          GetKMSSecretApplyArgs{...}
+type GetKMSSecretApplyInput interface {
+	pulumi.Input
+
+	ToGetKMSSecretApplyOutput() GetKMSSecretApplyOutput
+	ToGetKMSSecretApplyOutputWithContext(context.Context) GetKMSSecretApplyOutput
+}
+
+// A collection of arguments for invoking getKMSSecret.
+type GetKMSSecretApplyArgs struct {
+	// The [additional authenticated data](https://cloud.google.com/kms/docs/additional-authenticated-data) used for integrity checks during encryption and decryption.
+	AdditionalAuthenticatedData pulumi.StringPtrInput `pulumi:"additionalAuthenticatedData"`
+	// The ciphertext to be decrypted, encoded in base64
+	Ciphertext pulumi.StringInput `pulumi:"ciphertext"`
+	// The id of the CryptoKey that will be used to
+	// decrypt the provided ciphertext. This is represented by the format
+	// `{projectId}/{location}/{keyRingName}/{cryptoKeyName}`.
+	CryptoKey pulumi.StringInput `pulumi:"cryptoKey"`
+}
+
+func (GetKMSSecretApplyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKMSSecretArgs)(nil)).Elem()
+}
+
+func (i GetKMSSecretApplyArgs) ToGetKMSSecretApplyOutput() GetKMSSecretApplyOutput {
+	return i.ToGetKMSSecretApplyOutputWithContext(context.Background())
+}
+
+func (i GetKMSSecretApplyArgs) ToGetKMSSecretApplyOutputWithContext(ctx context.Context) GetKMSSecretApplyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKMSSecretApplyOutput)
+}
+
+// A collection of arguments for invoking getKMSSecret.
+type GetKMSSecretApplyOutput struct{ *pulumi.OutputState }
+
+func (GetKMSSecretApplyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKMSSecretArgs)(nil)).Elem()
+}
+
+func (o GetKMSSecretApplyOutput) ToGetKMSSecretApplyOutput() GetKMSSecretApplyOutput {
+	return o
+}
+
+func (o GetKMSSecretApplyOutput) ToGetKMSSecretApplyOutputWithContext(ctx context.Context) GetKMSSecretApplyOutput {
+	return o
+}
+
+// The [additional authenticated data](https://cloud.google.com/kms/docs/additional-authenticated-data) used for integrity checks during encryption and decryption.
+func (o GetKMSSecretApplyOutput) AdditionalAuthenticatedData() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetKMSSecretArgs) *string { return v.AdditionalAuthenticatedData }).(pulumi.StringPtrOutput)
+}
+
+// The ciphertext to be decrypted, encoded in base64
+func (o GetKMSSecretApplyOutput) Ciphertext() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKMSSecretArgs) string { return v.Ciphertext }).(pulumi.StringOutput)
+}
+
+// The id of the CryptoKey that will be used to
+// decrypt the provided ciphertext. This is represented by the format
+// `{projectId}/{location}/{keyRingName}/{cryptoKeyName}`.
+func (o GetKMSSecretApplyOutput) CryptoKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKMSSecretArgs) string { return v.CryptoKey }).(pulumi.StringOutput)
+}
+
+// A collection of values returned by getKMSSecret.
+type GetKMSSecretResultOutput struct{ *pulumi.OutputState }
+
+func (GetKMSSecretResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKMSSecretResult)(nil)).Elem()
+}
+
+func (o GetKMSSecretResultOutput) ToGetKMSSecretResultOutput() GetKMSSecretResultOutput {
+	return o
+}
+
+func (o GetKMSSecretResultOutput) ToGetKMSSecretResultOutputWithContext(ctx context.Context) GetKMSSecretResultOutput {
+	return o
+}
+
+func (o GetKMSSecretResultOutput) AdditionalAuthenticatedData() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetKMSSecretResult) *string { return v.AdditionalAuthenticatedData }).(pulumi.StringPtrOutput)
+}
+
+func (o GetKMSSecretResultOutput) Ciphertext() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKMSSecretResult) string { return v.Ciphertext }).(pulumi.StringOutput)
+}
+
+func (o GetKMSSecretResultOutput) CryptoKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKMSSecretResult) string { return v.CryptoKey }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetKMSSecretResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKMSSecretResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Contains the result of decrypting the provided ciphertext.
+func (o GetKMSSecretResultOutput) Plaintext() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKMSSecretResult) string { return v.Plaintext }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetKMSSecretApplyOutput{})
+	pulumi.RegisterOutputType(GetKMSSecretResultOutput{})
 }

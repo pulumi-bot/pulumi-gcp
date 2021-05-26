@@ -4,6 +4,9 @@
 package monitoring
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -36,4 +39,126 @@ type GetSecretVersionResult struct {
 	Secret     string `pulumi:"secret"`
 	SecretData string `pulumi:"secretData"`
 	Version    string `pulumi:"version"`
+}
+
+func GetSecretVersionApply(ctx *pulumi.Context, args GetSecretVersionApplyInput, opts ...pulumi.InvokeOption) GetSecretVersionResultOutput {
+	return args.ToGetSecretVersionApplyOutput().ApplyT(func(v GetSecretVersionArgs) (GetSecretVersionResult, error) {
+		r, err := GetSecretVersion(ctx, &v, opts...)
+		return *r, err
+
+	}).(GetSecretVersionResultOutput)
+}
+
+// GetSecretVersionApplyInput is an input type that accepts GetSecretVersionApplyArgs and GetSecretVersionApplyOutput values.
+// You can construct a concrete instance of `GetSecretVersionApplyInput` via:
+//
+//          GetSecretVersionApplyArgs{...}
+type GetSecretVersionApplyInput interface {
+	pulumi.Input
+
+	ToGetSecretVersionApplyOutput() GetSecretVersionApplyOutput
+	ToGetSecretVersionApplyOutputWithContext(context.Context) GetSecretVersionApplyOutput
+}
+
+// A collection of arguments for invoking getSecretVersion.
+type GetSecretVersionApplyArgs struct {
+	Project pulumi.StringPtrInput `pulumi:"project"`
+	Secret  pulumi.StringInput    `pulumi:"secret"`
+	Version pulumi.StringPtrInput `pulumi:"version"`
+}
+
+func (GetSecretVersionApplyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSecretVersionArgs)(nil)).Elem()
+}
+
+func (i GetSecretVersionApplyArgs) ToGetSecretVersionApplyOutput() GetSecretVersionApplyOutput {
+	return i.ToGetSecretVersionApplyOutputWithContext(context.Background())
+}
+
+func (i GetSecretVersionApplyArgs) ToGetSecretVersionApplyOutputWithContext(ctx context.Context) GetSecretVersionApplyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSecretVersionApplyOutput)
+}
+
+// A collection of arguments for invoking getSecretVersion.
+type GetSecretVersionApplyOutput struct{ *pulumi.OutputState }
+
+func (GetSecretVersionApplyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSecretVersionArgs)(nil)).Elem()
+}
+
+func (o GetSecretVersionApplyOutput) ToGetSecretVersionApplyOutput() GetSecretVersionApplyOutput {
+	return o
+}
+
+func (o GetSecretVersionApplyOutput) ToGetSecretVersionApplyOutputWithContext(ctx context.Context) GetSecretVersionApplyOutput {
+	return o
+}
+
+func (o GetSecretVersionApplyOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSecretVersionArgs) *string { return v.Project }).(pulumi.StringPtrOutput)
+}
+
+func (o GetSecretVersionApplyOutput) Secret() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSecretVersionArgs) string { return v.Secret }).(pulumi.StringOutput)
+}
+
+func (o GetSecretVersionApplyOutput) Version() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSecretVersionArgs) *string { return v.Version }).(pulumi.StringPtrOutput)
+}
+
+// A collection of values returned by getSecretVersion.
+type GetSecretVersionResultOutput struct{ *pulumi.OutputState }
+
+func (GetSecretVersionResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSecretVersionResult)(nil)).Elem()
+}
+
+func (o GetSecretVersionResultOutput) ToGetSecretVersionResultOutput() GetSecretVersionResultOutput {
+	return o
+}
+
+func (o GetSecretVersionResultOutput) ToGetSecretVersionResultOutputWithContext(ctx context.Context) GetSecretVersionResultOutput {
+	return o
+}
+
+func (o GetSecretVersionResultOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSecretVersionResult) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+func (o GetSecretVersionResultOutput) DestroyTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSecretVersionResult) string { return v.DestroyTime }).(pulumi.StringOutput)
+}
+
+func (o GetSecretVersionResultOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetSecretVersionResult) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetSecretVersionResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSecretVersionResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetSecretVersionResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSecretVersionResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetSecretVersionResultOutput) Project() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSecretVersionResult) string { return v.Project }).(pulumi.StringOutput)
+}
+
+func (o GetSecretVersionResultOutput) Secret() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSecretVersionResult) string { return v.Secret }).(pulumi.StringOutput)
+}
+
+func (o GetSecretVersionResultOutput) SecretData() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSecretVersionResult) string { return v.SecretData }).(pulumi.StringOutput)
+}
+
+func (o GetSecretVersionResultOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSecretVersionResult) string { return v.Version }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetSecretVersionApplyOutput{})
+	pulumi.RegisterOutputType(GetSecretVersionResultOutput{})
 }

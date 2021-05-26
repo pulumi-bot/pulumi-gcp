@@ -4,6 +4,9 @@
 package iap
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -67,4 +70,109 @@ type LookupClientResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id     string `pulumi:"id"`
 	Secret string `pulumi:"secret"`
+}
+
+func LookupClientApply(ctx *pulumi.Context, args LookupClientApplyInput, opts ...pulumi.InvokeOption) LookupClientResultOutput {
+	return args.ToLookupClientApplyOutput().ApplyT(func(v LookupClientArgs) (LookupClientResult, error) {
+		r, err := LookupClient(ctx, &v, opts...)
+		return *r, err
+
+	}).(LookupClientResultOutput)
+}
+
+// LookupClientApplyInput is an input type that accepts LookupClientApplyArgs and LookupClientApplyOutput values.
+// You can construct a concrete instance of `LookupClientApplyInput` via:
+//
+//          LookupClientApplyArgs{...}
+type LookupClientApplyInput interface {
+	pulumi.Input
+
+	ToLookupClientApplyOutput() LookupClientApplyOutput
+	ToLookupClientApplyOutputWithContext(context.Context) LookupClientApplyOutput
+}
+
+// A collection of arguments for invoking getClient.
+type LookupClientApplyArgs struct {
+	// The name of the brand.
+	Brand pulumi.StringInput `pulumi:"brand"`
+	// The clientId of the brand.
+	ClientId pulumi.StringInput `pulumi:"clientId"`
+}
+
+func (LookupClientApplyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupClientArgs)(nil)).Elem()
+}
+
+func (i LookupClientApplyArgs) ToLookupClientApplyOutput() LookupClientApplyOutput {
+	return i.ToLookupClientApplyOutputWithContext(context.Background())
+}
+
+func (i LookupClientApplyArgs) ToLookupClientApplyOutputWithContext(ctx context.Context) LookupClientApplyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LookupClientApplyOutput)
+}
+
+// A collection of arguments for invoking getClient.
+type LookupClientApplyOutput struct{ *pulumi.OutputState }
+
+func (LookupClientApplyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupClientArgs)(nil)).Elem()
+}
+
+func (o LookupClientApplyOutput) ToLookupClientApplyOutput() LookupClientApplyOutput {
+	return o
+}
+
+func (o LookupClientApplyOutput) ToLookupClientApplyOutputWithContext(ctx context.Context) LookupClientApplyOutput {
+	return o
+}
+
+// The name of the brand.
+func (o LookupClientApplyOutput) Brand() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientArgs) string { return v.Brand }).(pulumi.StringOutput)
+}
+
+// The clientId of the brand.
+func (o LookupClientApplyOutput) ClientId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientArgs) string { return v.ClientId }).(pulumi.StringOutput)
+}
+
+// A collection of values returned by getClient.
+type LookupClientResultOutput struct{ *pulumi.OutputState }
+
+func (LookupClientResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupClientResult)(nil)).Elem()
+}
+
+func (o LookupClientResultOutput) ToLookupClientResultOutput() LookupClientResultOutput {
+	return o
+}
+
+func (o LookupClientResultOutput) ToLookupClientResultOutputWithContext(ctx context.Context) LookupClientResultOutput {
+	return o
+}
+
+func (o LookupClientResultOutput) Brand() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.Brand }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) ClientId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.ClientId }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupClientResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) Secret() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.Secret }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupClientApplyOutput{})
+	pulumi.RegisterOutputType(LookupClientResultOutput{})
 }

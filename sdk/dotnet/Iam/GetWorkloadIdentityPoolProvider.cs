@@ -40,6 +40,21 @@ namespace Pulumi.Gcp.Iam
         /// </summary>
         public static Task<GetWorkloadIdentityPoolProviderResult> InvokeAsync(GetWorkloadIdentityPoolProviderArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetWorkloadIdentityPoolProviderResult>("gcp:iam/getWorkloadIdentityPoolProvider:getWorkloadIdentityPoolProvider", args ?? new GetWorkloadIdentityPoolProviderArgs(), options.WithVersion());
+
+        public static Output<GetWorkloadIdentityPoolProviderResult> Apply(GetWorkloadIdentityPoolProviderApplyArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.Project.Box(),
+                args.WorkloadIdentityPoolId.Box(),
+                args.WorkloadIdentityPoolProviderId.Box()
+            ).Apply(a => {
+                    var args = new GetWorkloadIdentityPoolProviderArgs();
+                    a[0].Set(args, nameof(args.Project));
+                    a[1].Set(args, nameof(args.WorkloadIdentityPoolId));
+                    a[2].Set(args, nameof(args.WorkloadIdentityPoolProviderId));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -67,6 +82,34 @@ namespace Pulumi.Gcp.Iam
         public string WorkloadIdentityPoolProviderId { get; set; } = null!;
 
         public GetWorkloadIdentityPoolProviderArgs()
+        {
+        }
+    }
+
+    public sealed class GetWorkloadIdentityPoolProviderApplyArgs
+    {
+        /// <summary>
+        /// The project in which the resource belongs. If it
+        /// is not provided, the provider project is used.
+        /// </summary>
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
+        /// <summary>
+        /// The id of the pool which is the
+        /// final component of the pool resource name.
+        /// </summary>
+        [Input("workloadIdentityPoolId", required: true)]
+        public Input<string> WorkloadIdentityPoolId { get; set; } = null!;
+
+        /// <summary>
+        /// The id of the provider which is the
+        /// final component of the resource name.
+        /// </summary>
+        [Input("workloadIdentityPoolProviderId", required: true)]
+        public Input<string> WorkloadIdentityPoolProviderId { get; set; } = null!;
+
+        public GetWorkloadIdentityPoolProviderApplyArgs()
         {
         }
     }

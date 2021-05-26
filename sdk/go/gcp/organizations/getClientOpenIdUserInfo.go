@@ -4,6 +4,9 @@
 package organizations
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -56,4 +59,41 @@ type GetClientOpenIdUserInfoResult struct {
 	Email string `pulumi:"email"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
+}
+
+func GetClientOpenIdUserInfoApply(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetClientOpenIdUserInfoResultOutput {
+	return pulumi.Any(opts).ApplyT(func(v interface{}) (GetClientOpenIdUserInfoResult, error) {
+		r, err := GetClientOpenIdUserInfo(ctx, opts...)
+		return *r, err
+
+	}).(GetClientOpenIdUserInfoResultOutput)
+}
+
+// A collection of values returned by getClientOpenIdUserInfo.
+type GetClientOpenIdUserInfoResultOutput struct{ *pulumi.OutputState }
+
+func (GetClientOpenIdUserInfoResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClientOpenIdUserInfoResult)(nil)).Elem()
+}
+
+func (o GetClientOpenIdUserInfoResultOutput) ToGetClientOpenIdUserInfoResultOutput() GetClientOpenIdUserInfoResultOutput {
+	return o
+}
+
+func (o GetClientOpenIdUserInfoResultOutput) ToGetClientOpenIdUserInfoResultOutputWithContext(ctx context.Context) GetClientOpenIdUserInfoResultOutput {
+	return o
+}
+
+// The email of the account used by the provider to authenticate with GCP.
+func (o GetClientOpenIdUserInfoResultOutput) Email() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClientOpenIdUserInfoResult) string { return v.Email }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetClientOpenIdUserInfoResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClientOpenIdUserInfoResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetClientOpenIdUserInfoResultOutput{})
 }

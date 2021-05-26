@@ -4,6 +4,9 @@
 package iam
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -56,4 +59,105 @@ type GetRuleResult struct {
 	Stage string `pulumi:"stage"`
 	// is a friendly title for the role, such as "Role Viewer"
 	Title string `pulumi:"title"`
+}
+
+func GetRuleApply(ctx *pulumi.Context, args GetRuleApplyInput, opts ...pulumi.InvokeOption) GetRuleResultOutput {
+	return args.ToGetRuleApplyOutput().ApplyT(func(v GetRuleArgs) (GetRuleResult, error) {
+		r, err := GetRule(ctx, &v, opts...)
+		return *r, err
+
+	}).(GetRuleResultOutput)
+}
+
+// GetRuleApplyInput is an input type that accepts GetRuleApplyArgs and GetRuleApplyOutput values.
+// You can construct a concrete instance of `GetRuleApplyInput` via:
+//
+//          GetRuleApplyArgs{...}
+type GetRuleApplyInput interface {
+	pulumi.Input
+
+	ToGetRuleApplyOutput() GetRuleApplyOutput
+	ToGetRuleApplyOutputWithContext(context.Context) GetRuleApplyOutput
+}
+
+// A collection of arguments for invoking getRule.
+type GetRuleApplyArgs struct {
+	// The name of the Role to lookup in the form `roles/{ROLE_NAME}`, `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}` or `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetRuleApplyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRuleArgs)(nil)).Elem()
+}
+
+func (i GetRuleApplyArgs) ToGetRuleApplyOutput() GetRuleApplyOutput {
+	return i.ToGetRuleApplyOutputWithContext(context.Background())
+}
+
+func (i GetRuleApplyArgs) ToGetRuleApplyOutputWithContext(ctx context.Context) GetRuleApplyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRuleApplyOutput)
+}
+
+// A collection of arguments for invoking getRule.
+type GetRuleApplyOutput struct{ *pulumi.OutputState }
+
+func (GetRuleApplyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRuleArgs)(nil)).Elem()
+}
+
+func (o GetRuleApplyOutput) ToGetRuleApplyOutput() GetRuleApplyOutput {
+	return o
+}
+
+func (o GetRuleApplyOutput) ToGetRuleApplyOutputWithContext(ctx context.Context) GetRuleApplyOutput {
+	return o
+}
+
+// The name of the Role to lookup in the form `roles/{ROLE_NAME}`, `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}` or `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
+func (o GetRuleApplyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRuleArgs) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// A collection of values returned by getRule.
+type GetRuleResultOutput struct{ *pulumi.OutputState }
+
+func (GetRuleResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRuleResult)(nil)).Elem()
+}
+
+func (o GetRuleResultOutput) ToGetRuleResultOutput() GetRuleResultOutput {
+	return o
+}
+
+func (o GetRuleResultOutput) ToGetRuleResultOutputWithContext(ctx context.Context) GetRuleResultOutput {
+	return o
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetRuleResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRuleResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// specifies the list of one or more permissions to include in the custom role, such as - `iam.roles.get`
+func (o GetRuleResultOutput) IncludedPermissions() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetRuleResult) []string { return v.IncludedPermissions }).(pulumi.StringArrayOutput)
+}
+
+func (o GetRuleResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRuleResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// indicates the stage of a role in the launch lifecycle, such as `GA`, `BETA` or `ALPHA`.
+func (o GetRuleResultOutput) Stage() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRuleResult) string { return v.Stage }).(pulumi.StringOutput)
+}
+
+// is a friendly title for the role, such as "Role Viewer"
+func (o GetRuleResultOutput) Title() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRuleResult) string { return v.Title }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetRuleApplyOutput{})
+	pulumi.RegisterOutputType(GetRuleResultOutput{})
 }

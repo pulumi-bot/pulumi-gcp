@@ -47,6 +47,20 @@ namespace Pulumi.Gcp.Composer
         /// </summary>
         public static Task<GetImageVersionsResult> InvokeAsync(GetImageVersionsArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetImageVersionsResult>("gcp:composer/getImageVersions:getImageVersions", args ?? new GetImageVersionsArgs(), options.WithVersion());
+
+        public static Output<GetImageVersionsResult> Apply(GetImageVersionsApplyArgs? args = null, InvokeOptions? options = null)
+        {
+            args = args ?? new GetImageVersionsApplyArgs();
+            return Pulumi.Output.All(
+                args.Project.Box(),
+                args.Region.Box()
+            ).Apply(a => {
+                    var args = new GetImageVersionsArgs();
+                    a[0].Set(args, nameof(args.Project));
+                    a[1].Set(args, nameof(args.Region));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -67,6 +81,27 @@ namespace Pulumi.Gcp.Composer
         public string? Region { get; set; }
 
         public GetImageVersionsArgs()
+        {
+        }
+    }
+
+    public sealed class GetImageVersionsApplyArgs
+    {
+        /// <summary>
+        /// The ID of the project to list versions in.
+        /// If it is not provided, the provider project is used.
+        /// </summary>
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
+        /// <summary>
+        /// The location to list versions in.
+        /// If it is not provider, the provider region is used.
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
+
+        public GetImageVersionsApplyArgs()
         {
         }
     }

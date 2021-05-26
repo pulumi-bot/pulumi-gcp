@@ -4,6 +4,9 @@
 package cloudrun
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -58,4 +61,97 @@ type GetLocationsResult struct {
 	// The list of Cloud Run locations available for the given project.
 	Locations []string `pulumi:"locations"`
 	Project   string   `pulumi:"project"`
+}
+
+func GetLocationsApply(ctx *pulumi.Context, args GetLocationsApplyInput, opts ...pulumi.InvokeOption) GetLocationsResultOutput {
+	return args.ToGetLocationsApplyOutput().ApplyT(func(v GetLocationsArgs) (GetLocationsResult, error) {
+		r, err := GetLocations(ctx, &v, opts...)
+		return *r, err
+
+	}).(GetLocationsResultOutput)
+}
+
+// GetLocationsApplyInput is an input type that accepts GetLocationsApplyArgs and GetLocationsApplyOutput values.
+// You can construct a concrete instance of `GetLocationsApplyInput` via:
+//
+//          GetLocationsApplyArgs{...}
+type GetLocationsApplyInput interface {
+	pulumi.Input
+
+	ToGetLocationsApplyOutput() GetLocationsApplyOutput
+	ToGetLocationsApplyOutputWithContext(context.Context) GetLocationsApplyOutput
+}
+
+// A collection of arguments for invoking getLocations.
+type GetLocationsApplyArgs struct {
+	// The project to list versions for. If it
+	// is not provided, the provider project is used.
+	Project pulumi.StringPtrInput `pulumi:"project"`
+}
+
+func (GetLocationsApplyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLocationsArgs)(nil)).Elem()
+}
+
+func (i GetLocationsApplyArgs) ToGetLocationsApplyOutput() GetLocationsApplyOutput {
+	return i.ToGetLocationsApplyOutputWithContext(context.Background())
+}
+
+func (i GetLocationsApplyArgs) ToGetLocationsApplyOutputWithContext(ctx context.Context) GetLocationsApplyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLocationsApplyOutput)
+}
+
+// A collection of arguments for invoking getLocations.
+type GetLocationsApplyOutput struct{ *pulumi.OutputState }
+
+func (GetLocationsApplyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLocationsArgs)(nil)).Elem()
+}
+
+func (o GetLocationsApplyOutput) ToGetLocationsApplyOutput() GetLocationsApplyOutput {
+	return o
+}
+
+func (o GetLocationsApplyOutput) ToGetLocationsApplyOutputWithContext(ctx context.Context) GetLocationsApplyOutput {
+	return o
+}
+
+// The project to list versions for. If it
+// is not provided, the provider project is used.
+func (o GetLocationsApplyOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetLocationsArgs) *string { return v.Project }).(pulumi.StringPtrOutput)
+}
+
+// A collection of values returned by getLocations.
+type GetLocationsResultOutput struct{ *pulumi.OutputState }
+
+func (GetLocationsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLocationsResult)(nil)).Elem()
+}
+
+func (o GetLocationsResultOutput) ToGetLocationsResultOutput() GetLocationsResultOutput {
+	return o
+}
+
+func (o GetLocationsResultOutput) ToGetLocationsResultOutputWithContext(ctx context.Context) GetLocationsResultOutput {
+	return o
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetLocationsResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLocationsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The list of Cloud Run locations available for the given project.
+func (o GetLocationsResultOutput) Locations() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetLocationsResult) []string { return v.Locations }).(pulumi.StringArrayOutput)
+}
+
+func (o GetLocationsResultOutput) Project() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLocationsResult) string { return v.Project }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetLocationsApplyOutput{})
+	pulumi.RegisterOutputType(GetLocationsResultOutput{})
 }

@@ -4,6 +4,9 @@
 package compute
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -84,4 +87,166 @@ type LookupSubnetworkResult struct {
 	// VM instances contained in this subnetwork. Structure is documented below.
 	SecondaryIpRanges []GetSubnetworkSecondaryIpRange `pulumi:"secondaryIpRanges"`
 	SelfLink          string                          `pulumi:"selfLink"`
+}
+
+func LookupSubnetworkApply(ctx *pulumi.Context, args LookupSubnetworkApplyInput, opts ...pulumi.InvokeOption) LookupSubnetworkResultOutput {
+	return args.ToLookupSubnetworkApplyOutput().ApplyT(func(v LookupSubnetworkArgs) (LookupSubnetworkResult, error) {
+		r, err := LookupSubnetwork(ctx, &v, opts...)
+		return *r, err
+
+	}).(LookupSubnetworkResultOutput)
+}
+
+// LookupSubnetworkApplyInput is an input type that accepts LookupSubnetworkApplyArgs and LookupSubnetworkApplyOutput values.
+// You can construct a concrete instance of `LookupSubnetworkApplyInput` via:
+//
+//          LookupSubnetworkApplyArgs{...}
+type LookupSubnetworkApplyInput interface {
+	pulumi.Input
+
+	ToLookupSubnetworkApplyOutput() LookupSubnetworkApplyOutput
+	ToLookupSubnetworkApplyOutputWithContext(context.Context) LookupSubnetworkApplyOutput
+}
+
+// A collection of arguments for invoking getSubnetwork.
+type LookupSubnetworkApplyArgs struct {
+	// The name of the subnetwork. One of `name` or `selfLink`
+	// must be specified.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The ID of the project in which the resource belongs. If it
+	// is not provided, the provider project is used.
+	Project pulumi.StringPtrInput `pulumi:"project"`
+	// The region this subnetwork has been created in. If
+	// unspecified, this defaults to the region configured in the provider.
+	Region pulumi.StringPtrInput `pulumi:"region"`
+	// The self link of the subnetwork. If `selfLink` is
+	// specified, `name`, `project`, and `region` are ignored.
+	SelfLink pulumi.StringPtrInput `pulumi:"selfLink"`
+}
+
+func (LookupSubnetworkApplyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSubnetworkArgs)(nil)).Elem()
+}
+
+func (i LookupSubnetworkApplyArgs) ToLookupSubnetworkApplyOutput() LookupSubnetworkApplyOutput {
+	return i.ToLookupSubnetworkApplyOutputWithContext(context.Background())
+}
+
+func (i LookupSubnetworkApplyArgs) ToLookupSubnetworkApplyOutputWithContext(ctx context.Context) LookupSubnetworkApplyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LookupSubnetworkApplyOutput)
+}
+
+// A collection of arguments for invoking getSubnetwork.
+type LookupSubnetworkApplyOutput struct{ *pulumi.OutputState }
+
+func (LookupSubnetworkApplyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSubnetworkArgs)(nil)).Elem()
+}
+
+func (o LookupSubnetworkApplyOutput) ToLookupSubnetworkApplyOutput() LookupSubnetworkApplyOutput {
+	return o
+}
+
+func (o LookupSubnetworkApplyOutput) ToLookupSubnetworkApplyOutputWithContext(ctx context.Context) LookupSubnetworkApplyOutput {
+	return o
+}
+
+// The name of the subnetwork. One of `name` or `selfLink`
+// must be specified.
+func (o LookupSubnetworkApplyOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupSubnetworkArgs) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the project in which the resource belongs. If it
+// is not provided, the provider project is used.
+func (o LookupSubnetworkApplyOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupSubnetworkArgs) *string { return v.Project }).(pulumi.StringPtrOutput)
+}
+
+// The region this subnetwork has been created in. If
+// unspecified, this defaults to the region configured in the provider.
+func (o LookupSubnetworkApplyOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupSubnetworkArgs) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+// The self link of the subnetwork. If `selfLink` is
+// specified, `name`, `project`, and `region` are ignored.
+func (o LookupSubnetworkApplyOutput) SelfLink() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupSubnetworkArgs) *string { return v.SelfLink }).(pulumi.StringPtrOutput)
+}
+
+// A collection of values returned by getSubnetwork.
+type LookupSubnetworkResultOutput struct{ *pulumi.OutputState }
+
+func (LookupSubnetworkResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSubnetworkResult)(nil)).Elem()
+}
+
+func (o LookupSubnetworkResultOutput) ToLookupSubnetworkResultOutput() LookupSubnetworkResultOutput {
+	return o
+}
+
+func (o LookupSubnetworkResultOutput) ToLookupSubnetworkResultOutputWithContext(ctx context.Context) LookupSubnetworkResultOutput {
+	return o
+}
+
+// Description of this subnetwork.
+func (o LookupSubnetworkResultOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSubnetworkResult) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The IP address of the gateway.
+func (o LookupSubnetworkResultOutput) GatewayAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSubnetworkResult) string { return v.GatewayAddress }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupSubnetworkResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSubnetworkResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The range of IP addresses belonging to this subnetwork
+// secondary range.
+func (o LookupSubnetworkResultOutput) IpCidrRange() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSubnetworkResult) string { return v.IpCidrRange }).(pulumi.StringOutput)
+}
+
+func (o LookupSubnetworkResultOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupSubnetworkResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+// The network name or resource link to the parent
+// network of this subnetwork.
+func (o LookupSubnetworkResultOutput) Network() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSubnetworkResult) string { return v.Network }).(pulumi.StringOutput)
+}
+
+// Whether the VMs in this subnet
+// can access Google services without assigned external IP
+// addresses.
+func (o LookupSubnetworkResultOutput) PrivateIpGoogleAccess() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupSubnetworkResult) bool { return v.PrivateIpGoogleAccess }).(pulumi.BoolOutput)
+}
+
+func (o LookupSubnetworkResultOutput) Project() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSubnetworkResult) string { return v.Project }).(pulumi.StringOutput)
+}
+
+func (o LookupSubnetworkResultOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSubnetworkResult) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// An array of configurations for secondary IP ranges for
+// VM instances contained in this subnetwork. Structure is documented below.
+func (o LookupSubnetworkResultOutput) SecondaryIpRanges() GetSubnetworkSecondaryIpRangeArrayOutput {
+	return o.ApplyT(func(v LookupSubnetworkResult) []GetSubnetworkSecondaryIpRange { return v.SecondaryIpRanges }).(GetSubnetworkSecondaryIpRangeArrayOutput)
+}
+
+func (o LookupSubnetworkResultOutput) SelfLink() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSubnetworkResult) string { return v.SelfLink }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupSubnetworkApplyOutput{})
+	pulumi.RegisterOutputType(LookupSubnetworkResultOutput{})
 }

@@ -40,12 +40,12 @@ export interface GetHealthCheckArgs {
     /**
      * Name of the resource.
      */
-    readonly name: string;
+    name: string;
     /**
      * The ID of the project in which the resource belongs. If it
      * is not provided, the provider project is used.
      */
-    readonly project?: string;
+    project?: string;
 }
 
 /**
@@ -73,4 +73,23 @@ export interface GetHealthCheckResult {
     readonly timeoutSec: number;
     readonly type: string;
     readonly unhealthyThreshold: number;
+}
+
+export function getHealthCheckApply(args: GetHealthCheckApplyArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetHealthCheckResult> {
+    return pulumi.output(args).apply(a => getHealthCheck(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getHealthCheck.
+ */
+export interface GetHealthCheckApplyArgs {
+    /**
+     * Name of the resource.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The ID of the project in which the resource belongs. If it
+     * is not provided, the provider project is used.
+     */
+    project?: pulumi.Input<string>;
 }

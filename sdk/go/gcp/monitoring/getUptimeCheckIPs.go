@@ -4,6 +4,9 @@
 package monitoring
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -46,4 +49,41 @@ type GetUptimeCheckIPsResult struct {
 	Id string `pulumi:"id"`
 	// A list of uptime check IPs used by Stackdriver Monitoring. Each `uptimeCheckIp` contains:
 	UptimeCheckIps []GetUptimeCheckIPsUptimeCheckIp `pulumi:"uptimeCheckIps"`
+}
+
+func GetUptimeCheckIPsApply(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetUptimeCheckIPsResultOutput {
+	return pulumi.Any(opts).ApplyT(func(v interface{}) (GetUptimeCheckIPsResult, error) {
+		r, err := GetUptimeCheckIPs(ctx, opts...)
+		return *r, err
+
+	}).(GetUptimeCheckIPsResultOutput)
+}
+
+// A collection of values returned by getUptimeCheckIPs.
+type GetUptimeCheckIPsResultOutput struct{ *pulumi.OutputState }
+
+func (GetUptimeCheckIPsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUptimeCheckIPsResult)(nil)).Elem()
+}
+
+func (o GetUptimeCheckIPsResultOutput) ToGetUptimeCheckIPsResultOutput() GetUptimeCheckIPsResultOutput {
+	return o
+}
+
+func (o GetUptimeCheckIPsResultOutput) ToGetUptimeCheckIPsResultOutputWithContext(ctx context.Context) GetUptimeCheckIPsResultOutput {
+	return o
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetUptimeCheckIPsResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUptimeCheckIPsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// A list of uptime check IPs used by Stackdriver Monitoring. Each `uptimeCheckIp` contains:
+func (o GetUptimeCheckIPsResultOutput) UptimeCheckIps() GetUptimeCheckIPsUptimeCheckIpArrayOutput {
+	return o.ApplyT(func(v GetUptimeCheckIPsResult) []GetUptimeCheckIPsUptimeCheckIp { return v.UptimeCheckIps }).(GetUptimeCheckIPsUptimeCheckIpArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetUptimeCheckIPsResultOutput{})
 }

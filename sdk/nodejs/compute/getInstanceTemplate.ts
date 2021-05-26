@@ -53,20 +53,20 @@ export interface GetInstanceTemplateArgs {
      * See [gcloud topic filters](https://cloud.google.com/sdk/gcloud/reference/topic/filters) for reference.
      * If multiple instance templates match, either adjust the filter or specify `mostRecent`. One of `name` or `filter` must be provided.
      */
-    readonly filter?: string;
+    filter?: string;
     /**
      * If `filter` is provided, ensures the most recent template is returned when multiple instance templates match. One of `name` or `filter` must be provided.
      */
-    readonly mostRecent?: boolean;
+    mostRecent?: boolean;
     /**
      * The name of the instance template. One of `name` or `filter` must be provided.
      */
-    readonly name?: string;
+    name?: string;
     /**
      * The ID of the project in which the resource belongs.
      * If `project` is not provideded, the provider project is used.
      */
-    readonly project: string;
+    project: string;
 }
 
 /**
@@ -198,4 +198,33 @@ export interface GetInstanceTemplateResult {
      * The unique fingerprint of the tags.
      */
     readonly tagsFingerprint: string;
+}
+
+export function getInstanceTemplateApply(args: GetInstanceTemplateApplyArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstanceTemplateResult> {
+    return pulumi.output(args).apply(a => getInstanceTemplate(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getInstanceTemplate.
+ */
+export interface GetInstanceTemplateApplyArgs {
+    /**
+     * A filter to retrieve the instance templates.
+     * See [gcloud topic filters](https://cloud.google.com/sdk/gcloud/reference/topic/filters) for reference.
+     * If multiple instance templates match, either adjust the filter or specify `mostRecent`. One of `name` or `filter` must be provided.
+     */
+    filter?: pulumi.Input<string>;
+    /**
+     * If `filter` is provided, ensures the most recent template is returned when multiple instance templates match. One of `name` or `filter` must be provided.
+     */
+    mostRecent?: pulumi.Input<boolean>;
+    /**
+     * The name of the instance template. One of `name` or `filter` must be provided.
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * The ID of the project in which the resource belongs.
+     * If `project` is not provideded, the provider project is used.
+     */
+    project: pulumi.Input<string>;
 }

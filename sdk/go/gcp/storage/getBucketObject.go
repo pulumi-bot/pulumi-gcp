@@ -4,6 +4,9 @@
 package storage
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -91,4 +94,178 @@ type LookupBucketObjectResult struct {
 	// Supported values include: `MULTI_REGIONAL`, `REGIONAL`, `NEARLINE`, `COLDLINE`, `ARCHIVE`. If not provided, this defaults to the bucket's default
 	// storage class or to a [standard](https://cloud.google.com/storage/docs/storage-classes#standard) class.
 	StorageClass string `pulumi:"storageClass"`
+}
+
+func LookupBucketObjectApply(ctx *pulumi.Context, args LookupBucketObjectApplyInput, opts ...pulumi.InvokeOption) LookupBucketObjectResultOutput {
+	return args.ToLookupBucketObjectApplyOutput().ApplyT(func(v LookupBucketObjectArgs) (LookupBucketObjectResult, error) {
+		r, err := LookupBucketObject(ctx, &v, opts...)
+		return *r, err
+
+	}).(LookupBucketObjectResultOutput)
+}
+
+// LookupBucketObjectApplyInput is an input type that accepts LookupBucketObjectApplyArgs and LookupBucketObjectApplyOutput values.
+// You can construct a concrete instance of `LookupBucketObjectApplyInput` via:
+//
+//          LookupBucketObjectApplyArgs{...}
+type LookupBucketObjectApplyInput interface {
+	pulumi.Input
+
+	ToLookupBucketObjectApplyOutput() LookupBucketObjectApplyOutput
+	ToLookupBucketObjectApplyOutputWithContext(context.Context) LookupBucketObjectApplyOutput
+}
+
+// A collection of arguments for invoking getBucketObject.
+type LookupBucketObjectApplyArgs struct {
+	// The name of the containing bucket.
+	Bucket pulumi.StringPtrInput `pulumi:"bucket"`
+	// The name of the object.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (LookupBucketObjectApplyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupBucketObjectArgs)(nil)).Elem()
+}
+
+func (i LookupBucketObjectApplyArgs) ToLookupBucketObjectApplyOutput() LookupBucketObjectApplyOutput {
+	return i.ToLookupBucketObjectApplyOutputWithContext(context.Background())
+}
+
+func (i LookupBucketObjectApplyArgs) ToLookupBucketObjectApplyOutputWithContext(ctx context.Context) LookupBucketObjectApplyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LookupBucketObjectApplyOutput)
+}
+
+// A collection of arguments for invoking getBucketObject.
+type LookupBucketObjectApplyOutput struct{ *pulumi.OutputState }
+
+func (LookupBucketObjectApplyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupBucketObjectArgs)(nil)).Elem()
+}
+
+func (o LookupBucketObjectApplyOutput) ToLookupBucketObjectApplyOutput() LookupBucketObjectApplyOutput {
+	return o
+}
+
+func (o LookupBucketObjectApplyOutput) ToLookupBucketObjectApplyOutputWithContext(ctx context.Context) LookupBucketObjectApplyOutput {
+	return o
+}
+
+// The name of the containing bucket.
+func (o LookupBucketObjectApplyOutput) Bucket() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupBucketObjectArgs) *string { return v.Bucket }).(pulumi.StringPtrOutput)
+}
+
+// The name of the object.
+func (o LookupBucketObjectApplyOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupBucketObjectArgs) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+// A collection of values returned by getBucketObject.
+type LookupBucketObjectResultOutput struct{ *pulumi.OutputState }
+
+func (LookupBucketObjectResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupBucketObjectResult)(nil)).Elem()
+}
+
+func (o LookupBucketObjectResultOutput) ToLookupBucketObjectResultOutput() LookupBucketObjectResultOutput {
+	return o
+}
+
+func (o LookupBucketObjectResultOutput) ToLookupBucketObjectResultOutputWithContext(ctx context.Context) LookupBucketObjectResultOutput {
+	return o
+}
+
+func (o LookupBucketObjectResultOutput) Bucket() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupBucketObjectResult) *string { return v.Bucket }).(pulumi.StringPtrOutput)
+}
+
+// (Computed) [Cache-Control](https://tools.ietf.org/html/rfc7234#section-5.2)
+// directive to specify caching behavior of object data. If omitted and object is accessible to all anonymous users, the default will be public, max-age=3600
+func (o LookupBucketObjectResultOutput) CacheControl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBucketObjectResult) string { return v.CacheControl }).(pulumi.StringOutput)
+}
+
+func (o LookupBucketObjectResultOutput) Content() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBucketObjectResult) string { return v.Content }).(pulumi.StringOutput)
+}
+
+// (Computed) [Content-Disposition](https://tools.ietf.org/html/rfc6266) of the object data.
+func (o LookupBucketObjectResultOutput) ContentDisposition() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBucketObjectResult) string { return v.ContentDisposition }).(pulumi.StringOutput)
+}
+
+// (Computed) [Content-Encoding](https://tools.ietf.org/html/rfc7231#section-3.1.2.2) of the object data.
+func (o LookupBucketObjectResultOutput) ContentEncoding() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBucketObjectResult) string { return v.ContentEncoding }).(pulumi.StringOutput)
+}
+
+// (Computed) [Content-Language](https://tools.ietf.org/html/rfc7231#section-3.1.3.2) of the object data.
+func (o LookupBucketObjectResultOutput) ContentLanguage() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBucketObjectResult) string { return v.ContentLanguage }).(pulumi.StringOutput)
+}
+
+// (Computed) [Content-Type](https://tools.ietf.org/html/rfc7231#section-3.1.1.5) of the object data. Defaults to "application/octet-stream" or "text/plain; charset=utf-8".
+func (o LookupBucketObjectResultOutput) ContentType() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBucketObjectResult) string { return v.ContentType }).(pulumi.StringOutput)
+}
+
+// (Computed) Base 64 CRC32 hash of the uploaded data.
+func (o LookupBucketObjectResultOutput) Crc32c() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBucketObjectResult) string { return v.Crc32c }).(pulumi.StringOutput)
+}
+
+func (o LookupBucketObjectResultOutput) DetectMd5hash() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBucketObjectResult) string { return v.DetectMd5hash }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupBucketObjectResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBucketObjectResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupBucketObjectResultOutput) KmsKeyName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBucketObjectResult) string { return v.KmsKeyName }).(pulumi.StringOutput)
+}
+
+// (Computed) Base 64 MD5 hash of the uploaded data.
+func (o LookupBucketObjectResultOutput) Md5hash() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBucketObjectResult) string { return v.Md5hash }).(pulumi.StringOutput)
+}
+
+// (Computed) A url reference to download this object.
+func (o LookupBucketObjectResultOutput) MediaLink() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBucketObjectResult) string { return v.MediaLink }).(pulumi.StringOutput)
+}
+
+func (o LookupBucketObjectResultOutput) Metadata() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LookupBucketObjectResult) map[string]string { return v.Metadata }).(pulumi.StringMapOutput)
+}
+
+func (o LookupBucketObjectResultOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupBucketObjectResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupBucketObjectResultOutput) OutputName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBucketObjectResult) string { return v.OutputName }).(pulumi.StringOutput)
+}
+
+// (Computed) A url reference to this object.
+func (o LookupBucketObjectResultOutput) SelfLink() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBucketObjectResult) string { return v.SelfLink }).(pulumi.StringOutput)
+}
+
+func (o LookupBucketObjectResultOutput) Source() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBucketObjectResult) string { return v.Source }).(pulumi.StringOutput)
+}
+
+// (Computed) The [StorageClass](https://cloud.google.com/storage/docs/storage-classes) of the new bucket object.
+// Supported values include: `MULTI_REGIONAL`, `REGIONAL`, `NEARLINE`, `COLDLINE`, `ARCHIVE`. If not provided, this defaults to the bucket's default
+// storage class or to a [standard](https://cloud.google.com/storage/docs/storage-classes#standard) class.
+func (o LookupBucketObjectResultOutput) StorageClass() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBucketObjectResult) string { return v.StorageClass }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupBucketObjectApplyOutput{})
+	pulumi.RegisterOutputType(LookupBucketObjectResultOutput{})
 }

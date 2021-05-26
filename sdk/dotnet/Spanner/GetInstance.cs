@@ -39,6 +39,29 @@ namespace Pulumi.Gcp.Spanner
         /// </summary>
         public static Task<GetInstanceResult> InvokeAsync(GetInstanceArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetInstanceResult>("gcp:spanner/getInstance:getInstance", args ?? new GetInstanceArgs(), options.WithVersion());
+
+        public static Output<GetInstanceResult> Apply(GetInstanceApplyArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.Config.Box(),
+                args.DisplayName.Box(),
+                args.ForceDestroy.Box(),
+                args.Labels.ToDict().Box(),
+                args.Name.Box(),
+                args.NumNodes.Box(),
+                args.Project.Box()
+            ).Apply(a => {
+                    var args = new GetInstanceArgs();
+                    a[0].Set(args, nameof(args.Config));
+                    a[1].Set(args, nameof(args.DisplayName));
+                    a[2].Set(args, nameof(args.ForceDestroy));
+                    a[3].Set(args, nameof(args.Labels));
+                    a[4].Set(args, nameof(args.Name));
+                    a[5].Set(args, nameof(args.NumNodes));
+                    a[6].Set(args, nameof(args.Project));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -78,6 +101,46 @@ namespace Pulumi.Gcp.Spanner
         public string? Project { get; set; }
 
         public GetInstanceArgs()
+        {
+        }
+    }
+
+    public sealed class GetInstanceApplyArgs
+    {
+        [Input("config")]
+        public Input<string>? Config { get; set; }
+
+        [Input("displayName")]
+        public Input<string>? DisplayName { get; set; }
+
+        [Input("forceDestroy")]
+        public Input<bool>? ForceDestroy { get; set; }
+
+        [Input("labels")]
+        private InputMap<string>? _labels;
+        public InputMap<string> Labels
+        {
+            get => _labels ?? (_labels = new InputMap<string>());
+            set => _labels = value;
+        }
+
+        /// <summary>
+        /// The name of the spanner instance.
+        /// </summary>
+        [Input("name", required: true)]
+        public Input<string> Name { get; set; } = null!;
+
+        [Input("numNodes")]
+        public Input<int>? NumNodes { get; set; }
+
+        /// <summary>
+        /// The project in which the resource belongs. If it
+        /// is not provided, the provider project is used.
+        /// </summary>
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
+        public GetInstanceApplyArgs()
         {
         }
     }

@@ -22,6 +22,19 @@ namespace Pulumi.Gcp.Firebase
         /// </summary>
         public static Task<GetWebAppConfigResult> InvokeAsync(GetWebAppConfigArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetWebAppConfigResult>("gcp:firebase/getWebAppConfig:getWebAppConfig", args ?? new GetWebAppConfigArgs(), options.WithVersion());
+
+        public static Output<GetWebAppConfigResult> Apply(GetWebAppConfigApplyArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.Project.Box(),
+                args.WebAppId.Box()
+            ).Apply(a => {
+                    var args = new GetWebAppConfigArgs();
+                    a[0].Set(args, nameof(args.Project));
+                    a[1].Set(args, nameof(args.WebAppId));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -41,6 +54,26 @@ namespace Pulumi.Gcp.Firebase
         public string WebAppId { get; set; } = null!;
 
         public GetWebAppConfigArgs()
+        {
+        }
+    }
+
+    public sealed class GetWebAppConfigApplyArgs
+    {
+        /// <summary>
+        /// The ID of the project in which the resource belongs. If it
+        /// is not provided, the provider project is used.
+        /// </summary>
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
+        /// <summary>
+        /// the id of the firebase web app
+        /// </summary>
+        [Input("webAppId", required: true)]
+        public Input<string> WebAppId { get; set; } = null!;
+
+        public GetWebAppConfigApplyArgs()
         {
         }
     }

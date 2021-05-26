@@ -52,6 +52,24 @@ namespace Pulumi.Gcp.Compute
         /// </summary>
         public static Task<GetImageResult> InvokeAsync(GetImageArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetImageResult>("gcp:compute/getImage:getImage", args ?? new GetImageArgs(), options.WithVersion());
+
+        public static Output<GetImageResult> Apply(GetImageApplyArgs? args = null, InvokeOptions? options = null)
+        {
+            args = args ?? new GetImageApplyArgs();
+            return Pulumi.Output.All(
+                args.Family.Box(),
+                args.Filter.Box(),
+                args.Name.Box(),
+                args.Project.Box()
+            ).Apply(a => {
+                    var args = new GetImageArgs();
+                    a[0].Set(args, nameof(args.Family));
+                    a[1].Set(args, nameof(args.Filter));
+                    a[2].Set(args, nameof(args.Name));
+                    a[3].Set(args, nameof(args.Project));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -81,6 +99,36 @@ namespace Pulumi.Gcp.Compute
         public string? Project { get; set; }
 
         public GetImageArgs()
+        {
+        }
+    }
+
+    public sealed class GetImageApplyArgs
+    {
+        /// <summary>
+        /// The family name of the image.
+        /// </summary>
+        [Input("family")]
+        public Input<string>? Family { get; set; }
+
+        [Input("filter")]
+        public Input<string>? Filter { get; set; }
+
+        /// <summary>
+        /// The name of the image.
+        /// </summary>
+        [Input("name")]
+        public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The project in which the resource belongs. If it is not
+        /// provided, the provider project is used. If you are using a
+        /// [public base image][pubimg], be sure to specify the correct Image Project.
+        /// </summary>
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
+        public GetImageApplyArgs()
         {
         }
     }
