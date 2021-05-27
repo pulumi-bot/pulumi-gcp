@@ -646,3 +646,11 @@ def get_cluster(location: Optional[str] = None,
         tpu_ipv4_cidr_block=__ret__.tpu_ipv4_cidr_block,
         vertical_pod_autoscalings=__ret__.vertical_pod_autoscalings,
         workload_identity_configs=__ret__.workload_identity_configs)
+
+
+@_utilities.lift_output_func(get_cluster)
+def get_cluster_apply(location: Optional[pulumi.Input[str]] = None,
+                      name: Optional[pulumi.Input[str]] = None,
+                      project: Optional[pulumi.Input[str]] = None,
+                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetClusterResult]:
+    ...

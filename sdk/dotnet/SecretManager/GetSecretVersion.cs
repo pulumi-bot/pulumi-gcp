@@ -39,6 +39,21 @@ namespace Pulumi.Gcp.SecretManager
         /// </summary>
         public static Task<GetSecretVersionResult> InvokeAsync(GetSecretVersionArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetSecretVersionResult>("gcp:secretmanager/getSecretVersion:getSecretVersion", args ?? new GetSecretVersionArgs(), options.WithVersion());
+
+        public static Output<GetSecretVersionResult> Invoke(GetSecretVersionOutputArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.Project.Box(),
+                args.Secret.Box(),
+                args.Version.Box()
+            ).Apply(a => {
+                    var args = new GetSecretVersionArgs();
+                    a[0].Set(args, nameof(args.Project));
+                    a[1].Set(args, nameof(args.Secret));
+                    a[2].Set(args, nameof(args.Version));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -65,6 +80,33 @@ namespace Pulumi.Gcp.SecretManager
         public string? Version { get; set; }
 
         public GetSecretVersionArgs()
+        {
+        }
+    }
+
+    public sealed class GetSecretVersionOutputArgs
+    {
+        /// <summary>
+        /// The project to get the secret version for. If it
+        /// is not provided, the provider project is used.
+        /// </summary>
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
+        /// <summary>
+        /// The secret to get the secret version for.
+        /// </summary>
+        [Input("secret", required: true)]
+        public Input<string> Secret { get; set; } = null!;
+
+        /// <summary>
+        /// The version of the secret to get. If it
+        /// is not provided, the latest version is retrieved.
+        /// </summary>
+        [Input("version")]
+        public Input<string>? Version { get; set; }
+
+        public GetSecretVersionOutputArgs()
         {
         }
     }

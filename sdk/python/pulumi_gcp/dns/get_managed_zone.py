@@ -155,3 +155,10 @@ def get_managed_zone(name: Optional[str] = None,
         name_servers=__ret__.name_servers,
         project=__ret__.project,
         visibility=__ret__.visibility)
+
+
+@_utilities.lift_output_func(get_managed_zone)
+def get_managed_zone_apply(name: Optional[pulumi.Input[str]] = None,
+                           project: Optional[pulumi.Input[str]] = None,
+                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetManagedZoneResult]:
+    ...

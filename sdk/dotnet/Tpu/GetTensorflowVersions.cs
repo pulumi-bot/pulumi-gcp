@@ -61,6 +61,20 @@ namespace Pulumi.Gcp.Tpu
         /// </summary>
         public static Task<GetTensorflowVersionsResult> InvokeAsync(GetTensorflowVersionsArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetTensorflowVersionsResult>("gcp:tpu/getTensorflowVersions:getTensorflowVersions", args ?? new GetTensorflowVersionsArgs(), options.WithVersion());
+
+        public static Output<GetTensorflowVersionsResult> Invoke(GetTensorflowVersionsOutputArgs? args = null, InvokeOptions? options = null)
+        {
+            args = args ?? new GetTensorflowVersionsOutputArgs();
+            return Pulumi.Output.All(
+                args.Project.Box(),
+                args.Zone.Box()
+            ).Apply(a => {
+                    var args = new GetTensorflowVersionsArgs();
+                    a[0].Set(args, nameof(args.Project));
+                    a[1].Set(args, nameof(args.Zone));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -81,6 +95,27 @@ namespace Pulumi.Gcp.Tpu
         public string? Zone { get; set; }
 
         public GetTensorflowVersionsArgs()
+        {
+        }
+    }
+
+    public sealed class GetTensorflowVersionsOutputArgs
+    {
+        /// <summary>
+        /// The project to list versions for. If it
+        /// is not provided, the provider project is used.
+        /// </summary>
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
+        /// <summary>
+        /// The zone to list versions for. If it
+        /// is not provided, the provider zone is used.
+        /// </summary>
+        [Input("zone")]
+        public Input<string>? Zone { get; set; }
+
+        public GetTensorflowVersionsOutputArgs()
         {
         }
     }

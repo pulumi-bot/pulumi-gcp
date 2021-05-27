@@ -41,6 +41,18 @@ namespace Pulumi.Gcp.Organizations
         /// </summary>
         public static Task<GetProjectResult> InvokeAsync(GetProjectArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetProjectResult>("gcp:organizations/getProject:getProject", args ?? new GetProjectArgs(), options.WithVersion());
+
+        public static Output<GetProjectResult> Invoke(GetProjectOutputArgs? args = null, InvokeOptions? options = null)
+        {
+            args = args ?? new GetProjectOutputArgs();
+            return Pulumi.Output.All(
+                args.ProjectId.Box()
+            ).Apply(a => {
+                    var args = new GetProjectArgs();
+                    a[0].Set(args, nameof(args.ProjectId));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -53,6 +65,19 @@ namespace Pulumi.Gcp.Organizations
         public string? ProjectId { get; set; }
 
         public GetProjectArgs()
+        {
+        }
+    }
+
+    public sealed class GetProjectOutputArgs
+    {
+        /// <summary>
+        /// The project ID. If it is not provided, the provider project is used.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
+
+        public GetProjectOutputArgs()
         {
         }
     }

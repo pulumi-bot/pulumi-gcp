@@ -27,6 +27,19 @@ namespace Pulumi.Gcp.Kms
         /// </summary>
         public static Task<GetKMSSecretCiphertextResult> InvokeAsync(GetKMSSecretCiphertextArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetKMSSecretCiphertextResult>("gcp:kms/getKMSSecretCiphertext:getKMSSecretCiphertext", args ?? new GetKMSSecretCiphertextArgs(), options.WithVersion());
+
+        public static Output<GetKMSSecretCiphertextResult> Invoke(GetKMSSecretCiphertextOutputArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.CryptoKey.Box(),
+                args.Plaintext.Box()
+            ).Apply(a => {
+                    var args = new GetKMSSecretCiphertextArgs();
+                    a[0].Set(args, nameof(args.CryptoKey));
+                    a[1].Set(args, nameof(args.Plaintext));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -47,6 +60,27 @@ namespace Pulumi.Gcp.Kms
         public string Plaintext { get; set; } = null!;
 
         public GetKMSSecretCiphertextArgs()
+        {
+        }
+    }
+
+    public sealed class GetKMSSecretCiphertextOutputArgs
+    {
+        /// <summary>
+        /// The id of the CryptoKey that will be used to
+        /// encrypt the provided plaintext. This is represented by the format
+        /// `{projectId}/{location}/{keyRingName}/{cryptoKeyName}`.
+        /// </summary>
+        [Input("cryptoKey", required: true)]
+        public Input<string> CryptoKey { get; set; } = null!;
+
+        /// <summary>
+        /// The plaintext to be encrypted
+        /// </summary>
+        [Input("plaintext", required: true)]
+        public Input<string> Plaintext { get; set; } = null!;
+
+        public GetKMSSecretCiphertextOutputArgs()
         {
         }
     }

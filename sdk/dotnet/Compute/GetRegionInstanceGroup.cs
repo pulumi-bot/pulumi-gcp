@@ -36,6 +36,24 @@ namespace Pulumi.Gcp.Compute
         /// </summary>
         public static Task<GetRegionInstanceGroupResult> InvokeAsync(GetRegionInstanceGroupArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetRegionInstanceGroupResult>("gcp:compute/getRegionInstanceGroup:getRegionInstanceGroup", args ?? new GetRegionInstanceGroupArgs(), options.WithVersion());
+
+        public static Output<GetRegionInstanceGroupResult> Invoke(GetRegionInstanceGroupOutputArgs? args = null, InvokeOptions? options = null)
+        {
+            args = args ?? new GetRegionInstanceGroupOutputArgs();
+            return Pulumi.Output.All(
+                args.Name.Box(),
+                args.Project.Box(),
+                args.Region.Box(),
+                args.SelfLink.Box()
+            ).Apply(a => {
+                    var args = new GetRegionInstanceGroupArgs();
+                    a[0].Set(args, nameof(args.Name));
+                    a[1].Set(args, nameof(args.Project));
+                    a[2].Set(args, nameof(args.Region));
+                    a[3].Set(args, nameof(args.SelfLink));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -70,6 +88,41 @@ namespace Pulumi.Gcp.Compute
         public string? SelfLink { get; set; }
 
         public GetRegionInstanceGroupArgs()
+        {
+        }
+    }
+
+    public sealed class GetRegionInstanceGroupOutputArgs
+    {
+        /// <summary>
+        /// The name of the instance group.  One of `name` or `self_link` must be provided.
+        /// </summary>
+        [Input("name")]
+        public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The ID of the project in which the resource belongs.
+        /// If `self_link` is provided, this value is ignored.  If neither `self_link`
+        /// nor `project` are provided, the provider project is used.
+        /// </summary>
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
+        /// <summary>
+        /// The region in which the resource belongs.  If `self_link`
+        /// is provided, this value is ignored.  If neither `self_link` nor `region` are
+        /// provided, the provider region is used.
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
+
+        /// <summary>
+        /// The link to the instance group.  One of `name` or `self_link` must be provided.
+        /// </summary>
+        [Input("selfLink")]
+        public Input<string>? SelfLink { get; set; }
+
+        public GetRegionInstanceGroupOutputArgs()
         {
         }
     }

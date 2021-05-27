@@ -60,6 +60,22 @@ namespace Pulumi.Gcp.Container
         /// </summary>
         public static Task<GetEngineVersionsResult> InvokeAsync(GetEngineVersionsArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetEngineVersionsResult>("gcp:container/getEngineVersions:getEngineVersions", args ?? new GetEngineVersionsArgs(), options.WithVersion());
+
+        public static Output<GetEngineVersionsResult> Invoke(GetEngineVersionsOutputArgs? args = null, InvokeOptions? options = null)
+        {
+            args = args ?? new GetEngineVersionsOutputArgs();
+            return Pulumi.Output.All(
+                args.Location.Box(),
+                args.Project.Box(),
+                args.VersionPrefix.Box()
+            ).Apply(a => {
+                    var args = new GetEngineVersionsArgs();
+                    a[0].Set(args, nameof(args.Location));
+                    a[1].Set(args, nameof(args.Project));
+                    a[2].Set(args, nameof(args.VersionPrefix));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -93,6 +109,40 @@ namespace Pulumi.Gcp.Container
         public string? VersionPrefix { get; set; }
 
         public GetEngineVersionsArgs()
+        {
+        }
+    }
+
+    public sealed class GetEngineVersionsOutputArgs
+    {
+        /// <summary>
+        /// The location (region or zone) to list versions for.
+        /// Must exactly match the location the cluster will be deployed in, or listed
+        /// versions may not be available. If `location`, `region`, and `zone` are not
+        /// specified, the provider-level zone must be set and is used instead.
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
+
+        /// <summary>
+        /// ID of the project to list available cluster versions for. Should match the project the cluster will be deployed to.
+        /// Defaults to the project that the provider is authenticated with.
+        /// </summary>
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
+        /// <summary>
+        /// If provided, the provider will only return versions
+        /// that match the string prefix. For example, `1.11.` will match all `1.11` series
+        /// releases. Since this is just a string match, it's recommended that you append a
+        /// `.` after minor versions to ensure that prefixes such as `1.1` don't match
+        /// versions like `1.12.5-gke.10` accidentally. See [the docs on versioning schema](https://cloud.google.com/kubernetes-engine/versioning-and-upgrades#versioning_scheme)
+        /// for full details on how version strings are formatted.
+        /// </summary>
+        [Input("versionPrefix")]
+        public Input<string>? VersionPrefix { get; set; }
+
+        public GetEngineVersionsOutputArgs()
         {
         }
     }

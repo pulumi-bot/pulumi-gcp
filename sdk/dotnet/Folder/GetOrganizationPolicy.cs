@@ -45,6 +45,19 @@ namespace Pulumi.Gcp.Folder
         /// </summary>
         public static Task<GetOrganizationPolicyResult> InvokeAsync(GetOrganizationPolicyArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetOrganizationPolicyResult>("gcp:folder/getOrganizationPolicy:getOrganizationPolicy", args ?? new GetOrganizationPolicyArgs(), options.WithVersion());
+
+        public static Output<GetOrganizationPolicyResult> Invoke(GetOrganizationPolicyOutputArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.Constraint.Box(),
+                args.Folder.Box()
+            ).Apply(a => {
+                    var args = new GetOrganizationPolicyArgs();
+                    a[0].Set(args, nameof(args.Constraint));
+                    a[1].Set(args, nameof(args.Folder));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -63,6 +76,25 @@ namespace Pulumi.Gcp.Folder
         public string Folder { get; set; } = null!;
 
         public GetOrganizationPolicyArgs()
+        {
+        }
+    }
+
+    public sealed class GetOrganizationPolicyOutputArgs
+    {
+        /// <summary>
+        /// (Required) The name of the Constraint the Policy is configuring, for example, `serviceuser.services`. Check out the [complete list of available constraints](https://cloud.google.com/resource-manager/docs/organization-policy/understanding-constraints#available_constraints).
+        /// </summary>
+        [Input("constraint", required: true)]
+        public Input<string> Constraint { get; set; } = null!;
+
+        /// <summary>
+        /// The resource name of the folder to set the policy for. Its format is folders/{folder_id}.
+        /// </summary>
+        [Input("folder", required: true)]
+        public Input<string> Folder { get; set; } = null!;
+
+        public GetOrganizationPolicyOutputArgs()
         {
         }
     }

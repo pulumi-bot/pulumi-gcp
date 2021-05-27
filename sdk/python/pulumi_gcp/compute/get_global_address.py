@@ -140,3 +140,10 @@ def get_global_address(name: Optional[str] = None,
         project=__ret__.project,
         self_link=__ret__.self_link,
         status=__ret__.status)
+
+
+@_utilities.lift_output_func(get_global_address)
+def get_global_address_apply(name: Optional[pulumi.Input[str]] = None,
+                             project: Optional[pulumi.Input[str]] = None,
+                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetGlobalAddressResult]:
+    ...

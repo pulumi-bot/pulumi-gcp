@@ -56,6 +56,23 @@ namespace Pulumi.Gcp.Monitoring
         /// </summary>
         public static Task<GetIstioCanonicalServiceResult> InvokeAsync(GetIstioCanonicalServiceArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetIstioCanonicalServiceResult>("gcp:monitoring/getIstioCanonicalService:getIstioCanonicalService", args ?? new GetIstioCanonicalServiceArgs(), options.WithVersion());
+
+        public static Output<GetIstioCanonicalServiceResult> Invoke(GetIstioCanonicalServiceOutputArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.CanonicalService.Box(),
+                args.CanonicalServiceNamespace.Box(),
+                args.MeshUid.Box(),
+                args.Project.Box()
+            ).Apply(a => {
+                    var args = new GetIstioCanonicalServiceArgs();
+                    a[0].Set(args, nameof(args.CanonicalService));
+                    a[1].Set(args, nameof(args.CanonicalServiceNamespace));
+                    a[2].Set(args, nameof(args.MeshUid));
+                    a[3].Set(args, nameof(args.Project));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -90,6 +107,41 @@ namespace Pulumi.Gcp.Monitoring
         public string? Project { get; set; }
 
         public GetIstioCanonicalServiceArgs()
+        {
+        }
+    }
+
+    public sealed class GetIstioCanonicalServiceOutputArgs
+    {
+        /// <summary>
+        /// The name of the canonical service underlying this service.
+        /// Corresponds to the destination_canonical_service_name metric label in label in Istio metrics.
+        /// </summary>
+        [Input("canonicalService", required: true)]
+        public Input<string> CanonicalService { get; set; } = null!;
+
+        /// <summary>
+        /// The namespace of the canonical service underlying this service.
+        /// Corresponds to the destination_canonical_service_namespace metric label in Istio metrics.
+        /// </summary>
+        [Input("canonicalServiceNamespace", required: true)]
+        public Input<string> CanonicalServiceNamespace { get; set; } = null!;
+
+        /// <summary>
+        /// Identifier for the mesh in which this Istio service is defined.
+        /// Corresponds to the meshUid metric label in Istio metrics.
+        /// </summary>
+        [Input("meshUid", required: true)]
+        public Input<string> MeshUid { get; set; } = null!;
+
+        /// <summary>
+        /// The ID of the project in which the resource belongs.
+        /// If it is not provided, the provider project is used.
+        /// </summary>
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
+        public GetIstioCanonicalServiceOutputArgs()
         {
         }
     }

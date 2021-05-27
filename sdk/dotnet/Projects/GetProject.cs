@@ -46,6 +46,17 @@ namespace Pulumi.Gcp.Projects
         /// </summary>
         public static Task<GetProjectResult> InvokeAsync(GetProjectArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetProjectResult>("gcp:projects/getProject:getProject", args ?? new GetProjectArgs(), options.WithVersion());
+
+        public static Output<GetProjectResult> Invoke(GetProjectOutputArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.Filter.Box()
+            ).Apply(a => {
+                    var args = new GetProjectArgs();
+                    a[0].Set(args, nameof(args.Filter));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -58,6 +69,19 @@ namespace Pulumi.Gcp.Projects
         public string Filter { get; set; } = null!;
 
         public GetProjectArgs()
+        {
+        }
+    }
+
+    public sealed class GetProjectOutputArgs
+    {
+        /// <summary>
+        /// A string filter as defined in the [REST API](https://cloud.google.com/resource-manager/reference/rest/v1/projects/list#query-parameters).
+        /// </summary>
+        [Input("filter", required: true)]
+        public Input<string> Filter { get; set; } = null!;
+
+        public GetProjectOutputArgs()
         {
         }
     }

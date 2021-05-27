@@ -73,6 +73,31 @@ namespace Pulumi.Gcp.Storage
         /// </summary>
         public static Task<GetObjectSignedUrlResult> InvokeAsync(GetObjectSignedUrlArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetObjectSignedUrlResult>("gcp:storage/getObjectSignedUrl:getObjectSignedUrl", args ?? new GetObjectSignedUrlArgs(), options.WithVersion());
+
+        public static Output<GetObjectSignedUrlResult> Invoke(GetObjectSignedUrlOutputArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.Bucket.Box(),
+                args.ContentMd5.Box(),
+                args.ContentType.Box(),
+                args.Credentials.Box(),
+                args.Duration.Box(),
+                args.ExtensionHeaders.ToDict().Box(),
+                args.HttpMethod.Box(),
+                args.Path.Box()
+            ).Apply(a => {
+                    var args = new GetObjectSignedUrlArgs();
+                    a[0].Set(args, nameof(args.Bucket));
+                    a[1].Set(args, nameof(args.ContentMd5));
+                    a[2].Set(args, nameof(args.ContentType));
+                    a[3].Set(args, nameof(args.Credentials));
+                    a[4].Set(args, nameof(args.Duration));
+                    a[5].Set(args, nameof(args.ExtensionHeaders));
+                    a[6].Set(args, nameof(args.HttpMethod));
+                    a[7].Set(args, nameof(args.Path));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -138,6 +163,72 @@ namespace Pulumi.Gcp.Storage
         public string Path { get; set; } = null!;
 
         public GetObjectSignedUrlArgs()
+        {
+        }
+    }
+
+    public sealed class GetObjectSignedUrlOutputArgs
+    {
+        /// <summary>
+        /// The name of the bucket to read the object from
+        /// </summary>
+        [Input("bucket", required: true)]
+        public Input<string> Bucket { get; set; } = null!;
+
+        /// <summary>
+        /// The [MD5 digest](https://cloud.google.com/storage/docs/hashes-etags#_MD5) value in Base64.
+        /// Typically retrieved from `google_storage_bucket_object.object.md5hash` attribute.
+        /// If you provide this in the datasource, the client (e.g. browser, curl) must provide the `Content-MD5` HTTP header with this same value in its request.
+        /// </summary>
+        [Input("contentMd5")]
+        public Input<string>? ContentMd5 { get; set; }
+
+        /// <summary>
+        /// If you specify this in the datasource, the client must provide the `Content-Type` HTTP header with the same value in its request.
+        /// </summary>
+        [Input("contentType")]
+        public Input<string>? ContentType { get; set; }
+
+        /// <summary>
+        /// What Google service account credentials json should be used to sign the URL.
+        /// This data source checks the following locations for credentials, in order of preference: data source `credentials` attribute, provider `credentials` attribute and finally the GOOGLE_APPLICATION_CREDENTIALS environment variable.
+        /// </summary>
+        [Input("credentials")]
+        public Input<string>? Credentials { get; set; }
+
+        /// <summary>
+        /// For how long shall the signed URL be valid (defaults to 1 hour - i.e. `1h`).
+        /// See [here](https://golang.org/pkg/time/#ParseDuration) for info on valid duration formats.
+        /// </summary>
+        [Input("duration")]
+        public Input<string>? Duration { get; set; }
+
+        [Input("extensionHeaders")]
+        private InputMap<string>? _extensionHeaders;
+
+        /// <summary>
+        /// As needed. The server checks to make sure that the client provides matching values in requests using the signed URL.
+        /// Any header starting with `x-goog-` is accepted but see the [Google Docs](https://cloud.google.com/storage/docs/xml-api/reference-headers) for list of headers that are supported by Google.
+        /// </summary>
+        public InputMap<string> ExtensionHeaders
+        {
+            get => _extensionHeaders ?? (_extensionHeaders = new InputMap<string>());
+            set => _extensionHeaders = value;
+        }
+
+        /// <summary>
+        /// What HTTP Method will the signed URL allow (defaults to `GET`)
+        /// </summary>
+        [Input("httpMethod")]
+        public Input<string>? HttpMethod { get; set; }
+
+        /// <summary>
+        /// The full path to the object inside the bucket
+        /// </summary>
+        [Input("path", required: true)]
+        public Input<string> Path { get; set; } = null!;
+
+        public GetObjectSignedUrlOutputArgs()
         {
         }
     }

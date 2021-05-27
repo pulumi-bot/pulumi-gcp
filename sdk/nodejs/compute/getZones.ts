@@ -78,3 +78,26 @@ export interface GetZonesResult {
     readonly region?: string;
     readonly status?: string;
 }
+
+export function getZonesApply(args?: GetZonesApplyArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetZonesResult> {
+    return pulumi.output(args).apply(a => getZones(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getZones.
+ */
+export interface GetZonesApplyArgs {
+    /**
+     * Project from which to list available zones. Defaults to project declared in the provider.
+     */
+    project?: pulumi.Input<string>;
+    /**
+     * Region from which to list available zones. Defaults to region declared in the provider.
+     */
+    region?: pulumi.Input<string>;
+    /**
+     * Allows to filter list of zones based on their current status. Status can be either `UP` or `DOWN`.
+     * Defaults to no filtering (all available zones - both `UP` and `DOWN`).
+     */
+    status?: pulumi.Input<string>;
+}

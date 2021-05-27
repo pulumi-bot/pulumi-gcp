@@ -16,6 +16,17 @@ namespace Pulumi.Gcp.Firebase
         /// </summary>
         public static Task<GetWebAppResult> InvokeAsync(GetWebAppArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetWebAppResult>("gcp:firebase/getWebApp:getWebApp", args ?? new GetWebAppArgs(), options.WithVersion());
+
+        public static Output<GetWebAppResult> Invoke(GetWebAppOutputArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.AppId.Box()
+            ).Apply(a => {
+                    var args = new GetWebAppArgs();
+                    a[0].Set(args, nameof(args.AppId));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -28,6 +39,19 @@ namespace Pulumi.Gcp.Firebase
         public string AppId { get; set; } = null!;
 
         public GetWebAppArgs()
+        {
+        }
+    }
+
+    public sealed class GetWebAppOutputArgs
+    {
+        /// <summary>
+        /// The app_ip of name of the Firebase webApp.
+        /// </summary>
+        [Input("appId", required: true)]
+        public Input<string> AppId { get; set; } = null!;
+
+        public GetWebAppOutputArgs()
         {
         }
     }

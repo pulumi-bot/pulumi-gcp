@@ -44,6 +44,24 @@ namespace Pulumi.Gcp.Compute
         /// </summary>
         public static Task<GetInstanceResult> InvokeAsync(GetInstanceArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetInstanceResult>("gcp:compute/getInstance:getInstance", args ?? new GetInstanceArgs(), options.WithVersion());
+
+        public static Output<GetInstanceResult> Invoke(GetInstanceOutputArgs? args = null, InvokeOptions? options = null)
+        {
+            args = args ?? new GetInstanceOutputArgs();
+            return Pulumi.Output.All(
+                args.Name.Box(),
+                args.Project.Box(),
+                args.SelfLink.Box(),
+                args.Zone.Box()
+            ).Apply(a => {
+                    var args = new GetInstanceArgs();
+                    a[0].Set(args, nameof(args.Name));
+                    a[1].Set(args, nameof(args.Project));
+                    a[2].Set(args, nameof(args.SelfLink));
+                    a[3].Set(args, nameof(args.Zone));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -78,6 +96,41 @@ namespace Pulumi.Gcp.Compute
         public string? Zone { get; set; }
 
         public GetInstanceArgs()
+        {
+        }
+    }
+
+    public sealed class GetInstanceOutputArgs
+    {
+        /// <summary>
+        /// The name of the instance. One of `name` or `self_link` must be provided.
+        /// </summary>
+        [Input("name")]
+        public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The ID of the project in which the resource belongs.
+        /// If `self_link` is provided, this value is ignored.  If neither `self_link`
+        /// nor `project` are provided, the provider project is used.
+        /// </summary>
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
+        /// <summary>
+        /// The self link of the instance. One of `name` or `self_link` must be provided.
+        /// </summary>
+        [Input("selfLink")]
+        public Input<string>? SelfLink { get; set; }
+
+        /// <summary>
+        /// The zone of the instance. If `self_link` is provided, this
+        /// value is ignored.  If neither `self_link` nor `zone` are provided, the
+        /// provider zone is used.
+        /// </summary>
+        [Input("zone")]
+        public Input<string>? Zone { get; set; }
+
+        public GetInstanceOutputArgs()
         {
         }
     }

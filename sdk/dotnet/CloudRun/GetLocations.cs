@@ -43,6 +43,18 @@ namespace Pulumi.Gcp.CloudRun
         /// </summary>
         public static Task<GetLocationsResult> InvokeAsync(GetLocationsArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetLocationsResult>("gcp:cloudrun/getLocations:getLocations", args ?? new GetLocationsArgs(), options.WithVersion());
+
+        public static Output<GetLocationsResult> Invoke(GetLocationsOutputArgs? args = null, InvokeOptions? options = null)
+        {
+            args = args ?? new GetLocationsOutputArgs();
+            return Pulumi.Output.All(
+                args.Project.Box()
+            ).Apply(a => {
+                    var args = new GetLocationsArgs();
+                    a[0].Set(args, nameof(args.Project));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -56,6 +68,20 @@ namespace Pulumi.Gcp.CloudRun
         public string? Project { get; set; }
 
         public GetLocationsArgs()
+        {
+        }
+    }
+
+    public sealed class GetLocationsOutputArgs
+    {
+        /// <summary>
+        /// The project to list versions for. If it
+        /// is not provided, the provider project is used.
+        /// </summary>
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
+        public GetLocationsOutputArgs()
         {
         }
     }

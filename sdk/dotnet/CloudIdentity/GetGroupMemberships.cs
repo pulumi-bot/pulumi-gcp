@@ -41,6 +41,17 @@ namespace Pulumi.Gcp.CloudIdentity
         /// </summary>
         public static Task<GetGroupMembershipsResult> InvokeAsync(GetGroupMembershipsArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetGroupMembershipsResult>("gcp:cloudidentity/getGroupMemberships:getGroupMemberships", args ?? new GetGroupMembershipsArgs(), options.WithVersion());
+
+        public static Output<GetGroupMembershipsResult> Invoke(GetGroupMembershipsOutputArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.Group.Box()
+            ).Apply(a => {
+                    var args = new GetGroupMembershipsArgs();
+                    a[0].Set(args, nameof(args.Group));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -53,6 +64,19 @@ namespace Pulumi.Gcp.CloudIdentity
         public string Group { get; set; } = null!;
 
         public GetGroupMembershipsArgs()
+        {
+        }
+    }
+
+    public sealed class GetGroupMembershipsOutputArgs
+    {
+        /// <summary>
+        /// The parent Group resource under which to lookup the Membership names. Must be of the form groups/{group_id}.
+        /// </summary>
+        [Input("group", required: true)]
+        public Input<string> Group { get; set; } = null!;
+
+        public GetGroupMembershipsOutputArgs()
         {
         }
     }

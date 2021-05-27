@@ -46,6 +46,24 @@ namespace Pulumi.Gcp.Compute
         /// </summary>
         public static Task<GetNetworkEndpointGroupResult> InvokeAsync(GetNetworkEndpointGroupArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetNetworkEndpointGroupResult>("gcp:compute/getNetworkEndpointGroup:getNetworkEndpointGroup", args ?? new GetNetworkEndpointGroupArgs(), options.WithVersion());
+
+        public static Output<GetNetworkEndpointGroupResult> Invoke(GetNetworkEndpointGroupOutputArgs? args = null, InvokeOptions? options = null)
+        {
+            args = args ?? new GetNetworkEndpointGroupOutputArgs();
+            return Pulumi.Output.All(
+                args.Name.Box(),
+                args.Project.Box(),
+                args.SelfLink.Box(),
+                args.Zone.Box()
+            ).Apply(a => {
+                    var args = new GetNetworkEndpointGroupArgs();
+                    a[0].Set(args, nameof(args.Name));
+                    a[1].Set(args, nameof(args.Project));
+                    a[2].Set(args, nameof(args.SelfLink));
+                    a[3].Set(args, nameof(args.Zone));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -78,6 +96,39 @@ namespace Pulumi.Gcp.Compute
         public string? Zone { get; set; }
 
         public GetNetworkEndpointGroupArgs()
+        {
+        }
+    }
+
+    public sealed class GetNetworkEndpointGroupOutputArgs
+    {
+        /// <summary>
+        /// The Network Endpoint Group name.
+        /// Provide either this or a `self_link`.
+        /// </summary>
+        [Input("name")]
+        public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The ID of the project to list versions in.
+        /// If it is not provided, the provider project is used.
+        /// </summary>
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
+        /// <summary>
+        /// The Network Endpoint Group self\_link.
+        /// </summary>
+        [Input("selfLink")]
+        public Input<string>? SelfLink { get; set; }
+
+        /// <summary>
+        /// The Network Endpoint Group availability zone.
+        /// </summary>
+        [Input("zone")]
+        public Input<string>? Zone { get; set; }
+
+        public GetNetworkEndpointGroupOutputArgs()
         {
         }
     }

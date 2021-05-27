@@ -134,3 +134,11 @@ def get_account_key(name: Optional[str] = None,
         project=__ret__.project,
         public_key=__ret__.public_key,
         public_key_type=__ret__.public_key_type)
+
+
+@_utilities.lift_output_func(get_account_key)
+def get_account_key_apply(name: Optional[pulumi.Input[str]] = None,
+                          project: Optional[pulumi.Input[str]] = None,
+                          public_key_type: Optional[pulumi.Input[str]] = None,
+                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAccountKeyResult]:
+    ...

@@ -55,3 +55,7 @@ export interface GetClientConfigResult {
      */
     readonly zone: string;
 }
+
+export function getClientConfigApply(opts?: pulumi.InvokeOptions): pulumi.Output<GetClientConfigResult> {
+    return pulumi.output(getClientConfig(opts))
+}

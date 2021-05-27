@@ -117,6 +117,20 @@ namespace Pulumi.Gcp.Storage
         /// </summary>
         public static Task<GetProjectServiceAccountResult> InvokeAsync(GetProjectServiceAccountArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetProjectServiceAccountResult>("gcp:storage/getProjectServiceAccount:getProjectServiceAccount", args ?? new GetProjectServiceAccountArgs(), options.WithVersion());
+
+        public static Output<GetProjectServiceAccountResult> Invoke(GetProjectServiceAccountOutputArgs? args = null, InvokeOptions? options = null)
+        {
+            args = args ?? new GetProjectServiceAccountOutputArgs();
+            return Pulumi.Output.All(
+                args.Project.Box(),
+                args.UserProject.Box()
+            ).Apply(a => {
+                    var args = new GetProjectServiceAccountArgs();
+                    a[0].Set(args, nameof(args.Project));
+                    a[1].Set(args, nameof(args.UserProject));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -136,6 +150,26 @@ namespace Pulumi.Gcp.Storage
         public string? UserProject { get; set; }
 
         public GetProjectServiceAccountArgs()
+        {
+        }
+    }
+
+    public sealed class GetProjectServiceAccountOutputArgs
+    {
+        /// <summary>
+        /// The project the unique service account was created for. If it is not provided, the provider project is used.
+        /// </summary>
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
+        /// <summary>
+        /// The project the lookup originates from. This field is used if you are making the request
+        /// from a different account than the one you are finding the service account for.
+        /// </summary>
+        [Input("userProject")]
+        public Input<string>? UserProject { get; set; }
+
+        public GetProjectServiceAccountOutputArgs()
         {
         }
     }

@@ -74,3 +74,25 @@ export interface GetResourcePolicyResult {
     readonly selfLink: string;
     readonly snapshotSchedulePolicies: outputs.compute.GetResourcePolicySnapshotSchedulePolicy[];
 }
+
+export function getResourcePolicyApply(args: GetResourcePolicyApplyArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetResourcePolicyResult> {
+    return pulumi.output(args).apply(a => getResourcePolicy(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getResourcePolicy.
+ */
+export interface GetResourcePolicyApplyArgs {
+    /**
+     * The name of the Resource Policy.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Project from which to list the Resource Policy. Defaults to project declared in the provider.
+     */
+    project?: pulumi.Input<string>;
+    /**
+     * Region where the Resource Policy resides.
+     */
+    region?: pulumi.Input<string>;
+}

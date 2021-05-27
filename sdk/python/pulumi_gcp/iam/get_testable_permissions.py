@@ -128,3 +128,11 @@ def get_testable_permissions(custom_support_level: Optional[str] = None,
         id=__ret__.id,
         permissions=__ret__.permissions,
         stages=__ret__.stages)
+
+
+@_utilities.lift_output_func(get_testable_permissions)
+def get_testable_permissions_apply(custom_support_level: Optional[pulumi.Input[str]] = None,
+                                   full_resource_name: Optional[pulumi.Input[str]] = None,
+                                   stages: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTestablePermissionsResult]:
+    ...

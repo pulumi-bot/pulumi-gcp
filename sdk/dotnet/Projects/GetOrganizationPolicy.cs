@@ -45,6 +45,19 @@ namespace Pulumi.Gcp.Projects
         /// </summary>
         public static Task<GetOrganizationPolicyResult> InvokeAsync(GetOrganizationPolicyArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetOrganizationPolicyResult>("gcp:projects/getOrganizationPolicy:getOrganizationPolicy", args ?? new GetOrganizationPolicyArgs(), options.WithVersion());
+
+        public static Output<GetOrganizationPolicyResult> Invoke(GetOrganizationPolicyOutputArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.Constraint.Box(),
+                args.Project.Box()
+            ).Apply(a => {
+                    var args = new GetOrganizationPolicyArgs();
+                    a[0].Set(args, nameof(args.Constraint));
+                    a[1].Set(args, nameof(args.Project));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -63,6 +76,25 @@ namespace Pulumi.Gcp.Projects
         public string Project { get; set; } = null!;
 
         public GetOrganizationPolicyArgs()
+        {
+        }
+    }
+
+    public sealed class GetOrganizationPolicyOutputArgs
+    {
+        /// <summary>
+        /// (Required) The name of the Constraint the Policy is configuring, for example, `serviceuser.services`. Check out the [complete list of available constraints](https://cloud.google.com/resource-manager/docs/organization-policy/understanding-constraints#available_constraints).
+        /// </summary>
+        [Input("constraint", required: true)]
+        public Input<string> Constraint { get; set; } = null!;
+
+        /// <summary>
+        /// The project ID.
+        /// </summary>
+        [Input("project", required: true)]
+        public Input<string> Project { get; set; } = null!;
+
+        public GetOrganizationPolicyOutputArgs()
         {
         }
     }

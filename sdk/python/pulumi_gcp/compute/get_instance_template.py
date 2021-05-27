@@ -431,3 +431,12 @@ def get_instance_template(filter: Optional[str] = None,
         shielded_instance_configs=__ret__.shielded_instance_configs,
         tags=__ret__.tags,
         tags_fingerprint=__ret__.tags_fingerprint)
+
+
+@_utilities.lift_output_func(get_instance_template)
+def get_instance_template_apply(filter: Optional[pulumi.Input[str]] = None,
+                                most_recent: Optional[pulumi.Input[bool]] = None,
+                                name: Optional[pulumi.Input[str]] = None,
+                                project: Optional[pulumi.Input[str]] = None,
+                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetInstanceTemplateResult]:
+    ...

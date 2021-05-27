@@ -83,6 +83,26 @@ namespace Pulumi.Gcp.Monitoring
         /// </summary>
         public static Task<GetNotificationChannelResult> InvokeAsync(GetNotificationChannelArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetNotificationChannelResult>("gcp:monitoring/getNotificationChannel:getNotificationChannel", args ?? new GetNotificationChannelArgs(), options.WithVersion());
+
+        public static Output<GetNotificationChannelResult> Invoke(GetNotificationChannelOutputArgs? args = null, InvokeOptions? options = null)
+        {
+            args = args ?? new GetNotificationChannelOutputArgs();
+            return Pulumi.Output.All(
+                args.DisplayName.Box(),
+                args.Labels.ToDict().Box(),
+                args.Project.Box(),
+                args.Type.Box(),
+                args.UserLabels.ToDict().Box()
+            ).Apply(a => {
+                    var args = new GetNotificationChannelArgs();
+                    a[0].Set(args, nameof(args.DisplayName));
+                    a[1].Set(args, nameof(args.Labels));
+                    a[2].Set(args, nameof(args.Project));
+                    a[3].Set(args, nameof(args.Type));
+                    a[4].Set(args, nameof(args.UserLabels));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -133,6 +153,57 @@ namespace Pulumi.Gcp.Monitoring
         }
 
         public GetNotificationChannelArgs()
+        {
+        }
+    }
+
+    public sealed class GetNotificationChannelOutputArgs
+    {
+        /// <summary>
+        /// The display name for this notification channel.
+        /// </summary>
+        [Input("displayName")]
+        public Input<string>? DisplayName { get; set; }
+
+        [Input("labels")]
+        private InputMap<string>? _labels;
+
+        /// <summary>
+        /// Labels (corresponding to the
+        /// NotificationChannelDescriptor schema) to filter the notification channels by.
+        /// </summary>
+        public InputMap<string> Labels
+        {
+            get => _labels ?? (_labels = new InputMap<string>());
+            set => _labels = value;
+        }
+
+        /// <summary>
+        /// The ID of the project in which the resource belongs.
+        /// If it is not provided, the provider project is used.
+        /// </summary>
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
+        /// <summary>
+        /// The type of the notification channel.
+        /// </summary>
+        [Input("type")]
+        public Input<string>? Type { get; set; }
+
+        [Input("userLabels")]
+        private InputMap<string>? _userLabels;
+
+        /// <summary>
+        /// User-provided key-value labels to filter by.
+        /// </summary>
+        public InputMap<string> UserLabels
+        {
+            get => _userLabels ?? (_userLabels = new InputMap<string>());
+            set => _userLabels = value;
+        }
+
+        public GetNotificationChannelOutputArgs()
         {
         }
     }

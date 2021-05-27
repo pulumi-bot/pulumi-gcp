@@ -64,3 +64,21 @@ export interface GetClientResult {
     readonly id: string;
     readonly secret: string;
 }
+
+export function getClientApply(args: GetClientApplyArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClientResult> {
+    return pulumi.output(args).apply(a => getClient(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getClient.
+ */
+export interface GetClientApplyArgs {
+    /**
+     * The name of the brand.
+     */
+    brand: pulumi.Input<string>;
+    /**
+     * The clientId of the brand.
+     */
+    clientId: pulumi.Input<string>;
+}
