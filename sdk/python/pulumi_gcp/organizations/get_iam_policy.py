@@ -108,3 +108,10 @@ def get_iam_policy(audit_configs: Optional[Sequence[pulumi.InputType['GetIAMPoli
         bindings=__ret__.bindings,
         id=__ret__.id,
         policy_data=__ret__.policy_data)
+
+
+@_utilities.lift_output_func(get_iam_policy)
+def get_iam_policy_apply(audit_configs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GetIAMPolicyAuditConfigArgs']]]]] = None,
+                         bindings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GetIAMPolicyBindingArgs']]]]] = None,
+                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetIAMPolicyResult]:
+    ...

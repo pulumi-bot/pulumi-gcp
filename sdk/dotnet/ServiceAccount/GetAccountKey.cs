@@ -48,6 +48,21 @@ namespace Pulumi.Gcp.ServiceAccount
         /// </summary>
         public static Task<GetAccountKeyResult> InvokeAsync(GetAccountKeyArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetAccountKeyResult>("gcp:serviceAccount/getAccountKey:getAccountKey", args ?? new GetAccountKeyArgs(), options.WithVersion());
+
+        public static Output<GetAccountKeyResult> Invoke(GetAccountKeyOutputArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.Name.Box(),
+                args.Project.Box(),
+                args.PublicKeyType.Box()
+            ).Apply(a => {
+                    var args = new GetAccountKeyArgs();
+                    a[0].Set(args, nameof(args.Name));
+                    a[1].Set(args, nameof(args.Project));
+                    a[2].Set(args, nameof(args.PublicKeyType));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -75,6 +90,34 @@ namespace Pulumi.Gcp.ServiceAccount
         public string? PublicKeyType { get; set; }
 
         public GetAccountKeyArgs()
+        {
+        }
+    }
+
+    public sealed class GetAccountKeyOutputArgs
+    {
+        /// <summary>
+        /// The name of the service account key. This must have format
+        /// `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{KEYID}`, where `{ACCOUNT}`
+        /// is the email address or unique id of the service account.
+        /// </summary>
+        [Input("name", required: true)]
+        public Input<string> Name { get; set; } = null!;
+
+        /// <summary>
+        /// The ID of the project that the service account will be created in.
+        /// Defaults to the provider project configuration.
+        /// </summary>
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
+        /// <summary>
+        /// The output format of the public key requested. TYPE_X509_PEM_FILE is the default output format.
+        /// </summary>
+        [Input("publicKeyType")]
+        public Input<string>? PublicKeyType { get; set; }
+
+        public GetAccountKeyOutputArgs()
         {
         }
     }

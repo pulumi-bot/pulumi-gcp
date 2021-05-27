@@ -87,3 +87,21 @@ export interface GetKMSCryptoKeyVersionResult {
     readonly state: string;
     readonly version?: number;
 }
+
+export function getKMSCryptoKeyVersionApply(args: GetKMSCryptoKeyVersionApplyArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetKMSCryptoKeyVersionResult> {
+    return pulumi.output(args).apply(a => getKMSCryptoKeyVersion(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getKMSCryptoKeyVersion.
+ */
+export interface GetKMSCryptoKeyVersionApplyArgs {
+    /**
+     * The `selfLink` of the Google Cloud Platform CryptoKey to which the key version belongs.
+     */
+    cryptoKey: pulumi.Input<string>;
+    /**
+     * The version number for this CryptoKeyVersion. Defaults to `1`.
+     */
+    version?: pulumi.Input<number>;
+}

@@ -40,6 +40,21 @@ namespace Pulumi.Gcp.Sql
         /// </summary>
         public static Task<GetBackupRunResult> InvokeAsync(GetBackupRunArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetBackupRunResult>("gcp:sql/getBackupRun:getBackupRun", args ?? new GetBackupRunArgs(), options.WithVersion());
+
+        public static Output<GetBackupRunResult> Invoke(GetBackupRunOutputArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.BackupId.Box(),
+                args.Instance.Box(),
+                args.MostRecent.Box()
+            ).Apply(a => {
+                    var args = new GetBackupRunArgs();
+                    a[0].Set(args, nameof(args.BackupId));
+                    a[1].Set(args, nameof(args.Instance));
+                    a[2].Set(args, nameof(args.MostRecent));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -66,6 +81,33 @@ namespace Pulumi.Gcp.Sql
         public bool? MostRecent { get; set; }
 
         public GetBackupRunArgs()
+        {
+        }
+    }
+
+    public sealed class GetBackupRunOutputArgs
+    {
+        /// <summary>
+        /// The identifier for this backup run. Unique only for a specific Cloud SQL instance.
+        /// If left empty and multiple backups exist for the instance, `most_recent` must be set to `true`.
+        /// </summary>
+        [Input("backupId")]
+        public Input<int>? BackupId { get; set; }
+
+        /// <summary>
+        /// The name of the instance the backup is taken from.
+        /// </summary>
+        [Input("instance", required: true)]
+        public Input<string> Instance { get; set; } = null!;
+
+        /// <summary>
+        /// Toggles use of the most recent backup run if multiple backups exist for a 
+        /// Cloud SQL instance.
+        /// </summary>
+        [Input("mostRecent")]
+        public Input<bool>? MostRecent { get; set; }
+
+        public GetBackupRunOutputArgs()
         {
         }
     }

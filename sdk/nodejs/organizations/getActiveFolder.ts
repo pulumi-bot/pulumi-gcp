@@ -63,3 +63,21 @@ export interface GetActiveFolderResult {
     readonly name: string;
     readonly parent: string;
 }
+
+export function getActiveFolderApply(args: GetActiveFolderApplyArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetActiveFolderResult> {
+    return pulumi.output(args).apply(a => getActiveFolder(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getActiveFolder.
+ */
+export interface GetActiveFolderApplyArgs {
+    /**
+     * The folder's display name.
+     */
+    displayName: pulumi.Input<string>;
+    /**
+     * The resource name of the parent Folder or Organization.
+     */
+    parent: pulumi.Input<string>;
+}

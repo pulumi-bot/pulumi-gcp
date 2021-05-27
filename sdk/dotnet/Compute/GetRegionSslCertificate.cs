@@ -48,6 +48,21 @@ namespace Pulumi.Gcp.Compute
         /// </summary>
         public static Task<GetRegionSslCertificateResult> InvokeAsync(GetRegionSslCertificateArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetRegionSslCertificateResult>("gcp:compute/getRegionSslCertificate:getRegionSslCertificate", args ?? new GetRegionSslCertificateArgs(), options.WithVersion());
+
+        public static Output<GetRegionSslCertificateResult> Invoke(GetRegionSslCertificateOutputArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.Name.Box(),
+                args.Project.Box(),
+                args.Region.Box()
+            ).Apply(a => {
+                    var args = new GetRegionSslCertificateArgs();
+                    a[0].Set(args, nameof(args.Name));
+                    a[1].Set(args, nameof(args.Project));
+                    a[2].Set(args, nameof(args.Region));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -74,6 +89,33 @@ namespace Pulumi.Gcp.Compute
         public string? Region { get; set; }
 
         public GetRegionSslCertificateArgs()
+        {
+        }
+    }
+
+    public sealed class GetRegionSslCertificateOutputArgs
+    {
+        /// <summary>
+        /// The name of the certificate.
+        /// </summary>
+        [Input("name", required: true)]
+        public Input<string> Name { get; set; } = null!;
+
+        /// <summary>
+        /// The project in which the resource belongs. If it
+        /// is not provided, the provider project is used.
+        /// </summary>
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
+        /// <summary>
+        /// The region in which the resource belongs. If it
+        /// is not provided, the provider region is used.
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
+
+        public GetRegionSslCertificateOutputArgs()
         {
         }
     }

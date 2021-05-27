@@ -55,3 +55,15 @@ export interface GetRegistryRepositoryResult {
     readonly region?: string;
     readonly repositoryUrl: string;
 }
+
+export function getRegistryRepositoryApply(args?: GetRegistryRepositoryApplyArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRegistryRepositoryResult> {
+    return pulumi.output(args).apply(a => getRegistryRepository(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getRegistryRepository.
+ */
+export interface GetRegistryRepositoryApplyArgs {
+    project?: pulumi.Input<string>;
+    region?: pulumi.Input<string>;
+}

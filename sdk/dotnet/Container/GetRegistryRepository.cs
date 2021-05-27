@@ -41,6 +41,20 @@ namespace Pulumi.Gcp.Container
         /// </summary>
         public static Task<GetRegistryRepositoryResult> InvokeAsync(GetRegistryRepositoryArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetRegistryRepositoryResult>("gcp:container/getRegistryRepository:getRegistryRepository", args ?? new GetRegistryRepositoryArgs(), options.WithVersion());
+
+        public static Output<GetRegistryRepositoryResult> Invoke(GetRegistryRepositoryOutputArgs? args = null, InvokeOptions? options = null)
+        {
+            args = args ?? new GetRegistryRepositoryOutputArgs();
+            return Pulumi.Output.All(
+                args.Project.Box(),
+                args.Region.Box()
+            ).Apply(a => {
+                    var args = new GetRegistryRepositoryArgs();
+                    a[0].Set(args, nameof(args.Project));
+                    a[1].Set(args, nameof(args.Region));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -53,6 +67,19 @@ namespace Pulumi.Gcp.Container
         public string? Region { get; set; }
 
         public GetRegistryRepositoryArgs()
+        {
+        }
+    }
+
+    public sealed class GetRegistryRepositoryOutputArgs
+    {
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
+        [Input("region")]
+        public Input<string>? Region { get; set; }
+
+        public GetRegistryRepositoryOutputArgs()
         {
         }
     }

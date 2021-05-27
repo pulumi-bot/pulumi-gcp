@@ -121,3 +121,11 @@ def get_environment(name: Optional[str] = None,
         name=__ret__.name,
         project=__ret__.project,
         region=__ret__.region)
+
+
+@_utilities.lift_output_func(get_environment)
+def get_environment_apply(name: Optional[pulumi.Input[str]] = None,
+                          project: Optional[pulumi.Input[str]] = None,
+                          region: Optional[pulumi.Input[str]] = None,
+                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetEnvironmentResult]:
+    ...

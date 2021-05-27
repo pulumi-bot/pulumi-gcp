@@ -86,3 +86,21 @@ export interface GetManagedZoneResult {
      */
     readonly visibility: string;
 }
+
+export function getManagedZoneApply(args: GetManagedZoneApplyArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetManagedZoneResult> {
+    return pulumi.output(args).apply(a => getManagedZone(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getManagedZone.
+ */
+export interface GetManagedZoneApplyArgs {
+    /**
+     * A unique name for the resource.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The ID of the project for the Google Cloud DNS zone.
+     */
+    project?: pulumi.Input<string>;
+}

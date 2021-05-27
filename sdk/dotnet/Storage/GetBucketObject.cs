@@ -46,6 +46,20 @@ namespace Pulumi.Gcp.Storage
         /// </summary>
         public static Task<GetBucketObjectResult> InvokeAsync(GetBucketObjectArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetBucketObjectResult>("gcp:storage/getBucketObject:getBucketObject", args ?? new GetBucketObjectArgs(), options.WithVersion());
+
+        public static Output<GetBucketObjectResult> Invoke(GetBucketObjectOutputArgs? args = null, InvokeOptions? options = null)
+        {
+            args = args ?? new GetBucketObjectOutputArgs();
+            return Pulumi.Output.All(
+                args.Bucket.Box(),
+                args.Name.Box()
+            ).Apply(a => {
+                    var args = new GetBucketObjectArgs();
+                    a[0].Set(args, nameof(args.Bucket));
+                    a[1].Set(args, nameof(args.Name));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -64,6 +78,25 @@ namespace Pulumi.Gcp.Storage
         public string? Name { get; set; }
 
         public GetBucketObjectArgs()
+        {
+        }
+    }
+
+    public sealed class GetBucketObjectOutputArgs
+    {
+        /// <summary>
+        /// The name of the containing bucket.
+        /// </summary>
+        [Input("bucket")]
+        public Input<string>? Bucket { get; set; }
+
+        /// <summary>
+        /// The name of the object.
+        /// </summary>
+        [Input("name")]
+        public Input<string>? Name { get; set; }
+
+        public GetBucketObjectOutputArgs()
         {
         }
     }

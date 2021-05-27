@@ -54,6 +54,19 @@ namespace Pulumi.Gcp.Kms
         /// </summary>
         public static Task<GetKMSCryptoKeyVersionResult> InvokeAsync(GetKMSCryptoKeyVersionArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetKMSCryptoKeyVersionResult>("gcp:kms/getKMSCryptoKeyVersion:getKMSCryptoKeyVersion", args ?? new GetKMSCryptoKeyVersionArgs(), options.WithVersion());
+
+        public static Output<GetKMSCryptoKeyVersionResult> Invoke(GetKMSCryptoKeyVersionOutputArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.CryptoKey.Box(),
+                args.Version.Box()
+            ).Apply(a => {
+                    var args = new GetKMSCryptoKeyVersionArgs();
+                    a[0].Set(args, nameof(args.CryptoKey));
+                    a[1].Set(args, nameof(args.Version));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -72,6 +85,25 @@ namespace Pulumi.Gcp.Kms
         public int? Version { get; set; }
 
         public GetKMSCryptoKeyVersionArgs()
+        {
+        }
+    }
+
+    public sealed class GetKMSCryptoKeyVersionOutputArgs
+    {
+        /// <summary>
+        /// The `self_link` of the Google Cloud Platform CryptoKey to which the key version belongs.
+        /// </summary>
+        [Input("cryptoKey", required: true)]
+        public Input<string> CryptoKey { get; set; } = null!;
+
+        /// <summary>
+        /// The version number for this CryptoKeyVersion. Defaults to `1`.
+        /// </summary>
+        [Input("version")]
+        public Input<int>? Version { get; set; }
+
+        public GetKMSCryptoKeyVersionOutputArgs()
         {
         }
     }

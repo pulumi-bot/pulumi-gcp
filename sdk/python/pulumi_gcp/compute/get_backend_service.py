@@ -359,3 +359,10 @@ def get_backend_service(name: Optional[str] = None,
         self_link=__ret__.self_link,
         session_affinity=__ret__.session_affinity,
         timeout_sec=__ret__.timeout_sec)
+
+
+@_utilities.lift_output_func(get_backend_service)
+def get_backend_service_apply(name: Optional[pulumi.Input[str]] = None,
+                              project: Optional[pulumi.Input[str]] = None,
+                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetBackendServiceResult]:
+    ...
