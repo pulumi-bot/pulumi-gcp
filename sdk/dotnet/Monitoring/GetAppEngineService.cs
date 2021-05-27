@@ -89,6 +89,19 @@ namespace Pulumi.Gcp.Monitoring
         /// </summary>
         public static Task<GetAppEngineServiceResult> InvokeAsync(GetAppEngineServiceArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetAppEngineServiceResult>("gcp:monitoring/getAppEngineService:getAppEngineService", args ?? new GetAppEngineServiceArgs(), options.WithVersion());
+
+        public static Output<GetAppEngineServiceResult> Invoke(GetAppEngineServiceOutputArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.ModuleId.Box(),
+                args.Project.Box()
+            ).Apply(a => {
+                    var args = new GetAppEngineServiceArgs();
+                    a[0].Set(args, nameof(args.ModuleId));
+                    a[1].Set(args, nameof(args.Project));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -109,6 +122,27 @@ namespace Pulumi.Gcp.Monitoring
         public string? Project { get; set; }
 
         public GetAppEngineServiceArgs()
+        {
+        }
+    }
+
+    public sealed class GetAppEngineServiceOutputArgs
+    {
+        /// <summary>
+        /// The ID of the App Engine module underlying this
+        /// service. Corresponds to the moduleId resource label in the [gae_app](https://cloud.google.com/monitoring/api/resources#tag_gae_app) monitored resource, or the service/module name.
+        /// </summary>
+        [Input("moduleId", required: true)]
+        public Input<string> ModuleId { get; set; } = null!;
+
+        /// <summary>
+        /// The ID of the project in which the resource belongs.
+        /// If it is not provided, the provider project is used.
+        /// </summary>
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
+        public GetAppEngineServiceOutputArgs()
         {
         }
     }

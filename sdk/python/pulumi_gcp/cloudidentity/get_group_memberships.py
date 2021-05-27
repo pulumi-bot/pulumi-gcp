@@ -95,3 +95,9 @@ def get_group_memberships(group: Optional[str] = None,
         group=__ret__.group,
         id=__ret__.id,
         memberships=__ret__.memberships)
+
+
+@_utilities.lift_output_func(get_group_memberships)
+def get_group_memberships_apply(group: Optional[pulumi.Input[str]] = None,
+                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetGroupMembershipsResult]:
+    ...

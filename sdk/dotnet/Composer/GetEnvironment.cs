@@ -16,6 +16,21 @@ namespace Pulumi.Gcp.Composer
         /// </summary>
         public static Task<GetEnvironmentResult> InvokeAsync(GetEnvironmentArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetEnvironmentResult>("gcp:composer/getEnvironment:getEnvironment", args ?? new GetEnvironmentArgs(), options.WithVersion());
+
+        public static Output<GetEnvironmentResult> Invoke(GetEnvironmentOutputArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.Name.Box(),
+                args.Project.Box(),
+                args.Region.Box()
+            ).Apply(a => {
+                    var args = new GetEnvironmentArgs();
+                    a[0].Set(args, nameof(args.Name));
+                    a[1].Set(args, nameof(args.Project));
+                    a[2].Set(args, nameof(args.Region));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -41,6 +56,32 @@ namespace Pulumi.Gcp.Composer
         public string? Region { get; set; }
 
         public GetEnvironmentArgs()
+        {
+        }
+    }
+
+    public sealed class GetEnvironmentOutputArgs
+    {
+        /// <summary>
+        /// Name of the environment.
+        /// </summary>
+        [Input("name", required: true)]
+        public Input<string> Name { get; set; } = null!;
+
+        /// <summary>
+        /// The ID of the project in which the resource belongs.
+        /// If it is not provided, the provider project is used.
+        /// </summary>
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
+        /// <summary>
+        /// The location or Compute Engine region of the environment.
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
+
+        public GetEnvironmentOutputArgs()
         {
         }
     }

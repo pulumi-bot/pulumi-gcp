@@ -109,3 +109,10 @@ def get_kms_secret_ciphertext(crypto_key: Optional[str] = None,
         crypto_key=__ret__.crypto_key,
         id=__ret__.id,
         plaintext=__ret__.plaintext)
+
+
+@_utilities.lift_output_func(get_kms_secret_ciphertext)
+def get_kms_secret_ciphertext_apply(crypto_key: Optional[pulumi.Input[str]] = None,
+                                    plaintext: Optional[pulumi.Input[str]] = None,
+                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetKMSSecretCiphertextResult]:
+    ...

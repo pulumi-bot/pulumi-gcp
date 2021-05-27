@@ -51,6 +51,19 @@ namespace Pulumi.Gcp.Kms
         /// </summary>
         public static Task<GetKMSCryptoKeyResult> InvokeAsync(GetKMSCryptoKeyArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetKMSCryptoKeyResult>("gcp:kms/getKMSCryptoKey:getKMSCryptoKey", args ?? new GetKMSCryptoKeyArgs(), options.WithVersion());
+
+        public static Output<GetKMSCryptoKeyResult> Invoke(GetKMSCryptoKeyOutputArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.KeyRing.Box(),
+                args.Name.Box()
+            ).Apply(a => {
+                    var args = new GetKMSCryptoKeyArgs();
+                    a[0].Set(args, nameof(args.KeyRing));
+                    a[1].Set(args, nameof(args.Name));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -70,6 +83,26 @@ namespace Pulumi.Gcp.Kms
         public string Name { get; set; } = null!;
 
         public GetKMSCryptoKeyArgs()
+        {
+        }
+    }
+
+    public sealed class GetKMSCryptoKeyOutputArgs
+    {
+        /// <summary>
+        /// The `self_link` of the Google Cloud Platform KeyRing to which the key belongs.
+        /// </summary>
+        [Input("keyRing", required: true)]
+        public Input<string> KeyRing { get; set; } = null!;
+
+        /// <summary>
+        /// The CryptoKey's name.
+        /// A CryptoKey’s name belonging to the specified Google Cloud Platform KeyRing and match the regular expression `[a-zA-Z0-9_-]{1,63}`
+        /// </summary>
+        [Input("name", required: true)]
+        public Input<string> Name { get; set; } = null!;
+
+        public GetKMSCryptoKeyOutputArgs()
         {
         }
     }

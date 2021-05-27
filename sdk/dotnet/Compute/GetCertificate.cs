@@ -48,6 +48,19 @@ namespace Pulumi.Gcp.Compute
         /// </summary>
         public static Task<GetCertificateResult> InvokeAsync(GetCertificateArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetCertificateResult>("gcp:compute/getCertificate:getCertificate", args ?? new GetCertificateArgs(), options.WithVersion());
+
+        public static Output<GetCertificateResult> Invoke(GetCertificateOutputArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.Name.Box(),
+                args.Project.Box()
+            ).Apply(a => {
+                    var args = new GetCertificateArgs();
+                    a[0].Set(args, nameof(args.Name));
+                    a[1].Set(args, nameof(args.Project));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -67,6 +80,26 @@ namespace Pulumi.Gcp.Compute
         public string? Project { get; set; }
 
         public GetCertificateArgs()
+        {
+        }
+    }
+
+    public sealed class GetCertificateOutputArgs
+    {
+        /// <summary>
+        /// The name of the certificate.
+        /// </summary>
+        [Input("name", required: true)]
+        public Input<string> Name { get; set; } = null!;
+
+        /// <summary>
+        /// The project in which the resource belongs. If it
+        /// is not provided, the provider project is used.
+        /// </summary>
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
+        public GetCertificateOutputArgs()
         {
         }
     }

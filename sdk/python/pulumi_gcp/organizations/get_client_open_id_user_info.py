@@ -89,3 +89,8 @@ def get_client_open_id_user_info(opts: Optional[pulumi.InvokeOptions] = None) ->
     return AwaitableGetClientOpenIdUserInfoResult(
         email=__ret__.email,
         id=__ret__.id)
+
+
+@_utilities.lift_output_func(get_client_open_id_user_info)
+def get_client_open_id_user_info_apply(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetClientOpenIdUserInfoResult]:
+    ...

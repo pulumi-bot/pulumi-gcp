@@ -157,3 +157,10 @@ def get_organization_policy(constraint: Optional[str] = None,
         restore_policies=__ret__.restore_policies,
         update_time=__ret__.update_time,
         version=__ret__.version)
+
+
+@_utilities.lift_output_func(get_organization_policy)
+def get_organization_policy_apply(constraint: Optional[pulumi.Input[str]] = None,
+                                  project: Optional[pulumi.Input[str]] = None,
+                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOrganizationPolicyResult]:
+    ...

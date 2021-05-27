@@ -13,6 +13,21 @@ namespace Pulumi.Gcp.Kms
     {
         public static Task<GetKMSSecretAsymmetricResult> InvokeAsync(GetKMSSecretAsymmetricArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetKMSSecretAsymmetricResult>("gcp:kms/getKMSSecretAsymmetric:getKMSSecretAsymmetric", args ?? new GetKMSSecretAsymmetricArgs(), options.WithVersion());
+
+        public static Output<GetKMSSecretAsymmetricResult> Invoke(GetKMSSecretAsymmetricOutputArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.Ciphertext.Box(),
+                args.Crc32.Box(),
+                args.CryptoKeyVersion.Box()
+            ).Apply(a => {
+                    var args = new GetKMSSecretAsymmetricArgs();
+                    a[0].Set(args, nameof(args.Ciphertext));
+                    a[1].Set(args, nameof(args.Crc32));
+                    a[2].Set(args, nameof(args.CryptoKeyVersion));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -39,6 +54,33 @@ namespace Pulumi.Gcp.Kms
         public string CryptoKeyVersion { get; set; } = null!;
 
         public GetKMSSecretAsymmetricArgs()
+        {
+        }
+    }
+
+    public sealed class GetKMSSecretAsymmetricOutputArgs
+    {
+        /// <summary>
+        /// The ciphertext to be decrypted, encoded in base64
+        /// </summary>
+        [Input("ciphertext", required: true)]
+        public Input<string> Ciphertext { get; set; } = null!;
+
+        /// <summary>
+        /// The crc32 checksum of the `ciphertext` in hexadecimal notation. If not specified, it will be computed.
+        /// </summary>
+        [Input("crc32")]
+        public Input<string>? Crc32 { get; set; }
+
+        /// <summary>
+        /// The id of the CryptoKey version that will be used to
+        /// decrypt the provided ciphertext. This is represented by the format
+        /// `projects/{project}/locations/{location}/keyRings/{keyring}/cryptoKeys/{key}/cryptoKeyVersions/{version}`.
+        /// </summary>
+        [Input("cryptoKeyVersion", required: true)]
+        public Input<string> CryptoKeyVersion { get; set; } = null!;
+
+        public GetKMSSecretAsymmetricOutputArgs()
         {
         }
     }

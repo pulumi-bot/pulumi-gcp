@@ -50,6 +50,21 @@ namespace Pulumi.Gcp.Storage
         /// </summary>
         public static Task<GetBucketObjectContentResult> InvokeAsync(GetBucketObjectContentArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetBucketObjectContentResult>("gcp:storage/getBucketObjectContent:getBucketObjectContent", args ?? new GetBucketObjectContentArgs(), options.WithVersion());
+
+        public static Output<GetBucketObjectContentResult> Invoke(GetBucketObjectContentOutputArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.Bucket.Box(),
+                args.Content.Box(),
+                args.Name.Box()
+            ).Apply(a => {
+                    var args = new GetBucketObjectContentArgs();
+                    a[0].Set(args, nameof(args.Bucket));
+                    a[1].Set(args, nameof(args.Content));
+                    a[2].Set(args, nameof(args.Name));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -74,6 +89,31 @@ namespace Pulumi.Gcp.Storage
         public string Name { get; set; } = null!;
 
         public GetBucketObjectContentArgs()
+        {
+        }
+    }
+
+    public sealed class GetBucketObjectContentOutputArgs
+    {
+        /// <summary>
+        /// The name of the containing bucket.
+        /// </summary>
+        [Input("bucket", required: true)]
+        public Input<string> Bucket { get; set; } = null!;
+
+        /// <summary>
+        /// (Computed) [Content-Language](https://tools.ietf.org/html/rfc7231#section-3.1.3.2) of the object content.
+        /// </summary>
+        [Input("content")]
+        public Input<string>? Content { get; set; }
+
+        /// <summary>
+        /// The name of the object.
+        /// </summary>
+        [Input("name", required: true)]
+        public Input<string> Name { get; set; } = null!;
+
+        public GetBucketObjectContentOutputArgs()
         {
         }
     }

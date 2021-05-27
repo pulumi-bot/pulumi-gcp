@@ -43,6 +43,19 @@ namespace Pulumi.Gcp.RuntimeConfig
         /// </summary>
         public static Task<GetConfigResult> InvokeAsync(GetConfigArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetConfigResult>("gcp:runtimeconfig/getConfig:getConfig", args ?? new GetConfigArgs(), options.WithVersion());
+
+        public static Output<GetConfigResult> Invoke(GetConfigOutputArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.Name.Box(),
+                args.Project.Box()
+            ).Apply(a => {
+                    var args = new GetConfigArgs();
+                    a[0].Set(args, nameof(args.Name));
+                    a[1].Set(args, nameof(args.Project));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -62,6 +75,26 @@ namespace Pulumi.Gcp.RuntimeConfig
         public string? Project { get; set; }
 
         public GetConfigArgs()
+        {
+        }
+    }
+
+    public sealed class GetConfigOutputArgs
+    {
+        /// <summary>
+        /// The name of the Runtime Configurator configuration.
+        /// </summary>
+        [Input("name", required: true)]
+        public Input<string> Name { get; set; } = null!;
+
+        /// <summary>
+        /// The project in which the resource belongs. If it
+        /// is not provided, the provider project is used.
+        /// </summary>
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
+        public GetConfigOutputArgs()
         {
         }
     }

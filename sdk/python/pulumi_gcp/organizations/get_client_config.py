@@ -117,3 +117,8 @@ def get_client_config(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableG
         project=__ret__.project,
         region=__ret__.region,
         zone=__ret__.zone)
+
+
+@_utilities.lift_output_func(get_client_config)
+def get_client_config_apply(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetClientConfigResult]:
+    ...

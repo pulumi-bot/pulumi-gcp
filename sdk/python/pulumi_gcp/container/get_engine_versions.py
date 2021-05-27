@@ -208,3 +208,11 @@ def get_engine_versions(location: Optional[str] = None,
         valid_master_versions=__ret__.valid_master_versions,
         valid_node_versions=__ret__.valid_node_versions,
         version_prefix=__ret__.version_prefix)
+
+
+@_utilities.lift_output_func(get_engine_versions)
+def get_engine_versions_apply(location: Optional[pulumi.Input[str]] = None,
+                              project: Optional[pulumi.Input[str]] = None,
+                              version_prefix: Optional[pulumi.Input[str]] = None,
+                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetEngineVersionsResult]:
+    ...

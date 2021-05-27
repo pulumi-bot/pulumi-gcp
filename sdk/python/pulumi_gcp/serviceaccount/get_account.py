@@ -148,3 +148,10 @@ def get_account(account_id: Optional[str] = None,
         name=__ret__.name,
         project=__ret__.project,
         unique_id=__ret__.unique_id)
+
+
+@_utilities.lift_output_func(get_account)
+def get_account_apply(account_id: Optional[pulumi.Input[str]] = None,
+                      project: Optional[pulumi.Input[str]] = None,
+                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAccountResult]:
+    ...

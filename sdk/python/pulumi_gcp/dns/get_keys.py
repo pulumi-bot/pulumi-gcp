@@ -128,3 +128,10 @@ def get_keys(managed_zone: Optional[str] = None,
         managed_zone=__ret__.managed_zone,
         project=__ret__.project,
         zone_signing_keys=__ret__.zone_signing_keys)
+
+
+@_utilities.lift_output_func(get_keys)
+def get_keys_apply(managed_zone: Optional[pulumi.Input[str]] = None,
+                   project: Optional[pulumi.Input[str]] = None,
+                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetKeysResult]:
+    ...

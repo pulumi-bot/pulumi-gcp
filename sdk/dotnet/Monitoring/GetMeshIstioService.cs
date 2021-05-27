@@ -56,6 +56,23 @@ namespace Pulumi.Gcp.Monitoring
         /// </summary>
         public static Task<GetMeshIstioServiceResult> InvokeAsync(GetMeshIstioServiceArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetMeshIstioServiceResult>("gcp:monitoring/getMeshIstioService:getMeshIstioService", args ?? new GetMeshIstioServiceArgs(), options.WithVersion());
+
+        public static Output<GetMeshIstioServiceResult> Invoke(GetMeshIstioServiceOutputArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.MeshUid.Box(),
+                args.Project.Box(),
+                args.ServiceName.Box(),
+                args.ServiceNamespace.Box()
+            ).Apply(a => {
+                    var args = new GetMeshIstioServiceArgs();
+                    a[0].Set(args, nameof(args.MeshUid));
+                    a[1].Set(args, nameof(args.Project));
+                    a[2].Set(args, nameof(args.ServiceName));
+                    a[3].Set(args, nameof(args.ServiceNamespace));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -90,6 +107,41 @@ namespace Pulumi.Gcp.Monitoring
         public string ServiceNamespace { get; set; } = null!;
 
         public GetMeshIstioServiceArgs()
+        {
+        }
+    }
+
+    public sealed class GetMeshIstioServiceOutputArgs
+    {
+        /// <summary>
+        /// Identifier for the mesh in which this Istio service is defined.
+        /// Corresponds to the meshUid metric label in Istio metrics.
+        /// </summary>
+        [Input("meshUid", required: true)]
+        public Input<string> MeshUid { get; set; } = null!;
+
+        /// <summary>
+        /// The ID of the project in which the resource belongs.
+        /// If it is not provided, the provider project is used.
+        /// </summary>
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
+        /// <summary>
+        /// The name of the Istio service underlying this service.
+        /// Corresponds to the destination_service_name metric label in Istio metrics.
+        /// </summary>
+        [Input("serviceName", required: true)]
+        public Input<string> ServiceName { get; set; } = null!;
+
+        /// <summary>
+        /// The namespace of the Istio service underlying this service.
+        /// Corresponds to the destination_service_namespace metric label in Istio metrics.
+        /// </summary>
+        [Input("serviceNamespace", required: true)]
+        public Input<string> ServiceNamespace { get; set; } = null!;
+
+        public GetMeshIstioServiceOutputArgs()
         {
         }
     }

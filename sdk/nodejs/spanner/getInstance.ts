@@ -75,3 +75,27 @@ export interface GetInstanceResult {
     readonly project?: string;
     readonly state: string;
 }
+
+export function getInstanceOutput(args: GetInstanceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstanceResult> {
+    return pulumi.output(args).apply(a => getInstance(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getInstance.
+ */
+export interface GetInstanceOutputArgs {
+    config?: pulumi.Input<string>;
+    displayName?: pulumi.Input<string>;
+    forceDestroy?: pulumi.Input<boolean>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The name of the spanner instance.
+     */
+    name: pulumi.Input<string>;
+    numNodes?: pulumi.Input<number>;
+    /**
+     * The project in which the resource belongs. If it
+     * is not provided, the provider project is used.
+     */
+    project?: pulumi.Input<string>;
+}

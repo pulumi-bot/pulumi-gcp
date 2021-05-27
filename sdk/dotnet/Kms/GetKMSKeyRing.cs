@@ -46,6 +46,21 @@ namespace Pulumi.Gcp.Kms
         /// </summary>
         public static Task<GetKMSKeyRingResult> InvokeAsync(GetKMSKeyRingArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetKMSKeyRingResult>("gcp:kms/getKMSKeyRing:getKMSKeyRing", args ?? new GetKMSKeyRingArgs(), options.WithVersion());
+
+        public static Output<GetKMSKeyRingResult> Invoke(GetKMSKeyRingOutputArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.Location.Box(),
+                args.Name.Box(),
+                args.Project.Box()
+            ).Apply(a => {
+                    var args = new GetKMSKeyRingArgs();
+                    a[0].Set(args, nameof(args.Location));
+                    a[1].Set(args, nameof(args.Name));
+                    a[2].Set(args, nameof(args.Project));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -73,6 +88,34 @@ namespace Pulumi.Gcp.Kms
         public string? Project { get; set; }
 
         public GetKMSKeyRingArgs()
+        {
+        }
+    }
+
+    public sealed class GetKMSKeyRingOutputArgs
+    {
+        /// <summary>
+        /// The Google Cloud Platform location for the KeyRing.
+        /// A full list of valid locations can be found by running `gcloud kms locations list`.
+        /// </summary>
+        [Input("location", required: true)]
+        public Input<string> Location { get; set; } = null!;
+
+        /// <summary>
+        /// The KeyRing's name.
+        /// A KeyRing name must exist within the provided location and match the regular expression `[a-zA-Z0-9_-]{1,63}`
+        /// </summary>
+        [Input("name", required: true)]
+        public Input<string> Name { get; set; } = null!;
+
+        /// <summary>
+        /// The project in which the resource belongs. If it
+        /// is not provided, the provider project is used.
+        /// </summary>
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
+        public GetKMSKeyRingOutputArgs()
         {
         }
     }

@@ -39,6 +39,19 @@ namespace Pulumi.Gcp.Sql
         /// </summary>
         public static Task<GetDatabaseInstanceResult> InvokeAsync(GetDatabaseInstanceArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetDatabaseInstanceResult>("gcp:sql/getDatabaseInstance:getDatabaseInstance", args ?? new GetDatabaseInstanceArgs(), options.WithVersion());
+
+        public static Output<GetDatabaseInstanceResult> Invoke(GetDatabaseInstanceOutputArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.Name.Box(),
+                args.Project.Box()
+            ).Apply(a => {
+                    var args = new GetDatabaseInstanceArgs();
+                    a[0].Set(args, nameof(args.Name));
+                    a[1].Set(args, nameof(args.Project));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -57,6 +70,25 @@ namespace Pulumi.Gcp.Sql
         public string? Project { get; set; }
 
         public GetDatabaseInstanceArgs()
+        {
+        }
+    }
+
+    public sealed class GetDatabaseInstanceOutputArgs
+    {
+        /// <summary>
+        /// The name of the instance.
+        /// </summary>
+        [Input("name", required: true)]
+        public Input<string> Name { get; set; } = null!;
+
+        /// <summary>
+        /// The ID of the project in which the resource belongs.
+        /// </summary>
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
+        public GetDatabaseInstanceOutputArgs()
         {
         }
     }

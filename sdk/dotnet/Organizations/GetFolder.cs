@@ -44,6 +44,19 @@ namespace Pulumi.Gcp.Organizations
         /// </summary>
         public static Task<GetFolderResult> InvokeAsync(GetFolderArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetFolderResult>("gcp:organizations/getFolder:getFolder", args ?? new GetFolderArgs(), options.WithVersion());
+
+        public static Output<GetFolderResult> Invoke(GetFolderOutputArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.Folder.Box(),
+                args.LookupOrganization.Box()
+            ).Apply(a => {
+                    var args = new GetFolderArgs();
+                    a[0].Set(args, nameof(args.Folder));
+                    a[1].Set(args, nameof(args.LookupOrganization));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -62,6 +75,25 @@ namespace Pulumi.Gcp.Organizations
         public bool? LookupOrganization { get; set; }
 
         public GetFolderArgs()
+        {
+        }
+    }
+
+    public sealed class GetFolderOutputArgs
+    {
+        /// <summary>
+        /// The name of the Folder in the form `{folder_id}` or `folders/{folder_id}`.
+        /// </summary>
+        [Input("folder", required: true)]
+        public Input<string> Folder { get; set; } = null!;
+
+        /// <summary>
+        /// `true` to find the organization that the folder belongs, `false` to avoid the lookup. It searches up the tree. (defaults to `false`)
+        /// </summary>
+        [Input("lookupOrganization")]
+        public Input<bool>? LookupOrganization { get; set; }
+
+        public GetFolderOutputArgs()
         {
         }
     }

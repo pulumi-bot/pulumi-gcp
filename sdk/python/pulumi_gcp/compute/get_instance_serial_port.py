@@ -179,3 +179,12 @@ def get_instance_serial_port(instance: Optional[str] = None,
         port=__ret__.port,
         project=__ret__.project,
         zone=__ret__.zone)
+
+
+@_utilities.lift_output_func(get_instance_serial_port)
+def get_instance_serial_port_apply(instance: Optional[pulumi.Input[str]] = None,
+                                   port: Optional[pulumi.Input[int]] = None,
+                                   project: Optional[pulumi.Input[str]] = None,
+                                   zone: Optional[pulumi.Input[str]] = None,
+                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetInstanceSerialPortResult]:
+    ...

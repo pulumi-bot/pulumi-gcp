@@ -41,6 +41,21 @@ namespace Pulumi.Gcp.CloudFunctions
         /// </summary>
         public static Task<GetFunctionResult> InvokeAsync(GetFunctionArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetFunctionResult>("gcp:cloudfunctions/getFunction:getFunction", args ?? new GetFunctionArgs(), options.WithVersion());
+
+        public static Output<GetFunctionResult> Invoke(GetFunctionOutputArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.Name.Box(),
+                args.Project.Box(),
+                args.Region.Box()
+            ).Apply(a => {
+                    var args = new GetFunctionArgs();
+                    a[0].Set(args, nameof(args.Name));
+                    a[1].Set(args, nameof(args.Project));
+                    a[2].Set(args, nameof(args.Region));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -67,6 +82,33 @@ namespace Pulumi.Gcp.CloudFunctions
         public string? Region { get; set; }
 
         public GetFunctionArgs()
+        {
+        }
+    }
+
+    public sealed class GetFunctionOutputArgs
+    {
+        /// <summary>
+        /// The name of a Cloud Function.
+        /// </summary>
+        [Input("name", required: true)]
+        public Input<string> Name { get; set; } = null!;
+
+        /// <summary>
+        /// The project in which the resource belongs. If it
+        /// is not provided, the provider project is used.
+        /// </summary>
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
+        /// <summary>
+        /// The region in which the resource belongs. If it
+        /// is not provided, the provider region is used.
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
+
+        public GetFunctionOutputArgs()
         {
         }
     }
