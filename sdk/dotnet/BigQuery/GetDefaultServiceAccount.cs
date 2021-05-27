@@ -50,6 +50,18 @@ namespace Pulumi.Gcp.BigQuery
         /// </summary>
         public static Task<GetDefaultServiceAccountResult> InvokeAsync(GetDefaultServiceAccountArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetDefaultServiceAccountResult>("gcp:bigquery/getDefaultServiceAccount:getDefaultServiceAccount", args ?? new GetDefaultServiceAccountArgs(), options.WithVersion());
+
+        public static Output<GetDefaultServiceAccountResult> Apply(GetDefaultServiceAccountApplyArgs? args = null, InvokeOptions? options = null)
+        {
+            args = args ?? new GetDefaultServiceAccountApplyArgs();
+            return Pulumi.Output.All(
+                args.Project.Box()
+            ).Apply(a => {
+                    var args = new GetDefaultServiceAccountArgs();
+                    a[0].Set(args, nameof(args.Project));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -62,6 +74,19 @@ namespace Pulumi.Gcp.BigQuery
         public string? Project { get; set; }
 
         public GetDefaultServiceAccountArgs()
+        {
+        }
+    }
+
+    public sealed class GetDefaultServiceAccountApplyArgs
+    {
+        /// <summary>
+        /// The project the unique service account was created for. If it is not provided, the provider project is used.
+        /// </summary>
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
+        public GetDefaultServiceAccountApplyArgs()
         {
         }
     }

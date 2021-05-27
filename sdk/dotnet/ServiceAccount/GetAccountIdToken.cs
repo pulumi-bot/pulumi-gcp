@@ -69,6 +69,23 @@ namespace Pulumi.Gcp.ServiceAccount
         /// </summary>
         public static Task<GetAccountIdTokenResult> InvokeAsync(GetAccountIdTokenArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetAccountIdTokenResult>("gcp:serviceAccount/getAccountIdToken:getAccountIdToken", args ?? new GetAccountIdTokenArgs(), options.WithVersion());
+
+        public static Output<GetAccountIdTokenResult> Apply(GetAccountIdTokenApplyArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.Delegates.ToList().Box(),
+                args.IncludeEmail.Box(),
+                args.TargetAudience.Box(),
+                args.TargetServiceAccount.Box()
+            ).Apply(a => {
+                    var args = new GetAccountIdTokenArgs();
+                    a[0].Set(args, nameof(args.Delegates));
+                    a[1].Set(args, nameof(args.IncludeEmail));
+                    a[2].Set(args, nameof(args.TargetAudience));
+                    a[3].Set(args, nameof(args.TargetServiceAccount));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -105,6 +122,43 @@ namespace Pulumi.Gcp.ServiceAccount
         public string? TargetServiceAccount { get; set; }
 
         public GetAccountIdTokenArgs()
+        {
+        }
+    }
+
+    public sealed class GetAccountIdTokenApplyArgs
+    {
+        [Input("delegates")]
+        private InputList<string>? _delegates;
+
+        /// <summary>
+        /// Delegate chain of approvals needed to perform full impersonation. Specify the fully qualified service account name.   Used only when using impersonation mode.
+        /// </summary>
+        public InputList<string> Delegates
+        {
+            get => _delegates ?? (_delegates = new InputList<string>());
+            set => _delegates = value;
+        }
+
+        /// <summary>
+        /// Include the verified email in the claim. Used only when using impersonation mode.
+        /// </summary>
+        [Input("includeEmail")]
+        public Input<bool>? IncludeEmail { get; set; }
+
+        /// <summary>
+        /// The audience claim for the `id_token`.
+        /// </summary>
+        [Input("targetAudience", required: true)]
+        public Input<string> TargetAudience { get; set; } = null!;
+
+        /// <summary>
+        /// The email of the service account being impersonated.  Used only when using impersonation mode.
+        /// </summary>
+        [Input("targetServiceAccount")]
+        public Input<string>? TargetServiceAccount { get; set; }
+
+        public GetAccountIdTokenApplyArgs()
         {
         }
     }

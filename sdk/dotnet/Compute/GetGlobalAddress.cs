@@ -55,6 +55,19 @@ namespace Pulumi.Gcp.Compute
         /// </summary>
         public static Task<GetGlobalAddressResult> InvokeAsync(GetGlobalAddressArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetGlobalAddressResult>("gcp:compute/getGlobalAddress:getGlobalAddress", args ?? new GetGlobalAddressArgs(), options.WithVersion());
+
+        public static Output<GetGlobalAddressResult> Apply(GetGlobalAddressApplyArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.Name.Box(),
+                args.Project.Box()
+            ).Apply(a => {
+                    var args = new GetGlobalAddressArgs();
+                    a[0].Set(args, nameof(args.Name));
+                    a[1].Set(args, nameof(args.Project));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -74,6 +87,26 @@ namespace Pulumi.Gcp.Compute
         public string? Project { get; set; }
 
         public GetGlobalAddressArgs()
+        {
+        }
+    }
+
+    public sealed class GetGlobalAddressApplyArgs
+    {
+        /// <summary>
+        /// A unique name for the resource, required by GCE.
+        /// </summary>
+        [Input("name", required: true)]
+        public Input<string> Name { get; set; } = null!;
+
+        /// <summary>
+        /// The project in which the resource belongs. If it
+        /// is not provided, the provider project is used.
+        /// </summary>
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
+        public GetGlobalAddressApplyArgs()
         {
         }
     }

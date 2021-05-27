@@ -44,6 +44,19 @@ namespace Pulumi.Gcp.Iap
         /// </summary>
         public static Task<GetClientResult> InvokeAsync(GetClientArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetClientResult>("gcp:iap/getClient:getClient", args ?? new GetClientArgs(), options.WithVersion());
+
+        public static Output<GetClientResult> Apply(GetClientApplyArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.Brand.Box(),
+                args.ClientId.Box()
+            ).Apply(a => {
+                    var args = new GetClientArgs();
+                    a[0].Set(args, nameof(args.Brand));
+                    a[1].Set(args, nameof(args.ClientId));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -62,6 +75,25 @@ namespace Pulumi.Gcp.Iap
         public string ClientId { get; set; } = null!;
 
         public GetClientArgs()
+        {
+        }
+    }
+
+    public sealed class GetClientApplyArgs
+    {
+        /// <summary>
+        /// The name of the brand.
+        /// </summary>
+        [Input("brand", required: true)]
+        public Input<string> Brand { get; set; } = null!;
+
+        /// <summary>
+        /// The client_id of the brand.
+        /// </summary>
+        [Input("clientId", required: true)]
+        public Input<string> ClientId { get; set; } = null!;
+
+        public GetClientApplyArgs()
         {
         }
     }

@@ -46,6 +46,21 @@ namespace Pulumi.Gcp.Iam
         /// </summary>
         public static Task<GetTestablePermissionsResult> InvokeAsync(GetTestablePermissionsArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetTestablePermissionsResult>("gcp:iam/getTestablePermissions:getTestablePermissions", args ?? new GetTestablePermissionsArgs(), options.WithVersion());
+
+        public static Output<GetTestablePermissionsResult> Apply(GetTestablePermissionsApplyArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.CustomSupportLevel.Box(),
+                args.FullResourceName.Box(),
+                args.Stages.ToList().Box()
+            ).Apply(a => {
+                    var args = new GetTestablePermissionsArgs();
+                    a[0].Set(args, nameof(args.CustomSupportLevel));
+                    a[1].Set(args, nameof(args.FullResourceName));
+                    a[2].Set(args, nameof(args.Stages));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -76,6 +91,37 @@ namespace Pulumi.Gcp.Iam
         }
 
         public GetTestablePermissionsArgs()
+        {
+        }
+    }
+
+    public sealed class GetTestablePermissionsApplyArgs
+    {
+        /// <summary>
+        /// The level of support for custom roles. Can be one of `"NOT_SUPPORTED"`, `"SUPPORTED"`, `"TESTING"`. Default is `"SUPPORTED"`
+        /// </summary>
+        [Input("customSupportLevel")]
+        public Input<string>? CustomSupportLevel { get; set; }
+
+        /// <summary>
+        /// See [full resource name documentation](https://cloud.google.com/apis/design/resource_names#full_resource_name) for more detail.
+        /// </summary>
+        [Input("fullResourceName", required: true)]
+        public Input<string> FullResourceName { get; set; } = null!;
+
+        [Input("stages")]
+        private InputList<string>? _stages;
+
+        /// <summary>
+        /// The acceptable release stages of the permission in the output. Note that `BETA` does not include permissions in `GA`, but you can specify both with `["GA", "BETA"]` for example. Can be a list of `"ALPHA"`, `"BETA"`, `"GA"`, `"DEPRECATED"`. Default is `["GA"]`.
+        /// </summary>
+        public InputList<string> Stages
+        {
+            get => _stages ?? (_stages = new InputList<string>());
+            set => _stages = value;
+        }
+
+        public GetTestablePermissionsApplyArgs()
         {
         }
     }

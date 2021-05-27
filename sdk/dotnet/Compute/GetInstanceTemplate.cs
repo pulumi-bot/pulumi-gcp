@@ -19,6 +19,23 @@ namespace Pulumi.Gcp.Compute
         /// </summary>
         public static Task<GetInstanceTemplateResult> InvokeAsync(GetInstanceTemplateArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetInstanceTemplateResult>("gcp:compute/getInstanceTemplate:getInstanceTemplate", args ?? new GetInstanceTemplateArgs(), options.WithVersion());
+
+        public static Output<GetInstanceTemplateResult> Apply(GetInstanceTemplateApplyArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.Filter.Box(),
+                args.MostRecent.Box(),
+                args.Name.Box(),
+                args.Project.Box()
+            ).Apply(a => {
+                    var args = new GetInstanceTemplateArgs();
+                    a[0].Set(args, nameof(args.Filter));
+                    a[1].Set(args, nameof(args.MostRecent));
+                    a[2].Set(args, nameof(args.Name));
+                    a[3].Set(args, nameof(args.Project));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -52,6 +69,40 @@ namespace Pulumi.Gcp.Compute
         public string Project { get; set; } = null!;
 
         public GetInstanceTemplateArgs()
+        {
+        }
+    }
+
+    public sealed class GetInstanceTemplateApplyArgs
+    {
+        /// <summary>
+        /// A filter to retrieve the instance templates.
+        /// See [gcloud topic filters](https://cloud.google.com/sdk/gcloud/reference/topic/filters) for reference.
+        /// If multiple instance templates match, either adjust the filter or specify `most_recent`. One of `name` or `filter` must be provided.
+        /// </summary>
+        [Input("filter")]
+        public Input<string>? Filter { get; set; }
+
+        /// <summary>
+        /// If `filter` is provided, ensures the most recent template is returned when multiple instance templates match. One of `name` or `filter` must be provided.
+        /// </summary>
+        [Input("mostRecent")]
+        public Input<bool>? MostRecent { get; set; }
+
+        /// <summary>
+        /// The name of the instance template. One of `name` or `filter` must be provided.
+        /// </summary>
+        [Input("name")]
+        public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The ID of the project in which the resource belongs.
+        /// If `project` is not provideded, the provider project is used.
+        /// </summary>
+        [Input("project", required: true)]
+        public Input<string> Project { get; set; } = null!;
+
+        public GetInstanceTemplateApplyArgs()
         {
         }
     }

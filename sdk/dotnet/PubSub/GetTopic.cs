@@ -41,6 +41,19 @@ namespace Pulumi.Gcp.PubSub
         /// </summary>
         public static Task<GetTopicResult> InvokeAsync(GetTopicArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetTopicResult>("gcp:pubsub/getTopic:getTopic", args ?? new GetTopicArgs(), options.WithVersion());
+
+        public static Output<GetTopicResult> Apply(GetTopicApplyArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.Name.Box(),
+                args.Project.Box()
+            ).Apply(a => {
+                    var args = new GetTopicArgs();
+                    a[0].Set(args, nameof(args.Name));
+                    a[1].Set(args, nameof(args.Project));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -60,6 +73,26 @@ namespace Pulumi.Gcp.PubSub
         public string? Project { get; set; }
 
         public GetTopicArgs()
+        {
+        }
+    }
+
+    public sealed class GetTopicApplyArgs
+    {
+        /// <summary>
+        /// The name of the Cloud Pub/Sub Topic.
+        /// </summary>
+        [Input("name", required: true)]
+        public Input<string> Name { get; set; } = null!;
+
+        /// <summary>
+        /// The project in which the resource belongs. If it
+        /// is not provided, the provider project is used.
+        /// </summary>
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
+        public GetTopicApplyArgs()
         {
         }
     }

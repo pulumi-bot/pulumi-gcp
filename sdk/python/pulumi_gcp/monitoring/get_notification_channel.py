@@ -211,3 +211,13 @@ def get_notification_channel(display_name: Optional[str] = None,
         type=__ret__.type,
         user_labels=__ret__.user_labels,
         verification_status=__ret__.verification_status)
+
+
+@_utilities.lift_output_func(get_notification_channel)
+def get_notification_channel_apply(display_name: Optional[pulumi.Input[str]] = None,
+                                   labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                                   project: Optional[pulumi.Input[str]] = None,
+                                   type: Optional[pulumi.Input[str]] = None,
+                                   user_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNotificationChannelResult]:
+    ...

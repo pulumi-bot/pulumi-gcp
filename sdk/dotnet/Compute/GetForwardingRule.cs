@@ -39,6 +39,21 @@ namespace Pulumi.Gcp.Compute
         /// </summary>
         public static Task<GetForwardingRuleResult> InvokeAsync(GetForwardingRuleArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetForwardingRuleResult>("gcp:compute/getForwardingRule:getForwardingRule", args ?? new GetForwardingRuleArgs(), options.WithVersion());
+
+        public static Output<GetForwardingRuleResult> Apply(GetForwardingRuleApplyArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.Name.Box(),
+                args.Project.Box(),
+                args.Region.Box()
+            ).Apply(a => {
+                    var args = new GetForwardingRuleArgs();
+                    a[0].Set(args, nameof(args.Name));
+                    a[1].Set(args, nameof(args.Project));
+                    a[2].Set(args, nameof(args.Region));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -65,6 +80,33 @@ namespace Pulumi.Gcp.Compute
         public string? Region { get; set; }
 
         public GetForwardingRuleArgs()
+        {
+        }
+    }
+
+    public sealed class GetForwardingRuleApplyArgs
+    {
+        /// <summary>
+        /// The name of the forwarding rule.
+        /// </summary>
+        [Input("name", required: true)]
+        public Input<string> Name { get; set; } = null!;
+
+        /// <summary>
+        /// The project in which the resource belongs. If it
+        /// is not provided, the provider project is used.
+        /// </summary>
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
+        /// <summary>
+        /// The region in which the resource belongs. If it
+        /// is not provided, the project region is used.
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
+
+        public GetForwardingRuleApplyArgs()
         {
         }
     }

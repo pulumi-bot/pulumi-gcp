@@ -86,3 +86,17 @@ export interface GetNetblockIPRangesResult {
     readonly id: string;
     readonly rangeType?: string;
 }
+
+export function getNetblockIPRangesApply(args?: GetNetblockIPRangesApplyArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNetblockIPRangesResult> {
+    return pulumi.output(args).apply(a => getNetblockIPRanges(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getNetblockIPRanges.
+ */
+export interface GetNetblockIPRangesApplyArgs {
+    /**
+     * The type of range for which to provide results.
+     */
+    rangeType?: pulumi.Input<string>;
+}

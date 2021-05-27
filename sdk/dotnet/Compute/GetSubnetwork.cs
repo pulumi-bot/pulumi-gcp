@@ -40,6 +40,24 @@ namespace Pulumi.Gcp.Compute
         /// </summary>
         public static Task<GetSubnetworkResult> InvokeAsync(GetSubnetworkArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetSubnetworkResult>("gcp:compute/getSubnetwork:getSubnetwork", args ?? new GetSubnetworkArgs(), options.WithVersion());
+
+        public static Output<GetSubnetworkResult> Apply(GetSubnetworkApplyArgs? args = null, InvokeOptions? options = null)
+        {
+            args = args ?? new GetSubnetworkApplyArgs();
+            return Pulumi.Output.All(
+                args.Name.Box(),
+                args.Project.Box(),
+                args.Region.Box(),
+                args.SelfLink.Box()
+            ).Apply(a => {
+                    var args = new GetSubnetworkArgs();
+                    a[0].Set(args, nameof(args.Name));
+                    a[1].Set(args, nameof(args.Project));
+                    a[2].Set(args, nameof(args.Region));
+                    a[3].Set(args, nameof(args.SelfLink));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -74,6 +92,41 @@ namespace Pulumi.Gcp.Compute
         public string? SelfLink { get; set; }
 
         public GetSubnetworkArgs()
+        {
+        }
+    }
+
+    public sealed class GetSubnetworkApplyArgs
+    {
+        /// <summary>
+        /// The name of the subnetwork. One of `name` or `self_link`
+        /// must be specified.
+        /// </summary>
+        [Input("name")]
+        public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The ID of the project in which the resource belongs. If it
+        /// is not provided, the provider project is used.
+        /// </summary>
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
+        /// <summary>
+        /// The region this subnetwork has been created in. If
+        /// unspecified, this defaults to the region configured in the provider.
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
+
+        /// <summary>
+        /// The self link of the subnetwork. If `self_link` is
+        /// specified, `name`, `project`, and `region` are ignored.
+        /// </summary>
+        [Input("selfLink")]
+        public Input<string>? SelfLink { get; set; }
+
+        public GetSubnetworkApplyArgs()
         {
         }
     }

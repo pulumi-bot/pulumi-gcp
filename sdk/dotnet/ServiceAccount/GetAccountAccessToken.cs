@@ -19,6 +19,23 @@ namespace Pulumi.Gcp.ServiceAccount
         /// </summary>
         public static Task<GetAccountAccessTokenResult> InvokeAsync(GetAccountAccessTokenArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetAccountAccessTokenResult>("gcp:serviceAccount/getAccountAccessToken:getAccountAccessToken", args ?? new GetAccountAccessTokenArgs(), options.WithVersion());
+
+        public static Output<GetAccountAccessTokenResult> Apply(GetAccountAccessTokenApplyArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.Delegates.ToList().Box(),
+                args.Lifetime.Box(),
+                args.Scopes.ToList().Box(),
+                args.TargetServiceAccount.Box()
+            ).Apply(a => {
+                    var args = new GetAccountAccessTokenArgs();
+                    a[0].Set(args, nameof(args.Delegates));
+                    a[1].Set(args, nameof(args.Lifetime));
+                    a[2].Set(args, nameof(args.Scopes));
+                    a[3].Set(args, nameof(args.TargetServiceAccount));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -61,6 +78,49 @@ namespace Pulumi.Gcp.ServiceAccount
         public string TargetServiceAccount { get; set; } = null!;
 
         public GetAccountAccessTokenArgs()
+        {
+        }
+    }
+
+    public sealed class GetAccountAccessTokenApplyArgs
+    {
+        [Input("delegates")]
+        private InputList<string>? _delegates;
+
+        /// <summary>
+        /// Delegate chain of approvals needed to perform full impersonation. Specify the fully qualified service account name.  (e.g. `["projects/-/serviceAccounts/delegate-svc-account@project-id.iam.gserviceaccount.com"]`)
+        /// </summary>
+        public InputList<string> Delegates
+        {
+            get => _delegates ?? (_delegates = new InputList<string>());
+            set => _delegates = value;
+        }
+
+        /// <summary>
+        /// Lifetime of the impersonated token (defaults to its max: `3600s`).
+        /// </summary>
+        [Input("lifetime")]
+        public Input<string>? Lifetime { get; set; }
+
+        [Input("scopes", required: true)]
+        private InputList<string>? _scopes;
+
+        /// <summary>
+        /// The scopes the new credential should have (e.g. `["cloud-platform"]`)
+        /// </summary>
+        public InputList<string> Scopes
+        {
+            get => _scopes ?? (_scopes = new InputList<string>());
+            set => _scopes = value;
+        }
+
+        /// <summary>
+        /// The service account _to_ impersonate (e.g. `service_B@your-project-id.iam.gserviceaccount.com`)
+        /// </summary>
+        [Input("targetServiceAccount", required: true)]
+        public Input<string> TargetServiceAccount { get; set; } = null!;
+
+        public GetAccountAccessTokenApplyArgs()
         {
         }
     }

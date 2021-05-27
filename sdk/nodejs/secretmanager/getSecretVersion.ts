@@ -87,3 +87,27 @@ export interface GetSecretVersionResult {
     readonly secretData: string;
     readonly version: string;
 }
+
+export function getSecretVersionApply(args: GetSecretVersionApplyArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSecretVersionResult> {
+    return pulumi.output(args).apply(a => getSecretVersion(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getSecretVersion.
+ */
+export interface GetSecretVersionApplyArgs {
+    /**
+     * The project to get the secret version for. If it
+     * is not provided, the provider project is used.
+     */
+    project?: pulumi.Input<string>;
+    /**
+     * The secret to get the secret version for.
+     */
+    secret: pulumi.Input<string>;
+    /**
+     * The version of the secret to get. If it
+     * is not provided, the latest version is retrieved.
+     */
+    version?: pulumi.Input<string>;
+}

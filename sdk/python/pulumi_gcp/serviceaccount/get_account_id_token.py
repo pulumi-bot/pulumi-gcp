@@ -136,3 +136,12 @@ def get_account_id_token(delegates: Optional[Sequence[str]] = None,
         include_email=__ret__.include_email,
         target_audience=__ret__.target_audience,
         target_service_account=__ret__.target_service_account)
+
+
+@_utilities.lift_output_func(get_account_id_token)
+def get_account_id_token_apply(delegates: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                               include_email: Optional[pulumi.Input[bool]] = None,
+                               target_audience: Optional[pulumi.Input[str]] = None,
+                               target_service_account: Optional[pulumi.Input[str]] = None,
+                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAccountIdTokenResult]:
+    ...

@@ -42,6 +42,21 @@ namespace Pulumi.Gcp.CloudRun
         /// </summary>
         public static Task<GetServiceResult> InvokeAsync(GetServiceArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetServiceResult>("gcp:cloudrun/getService:getService", args ?? new GetServiceArgs(), options.WithVersion());
+
+        public static Output<GetServiceResult> Apply(GetServiceApplyArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.Location.Box(),
+                args.Name.Box(),
+                args.Project.Box()
+            ).Apply(a => {
+                    var args = new GetServiceArgs();
+                    a[0].Set(args, nameof(args.Location));
+                    a[1].Set(args, nameof(args.Name));
+                    a[2].Set(args, nameof(args.Project));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -67,6 +82,32 @@ namespace Pulumi.Gcp.CloudRun
         public string? Project { get; set; }
 
         public GetServiceArgs()
+        {
+        }
+    }
+
+    public sealed class GetServiceApplyArgs
+    {
+        /// <summary>
+        /// The location of the cloud run instance. eg us-central1
+        /// </summary>
+        [Input("location", required: true)]
+        public Input<string> Location { get; set; } = null!;
+
+        /// <summary>
+        /// The name of the Cloud Run Service.
+        /// </summary>
+        [Input("name", required: true)]
+        public Input<string> Name { get; set; } = null!;
+
+        /// <summary>
+        /// The project in which the resource belongs. If it
+        /// is not provided, the provider project is used.
+        /// </summary>
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
+        public GetServiceApplyArgs()
         {
         }
     }

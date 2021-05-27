@@ -40,6 +40,23 @@ namespace Pulumi.Gcp.Compute
         /// </summary>
         public static Task<GetRouterResult> InvokeAsync(GetRouterArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetRouterResult>("gcp:compute/getRouter:getRouter", args ?? new GetRouterArgs(), options.WithVersion());
+
+        public static Output<GetRouterResult> Apply(GetRouterApplyArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.Name.Box(),
+                args.Network.Box(),
+                args.Project.Box(),
+                args.Region.Box()
+            ).Apply(a => {
+                    var args = new GetRouterArgs();
+                    a[0].Set(args, nameof(args.Name));
+                    a[1].Set(args, nameof(args.Network));
+                    a[2].Set(args, nameof(args.Project));
+                    a[3].Set(args, nameof(args.Region));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -72,6 +89,39 @@ namespace Pulumi.Gcp.Compute
         public string? Region { get; set; }
 
         public GetRouterArgs()
+        {
+        }
+    }
+
+    public sealed class GetRouterApplyArgs
+    {
+        /// <summary>
+        /// The name of the router.
+        /// </summary>
+        [Input("name", required: true)]
+        public Input<string> Name { get; set; } = null!;
+
+        /// <summary>
+        /// The VPC network on which this router lives.
+        /// </summary>
+        [Input("network", required: true)]
+        public Input<string> Network { get; set; } = null!;
+
+        /// <summary>
+        /// The ID of the project in which the resource
+        /// belongs. If it is not provided, the provider project is used.
+        /// </summary>
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
+        /// <summary>
+        /// The region this router has been created in. If
+        /// unspecified, this defaults to the region configured in the provider.
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
+
+        public GetRouterApplyArgs()
         {
         }
     }

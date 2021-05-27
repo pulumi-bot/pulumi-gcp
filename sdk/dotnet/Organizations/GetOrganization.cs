@@ -38,6 +38,20 @@ namespace Pulumi.Gcp.Organizations
         /// </summary>
         public static Task<GetOrganizationResult> InvokeAsync(GetOrganizationArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetOrganizationResult>("gcp:organizations/getOrganization:getOrganization", args ?? new GetOrganizationArgs(), options.WithVersion());
+
+        public static Output<GetOrganizationResult> Apply(GetOrganizationApplyArgs? args = null, InvokeOptions? options = null)
+        {
+            args = args ?? new GetOrganizationApplyArgs();
+            return Pulumi.Output.All(
+                args.Domain.Box(),
+                args.Organization.Box()
+            ).Apply(a => {
+                    var args = new GetOrganizationArgs();
+                    a[0].Set(args, nameof(args.Domain));
+                    a[1].Set(args, nameof(args.Organization));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -56,6 +70,25 @@ namespace Pulumi.Gcp.Organizations
         public string? Organization { get; set; }
 
         public GetOrganizationArgs()
+        {
+        }
+    }
+
+    public sealed class GetOrganizationApplyArgs
+    {
+        /// <summary>
+        /// The domain name of the Organization.
+        /// </summary>
+        [Input("domain")]
+        public Input<string>? Domain { get; set; }
+
+        /// <summary>
+        /// The Organization's numeric ID, including an optional `organizations/` prefix.
+        /// </summary>
+        [Input("organization")]
+        public Input<string>? Organization { get; set; }
+
+        public GetOrganizationApplyArgs()
         {
         }
     }

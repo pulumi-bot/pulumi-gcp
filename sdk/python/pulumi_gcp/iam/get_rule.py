@@ -117,3 +117,9 @@ def get_rule(name: Optional[str] = None,
         name=__ret__.name,
         stage=__ret__.stage,
         title=__ret__.title)
+
+
+@_utilities.lift_output_func(get_rule)
+def get_rule_apply(name: Optional[pulumi.Input[str]] = None,
+                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRuleResult]:
+    ...

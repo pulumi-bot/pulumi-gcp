@@ -55,6 +55,21 @@ namespace Pulumi.Gcp.Compute
         /// </summary>
         public static Task<GetAddressResult> InvokeAsync(GetAddressArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetAddressResult>("gcp:compute/getAddress:getAddress", args ?? new GetAddressArgs(), options.WithVersion());
+
+        public static Output<GetAddressResult> Apply(GetAddressApplyArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.Name.Box(),
+                args.Project.Box(),
+                args.Region.Box()
+            ).Apply(a => {
+                    var args = new GetAddressArgs();
+                    a[0].Set(args, nameof(args.Name));
+                    a[1].Set(args, nameof(args.Project));
+                    a[2].Set(args, nameof(args.Region));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -81,6 +96,33 @@ namespace Pulumi.Gcp.Compute
         public string? Region { get; set; }
 
         public GetAddressArgs()
+        {
+        }
+    }
+
+    public sealed class GetAddressApplyArgs
+    {
+        /// <summary>
+        /// A unique name for the resource, required by GCE.
+        /// </summary>
+        [Input("name", required: true)]
+        public Input<string> Name { get; set; } = null!;
+
+        /// <summary>
+        /// The project in which the resource belongs. If it
+        /// is not provided, the provider project is used.
+        /// </summary>
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
+        /// <summary>
+        /// The Region in which the created address reside.
+        /// If it is not provided, the provider region is used.
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
+
+        public GetAddressApplyArgs()
         {
         }
     }

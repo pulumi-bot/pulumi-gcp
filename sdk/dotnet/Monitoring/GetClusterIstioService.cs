@@ -57,6 +57,25 @@ namespace Pulumi.Gcp.Monitoring
         /// </summary>
         public static Task<GetClusterIstioServiceResult> InvokeAsync(GetClusterIstioServiceArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetClusterIstioServiceResult>("gcp:monitoring/getClusterIstioService:getClusterIstioService", args ?? new GetClusterIstioServiceArgs(), options.WithVersion());
+
+        public static Output<GetClusterIstioServiceResult> Apply(GetClusterIstioServiceApplyArgs args, InvokeOptions? options = null)
+        {
+            return Pulumi.Output.All(
+                args.ClusterName.Box(),
+                args.Location.Box(),
+                args.Project.Box(),
+                args.ServiceName.Box(),
+                args.ServiceNamespace.Box()
+            ).Apply(a => {
+                    var args = new GetClusterIstioServiceArgs();
+                    a[0].Set(args, nameof(args.ClusterName));
+                    a[1].Set(args, nameof(args.Location));
+                    a[2].Set(args, nameof(args.Project));
+                    a[3].Set(args, nameof(args.ServiceName));
+                    a[4].Set(args, nameof(args.ServiceNamespace));
+                    return InvokeAsync(args, options);
+            });
+        }
     }
 
 
@@ -98,6 +117,48 @@ namespace Pulumi.Gcp.Monitoring
         public string ServiceNamespace { get; set; } = null!;
 
         public GetClusterIstioServiceArgs()
+        {
+        }
+    }
+
+    public sealed class GetClusterIstioServiceApplyArgs
+    {
+        /// <summary>
+        /// The name of the Kubernetes cluster in which this Istio service 
+        /// is defined. Corresponds to the clusterName resource label in k8s_cluster resources.
+        /// </summary>
+        [Input("clusterName", required: true)]
+        public Input<string> ClusterName { get; set; } = null!;
+
+        /// <summary>
+        /// The location of the Kubernetes cluster in which this Istio service 
+        /// is defined. Corresponds to the location resource label in k8s_cluster resources.
+        /// </summary>
+        [Input("location", required: true)]
+        public Input<string> Location { get; set; } = null!;
+
+        /// <summary>
+        /// The ID of the project in which the resource belongs.
+        /// If it is not provided, the provider project is used.
+        /// </summary>
+        [Input("project")]
+        public Input<string>? Project { get; set; }
+
+        /// <summary>
+        /// The name of the Istio service underlying this service.
+        /// Corresponds to the destination_service_name metric label in Istio metrics.
+        /// </summary>
+        [Input("serviceName", required: true)]
+        public Input<string> ServiceName { get; set; } = null!;
+
+        /// <summary>
+        /// The namespace of the Istio service underlying this service.
+        /// Corresponds to the destination_service_namespace metric label in Istio metrics.
+        /// </summary>
+        [Input("serviceNamespace", required: true)]
+        public Input<string> ServiceNamespace { get; set; } = null!;
+
+        public GetClusterIstioServiceApplyArgs()
         {
         }
     }

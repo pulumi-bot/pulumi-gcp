@@ -332,3 +332,12 @@ def get_image(family: Optional[str] = None,
         source_disk_id=__ret__.source_disk_id,
         source_image_id=__ret__.source_image_id,
         status=__ret__.status)
+
+
+@_utilities.lift_output_func(get_image)
+def get_image_apply(family: Optional[pulumi.Input[str]] = None,
+                    filter: Optional[pulumi.Input[str]] = None,
+                    name: Optional[pulumi.Input[str]] = None,
+                    project: Optional[pulumi.Input[str]] = None,
+                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetImageResult]:
+    ...
