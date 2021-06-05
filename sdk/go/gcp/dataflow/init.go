@@ -5,6 +5,7 @@ package dataflow
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/blang/semver"
 	"github.com/pulumi/pulumi-gcp/sdk/v5/go/gcp"
@@ -36,7 +37,7 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 func init() {
 	version, err := gcp.PkgVersion()
 	if err != nil {
-		fmt.Println("failed to determine package version. defaulting to v1: %v", err)
+		fmt.Fprintln(os.Stderr, err)
 	}
 	pulumi.RegisterResourceModule(
 		"gcp",
