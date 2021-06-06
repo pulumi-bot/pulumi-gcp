@@ -32,10 +32,7 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 }
 
 func init() {
-	version, err := gcp.PkgVersion()
-	if err != nil {
-		fmt.Println("failed to determine package version. defaulting to v1: %v", err)
-	}
+	version := gcp.PkgVersion()
 	pulumi.RegisterResourceModule(
 		"gcp",
 		"datastore/dataStoreIndex",
