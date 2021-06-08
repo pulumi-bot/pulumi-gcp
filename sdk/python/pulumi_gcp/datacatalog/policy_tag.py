@@ -217,7 +217,7 @@ class _PolicyTagState:
 class PolicyTag(pulumi.CustomResource):
     @overload
     def __init__(__self__,
-                 resource_name: str,
+                 resource_name_: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
@@ -292,7 +292,7 @@ class PolicyTag(pulumi.CustomResource):
          $ pulumi import gcp:datacatalog/policyTag:PolicyTag default {{name}}
         ```
 
-        :param str resource_name: The name of the resource.
+        :param str resource_name_: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: Description of this policy tag. It must: contain only unicode characters, tabs,
                newlines, carriage returns and page breaks; and be at most 2000 bytes long when
@@ -309,7 +309,7 @@ class PolicyTag(pulumi.CustomResource):
         ...
     @overload
     def __init__(__self__,
-                 resource_name: str,
+                 resource_name_: str,
                  args: PolicyTagArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
@@ -380,20 +380,20 @@ class PolicyTag(pulumi.CustomResource):
          $ pulumi import gcp:datacatalog/policyTag:PolicyTag default {{name}}
         ```
 
-        :param str resource_name: The name of the resource.
+        :param str resource_name_: The name of the resource.
         :param PolicyTagArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
-    def __init__(__self__, resource_name: str, *args, **kwargs):
+    def __init__(__self__, resource_name_: str, *args, **kwargs):
         resource_args, opts = _utilities.get_resource_args_opts(PolicyTagArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
-            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+            __self__._internal_init(resource_name_, opts, **resource_args.__dict__)
         else:
-            __self__._internal_init(resource_name, *args, **kwargs)
+            __self__._internal_init(resource_name_, *args, **kwargs)
 
     def _internal_init(__self__,
-                 resource_name: str,
+                 resource_name_: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
@@ -423,12 +423,12 @@ class PolicyTag(pulumi.CustomResource):
             __props__.__dict__["name"] = None
         super(PolicyTag, __self__).__init__(
             'gcp:datacatalog/policyTag:PolicyTag',
-            resource_name,
+            resource_name_,
             __props__,
             opts)
 
     @staticmethod
-    def get(resource_name: str,
+    def get(resource_name_: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             child_policy_tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -441,7 +441,7 @@ class PolicyTag(pulumi.CustomResource):
         Get an existing PolicyTag resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
-        :param str resource_name: The unique name of the resulting resource.
+        :param str resource_name_: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] child_policy_tags: Resource names of child policy tags of this policy tag.
@@ -469,7 +469,7 @@ class PolicyTag(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["parent_policy_tag"] = parent_policy_tag
         __props__.__dict__["taxonomy"] = taxonomy
-        return PolicyTag(resource_name, opts=opts, __props__=__props__)
+        return PolicyTag(resource_name_, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="childPolicyTags")

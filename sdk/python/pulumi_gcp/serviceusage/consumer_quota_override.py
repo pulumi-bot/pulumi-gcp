@@ -273,7 +273,7 @@ class _ConsumerQuotaOverrideState:
 class ConsumerQuotaOverride(pulumi.CustomResource):
     @overload
     def __init__(__self__,
-                 resource_name: str,
+                 resource_name_: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dimensions: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  force: Optional[pulumi.Input[bool]] = None,
@@ -353,7 +353,7 @@ class ConsumerQuotaOverride(pulumi.CustomResource):
          $ pulumi import gcp:serviceusage/consumerQuotaOverride:ConsumerQuotaOverride default {{service}}/{{metric}}/{{limit}}/{{name}}
         ```
 
-        :param str resource_name: The name of the resource.
+        :param str resource_name_: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] dimensions: If this map is nonempty, then this override applies only to specific values for dimensions defined in the limit unit.
         :param pulumi.Input[bool] force: If the new quota would decrease the existing quota by more than 10%, the request is rejected.
@@ -368,7 +368,7 @@ class ConsumerQuotaOverride(pulumi.CustomResource):
         ...
     @overload
     def __init__(__self__,
-                 resource_name: str,
+                 resource_name_: str,
                  args: ConsumerQuotaOverrideArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
@@ -441,20 +441,20 @@ class ConsumerQuotaOverride(pulumi.CustomResource):
          $ pulumi import gcp:serviceusage/consumerQuotaOverride:ConsumerQuotaOverride default {{service}}/{{metric}}/{{limit}}/{{name}}
         ```
 
-        :param str resource_name: The name of the resource.
+        :param str resource_name_: The name of the resource.
         :param ConsumerQuotaOverrideArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
-    def __init__(__self__, resource_name: str, *args, **kwargs):
+    def __init__(__self__, resource_name_: str, *args, **kwargs):
         resource_args, opts = _utilities.get_resource_args_opts(ConsumerQuotaOverrideArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
-            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+            __self__._internal_init(resource_name_, opts, **resource_args.__dict__)
         else:
-            __self__._internal_init(resource_name, *args, **kwargs)
+            __self__._internal_init(resource_name_, *args, **kwargs)
 
     def _internal_init(__self__,
-                 resource_name: str,
+                 resource_name_: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dimensions: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  force: Optional[pulumi.Input[bool]] = None,
@@ -493,12 +493,12 @@ class ConsumerQuotaOverride(pulumi.CustomResource):
             __props__.__dict__["name"] = None
         super(ConsumerQuotaOverride, __self__).__init__(
             'gcp:serviceusage/consumerQuotaOverride:ConsumerQuotaOverride',
-            resource_name,
+            resource_name_,
             __props__,
             opts)
 
     @staticmethod
-    def get(resource_name: str,
+    def get(resource_name_: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             dimensions: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -513,7 +513,7 @@ class ConsumerQuotaOverride(pulumi.CustomResource):
         Get an existing ConsumerQuotaOverride resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
-        :param str resource_name: The unique name of the resulting resource.
+        :param str resource_name_: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] dimensions: If this map is nonempty, then this override applies only to specific values for dimensions defined in the limit unit.
@@ -539,7 +539,7 @@ class ConsumerQuotaOverride(pulumi.CustomResource):
         __props__.__dict__["override_value"] = override_value
         __props__.__dict__["project"] = project
         __props__.__dict__["service"] = service
-        return ConsumerQuotaOverride(resource_name, opts=opts, __props__=__props__)
+        return ConsumerQuotaOverride(resource_name_, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter

@@ -509,7 +509,7 @@ class _RouterPeerState:
 class RouterPeer(pulumi.CustomResource):
     @overload
     def __init__(__self__,
-                 resource_name: str,
+                 resource_name_: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  advertise_mode: Optional[pulumi.Input[str]] = None,
                  advertised_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -571,7 +571,7 @@ class RouterPeer(pulumi.CustomResource):
          $ pulumi import gcp:compute/routerPeer:RouterPeer default {{router}}/{{name}}
         ```
 
-        :param str resource_name: The name of the resource.
+        :param str resource_name_: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] advertise_mode: User-specified flag to indicate which mode to use for advertisement.
                Valid values of this enum field are: `DEFAULT`, `CUSTOM`
@@ -611,7 +611,7 @@ class RouterPeer(pulumi.CustomResource):
         ...
     @overload
     def __init__(__self__,
-                 resource_name: str,
+                 resource_name_: str,
                  args: RouterPeerArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
@@ -662,20 +662,20 @@ class RouterPeer(pulumi.CustomResource):
          $ pulumi import gcp:compute/routerPeer:RouterPeer default {{router}}/{{name}}
         ```
 
-        :param str resource_name: The name of the resource.
+        :param str resource_name_: The name of the resource.
         :param RouterPeerArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
-    def __init__(__self__, resource_name: str, *args, **kwargs):
+    def __init__(__self__, resource_name_: str, *args, **kwargs):
         resource_args, opts = _utilities.get_resource_args_opts(RouterPeerArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
-            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+            __self__._internal_init(resource_name_, opts, **resource_args.__dict__)
         else:
-            __self__._internal_init(resource_name, *args, **kwargs)
+            __self__._internal_init(resource_name_, *args, **kwargs)
 
     def _internal_init(__self__,
-                 resource_name: str,
+                 resource_name_: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  advertise_mode: Optional[pulumi.Input[str]] = None,
                  advertised_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -723,12 +723,12 @@ class RouterPeer(pulumi.CustomResource):
             __props__.__dict__["management_type"] = None
         super(RouterPeer, __self__).__init__(
             'gcp:compute/routerPeer:RouterPeer',
-            resource_name,
+            resource_name_,
             __props__,
             opts)
 
     @staticmethod
-    def get(resource_name: str,
+    def get(resource_name_: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             advertise_mode: Optional[pulumi.Input[str]] = None,
@@ -748,7 +748,7 @@ class RouterPeer(pulumi.CustomResource):
         Get an existing RouterPeer resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
-        :param str resource_name: The unique name of the resulting resource.
+        :param str resource_name_: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] advertise_mode: User-specified flag to indicate which mode to use for advertisement.
@@ -808,7 +808,7 @@ class RouterPeer(pulumi.CustomResource):
         __props__.__dict__["project"] = project
         __props__.__dict__["region"] = region
         __props__.__dict__["router"] = router
-        return RouterPeer(resource_name, opts=opts, __props__=__props__)
+        return RouterPeer(resource_name_, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="advertiseMode")

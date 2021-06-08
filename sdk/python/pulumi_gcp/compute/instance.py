@@ -1104,7 +1104,7 @@ class _InstanceState:
 class Instance(pulumi.CustomResource):
     @overload
     def __init__(__self__,
-                 resource_name: str,
+                 resource_name_: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allow_stopping_for_update: Optional[pulumi.Input[bool]] = None,
                  attached_disks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceAttachedDiskArgs']]]]] = None,
@@ -1195,7 +1195,7 @@ class Instance(pulumi.CustomResource):
 
          [custom-vm-types]https://cloud.google.com/dataproc/docs/concepts/compute/custom-machine-types [network-tier]https://cloud.google.com/network-tiers/docs/overview [extended-custom-vm-type]https://cloud.google.com/compute/docs/instances/creating-instance-with-custom-machine-type#extendedmemory
 
-        :param str resource_name: The name of the resource.
+        :param str resource_name_: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] allow_stopping_for_update: If true, allows this prvider to stop the instance to update its properties.
                If you try to update a property that requires stopping the instance without setting this field, the update will fail.
@@ -1260,7 +1260,7 @@ class Instance(pulumi.CustomResource):
         ...
     @overload
     def __init__(__self__,
-                 resource_name: str,
+                 resource_name_: str,
                  args: InstanceArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
@@ -1325,20 +1325,20 @@ class Instance(pulumi.CustomResource):
 
          [custom-vm-types]https://cloud.google.com/dataproc/docs/concepts/compute/custom-machine-types [network-tier]https://cloud.google.com/network-tiers/docs/overview [extended-custom-vm-type]https://cloud.google.com/compute/docs/instances/creating-instance-with-custom-machine-type#extendedmemory
 
-        :param str resource_name: The name of the resource.
+        :param str resource_name_: The name of the resource.
         :param InstanceArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
-    def __init__(__self__, resource_name: str, *args, **kwargs):
+    def __init__(__self__, resource_name_: str, *args, **kwargs):
         resource_args, opts = _utilities.get_resource_args_opts(InstanceArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
-            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+            __self__._internal_init(resource_name_, opts, **resource_args.__dict__)
         else:
-            __self__._internal_init(resource_name, *args, **kwargs)
+            __self__._internal_init(resource_name_, *args, **kwargs)
 
     def _internal_init(__self__,
-                 resource_name: str,
+                 resource_name_: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allow_stopping_for_update: Optional[pulumi.Input[bool]] = None,
                  attached_disks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceAttachedDiskArgs']]]]] = None,
@@ -1419,12 +1419,12 @@ class Instance(pulumi.CustomResource):
             __props__.__dict__["tags_fingerprint"] = None
         super(Instance, __self__).__init__(
             'gcp:compute/instance:Instance',
-            resource_name,
+            resource_name_,
             __props__,
             opts)
 
     @staticmethod
-    def get(resource_name: str,
+    def get(resource_name_: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             allow_stopping_for_update: Optional[pulumi.Input[bool]] = None,
@@ -1464,7 +1464,7 @@ class Instance(pulumi.CustomResource):
         Get an existing Instance resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
-        :param str resource_name: The unique name of the resulting resource.
+        :param str resource_name_: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] allow_stopping_for_update: If true, allows this prvider to stop the instance to update its properties.
@@ -1571,7 +1571,7 @@ class Instance(pulumi.CustomResource):
         __props__.__dict__["tags"] = tags
         __props__.__dict__["tags_fingerprint"] = tags_fingerprint
         __props__.__dict__["zone"] = zone
-        return Instance(resource_name, opts=opts, __props__=__props__)
+        return Instance(resource_name_, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="allowStoppingForUpdate")

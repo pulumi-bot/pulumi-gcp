@@ -139,7 +139,7 @@ class _OrganizationSecurityPolicyAssociationState:
 class OrganizationSecurityPolicyAssociation(pulumi.CustomResource):
     @overload
     def __init__(__self__,
-                 resource_name: str,
+                 resource_name_: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  attachment_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -168,7 +168,7 @@ class OrganizationSecurityPolicyAssociation(pulumi.CustomResource):
          $ pulumi import gcp:compute/organizationSecurityPolicyAssociation:OrganizationSecurityPolicyAssociation default {{policy_id}}/{{name}}
         ```
 
-        :param str resource_name: The name of the resource.
+        :param str resource_name_: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] attachment_id: The resource that the security policy is attached to.
         :param pulumi.Input[str] name: The name for an association.
@@ -177,7 +177,7 @@ class OrganizationSecurityPolicyAssociation(pulumi.CustomResource):
         ...
     @overload
     def __init__(__self__,
-                 resource_name: str,
+                 resource_name_: str,
                  args: OrganizationSecurityPolicyAssociationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
@@ -203,20 +203,20 @@ class OrganizationSecurityPolicyAssociation(pulumi.CustomResource):
          $ pulumi import gcp:compute/organizationSecurityPolicyAssociation:OrganizationSecurityPolicyAssociation default {{policy_id}}/{{name}}
         ```
 
-        :param str resource_name: The name of the resource.
+        :param str resource_name_: The name of the resource.
         :param OrganizationSecurityPolicyAssociationArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
-    def __init__(__self__, resource_name: str, *args, **kwargs):
+    def __init__(__self__, resource_name_: str, *args, **kwargs):
         resource_args, opts = _utilities.get_resource_args_opts(OrganizationSecurityPolicyAssociationArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
-            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+            __self__._internal_init(resource_name_, opts, **resource_args.__dict__)
         else:
-            __self__._internal_init(resource_name, *args, **kwargs)
+            __self__._internal_init(resource_name_, *args, **kwargs)
 
     def _internal_init(__self__,
-                 resource_name: str,
+                 resource_name_: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  attachment_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -243,12 +243,12 @@ class OrganizationSecurityPolicyAssociation(pulumi.CustomResource):
             __props__.__dict__["display_name"] = None
         super(OrganizationSecurityPolicyAssociation, __self__).__init__(
             'gcp:compute/organizationSecurityPolicyAssociation:OrganizationSecurityPolicyAssociation',
-            resource_name,
+            resource_name_,
             __props__,
             opts)
 
     @staticmethod
-    def get(resource_name: str,
+    def get(resource_name_: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             attachment_id: Optional[pulumi.Input[str]] = None,
@@ -259,7 +259,7 @@ class OrganizationSecurityPolicyAssociation(pulumi.CustomResource):
         Get an existing OrganizationSecurityPolicyAssociation resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
-        :param str resource_name: The unique name of the resulting resource.
+        :param str resource_name_: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] attachment_id: The resource that the security policy is attached to.
@@ -275,7 +275,7 @@ class OrganizationSecurityPolicyAssociation(pulumi.CustomResource):
         __props__.__dict__["display_name"] = display_name
         __props__.__dict__["name"] = name
         __props__.__dict__["policy_id"] = policy_id
-        return OrganizationSecurityPolicyAssociation(resource_name, opts=opts, __props__=__props__)
+        return OrganizationSecurityPolicyAssociation(resource_name_, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="attachmentId")

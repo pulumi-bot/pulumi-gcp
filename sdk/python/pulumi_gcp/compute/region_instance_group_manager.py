@@ -621,7 +621,7 @@ class _RegionInstanceGroupManagerState:
 class RegionInstanceGroupManager(pulumi.CustomResource):
     @overload
     def __init__(__self__,
-                 resource_name: str,
+                 resource_name_: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  auto_healing_policies: Optional[pulumi.Input[pulumi.InputType['RegionInstanceGroupManagerAutoHealingPoliciesArgs']]] = None,
                  base_instance_name: Optional[pulumi.Input[str]] = None,
@@ -719,7 +719,7 @@ class RegionInstanceGroupManager(pulumi.CustomResource):
          $ pulumi import gcp:compute/regionInstanceGroupManager:RegionInstanceGroupManager appserver appserver-igm
         ```
 
-        :param str resource_name: The name of the resource.
+        :param str resource_name_: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['RegionInstanceGroupManagerAutoHealingPoliciesArgs']] auto_healing_policies: The autohealing policies for this managed instance
                group. You can specify only one value. Structure is documented below. For more information, see the [official documentation](https://cloud.google.com/compute/docs/instance-groups/creating-groups-of-managed-instances#monitoring_groups).
@@ -756,7 +756,7 @@ class RegionInstanceGroupManager(pulumi.CustomResource):
         ...
     @overload
     def __init__(__self__,
-                 resource_name: str,
+                 resource_name_: str,
                  args: RegionInstanceGroupManagerArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
@@ -839,20 +839,20 @@ class RegionInstanceGroupManager(pulumi.CustomResource):
          $ pulumi import gcp:compute/regionInstanceGroupManager:RegionInstanceGroupManager appserver appserver-igm
         ```
 
-        :param str resource_name: The name of the resource.
+        :param str resource_name_: The name of the resource.
         :param RegionInstanceGroupManagerArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
-    def __init__(__self__, resource_name: str, *args, **kwargs):
+    def __init__(__self__, resource_name_: str, *args, **kwargs):
         resource_args, opts = _utilities.get_resource_args_opts(RegionInstanceGroupManagerArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
-            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+            __self__._internal_init(resource_name_, opts, **resource_args.__dict__)
         else:
-            __self__._internal_init(resource_name, *args, **kwargs)
+            __self__._internal_init(resource_name_, *args, **kwargs)
 
     def _internal_init(__self__,
-                 resource_name: str,
+                 resource_name_: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  auto_healing_policies: Optional[pulumi.Input[pulumi.InputType['RegionInstanceGroupManagerAutoHealingPoliciesArgs']]] = None,
                  base_instance_name: Optional[pulumi.Input[str]] = None,
@@ -905,12 +905,12 @@ class RegionInstanceGroupManager(pulumi.CustomResource):
             __props__.__dict__["self_link"] = None
         super(RegionInstanceGroupManager, __self__).__init__(
             'gcp:compute/regionInstanceGroupManager:RegionInstanceGroupManager',
-            resource_name,
+            resource_name_,
             __props__,
             opts)
 
     @staticmethod
-    def get(resource_name: str,
+    def get(resource_name_: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             auto_healing_policies: Optional[pulumi.Input[pulumi.InputType['RegionInstanceGroupManagerAutoHealingPoliciesArgs']]] = None,
@@ -935,7 +935,7 @@ class RegionInstanceGroupManager(pulumi.CustomResource):
         Get an existing RegionInstanceGroupManager resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
-        :param str resource_name: The unique name of the resulting resource.
+        :param str resource_name_: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['RegionInstanceGroupManagerAutoHealingPoliciesArgs']] auto_healing_policies: The autohealing policies for this managed instance
@@ -995,7 +995,7 @@ class RegionInstanceGroupManager(pulumi.CustomResource):
         __props__.__dict__["update_policy"] = update_policy
         __props__.__dict__["versions"] = versions
         __props__.__dict__["wait_for_instances"] = wait_for_instances
-        return RegionInstanceGroupManager(resource_name, opts=opts, __props__=__props__)
+        return RegionInstanceGroupManager(resource_name_, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="autoHealingPolicies")

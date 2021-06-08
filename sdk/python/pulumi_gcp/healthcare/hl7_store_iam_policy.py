@@ -123,7 +123,7 @@ class _Hl7StoreIamPolicyState:
 class Hl7StoreIamPolicy(pulumi.CustomResource):
     @overload
     def __init__(__self__,
-                 resource_name: str,
+                 resource_name_: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  hl7_v2_store_id: Optional[pulumi.Input[str]] = None,
                  policy_data: Optional[pulumi.Input[str]] = None,
@@ -204,7 +204,7 @@ class Hl7StoreIamPolicy(pulumi.CustomResource):
          $ pulumi import gcp:healthcare/hl7StoreIamPolicy:Hl7StoreIamPolicy hl7_v2_store_iam your-project-id/location-name/dataset-name/hl7-v2-store-name
         ```
 
-        :param str resource_name: The name of the resource.
+        :param str resource_name_: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] hl7_v2_store_id: The HL7v2 store ID, in the form
                `{project_id}/{location_name}/{dataset_name}/{hl7_v2_store_name}` or
@@ -216,7 +216,7 @@ class Hl7StoreIamPolicy(pulumi.CustomResource):
         ...
     @overload
     def __init__(__self__,
-                 resource_name: str,
+                 resource_name_: str,
                  args: Hl7StoreIamPolicyArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
@@ -295,20 +295,20 @@ class Hl7StoreIamPolicy(pulumi.CustomResource):
          $ pulumi import gcp:healthcare/hl7StoreIamPolicy:Hl7StoreIamPolicy hl7_v2_store_iam your-project-id/location-name/dataset-name/hl7-v2-store-name
         ```
 
-        :param str resource_name: The name of the resource.
+        :param str resource_name_: The name of the resource.
         :param Hl7StoreIamPolicyArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
-    def __init__(__self__, resource_name: str, *args, **kwargs):
+    def __init__(__self__, resource_name_: str, *args, **kwargs):
         resource_args, opts = _utilities.get_resource_args_opts(Hl7StoreIamPolicyArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
-            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+            __self__._internal_init(resource_name_, opts, **resource_args.__dict__)
         else:
-            __self__._internal_init(resource_name, *args, **kwargs)
+            __self__._internal_init(resource_name_, *args, **kwargs)
 
     def _internal_init(__self__,
-                 resource_name: str,
+                 resource_name_: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  hl7_v2_store_id: Optional[pulumi.Input[str]] = None,
                  policy_data: Optional[pulumi.Input[str]] = None,
@@ -333,12 +333,12 @@ class Hl7StoreIamPolicy(pulumi.CustomResource):
             __props__.__dict__["etag"] = None
         super(Hl7StoreIamPolicy, __self__).__init__(
             'gcp:healthcare/hl7StoreIamPolicy:Hl7StoreIamPolicy',
-            resource_name,
+            resource_name_,
             __props__,
             opts)
 
     @staticmethod
-    def get(resource_name: str,
+    def get(resource_name_: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             etag: Optional[pulumi.Input[str]] = None,
@@ -348,7 +348,7 @@ class Hl7StoreIamPolicy(pulumi.CustomResource):
         Get an existing Hl7StoreIamPolicy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
-        :param str resource_name: The unique name of the resulting resource.
+        :param str resource_name_: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] etag: (Computed) The etag of the HL7v2 store's IAM policy.
@@ -366,7 +366,7 @@ class Hl7StoreIamPolicy(pulumi.CustomResource):
         __props__.__dict__["etag"] = etag
         __props__.__dict__["hl7_v2_store_id"] = hl7_v2_store_id
         __props__.__dict__["policy_data"] = policy_data
-        return Hl7StoreIamPolicy(resource_name, opts=opts, __props__=__props__)
+        return Hl7StoreIamPolicy(resource_name_, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter

@@ -380,7 +380,7 @@ class _NotificationChannelState:
 class NotificationChannel(pulumi.CustomResource):
     @overload
     def __init__(__self__,
-                 resource_name: str,
+                 resource_name_: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
@@ -455,7 +455,7 @@ class NotificationChannel(pulumi.CustomResource):
          $ pulumi import gcp:monitoring/notificationChannel:NotificationChannel default {{name}}
         ```
 
-        :param str resource_name: The name of the resource.
+        :param str resource_name_: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: An optional human-readable description of this notification channel. This description may provide additional details, beyond the display name, for the channel. This may not exceed 1024 Unicode characters.
         :param pulumi.Input[str] display_name: An optional human-readable name for this notification channel. It is recommended that you specify a non-empty and unique name in order to make it easier to identify the channels in your project, though this is not enforced. The display name is limited to 512 Unicode characters.
@@ -481,7 +481,7 @@ class NotificationChannel(pulumi.CustomResource):
         ...
     @overload
     def __init__(__self__,
-                 resource_name: str,
+                 resource_name_: str,
                  args: NotificationChannelArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
@@ -548,20 +548,20 @@ class NotificationChannel(pulumi.CustomResource):
          $ pulumi import gcp:monitoring/notificationChannel:NotificationChannel default {{name}}
         ```
 
-        :param str resource_name: The name of the resource.
+        :param str resource_name_: The name of the resource.
         :param NotificationChannelArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
-    def __init__(__self__, resource_name: str, *args, **kwargs):
+    def __init__(__self__, resource_name_: str, *args, **kwargs):
         resource_args, opts = _utilities.get_resource_args_opts(NotificationChannelArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
-            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+            __self__._internal_init(resource_name_, opts, **resource_args.__dict__)
         else:
-            __self__._internal_init(resource_name, *args, **kwargs)
+            __self__._internal_init(resource_name_, *args, **kwargs)
 
     def _internal_init(__self__,
-                 resource_name: str,
+                 resource_name_: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
@@ -597,12 +597,12 @@ class NotificationChannel(pulumi.CustomResource):
             __props__.__dict__["verification_status"] = None
         super(NotificationChannel, __self__).__init__(
             'gcp:monitoring/notificationChannel:NotificationChannel',
-            resource_name,
+            resource_name_,
             __props__,
             opts)
 
     @staticmethod
-    def get(resource_name: str,
+    def get(resource_name_: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             description: Optional[pulumi.Input[str]] = None,
@@ -619,7 +619,7 @@ class NotificationChannel(pulumi.CustomResource):
         Get an existing NotificationChannel resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
-        :param str resource_name: The unique name of the resulting resource.
+        :param str resource_name_: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: An optional human-readable description of this notification channel. This description may provide additional details, beyond the display name, for the channel. This may not exceed 1024 Unicode characters.
@@ -666,7 +666,7 @@ class NotificationChannel(pulumi.CustomResource):
         __props__.__dict__["type"] = type
         __props__.__dict__["user_labels"] = user_labels
         __props__.__dict__["verification_status"] = verification_status
-        return NotificationChannel(resource_name, opts=opts, __props__=__props__)
+        return NotificationChannel(resource_name_, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter

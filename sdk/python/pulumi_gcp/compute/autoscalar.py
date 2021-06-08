@@ -290,7 +290,7 @@ class Autoscalar(pulumi.CustomResource):
 
     @overload
     def __init__(__self__,
-                 resource_name: str,
+                 resource_name_: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  autoscaling_policy: Optional[pulumi.Input[pulumi.InputType['AutoscalarAutoscalingPolicyArgs']]] = None,
                  description: Optional[pulumi.Input[str]] = None,
@@ -443,7 +443,7 @@ class Autoscalar(pulumi.CustomResource):
          $ pulumi import gcp:compute/autoscalar:Autoscalar default {{name}}
         ```
 
-        :param str resource_name: The name of the resource.
+        :param str resource_name_: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['AutoscalarAutoscalingPolicyArgs']] autoscaling_policy: The configuration parameters for the autoscaling algorithm. You can
                define one or more of the policies for an autoscaler: cpuUtilization,
@@ -463,7 +463,7 @@ class Autoscalar(pulumi.CustomResource):
         ...
     @overload
     def __init__(__self__,
-                 resource_name: str,
+                 resource_name_: str,
                  args: AutoscalarArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
@@ -610,20 +610,20 @@ class Autoscalar(pulumi.CustomResource):
          $ pulumi import gcp:compute/autoscalar:Autoscalar default {{name}}
         ```
 
-        :param str resource_name: The name of the resource.
+        :param str resource_name_: The name of the resource.
         :param AutoscalarArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
-    def __init__(__self__, resource_name: str, *args, **kwargs):
+    def __init__(__self__, resource_name_: str, *args, **kwargs):
         resource_args, opts = _utilities.get_resource_args_opts(AutoscalarArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
-            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+            __self__._internal_init(resource_name_, opts, **resource_args.__dict__)
         else:
-            __self__._internal_init(resource_name, *args, **kwargs)
+            __self__._internal_init(resource_name_, *args, **kwargs)
 
     def _internal_init(__self__,
-                 resource_name: str,
+                 resource_name_: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  autoscaling_policy: Optional[pulumi.Input[pulumi.InputType['AutoscalarAutoscalingPolicyArgs']]] = None,
                  description: Optional[pulumi.Input[str]] = None,
@@ -658,12 +658,12 @@ class Autoscalar(pulumi.CustomResource):
             __props__.__dict__["self_link"] = None
         super(Autoscalar, __self__).__init__(
             'gcp:compute/autoscalar:Autoscalar',
-            resource_name,
+            resource_name_,
             __props__,
             opts)
 
     @staticmethod
-    def get(resource_name: str,
+    def get(resource_name_: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             autoscaling_policy: Optional[pulumi.Input[pulumi.InputType['AutoscalarAutoscalingPolicyArgs']]] = None,
@@ -678,7 +678,7 @@ class Autoscalar(pulumi.CustomResource):
         Get an existing Autoscalar resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
-        :param str resource_name: The unique name of the resulting resource.
+        :param str resource_name_: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['AutoscalarAutoscalingPolicyArgs']] autoscaling_policy: The configuration parameters for the autoscaling algorithm. You can
@@ -710,7 +710,7 @@ class Autoscalar(pulumi.CustomResource):
         __props__.__dict__["self_link"] = self_link
         __props__.__dict__["target"] = target
         __props__.__dict__["zone"] = zone
-        return Autoscalar(resource_name, opts=opts, __props__=__props__)
+        return Autoscalar(resource_name_, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="autoscalingPolicy")

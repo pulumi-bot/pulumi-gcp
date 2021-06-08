@@ -253,7 +253,7 @@ class _OrganizationPolicyState:
 class OrganizationPolicy(pulumi.CustomResource):
     @overload
     def __init__(__self__,
-                 resource_name: str,
+                 resource_name_: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  boolean_policy: Optional[pulumi.Input[pulumi.InputType['OrganizationPolicyBooleanPolicyArgs']]] = None,
                  constraint: Optional[pulumi.Input[str]] = None,
@@ -347,7 +347,7 @@ class OrganizationPolicy(pulumi.CustomResource):
          $ pulumi import gcp:projects/organizationPolicy:OrganizationPolicy policy test-project:serviceuser.services
         ```
 
-        :param str resource_name: The name of the resource.
+        :param str resource_name_: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['OrganizationPolicyBooleanPolicyArgs']] boolean_policy: A boolean policy is a constraint that is either enforced or not. Structure is documented below.
         :param pulumi.Input[str] constraint: The name of the Constraint the Policy is configuring, for example, `serviceuser.services`. Check out the [complete list of available constraints](https://cloud.google.com/resource-manager/docs/organization-policy/understanding-constraints#available_constraints).
@@ -359,7 +359,7 @@ class OrganizationPolicy(pulumi.CustomResource):
         ...
     @overload
     def __init__(__self__,
-                 resource_name: str,
+                 resource_name_: str,
                  args: OrganizationPolicyArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
@@ -447,20 +447,20 @@ class OrganizationPolicy(pulumi.CustomResource):
          $ pulumi import gcp:projects/organizationPolicy:OrganizationPolicy policy test-project:serviceuser.services
         ```
 
-        :param str resource_name: The name of the resource.
+        :param str resource_name_: The name of the resource.
         :param OrganizationPolicyArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
-    def __init__(__self__, resource_name: str, *args, **kwargs):
+    def __init__(__self__, resource_name_: str, *args, **kwargs):
         resource_args, opts = _utilities.get_resource_args_opts(OrganizationPolicyArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
-            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+            __self__._internal_init(resource_name_, opts, **resource_args.__dict__)
         else:
-            __self__._internal_init(resource_name, *args, **kwargs)
+            __self__._internal_init(resource_name_, *args, **kwargs)
 
     def _internal_init(__self__,
-                 resource_name: str,
+                 resource_name_: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  boolean_policy: Optional[pulumi.Input[pulumi.InputType['OrganizationPolicyBooleanPolicyArgs']]] = None,
                  constraint: Optional[pulumi.Input[str]] = None,
@@ -494,12 +494,12 @@ class OrganizationPolicy(pulumi.CustomResource):
             __props__.__dict__["update_time"] = None
         super(OrganizationPolicy, __self__).__init__(
             'gcp:projects/organizationPolicy:OrganizationPolicy',
-            resource_name,
+            resource_name_,
             __props__,
             opts)
 
     @staticmethod
-    def get(resource_name: str,
+    def get(resource_name_: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             boolean_policy: Optional[pulumi.Input[pulumi.InputType['OrganizationPolicyBooleanPolicyArgs']]] = None,
@@ -514,7 +514,7 @@ class OrganizationPolicy(pulumi.CustomResource):
         Get an existing OrganizationPolicy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
-        :param str resource_name: The unique name of the resulting resource.
+        :param str resource_name_: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['OrganizationPolicyBooleanPolicyArgs']] boolean_policy: A boolean policy is a constraint that is either enforced or not. Structure is documented below.
@@ -538,7 +538,7 @@ class OrganizationPolicy(pulumi.CustomResource):
         __props__.__dict__["restore_policy"] = restore_policy
         __props__.__dict__["update_time"] = update_time
         __props__.__dict__["version"] = version
-        return OrganizationPolicy(resource_name, opts=opts, __props__=__props__)
+        return OrganizationPolicy(resource_name_, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="booleanPolicy")

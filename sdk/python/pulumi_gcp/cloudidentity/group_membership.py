@@ -239,7 +239,7 @@ class _GroupMembershipState:
 class GroupMembership(pulumi.CustomResource):
     @overload
     def __init__(__self__,
-                 resource_name: str,
+                 resource_name_: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  group: Optional[pulumi.Input[str]] = None,
                  member_key: Optional[pulumi.Input[pulumi.InputType['GroupMembershipMemberKeyArgs']]] = None,
@@ -300,7 +300,7 @@ class GroupMembership(pulumi.CustomResource):
          $ pulumi import gcp:cloudidentity/groupMembership:GroupMembership default {{name}}
         ```
 
-        :param str resource_name: The name of the resource.
+        :param str resource_name_: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] group: The name of the Group to create this membership in.
         :param pulumi.Input[pulumi.InputType['GroupMembershipMemberKeyArgs']] member_key: EntityKey of the member.
@@ -314,7 +314,7 @@ class GroupMembership(pulumi.CustomResource):
         ...
     @overload
     def __init__(__self__,
-                 resource_name: str,
+                 resource_name_: str,
                  args: GroupMembershipArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
@@ -371,20 +371,20 @@ class GroupMembership(pulumi.CustomResource):
          $ pulumi import gcp:cloudidentity/groupMembership:GroupMembership default {{name}}
         ```
 
-        :param str resource_name: The name of the resource.
+        :param str resource_name_: The name of the resource.
         :param GroupMembershipArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
-    def __init__(__self__, resource_name: str, *args, **kwargs):
+    def __init__(__self__, resource_name_: str, *args, **kwargs):
         resource_args, opts = _utilities.get_resource_args_opts(GroupMembershipArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
-            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+            __self__._internal_init(resource_name_, opts, **resource_args.__dict__)
         else:
-            __self__._internal_init(resource_name, *args, **kwargs)
+            __self__._internal_init(resource_name_, *args, **kwargs)
 
     def _internal_init(__self__,
-                 resource_name: str,
+                 resource_name_: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  group: Optional[pulumi.Input[str]] = None,
                  member_key: Optional[pulumi.Input[pulumi.InputType['GroupMembershipMemberKeyArgs']]] = None,
@@ -416,12 +416,12 @@ class GroupMembership(pulumi.CustomResource):
             __props__.__dict__["update_time"] = None
         super(GroupMembership, __self__).__init__(
             'gcp:cloudidentity/groupMembership:GroupMembership',
-            resource_name,
+            resource_name_,
             __props__,
             opts)
 
     @staticmethod
-    def get(resource_name: str,
+    def get(resource_name_: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             create_time: Optional[pulumi.Input[str]] = None,
@@ -436,7 +436,7 @@ class GroupMembership(pulumi.CustomResource):
         Get an existing GroupMembership resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
-        :param str resource_name: The unique name of the resulting resource.
+        :param str resource_name_: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] create_time: The time when the Membership was created.
@@ -465,7 +465,7 @@ class GroupMembership(pulumi.CustomResource):
         __props__.__dict__["roles"] = roles
         __props__.__dict__["type"] = type
         __props__.__dict__["update_time"] = update_time
-        return GroupMembership(resource_name, opts=opts, __props__=__props__)
+        return GroupMembership(resource_name_, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="createTime")

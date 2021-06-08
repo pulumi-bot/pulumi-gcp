@@ -165,7 +165,7 @@ class _FolderState:
 class Folder(pulumi.CustomResource):
     @overload
     def __init__(__self__,
-                 resource_name: str,
+                 resource_name_: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
                  parent: Optional[pulumi.Input[str]] = None,
@@ -213,7 +213,7 @@ class Folder(pulumi.CustomResource):
          $ pulumi import gcp:organizations/folder:Folder department1 folders/1234567
         ```
 
-        :param str resource_name: The name of the resource.
+        :param str resource_name_: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] display_name: The folder’s display name.
                A folder’s display name must be unique amongst its siblings, e.g. no two folders with the same parent can share the same display name. The display name must start and end with a letter or digit, may contain letters, digits, spaces, hyphens and underscores and can be no longer than 30 characters.
@@ -223,7 +223,7 @@ class Folder(pulumi.CustomResource):
         ...
     @overload
     def __init__(__self__,
-                 resource_name: str,
+                 resource_name_: str,
                  args: FolderArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
@@ -269,20 +269,20 @@ class Folder(pulumi.CustomResource):
          $ pulumi import gcp:organizations/folder:Folder department1 folders/1234567
         ```
 
-        :param str resource_name: The name of the resource.
+        :param str resource_name_: The name of the resource.
         :param FolderArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
-    def __init__(__self__, resource_name: str, *args, **kwargs):
+    def __init__(__self__, resource_name_: str, *args, **kwargs):
         resource_args, opts = _utilities.get_resource_args_opts(FolderArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
-            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+            __self__._internal_init(resource_name_, opts, **resource_args.__dict__)
         else:
-            __self__._internal_init(resource_name, *args, **kwargs)
+            __self__._internal_init(resource_name_, *args, **kwargs)
 
     def _internal_init(__self__,
-                 resource_name: str,
+                 resource_name_: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
                  parent: Optional[pulumi.Input[str]] = None,
@@ -310,12 +310,12 @@ class Folder(pulumi.CustomResource):
             __props__.__dict__["name"] = None
         super(Folder, __self__).__init__(
             'gcp:organizations/folder:Folder',
-            resource_name,
+            resource_name_,
             __props__,
             opts)
 
     @staticmethod
-    def get(resource_name: str,
+    def get(resource_name_: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             create_time: Optional[pulumi.Input[str]] = None,
@@ -328,7 +328,7 @@ class Folder(pulumi.CustomResource):
         Get an existing Folder resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
-        :param str resource_name: The unique name of the resulting resource.
+        :param str resource_name_: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] create_time: Timestamp when the Folder was created. Assigned by the server.
@@ -351,7 +351,7 @@ class Folder(pulumi.CustomResource):
         __props__.__dict__["lifecycle_state"] = lifecycle_state
         __props__.__dict__["name"] = name
         __props__.__dict__["parent"] = parent
-        return Folder(resource_name, opts=opts, __props__=__props__)
+        return Folder(resource_name_, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="createTime")

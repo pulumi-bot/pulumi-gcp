@@ -200,7 +200,7 @@ class _InstanceIAMMemberState:
 class InstanceIAMMember(pulumi.CustomResource):
     @overload
     def __init__(__self__,
-                 resource_name: str,
+                 resource_name_: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  condition: Optional[pulumi.Input[pulumi.InputType['InstanceIAMMemberConditionArgs']]] = None,
                  instance: Optional[pulumi.Input[str]] = None,
@@ -285,7 +285,7 @@ class InstanceIAMMember(pulumi.CustomResource):
 
         full name of the custom role, e.g. `[projects/my-project|organizations/my-org]/roles/my-custom-role`.
 
-        :param str resource_name: The name of the resource.
+        :param str resource_name_: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] instance: The name of the instance.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs. If it
@@ -297,7 +297,7 @@ class InstanceIAMMember(pulumi.CustomResource):
         ...
     @overload
     def __init__(__self__,
-                 resource_name: str,
+                 resource_name_: str,
                  args: InstanceIAMMemberArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
@@ -377,20 +377,20 @@ class InstanceIAMMember(pulumi.CustomResource):
 
         full name of the custom role, e.g. `[projects/my-project|organizations/my-org]/roles/my-custom-role`.
 
-        :param str resource_name: The name of the resource.
+        :param str resource_name_: The name of the resource.
         :param InstanceIAMMemberArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
-    def __init__(__self__, resource_name: str, *args, **kwargs):
+    def __init__(__self__, resource_name_: str, *args, **kwargs):
         resource_args, opts = _utilities.get_resource_args_opts(InstanceIAMMemberArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
-            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+            __self__._internal_init(resource_name_, opts, **resource_args.__dict__)
         else:
-            __self__._internal_init(resource_name, *args, **kwargs)
+            __self__._internal_init(resource_name_, *args, **kwargs)
 
     def _internal_init(__self__,
-                 resource_name: str,
+                 resource_name_: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  condition: Optional[pulumi.Input[pulumi.InputType['InstanceIAMMemberConditionArgs']]] = None,
                  instance: Optional[pulumi.Input[str]] = None,
@@ -423,12 +423,12 @@ class InstanceIAMMember(pulumi.CustomResource):
             __props__.__dict__["etag"] = None
         super(InstanceIAMMember, __self__).__init__(
             'gcp:spanner/instanceIAMMember:InstanceIAMMember',
-            resource_name,
+            resource_name_,
             __props__,
             opts)
 
     @staticmethod
-    def get(resource_name: str,
+    def get(resource_name_: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             condition: Optional[pulumi.Input[pulumi.InputType['InstanceIAMMemberConditionArgs']]] = None,
@@ -441,7 +441,7 @@ class InstanceIAMMember(pulumi.CustomResource):
         Get an existing InstanceIAMMember resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
-        :param str resource_name: The unique name of the resulting resource.
+        :param str resource_name_: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] etag: (Computed) The etag of the instance's IAM policy.
@@ -462,7 +462,7 @@ class InstanceIAMMember(pulumi.CustomResource):
         __props__.__dict__["member"] = member
         __props__.__dict__["project"] = project
         __props__.__dict__["role"] = role
-        return InstanceIAMMember(resource_name, opts=opts, __props__=__props__)
+        return InstanceIAMMember(resource_name_, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter

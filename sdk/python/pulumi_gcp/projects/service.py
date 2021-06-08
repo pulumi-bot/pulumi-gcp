@@ -160,7 +160,7 @@ class _ServiceState:
 class Service(pulumi.CustomResource):
     @overload
     def __init__(__self__,
-                 resource_name: str,
+                 resource_name_: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  disable_dependent_services: Optional[pulumi.Input[bool]] = None,
                  disable_on_destroy: Optional[pulumi.Input[bool]] = None,
@@ -197,7 +197,7 @@ class Service(pulumi.CustomResource):
 
          Note that unlike other resources that fail if they already exist, `terraform apply` can be successfully used to verify already enabled services. This means that when importing existing resources into Terraform, you can either import the `google_project_service` resources or treat them as new infrastructure and run `terraform apply` to add them to state.
 
-        :param str resource_name: The name of the resource.
+        :param str resource_name_: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] disable_dependent_services: If `true`, services that are enabled and which depend on this service should also be disabled when this service is destroyed.
                If `false` or unset, an error will be generated if any enabled services depend on this service when destroying it.
@@ -208,7 +208,7 @@ class Service(pulumi.CustomResource):
         ...
     @overload
     def __init__(__self__,
-                 resource_name: str,
+                 resource_name_: str,
                  args: ServiceArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
@@ -241,20 +241,20 @@ class Service(pulumi.CustomResource):
 
          Note that unlike other resources that fail if they already exist, `terraform apply` can be successfully used to verify already enabled services. This means that when importing existing resources into Terraform, you can either import the `google_project_service` resources or treat them as new infrastructure and run `terraform apply` to add them to state.
 
-        :param str resource_name: The name of the resource.
+        :param str resource_name_: The name of the resource.
         :param ServiceArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
-    def __init__(__self__, resource_name: str, *args, **kwargs):
+    def __init__(__self__, resource_name_: str, *args, **kwargs):
         resource_args, opts = _utilities.get_resource_args_opts(ServiceArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
-            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+            __self__._internal_init(resource_name_, opts, **resource_args.__dict__)
         else:
-            __self__._internal_init(resource_name, *args, **kwargs)
+            __self__._internal_init(resource_name_, *args, **kwargs)
 
     def _internal_init(__self__,
-                 resource_name: str,
+                 resource_name_: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  disable_dependent_services: Optional[pulumi.Input[bool]] = None,
                  disable_on_destroy: Optional[pulumi.Input[bool]] = None,
@@ -280,12 +280,12 @@ class Service(pulumi.CustomResource):
             __props__.__dict__["service"] = service
         super(Service, __self__).__init__(
             'gcp:projects/service:Service',
-            resource_name,
+            resource_name_,
             __props__,
             opts)
 
     @staticmethod
-    def get(resource_name: str,
+    def get(resource_name_: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             disable_dependent_services: Optional[pulumi.Input[bool]] = None,
@@ -296,7 +296,7 @@ class Service(pulumi.CustomResource):
         Get an existing Service resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
-        :param str resource_name: The unique name of the resulting resource.
+        :param str resource_name_: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] disable_dependent_services: If `true`, services that are enabled and which depend on this service should also be disabled when this service is destroyed.
@@ -313,7 +313,7 @@ class Service(pulumi.CustomResource):
         __props__.__dict__["disable_on_destroy"] = disable_on_destroy
         __props__.__dict__["project"] = project
         __props__.__dict__["service"] = service
-        return Service(resource_name, opts=opts, __props__=__props__)
+        return Service(resource_name_, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="disableDependentServices")

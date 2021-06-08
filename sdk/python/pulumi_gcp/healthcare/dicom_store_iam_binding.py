@@ -176,7 +176,7 @@ class _DicomStoreIamBindingState:
 class DicomStoreIamBinding(pulumi.CustomResource):
     @overload
     def __init__(__self__,
-                 resource_name: str,
+                 resource_name_: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  condition: Optional[pulumi.Input[pulumi.InputType['DicomStoreIamBindingConditionArgs']]] = None,
                  dicom_store_id: Optional[pulumi.Input[str]] = None,
@@ -259,7 +259,7 @@ class DicomStoreIamBinding(pulumi.CustomResource):
          $ pulumi import gcp:healthcare/dicomStoreIamBinding:DicomStoreIamBinding dicom_store_iam your-project-id/location-name/dataset-name/dicom-store-name
         ```
 
-        :param str resource_name: The name of the resource.
+        :param str resource_name_: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dicom_store_id: The DICOM store ID, in the form
                `{project_id}/{location_name}/{dataset_name}/{dicom_store_name}` or
@@ -272,7 +272,7 @@ class DicomStoreIamBinding(pulumi.CustomResource):
         ...
     @overload
     def __init__(__self__,
-                 resource_name: str,
+                 resource_name_: str,
                  args: DicomStoreIamBindingArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
@@ -351,20 +351,20 @@ class DicomStoreIamBinding(pulumi.CustomResource):
          $ pulumi import gcp:healthcare/dicomStoreIamBinding:DicomStoreIamBinding dicom_store_iam your-project-id/location-name/dataset-name/dicom-store-name
         ```
 
-        :param str resource_name: The name of the resource.
+        :param str resource_name_: The name of the resource.
         :param DicomStoreIamBindingArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
-    def __init__(__self__, resource_name: str, *args, **kwargs):
+    def __init__(__self__, resource_name_: str, *args, **kwargs):
         resource_args, opts = _utilities.get_resource_args_opts(DicomStoreIamBindingArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
-            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+            __self__._internal_init(resource_name_, opts, **resource_args.__dict__)
         else:
-            __self__._internal_init(resource_name, *args, **kwargs)
+            __self__._internal_init(resource_name_, *args, **kwargs)
 
     def _internal_init(__self__,
-                 resource_name: str,
+                 resource_name_: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  condition: Optional[pulumi.Input[pulumi.InputType['DicomStoreIamBindingConditionArgs']]] = None,
                  dicom_store_id: Optional[pulumi.Input[str]] = None,
@@ -395,12 +395,12 @@ class DicomStoreIamBinding(pulumi.CustomResource):
             __props__.__dict__["etag"] = None
         super(DicomStoreIamBinding, __self__).__init__(
             'gcp:healthcare/dicomStoreIamBinding:DicomStoreIamBinding',
-            resource_name,
+            resource_name_,
             __props__,
             opts)
 
     @staticmethod
-    def get(resource_name: str,
+    def get(resource_name_: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             condition: Optional[pulumi.Input[pulumi.InputType['DicomStoreIamBindingConditionArgs']]] = None,
@@ -412,7 +412,7 @@ class DicomStoreIamBinding(pulumi.CustomResource):
         Get an existing DicomStoreIamBinding resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
-        :param str resource_name: The unique name of the resulting resource.
+        :param str resource_name_: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dicom_store_id: The DICOM store ID, in the form
@@ -433,7 +433,7 @@ class DicomStoreIamBinding(pulumi.CustomResource):
         __props__.__dict__["etag"] = etag
         __props__.__dict__["members"] = members
         __props__.__dict__["role"] = role
-        return DicomStoreIamBinding(resource_name, opts=opts, __props__=__props__)
+        return DicomStoreIamBinding(resource_name_, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter
