@@ -1451,583 +1451,113 @@ class Provider(pulumi.ProviderResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ProviderArgs.__new__(ProviderArgs)
 
-            __props__.__dict__["access_approval_custom_endpoint"] = access_approval_custom_endpoint
-            __props__.__dict__["access_context_manager_custom_endpoint"] = access_context_manager_custom_endpoint
-            __props__.__dict__["access_token"] = access_token
-            __props__.__dict__["active_directory_custom_endpoint"] = active_directory_custom_endpoint
-            __props__.__dict__["api_gateway_custom_endpoint"] = api_gateway_custom_endpoint
-            __props__.__dict__["apigee_custom_endpoint"] = apigee_custom_endpoint
-            __props__.__dict__["app_engine_custom_endpoint"] = app_engine_custom_endpoint
-            __props__.__dict__["artifact_registry_custom_endpoint"] = artifact_registry_custom_endpoint
+            __props__.__dict__["access_approval_custom_endpoint"] = pulumi.Output.from_input(access_approval_custom_endpoint).apply(pulumi.runtime.to_json) if access_approval_custom_endpoint is not None else None
+            __props__.__dict__["access_context_manager_custom_endpoint"] = pulumi.Output.from_input(access_context_manager_custom_endpoint).apply(pulumi.runtime.to_json) if access_context_manager_custom_endpoint is not None else None
+            __props__.__dict__["access_token"] = pulumi.Output.from_input(access_token).apply(pulumi.runtime.to_json) if access_token is not None else None
+            __props__.__dict__["active_directory_custom_endpoint"] = pulumi.Output.from_input(active_directory_custom_endpoint).apply(pulumi.runtime.to_json) if active_directory_custom_endpoint is not None else None
+            __props__.__dict__["api_gateway_custom_endpoint"] = pulumi.Output.from_input(api_gateway_custom_endpoint).apply(pulumi.runtime.to_json) if api_gateway_custom_endpoint is not None else None
+            __props__.__dict__["apigee_custom_endpoint"] = pulumi.Output.from_input(apigee_custom_endpoint).apply(pulumi.runtime.to_json) if apigee_custom_endpoint is not None else None
+            __props__.__dict__["app_engine_custom_endpoint"] = pulumi.Output.from_input(app_engine_custom_endpoint).apply(pulumi.runtime.to_json) if app_engine_custom_endpoint is not None else None
+            __props__.__dict__["artifact_registry_custom_endpoint"] = pulumi.Output.from_input(artifact_registry_custom_endpoint).apply(pulumi.runtime.to_json) if artifact_registry_custom_endpoint is not None else None
             __props__.__dict__["batching"] = pulumi.Output.from_input(batching).apply(pulumi.runtime.to_json) if batching is not None else None
-            __props__.__dict__["big_query_custom_endpoint"] = big_query_custom_endpoint
-            __props__.__dict__["bigquery_connection_custom_endpoint"] = bigquery_connection_custom_endpoint
-            __props__.__dict__["bigquery_data_transfer_custom_endpoint"] = bigquery_data_transfer_custom_endpoint
-            __props__.__dict__["bigquery_reservation_custom_endpoint"] = bigquery_reservation_custom_endpoint
-            __props__.__dict__["bigtable_custom_endpoint"] = bigtable_custom_endpoint
-            __props__.__dict__["billing_custom_endpoint"] = billing_custom_endpoint
-            __props__.__dict__["billing_project"] = billing_project
-            __props__.__dict__["binary_authorization_custom_endpoint"] = binary_authorization_custom_endpoint
-            __props__.__dict__["cloud_asset_custom_endpoint"] = cloud_asset_custom_endpoint
-            __props__.__dict__["cloud_billing_custom_endpoint"] = cloud_billing_custom_endpoint
-            __props__.__dict__["cloud_build_custom_endpoint"] = cloud_build_custom_endpoint
-            __props__.__dict__["cloud_functions_custom_endpoint"] = cloud_functions_custom_endpoint
-            __props__.__dict__["cloud_identity_custom_endpoint"] = cloud_identity_custom_endpoint
-            __props__.__dict__["cloud_iot_custom_endpoint"] = cloud_iot_custom_endpoint
-            __props__.__dict__["cloud_run_custom_endpoint"] = cloud_run_custom_endpoint
-            __props__.__dict__["cloud_scheduler_custom_endpoint"] = cloud_scheduler_custom_endpoint
-            __props__.__dict__["cloud_tasks_custom_endpoint"] = cloud_tasks_custom_endpoint
-            __props__.__dict__["composer_custom_endpoint"] = composer_custom_endpoint
-            __props__.__dict__["compute_beta_custom_endpoint"] = compute_beta_custom_endpoint
-            __props__.__dict__["compute_custom_endpoint"] = compute_custom_endpoint
-            __props__.__dict__["container_analysis_custom_endpoint"] = container_analysis_custom_endpoint
-            __props__.__dict__["container_beta_custom_endpoint"] = container_beta_custom_endpoint
-            __props__.__dict__["container_custom_endpoint"] = container_custom_endpoint
-            __props__.__dict__["credentials"] = credentials
-            __props__.__dict__["data_catalog_custom_endpoint"] = data_catalog_custom_endpoint
-            __props__.__dict__["data_fusion_custom_endpoint"] = data_fusion_custom_endpoint
-            __props__.__dict__["data_loss_prevention_custom_endpoint"] = data_loss_prevention_custom_endpoint
-            __props__.__dict__["dataflow_custom_endpoint"] = dataflow_custom_endpoint
-            __props__.__dict__["dataproc_beta_custom_endpoint"] = dataproc_beta_custom_endpoint
-            __props__.__dict__["dataproc_custom_endpoint"] = dataproc_custom_endpoint
-            __props__.__dict__["dataproc_metastore_custom_endpoint"] = dataproc_metastore_custom_endpoint
-            __props__.__dict__["datastore_custom_endpoint"] = datastore_custom_endpoint
-            __props__.__dict__["deployment_manager_custom_endpoint"] = deployment_manager_custom_endpoint
-            __props__.__dict__["dialogflow_custom_endpoint"] = dialogflow_custom_endpoint
-            __props__.__dict__["dns_custom_endpoint"] = dns_custom_endpoint
-            __props__.__dict__["essential_contacts_custom_endpoint"] = essential_contacts_custom_endpoint
-            __props__.__dict__["eventarc_custom_endpoint"] = eventarc_custom_endpoint
-            __props__.__dict__["filestore_custom_endpoint"] = filestore_custom_endpoint
-            __props__.__dict__["firebase_custom_endpoint"] = firebase_custom_endpoint
-            __props__.__dict__["firestore_custom_endpoint"] = firestore_custom_endpoint
-            __props__.__dict__["game_services_custom_endpoint"] = game_services_custom_endpoint
-            __props__.__dict__["gke_hub_custom_endpoint"] = gke_hub_custom_endpoint
-            __props__.__dict__["healthcare_custom_endpoint"] = healthcare_custom_endpoint
-            __props__.__dict__["iam_beta_custom_endpoint"] = iam_beta_custom_endpoint
-            __props__.__dict__["iam_credentials_custom_endpoint"] = iam_credentials_custom_endpoint
-            __props__.__dict__["iam_custom_endpoint"] = iam_custom_endpoint
-            __props__.__dict__["iap_custom_endpoint"] = iap_custom_endpoint
-            __props__.__dict__["identity_platform_custom_endpoint"] = identity_platform_custom_endpoint
-            __props__.__dict__["impersonate_service_account"] = impersonate_service_account
+            __props__.__dict__["big_query_custom_endpoint"] = pulumi.Output.from_input(big_query_custom_endpoint).apply(pulumi.runtime.to_json) if big_query_custom_endpoint is not None else None
+            __props__.__dict__["bigquery_connection_custom_endpoint"] = pulumi.Output.from_input(bigquery_connection_custom_endpoint).apply(pulumi.runtime.to_json) if bigquery_connection_custom_endpoint is not None else None
+            __props__.__dict__["bigquery_data_transfer_custom_endpoint"] = pulumi.Output.from_input(bigquery_data_transfer_custom_endpoint).apply(pulumi.runtime.to_json) if bigquery_data_transfer_custom_endpoint is not None else None
+            __props__.__dict__["bigquery_reservation_custom_endpoint"] = pulumi.Output.from_input(bigquery_reservation_custom_endpoint).apply(pulumi.runtime.to_json) if bigquery_reservation_custom_endpoint is not None else None
+            __props__.__dict__["bigtable_custom_endpoint"] = pulumi.Output.from_input(bigtable_custom_endpoint).apply(pulumi.runtime.to_json) if bigtable_custom_endpoint is not None else None
+            __props__.__dict__["billing_custom_endpoint"] = pulumi.Output.from_input(billing_custom_endpoint).apply(pulumi.runtime.to_json) if billing_custom_endpoint is not None else None
+            __props__.__dict__["billing_project"] = pulumi.Output.from_input(billing_project).apply(pulumi.runtime.to_json) if billing_project is not None else None
+            __props__.__dict__["binary_authorization_custom_endpoint"] = pulumi.Output.from_input(binary_authorization_custom_endpoint).apply(pulumi.runtime.to_json) if binary_authorization_custom_endpoint is not None else None
+            __props__.__dict__["cloud_asset_custom_endpoint"] = pulumi.Output.from_input(cloud_asset_custom_endpoint).apply(pulumi.runtime.to_json) if cloud_asset_custom_endpoint is not None else None
+            __props__.__dict__["cloud_billing_custom_endpoint"] = pulumi.Output.from_input(cloud_billing_custom_endpoint).apply(pulumi.runtime.to_json) if cloud_billing_custom_endpoint is not None else None
+            __props__.__dict__["cloud_build_custom_endpoint"] = pulumi.Output.from_input(cloud_build_custom_endpoint).apply(pulumi.runtime.to_json) if cloud_build_custom_endpoint is not None else None
+            __props__.__dict__["cloud_functions_custom_endpoint"] = pulumi.Output.from_input(cloud_functions_custom_endpoint).apply(pulumi.runtime.to_json) if cloud_functions_custom_endpoint is not None else None
+            __props__.__dict__["cloud_identity_custom_endpoint"] = pulumi.Output.from_input(cloud_identity_custom_endpoint).apply(pulumi.runtime.to_json) if cloud_identity_custom_endpoint is not None else None
+            __props__.__dict__["cloud_iot_custom_endpoint"] = pulumi.Output.from_input(cloud_iot_custom_endpoint).apply(pulumi.runtime.to_json) if cloud_iot_custom_endpoint is not None else None
+            __props__.__dict__["cloud_run_custom_endpoint"] = pulumi.Output.from_input(cloud_run_custom_endpoint).apply(pulumi.runtime.to_json) if cloud_run_custom_endpoint is not None else None
+            __props__.__dict__["cloud_scheduler_custom_endpoint"] = pulumi.Output.from_input(cloud_scheduler_custom_endpoint).apply(pulumi.runtime.to_json) if cloud_scheduler_custom_endpoint is not None else None
+            __props__.__dict__["cloud_tasks_custom_endpoint"] = pulumi.Output.from_input(cloud_tasks_custom_endpoint).apply(pulumi.runtime.to_json) if cloud_tasks_custom_endpoint is not None else None
+            __props__.__dict__["composer_custom_endpoint"] = pulumi.Output.from_input(composer_custom_endpoint).apply(pulumi.runtime.to_json) if composer_custom_endpoint is not None else None
+            __props__.__dict__["compute_beta_custom_endpoint"] = pulumi.Output.from_input(compute_beta_custom_endpoint).apply(pulumi.runtime.to_json) if compute_beta_custom_endpoint is not None else None
+            __props__.__dict__["compute_custom_endpoint"] = pulumi.Output.from_input(compute_custom_endpoint).apply(pulumi.runtime.to_json) if compute_custom_endpoint is not None else None
+            __props__.__dict__["container_analysis_custom_endpoint"] = pulumi.Output.from_input(container_analysis_custom_endpoint).apply(pulumi.runtime.to_json) if container_analysis_custom_endpoint is not None else None
+            __props__.__dict__["container_beta_custom_endpoint"] = pulumi.Output.from_input(container_beta_custom_endpoint).apply(pulumi.runtime.to_json) if container_beta_custom_endpoint is not None else None
+            __props__.__dict__["container_custom_endpoint"] = pulumi.Output.from_input(container_custom_endpoint).apply(pulumi.runtime.to_json) if container_custom_endpoint is not None else None
+            __props__.__dict__["credentials"] = pulumi.Output.from_input(credentials).apply(pulumi.runtime.to_json) if credentials is not None else None
+            __props__.__dict__["data_catalog_custom_endpoint"] = pulumi.Output.from_input(data_catalog_custom_endpoint).apply(pulumi.runtime.to_json) if data_catalog_custom_endpoint is not None else None
+            __props__.__dict__["data_fusion_custom_endpoint"] = pulumi.Output.from_input(data_fusion_custom_endpoint).apply(pulumi.runtime.to_json) if data_fusion_custom_endpoint is not None else None
+            __props__.__dict__["data_loss_prevention_custom_endpoint"] = pulumi.Output.from_input(data_loss_prevention_custom_endpoint).apply(pulumi.runtime.to_json) if data_loss_prevention_custom_endpoint is not None else None
+            __props__.__dict__["dataflow_custom_endpoint"] = pulumi.Output.from_input(dataflow_custom_endpoint).apply(pulumi.runtime.to_json) if dataflow_custom_endpoint is not None else None
+            __props__.__dict__["dataproc_beta_custom_endpoint"] = pulumi.Output.from_input(dataproc_beta_custom_endpoint).apply(pulumi.runtime.to_json) if dataproc_beta_custom_endpoint is not None else None
+            __props__.__dict__["dataproc_custom_endpoint"] = pulumi.Output.from_input(dataproc_custom_endpoint).apply(pulumi.runtime.to_json) if dataproc_custom_endpoint is not None else None
+            __props__.__dict__["dataproc_metastore_custom_endpoint"] = pulumi.Output.from_input(dataproc_metastore_custom_endpoint).apply(pulumi.runtime.to_json) if dataproc_metastore_custom_endpoint is not None else None
+            __props__.__dict__["datastore_custom_endpoint"] = pulumi.Output.from_input(datastore_custom_endpoint).apply(pulumi.runtime.to_json) if datastore_custom_endpoint is not None else None
+            __props__.__dict__["deployment_manager_custom_endpoint"] = pulumi.Output.from_input(deployment_manager_custom_endpoint).apply(pulumi.runtime.to_json) if deployment_manager_custom_endpoint is not None else None
+            __props__.__dict__["dialogflow_custom_endpoint"] = pulumi.Output.from_input(dialogflow_custom_endpoint).apply(pulumi.runtime.to_json) if dialogflow_custom_endpoint is not None else None
+            __props__.__dict__["dns_custom_endpoint"] = pulumi.Output.from_input(dns_custom_endpoint).apply(pulumi.runtime.to_json) if dns_custom_endpoint is not None else None
+            __props__.__dict__["essential_contacts_custom_endpoint"] = pulumi.Output.from_input(essential_contacts_custom_endpoint).apply(pulumi.runtime.to_json) if essential_contacts_custom_endpoint is not None else None
+            __props__.__dict__["eventarc_custom_endpoint"] = pulumi.Output.from_input(eventarc_custom_endpoint).apply(pulumi.runtime.to_json) if eventarc_custom_endpoint is not None else None
+            __props__.__dict__["filestore_custom_endpoint"] = pulumi.Output.from_input(filestore_custom_endpoint).apply(pulumi.runtime.to_json) if filestore_custom_endpoint is not None else None
+            __props__.__dict__["firebase_custom_endpoint"] = pulumi.Output.from_input(firebase_custom_endpoint).apply(pulumi.runtime.to_json) if firebase_custom_endpoint is not None else None
+            __props__.__dict__["firestore_custom_endpoint"] = pulumi.Output.from_input(firestore_custom_endpoint).apply(pulumi.runtime.to_json) if firestore_custom_endpoint is not None else None
+            __props__.__dict__["game_services_custom_endpoint"] = pulumi.Output.from_input(game_services_custom_endpoint).apply(pulumi.runtime.to_json) if game_services_custom_endpoint is not None else None
+            __props__.__dict__["gke_hub_custom_endpoint"] = pulumi.Output.from_input(gke_hub_custom_endpoint).apply(pulumi.runtime.to_json) if gke_hub_custom_endpoint is not None else None
+            __props__.__dict__["healthcare_custom_endpoint"] = pulumi.Output.from_input(healthcare_custom_endpoint).apply(pulumi.runtime.to_json) if healthcare_custom_endpoint is not None else None
+            __props__.__dict__["iam_beta_custom_endpoint"] = pulumi.Output.from_input(iam_beta_custom_endpoint).apply(pulumi.runtime.to_json) if iam_beta_custom_endpoint is not None else None
+            __props__.__dict__["iam_credentials_custom_endpoint"] = pulumi.Output.from_input(iam_credentials_custom_endpoint).apply(pulumi.runtime.to_json) if iam_credentials_custom_endpoint is not None else None
+            __props__.__dict__["iam_custom_endpoint"] = pulumi.Output.from_input(iam_custom_endpoint).apply(pulumi.runtime.to_json) if iam_custom_endpoint is not None else None
+            __props__.__dict__["iap_custom_endpoint"] = pulumi.Output.from_input(iap_custom_endpoint).apply(pulumi.runtime.to_json) if iap_custom_endpoint is not None else None
+            __props__.__dict__["identity_platform_custom_endpoint"] = pulumi.Output.from_input(identity_platform_custom_endpoint).apply(pulumi.runtime.to_json) if identity_platform_custom_endpoint is not None else None
+            __props__.__dict__["impersonate_service_account"] = pulumi.Output.from_input(impersonate_service_account).apply(pulumi.runtime.to_json) if impersonate_service_account is not None else None
             __props__.__dict__["impersonate_service_account_delegates"] = pulumi.Output.from_input(impersonate_service_account_delegates).apply(pulumi.runtime.to_json) if impersonate_service_account_delegates is not None else None
-            __props__.__dict__["kms_custom_endpoint"] = kms_custom_endpoint
-            __props__.__dict__["logging_custom_endpoint"] = logging_custom_endpoint
-            __props__.__dict__["memcache_custom_endpoint"] = memcache_custom_endpoint
-            __props__.__dict__["ml_engine_custom_endpoint"] = ml_engine_custom_endpoint
-            __props__.__dict__["monitoring_custom_endpoint"] = monitoring_custom_endpoint
-            __props__.__dict__["network_management_custom_endpoint"] = network_management_custom_endpoint
-            __props__.__dict__["notebooks_custom_endpoint"] = notebooks_custom_endpoint
-            __props__.__dict__["os_config_custom_endpoint"] = os_config_custom_endpoint
-            __props__.__dict__["os_login_custom_endpoint"] = os_login_custom_endpoint
-            __props__.__dict__["privateca_custom_endpoint"] = privateca_custom_endpoint
+            __props__.__dict__["kms_custom_endpoint"] = pulumi.Output.from_input(kms_custom_endpoint).apply(pulumi.runtime.to_json) if kms_custom_endpoint is not None else None
+            __props__.__dict__["logging_custom_endpoint"] = pulumi.Output.from_input(logging_custom_endpoint).apply(pulumi.runtime.to_json) if logging_custom_endpoint is not None else None
+            __props__.__dict__["memcache_custom_endpoint"] = pulumi.Output.from_input(memcache_custom_endpoint).apply(pulumi.runtime.to_json) if memcache_custom_endpoint is not None else None
+            __props__.__dict__["ml_engine_custom_endpoint"] = pulumi.Output.from_input(ml_engine_custom_endpoint).apply(pulumi.runtime.to_json) if ml_engine_custom_endpoint is not None else None
+            __props__.__dict__["monitoring_custom_endpoint"] = pulumi.Output.from_input(monitoring_custom_endpoint).apply(pulumi.runtime.to_json) if monitoring_custom_endpoint is not None else None
+            __props__.__dict__["network_management_custom_endpoint"] = pulumi.Output.from_input(network_management_custom_endpoint).apply(pulumi.runtime.to_json) if network_management_custom_endpoint is not None else None
+            __props__.__dict__["notebooks_custom_endpoint"] = pulumi.Output.from_input(notebooks_custom_endpoint).apply(pulumi.runtime.to_json) if notebooks_custom_endpoint is not None else None
+            __props__.__dict__["os_config_custom_endpoint"] = pulumi.Output.from_input(os_config_custom_endpoint).apply(pulumi.runtime.to_json) if os_config_custom_endpoint is not None else None
+            __props__.__dict__["os_login_custom_endpoint"] = pulumi.Output.from_input(os_login_custom_endpoint).apply(pulumi.runtime.to_json) if os_login_custom_endpoint is not None else None
+            __props__.__dict__["privateca_custom_endpoint"] = pulumi.Output.from_input(privateca_custom_endpoint).apply(pulumi.runtime.to_json) if privateca_custom_endpoint is not None else None
             if project is None:
                 project = _utilities.get_env('GOOGLE_PROJECT', 'GOOGLE_CLOUD_PROJECT', 'GCLOUD_PROJECT', 'CLOUDSDK_CORE_PROJECT')
-            __props__.__dict__["project"] = project
-            __props__.__dict__["pubsub_custom_endpoint"] = pubsub_custom_endpoint
-            __props__.__dict__["pubsub_lite_custom_endpoint"] = pubsub_lite_custom_endpoint
-            __props__.__dict__["redis_custom_endpoint"] = redis_custom_endpoint
+            __props__.__dict__["project"] = pulumi.Output.from_input(project).apply(pulumi.runtime.to_json) if project is not None else None
+            __props__.__dict__["pubsub_custom_endpoint"] = pulumi.Output.from_input(pubsub_custom_endpoint).apply(pulumi.runtime.to_json) if pubsub_custom_endpoint is not None else None
+            __props__.__dict__["pubsub_lite_custom_endpoint"] = pulumi.Output.from_input(pubsub_lite_custom_endpoint).apply(pulumi.runtime.to_json) if pubsub_lite_custom_endpoint is not None else None
+            __props__.__dict__["redis_custom_endpoint"] = pulumi.Output.from_input(redis_custom_endpoint).apply(pulumi.runtime.to_json) if redis_custom_endpoint is not None else None
             if region is None:
                 region = _utilities.get_env('GOOGLE_REGION', 'GCLOUD_REGION', 'CLOUDSDK_COMPUTE_REGION')
-            __props__.__dict__["region"] = region
-            __props__.__dict__["request_timeout"] = request_timeout
-            __props__.__dict__["resource_manager_custom_endpoint"] = resource_manager_custom_endpoint
-            __props__.__dict__["resource_manager_v2_custom_endpoint"] = resource_manager_v2_custom_endpoint
-            __props__.__dict__["runtime_config_custom_endpoint"] = runtime_config_custom_endpoint
-            __props__.__dict__["runtimeconfig_custom_endpoint"] = runtimeconfig_custom_endpoint
+            __props__.__dict__["region"] = pulumi.Output.from_input(region).apply(pulumi.runtime.to_json) if region is not None else None
+            __props__.__dict__["request_timeout"] = pulumi.Output.from_input(request_timeout).apply(pulumi.runtime.to_json) if request_timeout is not None else None
+            __props__.__dict__["resource_manager_custom_endpoint"] = pulumi.Output.from_input(resource_manager_custom_endpoint).apply(pulumi.runtime.to_json) if resource_manager_custom_endpoint is not None else None
+            __props__.__dict__["resource_manager_v2_custom_endpoint"] = pulumi.Output.from_input(resource_manager_v2_custom_endpoint).apply(pulumi.runtime.to_json) if resource_manager_v2_custom_endpoint is not None else None
+            __props__.__dict__["runtime_config_custom_endpoint"] = pulumi.Output.from_input(runtime_config_custom_endpoint).apply(pulumi.runtime.to_json) if runtime_config_custom_endpoint is not None else None
+            __props__.__dict__["runtimeconfig_custom_endpoint"] = pulumi.Output.from_input(runtimeconfig_custom_endpoint).apply(pulumi.runtime.to_json) if runtimeconfig_custom_endpoint is not None else None
             __props__.__dict__["scopes"] = pulumi.Output.from_input(scopes).apply(pulumi.runtime.to_json) if scopes is not None else None
-            __props__.__dict__["secret_manager_custom_endpoint"] = secret_manager_custom_endpoint
-            __props__.__dict__["security_center_custom_endpoint"] = security_center_custom_endpoint
-            __props__.__dict__["security_scanner_custom_endpoint"] = security_scanner_custom_endpoint
-            __props__.__dict__["service_directory_custom_endpoint"] = service_directory_custom_endpoint
-            __props__.__dict__["service_management_custom_endpoint"] = service_management_custom_endpoint
-            __props__.__dict__["service_networking_custom_endpoint"] = service_networking_custom_endpoint
-            __props__.__dict__["service_usage_custom_endpoint"] = service_usage_custom_endpoint
-            __props__.__dict__["source_repo_custom_endpoint"] = source_repo_custom_endpoint
-            __props__.__dict__["spanner_custom_endpoint"] = spanner_custom_endpoint
-            __props__.__dict__["sql_custom_endpoint"] = sql_custom_endpoint
-            __props__.__dict__["storage_custom_endpoint"] = storage_custom_endpoint
-            __props__.__dict__["storage_transfer_custom_endpoint"] = storage_transfer_custom_endpoint
-            __props__.__dict__["tags_custom_endpoint"] = tags_custom_endpoint
-            __props__.__dict__["tpu_custom_endpoint"] = tpu_custom_endpoint
+            __props__.__dict__["secret_manager_custom_endpoint"] = pulumi.Output.from_input(secret_manager_custom_endpoint).apply(pulumi.runtime.to_json) if secret_manager_custom_endpoint is not None else None
+            __props__.__dict__["security_center_custom_endpoint"] = pulumi.Output.from_input(security_center_custom_endpoint).apply(pulumi.runtime.to_json) if security_center_custom_endpoint is not None else None
+            __props__.__dict__["security_scanner_custom_endpoint"] = pulumi.Output.from_input(security_scanner_custom_endpoint).apply(pulumi.runtime.to_json) if security_scanner_custom_endpoint is not None else None
+            __props__.__dict__["service_directory_custom_endpoint"] = pulumi.Output.from_input(service_directory_custom_endpoint).apply(pulumi.runtime.to_json) if service_directory_custom_endpoint is not None else None
+            __props__.__dict__["service_management_custom_endpoint"] = pulumi.Output.from_input(service_management_custom_endpoint).apply(pulumi.runtime.to_json) if service_management_custom_endpoint is not None else None
+            __props__.__dict__["service_networking_custom_endpoint"] = pulumi.Output.from_input(service_networking_custom_endpoint).apply(pulumi.runtime.to_json) if service_networking_custom_endpoint is not None else None
+            __props__.__dict__["service_usage_custom_endpoint"] = pulumi.Output.from_input(service_usage_custom_endpoint).apply(pulumi.runtime.to_json) if service_usage_custom_endpoint is not None else None
+            __props__.__dict__["source_repo_custom_endpoint"] = pulumi.Output.from_input(source_repo_custom_endpoint).apply(pulumi.runtime.to_json) if source_repo_custom_endpoint is not None else None
+            __props__.__dict__["spanner_custom_endpoint"] = pulumi.Output.from_input(spanner_custom_endpoint).apply(pulumi.runtime.to_json) if spanner_custom_endpoint is not None else None
+            __props__.__dict__["sql_custom_endpoint"] = pulumi.Output.from_input(sql_custom_endpoint).apply(pulumi.runtime.to_json) if sql_custom_endpoint is not None else None
+            __props__.__dict__["storage_custom_endpoint"] = pulumi.Output.from_input(storage_custom_endpoint).apply(pulumi.runtime.to_json) if storage_custom_endpoint is not None else None
+            __props__.__dict__["storage_transfer_custom_endpoint"] = pulumi.Output.from_input(storage_transfer_custom_endpoint).apply(pulumi.runtime.to_json) if storage_transfer_custom_endpoint is not None else None
+            __props__.__dict__["tags_custom_endpoint"] = pulumi.Output.from_input(tags_custom_endpoint).apply(pulumi.runtime.to_json) if tags_custom_endpoint is not None else None
+            __props__.__dict__["tpu_custom_endpoint"] = pulumi.Output.from_input(tpu_custom_endpoint).apply(pulumi.runtime.to_json) if tpu_custom_endpoint is not None else None
             __props__.__dict__["user_project_override"] = pulumi.Output.from_input(user_project_override).apply(pulumi.runtime.to_json) if user_project_override is not None else None
-            __props__.__dict__["vpc_access_custom_endpoint"] = vpc_access_custom_endpoint
-            __props__.__dict__["workflows_custom_endpoint"] = workflows_custom_endpoint
+            __props__.__dict__["vpc_access_custom_endpoint"] = pulumi.Output.from_input(vpc_access_custom_endpoint).apply(pulumi.runtime.to_json) if vpc_access_custom_endpoint is not None else None
+            __props__.__dict__["workflows_custom_endpoint"] = pulumi.Output.from_input(workflows_custom_endpoint).apply(pulumi.runtime.to_json) if workflows_custom_endpoint is not None else None
             if zone is None:
                 zone = _utilities.get_env('GOOGLE_ZONE', 'GCLOUD_ZONE', 'CLOUDSDK_COMPUTE_ZONE')
-            __props__.__dict__["zone"] = zone
+            __props__.__dict__["zone"] = pulumi.Output.from_input(zone).apply(pulumi.runtime.to_json) if zone is not None else None
         super(Provider, __self__).__init__(
             'gcp',
             resource_name,
             __props__,
             opts)
-
-    @property
-    @pulumi.getter(name="accessApprovalCustomEndpoint")
-    def access_approval_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "access_approval_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="accessContextManagerCustomEndpoint")
-    def access_context_manager_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "access_context_manager_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="accessToken")
-    def access_token(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "access_token")
-
-    @property
-    @pulumi.getter(name="activeDirectoryCustomEndpoint")
-    def active_directory_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "active_directory_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="apiGatewayCustomEndpoint")
-    def api_gateway_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "api_gateway_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="apigeeCustomEndpoint")
-    def apigee_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "apigee_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="appEngineCustomEndpoint")
-    def app_engine_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "app_engine_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="artifactRegistryCustomEndpoint")
-    def artifact_registry_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "artifact_registry_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="bigQueryCustomEndpoint")
-    def big_query_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "big_query_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="bigqueryConnectionCustomEndpoint")
-    def bigquery_connection_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "bigquery_connection_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="bigqueryDataTransferCustomEndpoint")
-    def bigquery_data_transfer_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "bigquery_data_transfer_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="bigqueryReservationCustomEndpoint")
-    def bigquery_reservation_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "bigquery_reservation_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="bigtableCustomEndpoint")
-    def bigtable_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "bigtable_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="billingCustomEndpoint")
-    def billing_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "billing_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="billingProject")
-    def billing_project(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "billing_project")
-
-    @property
-    @pulumi.getter(name="binaryAuthorizationCustomEndpoint")
-    def binary_authorization_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "binary_authorization_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="cloudAssetCustomEndpoint")
-    def cloud_asset_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "cloud_asset_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="cloudBillingCustomEndpoint")
-    def cloud_billing_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "cloud_billing_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="cloudBuildCustomEndpoint")
-    def cloud_build_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "cloud_build_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="cloudFunctionsCustomEndpoint")
-    def cloud_functions_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "cloud_functions_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="cloudIdentityCustomEndpoint")
-    def cloud_identity_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "cloud_identity_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="cloudIotCustomEndpoint")
-    def cloud_iot_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "cloud_iot_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="cloudRunCustomEndpoint")
-    def cloud_run_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "cloud_run_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="cloudSchedulerCustomEndpoint")
-    def cloud_scheduler_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "cloud_scheduler_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="cloudTasksCustomEndpoint")
-    def cloud_tasks_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "cloud_tasks_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="composerCustomEndpoint")
-    def composer_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "composer_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="computeBetaCustomEndpoint")
-    def compute_beta_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "compute_beta_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="computeCustomEndpoint")
-    def compute_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "compute_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="containerAnalysisCustomEndpoint")
-    def container_analysis_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "container_analysis_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="containerBetaCustomEndpoint")
-    def container_beta_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "container_beta_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="containerCustomEndpoint")
-    def container_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "container_custom_endpoint")
-
-    @property
-    @pulumi.getter
-    def credentials(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "credentials")
-
-    @property
-    @pulumi.getter(name="dataCatalogCustomEndpoint")
-    def data_catalog_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "data_catalog_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="dataFusionCustomEndpoint")
-    def data_fusion_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "data_fusion_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="dataLossPreventionCustomEndpoint")
-    def data_loss_prevention_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "data_loss_prevention_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="dataflowCustomEndpoint")
-    def dataflow_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "dataflow_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="dataprocBetaCustomEndpoint")
-    def dataproc_beta_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "dataproc_beta_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="dataprocCustomEndpoint")
-    def dataproc_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "dataproc_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="dataprocMetastoreCustomEndpoint")
-    def dataproc_metastore_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "dataproc_metastore_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="datastoreCustomEndpoint")
-    def datastore_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "datastore_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="deploymentManagerCustomEndpoint")
-    def deployment_manager_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "deployment_manager_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="dialogflowCustomEndpoint")
-    def dialogflow_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "dialogflow_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="dnsCustomEndpoint")
-    def dns_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "dns_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="essentialContactsCustomEndpoint")
-    def essential_contacts_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "essential_contacts_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="eventarcCustomEndpoint")
-    def eventarc_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "eventarc_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="filestoreCustomEndpoint")
-    def filestore_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "filestore_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="firebaseCustomEndpoint")
-    def firebase_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "firebase_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="firestoreCustomEndpoint")
-    def firestore_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "firestore_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="gameServicesCustomEndpoint")
-    def game_services_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "game_services_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="gkeHubCustomEndpoint")
-    def gke_hub_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "gke_hub_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="healthcareCustomEndpoint")
-    def healthcare_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "healthcare_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="iamBetaCustomEndpoint")
-    def iam_beta_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "iam_beta_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="iamCredentialsCustomEndpoint")
-    def iam_credentials_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "iam_credentials_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="iamCustomEndpoint")
-    def iam_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "iam_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="iapCustomEndpoint")
-    def iap_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "iap_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="identityPlatformCustomEndpoint")
-    def identity_platform_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "identity_platform_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="impersonateServiceAccount")
-    def impersonate_service_account(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "impersonate_service_account")
-
-    @property
-    @pulumi.getter(name="kmsCustomEndpoint")
-    def kms_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "kms_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="loggingCustomEndpoint")
-    def logging_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "logging_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="memcacheCustomEndpoint")
-    def memcache_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "memcache_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="mlEngineCustomEndpoint")
-    def ml_engine_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "ml_engine_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="monitoringCustomEndpoint")
-    def monitoring_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "monitoring_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="networkManagementCustomEndpoint")
-    def network_management_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "network_management_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="notebooksCustomEndpoint")
-    def notebooks_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "notebooks_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="osConfigCustomEndpoint")
-    def os_config_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "os_config_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="osLoginCustomEndpoint")
-    def os_login_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "os_login_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="privatecaCustomEndpoint")
-    def privateca_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "privateca_custom_endpoint")
-
-    @property
-    @pulumi.getter
-    def project(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "project")
-
-    @property
-    @pulumi.getter(name="pubsubCustomEndpoint")
-    def pubsub_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "pubsub_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="pubsubLiteCustomEndpoint")
-    def pubsub_lite_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "pubsub_lite_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="redisCustomEndpoint")
-    def redis_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "redis_custom_endpoint")
-
-    @property
-    @pulumi.getter
-    def region(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "region")
-
-    @property
-    @pulumi.getter(name="requestTimeout")
-    def request_timeout(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "request_timeout")
-
-    @property
-    @pulumi.getter(name="resourceManagerCustomEndpoint")
-    def resource_manager_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "resource_manager_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="resourceManagerV2CustomEndpoint")
-    def resource_manager_v2_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "resource_manager_v2_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="runtimeConfigCustomEndpoint")
-    def runtime_config_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "runtime_config_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="runtimeconfigCustomEndpoint")
-    def runtimeconfig_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "runtimeconfig_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="secretManagerCustomEndpoint")
-    def secret_manager_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "secret_manager_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="securityCenterCustomEndpoint")
-    def security_center_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "security_center_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="securityScannerCustomEndpoint")
-    def security_scanner_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "security_scanner_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="serviceDirectoryCustomEndpoint")
-    def service_directory_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "service_directory_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="serviceManagementCustomEndpoint")
-    def service_management_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "service_management_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="serviceNetworkingCustomEndpoint")
-    def service_networking_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "service_networking_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="serviceUsageCustomEndpoint")
-    def service_usage_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "service_usage_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="sourceRepoCustomEndpoint")
-    def source_repo_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "source_repo_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="spannerCustomEndpoint")
-    def spanner_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "spanner_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="sqlCustomEndpoint")
-    def sql_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "sql_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="storageCustomEndpoint")
-    def storage_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "storage_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="storageTransferCustomEndpoint")
-    def storage_transfer_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "storage_transfer_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="tagsCustomEndpoint")
-    def tags_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "tags_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="tpuCustomEndpoint")
-    def tpu_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "tpu_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="vpcAccessCustomEndpoint")
-    def vpc_access_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "vpc_access_custom_endpoint")
-
-    @property
-    @pulumi.getter(name="workflowsCustomEndpoint")
-    def workflows_custom_endpoint(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "workflows_custom_endpoint")
-
-    @property
-    @pulumi.getter
-    def zone(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "zone")
 

@@ -13,14 +13,14 @@ namespace Pulumi.Gcp.Outputs
     [OutputType]
     public sealed class ProviderBatching
     {
-        public readonly bool? EnableBatching;
-        public readonly string? SendAfter;
+        public readonly Input<bool>? EnableBatching;
+        public readonly Input<string>? SendAfter;
 
         [OutputConstructor]
         private ProviderBatching(
-            bool? enableBatching,
+            Input<bool>? enableBatching,
 
-            string? sendAfter)
+            Input<string>? sendAfter)
         {
             EnableBatching = enableBatching;
             SendAfter = sendAfter;
