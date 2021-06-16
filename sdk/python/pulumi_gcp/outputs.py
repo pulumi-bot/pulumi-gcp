@@ -15,8 +15,8 @@ __all__ = [
 @pulumi.output_type
 class ProviderBatching(dict):
     def __init__(__self__, *,
-                 enable_batching: Optional[bool] = None,
-                 send_after: Optional[str] = None):
+                 enable_batching: Optional[pulumi.Input[bool]] = None,
+                 send_after: Optional[pulumi.Input[str]] = None):
         if enable_batching is not None:
             pulumi.set(__self__, "enable_batching", enable_batching)
         if send_after is not None:
@@ -24,12 +24,12 @@ class ProviderBatching(dict):
 
     @property
     @pulumi.getter(name="enableBatching")
-    def enable_batching(self) -> Optional[bool]:
+    def enable_batching(self) -> Optional[pulumi.Input[bool]]:
         return pulumi.get(self, "enable_batching")
 
     @property
     @pulumi.getter(name="sendAfter")
-    def send_after(self) -> Optional[str]:
+    def send_after(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "send_after")
 
 
