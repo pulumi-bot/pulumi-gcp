@@ -333,24 +333,6 @@ class TargetTCPProxy(pulumi.CustomResource):
             * [Setting Up TCP proxy for Google Cloud Load Balancing](https://cloud.google.com/compute/docs/load-balancing/tcp-ssl/tcp-proxy)
 
         ## Example Usage
-        ### Target Tcp Proxy Basic
-
-        ```python
-        import pulumi
-        import pulumi_gcp as gcp
-
-        default_health_check = gcp.compute.HealthCheck("defaultHealthCheck",
-            timeout_sec=1,
-            check_interval_sec=1,
-            tcp_health_check=gcp.compute.HealthCheckTcpHealthCheckArgs(
-                port=443,
-            ))
-        default_backend_service = gcp.compute.BackendService("defaultBackendService",
-            protocol="TCP",
-            timeout_sec=10,
-            health_checks=[default_health_check.id])
-        default_target_tcp_proxy = gcp.compute.TargetTCPProxy("defaultTargetTCPProxy", backend_service=default_backend_service.id)
-        ```
 
         ## Import
 
@@ -406,24 +388,6 @@ class TargetTCPProxy(pulumi.CustomResource):
             * [Setting Up TCP proxy for Google Cloud Load Balancing](https://cloud.google.com/compute/docs/load-balancing/tcp-ssl/tcp-proxy)
 
         ## Example Usage
-        ### Target Tcp Proxy Basic
-
-        ```python
-        import pulumi
-        import pulumi_gcp as gcp
-
-        default_health_check = gcp.compute.HealthCheck("defaultHealthCheck",
-            timeout_sec=1,
-            check_interval_sec=1,
-            tcp_health_check=gcp.compute.HealthCheckTcpHealthCheckArgs(
-                port=443,
-            ))
-        default_backend_service = gcp.compute.BackendService("defaultBackendService",
-            protocol="TCP",
-            timeout_sec=10,
-            health_checks=[default_health_check.id])
-        default_target_tcp_proxy = gcp.compute.TargetTCPProxy("defaultTargetTCPProxy", backend_service=default_backend_service.id)
-        ```
 
         ## Import
 

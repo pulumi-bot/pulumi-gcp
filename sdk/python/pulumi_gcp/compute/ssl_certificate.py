@@ -351,49 +351,6 @@ class SSLCertificate(pulumi.CustomResource):
             private_key=(lambda path: open(path).read())("path/to/private.key"),
             certificate=(lambda path: open(path).read())("path/to/certificate.crt"))
         ```
-        ### Ssl Certificate Target Https Proxies
-
-        ```python
-        import pulumi
-        import pulumi_gcp as gcp
-
-        # Using with Target HTTPS Proxies
-        #
-        # SSL certificates cannot be updated after creation. In order to apply
-        # the specified configuration, the provider will destroy the existing
-        # resource and create a replacement. Example:
-        default_ssl_certificate = gcp.compute.SSLCertificate("defaultSSLCertificate",
-            name_prefix="my-certificate-",
-            private_key=(lambda path: open(path).read())("path/to/private.key"),
-            certificate=(lambda path: open(path).read())("path/to/certificate.crt"))
-        default_http_health_check = gcp.compute.HttpHealthCheck("defaultHttpHealthCheck",
-            request_path="/",
-            check_interval_sec=1,
-            timeout_sec=1)
-        default_backend_service = gcp.compute.BackendService("defaultBackendService",
-            port_name="http",
-            protocol="HTTP",
-            timeout_sec=10,
-            health_checks=[default_http_health_check.id])
-        default_url_map = gcp.compute.URLMap("defaultURLMap",
-            description="a description",
-            default_service=default_backend_service.id,
-            host_rules=[gcp.compute.URLMapHostRuleArgs(
-                hosts=["mysite.com"],
-                path_matcher="allpaths",
-            )],
-            path_matchers=[gcp.compute.URLMapPathMatcherArgs(
-                name="allpaths",
-                default_service=default_backend_service.id,
-                path_rules=[gcp.compute.URLMapPathMatcherPathRuleArgs(
-                    paths=["/*"],
-                    service=default_backend_service.id,
-                )],
-            )])
-        default_target_https_proxy = gcp.compute.TargetHttpsProxy("defaultTargetHttpsProxy",
-            url_map=default_url_map.id,
-            ssl_certificates=[default_ssl_certificate.id])
-        ```
 
         ## Import
 
@@ -464,49 +421,6 @@ class SSLCertificate(pulumi.CustomResource):
             description="a description",
             private_key=(lambda path: open(path).read())("path/to/private.key"),
             certificate=(lambda path: open(path).read())("path/to/certificate.crt"))
-        ```
-        ### Ssl Certificate Target Https Proxies
-
-        ```python
-        import pulumi
-        import pulumi_gcp as gcp
-
-        # Using with Target HTTPS Proxies
-        #
-        # SSL certificates cannot be updated after creation. In order to apply
-        # the specified configuration, the provider will destroy the existing
-        # resource and create a replacement. Example:
-        default_ssl_certificate = gcp.compute.SSLCertificate("defaultSSLCertificate",
-            name_prefix="my-certificate-",
-            private_key=(lambda path: open(path).read())("path/to/private.key"),
-            certificate=(lambda path: open(path).read())("path/to/certificate.crt"))
-        default_http_health_check = gcp.compute.HttpHealthCheck("defaultHttpHealthCheck",
-            request_path="/",
-            check_interval_sec=1,
-            timeout_sec=1)
-        default_backend_service = gcp.compute.BackendService("defaultBackendService",
-            port_name="http",
-            protocol="HTTP",
-            timeout_sec=10,
-            health_checks=[default_http_health_check.id])
-        default_url_map = gcp.compute.URLMap("defaultURLMap",
-            description="a description",
-            default_service=default_backend_service.id,
-            host_rules=[gcp.compute.URLMapHostRuleArgs(
-                hosts=["mysite.com"],
-                path_matcher="allpaths",
-            )],
-            path_matchers=[gcp.compute.URLMapPathMatcherArgs(
-                name="allpaths",
-                default_service=default_backend_service.id,
-                path_rules=[gcp.compute.URLMapPathMatcherPathRuleArgs(
-                    paths=["/*"],
-                    service=default_backend_service.id,
-                )],
-            )])
-        default_target_https_proxy = gcp.compute.TargetHttpsProxy("defaultTargetHttpsProxy",
-            url_map=default_url_map.id,
-            ssl_certificates=[default_ssl_certificate.id])
         ```
 
         ## Import

@@ -34,64 +34,6 @@ import * as utilities from "../utilities";
  *     certificate: fs.readFileSync("path/to/certificate.crt"),
  * });
  * ```
- * ### Region Ssl Certificate Target Https Proxies
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * import * from "fs";
- *
- * // Using with Region Target HTTPS Proxies
- * //
- * // SSL certificates cannot be updated after creation. In order to apply
- * // the specified configuration, the provider will destroy the existing
- * // resource and create a replacement. To effectively use an SSL
- * // certificate resource with a Target HTTPS Proxy resource, it's
- * // recommended to specify create_before_destroy in a lifecycle block.
- * // Either omit the Instance Template name attribute, specify a partial
- * // name with name_prefix, or use random_id resource. Example:
- * const defaultRegionSslCertificate = new gcp.compute.RegionSslCertificate("defaultRegionSslCertificate", {
- *     region: "us-central1",
- *     namePrefix: "my-certificate-",
- *     privateKey: fs.readFileSync("path/to/private.key"),
- *     certificate: fs.readFileSync("path/to/certificate.crt"),
- * });
- * const defaultRegionHealthCheck = new gcp.compute.RegionHealthCheck("defaultRegionHealthCheck", {
- *     region: "us-central1",
- *     httpHealthCheck: {
- *         port: 80,
- *     },
- * });
- * const defaultRegionBackendService = new gcp.compute.RegionBackendService("defaultRegionBackendService", {
- *     region: "us-central1",
- *     protocol: "HTTP",
- *     loadBalancingScheme: "INTERNAL_MANAGED",
- *     timeoutSec: 10,
- *     healthChecks: [defaultRegionHealthCheck.id],
- * });
- * const defaultRegionUrlMap = new gcp.compute.RegionUrlMap("defaultRegionUrlMap", {
- *     region: "us-central1",
- *     description: "a description",
- *     defaultService: defaultRegionBackendService.id,
- *     hostRules: [{
- *         hosts: ["mysite.com"],
- *         pathMatcher: "allpaths",
- *     }],
- *     pathMatchers: [{
- *         name: "allpaths",
- *         defaultService: defaultRegionBackendService.id,
- *         pathRules: [{
- *             paths: ["/*"],
- *             service: defaultRegionBackendService.id,
- *         }],
- *     }],
- * });
- * const defaultRegionTargetHttpsProxy = new gcp.compute.RegionTargetHttpsProxy("defaultRegionTargetHttpsProxy", {
- *     region: "us-central1",
- *     urlMap: defaultRegionUrlMap.id,
- *     sslCertificates: [defaultRegionSslCertificate.id],
- * });
- * ```
  *
  * ## Import
  *

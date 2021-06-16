@@ -291,42 +291,6 @@ class RegionTargetHttpProxy(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/compute/docs/load-balancing/http/target-proxies)
 
         ## Example Usage
-        ### Region Target Http Proxy Basic
-
-        ```python
-        import pulumi
-        import pulumi_gcp as gcp
-
-        default_region_health_check = gcp.compute.RegionHealthCheck("defaultRegionHealthCheck",
-            region="us-central1",
-            http_health_check=gcp.compute.RegionHealthCheckHttpHealthCheckArgs(
-                port=80,
-            ))
-        default_region_backend_service = gcp.compute.RegionBackendService("defaultRegionBackendService",
-            region="us-central1",
-            protocol="HTTP",
-            timeout_sec=10,
-            load_balancing_scheme="INTERNAL_MANAGED",
-            health_checks=[default_region_health_check.id])
-        default_region_url_map = gcp.compute.RegionUrlMap("defaultRegionUrlMap",
-            region="us-central1",
-            default_service=default_region_backend_service.id,
-            host_rules=[gcp.compute.RegionUrlMapHostRuleArgs(
-                hosts=["mysite.com"],
-                path_matcher="allpaths",
-            )],
-            path_matchers=[gcp.compute.RegionUrlMapPathMatcherArgs(
-                name="allpaths",
-                default_service=default_region_backend_service.id,
-                path_rules=[gcp.compute.RegionUrlMapPathMatcherPathRuleArgs(
-                    paths=["/*"],
-                    service=default_region_backend_service.id,
-                )],
-            )])
-        default_region_target_http_proxy = gcp.compute.RegionTargetHttpProxy("defaultRegionTargetHttpProxy",
-            region="us-central1",
-            url_map=default_region_url_map.id)
-        ```
         ### Region Target Http Proxy Https Redirect
 
         ```python
@@ -398,42 +362,6 @@ class RegionTargetHttpProxy(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/compute/docs/load-balancing/http/target-proxies)
 
         ## Example Usage
-        ### Region Target Http Proxy Basic
-
-        ```python
-        import pulumi
-        import pulumi_gcp as gcp
-
-        default_region_health_check = gcp.compute.RegionHealthCheck("defaultRegionHealthCheck",
-            region="us-central1",
-            http_health_check=gcp.compute.RegionHealthCheckHttpHealthCheckArgs(
-                port=80,
-            ))
-        default_region_backend_service = gcp.compute.RegionBackendService("defaultRegionBackendService",
-            region="us-central1",
-            protocol="HTTP",
-            timeout_sec=10,
-            load_balancing_scheme="INTERNAL_MANAGED",
-            health_checks=[default_region_health_check.id])
-        default_region_url_map = gcp.compute.RegionUrlMap("defaultRegionUrlMap",
-            region="us-central1",
-            default_service=default_region_backend_service.id,
-            host_rules=[gcp.compute.RegionUrlMapHostRuleArgs(
-                hosts=["mysite.com"],
-                path_matcher="allpaths",
-            )],
-            path_matchers=[gcp.compute.RegionUrlMapPathMatcherArgs(
-                name="allpaths",
-                default_service=default_region_backend_service.id,
-                path_rules=[gcp.compute.RegionUrlMapPathMatcherPathRuleArgs(
-                    paths=["/*"],
-                    service=default_region_backend_service.id,
-                )],
-            )])
-        default_region_target_http_proxy = gcp.compute.RegionTargetHttpProxy("defaultRegionTargetHttpProxy",
-            region="us-central1",
-            url_map=default_region_url_map.id)
-        ```
         ### Region Target Http Proxy Https Redirect
 
         ```python

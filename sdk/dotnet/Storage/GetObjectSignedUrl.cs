@@ -16,32 +16,6 @@ namespace Pulumi.Gcp.Storage
         /// 
         /// For more info about signed URL's is available [here](https://cloud.google.com/storage/docs/access-control/signed-urls).
         /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using Pulumi;
-        /// using Gcp = Pulumi.Gcp;
-        /// 
-        /// class MyStack : Stack
-        /// {
-        ///     public MyStack()
-        ///     {
-        ///         var artifact = Output.Create(Gcp.Storage.GetObjectSignedUrl.InvokeAsync(new Gcp.Storage.GetObjectSignedUrlArgs
-        ///         {
-        ///             Bucket = "install_binaries",
-        ///             Path = "path/to/install_file.bin",
-        ///         }));
-        ///         var vm = new Gcp.Compute.Instance("vm", new Gcp.Compute.InstanceArgs
-        ///         {
-        ///         });
-        ///     }
-        /// 
-        /// }
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// ## Full Example
         /// 
         /// ```csharp

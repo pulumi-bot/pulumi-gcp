@@ -18,289 +18,6 @@ namespace Pulumi.Gcp
     [GcpResourceType("pulumi:providers:gcp")]
     public partial class Provider : Pulumi.ProviderResource
     {
-        [Output("accessApprovalCustomEndpoint")]
-        public Output<string?> AccessApprovalCustomEndpoint { get; private set; } = null!;
-
-        [Output("accessContextManagerCustomEndpoint")]
-        public Output<string?> AccessContextManagerCustomEndpoint { get; private set; } = null!;
-
-        [Output("accessToken")]
-        public Output<string?> AccessToken { get; private set; } = null!;
-
-        [Output("activeDirectoryCustomEndpoint")]
-        public Output<string?> ActiveDirectoryCustomEndpoint { get; private set; } = null!;
-
-        [Output("apiGatewayCustomEndpoint")]
-        public Output<string?> ApiGatewayCustomEndpoint { get; private set; } = null!;
-
-        [Output("apigeeCustomEndpoint")]
-        public Output<string?> ApigeeCustomEndpoint { get; private set; } = null!;
-
-        [Output("appEngineCustomEndpoint")]
-        public Output<string?> AppEngineCustomEndpoint { get; private set; } = null!;
-
-        [Output("artifactRegistryCustomEndpoint")]
-        public Output<string?> ArtifactRegistryCustomEndpoint { get; private set; } = null!;
-
-        [Output("bigQueryCustomEndpoint")]
-        public Output<string?> BigQueryCustomEndpoint { get; private set; } = null!;
-
-        [Output("bigqueryConnectionCustomEndpoint")]
-        public Output<string?> BigqueryConnectionCustomEndpoint { get; private set; } = null!;
-
-        [Output("bigqueryDataTransferCustomEndpoint")]
-        public Output<string?> BigqueryDataTransferCustomEndpoint { get; private set; } = null!;
-
-        [Output("bigqueryReservationCustomEndpoint")]
-        public Output<string?> BigqueryReservationCustomEndpoint { get; private set; } = null!;
-
-        [Output("bigtableCustomEndpoint")]
-        public Output<string?> BigtableCustomEndpoint { get; private set; } = null!;
-
-        [Output("billingCustomEndpoint")]
-        public Output<string?> BillingCustomEndpoint { get; private set; } = null!;
-
-        [Output("billingProject")]
-        public Output<string?> BillingProject { get; private set; } = null!;
-
-        [Output("binaryAuthorizationCustomEndpoint")]
-        public Output<string?> BinaryAuthorizationCustomEndpoint { get; private set; } = null!;
-
-        [Output("cloudAssetCustomEndpoint")]
-        public Output<string?> CloudAssetCustomEndpoint { get; private set; } = null!;
-
-        [Output("cloudBillingCustomEndpoint")]
-        public Output<string?> CloudBillingCustomEndpoint { get; private set; } = null!;
-
-        [Output("cloudBuildCustomEndpoint")]
-        public Output<string?> CloudBuildCustomEndpoint { get; private set; } = null!;
-
-        [Output("cloudFunctionsCustomEndpoint")]
-        public Output<string?> CloudFunctionsCustomEndpoint { get; private set; } = null!;
-
-        [Output("cloudIdentityCustomEndpoint")]
-        public Output<string?> CloudIdentityCustomEndpoint { get; private set; } = null!;
-
-        [Output("cloudIotCustomEndpoint")]
-        public Output<string?> CloudIotCustomEndpoint { get; private set; } = null!;
-
-        [Output("cloudRunCustomEndpoint")]
-        public Output<string?> CloudRunCustomEndpoint { get; private set; } = null!;
-
-        [Output("cloudSchedulerCustomEndpoint")]
-        public Output<string?> CloudSchedulerCustomEndpoint { get; private set; } = null!;
-
-        [Output("cloudTasksCustomEndpoint")]
-        public Output<string?> CloudTasksCustomEndpoint { get; private set; } = null!;
-
-        [Output("composerCustomEndpoint")]
-        public Output<string?> ComposerCustomEndpoint { get; private set; } = null!;
-
-        [Output("computeBetaCustomEndpoint")]
-        public Output<string?> ComputeBetaCustomEndpoint { get; private set; } = null!;
-
-        [Output("computeCustomEndpoint")]
-        public Output<string?> ComputeCustomEndpoint { get; private set; } = null!;
-
-        [Output("containerAnalysisCustomEndpoint")]
-        public Output<string?> ContainerAnalysisCustomEndpoint { get; private set; } = null!;
-
-        [Output("containerBetaCustomEndpoint")]
-        public Output<string?> ContainerBetaCustomEndpoint { get; private set; } = null!;
-
-        [Output("containerCustomEndpoint")]
-        public Output<string?> ContainerCustomEndpoint { get; private set; } = null!;
-
-        [Output("credentials")]
-        public Output<string?> Credentials { get; private set; } = null!;
-
-        [Output("dataCatalogCustomEndpoint")]
-        public Output<string?> DataCatalogCustomEndpoint { get; private set; } = null!;
-
-        [Output("dataFusionCustomEndpoint")]
-        public Output<string?> DataFusionCustomEndpoint { get; private set; } = null!;
-
-        [Output("dataLossPreventionCustomEndpoint")]
-        public Output<string?> DataLossPreventionCustomEndpoint { get; private set; } = null!;
-
-        [Output("dataflowCustomEndpoint")]
-        public Output<string?> DataflowCustomEndpoint { get; private set; } = null!;
-
-        [Output("dataprocBetaCustomEndpoint")]
-        public Output<string?> DataprocBetaCustomEndpoint { get; private set; } = null!;
-
-        [Output("dataprocCustomEndpoint")]
-        public Output<string?> DataprocCustomEndpoint { get; private set; } = null!;
-
-        [Output("dataprocMetastoreCustomEndpoint")]
-        public Output<string?> DataprocMetastoreCustomEndpoint { get; private set; } = null!;
-
-        [Output("datastoreCustomEndpoint")]
-        public Output<string?> DatastoreCustomEndpoint { get; private set; } = null!;
-
-        [Output("deploymentManagerCustomEndpoint")]
-        public Output<string?> DeploymentManagerCustomEndpoint { get; private set; } = null!;
-
-        [Output("dialogflowCustomEndpoint")]
-        public Output<string?> DialogflowCustomEndpoint { get; private set; } = null!;
-
-        [Output("dnsCustomEndpoint")]
-        public Output<string?> DnsCustomEndpoint { get; private set; } = null!;
-
-        [Output("essentialContactsCustomEndpoint")]
-        public Output<string?> EssentialContactsCustomEndpoint { get; private set; } = null!;
-
-        [Output("eventarcCustomEndpoint")]
-        public Output<string?> EventarcCustomEndpoint { get; private set; } = null!;
-
-        [Output("filestoreCustomEndpoint")]
-        public Output<string?> FilestoreCustomEndpoint { get; private set; } = null!;
-
-        [Output("firebaseCustomEndpoint")]
-        public Output<string?> FirebaseCustomEndpoint { get; private set; } = null!;
-
-        [Output("firestoreCustomEndpoint")]
-        public Output<string?> FirestoreCustomEndpoint { get; private set; } = null!;
-
-        [Output("gameServicesCustomEndpoint")]
-        public Output<string?> GameServicesCustomEndpoint { get; private set; } = null!;
-
-        [Output("gkeHubCustomEndpoint")]
-        public Output<string?> GkeHubCustomEndpoint { get; private set; } = null!;
-
-        [Output("healthcareCustomEndpoint")]
-        public Output<string?> HealthcareCustomEndpoint { get; private set; } = null!;
-
-        [Output("iamBetaCustomEndpoint")]
-        public Output<string?> IamBetaCustomEndpoint { get; private set; } = null!;
-
-        [Output("iamCredentialsCustomEndpoint")]
-        public Output<string?> IamCredentialsCustomEndpoint { get; private set; } = null!;
-
-        [Output("iamCustomEndpoint")]
-        public Output<string?> IamCustomEndpoint { get; private set; } = null!;
-
-        [Output("iapCustomEndpoint")]
-        public Output<string?> IapCustomEndpoint { get; private set; } = null!;
-
-        [Output("identityPlatformCustomEndpoint")]
-        public Output<string?> IdentityPlatformCustomEndpoint { get; private set; } = null!;
-
-        [Output("impersonateServiceAccount")]
-        public Output<string?> ImpersonateServiceAccount { get; private set; } = null!;
-
-        [Output("kmsCustomEndpoint")]
-        public Output<string?> KmsCustomEndpoint { get; private set; } = null!;
-
-        [Output("loggingCustomEndpoint")]
-        public Output<string?> LoggingCustomEndpoint { get; private set; } = null!;
-
-        [Output("memcacheCustomEndpoint")]
-        public Output<string?> MemcacheCustomEndpoint { get; private set; } = null!;
-
-        [Output("mlEngineCustomEndpoint")]
-        public Output<string?> MlEngineCustomEndpoint { get; private set; } = null!;
-
-        [Output("monitoringCustomEndpoint")]
-        public Output<string?> MonitoringCustomEndpoint { get; private set; } = null!;
-
-        [Output("networkManagementCustomEndpoint")]
-        public Output<string?> NetworkManagementCustomEndpoint { get; private set; } = null!;
-
-        [Output("notebooksCustomEndpoint")]
-        public Output<string?> NotebooksCustomEndpoint { get; private set; } = null!;
-
-        [Output("osConfigCustomEndpoint")]
-        public Output<string?> OsConfigCustomEndpoint { get; private set; } = null!;
-
-        [Output("osLoginCustomEndpoint")]
-        public Output<string?> OsLoginCustomEndpoint { get; private set; } = null!;
-
-        [Output("privatecaCustomEndpoint")]
-        public Output<string?> PrivatecaCustomEndpoint { get; private set; } = null!;
-
-        [Output("project")]
-        public Output<string?> Project { get; private set; } = null!;
-
-        [Output("pubsubCustomEndpoint")]
-        public Output<string?> PubsubCustomEndpoint { get; private set; } = null!;
-
-        [Output("pubsubLiteCustomEndpoint")]
-        public Output<string?> PubsubLiteCustomEndpoint { get; private set; } = null!;
-
-        [Output("redisCustomEndpoint")]
-        public Output<string?> RedisCustomEndpoint { get; private set; } = null!;
-
-        [Output("region")]
-        public Output<string?> Region { get; private set; } = null!;
-
-        [Output("requestTimeout")]
-        public Output<string?> RequestTimeout { get; private set; } = null!;
-
-        [Output("resourceManagerCustomEndpoint")]
-        public Output<string?> ResourceManagerCustomEndpoint { get; private set; } = null!;
-
-        [Output("resourceManagerV2CustomEndpoint")]
-        public Output<string?> ResourceManagerV2CustomEndpoint { get; private set; } = null!;
-
-        [Output("runtimeConfigCustomEndpoint")]
-        public Output<string?> RuntimeConfigCustomEndpoint { get; private set; } = null!;
-
-        [Output("runtimeconfigCustomEndpoint")]
-        public Output<string?> RuntimeconfigCustomEndpoint { get; private set; } = null!;
-
-        [Output("secretManagerCustomEndpoint")]
-        public Output<string?> SecretManagerCustomEndpoint { get; private set; } = null!;
-
-        [Output("securityCenterCustomEndpoint")]
-        public Output<string?> SecurityCenterCustomEndpoint { get; private set; } = null!;
-
-        [Output("securityScannerCustomEndpoint")]
-        public Output<string?> SecurityScannerCustomEndpoint { get; private set; } = null!;
-
-        [Output("serviceDirectoryCustomEndpoint")]
-        public Output<string?> ServiceDirectoryCustomEndpoint { get; private set; } = null!;
-
-        [Output("serviceManagementCustomEndpoint")]
-        public Output<string?> ServiceManagementCustomEndpoint { get; private set; } = null!;
-
-        [Output("serviceNetworkingCustomEndpoint")]
-        public Output<string?> ServiceNetworkingCustomEndpoint { get; private set; } = null!;
-
-        [Output("serviceUsageCustomEndpoint")]
-        public Output<string?> ServiceUsageCustomEndpoint { get; private set; } = null!;
-
-        [Output("sourceRepoCustomEndpoint")]
-        public Output<string?> SourceRepoCustomEndpoint { get; private set; } = null!;
-
-        [Output("spannerCustomEndpoint")]
-        public Output<string?> SpannerCustomEndpoint { get; private set; } = null!;
-
-        [Output("sqlCustomEndpoint")]
-        public Output<string?> SqlCustomEndpoint { get; private set; } = null!;
-
-        [Output("storageCustomEndpoint")]
-        public Output<string?> StorageCustomEndpoint { get; private set; } = null!;
-
-        [Output("storageTransferCustomEndpoint")]
-        public Output<string?> StorageTransferCustomEndpoint { get; private set; } = null!;
-
-        [Output("tagsCustomEndpoint")]
-        public Output<string?> TagsCustomEndpoint { get; private set; } = null!;
-
-        [Output("tpuCustomEndpoint")]
-        public Output<string?> TpuCustomEndpoint { get; private set; } = null!;
-
-        [Output("vpcAccessCustomEndpoint")]
-        public Output<string?> VpcAccessCustomEndpoint { get; private set; } = null!;
-
-        [Output("workflowsCustomEndpoint")]
-        public Output<string?> WorkflowsCustomEndpoint { get; private set; } = null!;
-
-        [Output("zone")]
-        public Output<string?> Zone { get; private set; } = null!;
-
-
         /// <summary>
         /// Create a Provider resource with the given unique name, arguments, and options.
         /// </summary>
@@ -328,178 +45,178 @@ namespace Pulumi.Gcp
 
     public sealed class ProviderArgs : Pulumi.ResourceArgs
     {
-        [Input("accessApprovalCustomEndpoint")]
+        [Input("accessApprovalCustomEndpoint", json: true)]
         public Input<string>? AccessApprovalCustomEndpoint { get; set; }
 
-        [Input("accessContextManagerCustomEndpoint")]
+        [Input("accessContextManagerCustomEndpoint", json: true)]
         public Input<string>? AccessContextManagerCustomEndpoint { get; set; }
 
-        [Input("accessToken")]
+        [Input("accessToken", json: true)]
         public Input<string>? AccessToken { get; set; }
 
-        [Input("activeDirectoryCustomEndpoint")]
+        [Input("activeDirectoryCustomEndpoint", json: true)]
         public Input<string>? ActiveDirectoryCustomEndpoint { get; set; }
 
-        [Input("apiGatewayCustomEndpoint")]
+        [Input("apiGatewayCustomEndpoint", json: true)]
         public Input<string>? ApiGatewayCustomEndpoint { get; set; }
 
-        [Input("apigeeCustomEndpoint")]
+        [Input("apigeeCustomEndpoint", json: true)]
         public Input<string>? ApigeeCustomEndpoint { get; set; }
 
-        [Input("appEngineCustomEndpoint")]
+        [Input("appEngineCustomEndpoint", json: true)]
         public Input<string>? AppEngineCustomEndpoint { get; set; }
 
-        [Input("artifactRegistryCustomEndpoint")]
+        [Input("artifactRegistryCustomEndpoint", json: true)]
         public Input<string>? ArtifactRegistryCustomEndpoint { get; set; }
 
         [Input("batching", json: true)]
         public Input<Inputs.ProviderBatchingArgs>? Batching { get; set; }
 
-        [Input("bigQueryCustomEndpoint")]
+        [Input("bigQueryCustomEndpoint", json: true)]
         public Input<string>? BigQueryCustomEndpoint { get; set; }
 
-        [Input("bigqueryConnectionCustomEndpoint")]
+        [Input("bigqueryConnectionCustomEndpoint", json: true)]
         public Input<string>? BigqueryConnectionCustomEndpoint { get; set; }
 
-        [Input("bigqueryDataTransferCustomEndpoint")]
+        [Input("bigqueryDataTransferCustomEndpoint", json: true)]
         public Input<string>? BigqueryDataTransferCustomEndpoint { get; set; }
 
-        [Input("bigqueryReservationCustomEndpoint")]
+        [Input("bigqueryReservationCustomEndpoint", json: true)]
         public Input<string>? BigqueryReservationCustomEndpoint { get; set; }
 
-        [Input("bigtableCustomEndpoint")]
+        [Input("bigtableCustomEndpoint", json: true)]
         public Input<string>? BigtableCustomEndpoint { get; set; }
 
-        [Input("billingCustomEndpoint")]
+        [Input("billingCustomEndpoint", json: true)]
         public Input<string>? BillingCustomEndpoint { get; set; }
 
-        [Input("billingProject")]
+        [Input("billingProject", json: true)]
         public Input<string>? BillingProject { get; set; }
 
-        [Input("binaryAuthorizationCustomEndpoint")]
+        [Input("binaryAuthorizationCustomEndpoint", json: true)]
         public Input<string>? BinaryAuthorizationCustomEndpoint { get; set; }
 
-        [Input("cloudAssetCustomEndpoint")]
+        [Input("cloudAssetCustomEndpoint", json: true)]
         public Input<string>? CloudAssetCustomEndpoint { get; set; }
 
-        [Input("cloudBillingCustomEndpoint")]
+        [Input("cloudBillingCustomEndpoint", json: true)]
         public Input<string>? CloudBillingCustomEndpoint { get; set; }
 
-        [Input("cloudBuildCustomEndpoint")]
+        [Input("cloudBuildCustomEndpoint", json: true)]
         public Input<string>? CloudBuildCustomEndpoint { get; set; }
 
-        [Input("cloudFunctionsCustomEndpoint")]
+        [Input("cloudFunctionsCustomEndpoint", json: true)]
         public Input<string>? CloudFunctionsCustomEndpoint { get; set; }
 
-        [Input("cloudIdentityCustomEndpoint")]
+        [Input("cloudIdentityCustomEndpoint", json: true)]
         public Input<string>? CloudIdentityCustomEndpoint { get; set; }
 
-        [Input("cloudIotCustomEndpoint")]
+        [Input("cloudIotCustomEndpoint", json: true)]
         public Input<string>? CloudIotCustomEndpoint { get; set; }
 
-        [Input("cloudRunCustomEndpoint")]
+        [Input("cloudRunCustomEndpoint", json: true)]
         public Input<string>? CloudRunCustomEndpoint { get; set; }
 
-        [Input("cloudSchedulerCustomEndpoint")]
+        [Input("cloudSchedulerCustomEndpoint", json: true)]
         public Input<string>? CloudSchedulerCustomEndpoint { get; set; }
 
-        [Input("cloudTasksCustomEndpoint")]
+        [Input("cloudTasksCustomEndpoint", json: true)]
         public Input<string>? CloudTasksCustomEndpoint { get; set; }
 
-        [Input("composerCustomEndpoint")]
+        [Input("composerCustomEndpoint", json: true)]
         public Input<string>? ComposerCustomEndpoint { get; set; }
 
-        [Input("computeBetaCustomEndpoint")]
+        [Input("computeBetaCustomEndpoint", json: true)]
         public Input<string>? ComputeBetaCustomEndpoint { get; set; }
 
-        [Input("computeCustomEndpoint")]
+        [Input("computeCustomEndpoint", json: true)]
         public Input<string>? ComputeCustomEndpoint { get; set; }
 
-        [Input("containerAnalysisCustomEndpoint")]
+        [Input("containerAnalysisCustomEndpoint", json: true)]
         public Input<string>? ContainerAnalysisCustomEndpoint { get; set; }
 
-        [Input("containerBetaCustomEndpoint")]
+        [Input("containerBetaCustomEndpoint", json: true)]
         public Input<string>? ContainerBetaCustomEndpoint { get; set; }
 
-        [Input("containerCustomEndpoint")]
+        [Input("containerCustomEndpoint", json: true)]
         public Input<string>? ContainerCustomEndpoint { get; set; }
 
-        [Input("credentials")]
+        [Input("credentials", json: true)]
         public Input<string>? Credentials { get; set; }
 
-        [Input("dataCatalogCustomEndpoint")]
+        [Input("dataCatalogCustomEndpoint", json: true)]
         public Input<string>? DataCatalogCustomEndpoint { get; set; }
 
-        [Input("dataFusionCustomEndpoint")]
+        [Input("dataFusionCustomEndpoint", json: true)]
         public Input<string>? DataFusionCustomEndpoint { get; set; }
 
-        [Input("dataLossPreventionCustomEndpoint")]
+        [Input("dataLossPreventionCustomEndpoint", json: true)]
         public Input<string>? DataLossPreventionCustomEndpoint { get; set; }
 
-        [Input("dataflowCustomEndpoint")]
+        [Input("dataflowCustomEndpoint", json: true)]
         public Input<string>? DataflowCustomEndpoint { get; set; }
 
-        [Input("dataprocBetaCustomEndpoint")]
+        [Input("dataprocBetaCustomEndpoint", json: true)]
         public Input<string>? DataprocBetaCustomEndpoint { get; set; }
 
-        [Input("dataprocCustomEndpoint")]
+        [Input("dataprocCustomEndpoint", json: true)]
         public Input<string>? DataprocCustomEndpoint { get; set; }
 
-        [Input("dataprocMetastoreCustomEndpoint")]
+        [Input("dataprocMetastoreCustomEndpoint", json: true)]
         public Input<string>? DataprocMetastoreCustomEndpoint { get; set; }
 
-        [Input("datastoreCustomEndpoint")]
+        [Input("datastoreCustomEndpoint", json: true)]
         public Input<string>? DatastoreCustomEndpoint { get; set; }
 
-        [Input("deploymentManagerCustomEndpoint")]
+        [Input("deploymentManagerCustomEndpoint", json: true)]
         public Input<string>? DeploymentManagerCustomEndpoint { get; set; }
 
-        [Input("dialogflowCustomEndpoint")]
+        [Input("dialogflowCustomEndpoint", json: true)]
         public Input<string>? DialogflowCustomEndpoint { get; set; }
 
-        [Input("dnsCustomEndpoint")]
+        [Input("dnsCustomEndpoint", json: true)]
         public Input<string>? DnsCustomEndpoint { get; set; }
 
-        [Input("essentialContactsCustomEndpoint")]
+        [Input("essentialContactsCustomEndpoint", json: true)]
         public Input<string>? EssentialContactsCustomEndpoint { get; set; }
 
-        [Input("eventarcCustomEndpoint")]
+        [Input("eventarcCustomEndpoint", json: true)]
         public Input<string>? EventarcCustomEndpoint { get; set; }
 
-        [Input("filestoreCustomEndpoint")]
+        [Input("filestoreCustomEndpoint", json: true)]
         public Input<string>? FilestoreCustomEndpoint { get; set; }
 
-        [Input("firebaseCustomEndpoint")]
+        [Input("firebaseCustomEndpoint", json: true)]
         public Input<string>? FirebaseCustomEndpoint { get; set; }
 
-        [Input("firestoreCustomEndpoint")]
+        [Input("firestoreCustomEndpoint", json: true)]
         public Input<string>? FirestoreCustomEndpoint { get; set; }
 
-        [Input("gameServicesCustomEndpoint")]
+        [Input("gameServicesCustomEndpoint", json: true)]
         public Input<string>? GameServicesCustomEndpoint { get; set; }
 
-        [Input("gkeHubCustomEndpoint")]
+        [Input("gkeHubCustomEndpoint", json: true)]
         public Input<string>? GkeHubCustomEndpoint { get; set; }
 
-        [Input("healthcareCustomEndpoint")]
+        [Input("healthcareCustomEndpoint", json: true)]
         public Input<string>? HealthcareCustomEndpoint { get; set; }
 
-        [Input("iamBetaCustomEndpoint")]
+        [Input("iamBetaCustomEndpoint", json: true)]
         public Input<string>? IamBetaCustomEndpoint { get; set; }
 
-        [Input("iamCredentialsCustomEndpoint")]
+        [Input("iamCredentialsCustomEndpoint", json: true)]
         public Input<string>? IamCredentialsCustomEndpoint { get; set; }
 
-        [Input("iamCustomEndpoint")]
+        [Input("iamCustomEndpoint", json: true)]
         public Input<string>? IamCustomEndpoint { get; set; }
 
-        [Input("iapCustomEndpoint")]
+        [Input("iapCustomEndpoint", json: true)]
         public Input<string>? IapCustomEndpoint { get; set; }
 
-        [Input("identityPlatformCustomEndpoint")]
+        [Input("identityPlatformCustomEndpoint", json: true)]
         public Input<string>? IdentityPlatformCustomEndpoint { get; set; }
 
-        [Input("impersonateServiceAccount")]
+        [Input("impersonateServiceAccount", json: true)]
         public Input<string>? ImpersonateServiceAccount { get; set; }
 
         [Input("impersonateServiceAccountDelegates", json: true)]
@@ -510,64 +227,64 @@ namespace Pulumi.Gcp
             set => _impersonateServiceAccountDelegates = value;
         }
 
-        [Input("kmsCustomEndpoint")]
+        [Input("kmsCustomEndpoint", json: true)]
         public Input<string>? KmsCustomEndpoint { get; set; }
 
-        [Input("loggingCustomEndpoint")]
+        [Input("loggingCustomEndpoint", json: true)]
         public Input<string>? LoggingCustomEndpoint { get; set; }
 
-        [Input("memcacheCustomEndpoint")]
+        [Input("memcacheCustomEndpoint", json: true)]
         public Input<string>? MemcacheCustomEndpoint { get; set; }
 
-        [Input("mlEngineCustomEndpoint")]
+        [Input("mlEngineCustomEndpoint", json: true)]
         public Input<string>? MlEngineCustomEndpoint { get; set; }
 
-        [Input("monitoringCustomEndpoint")]
+        [Input("monitoringCustomEndpoint", json: true)]
         public Input<string>? MonitoringCustomEndpoint { get; set; }
 
-        [Input("networkManagementCustomEndpoint")]
+        [Input("networkManagementCustomEndpoint", json: true)]
         public Input<string>? NetworkManagementCustomEndpoint { get; set; }
 
-        [Input("notebooksCustomEndpoint")]
+        [Input("notebooksCustomEndpoint", json: true)]
         public Input<string>? NotebooksCustomEndpoint { get; set; }
 
-        [Input("osConfigCustomEndpoint")]
+        [Input("osConfigCustomEndpoint", json: true)]
         public Input<string>? OsConfigCustomEndpoint { get; set; }
 
-        [Input("osLoginCustomEndpoint")]
+        [Input("osLoginCustomEndpoint", json: true)]
         public Input<string>? OsLoginCustomEndpoint { get; set; }
 
-        [Input("privatecaCustomEndpoint")]
+        [Input("privatecaCustomEndpoint", json: true)]
         public Input<string>? PrivatecaCustomEndpoint { get; set; }
 
-        [Input("project")]
+        [Input("project", json: true)]
         public Input<string>? Project { get; set; }
 
-        [Input("pubsubCustomEndpoint")]
+        [Input("pubsubCustomEndpoint", json: true)]
         public Input<string>? PubsubCustomEndpoint { get; set; }
 
-        [Input("pubsubLiteCustomEndpoint")]
+        [Input("pubsubLiteCustomEndpoint", json: true)]
         public Input<string>? PubsubLiteCustomEndpoint { get; set; }
 
-        [Input("redisCustomEndpoint")]
+        [Input("redisCustomEndpoint", json: true)]
         public Input<string>? RedisCustomEndpoint { get; set; }
 
-        [Input("region")]
+        [Input("region", json: true)]
         public Input<string>? Region { get; set; }
 
-        [Input("requestTimeout")]
+        [Input("requestTimeout", json: true)]
         public Input<string>? RequestTimeout { get; set; }
 
-        [Input("resourceManagerCustomEndpoint")]
+        [Input("resourceManagerCustomEndpoint", json: true)]
         public Input<string>? ResourceManagerCustomEndpoint { get; set; }
 
-        [Input("resourceManagerV2CustomEndpoint")]
+        [Input("resourceManagerV2CustomEndpoint", json: true)]
         public Input<string>? ResourceManagerV2CustomEndpoint { get; set; }
 
-        [Input("runtimeConfigCustomEndpoint")]
+        [Input("runtimeConfigCustomEndpoint", json: true)]
         public Input<string>? RuntimeConfigCustomEndpoint { get; set; }
 
-        [Input("runtimeconfigCustomEndpoint")]
+        [Input("runtimeconfigCustomEndpoint", json: true)]
         public Input<string>? RuntimeconfigCustomEndpoint { get; set; }
 
         [Input("scopes", json: true)]
@@ -578,58 +295,58 @@ namespace Pulumi.Gcp
             set => _scopes = value;
         }
 
-        [Input("secretManagerCustomEndpoint")]
+        [Input("secretManagerCustomEndpoint", json: true)]
         public Input<string>? SecretManagerCustomEndpoint { get; set; }
 
-        [Input("securityCenterCustomEndpoint")]
+        [Input("securityCenterCustomEndpoint", json: true)]
         public Input<string>? SecurityCenterCustomEndpoint { get; set; }
 
-        [Input("securityScannerCustomEndpoint")]
+        [Input("securityScannerCustomEndpoint", json: true)]
         public Input<string>? SecurityScannerCustomEndpoint { get; set; }
 
-        [Input("serviceDirectoryCustomEndpoint")]
+        [Input("serviceDirectoryCustomEndpoint", json: true)]
         public Input<string>? ServiceDirectoryCustomEndpoint { get; set; }
 
-        [Input("serviceManagementCustomEndpoint")]
+        [Input("serviceManagementCustomEndpoint", json: true)]
         public Input<string>? ServiceManagementCustomEndpoint { get; set; }
 
-        [Input("serviceNetworkingCustomEndpoint")]
+        [Input("serviceNetworkingCustomEndpoint", json: true)]
         public Input<string>? ServiceNetworkingCustomEndpoint { get; set; }
 
-        [Input("serviceUsageCustomEndpoint")]
+        [Input("serviceUsageCustomEndpoint", json: true)]
         public Input<string>? ServiceUsageCustomEndpoint { get; set; }
 
-        [Input("sourceRepoCustomEndpoint")]
+        [Input("sourceRepoCustomEndpoint", json: true)]
         public Input<string>? SourceRepoCustomEndpoint { get; set; }
 
-        [Input("spannerCustomEndpoint")]
+        [Input("spannerCustomEndpoint", json: true)]
         public Input<string>? SpannerCustomEndpoint { get; set; }
 
-        [Input("sqlCustomEndpoint")]
+        [Input("sqlCustomEndpoint", json: true)]
         public Input<string>? SqlCustomEndpoint { get; set; }
 
-        [Input("storageCustomEndpoint")]
+        [Input("storageCustomEndpoint", json: true)]
         public Input<string>? StorageCustomEndpoint { get; set; }
 
-        [Input("storageTransferCustomEndpoint")]
+        [Input("storageTransferCustomEndpoint", json: true)]
         public Input<string>? StorageTransferCustomEndpoint { get; set; }
 
-        [Input("tagsCustomEndpoint")]
+        [Input("tagsCustomEndpoint", json: true)]
         public Input<string>? TagsCustomEndpoint { get; set; }
 
-        [Input("tpuCustomEndpoint")]
+        [Input("tpuCustomEndpoint", json: true)]
         public Input<string>? TpuCustomEndpoint { get; set; }
 
         [Input("userProjectOverride", json: true)]
         public Input<bool>? UserProjectOverride { get; set; }
 
-        [Input("vpcAccessCustomEndpoint")]
+        [Input("vpcAccessCustomEndpoint", json: true)]
         public Input<string>? VpcAccessCustomEndpoint { get; set; }
 
-        [Input("workflowsCustomEndpoint")]
+        [Input("workflowsCustomEndpoint", json: true)]
         public Input<string>? WorkflowsCustomEndpoint { get; set; }
 
-        [Input("zone")]
+        [Input("zone", json: true)]
         public Input<string>? Zone { get; set; }
 
         public ProviderArgs()

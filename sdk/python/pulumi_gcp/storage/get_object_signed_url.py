@@ -140,16 +140,6 @@ def get_object_signed_url(bucket: Optional[str] = None,
 
     For more info about signed URL's is available [here](https://cloud.google.com/storage/docs/access-control/signed-urls).
 
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_gcp as gcp
-
-    artifact = gcp.storage.get_object_signed_url(bucket="install_binaries",
-        path="path/to/install_file.bin")
-    vm = gcp.compute.Instance("vm")
-    ```
     ## Full Example
 
     ```python

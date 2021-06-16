@@ -42,36 +42,6 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- * ### With The Default Node Pool
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- *
- * const _default = new gcp.serviceAccount.Account("default", {
- *     accountId: "service-account-id",
- *     displayName: "Service Account",
- * });
- * const primary = new gcp.container.Cluster("primary", {
- *     location: "us-central1-a",
- *     initialNodeCount: 3,
- *     nodeConfig: {
- *         serviceAccount: _default.email,
- *         oauthScopes: ["https://www.googleapis.com/auth/cloud-platform"],
- *         labels: {
- *             foo: "bar",
- *         },
- *         tags: [
- *             "foo",
- *             "bar",
- *         ],
- *     },
- *     timeouts: [{
- *         create: "30m",
- *         update: "40m",
- *     }],
- * });
- * ```
  * ### Autopilot
  *
  * ```typescript

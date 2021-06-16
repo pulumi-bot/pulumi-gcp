@@ -372,53 +372,6 @@ class ManagedSslCertificate(pulumi.CustomResource):
         In conclusion: Be extremely cautious.
 
         ## Example Usage
-        ### Managed Ssl Certificate Basic
-
-        ```python
-        import pulumi
-        import pulumi_gcp as gcp
-
-        default_managed_ssl_certificate = gcp.compute.ManagedSslCertificate("defaultManagedSslCertificate", managed=gcp.compute.ManagedSslCertificateManagedArgs(
-            domains=["sslcert.tf-test.club."],
-        ))
-        default_http_health_check = gcp.compute.HttpHealthCheck("defaultHttpHealthCheck",
-            request_path="/",
-            check_interval_sec=1,
-            timeout_sec=1)
-        default_backend_service = gcp.compute.BackendService("defaultBackendService",
-            port_name="http",
-            protocol="HTTP",
-            timeout_sec=10,
-            health_checks=[default_http_health_check.id])
-        default_url_map = gcp.compute.URLMap("defaultURLMap",
-            description="a description",
-            default_service=default_backend_service.id,
-            host_rules=[gcp.compute.URLMapHostRuleArgs(
-                hosts=["sslcert.tf-test.club"],
-                path_matcher="allpaths",
-            )],
-            path_matchers=[gcp.compute.URLMapPathMatcherArgs(
-                name="allpaths",
-                default_service=default_backend_service.id,
-                path_rules=[gcp.compute.URLMapPathMatcherPathRuleArgs(
-                    paths=["/*"],
-                    service=default_backend_service.id,
-                )],
-            )])
-        default_target_https_proxy = gcp.compute.TargetHttpsProxy("defaultTargetHttpsProxy",
-            url_map=default_url_map.id,
-            ssl_certificates=[default_managed_ssl_certificate.id])
-        zone = gcp.dns.ManagedZone("zone", dns_name="sslcert.tf-test.club.")
-        default_global_forwarding_rule = gcp.compute.GlobalForwardingRule("defaultGlobalForwardingRule",
-            target=default_target_https_proxy.id,
-            port_range="443")
-        set = gcp.dns.RecordSet("set",
-            name="sslcert.tf-test.club.",
-            type="A",
-            ttl=3600,
-            managed_zone=zone.name,
-            rrdatas=[default_global_forwarding_rule.ip_address])
-        ```
 
         ## Import
 
@@ -491,53 +444,6 @@ class ManagedSslCertificate(pulumi.CustomResource):
         In conclusion: Be extremely cautious.
 
         ## Example Usage
-        ### Managed Ssl Certificate Basic
-
-        ```python
-        import pulumi
-        import pulumi_gcp as gcp
-
-        default_managed_ssl_certificate = gcp.compute.ManagedSslCertificate("defaultManagedSslCertificate", managed=gcp.compute.ManagedSslCertificateManagedArgs(
-            domains=["sslcert.tf-test.club."],
-        ))
-        default_http_health_check = gcp.compute.HttpHealthCheck("defaultHttpHealthCheck",
-            request_path="/",
-            check_interval_sec=1,
-            timeout_sec=1)
-        default_backend_service = gcp.compute.BackendService("defaultBackendService",
-            port_name="http",
-            protocol="HTTP",
-            timeout_sec=10,
-            health_checks=[default_http_health_check.id])
-        default_url_map = gcp.compute.URLMap("defaultURLMap",
-            description="a description",
-            default_service=default_backend_service.id,
-            host_rules=[gcp.compute.URLMapHostRuleArgs(
-                hosts=["sslcert.tf-test.club"],
-                path_matcher="allpaths",
-            )],
-            path_matchers=[gcp.compute.URLMapPathMatcherArgs(
-                name="allpaths",
-                default_service=default_backend_service.id,
-                path_rules=[gcp.compute.URLMapPathMatcherPathRuleArgs(
-                    paths=["/*"],
-                    service=default_backend_service.id,
-                )],
-            )])
-        default_target_https_proxy = gcp.compute.TargetHttpsProxy("defaultTargetHttpsProxy",
-            url_map=default_url_map.id,
-            ssl_certificates=[default_managed_ssl_certificate.id])
-        zone = gcp.dns.ManagedZone("zone", dns_name="sslcert.tf-test.club.")
-        default_global_forwarding_rule = gcp.compute.GlobalForwardingRule("defaultGlobalForwardingRule",
-            target=default_target_https_proxy.id,
-            port_range="443")
-        set = gcp.dns.RecordSet("set",
-            name="sslcert.tf-test.club.",
-            type="A",
-            ttl=3600,
-            managed_zone=zone.name,
-            rrdatas=[default_global_forwarding_rule.ip_address])
-        ```
 
         ## Import
 
