@@ -49,7 +49,7 @@ import (
 // 			EnableInboundForwarding: pulumi.Bool(true),
 // 			EnableLogging:           pulumi.Bool(true),
 // 			AlternativeNameServerConfig: &dns.PolicyAlternativeNameServerConfigArgs{
-// 				TargetNameServers: dns.PolicyAlternativeNameServerConfigTargetNameServerArray{
+// 				TargetNameServers: []dns.PolicyAlternativeNameServerConfigTargetNameServerArgs{
 // 					&dns.PolicyAlternativeNameServerConfigTargetNameServerArgs{
 // 						Ipv4Address:    pulumi.String("172.16.1.10"),
 // 						ForwardingPath: pulumi.String("private"),
