@@ -298,8 +298,8 @@ func GetTagsCustomEndpoint(ctx *pulumi.Context) string {
 func GetTpuCustomEndpoint(ctx *pulumi.Context) string {
 	return config.Get(ctx, "gcp:tpuCustomEndpoint")
 }
-func GetUserProjectOverride(ctx *pulumi.Context) bool {
-	return config.GetBool(ctx, "gcp:userProjectOverride")
+func GetUserProjectOverride(ctx *pulumi.Context) string {
+	return config.Get(ctx, "gcp:userProjectOverride")
 }
 func GetVpcAccessCustomEndpoint(ctx *pulumi.Context) string {
 	return config.Get(ctx, "gcp:vpcAccessCustomEndpoint")
