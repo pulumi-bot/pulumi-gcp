@@ -36,7 +36,7 @@ import (
 // 			Description: pulumi.String("Description"),
 // 			DisplayName: pulumi.String("Displayname"),
 // 			InspectJob: &dataloss.PreventionJobTriggerInspectJobArgs{
-// 				Actions: dataloss.PreventionJobTriggerInspectJobActionArray{
+// 				Actions: []dataloss.PreventionJobTriggerInspectJobActionArgs{
 // 					&dataloss.PreventionJobTriggerInspectJobActionArgs{
 // 						SaveFindings: &dataloss.PreventionJobTriggerInspectJobActionSaveFindingsArgs{
 // 							OutputConfig: &dataloss.PreventionJobTriggerInspectJobActionSaveFindingsOutputConfigArgs{
