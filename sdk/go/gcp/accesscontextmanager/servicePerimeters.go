@@ -77,7 +77,7 @@ import (
 // 		}
 // 		_, err = accesscontextmanager.NewAccessLevel(ctx, "access_level", &accesscontextmanager.AccessLevelArgs{
 // 			Basic: &accesscontextmanager.AccessLevelBasicArgs{
-// 				Conditions: accesscontextmanager.AccessLevelBasicConditionArray{
+// 				Conditions: []accesscontextmanager.AccessLevelBasicConditionArgs{
 // 					&accesscontextmanager.AccessLevelBasicConditionArgs{
 // 						DevicePolicy: &accesscontextmanager.AccessLevelBasicConditionDevicePolicyArgs{
 // 							OsConstraints: accesscontextmanager.AccessLevelBasicConditionDevicePolicyOsConstraintArray{
