@@ -71,7 +71,7 @@ import (
 // 		}
 // 		_, err = accesscontextmanager.NewAccessLevel(ctx, "access_level", &accesscontextmanager.AccessLevelArgs{
 // 			Basic: &accesscontextmanager.AccessLevelBasicArgs{
-// 				Conditions: accesscontextmanager.AccessLevelBasicConditionArray{
+// 				Conditions: []accesscontextmanager.AccessLevelBasicConditionArgs{
 // 					&accesscontextmanager.AccessLevelBasicConditionArgs{
 // 						DevicePolicy: &accesscontextmanager.AccessLevelBasicConditionDevicePolicyArgs{
 // 							OsConstraints: accesscontextmanager.AccessLevelBasicConditionDevicePolicyOsConstraintArray{
@@ -166,7 +166,7 @@ import (
 // 			}).(pulumi.StringOutput),
 // 			Title: pulumi.String("secure_data_exchange"),
 // 			Basic: &accesscontextmanager.AccessLevelBasicArgs{
-// 				Conditions: accesscontextmanager.AccessLevelBasicConditionArray{
+// 				Conditions: []accesscontextmanager.AccessLevelBasicConditionArgs{
 // 					&accesscontextmanager.AccessLevelBasicConditionArgs{
 // 						DevicePolicy: &accesscontextmanager.AccessLevelBasicConditionDevicePolicyArgs{
 // 							RequireScreenLock: pulumi.Bool(false),
