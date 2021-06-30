@@ -81,7 +81,7 @@ import (
 // 			},
 // 			Visibility: pulumi.String("private"),
 // 			PrivateVisibilityConfig: &dns.ManagedZonePrivateVisibilityConfigArgs{
-// 				Networks: dns.ManagedZonePrivateVisibilityConfigNetworkArray{
+// 				Networks: []dns.ManagedZonePrivateVisibilityConfigNetworkArgs{
 // 					&dns.ManagedZonePrivateVisibilityConfigNetworkArgs{
 // 						NetworkUrl: network_1.ID(),
 // 					},
@@ -131,7 +131,7 @@ import (
 // 			},
 // 			Visibility: pulumi.String("private"),
 // 			PrivateVisibilityConfig: &dns.ManagedZonePrivateVisibilityConfigArgs{
-// 				Networks: dns.ManagedZonePrivateVisibilityConfigNetworkArray{
+// 				Networks: []dns.ManagedZonePrivateVisibilityConfigNetworkArgs{
 // 					&dns.ManagedZonePrivateVisibilityConfigNetworkArgs{
 // 						NetworkUrl: network_1.ID(),
 // 					},
@@ -141,7 +141,7 @@ import (
 // 				},
 // 			},
 // 			ForwardingConfig: &dns.ManagedZoneForwardingConfigArgs{
-// 				TargetNameServers: dns.ManagedZoneForwardingConfigTargetNameServerArray{
+// 				TargetNameServers: []dns.ManagedZoneForwardingConfigTargetNameServerArgs{
 // 					&dns.ManagedZoneForwardingConfigTargetNameServerArgs{
 // 						Ipv4Address: pulumi.String("172.16.1.10"),
 // 					},
@@ -188,7 +188,7 @@ import (
 // 			Description: pulumi.String("Example private DNS peering zone"),
 // 			Visibility:  pulumi.String("private"),
 // 			PrivateVisibilityConfig: &dns.ManagedZonePrivateVisibilityConfigArgs{
-// 				Networks: dns.ManagedZonePrivateVisibilityConfigNetworkArray{
+// 				Networks: []dns.ManagedZonePrivateVisibilityConfigNetworkArgs{
 // 					&dns.ManagedZonePrivateVisibilityConfigNetworkArgs{
 // 						NetworkUrl: network_source.ID(),
 // 					},
